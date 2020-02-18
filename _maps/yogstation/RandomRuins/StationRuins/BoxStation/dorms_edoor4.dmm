@@ -19,14 +19,16 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
-"p" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
+"i" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/turf/closed/wall,
+/obj/item/bedsheet/black,
+/turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
 "w" = (
 /obj/structure/chair/stool{
@@ -45,17 +47,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/carpet/royalblack,
-/area/crew_quarters/dorms)
-"J" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/black,
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
 "O" = (
@@ -88,13 +79,13 @@ E
 "}
 (4,1,1) = {"
 E
-J
+i
 O
 E
 "}
 (5,1,1) = {"
 E
 E
-p
+O
 E
 "}

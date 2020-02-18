@@ -9,17 +9,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/dorms)
-"e" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/orange,
-/turf/open/floor/carpet/orange,
-/area/crew_quarters/dorms)
 "o" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -39,15 +28,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/dorms)
-"S" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/crew_quarters/dorms)
 "W" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -65,6 +45,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/turf/open/floor/carpet/orange,
+/area/crew_quarters/dorms)
+"Y" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/obj/item/bedsheet/orange,
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/dorms)
 
@@ -88,13 +79,13 @@ E
 "}
 (4,1,1) = {"
 E
-e
+Y
 X
 E
 "}
 (5,1,1) = {"
 E
 E
-S
+X
 E
 "}

@@ -1,29 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"p" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/dorms)
 "y" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
 /turf/open/floor/carpet/blue,
-/area/crew_quarters/dorms)
-"C" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/closed/wall,
 /area/crew_quarters/dorms)
 "E" = (
 /turf/closed/wall,
@@ -36,6 +16,17 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/dorms)
+"O" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/dorms)
 "U" = (
@@ -88,13 +79,13 @@ E
 "}
 (4,1,1) = {"
 E
-p
+O
 X
 E
 "}
 (5,1,1) = {"
 E
 E
-C
+X
 E
 "}

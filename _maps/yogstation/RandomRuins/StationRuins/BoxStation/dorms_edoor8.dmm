@@ -24,27 +24,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/crew_quarters/dorms)
-"r" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/black,
-/turf/open/floor/carpet/black,
-/area/crew_quarters/dorms)
-"w" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/crew_quarters/dorms)
 "y" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -68,6 +47,18 @@
 	},
 /turf/open/floor/carpet/black,
 /area/crew_quarters/dorms)
+"U" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/obj/item/bedsheet/black,
+/turf/open/floor/carpet/black,
+/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -89,13 +80,13 @@ E
 "}
 (4,1,1) = {"
 E
-r
+U
 k
 E
 "}
 (5,1,1) = {"
 E
 E
-w
+k
 E
 "}
