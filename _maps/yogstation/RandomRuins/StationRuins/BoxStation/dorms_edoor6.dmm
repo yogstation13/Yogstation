@@ -19,17 +19,6 @@
 	},
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/dorms)
-"r" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/nanotrasen,
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
 "E" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
@@ -50,6 +39,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/turf/open/floor/carpet/exoticblue,
+/area/crew_quarters/dorms)
+"X" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/obj/item/bedsheet/nanotrasen,
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/dorms)
 "Z" = (
@@ -79,7 +79,7 @@ E
 "}
 (4,1,1) = {"
 E
-r
+X
 S
 E
 "}

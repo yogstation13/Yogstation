@@ -22,6 +22,17 @@
 "E" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
+"K" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/obj/item/bedsheet/orange,
+/turf/open/floor/carpet/orange,
+/area/crew_quarters/dorms)
 "M" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -47,17 +58,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/dorms)
-"Y" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/orange,
-/turf/open/floor/carpet/orange,
-/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -79,7 +79,7 @@ E
 "}
 (4,1,1) = {"
 E
-Y
+K
 X
 E
 "}

@@ -19,7 +19,10 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
-"w" = (
+"E" = (
+/turf/closed/wall,
+/area/crew_quarters/dorms)
+"I" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/machinery/airalarm{
@@ -29,9 +32,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/crew_quarters/dorms)
-"E" = (
-/turf/closed/wall,
 /area/crew_quarters/dorms)
 "J" = (
 /obj/structure/table,
@@ -79,7 +79,7 @@ E
 "}
 (4,1,1) = {"
 E
-w
+I
 R
 E
 "}

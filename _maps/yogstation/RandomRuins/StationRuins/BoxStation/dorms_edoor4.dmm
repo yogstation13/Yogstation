@@ -19,17 +19,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
-"i" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/black,
-/turf/open/floor/carpet/royalblack,
-/area/crew_quarters/dorms)
 "w" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -58,6 +47,17 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
+"R" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/obj/item/bedsheet/black,
+/turf/open/floor/carpet/royalblack,
+/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -79,7 +79,7 @@ E
 "}
 (4,1,1) = {"
 E
-i
+R
 O
 E
 "}
