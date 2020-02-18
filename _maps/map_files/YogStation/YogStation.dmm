@@ -53008,6 +53008,19 @@
 "cVb" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
+"cZb" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock{
+	id_tag = "Dorm3";
+	name = "Dorm 3"
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "daW" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -54708,6 +54721,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jKE" = (
+/obj/machinery/button/door{
+	id = "Dorm4";
+	name = "Dorm Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	specialfunctions = 4
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "jLm" = (
 /mob/living/simple_animal/mouse,
 /turf/open/floor/plasteel,
@@ -55359,6 +55382,19 @@
 "mof" = (
 /turf/closed/wall/r_wall,
 /area/quartermaster/sorting)
+"mpg" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock{
+	id_tag = "Dorm2";
+	name = "Dorm 2"
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "mxJ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -55649,6 +55685,16 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"nrS" = (
+/obj/machinery/button/door{
+	id = "Dorm2";
+	name = "Dorm Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	specialfunctions = 4
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "nsj" = (
 /obj/machinery/telecomms/server/presets/command,
 /obj/effect/turf_decal/tile/neutral{
@@ -55960,6 +56006,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
 /area/library)
+"oLc" = (
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "oNR" = (
 /obj/machinery/telecomms/bus/preset_three,
 /obj/machinery/light,
@@ -55980,6 +56029,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oQJ" = (
+/obj/machinery/button/door{
+	id = "Dorm3";
+	name = "Dorm Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	specialfunctions = 4
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "oSz" = (
 /obj/machinery/door/airlock/maintenance{
 	id_tag = "commissarydoor";
@@ -56070,6 +56129,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"plS" = (
+/obj/machinery/button/door{
+	id = "Dorm1";
+	name = "Dorm Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	specialfunctions = 4
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "pmX" = (
 /obj/machinery/light_switch{
 	pixel_x = -28
@@ -57040,6 +57109,19 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"sLZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock{
+	id_tag = "Dorm4";
+	name = "Dorm 4"
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "sOm" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /turf/open/floor/plasteel/dark,
@@ -57596,6 +57678,19 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"uAl" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock{
+	id_tag = "Dorm1";
+	name = "Dorm 1"
+	},
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "uCL" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -91122,6 +91217,7 @@ avD
 bNR
 apT
 <<<<<<< HEAD
+<<<<<<< HEAD
 gDo
 gDo
 gDo
@@ -91133,6 +91229,19 @@ gDo
 gDo
 gDo
 gDo
+=======
+oLc
+jKE
+oLc
+oLc
+oQJ
+oLc
+oLc
+nrS
+oLc
+oLc
+plS
+>>>>>>> parent of 885b35161c... Revert "Fixed buttons not working independently"
 gDo
 gDo
 =======
@@ -91395,18 +91504,21 @@ aoC
 bNR
 apT
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+oLc
+oLc
+sLZ
+oLc
+oLc
+cZb
+oLc
+oLc
+mpg
+oLc
+>>>>>>> parent of 885b35161c... Revert "Fixed buttons not working independently"
 gDo
-gDo
-gDo
-gDo
-gDo
-gDo
-gDo
-gDo
-gDo
-gDo
-gDo
-gDo
+uAl
 gDo
 =======
 jXz
