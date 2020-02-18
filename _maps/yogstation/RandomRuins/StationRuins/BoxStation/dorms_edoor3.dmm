@@ -18,7 +18,7 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
-"k" = (
+"s" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -79,7 +79,7 @@ E
 "}
 (4,1,1) = {"
 E
-k
+s
 j
 E
 "}
