@@ -8,6 +8,15 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
+"t" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/closed/wall,
+/area/crew_quarters/dorms)
 "v" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -37,25 +46,6 @@
 /obj/structure/table/glass,
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
-"K" = (
-/obj/machinery/door/airlock{
-	id_tag = "Dorm1";
-	name = "Dorm 1"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "O" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -66,17 +56,10 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
-"V" = (
+"P" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24
-	},
-/obj/machinery/button/door{
-	id = "Dorm1";
-	name = "Dorm Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = 25;
-	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -105,13 +88,13 @@ E
 "}
 (4,1,1) = {"
 E
-V
+P
 c
 E
 "}
 (5,1,1) = {"
 E
 E
-K
+t
 E
 "}
