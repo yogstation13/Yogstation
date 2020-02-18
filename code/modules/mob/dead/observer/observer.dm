@@ -960,6 +960,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(M , "<span class='warning'>You are now possessing a mouse \
 				You do not remember your previous life. You can eat trash and \
 				food on the floor to gain health and spawn new mice. Mouse traps will hurt your fragile body \
-				and so will any kind of weapons. Get. That. Cheese.")
+				and so will any kind of weapons. You can control click food and trash items in order to eat them. Get. That. Cheese.")
 	return TRUE
 
