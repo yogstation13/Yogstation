@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/yeti
 	name = "Angry Stick Yeti"
-	desc = "It's a horrifyingly enormous yeti, and it seems to resemble something nostalgic"
+	desc = "It's a horrifyingly enormous yeti, and it seems to resemble something nostalgic."
 	icon = 'goon/icons/obj/yeti.dmi'
 	icon_state = "yeti"
 	icon_living = "yeti"
