@@ -5,6 +5,7 @@
 	item_state = "mousetrap"
 	materials = list(MAT_METAL=100)
 	attachable = TRUE
+	layer = BELOW_OBJ_LAYER
 	var/armed = FALSE
 
 
