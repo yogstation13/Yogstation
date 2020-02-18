@@ -1702,9 +1702,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer3{
-	name = "Waste Out";
+	dir = 4;
 	icon_state = "pump_on_map-3";
-	dir = 4
+	name = "Waste Out"
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAS)
@@ -3767,9 +3767,9 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer1{
-	name = "Air Out";
+	dir = 8;
 	icon_state = "pump_on_map-1";
-	dir = 8
+	name = "Air Out"
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAP)
@@ -35023,8 +35023,8 @@
 /area/security/checkpoint/science)
 "boa" = (
 /obj/machinery/atmospherics/components/binary/valve/layer1{
-	icon_state = "mvalve_map-1";
-	dir = 8
+	dir = 8;
+	icon_state = "mvalve_map-1"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
@@ -43319,43 +43319,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/department/engine)
-"bBu" = (
-/obj/item/twohanded/required/kirbyplants/dead,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/button/door{
-	desc = "A switch that controls privacy shutters.";
-	id = "rdprivacy";
-	name = "Privacy Shutters";
-	pixel_x = 40;
-	pixel_y = -5;
-	req_access_txt = "30"
-	},
-/obj/machinery/keycard_auth{
-	pixel_x = 28;
-	pixel_y = 6
-	},
-/obj/machinery/button/door{
-	id = "rndshutters";
-	name = "Research Lockdown";
-	pixel_x = 28;
-	pixel_y = -5;
-	req_access_txt = "47"
-	},
-/obj/machinery/button/door{
-	id = "research_shutters_2";
-	name = "RnD Shutters";
-	pixel_x = 40;
-	pixel_y = 5;
-	req_access_txt = "47"
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/hor)
 "bBv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59331,6 +59294,43 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"mUe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	desc = "A switch that controls privacy shutters.";
+	id = "rdprivacy";
+	name = "Privacy Shutters";
+	pixel_x = 40;
+	pixel_y = -5;
+	req_access_txt = "30"
+	},
+/obj/machinery/keycard_auth{
+	pixel_x = 28;
+	pixel_y = 6
+	},
+/obj/machinery/button/door{
+	id = "rndshutters";
+	name = "Research Lockdown";
+	pixel_x = 28;
+	pixel_y = -5;
+	req_access_txt = "47"
+	},
+/obj/machinery/button/door{
+	id = "research_shutters_2";
+	name = "RnD Shutters";
+	pixel_x = 40;
+	pixel_y = 5;
+	req_access_txt = "47"
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/suit_storage_unit/rd,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/hor)
 "mVt" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
@@ -96813,7 +96813,7 @@ bvz
 bss
 mdL
 bCJ
-bBu
+mUe
 bCI
 bDF
 bEV
