@@ -1,0 +1,6 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "Added Monkey powder. Obtainable from grinding monkey cubes."
+  - tweak: "Monkey cubes now grind into Monkey powder rather than Nutriment."
+  - tweak: "Gorilla cubes now grind into Monkey powder rather than Nutriment."
