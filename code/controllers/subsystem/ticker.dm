@@ -214,7 +214,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GLOB.master_mode == "secret")
 			hide_mode = 1
 			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode  	
+				var/datum/game_mode/smode
 				if(runnable_modes.len)
 					smode = config.pick_mode(GLOB.secret_force_mode)
 				if(!smode.can_start())
@@ -225,7 +225,7 @@ SUBSYSTEM_DEF(ticker)
 		if(!mode)
 			if(!runnable_modes.len)
 				mode = new /datum/game_mode/extended()
-				message_admins("<span class='notice'>Unable to choose any non-extended gamemode, running extended</span>")
+				message_admins("<span class='notice'>Unable to choose any non-extended gamemode, running extended.</span>")
 			else
 				mode = pickweight(runnable_modes)
 			if(!mode)	//too few roundtypes all run too recently
