@@ -188,7 +188,7 @@ GLOBAL_VAR_INIT(food_for_next_mouse, 0)
 	add_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE, 100, multiplicative_slowdown = -1)
 	maxHealth = 30
 	health = maxHealth
-	to_chat(src, "<span class='userdanger'>You have ate cheese! You are now stronger, bigger and faster!</span>")
+	to_chat(src, "<span class='userdanger'>You ate cheese! You are now stronger, bigger and faster!</span>")
 	addtimer(CALLBACK(src, .proc/cheese_down), 3 MINUTES)
 
 /mob/living/simple_animal/mouse/proc/cheese_down()

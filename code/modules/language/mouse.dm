@@ -1,6 +1,6 @@
 /datum/language/mouse
 	name = "Mouse"
-	desc = "A rather simple language spoken and understood by mice. It has been developped and shared by genetically advanced mice."
+	desc = "A rather simple language spoken and understood by mice. It has been developed and shared by genetically advanced mice."
 	speech_verb = "squeaks"
 	ask_verb = "squeaks"
 	exclaim_verb = "squaks"

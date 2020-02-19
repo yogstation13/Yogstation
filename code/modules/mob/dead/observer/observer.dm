@@ -918,7 +918,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		possessible += M
 
 	if(!possessible.len)
-		to_chat(src, "<span class='warning'>There are currently no mice able to be possesed</span>")
+		to_chat(src, "<span class='warning'>There are currently no mice able to be possessed!</span>")
 		return FALSE
 
 	var/mob/living/simple_animal/mouse/M = pick(possessible)
@@ -931,7 +931,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE		
 
 	if(!SSticker.HasRoundStarted())
-		to_chat(usr, "<span class='warning'>The round hasen't started yet!</span>")
+		to_chat(usr, "<span class='warning'>The round hasn't started yet!</span>")
 		return FALSE
 
 	if(is_banned_from(key, ROLE_SENTIENCE))
@@ -957,9 +957,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	M.maxHealth = 15
 	M.health = M.maxHealth
 
-	to_chat(M , "<span class='warning'>You are now possessing a mouse \
+	to_chat(M , "<span class='warning'>You are now possessing a mouse. \
 				You do not remember your previous life. You can eat trash and \
-				food on the floor to gain health and spawn new mice. Mouse traps will hurt your fragile body \
+				food on the floor to gain health and help create new mice. Mouse traps will hurt your fragile body \
 				and so will any kind of weapons. You can control click food and trash items in order to eat them. Get. That. Cheese.")
 	return TRUE
 
