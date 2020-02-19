@@ -1,0 +1,4 @@
+author: "Readystorm546"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a load time maybe  by making the map smaller"
