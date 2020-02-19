@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - bugfix: "spec_emag_act actually gets both variables now"
