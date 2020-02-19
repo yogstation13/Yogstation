@@ -26,6 +26,7 @@ import { Crayon } from './interfaces/Crayon';
 import { CrewConsole } from './interfaces/CrewConsole';
 import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
+import { RadioactiveMicrolaser } from './interfaces/RadioactiveMicrolaser';
 import { DnaVault } from './interfaces/DnaVault';
 import { EngravedMessage } from './interfaces/EngravedMessage';
 import { Gps } from './interfaces/Gps';
@@ -399,6 +400,10 @@ const ROUTES = {
     component: () => Uplink,
     scrollable: true,
     theme: 'syndicate',
+  },
+  radioactive_microlaser: {
+    component: () => RadioactiveMicrolaser,
+    scrollable: false,
   },
   vault_controller: {
     component: () => VaultController,
