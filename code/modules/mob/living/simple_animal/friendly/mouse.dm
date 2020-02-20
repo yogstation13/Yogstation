@@ -10,6 +10,11 @@ GLOBAL_LIST_INIT(mouse_combestible, typecacheof(list(
 		/obj/item/cigbutt
 	)))
 GLOBAL_VAR_INIT(food_for_next_mouse, 0)
+
+GLOBAL_VAR_INIT(mouse_food_eaten, 0)
+GLOBAL_VAR_INIT(mouse_spawned, 0)
+GLOBAL_VAR_INIT(mouse_killed, 0)
+
 #define FOODPERMOUSE 35
 
 /mob/living/simple_animal/mouse
@@ -65,6 +70,7 @@ GLOBAL_VAR_INIT(food_for_next_mouse, 0)
 			src.icon_dead = "mouse_[body_color]_splat"
 
 /mob/living/simple_animal/mouse/death(gibbed, toast)
+	GLOB.mouse_killed++
 	if(!ckey)
 		..(1)
 		if(!gibbed)
@@ -154,7 +160,7 @@ GLOBAL_VAR_INIT(food_for_next_mouse, 0)
 		visible_message("<span class='danger'>[src] finishes eating up [A]!</span>",
 						 "<span class='notice'>You finish up eating [A]</span>")
 		A.mouse_eat(src)
-
+		GLOB.mouse_food_eaten++
 
 	eating = FALSE
 	layer = BELOW_OPEN_DOOR_LAYER
@@ -174,8 +180,11 @@ GLOBAL_VAR_INIT(food_for_next_mouse, 0)
 	adjustHealth(-amt)
 	GLOB.food_for_next_mouse += overheal
 	var/mice = FLOOR(GLOB.food_for_next_mouse / FOODPERMOUSE, 1)
-	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
+	if(!mice)
+		return
 	
+	GLOB.mouse_spawned += mice
+	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
 	SSminor_mapping.trigger_migration(mice)
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
