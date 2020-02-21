@@ -16,6 +16,8 @@
 	throwforce = 2
 	throw_speed = 3
 	throw_range = 7
+	drop_sound = 'sound/items/handling/component_drop.ogg'
+	pickup_sound =  'sound/items/handling/component_pickup.ogg'
 
 	var/is_position_sensitive = FALSE	//set to true if the device has different icons for each position.
 										//This will prevent things such as visible lasers from facing the incorrect direction when transformed by assembly_holder's update_icon()
@@ -33,7 +35,8 @@
 
 /obj/item/assembly/proc/on_attach()
 
-/obj/item/assembly/proc/on_detach() //call this when detaching it from a device. handles any special functions that need to be updated ex post facto
+//Call this when detaching it from a device. handles any special functions that need to be updated ex post facto
+/obj/item/assembly/proc/on_detach()
 	if(!holder)
 		return FALSE
 	forceMove(holder.drop_location())
@@ -124,3 +127,8 @@
 
 /obj/item/assembly/interact(mob/user)
 	return ui_interact(user)
+
+/obj/item/assembly/ui_host(mob/user)
+	if(holder)
+		return holder
+	return src

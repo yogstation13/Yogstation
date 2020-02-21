@@ -8,7 +8,10 @@
 	materials = list(MAT_METAL=400, MAT_GLASS=120)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
-
+	drop_sound = 'sound/items/handling/component_drop.ogg'
+	pickup_sound =  'sound/items/handling/component_pickup.ogg'
+	var/ui_x = 280
+	var/ui_x = 280
 	var/code = DEFAULT_SIGNALER_CODE
 	var/frequency = FREQ_SIGNALER
 	var/delay = 0
@@ -50,14 +53,16 @@
 		holder.update_icon()
 	return
 
-/obj/item/assembly/signaler/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	if(!is_secured(user))
-		return
+/obj/item/assembly/signaler/ui_status(mob/user)
+	if(is_secured(user))
+		return ..()
+	return UI_CLOSE
+
+/obj/item/assembly/signaler/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		var/ui_width = 280
-		var/ui_height = 160
-		ui = new(user, src, ui_key, "signaler", name, ui_width, ui_height, master_ui, state)
+		ui = new(user, src, ui_key, "signaler", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 
@@ -130,9 +135,6 @@
 	var/turf/T = get_turf(src)
 	if(usr)
 		GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(frequency)]/[code]")
-
-
-	return
 
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
 	. = FALSE
