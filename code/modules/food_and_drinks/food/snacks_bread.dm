@@ -36,7 +36,7 @@
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/store/bread/meat
-	name = "meatbread loaf"
+	name = "meat bread"
 	desc = "The culinary base of every self-respecting eloquent gentleman."
 	icon_state = "meatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/meat
@@ -52,7 +52,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/store/bread/xenomeat
-	name = "xenomeatbread loaf"
+	name = "xenomeat bread"
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra heretical."
 	icon_state = "xenomeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
@@ -70,7 +70,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/store/bread/spidermeat
-	name = "spider meat loaf"
+	name = "spidermeat bread"
 	desc = "Reassuringly green meatloaf made from spider meat."
 	icon_state = "spidermeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/spidermeat
@@ -107,8 +107,8 @@
 	foodtype = GRAIN | FRUIT
 
 /obj/item/reagent_containers/food/snacks/store/bread/tofu
-	name = "Tofubread"
-	desc = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
+	name = "Tofu bread"
+	desc = "Like meat bread but for vegetarians. Not guaranteed to give superpowers."
 	icon_state = "tofubread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/tofu
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
@@ -281,3 +281,11 @@
 /obj/item/reagent_containers/food/snacks/butterdog/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
+
+/obj/item/reagent_containers/food/snacks/frenchtoast
+	name = "french toast"
+	desc = "This toast looks like it'll surrender at any moment!"
+	icon = 'yogstation/icons/obj/food/burgerbread.dmi'
+	icon_state = "frenchtoast"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
+	tastes = list("cinnamon" = 1, "toast" = 1)

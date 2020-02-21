@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////BREAD////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/banananutbread
-	name = "Banana nut bread"
+	name = "Banana-Nut Bread"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
@@ -33,7 +33,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/creamcheesebread
-	name = "Cream cheese bread"
+	name = "Cream Cheese Bread"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
@@ -43,7 +43,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/frenchtoast
-	name = "French toast"
+	name = "French Toast"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1,
@@ -65,7 +65,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/meatbread
-	name = "Meat bread"
+	name = "Meat Bread"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet/plain = 3,
@@ -75,7 +75,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/mimanabread
-	name = "Mimana bread"
+	name = "Mimana Bread"
 	reqs = list(
 		/datum/reagent/consumable/soymilk = 5,
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
@@ -86,7 +86,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/spidermeatbread
-	name = "Spidermeat bread"
+	name = "Spidermeat Bread"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet/spider = 3,
@@ -96,7 +96,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/tofubread
-	name = "Tofu bread"
+	name = "Tofu Bread"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
 		/obj/item/reagent_containers/food/snacks/tofu = 3,
@@ -106,7 +106,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/xenomeatbread
-	name = "Xenomeat bread"
+	name = "Xenomeat Bread"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/store/bread/plain = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet/xeno = 3,
