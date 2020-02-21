@@ -1,6 +1,15 @@
+// see code/module/crafting/table.dm
 
+////////////////////////////////////////////////KEBAB//////////////////////////////////////////////////
 
-////////////////////////////////////////////////KEBABS////////////////////////////////////////////////
+/datum/crafting_recipe/food/doubleratkebab
+	name = "Double Rat Kebab"
+	reqs = list(
+		/obj/item/stack/rods = 1,
+		/obj/item/reagent_containers/food/snacks/deadmouse = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/kebab/rat/double
+	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/humankebab
 	name = "Human kebab"
@@ -20,15 +29,6 @@
 	result = /obj/item/reagent_containers/food/snacks/kebab/monkey
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/tofukebab
-	name = "Tofu kebab"
-	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/reagent_containers/food/snacks/tofu = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/kebab/tofu
-	subcategory = CAT_MEAT
-
 /datum/crafting_recipe/food/tailkebab
 	name = "Lizard tail kebab"
 	reqs = list(
@@ -38,7 +38,23 @@
 	result = /obj/item/reagent_containers/food/snacks/kebab/tail
 	subcategory = CAT_MEAT
 
-// see code/module/crafting/table.dm
+/datum/crafting_recipe/food/ratkebab
+	name = "Rat Kebab"
+	reqs = list(
+		/obj/item/stack/rods = 1,
+		/obj/item/reagent_containers/food/snacks/deadmouse = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/kebab/rat
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/tofukebab
+	name = "Tofu kebab"
+	reqs = list(
+		/obj/item/stack/rods = 1,
+		/obj/item/reagent_containers/food/snacks/tofu = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/kebab/tofu
+	subcategory = CAT_MEAT
 
 ////////////////////////////////////////////////FISH////////////////////////////////////////////////
 
@@ -93,7 +109,15 @@
 	result = /obj/item/reagent_containers/food/snacks/spidereggsham
 	subcategory = CAT_MEAT
 
-////////////////////////////////////////////////MISC RECIPE's////////////////////////////////////////////////
+////////////////////////////////////////////////OTHER////////////////////////////////////////////////
+
+/datum/crafting_recipe/food/nugget
+	name = "Chicken nugget"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/nugget
+	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/cornedbeef
 	name = "Corned beef"
@@ -103,16 +127,6 @@
 		/obj/item/reagent_containers/food/snacks/grown/cabbage = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/cornedbeef
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/bearsteak
-	name = "Filet migrawr"
-	reqs = list(
-		/datum/reagent/consumable/ethanol/manly_dorf = 5,
-		/obj/item/reagent_containers/food/snacks/meat/steak/bear = 1,
-	)
-	tools = list(/obj/item/lighter)
-	result = /obj/item/reagent_containers/food/snacks/bearsteak
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/enchiladas
@@ -125,40 +139,14 @@
 	result = /obj/item/reagent_containers/food/snacks/enchiladas
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/stewedsoymeat
-	name = "Stewed soymeat"
+/datum/crafting_recipe/food/bearsteak
+	name = "Filet migrawr"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/soydope = 2,
-		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
-		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+		/datum/reagent/consumable/ethanol/manly_dorf = 5,
+		/obj/item/reagent_containers/food/snacks/meat/steak/bear = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/stewedsoymeat
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/sausage
-	name = "Sausage"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meatball = 1,  //YOGS - Bigotry rule
-		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/sausage
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/nugget
-	name = "Chicken nugget"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/nugget
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/rawkhinkali
-	name = "Raw Khinkali"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/doughslice = 1,
-		/obj/item/reagent_containers/food/snacks/meatball = 1  //YOGS - Bigotry rule
-	)
-	result =  /obj/item/reagent_containers/food/snacks/rawkhinkali
+	tools = list(/obj/item/lighter)
+	result = /obj/item/reagent_containers/food/snacks/bearsteak
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/pigblanket
@@ -171,22 +159,13 @@
 	result = /obj/item/reagent_containers/food/snacks/pigblanket
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/ratkebab
-	name = "Rat Kebab"
+/datum/crafting_recipe/food/rawkhinkali
+	name = "Raw Khinkali"
 	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/reagent_containers/food/snacks/deadmouse = 1
+		/obj/item/reagent_containers/food/snacks/doughslice = 1,
+		/obj/item/reagent_containers/food/snacks/meatball = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/kebab/rat
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/doubleratkebab
-	name = "Double Rat Kebab"
-	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/reagent_containers/food/snacks/deadmouse = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/kebab/rat/double
+	result =  /obj/item/reagent_containers/food/snacks/rawkhinkali
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/ricepork
@@ -196,4 +175,23 @@
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/salad/ricepork
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/sausage
+	name = "Sausage"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meatball = 1,
+		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/sausage
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/stewedsoymeat
+	name = "Stewed soymeat"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/soydope = 2,
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	subcategory = CAT_MEAT
