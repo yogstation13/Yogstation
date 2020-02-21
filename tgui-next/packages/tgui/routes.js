@@ -38,7 +38,6 @@ import { InfraredEmitter } from './interfaces/InfraredEmitter';
 import { KeycardAuth } from './interfaces/KeycardAuth';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
-import { MedicalKiosk } from './interfaces/MedicalKiosk';
 import { MiningVendor } from './interfaces/MiningVendor';
 import { NtosArcade } from './interfaces/NtosArcade';
 import { NtosMain } from './interfaces/NtosMain';
