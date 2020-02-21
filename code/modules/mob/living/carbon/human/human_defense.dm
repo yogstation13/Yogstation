@@ -507,7 +507,7 @@
 
 /mob/living/carbon/human/emag_act(mob/user)
 	.=..()
-	dna?.species.spec_emag_act(src)
+	dna?.species.spec_emag_act(src, user)
 
 /mob/living/carbon/human/emp_act(severity)
 	dna?.species.spec_emp_act(src, severity)
