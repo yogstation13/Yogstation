@@ -1,3 +1,4 @@
-author: SomeguyManperson
-changes: []
-delete-after: true
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: " expands whitelist for pet collars as a joke"

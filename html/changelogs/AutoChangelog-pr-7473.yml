@@ -1,3 +1,4 @@
-author: '  Hopek'
-changes: []
-delete-after: true
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "You can now emag a light switch."
