@@ -1,3 +1,4 @@
-author: Takahiru
-changes: []
-delete-after: true
+author: "Takahiru"
+delete-after: true 
+changes: 
+  - tweak: "Changes the battlemage armour and the wizards hardsuit."

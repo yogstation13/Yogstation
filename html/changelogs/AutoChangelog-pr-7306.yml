@@ -1,3 +1,4 @@
-author: CMOisLing
-changes: []
-delete-after: true
+author: "CMOisLing"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Greytide implant for assistants"
