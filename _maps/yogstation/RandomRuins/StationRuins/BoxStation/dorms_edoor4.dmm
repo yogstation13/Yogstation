@@ -1,14 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"e" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/carpet/royalblack,
-/area/crew_quarters/dorms)
 "h" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -27,6 +17,21 @@
 /area/crew_quarters/dorms)
 "E" = (
 /turf/closed/wall,
+/area/crew_quarters/dorms)
+"F" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/obj/structure/table{
+	desc = "A reinforced table replica. This one is made out of metal.";
+	icon = 'icons/obj/smooth_structures/reinforced_table.dmi';
+	icon_state = "r_table";
+	name = "replica reinforced table"
+	},
+/turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
 "H" = (
 /obj/effect/landmark/xeno_spawn,
@@ -67,7 +72,7 @@ E
 "}
 (2,1,1) = {"
 E
-e
+F
 w
 E
 "}
