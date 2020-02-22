@@ -403,7 +403,7 @@
 	if(action == "refresh")
 		var/was_not_connected = !(connected_tracker && connected_panels.len)
 		search_for_connected()
-		if(last_user && was_not_connected && connected_tracker && connected_panels.len) // If this guy finished up the solars
+		if(last_user && last_user.client && was_not_connected && connected_tracker && connected_panels.len) // If this guy finished up the solars
 			if(last_user.stat != DEAD && (last_user.mind?.assigned_role in GLOB.engineering_positions)) // and he's an engineer who isn't long-dead or adminbussing
 				SSachievements.unlock_achievement(/datum/achievement/engineering/solar, last_user.client) // Give him the achievement
 		if(connected_tracker && track == 2)
