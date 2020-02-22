@@ -31,7 +31,7 @@
 		if(pass)
 			dat += "<a href='?src=[REF(src)];make=[design.id]'>[design.name]</a><br>"
 
-	dat += "<br><a href='?src=[REF(src)];clear=1'>Clear Queue</a>
+	dat += "<br><a href='?src=[REF(src)];clear=1'>Clear Queue</a>"
 	var/datum/browser/popup = new(user, "computer", "Ordering Console", 400, 500)
 	popup.set_content(dat)
 	popup.open()
