@@ -118,7 +118,7 @@
 
 /obj/item/detonation_key/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/stationloving, !fake)
+	AddComponent(/datum/component/stationloving, TRUE)
 
 /obj/item/detonation_key/captain
 	name = "Captain's detonation key"
