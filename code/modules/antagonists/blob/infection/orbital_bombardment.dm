@@ -109,7 +109,7 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 			selectedTarget = null
 			to_chat(usr, "<span>No target selected!</span>")
 			return
-		if(!selectedTarget.firedOn)
+		if(selectedTarget.firedOn)
 			to_chat(usr, "<span>There's already a missile inbound to this target!</span>")
 			return
 		var/dev = selectedMuniton.dev
