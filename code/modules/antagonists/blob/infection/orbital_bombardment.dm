@@ -120,6 +120,7 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 		selectedMuniton.amountLeft--
 		selectedTarget.help = new /obj/effect/missileTarget(selectedTarget.loc)
 		selectedTarget.firedOn = TRUE
+		selectedTarget.prime()
 		addtimer(CALLBACK(selectedTarget, /obj/item/flashlight/glowstick/cyan/orb/proc/bombard, dev, heavy, light, flash, flame), selectedMuniton.landTime)
 		to_chat(usr, "<span>Order recieved, firing.</span>")
 		selectedTarget = null
@@ -134,10 +135,16 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	var/obj/effect/missileTarget/help = null
 	var/firedOn = FALSE
 
+
+
 /obj/item/flashlight/glowstick/cyan/orb/Initialize(mapload)
 	glowID = GLOB.orbital_beacon_count
 	GLOB.orbital_beacon_count++
 	..()
+
+/obj/item/flashlight/glowstick/cyan/orb/proc/prime()
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	interaction_flags_item = FALSE
 
 /obj/item/flashlight/glowstick/cyan/orb/attack_self(mob/user)
 	..()
