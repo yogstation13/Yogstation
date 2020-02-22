@@ -129,3 +129,8 @@
 	id = "dorms_edoor8"
 	suffix = "dorms_edoor8.dmm"
 	name = "Dorm east door 8"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm9
+	id = "dorms_edoor9"
+	suffix = "dorms_edoor9.dmm"
+	name = "Dorm east door 9"
