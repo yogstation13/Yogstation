@@ -13,7 +13,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/jelliedyoast
-	name = "Jellied toast"
+	name = "Jellied Toast"
 	reqs = list(
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1
@@ -22,7 +22,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/slimetoast
-	name = "Slime toast"
+	name = "Slime Toast"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1
@@ -31,7 +31,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/twobread
-	name = "Two bread"
+	name = "Two Bread"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/wine = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2
@@ -79,7 +79,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/candiedapple
-	name = "Candied apple"
+	name = "Candied Apple"
 	reqs = list(
 		/datum/reagent/consumable/caramel = 5,
 		/obj/item/reagent_containers/food/snacks/grown/apple = 1
@@ -88,7 +88,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/carneburrito
-	name ="Carne de asada burrito"
+	name ="Carne de Asada Burrito"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/tortilla = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2,
@@ -98,7 +98,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cheesyburrito
-	name ="Cheesy burrito"
+	name ="Cheesy Burrito"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/tortilla = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 2,
@@ -108,7 +108,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cheesyfries
-	name = "Cheesy fries"
+	name = "Cheesy Fries"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/fries = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
@@ -117,7 +117,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cheesynachos
-	name ="Cheesy nachos"
+	name ="Cheesy Nachos"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
@@ -127,7 +127,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chococoin
-	name = "Choco coin"
+	name = "Chocolate Coin"
 	reqs = list(
 		/obj/item/coin = 1,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
@@ -136,7 +136,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chocoorange
-	name = "Choco orange"
+	name = "Chocolate Orange"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
@@ -156,7 +156,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cubannachos
-	name ="Cuban nachos"
+	name ="Cuban Nachos"
 	reqs = list(
 		/datum/reagent/consumable/ketchup = 5,
 		/obj/item/reagent_containers/food/snacks/grown/chili = 2,
@@ -166,7 +166,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/dolphinandchips
-	name = "Dolphin and chips"
+	name = "Dolphin and Chips"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 3,
 		/obj/item/reagent_containers/food/snacks/chips = 1
@@ -175,7 +175,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/dolphincereal
-	name = "Dolphin cereal"
+	name = "Dolphin Cereal"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 2,
 		/datum/reagent/consumable/milk = 5,
@@ -185,7 +185,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/eggplantparm
-	name ="Eggplant parmigiana"
+	name ="Eggplant Parmigiana"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 2,
 		/obj/item/reagent_containers/food/snacks/grown/eggplant = 1
@@ -193,8 +193,17 @@
 	result = /obj/item/reagent_containers/food/snacks/eggplantparm
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/wrap
+	name = "Egg Wrap"
+	reqs = list(/datum/reagent/consumable/soysauce = 10,
+		/obj/item/reagent_containers/food/snacks/friedegg = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/eggwrap
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/fudgedice
-	name = "Fudge dice"
+	name = "Fudge Dice"
 	reqs = list(
 		/obj/item/dice = 1,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
@@ -203,7 +212,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/fuegoburrito
-	name ="Fuego plasma burrito"
+	name ="Fuego Plasma Burrito"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/tortilla = 1,
 		/obj/item/reagent_containers/food/snacks/grown/ghost_chili = 2,
@@ -213,7 +222,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/honeybar
-	name = "Honey nut bar"
+	name = "Honey Nut Bar"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/oat = 1,
 		/datum/reagent/consumable/honey = 5
@@ -234,7 +243,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/lizardwine
-	name = "Lizard wine"
+	name = "Lizard Wine"
 	time = 40
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -244,7 +253,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/loadedbakedpotato
-	name = "Loaded baked potato"
+	name = "Loaded Baked Potato"
 	time = 40
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/potato = 1,
@@ -254,7 +263,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/melonfruitbowl
-	name ="Melon fruit bowl"
+	name ="Melon Fruit Bowl"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/watermelon = 1,
 		/obj/item/reagent_containers/food/snacks/grown/apple = 1,
@@ -267,7 +276,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/melonkeg
-	name ="Melon keg"
+	name ="Melon Keg"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 25,
 		/obj/item/reagent_containers/food/snacks/grown/holymelon = 1,
@@ -310,7 +319,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/ricepudding
-	name = "Rice pudding"
+	name = "Rice Pudding"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -320,7 +329,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/spacefreezy
-	name ="Space freezy"
+	name ="Space Freezy"
 	reqs = list(
 		/datum/reagent/consumable/bluecherryjelly = 5,
 		/datum/reagent/consumable/spacemountainwind = 15,
@@ -340,7 +349,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/stuffedlegion
-	name = "Stuffed legion"
+	name = "Stuffed Legion"
 	time = 40
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/meat/steak/goliath = 1,
@@ -360,13 +369,4 @@
 		/obj/item/reagent_containers/food/snacks/icecream = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sundae
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/wrap
-	name = "Wrap"
-	reqs = list(/datum/reagent/consumable/soysauce = 10,
-		/obj/item/reagent_containers/food/snacks/friedegg = 1,
-		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/eggwrap
 	subcategory = CAT_MISCFOOD
