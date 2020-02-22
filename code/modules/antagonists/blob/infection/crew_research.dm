@@ -118,7 +118,7 @@
 	user.set_machine(src)
 	var/dat
 	dat += "<h2>Tunnel Control System</h2>"
-	if(crew.defcon > 4)
+	if(crew.defcon > 2)
 		dat += "<h3>DEFCON is not high enough to seal the tunnel!</h3>"
 	else
 		if(!closing)

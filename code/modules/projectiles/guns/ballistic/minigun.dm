@@ -14,8 +14,8 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 30
-	var/heat_diffusion = 2
+	var/overheat_max = 25
+	var/heat_diffusion = 1.8
 
 /obj/item/minigunbackpack/Initialize()
 	. = ..()
@@ -150,25 +150,5 @@
 		to_chat(user, "You need more ammo to fire the gun!")
 	. = ..()
 
-/obj/item/gun/ballistic/minigunosprey/onMouseDown(object, location, params, mob/mob)
-	timeleftrev = revtime + world.time
-	if(istype(mob))
-		current_user = mob
-
-/obj/item/gun/ballistic/minigunosprey/onMouseUp(object, location, params, mob/mob)
-	timeleftrev = null
-	rev = FALSE
-	current_user = null
-
-/obj/item/gun/ballistic/minigunosprey/onMouseDrag(object, location, params, mob/mob)
-	var/angle = mouse_angle_from_client(current_user.client)
-	current_user.setDir(angle2dir_cardinal(angle))
-
-/obj/item/gun/ballistic/minigunosprey/process()
-	if(timeleftrev)
-		if(world.time >= timeleftrev)
-			rev = TRUE
-	if(!rev)
-		return
-	if(current_user)
-		process_fire(current_user.client.mouseObject, current_user)
+/obj/item/gun/ballistic/minigunosprey/dropped(mob/living/user)
+	ammo_pack.attach_gun(user)

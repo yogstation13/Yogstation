@@ -4,7 +4,7 @@
 	desc = "A stanard-issue assault rifle used by Nanotrasen soldiers."
 	mag_type = /obj/item/ammo_box/magazine/m556/infection
 	burst_size = 2
-	fire_delay = 1.5
+	fire_delay = 1.4
 
 /obj/item/ammo_box/magazine/m556/infection
 	name = "magazine (5.56mm)"
@@ -17,31 +17,31 @@
 	name = "lazarus magazine (5.56mm)"
 	icon_state = "5.56mp"
 	ammo_type = /obj/item/ammo_casing/a556/infection/lazarus
-	max_ammo = 18
+	max_ammo = 20
 
 /obj/item/ammo_box/magazine/m556/infection/purifier
 	name = "purifier magazine (5.56mm)"
 	icon_state = "5.56ml"
 	ammo_type = /obj/item/ammo_casing/a556/infection/purifier
-	max_ammo = 16
+	max_ammo = 20
 
 /obj/item/ammo_casing/a556/infection
 	projectile_type = /obj/item/projectile/bullet/a556/infection
 
 /obj/item/projectile/bullet/a556/infection
-	damage = 20
+	damage = 25
 
 /obj/item/ammo_casing/a556/infection/purifier
 	projectile_type = /obj/item/projectile/bullet/a556/infection/purifier
 
 /obj/item/projectile/bullet/a556/infection/purifier
-	damage = 30
+	damage = 40
 
 /obj/item/ammo_casing/a556/infection/lazarus
 	projectile_type = /obj/item/projectile/bullet/a556/infection/lazarus
 
 /obj/item/projectile/bullet/a556/infection/lazarus
-	damage = 25
+	damage = 35
 
 //PISTOL
 /obj/item/gun/ballistic/automatic/pistol/infection
@@ -64,7 +64,7 @@
 
 /obj/item/projectile/bullet/c10mm/infection
 	name = "10mm bullet"
-	damage = 20
+	damage = 25
 
 //GRASSCUTTER
 /obj/item/gun/energy/pulse/pistol/infection
@@ -94,7 +94,6 @@
 	fire_delay = 1
 	spread = 34
 	mag_type = /obj/item/ammo_box/magazine/internal/minigunosprey/infection
-	revtime = 5
 
 /obj/item/ammo_box/magazine/internal/minigunosprey/infection
 	name = "Minigun back stash box"
@@ -106,4 +105,4 @@
 	projectile_type = /obj/item/projectile/bullet/a546/infection
 
 /obj/item/projectile/bullet/a546/infection
-	damage = 23
+	damage = 28

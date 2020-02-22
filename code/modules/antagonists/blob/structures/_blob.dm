@@ -400,8 +400,5 @@
 		icon_state = "blob"
 		name = "dead blob"
 		desc = "A thick wall of lifeless tendrils."
-<<<<<<< HEAD
 		brute_resist = 0.3
-=======
 		brute_resist = 0.25
->>>>>>> 0bd31fb067ef051a85d07265a5c8d6d092e1b03d
