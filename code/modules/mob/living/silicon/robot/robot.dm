@@ -905,6 +905,12 @@
 					to_chat(src, "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
 					playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, 1, 1)
 
+/mob/living/silicon/robot/movement_delay()
+	. = ..()
+	var/hd = maxHealth - health
+	if(hd > 50)
+		. += hd/100
+
 /mob/living/silicon/robot/update_sight()
 	if(!client)
 		return

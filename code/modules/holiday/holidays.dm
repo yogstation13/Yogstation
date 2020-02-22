@@ -87,7 +87,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 15
+	end_day = 17
 	begin_month = FEBRUARY
 
 /datum/holiday/valentines/getStationPrefix()
@@ -495,13 +495,12 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	end_day = 27
 	drone_hat = /obj/item/clothing/head/santa
 	lobby_music = list(
-		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // jingle bells
-		"https://www.youtube.com/watch?v=x2YlbiyiuMc", // Winter Wonderland
-		"https://www.youtube.com/watch?v=cW38y4AFGyI", // The Grinch
-		"https://www.youtube.com/watch?v=zgKazTrhXmI", // frosty the snowman
-		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // twelve days of christmas
-		"https://www.youtube.com/watch?v=maYCStVzjDs",  // deer song
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // jolly christmas
+		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
+		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bublé - Winter Wonderland
+		"https://www.youtube.com/watch?v=nytpYtLtHpE", // You’re a Mean One, Mr. Grinch
+		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
+		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael Bublé - Holly Jolly Christmas
 		)
 
 /datum/holiday/xmas/greet()

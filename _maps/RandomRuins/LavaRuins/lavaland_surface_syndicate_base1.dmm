@@ -3672,7 +3672,7 @@
 	pixel_x = 7;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate{
 	pixel_x = -3
 	},
 /obj/effect/turf_decal/tile/neutral{

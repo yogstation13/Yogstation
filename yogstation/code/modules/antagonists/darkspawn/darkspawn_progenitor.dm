@@ -89,5 +89,5 @@
 /mob/living/simple_animal/hostile/darkspawn_progenitor/singularity_act()
 	return
 
-/mob/living/simble_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
+/mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return

@@ -3,7 +3,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolateegg
 	name = "chocolate egg"
-	desc = "Such, sweet, fattening food."
+	desc = "Such sweet, fattening food."
 	icon_state = "chocolateegg"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
@@ -15,11 +15,21 @@
 	name = "egg"
 	desc = "An egg!"
 	icon_state = "egg"
-	list_reagents = list(/datum/reagent/consumable/eggyolk = 5)
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/growthserum = 1)
 	cooked_type = /obj/item/reagent_containers/food/snacks/boiledegg
 	filling_color = "#F0E68C"
 	foodtype = MEAT | EGG
 	grind_results = list()
+
+/obj/item/reagent_containers/food/snacks/egg/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] RPs as [src]!</span>")
+	if(istype(user) && user.mind)
+		var/mob/living/brain/B = new(src)
+		B.real_name = name
+		B.name = name
+		B.stat = CONSCIOUS
+		user.mind.transfer_to(B)
+	return BRUTELOSS
 
 /obj/item/reagent_containers/food/snacks/egg/gland
 	desc = "An egg! It looks weird..."
@@ -111,7 +121,7 @@
 	tastes = list("egg" = 1)
 	foodtype = MEAT | BREAKFAST | EGG
 
-/obj/item/reagent_containers/food/snacks/omelette	//FUCK THIS
+/obj/item/reagent_containers/food/snacks/omelette
 	name = "omelette du fromage"
 	desc = "That's all you can say!"
 	icon_state = "omelette"
