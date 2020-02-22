@@ -1,13 +1,11 @@
 
 // see code/datums/recipe.dm
-
-
 // see code/module/crafting/table.dm
 
 ////////////////////////////////////////////////SANDWICHES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/grilledcheesesandwich
-	name = "Grilled cheese sandwich"
+	name = "Grilled Cheese Sandwich"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 2
@@ -16,7 +14,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/icecreamsandwich
-	name = "Icecream sandwich"
+	name = "Icecream Sandwich"
 	reqs = list(
 		/datum/reagent/consumable/cream = 5,
 		/datum/reagent/consumable/ice = 5,
@@ -26,7 +24,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/slimesandwich
-	name = "Jelly sandwich"
+	name = "Jelly Sandwich"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2
@@ -35,7 +33,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/cherrysandwich
-	name = "Jelly sandwich"
+	name = "Jelly Sandwich"
 	reqs = list(
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2
@@ -44,7 +42,7 @@
 	subcategory = CAT_SANDWICH
 
 /datum/crafting_recipe/food/notasandwich
-	name = "Not a sandwich"
+	name = "Not a Sandwich"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2,
 		/obj/item/clothing/mask/fakemoustache = 1

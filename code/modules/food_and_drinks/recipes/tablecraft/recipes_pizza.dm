@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////PIZZA!!!////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/arnold
-	name = "Arnold pizza"
+	name = "Arnold Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 3,
@@ -16,7 +16,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/dankpizza
-	name = "Dank pizza"
+	name = "Dank Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris = 3,
@@ -27,7 +27,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/donkpocketpizza
-	name = "Donkpocket pizza"
+	name = "Donkpocket Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/donkpocket/warm = 3,
@@ -38,7 +38,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/pineapplepizza
-	name = "Hawaiian pizza"
+	name = "Hawaiian Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2,
@@ -50,7 +50,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/margheritapizza
-	name = "Margherita pizza"
+	name = "Margherita Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 4,
@@ -60,7 +60,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/meatpizza
-	name = "Meat pizza"
+	name = "Meat Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 4,
@@ -71,7 +71,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/mushroompizza
-	name = "Mushroom pizza"
+	name = "Mushroom Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom = 5
@@ -80,7 +80,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/sassysagepizza
-	name = "Sassysage pizza"
+	name = "Sassysage Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/meatball = 3,
@@ -91,7 +91,7 @@
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/vegetablepizza
-	name = "Vegetable pizza"
+	name = "Vegetable Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/grown/eggplant = 1,

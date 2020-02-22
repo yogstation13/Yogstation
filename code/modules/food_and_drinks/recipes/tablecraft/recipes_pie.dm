@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////PIES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/amanitapie
-	name = "Amanita pie"
+	name = "Amanita Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita = 1
@@ -13,7 +13,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/applepie
-	name = "Apple pie"
+	name = "Apple Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/grown/apple = 1
@@ -22,7 +22,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/bananacreampie
-	name = "Banana cream pie"
+	name = "Banana Cream Pie"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
@@ -42,7 +42,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/berryclafoutis
-	name = "Berry clafoutis"
+	name = "Berry Clafoutis"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/grown/berries = 1
@@ -51,7 +51,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/blumpkinpie
-	name = "Blumpkin pie"
+	name = "Blumpkin Pie"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -62,7 +62,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/buttcinnpie
-	name = "Butterscotch cinnamon pie"
+	name = "Butterscotch Cinnamon Pie"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -73,7 +73,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/cherrypie
-	name = "Cherry pie"
+	name = "Cherry Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		 /obj/item/reagent_containers/food/snacks/grown/cherries = 1
@@ -82,7 +82,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/dulcedebatata
-	name = "Dulce de batata"
+	name = "Dulce de Batata"
 	reqs = list(
 		/datum/reagent/consumable/vanilla = 5,
 		/datum/reagent/water = 5,
@@ -92,7 +92,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/frostypie
-	name = "Frosty pie"
+	name = "Frosty Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1
@@ -101,7 +101,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/goldenappletart
-	name = "Golden apple tart"
+	name = "Golden Apple Streusel Tart"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -112,7 +112,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/grapetart
-	name = "Grape tart"
+	name = "Grape Tart"
 	reqs = list(
             /datum/reagent/consumable/milk = 5,
             /datum/reagent/consumable/sugar = 5,
@@ -123,7 +123,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/meatpie
-	name = "Meat pie"
+	name = "Meat Pie"
 	reqs = list(
 		/datum/reagent/consumable/blackpepper = 1,
 		/datum/reagent/consumable/sodiumchloride = 1,
@@ -134,7 +134,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/plumppie
-	name = "Plump pie"
+	name = "Plump Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet = 1
@@ -143,7 +143,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/pumpkinpie
-	name = "Pumpkin pie"
+	name = "Pumpkin Pie"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -154,7 +154,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/tofupie
-	name = "Tofu pie"
+	name = "Tofu Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/tofu = 1
@@ -163,7 +163,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/xenopie
-	name = "Xeno pie"
+	name = "Xeno Pie"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet/xeno = 1
