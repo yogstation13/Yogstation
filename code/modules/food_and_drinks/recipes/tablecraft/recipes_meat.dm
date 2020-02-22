@@ -97,18 +97,6 @@
 	result = /obj/item/reagent_containers/food/snacks/fishfingers
 	subcategory = CAT_MEAT
 
-////////////////////////////////////////////////MR SPIDER////////////////////////////////////////////////
-
-/datum/crafting_recipe/food/spidereggsham
-	name = "Green Eggs and Ham"
-	reqs = list(
-		/datum/reagent/consumable/sodiumchloride = 1,
-		/obj/item/reagent_containers/food/snacks/spidereggs = 1,
-		/obj/item/reagent_containers/food/snacks/meat/cutlet/spider = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/spidereggsham
-	subcategory = CAT_MEAT
-
 ////////////////////////////////////////////////OTHER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/nugget
