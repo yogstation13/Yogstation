@@ -340,6 +340,8 @@
 			else
 				parts += "<div class='panel greenborder'>"
 				parts += "<span class='greentext'>You managed to survive the events on [station_name()] as [M.real_name].</span>"
+				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
 
 		else
 			parts += "<div class='panel redborder'>"
