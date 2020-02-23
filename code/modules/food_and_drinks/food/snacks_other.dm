@@ -148,16 +148,6 @@
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
 
-/obj/item/reagent_containers/food/snacks/eggwrap
-	name = "egg wrap"
-	desc = "The precursor to pigs in a blanket."
-	icon_state = "eggwrap"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	filling_color = "#F0E68C"
-	tastes = list("egg" = 1)
-	foodtype = MEAT | GRAIN | EGG
-
 /obj/item/reagent_containers/food/snacks/beans
 	name = "tin of beans"
 	desc = "Musical fruit in a slightly less musical container."
