@@ -50,6 +50,8 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 		dat += "<br><h4>Selected Target: [DisplayTarget]</h4><br>"
 		for(var/R in GLOB.orbital_beacons)
 			var/obj/item/flashlight/glowstick/cyan/orb/beacon = R
+			if(!beacon.loc)
+				continue
 			dat += "<a href='?src=[REF(src)];select=[beacon.glowID]'>Beacon (X: [beacon.loc.x], Y: [beacon.loc.y])</a><br>"
 
 		dat += "<br><br>"
@@ -135,6 +137,10 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	var/obj/effect/missileTarget/help = null
 	var/firedOn = FALSE
 
+/obj/item/flashlight/glowstick/cyan/orb/Destroy()
+	if(listAdded)
+		GLOB.orbital_beacons -= src
+	..()
 
 
 /obj/item/flashlight/glowstick/cyan/orb/Initialize(mapload)
