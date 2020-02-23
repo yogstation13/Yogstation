@@ -108,9 +108,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 					
 /mob/living/simple_animal/mouse/Move()
 	. = ..()
-	if(!stat && !key)
-		eat_cheese()
 	if(key && stat == CONSCIOUS)
+		eat_cheese()
+	else
 		if(!(locate(/obj/structure/table) in get_turf(src)))
 			for(var/obj/item/reagent_containers/glass/G in get_turf(src))
 				G.throw_at(get_turf(G), 0, 1, src)
