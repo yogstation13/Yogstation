@@ -108,7 +108,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 					
 /mob/living/simple_animal/mouse/Move()
 	. = ..()
-	if(key && stat == CONSCIOUS)
+	if(stat != CONSCIOUS)
+		return .
+		
+	if(!key)
 		eat_cheese()
 	else
 		if(!(locate(/obj/structure/table) in get_turf(src)))
