@@ -142,7 +142,7 @@ const AACControl = props => {
         <LabeledList.Item label="Actions"><Button
           icon="search"
           content="Scan for Devices"
-          onclick={() => act('scan')} />
+          onClick={() => act('scan')} />
         </LabeledList.Item>
         <LabeledList.Item label="Interior Pressure">
           <NumberInput
