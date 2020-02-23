@@ -29,7 +29,7 @@
 	projectile_type = /obj/item/projectile/bullet/a556/infection
 
 /obj/item/projectile/bullet/a556/infection
-	damage = 25
+	damage = 20
 
 /obj/item/ammo_casing/a556/infection/purifier
 	projectile_type = /obj/item/projectile/bullet/a556/infection/purifier
@@ -41,7 +41,7 @@
 	projectile_type = /obj/item/projectile/bullet/a556/infection/lazarus
 
 /obj/item/projectile/bullet/a556/infection/lazarus
-	damage = 35
+	damage = 30
 
 //PISTOL
 /obj/item/gun/ballistic/automatic/pistol/infection
@@ -64,7 +64,7 @@
 
 /obj/item/projectile/bullet/c10mm/infection
 	name = "10mm bullet"
-	damage = 25
+	damage = 20
 
 //GRASSCUTTER
 /obj/item/gun/energy/pulse/pistol/infection
