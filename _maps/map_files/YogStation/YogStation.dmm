@@ -48335,21 +48335,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"bYg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "xenobio2";
-	name = "containment blast door"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "bYh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -58145,6 +58130,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"wjn" = (
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "xenobio2";
+	name = "containment blast door"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "wkN" = (
 /turf/closed/wall,
 /area/science/nanite)
@@ -103629,7 +103626,7 @@ bUe
 bJN
 bWl
 bXf
-bYg
+wjn
 bJN
 bZV
 caV
