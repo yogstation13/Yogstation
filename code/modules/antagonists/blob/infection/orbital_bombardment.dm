@@ -136,6 +136,7 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	var/glowID = 0
 	var/obj/effect/missileTarget/help = null
 	var/firedOn = FALSE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/flashlight/glowstick/cyan/orb/Destroy()
 	if(listAdded)
@@ -149,7 +150,6 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	..()
 
 /obj/item/flashlight/glowstick/cyan/orb/proc/prime()
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	interaction_flags_item = FALSE
 
 /obj/item/flashlight/glowstick/cyan/orb/attack_self(mob/user)
