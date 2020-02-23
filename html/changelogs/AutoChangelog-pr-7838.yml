@@ -1,4 +1,4 @@
 author: "alexkar598"
 delete-after: true 
 changes: 
-  - add: "You can now be a mouse."
+  - rscadd: "You can now be a mouse."
