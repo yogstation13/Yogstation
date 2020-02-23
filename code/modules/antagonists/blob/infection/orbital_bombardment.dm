@@ -142,6 +142,8 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	if(listAdded)
 		GLOB.orbital_beacons -= src
 	..()
+/obj/item/flashlight/glowstick/cyan/orb/blob_act()
+	return FALSE
 
 
 /obj/item/flashlight/glowstick/cyan/orb/Initialize(mapload)
