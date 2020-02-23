@@ -446,7 +446,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			return
 
 /mob/camera/blob/infection/add_points(points)
-	stage_point_buffer += (points * stage_resources) - points
+	if(points > 0)
+		stage_point_buffer += (points * stage_resources) - points
 	blob_points = CLAMP(blob_points + points, 0, max_blob_points)
 	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
 
