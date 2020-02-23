@@ -9,35 +9,35 @@
 /obj/item/ammo_box/magazine/m556/infection
 	name = "magazine (5.56mm)"
 	icon_state = "5.56m"
-	ammo_type = /obj/item/ammo_casing/a556/infection
+	ammo_type = /obj/item/ammo_casing/caseless/a556/infection
 	caliber = "a556"
 	max_ammo = 20
 
 /obj/item/ammo_box/magazine/m556/infection/lazarus
 	name = "lazarus magazine (5.56mm)"
 	icon_state = "5.56mp"
-	ammo_type = /obj/item/ammo_casing/a556/infection/lazarus
+	ammo_type = /obj/item/ammo_casing/caseless/a556/infection/lazarus
 	max_ammo = 20
 
 /obj/item/ammo_box/magazine/m556/infection/purifier
 	name = "purifier magazine (5.56mm)"
 	icon_state = "5.56ml"
-	ammo_type = /obj/item/ammo_casing/a556/infection/purifier
+	ammo_type = /obj/item/ammo_casing/caseless/a556/infection/purifier
 	max_ammo = 20
 
-/obj/item/ammo_casing/a556/infection
+/obj/item/ammo_casing/caseless/a556/infection
 	projectile_type = /obj/item/projectile/bullet/a556/infection
 
 /obj/item/projectile/bullet/a556/infection
 	damage = 20
 
-/obj/item/ammo_casing/a556/infection/purifier
+/obj/item/ammo_casing/caseless/a556/infection/purifier
 	projectile_type = /obj/item/projectile/bullet/a556/infection/purifier
 
 /obj/item/projectile/bullet/a556/infection/purifier
 	damage = 40
 
-/obj/item/ammo_casing/a556/infection/lazarus
+/obj/item/ammo_casing/caseless/a556/infection/lazarus
 	projectile_type = /obj/item/projectile/bullet/a556/infection/lazarus
 
 /obj/item/projectile/bullet/a556/infection/lazarus
@@ -54,9 +54,9 @@
 	name = "pistol magazine (10mm)"
 	desc = "A gun magazine."
 	icon_state = "9x19p"
-	ammo_type = /obj/item/ammo_casing/c10mm/infection
+	ammo_type = /obj/item/ammo_casing/caseless/c10mm/infection
 
-/obj/item/ammo_casing/c10mm/infection
+/obj/item/ammo_casing/caseless/c10mm/infection
 	name = "10mm bullet casing"
 	desc = "A 10mm bullet casing."
 	caliber = "10mm"
