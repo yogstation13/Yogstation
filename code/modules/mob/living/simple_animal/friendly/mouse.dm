@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(mouse_combestible, typecacheof(list(
+GLOBAL_LIST_INIT(mouse_comestible, typecacheof(list(
 		/obj/effect/decal/cleanable/food,
 		/obj/effect/decal/cleanable/greenglow,
 		/obj/effect/decal/cleanable/insectguts,
@@ -173,7 +173,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 	if(eating)
 		return FALSE
-	if(is_type_in_list(A, GLOB.mouse_combestible))
+	if(is_type_in_list(A, GLOB.mouse_comestible))
 		return TRUE
 	if(istype(A, /obj/item/reagent_containers/food) && !(locate(/obj/structure/table) in get_turf(A)))
 		return TRUE
