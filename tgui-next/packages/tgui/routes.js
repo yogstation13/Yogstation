@@ -30,6 +30,7 @@ import { DisposalUnit } from './interfaces/DisposalUnit';
 import { RadioactiveMicrolaser } from './interfaces/RadioactiveMicrolaser';
 import { RemoteRobotControl } from './interfaces/RemoteRobotControl';
 import { DnaVault } from './interfaces/DnaVault';
+import { Electropack } from './interfaces/Electropack';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
 import { EightBallVote } from './interfaces/EightBallVote';
 import { EngravedMessage } from './interfaces/EngravedMessage';
@@ -236,6 +237,10 @@ const ROUTES = {
   },
   dna_vault: {
     component: () => DnaVault,
+    scrollable: false,
+  },
+  electropack: {
+    component: () => Electropack,
     scrollable: false,
   },
   emergency_shuttle_console: {
