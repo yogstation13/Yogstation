@@ -555,7 +555,7 @@
 	. = ..()
 	deltimer(timerid)
 
-/datum/status_effect/progenitor_curse/
+/datum/status_effect/progenitor_curse
 	duration = 200
 	tick_interval = 5
 
