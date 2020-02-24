@@ -800,9 +800,12 @@
 	pixel_x = 24
 	},
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
 /obj/effect/turf_decal/tile/purple{
 	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	icon_state = "booze_dispenser";
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -1122,6 +1125,33 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
+"cj" = (
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30;
+	pixel_y = 0
+	},
+/obj/machinery/camera{
+	c_tag = "Bar";
+	dir = 8;
+	network = list("SS13")
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/tile/purple{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/machinery/chem_dispenser/drinks{
+	icon_state = "soda_dispenser";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "cm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
@@ -1190,30 +1220,6 @@
 "cx" = (
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/bar)
-"cz" = (
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8;
-	network = list("SS13")
-	},
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks,
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "cD" = (
 /obj/machinery/deepfryer,
@@ -1721,7 +1727,7 @@ ab
 bE
 bO
 cL
-cz
+cj
 cL
 bk
 bl
