@@ -109,7 +109,7 @@ Difficulty: Hard
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
 				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
-	
+
 
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
@@ -518,7 +518,7 @@ Difficulty: Hard
 	alpha = 127.5
 	crusher_loot = null
 	loot = null
-	deathmessage = "Explodes into a pool of blood!"
+	deathmessage = "explodes into a pool of blood!"
 	deathsound = 'sound/effects/splat.ogg'
 	true_spawn = FALSE
 
