@@ -39629,17 +39629,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bAq" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
-	dir = 8;
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "bAr" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
@@ -54302,6 +54291,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"hOi" = (
+/obj/machinery/camera{
+	c_tag = "Medbay Treatment Center";
+	dir = 8;
+	network = list("ss13","medbay")
+	},
+/obj/machinery/stasis,
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "hQb" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -55771,10 +55769,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"nwu" = (
-/obj/machinery/stasis,
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "nCP" = (
 /obj/effect/landmark/stationroom/box/xenobridge,
 /turf/template_noop,
@@ -56078,6 +56072,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oRL" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "oSz" = (
 /obj/machinery/door/airlock/maintenance{
 	id_tag = "commissarydoor";
@@ -96663,10 +96663,10 @@ aBS
 bsx
 aNL
 bvh
-nwu
+oRL
 bDR
 bDR
-bAq
+hOi
 bvj
 bCQ
 bqQ
