@@ -58,7 +58,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
-	
+
 /mob/living/simple_animal/mouse/proc/splat()
 	if(!key)
 		src.health = 0
@@ -105,12 +105,12 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 				else
 					C.deconstruct()
 					visible_message("<span class='warning'>[src] chews through the [C].</span>")
-					
+
 /mob/living/simple_animal/mouse/Move()
 	. = ..()
 	if(stat != CONSCIOUS)
 		return .
-		
+
 	if(!key)
 		eat_cheese()
 	else
@@ -119,7 +119,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 				G.throw_at(get_turf(G), 0, 1, src)
 			for(var/obj/item/reagent_containers/food/drinks/D in get_turf(src))
 				D.throw_at(get_turf(D), 0, 1, src)
-				
+
 
 /mob/living/simple_animal/mouse/proc/eat_cheese()
 	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
@@ -129,9 +129,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		qdel(CW)
 		full = TRUE
 		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
-		
+
 /mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge)) 
+	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		to_chat(user, "<span class='notice'>You feed [O] to [src].</span>")
 		visible_message("[src] squeaks happily!")
 		qdel(O)
@@ -152,7 +152,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 	if(!can_eat(A))
 		return FALSE
-	
+
 	eating = TRUE
 	layer = MOB_LAYER
 	visible_message("<span class='danger'>[src] starts eating away [A]...</span>",
@@ -161,7 +161,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		if(QDELETED(A))
 			return
 		visible_message("<span class='danger'>[src] finishes eating up [A]!</span>",
-						 "<span class='notice'>You finish up eating [A]</span>")
+						 "<span class='notice'>You finish up eating [A].</span>")
 		A.mouse_eat(src)
 		GLOB.mouse_food_eaten++
 
@@ -177,7 +177,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		return TRUE
 	if(istype(A, /obj/item/reagent_containers/food) && !(locate(/obj/structure/table) in get_turf(A)))
 		return TRUE
-	
+
 /mob/living/simple_animal/mouse/proc/regen_health(amt = 5)
 	var/overheal = max(health + amt - maxHealth, 0)
 	adjustHealth(-amt)
@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/mice = FLOOR(GLOB.food_for_next_mouse / FOODPERMOUSE, 1)
 	if(!mice)
 		return
-	
+
 	GLOB.mouse_spawned += mice
 	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
 	SSminor_mapping.trigger_migration(mice)
