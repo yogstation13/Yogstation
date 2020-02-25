@@ -113,13 +113,15 @@ const AACStatus = props => {
           )}
         </Fragment>
       </LabeledList>
-      {(data.cyclestate === STATE_INOPEN || data.cyclestate === STATE_CLOSED) && <Button
+      {(data.cyclestate === STATE_INOPEN || data.cyclestate === STATE_CLOSED
+      || data.cyclestate === STATE_INOPENING || data.cyclestate === STATE_OUTCLOSING) && <Button
         icon="sync-alt"
         content="Cycle to Exterior"
         onClick={() => act('cycle', {
           exterior: 1,
         })} />}
-      {(data.cyclestate === STATE_OUTOPEN || data.cyclestate === STATE_CLOSED) && <Button
+      {(data.cyclestate === STATE_OUTOPEN || data.cyclestate === STATE_CLOSED
+      || data.cyclestate === STATE_OUTOPENING || data.cyclestate === STATE_INCLOSING) && <Button
         icon="sync-alt"
         content="Cycle to Interior"
         onClick={() => act('cycle', {

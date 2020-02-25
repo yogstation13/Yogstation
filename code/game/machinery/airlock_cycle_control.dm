@@ -107,10 +107,12 @@
 	qdel(wires)
 	wires = null
 	cut_links()
+	SSair.atmos_machinery -= src
 	return ..()
 
 /obj/machinery/advanced_airlock_controller/Initialize(mapload)
 	. = ..()
+	SSair.atmos_machinery += src
 	scan_on_late_init = mapload
 	if(mapload && (. != INITIALIZE_HINT_QDEL))
 		return INITIALIZE_HINT_LATELOAD
@@ -215,13 +217,13 @@
 	if(is_docked && cyclestate != AIRLOCK_CYCLESTATE_DOCKED)
 		cyclestate = AIRLOCK_CYCLESTATE_DOCKED
 		if(process_on_changed)
-			process()
+			process_atmos()
 	if(!is_docked && cyclestate == AIRLOCK_CYCLESTATE_DOCKED)
 		cyclestate = AIRLOCK_CYCLESTATE_INOPENING
 		for(var/airlock in airlocks)
 			coerce_door(airlock, TRUE)
 		if(process_on_changed)
-			process()
+			process_atmos()
 
 /obj/machinery/advanced_airlock_controller/proc/update_error_status()
 	if(!airlocks.len)
@@ -267,7 +269,7 @@
 	if(!door.wires.is_cut(WIRE_BOLTS))
 		door.unbolt()
 
-/obj/machinery/advanced_airlock_controller/process()
+/obj/machinery/advanced_airlock_controller/process_atmos()
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		update_icon(TRUE)
 		return
@@ -645,14 +647,7 @@
 						spawn()
 							A.do_animate("deny")
 			if(is_allowed)
-				if(!text2num(params["exterior"]))
-					if(cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED)
-						cyclestate = AIRLOCK_CYCLESTATE_OUTCLOSING
-						process()
-				else
-					if(cyclestate == AIRLOCK_CYCLESTATE_INOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED)
-						cyclestate = AIRLOCK_CYCLESTATE_INCLOSING
-						process()
+				cycle_to(text2num(params["exterior"]))
 	if((locked && !usr.has_unlimited_silicon_privilege) || (usr.has_unlimited_silicon_privilege && aidisabled))
 		return
 	switch(action)
@@ -689,14 +684,21 @@
 	var/role = airlocks[airlock]
 	if(role == null)
 		return
-	if(!role)
-		if(cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED)
+	cycle_to(role)
+
+/obj/machinery/advanced_airlock_controller/proc/cycle_to(exterior)
+	if(!exterior)
+		if(cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING)
 			cyclestate = AIRLOCK_CYCLESTATE_OUTCLOSING
-			process()
+			process_atmos()
+		else if(cyclestate == AIRLOCK_CYCLESTATE_INCLOSING)
+			cyclestate = AIRLOCK_CYCLESTATE_INOPENING
+			process_atmos()
 	else
-		if(cyclestate == AIRLOCK_CYCLESTATE_INOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED)
+		if(cyclestate == AIRLOCK_CYCLESTATE_INOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED || cyclestate == AIRLOCK_CYCLESTATE_INOPENING)
 			cyclestate = AIRLOCK_CYCLESTATE_INCLOSING
-			process()
+		else if(cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING)
+			cyclestate = AIRLOCK_CYCLESTATE_OUTOPENING
 
 /obj/machinery/advanced_airlock_controller/AltClick(mob/user)
 	..()
