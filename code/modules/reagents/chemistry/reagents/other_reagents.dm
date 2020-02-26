@@ -1746,7 +1746,7 @@
 
 /datum/reagent/spider_extract
 	name = "Spider Extract"
-	description = "A highly specialized extract coming from the Australicus sector, used to create broodmother spiders."
+	description = "A highly specialized extract coming from the Australicus sector, used to create midwife spiders."
 	color = "#ED2939"
 	taste_description = "upside down"
 	can_synth = FALSE
