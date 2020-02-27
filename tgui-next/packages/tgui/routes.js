@@ -48,6 +48,7 @@ import { LaunchpadConsole, LaunchpadRemote } from './interfaces/Launchpad';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
 import { MiningVendor } from './interfaces/MiningVendor';
 import { Mule } from './interfaces/Mule';
+import { MalfunctionModulePicker } from './interfaces/MalfunctionModulePicker';
 import { NtnetRelay } from './interfaces/NtnetRelay';
 import { NtosArcade } from './interfaces/NtosArcade';
 import { NtosConfiguration } from './interfaces/NtosConfiguration';
@@ -305,6 +306,11 @@ const ROUTES = {
   mulebot: {
     component: () => Mule,
     scrollable: false,
+  },
+  malfunction_module_picker: {
+    component: () => MalfunctionModulePicker,
+    scrollable: true,
+    theme: 'malfunction',
   },
   ntnet_relay: {
     component: () => NtnetRelay,
