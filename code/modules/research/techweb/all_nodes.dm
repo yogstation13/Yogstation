@@ -215,7 +215,7 @@
 	display_name = "Applied Bluespace Research"
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
-	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "phasic_scanning", "roastingstick", "ore_silo", "xenobioconsole")
+	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "phasic_scanning", "roastingstick", "ore_silo", "xenobioconsole", "large_Grenade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -635,7 +635,7 @@
 	display_name = "Explosive & Pyrotechnical Weaponry"
 	description = "If the light stuff just won't do it."
 	prereq_ids = list("adv_weaponry")
-	design_ids = list("large_Grenade", "pyro_Grenade", "adv_Grenade")
+	design_ids = list("pyro_Grenade", "adv_Grenade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
