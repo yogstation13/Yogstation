@@ -50,6 +50,7 @@
 	var/used = FALSE
 	var/painting_name //Painting name, this is set after framing.
 	var/finalized = FALSE //Blocks edits
+	var/author_ckey
 	var/icon_generated = FALSE
 	var/icon/generated_icon
 
@@ -123,6 +124,7 @@
 
 /obj/item/canvas/proc/finalize(mob/user)
 	finalized = TRUE
+	author_ckey = user.ckey
 	generate_proper_overlay()
 	try_rename(user)
 
@@ -236,12 +238,17 @@
 
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
+	SSpersistence.painting_frames += src
 	AddComponent(/datum/component/art, 20)
 	if(dir)
 		setDir(dir)
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30 : 30)
 		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0
+
+/obj/structure/sign/painting/Destroy()
+	. = ..()
+	SSpersistence.painting_frames -= src
 
 /obj/structure/sign/painting/attackby(obj/item/I, mob/user, params)
 	if(!C && istype(I, /obj/item/canvas))
@@ -303,6 +310,7 @@
 		return
 	var/list/chosen = pick(SSpersistence.paintings[persistence_id])
 	var/title = chosen["title"]
+	var/author = chosen["ckey"]
 	var/png = "data/paintings/[persistence_id]/[chosen["md5"]].png"
 	if(!fexists(png))
 		stack_trace("Persistent painting [chosen["md5"]].png was not found in [persistence_id] directory.")
@@ -321,6 +329,7 @@
 	new_canvas.icon_generated = TRUE
 	new_canvas.finalized = TRUE
 	new_canvas.painting_name = title
+	new_canvas.author_ckey = author
 	C = new_canvas
 	update_icon()
 
@@ -343,12 +352,25 @@
 	var/result = rustg_dmi_create_png(png_path,"[C.width]","[C.height]",data)
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
-	current += list(list("title" = C.painting_name , "md5" = md5))
+	current += list(list("title" = C.painting_name , "md5" = md5, "ckey" = C.author_ckey))
 	SSpersistence.paintings[persistence_id] = current
 
 /obj/item/canvas/proc/fill_grid_from_icon(icon/I)
-	var/w = I.Width() + 1
 	var/h = I.Height() + 1
 	for(var/x in 1 to width)
 		for(var/y in 1 to height)
-			grid[x][y] = I.GetPixel(w-x,h-y)
+			grid[x][y] = I.GetPixel(x,h-y)
+
+//Presets for art gallery mapping, for paintings to be shared across stations
+/obj/structure/sign/painting/library
+	persistence_id = "library"
+
+/obj/structure/sign/painting/library_secure
+	persistence_id = "library_secure"
+
+/obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
+	persistence_id = "library_private"
+
+/obj/structure/sign/painting/vv_get_dropdown()
+	. = ..()
+	.["Remove Persistent Painting"] = "?_src_=vars;[HrefToken()];delete_paint=[REF(src)]"
