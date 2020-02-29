@@ -76,6 +76,9 @@
 	var/scan_on_late_init = FALSE
 	var/depressurization_margin = 10 // use a lower value to reduce cross-contamination
 	var/overlays_hash = null
+	var/skip_delay = 300
+	var/skip_timer = 0
+	var/is_skipping = FALSE
 
 	var/list/airlocks = list()
 	var/list/vents = list()
@@ -220,6 +223,7 @@
 			process_atmos()
 	if(!is_docked && cyclestate == AIRLOCK_CYCLESTATE_DOCKED)
 		cyclestate = AIRLOCK_CYCLESTATE_INOPENING
+		reset_skip()
 		for(var/airlock in airlocks)
 			coerce_door(airlock, TRUE)
 		if(process_on_changed)
@@ -310,7 +314,7 @@
 		if(AIRLOCK_CYCLESTATE_INCLOSING)
 			for(var/airlock in airlocks)
 				doors_valid = doors_valid && coerce_door(airlock, TRUE)
-			if(doors_valid)
+			if(doors_valid || is_skipping)
 				for(var/V in vents)
 					var/obj/machinery/atmospherics/components/unary/vent_pump/vent = V
 					if(vents[vent] & AIRLOCK_CYCLEROLE_INT_DEPRESSURIZE)
@@ -325,12 +329,13 @@
 						vent.update_icon()
 				if(pressure < depressurization_margin)
 					vents_valid = TRUE
-				if(doors_valid && vents_valid)
+				if((doors_valid && vents_valid) || is_skipping)
 					cyclestate = AIRLOCK_CYCLESTATE_OUTOPENING
+					reset_skip()
 		if(AIRLOCK_CYCLESTATE_OUTCLOSING)
 			for(var/airlock in airlocks)
 				doors_valid = doors_valid && coerce_door(airlock, TRUE)
-			if(doors_valid)
+			if(doors_valid || is_skipping)
 				for(var/V in vents)
 					var/obj/machinery/atmospherics/components/unary/vent_pump/vent = V
 					if(vents[vent] & AIRLOCK_CYCLEROLE_EXT_DEPRESSURIZE)
@@ -345,8 +350,9 @@
 						vent.update_icon()
 				if(pressure < depressurization_margin)
 					vents_valid = TRUE
-				if(vents_valid)
+				if(vents_valid || is_skipping)
 					cyclestate = AIRLOCK_CYCLESTATE_INOPENING
+					reset_skip()
 		if(AIRLOCK_CYCLESTATE_INOPENING)
 			for(var/airlock in airlocks)
 				if(airlocks[airlock])
@@ -365,12 +371,13 @@
 					vent.update_icon()
 			if(pressure > interior_pressure - 0.5)
 				vents_valid = TRUE
-			if(vents_valid)
+			if(vents_valid || is_skipping)
 				for(var/airlock in airlocks)
 					if(!airlocks[airlock])
 						doors_valid = doors_valid && coerce_door(airlock, 0)
-				if(doors_valid)
+				if(doors_valid || is_skipping)
 					cyclestate = AIRLOCK_CYCLESTATE_INOPEN
+					reset_skip()
 		if(AIRLOCK_CYCLESTATE_OUTOPENING)
 			for(var/airlock in airlocks)
 				if(!airlocks[airlock])
@@ -389,12 +396,13 @@
 					vent.update_icon()
 			if(pressure > exterior_pressure - 0.5)
 				vents_valid = TRUE
-			if(vents_valid)
+			if(vents_valid || is_skipping)
 				for(var/airlock in airlocks)
 					if(airlocks[airlock])
 						doors_valid = doors_valid && coerce_door(airlock, 0)
-				if(doors_valid)
+				if(doors_valid || is_skipping)
 					cyclestate = AIRLOCK_CYCLESTATE_OUTOPEN
+					reset_skip()
 		if(AIRLOCK_CYCLESTATE_INOPEN)
 			for(var/V in vents)
 				var/obj/machinery/atmospherics/components/unary/vent_pump/vent = V
@@ -587,7 +595,9 @@
 		"pressure" = pressure,
 		"maxpressure" = (exterior_pressure && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)) ? exterior_pressure : interior_pressure,
 		"vents" = list(),
-		"airlocks" = list()
+		"airlocks" = list(),
+		"skip_timer" = (world.time - skip_timer),
+		"skip_delay" = skip_delay
 	)
 
 	if((locked && !user.has_unlimited_silicon_privilege) || (user.has_unlimited_silicon_privilege && aidisabled))
@@ -655,6 +665,9 @@
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
+		if("skip")
+			if(world.time + skip_timer >= skip_delay && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_INOPENING || cyclestate == AIRLOCK_CYCLESTATE_INCLOSING))
+				is_skipping = TRUE
 		if("toggle_role")
 			var/vent = locate(params["vent_id"])
 			if(vent == null || vents[vent] == null)
@@ -690,15 +703,23 @@
 	if(!exterior)
 		if(cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING)
 			cyclestate = AIRLOCK_CYCLESTATE_OUTCLOSING
+			reset_skip()
 			process_atmos()
 		else if(cyclestate == AIRLOCK_CYCLESTATE_INCLOSING)
 			cyclestate = AIRLOCK_CYCLESTATE_INOPENING
+			reset_skip()
 			process_atmos()
 	else
 		if(cyclestate == AIRLOCK_CYCLESTATE_INOPEN || cyclestate == AIRLOCK_CYCLESTATE_CLOSED || cyclestate == AIRLOCK_CYCLESTATE_INOPENING)
 			cyclestate = AIRLOCK_CYCLESTATE_INCLOSING
+			reset_skip()
 		else if(cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING)
 			cyclestate = AIRLOCK_CYCLESTATE_OUTOPENING
+			reset_skip()
+
+/obj/machinery/advanced_airlock_controller/proc/reset_skip()
+	is_skipping = FALSE
+	skip_timer = world.time
 
 /obj/machinery/advanced_airlock_controller/AltClick(mob/user)
 	..()

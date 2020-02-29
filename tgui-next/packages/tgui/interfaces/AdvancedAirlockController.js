@@ -3,7 +3,6 @@ import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NumberInput, Section, ProgressBar } from '../components';
-import { getGasLabel } from '../constants';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 import { classes } from 'common/react';
 
@@ -127,6 +126,20 @@ const AACStatus = props => {
         onClick={() => act('cycle', {
           exterior: 0,
         })} />}
+      {(data.cyclestate === STATE_OUTOPENING || data.cyclestate === STATE_INOPENING
+      || data.cyclestate === STATE_OUTCLOSING || data.cyclestate === STATE_INCLOSING) && <Button
+        ico n="forward"
+        content={"Skip "
+          + ((data.cyclestate === STATE_OUTOPENING || data.cyclestate === STATE_INOPENING)
+            ? "pressurization"
+            : "depressurization")
+          + ((data.skip_timer < data.skip_delay)
+            ? " (in " + Math.round(data.skip_delay - data.skip_timer) + " seconds)"
+            : "")}
+        color="danger"
+        disabled={data.skip_timer < data.skip_delay}
+        onClick={() => act('skip')}
+      />}
     </Section>
   );
 };
