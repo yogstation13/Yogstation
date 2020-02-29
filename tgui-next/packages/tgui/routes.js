@@ -87,6 +87,7 @@ import { Guardian } from './interfaces/Guardian';
 import { Autolathe } from './interfaces/Autolathe';
 import { NotificationPreferences } from './interfaces/NotificationPreferences';
 import { ExosuitControlConsole } from './interfaces/ExosuitControlConsole';
+import { ParticleAccelerator } from './interfaces/ParticleAccelerator';
 
 const ROUTES = {
   achievements: {
@@ -112,6 +113,10 @@ const ROUTES = {
   exosuit_control_console: {
     component: () => ExosuitControlConsole,
     scrollable: true,
+  },
+  particle_accelerator: {
+    component: () => ParticleAccelerator,
+    scrollable: false,
   },
   robotics_control_console: {
     component: () => RoboticsControlConsole,
@@ -464,7 +469,7 @@ const ROUTES = {
   notificationpanel: {
     component: () => NotificationPreferences,
     scrollable: true,
-  }
+  },
 };
 
 export const getRoute = state => {
