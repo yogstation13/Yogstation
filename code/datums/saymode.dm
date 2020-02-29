@@ -138,7 +138,7 @@
 			else if(is_darkspawn_or_veil(M))
 				var/turf/receiver = get_turf(M)
 				var/turf/sender = get_turf(user)
-				if(reciever.z != sender.z)
+				if(receiver.z != sender.z)
 					if(prob(25))
 						to_chat(M, "<span class='warning'>Your mindlink trembles with words, but they are too far to make out...</span>")
 					continue
