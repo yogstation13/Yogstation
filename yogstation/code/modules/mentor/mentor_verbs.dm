@@ -1,9 +1,9 @@
-GLOBAL_PROTECT(mentor_verbs)
 GLOBAL_LIST_INIT(mentor_verbs, list(
 	/client/proc/cmd_mentor_say,
 	/client/proc/show_mentor_memo,
 	/client/proc/show_mentor_tickets
 	))
+GLOBAL_PROTECT(mentor_verbs)
 
 /client/proc/add_mentor_verbs()
 	if(mentor_datum)
@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 
 	var/msg = "<b>Current Mentors:</b>\n"
@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 		msg += "\t[ckey]"
 	qdel(query_load_mentors)
 
-	to_chat(src, msg)
+	to_chat(src, msg, confidential=TRUE)
 
 /client/verb/mentorwho()
 	set name = "Mentorwho"
@@ -66,5 +66,5 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 				msg += "\t[C] is a mentor"
 			msg += "\n"
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
-	to_chat(src, msg)
+	to_chat(src, msg, confidential=TRUE)
 

@@ -22,7 +22,7 @@
 	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
 	var/lip_color = "white"
 
-	var/age = 30		//Player's age (pure fluff)
+	var/age = 30
 
 	var/underwear = "Nude"	//Which underwear the player wants
 	var/undershirt = "Nude" //Which undershirt the player wants
@@ -38,8 +38,6 @@
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
 
-	var/hygiene = HYGIENE_LEVEL_NORMAL
-
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/bleed_rate = 0 //how much are we bleeding
@@ -47,7 +45,6 @@
 
 	var/name_override //For temporary visible name changes
 
-	var/datum/personal_crafting/handcrafting
 	var/datum/physiology/physiology
 
 	var/list/datum/bioware = list()

@@ -37,8 +37,8 @@
 
 /obj/item/camera_bug/Destroy()
 	get_cameras()
-	for(var/cam_tag in bugged_cameras)
-		var/obj/machinery/camera/camera = bugged_cameras[cam_tag]
+	for(var/cam in bugged_cameras)
+		var/obj/machinery/camera/camera = cam
 		if(camera.bug == src)
 			camera.bug = null
 	bugged_cameras = list()
@@ -94,7 +94,7 @@
 		if(BUGMODE_LIST)
 			html = "<h3>Select a camera:</h3> <a href='?src=[REF(src)];view'>\[Cancel camera view\]</a><hr><table>"
 			for(var/entry in cameras)
-				var/obj/machinery/camera/C = cameras[entry]
+				var/obj/machinery/camera/C = bugged_cameras[entry]
 				var/functions = ""
 				if(C.bug == src)
 					functions = " - <a href='?src=[REF(src)];monitor=[REF(C)]'>\[Monitor\]</a> <a href='?src=[REF(src)];emp=[REF(C)]'>\[Disable\]</a>"

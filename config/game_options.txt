@@ -98,21 +98,18 @@ PROBABILITY TRAITORCHAN 4
 PROBABILITY TRAITORVAMP 3
 PROBABILITY VAMPIRE 3
 PROBABILITY INTERNAL_AFFAIRS 3
+PROBABILITY MALF 4
 PROBABILITY NUCLEAR 2
 PROBABILITY REVOLUTION 2
 PROBABILITY CULT 2
 PROBABILITY CHANGELING 2
 PROBABILITY WIZARD 4
-PROBABILITY MONKEY 0
 PROBABILITY METEOR 0
 PROBABILITY EXTENDED 0
 PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
 PROBABILITY CLOWNOPS 0
-
-## You probably want to keep sandbox off by default for secret and random.
-PROBABILITY SANDBOX 0
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -131,8 +128,8 @@ CONTINUOUS CULT
 CONTINUOUS CLOCKWORK_CULT
 CONTINUOUS CHANGELING
 CONTINUOUS WIZARD
-#CONTINUOUS MONKEY
 CONTINUOUS HIVEMIND
+CONTINUOUS MALF
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
@@ -155,6 +152,7 @@ MIDROUND_ANTAG CLOCKWORK_CULT
 MIDROUND_ANTAG CHANGELING
 MIDROUND_ANTAG WIZARD
 #MIDROUND_ANTAG  MONKEY
+MIDROUND_ANTAG MALF
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type.
 ## If you set any of these occasionally check to see if you still need them as the modes
@@ -237,6 +235,9 @@ BROTHER_OBJECTIVES_AMOUNT 2
 ## Uncomment to prohibit assistants from becoming most antagonists.
 #PROTECT_ASSISTANT_FROM_ANTAGONIST
 
+## Uncomment to prohibit AI from becoming traitor (not malf!).
+#PROTECT_AI_FROM_TRAITOR
+
 ## If non-human species are barred from joining as a head of staff
 #ENFORCE_HUMAN_AUTHORITY
 
@@ -292,6 +293,9 @@ ALLOW_AI_MULTICAM
 
 ## AWAY MISSIONS ###
 
+## Uncomment to load the virtual reality hub map
+#VIRTUAL_REALITY
+
 ## Uncomment to load one of the missions from awaymissionconfig.txt at roundstart.
 #ROUNDSTART_AWAY
 
@@ -338,13 +342,6 @@ NEAR_DEATH_EXPERIENCE
 ## Uncomment these to stop the AI, or cyborgs, from having vocal communication.
 #SILENT_AI
 #SILENT_BORG
-
-## SANDBOX PANEL AUTOCLOSE ###
-## The sandbox panel's item spawning dialog now stays open even after you click an option.
-## If you find that your players are abusing the sandbox panel, this option may slow them down
-## without preventing people from using it properly.
-## Only functions in sandbox game mode.
-#SANDBOX_AUTOCLOSE
 
 ## ROUNDSTART SILICON LAWS ###
 ## This controls what the AI's laws are at the start of the round.
@@ -441,11 +438,13 @@ ROUNDSTART_RACES human
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
+#ROUNDSTART_RACES gorilla
 #ROUNDSTART_RACES fly
 #ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
+#ROUNDSTART_RACES snail
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
@@ -497,13 +496,6 @@ MIDROUND_ANTAG_TIME_CHECK 60
 
 ## A ratio of living to total crew members, the lower this is, the more people will have to die in order for midround antag to be skipped
 MIDROUND_ANTAG_LIFE_CHECK 0.7
-
-##Limit Spell Choices##
-## Uncomment to disallow wizards from using certain spells that may be too chaotic/fun for your playerbase
-
-#NO_SUMMON_GUNS
-#NO_SUMMON_MAGIC
-#NO_SUMMON_EVENTS
 
 ## Comment this out for "normal" explosions, which ignore obstacles
 ## Uncomment for explosions that react to doors and walls

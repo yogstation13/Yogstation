@@ -30,7 +30,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/chocolate
 	name = "Chocolate Goat"
-	desc = "Actually just a goat with dark brown fur but I can see why you would think it's made of chocolate though."
+	desc = "Actually just a goat with dark brown fur, but I can see why you would think it's made of chocolate."
 	icon = 'yogstation/icons/mob/goats/chocolate_goat.dmi'
 	icon_state = "chocolategoat"
 	icon_living = "chocolategoat"
@@ -39,7 +39,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/christmas
 	name = "Christmas Goat"
-	desc = "Even goats can enjoy christimas!"
+	desc = "Even goats can enjoy Christmas!"
 	icon = 'yogstation/icons/mob/goats/christmas_goat.dmi'
 	icon_state = "christmasgoat"
 	icon_living = "christmasgoat"
@@ -57,7 +57,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/cottoncandy
 	name = "Cotton Candy Goat"
-	desc = "Unlike the Chocolate Goat this goat is made of real cotton candy."
+	desc = "Unlike the Chocolate Goat, this goat is made of real cotton candy."
 	icon = 'yogstation/icons/mob/goats/cottoncandy_goat.dmi'
 	icon_state = "cottoncandygoat"
 	icon_living = "cottoncandygoat"
@@ -77,8 +77,8 @@
 /mob/living/simple_animal/hostile/retaliate/goat/cottoncandy/attack_hand(mob/living/L)
 	..()
 	if(L.a_intent == INTENT_HARM && L.reagents && !stat)
-		L.reagents.add_reagent("nutriment", 0.4)
-		L.reagents.add_reagent("vitamin", 0.4)
+		L.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
+		L.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
 
 /mob/living/simple_animal/hostile/retaliate/goat/glowing
 	name = "Glowing Goat"
@@ -122,7 +122,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/memory
 	name = "Goat of your Past"
-	desc = "It feels like you seen this goat before but you cant place where..."
+	desc = "It feels like you have seen this goat before, but you can't place where..."
 	icon = 'yogstation/icons/mob/goats/memory_goat.dmi'
 	icon_state = "memorygoat"
 	icon_living = "memorygoat"
@@ -159,7 +159,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive
 	name = "Radioactive Goat"
-	desc = "I would not get near this goat if I were you"
+	desc = "I would not get near this goat if I were you."
 	icon = 'yogstation/icons/mob/goats/radioactive_goat.dmi'
 	icon_state = "radioactivegoat"
 	icon_living = "radioactivegoat"
@@ -170,7 +170,7 @@
 	light_color = LIGHT_COLOR_GREEN
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	radiation_pulse(src, 200) // It gets stronker as time passes
+	radiation_pulse(src, 600) // It gets stronker as time passes
 
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"
@@ -182,9 +182,9 @@
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/storage/crayons = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
-/mob/living/simple_animal/hostile/retaliate/goat/spiffles
+/mob/living/simple_animal/hostile/retaliate/goat/cute
 	name = "Cute Goat"
-	desc = "Be careful he is a feisty one!"
+	desc = "Be careful, he is a feisty one!"
 	icon = 'yogstation/icons/mob/goats/Spiffles.dmi'
 	icon_state = "spiffles"
 	icon_living = "spiffles"
@@ -202,7 +202,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/twisted
 	name = "Twisted Goat"
-	desc = "Has science gone to far?"
+	desc = "Has science gone too far?"
 	icon = 'yogstation/icons/mob/goats/twisted_goat.dmi'
 	icon_state = "twistedgoat"
 	icon_living = "twistedgoat"
@@ -211,7 +211,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/huge
 	name = "Huge Goat"
-	desc = "Jesus that's a big goat."
+	desc = "Space Jesus, that's a big goat."
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	gold_core_spawnable = NO_SPAWN
@@ -231,7 +231,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/ghost
 	name = "Ghost Goat"
-	desc = "Him being a ghost does not mean he can't still kick butt."
+	desc = "Being a ghost doesn't mean he can't kick butt."
 	gold_core_spawnable = NO_SPAWN
 	color = "#FFFFFF77"
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
@@ -239,7 +239,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/brick
 	name = "Brick Goat"
-	desc = "I would avoid getting hit by this goat if I were you"
+	desc = "I would avoid getting hit by this goat if I were you."
 	icon = 'yogstation/icons/mob/goats/brick_goat.dmi'
 	icon_state = "brickgoat"
 	icon_living = "brickgoat"
@@ -252,7 +252,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/watercolor
 	name = "Watercolor Goat"
-	desc = "Its so pretty!"
+	desc = "It's so pretty!"
 	icon = 'yogstation/icons/mob/goats/watercolor_goat.dmi'
 	icon_state = "watercolorgoat"
 	icon_living = "watercolorgoat"
@@ -271,7 +271,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/panda
 	name = "Panda Goat"
-	desc = "What happens when you cross panda dna with goat dna at least 10% the time."
+	desc = "The result of crossing panda DNA with goat DNA."
 	icon = 'yogstation/icons/mob/goats/panda_goat.dmi'
 	icon_state = "pandagoat"
 	icon_living = "pandagoat"
@@ -280,7 +280,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/stack
 	name = "Goat Stack"
-	desc = "Seems some goats decided to stack up as a means of increasing attack power, worked out surprisingly well."
+	desc = "Seems some goats have decided to stack up to increase attack power. Worked out surprisingly well."
 	icon = 'yogstation/icons/mob/goats/stack_goat.dmi'
 	icon_state = "goatstack"
 	icon_living = "goatstack"
@@ -294,7 +294,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/black
 	name = "Black Goat"
-	desc = "This goat has black fur not much else to say."
+	desc = "This goat has black fur. Not much else to say."
 	icon = 'yogstation/icons/mob/goats/black_goat.dmi'
 	icon_state = "blackgoat"
 	icon_living = "blackgoat"
@@ -321,7 +321,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/purple
 	name = "Purple Goat"
-	desc = "Why purple?!?"
+	desc = "Why purple?"
 	icon = 'yogstation/icons/mob/goats/purple_goat.dmi'
 	icon_state = "goatpurple"
 	icon_living = "goatpurple"
@@ -330,7 +330,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/red
 	name = "Red Goat"
-	desc = "You would think there would be a joke involving red goats here but im getting red with frustration even trying to think of one." // its hecking hard man
+	desc = "Redder than Ragnar." // just make a nerd culture reference smh
 	icon = 'yogstation/icons/mob/goats/red_goat.dmi'
 	icon_state = "redgoat"
 	icon_living = "redgoat"
@@ -370,7 +370,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/skiddo // sprite from https://community.playstarbound.com/threads/goat-retextures-gogoat-and-skiddo-pok%C3%A9mon.110152/
 	name = "Skiddo"
-	desc = "May or may not be a reference to a certain game involving catching virtual creatures, also cute as heck."
+	desc = "May or may not be a reference to a certain game involving catching virtual creatures. Also cute as heck."
 	icon = 'yogstation/icons/mob/goats/Skiddo.dmi'
 	icon_state = "skiddo"
 	icon_living = "skiddo"
@@ -379,7 +379,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/gogoat // sprite from https://community.playstarbound.com/threads/goat-retextures-gogoat-and-skiddo-pok%C3%A9mon.110152/
 	name = "Gogoat"
-	desc = "May or may not be a reference to a certain game involving catching virtual creatures, also what type of name is Gogoat?!?."
+	desc = "May or may not be a reference to a certain game involving catching virtual creatures. Also, what type of name is Gogoat?!?"
 	icon = 'yogstation/icons/mob/goats/Gogoat.dmi'
 	icon_state = "gogoat"
 	icon_living = "gogoat"
@@ -409,4 +409,25 @@
 	icon_living = "plungergoat"
 	icon_dead = "plungergoat_dead"
 	speak = list("HoW I eAt gRaSS?!?","iS pLaNT gOoD fOr gOaT!?","wHy hOMmOnS sO mEaN!?")
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/spiffles
+	name = "Spiffles"
+	desc = "Unlike most goats this one has been raised to be as docile as possible making it the perfect pet!"
+	speak = list("EHEHEHEHEH","eh?")
+	speak_emote = list("brays")
+	emote_hear = list("brays.")
+	emote_see = list("shakes its head.", "stamps a foot.", "looks around.")
+	speak_chance = 1
+	turns_per_move = 5
+	see_in_dark = 6
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1)
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "kicks"
+	icon = 'yogstation/icons/mob/goats/Spiffles.dmi'
+	icon_state = "spiffles"
+	icon_living = "spiffles"
+	icon_dead = "spiffles_dead"
+	faction = list("goat")
 	gold_core_spawnable = NO_SPAWN

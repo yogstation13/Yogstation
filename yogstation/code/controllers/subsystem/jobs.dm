@@ -1,8 +1,8 @@
 /datum/controller/subsystem/job/proc/PickCommander(candidates,jobname) 
 	// Takes in a list of potential command role candidates from CheckHeadPositions and FindOccupation Candidates, and picks one weightedly based on hours.
 	var/list/pickweightfood = list() // The list we'll be feeding to pickweights()
-	for(var/i in candidates)
-		var/mob/dead/new_player/candidate = candidates[i]
+	for(var/x in candidates)
+		var/mob/dead/new_player/candidate = x
 		var/minutes = candidate.client.prefs.exp[jobname]
 		if(!minutes || minutes < 600) 
 			minutes = 600 // Prevents fresh new guys from causing undefined errors or being 1000x less likely to get a role, when using log scale

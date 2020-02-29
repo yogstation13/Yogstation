@@ -25,6 +25,10 @@
 	port_direction = 4;
 	preferred_direction = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "h" = (
@@ -40,6 +44,12 @@
 	name = "Assault Pod";
 	opacity = 1;
 	req_access_txt = "150"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
@@ -69,6 +79,10 @@
 	opacity = 1;
 	req_access_txt = "150"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/assault_pod)
 "V" = (

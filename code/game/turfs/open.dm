@@ -1,5 +1,10 @@
 /turf/open
 	plane = FLOOR_PLANE
+
+	FASTDMM_PROP(\
+		pipe_astar_cost = 1.5\
+	)
+
 	var/slowdown = 0 //negative for faster, positive for slower
 
 	var/postdig_icon_change = FALSE
@@ -49,7 +54,7 @@
 /turf/open/indestructible/singularity_act()
 	return
 
-/turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
+/turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
 /turf/open/indestructible/sound
@@ -173,7 +178,7 @@
 	update_visuals()
 
 	current_cycle = times_fired
-	CalculateAdjacentTurfs()
+	ImmediateCalculateAdjacentTurfs()
 	for(var/i in atmos_adjacent_turfs)
 		var/turf/open/enemy_tile = i
 		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
@@ -226,7 +231,7 @@
 			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
 				return 0
 		else
-			if(!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN)) // can't slip unbuckled mob if they're lying or can't fall.
+			if(!(lube&SLIP_WHEN_CRAWLING) && (!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
 				return 0
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0

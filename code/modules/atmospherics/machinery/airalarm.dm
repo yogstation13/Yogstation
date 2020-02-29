@@ -53,7 +53,6 @@
 #define AALARM_MODE_FLOOD 6 //Emagged mode; turns off scrubbers and pressure checks on vents
 #define AALARM_MODE_SIPHON 7 //Scrubbers suck air
 #define AALARM_MODE_CONTAMINATED 8 //Turns on all filtering and widenet scrubbing.
-#define AALARM_MODE_REFILL 9 //just like normal, but with triple the air output
 
 #define AALARM_REPORT_TIMEOUT 100
 
@@ -71,6 +70,14 @@
 	integrity_failure = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	resistance_flags = FIRE_PROOF
+	
+	FASTDMM_PROP(\
+		set_instance_vars(\
+			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
+			pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : INSTANCE_VAR_DEFAULT\
+        ),\
+		dir_amount = 4\
+    )
 
 	var/danger_level = 0
 	var/mode = AALARM_MODE_SCRUBBING
@@ -99,6 +106,7 @@
 		/datum/gas/tritium			= new/datum/tlv/dangerous,
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
+		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
 		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 	)
 
@@ -118,6 +126,7 @@
 		/datum/gas/tritium			= new/datum/tlv/no_checks,
 		/datum/gas/stimulum			= new/datum/tlv/no_checks,
 		/datum/gas/nitryl			= new/datum/tlv/no_checks,
+		/datum/gas/dilithium		= new/datum/tlv/no_checks,//Yogs -- Dilithium
 		/datum/gas/pluoxium			= new/datum/tlv/no_checks
 	)
 
@@ -137,6 +146,7 @@
 		/datum/gas/tritium			= new/datum/tlv/dangerous,
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
+		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
 		/datum/gas/pluoxium			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 	)
 
@@ -222,11 +232,11 @@
 	. = ..()
 	switch(buildstage)
 		if(0)
-			to_chat(user, "<span class='notice'>It is missing air alarm electronics.</span>")
+			. += "<span class='notice'>It is missing air alarm electronics.</span>"
 		if(1)
-			to_chat(user, "<span class='notice'>It is missing wiring.</span>")
+			. += "<span class='notice'>It is missing wiring.</span>"
 		if(2)
-			to_chat(user, "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] the interface.</span>")
+			. += "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] the interface.</span>"
 
 /obj/machinery/airalarm/ui_status(mob/user)
 	if(user.has_unlimited_silicon_privilege && aidisabled)
@@ -327,7 +337,6 @@
 		data["modes"] += list(list("name" = "Filtering - Scrubs out contaminants", 				"mode" = AALARM_MODE_SCRUBBING,		"selected" = mode == AALARM_MODE_SCRUBBING, 	"danger" = 0))
 		data["modes"] += list(list("name" = "Contaminated - Scrubs out ALL contaminants quickly","mode" = AALARM_MODE_CONTAMINATED,	"selected" = mode == AALARM_MODE_CONTAMINATED,	"danger" = 0))
 		data["modes"] += list(list("name" = "Draught - Siphons out air while replacing",		"mode" = AALARM_MODE_VENTING,		"selected" = mode == AALARM_MODE_VENTING,		"danger" = 0))
-		data["modes"] += list(list("name" = "Refill - Triple vent output",						"mode" = AALARM_MODE_REFILL,		"selected" = mode == AALARM_MODE_REFILL,		"danger" = 1))
 		data["modes"] += list(list("name" = "Cycle - Siphons air before replacing", 			"mode" = AALARM_MODE_REPLACEMENT,	"selected" = mode == AALARM_MODE_REPLACEMENT, 	"danger" = 1))
 		data["modes"] += list(list("name" = "Siphon - Siphons air out of the room", 			"mode" = AALARM_MODE_SIPHON,		"selected" = mode == AALARM_MODE_SIPHON, 		"danger" = 1))
 		data["modes"] += list(list("name" = "Panic Siphon - Siphons air out of the room quickly","mode" = AALARM_MODE_PANIC,		"selected" = mode == AALARM_MODE_PANIC, 		"danger" = 1))
@@ -386,9 +395,8 @@
 			send_signal(device_id, list("checks" = text2num(params["val"])^2), usr)
 			. = TRUE
 		if("set_external_pressure", "set_internal_pressure")
-			var/area/A = get_area(src)
-			var/target = input("New target pressure:", name, A.air_vent_info[device_id][(action == "set_external_pressure" ? "external" : "internal")]) as num|null
-			if(!isnull(target) && !..())
+			var/target = params["value"]
+			if(!isnull(target))
 				send_signal(device_id, list("[action]" = target), usr)
 				. = TRUE
 		if("reset_external_pressure")
@@ -419,7 +427,7 @@
 			mode = text2num(params["mode"])
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_ATMOS)
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
-			apply_mode()
+			apply_mode(usr)
 			. = TRUE
 		if("alarm")
 			var/area/A = get_area(src)
@@ -458,25 +466,12 @@
 	else
 		return 0
 
-/obj/machinery/airalarm/proc/refresh_all()
-	var/area/A = get_area(src)
-	for(var/id_tag in A.air_vent_names)
-		var/list/I = A.air_vent_info[id_tag]
-		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
-			continue
-		send_signal(id_tag, list("status"))
-	for(var/id_tag in A.air_scrub_names)
-		var/list/I = A.air_scrub_info[id_tag]
-		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
-			continue
-		send_signal(id_tag, list("status"))
-
 /obj/machinery/airalarm/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/airalarm/proc/send_signal(target, list/command, mob/user)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+/obj/machinery/airalarm/proc/send_signal(target, list/command, atom/user)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
 		return 0
 
@@ -496,8 +491,6 @@
 			return "Contaminated"
 		if(AALARM_MODE_VENTING)
 			return "Draught"
-		if(AALARM_MODE_REFILL)
-			return "Refill"
 		if(AALARM_MODE_PANIC)
 			return "Panic Siphon"
 		if(AALARM_MODE_REPLACEMENT)
@@ -509,7 +502,7 @@
 		if(AALARM_MODE_FLOOD)
 			return "Flood"
 
-/obj/machinery/airalarm/proc/apply_mode()
+/obj/machinery/airalarm/proc/apply_mode(atom/signal_source)
 	var/area/A = get_area(src)
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
@@ -518,14 +511,14 @@
 					"power" = 1,
 					"set_filters" = list(/datum/gas/carbon_dioxide),
 					"scrubbing" = 1,
-					"widenet" = 0,
-				))
+					"widenet" = 0
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE
-				))
+				), signal_source)
 		if(AALARM_MODE_CONTAMINATED)
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
@@ -541,44 +534,31 @@
 						/datum/gas/tritium,
 						/datum/gas/bz,
 						/datum/gas/stimulum,
-						/datum/gas/pluoxium
+						/datum/gas/pluoxium,//yogs comma
+						/datum/gas/dilithium//Yogs -- Adds Dilithium
 					),
 					"scrubbing" = 1,
-					"widenet" = 1,
-				))
+					"widenet" = 1
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE
-				))
+				), signal_source)
 		if(AALARM_MODE_VENTING)
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
 					"widenet" = 0,
 					"scrubbing" = 0
-				))
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE*2
-				))
-		if(AALARM_MODE_REFILL)
-			for(var/device_id in A.air_scrub_names)
-				send_signal(device_id, list(
-					"power" = 1,
-					"set_filters" = list(/datum/gas/carbon_dioxide),
-					"scrubbing" = 1,
-					"widenet" = 0,
-				))
-			for(var/device_id in A.air_vent_names)
-				send_signal(device_id, list(
-					"power" = 1,
-					"checks" = 1,
-					"set_external_pressure" = ONE_ATMOSPHERE * 3
-				))
+				), signal_source)
 		if(AALARM_MODE_PANIC,
 			AALARM_MODE_REPLACEMENT)
 			for(var/device_id in A.air_scrub_names)
@@ -586,43 +566,43 @@
 					"power" = 1,
 					"widenet" = 1,
 					"scrubbing" = 0
-				))
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 0
-				))
+				), signal_source)
 		if(AALARM_MODE_SIPHON)
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
 					"widenet" = 0,
 					"scrubbing" = 0
-				))
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 0
-				))
+				), signal_source)
 
 		if(AALARM_MODE_OFF)
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 0
-				))
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 0
-				))
+				), signal_source)
 		if(AALARM_MODE_FLOOD)
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 0
-				))
+				), signal_source)
 			for(var/device_id in A.air_vent_names)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 2,
 					"set_internal_pressure" = 0
-				))
+				), signal_source)
 
 /obj/machinery/airalarm/update_icon()
 	if(panel_open)
@@ -685,7 +665,7 @@
 		apply_danger_level()
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
-		apply_mode()
+		apply_mode(src)
 
 
 /obj/machinery/airalarm/proc/post_alert(alert_level)
@@ -698,12 +678,15 @@
 		"zone" = get_area_name(src),
 		"type" = "Atmospheric"
 	))
+	var/area/A = get_area(src)
 	if(alert_level==2)
 		alert_signal.data["alert"] = "severe"
+		A.set_vacuum_alarm_effect()
 	else if (alert_level==1)
 		alert_signal.data["alert"] = "minor"
 	else if (alert_level==0)
 		alert_signal.data["alert"] = "clear"
+		A.unset_vacuum_alarm_effect()
 
 	frequency.post_signal(src, alert_signal, range = -1)
 
@@ -737,6 +720,7 @@
 				return
 			else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
 				togglelock(user)
+				return
 			else if(panel_open && is_wire_tool(W))
 				wires.interact(user)
 				return
@@ -853,5 +837,4 @@
 #undef AALARM_MODE_FLOOD
 #undef AALARM_MODE_SIPHON
 #undef AALARM_MODE_CONTAMINATED
-#undef AALARM_MODE_REFILL
 #undef AALARM_REPORT_TIMEOUT

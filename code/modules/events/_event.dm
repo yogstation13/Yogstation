@@ -97,7 +97,7 @@
 	if(random)
 		log_game("Random Event triggering: [name] ([typepath])")
 	if (alert_observers)
-		deadchat_broadcast("<span class='deadsay'><b>[name]</b> has just been[random ? " randomly" : ""] triggered!</span>") //STOP ASSUMING IT'S BADMINS!
+		deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered!", "<b>[name]</b>") //STOP ASSUMING IT'S BADMINS!
 	return E
 
 //Special admins setup
@@ -138,7 +138,16 @@
 /datum/round_event/proc/announce_to_ghosts(atom/atom_of_interest)
 	if(control.alert_observers)
 		if (atom_of_interest)
-			notify_ghosts("[control.name] has an object of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
+			//Yogs start -- Makes this a bit more specific
+			var/typeofthing = "object"
+			if(iscarbon(atom_of_interest))
+				typeofthing = "person"
+			else if(ismob(atom_of_interest))
+				typeofthing = "mob"
+			else if(isturf(atom_of_interest))
+				typeofthing = "place"
+			//Yogs end
+			notify_ghosts("[control.name] has \a [typeofthing] of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
 	return
 
 //Called when the tick is equal to the announceWhen variable.

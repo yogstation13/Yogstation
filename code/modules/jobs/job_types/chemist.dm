@@ -7,7 +7,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
 
@@ -19,6 +19,11 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/chemist/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/chemist
 	name = "Chemist"

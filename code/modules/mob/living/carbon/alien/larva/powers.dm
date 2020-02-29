@@ -36,6 +36,10 @@
 		to_chat(user, "<span class='danger'>You cannot evolve when you are cuffed.</span>")
 		return
 
+	if(L.movement_type & (VENTCRAWLING))
+		to_chat(user, "<span class='danger'>You cannot evolve in a pipe.</span>")
+		return
+
 	if(L.amount_grown >= L.max_grown)	//TODO ~Carn
 		to_chat(L, "<span class='name'>You are growing into a beautiful alien! It is time to choose a caste.</span>")
 		to_chat(L, "<span class='info'>There are three to choose from:</span>")
@@ -45,6 +49,10 @@
 		var/alien_caste = alert(L, "Please choose which alien caste you shall belong to.",,"Hunter","Sentinel","Drone")
 
 		if(user.incapacitated()) //something happened to us while we were choosing.
+			return
+
+		if(L.movement_type & (VENTCRAWLING))
+			to_chat(user, "<span class='danger'>You cannot evolve in a pipe.</span>")
 			return
 
 		var/mob/living/carbon/alien/humanoid/new_xeno

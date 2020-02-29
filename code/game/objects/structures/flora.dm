@@ -14,7 +14,7 @@
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
 	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
-		if(W.sharpness && W.force > 0)
+		if(W.is_sharp() && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
 			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
@@ -303,7 +303,7 @@
 
 /obj/item/twohanded/required/kirbyplants
 	name = "potted plant"
-	icon = 'icons/obj/flora/plants.dmi'
+	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed path
 	icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
@@ -313,18 +313,9 @@
 	throw_speed = 2
 	throw_range = 4
 
-
-/obj/item/twohanded/required/kirbyplants/equipped(mob/living/user)
-	var/image/I = image(icon = 'icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user)
-	I.copy_overlays(src)
-	I.override = 1
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "sneaking_mission", I)
-	I.layer = ABOVE_MOB_LAYER
-	..()
-
-/obj/item/twohanded/required/kirbyplants/dropped(mob/living/user)
-	..()
-	user.remove_alt_appearance("sneaking_mission")
+/obj/item/twohanded/required/kirbyplants/Initialize()
+	. = ..()
+	AddComponent(/datum/component/tactical)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -333,14 +324,14 @@
 
 /obj/item/twohanded/required/kirbyplants/random/Initialize()
 	. = ..()
-	icon = 'icons/obj/flora/plants.dmi'
+	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed icon path
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
 
 /obj/item/twohanded/required/kirbyplants/random/proc/generate_states()
 	states = list()
-	for(var/i in 1 to 25)
+	for(var/i in 1 to 34) //yogs changed 25 plants to 34
 		var/number
 		if(i < 10)
 			number = "0[i]"

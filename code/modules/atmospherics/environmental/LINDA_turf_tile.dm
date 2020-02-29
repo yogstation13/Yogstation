@@ -23,6 +23,7 @@
 	//used for spacewind
 	var/pressure_difference = 0
 	var/pressure_direction = 0
+	var/turf/pressure_specific_target
 
 	var/datum/excited_group/excited_group
 	var/excited = FALSE
@@ -72,11 +73,13 @@
 		air.copy_from(copy)
 
 /turf/return_air()
+	RETURN_TYPE(/datum/gas_mixture)
 	var/datum/gas_mixture/GM = new
 	GM.copy_from_turf(src)
 	return GM
 
 /turf/open/return_air()
+	RETURN_TYPE(/datum/gas_mixture)
 	return air
 
 /turf/temperature_expose()
@@ -93,9 +96,30 @@
 
 /////////////////////////GAS OVERLAYS//////////////////////////////
 
+
 /turf/open/proc/update_visuals()
-	var/list/new_overlay_types = tile_graphic()
+
 	var/list/atmos_overlay_types = src.atmos_overlay_types // Cache for free performance
+	var/list/new_overlay_types = list()
+	var/static/list/nonoverlaying_gases = typecache_of_gases_with_no_overlays()
+
+	if(!air) // 2019-05-14: was not able to get this path to fire in testing. Consider removing/looking at callers -Naksu
+		if (atmos_overlay_types)
+			for(var/overlay in atmos_overlay_types)
+				vis_contents -= overlay
+			src.atmos_overlay_types = null
+		return
+
+	var/list/gases = air.gases
+
+	for(var/id in gases)
+		if (nonoverlaying_gases[id])
+			continue
+		var/gas = gases[id]
+		var/gas_meta = gas[GAS_META]
+		var/gas_overlay = gas_meta[META_GAS_OVERLAY]
+		if(gas_overlay && gas[MOLES] > gas_meta[META_GAS_MOLES_VISIBLE])
+			new_overlay_types += gas_overlay[min(FACTOR_GAS_VISIBLE_MAX, CEILING(gas[MOLES] / MOLES_GAS_VISIBLE_STEP, 1))]
 
 	if (atmos_overlay_types)
 		for(var/overlay in atmos_overlay_types-new_overlay_types) //doesn't remove overlays that would only be added
@@ -109,21 +133,6 @@
 
 	UNSETEMPTY(new_overlay_types)
 	src.atmos_overlay_types = new_overlay_types
-
-/turf/open/proc/tile_graphic()
-	var/static/list/nonoverlaying_gases = typecache_of_gases_with_no_overlays()
-	if(!air)
-		return
-	. = new /list
-	var/list/gases = air.gases
-	for(var/id in gases)
-		if (nonoverlaying_gases[id])
-			continue
-		var/gas = gases[id]
-		var/gas_meta = gas[GAS_META]
-		var/gas_overlay = gas_meta[META_GAS_OVERLAY]
-		if(gas_overlay && gas[MOLES] > gas_meta[META_GAS_MOLES_VISIBLE])
-			. += gas_overlay[min(FACTOR_GAS_VISIBLE_MAX, CEILING(gas[MOLES] / MOLES_GAS_VISIBLE_STEP, 1))]
 
 /proc/typecache_of_gases_with_no_overlays()
 	. = list()
@@ -243,17 +252,24 @@
 
 /turf/open/proc/high_pressure_movements()
 	var/atom/movable/M
+	var/multiplier = 1
+	if(locate(/obj/structure/rack) in src)
+		multiplier *= 0.1
+	else if(locate(/obj/structure/table) in src)
+		multiplier *= 0.2
 	for(var/thing in src)
 		M = thing
 		if (!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
-			M.experience_pressure_difference(pressure_difference, pressure_direction)
+			M.experience_pressure_difference(pressure_difference * multiplier, pressure_direction, 0, pressure_specific_target)
+	if(pressure_difference > 100)
+		new /obj/effect/temp_visual/dir_setting/space_wind(src, pressure_direction, CLAMP(round(sqrt(pressure_difference) * 2), 10, 255))
 
 /atom/movable/var/pressure_resistance = 10
 /atom/movable/var/last_high_pressure_movement_air_cycle = 0
 
-/atom/movable/proc/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
+/atom/movable/proc/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0, throw_target)
 	var/const/PROBABILITY_OFFSET = 25
-	var/const/PROBABILITY_BASE_PRECENT = 75
+	var/const/PROBABILITY_BASE_PRECENT = 10
 	var/max_force = sqrt(pressure_difference)*(MOVE_FORCE_DEFAULT / 5)
 	set waitfor = 0
 	var/move_prob = 100
@@ -261,7 +277,16 @@
 		move_prob = (pressure_difference/pressure_resistance*PROBABILITY_BASE_PRECENT)-PROBABILITY_OFFSET
 	move_prob += pressure_resistance_prob_delta
 	if (move_prob > PROBABILITY_OFFSET && prob(move_prob) && (move_resist != INFINITY) && (!anchored && (max_force >= (move_resist * MOVE_FORCE_PUSH_RATIO))) || (anchored && (max_force >= (move_resist * MOVE_FORCE_FORCEPUSH_RATIO))))
-		step(src, direction)
+		var/move_force = max_force * CLAMP(move_prob, 0, 100) / 100
+		if(move_force > 4000)
+			// WALLSLAM HELL TIME OH BOY
+			var/turf/throw_turf = get_ranged_target_turf(get_turf(src), direction, round(move_force / 2000))
+			if(throw_target && (get_dir(src, throw_target) & direction))
+				throw_turf = get_turf(throw_target)
+			var/throw_speed = CLAMP(round(move_force / 2000), 1, 10)
+			throw_at(throw_turf, move_force / 2000, throw_speed)
+		else
+			step(src, direction)
 		last_high_pressure_movement_air_cycle = SSair.times_fired
 
 ///////////////////////////EXCITED GROUPS/////////////////////////////

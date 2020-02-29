@@ -10,10 +10,12 @@
 
 	var/message = input(src, "WARNING: Misuse of this verb can result in you being yelled at by Ross.", "Announcement") as text
 	//^ Remember to replace "Ross" with whoever owns the server in 20,000 years after Ross either dies of natural causes or is assassinated by Oakboscage
-	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female")
-
+	
 	if(!message)
 		return
+	
+	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female")
+
 
 	var/list/words = splittext(trim(message), " ")//Turns the received text into an array of words
 	var/list/incorrect_words = list()//Stores all the words that we can't say, so we can complain about it later
@@ -31,8 +33,9 @@
 	else if(voxType == "male") // If we're doing the yog-ly male AI vox voice
 		voxlist = GLOB.vox_sounds_male
 	else
-		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>")
+		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>", confidential=TRUE)
 		return
+	
 	for(var/word in words) // For each word
 		word = lowertext(trim(word)) // We store the words as lowercase, so lowercase the word and trim off any weirdness like newlines
 		if(!word) // If we accidentally captured a space or something weird like that
@@ -42,9 +45,14 @@
 			incorrect_words += word
 	
 	if(incorrect_words.len)
-		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
+		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>", confidential=TRUE)
 		return
 
+	var/pitch = 0
+	if(alert("Select a playback speed: ",,"Default","Custom...") == "Custom...")
+		pitch = input("Input a custom playback speed (preferably as a number between 0 and 2)","AI Vox Command") as num
+		if(isnull(pitch)) pitch = 0
+	
 	log_admin("[key_name(src)] made an admin AI vocal announcement with the following message: [message].")
 	message_admins("[key_name(src)] made an admin AI vocal announcement with the following message: [message].")
 	var/z_level = 2 // Default value should be the station's z-level
@@ -52,4 +60,4 @@
 	if(src.mob && src.mob.loc) // If the admin has a mob who exists somewhere
 		z_level = src.mob.loc.z // Play it on their mob's z-level
 	for(var/word in words) // The forloop that actually plays the sounds, hopefully
-		play_vox_word(word, z_level, null, voxType)
+		play_vox_word(word, z_level, null, voxType, pitch)

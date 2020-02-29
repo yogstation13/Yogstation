@@ -1,6 +1,6 @@
 /proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	if(!type)
 		return
@@ -67,7 +67,7 @@
 			if(query_validate_expire_time.NextRow())
 				var/checktime = text2num(query_validate_expire_time.item[1])
 				if(!checktime)
-					to_chat(usr, "Datetime entered is improperly formatted or not later than current server time.")
+					to_chat(usr, "Datetime entered is improperly formatted or not later than current server time.", confidential=TRUE)
 					qdel(query_validate_expire_time)
 					return
 				expiry = query_validate_expire_time.item[1]
@@ -91,7 +91,7 @@
 
 /proc/delete_message(message_id, logged = 1, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -127,7 +127,7 @@
 
 /proc/edit_message(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -166,7 +166,7 @@
 
 /proc/edit_message_expiry(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -201,7 +201,7 @@
 			if(query_validate_expire_time_edit.NextRow())
 				var/checktime = text2num(query_validate_expire_time_edit.item[1])
 				if(!checktime)
-					to_chat(usr, "Datetime entered is improperly formatted or not later than current server time.")
+					to_chat(usr, "Datetime entered is improperly formatted or not later than current server time.", confidential=TRUE)
 					qdel(query_validate_expire_time_edit)
 					qdel(query_find_edit_expiry_message)
 					return
@@ -224,7 +224,7 @@
 
 /proc/toggle_message_secrecy(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -256,7 +256,7 @@
 
 /proc/browse_messages(type, target_ckey, index, linkless = FALSE, filter, agegate = FALSE)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	var/list/output = list()
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
@@ -452,7 +452,7 @@
 
 /proc/get_message_output(type, target_ckey)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	if(!type)
 		return

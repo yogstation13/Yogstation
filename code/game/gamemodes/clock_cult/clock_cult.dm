@@ -63,7 +63,7 @@ Credit where due:
 		return FALSE
 	if(isliving(M))
 		var/mob/living/L = M
-		if(L.has_trait(TRAIT_MINDSHIELD))
+		if(HAS_TRAIT(L, TRAIT_MINDSHIELD))
 			return FALSE
 	if(ishuman(M) || isbrain(M) || isguardian(M) || issilicon(M) || isclockmob(M) || istype(M, /mob/living/simple_animal/drone/cogscarab) || istype(M, /mob/camera/eminence))
 		return TRUE
@@ -143,7 +143,7 @@ Credit where due:
 	<span class='notice'>Crew</span>: Stop the servants before they can summon the Clockwork Justiciar."
 	var/servants_to_serve = list()
 	var/roundstart_player_count
-	var/ark_time //In minutes, how long the Ark waits before activation; this is equal to 30 + (number of players / 5) (max 40 mins.)
+	var/ark_time //In minutes, how long the Ark waits before activation; this is equal to 20 + (number of players / 5) (max 35 mins.)
 
 	var/datum/team/clockcult/main_clockcult
 
@@ -174,7 +174,7 @@ Credit where due:
 		servant.assigned_role = ROLE_SERVANT_OF_RATVAR
 		servant.special_role = ROLE_SERVANT_OF_RATVAR
 		starter_servants--
-	ark_time = 30 + round((roundstart_player_count / 5)) //In minutes, how long the Ark will wait before activation
+	ark_time = 20 + round((roundstart_player_count / 5)) //In minutes, how long the Ark will wait before activation
 	ark_time = min(ark_time, 35) //35 minute maximum for the activation timer
 	return 1
 
@@ -315,7 +315,7 @@ Credit where due:
 	Here's a quick primer on what you should know here.\
 	<ol>\
 	<li>You're in a place called Reebe right now. The crew can't get here normally.</li>\
-	<li>In the north is your base camp, with supplies, consoles, and the Ark. In the south is an inaccessible area that the crew can walk between \
+	<li>In the center is your base camp, with supplies, consoles, and the Ark. In the area sorunding you is an inaccessible area that the crew can walk between \
 	once they arrive (more on that later.) Everything between that space is an open area.</li>\
 	<li>Your job as a servant is to build fortifications and defenses to protect the Ark and your base once the Ark activates. You can do this \
 	however you like, but work with your allies and coordinate your efforts.</li>\
@@ -324,15 +324,15 @@ Credit where due:
 	crew and defend it accordingly.</li>\
 	</ol>\
 	<hr>\
-	Here is the layout of Reebe, from left to right:\
+	Here is the layout of Reebe, from inner to outter:\
 	<ul>\
-	<li><b>Dressing Room:</b> Contains clothing, a dresser, and a mirror. There are spare slabs and absconders here.</li>\
-	<li><b>Listening Station:</b> Contains intercoms, a telecomms relay, and a list of frequencies.</li>\
-	<li><b>Ark Chamber:</b> Houses the Ark.</li>\
-	<li><b>Observation Room:</b> Contains five camera observers. These can be used to watch the station through its cameras, as well as to teleport down \
+	<li><b>Ark Chamber:</b> Houses the Ark in the very center.</li>\
+	<li><b>Listening Station:</b> (Bottom Left Corner of Circle) Contains intercoms, a telecomms relay, and a list of frequencies.</li>\
+	<li><b>Observation Room:</b> (Bottom Right Corner of Circle) Contains six camera observers. These can be used to watch the station through its cameras, as well as to teleport down \
 	to most areas. To do this, use the Warp action while hovering over the tile you want to warp to.</li>\
-	<li><b>Infirmary:</b> Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
+	<li><b>Infirmary:</b> (Uper Right Corner of Circle) Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
 	This room is generally more useful during the preparation phase; when defending the Ark, scripture is more useful.</li>\
+	<li><b>Summoning Room:</b> (Uper Left Corner of Circle) Holds two scarabs as well as extra clockwork slabs. Also houses the eminence spire to pick an eminence as well has the herald's beacon which alows the clock cult to declare war.</li>\
 	</ul>\
 	<hr>\
 	<h2>Things that have changed:</h2>\
@@ -351,6 +351,19 @@ Credit where due:
 	info = replacetext(info, "CLOCKCULTCHANGELOG", changelog_contents)
 
 /obj/item/paper/servant_primer/examine(mob/user)
+	. = ..()
 	if(!is_servant_of_ratvar(user) && !isobserver(user))
-		to_chat(user, "<span class='danger'>You can't understand any of the words on [src].</span>")
-	..()
+		. += "<span class='danger'>You can't understand any of the words on [src].</span>"
+
+/obj/effect/spawner/lootdrop/clockcult
+	name = "clock tile"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/obj/item/clockwork/component/replicant_alloy = 5,
+				/obj/item/clockwork/component/geis_capacitor/fallen_armor = 4,
+				/obj/item/clockwork/alloy_shards/clockgolem_remains = 12,
+				/obj/item/clockwork/alloy_shards/large = 15,
+				/obj/structure/destructible/clockwork/wall_gear = 20,
+				/obj/structure/table_frame/brass = 20,
+				/obj/item/stack/tile/brass/ten = 23,
+				/obj/item/clockwork/construct_chassis/cogscarab = 1)

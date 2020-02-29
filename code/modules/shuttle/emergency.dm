@@ -16,6 +16,10 @@
 		say("Please equip your ID card into your ID slot to authenticate.")
 	. = ..()
 
+/obj/machinery/computer/emergency_shuttle/attack_alien(mob/living/carbon/alien/humanoid/user)
+	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen))
+		SSshuttle.clearHostileEnvironment(user)
+
 /obj/machinery/computer/emergency_shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.human_adjacent_state)
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -292,6 +296,23 @@
 
 	return has_people && hijacker_present
 
+/obj/docking_port/mobile/emergency/proc/is_hijacked_by_xenos()
+	var/has_xenos = FALSE
+	for(var/mob/living/player in GLOB.alive_mob_list)
+		if(issilicon(player)) //Borgs are technically dead anyways
+			continue
+		if(isanimal(player)) //animals don't count
+			continue
+		if(isbrain(player)) //also technically dead
+			continue
+		if(shuttle_areas[get_area(player)])
+			//Non-xeno present. Can't hijack.
+			if(!istype(player, /mob/living/carbon/alien))
+				return FALSE
+			has_xenos = TRUE
+
+	return has_xenos
+
 /obj/docking_port/mobile/emergency/proc/ShuttleDBStuff()
 	set waitfor = FALSE
 	if(!SSdbcore.Connect())
@@ -498,15 +519,18 @@
 		return
 
 	var/list/turfs = get_area_turfs(target_area)
-	var/turf/T = pick(turfs)
-
+	var/original_len = turfs.len
 	while(turfs.len)
+		var/turf/T = pick(turfs)
 		if(T.x<edge_distance || T.y<edge_distance || (world.maxx+1-T.x)<edge_distance || (world.maxy+1-T.y)<edge_distance)
 			turfs -= T
-			T = pick(turfs)
 		else
 			forceMove(T)
-			break
+			return
+
+	// Fallback: couldn't find anything
+	WARNING("docking port '[id]' could not be randomly placed in [target_area]: of [original_len] turfs, none were suitable")
+	return INITIALIZE_HINT_QDEL
 
 //Pod suits/pickaxes
 

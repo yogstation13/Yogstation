@@ -96,6 +96,17 @@
 	suffixcolour = "Blue"
 	parasiteicon = "magicBlue"
 	colour = "#78C4DB"
+	
+/datum/guardianname/holy
+	bubbleicon = "guardian"
+	theme = "holy"
+
+/datum/guardianname/holy/New()
+	prefixname = pick("Aries", "Leo", "Sagittarius", "Taurus", "Virgo", "Capricorn", "Gemini", "Libra", "Aquarius", "Cancer", "Scorpio", "Pisces", "Ophiuchus")
+
+/datum/guardianname/holy/holypara
+	suffixcolour = "Devout"
+	parasiteicon = "holypara"
 
 /datum/guardianname/tech/New()
 	prefixname = pick("Gallium", "Indium", "Thallium", "Bismuth", "Aluminium", "Mercury", "Iron", "Silver", "Zinc", "Titanium", "Chromium", "Nickel", "Platinum", "Tellurium", "Palladium", "Rhodium", "Cobalt", "Osmium", "Tungsten", "Iridium")

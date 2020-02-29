@@ -32,7 +32,7 @@
 		to_chat(holder, "<span class='warning'>[target] is already a slave!</span>")
 		return FALSE
 
-	if(target.has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		to_chat(holder, "<span class='warning'>[target] seems to resist the implant!</span>")
 		return FALSE
 

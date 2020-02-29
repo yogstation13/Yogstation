@@ -15,7 +15,7 @@
 	icon_grow = "cinnamomum-grow"
 	icon_dead = "cinnamomum-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	reagents_add = list("cinnamon" = 0.15, "vitamin" = 0.04, "nutriment" = 0.1)
+	reagents_add = list(/datum/reagent/consumable/cinnamon = 0.15, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/cinnamon_stick
 	seed = /obj/item/seeds/cinnamomum

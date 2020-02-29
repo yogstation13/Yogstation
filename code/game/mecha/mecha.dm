@@ -37,6 +37,7 @@
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	var/list/facing_modifiers = list(FRONT_ARMOUR = 1.5, SIDE_ARMOUR = 1, BACK_ARMOUR = 0.5)
+	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell
 	var/state = 0
 	var/last_message = 0
@@ -84,8 +85,11 @@
 	var/silicon_pilot = FALSE //set to true if an AI or MMI is piloting.
 
 	var/enter_delay = 40 //Time taken to enter the mech
+	var/exit_delay = 20 //Time to exit mech
+	var/destruction_sleep_duration = 20 //Time that mech pilot is put to sleep for if mech is destroyed
 	var/enclosed = TRUE //Set to false for open-cockpit mechs
 	var/silicon_icon_state = null //if the mech has a different icon when piloted by an AI or MMI
+	var/is_currently_ejecting = FALSE //Mech cannot use equiptment when true, set to true if pilot is trying to exit mech
 
 	//Action datums
 	var/datum/action/innate/mecha/mech_eject/eject_action = new
@@ -151,7 +155,6 @@
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
-	diag_hud_set_mechtracking()
 
 /obj/mecha/update_icon()
 	if (silicon_pilot && silicon_icon_state)
@@ -162,6 +165,8 @@
 	return cell
 
 /obj/mecha/Destroy()
+	if(occupant)
+		occupant.SetSleeping(destruction_sleep_duration)
 	go_out()
 	var/mob/living/silicon/ai/AI
 	for(var/mob/M in src) //Let's just be ultra sure
@@ -171,8 +176,6 @@
 		else
 			M.forceMove(loc)
 	if(wreckage)
-		if(prob(30))
-			explosion(get_turf(src), 0, 0, 1, 3)
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 			if(E.salvageable && prob(30))
@@ -217,6 +220,15 @@
 
 	GLOB.mechas_list -= src //global mech list
 	return ..()
+
+/obj/mecha/proc/restore_equipment()
+	equipment_disabled = 0
+	if(istype(src, /obj/mecha/combat))
+		mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
+	if(occupant)
+		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
+		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
+		occupant.update_mouse_pointer()
 
 /obj/mecha/CheckParts(list/parts_list)
 	..()
@@ -273,31 +285,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/mecha/examine(mob/user)
-	..()
+	. = ..()
 	var/integrity = obj_integrity*100/max_integrity
 	switch(integrity)
 		if(85 to 100)
-			to_chat(user, "It's fully intact.")
+			. += "It's fully intact."
 		if(65 to 85)
-			to_chat(user, "It's slightly damaged.")
+			. += "It's slightly damaged."
 		if(45 to 65)
-			to_chat(user, "It's badly damaged.")
+			. += "It's badly damaged."
 		if(25 to 45)
-			to_chat(user, "It's heavily damaged.")
+			. += "It's heavily damaged."
 		else
-			to_chat(user, "It's falling apart.")
+			. += "It's falling apart."
 	var/hide_weapon = locate(/obj/item/mecha_parts/concealed_weapon_bay) in contents
 	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment) : null
 	var/list/visible_equipment = equipment - hidden_weapon
 	if(visible_equipment.len)
-		to_chat(user, "It's equipped with:")
+		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in visible_equipment)
-			to_chat(user, "[icon2html(ME, user)] \A [ME].")
+			. += "[icon2html(ME, user)] \A [ME]."
 	if(!enclosed)
 		if(silicon_pilot)
-			to_chat(user, "[src] appears to be piloting itself...")
+			. += "[src] appears to be piloting itself..."
 		else if(occupant && occupant != user) //!silicon_pilot implied
-			to_chat(user, "You can see [occupant] inside.")
+			. += "You can see [occupant] inside."
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				for(var/O in H.held_items)
+					if(istype(O, /obj/item/gun))
+						. += "<span class='warning'>It looks like you can hit the pilot directly if you target the center or above.</span>"
+						break //in case user is holding two guns
 
 //processing internal damage, temperature, air regulation, alert updates, lights power use.
 /obj/mecha/process()
@@ -412,13 +430,17 @@
 		var/lights_energy_drain = 2
 		use_power(lights_energy_drain)
 
+	if(!enclosed && occupant?.incapacitated()) //no sides mean it's easy to just sorta fall out if you're incapacitated.
+		visible_message("<span class='warning'>[occupant] tumbles out of the cockpit!</span>")
+		go_out() //Maybe we should install seat belts?
+
 //Diagnostic HUD updates
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
-	diag_hud_set_mechtracking()
 
 /obj/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
+	. = ..()
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
 			occupant.fire_stacks += 1
@@ -451,6 +473,8 @@
 		return
 	if(completely_disabled)
 		return
+	if(is_currently_ejecting)
+		return
 	if(phasing)
 		occupant_message("Unable to interact with objects while phasing")
 		return
@@ -474,13 +498,13 @@
 	var/mob/living/L = user
 	if(!Adjacent(target))
 		if(selected && selected.is_ranged())
-			if(L.has_trait(TRAIT_PACIFISM) && selected.harmful)
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 				return
 			if(selected.action(target,params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
-		if(isliving(target) && selected.harmful && L.has_trait(TRAIT_PACIFISM))
+		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 			return
 		if(selected.action(target,params))
@@ -600,13 +624,17 @@
 	return result
 
 /obj/mecha/Bump(var/atom/obstacle)
+	var/turf/newloc = get_step(src,dir)
+	if(newloc.flags_1 & NOJAUNT_1)
+		to_chat(occupant, "<span class='warning'>Some strange aura is blocking the way.</span>")
+		return
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
 				can_move = 0
 				if(phase_state)
 					flick(phase_state, src)
-				forceMove(get_step(src,dir))
+				forceMove(newloc)
 				use_power(phasing_energy_drain)
 				sleep(step_in*3)
 				can_move = 1
@@ -617,7 +645,7 @@
 			if(nextsmash < world.time)
 				obstacle.mech_melee_attack(src)
 				nextsmash = world.time + smashcooldown
-				if(!obstacle || obstacle.CanPass(src,get_step(src,dir)))
+				if(!obstacle || obstacle.CanPass(src,newloc))
 					step(src,dir)
 		if(isobj(obstacle))
 			var/obj/O = obstacle
@@ -833,10 +861,6 @@
 		. = t_air.return_temperature()
 	return
 
-/obj/mecha/portableConnectorReturnAir()
-	return internal_tank.return_air()
-
-
 /obj/mecha/MouseDrop_T(mob/M, mob/user)
 	if (!user.canUseTopic(src) || (user != M))
 		return
@@ -955,14 +979,25 @@
 	update_icon()
 	setDir(dir_in)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
+	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
+		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
+		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
+	else
+		to_chat(brainmob, "<b>Remember, you are still member of the crew act like it</b>")//yogs end
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 	GrantActions(brainmob)
 	return TRUE
 
 /obj/mecha/container_resist(mob/living/user)
-	go_out()
-
+	is_currently_ejecting = TRUE
+	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
+	if(do_after(occupant,exit_delay, target = src))
+		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
+		go_out()
+	else
+		to_chat(occupant, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.<span>")
+	is_currently_ejecting = FALSE
 
 /obj/mecha/Exited(atom/movable/M, atom/newloc)
 	if(occupant && occupant == M) // The occupant exited the mech without calling go_out()
@@ -1086,3 +1121,53 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	if(occupant_sight_flags)
 		if(user == occupant)
 			user.sight |= occupant_sight_flags
+
+///////////////////////
+////// Ammo stuff /////
+///////////////////////
+
+/obj/mecha/proc/ammo_resupply(var/obj/item/mecha_ammo/A, mob/user,var/fail_chat_override = FALSE)
+	if(!A.rounds)
+		if(!fail_chat_override)
+			to_chat(user, "<span class='warning'>This box of ammo is empty!</span>")
+		return FALSE
+	var/ammo_needed
+	var/found_gun
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun in equipment)
+		ammo_needed = 0
+
+		if(istype(gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic) && gun.ammo_type == A.ammo_type)
+			found_gun = TRUE
+			if(A.direct_load)
+				ammo_needed = initial(gun.projectiles) - gun.projectiles
+			else
+				ammo_needed = gun.projectiles_cache_max - gun.projectiles_cache
+
+			if(ammo_needed)
+				if(ammo_needed < A.rounds)
+					if(A.direct_load)
+						gun.projectiles = gun.projectiles + ammo_needed
+					else
+						gun.projectiles_cache = gun.projectiles_cache + ammo_needed
+					playsound(get_turf(user),A.load_audio,50,1)
+					to_chat(user, "<span class='notice'>You add [ammo_needed] [A.round_term][ammo_needed > 1?"s":""] to the [gun.name]</span>")
+					A.rounds = A.rounds - ammo_needed
+					A.update_name()
+					return TRUE
+
+				else
+					if(A.direct_load)
+						gun.projectiles = gun.projectiles + A.rounds
+					else
+						gun.projectiles_cache = gun.projectiles_cache + A.rounds
+					playsound(get_turf(user),A.load_audio,50,1)
+					to_chat(user, "<span class='notice'>You add [A.rounds] [A.round_term][A.rounds > 1?"s":""] to the [gun.name]</span>")
+					A.rounds = 0
+					A.update_name()
+					return TRUE
+	if(!fail_chat_override)
+		if(found_gun)
+			to_chat(user, "<span class='notice'>You can't fit any more ammo of this type!</span>")
+		else
+			to_chat(user, "<span class='notice'>None of the equipment on this exosuit can use this ammo!</span>")
+	return FALSE

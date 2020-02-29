@@ -27,3 +27,15 @@
 		"https://www.youtube.com/watch?v=KUwN_QaZnEE", // Before the long journey
 		"https://www.youtube.com/watch?v=ckNIMPQoBPw" // And on mars there will be apple blossoms
 		)
+
+/datum/holiday/oakday
+	name = "Oak's Birthday"
+	begin_day = 5
+	begin_month = JULY
+	drone_hat = /obj/item/clothing/head/hardhat/cakehat
+
+/datum/holiday/oakday/getStationPrefix()
+	return pick("Gondola","Finnish","Council")
+	
+/datum/holiday/oakday/greet()
+	return "Happy birthday to Oakboscage!"

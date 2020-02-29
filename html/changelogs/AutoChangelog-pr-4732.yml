@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "At roundstart, command jobs now slightly prefer people with more hours in said job."

@@ -25,6 +25,8 @@
 #define NOBLUDGEON				(1<<7)		// when an item has this it produces no "X has been hit by Y with Z" message in the default attackby()
 #define ABSTRACT				(1<<9) 	// for all things that are technically items but used for various different stuff
 #define IMMUTABLE_SLOW			(1<<10) // When players should not be able to change the slowdown of the item (Speed potions, etc)
+#define IN_STORAGE				(1<<11) //is this item in the storage item, such as backpack? used for tooltips
+#define SURGICAL_TOOL			(1<<12)	//Tool commonly used for surgery: won't attack targets in an active surgical operation on help intent (in case of mistakes)
 
 // Flags for the clothing_flags var on /obj/item/clothing
 
@@ -37,3 +39,12 @@
 #define VOICEBOX_TOGGLABLE (1<<6) // The voicebox in this clothing can be toggled.
 #define VOICEBOX_DISABLED (1<<7) // The voicebox is currently turned off.
 #define SHOWEROKAY				(1<<8)	//prevents you from being stupid if you shower in them
+#define SCAN_REAGENTS (1<<9) // Allows helmets and glasses to scan reagents.
+
+/// Flags for the organ_flags var on /obj/item/organ
+
+#define ORGAN_SYNTHETIC			(1<<0)	//Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal
+#define ORGAN_FROZEN			(1<<1)	//Frozen organs, don't deteriorate
+#define ORGAN_FAILING			(1<<2)	//Failing organs perform damaging effects until replaced or fixed
+#define ORGAN_EXTERNAL			(1<<3)	//Was this organ implanted/inserted/etc, if true will not be removed during species change.
+#define ORGAN_VITAL				(1<<4)	//Currently only the brain
