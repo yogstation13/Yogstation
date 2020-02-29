@@ -136,7 +136,7 @@
 				var/link = FOLLOW_LINK(M, user)
 				to_chat(M, "[link] [msg]")
 			else if(is_darkspawn_or_veil(M))
-				if(M.z != user.z)
+				if(M.loc.z != user.loc.z)
 					if(prob(25))
 						to_chat(M, "<span class='warning'>Your mindlink trembles with words, but they are too far to make out...</span>")
 					continue
