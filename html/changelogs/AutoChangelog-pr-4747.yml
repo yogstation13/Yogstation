@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "people in fire resistant now get properly hot in fires they shouldn't resist (temps of 35000K and over)"

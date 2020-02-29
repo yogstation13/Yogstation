@@ -99,7 +99,7 @@
 
 /obj/item/transfer_valve/Topic(href, href_list)
 	..()
-	if(!usr.canUseTopic(src))
+	if(!usr.canUseTopic(src, BE_CLOSE))
 		return
 	if(tank_one && href_list["tankone"])
 		split_gases()
@@ -219,7 +219,8 @@
 
 		var/admin_bomb_message = "Bomb valve opened in [ADMIN_VERBOSEJMP(bombturf)][admin_attachment_message][admin_bomber_message]"
 		GLOB.bombers += admin_bomb_message
-		message_admins(admin_bomb_message)
+		if(SSticker.current_state != GAME_STATE_FINISHED) //don't bother alerting admins after the game has ended, but we still log it in the game log
+			message_admins(admin_bomb_message)
 		log_game("Bomb valve opened in [AREACOORD(bombturf)][attachment_message][bomber_message]")
 
 		merge_gases()

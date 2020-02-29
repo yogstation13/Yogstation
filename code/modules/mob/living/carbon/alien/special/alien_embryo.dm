@@ -18,7 +18,7 @@
 
 /obj/item/organ/body_egg/alien_embryo/prepare_eat()
 	var/obj/S = ..()
-	S.reagents.add_reagent("sacid", 10)
+	S.reagents.add_reagent(/datum/reagent/toxin/acid, 10)
 	return S
 
 /obj/item/organ/body_egg/alien_embryo/on_life()
@@ -104,7 +104,10 @@
 
 	if(gib_on_success)
 		new_xeno.visible_message("<span class='danger'>[new_xeno] bursts out of [owner] in a shower of gore!</span>", "<span class='userdanger'>You exit [owner], your previous host.</span>", "<span class='italics'>You hear organic matter ripping and tearing!</span>")
-		owner.gib(TRUE)
+		var/obj/item/organ/brain/BR = owner.getorgan(/obj/item/organ/brain) //yogs start
+		if(BR)
+			BR.setOrganDamage(maxHealth) //trauma from having a FUCKING XENO COME OUT OF YOUR BODY
+		owner.gib()             //yogs end
 	else
 		new_xeno.visible_message("<span class='danger'>[new_xeno] wriggles out of [owner]!</span>", "<span class='userdanger'>You exit [owner], your previous host.</span>")
 		owner.adjustBruteLoss(40)

@@ -49,11 +49,11 @@
 	return ..()
 
 /obj/item/radio/intercom/examine(mob/user)
-	..()
+	. = ..()
 	if(!unfastened)
-		to_chat(user, "<span class='notice'>It's <b>screwed</b> and secured to the wall.</span>")
+		. += "<span class='notice'>It's <b>screwed</b> and secured to the wall.</span>"
 	else
-		to_chat(user, "<span class='notice'>It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.</span>")
+		. += "<span class='notice'>It's <i>unscrewed</i> from the wall, and can be <b>detached</b>.</span>"
 
 /obj/item/radio/intercom/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -114,10 +114,9 @@
 
 
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
-	. = ..()
 	if (message_mode == MODE_INTERCOM)
 		return  // Avoid hearing the same thing twice
-	if(!anyai && !(speaker in ai))
+	if(!anyai && !(speaker in ai)) // set the intercomms in AI cores to 0 when this gets implemented
 		return
 	..()
 

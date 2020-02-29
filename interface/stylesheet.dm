@@ -25,7 +25,7 @@ em						{font-style: normal;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #0000d1;	font-weight: bold;} /* yogs - OOC */
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
@@ -41,7 +41,8 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
-.radio					{color: #008000;}
+.radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
+.commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #993399;}
 .comradio				{color: #204090;} /* yogs */
 .secradio				{color: #a30000;}
@@ -85,6 +86,7 @@ h1.alert, h2.alert		{color: #000000;}
 .green					{color: #03ff39;}
 .nicegreen					{color: #14a833;}
 .shadowling				{color: #3b2769;}
+.velvet					{color: #21007F;}
 .cult					{color: #960000;}
 .cultlarge				{color: #960000; font-weight: bold; font-size: 3;}
 .narsie					{color: #960000; font-weight: bold; font-size: 15;}
@@ -94,6 +96,24 @@ h1.alert, h2.alert		{color: #000000;}
 .hierophant_warning		{color: #660099; font-style: italic;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
+.surrender				{
+	color: #1235d1;
+	font-weight: bold; 
+	font-size: 3; 
+	animation: surrender 1s ease-in-out infinite alternate;
+	transform-origin: 0 0;
+	display: inline-block;
+  }
+  @keyframes surrender {
+	  0% {
+	  transform: scale(1,1);
+	  color: #ff0000;
+	}
+	  100% {
+	  transform: scale(1.05,1);
+	  color: #0000ff
+	}
+  }
 
 .revennotice			{color: #1d2953;}
 .revenboldnotice		{color: #1d2953;	font-weight: bold;}
@@ -194,7 +214,7 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 }
 .ticket-text-sent {
-	color: #000099;
+	color: #47beff;
 	font-weight: bold;
 }
 .ticket-text-received {

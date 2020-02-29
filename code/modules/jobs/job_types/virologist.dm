@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
 
@@ -19,6 +19,15 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
+
+	changed_maps = list("MinskyStation", "OmegaStation")
+
+/datum/job/virologist/proc/MinskyStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+
+/datum/job/virologist/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/virologist
 	name = "Virologist"

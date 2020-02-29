@@ -26,6 +26,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/unlock_note
 	var/unlock_code
 	var/failsafe_code
+	var/debug = FALSE
+	var/compact_mode = FALSE
 
 	var/list/previous_attempts
 
@@ -43,13 +45,14 @@ GLOBAL_LIST_EMPTY(uplinks)
 		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, .proc/new_implant)
 	else if(istype(parent, /obj/item/pda))
 		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, .proc/new_ringtone)
+		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
 	else if(istype(parent, /obj/item/radio))
 		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
 	else if(istype(parent, /obj/item/pen))
 		RegisterSignal(parent, COMSIG_PEN_ROTATED, .proc/pen_rotation)
 
 	GLOB.uplinks += src
-	uplink_items = get_uplink_items(gamemode, TRUE, allow_restricted)
+	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted)
 
 	if(_owner)
 		owner = _owner
@@ -106,7 +109,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 			var/cost = UI.refund_amount || UI.cost
 			if(I.type == path && UI.refundable && I.check_uplink_validity())
 				telecrystals += cost
-				purchase_log.total_spent -= cost
+				if(purchase_log)
+					purchase_log.total_spent -= cost
 				to_chat(user, "<span class='notice'>[I] refunded.</span>")
 				qdel(I)
 				return
@@ -125,7 +129,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	active = TRUE
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "uplink", name, 450, 750, master_ui, state)
+		ui = new(user, src, ui_key, "uplink", name, 620, 580, master_ui, state)
 		ui.set_autoupdate(FALSE) // This UI is only ever opened by one person, and never is updated outside of user input.
 		ui.set_style("syndicate")
 		ui.open()
@@ -136,39 +140,43 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/data = list()
 	data["telecrystals"] = telecrystals
 	data["lockable"] = lockable
+	data["compact_mode"] = compact_mode
 
+	return data
+
+/datum/component/uplink/ui_static_data(mob/user)
+	var/list/data = list()
 	data["categories"] = list()
 	for(var/category in uplink_items)
 		var/list/cat = list(
 			"name" = category,
 			"items" = (category == selected_cat ? list() : null))
-		if(category == selected_cat)
-			for(var/item in uplink_items[category])
-				var/datum/uplink_item/I = uplink_items[category][item]
-				if(I.limited_stock == 0)
+		for(var/item in uplink_items[category])
+			var/datum/uplink_item/I = uplink_items[category][item]
+			if(I.limited_stock == 0)
+				continue
+			if(I.restricted_roles.len)
+				var/is_inaccessible = TRUE
+				for(var/R in I.restricted_roles)
+					if(R == user.mind.assigned_role || debug)
+						is_inaccessible = FALSE
+				if(is_inaccessible)
 					continue
-				if(I.restricted_roles.len)
-					var/is_inaccessible = 1
-					for(var/R in I.restricted_roles)
-						if(R == user.mind.assigned_role)
-							is_inaccessible = 0
+			if(I.restricted_species)
+				if(ishuman(user))
+					var/is_inaccessible = TRUE
+					var/mob/living/carbon/human/H = user
+					for(var/F in I.restricted_species)
+						if(F == H.dna.species.id || debug)
+							is_inaccessible = FALSE
+							break
 					if(is_inaccessible)
 						continue
-				if(I.restricted_species)
-					if(ishuman(user))
-						var/is_inaccessible = TRUE
-						var/mob/living/carbon/human/H = user
-						for(var/F in I.restricted_species)
-							if(F == H.dna.species.id)
-								is_inaccessible = FALSE
-								break
-						if(is_inaccessible)
-							continue
-				cat["items"] += list(list(
-					"name" = I.name,
-					"cost" = I.cost,
-					"desc" = I.desc,
-				))
+			cat["items"] += list(list(
+				"name" = I.name,
+				"cost" = I.cost,
+				"desc" = I.desc,
+			))
 		data["categories"] += list(cat)
 	return data
 
@@ -196,6 +204,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 			SStgui.close_uis(src)
 		if("select")
 			selected_cat = params["category"]
+		if("compact_toggle")
+			compact_mode = !compact_mode
 	return TRUE
 
 /datum/component/uplink/proc/MakePurchase(mob/user, datum/uplink_item/U)
@@ -250,6 +260,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 	user << browse(null, "window=pda")
 	master.mode = 0
 	return COMPONENT_STOP_RINGTONE_CHANGE
+
+/datum/component/uplink/proc/check_detonate()
+	return COMPONENT_PDA_NO_DETONATE
 
 // Radio signal responses
 

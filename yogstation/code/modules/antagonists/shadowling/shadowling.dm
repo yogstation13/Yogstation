@@ -38,16 +38,16 @@
 		owner.RemoveSpell(S)
 	var/mob/living/M = owner.current
 	if(issilicon(M))
-		M.audible_message("<span class='notice'>[M] lets out a short blip.</span>", \
-						  "<span class='userdanger'>You have been turned into a robot! You are no longer a shadowling! Though you try, you cannot remember anything about your time as one...</span>")
+		M.audible_message("<span class='notice'>[M] lets out a short blip.</span>")
+		to_chat(M,"<span class='userdanger'>You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a shadowling! Though you try, you cannot remember anything about your time as one...</span>")
 	else
-		M.visible_message("<span class='big'>[M] screams and contorts!</span>", \
-						  "<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
+		M.visible_message("<span class='big'>[M] screams and contorts!</span>")
+		to_chat(M,"<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
 		spawn(30)
 			if(QDELETED(M))
 				return
-			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
-							  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
+			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>")
+			to_chat(M,"<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
 			playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
 			M.gib()
 	return ..()

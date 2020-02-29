@@ -1,4 +1,0 @@
-author: " dvanbale"
-delete-after: true 
-changes: 
-  - bugfix: "Removes dizziness when adminhealing"

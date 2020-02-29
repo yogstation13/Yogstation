@@ -91,6 +91,45 @@
 /obj/machinery/vending/medical/syndicate_access,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"am" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/syndi_cakes{
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/syndicate_lava_base/main)
+"an" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/plasteel/white/side{
+	dir = 5
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
+"ao" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/defibrillator{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "ap" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -129,11 +168,6 @@
 /obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
-"aQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/arrivals)
 "aW" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -698,12 +732,6 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
-	},
-/obj/item/paper/crumpled{
-	info = "Explosive testing on site is STRICTLY forbidden, as this outpost's walls are lined with explosives intended for intentional self-destruct purposes that may be set off prematurely through careless experiments.";
-	name = "Explosives Testing Warning";
-	pixel_x = -6;
-	pixel_y = -3
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
@@ -3644,7 +3672,7 @@
 	pixel_x = 7;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate{
 	pixel_x = -3
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -4460,18 +4488,6 @@
 	dir = 1
 	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
-"lo" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 5
-	},
-/area/ruin/unpowered/syndicate_lava_base/medbay)
 "lp" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -4493,7 +4509,8 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "0-2";
+	pixel_y = 1
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -4516,9 +4533,9 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "lv" = (
@@ -4639,14 +4656,6 @@
 "lJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
-"lK" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
 "lL" = (
 /obj/machinery/airalarm/syndicate{
@@ -5017,7 +5026,7 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "my" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/reagent_containers/food/condiment/enzyme,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
 /obj/effect/decal/cleanable/dirt,
@@ -5294,6 +5303,7 @@
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nh" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
+	generates_heat = 0;
 	use_power = 0
 	},
 /obj/machinery/light/small{
@@ -6179,7 +6189,8 @@
 "oE" = (
 /obj/structure/cable,
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "0-2";
+	pixel_y = 1
 	},
 /obj/machinery/power/compressor{
 	comp_id = "syndie_lavaland_incineratorturbine";
@@ -6216,18 +6227,6 @@
 "oP" = (
 /obj/structure/sign/departments/chemistry,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/testlab)
-"pQ" = (
-/obj/structure/sign/warning/explosives/alt{
-	pixel_x = 32
-	},
-/turf/open/floor/circuit/red,
-/area/ruin/unpowered/syndicate_lava_base/main)
-"qG" = (
-/obj/structure/sign/warning/explosives/alt{
-	pixel_x = -32
-	},
-/turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
 "tW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -6274,12 +6273,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"DL" = (
-/obj/structure/sign/warning/explosives/alt{
-	pixel_x = 32
-	},
-/turf/open/floor/engine,
-/area/ruin/unpowered/syndicate_lava_base/testlab)
 "EZ" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -6305,6 +6298,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"Pa" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white/corner{
+	dir = 4
+	},
+/area/ruin/unpowered/syndicate_lava_base/arrivals)
 "RE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -7204,7 +7206,7 @@ ae
 ae
 aq
 aq
-qG
+aq
 dc
 aq
 dQ
@@ -7454,7 +7456,7 @@ ae
 ae
 aq
 aq
-DL
+aq
 di
 aq
 dS
@@ -7584,8 +7586,8 @@ my
 jy
 nt
 nW
-aW
-mT
+oo
+ox
 ab
 ab
 ab
@@ -7635,7 +7637,7 @@ jy
 nu
 nX
 oo
-mT
+ox
 ab
 ab
 ab
@@ -7672,7 +7674,7 @@ iB
 iU
 jg
 jp
-jp
+am
 jQ
 kd
 jy
@@ -7683,8 +7685,8 @@ jy
 jy
 mX
 nv
-aQ
-mT
+nX
+aW
 mT
 ab
 ab
@@ -7734,8 +7736,8 @@ mz
 mY
 nw
 nZ
+Pa
 mT
-ab
 ab
 ab
 ab
@@ -8027,8 +8029,8 @@ if
 kj
 kw
 kT
-lo
-lK
+an
+ao
 kQ
 mE
 nb
@@ -8218,7 +8220,7 @@ hl
 hU
 ha
 it
-pQ
+iJ
 jd
 ha
 jw

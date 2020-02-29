@@ -77,7 +77,7 @@
 
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
-	desc= "Flush your system with spare blood to remove any incapacitating effects."
+	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
 	action_icon_state = "rejuv"
 	charge_max = 200
 	stat_allowed = 1
@@ -93,13 +93,7 @@
 	if(!V) //sanity check
 		return
 	for(var/i = 1 to 5)
-		U.adjustStaminaLoss(-100)
-		U.SetStun(0)
-		U.SetKnockdown(0)
-		U.SetParalyzed(0)
-		U.SetImmobilized(0)
-		U.set_resting(FALSE)
-		U.update_mobility()
+		U.adjustStaminaLoss(-50)
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
@@ -279,11 +273,11 @@
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
 			continue
-		if(target.has_trait(TRAIT_MINDSHIELD))
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
-		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim
+		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
 				if(1)

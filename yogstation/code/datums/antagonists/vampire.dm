@@ -66,7 +66,7 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
-			B.vital = FALSE
+			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
 	..()
 
@@ -90,14 +90,14 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B && (B.decoy_override != initial(B.decoy_override)))
-			B.vital = TRUE
+			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
 	..()
 
 /datum/antagonist/vampire/greet()
 	to_chat(owner, "<span class='userdanger'>You are a Vampire!</span>")
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
+	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
@@ -341,6 +341,7 @@
 
 	if(vampwin)
 		result += "<span class='greentext'>The vampire was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext/vampire, owner.current.client)
 	else
 		result += "<span class='redtext'>The vampire has failed!</span>"
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')

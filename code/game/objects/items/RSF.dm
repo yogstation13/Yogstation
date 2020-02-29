@@ -20,8 +20,8 @@ RSF
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/rsf/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>It currently holds [matter]/30 fabrication-units.</span>")
+	. = ..()
+	. += "<span class='notice'>It currently holds [matter]/30 fabrication-units.</span>"
 
 /obj/item/rsf/cyborg
 	matter = 30
@@ -120,8 +120,8 @@ RSF
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/cookiesynth/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>It currently holds [matter]/10 cookie-units.</span>")
+	. = ..()
+	. += "<span class='notice'>It currently holds [matter]/10 cookie-units.</span>"
 
 /obj/item/cookiesynth/attackby()
 	return
@@ -141,7 +141,7 @@ RSF
 	if((obj_flags & EMAGGED)&&!toxin)
 		toxin = 1
 		to_chat(user, "Cookie Synthesizer Hacked")
-	else if(P.emagged&&!toxin)
+	else if(P && P.emagged && !toxin)
 		toxin = 1
 		to_chat(user, "Cookie Synthesizer Hacked")
 	else
@@ -173,7 +173,57 @@ RSF
 	to_chat(user, "Fabricating Cookie..")
 	var/obj/item/reagent_containers/food/snacks/cookie/S = new /obj/item/reagent_containers/food/snacks/cookie(T)
 	if(toxin)
-		S.reagents.add_reagent("chloralhydratedelayed", 10)
+		S.reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 10)
+	if (iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+		R.cell.charge -= 100
+	else
+		matter--
+	cooldown = world.time + cooldowndelay
+
+/obj/item/donutsynth
+	name = "Donut Synthesizer"
+	desc = "A self-recharging device used to rapidly deploy donuts."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "rcd"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	var/matter = 10
+	var/cooldown = 0
+	var/cooldowndelay = 10
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/cookiesynth/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>It currently holds [matter]/10 donut-units.</span>"
+
+/obj/item/donutsynth/attackby()
+	return
+
+/obj/item/donutsynth/process()
+	if(matter < 10)
+		matter++
+
+/obj/item/donutsynth/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(cooldown > world.time)
+		return
+	if(!proximity)
+		return
+	if (!(istype(A, /obj/structure/table) || isfloorturf(A)))
+		return
+	if(matter < 1)
+		to_chat(user, "<span class='warning'>[src] doesn't have enough matter left. Wait for it to recharge!</span>")
+		return
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+		if(!R.cell || R.cell.charge < 400)
+			to_chat(user, "<span class='warning'>You do not have enough power to use [src].</span>")
+			return
+	var/turf/T = get_turf(A)
+	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	to_chat(user, "Fabricating Donut..")
+	new /obj/item/reagent_containers/food/snacks/donut(T)
 	if (iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		R.cell.charge -= 100

@@ -41,19 +41,19 @@
 	if(forkload)
 		if(M == user)
 			M.visible_message("<span class='notice'>[user] eats a delicious forkful of omelette!</span>")
-			M.reagents.add_reagent(forkload.id, 1)
+			M.reagents.add_reagent(forkload.type, 1)
 		else
 			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of omelette!</span>") //yogs start
 			if(!do_mob(user, M))
 				return
-			log_combat(user, M, "fed omelette", forkload.id) //yogs end
+			log_combat(user, M, "fed omelette", forkload.type) //yogs end
 			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of omelette!</span>")
-			M.reagents.add_reagent(forkload.id, 1)
+			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
 
 	else if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-		if(user.has_trait(TRAIT_CLUMSY) && prob(50))
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 			M = user
 		return eyestab(M,user)
 	else
@@ -76,7 +76,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = IS_SHARP_ACCURATE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	var/bayonet = FALSE	//Can this be attached to a gun?
+	var/bayonet = TRUE	//Can this be attached to a gun?
 	custom_price = 30
 
 /obj/item/kitchen/knife/Initialize()
@@ -85,7 +85,7 @@
 
 /obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-		if(user.has_trait(TRAIT_CLUMSY) && prob(50))
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 			M = user
 		return eyestab(M,user)
 	else
@@ -118,6 +118,7 @@
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_price = 60
+	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat
 	name = "combat knife"
@@ -149,6 +150,7 @@
 	force = 15
 	throwforce = 15
 	materials = list()
+	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat/cyborg
 	name = "cyborg knife"
@@ -168,6 +170,10 @@
 	materials = list()
 	attack_verb = list("shanked", "shivved")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return BRUTELOSS
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"

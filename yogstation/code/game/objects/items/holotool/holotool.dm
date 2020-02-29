@@ -18,8 +18,8 @@
 
 /obj/item/holotool/examine(mob/user)
 	..()
-	to_chat(user, "<span class='notice'>It is currently set to [current_tool ? current_tool.name : "'off'"] mode.</span>")
-	to_chat(user, "<span class='notice'>Ctrl+Click it to open the radial menu!</span>")
+	. += "<span class='notice'>It is currently set to [current_tool ? current_tool.name : "'off'"] mode.</span>"
+	. += "<span class='notice'>Ctrl+Click it to open the radial menu!</span>"
 
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
@@ -42,7 +42,7 @@
 		current_tool.on_unset(src)
 	current_tool = mode
 	current_tool.on_set(src)
-	playsound(loc, 'sound/items/rped.ogg', get_clamped_volume(), 1, -1)
+	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
 	update_icon()
 	user.regenerate_icons()
 

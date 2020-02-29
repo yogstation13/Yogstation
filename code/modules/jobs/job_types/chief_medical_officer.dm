@@ -3,12 +3,13 @@
 	flag = CMO_JF
 	department_head = list("Captain")
 	department_flag = MEDSCI
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = list(RADIO_CHANNEL_MEDICAL)
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
-	selection_color = "#ffddf0"
+	selection_color = "#c1e1ec"
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_requirements = 180
@@ -28,6 +29,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/cmo/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"
 	jobtype = /datum/job/cmo
@@ -41,7 +47,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/regular
 	suit_store = /obj/item/flashlight/pen
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/card/id/departmental_budget/med=1)
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes med budget
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

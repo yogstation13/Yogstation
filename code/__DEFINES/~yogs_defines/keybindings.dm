@@ -190,3 +190,5 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 
 #define BUTTON_KEY(name, action) \
 BUTTON_KEY_MOVEMENT(name, action, 0);
+
+#define MAX_KEYPRESS_COMMANDLENGTH 32

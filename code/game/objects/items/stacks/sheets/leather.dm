@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \
-	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/sinew, 1), \
+	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/cable/sinew, 1), \
 ))
 
 /obj/item/stack/sheet/sinew/Initialize(mapload, new_amount, merge = TRUE)
@@ -245,3 +245,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	..()
 	new /obj/item/stack/sheet/leather(drop_location(), amount)
 	qdel(src)
+
+
+/obj/item/stack/sheet/animalhide/egg
+	name = "egg shell pieces"
+	desc = "The shattered remains of an eggperson."
+	singular_name = "egg shell pieces"
+	icon_state = "sheet-gondola"
+	item_state = "sheet-gondola"

@@ -1,30 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"aa" = (
 /turf/template_noop,
 /area/template_noop)
-"b" = (
+"ab" = (
 /turf/closed/wall/mineral/cult,
 /area/shuttle/escape)
-"c" = (
+"ac" = (
 /obj/effect/forcefield/cult,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"d" = (
+"ad" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"e" = (
+"ae" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"f" = (
+"af" = (
 /obj/machinery/computer/emergency_shuttle,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"g" = (
+"ag" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
 	pixel_x = 2;
@@ -33,40 +33,40 @@
 /obj/item/crowbar,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"h" = (
+"ah" = (
 /obj/machinery/computer/atmos_alert{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"i" = (
+"ai" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"j" = (
+"aj" = (
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"k" = (
+"ak" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"l" = (
+"al" = (
 /obj/machinery/computer/security{
 	dir = 8
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"m" = (
+"am" = (
 /obj/machinery/computer/crew{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"n" = (
+"an" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
@@ -75,37 +75,40 @@
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"o" = (
+"ao" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"p" = (
+"ap" = (
 /obj/machinery/computer/communications{
 	dir = 8
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"q" = (
+"aq" = (
 /obj/item/stack/sheet/metal,
 /obj/effect/decal/remains/human,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"r" = (
-/obj/machinery/door/airlock/cult/unruned/glass/friendly,
-/turf/open/floor/plasteel/cult,
+"ar" = (
+/obj/effect/forcefield/cult,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
-"s" = (
+"as" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/cult,
 /area/shuttle/escape)
-"t" = (
+"at" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"u" = (
+"au" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
@@ -115,59 +118,71 @@
 /obj/item/crowbar,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"v" = (
+"av" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"w" = (
+"aw" = (
 /mob/living/simple_animal/hostile/construct/builder,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"x" = (
+"ax" = (
 /obj/machinery/door/airlock/cult/friendly,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"y" = (
+"ay" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/item/candle/infinite,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"z" = (
+"az" = (
 /obj/effect/rune/raise_dead,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"A" = (
+"aA" = (
 /obj/item/candle/infinite,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"B" = (
+"aB" = (
 /obj/effect/rune/convert,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"C" = (
+"aC" = (
 /mob/living/simple_animal/hostile/construct/armored,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"D" = (
+"aD" = (
 /obj/effect/rune/convert,
 /obj/effect/decal/remains/human,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"E" = (
+"aE" = (
 /obj/machinery/door/airlock/cult/friendly,
 /obj/docking_port/mobile/emergency{
 	name = "shuttle 667"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"F" = (
+"aF" = (
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"G" = (
+"aG" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
@@ -176,11 +191,11 @@
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"H" = (
+"aH" = (
 /mob/living/simple_animal/hostile/construct/wraith,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"I" = (
+"aI" = (
 /obj/effect/rune/narsie,
 /obj/effect/fun_balloon/sentience/emergency_shuttle{
 	effect_range = 5;
@@ -188,43 +203,50 @@
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"J" = (
+"aJ" = (
 /mob/living/simple_animal/hostile/carp/eyeball{
 	faction = list("cult");
 	name = "left eyeball"
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"K" = (
+"aK" = (
 /mob/living/simple_animal/hostile/carp/eyeball{
 	faction = list("cult");
 	name = "right eyeball"
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"L" = (
+"aL" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"M" = (
+"aM" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"N" = (
+"aN" = (
 /obj/machinery/door/airlock/cult/glass/friendly,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"O" = (
+"aO" = (
 /obj/structure/dresser,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"P" = (
+"aP" = (
 /obj/structure/showcase/horrific_experiment,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"Q" = (
+"aQ" = (
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular{
 	pixel_x = 2;
@@ -237,293 +259,340 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"R" = (
+"aR" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"S" = (
+"aS" = (
 /obj/structure/table/wood,
 /obj/item/tome,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"T" = (
+"aT" = (
 /obj/structure/bed,
 /obj/item/bedsheet/cult,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
-"U" = (
+"aU" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/shuttle/engine/heater,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"V" = (
+"aV" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"aW" = (
+/obj/machinery/door/airlock/cult/unruned/glass/friendly,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/cult,
+/area/shuttle/escape)
+"aX" = (
+/obj/effect/forcefield/cult,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"aY" = (
+/obj/effect/forcefield/cult,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"aZ" = (
+/obj/machinery/door/airlock/cult/unruned/glass/friendly,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cult,
+/area/shuttle/escape)
+"ba" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/cult,
+/area/shuttle/escape)
+"bb" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/cult,
+/area/shuttle/escape)
 
 (1,1,1) = {"
-a
-a
-a
-a
-b
-b
-b
-x
-b
-E
-b
-c
-c
-c
-b
-x
-b
-x
-b
-b
-b
-a
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ax
+ab
+aE
+ab
+aY
+aY
+aY
+ab
+ax
+ab
+ax
+ab
+ab
+ab
+aa
 "}
 (2,1,1) = {"
-a
-b
-b
-b
-b
-j
-j
-j
-j
-j
-j
-j
-j
-j
-j
-j
-b
-j
-j
-R
-b
-b
+aa
+ab
+ab
+ab
+ab
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+ab
+aj
+aj
+aR
+ab
+ab
 "}
 (3,1,1) = {"
-b
-b
-h
-m
-b
-j
-v
-j
-A
-j
-z
-j
-A
-j
-j
-v
-q
-j
-j
-R
-U
-V
+ab
+ab
+ah
+am
+ab
+aj
+av
+aj
+aA
+aj
+az
+aj
+aA
+aj
+aj
+av
+aq
+aj
+aj
+aR
+aU
+aV
 "}
 (4,1,1) = {"
-c
-d
-i
-n
-b
-j
-j
-y
-B
-F
-H
-j
-D
-A
-j
-j
-N
-j
-j
-S
-U
-V
+ar
+ad
+ai
+an
+ab
+aj
+aj
+ay
+aB
+aF
+aH
+aj
+aD
+aA
+aj
+aj
+aN
+aj
+aj
+aS
+aU
+aV
 "}
 (5,1,1) = {"
-c
-e
-j
-o
-b
-j
-w
-j
-j
-j
-j
-j
-j
-j
-J
-L
-b
-O
-M
-T
-U
-V
+ar
+ae
+aj
+ao
+ab
+aj
+aw
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aJ
+aL
+ab
+aO
+ba
+aT
+aU
+aV
 "}
 (6,1,1) = {"
-c
-f
-j
-j
-q
-j
-j
-z
-C
-j
-I
-j
-C
-z
-j
-j
-s
-b
-b
-b
-U
-V
+ar
+af
+aj
+aj
+aq
+aj
+aj
+az
+aC
+aj
+aI
+aj
+aC
+az
+aj
+aj
+as
+ab
+ab
+ab
+aU
+aV
 "}
 (7,1,1) = {"
-c
-e
-j
-j
-r
-j
-w
-j
-j
-j
-j
-j
-j
-j
-K
-L
-c
-t
-j
-t
-U
-V
+ar
+ae
+aj
+aj
+aW
+aj
+aw
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aK
+aL
+ac
+at
+bb
+at
+aU
+aV
 "}
 (8,1,1) = {"
-c
-g
-k
-k
-s
-j
-j
-A
-D
-j
-H
-j
-D
-A
-v
-j
-r
-L
-j
-j
-U
-V
+ar
+ag
+ak
+ak
+as
+aj
+aj
+aA
+aD
+aj
+aH
+aj
+aD
+aA
+av
+aj
+aZ
+aL
+aj
+aj
+aU
+aV
 "}
 (9,1,1) = {"
-b
-b
-l
-p
-b
-t
-j
-v
-A
-j
-z
-j
-A
-j
-j
-j
-c
-j
-j
-j
-U
-V
+ab
+ab
+al
+ap
+ab
+at
+aj
+av
+aA
+aj
+az
+aj
+aA
+aj
+aj
+aj
+ac
+aj
+aj
+aj
+aU
+aV
 "}
 (10,1,1) = {"
-a
-b
-b
-b
-b
-u
-j
-j
-j
-G
-j
-j
-j
-j
-j
-M
-c
-P
-Q
-P
-b
-b
+aa
+ab
+ab
+ab
+ab
+au
+aj
+aj
+aj
+aG
+aj
+aj
+aj
+aj
+aj
+aM
+ac
+aP
+aQ
+aP
+ab
+ab
 "}
 (11,1,1) = {"
-a
-a
-a
-a
-b
-c
-b
-c
-b
-b
-b
-c
-c
-c
-b
-b
-b
-c
-b
-c
-b
-a
+aa
+aa
+aa
+aa
+ab
+aX
+ab
+aX
+ab
+ab
+ab
+aX
+aX
+aX
+ab
+ab
+ab
+aX
+ab
+aX
+ab
+aa
 "}

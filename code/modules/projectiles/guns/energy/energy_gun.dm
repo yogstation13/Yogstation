@@ -12,7 +12,7 @@
 
 /obj/item/gun/energy/e_gun/mini
 	name = "miniature energy gun"
-	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: stun and kill."
+	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
 	icon_state = "mini"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -56,13 +56,13 @@
 	cell_type = /obj/item/stock_parts/cell{charge = 1200; maxcharge = 1200}
 	icon_state = "hoslaser"
 	force = 10
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode/hos, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/disabler/hos)
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/hos, /obj/item/ammo_casing/energy/laser/hos, /obj/item/ammo_casing/energy/ion/hos)
 	ammo_x_offset = 4
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/gun/energy/e_gun/dragnet
 	name = "\improper DRAGnet"
-	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology."
+	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology. Alt+click it to set a destination for the netting mode if a teleporter is set up."
 	icon_state = "dragnet"
 	item_state = "dragnet"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -70,6 +70,47 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/net, /obj/item/ammo_casing/energy/trap)
 	can_flashlight = FALSE
 	ammo_x_offset = 1
+	var/obj/item/beacon/teletarget = null
+
+/obj/item/gun/energy/e_gun/dragnet/AltClick(mob/living/user) //stolen from hand teleporter code
+	var/turf/current_location = get_turf(user)//What turf is the user on?
+	var/area/current_area = current_location.loc
+	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
+		to_chat(user, "<span class='notice'>\The [src] isn't capable of locking a beacon from here.</span>")
+		return
+	var/list/L = list(  )
+	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
+		if(com.target)
+			var/area/A = get_area(com.target)
+			if(!A || A.noteleport)
+				continue
+			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
+				L["[get_area(com.target)] (Active)"] = com.target
+			else
+				L["[get_area(com.target)] (Inactive)"] = com.target
+	L["None (Dangerous)"] = null
+	var/t1 = input(user, "Please select a teleporter to lock in on.", "DRAGnet") as anything in L
+	if(user.incapacitated())
+		return
+	if(!L[t1])
+		teletarget = null
+		user.show_message("<span class='notice'>Random teleport enabled.</span>")
+	else
+		var/obj/item/beacon/T = L[t1]
+		var/area/A = get_area(T)
+		if(A.noteleport)
+			to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
+			return
+		current_location = get_turf(user)	//Recheck.
+		current_area = current_location.loc
+		if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
+			to_chat(user, "<span class='notice'>\The [src] isn't capable of locking a beacon from here.</span>")
+			return
+		teletarget = T
+		user.show_message("<span class='notice'>Locked In.</span>", 2)
+
+/obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
+	N.teletarget = teletarget
 
 /obj/item/gun/energy/e_gun/dragnet/snare
 	name = "Energy Snare Launcher"

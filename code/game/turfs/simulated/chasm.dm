@@ -15,11 +15,11 @@
 	AddComponent(/datum/component/chasm, SSmapping.get_turf_below(src))
 
 /turf/open/chasm/proc/set_target(turf/target)
-	GET_COMPONENT(chasm_component, /datum/component/chasm)
+	var/datum/component/chasm/chasm_component = GetComponent(/datum/component/chasm)
 	chasm_component.target_turf = target
 
 /turf/open/chasm/proc/drop(atom/movable/AM)
-	GET_COMPONENT(chasm_component, /datum/component/chasm)
+	var/datum/component/chasm/chasm_component = GetComponent(/datum/component/chasm)
 	chasm_component.drop(AM)
 
 /turf/open/chasm/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
@@ -38,7 +38,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, "<span class='notice'>You build a floor.</span>")
-			PlaceOnTop(/turf/open/floor/plating)
+			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
 	return FALSE
 
@@ -70,7 +70,7 @@
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You build a floor.</span>")
 				// Create a floor, which has this chasm underneath it
-				PlaceOnTop(/turf/open/floor/plating)
+				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			else
 				to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
 		else
@@ -110,6 +110,7 @@
 	baseturfs = /turf/open/chasm/magic
 	light_range = 1.9
 	light_power = 0.65
+	CanAtmosPass = ATMOS_PASS_NO
 
 /turf/open/chasm/magic/Initialize()
 	. = ..()

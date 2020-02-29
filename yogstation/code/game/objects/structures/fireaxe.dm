@@ -39,7 +39,7 @@
 		//User is attempting to wrench a closed & non-broken fireaxe cab
 		to_chat(user, "<span class='warning'>You need to open the door first to access the [src]'s bolts!</span>")
 		//Still allow damage to pass through, in case they are trying to destroy the cab's window with the wrench.
-		return ..()
+		return
 	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && (open || broken) && fireaxe)
 		//User is attempting to wrench an open and ready fireaxe cabinet, but the axe is still in it's slot.
 		to_chat(user, "<span class='warning'>You need to remove the fireaxe first to deconstruct the [src]!</span>")

@@ -7,7 +7,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the chief medical officer and research director"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 60
 
@@ -19,6 +19,11 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/geneticist/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/geneticist
 	name = "Geneticist"

@@ -1,6 +1,6 @@
 /datum/antagonist/santa
 	name = "Santa"
-	show_in_antagpanel = FALSE
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
 
 /datum/antagonist/santa/on_gain()
@@ -8,8 +8,8 @@
 	give_equipment()
 	give_objective()
 
-	owner.add_trait(TRAIT_CANNOT_OPEN_PRESENTS, TRAIT_SANTA)
-	owner.add_trait(TRAIT_PRESENT_VISION, TRAIT_SANTA)
+	ADD_TRAIT(owner, TRAIT_CANNOT_OPEN_PRESENTS, TRAIT_SANTA)
+	ADD_TRAIT(owner, TRAIT_PRESENT_VISION, TRAIT_SANTA)
 
 /datum/antagonist/santa/greet()
 	. = ..()
