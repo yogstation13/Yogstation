@@ -38,7 +38,7 @@
 	var/list/lines = splittext(file2text("./tmp/techweb_out.txt"), regex("\\r?\\n"))
 	for(var/line in lines)
 		var/list/split = splittext(line, " ")
-		if(!split.len > 0)
+		if(split.len < 1)
 			continue
 		if(split[1] != "node")
 			continue
