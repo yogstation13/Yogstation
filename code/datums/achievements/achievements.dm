@@ -158,7 +158,7 @@
 	id = GREENTEXT + 1
 
 /datum/achievement/greentext/ratvar
-	name = "Clock Work"
+	name = "Clocking In"
 	desc = "As a servant of Ratvar, summon Ratvar"
 	id = GREENTEXT + 2
 
