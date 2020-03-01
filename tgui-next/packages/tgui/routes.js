@@ -28,6 +28,7 @@ import { CrewConsole } from './interfaces/CrewConsole';
 import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { RadioactiveMicrolaser } from './interfaces/RadioactiveMicrolaser';
+import { RemoteRobotControl } from './interfaces/RemoteRobotControl';
 import { DnaVault } from './interfaces/DnaVault';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
 import { EightBallVote } from './interfaces/EightBallVote';
@@ -489,6 +490,10 @@ const ROUTES = {
     component: () => RadioactiveMicrolaser,
     scrollable: false,
     theme: 'syndicate',
+  },
+  remote_robot_control: {
+    component: () => RemoteRobotControl,
+    scrollable: true,
   },
   vault_controller: {
     component: () => VaultController,
