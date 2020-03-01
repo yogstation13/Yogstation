@@ -62,11 +62,11 @@
 /area/space/nearstation)
 "ap" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/structure/closet/secure_closet/engineering_electrical{
 	locked = 0
@@ -98,7 +98,7 @@
 	charge = 5e+006
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -112,7 +112,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Gravity Generator APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -476,7 +476,7 @@
 /area/engine/gravity_generator)
 "bs" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/rnd/destructive_analyzer,
 /turf/open/floor/plasteel,
@@ -538,11 +538,11 @@
 /area/science)
 "bG" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -620,7 +620,7 @@
 /area/hallway/primary/central)
 "bP" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -648,11 +648,11 @@
 /area/security/brig)
 "bU" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -1041,12 +1041,12 @@
 /area/storage/primary)
 "cW" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
@@ -1089,11 +1089,11 @@
 /area/storage/primary)
 "dd" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable{
@@ -1113,7 +1113,9 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "dg" = (
-/obj/machinery/airalarm/directional/east,
+/obj/machinery/airalarm/directional/east{
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "dh" = (
@@ -1601,7 +1603,7 @@
 /area/hallway/secondary/entry)
 "eG" = (
 /obj/machinery/airalarm/unlocked{
-	pixel_x = -32
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -1644,7 +1646,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "eM" = (
-/obj/machinery/airalarm/directional/east,
+/obj/machinery/airalarm/directional/east{
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "eN" = (
@@ -1660,7 +1664,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -2146,7 +2150,7 @@
 "fS" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -2165,7 +2169,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -2280,10 +2284,10 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_x = 32
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
@@ -2503,7 +2507,7 @@
 "hD" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2558,7 +2562,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -2592,7 +2596,9 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "ou" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "oV" = (
@@ -2677,12 +2683,14 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/unlocked{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "zo" = (
-/obj/machinery/power/apc/auto_name/south,
+/obj/machinery/power/apc/auto_name/south{
+	pixel_y = -24
+	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -2957,7 +2965,9 @@
 	dir = 1
 	},
 /obj/machinery/rnd/production/circuit_imprinter/department,
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/north{
+	pixel_y = 24
+	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},

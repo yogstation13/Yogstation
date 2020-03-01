@@ -1,5 +1,0 @@
-author: "Ktlwjec"
-delete-after: true 
-changes: 
-  - rscadd: "Added Meson Health Scanner HUDs, researchable through Integrated HUDs and available at the medical protolathe."
-  - rscadd: "Mining medics spawn with a Meson Health Scanner HUD."

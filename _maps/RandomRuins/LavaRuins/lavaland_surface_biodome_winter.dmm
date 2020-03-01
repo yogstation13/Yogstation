@@ -406,7 +406,7 @@
 /area/lavaland/surface/outdoors/explored)
 "QK" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/cigpack_carp,
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "QN" = (

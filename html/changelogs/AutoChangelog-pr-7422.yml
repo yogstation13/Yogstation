@@ -1,4 +1,0 @@
-author: "Ktlwjec"
-delete-after: true 
-changes: 
-  - bugfix: "Dolphin soup recipe should no longer have leftover ingredients after crafting."

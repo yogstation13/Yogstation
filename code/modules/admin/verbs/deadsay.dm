@@ -14,6 +14,7 @@
 	if (handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
+	msg = to_utf8(msg, src)
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	mob.log_talk(msg, LOG_DSAY)
 
@@ -38,5 +39,6 @@
 	// yogs start - Cancel button
 	var/msg = input(src, null, "dsay \"text\"") as text|null
 	if(msg)
+		msg = to_utf8(msg, src)
 		dsay(msg)
 	// yogs end

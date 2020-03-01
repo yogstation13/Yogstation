@@ -118,6 +118,7 @@
 		. = . || (mover.pass_flags & PASSTABLE)
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
+	SEND_SIGNAL(user, COMSIG_MOB_TABLING)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
 	pushed_mob.visible_message("<span class='notice'>[user] places [pushed_mob] onto [src].</span>", \
@@ -129,6 +130,7 @@
 	if(!pushed_mob.pass_flags & PASSTABLE)
 		added_passtable = TRUE
 		pushed_mob.pass_flags |= PASSTABLE
+	SEND_SIGNAL(user, COMSIG_MOB_TABLING)
 	pushed_mob.Move(src.loc)
 	if(added_passtable)
 		pushed_mob.pass_flags &= ~PASSTABLE

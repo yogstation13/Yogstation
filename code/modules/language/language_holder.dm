@@ -306,6 +306,12 @@ Key procs
 							/datum/language/machine = list(LANGUAGE_ATOM),
 							/datum/language/draconic = list(LANGUAGE_ATOM))
 
+/datum/language_holder/preternis
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/machine = list(LANGUAGE_ATOM),)
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/machine = list(LANGUAGE_ATOM),)
+
 /datum/language_holder/empty
 	understood_languages = list()
 	spoken_languages = list()
@@ -313,3 +319,7 @@ Key procs
 /datum/language_holder/universal/New()
 	..()
 	grant_all_languages()
+
+/datum/language_holder/mouse
+	understood_languages = list(/datum/language/mouse = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/mouse = list(LANGUAGE_ATOM))

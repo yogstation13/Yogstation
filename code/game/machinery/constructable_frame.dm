@@ -276,3 +276,9 @@
 			var/obj/item/I = X
 			I.forceMove(loc)
 	..()
+
+/obj/structure/frame/machine/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, /obj/item/circuitboard))
+		attackby(dropping, user)
+	else
+		..()

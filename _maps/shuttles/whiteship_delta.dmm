@@ -25,7 +25,7 @@
 	height = 17;
 	id = "whiteship";
 	launch_status = 0;
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "NT Frigate";
 	port_direction = 8;
 	preferred_direction = 4;
@@ -191,7 +191,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Frigate Bar APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	req_access = null
 	},
 /obj/structure/spider/stickyweb,
@@ -430,6 +430,32 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
+"aO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/public/glass{
+	name = "Crew Quarters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/crew)
+"aP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "Crew Quarters"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/crew)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable{
@@ -508,7 +534,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Frigate Crew Quarters APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -800,33 +826,31 @@
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/crew)
 "bp" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "Crew Quarters"
+/obj/machinery/door/airlock/command{
+	name = "Bridge"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/crew)
-"bq" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Crew Quarters"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/crew)
+/turf/open/floor/plasteel/dark,
+/area/shuttle/abandoned/bridge)
+"bq" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "br" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -873,6 +897,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/bar)
+"bv" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "bw" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
@@ -935,20 +972,17 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/bridge)
 "bC" = (
-/obj/machinery/door/airlock/command{
-	name = "Bridge"
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor/border_only{
-	dir = 1
+	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/abandoned/bridge)
 "bD" = (
 /obj/structure/sign/poster/official/nanotrasen_logo,
@@ -1018,7 +1052,7 @@
 "bK" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -1131,12 +1165,13 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/bridge)
 "bT" = (
-/obj/machinery/door/firedoor,
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
 	id = "whiteship_bridge"
 	},
-/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -1289,7 +1324,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Frigate Bridge APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -1347,6 +1382,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/bridge)
+"ci" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "cj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable{
@@ -1367,7 +1413,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/power/smes/engineering{
-	charge = 1000000
+	charge = 1e+006
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1800,7 +1846,6 @@
 	name = "Medbay"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -1812,7 +1857,6 @@
 	name = "Medbay"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -2368,7 +2412,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Frigate Cargo APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	req_access = null
 	},
 /turf/open/floor/plasteel,
@@ -2627,37 +2671,9 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/crew)
-"uN" = (
-/obj/machinery/door/firedoor,
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned/bridge)
 "vm" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/medbay)
-"Bm" = (
-/obj/machinery/door/firedoor,
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned/bridge)
 "DZ" = (
 /obj/effect/turf_decal/delivery/white,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2695,18 +2711,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/bar)
-"QQ" = (
-/obj/machinery/door/firedoor,
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned/bridge)
 "SY" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
@@ -2736,20 +2740,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/medbay)
-"YF" = (
-/obj/machinery/door/firedoor,
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned/bridge)
 
 (1,1,1) = {"
 aa
@@ -2871,13 +2861,13 @@ ac
 ac
 aQ
 bn
-bC
+bp
 bR
 bX
 cf
 cn
 ct
-bC
+bp
 cP
 df
 dD
@@ -2910,11 +2900,11 @@ aD
 aS
 ac
 bB
-bT
+bq
 bZ
 ch
 cp
-YF
+bT
 bB
 vm
 dh
@@ -2929,11 +2919,11 @@ ac
 aT
 ac
 bE
-Bm
-uN
-uN
-uN
-QQ
+bv
+bC
+bC
+bC
+ci
 cE
 vm
 dj
@@ -2946,7 +2936,7 @@ bI
 al
 aE
 oo
-bp
+aO
 bF
 bF
 ca
@@ -2965,7 +2955,7 @@ ac
 ac
 ac
 aU
-bq
+aP
 bG
 bU
 cb

@@ -7,6 +7,7 @@
 /*
  * Photocopier
  */
+
 /obj/machinery/photocopier
 	name = "photocopier"
 	desc = "Used to copy important documents and anatomy studies."
@@ -51,6 +52,10 @@
 	user << browse(dat, "window=copier")
 	onclose(user, "copier")
 
+/obj/machinery/photocopier/proc/clearcolor(text) // Breaks all font color spans in the HTML text.
+	return replacetext(replacetext(text, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor="), "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+
+
 /obj/machinery/photocopier/Topic(href, href_list)
 	if(..())
 		return
@@ -66,16 +71,22 @@
 							copy_as_paper = 0
 					if(copy_as_paper)
 						var/obj/item/paper/c = new /obj/item/paper (loc)
-						if(length(copy.info) > 0)	//Only print and add content if the copied doc has words on it
+						if(length(copy.info) || length(copy.written))	//Only print and add content if the copied doc has words on it
 							if(toner > 10)	//lots of toner, make it dark
-								c.info = "<font color = #101010>"
+								c.coloroverride = "101010"
 							else			//no toner? shitty copies for you!
-								c.info = "<font color = #808080>"
-							var/copied = copy.info
-							copied = replacetext(copied, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
-							copied = replacetext(copied, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
-							c.info += copied
-							c.info += "</font>"
+								c.coloroverride = "808080"
+							var/copyinfo = copy.info
+							copyinfo = clearcolor(copyinfo)
+							c.info += copyinfo + "</font>"
+							//Now for copying the new $written var
+							for(var/L in copy.written)
+								if(istype(L,/datum/langtext))
+									var/datum/langtext/oldL = L
+									var/datum/langtext/newL = new(clearcolor(oldL.text),oldL.lang)
+									c.written += newL
+								else
+									c.written += L
 							c.name = copy.name
 							c.fields = copy.fields
 							c.update_icon()
@@ -114,7 +125,7 @@
 			for(var/i = 0, i < copies, i++)
 				var/icon/temp_img
 				if(ishuman(ass) && (ass.get_item_by_slot(SLOT_W_UNIFORM) || ass.get_item_by_slot(SLOT_WEAR_SUIT)))
-					to_chat(usr, "<span class='notice'>You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.</span>" )
+					to_chat(usr, "<span class='notice'>You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.</span>" ) // '
 					break
 				else if(toner >= 5 && !busy && check_ass()) //You have to be sitting on the copier and either be a xeno or a human without clothes on.
 					if(isalienadult(ass) || istype(ass, /mob/living/simple_animal/hostile/alien)) //Xenos have their own asses, thanks to Pybro.
@@ -239,7 +250,7 @@
 			if(!user.temporarilyRemoveItemFromInventory(O))
 				return
 			qdel(O)
-			toner = 40
+			toner = initial(toner)
 			to_chat(user, "<span class='notice'>You insert [O] into [src].</span>")
 			updateUsrDialog()
 		else
@@ -332,3 +343,4 @@
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
 	var/charges = 5
 	var/max_charges = 5
+
