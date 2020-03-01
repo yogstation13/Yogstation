@@ -11,6 +11,9 @@
 	icon_state = "recharge_floor_asteroid"
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/mech_bay_recharge_floor/dark
+	icon_state = "recharge_floor_dark"
+
 /obj/machinery/mech_bay_recharge_port
 	name = "mech bay power port"
 	desc = "This port recharges a mech's internal power cell."

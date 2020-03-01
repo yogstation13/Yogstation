@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - bugfix: "Running out of welding fuel while fixing your spacepod will no longer stack a billion hits on your spacepod"

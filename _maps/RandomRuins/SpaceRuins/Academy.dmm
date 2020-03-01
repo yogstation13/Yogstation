@@ -7,7 +7,7 @@
 /area/space)
 "ac" = (
 /turf/closed/indestructible/rock,
-/area/space)
+/area/ruin/unpowered)
 "ad" = (
 /turf/closed/indestructible/rock,
 /area/awaymission/academy/academyengine)
@@ -155,7 +155,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 24;
 	req_access = ""
 	},
 /turf/open/floor/carpet,
@@ -285,7 +285,7 @@
 /area/awaymission/academy/headmaster)
 "ba" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/mirror/magic/lesser{
+/obj/structure/mirror{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
@@ -337,8 +337,6 @@
 "bj" = (
 /obj/structure/safe/floor,
 /obj/item/voodoo,
-/obj/item/gun/magic/wand/fireball,
-/obj/item/clothing/suit/space/hardsuit/wizard,
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bk" = (
@@ -406,7 +404,6 @@
 /area/awaymission/academy/headmaster)
 "bw" = (
 /obj/structure/table/wood,
-/obj/item/guardiancreator,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academyengine)
 "bx" = (
@@ -445,7 +442,7 @@
 "bE" = (
 /obj/structure/lattice,
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "bF" = (
 /obj/machinery/door/airlock/gold{
 	locked = 1
@@ -513,7 +510,7 @@
 "bR" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -726,7 +723,7 @@
 /area/awaymission/academy/headmaster)
 "cF" = (
 /obj/effect/immovablerod{
-	dir = 4
+	dir = 4;
 	notdebris = 1
 	},
 /obj/structure/cable,
@@ -837,8 +834,8 @@
 	icon_state = "warningline";
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/awaymission/academy/classrooms)
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "cZ" = (
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -1889,7 +1886,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 24;
 	req_access = ""
 	},
 /turf/open/floor/plasteel{
@@ -3086,7 +3083,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 24;
 	req_access = ""
 	},
 /obj/structure/cable{
@@ -3267,21 +3264,9 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"jt" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Alexander The Holy"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
 "ju" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Druja The Foolish"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
-"jv" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Colburn The Egg"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -3772,7 +3757,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/awaymission/academy/academyaft)
 "kG" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -4230,7 +4215,7 @@
 /area/awaymission/academy/academygate)
 "lN" = (
 /turf/closed/mineral/random,
-/area/awaymission/academy/academycellar)
+/area/ruin/unpowered)
 "lO" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "AcademyGate"
@@ -4283,9 +4268,6 @@
 	},
 /turf/open/floor/vault,
 /area/awaymission/academy/academycellar)
-"ma" = (
-/turf/closed/mineral/random,
-/area/space)
 "mb" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/grass,
@@ -4387,11 +4369,11 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 24;
 	req_access = ""
 	},
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "0-8"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
@@ -4427,12 +4409,6 @@
 "mA" = (
 /obj/structure/cable{
 	icon_state = "1-4"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academygate)
-"mB" = (
-/obj/structure/cable{
-	icon_state = "1-8"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
@@ -4614,6 +4590,15 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academycellar)
+"py" = (
+/obj/structure/mirror/magic/lesser{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria";
+	dir = 2
+	},
+/area/awaymission/academy/academyaft)
 "xE" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -4654,7 +4639,19 @@
 	icon_state = "tile_corner";
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/wizard{
+	name = "Colburn The Egg"
+	},
 /turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
+"Sa" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Alexander The Holy"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria";
+	dir = 2
+	},
 /area/awaymission/academy/academyaft)
 "WF" = (
 /mob/living/simple_animal/hostile/carp/ranged,
@@ -7646,7 +7643,7 @@ lN
 lR
 lR
 lN
-ma
+lN
 ac
 aa
 aa
@@ -7752,16 +7749,16 @@ aa
 ac
 ac
 ac
-ma
 lN
 lN
+lN
 lR
 lR
 lR
 lR
 lR
 lN
-ma
+lN
 aa
 aa
 aa
@@ -7867,7 +7864,7 @@ aa
 aa
 ac
 ac
-ma
+lN
 lN
 lR
 lR
@@ -9109,8 +9106,8 @@ iX
 iU
 jC
 hq
-jV
-jV
+py
+Sa
 jV
 jV
 jV
@@ -10514,8 +10511,8 @@ lL
 lL
 mb
 mk
-ms
 mA
+lM
 lM
 lM
 lM
@@ -10630,7 +10627,7 @@ lK
 lK
 lI
 mt
-mB
+lM
 lM
 lM
 lM
@@ -12099,9 +12096,9 @@ iU
 iX
 iX
 iX
-jt
 iX
-jv
+iX
+iX
 iX
 iX
 iX
@@ -13412,14 +13409,14 @@ ab
 ac
 ac
 ac
-ad
-ae
-ae
-ae
-ae
-ad
 ac
-ad
+ae
+ae
+ae
+ae
+ac
+ac
+ac
 ae
 af
 aA
@@ -13526,15 +13523,15 @@ ab
 aa
 ac
 ac
-ad
+ac
 ae
 ae
 ai
 ai
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 af
 aB
@@ -13649,7 +13646,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 ae
 ae
@@ -13765,8 +13762,8 @@ af
 af
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 af
 ae
@@ -13881,7 +13878,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 af
 ae
@@ -14341,7 +14338,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 af
 ae
@@ -14455,8 +14452,8 @@ af
 af
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 af
 ae
@@ -14569,7 +14566,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 ae
 ae
@@ -14676,15 +14673,15 @@ aa
 aa
 ac
 ac
-ad
+ac
 ae
 ae
 af
 af
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 an
 aC
@@ -14791,15 +14788,15 @@ ab
 ab
 ac
 ac
-ad
-ad
-ae
-ae
-ae
-ae
-ad
 ac
-ad
+ac
+ae
+ae
+ae
+ae
+ac
+ac
+ac
 ae
 ae
 ae

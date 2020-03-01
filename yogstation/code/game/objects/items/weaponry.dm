@@ -23,6 +23,3 @@
 	else
 		user.visible_message("[user] is left hanging by [target].", "<span class='notice'>[target] leaves you hanging.</span>")
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 0)
-
-/obj/item/katana/faketoy
-	name = "replica katana"

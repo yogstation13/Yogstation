@@ -324,19 +324,20 @@
 			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
 				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 				M.pulling.forceMove(T1)
+				M.start_pulling(M2)
+				
 	for(var/mob/living/M in T2)
 		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
 			var/mob/living/M2 = M.pulling
 			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
 				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 				M.pulling.forceMove(T2)
+				M.start_pulling(M2)
 	. = ..()
 
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
-	if(A && A.fire)
-		return FALSE
-	if(!is_holding_pressure())
+	if((!A || !A.fire) && !is_holding_pressure())
 		return TRUE
 	whack_a_mole(TRUE) // WOOP WOOP SIDE EFFECTS
 	var/turf/T = loc
@@ -402,6 +403,9 @@
 	max_integrity = 50
 	resistance_flags = 0 // not fireproof
 	heat_proof = FALSE
+
+/obj/machinery/door/firedoor/window/allow_hand_open()
+	return TRUE
 
 /obj/item/electronics/firelock
 	name = "firelock circuitry"

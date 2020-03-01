@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Mentors are now properly shown as such in OOC instead of as donators"
-  - bugfix: "Mentors can now set their OOC color preference"

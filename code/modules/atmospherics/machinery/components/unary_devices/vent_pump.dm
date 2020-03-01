@@ -435,7 +435,7 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer3
 	piping_layer = 3
-	icon_state = "map_vent-3"
+	icon_state = "vent_map-3"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/on
 	on = TRUE

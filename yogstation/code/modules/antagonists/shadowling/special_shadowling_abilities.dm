@@ -164,7 +164,7 @@
 				SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))
 			for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 				A.overload_lighting()
-			SSachievements.unlock_achievement(/datum/achievement/slingascend, H.client)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/slingascend, H.client)
 			var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
 			for(var/X in H.mind.spell_list)
 				var/obj/effect/proc_holder/spell/S = X

@@ -434,10 +434,16 @@
 
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
-	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted."
-	item_path = /obj/item/clothing/suit/space/hardsuit/shielded/wizard
+	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
+	item_path = /obj/item/clothing/suit/wizrobe/armor
 	limit = 1
 	category = "Defensive"
+
+/datum/spellbook_entry/item/battlemage/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. =..()
+	if(.)
+		new /obj/item/clothing/head/wizard/armor(get_turf(user))//To complete the outfit
+
 
 /datum/spellbook_entry/item/battlemage_charge
 	name = "Battlemage Armour Charges"

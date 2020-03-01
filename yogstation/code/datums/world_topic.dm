@@ -91,7 +91,7 @@
 /datum/world_topic/verify/Run(list/input)
 	var/id = input["verify"]
 	var/ckey = input["ckey"]
-	var/lowerparams = replacetext(lowertext(ckey), " ", "") // Fuck spaces
+	var/lowerparams = ckey(ckey) // Fuck spaces
 	if(SSdiscord.account_link_cache[lowerparams]) // First if they are in the list, then if the ckey matches
 		if(SSdiscord.account_link_cache[lowerparams] == "[SSdiscord.id_clean(id)]") // If the associated ID is the correct one
 			SSdiscord.link_account(lowerparams)

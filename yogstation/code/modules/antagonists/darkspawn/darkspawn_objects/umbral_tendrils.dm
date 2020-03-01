@@ -120,6 +120,7 @@
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
 	damage = 0
+	nodamage = TRUE
 	knockdown = 40
 	speed = 1
 	range = 5

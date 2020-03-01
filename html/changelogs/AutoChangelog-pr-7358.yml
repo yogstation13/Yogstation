@@ -1,6 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - bugfix: "boris module no longer prevents laws displayn on round end"
-  - bugfix: "borgs no longer have the PDA verbs"
-  - tweak: "AI alert UI made look better"

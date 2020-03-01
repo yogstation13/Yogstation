@@ -1,4 +1,0 @@
-author: " monster860, also asd for the quickwrite dll"
-delete-after: true 
-changes: 
-  - rscadd: "Everything that happens gets logged to a replay file"

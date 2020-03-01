@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - tweak: "When an edge firelock closes, if it closes between someone and something they're dragging it automatically pulls the thing they're dragging through."
