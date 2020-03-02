@@ -50,3 +50,8 @@
 		animate(B, alpha = 0, time = 32)
 	return ..()
 
+/obj/item/projectile/curse_hand/progenitor
+	name = "psionic barrage"
+	damage_type = BRAIN
+	paralyze = 0
+
