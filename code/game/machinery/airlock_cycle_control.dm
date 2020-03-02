@@ -675,7 +675,7 @@
 			if(is_allowed)
 				cycle_to(text2num(params["exterior"]))
 		if("skip")
-			if((skip_timer - world.time) >= skip_delay && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_INOPENING || cyclestate == AIRLOCK_CYCLESTATE_INCLOSING))
+			if((world.time - skip_timer) >= skip_delay && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_INOPENING || cyclestate == AIRLOCK_CYCLESTATE_INCLOSING))
 				is_skipping = TRUE
 	if((locked && !usr.has_unlimited_silicon_privilege) || (usr.has_unlimited_silicon_privilege && aidisabled))
 		return
