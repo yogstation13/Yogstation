@@ -134,7 +134,7 @@ const AACStatus = props => {
             ? "pressurization"
             : "depressurization")
           + ((data.skip_timer < data.skip_delay)
-            ? " (in " + Math.round(data.skip_delay - data.skip_timer) + " seconds)"
+            ? " (in " + Math.round((data.skip_delay - data.skip_timer)/10) + " seconds)"
             : "")}
         color="danger"
         disabled={data.skip_timer < data.skip_delay}
@@ -164,7 +164,7 @@ const AACControl = props => {
             animated
             value={parseFloat(data.interior_pressure)}
             unit="kPa"
-            width="75px"
+            width="125px"
             minValue={0}
             maxValue={102}
             step={1}
@@ -177,7 +177,7 @@ const AACControl = props => {
             animated
             value={parseFloat(data.exterior_pressure)}
             unit="kPa"
-            width="75px"
+            width="125px"
             minValue={0}
             maxValue={101.325}
             step={1}
@@ -190,12 +190,25 @@ const AACControl = props => {
             animated
             value={parseFloat(data.depressurization_margin)}
             unit="kPa"
-            width="75px"
+            width="125px"
             minValue={0.15}
             maxValue={40}
             step={1}
             onChange={(e, value) => act('depressurization_margin', {
               pressure: value,
+            })} />
+        </LabeledList.Item>
+        <LabeledList.Item label="Time before Skip Allowed">
+          <NumberInput
+            animated
+            value={Math.round(parseFloat(data.skip_delay))/10}
+            unit="seconds"
+            width="125px"
+            minValue={0}
+            maxValue={120}
+            step={1}
+            onChange={(e, value) => act('skip_delay', {
+              skip_delay: value * 10,
             })} />
         </LabeledList.Item>
       </LabeledList>
@@ -226,7 +239,11 @@ const Vent = props => {
   return (
     <Section
       level={2}
-      title={decodeHtmlEntities(name)}>
+      title={decodeHtmlEntities(name)}
+      onmouseover={() => { act('set_vis_vent', {
+        vent_id: vent_id,
+      }); }}
+      onmouseout={() => { act('clear_vis'); }}>
       <LabeledList>
         <LabeledList.Item label="Roles">
           <Button
@@ -278,7 +295,11 @@ const Airlock = props => {
   return (
     <Section
       level={2}
-      title={decodeHtmlEntities(name)}>
+      title={decodeHtmlEntities(name)}
+      onmouseover={() => { act('set_vis_airlock', {
+        airlock_id: airlock_id,
+      }); }}
+      onmouseout={() => { act('clear_vis'); }}>
       <LabeledList>
         <LabeledList.Item label="Roles">
           <Button

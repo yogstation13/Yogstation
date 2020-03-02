@@ -82,6 +82,7 @@
 
 	var/list/airlocks = list()
 	var/list/vents = list()
+	var/obj/vis_target = null
 
 /obj/machinery/advanced_airlock_controller/lavaland
 	exterior_pressure = 36.896 // according to very reliable asay this is the correct pressure.
@@ -143,7 +144,7 @@
 	var/maxpressure = (exterior_pressure && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)) ? exterior_pressure : interior_pressure
 	var/pressure_bars = round(pressure / maxpressure * 5 + 0.01)
 
-	var/new_overlays_hash = "[pressure_bars]-[cyclestate]-[buildstage]-[panel_open]-[stat]-[shorted]-[locked]"
+	var/new_overlays_hash = "[pressure_bars]-[cyclestate]-[buildstage]-[panel_open]-[stat]-[shorted]-[locked]-\ref[vis_target]"
 	if(use_hash && new_overlays_hash == overlays_hash)
 		return
 	overlays_hash = new_overlays_hash
@@ -172,7 +173,18 @@
 	else if(!locked)
 		add_overlay("aac_unlocked")
 
-
+	if(vis_target)
+		var/f_dx = ((vis_target.pixel_x - pixel_x) / world.icon_size) + (vis_target.x - x)
+		var/f_dy = ((vis_target.pixel_y - pixel_y) / world.icon_size) + (vis_target.y - y)
+		var/dist = sqrt(f_dx*f_dx+f_dy*f_dy)
+		var/s_dx = f_dy/dist
+		var/s_dy = -f_dx/dist
+		var/matrix/TR = new
+		TR.Translate(0, 16)
+		TR.Multiply(new /matrix(s_dx, f_dx, 0, s_dy, f_dy, 0))
+		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+		M.transform = TR
+		add_overlay(M)
 
 /obj/machinery/advanced_airlock_controller/proc/reset(wire)
 	switch(wire)
@@ -641,6 +653,10 @@
 		))
 	return data
 
+/obj/machinery/advanced_airlock_controller/ui_close()
+	. = ..()
+	vis_target = null
+
 /obj/machinery/advanced_airlock_controller/ui_act(action, params)
 	if(..() || buildstage != 2)
 		return
@@ -658,6 +674,9 @@
 							A.do_animate("deny")
 			if(is_allowed)
 				cycle_to(text2num(params["exterior"]))
+		if("skip")
+			if((skip_timer - world.time) >= skip_delay && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_INOPENING || cyclestate == AIRLOCK_CYCLESTATE_INCLOSING))
+				is_skipping = TRUE
 	if((locked && !usr.has_unlimited_silicon_privilege) || (usr.has_unlimited_silicon_privilege && aidisabled))
 		return
 	switch(action)
@@ -665,9 +684,7 @@
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
-		if("skip")
-			if(world.time + skip_timer >= skip_delay && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_INOPENING || cyclestate == AIRLOCK_CYCLESTATE_INCLOSING))
-				is_skipping = TRUE
+				vis_target = null
 		if("toggle_role")
 			var/vent = locate(params["vent_id"])
 			if(vent == null || vents[vent] == null)
@@ -683,6 +700,18 @@
 			if(airlock == null || airlocks[airlock] == null)
 				return
 			airlocks[airlock] = !!text2num(params["val"])
+		if("clear_vis")
+			vis_target = null
+		if("set_vis_vent")
+			var/vent = locate(params["vent_id"])
+			if(vent == null || vents[vent] == null)
+				return
+			vis_target = vent
+		if("set_vis_airlock")
+			var/airlock = locate(params["airlock_id"])
+			if(airlock == null || airlocks[airlock] == null)
+				return
+			vis_target = airlock
 		if("scan")
 			scan()
 		if("interior_pressure")
@@ -691,7 +720,9 @@
 			exterior_pressure = CLAMP(text2num(params["pressure"]), 0, ONE_ATMOSPHERE)
 		if("depressurization_margin")
 			depressurization_margin = CLAMP(text2num(params["pressure"]), 0.15, 40)
-	update_icon()
+		if("skip_delay")
+			skip_delay = CLAMP(text2num(params["skip_delay"]), 0, 1200)
+	update_icon(TRUE)
 
 /obj/machinery/advanced_airlock_controller/proc/request_from_door(airlock)
 	var/role = airlocks[airlock]
