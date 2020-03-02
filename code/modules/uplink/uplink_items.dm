@@ -405,6 +405,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/bostaff
+	name = "Bo Staff"
+	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
+	item = /obj/item/twohanded/bostaff
+	cost = 8
+
 /datum/uplink_item/dangerous/shield
 	name = "Energy Shield"
 	desc = "An incredibly useful personal shield projector, capable of reflecting energy projectiles and defending \
