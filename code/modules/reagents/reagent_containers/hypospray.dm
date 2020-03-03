@@ -74,7 +74,7 @@
 
 /obj/item/reagent_containers/hypospray/combat
 	name = "combat stimulant injector"
-	desc = "A modified air-needle autoinjector, used by support operatives to quickly heal injuries in combat."
+	desc = "A modified air-needle medipen, used by support operatives to quickly heal injuries in combat."
 	amount_per_transfer_from_this = 10
 	icon_state = "combat_hypo"
 	volume = 90
@@ -82,13 +82,13 @@
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 30, /datum/reagent/medicine/omnizine = 30, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/atropine = 15)
 
 /obj/item/reagent_containers/hypospray/combat/nanites
-	desc = "A modified air-needle autoinjector for use in combat situations. Prefilled with experimental medical compounds for rapid healing."
+	desc = "A modified air-needle medipen for use in combat situations. Prefilled with experimental medical compounds for rapid healing."
 	volume = 100
 	list_reagents = list(/datum/reagent/medicine/adminordrazine/quantum_heal = 80, /datum/reagent/medicine/synaptizine = 20)
 
 /obj/item/reagent_containers/hypospray/magillitis
-	name = "experimental autoinjector"
-	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum."
+	name = "experimental medipen"
+	desc = "A modified air-needle medipen with a small single-use reservoir. It contains an experimental serum."
 	icon_state = "combat_hypo"
 	volume = 5
 	reagent_flags = NONE
@@ -164,8 +164,8 @@
 	list_reagents = list(/datum/reagent/medicine/morphine = 10)
 
 /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure
-	name = "BVAK autoinjector"
-	desc = "Bio Virus Antidote Kit autoinjector. Has a two use system for yourself, and someone else. Inject when infected."
+	name = "BVAK medipen"
+	desc = "Bio Virus Antidote Kit medipen. Has a two use system for yourself, and someone else. Inject when infected."
 	icon_state = "stimpen"
 	volume = 60
 	amount_per_transfer_from_this = 30
@@ -188,14 +188,14 @@
 	list_reagents = list(/datum/reagent/toxin/mutagen = 1)
 
 /obj/item/reagent_containers/hypospray/combat/heresypurge
-	name = "holy water autoinjector"
-	desc = "A modified air-needle autoinjector for use in combat situations. Prefilled with 5 doses of a holy water mixture."
+	name = "holy water medipen"
+	desc = "A modified air-needle medipen for use in combat situations. Prefilled with 5 doses of a holy water mixture."
 	volume = 250
 	list_reagents = list(/datum/reagent/water/holywater = 150, /datum/reagent/peaceborg/tire = 50, /datum/reagent/peaceborg/confuse = 50)
 	amount_per_transfer_from_this = 50
 
 /obj/item/reagent_containers/hypospray/medipen/atropine
-	name = "atropine autoinjector"
+	name = "atropine medipen"
 	desc = "A rapid way to save a person from a critical injury state!"
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
 
