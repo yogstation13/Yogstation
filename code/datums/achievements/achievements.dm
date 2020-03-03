@@ -13,7 +13,7 @@
 
 /datum/achievement/bubblegum
 	name = "Kick Ass and Chew Bubblegum"
-	desc = "Kill Bubblegum, the king of slaughter demons."
+	desc = "Kill Bubblegum, the king of slaughter demons." //Should be improved(?)
 	id = 1
 
 /datum/achievement/roboborg
@@ -158,12 +158,12 @@
 	id = GREENTEXT + 1
 
 /datum/achievement/greentext/ratvar
-	name = "Clocking In"
+	name = "Clock Work"
 	desc = "As a servant of Ratvar, summon Ratvar"
 	id = GREENTEXT + 2
 
 /datum/achievement/greentext/ratvar/eminence
-	name = "Ratvar's Hand"
+	name = "Clock Work"
 	desc = "As the Eminence, summon Ratvar"
 	id = GREENTEXT + 3
 
