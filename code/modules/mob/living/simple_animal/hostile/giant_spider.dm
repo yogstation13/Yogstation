@@ -131,9 +131,9 @@
 	QDEL_NULL(set_directive)
 	return ..()
 
-//midwives are the queen of the spiders, can send messages to all them and web faster. That rare round where you get a queen spider and turn your 'for honor' players into 'r6siege' players will be a fun one.
+//broodmothers are the queen of the spiders, can send messages to all them and web faster. That rare round where you get a queen spider and turn your 'for honor' players into 'r6siege' players will be a fun one.
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife
-	name = "midwife"
+	name = "broodmother"
 	desc = "Furry and black, it makes you shudder to look at it. This one has scintillating green eyes. Might also be hiding a real knife somewhere."
 	icon_state = "midwife"
 	icon_living = "midwife"
