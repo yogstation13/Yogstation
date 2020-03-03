@@ -32,7 +32,6 @@
 		"https://www.youtube.com/watch?v=cJxSwxexZYo")						// She Blinded Me With Science (2009 Remastered Version)
 
 
-
 	selected_lobby_music = pick(songs)
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
