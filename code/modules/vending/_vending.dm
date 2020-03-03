@@ -386,6 +386,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			ref = REF(R)
 		)
 		.["coin_records"] += list(data)
+	.["hidden_records"] = list()
 	for (var/datum/data/vending_product/R in hidden_records)
 		var/list/data = list(
 			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
