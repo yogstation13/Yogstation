@@ -29,8 +29,10 @@
 		"https://www.youtube.com/watch?v=fMn30T5wEVg",						// Mike Morasky - SynTek Residential Mall (Extended by FoxOnTheRails)
 	    "https://www.youtube.com/watch?v=iB5Az3vbkYs",						// Coalescence - Risk of Rain (Cover by Nahu Pyrope)
 	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
-		"https://www.youtube.com/watch?v=cJxSwxexZYo")						// She Blinded Me With Science (2009 Remastered Version)
-
+		"https://www.youtube.com/watch?v=cJxSwxexZYo",						// She Blinded Me With Science (2009 Remastered Version)
+		"https://www.youtube.com/watch?v=D5p8YhhaVlA",                      // Carmen Miranda's Ghost 01 - Carmen Miranda's Ghost - Leslie Fish
+		"https://www.youtube.com/watch?v=wJzPhRJRgFA",                      // Carmen Miranda's Ghost 03 - Good Ship Manatee - Leslie Fish
+		"https://www.youtube.com/watch?v=L0bcRCCg01I")                      // Gustav Holst - The Planets - Mars, the Bringer of War
 
 
 	selected_lobby_music = pick(songs)
