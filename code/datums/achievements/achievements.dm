@@ -286,7 +286,7 @@
 	desc = "As a member of the Supply department, complete ten bounties."
 	id = CARGODEPT + 3
 /datum/achievement/cargo/bsa
-	name = '"Glass them."'
+	name = "\"Glass them.\""
 	desc = "Fire the Bluespace artillery."
 	id = CARGODEPT + 4
 
