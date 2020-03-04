@@ -1499,6 +1499,19 @@
 		var/t_loc = get_turf(O)
 		qdel(O)
 		new /obj/item/clothing/shoes/galoshes/dry(t_loc)
+		
+/datum/reagent/americajuice
+	name = "America Juice"
+	description = "Despite its name it is not a juice"
+	reagent_state = LIQUID
+	color = "#A70FFF"
+	taste_description = "freedom"
+
+/datum/reagent/drying_agent/reaction_obj(obj/O, reac_volume)
+	if(O.type == /obj/item/organ/heart)
+		var/t_loc = get_turf(O)
+		qdel(O)
+		new /obj/item/organ/heart/freedom(t_loc)
 
 // Virology virus food chems.
 
