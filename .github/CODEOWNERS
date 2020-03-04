@@ -25,12 +25,6 @@
 /code/controllers/subsystem/timer.dm @AsV9
 /code/datums/achievements/achievements.dm @AsV9
 
-
-#Identification
-
-/icons/ @Idinuum
-/yogstation/icons/ @Idinuum
-
 #Ktlwjec
 /_maps/ @Ktlwjec1
 

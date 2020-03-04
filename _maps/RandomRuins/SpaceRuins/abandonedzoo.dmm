@@ -335,7 +335,7 @@
 	equipment = 0;
 	lighting = 0;
 	name = "Worn-out APC";
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"

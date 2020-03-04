@@ -337,9 +337,7 @@
 
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
-	if(A && A.fire)
-		return FALSE
-	if(!is_holding_pressure())
+	if((!A || !A.fire) && !is_holding_pressure())
 		return TRUE
 	whack_a_mole(TRUE) // WOOP WOOP SIDE EFFECTS
 	var/turf/T = loc
@@ -405,6 +403,9 @@
 	max_integrity = 50
 	resistance_flags = 0 // not fireproof
 	heat_proof = FALSE
+
+/obj/machinery/door/firedoor/window/allow_hand_open()
+	return TRUE
 
 /obj/item/electronics/firelock
 	name = "firelock circuitry"

@@ -46,8 +46,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Worn-out APC";
-	pixel_x = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -284,7 +283,7 @@
 /area/tcommsat/oldaisat)
 "aZ" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes,
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/oldaisat)
 "ba" = (

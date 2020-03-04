@@ -211,31 +211,12 @@
 	host_mob.notify_ghost_cloning("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
 	addtimer(CALLBACK(src, .proc/zap), 50)
 
-/datum/nanite_program/triggered/defib/proc/check_revivable()
-	if(!iscarbon(host_mob)) //nonstandard biology
-		return FALSE
-	var/mob/living/carbon/C = host_mob
-	if(C.suiciding || C.hellbound || HAS_TRAIT(C, TRAIT_HUSK)) //can't revive
-		return FALSE
-	if((world.time - C.timeofdeath) > 1800) //too late
-		return FALSE
-	if((C.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (C.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE) || !C.can_be_revived()) //too damaged
-		return FALSE
-	if(!C.getorgan(/obj/item/organ/heart)) //what are we even shocking
-		return FALSE
-	var/obj/item/organ/brain/BR = C.getorgan(/obj/item/organ/brain)
-	if(QDELETED(BR) || BR.brain_death || (BR.organ_flags & ORGAN_FAILING) || BR.suicided)
-		return FALSE
-	if(C.get_ghost())
-		return FALSE
-	return TRUE
-
 /datum/nanite_program/triggered/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
 	playsound(C, 'sound/machines/defib_charge.ogg', 50, 0)
 	sleep(30)
 	playsound(C, 'sound/machines/defib_zap.ogg', 50, 0)
-	if(check_revivable())
+	if(C.can_defib())
 		playsound(C, 'sound/machines/defib_success.ogg', 50, 0)
 		C.set_heartattack(FALSE)
 		C.revive()

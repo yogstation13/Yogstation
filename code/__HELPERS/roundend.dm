@@ -265,6 +265,11 @@
 	CHECK_TICK
 	//Medals
 	parts += medal_report()
+	CHECK_TICK
+
+	parts += mouse_report()
+
+	CHECK_TICK
 	//Station Goals
 	parts += goal_report()
 
@@ -414,6 +419,16 @@
 		parts += "<span class='header'>Medal Commendations:</span>"
 		for (var/com in GLOB.commendations)
 			parts += com
+		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
+	return ""
+
+/datum/controller/subsystem/ticker/proc/mouse_report()
+	if(GLOB.mouse_food_eaten)
+		var/list/parts = list()
+		parts += "<span class='header'>Mouse stats:</span>"
+		parts += "Mice Born: [GLOB.mouse_spawned]"
+		parts += "Mice Killed: [GLOB.mouse_killed]"
+		parts += "Trash Eaten: [GLOB.mouse_food_eaten]"
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
 

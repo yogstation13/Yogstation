@@ -1,6 +1,6 @@
 /datum/mind
 	var/quiet_round = FALSE //Won't be picked as target in most cases
-
+	var/accent_name = null // The name of the accent this guy has. NULL implies no accent
 
 
 /datum/mind/proc/vampire_hook()
@@ -47,3 +47,18 @@
 					V.total_blood = 1500
 					V.usable_blood = 1500
 					V.check_vampire_upgrade()
+
+/datum/mind/proc/handle_speech(datum/source, mob/speech_args)
+	if(accent_name)
+		var/message = speech_args[SPEECH_MESSAGE]
+		if(message[1] != "*")
+			message = " [message]"
+			var/list/accent_words = strings(GLOB.accents[accent_name], accent_name, directory = "strings/accents")
+			for(var/key in accent_words)
+				var/value = accent_words[key]
+				if(islist(value))
+					value = pick(value)
+				message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
+				message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
+				message = replacetextEx(message, " [key]", " [value]")
+		speech_args[SPEECH_MESSAGE] = trim(message)

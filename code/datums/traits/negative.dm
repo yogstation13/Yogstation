@@ -526,15 +526,15 @@
 	accessory_type = /obj/item/lighter/greyscale
 
 /datum/quirk/junkie/smoker/on_spawn()
-	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
-		/obj/item/storage/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/fancy/cigarettes/cigars,
-		/obj/item/storage/fancy/cigarettes/cigars/cohiba,
-		/obj/item/storage/fancy/cigarettes/cigars/havana)
+	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+		/obj/item/storage/box/fancy/cigarettes/cigars,
+		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
+		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -546,7 +546,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/fancy/cigarettes/C = drug_instance
+		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
 		if(istype(I, C.spawn_type))
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
@@ -577,3 +577,19 @@
 	H.remove_language(/datum/language/common)
 	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
+
+
+/datum/quirk/random_accent
+	name = "Randomized Accent"
+	desc = "You have developed a random accent."
+	value = -1
+	mob_trait = TRAIT_RANDOM_ACCENT
+	gain_text = "<span class='danger'>You have developed an accent.</span>"
+	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
+	medical_record_text = "Patient is difficult to understand."
+
+/datum/quirk/random_accent/post_add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(!H.mind.accent_name)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents))// Right now this pick just picks a straight random one from all implemented.
