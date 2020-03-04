@@ -277,6 +277,10 @@
 	name = "Glory to Cargonia"
 	desc = "Survive a full round as part of the Supply department."
 	id = CARGODEPT + 1
+/datum/achievement/cargo/bourgeois
+	name = "Top 1%"
+	desc = "Have one million credits on your ID."
+	id = CARGODEPT + 2
 
 //end-cargo
 
