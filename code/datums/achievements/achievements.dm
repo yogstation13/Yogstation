@@ -4,6 +4,7 @@
 #define GREENTEXT 256 // An offset for new greentext-related achievements, to keep the incremental pattern.
 #define REDTEXT 512 // Offset for redtexts.
 #define ENGIEDEPT 768 // Offset for engineering-related achievements.
+#define CARGODEPT 1028 // Offset for Cargo-related achievements
 
 /datum/achievement
 	var/name = "achievement"
@@ -271,6 +272,15 @@
 	id = ENGIEDEPT + 4
 //end-engineering
 
+//start-cargo
+/datum/achievement/cargo
+	name = "Glory to Cargonia"
+	desc = "Survive a full round as part of the Supply department."
+	id = CARGODEPT + 1
+
+//end-cargo
+
 #undef GREENTEXT
 #undef REDTEXT
 #undef ENGIEDEPT
+#undef CARGODEPT
