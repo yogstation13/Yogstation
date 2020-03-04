@@ -281,6 +281,10 @@
 	name = "Top 1%"
 	desc = "Have one million credits on your ID."
 	id = CARGODEPT + 2
+/datum/achievement/cargo/bounties
+	name = "Five Year Plan"
+	desc = "As a member of the Supply department, complete ten bounties."
+	id = CARGODEPT + 3
 
 //end-cargo
 
