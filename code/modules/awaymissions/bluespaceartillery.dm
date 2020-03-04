@@ -47,6 +47,8 @@
 	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)) || issilicon(usr))
 		priority_announce("Bluespace artillery fire detected. Brace for impact.")
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has launched an artillery strike.")
+		if(usr.client)
+			SSachievements.unlock_achievement(/datum/achievement/cargo/bsa, usr.client)
 		var/list/L = list()
 		for(var/turf/T in get_area_turfs(thearea.type))
 			L+=T
