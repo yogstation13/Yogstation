@@ -28,7 +28,7 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/bathhouse)
 "f" = (
-/obj/structure/table/greyscale,
+/obj/structure/table/abductor/wabbajack/right,
 /obj/item/bikehorn/rubberducky,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/bathhouse)

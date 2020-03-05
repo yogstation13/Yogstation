@@ -146,7 +146,7 @@
 "oB" = (
 /obj/structure/table/wood,
 /obj/structure/bedsheetbin/empty,
-/obj/item/clothing/under/misc/pj/blue,
+/obj/item/clothing/under/pj/blue,
 /obj/item/clothing/shoes/sneakers/white,
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -406,7 +406,7 @@
 /area/ruin/powered)
 "Hx" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/under/rank/cargo/miner,
+/obj/item/clothing/under/rank/miner,
 /obj/item/clothing/suit/hooded/wintercoat/miner,
 /obj/item/clothing/shoes/winterboots,
 /obj/item/card/id/mining,
@@ -563,7 +563,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots,
-/obj/item/clothing/under/suit/tan,
+/obj/item/clothing/under/suit_jacket/tan,
 /turf/open/floor/wood,
 /area/ruin/powered)
 

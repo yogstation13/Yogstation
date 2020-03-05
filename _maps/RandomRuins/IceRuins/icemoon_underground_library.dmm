@@ -342,10 +342,6 @@
 /obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
-"by" = (
-/obj/structure/statue/bronze/marx,
-/turf/open/floor/carpet/black,
-/area/ruin/unpowered/buried_library)
 "bz" = (
 /obj/item/flashlight/lantern/jade{
 	on = 1
@@ -634,7 +630,7 @@ aD
 an
 aD
 aD
-by
+aN
 ao
 aw
 ao
