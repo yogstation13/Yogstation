@@ -28,8 +28,8 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/bathhouse)
 "f" = (
-/obj/structure/table/abductor/wabbajack/right,
 /obj/item/bikehorn/rubberducky,
+/obj/structure/table,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/bathhouse)
 "g" = (
