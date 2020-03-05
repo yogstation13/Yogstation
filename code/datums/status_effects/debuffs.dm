@@ -400,6 +400,7 @@
 	var/mutable_appearance/bleed_underlay
 	var/bleed_amount = 3
 	var/bleed_buildup = 3
+	var/bleed_crit = 10
 	var/delay_before_decay = 5
 	var/bleed_damage = 200
 	var/needs_to_bleed = FALSE
@@ -439,7 +440,7 @@
 	owner.underlays -= bleed_underlay
 	bleed_amount += amount
 	if(bleed_amount)
-		if(bleed_amount >= 10)
+		if(bleed_amount >= bleed_crit)
 			needs_to_bleed = TRUE
 			qdel(src)
 		else
@@ -462,6 +463,11 @@
 		owner.adjustBruteLoss(bleed_damage)
 	else
 		new /obj/effect/temp_visual/bleed(get_turf(owner))
+
+/datum/status_effect/saw_bleed/bloodletting
+	id = "bloodletting"
+	bleed_crit = 7
+	bleed_damage = 20
 
 /mob/living/proc/apply_necropolis_curse(set_curse)
 	var/datum/status_effect/necropolis_curse/C = has_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE)
