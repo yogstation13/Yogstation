@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////EGG RECIPES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/chocolateegg
-	name = "Chocolate egg"
+	name = "Chocolate Egg"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/boiledegg = 1,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
@@ -13,7 +13,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/eggsbenedict
-	name = "Eggs benedict"
+	name = "Eggs Benedict"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/friedegg = 1,
 		/obj/item/reagent_containers/food/snacks/meat/steak = 1,
@@ -23,7 +23,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/eggbowl
-	name = "Egg bowl"
+	name = "Egg Bowl"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
 		/obj/item/reagent_containers/food/snacks/boiledegg = 1,
@@ -33,8 +33,17 @@
 	result = /obj/item/reagent_containers/food/snacks/salad/eggbowl
 	subcategory = CAT_EGG
 
+/datum/crafting_recipe/food/wrap
+	name = "Egg Wrap"
+	reqs = list(/datum/reagent/consumable/soysauce = 10,
+		/obj/item/reagent_containers/food/snacks/friedegg = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/eggwrap
+	subcategory = CAT_EGG
+
 /datum/crafting_recipe/food/friedegg
-	name = "Fried egg"
+	name = "Fried Egg"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 1,
 		/datum/reagent/consumable/blackpepper = 1,
@@ -43,8 +52,18 @@
 	result = /obj/item/reagent_containers/food/snacks/friedegg
 	subcategory = CAT_EGG
 
+/datum/crafting_recipe/food/spidereggsham
+	name = "Green Eggs and Ham"
+	reqs = list(
+		/datum/reagent/consumable/sodiumchloride = 1,
+		/obj/item/reagent_containers/food/snacks/spidereggs = 1,
+		/obj/item/reagent_containers/food/snacks/meat/cutlet/spider = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/spidereggsham
+	subcategory = CAT_EGG
+
 /datum/crafting_recipe/food/eggdog
-	name = "Living egg/dog hybrid"
+	name = "Living Egg/Dog Hybrid"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/organ/heart = 1,
@@ -58,7 +77,7 @@
 	subcategory = CAT_EGG
 
 /datum/crafting_recipe/food/omelette
-	name = "Omelette"
+	name = "Omelette Du Fromage"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/egg = 2,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 2
