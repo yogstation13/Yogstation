@@ -339,6 +339,7 @@
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
 /obj/structure/spacevine/Crossed(atom/movable/AM)
+	. = ..()
 	if(!isliving(AM))
 		return
 	for(var/datum/spacevine_mutation/SM in mutations)

@@ -134,6 +134,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	Show()
 
 /obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
+	. = ..()
 	Show()
 
 /obj/effect/hallucination/simple/Destroy()
@@ -1086,6 +1087,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images += image
 
 /obj/effect/hallucination/danger/lava/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM == target)
 		target.adjustStaminaLoss(20)
 		new /datum/hallucination/fire(target)
@@ -1099,6 +1101,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images += image
 
 /obj/effect/hallucination/danger/chasm/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM == target)
 		if(istype(target, /obj/effect/dummy/phased_mob) || istype(target, /obj/effect/dummy/crawling))
 			return
@@ -1128,6 +1131,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images += image
 
 /obj/effect/hallucination/danger/anomaly/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM == target)
 		new /datum/hallucination/shock(target)
 
