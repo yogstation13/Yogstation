@@ -63,12 +63,16 @@
 		switch(SSinput.movement_keys[_key])
 			if(NORTH)
 				northface()
+				return
 			if(SOUTH)
 				southface()
+				return
 			if(WEST)
 				westface()
+				return
 			if(EAST)
 				eastface()
+				return
 	return ..()
 
 /mob/key_up(_key, client/user)
