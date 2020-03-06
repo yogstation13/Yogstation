@@ -1,0 +1,4 @@
+author: "Lynameep"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed #7672"

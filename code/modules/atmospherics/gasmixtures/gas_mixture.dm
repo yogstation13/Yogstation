@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Returns: 1 in all cases
 
 /datum/gas_mixture/proc/merge(datum/gas_mixture/giver)
-	//Merges all air from giver into self. giver is untouched.
+	//Merges all air from giver into self. Deletes giver.
 	//Returns: 1 if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/remove(amount)

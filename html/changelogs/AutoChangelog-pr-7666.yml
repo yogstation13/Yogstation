@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "Nicotine addictions now can cause you to drop items"
+  - rscadd: "overdosing on nicotine will cause lung damage"

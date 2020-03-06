@@ -75,11 +75,15 @@
 				signal.data["reject"] = 0
 				Compiler.Run(signal)
 				if(signal.data["reject"] == 0)
-					SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_silent, user.client)
+					SSachievements.unlock_achievement(/datum/achievement/Poly_silent, user.client)
 			else
 				for(var/sample in signal.data["spans"])
 					if(sample == SPAN_COMMAND)
-						SSachievements.unlock_achievement(/datum/achievement/engineering/Poly_loud, user.client)
-						break // Not having this break leaves us open to a potential DoS attack.
+						signal.data["name"] = ""
+						signal.data["spans"] = list()
+						Compiler.Run(signal)
+						for(var/S in signal.data["spans"])
+							if(S == SPAN_COMMAND)
+								SSachievements.unlock_achievement(/datum/achievement/Poly_loud, user.client)
 		return compileerrors
 //end-NTSL
