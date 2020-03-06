@@ -1,0 +1,4 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - tweak: "Engineering borgs can no longer destroy reinforced walls with their RCD."

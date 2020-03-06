@@ -638,6 +638,9 @@
 	item_color = "jester"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/jester/alt
+	icon_state = "jester2"
+
 /obj/item/clothing/under/geisha
 	name = "geisha suit"
 	desc = "Cute space ninja senpai not included."

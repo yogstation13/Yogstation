@@ -131,8 +131,6 @@
 
 #define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Yogs
 
-#define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
-
 /////////////
 //  SLIME  //
 /////////////

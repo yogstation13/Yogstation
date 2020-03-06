@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "holyparas probably don't prevent round end on antagonist death/mulligan"

@@ -531,6 +531,18 @@
 "bb" = (
 /turf/closed/wall,
 /area/engine/engineering)
+"bc" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "bd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -646,6 +658,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"br" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/engine/engineering)
+"bs" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "bt" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -707,6 +732,16 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"bB" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/turf/open/floor/plating,
 /area/engine/engineering)
 "bC" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1064,8 +1099,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
+	icon_state = "scrub_map_on-3";
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1138,8 +1173,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1;
-	icon_state = "vent_map_on-1"
+	icon_state = "vent_map_on-1";
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1862,8 +1897,8 @@
 /area/engine/engineering)
 "eh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
+	icon_state = "scrub_map_on-3";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -1913,8 +1948,8 @@
 /area/engine/engineering)
 "em" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
+	icon_state = "vent_map_on-1";
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -1991,6 +2026,18 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"eA" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "eB" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -2006,66 +2053,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"iX" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/turf/open/floor/plating,
-/area/engine/engineering)
-"la" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/engine/engineering)
-"qJ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/advanced_airlock_controller{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "tB" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/door/firedoor/window,
-/turf/open/floor/plating,
-/area/engine/engineering)
-"vZ" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"SC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"Vd" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/engine/engineering)
 
@@ -2271,7 +2261,7 @@ ab
 ag
 eB
 bb
-qJ
+br
 ad
 bR
 cn
@@ -2296,11 +2286,11 @@ aa
 (9,1,1) = {"
 ab
 ab
-vZ
-SC
-la
-Vd
-iX
+eA
+au
+bc
+bs
+bB
 bP
 co
 cz

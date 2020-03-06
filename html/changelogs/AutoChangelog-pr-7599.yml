@@ -1,0 +1,4 @@
+author: "DerelictDrone"
+delete-after: true 
+changes: 
+  - rscadd: "Use a multitool on conveyor assemblies to unlink them from all switches, or use a multitool on a switch assembly to randomly generate a new ID for linking conveyors."

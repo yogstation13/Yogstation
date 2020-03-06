@@ -3,7 +3,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolateegg
 	name = "chocolate egg"
-	desc = "Such sweet, fattening food."
+	desc = "Such, sweet, fattening food."
 	icon_state = "chocolateegg"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
@@ -15,21 +15,11 @@
 	name = "egg"
 	desc = "An egg!"
 	icon_state = "egg"
-	list_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/growthserum = 1)
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	cooked_type = /obj/item/reagent_containers/food/snacks/boiledegg
 	filling_color = "#F0E68C"
 	foodtype = MEAT | EGG
 	grind_results = list()
-
-/obj/item/reagent_containers/food/snacks/egg/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] RPs as [src]!</span>")
-	if(istype(user) && user.mind)
-		var/mob/living/brain/B = new(src)
-		B.real_name = name
-		B.name = name
-		B.stat = CONSCIOUS
-		user.mind.transfer_to(B)
-	return BRUTELOSS
 
 /obj/item/reagent_containers/food/snacks/egg/gland
 	desc = "An egg! It looks weird..."
@@ -121,7 +111,7 @@
 	tastes = list("egg" = 1)
 	foodtype = MEAT | BREAKFAST | EGG
 
-/obj/item/reagent_containers/food/snacks/omelette
+/obj/item/reagent_containers/food/snacks/omelette	//FUCK THIS
 	name = "omelette du fromage"
 	desc = "That's all you can say!"
 	icon_state = "omelette"
@@ -162,25 +152,3 @@
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
 
 	foodtype = MEAT | BREAKFAST | EGG
-
-/obj/item/reagent_containers/food/snacks/spidereggsham
-	name = "green eggs and ham"
-	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
-	icon_state = "spidereggsham"
-	trash = /obj/item/trash/plate
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-	bitesize = 4
-	filling_color = "#7FFF00"
-	tastes = list("meat" = 1, "the colour green" = 1)
-	foodtype = MEAT | EGG
-
-/obj/item/reagent_containers/food/snacks/eggwrap
-	name = "egg wrap"
-	desc = "The precursor to pigs in a blanket."
-	icon_state = "eggwrap"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	filling_color = "#F0E68C"
-	tastes = list("egg" = 1)
-	foodtype = MEAT | GRAIN | EGG

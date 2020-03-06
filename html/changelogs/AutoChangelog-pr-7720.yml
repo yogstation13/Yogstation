@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - tweak: "The syringe sprite has been flipped horizontally to hopefully make it seem less jarring."

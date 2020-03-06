@@ -1,4 +1,0 @@
-author: "partykp"
-delete-after: true 
-changes: 
-  - tweak: "Added a var to the two syndicate comm relays that makes them not heat up"

@@ -3,7 +3,6 @@
 //TO BE HONEST THIS OFFSET DOESN'T EVEN NEED TO BE POWER OF TWO, THOUGH.
 #define GREENTEXT 256 // An offset for new greentext-related achievements, to keep the incremental pattern.
 #define REDTEXT 512 // Offset for redtexts.
-#define ENGIEDEPT 768 // Offset for engineering-related achievements.
 
 /datum/achievement
 	var/name = "achievement"
@@ -13,7 +12,7 @@
 
 /datum/achievement/bubblegum
 	name = "Kick Ass and Chew Bubblegum"
-	desc = "Kill Bubblegum, the king of slaughter demons."
+	desc = "Kill Bubblegum, the king of slaughter demons." //Should be improved(?)
 	id = 1
 
 /datum/achievement/roboborg
@@ -26,7 +25,7 @@
 	desc = "Successfully defibrillate someone"
 	id = 3
 
-/datum/achievement/engineering/pa_emag
+/datum/achievement/pa_emag
 	name = "Catastrophe"
 	desc = "Emag a particle accelerator"
 	id = 4
@@ -101,13 +100,13 @@
 	id = 17
 	hidden = TRUE
 
-/datum/achievement/engineering/Poly_silent
+/datum/achievement/Poly_silent
 	name = "Silence Bird!"
 	desc = "As a signal technician, create a script that mutes poly"
 	id = 18
 	hidden = TRUE
 
-/datum/achievement/engineering/Poly_loud
+/datum/achievement/Poly_loud
 	name = "Embrace the Bird!"
 	desc = "As a signal technician, create a script that makes poly LOUD"
 	id = 19
@@ -144,12 +143,6 @@
 	desc = "Trigger a keycard authentication device event, by yourself."
 	id = 23
 
-/datum/achievement/dab
-	name = "Brain Damage"
-	desc = "Dab."
-	id = 24
-	hidden = TRUE
-
 // The achievements that are basically just "greentext as this sort of antag"
 
 /datum/achievement/greentext
@@ -158,12 +151,12 @@
 	id = GREENTEXT + 1
 
 /datum/achievement/greentext/ratvar
-	name = "Clocking In"
+	name = "Clock Work"
 	desc = "As a servant of Ratvar, summon Ratvar"
 	id = GREENTEXT + 2
 
 /datum/achievement/greentext/ratvar/eminence
-	name = "Ratvar's Hand"
+	name = "Clock Work"
 	desc = "As the Eminence, summon Ratvar"
 	id = GREENTEXT + 3
 
@@ -252,25 +245,5 @@
 	hidden = TRUE
 //end-redtext
 
-//start-engineering
-/datum/achievement/engineering
-	name = "Isaac Clarke"
-	desc = "Survive a full round as part of the Engineering team."
-	id = ENGIEDEPT + 1
-/datum/achievement/engineering/solar
-	name = "Honest Work"
-	desc = "Set up one of the solar arrays as part of the Engineering team."
-	id = ENGIEDEPT + 2
-/datum/achievement/engineering/scotty
-	name = "\"I'm givin' it all she's got, Captain!\""
-	desc = "As Chief Engineer, produce more than three megawatts of power."
-	id = ENGIEDEPT + 3
-/datum/achievement/engineering/toasty
-	name = "Nice and Toasty"
-	desc = "Get set on fire in a fire-resistant suit."
-	id = ENGIEDEPT + 4
-//end-engineering
-
 #undef GREENTEXT
 #undef REDTEXT
-#undef ENGIEDEPT

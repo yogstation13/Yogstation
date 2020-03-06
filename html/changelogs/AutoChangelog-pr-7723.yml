@@ -1,0 +1,5 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes paper potentially crashing the server when attempting to scramble language-holding text."
+  - bugfix: "Fixed a rare, esoteric bug with paper that could result in broken HTML for people viewing scrambled paper."
