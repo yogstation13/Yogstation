@@ -55865,6 +55865,12 @@
 "cva" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"cvD" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/reagent_containers/food/drinks/flask/det,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "cvO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57876,6 +57882,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"fUi" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/obj/item/cigbutt,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "fVj" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -58019,6 +58031,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"grJ" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "grO" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway South-East";
@@ -58248,6 +58264,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"hmR" = (
+/obj/structure/rack,
+/obj/item/detective_scanner,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "htC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -58395,6 +58416,17 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
+/area/maintenance/aft)
+"hSM" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/maintenance/aft)
 "hTi" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -59289,6 +59321,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"lMQ" = (
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "lQG" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -59319,6 +59354,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+"lVN" = (
+/obj/item/clothing/head/fedora/det_hat,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "lWy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
@@ -60478,8 +60517,11 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "qQV" = (
-/turf/template_noop,
-/area/template_noop)
+/obj/item/book/manual/wiki/detective,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/maintenance/aft)
 "qWw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -60907,6 +60949,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"sud" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "szl" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -60981,6 +61027,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"sIw" = (
+/obj/item/cigbutt,
+/turf/open/floor/wood,
+/area/maintenance/aft)
 "sIE" = (
 /obj/machinery/announcement_system,
 /obj/effect/turf_decal/tile/yellow,
@@ -62109,10 +62159,6 @@
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
-"wZZ" = (
-/obj/effect/landmark/stationroom/box/aftmaint,
-/turf/template_noop,
-/area/template_noop)
 "xcL" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -62201,6 +62247,11 @@
 	},
 /turf/open/floor/engine,
 /area/escapepodbay)
+"xCg" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/aft)
 "xDQ" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -100099,11 +100150,11 @@ bDE
 bFK
 bvj
 btU
-qQV
-qQV
-qQV
-qQV
-wZZ
+avy
+avy
+avy
+avy
+avy
 aZZ
 aSJ
 buY
@@ -100356,11 +100407,11 @@ bvj
 bvj
 ihS
 btU
+bzs
 qQV
-qQV
-qQV
-qQV
-qQV
+lMQ
+lMQ
+avy
 bae
 aSJ
 aSJ
@@ -100613,11 +100664,11 @@ bGR
 bIj
 ihS
 btU
-qQV
-qQV
-qQV
-qQV
-qQV
+bzs
+lVN
+fUi
+xCg
+avy
 bag
 aSJ
 bvv
@@ -100870,11 +100921,11 @@ bDR
 adf
 ihS
 btU
-qQV
-qQV
-qQV
-qQV
-qQV
+bzs
+sud
+cvD
+lMQ
+avy
 bah
 aSJ
 bvv
@@ -101127,11 +101178,11 @@ bDR
 bIl
 ihS
 btU
-qQV
-qQV
-qQV
-qQV
-qQV
+bzs
+sIw
+xCg
+sIw
+avy
 bai
 aSJ
 bvv
@@ -101384,11 +101435,11 @@ bDR
 bIk
 ihS
 btU
-qQV
-qQV
-qQV
-qQV
-qQV
+bzs
+hmR
+lMQ
+grJ
+avy
 bai
 bgu
 bvw
@@ -101641,11 +101692,11 @@ bDR
 mKj
 ihS
 btY
-qQV
-qQV
-qQV
-qQV
-qQV
+bzs
+bzs
+hSM
+bzs
+avy
 avy
 avy
 avy
