@@ -111,7 +111,7 @@
 	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream."
 	threshold_descs = list(
 		"Resistance 7" = "Increases chem removal speed.",
-		"Stage Speed 6" = "Consumed chemicals nourish the host.",
+		"Stage Speed 6" = "Consumed chemicals feed the host.",
 	)
 
 /datum/symptom/heal/chem/Start(datum/disease/advance/A)

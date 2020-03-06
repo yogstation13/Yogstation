@@ -1246,12 +1246,17 @@
 /obj/item/toy/figure/chef
 	name = "Chef action figure"
 	icon_state = "chef"
-	toysay = " I'll make you into a burger!"
+	toysay = "I'll make you into a burger!"
 
 /obj/item/toy/figure/chemist
 	name = "Chemist action figure"
 	icon_state = "chemist"
 	toysay = "Get your pills!"
+
+/obj/item/toy/figure/clerk
+	name = "Clerk action figure"
+	icon_state = "clerk"
+	toysay = "Perfectly legal rifle for sale!"
 
 /obj/item/toy/figure/clown
 	name = "Clown action figure"
