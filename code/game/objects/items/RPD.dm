@@ -203,7 +203,6 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	materials = list(MAT_METAL=75000, MAT_GLASS=37500)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
-	var/datum/effect_system/spark_spread/spark_system
 	var/working = 0
 	var/p_dir = NORTH
 	var/p_flipped = FALSE
@@ -227,9 +226,6 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 /obj/item/pipe_dispenser/Initialize()
 	. = ..()
-	spark_system = new
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
 	if(!first_atmos)
 		first_atmos = GLOB.atmos_pipe_recipes[GLOB.atmos_pipe_recipes[1]][1]
 	if(!first_disposal)
@@ -240,8 +236,6 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	recipe = first_atmos
 
 /obj/item/pipe_dispenser/Destroy()
-	qdel(spark_system)
-	spark_system = null
 	return ..()
 
 /obj/item/pipe_dispenser/attack_self(mob/user)
@@ -346,7 +340,6 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				mode |= n
 
 	if(playeffect)
-		spark_system.start()
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, 0)
 	return TRUE
 
@@ -525,9 +518,6 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 /obj/item/pipe_dispenser/plumbing/Initialize()
 	. = ..()
-	spark_system = new
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
 	if(!first_plumbing)
 		first_plumbing = GLOB.fluid_duct_recipes[GLOB.fluid_duct_recipes[1]][1]
 
