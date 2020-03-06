@@ -71,17 +71,30 @@
 			dir = keys[_key]
 
 		switch(dir)
+			switch(SSinput.movement_keys[_key])
 			if(NORTH)
-				northface()
+				if(client.keys_held["Shift"])
+					northshift()
+				else
+					northface()
 				return
 			if(SOUTH)
-				southface()
+				if(client.keys_held["Shift"])
+					southshift()
+				else
+					southface()
 				return
 			if(WEST)
-				westface()
+				if(client.keys_held["Shift"])
+					westshift()
+				else
+					westface()
 				return
 			if(EAST)
-				eastface()
+				if(client.keys_held["Shift"])
+					eastshift()
+				else
+					eastface()
 				return
 
 	return ..()
