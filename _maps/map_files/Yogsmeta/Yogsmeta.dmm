@@ -12574,6 +12574,39 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"avQ" = (
+/obj/structure/table/wood,
+/obj/item/book/granter/spell/smoke/lesser{
+	name = "mysterious old book of cloud-chasing"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/holywater{
+	name = "flask of holy water";
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/organ/heart,
+/obj/item/soulstone/anybody/chaplain,
+/turf/open/floor/plasteel/cult{
+	dir = 2
+	},
+/area/chapel/office)
+"avR" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/item/storage/box/fancy/candle_box{
+	pixel_y = 5
+	},
+/obj/structure/table/wood,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/obj/item/nullrod{
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "avS" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating{
@@ -58955,20 +58988,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"cax" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/item/storage/box/fancy/candle_box{
-	pixel_y = 5
-	},
-/obj/structure/table/wood,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "cay" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/purple{
@@ -77578,25 +77597,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel/cult{
-	dir = 2
-	},
-/area/chapel/office)
-"cMa" = (
-/obj/structure/table/wood,
-/obj/item/book/granter/spell/smoke/lesser{
-	name = "mysterious old book of cloud-chasing"
-	},
-/obj/item/reagent_containers/food/drinks/bottle/holywater{
-	name = "flask of holy water";
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/nullrod{
-	pixel_x = 4
-	},
-/obj/item/organ/heart,
-/obj/item/soulstone/anybody/chaplain,
 /turf/open/floor/plasteel/cult{
 	dir = 2
 	},
@@ -106170,7 +106170,7 @@ bTN
 bUk
 bVZ
 bWg
-cax
+avR
 cxq
 caV
 cLa
@@ -106939,7 +106939,7 @@ cxU
 bTo
 cKs
 cLa
-cMa
+avQ
 cLa
 cNz
 cOh
