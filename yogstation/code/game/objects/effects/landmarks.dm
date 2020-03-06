@@ -90,3 +90,6 @@
 
 /obj/effect/landmark/stationroom/box/aftmaint
 	template_names = list("Roleplaying Room", "Detective Room")
+
+/obj/effect/landmark/stationroom/box/testingsite
+	template_names = list("Bomb Range", "Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range")
