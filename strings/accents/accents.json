@@ -1,7 +1,8 @@
 {
 
 	"accent_file_names": {
-	
+		
+	"Belter": "accent_belter.json",
 	"Brooklyn": "accent_brooklyn.json",
 	"Connery": "accent_connery.json",
 	"Cowboy": "accent_cowboy.json",
