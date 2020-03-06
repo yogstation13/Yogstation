@@ -89,3 +89,23 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/testingsite
+	id = "testing_site_1"
+	suffix = "testingsite_range1.dmm"
+	name = "Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/bunker
+	id = "testing_site_2"
+	suffix = "testingsite_range2.dmm"
+	name = "Bunker Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/syndicate
+	id = "testing_site_3"
+	suffix = "testingsite_range3.dmm"
+	name = "Syndicate Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/clown
+	id = "testing_site_4"
+	suffix = "testingsite_range4.dmm"
+	name = "Clown Bomb Range"
