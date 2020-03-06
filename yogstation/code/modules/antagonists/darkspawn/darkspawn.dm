@@ -348,6 +348,7 @@
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
+	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
 	if(!SSticker.mode.sacrament_done)
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
