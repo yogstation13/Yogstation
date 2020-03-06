@@ -71,7 +71,6 @@
 			dir = keys[_key]
 
 		switch(dir)
-			switch(SSinput.movement_keys[_key])
 			if(NORTH)
 				if(client.keys_held["Shift"])
 					northshift()
