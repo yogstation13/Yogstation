@@ -35,6 +35,15 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
+"A" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "E" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
@@ -86,6 +95,6 @@ E
 (5,1,1) = {"
 E
 E
-c
+A
 E
 "}
