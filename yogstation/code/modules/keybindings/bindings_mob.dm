@@ -72,25 +72,25 @@
 
 		switch(dir)
 			if(NORTH)
-				if(client.keys_held["Shift"])
+				if(user.prefs.bindings.isheld_key("Shift"))
 					northshift()
 				else
 					northface()
 				return
 			if(SOUTH)
-				if(client.keys_held["Shift"])
+				if(user.prefs.bindings.isheld_key("Shift"))
 					southshift()
 				else
 					southface()
 				return
 			if(WEST)
-				if(client.keys_held["Shift"])
+				if(user.prefs.bindings.isheld_key("Shift"))
 					westshift()
 				else
 					westface()
 				return
 			if(EAST)
-				if(client.keys_held["Shift"])
+				if(user.prefs.bindings.isheld_key("Shift"))
 					eastshift()
 				else
 					eastface()
