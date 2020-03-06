@@ -90,3 +90,9 @@
 
 /obj/effect/landmark/stationroom/box/aftmaint
 	template_names = list("Roleplaying Room", "Detective Room")
+
+/obj/effect/landmark/stationroom/icebox/engine
+	template_names = list("iceEngine SM", "iceEngine Singulo And Tesla")
+
+/obj/effect/landmark/stationroom/icebox/xenobridge
+	template_names = list("iceXenobiology Bridge", "iceXenobiology Lattice")
