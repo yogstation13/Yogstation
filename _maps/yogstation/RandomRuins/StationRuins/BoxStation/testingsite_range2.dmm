@@ -57,12 +57,22 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"r" = (
+"s" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
+	},
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -88,22 +98,6 @@
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "B" = (
-/turf/open/floor/plating/airless,
-/area/science/test_area)
-"D" = (
-/obj/machinery/camera{
-	active_power_usage = 0;
-	c_tag = "Bomb Test Site";
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
-	dir = 8;
-	invuln = 1;
-	name = "Hardened Bomb-Test Camera";
-	network = list("toxins");
-	use_power = 0
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "E" = (
@@ -301,8 +295,8 @@ c
 t
 t
 H
-D
-r
+f
+s
 t
 t
 c
