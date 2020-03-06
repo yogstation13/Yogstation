@@ -89,27 +89,3 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
-
-//station ruins
-/datum/map_template/ruin/icemoon/station
-	prefix = "_maps/yogstation/RandomRuins/StationRuins/IceBox/"
-
-/datum/map_template/ruin/station/icebox/maint/xenobridge
-	id = "maint_xenobridge_default"
-	suffix = "xenobridge_default.dmm"
-	name = "iceXenobiology Bridge"
-
-/datum/map_template/ruin/station/icebox/maint/xenobridge/lattice
-	id = "maint_xenobridge_lattice"
-	suffix = "xenobridge_space.dmm"
-	name = "iceXenobiology Lattice"
-
-/datum/map_template/ruin/station/icebox/engine
-	id = "engine_sm"
-	suffix = "engine_sm.dmm"
-	name = "iceEngine SM"
-
-/datum/map_template/ruin/station/icebox/engine/singulo
-	id = "engine_singulo_tesla"
-	suffix = "engine_singulo_tesla.dmm"
-	name = "iceEngine Singulo And Tesla"
