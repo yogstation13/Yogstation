@@ -33,6 +33,15 @@
 /obj/item/bedsheet/orange,
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/dorms)
+"L" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "M" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -86,6 +95,6 @@ E
 (5,1,1) = {"
 E
 E
-X
+L
 E
 "}
