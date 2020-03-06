@@ -233,3 +233,8 @@
 	name = "surgical toolset implant"
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment, /obj/item/surgical_drapes)
+	
+/obj/item/organ/cyberimp/clockwork
+	name = "Clockwork toolset implant"
+	desc = "A variant of the integrated toolset reverse engineered by clockwork cultists and made into gears and clockwork."
+	contents = newlist(/obj/item/crowbar/brass, /obj/item/weldingtool/experimental/brass,/obj/item/screwdriver/brass, /obj/item/wirecutters/brass,/obj/item/wrench/brass)
