@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(achievements)
 		var/datum/achievement/A = new i
 		achievements[A] = A.id
 
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = '[A.id]'")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = '[A.id]'") // No sanitation of A is needed for these calls because we instantiated A right here in this proc.
 		medalQuery.Execute()
 		if(!medalQuery.NextRow())
 			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, descr) VALUES ('[A.name]', '[A.id]', '[A.desc]')")
@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(achievements)
 	if(istype(achievement,/datum/achievement/greentext) && achievementPath != /datum/achievement/greentext)
 		unlock_achievement(/datum/achievement/greentext,C) // Oooh, a little bit recursive!
 	if(!has_achievement(achievementPath, C))
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievement.id]')")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[initial(achievement.id)]')")
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement

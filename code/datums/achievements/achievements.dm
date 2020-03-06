@@ -7,10 +7,10 @@
 #define CARGODEPT 1028 // Offset for Cargo-related achievements
 
 /datum/achievement
-	var/const/name = "achievement"
-	var/const/desc = "Please make an issue on github, including this achievement's name and how you got it."
-	var/const/id = 0 //Should be incremented so every achievement has a unique ID
-	var/const/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
+	var/name = "achievement"
+	var/desc = "Please make an issue on github, including this achievement's name and how you got it."
+	var/id = 0 //Should be incremented so every achievement has a unique ID
+	var/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
 
 /datum/achievement/bubblegum
 	name = "Kick Ass and Chew Bubblegum"
