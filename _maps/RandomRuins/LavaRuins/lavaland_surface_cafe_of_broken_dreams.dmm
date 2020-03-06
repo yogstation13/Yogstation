@@ -14,6 +14,11 @@
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion,
 /turf/open/floor/plasteel,
 /area/lavaland/surface/outdoors)
+"ae" = (
+/obj/item/reagent_containers/syringe/stimulants,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
 "af" = (
 /turf/closed/wall/r_wall/rust,
 /area/lavaland/surface/outdoors)
@@ -109,6 +114,11 @@
 /obj/structure/table/wood/bar,
 /turf/open/floor/wood,
 /area/ruin/powered)
+"ax" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/syringe/stimulants,
+/turf/open/floor/wood,
+/area/ruin/powered)
 "ay" = (
 /obj/machinery/door/airlock,
 /obj/structure/fans/tiny/invisible,
@@ -195,6 +205,7 @@
 "aN" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
+/obj/item/reagent_containers/syringe/stimulants,
 /obj/item/clothing/under/scratch,
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -484,10 +495,6 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"xf" = (
-/obj/item/clothing/suit/space/hardsuit/powerarmor_t45b,
-/turf/open/floor/wood,
-/area/ruin/powered)
 "zW" = (
 /obj/machinery/light{
 	icon_state = "tube";
@@ -1259,7 +1266,7 @@ aW
 ai
 ai
 aW
-xf
+ai
 aY
 aW
 ac
@@ -1672,7 +1679,7 @@ aW
 ai
 ao
 ar
-aw
+ax
 ai
 ai
 at
@@ -1715,7 +1722,7 @@ aa
 aa
 ab
 ab
-ac
+ae
 aW
 ai
 ai
@@ -2697,7 +2704,7 @@ ai
 ai
 ai
 ai
-aw
+ax
 ai
 bE
 bP

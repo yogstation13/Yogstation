@@ -1,0 +1,5 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "You can now drag&drop circuits into machines/computers"
+  - tweak: "The above can also be used by borgs to create machines"

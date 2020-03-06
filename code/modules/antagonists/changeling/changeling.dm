@@ -285,7 +285,6 @@
 	prof.underwear = H.underwear
 	prof.undershirt = H.undershirt
 	prof.socks = H.socks
-	prof.accent = H.mind.accent_name
 
 	var/list/slots = list("head", "wear_mask", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
@@ -401,7 +400,7 @@
 		if(CL != src)
 			other_changelings_exist = TRUE
 			break
-
+	
 	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
@@ -524,7 +523,6 @@
 	var/underwear
 	var/undershirt
 	var/socks
-	var/accent
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)
@@ -544,7 +542,6 @@
 	newprofile.underwear = underwear
 	newprofile.undershirt = undershirt
 	newprofile.socks = socks
-	newprofile.accent = accent
 
 
 /datum/antagonist/changeling/xenobio

@@ -47,12 +47,13 @@
 
 /obj/item/reagent_containers/food/snacks/cakeslice/carrot
 	name = "carrot cake slice"
-	desc = "Carroty slice of carrot cake, carrots are good for your eyes! Also not a lie."
+	desc = "Carrotty slice of Carrot Cake, carrots are good for your eyes! Also not a lie."
 	icon_state = "carrotcake_slice"
 	filling_color = "#FFA500"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/oculine = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cake" = 5, "sweetness" = 2, "carrot" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES | SUGAR
+
 
 /obj/item/reagent_containers/food/snacks/store/cake/brain
 	name = "brain cake"
@@ -64,6 +65,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/mannitol = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 5, "sweetness" = 2, "brains" = 1)
 	foodtype = GRAIN | DAIRY | MEAT | GROSS | SUGAR
+
 
 /obj/item/reagent_containers/food/snacks/cakeslice/brain
 	name = "brain cake slice"
@@ -83,6 +85,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cake" = 4, "cream cheese" = 3)
 	foodtype = GRAIN | DAIRY
+
 
 /obj/item/reagent_containers/food/snacks/cakeslice/cheese
 	name = "cheese cake slice"
@@ -123,7 +126,7 @@
 
 /obj/item/reagent_containers/food/snacks/cakeslice/orange
 	name = "orange cake slice"
-	desc = "Just a slice of orange cake, it is enough for everyone."
+	desc = "Just a slice of cake, it is enough for everyone."
 	icon_state = "orangecake_slice"
 	filling_color = "#FFA500"
 	tastes = list("cake" = 5, "sweetness" = 2, "oranges" = 2)
@@ -141,11 +144,12 @@
 
 /obj/item/reagent_containers/food/snacks/cakeslice/lime
 	name = "lime cake slice"
-	desc = "Just a slice of lime cake, it is enough for everyone."
+	desc = "Just a slice of cake, it is enough for everyone."
 	icon_state = "limecake_slice"
 	filling_color = "#00FF00"
 	tastes = list("cake" = 5, "sweetness" = 2, "unbearable sourness" = 2)
 	foodtype = GRAIN | DAIRY | FRUIT | SUGAR
+
 
 /obj/item/reagent_containers/food/snacks/store/cake/lemon
 	name = "lemon cake"
@@ -157,13 +161,15 @@
 	tastes = list("cake" = 5, "sweetness" = 2, "sourness" = 2)
 	foodtype = GRAIN | DAIRY | FRUIT | SUGAR
 
+
 /obj/item/reagent_containers/food/snacks/cakeslice/lemon
 	name = "lemon cake slice"
-	desc = "Just a slice of lemon cake, it is enough for everyone."
+	desc = "Just a slice of cake, it is enough for everyone."
 	icon_state = "lemoncake_slice"
 	filling_color = "#FFEE00"
 	tastes = list("cake" = 5, "sweetness" = 2, "sourness" = 2)
 	foodtype = GRAIN | DAIRY | FRUIT | SUGAR
+
 
 /obj/item/reagent_containers/food/snacks/store/cake/chocolate
 	name = "chocolate cake"
@@ -175,17 +181,19 @@
 	tastes = list("cake" = 5, "sweetness" = 1, "chocolate" = 4)
 	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR
 
+
 /obj/item/reagent_containers/food/snacks/cakeslice/chocolate
 	name = "chocolate cake slice"
-	desc = "Just a slice of chocolate cake, it is enough for everyone."
+	desc = "Just a slice of cake, it is enough for everyone."
 	icon_state = "chocolatecake_slice"
 	filling_color = "#A0522D"
 	tastes = list("cake" = 5, "sweetness" = 1, "chocolate" = 4)
 	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR
 
+
 /obj/item/reagent_containers/food/snacks/store/cake/birthday
 	name = "birthday cake"
-	desc = "Happy birthday little clown..."
+	desc = "Happy Birthday little clown..."
 	icon_state = "birthdaycake"
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/birthday
 	slices_num = 5
@@ -196,16 +204,17 @@
 
 /obj/item/reagent_containers/food/snacks/cakeslice/birthday
 	name = "birthday cake slice"
-	desc = "A slice for your birthday."
+	desc = "A slice of your birthday."
 	icon_state = "birthdaycakeslice"
 	filling_color = "#DC143C"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sprinkles = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cake" = 5, "sweetness" = 1)
 	foodtype = GRAIN | DAIRY | JUNKFOOD | SUGAR
 
+
 /obj/item/reagent_containers/food/snacks/store/cake/apple
 	name = "apple cake"
-	desc = "A cake centred with apple."
+	desc = "A cake centred with Apple."
 	icon_state = "applecake"
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/apple
 	slices_num = 5
@@ -215,7 +224,7 @@
 
 /obj/item/reagent_containers/food/snacks/cakeslice/apple
 	name = "apple cake slice"
-	desc = "A slice of heavenly apple cake."
+	desc = "A slice of heavenly cake."
 	icon_state = "applecakeslice"
 	filling_color = "#FF4500"
 	tastes = list("cake" = 5, "sweetness" = 1, "apple" = 1)
@@ -228,7 +237,7 @@
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/store/cake/slimecake
-	name = "slime cake"
+	name = "Slime cake"
 	desc = "A cake made of slimes. Probably not electrified."
 	icon_state = "slimecake"
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/slimecake
@@ -259,4 +268,5 @@
 	icon_state = "pumpkinspicecakeslice"
 	filling_color = "#FFD700"
 	tastes = list("cake" = 5, "sweetness" = 1, "pumpkin" = 1)
+
 	foodtype = GRAIN | DAIRY | VEGETABLES | SUGAR

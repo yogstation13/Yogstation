@@ -1,0 +1,6 @@
+author: "apocist"
+delete-after: true 
+changes: 
+  - rscadd: "Adds 'Random Job' to Late Join Job Selection"
+  - rscadd: "Added 'GetRandomJob' proc to Job def"
+  - tweak: "Moved around Job Functions to avoid duplication (all existing intact)"
