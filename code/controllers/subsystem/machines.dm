@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(machines)
 
 	for(var/obj/structure/cable/PC in GLOB.cable_list)
 		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
+			var/datum/powernet/NewPN = new(PC.loc.z)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(machines)
 	for(var/A in cables)
 		var/obj/structure/cable/PC = A
 		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
+			var/datum/powernet/NewPN = new(PC.loc.z)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 

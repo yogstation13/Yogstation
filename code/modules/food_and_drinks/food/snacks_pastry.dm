@@ -26,7 +26,7 @@
 		return
 	is_frosted = TRUE
 	name = "frosted [name]"
-	icon_state = frosted_icon //delish~!
+	icon_state = frosted_icon //delish!
 	reagents.add_reagent(/datum/reagent/consumable/sprinkles, 1)
 	filling_color = "#FF69B4"
 	return TRUE
@@ -87,7 +87,7 @@
 	foodtype = JUNKFOOD | GRAIN | FRIED | FRUIT | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/donut/meat
-	name = "Meat Donut"
+	name = "meat donut"
 	desc = "Tastes as gross as it looks."
 	icon_state = "donut4"
 	bonus_reagents = list(/datum/reagent/consumable/ketchup = 1)
@@ -110,16 +110,16 @@
 
 /obj/item/reagent_containers/food/snacks/muffin/berry
 	name = "berry muffin"
+	desc = "A delicious and spongy little cake with berries."
 	icon_state = "berrymuffin"
-	desc = "A delicious and spongy little cake, with berries."
 	tastes = list("muffin" = 3, "berry" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/muffin/booberry
 	name = "booberry muffin"
+	desc = "My stomach is a graveyard! No living being can quench my bloodthirst!"
 	icon_state = "berrymuffin"
 	alpha = 125
-	desc = "My stomach is a graveyard! No living being can quench my bloodthirst!"
 	tastes = list("muffin" = 3, "spookiness" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR | BREAKFAST
 
@@ -194,7 +194,7 @@
 	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/donkpocket
-	name = "\improper Donk-pocket"
+	name = "donkpocket"
 	desc = "The food of choice for the seasoned traitor."
 	icon_state = "donkpocket"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
@@ -204,7 +204,7 @@
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/donkpocket/warm
-	name = "warm Donk-pocket"
+	name = "warm donkpocket"
 	desc = "The heated food of choice for the seasoned traitor."
 	bonus_reagents = list(/datum/reagent/medicine/omnizine = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 3)
@@ -213,7 +213,7 @@
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/dankpocket
-	name = "\improper Dank-pocket"
+	name = "dankpocket"
 	desc = "The food of choice for the seasoned botanist."
 	icon_state = "dankpocket"
 	list_reagents = list(/datum/reagent/toxin/lipolicide = 3, /datum/reagent/drug/space_drugs = 3, /datum/reagent/consumable/nutriment = 4)
@@ -243,7 +243,7 @@
 
 /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit
 	name = "plump helmet biscuit"
-	desc = "This is a finely-prepared plump helmet biscuit. The ingredients are exceptionally minced plump helmet, and well-minced dwarven wheat flour."
+	desc = "This is a finely prepared plump helmet biscuit. The ingredients are exceptionally minced plump helmet and well-minced dwarven wheat flour."
 	icon_state = "phelmbiscuit"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -263,7 +263,7 @@
 
 /obj/item/reagent_containers/food/snacks/cracker
 	name = "cracker"
-	desc = "It's a salted cracker."
+	desc = "It's a salted cracker. Favorite of Poly."
 	icon_state = "cracker"
 	bitesize = 1
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
@@ -274,7 +274,7 @@
 
 /obj/item/reagent_containers/food/snacks/hotdog
 	name = "hotdog"
-	desc = "Fresh footlong ready to go down on."
+	desc = "Fresh footlong ready to eat."
 	icon_state = "hotdog"
 	bitesize = 3
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
@@ -325,7 +325,7 @@
 
 /obj/item/reagent_containers/food/snacks/oatmealcookie
 	name = "oatmeal cookie"
-	desc = "The best of both cookie and oat."
+	desc = "The best of both cookie and oats."
 	icon_state = "oatmealcookie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -403,6 +403,34 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pancakes" = 1, "chocolate" = 1)
+
+/obj/item/reagent_containers/food/snacks/pancakes/cinnamon
+	name = "cinnamon pancake"
+	desc = "A fluffy and delicious cinnamon pancake."
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "cinpancakes_1"
+	item_state = "cinpancakes"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("pancakes" = 1, "cinnamon" = 1)
+
+/obj/item/reagent_containers/food/snacks/cinnamonroll
+	name = "cinnamon roll"
+	desc = "Too perfect for this world, too pure."
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "cinnamonroll"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
+	tastes = list("purity" = 1, "cinnamon" = 1)
+
+/obj/item/reagent_containers/food/snacks/churro
+	name = "churro"
+	desc = "If you're having food troubles, I feel for you son. I got 99 churros 'cus the clown ate one."
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "churro"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
+	tastes = list("lost dreams" = 1, "cinnamon" = 1)
 
 /obj/item/reagent_containers/food/snacks/pancakes/Initialize()
 	. = ..()
