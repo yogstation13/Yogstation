@@ -5,8 +5,8 @@
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
 		#include "map_files\mining\Lavaland.dmm"
-		#include "map_fules\mining\Icemoon.dmm"
-		#include "map_fules\mining\IcemoonUnderground.dmm"
+		#include "map_files\mining\Icemoon.dmm"
+		#include "map_files\mining\IcemoonUnderground.dmm"
 		#include "map_files\debug\runtimestation.dmm"
 		#include "map_files\YogStation\Yogstation.dmm"
 		#include "map_files\YogsMeta\YogsMeta.dmm"
