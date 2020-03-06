@@ -1,5 +1,57 @@
 //Not only meat, actually, but also snacks that are almost meat, such as fish meat or tofu
 
+////////////////////////////////////////////KEBAB////////////////////////////////////////////
+
+/obj/item/reagent_containers/food/snacks/kebab
+	trash = /obj/item/stack/rods
+	icon_state = "kebab"
+	w_class = WEIGHT_CLASS_NORMAL
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
+	tastes = list("meat" = 3, "metal" = 1)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/kebab/human
+	name = "human kebab"
+	desc = "Human meat, on a stick."
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("tender meat" = 3, "metal" = 1)
+	foodtype = MEAT | GROSS
+
+/obj/item/reagent_containers/food/snacks/kebab/monkey
+	name = "kebab"
+	desc = "Delicious meat, on a stick."
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("meat" = 3, "metal" = 1)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/kebab/tofu
+	name = "tofu kebab"
+	desc = "Vegan meat, on a stick."
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	tastes = list("tofu" = 3, "metal" = 1)
+	foodtype = VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/kebab/tail
+	name = "lizard tail kebab"
+	desc = "Severed lizard tail on a stick."
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("meat" = 8, "metal" = 4, "scales" = 1)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/kebab/rat
+	name = "rat kebab"
+	desc = "Not so delicious rat meat, on a stick."
+	icon_state = "ratkebab"
+	w_class = WEIGHT_CLASS_NORMAL
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("rat meat" = 1, "metal" = 1)
+	foodtype = MEAT | GROSS
+
+/obj/item/reagent_containers/food/snacks/kebab/rat/double
+	name = "double rat kebab"
+	icon_state = "doubleratkebab"
+	tastes = list("rat meat" = 2, "metal" = 1)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 
 ////////////////////////////////////////////FISH////////////////////////////////////////////
 
@@ -54,6 +106,16 @@
 	tastes = list("fish" = 1, "chips" = 1)
 	foodtype = MEAT | VEGETABLES | FRIED
 
+/obj/item/reagent_containers/food/snacks/sashimi
+	name = "carp sashimi"
+	desc = "Celebrate surviving an attack from hostile alien lifeforms by hospitalising yourself."
+	icon_state = "sashimi"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/capsaicin = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 5)
+	filling_color = "#FA8072"
+	tastes = list("fish" = 1, "hot peppers" = 1)
+	foodtype = MEAT | TOXIC
+
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/tofu
@@ -92,7 +154,7 @@
 	foodtype = MEAT | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/bearsteak
-	name = "Filet migrawr"
+	name = "filet migrawr"
 	desc = "Because eating bear wasn't manly enough."
 	icon_state = "bearsteak"
 	trash = /obj/item/trash/plate
@@ -101,9 +163,9 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = MEAT | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/meatball  //YOGS - Bigotry rule
-	name = "meatball"  //YOGS - Bigotry rule
-	desc = "A great meal all round. Not a cord of wood."
+/obj/item/reagent_containers/food/snacks/meatball
+	name = "meatball"
+	desc = "A great meal all round."
 	icon_state = "meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#800000"
@@ -123,43 +185,7 @@
 
 /obj/item/reagent_containers/food/snacks/sausage/Initialize()
 	. = ..()
-	eatverb = pick("bite","chew","nibble","gobble","chomp") //yogs - removes "deep throat"
-
-/obj/item/reagent_containers/food/snacks/kebab
-	trash = /obj/item/stack/rods
-	icon_state = "kebab"
-	w_class = WEIGHT_CLASS_NORMAL
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
-	tastes = list("meat" = 3, "metal" = 1)
-	foodtype = MEAT
-
-/obj/item/reagent_containers/food/snacks/kebab/human
-	name = "human-kebab"
-	desc = "A human meat, on a stick."
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
-	tastes = list("tender meat" = 3, "metal" = 1)
-	foodtype = MEAT | GROSS
-
-/obj/item/reagent_containers/food/snacks/kebab/monkey
-	name = "meat-kebab"
-	desc = "Delicious meat, on a stick."
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("meat" = 3, "metal" = 1)
-	foodtype = MEAT
-
-/obj/item/reagent_containers/food/snacks/kebab/tofu
-	name = "tofu-kebab"
-	desc = "Vegan meat, on a stick."
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	tastes = list("tofu" = 3, "metal" = 1)
-	foodtype = VEGETABLES
-
-/obj/item/reagent_containers/food/snacks/kebab/tail
-	name = "lizard-tail kebab"
-	desc = "Severed lizard tail on a stick."
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("meat" = 8, "metal" = 4, "scales" = 1)
-	foodtype = MEAT
+	eatverb = pick("bite","chew","nibble","gobble","chomp")
 
 /obj/item/reagent_containers/food/snacks/rawkhinkali
 	name = "raw khinkali"
@@ -180,57 +206,6 @@
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/monkeycube
-	name = "monkey cube"
-	desc = "Just add water!"
-	icon_state = "monkeycube"
-	bitesize = 12
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	filling_color = "#CD853F"
-	tastes = list("the jungle" = 1, "bananas" = 1)
-	foodtype = MEAT | SUGAR
-	var/faction
-	var/spawned_mob = /mob/living/carbon/monkey
-
-/obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	var/mob/spammer = get_mob_by_key(fingerprintslast)
-	var/mob/living/bananas = new spawned_mob(drop_location(), TRUE, spammer)
-	if(faction)
-		bananas.faction = faction
-	if (!QDELETED(bananas))
-		visible_message("<span class='notice'>[src] expands!</span>")
-		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
-	else if (!spammer) // Visible message in case there are no fingerprints
-		visible_message("<span class='notice'>[src] fails to expand!</span>")
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/monkeycube/syndicate
-	faction = list("neutral", ROLE_SYNDICATE)
-
-/obj/item/reagent_containers/food/snacks/monkeycube/gorilla
-	name = "gorilla cube"
-	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules!"
-	bitesize = 20
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
-	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
-	spawned_mob = /mob/living/simple_animal/hostile/gorilla
-
-/obj/item/reagent_containers/food/snacks/monkeycube/sheep
-	name = "sheep cube"
-	desc = "A Farm Town brand sheep cube."
-	bitesize = 15
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	tastes = list("fluff" = 1, "the farm" = 1)
-	spawned_mob = /mob/living/simple_animal/sheep
-
-/obj/item/reagent_containers/food/snacks/monkeycube/cow
-	name = "cow cube"
-	desc = "A Farm Town brand cow cube."
-	bitesize = 18
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
-	tastes = list("milk" = 1, "the farm" = 1)
-	spawned_mob = /mob/living/simple_animal/cow
-
 /obj/item/reagent_containers/food/snacks/enchiladas
 	name = "enchiladas"
 	desc = "Viva La Mexico!"
@@ -243,7 +218,7 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/stewedsoymeat
-	name = "stewed soy meat"
+	name = "stewed soymeat"
 	desc = "Even non-vegetarians will LOVE this!"
 	icon_state = "stewedsoymeat"
 	trash = /obj/item/trash/plate
@@ -268,28 +243,6 @@
 	tastes = list("hot peppers" = 1, "cobwebs" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/spidereggsham
-	name = "green eggs and ham"
-	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
-	icon_state = "spidereggsham"
-	trash = /obj/item/trash/plate
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-	bitesize = 4
-	filling_color = "#7FFF00"
-	tastes = list("meat" = 1, "the colour green" = 1)
-	foodtype = MEAT | EGG
-
-/obj/item/reagent_containers/food/snacks/sashimi
-	name = "carp sashimi"
-	desc = "Celebrate surviving an attack from hostile alien lifeforms by hospitalising yourself."
-	icon_state = "sashimi"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/capsaicin = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 5)
-	filling_color = "#FA8072"
-	tastes = list("fish" = 1, "hot peppers" = 1)
-	foodtype = MEAT | TOXIC
-
 /obj/item/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
 	filling_color = "#B22222"
@@ -313,17 +266,79 @@
 	filling_color = "#800000"
 	tastes = list("meat" = 1, "butter" = 1)
 
-/obj/item/reagent_containers/food/snacks/kebab/rat
-	name = "rat-kebab"
-	desc = "Not so delicious rat meat, on a stick."
-	icon_state = "ratkebab"
-	w_class = WEIGHT_CLASS_NORMAL
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("rat meat" = 1, "metal" = 1)
-	foodtype = MEAT | GROSS
+/obj/item/reagent_containers/food/snacks/dolphinmeat
+  name = "dolphin fillet"
+  desc = "A fillet of spess dolphin meat."
+  icon_state = "fishfillet"
+  list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+  bitesize = 6
+  filling_color = "#FA8072"
+  tastes = list("fish" = 1,"cruelty" = 2)
+  foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/kebab/rat/double
-	name = "double rat-kebab"
-	icon_state = "doubleratkebab"
-	tastes = list("rat meat" = 2, "metal" = 1)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+/obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
+  . = ..()
+  eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
+
+////////////////////////////////////////////ANIMAL CUBES////////////////////////////////////////////
+
+/obj/item/reagent_containers/food/snacks/monkeycube
+	name = "monkey cube"
+	desc = "Just add water!"
+	icon_state = "monkeycube"
+	bitesize = 12
+	list_reagents = list(/datum/reagent/monkey_powder = 30)
+	filling_color = "#CD853F"
+	tastes = list("the jungle" = 1, "bananas" = 1)
+	foodtype = MEAT | SUGAR
+	var/faction
+	var/spawned_mob = /mob/living/carbon/monkey
+
+/obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
+	var/mob/spammer = get_mob_by_key(fingerprintslast)
+	var/mob/living/bananas = new spawned_mob(drop_location(), TRUE, spammer)
+	if(faction)
+		bananas.faction = faction
+	if (!QDELETED(bananas))
+		visible_message("<span class='notice'>[src] expands!</span>")
+		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
+	else if (!spammer) // Visible message in case there are no fingerprints
+		visible_message("<span class='notice'>[src] fails to expand!</span>")
+	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/monkeycube/syndicate
+	faction = list("neutral", ROLE_SYNDICATE)
+
+/obj/item/reagent_containers/food/snacks/monkeycube/gorilla
+	name = "gorilla cube"
+	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules! Just add water!"
+	bitesize = 20
+	list_reagents = list(/datum/reagent/monkey_powder = 30, /datum/reagent/medicine/strange_reagent = 5)
+	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
+	spawned_mob = /mob/living/simple_animal/hostile/gorilla
+
+/obj/item/reagent_containers/food/snacks/monkeycube/sheep
+	name = "sheep cube"
+	desc = "A Farm Town brand sheep cube. Just add water!"
+	bitesize = 15
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("fluff" = 1, "the farm" = 1)
+	spawned_mob = /mob/living/simple_animal/sheep
+
+/obj/item/reagent_containers/food/snacks/monkeycube/cow
+	name = "cow cube"
+	desc = "A Farm Town brand cow cube. Just add water!"
+	bitesize = 18
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
+	tastes = list("milk" = 1, "the farm" = 1)
+	spawned_mob = /mob/living/simple_animal/cow
+
+/obj/item/reagent_containers/food/snacks/monkeycube/goat
+	name = "goat cube"
+	desc = "A Goat Tech Industries goat cube. Just add water!"
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "goatcube"
+	bitesize = 20
+	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
+	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
+	spawned_mob = /mob/living/simple_animal/hostile/retaliate/goat

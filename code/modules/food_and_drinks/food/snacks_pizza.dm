@@ -16,8 +16,8 @@
 	foodtype = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/pizza/margherita
-	name = "pizza margherita"
-	desc = "The most cheezy pizza in galaxy."
+	name = "margherita pizza"
+	desc = "The most cheesy pizza in the galaxy."
 	icon_state = "pizzamargherita"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/margherita
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -30,14 +30,14 @@
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/margherita
 	name = "margherita slice"
-	desc = "A slice of the most cheezy pizza in galaxy."
+	desc = "A slice of the most cheesy pizza in the galaxy."
 	icon_state = "pizzamargheritaslice"
 	filling_color = "#FFA500"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/pizza/meat
-	name = "meatpizza"
+	name = "meat pizza"
 	desc = "Greasy pizza with delicious meat."
 	icon_state = "meatpizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/meat
@@ -48,7 +48,7 @@
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/meat
 	name = "meatpizza slice"
-	desc = "A nutritious slice of meatpizza."
+	desc = "A nutritious slice of meat pizza."
 	icon_state = "meatpizzaslice"
 	filling_color = "#A52A2A"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
@@ -74,7 +74,7 @@
 
 /obj/item/reagent_containers/food/snacks/pizza/vegetable
 	name = "vegetable pizza"
-	desc = "No one of Tomatos Sapiens were harmed during making this pizza."
+	desc = "No Tomatos Sapiens were harmed during the making this pizza."
 	icon_state = "vegetablepizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/vegetable
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -84,7 +84,7 @@
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/vegetable
 	name = "vegetable pizza slice"
-	desc = "A slice of the most green pizza of all pizzas not containing green ingredients."
+	desc = "A slice of the most green pizza of all the pizzas not containing green ingredients."
 	icon_state = "vegetablepizzaslice"
 	filling_color = "#FFA500"
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
@@ -192,7 +192,6 @@
 	i_kill_you(I, user)
 	. = ..()
 
-
 /obj/item/reagent_containers/food/snacks/pizzaslice/arnold
 	name = "\improper Arnold pizza slice"
 	desc = "I come over, maybe I give you a pizza, maybe I break off your arm."
@@ -208,7 +207,6 @@
 /obj/item/reagent_containers/food/snacks/pizzaslice/arnold/attackby(obj/item/I, mob/user)
 	i_kill_you(I, user)
 	. = ..()
-
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/custom
 	name = "pizza slice"
