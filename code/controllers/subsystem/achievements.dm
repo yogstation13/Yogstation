@@ -33,9 +33,9 @@ SUBSYSTEM_DEF(achievements)
 		var/found_achievement = FALSE
 		for(var/I in achievements)
 			var/datum/achievement/A = I
-			if(A.id != id)
-				continue
-			found_achievement = TRUE
+			if(A.id == id)
+				found_achievement = TRUE
+				break
 		if(!found_achievement)
 			log_sql("Old achievement [id] found in database, removing")
 			var/datum/DBQuery/getRidOfOldStuff = SSdbcore.NewQuery("DELETE FROM [format_table_name("achievements")] WHERE id = '[id]'")
