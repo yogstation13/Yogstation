@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "you will no longer get yeeted out of a cloning pod early by the spatial instability mutation"

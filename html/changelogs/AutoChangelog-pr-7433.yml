@@ -1,0 +1,8 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "The paper icon should now update when it's written onto."
+  - bugfix: "Fixes photocopiers failing to copy paper with only player-written text."
+  - bugfix: "Fixes bug with handwritten paperfields always writing to bottom."
+  - bugfix: "Copies of copies of copies of copies of paper should now be capable of being faded out."
+  - bugfix: "Player-written text will now actually be printed black in photocopiers."

@@ -1,0 +1,4 @@
+author: "Mr-Space"
+delete-after: true 
+changes: 
+  - bugfix: "Simple animals can't surrender anymore."

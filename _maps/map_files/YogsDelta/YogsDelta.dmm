@@ -72295,11 +72295,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "cfk" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
+/obj/structure/cable/white{
+	icon_state = "1-4"
 	},
 /obj/machinery/vending/wardrobe/chem_wardrobe,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "cfl" = (
 /obj/structure/cable/white{
@@ -104153,11 +104154,11 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "dbh" = (
-/obj/structure/cable/white{
-	icon_state = "1-4"
+/obj/structure/closet/wardrobe/chemistry_white,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel,
 /area/medical/chemistry)
 "dbi" = (
 /obj/machinery/status_display/ai,
@@ -168814,7 +168815,7 @@ dcS
 dcS
 dcS
 clG
-dbh
+cfk
 dlV
 dlV
 dlV
@@ -169065,7 +169066,7 @@ cDr
 cfJ
 cXL
 cZt
-cfk
+dbh
 dcT
 deq
 cCm

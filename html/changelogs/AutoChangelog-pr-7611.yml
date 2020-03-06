@@ -1,0 +1,4 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer fit AIs and other large mobs in xenobio crates"

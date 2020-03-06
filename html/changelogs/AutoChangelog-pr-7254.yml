@@ -1,0 +1,4 @@
+author: "DerelictDrone"
+delete-after: true 
+changes: 
+  - rscadd: "You can now deconstruct and reconstruct stacking machines, as well as change their stack size, and the input or output directions separately"

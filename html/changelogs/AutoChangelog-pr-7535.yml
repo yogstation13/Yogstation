@@ -1,0 +1,4 @@
+author: "Saratoubi"
+delete-after: true 
+changes: 
+  - bugfix: "Bug fix for new Charlie Station. Fixed medical firedoor, and changed broken random loot drops to what they should actually be."

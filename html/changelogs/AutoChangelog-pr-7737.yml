@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "Swedish mutation no longer uses characters that aren't in the swedish alphabet"
