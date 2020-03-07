@@ -445,6 +445,7 @@ const ROUTES = {
   radioactive_microlaser: {
     component: () => RadioactiveMicrolaser,
     scrollable: false,
+    theme: 'syndicate',
   },
   vault_controller: {
     component: () => VaultController,
