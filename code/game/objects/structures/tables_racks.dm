@@ -624,3 +624,11 @@
 		R.add_fingerprint(user)
 		qdel(src)
 	building = FALSE
+
+/obj/structure/table/reinforced_replica
+	name = "reinforced table replica"
+	desc = "A reinforced table replica. This one is made out of metal. Looks brittle"
+	icon = 'icons/obj/smooth_structures/reinforced_table.dmi'
+	icon_state = "r_table"
+	max_integrity = 50
+	integrity_failure = 15
