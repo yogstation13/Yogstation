@@ -28631,21 +28631,6 @@
 "bhm" = (
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"bhn" = (
-/obj/structure/table,
-/obj/item/storage/box/bodybags,
-/obj/item/pen,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
-"bho" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "bhp" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/chemistry";
@@ -29324,10 +29309,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"biz" = (
-/obj/structure/bodycontainer/morgue,
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "biA" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31525,14 +31506,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bmR" = (
-/obj/structure/table,
-/obj/item/paper/guides/jobs/medical/morgue{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "bmS" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -52889,6 +52862,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"gCp" = (
+/obj/effect/landmark/stationroom/box/medbay/morgue,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "gCB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -59258,6 +59235,12 @@
 "wcB" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/entrance)
+"wec" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "weD" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -100295,11 +100278,11 @@ aYV
 bdQ
 aYV
 bfL
-bhn
-biz
-biz
-biz
-bmR
+wec
+bhm
+bhm
+bhm
+gCp
 bfL
 bol
 bkU
@@ -101067,9 +101050,9 @@ bdR
 bdb
 bdN
 bfi
-bho
-bho
-bho
+bhm
+bhm
+bhm
 bjv
 bfL
 bom
@@ -101324,9 +101307,9 @@ aYV
 bey
 bfL
 bhm
-biz
-biz
-biz
+bhm
+bhm
+bhm
 bjx
 bfL
 boq
