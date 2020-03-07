@@ -12,6 +12,33 @@
 	var/subcategory = CAT_NONE
 	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
+//Antag recipes - see granters.dm - at the top for easy viewing
+/datum/crafting_recipe/baseball_bat
+	name = "Baseball Bat"
+	result = /obj/item/melee/baseball_bat
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 30
+				)
+	tools = list(TOOL_HATCHET) //to carve the wood into shape
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/lance
+	name = "Explosive Lance (Grenade)"
+	result = /obj/item/twohanded/spear
+	reqs = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	blacklist = list(/obj/item/twohanded/spear/explosive,
+					/obj/item/grenade/flashbang)
+	parts = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	time = 15
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+//Normal recipes
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
@@ -33,21 +60,6 @@
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
-/* - yogs change: removes explosive lance for being stupid
-/datum/crafting_recipe/lance
-	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive,
-					/obj/item/grenade/flashbang) //yogs change - removes flashbangs from explosive lances for being even stupider
-	parts = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	time = 15
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-*/
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
@@ -737,7 +749,7 @@
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
-/datum/crafting_recipe/urinal 
+/datum/crafting_recipe/urinal
 	name = "Urinal"
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
