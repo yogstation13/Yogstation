@@ -56884,6 +56884,10 @@
 /obj/item/clipboard,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"quO" = (
+/obj/spacepod/prebuilt,
+/turf/open/floor/engine,
+/area/escapepodbay)
 "quT" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
@@ -111842,7 +111846,7 @@ aaa
 ptH
 aNZ
 sHo
-sHo
+quO
 sHo
 aMZ
 aOc
