@@ -19,6 +19,12 @@
 	},
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/dorms)
+"n" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet/exoticblue,
+/area/crew_quarters/dorms)
 "v" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -61,12 +67,6 @@
 /obj/item/bedsheet/nanotrasen,
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/dorms)
-"Z" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -77,7 +77,7 @@ E
 (2,1,1) = {"
 E
 I
-Z
+n
 E
 "}
 (3,1,1) = {"
