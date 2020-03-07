@@ -9296,14 +9296,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
-"ats" = (
-/obj/structure/table,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/circular_saw,
-/turf/open/floor/plasteel/white/side,
-/area/medical/sleeper)
 "att" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -9475,24 +9467,6 @@
 "atN" = (
 /turf/closed/wall/r_wall,
 /area/science/nanite)
-"atO" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
-/obj/machinery/button/door{
-	id = "surgery_shutters";
-	name = "Surgery shutters";
-	pixel_x = -24;
-	pixel_y = 28;
-	req_access_txt = "45";
-	req_one_access_txt = null
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
-/area/medical/sleeper)
 "atP" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -38401,17 +38375,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bzH" = (
-/obj/structure/table,
-/obj/item/hemostat,
-/turf/open/floor/plasteel/white/side,
-/area/medical/sleeper)
-"bzI" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/surgicaldrill,
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "bzJ" = (
 /obj/machinery/computer/mecha{
 	dir = 8
@@ -38501,17 +38464,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"bzS" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/book/manual/wiki/surgery,
-/obj/item/cautery{
-	pixel_x = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "bzT" = (
 /obj/effect/turf_decal/stripes{
 	dir = 8
@@ -39086,14 +39038,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
-"bBc" = (
-/obj/structure/table,
-/obj/item/surgical_drapes,
-/obj/item/razor,
-/turf/open/floor/plasteel/white/side{
-	dir = 8
-	},
-/area/medical/sleeper)
 "bBd" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin{
@@ -39804,11 +39748,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
-"bCD" = (
-/obj/structure/table,
-/obj/item/retractor,
-/turf/open/floor/plasteel/white/side,
-/area/medical/sleeper)
 "bCE" = (
 /obj/machinery/atmospherics/components/binary/valve/layer1,
 /turf/open/floor/plating,
@@ -40248,18 +40187,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bDB" = (
-/obj/machinery/smartfridge/organ,
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
-/area/medical/sleeper)
-"bDC" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bDD" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -28
@@ -41205,10 +41132,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/sleeper)
-"bFB" = (
-/obj/structure/closet/secure_closet/medical2,
-/turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bFC" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -49852,10 +49775,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
-"cpG" = (
-/obj/structure/table/optable,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "cpR" = (
 /obj/machinery/door/airlock{
 	name = "Observatory Access"
@@ -50052,6 +49971,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/aft)
+"crJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "crQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -50629,30 +50554,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"cCp" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood/AMinus,
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/APlus,
-/obj/item/reagent_containers/blood/random,
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "cCt" = (
 /obj/docking_port/stationary{
 	area_type = /area/construction/mining/aux_base;
@@ -53099,13 +53000,6 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/entrance)
-"gZG" = (
-/obj/structure/closet/crate/freezer/surplus_limbs,
-/obj/item/reagent_containers/glass/beaker/synthflesh,
-/turf/open/floor/plasteel/white/side{
-	dir = 8
-	},
-/area/medical/sleeper)
 "gZI" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -54437,6 +54331,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/security/main)
+"kfz" = (
+/turf/open/floor/plasteel/white/side,
+/area/medical/sleeper)
 "kfB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -54963,6 +54860,11 @@
 	},
 /turf/open/space/basic,
 /area/maintenance/disposal/incinerator)
+"lwK" = (
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/medical/sleeper)
 "lxr" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -55791,6 +55693,10 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"nvc" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "nvh" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -57854,6 +57760,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"sLd" = (
+/obj/effect/landmark/stationroom/box/medbay/surgery,
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "sLi" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -58402,6 +58312,20 @@
 "tQD" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/aft)
+"tQJ" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/button/door{
+	id = "surgery_shutters";
+	name = "Surgery shutters";
+	pixel_x = -24;
+	pixel_y = 28;
+	req_access_txt = "45";
+	req_one_access_txt = null
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/medical/sleeper)
 "tRr" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 4;
@@ -95685,11 +95609,11 @@ bvj
 iGI
 bAl
 rFw
-bzI
-atO
+nvc
+tQJ
 bCF
-bDB
-bFB
+lwK
+sLd
 bvj
 btT
 avy
@@ -95942,7 +95866,7 @@ bvj
 erY
 bAl
 arb
-bzH
+kfz
 bDR
 bDR
 bDR
@@ -96199,10 +96123,10 @@ jXk
 bot
 bxc
 aso
-ats
-bDT
-cpG
-bDC
+kfz
+bDR
+bDR
+bDR
 bId
 bvj
 btW
@@ -96456,7 +96380,7 @@ bvj
 aOy
 bAl
 asY
-bCD
+kfz
 bAY
 brP
 aOY
@@ -96713,11 +96637,11 @@ bvj
 aqW
 bAl
 asY
-bzS
-bBc
+crJ
+buk
 bqW
-gZG
-cCp
+buk
+bxQ
 bvj
 aYz
 fEe

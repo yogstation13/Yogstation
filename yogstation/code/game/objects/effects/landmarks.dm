@@ -90,3 +90,6 @@
 
 /obj/effect/landmark/stationroom/box/aftmaint
 	template_names = list("Roleplaying Room", "Detective Room")
+
+/obj/effect/landmark/stationroom/box/medbay/surgery
+	template_names = list("Operating Theatre", "Operating Theatre 2", "Operating Theatre 3", "Operating Theatre 4")

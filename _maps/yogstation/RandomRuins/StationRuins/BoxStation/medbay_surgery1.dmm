@@ -1,0 +1,135 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/table,
+/obj/item/retractor,
+/turf/template_noop,
+/area/medical/sleeper)
+"c" = (
+/obj/structure/closet/secure_closet/medical2,
+/turf/template_noop,
+/area/medical/sleeper)
+"d" = (
+/obj/effect/landmark/start/medical_doctor,
+/turf/template_noop,
+/area/medical/sleeper)
+"f" = (
+/obj/structure/table,
+/obj/item/hemostat,
+/turf/template_noop,
+/area/medical/sleeper)
+"g" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/apron/surgical,
+/turf/template_noop,
+/area/medical/sleeper)
+"j" = (
+/obj/structure/table/optable,
+/turf/template_noop,
+/area/medical/sleeper)
+"u" = (
+/obj/structure/table,
+/obj/item/surgicaldrill,
+/turf/template_noop,
+/area/medical/sleeper)
+"v" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/surgery,
+/obj/item/cautery{
+	pixel_x = 4
+	},
+/turf/template_noop,
+/area/medical/sleeper)
+"z" = (
+/obj/structure/table,
+/obj/item/surgical_drapes,
+/obj/item/razor,
+/turf/template_noop,
+/area/medical/sleeper)
+"A" = (
+/obj/structure/table,
+/obj/item/scalpel{
+	pixel_y = 12
+	},
+/obj/item/circular_saw,
+/turf/template_noop,
+/area/medical/sleeper)
+"D" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood/AMinus,
+/obj/item/reagent_containers/blood/BMinus{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/BPlus{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OPlus{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/APlus,
+/obj/item/reagent_containers/blood/random,
+/turf/template_noop,
+/area/medical/sleeper)
+"N" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/turf/template_noop,
+/area/medical/sleeper)
+"U" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
+/turf/template_noop,
+/area/medical/sleeper)
+"Y" = (
+/obj/machinery/smartfridge/organ,
+/turf/template_noop,
+/area/medical/sleeper)
+"Z" = (
+/turf/template_noop,
+/area/medical/sleeper)
+
+(1,1,1) = {"
+u
+g
+Z
+Y
+c
+"}
+(2,1,1) = {"
+f
+Z
+Z
+Z
+Z
+"}
+(3,1,1) = {"
+A
+d
+j
+N
+Z
+"}
+(4,1,1) = {"
+b
+Z
+Z
+Z
+Z
+"}
+(5,1,1) = {"
+v
+z
+Z
+U
+D
+"}

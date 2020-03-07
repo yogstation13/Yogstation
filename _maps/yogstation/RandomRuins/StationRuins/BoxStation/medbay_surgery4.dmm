@@ -1,0 +1,131 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/surgery,
+/obj/item/cautery{
+	pixel_x = 4
+	},
+/turf/template_noop,
+/area/medical/sleeper)
+"h" = (
+/obj/structure/table/optable,
+/turf/template_noop,
+/area/medical/sleeper)
+"i" = (
+/obj/effect/landmark/start/medical_doctor,
+/turf/template_noop,
+/area/medical/sleeper)
+"j" = (
+/turf/template_noop,
+/area/medical/sleeper)
+"n" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/apron/surgical,
+/turf/template_noop,
+/area/medical/sleeper)
+"r" = (
+/obj/structure/table,
+/obj/item/surgicaldrill,
+/obj/item/circular_saw,
+/turf/template_noop,
+/area/medical/sleeper)
+"u" = (
+/obj/structure/closet/secure_closet/medical2,
+/turf/template_noop,
+/area/medical/sleeper)
+"y" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/turf/template_noop,
+/area/medical/sleeper)
+"E" = (
+/obj/structure/table,
+/obj/item/scalpel{
+	pixel_y = 12
+	},
+/obj/item/hemostat,
+/turf/template_noop,
+/area/medical/sleeper)
+"I" = (
+/obj/structure/table,
+/obj/item/surgical_drapes,
+/obj/item/razor,
+/turf/template_noop,
+/area/medical/sleeper)
+"M" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
+/turf/template_noop,
+/area/medical/sleeper)
+"N" = (
+/obj/structure/table,
+/obj/item/retractor,
+/turf/template_noop,
+/area/medical/sleeper)
+"U" = (
+/obj/machinery/smartfridge/organ,
+/turf/template_noop,
+/area/medical/sleeper)
+"Z" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood/AMinus,
+/obj/item/reagent_containers/blood/BMinus{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/BPlus{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OPlus{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/APlus,
+/obj/item/reagent_containers/blood/random,
+/turf/template_noop,
+/area/medical/sleeper)
+
+(1,1,1) = {"
+U
+M
+j
+j
+u
+"}
+(2,1,1) = {"
+j
+j
+j
+j
+E
+"}
+(3,1,1) = {"
+r
+j
+i
+h
+y
+"}
+(4,1,1) = {"
+n
+j
+j
+j
+N
+"}
+(5,1,1) = {"
+d
+I
+j
+j
+Z
+"}

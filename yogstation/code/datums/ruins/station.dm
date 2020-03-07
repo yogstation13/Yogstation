@@ -89,3 +89,23 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/medbay/surgery
+	id = "medbay_surgery1"
+	suffix = "medbay_surgery1.dmm"
+	name = "Operating Theatre"
+
+/datum/map_template/ruin/station/box/medbay/surgery/surgery2
+	id = "medbay_surgery2"
+	suffix = "medbay_surgery2.dmm"
+	name = "Operating Theatre 2"
+
+/datum/map_template/ruin/station/box/medbay/surgery/surgery3
+	id = "medbay_surgery3"
+	suffix = "medbay_surgery3.dmm"
+	name = "Operating Theatre 3"
+
+/datum/map_template/ruin/station/box/medbay/surgery/surgery4
+	id = "medbay_surgery4"
+	suffix = "medbay_surgery4.dmm"
+	name = "Operating Theatre 4"
