@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(achievements)
 	var/datum/DBQuery/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
 	ridOldChieves.Execute()
 	while(ridOldChieves.NextRow())
-		var/id = text2num(ridOldChieves.item[1])
+		var/id = text2num(ridOldChieves.item[1]) // This id var also doesn't need to be sanitized because it's from the actual database
 		var/found_achievement = FALSE
 		for(var/I in achievements)
 			var/datum/achievement/A = I
@@ -68,12 +68,12 @@ SUBSYSTEM_DEF(achievements)
 /datum/controller/subsystem/achievements/proc/unlock_achievement(achievementPath, client/C)
 	var/datum/achievement/achievement = get_achievement(achievementPath)
 	if(!achievement)
-		log_sql("Achievement [achievementPath] not found in list of achievements when trying to unlock for [C.ckey]")
+		log_sql("Achievement [achievementPath] not found in list of achievements when trying to unlock for [ckey(C.ckey)]")
 		return FALSE
 	if(istype(achievement,/datum/achievement/greentext) && achievementPath != /datum/achievement/greentext)
 		unlock_achievement(/datum/achievement/greentext,C) // Oooh, a little bit recursive!
 	if(!has_achievement(achievementPath, C))
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[initial(achievement.id)]')")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[ckey(C.ckey)]', '[initial(achievement.id)]')")
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(achievements)
 	return (achievement in cached_achievements[C.ckey])
 
 /datum/controller/subsystem/achievements/proc/cache_achievements(client/C)
-	var/datum/DBQuery/cacheQuery = SSdbcore.NewQuery("SELECT id FROM [format_table_name("earned_achievements")] WHERE ckey = '[C.ckey]'")
+	var/datum/DBQuery/cacheQuery = SSdbcore.NewQuery("SELECT id FROM [format_table_name("earned_achievements")] WHERE ckey = '[ckey(C.ckey)]'")
 	cacheQuery.Execute()
 	cached_achievements[C.ckey] = list()
 	while(cacheQuery.NextRow())
