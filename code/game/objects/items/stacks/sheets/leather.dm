@@ -180,6 +180,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 /obj/item/stack/sheet/sinew/wolf
 	name = "wolf sinew"
 	desc = "Long stringy filaments which came from the insides of a wolf."
+	singular_name = "wolf sinew"
 
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \
