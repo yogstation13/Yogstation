@@ -90,3 +90,9 @@
 
 /obj/effect/landmark/stationroom/box/aftmaint
 	template_names = list("Roleplaying Room", "Detective Room")
+
+/obj/effect/landmark/stationroom/box/brig
+	template_names = list("Brig main cell 1", "Brig main cell 2")
+
+/obj/effect/landmark/stationroom/box/brig/perma
+	template_names = list("Brig perma cell 1","Brig perma cell 2","Brig perma cell 3","Brig perma cell 4")

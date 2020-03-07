@@ -89,3 +89,33 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/brig
+	id = "Brig_cell_main1"
+	suffix = "brig_cell_main1.dmm"
+	name = "Brig main cell 1"
+
+/datum/map_template/ruin/station/box/brig/cell_main2
+	id = "Brig_cell_main2"
+	suffix = "brig_cell_main2.dmm"
+	name = "Brig main cell 2"
+
+/datum/map_template/ruin/station/box/brig/cell_perma1
+	id = "Brig_cell_perma1"
+	suffix = "brig_cell_perma1.dmm"
+	name = "Brig perma cell 1"
+
+/datum/map_template/ruin/station/box/brig/cell_perma2
+	id = "Brig_cell_perma2"
+	suffix = "brig_cell_perma2.dmm"
+	name = "Brig perma cell 2"
+
+/datum/map_template/ruin/station/box/brig/cell_perma3
+	id = "Brig_cell_perma3"
+	suffix = "brig_cell_perma3.dmm"
+	name = "Brig perma cell 3"
+
+/datum/map_template/ruin/station/box/brig/cell_perma4
+	id = "Brig_cell_perma4"
+	suffix = "brig_cell_perma4.dmm"
+	name = "Brig perma cell 4"

@@ -1,0 +1,29 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"j" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/turf/template_noop,
+/area/space)
+"K" = (
+/turf/template_noop,
+/area/space)
+"P" = (
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/turf/template_noop,
+/area/space)
+
+(1,1,1) = {"
+K
+j
+"}
+(2,1,1) = {"
+K
+K
+"}
+(3,1,1) = {"
+K
+P
+"}

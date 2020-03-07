@@ -1,0 +1,32 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"u" = (
+/obj/structure/chair/stool,
+/turf/template_noop,
+/area/space)
+"y" = (
+/obj/structure/table,
+/obj/item/paper,
+/obj/item/pen,
+/turf/template_noop,
+/area/space)
+"N" = (
+/turf/template_noop,
+/area/space)
+"R" = (
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/turf/template_noop,
+/area/space)
+
+(1,1,1) = {"
+N
+R
+"}
+(2,1,1) = {"
+N
+N
+"}
+(3,1,1) = {"
+y
+u
+"}
