@@ -29,12 +29,6 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
-"w" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/carpet/exoticpurple,
-/area/crew_quarters/dorms)
 "A" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -67,6 +61,12 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
+"Q" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet/exoticpurple,
+/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -77,7 +77,7 @@ E
 (2,1,1) = {"
 E
 J
-w
+Q
 E
 "}
 (3,1,1) = {"
