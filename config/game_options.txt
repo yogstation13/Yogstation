@@ -522,10 +522,7 @@ BOMBCAP 20
 ## of ruins.
 LAVALAND_BUDGET 60
 
-## Ice Moon Budget
-ICEMOON_BUDGET 90
-
-## Space Ruin Budget
+## Space Ruin Budged
 Space_Budget 16
 
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station

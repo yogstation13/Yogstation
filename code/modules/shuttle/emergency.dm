@@ -509,19 +509,16 @@
 	dwidth = 1
 	width = 3
 	height = 4
-	var/areacheck = /area/lavaland/surface/outdoors
+	var/target_area = /area/lavaland/surface/outdoors
 	var/edge_distance = 16
 	// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
-
-/obj/docking_port/stationary/random/icemoon
-	areacheck = /area/icemoon/surface/outdoors/unexplored/danger
 
 /obj/docking_port/stationary/random/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		return
 
-	var/list/turfs = get_area_turfs(areacheck)
+	var/list/turfs = get_area_turfs(target_area)
 	var/original_len = turfs.len
 	while(turfs.len)
 		var/turf/T = pick(turfs)
@@ -531,8 +528,8 @@
 			forceMove(T)
 			return
 
-		// Fallback: couldn't find anything
-	WARNING("docking port '[id]' could not be randomly placed in [areacheck]: of [original_len] turfs, none were suitable")
+	// Fallback: couldn't find anything
+	WARNING("docking port '[id]' could not be randomly placed in [target_area]: of [original_len] turfs, none were suitable")
 	return INITIALIZE_HINT_QDEL
 
 //Pod suits/pickaxes

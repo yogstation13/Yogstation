@@ -145,8 +145,6 @@
 	var/going_backwards = TRUE
 	var/has_data = FALSE
 	var/data_having_type = /turf/open/floor/plating/asteroid/airless/cave/has_data
-	var/list/pick_tunnel_width
-	var/list/choose_turf_type
 	turf_type = /turf/open/floor/plating/asteroid/airless
 
 /turf/open/floor/plating/asteroid/airless/cave/has_data //subtype for producing a tunnel with given data
@@ -165,46 +163,6 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data //subtype for producing a tunnel with given data
-	has_data = TRUE
-
-/turf/open/floor/plating/asteroid/airless/cave/snow
-	gender = PLURAL
-	name = "snow"
-	desc = "Looks cold."
-	icon = 'icons/turf/snow.dmi'
-	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
-	icon_state = "snow"
-	icon_plating = "snow"
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-	slowdown = 2
-	environment_type = "snow"
-	flags_1 = NONE
-	planetary_atmos = TRUE
-	burnt_states = list("snow_dug")
-	bullet_sizzle = TRUE
-	bullet_bounce_sound = null
-	digResult = /obj/item/stack/sheet/mineral/snow
-	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \
-						  /mob/living/simple_animal/hostile/asteroid/polarbear = 30, /obj/structure/spawner/ice_moon/polarbear = 3, \
-						  /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow = 50, /obj/structure/spawner/ice_moon/snowlegion = 3, \
-						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
-
-	flora_spawn_list = list(/obj/structure/flora/tree/pine = 2, /obj/structure/flora/grass/both = 12)
-	terrain_spawn_list = list()
-	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/snow/has_data
-	turf_type = /turf/open/floor/plating/asteroid/snow/icemoon
-	choose_turf_type = list(/turf/open/floor/plating/asteroid/snow/icemoon = 19, /turf/open/floor/plating/ice/icemoon = 1)
-	pick_tunnel_width = list("1" = 6, "2" = 1)
-
-/turf/open/floor/plating/asteroid/airless/cave/snow/underground
-	flora_spawn_list = list(/obj/structure/flora/rock/icy = 6, /obj/structure/flora/rock/pile/icy = 6)
-	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/snow/underground/has_data
-	choose_turf_type = null
-
-/turf/open/floor/plating/asteroid/airless/cave/snow/has_data //subtype for producing a tunnel with given data
-	has_data = TRUE
-
-/turf/open/floor/plating/asteroid/airless/cave/snow/underground/has_data //subtype for producing a tunnel with given data
 	has_data = TRUE
 
 /turf/open/floor/plating/asteroid/airless/cave/Initialize()
@@ -245,10 +203,6 @@
 	var/turf/closed/mineral/tunnel = src
 	var/next_angle = pick(45, -45)
 
-	var/tunnel_width = 1
-	if(pick_tunnel_width)
-		tunnel_width = text2num(pickweight(pick_tunnel_width))
-
 	for(var/i = 0; i < length; i++)
 		if(!sanity)
 			break
@@ -259,11 +213,9 @@
 
 		// Expand the edges of our tunnel
 		for(var/edge_angle in L)
-			var/turf/closed/mineral/edge = tunnel
-			for(var/current_tunnel_width = 1 to tunnel_width)
-				edge = get_step(edge, angle2dir(dir2angle(dir) + edge_angle))
-				if(istype(edge))
-					SpawnFloor(edge)
+			var/turf/closed/mineral/edge = get_step(tunnel, angle2dir(dir2angle(dir) + edge_angle))
+			if(istype(edge))
+				SpawnFloor(edge)
 
 		if(!sanity)
 			break
@@ -274,11 +226,9 @@
 		if(istype(tunnel))
 			// Small chance to have forks in our tunnel; otherwise dig our tunnel.
 			if(i > 3 && prob(20))
-				if(isarea(tunnel.loc))
-					var/area/A = tunnel.loc
-					if(!A.tunnel_allowed)
-						sanity = 0
-						break
+				if(istype(tunnel.loc, /area/mine/explored) || (istype(tunnel.loc, /area/lavaland/surface/outdoors) && !istype(tunnel.loc, /area/lavaland/surface/outdoors/unexplored)))
+					sanity = 0
+					break
 				var/turf/open/floor/plating/asteroid/airless/cave/C = tunnel.ChangeTurf(data_having_type, null, CHANGETURF_IGNORE_AIR)
 				C.going_backwards = FALSE
 				C.produce_tunnel_from_data(rand(10, 15), dir)
@@ -295,31 +245,25 @@
 
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnFloor(turf/T)
-	if(!T)
-		sanity = 0
-		return
-	if(isarea(T.loc))
-		var/area/A = T.loc
-		if(!A.tunnel_allowed)
+	for(var/S in RANGE_TURFS(1, src))
+		var/turf/NT = S
+		if(!NT || isspaceturf(NT) || istype(NT.loc, /area/mine/explored) || (istype(NT.loc, /area/lavaland/surface/outdoors) && !istype(NT.loc, /area/lavaland/surface/outdoors/unexplored)))
 			sanity = 0
-			return
+			break
+	if(!sanity)
+		return
 	SpawnFlora(T)
 	// SpawnTerrain(T)
 	SpawnMonster(T)
-	if(choose_turf_type)
-		turf_type = pickweight(choose_turf_type)
 	T.ChangeTurf(turf_type, null, CHANGETURF_IGNORE_AIR)
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnMonster(turf/T)
-	if(!isarea(loc))
-		return
-	var/area/A = loc
 	if(prob(30))
-		if(!A.mob_spawn_allowed)
+		if(istype(loc, /area/mine/explored) || !istype(loc, /area/lavaland/surface/outdoors/unexplored))
 			return
 		var/randumb = pickweight(mob_spawn_list)
 		while(randumb == SPAWN_MEGAFAUNA)
-			if(A.megafauna_spawn_allowed) //this is danger. it's boss time.
+			if(istype(loc, /area/lavaland/surface/outdoors/unexplored/danger)) //this is danger. it's boss time.
 				var/maybe_boss = pickweight(megafauna_spawn_list)
 				if(megafauna_spawn_list[maybe_boss])
 					randumb = maybe_boss
@@ -336,8 +280,7 @@
 			if((ispath(randumb, /obj/structure/spawner/lavaland) || istype(H, /obj/structure/spawner/lavaland)) && get_dist(src, H) <= 2)
 				return //prevents tendrils spawning in each other's collapse range
 
-		if(randumb)
-			new randumb(T)
+		new randumb(T)
 	return
 
 #undef SPAWN_MEGAFAUNA
@@ -345,12 +288,10 @@
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/SpawnFlora(turf/T)
 	if(prob(12))
-		if(isarea(loc))
-			var/area/A = loc
-			if(!A.flora_allowed)
-				return
+		if(istype(loc, /area/mine/explored) || istype(loc, /area/lavaland/surface/outdoors/explored))
+			return
 		var/randumb = pickweight(flora_spawn_list)
-		for(var/obj/structure/flora/F in range(4, T)) //Allows for growing patches, but not ridiculous stacks of flora
+		for(var/obj/structure/flora/ash/F in range(4, T)) //Allows for growing patches, but not ridiculous stacks of flora
 			if(!istype(F, randumb))
 				return
 		new randumb(T)
@@ -392,15 +333,6 @@
 		return TRUE
 	return FALSE
 
-/turf/open/floor/plating/asteroid/snow/icemoon
-	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-
-/turf/open/lava/plasma/ice_moon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-	baseturfs = /turf/open/lava/plasma/ice_moon
-	planetary_atmos = TRUE
-
 /turf/open/floor/plating/asteroid/snow/ice
 	name = "icy snow"
 	desc = "Looks colder."
@@ -414,11 +346,6 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-
-/turf/open/floor/plating/asteroid/snow/ice/icemoon
-	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-	planetary_atmos = TRUE
 
 /turf/open/floor/plating/asteroid/snow/ice/burn_tile()
 	return FALSE
