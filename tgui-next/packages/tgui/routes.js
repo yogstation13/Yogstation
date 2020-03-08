@@ -86,6 +86,7 @@ import { Wires } from './interfaces/Wires';
 import { Guardian } from './interfaces/Guardian';
 import { Autolathe } from './interfaces/Autolathe';
 import { NotificationPreferences } from './interfaces/NotificationPreferences';
+import { ExosuitControlConsole } from './interfaces/ExosuitControlConsole';
 
 const ROUTES = {
   achievements: {
@@ -106,6 +107,10 @@ const ROUTES = {
   },
   ai_restorer: {
     component: () => AiRestorer,
+    scrollable: true,
+  },
+  exosuit_control_console: {
+    component: () => ExosuitControlConsole,
     scrollable: true,
   },
   robotics_control_console: {
