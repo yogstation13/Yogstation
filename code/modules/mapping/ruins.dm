@@ -1,5 +1,5 @@
-/datum/map_template/ruin/proc/try_to_place(z,allowed_areas)
-	var/sanity = PLACEMENT_TRIES
+/datum/map_template/ruin/proc/try_to_place(z,allowed_areas,turf/forced_turf)
+	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
 	while(sanity > 0)
 		sanity--
 		var/width_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(width / 2)
@@ -27,6 +27,8 @@
 
 		for(var/i in get_affected_turfs(central_turf, 1))
 			var/turf/T = i
+			for(var/obj/structure/spawner/nest in T)
+				qdel(nest)
 			for(var/mob/living/simple_animal/monster in T)
 				qdel(monster)
 			for(var/obj/structure/flora/ash/plant in T)
@@ -39,8 +41,7 @@
 			T.flags_1 |= NO_RUINS_1
 
 		new /obj/effect/landmark/ruin(central_turf, src)
-		return TRUE
-	return FALSE
+		return central_turf
 
 
 /proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins)
@@ -59,7 +60,6 @@
 	var/list/forced_ruins = list()		//These go first on the z level associated (same random one by default)
 	var/list/ruins_availible = list()	//we can try these in the current pass
 	var/list/ruins_placed = list() // yogs
-	var/forced_z	//If set we won't pick z level and use this one instead.
 
 	//Set up the starting ruin list
 	for(var/key in ruins)
@@ -75,11 +75,12 @@
 	while(budget > 0 && (ruins_availible.len || forced_ruins.len))
 		var/datum/map_template/ruin/current_pick
 		var/forced = FALSE
+		var/forced_z	//If set we won't pick z level and use this one instead.
 		var/forced_turf //If set we place the ruin centered on the given turf
 		if(forced_ruins.len) //We have something we need to load right now, so just pick it
 			for(var/ruin in forced_ruins)
 				current_pick = ruin
-				if(forced_ruins[ruin] > 0) //Load into designated z
+				if(isturf(forced_ruins[ruin])) //Load into designated z
 					var/turf/T = forced_ruins[ruin]
 					forced_z = T.z
 					forced_turf = T
@@ -159,6 +160,8 @@
 									forced_ruins[linked] = pick(SSmapping.levels_by_trait(ZTRAIT_SPACE_RUINS))
 								if(PLACE_DEFAULT)
 									forced_ruins[linked] = -1
+								if(PLACE_BELOW)
+									forced_ruins[linked] = SSmapping.get_turf_below(placed_turf)
 		forced_z = 0
 
 		//Update the availible list

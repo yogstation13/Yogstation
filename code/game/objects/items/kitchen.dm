@@ -119,7 +119,7 @@
 	if(istype(M) && (M.mob_biotypes & MOB_ORGANIC))
 		var/datum/status_effect/saw_bleed/bloodletting/B = M.has_status_effect(/datum/status_effect/saw_bleed/bloodletting)
 		if(!B)
-			M.apply_status_effect(STATUS_EFFECT_SAWBLEED)
+			M.apply_status_effect(STATUS_EFFECT_BLOODLETTING)
 		else
 			B.add_bleed(B.bleed_buildup)
 
