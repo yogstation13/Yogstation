@@ -9,16 +9,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
-"k" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4
-	},
-/obj/structure/table/reinforced_replica,
-/turf/open/floor/carpet/royalblack,
-/area/crew_quarters/dorms)
 "w" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -67,6 +57,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"Z" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/carpet/royalblack,
+/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -76,7 +76,7 @@ E
 "}
 (2,1,1) = {"
 E
-k
+Z
 w
 E
 "}
