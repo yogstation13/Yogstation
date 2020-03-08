@@ -11,6 +11,7 @@
 	friendly = "growls at"
 	speak_emote = list("growls")
 	speed = 5
+	move_to_delay = 15
 	maxHealth = 300
 	health = 300
 	obj_damage = 40
