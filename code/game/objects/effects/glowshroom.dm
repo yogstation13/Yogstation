@@ -119,7 +119,8 @@
 			if(locate(/obj/structure/glowshroom in view(1,newloc))) // and there's a glowshroom nearby our target loc
 				continue // then we ain't moving here
 			// We know that there's no glowshroom here so we can just go ahead and plant
-			var/obj/structure/glowshroom/child = new type(newLoc, myseed, TRUE, generation + 1)
+			var/obj/structure/glowshroom/child = new type(newloc, myseed, TRUE, generation + 1)
+			child.generation = generation + 1 // I have to do this to stop the "variable defined but not used" warning
 			--seeds_to_spread
 		else // if we're willing to overgrowth
 			var/obj/structure/glowshroom/glowyboi = locate(/obj/structure/glowshroom) in newloc
@@ -135,10 +136,11 @@
 				glowyboi.Overgrowth(our_dir) // Does not actually create a new glowshroom object on the tile, just updates the sprite of the one already there!
 				--seeds_to_spread
 			else // If there's nobody in this tile we can just go ahead and plant
-				var/obj/structure/glowshroom/child = new type(newLoc, myseed, TRUE, generation + 1)
+				var/obj/structure/glowshroom/child = new type(newloc, myseed, TRUE, generation + 1)
+				child.generation = generation + 1 // I have to do this to stop the "variable defined but not used" warning
 				--seeds_to_spread
 	if(seeds_to_spread)
-		delay *= 1.1
+		delay *= 1.1 // If we keep having seeds left over, it's likely that we will pretty much never have a chance to fully breed, so keep extending the delay
 		addtimer(CALLBACK(src, .proc/Spread), delay)
 
 /obj/structure/glowshroom/proc/Overgrowth(newdir) // Adds a new sprite on top of the current one, of some more glowshroomage.
