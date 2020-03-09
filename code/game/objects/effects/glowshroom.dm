@@ -116,7 +116,7 @@
 			continue
 		var/turf/newloc = pick(openlocs)
 		if(!prob(OVERGROWTH_CHANCE)) // If we're refusing to overgrowth
-			if(locate(/obj/structure/glowshroom in view(1,newloc))) // and there's a glowshroom nearby our target loc
+			if(locate(/obj/structure/glowshroom) in view(1,newloc)) // and there's a glowshroom nearby our target loc
 				continue // then we ain't moving here
 			// We know that there's no glowshroom here so we can just go ahead and plant
 			var/obj/structure/glowshroom/child = new type(newloc, myseed, TRUE, generation + 1)
