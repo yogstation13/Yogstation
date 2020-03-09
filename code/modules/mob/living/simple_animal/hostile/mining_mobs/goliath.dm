@@ -151,6 +151,7 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/joe
 	name = "Joe"
 	desc = "The mining team's pet goliath! Usually found hard at work at the coin press."
+	response_help = "pets"
 	crusher_loot = null
 	guaranteed_butcher_results = list() //no plates from joe
 	move_force = MOVE_FORCE_DEFAULT
