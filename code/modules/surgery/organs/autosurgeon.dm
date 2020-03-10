@@ -97,3 +97,7 @@
 	
 /obj/item/autosurgeon/medibeam
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
+	
+/obj/item/autosurgeon/clockwork
+	starting_organ = /obj/item/organ/cyberimp/arm/clockwork
+
