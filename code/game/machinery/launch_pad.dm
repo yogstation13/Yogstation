@@ -145,6 +145,12 @@
 	for(var/atom/movable/ROI in source)
 		if(ROI == src)
 			continue
+		// Dont teleport unanchored ais
+		if(isAI(ROI))
+			var/mob/living/silicon/ai/I = ROI
+			if(I.move_resist == 2999)
+				to_chat(user, "<span class='warning'>ERROR: Launchpad overloaded, unable to operate.</span>")
+				return
 		// if it's anchored, don't teleport
 		var/on_chair = ""
 		if(ROI.anchored)
