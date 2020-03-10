@@ -34,6 +34,7 @@ import { Gps } from './interfaces/Gps';
 import { GravityGenerator } from './interfaces/GravityGenerator';
 import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
 import { Holodeck } from './interfaces/Holodeck';
+import { AiRestorer } from './interfaces/AiRestorer';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { InfraredEmitter } from './interfaces/InfraredEmitter';
 import { Intellicard } from './interfaces/Intellicard';
@@ -100,6 +101,10 @@ const ROUTES = {
   },
   airalarm: {
     component: () => AirAlarm,
+    scrollable: true,
+  },
+  ai_restorer: {
+    component: () => AiRestorer,
     scrollable: true,
   },
   airlock_electronics: {
