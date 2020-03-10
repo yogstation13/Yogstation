@@ -97,6 +97,23 @@
 	quickbind = TRUE
 	quickbind_desc = "Creates a Judicial Visor, which can smite an area, applying Belligerent and briefly stunning."
 
+/datum/clockwork_scripture/create_object/clockwork_toolset
+	descname = "clockarm"
+	name = "Clockwork Toolset"
+	desc = "Creates a autosurgeon with a implantable arm with clockwork tools"
+	invocations = list("Give me da arm")
+	channel_time = 10
+	power_cost = 700
+	whispered = TRUE
+	object_path = /obj/item/autosurgeon/clockwork
+	creator_message = "<span class='brass'>You form a autosurgeon, which is blessed by ratvar.</span>"
+	usage_tip = "The tools in this are faster then the ones found on the station."
+	tier = SCRIPTURE_SCRIPT
+	space_allowed = TRUE
+	primary_component = BELLIGERENT_EYE
+	sort_priority = 4
+	quickbind = TRUE
+	quickbind_desc = "Creates a clockwork implantable toolset"
 
 //Clockwork Armaments: Grants the invoker the ability to call forth a Ratvarian spear and clockwork armor.
 /datum/clockwork_scripture/clockwork_armaments
