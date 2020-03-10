@@ -1507,7 +1507,7 @@
 	color = "#A70FFF"
 	taste_description = "freedom"
 
-/datum/reagent/drying_agent/reaction_obj(obj/O, reac_volume)
+/datum/reagent/americajuice/reaction_obj(obj/O, reac_volume)
 	if(O.type == /obj/item/organ/heart)
 		var/t_loc = get_turf(O)
 		qdel(O)
