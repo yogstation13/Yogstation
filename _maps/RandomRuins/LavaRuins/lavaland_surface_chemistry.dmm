@@ -7,7 +7,7 @@
 /area/lavaland/surface/outdoors)
 "c" = (
 /turf/template_noop,
-/area/template_noop)
+/area/space)
 "d" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/powered)
