@@ -49,16 +49,31 @@
 					V.check_vampire_upgrade()
 
 /datum/mind/proc/handle_speech(datum/source, mob/speech_args)
-	if(accent_name)
-		var/message = speech_args[SPEECH_MESSAGE]
-		if(message[1] != "*")
-			message = " [message]"
-			var/list/accent_words = strings(GLOB.accents[accent_name], accent_name, directory = "strings/accents")
-			for(var/key in accent_words)
-				var/value = accent_words[key]
-				if(islist(value))
-					value = pick(value)
-				message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
-				message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
-				message = replacetextEx(message, " [key]", " [value]")
-		speech_args[SPEECH_MESSAGE] = trim(message)
+	var/static/list/accents_name2regexes // Key is the name of the accent, value is a length-2 list of lists.
+	//The first list contains all the regexes marked as being word or phrase replacements. They are replaced first.
+	//The second list contains all other regexes and are handled last.
+	if(!accent_name)
+		return
+	if(!accents_name2regexes)
+		accents_name2regexes = list()
+		var/list/accent_names = assoc_list_strip_value(GLOB.accents_name2file)
+		var/regex/metaregex = regex(@"\\b[\w \.,;'\?!]\\b","i")
+		for(var/accent in accent_names)
+			var/list/accent_lists = list(list(), list())
+			var/list/accent_regex2replace = strings(GLOB.accents_name2file[accent_name], accent_name, directory = "strings/accents") // Key is regex, value is replacement
+			for(var/reg in accent_regex2replace)
+				if(findtext(reg,metaregex)) // If a Word regex
+					accent_lists[1] += list(regex(reg,"gi"),accent_regex2replace[reg])
+				else
+					accent_lists[2] += list(regex(reg,"gi"),accent_regex2replace[reg])
+			accents_name2regexes[accent] = accent_lists
+
+	
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		for(var/i in 1 to 2)
+			var/list/accent_regex2replace = accents_name2regexes[accent_name]
+			for(var/x in accent_regex2replace)
+				var/regex/R = x
+				message = R.Replace(message,accent_regex2replace[x])
+	speech_args[SPEECH_MESSAGE] = message
