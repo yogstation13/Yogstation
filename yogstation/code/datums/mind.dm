@@ -75,5 +75,8 @@
 			var/list/accent_regex2replace = accents_name2regexes[accent_name]
 			for(var/x in accent_regex2replace)
 				var/regex/R = x
-				message = R.Replace(message,accent_regex2replace[x])
+				var/replace = accent_regex2replace[x]
+				if(islist(replace))
+					replace = pick(replace)
+				message = R.Replace(message,replace)
 	speech_args[SPEECH_MESSAGE] = message
