@@ -11,6 +11,8 @@ GLOBAL_VAR(restart_counter)
 //So subsystems globals exist, but are not initialised
 /world/New()
 	enable_debugger() //This does nothing if you aren't trying to debug
+	if(fexists("byond-extools.dll"))
+		call("byond-extools.dll", "maptick_initialize")()
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()
