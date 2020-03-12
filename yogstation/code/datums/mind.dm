@@ -57,26 +57,50 @@
 	if(!accents_name2regexes)
 		accents_name2regexes = list()
 		var/list/accent_names = assoc_list_strip_value(GLOB.accents_name2file)
-		var/regex/metaregex = regex(@"\\b[\w \.,;'\?!]\\b","i")
+		var/regex/is_phrase = regex(@"\\b[\w \.,;'\?!]+\\b","i")
+		var/regex/is_word = regex(@"\\b[\w\.,;'\?!]+\\b","i") // Should be very similar to the above regex, except it doesn't capture on spaces and so only hits plaintext words
 		for(var/accent in accent_names)
-			var/list/accent_lists = list(list(), list())
+			var/list/accent_lists = list(list(), list(), list())
 			var/list/accent_regex2replace = strings(GLOB.accents_name2file[accent_name], accent_name, directory = "strings/accents") // Key is regex, value is replacement
 			for(var/reg in accent_regex2replace)
-				if(findtext(reg,metaregex)) // If a Word regex
+				if(findtext(reg,is_word)) // If a word
+					reg = replacetext(reg,@"\b","") // Remove the \b, because we'll be treating this as a straight thing to replace
+					accent_lists[2] += list(list(reg,accent_regex2replace[reg])) // These numerical indices mark their priority
+				else if(findtext(reg,is_phrase)) // If a phrase
 					accent_lists[1] += list(list(regex(reg,"gi"),accent_regex2replace[reg]))
 				else
-					accent_lists[2] += list(list(regex(reg,"gi"),accent_regex2replace[reg]))
+					accent_lists[3] += list(list(regex(reg,"gi"),accent_regex2replace[reg]))
 			accents_name2regexes[accent] = accent_lists
 
 	
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
-		for(var/i in 1 to 2)
-			var/list/accent_regex2replace = accents_name2regexes[accent_name]
-			for(var/x in accent_regex2replace)
-				var/regex/R = x
-				var/replace = accent_regex2replace[x]
-				if(islist(replace))
-					replace = pick(replace)
-				message = R.Replace(message,replace)
+		var/list/phrase2replace = accents_name2regexes[accent_name][1] // key is regex, value is replacement
+		var/list/word2replace = accents_name2regexes[accent_name][2] // key is plaintext word, value is replacement
+		var/list/regex2replace = accents_name2regexes[accent_name][3] // key is regex, value is replacement
+		// First the phrases
+		for(var/x in phrase2replace) //Linear time relative to number of phrases
+			var/regex/R = x
+			var/replace = phrase2replace[x]
+			if(islist(replace))
+				replace = pick(replace)
+			message = R.Replace(message,replace)
+		// Then the words
+		var/list/words = splittext(message," ") 
+		for(var/i in words) // Linear time relative to number of words spoken by player (times log(number of accent words) because BYOND doesn't use hashtables for some ungodly reason)
+			var/word = words[i]
+			var/rep = word2replace[lowertext(word)]
+			if(!rep)
+				continue
+			if(islist(rep))
+				rep = pick(rep)
+			words[i] = rep
+		message = jointext(words," ")
+		// Then the general regexes
+		for(var/z in regex2replace) //Linear time relative to number of generic regexe
+			var/regex/R = z
+			var/replace = regex2replace[z]
+			if(islist(replace))
+				replace = pick(replace)
+			message = R.Replace(message,replace)
 	speech_args[SPEECH_MESSAGE] = message
