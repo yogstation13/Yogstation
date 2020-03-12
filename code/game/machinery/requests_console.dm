@@ -252,7 +252,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			priority = CLAMP(text2num(href_list["priority"]), REQ_NORMAL_MESSAGE_PRIORITY, REQ_EXTREME_MESSAGE_PRIORITY)
 
 	if(href_list["writeAnnouncement"])
-		var/new_message = copytext(reject_bad_text(input(usr, "Write your message:", "Awaiting Input", "")),1,MAX_MESSAGE_LEN)
+		var/new_message = copytext(reject_bad_text(input(usr, "Write your message:", "Awaiting Input", message)),1,MAX_MESSAGE_LEN)
 		if(new_message)
 			message = new_message
 			priority = CLAMP(text2num(href_list["priority"]) || REQ_NORMAL_MESSAGE_PRIORITY, REQ_NORMAL_MESSAGE_PRIORITY, REQ_EXTREME_MESSAGE_PRIORITY)

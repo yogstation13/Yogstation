@@ -3038,7 +3038,6 @@
 #include "yogstation\code\game\objects\items\holotool\holotool.dm"
 #include "yogstation\code\game\objects\items\holotool\modes.dm"
 #include "yogstation\code\game\objects\items\implants\implant_gang.dm"
-#include "yogstation\code\game\objects\items\implants\implant_mindshield.dm"
 #include "yogstation\code\game\objects\items\implants\implant_mindslave.dm"
 #include "yogstation\code\game\objects\items\implants\implant_teleporter.dm"
 #include "yogstation\code\game\objects\items\melee\energy.dm"
