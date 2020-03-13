@@ -64,3 +64,5 @@
 #define MOVESPEED_ID_DIE_OF_FATE                        "DIE_OF_FATE"
 
 #define MOVESPEED_ID_MOUSE_CHEESE						"MOUSE_CHEESE"
+
+#define MOVESPEED_ID_CLOCKCHANT						    "CLOCKCHANT"
