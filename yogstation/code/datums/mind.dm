@@ -68,8 +68,8 @@
 				replace = pick(replace)
 			message = R.Replace(message,replace)
 		// Then the words
-		var/list/words = splittext(message," ") 
-		for(var/i in words) // Linear time relative to number of words spoken by player (times log(number of accent words) because BYOND doesn't use hashtables for some ungodly reason)
+		var/list/words = splittext(message," ")
+		for(var/i=1;i <= words.len; ++i)// Linear time relative to number of words spoken by player (times log(number of accent words) because BYOND doesn't use hashtables for some ungodly reason)
 			var/word = words[i]
 			var/rep = word2replace[lowertext(word)]
 			if(!rep)
