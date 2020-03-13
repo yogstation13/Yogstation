@@ -42,12 +42,21 @@ SUBSYSTEM_DEF(Yogs)
 		var/list/accent_lists = list(list(), list(), list())
 		var/list/accent_regex2replace = strings(GLOB.accents_name2file[accent], accent, directory = "strings/accents") // Key is regex, value is replacement
 		for(var/reg in accent_regex2replace)
+			//So, a side-effect of encoding our regexes as JSON keys is that JSON actually does interpretation of some escape sequences.
+			var/regex/backspace = regex(@"/x08","g") //For example, it converts \b into a backspace character
+			//as well as converts \n into a newline one.
+			//We need to fix this here if we want raw regexes to be stored plaintext in JSON, w/o the accent creator having to muddle around with escaping.
+			reg = replacetext(reg,backspace,@"\b") //Fix backspace
+			reg = replacetext(reg,"\n",@"\n") //Fix newline
+			reg = replacetext(reg,"\t",@"\t") //Fix tabbing
 			if(findtext(reg,is_word)) // If a word
 				reg = copytext(reg,2,length(reg)) // Remove the \b, because we'll be treating this as a straight thing to replace
 				accent_lists[2][reg] =	accent_regex2replace[reg] // These numerical indices mark their priority
 			else if(findtext(reg,is_phrase)) // If a phrase
 				accent_lists[1][regex(reg,"gi")] = accent_regex2replace[reg]
 			else
+				if(accent ==  "heavy Shakespearean")
+					message_admins(reg)
 				accent_lists[3][regex(reg,"gi")] = accent_regex2replace[reg]
 		GLOB.accents_name2regexes[accent] = accent_lists
 
