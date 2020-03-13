@@ -65,11 +65,11 @@
 			for(var/reg in accent_regex2replace)
 				if(findtext(reg,is_word)) // If a word
 					reg = replacetext(reg,@"\b","") // Remove the \b, because we'll be treating this as a straight thing to replace
-					accent_lists[2] += list(list(reg,accent_regex2replace[reg])) // These numerical indices mark their priority
+					accent_lists[2][reg] =	accent_regex2replace[reg] // These numerical indices mark their priority
 				else if(findtext(reg,is_phrase)) // If a phrase
-					accent_lists[1] += list(list(regex(reg,"gi"),accent_regex2replace[reg]))
+					accent_lists[1][regex(reg,"gi")] = accent_regex2replace[reg]
 				else
-					accent_lists[3] += list(list(regex(reg,"gi"),accent_regex2replace[reg]))
+					accent_lists[3][regex(reg,"gi")] = accent_regex2replace[reg]
 			accents_name2regexes[accent] = accent_lists
 
 	
