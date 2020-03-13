@@ -94,7 +94,7 @@
 				continue
 			if(islist(rep))
 				rep = pick(rep)
-			words[i] = rep
+			words[i] = set_case(rep,get_case(word))
 		message = jointext(words," ")
 		// Then the general regexes
 		for(var/z in regex2replace) //Linear time relative to number of generic regexe
