@@ -6,10 +6,10 @@
 	cure_text = "Felinid Mutation Toxin"
 	cures = list(/datum/reagent/mutationtoxin/felinid) //specific cure recommended by Monster860 due to no known current coronavirus cure
 	cure_chance = 10
-	agent = "SARS-CoV-2 COVID-19"
+	agent = "COVID-2556"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
-	desc = "Ancient form of coronavirus. If left untreated, the subject will feel quite unwell."
+	desc = "If left untreated, the subject will feel quite unwell."
 	severity = DISEASE_SEVERITY_MEDIUM
 
 /datum/disease/coronavirus/stage_act()
