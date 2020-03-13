@@ -54,30 +54,12 @@
 	//The second list contains all other regexes and are handled last.
 	if(!accent_name)
 		return
-	if(!accents_name2regexes)
-		accents_name2regexes = list()
-		var/list/accent_names = assoc_list_strip_value(GLOB.accents_name2file)
-		var/regex/is_phrase = regex(@"\\b[\w \.,;'\?!]+\\b","i")
-		var/regex/is_word = regex(@"\\b[\w\.,;'\?!]+\\b","i") // Should be very similar to the above regex, except it doesn't capture on spaces and so only hits plaintext words
-		for(var/accent in accent_names)
-			var/list/accent_lists = list(list(), list(), list())
-			var/list/accent_regex2replace = strings(GLOB.accents_name2file[accent_name], accent_name, directory = "strings/accents") // Key is regex, value is replacement
-			for(var/reg in accent_regex2replace)
-				if(findtext(reg,is_word)) // If a word
-					reg = replacetext(reg,@"\b","") // Remove the \b, because we'll be treating this as a straight thing to replace
-					accent_lists[2][reg] =	accent_regex2replace[reg] // These numerical indices mark their priority
-				else if(findtext(reg,is_phrase)) // If a phrase
-					accent_lists[1][regex(reg,"gi")] = accent_regex2replace[reg]
-				else
-					accent_lists[3][regex(reg,"gi")] = accent_regex2replace[reg]
-			accents_name2regexes[accent] = accent_lists
-
 	
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
-		var/list/phrase2replace = accents_name2regexes[accent_name][1] // key is regex, value is replacement
-		var/list/word2replace = accents_name2regexes[accent_name][2] // key is plaintext word, value is replacement
-		var/list/regex2replace = accents_name2regexes[accent_name][3] // key is regex, value is replacement
+		var/list/phrase2replace = GLOB.accents_name2regexes[accent_name][1] // key is regex, value is replacement
+		var/list/word2replace = GLOB.accents_name2regexes[accent_name][2] // key is plaintext word, value is replacement
+		var/list/regex2replace = GLOB.accents_name2regexes[accent_name][3] // key is regex, value is replacement
 		// First the phrases
 		for(var/x in phrase2replace) //Linear time relative to number of phrases
 			var/regex/R = x
