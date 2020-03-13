@@ -143,31 +143,31 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	return TRUE
 
 /datum/clockwork_scripture/proc/recital() //The process of speaking the words
-    if(!channel_time && invocations.len)
-        if(multiple_invokers_used)
-            for(var/mob/living/L in range(1, invoker))
-                if(can_recite_scripture(L))
-                    for(var/invocation in invocations)
-                        clockwork_say(L, text2ratvar(invocation), whispered)
-        else
-            for(var/invocation in invocations)
-                clockwork_say(invoker, text2ratvar(invocation), whispered)
-    to_chat(invoker, "<span class='brass'>You [channel_time <= 0 ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\".</span>")
-    if(!channel_time)
-        return TRUE
-    if(chant_slowdown)
-        invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
-    chant()
-    if(!do_after(invoker, channel_time, target = invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
-        slab.busy = null
-        invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
-        chanting = FALSE
-        scripture_fail()
-        chanting = FALSE
-        return
-    invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
-    chanting = FALSE
-    return TRUE
+	if(!channel_time && invocations.len)
+		if(multiple_invokers_used)
+			for(var/mob/living/L in range(1, invoker))
+				if(can_recite_scripture(L))
+					for(var/invocation in invocations)
+						clockwork_say(L, text2ratvar(invocation), whispered)
+		else
+			for(var/invocation in invocations)
+				clockwork_say(invoker, text2ratvar(invocation), whispered)
+	to_chat(invoker, "<span class='brass'>You [channel_time <= 0 ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\".</span>")
+	if(!channel_time)
+		return TRUE
+	if(chant_slowdown)
+		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
+	chant()
+	if(!do_after(invoker, channel_time, target = invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
+		slab.busy = null
+		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
+		chanting = FALSE
+		scripture_fail()
+		chanting = FALSE
+		return
+	invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
+	chanting = FALSE
+	return TRUE
 
 /datum/clockwork_scripture/proc/chant()
 	set waitfor = FALSE
