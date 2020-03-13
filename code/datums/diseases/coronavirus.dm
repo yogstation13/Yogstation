@@ -2,7 +2,7 @@
 	name = "Coronavirus"
 	max_stages = 3
 	spread_text = "Airborne"
-  spread_flags = DISEASE_SPREAD_AIRBORNE | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_BLOOD
+	spread_flags = DISEASE_SPREAD_AIRBORNE | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_BLOOD
 	cure_text = "Felinid Mutation Toxin"
 	cures = list(/datum/reagent/mutationtoxin/felinid) //specific cure recommended by Monster860
 	cure_chance = 10
