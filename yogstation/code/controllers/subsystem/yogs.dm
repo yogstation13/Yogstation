@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(Yogs)
 			reg = replacetext(reg,"\t",@"\t") //Fix tabbing
 			if(findtext(reg,is_word)) // If a word
 				reg = copytext(reg,3,length(reg)-1) // Remove the \b, because we'll be treating this as a straight thing to replace
-				accent_lists[2][reg] =	accent_regex2replace[reg] // These numerical indices mark their priority
+				accent_lists[2][reg] =	accent_regex2replace[original_reg] // These numerical indices mark their priority
 			else if(findtext(reg,is_phrase)) // If a phrase
 				accent_lists[1][regex(reg,"gi")] = accent_regex2replace[original_reg]
 			else
