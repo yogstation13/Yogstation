@@ -150,7 +150,7 @@
 			var/mob/living/silicon/ai/I = ROI
 			if(I.move_resist > 1000)
 				to_chat(user, "<span class='warning'>ERROR: Launchpad overloaded, unable to operate.</span>")
-				return
+				continue
 		// if it's anchored, don't teleport
 		var/on_chair = ""
 		if(ROI.anchored)
