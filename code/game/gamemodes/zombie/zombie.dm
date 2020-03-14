@@ -1,4 +1,4 @@
-
+GLOBAL_VAR(main_zombie_team)
 
 /datum/game_mode
 	var/list/datum/mind/zombies = list()
@@ -59,7 +59,8 @@
 
 
 /datum/game_mode/zombie/post_setup()
-	cult = new
+	main = new
+	GLOB.main_zombie_team = main
 
 	for(var/datum/mind/cult_mind in cultists_to_cult)
 		add_zombie(cult_mind, 0, equip=TRUE, cult_team = main)
@@ -79,4 +80,8 @@
 
 
 /datum/game_mode/zombie/proc/check_cult_victory()
+	return FALSE
+
+
+/datum/game_mode/zombie/check_finished()
 	return FALSE

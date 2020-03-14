@@ -23,7 +23,7 @@
 			if(H.team)
 				team = H.team
 				return
-		team = new /datum/team/cult
+		team = new /datum/team/zombie
 		team.setup_objectives()
 		return
 	if(!istype(new_team))
