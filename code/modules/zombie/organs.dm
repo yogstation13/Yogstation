@@ -91,12 +91,6 @@
 	owner.do_jitter_animation(living_transformation_time)
 	owner.Stun(living_transformation_time)
 	to_chat(owner, "<span class='alertalien'>You are now a zombie!</span>")
-	if(!iszombo(owner))
-		var/datum/mind/cult_mind = owner.mind
-		var/datum/antagonist/zombie/new_cultist = new()
-
-		if(cult_mind.add_antag_datum(new_cultist, GLOB.main_zombie_team))
-			return TRUE
 
 /obj/item/organ/zombie_infection/nodamage
 	causes_damage = FALSE
