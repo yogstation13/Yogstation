@@ -53447,6 +53447,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"jUt" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "jWz" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -57842,10 +57846,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"tDK" = (
-/obj/structure/chair/wood/wings,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "tFJ" = (
 /obj/effect/landmark/stationroom/box/dorm_edoor,
 /turf/template_noop,
@@ -108526,7 +108526,7 @@ aKu
 aTe
 aFz
 aFz
-tDK
+jUt
 aQw
 cdl
 aXB
