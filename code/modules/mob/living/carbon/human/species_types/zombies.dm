@@ -26,7 +26,7 @@
 	id = "memezombies"
 	limbs_id = "zombie"
 	mutanthands = /obj/item/zombie_hand
-	armor = 15 // 120 damage to KO a zombie, which kills it
+	armor = 10 // 120 damage to KO a zombie, which kills it
 	speedmod = 1.75
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
 	var/heal_rate = 1.2
