@@ -34,7 +34,7 @@
 		/datum/vampire_passive/full = 420,
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
 		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
-		/obj/effect/proc_holder/spell/self/revive = 350)
+		/obj/effect/proc_holder/spell/self/revive = 0)
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
