@@ -38,6 +38,7 @@ import { AiRestorer } from './interfaces/AiRestorer';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { InfraredEmitter } from './interfaces/InfraredEmitter';
 import { Intellicard } from './interfaces/Intellicard';
+import { RoboticsControlConsole } from './interfaces/RoboticsControlConsole';
 import { KeycardAuth } from './interfaces/KeycardAuth';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
@@ -105,6 +106,10 @@ const ROUTES = {
   },
   ai_restorer: {
     component: () => AiRestorer,
+    scrollable: true,
+  },
+  robotics_control_console: {
+    component: () => RoboticsControlConsole,
     scrollable: true,
   },
   airlock_electronics: {
