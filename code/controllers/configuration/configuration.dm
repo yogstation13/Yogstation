@@ -238,6 +238,7 @@
 				if(M.votable)
 					votable_modes += M.config_tag
 		qdel(M)
+	modes += "zombie"
 	votable_modes += "secret"
 
 /datum/controller/configuration/proc/LoadMOTD()
@@ -249,7 +250,7 @@
 Policy file should be a json file with a single object.
 Value is raw html.
 
-Possible keywords : 
+Possible keywords :
 Job titles / Assigned roles (ghost spawners for example) : Assistant , Captain , Ash Walker
 Mob types : /mob/living/simple_animal/hostile/carp
 Antagonist types : /datum/antagonist/highlander
