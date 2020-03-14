@@ -8,7 +8,7 @@
 	sexes = 0
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING)
-	inherent_traits = list(TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE ,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE)
+	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE ,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	mutanttongue = /obj/item/organ/tongue/zombie
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -26,12 +26,10 @@
 	id = "memezombies"
 	limbs_id = "zombie"
 	mutanthands = /obj/item/zombie_hand
-	armor = 30 // 120 damage to KO a zombie, which kills it
-	speedmod = 1.5
-	burnmod = 0.7
-	brutemod = 0.8
+	armor = 15 // 120 damage to KO a zombie, which kills it
+	speedmod = 1.75
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
-	var/heal_rate = 1.5
+	var/heal_rate = 1.2
 	var/regen_cooldown = 0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
