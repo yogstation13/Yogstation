@@ -83,10 +83,11 @@
 	<b>Left-click a target within melee range to stun!\n\
 	Click your slab to cancel.</b></span>"
 	timeout_time = 150
+	chant_slowdown = 1
+	no_mobility = FALSE
 	important = TRUE
 	quickbind = TRUE
 	quickbind_desc = "Stuns and mutes a target from a short range."
-
 
 //Hateful Manacles: Applies restraints from melee over several seconds. The restraints function like handcuffs and break on removal.
 /datum/clockwork_scripture/ranged_ability/hateful_manacles

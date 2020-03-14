@@ -663,6 +663,34 @@
 	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
 	return TRUE
 
+/mob/verb/eastshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x <= 16)
+		pixel_x++
+
+/mob/verb/westshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x >= -16)
+		pixel_x--
+
+/mob/verb/northshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y <= 16)
+		pixel_y++
+
+/mob/verb/southshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y >= -16)
+		pixel_y--
+
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
 	return FALSE
 

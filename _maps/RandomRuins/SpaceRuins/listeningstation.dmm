@@ -93,6 +93,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "ak" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
+	generates_heat = 0;
 	use_power = 0
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -215,7 +216,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -345,7 +345,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -360,14 +359,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/listeningstation)
 "aF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
@@ -522,11 +519,9 @@
 /area/ruin/space/has_grav/listeningstation)
 "aQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -537,11 +532,9 @@
 	name = "Personal Quarters"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -552,11 +545,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -585,11 +576,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -602,11 +591,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -626,11 +613,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -644,11 +629,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -679,7 +662,7 @@
 	pixel_x = 3;
 	pixel_y = 11
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate{
 	pixel_x = -3
 	},
 /obj/item/lighter{
@@ -718,7 +701,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -919,7 +901,6 @@
 /area/ruin/space/has_grav/listeningstation)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -976,7 +957,6 @@
 /area/ruin/space/has_grav/listeningstation)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{

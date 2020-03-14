@@ -172,6 +172,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["donor_item"]			>> donor_item
 	S["purrbation"]			>> purrbation
 	S["yogtoggles"]			>> yogtoggles
+	
+	S["accent"]				>> accent // Accents, too!
 	// yogs end
 
 	//try to fix any outdated data if necessary
@@ -210,6 +212,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
 	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
+	
+	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
 
 	load_keybindings(S) // yogs - Custom keybindings
@@ -266,6 +270,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
 	WRITE_FILE(S["purrbation"], purrbation)
+	
+	WRITE_FILE(S["accent"], accent) // Accents, too!
 	// yogs end
 
 	save_keybindings(S) // yogs - Custom keybindings

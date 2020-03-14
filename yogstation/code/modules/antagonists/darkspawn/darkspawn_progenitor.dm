@@ -80,6 +80,29 @@
 				L.Stun(20)
 	time_since_last_roar = world.time + 400
 
+/obj/effect/proc_holder/spell/targeted/progenitor_curse
+	name = "Viscerate Mind"
+	desc = "Unleash a powerful psionic barrage into the mind of the target."
+	charge_max = 50
+	clothes_req = FALSE
+	action_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	action_icon_state = "veil_mind"
+	action_background_icon_state = "bg_alien"
+
+/obj/effect/proc_holder/spell/aimed/update_icon()
+	return
+
+/obj/effect/proc_holder/spell/targeted/progenitor_curse/cast(list/targets, mob/user = usr)
+	if(!targets.len)
+		to_chat(user, "<span class='notice'>You can't reach anyone's minds.</span>")
+		return
+	var/mob/living/target = targets[1]
+	var/mob/living/M = target
+	var/zoinks = pick(0.1, 0.5, 1)//like, this isn't even my final form!
+	usr.visible_message("<span class='warning'>[usr]'s sigils flare as it glances at [M]!</span>", \
+						"<span class='velvet'>You direct [zoinks]% of your psionic power into [M]'s mind!.</span>")
+	M.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
+
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()
 	return
 
@@ -89,5 +112,5 @@
 /mob/living/simple_animal/hostile/darkspawn_progenitor/singularity_act()
 	return
 
-/mob/living/simble_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
+/mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return

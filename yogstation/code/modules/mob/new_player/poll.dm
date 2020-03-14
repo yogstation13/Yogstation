@@ -56,6 +56,7 @@
 		endtime = select_query.item[6]
 		found = 1
 		break
+	qdel(select_query)
 	if(!found)
 		to_chat(src, "<span class='warning'>Poll question details not found.</span>")
 		return
@@ -81,6 +82,7 @@
 			if(votecount > max_votes)
 				max_votes = votecount
 			options[++options.len] = list(text, votecount)
+		qdel(select_query)
 		// fuck ie.
 		output += {"
 		<table width='900' align='center' bgcolor='#eeffee' cellspacing='0' cellpadding='4'>
@@ -134,6 +136,7 @@
 				var/votecount = 0
 				while(rating_query.NextRow())
 					votecount = text2num(rating_query.item[1])
+				qdel(rating_query)
 				votecounts["[I]"] = votecount
 				if(votecount > maxvote)
 					maxvote = votecount
@@ -149,6 +152,7 @@
 				</tr>"}
 			output += "</table></td></tr>"
 		output += "</table>"
+		qdel(select_query)
 	if(polltype == POLLTYPE_TEXT)
 		select_query = SSdbcore.NewQuery("SELECT replytext, COUNT(replytext) AS countresponse, GROUP_CONCAT(DISTINCT ckey SEPARATOR ', ') as ckeys FROM [format_table_name("poll_textreply")] WHERE pollid = [pollid] GROUP BY replytext ORDER BY countresponse DESC");
 		select_query.Execute()
@@ -166,6 +170,7 @@
 				<td>[check_rights(R_EVERYTHING) ? "[ckeys] " : ""]([countresponse] player\s) responded with:</td>
 				<td style='border:1px solid #888888'>[replytext]</td>
 			</tr>"}
+		qdel(select_query)
 		output += "</table>"
 	output += "</body></html>"
 
