@@ -1,5 +1,3 @@
-#define SUMMON_POSSIBILITIES 3
-
 /datum/antagonist/zombie
 	name = "Zombie"
 	roundend_category = "zombies"
