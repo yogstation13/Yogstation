@@ -4,6 +4,7 @@
 	antagpanel_category = "Zombie"
 
 	var/datum/action/innate/zombie/zomb/zombify = new
+	var/datum/action/innate/zombie/talk/talko = new
 	job_rank = ROLE_BLOB
 	var/datum/team/zombie/team
 	var/hud_type = "rev"
@@ -33,6 +34,7 @@
 
 /datum/antagonist/zombie/Destroy()
 	QDEL_NULL(zombify)
+	QDEL_NULL(talko)
 	return ..()
 
 
@@ -59,11 +61,12 @@
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction |= "zombies"
+	talko.Grant(current)
 
 /datum/antagonist/zombie/remove_innate_effects()
 	. = ..()
 	var/mob/living/current = owner.current
-
+	talko.Remove(current)
 	current.faction -= "zombies"
 
 
@@ -145,3 +148,32 @@
 		ZI.Insert(H)
 
 	H.death()
+
+/datum/action/innate/zombie/talk
+	name = "Chat"
+	desc = "TALK TO ALL OF THEM!"
+	button_icon_state = "cult_comms"
+
+/datum/action/innate/zombie/talk/Activate()
+	var/input = stripped_input(usr, "Please choose a message to tell to the other zombies.", "Voice of Blood", "")
+	if(!input || !IsAvailable())
+		return
+
+	talk(usr, input)
+
+/datum/action/innate/zombie/talk/proc/talk(mob/living/user, message)
+	var/my_message
+	if(!message)
+		return
+	var/title = "Zombie"
+	var/span = "cult"
+	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if(iszombo(M))
+			to_chat(M, my_message)
+		else if(M in GLOB.dead_mob_list)
+			var/link = FOLLOW_LINK(M, user)
+			to_chat(M, "[link] [my_message]")
+
+	user.log_talk(message, LOG_SAY, tag="cult")
