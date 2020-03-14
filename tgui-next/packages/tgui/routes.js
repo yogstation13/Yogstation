@@ -15,6 +15,7 @@ import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canister } from './interfaces/Canister';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
+import { CargoHoldTerminal } from './interfaces/CargoHoldTerminal';
 import { CellularEmporium } from './interfaces/CellularEmporium';
 import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
 import { ChemDispenser } from './interfaces/ChemDispenser';
@@ -41,19 +42,15 @@ import { InfraredEmitter } from './interfaces/InfraredEmitter';
 import { Intellicard } from './interfaces/Intellicard';
 import { RoboticsControlConsole } from './interfaces/RoboticsControlConsole';
 import { KeycardAuth } from './interfaces/KeycardAuth';
-import { LaborClaimConsole } from './interfaces/LaborClaimConsole';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { LaunchpadConsole, LaunchpadRemote } from './interfaces/Launchpad';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
 import { MiningVendor } from './interfaces/MiningVendor';
 import { Mule } from './interfaces/Mule';
-import { NtosArcade } from './interfaces/NtosArcade';
 import { NtnetRelay } from './interfaces/NtnetRelay';
-import { NtosCard } from './interfaces/NtosCard';
-import { NtosCrewManifest } from './interfaces/NtosCrewManifest';
-import { NtosJobManager } from './interfaces/NtosJobManager';
-import { NtosMain } from './interfaces/NtosMain';
+import { NtosArcade } from './interfaces/NtosArcade';
 import { NtosConfiguration } from './interfaces/NtosConfiguration';
+import { NtosMain } from './interfaces/NtosMain';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
 import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
 import { NtosWrapper } from './interfaces/NtosWrapper';
@@ -97,7 +94,6 @@ import { Autolathe } from './interfaces/Autolathe';
 import { NotificationPreferences } from './interfaces/NotificationPreferences';
 import { ExosuitControlConsole } from './interfaces/ExosuitControlConsole';
 import { ParticleAccelerator } from './interfaces/ParticleAccelerator';
-import { SyndContractor } from './interfaces/SyndContractor';
 
 const ROUTES = {
   achievements: {
@@ -186,6 +182,10 @@ const ROUTES = {
   },
   cargo_express: {
     component: () => CargoExpress,
+    scrollable: true,
+  },
+  cargo_hold_terminal: {
+    component: () => CargoHoldTerminal,
     scrollable: true,
   },
   cellular_emporium: {
@@ -280,10 +280,6 @@ const ROUTES = {
     component: () => KeycardAuth,
     scrollable: false,
   },
-  labor_claim_console: {
-    component: () => LaborClaimConsole,
-    scrollable: false,
-  },
   language_menu: {
     component: () => LanguageMenu,
     scrollable: true,
@@ -319,26 +315,8 @@ const ROUTES = {
     scrollable: false,
     theme: 'ntos',
   },
-  ntos_card: {
-    component: () => NtosCard,
-    wrapper: () => NtosWrapper,
-    scrollable: true,
-    theme: 'ntos',
-  },
   ntos_configuration: {
     component: () => NtosConfiguration,
-    wrapper: () => NtosWrapper,
-    scrollable: true,
-    theme: 'ntos',
-  },
-  ntos_crew_manifest: {
-    component: () => NtosCrewManifest,
-    wrapper: () => NtosWrapper,
-    scrollable: true,
-    theme: 'ntos',
-  },
-  ntos_job_manager: {
-    component: () => NtosJobManager,
     wrapper: () => NtosWrapper,
     scrollable: true,
     theme: 'ntos',
@@ -477,12 +455,6 @@ const ROUTES = {
   suit_storage_unit: {
     component: () => SuitStorageUnit,
     scrollable: false,
-  },
-  synd_contract: {
-    component: () => SyndContractor,
-    wrapper: () => NtosWrapper,
-    scrollable: true,
-    theme: 'syndicate',
   },
   tanks: {
     component: () => Tank,
