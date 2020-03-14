@@ -822,9 +822,10 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/pink/tick()
 	for(var/mob/living/simple_animal/M in view(7,get_turf(owner)))
 		if(!(M in mobs))
-			mobs += M
-			M.apply_status_effect(/datum/status_effect/pinkdamagetracker)
-			M.faction |= faction_name
+			if(M.sentience_type != SENTIENCE_BOSS)
+				mobs += M
+				M.apply_status_effect(/datum/status_effect/pinkdamagetracker)
+				M.faction |= faction_name
 	for(var/mob/living/simple_animal/M in mobs)
 		if(!(M in view(7,get_turf(owner))))
 			M.remove_status_effect(/datum/status_effect/pinkdamagetracker)

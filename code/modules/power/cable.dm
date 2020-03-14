@@ -49,6 +49,11 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/cable_color = "red"
 	color = "#ff0000"
+	FASTDMM_PROP(\
+		pipe_type = PIPE_TYPE_CABLE,\
+		pipe_interference_group = list("cable"),\
+		pipe_group = "cable-[cable_color]"\
+	)
 
 /obj/structure/cable/yellow
 	cable_color = "yellow"
@@ -260,7 +265,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		if(C.d1 == (direction^3) || C.d2 == (direction^3)) //we've got a diagonally matching cable
 			if(!C.powernet) //if the matching cable somehow got no powernet, make him one (should not happen for cables)
-				var/datum/powernet/newPN = new()
+				var/datum/powernet/newPN = new(C.loc.z)
 				newPN.add_cable(C)
 
 			if(powernet) //if we already have a powernet, then merge the two powernets
@@ -280,7 +285,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			continue
 		if(C.d1 == (direction^12) || C.d2 == (direction^12)) //we've got a diagonally matching cable
 			if(!C.powernet) //if the matching cable somehow got no powernet, make him one (should not happen for cables)
-				var/datum/powernet/newPN = new()
+				var/datum/powernet/newPN = new(C.loc.z)
 				newPN.add_cable(C)
 
 			if(powernet) //if we already have a powernet, then merge the two powernets
@@ -308,7 +313,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		if(C.d1 == fdir || C.d2 == fdir) //we've got a matching cable in the neighbor turf
 			if(!C.powernet) //if the matching cable somehow got no powernet, make him one (should not happen for cables)
-				var/datum/powernet/newPN = new()
+				var/datum/powernet/newPN = new(C.loc.z)
 				newPN.add_cable(C)
 
 			if(powernet) //if we already have a powernet, then merge the two powernets
@@ -321,7 +326,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/list/to_connect = list()
 
 	if(!powernet) //if we somehow have no powernet, make one (should not happen for cables)
-		var/datum/powernet/newPN = new()
+		var/datum/powernet/newPN = new(loc.z)
 		newPN.add_cable(src)
 
 	//first let's add turf cables to our powernet
@@ -410,7 +415,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/list/powerlist = power_list(T1,src,0,0) //find the other cables that ended in the centre of the turf, with or without a powernet
 	if(powerlist.len>0)
-		var/datum/powernet/PN = new()
+		var/datum/powernet/PN = new(loc.z)
 		propagate_network(powerlist[1],PN) //propagates the new powernet beginning at the source cable
 
 		if(PN.is_empty()) //can happen with machines made nodeless when smoothing cables
@@ -418,7 +423,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/auto_propogate_cut_cable(obj/O)
 	if(O && !QDELETED(O))
-		var/datum/powernet/newPN = new()// creates a new powernet...
+		var/datum/powernet/newPN = new(loc.z)// creates a new powernet...
 		propagate_network(O, newPN)//... and propagates it to the other side of the cable
 
 // cut the cable's powernet at this cable and updates the powergrid
@@ -620,7 +625,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	C.update_icon()
 
 	//create a new powernet with the cable, if needed it will be merged later
-	var/datum/powernet/PN = new()
+	var/datum/powernet/PN = new(loc.z)
 	PN.add_cable(C)
 
 	C.mergeConnectedNetworks(C.d2) //merge the powernet with adjacents powernets
@@ -692,7 +697,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 			NC.update_icon()
 
 			//create a new powernet with the cable, if needed it will be merged later
-			var/datum/powernet/newPN = new()
+			var/datum/powernet/newPN = new(loc.z)
 			newPN.add_cable(NC)
 
 			NC.mergeConnectedNetworks(NC.d2) //merge the powernet with adjacents powernets

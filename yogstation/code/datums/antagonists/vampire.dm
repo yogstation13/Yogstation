@@ -34,7 +34,7 @@
 		/datum/vampire_passive/full = 420,
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
 		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
-		/obj/effect/proc_holder/spell/self/revive = 350)
+		/obj/effect/proc_holder/spell/self/revive = 0)
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
@@ -97,7 +97,7 @@
 /datum/antagonist/vampire/greet()
 	to_chat(owner, "<span class='userdanger'>You are a Vampire!</span>")
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
+	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
