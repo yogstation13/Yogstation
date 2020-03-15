@@ -124,10 +124,13 @@
 	owner.Stun(living_transformation_time)
 	to_chat(owner, "<span class='alertalien'>You are now a zombie! Help your fellow allies take over the station!</span>")
 
+
 	if(!isinfected(owner)) //Makes them the *actual* antag, instead of just a zombie.
 		var/datum/game_mode/zombie/GM = SSticker.mode
 		if(!istype(GM))
 			return
 		GM.add_zombie(owner.mind)
-		var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+
+	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+	if(!Z.evolution.owner)
 		Z.evolution.Grant(owner)
