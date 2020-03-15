@@ -7,7 +7,6 @@
 	if(vamp && statpanel("Status"))
 		stat("Total Blood", vamp.total_blood)
 		stat("Usable Blood", vamp.usable_blood)
-		stat("Crew Converted", vamp.converted)
 
 /mob/living/carbon/human/Life()
 	. = ..()
