@@ -105,7 +105,7 @@
 /datum/species/zombie/infectious/gamemode/runner
 	mutanthands = /obj/item/zombie_hand/gamemode/runner
 	armor = 10 // 120 damage to KO a zombie, which kills it
-	speedmod = 1
+	speedmod = 0.5
 	brutemod = 1
 
 /datum/species/zombie/infectious/gamemode/juggernaut
