@@ -13,6 +13,8 @@
 	var/revive_time_max = 700
 	var/timer_id
 
+	var/damage_caused = 1
+
 /obj/item/organ/zombie_infection/Initialize()
 	. = ..()
 	if(iscarbon(loc))
@@ -46,7 +48,7 @@
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
-		owner.adjustToxLoss(1)
+		owner.adjustToxLoss(damage_caused)
 		if (prob(10))
 			to_chat(owner, "<span class='danger'>You feel sick...</span>")
 	if(timer_id)
@@ -96,6 +98,8 @@
 /obj/item/organ/zombie_infection/nodamage
 	causes_damage = FALSE
 
+/obj/item/organ/zombie_infection/gamemode
+	damage_caused = 2
 
 /obj/item/organ/zombie_infection/gamemode/zombify()
 	timer_id = null
