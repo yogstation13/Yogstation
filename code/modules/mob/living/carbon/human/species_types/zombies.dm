@@ -94,27 +94,30 @@
 
 //The special zombie you get turned into in the zombie gamemode
 /datum/species/zombie/infectious/gamemode
+	armor = 25
+	brutemod = 0.9
+	burnmod = 0.9
 	mutanthands = /obj/item/zombie_hand/gamemode
 	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
-	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE)
+	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
 	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
 
 /datum/species/zombie/infectious/gamemode/runner
 	mutanthands = /obj/item/zombie_hand/gamemode/runner
-	armor = 10 // 120 damage to KO a zombie, which kills it
+	armor = 15 // 120 damage to KO a zombie, which kills it
 	speedmod = 1
-	brutemod = 1.1
+	brutemod = 1
 
 /datum/species/zombie/infectious/gamemode/juggernaut
-	armor = 30 // 120 damage to KO a zombie, which kills it
-	brutemod = 0.9
+	armor = 35 // 120 damage to KO a zombie, which kills it
+	brutemod = 0.8
 	speedmod = 2
 	heal_rate = 1.1
 
 /datum/species/zombie/infectious/gamemode/spitter
-	armor = 10 // 120 damage to KO a zombie, which kills it
-	brutemod = 1.1
-	burnmod = 1.1
+	armor = 15 // 120 damage to KO a zombie, which kills it
+	brutemod = 1
+	burnmod = 1
 
 
 /mob/living/carbon/proc/spitter_zombie_acid(O as obj|turf in oview(1)) // right click menu verb ugh
