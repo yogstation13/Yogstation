@@ -3,6 +3,16 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
+"d" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/target/alien,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "e" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
@@ -14,6 +24,11 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"g" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "h" = (
@@ -39,27 +54,25 @@
 	},
 /area/science/test_area)
 "p" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"q" = (
-/obj/item/flashlight/lamp,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/science/test_area)
-"r" = (
+"s" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
+	},
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -78,9 +91,10 @@
 /obj/item/beacon,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"z" = (
-/obj/item/flashlight/lamp,
-/obj/effect/turf_decal/stripes/line,
+"y" = (
+/obj/structure/chair{
+	dir = 4
+	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "B" = (
@@ -94,6 +108,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"G" = (
+/obj/structure/table,
+/obj/item/storage/box/mre,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "H" = (
 /obj/structure/chair{
 	dir = 8
@@ -103,28 +122,8 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"I" = (
-/obj/machinery/camera{
-	active_power_usage = 0;
-	c_tag = "Bomb Test Site";
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
-	dir = 8;
-	invuln = 1;
-	name = "Hardened Bomb-Test Camera";
-	network = list("toxins");
-	use_power = 0
-	},
-/obj/item/target/alien/anchored,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "J" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "N" = (
@@ -149,8 +148,10 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"S" = (
-/obj/effect/spawner/structure/window/reinforced,
+"T" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 
@@ -195,9 +196,9 @@ j
 j
 c
 c
-S
+t
 h
-S
+t
 c
 c
 j
@@ -212,9 +213,9 @@ j
 c
 c
 e
-S
+t
 f
-S
+t
 e
 c
 c
@@ -227,13 +228,13 @@ j
 j
 c
 c
-S
-S
+t
+t
 l
 h
 O
-S
-S
+t
+t
 c
 c
 j
@@ -245,11 +246,11 @@ j
 c
 t
 t
-J
+l
 B
 B
 B
-p
+O
 t
 t
 c
@@ -260,15 +261,15 @@ j
 c
 c
 c
-S
+J
 E
-q
-B
+T
+y
 w
-B
-z
+y
+p
 u
-S
+J
 c
 c
 c
@@ -280,9 +281,9 @@ c
 t
 t
 N
+G
 B
-B
-B
+g
 P
 t
 t
@@ -295,13 +296,13 @@ j
 j
 c
 c
-S
-S
+t
+t
 H
-I
-r
-S
-S
+f
+s
+t
+t
 c
 c
 j
@@ -314,9 +315,9 @@ j
 c
 c
 e
-S
-m
-S
+t
+d
+t
 e
 c
 c
@@ -331,9 +332,9 @@ j
 j
 c
 c
-S
 t
-S
+m
+t
 c
 c
 j

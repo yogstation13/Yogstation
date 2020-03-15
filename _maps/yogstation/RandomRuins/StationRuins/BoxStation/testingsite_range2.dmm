@@ -1,15 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "c" = (
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
 "d" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/target/alien,
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -27,8 +32,20 @@
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "g" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/target/syndicate,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "h" = (
@@ -53,80 +70,67 @@
 	name = "hyper-reinforced wall"
 	},
 /area/science/test_area)
-"p" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating/airless,
-/area/science/test_area)
-"s" = (
-/obj/structure/chair{
-	dir = 8
-	},
+"n" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
-	},
-/obj/machinery/camera{
-	active_power_usage = 0;
-	c_tag = "Bomb Test Site";
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
-	dir = 8;
-	invuln = 1;
-	name = "Hardened Bomb-Test Camera";
-	network = list("toxins");
-	use_power = 0
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "t" = (
 /turf/closed/wall,
 /area/science/test_area)
-"u" = (
-/obj/item/target,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "w" = (
 /obj/item/beacon,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "y" = (
-/obj/structure/chair{
-	dir = 4
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/chair,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"A" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "B" = (
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"E" = (
-/obj/item/target,
-/obj/structure/window/reinforced,
+"C" = (
 /obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/chair{
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "G" = (
-/obj/structure/table,
-/obj/item/storage/box/mre,
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/flashlight/lamp,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"H" = (
+"I" = (
+/obj/item/toy/nuke,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"J" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"N" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
+"K" = (
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "O" = (
@@ -135,19 +139,20 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"P" = (
-/obj/structure/chair{
+"R" = (
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/flashlight/lamp,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"T" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
+"S" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"U" = (
+/obj/item/target/syndicate,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 
@@ -192,9 +197,9 @@ j
 j
 c
 c
-t
+S
 h
-t
+S
 c
 c
 j
@@ -209,9 +214,9 @@ j
 c
 c
 e
-t
+S
 f
-t
+S
 e
 c
 c
@@ -224,13 +229,13 @@ j
 j
 c
 c
-t
-t
+S
+S
 l
 h
 O
-t
-t
+S
+S
 c
 c
 j
@@ -242,11 +247,11 @@ j
 c
 t
 t
-l
+y
 B
 B
 B
-O
+C
 t
 t
 c
@@ -257,15 +262,15 @@ j
 c
 c
 c
-t
-E
-T
-y
+S
+G
+d
+B
 w
-y
-p
-u
-t
+B
+K
+R
+S
 c
 c
 c
@@ -276,11 +281,11 @@ j
 c
 t
 t
-N
-G
-B
-g
-P
+A
+U
+I
+U
+n
 t
 t
 c
@@ -292,13 +297,13 @@ j
 j
 c
 c
-t
-t
-H
-f
-s
-t
-t
+S
+S
+b
+g
+J
+S
+S
 c
 c
 j
@@ -311,9 +316,9 @@ j
 c
 c
 e
-t
-d
-t
+S
+m
+S
 e
 c
 c
@@ -328,9 +333,9 @@ j
 j
 c
 c
+S
 t
-m
-t
+S
 c
 c
 j
