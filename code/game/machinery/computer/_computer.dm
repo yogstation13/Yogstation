@@ -14,7 +14,6 @@
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
 	var/time_to_scewdrive = 20
-	var/ambience = TRUE
 	var/ambience_last = 0		//world.time of last time it played ambience
 	var/ambience_dely = 100		//Minimum delay between time ambience plays
 
@@ -145,8 +144,6 @@
 	qdel(src)
 
 /obj/machinery/computer/proc/playambience()
-	if(!ambience)
-		return
 	if((src.ambience_last + src.ambience_dely) >= world.time)
 		return
 	if(prob(20))
