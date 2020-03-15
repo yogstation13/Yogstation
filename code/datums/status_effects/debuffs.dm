@@ -263,6 +263,7 @@
 	var/severity = 0 //goes up to a maximum of MAX_MANIA_SEVERITY
 	var/warned_turnoff = FALSE //if we've warned that the motor is off
 	var/warned_outofsight = FALSE //if we've warned that the target is out of sight of the motor
+	var/agent = FALSE //can the motor convert
 	var/static/list/mania_messages = list("Go nuts.", "Take a crack at crazy.", "Make a bid for insanity.", "Get kooky.", "Move towards mania.", "Become bewildered.", "Wax wild.", \
 	"Go round the bend.", "Land in lunacy.", "Try dementia.", "Strive to get a screw loose.", "Advance forward.", "Approach the transmitter.", "Touch the antennae.", \
 	"Move towards the mania motor.", "Come closer.", "Get over here already!", "Keep your eyes on the motor.")
@@ -275,6 +276,7 @@
 	. = ..()
 	if(.)
 		motor = new_motor
+		agent = motor.agent
 
 /datum/status_effect/maniamotor/Destroy()
 	motor = null
@@ -325,7 +327,7 @@
 		severity = 0
 	else if(!owner.anti_magic_check(chargecost = 0) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
-		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
+		if(!agent && (owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT))
 			if(is_eligible_servant(owner))
 				to_chat(owner, "<span class='sevtug[span_part]'>\"[text2ratvar("You are mine and his, now.")]\"</span>")
 				if(add_servant_of_ratvar(owner))

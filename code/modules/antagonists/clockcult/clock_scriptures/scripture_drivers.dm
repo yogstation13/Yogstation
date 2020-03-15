@@ -62,6 +62,7 @@
 	sort_priority = 3
 	quickbind = TRUE
 	quickbind_desc = "Creates a Sigil of Submission, which will convert non-Servants that remain on it."
+	requires_cult = TRUE //no conversion
 
 
 //Kindle: Charges the slab with blazing energy. It can be released to stun and silence a target.
@@ -88,6 +89,7 @@
 	important = TRUE
 	quickbind = TRUE
 	quickbind_desc = "Stuns and mutes a target from a short range."
+	requires_cult = TRUE //hahahahaha no
 
 //Hateful Manacles: Applies restraints from melee over several seconds. The restraints function like handcuffs and break on removal.
 /datum/clockwork_scripture/ranged_ability/hateful_manacles
@@ -186,6 +188,7 @@
 	quickbind = TRUE
 	quickbind_desc = "Returns you to Reebe."
 	var/client_color
+	requires_cult = TRUE //you don't have one so :shrug:
 
 /datum/clockwork_scripture/abscond/check_special_requirements()
 	if(is_reebe(invoker.z))

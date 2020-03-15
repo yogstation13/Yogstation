@@ -5,9 +5,19 @@
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
 	antag_moodlet = /datum/mood_event/cult
-	var/datum/action/innate/hierophant/hierophant_network = new()
+	var/datum/action/innate/hierophant/hierophant_network = new
 	var/datum/team/clockcult/clock_team
-	var/make_team = TRUE //This should be only false for tutorial scarabs
+	var/make_team = TRUE			//This should be only false for tutorial scarabs or traitorcultists
+	var/agent = FALSE			//Can't use stuff deemed "too dangerous for non-cult rounds"
+	var/ignore_holy_water = FALSE	//Can the cultists be deconverted with holy water? set to no for traitorcultists because they aren't conversion antags
+
+/datum/antagonist/clockcult/agent
+	name = "ClockCult Agent"
+	antagpanel_category = "Cult Agent"
+	silent = TRUE
+	make_team = FALSE
+	agent = TRUE
+	ignore_holy_water = TRUE
 
 /datum/antagonist/clockcult/silent
 	silent = TRUE
@@ -177,6 +187,16 @@
 	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
 
+/datum/antagonist/clockcult/agent/admin_add(datum/mind/new_owner, mob/admin)
+	add_servant_of_ratvar(new_owner.current, TRUE, FALSE, TRUE)
+	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a Clockwork Agent.")
+	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a Clockwork Agent.")
+
+/datum/antagonist/clockcult/agent/admin_remove(mob/user)
+	remove_servant_of_ratvar(owner.current, TRUE)
+	message_admins("[key_name_admin(user)] has removed clockwork agent status from [key_name_admin(owner)].")
+	log_admin("[key_name(user)] has removed clockwork agent status from [key_name(owner)].")
+
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
 	.["Give slab"] = CALLBACK(src,.proc/admin_give_slab)
@@ -191,17 +211,6 @@
 	name = "Clockcult"
 	var/list/objective
 	var/datum/mind/eminence
-
-/datum/team/clockcult/New(starting_members)
-	. = ..()
-	START_PROCESSING(SSobj,src)
-
-/datum/team/clockcult/process()
-	GLOB.scripture_states = scripture_unlock_alert(GLOB.scripture_states)
-
-/datum/team/clockcult/Destroy(force, ...)
-	STOP_PROCESSING(SSobj,src)
-	. = ..()
 
 /datum/team/clockcult/proc/check_clockwork_victory()
 	if(GLOB.clockwork_gateway_activated)

@@ -50,7 +50,6 @@
 		return FALSE
 	return ..()
 
-
 //Vitality Matrix: Creates a sigil which will drain health from nonservants and can use that health to heal or even revive servants.
 /datum/clockwork_scripture/create_object/vitality_matrix
 	descname = "Trap, Damage to Healing"
@@ -77,6 +76,10 @@
 		return FALSE
 	return ..()
 
+/datum/clockwork_scripture/create_object/vitality_matrix/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		return /obj/effect/clockwork/sigil/vitality/agent
+	return ..()
 
 //Judicial Visor: Creates a judicial visor, which can smite an area.
 /datum/clockwork_scripture/create_object/judicial_visor

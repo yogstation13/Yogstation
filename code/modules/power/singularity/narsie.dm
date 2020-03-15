@@ -51,7 +51,8 @@
 	for(var/datum/antagonist/cult/C in GLOB.antagonists)
 		if(!C.owner)
 			continue
-		all_cults |= C.cult_team
+		if(C.cult_team)
+			all_cults |= C.cult_team
 	for(var/datum/team/cult/T in all_cults)
 		deltimer(T.blood_target_reset_timer)
 		T.blood_target = src
