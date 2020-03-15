@@ -16,11 +16,9 @@
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer")
 	protected_jobs = list()
-	//required_players = 40
-	//required_enemies = 3
+	required_players = 40
+	required_enemies = 3
 	recommended_enemies = 3
-	required_players = 2
-	required_enemies = 1
 	enemy_minimum_age = 14
 
 	announce_span = "zombie"
@@ -41,12 +39,12 @@
 		restricted_jobs += "Assistant"
 
 	//Scaling!
-	recommended_enemies = 1 //+ round(num_players() / ZOMBIE_SCALING_COEFFICIENT) //Minimum 1 enemy, at 40 pop (1 + 40/18.5) = 2.16161, rounded to 1+2 = 3
+	recommended_enemies = 1 + round(num_players() / ZOMBIE_SCALING_COEFFICIENT) //Minimum 1 enemy, at 40 pop (1 + 40/18.5) = 2.16161, rounded to 1+2 = 3
 	var/remaining = (num_players() % ZOMBIE_SCALING_COEFFICIENT) * 10 / 2.5 //Basically the % of how close the population is toward adding another zombie. Division is on purpose.
 	//12% chance of 4 zombies at 40 players,
 	//72% at 55 players.
 	if(prob(remaining))
-		//recommended_enemies++
+		recommended_enemies++
 
 	for(var/zombies = 1 to recommended_enemies)
 		if(!antag_candidates.len)
