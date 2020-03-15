@@ -148,7 +148,7 @@
 
 /mob/living/carbon/proc/corrode_object(atom/target, mob/living/carbon/user = usr)
 	if(target in oview(1, user))
-		if(target.acid_act(200, 100))
+		if(target.acid_act(350, 150))
 			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
 			return TRUE
 		else
