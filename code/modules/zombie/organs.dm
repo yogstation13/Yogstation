@@ -90,13 +90,39 @@
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	owner.do_jitter_animation(living_transformation_time)
 	owner.Stun(living_transformation_time)
-	to_chat(owner, "<span class='alertalien'>You are now a zombie!</span>")
-	if(!iszombo(owner))
-		var/datum/mind/cult_mind = owner.mind
-		var/datum/antagonist/zombie/new_cultist = new()
+	to_chat(owner, "<span class='alertalien'>You are now a zombie! Help your fellow allies take over the station!</span>")
 
-		if(cult_mind.add_antag_datum(new_cultist, GLOB.main_zombie_team))
-			return TRUE
 
 /obj/item/organ/zombie_infection/nodamage
 	causes_damage = FALSE
+
+
+/obj/item/organ/zombie_infection/gamemode/zombify()
+	timer_id = null
+
+	if(!converts_living && owner.stat != DEAD)
+		return
+
+	if(!iszombie(owner))
+		old_species = owner.dna.species.type
+		owner.set_species(/datum/species/zombie/infectious)
+
+	var/stand_up = (owner.stat == DEAD) || (owner.stat == UNCONSCIOUS)
+
+	//Fully heal the zombie's damage the first time they rise
+	owner.setToxLoss(0, 0)
+	owner.setOxyLoss(0, 0)
+	owner.heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE)
+
+	if(!owner.revive())
+		return
+
+	owner.grab_ghost()
+	owner.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()][stand_up ? " stagger to [owner.p_their()] feet and" : ""] gain a ravenous hunger in [owner.p_their()] eyes!</span>", "<span class='alien'>You HUNGER!</span>")
+	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
+	owner.do_jitter_animation(living_transformation_time)
+	owner.Stun(living_transformation_time)
+	to_chat(owner, "<span class='alertalien'>You are now a zombie! Help your fellow allies take over the station!</span>")
+
+	if(!isinfected(owner)) //Makes them the *actual* antag, instead of just a zombie.
+		SSticker.mode.add_zombie(our_mind)

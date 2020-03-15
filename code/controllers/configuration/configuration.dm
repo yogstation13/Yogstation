@@ -238,7 +238,6 @@
 				if(M.votable)
 					votable_modes += M.config_tag
 		qdel(M)
-	modes += "zombie"
 	votable_modes += "secret"
 
 /datum/controller/configuration/proc/LoadMOTD()

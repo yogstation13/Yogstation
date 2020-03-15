@@ -129,7 +129,7 @@
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 
 /datum/action/innate/zombie/IsAvailable()
-	if(!iszombo(owner))
+	if(!isinfected(owner))
 		return FALSE
 	return ..()
 

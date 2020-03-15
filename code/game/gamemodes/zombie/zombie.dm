@@ -3,7 +3,7 @@ GLOBAL_VAR(main_zombie_team)
 /datum/game_mode
 	var/list/datum/mind/zombies = list()
 
-/proc/iszombo(mob/living/M)
+/proc/isinfected(mob/living/M)
 	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/zombie)
 
 
@@ -60,7 +60,6 @@ GLOBAL_VAR(main_zombie_team)
 
 /datum/game_mode/zombie/post_setup()
 	main = new
-	GLOB.main_zombie_team = main
 
 	for(var/datum/mind/cult_mind in cultists_to_cult)
 		add_zombie(cult_mind, 0, equip=TRUE, cult_team = main)
@@ -69,19 +68,16 @@ GLOBAL_VAR(main_zombie_team)
 
 	. = ..()
 
-/datum/game_mode/proc/add_zombie(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
-	if (!istype(cult_mind))
+/datum/game_mode/proc/add_zombie(datum/mind/zombie_mind)
+	if (!istype(zombie_mind))
+		return FALSE
+	if(!main_team)
 		return FALSE
 
-	var/datum/antagonist/zombie/new_cultist = new()
+	var/datum/antagonist/zombie/new_zombie = new()
 
-	if(cult_mind.add_antag_datum(new_cultist, cult_team))
+	if(zombie_mind.add_antag_datum(new_zombie, main_team))
 		return TRUE
-
-
-/datum/game_mode/zombie/proc/check_cult_victory()
-	return FALSE
-
 
 /datum/game_mode/zombie/check_finished()
 	return FALSE
