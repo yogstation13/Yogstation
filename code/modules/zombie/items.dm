@@ -13,6 +13,7 @@
 	hitsound = 'sound/hallucinations/growl1.ogg'
 	force = 21 // Just enough to break airlocks with melee attacks
 	damtype = "brute"
+	var/inserted_organ = /obj/item/organ/zombie_infection
 
 /obj/item/zombie_hand/Initialize()
 	. = ..()
@@ -36,11 +37,11 @@
 			var/mob/living/carbon/human/H = target
 			var/flesh_wound = ran_zone(user.zone_selected)
 			if(prob(100-H.getarmor(flesh_wound, "melee")))
-				try_to_zombie_infect(target)
+				try_to_zombie_infect(target, inserted_organ)
 		else
 			check_feast(target, user)
 
-/proc/try_to_zombie_infect(mob/living/carbon/human/target)
+/proc/try_to_zombie_infect(mob/living/carbon/human/target, organ)
 	CHECK_DNA_AND_SPECIES(target)
 
 	if(NOZOMBIE in target.dna.species.species_traits)
@@ -51,7 +52,7 @@
 	var/obj/item/organ/zombie_infection/infection
 	infection = target.getorganslot(ORGAN_SLOT_ZOMBIE)
 	if(!infection)
-		infection = new()
+		infection = new organ()
 		infection.Insert(target)
 
 
@@ -77,3 +78,9 @@
 		user.updatehealth()
 		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -hp_gained) // Zom Bee gibbers "BRAAAAISNSs!1!"
 		user.set_nutrition(min(user.nutrition + hp_gained, NUTRITION_LEVEL_FULL))
+
+/obj/item/zombie_hand/gamemode
+	inserted_organ = /obj/item/organ/zombie_infection/gamemode
+
+/obj/item/zombie_hand/gamemode/runner
+	force = 15

@@ -1,4 +1,5 @@
-GLOBAL_VAR(main_zombie_team)
+#define ZOMBIE_SCALING_COEFFICIENT 18.5 //Roughly one new zombie at roundstart per this many players
+
 
 /datum/game_mode
 	var/list/datum/mind/zombies = list()
@@ -11,23 +12,25 @@ GLOBAL_VAR(main_zombie_team)
 	name = "zombie"
 	config_tag = "zombie"
 	report_type = "zombie"
-	antag_flag = ROLE_BLOB
-	false_report_weight = 0
+	antag_flag = ROLE_ZOMBIE
+	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer")
 	protected_jobs = list()
-	required_players = 1
+	//required_players = 40
+	//required_enemies = 3
+	recommended_enemies = 3
+	required_players = 2
 	required_enemies = 1
-	recommended_enemies =1
-	enemy_minimum_age = 0
+	enemy_minimum_age = 14
 
-	announce_span = "hey"
-	announce_text = " hrtSie!\n\
-	<span class='cult'>Cultists</span>:reyu ill.\n\
-	<span class='notice'>htr</span>: Prevent htr out."
+	announce_span = "zombie"
+	announce_text = "Some crew members have been infected with a zombie virus!\n\
+	<span class='cult'>Zombies</span>: Take over the station!.\n\
+	<span class='notice'>Crew</span>: Kill the zombies and escape!."
 
-	var/list/cultists_to_cult = list() //the cultists we'll convert
+	var/list/people_to_infect = list() //the cultists we'll convert
 
-	var/datum/team/zombie/main
+	var/datum/team/zombie/main_team
 
 
 /datum/game_mode/zombie/pre_setup()
@@ -37,47 +40,67 @@ GLOBAL_VAR(main_zombie_team)
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	//cult scaling goes here
-	recommended_enemies = 3
+	//Scaling!
+	recommended_enemies = 1 //+ round(num_players() / ZOMBIE_SCALING_COEFFICIENT) //Minimum 1 enemy, at 40 pop (1 + 40/18.5) = 2.16161, rounded to 1+2 = 3
+	var/remaining = (num_players() % ZOMBIE_SCALING_COEFFICIENT) * 10 / 2.5 //Basically the % of how close the population is toward adding another zombie. Division is on purpose.
+	//12% chance of 4 zombies at 40 players,
+	//72% at 55 players.
+	if(prob(remaining))
+		//recommended_enemies++
 
-
-	for(var/cultists_number = 1 to recommended_enemies)
+	for(var/zombies = 1 to recommended_enemies)
 		if(!antag_candidates.len)
 			break
-		var/datum/mind/cultist = antag_pick(antag_candidates)
-		antag_candidates -= cultist
-		cultists_to_cult += cultist
-		cultist.special_role = ROLE_BLOB
-		cultist.restricted_roles = restricted_jobs
-		//log_game("[key_name(cultist)] has been selected as a cultist") | yogs - redundant
+		var/datum/mind/zombie = antag_pick(antag_candidates)
+		antag_candidates -= zombie
+		people_to_infect += zombie
+		zombie.special_role = ROLE_ZOMBIE
+		zombie.restricted_roles = restricted_jobs
 
-	if(cultists_to_cult.len>=required_enemies)
+	if(people_to_infect.len >= required_enemies)
 		return TRUE
 	else
-		setup_error = "Not enough cultist candidates"
+		setup_error = "Not enough zombie candidates."
 		return FALSE
 
 
 /datum/game_mode/zombie/post_setup()
-	main = new
+	main_team = new
 
-	for(var/datum/mind/cult_mind in cultists_to_cult)
-		add_zombie(cult_mind, 0, equip=TRUE, cult_team = main)
+	main_team.setup_objectives()
 
-	main.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
+	for(var/datum/mind/minds in people_to_infect)
+		var/datum/antagonist/zombie/antag = add_zombie(minds)
+		if(!istype(antag))
+			continue
+		antag.start_timer()
 
+	addtimer(CALLBACK(src, .proc/call_shuttle), 90 MINUTES) //Shuttle called after 1.5 hours if it hasn't been
 	. = ..()
 
-/datum/game_mode/proc/add_zombie(datum/mind/zombie_mind)
+/datum/game_mode/zombie/proc/call_shuttle()
+	if(EMERGENCY_IDLE_OR_RECALLED)
+		priority_announce("Foreign Biosignatures present onboard station. Activating automatic evacuation system...")
+		SSshuttle.emergency.request(null, set_coefficient=0.5)
+		SSshuttle.emergencyNoRecall = TRUE
+
+/datum/game_mode/zombie/proc/add_zombie(datum/mind/zombie_mind)
 	if (!istype(zombie_mind))
 		return FALSE
+
 	if(!main_team)
 		return FALSE
 
 	var/datum/antagonist/zombie/new_zombie = new()
 
-	if(zombie_mind.add_antag_datum(new_zombie, main_team))
-		return TRUE
+	return zombie_mind.add_antag_datum(new_zombie, main_team)
 
 /datum/game_mode/zombie/check_finished()
+	if(SSshuttle.emergency && (SSshuttle.emergency.mode == SHUTTLE_ENDGAME))
+		return TRUE
+	if(station_was_nuked)
+		return TRUE
 	return FALSE
+
+
+#undef ZOMBIE_SCALING_COEFFICIENT

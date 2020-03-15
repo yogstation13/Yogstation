@@ -1,4 +1,5 @@
 #define REGENERATION_DELAY 60  // After taking damage, how long it takes for automatic regeneration to begin
+#define SPIT_COOLDOWN 3000
 
 /datum/species/zombie
 	// 1spooky
@@ -8,7 +9,7 @@
 	sexes = 0
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING)
-	inherent_traits = list(TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE ,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
+	inherent_traits = list(TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	mutanttongue = /obj/item/organ/tongue/zombie
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -91,9 +92,61 @@
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
-
-/datum/species/zombie/gamemode
+//The special zombie you get turned into in the zombie gamemode
+/datum/species/zombie/infectious/gamemode
+	mutanthands = /obj/item/zombie_hand/gamemode
 	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
 	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE)
+	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
+
+/datum/species/zombie/infectious/gamemode/runner
+	mutanthands = /obj/item/zombie_hand/gamemode/runner
+	armor = 10 // 120 damage to KO a zombie, which kills it
+	speedmod = 1
+	brutemod = 1.1
+
+/datum/species/zombie/infectious/gamemode/juggernaut
+	armor = 30 // 120 damage to KO a zombie, which kills it
+	brutemod = 0.9
+	speedmod = 2
+	heal_rate = 1.1
+
+/datum/species/zombie/infectious/gamemode/spitter
+	armor = 10 // 120 damage to KO a zombie, which kills it
+	brutemod = 1.1
+	burnmod = 1.1
+
+
+/mob/living/carbon/proc/spitter_zombie_acid(O as obj|turf in oview(1)) // right click menu verb ugh
+	set name = "Corrosive Acid"
+
+	if(!isinfected(usr))
+		return
+	var/mob/living/carbon/user = usr
+	var/datum/antagonist/zombie/A = locate() in user.mind.antag_datums
+	if(!A)
+		return
+
+	if(A.spit_cooldown > world.time)
+		to_chat(user, "<span class='userdanger'>Please wait. You will be able to use this ability in [(A.spit_cooldown - world.time) / 10] seconds</span>")
+		return
+
+	if(corrode_object(O, user))
+		A.spit_cooldown = world.time + SPIT_COOLDOWN
+
+/mob/living/carbon/proc/corrode_object(atom/target, mob/living/carbon/user = usr)
+	if(target in oview(1, user))
+		if(target.acid_act(200, 100))
+			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
+			return TRUE
+		else
+			to_chat(user, "<span class='noticealien'>You cannot dissolve this object.</span>")
+
+
+			return FALSE
+	else
+		to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
+		return FALSE
 
 #undef REGENERATION_DELAY
+#undef SPIT_COOLDOWN

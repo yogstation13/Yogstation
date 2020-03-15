@@ -4,10 +4,19 @@
 	antagpanel_category = "Zombie"
 
 	var/datum/action/innate/zombie/zomb/zombify = new
-	var/datum/action/innate/zombie/talk/talko = new
-	job_rank = ROLE_BLOB
+
+	var/datum/action/innate/zombie/talk/communicate = new
+
+	var/datum/action/innate/zombie/choose_class/evolution = new
+
+	job_rank = ROLE_ZOMBIE
+
 	var/datum/team/zombie/team
-	var/hud_type = "rev"
+	var/hud_type = "zombie"
+
+	var/class_chosen = FALSE
+
+	var/spit_cooldown = 0
 
 
 /datum/antagonist/zombie/get_team()
@@ -15,7 +24,7 @@
 
 /datum/antagonist/zombie/create_team(datum/team/zombie/new_team)
 	if(!new_team)
-		//todo remove this and allow admin buttons to create more than one cult
+
 		for(var/datum/antagonist/zombie/H in GLOB.antagonists)
 			if(!H.owner)
 				continue
@@ -34,26 +43,26 @@
 
 /datum/antagonist/zombie/Destroy()
 	QDEL_NULL(zombify)
-	QDEL_NULL(talko)
+	QDEL_NULL(communicate)
 	return ..()
 
 
 /datum/antagonist/zombie/greet()
-	to_chat(owner.current, "<B><font size=3 color=red>You have been infected with a zombie virus! In 10-15 minutes you will be able to turn into a zombie...</font><B>")
-	to_chat(owner.current, "<b>Use the button at the top of the screen (When it appears) to activate the infection. It will kill you, but you will rise as a zombie shortly after!</a><b>") //Yogs
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/bloodcult.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
+	to_chat(owner.current, "<B><font size=3 color=red>You have been infected with a zombie virus! In 15 minutes you will be able to turn into a zombie...</font><B>")
+	to_chat(owner.current, "<b>Use the button at the top of the screen (When it appears) to activate the infection. It will kill you, but you will rise as a zombie shortly after!<b>") //Yogs
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ling_aler.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
 	owner.announce_objectives()
 
 /datum/antagonist/zombie/on_gain()
 	. = ..()
 	var/mob/living/current = owner.current
 	add_objectives()
-	SSticker.mode.zombies += owner // Only add after they've been given objectives
+	SSticker.mode.zombies += owner
 
 	current.log_message("has been made a zombie!", LOG_ATTACK, color="#960000")
 
-	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
-	revhud.join_hud(current)
+	var/datum/atom_hud/antag/zombie_hud = GLOB.huds[ANTAG_HUD_ZOMBIE]
+	zombie_hud.join_hud(current)
 	set_antag_hud(current, hud_type)
 
 
@@ -61,23 +70,30 @@
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction |= "zombies"
-	talko.Grant(current)
+	communicate.Grant(current)
 
 /datum/antagonist/zombie/remove_innate_effects()
 	. = ..()
 	var/mob/living/current = owner.current
-	talko.Remove(current)
+	communicate.Remove(current)
 	current.faction -= "zombies"
 
 
 /datum/antagonist/zombie/on_removal()
 	SSticker.mode.zombies -= owner
 
-	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
-	revhud.leave_hud(owner.current)
+	var/datum/atom_hud/antag/zombie_hud = GLOB.huds[ANTAG_HUD_ZOMBIE]
+	zombie_hud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
 	. = ..()
 
+
+/datum/antagonist/zombie/proc/start_timer()
+	addtimer(CALLBACK(src, .proc/add_button_timed), 15 MINUTES)
+
+/datum/antagonist/zombie/proc/add_button_timed()
+	zombify.Grant(owner.current)
+	to_chat(owner.current, "<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie.<b>")
 
 /datum/antagonist/zombie/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.add_antag_datum(src)
@@ -100,21 +116,28 @@
 /datum/team/zombie
 	name = "Zombies"
 
-
-
 /datum/team/zombie/proc/setup_objectives()
-	//SUMMON OBJECTIVE
 
 	var/datum/objective/custom/obj = new()
-	obj.name = "Kill EVERYONE!"
+	obj.name = "Escape on the shuttle, while gathering as many infected as possible!"
+	obj.explanation_text = "Escape on the shuttle, while gathering as many infected as possible!"
 	obj.completed = TRUE
 	objectives += obj
 
 
+/datum/team/zombie/proc/zombies_on_shuttle()
+	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+		if(isinfected(H) && (H.onCentCom() || H.onSyndieBase()))
+			return TRUE
+	return FALSE
 
 /datum/team/zombie/roundend_report()
 	var/list/parts = list()
-	parts += "<span class='greentext big'>BRAINS</span>"
+	if(zombies_on_shuttle())
+		parts += "<span class='greentext big'>BRAINS! The zombies have made it to CentCom!</span>"
+	else
+		parts += "<span class='redtext big'>Target destroyed. The crew has stopped the zombies!</span>"
+
 
 	if(members.len)
 		parts += "<span class='header'>The zombies were:</span>"
@@ -123,7 +146,7 @@
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/action/innate/zombie
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
@@ -136,26 +159,31 @@
 /datum/action/innate/zombie/zomb
 	name = "Zombify!"
 	desc = "Initiate the infection, and kill this host.. THIS ACTION IS INSTANT."
-	button_icon_state = "cult_comms"
+	button_icon_state = "chameleon_skin"
 
 /datum/action/innate/zombie/zomb/Activate()
 	var/mob/living/carbon/human/H = usr
+	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+
 	if(alert(H, "Are you sure you want to kill yourself, and revive as a zombie some time after?", "Confirmation", "Yes", "No") == "No")
 		return FALSE
 
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
-		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
+		var/obj/item/organ/zombie_infection/gamemode/ZI = new()
 		ZI.Insert(H)
 
 	H.death()
+	Z.zombify.Remove(H)
+
 
 /datum/action/innate/zombie/talk
 	name = "Chat"
-	desc = "TALK TO ALL OF THEM!"
+	desc = "Chat with your fellow infected."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "cult_comms"
 
 /datum/action/innate/zombie/talk/Activate()
-	var/input = stripped_input(usr, "Please choose a message to tell to the other zombies.", "Voice of Blood", "")
+	var/input = stripped_input(usr, "Please choose a message to tell to the other zombies.", "Infected Communications", "")
 	if(!input || !IsAvailable())
 		return
 
@@ -167,13 +195,57 @@
 		return
 	var/title = "Zombie"
 	var/span = "cult"
-	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	my_message = "<span class='[span]'><b>\[[title]] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		if(iszombo(M))
+		if(isinfected(M))
 			to_chat(M, my_message)
 		else if(M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, user)
 			to_chat(M, "[link] [my_message]")
 
-	user.log_talk(message, LOG_SAY, tag="cult")
+	user.log_talk(message, LOG_SAY, tag="zombie")
+
+/datum/action/innate/zombie/choose_class
+	name = "Evolve"
+	desc = "Evolve into a special class."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "cultfist"
+
+/datum/action/innate/zombie/choose_class/Activate()
+	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Runner", "Juggernaut", "Spitter")
+	if(!selected || !IsAvailable())
+		return
+
+	evolve(selected)
+
+/datum/action/innate/zombie/choose_class/IsAvailable()
+	if(!isinfected(owner))
+		return
+	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+
+	if(Z.class_chosen)
+		return FALSE
+	return ..()
+
+/datum/action/innate/zombie/choose_class/proc/evolve(class)
+	var/mob/living/carbon/human/H = owner
+	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+	if(!isinfected(H))
+		return
+	switch(class)
+		if("Runner")
+			H.set_species(/datum/species/zombie/infectious/gamemode/runner)
+			to_chat(owner, "<span class='warning'>You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though.</span>")
+		if("Juggernaut")
+			H.set_species(/datum/species/zombie/infectious/gamemode/juggernaut)
+			to_chat(owner, "<span class='warning'>You can now take quite a beating, and heal a bit slower.</span>")
+		if("Spitter")
+			H.set_species(/datum/species/zombie/infectious/gamemode/spitter)
+			H.verbs.Add(/mob/living/carbon/proc/spitter_zombie_acid)
+			to_chat(owner, "<span class='warning'>You can now right click on walls and doors, and cover them in acid! You are weaker in combat though.</span>")
+
+	owner.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!</span>", "<span class='alien'>You have evolved into a [class]</span>")
+	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
+	H.do_jitter_animation(15)
+	Z.evolution.Remove(H)

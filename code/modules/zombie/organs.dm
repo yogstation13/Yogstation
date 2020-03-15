@@ -90,7 +90,7 @@
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	owner.do_jitter_animation(living_transformation_time)
 	owner.Stun(living_transformation_time)
-	to_chat(owner, "<span class='alertalien'>You are now a zombie! Help your fellow allies take over the station!</span>")
+	to_chat(owner, "<span class='alertalien'>You are now a zombie!</span>")
 
 
 /obj/item/organ/zombie_infection/nodamage
@@ -105,7 +105,7 @@
 
 	if(!iszombie(owner))
 		old_species = owner.dna.species.type
-		owner.set_species(/datum/species/zombie/infectious)
+		owner.set_species(/datum/species/zombie/infectious/gamemode)
 
 	var/stand_up = (owner.stat == DEAD) || (owner.stat == UNCONSCIOUS)
 
@@ -125,4 +125,9 @@
 	to_chat(owner, "<span class='alertalien'>You are now a zombie! Help your fellow allies take over the station!</span>")
 
 	if(!isinfected(owner)) //Makes them the *actual* antag, instead of just a zombie.
-		SSticker.mode.add_zombie(our_mind)
+		var/datum/game_mode/zombie/GM = SSticker.mode
+		if(!istype(GM))
+			return
+		GM.add_zombie(owner.mind)
+		var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+		Z.evolution.Grant(owner)
