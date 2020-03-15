@@ -14,6 +14,8 @@
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
 	var/time_to_scewdrive = 20
+	var/ambience_last = 0		//world.time of last time it played ambience
+	var/ambience_dely = 100		//Minimum delay between time ambience plays
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -30,6 +32,7 @@
 /obj/machinery/computer/process()
 	if(stat & (NOPOWER|BROKEN))
 		return 0
+	playambience()
 	return 1
 
 /obj/machinery/computer/ratvar_act()
@@ -139,3 +142,20 @@
 			C.forceMove(loc)
 
 	qdel(src)
+
+/obj/machinery/computer/proc/playambience()
+	if((src.ambience_last + src.ambience_dely) >= world.time)
+		return
+	if(prob(20))
+		ambience_last = world.time
+		playsound(src, pick(
+		'sound/machines/computer/combine-terminal-idle3.ogg',
+		'sound/machines/computer/combine-terminal-idle4.ogg',
+		'sound/machines/computer/computalk1.ogg',
+		'sound/machines/computer/computalk2.ogg',
+		'sound/machines/computer/computer-tape2.ogg',
+		'sound/machines/computer/computer-working2.ogg',
+		'sound/machines/computer/machine-office-02.ogg',
+		'sound/machines/computer/machine-office-09.ogg',
+		'sound/machines/computer/manhack-machine-loop1.ogg'), 25, 0)
+	return
