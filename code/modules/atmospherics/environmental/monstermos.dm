@@ -32,10 +32,9 @@
 		return
 	eq_transfer_dirs = null // null it out to prevent infinite recursion.
 	var/planet_transfer_amount = transfer_dirs[src] || 0
-	var/list/cached_gases = air.gases
 	var/sum
 	if(planet_transfer_amount > 0)
-		TOTAL_MOLES(cached_gases, sum)
+		sum = air.total_moles()
 		if(sum < planet_transfer_amount)
 			finalize_eq_neighbors(transfer_dirs)
 		remove_air(planet_transfer_amount)
@@ -43,13 +42,9 @@
 	if(planet_transfer_amount < 0) // succ gases from above.
 		var/datum/gas_mixture/G = new
 		G.copy_from_turf(src)
-		var/list/planet_gases = G.gases
-		var/planet_sum
-		TOTAL_MOLES(planet_gases, planet_sum)
+		var/planet_sum = G.total_moles()
 		if(planet_sum > 0) // oi you cant just suck gases from turfs with no air.
-			var/multiplier = -planet_transfer_amount / planet_sum
-			for(var/id in planet_gases)
-				planet_gases[id][MOLES] *= multiplier
+			G.multiply(-planet_transfer_amount / planet_sum)
 			assume_air(G)
 
 	for(var/t in transfer_dirs)
@@ -60,7 +55,7 @@
 		if(amount > 0)
 			// gas push time baby
 			// but first gotta make sure we got enough gas for that.
-			TOTAL_MOLES(cached_gases, sum)
+			sum = air.total_moles()
 			if(sum < amount)
 				finalize_eq_neighbors(transfer_dirs)
 			if(T.eq_transfer_dirs)
@@ -89,20 +84,19 @@
 	// because one of them is 101.375 kPa of hyper-noblium at 1700K temperature, and the other is 101.375 kPa of nitrogen at 43.15K temperature,
 	// and that's just the way the math works out in SS13. And there's no reactions going on - hyper-noblium stops all reactions from happening.
 	// I'm pretty sure real gases don't work this way. Oh yeah this property can be used to make bombs too I guess so thats neat
+	return
 
 	if(!istype(starting_point) || starting_point.last_eq_cycle >= cyclenum)
 		return // if we've alrady done it then piss off.
 
 	// first gotta figure out if it's even necessary
 	var/starting_moles
-	var/list/starting_gases = starting_point.air.gases
+	var/datum/gas_mixture/starting_air = starting_point.air
 	var/run_monstermos = FALSE
-	TOTAL_MOLES(starting_gases, starting_moles)
+	starting_moles = starting_air.total_moles()
 	for(var/t in starting_point.atmos_adjacent_turfs)
-		var/turf/open/T = t;
-		var/list/comparison_gases = T.air.gases
-		var/comparison_moles
-		TOTAL_MOLES(comparison_gases, comparison_moles)
+		var/turf/open/T = t
+		var/comparison_moles = T.air.total_moles()
 		if(abs(comparison_moles - starting_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
 			run_monstermos = TRUE
 			break
@@ -125,9 +119,7 @@
 		T.eq_transfer_dirs = list()
 		T.eq_distance_score = i
 		if(i < MONSTERMOS_TURF_LIMIT)
-			var/turf_moles
-			var/list/cached_gases = T.air.gases
-			TOTAL_MOLES(cached_gases, turf_moles)
+			var/turf_moles = T.air.total_moles()
 			T.eq_mole_delta = turf_moles
 			T.eq_fast_done = FALSE
 			if(T.planetary_atmos)
@@ -283,9 +275,7 @@
 		var/turf/open/sample = planet_turfs[1] // we're gonna assume all the planet turfs are the same.
 		var/datum/gas_mixture/G = new
 		G.copy_from_turf(sample)
-		var/list/planet_gases = G.gases
-		var/planet_sum
-		TOTAL_MOLES(planet_gases, planet_sum)
+		var/planet_sum = G.total_moles()
 		var/target_delta = planet_sum - average_moles
 
 		var/list/progression_order = list()
@@ -418,15 +408,13 @@
 		var/turf/open/T2 = get_step_multiz(T, T.pressure_direction)
 		if(!istype(T2))
 			continue
-		var/list/cached_gases = T.air.gases
-		var/sum
-		TOTAL_MOLES(cached_gases, sum)
+		var/sum = T.air.total_moles()
 		total_gases_deleted += sum
 		T.pressure_difference += sum // our pressure gets applied to our tile
 		T2.pressure_difference += T.pressure_difference // then our tile gets propogated to the next tile.
 		if(!T2.pressure_direction)
 			T2.pressure_direction = T.pressure_direction // extend wallslam hell into space a bit, that way you're not totally safe from WALLSLAM HELL when in space.
-		cached_gases.Cut() // oh yeah its now vacuum I guess too, that's pretty important I think.
+		T.air.clear() // oh yeah its now vacuum I guess too, that's pretty important I think.
 		T.update_visuals() // yeah removing the plasma overlay is probably important.
 		if(istype(T, /turf/open/floor) && sum > 20 && prob(CLAMP(sum / 10, 0, 30)))
 			var/turf/open/floor/F = T
