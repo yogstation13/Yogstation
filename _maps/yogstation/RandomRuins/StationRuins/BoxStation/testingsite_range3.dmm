@@ -1,23 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "c" = (
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
-"d" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "e" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
@@ -31,23 +16,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"g" = (
-/obj/machinery/camera{
-	active_power_usage = 0;
-	c_tag = "Bomb Test Site";
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
-	dir = 8;
-	invuln = 1;
-	name = "Hardened Bomb-Test Camera";
-	network = list("toxins");
-	use_power = 0
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/item/target/syndicate,
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "h" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -57,6 +25,10 @@
 "j" = (
 /turf/open/space/basic,
 /area/space)
+"k" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "l" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -71,6 +43,52 @@
 	},
 /area/science/test_area)
 "n" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/target/clown,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"o" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/grown/bananapeel,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"p" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"q" = (
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_y = 3
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"r" = (
+/obj/structure/chair{
+	dir = 8
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -83,54 +101,42 @@
 /obj/item/beacon,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"y" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/chair,
+"B" = (
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"A" = (
+"G" = (
+/obj/item/target/clown,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"H" = (
+/obj/structure/chair{
+	dir = 8
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"B" = (
-/turf/open/floor/plating/airless,
-/area/science/test_area)
-"C" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/science/test_area)
-"G" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/flashlight/lamp,
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "I" = (
-/obj/item/toy/nuke,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/target/clown,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "J" = (
+/obj/structure/chair,
 /obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/chair{
-	dir = 8
+	dir = 9
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"K" = (
-/obj/effect/turf_decal/stripes/line,
+"N" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "O" = (
@@ -139,12 +145,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"R" = (
-/obj/structure/window/reinforced{
+"P" = (
+/obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line,
-/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "S" = (
@@ -152,7 +159,9 @@
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "U" = (
-/obj/item/target/syndicate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 
@@ -232,7 +241,7 @@ c
 S
 S
 l
-h
+o
 O
 S
 S
@@ -247,11 +256,11 @@ j
 c
 t
 t
-y
+J
 B
+G
 B
-B
-C
+p
 t
 t
 c
@@ -263,13 +272,13 @@ c
 c
 c
 S
-G
-d
+n
+U
 B
 w
 B
-K
-R
+k
+I
 S
 c
 c
@@ -281,11 +290,11 @@ j
 c
 t
 t
-A
-U
-I
-U
-n
+N
+B
+B
+B
+P
 t
 t
 c
@@ -299,9 +308,9 @@ c
 c
 S
 S
-b
-g
-J
+H
+q
+r
 S
 S
 c
