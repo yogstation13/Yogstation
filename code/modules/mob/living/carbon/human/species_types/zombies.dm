@@ -119,6 +119,15 @@
 	brutemod = 1
 	burnmod = 1
 
+/datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
+	. = 0
+
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+	if(damagetype == STAMINA)
+		return
+	. = ..()
+	if(.)
+		regen_cooldown = world.time + REGENERATION_DELAY
 
 /mob/living/carbon/proc/spitter_zombie_acid(O as obj|turf in oview(1)) // right click menu verb ugh
 	set name = "Corrosive Acid"
