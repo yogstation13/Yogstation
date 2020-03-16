@@ -380,6 +380,11 @@
 
 	if(check_cult_victory())
 		parts += "<span class='greentext big'>The cult has succeeded! Nar-sie has snuffed out another torch in the void!</span>"
+		for(var/mind in members)
+			var/datum/mind/M = mind
+			SSachievements.unlock_achievement(/datum/achievement/greentext/narsie,M.current.client)
+			if(M.has_antag_datum(/datum/antagonist/cult/master))
+				SSachievements.unlock_achievement(/datum/achievement/greentext/narsie/master,M.current.client)
 	else
 		parts += "<span class='redtext big'>The staff managed to stop the cult! Dark words and heresy are no match for Nanotrasen's finest!</span>"
 

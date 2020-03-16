@@ -4,6 +4,13 @@
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
 
+/datum/surgery/implant_removal/mechanical
+	name = "Prosthesis implant removal"
+	steps = list(/datum/surgery_step/mechanic_open, /datum/surgery_step/open_hatch, /datum/surgery_step/prepare_electronics, /datum/surgery_step/extract_implant, /datum/surgery_step/mechanic_close)
+	possible_locs = list(BODY_ZONE_CHEST)
+	requires_bodypart_type = BODYPART_ROBOTIC
+	lying_required = FALSE
+	self_operable = TRUE
 
 //extract implant
 /datum/surgery_step/extract_implant

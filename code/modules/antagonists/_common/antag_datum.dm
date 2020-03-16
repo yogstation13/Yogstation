@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
 	var/antagpanel_category = "Uncategorized"	//Antagpanel will display these together, REQUIRED
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
+	var/datum/achievement/greentext/greentext_achieve // The achievement received for greentexting as this antag type. Not all antag types use this to distribute their achievements.
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -142,6 +143,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
+		if(istype(greentext_achieve))
+			SSachievements.unlock_achievement(greentext_achieve,owner.current)
+		else // The above still does award the generic greentext achievement, just implicitly.
+			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client) 
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
 

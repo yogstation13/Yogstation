@@ -970,6 +970,7 @@
 	butcher_results = list(/obj/item/ectoplasm = 1)
 
 /mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+	LoadComponent(/datum/component/walk/jaunt)
 	memory_saved = TRUE //At this point nothing is saved
 	. = ..()
 

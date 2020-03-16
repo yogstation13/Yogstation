@@ -852,6 +852,10 @@
 	glass_icon_state = "red_queen"
 	glass_name = "Red Queen"
 	glass_desc = "DRINK ME."
+	
+/datum/reagent/consumable/red_queen/on_mob_life(mob/living/carbon/C)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -4*REM)
+	..()
 
 /datum/reagent/consumable/sprited_cranberry
 	name = "Sprited Cranberry"
@@ -860,3 +864,17 @@
 	color = "#fffafa"
 	taste_description = "cranberry"
 	glass_name = "glass of sprited cranberry"
+	
+/datum/reagent/consumable/gravedigger
+	name = "Grave-Digger"
+	description = "What happens when you mix all the sodas in the fountain? You get this monstrosity!"
+	color = "#dcb137"
+	quality = DRINK_VERYGOOD
+	taste_description = "liquid diabetes"
+	glass_icon_state = "cream_soda"
+	glass_name = "Grave-Digger"
+	glass_desc = "Just looking at this is making you feel sick."
+
+/datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()

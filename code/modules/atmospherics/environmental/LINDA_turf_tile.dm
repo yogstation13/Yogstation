@@ -60,7 +60,7 @@
 
 /turf/open/remove_air(amount)
 	var/datum/gas_mixture/ours = return_air()
-	var/datum/gas_mixture/removed = ours.remove_outer(amount)
+	var/datum/gas_mixture/removed = ours.remove(amount)
 	update_visuals()
 	return removed
 

@@ -35,8 +35,8 @@
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
 		/datum/vampire_passive/full = 420,
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 320,
-		/obj/effect/proc_holder/spell/self/revive = 350)
+		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
+		/obj/effect/proc_holder/spell/self/revive = 0)
 
 /datum/antagonist/vampire/new_blood
 	full_objectives = FALSE
@@ -104,7 +104,7 @@
 /datum/antagonist/vampire/greet()
 	to_chat(owner, "<span class='userdanger'>You are a Vampire!</span>")
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
+	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(full_objectives == FALSE)
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
@@ -356,6 +356,7 @@
 
 	if(vampwin)
 		result += "<span class='greentext'>The vampire was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext/vampire, owner.current.client)
 	else
 		result += "<span class='redtext'>The vampire has failed!</span>"
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
