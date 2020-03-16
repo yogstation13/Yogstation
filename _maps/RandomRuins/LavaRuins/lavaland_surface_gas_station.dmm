@@ -33,6 +33,22 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
+"ah" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure{
+	name = "Emergency Supplies Crate";
+	req_access_txt = "36"
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/cable_coil/random,
+/obj/item/gun/ballistic/automatic/surplus,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/turf/open/floor/plating,
+/area/ruin/powered/gasstation)
 "ai" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/effect/turf_decal/sand,
@@ -210,7 +226,7 @@
 /area/ruin/powered/gasstation)
 "aH" = (
 /obj/machinery/vending/cigarette{
-	products = list(/obj/item/storage/fancy/cigarettes = 3, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 2, /obj/item/storage/fancy/cigarettes/cigpack_robust = 1, /obj/item/storage/fancy/cigarettes/cigpack_carp = 0, /obj/item/storage/fancy/cigarettes/cigpack_midori = 0, /obj/item/storage/box/matches = 4, /obj/item/lighter/greyscale = 1, /obj/item/storage/fancy/rollingpapers = 3)
+	products = list(/obj/item/storage/box/fancy/cigarettes = 3, /obj/item/storage/box/fancy/cigarettes/cigpack_uplift = 2, /obj/item/storage/box/fancy/cigarettes/cigpack_robust = 1, /obj/item/storage/box/fancy/cigarettes/cigpack_carp = 0, /obj/item/storage/box/fancy/cigarettes/cigpack_midori = 0, /obj/item/storage/box/matches = 4, /obj/item/lighter/greyscale = 1, /obj/item/storage/box/fancy/rollingpapers = 3)
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
@@ -290,23 +306,6 @@
 	name = "security camera";
 	network = list("gasstation")
 	},
-/turf/open/floor/plating,
-/area/ruin/powered/gasstation)
-"aO" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/closet/crate/secure{
-	name = "Emergency Supplies Crate";
-	req_access_txt = "36"
-	},
-/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/cable_coil/random,
 /turf/open/floor/plating,
 /area/ruin/powered/gasstation)
 "aP" = (
@@ -1141,7 +1140,7 @@ an
 ar
 md
 aj
-aO
+ah
 aV
 bc
 aj

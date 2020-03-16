@@ -65,7 +65,10 @@
 				finalize_eq_neighbors(transfer_dirs)
 			if(T.eq_transfer_dirs)
 				T.eq_transfer_dirs -= src
-			T.assume_air(remove_air(amount)) // push them gases.
+			// air.transfer_to(T.return_air(), amount) // push them gases.
+			//update_visuals()
+			//T.update_visuals()
+			T.assume_air(remove_air(amount))
 			consider_pressure_difference(T, amount)
 
 /turf/open/proc/finalize_eq_neighbors(list/transfer_dirs)

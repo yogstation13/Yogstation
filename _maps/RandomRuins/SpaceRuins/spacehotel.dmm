@@ -164,7 +164,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -254,7 +253,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -345,7 +343,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -417,7 +414,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -477,11 +473,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -502,11 +496,9 @@
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -520,11 +512,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -545,11 +535,9 @@
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -572,7 +560,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -604,11 +592,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 1
 	},
 /turf/open/floor/carpet,
@@ -632,7 +618,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -671,11 +657,9 @@
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -699,7 +683,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -731,11 +715,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -759,7 +741,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -794,11 +776,9 @@
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -828,11 +808,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /turf/open/floor/carpet,
@@ -854,11 +832,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -880,11 +856,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -910,11 +884,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -924,11 +896,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -944,11 +914,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -956,7 +924,6 @@
 "cv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -971,7 +938,6 @@
 "cx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -988,11 +954,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel/white,
@@ -1002,11 +966,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -1016,33 +978,27 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "cC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "cD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -1105,11 +1061,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -1119,11 +1073,9 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /turf/open/floor/plating,
@@ -1131,7 +1083,6 @@
 "cN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -1234,11 +1185,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "db" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -1260,11 +1209,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "de" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -1283,11 +1230,9 @@
 /area/ruin/space/has_grav/hotel)
 "dh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -1335,7 +1280,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Guest Room APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1403,7 +1348,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Guest Room APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1506,11 +1451,9 @@
 /area/ruin/space/has_grav/hotel)
 "dL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/carpet,
@@ -1542,22 +1485,18 @@
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "dS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /turf/open/floor/carpet,
@@ -1577,7 +1516,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /turf/open/floor/plasteel/freezer,
@@ -1592,7 +1530,6 @@
 "dY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -1609,11 +1546,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -1623,11 +1558,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1662,11 +1595,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -1677,11 +1608,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /turf/open/floor/plating,
@@ -1708,11 +1637,9 @@
 /area/ruin/space/has_grav/hotel)
 "el" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -1735,11 +1662,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -1751,11 +1676,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -1771,11 +1694,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -1788,11 +1709,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "et" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -1810,11 +1729,9 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "ew" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /turf/open/floor/carpet,
@@ -1835,7 +1752,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Laundry APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
@@ -1873,7 +1790,6 @@
 "eH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/carpet,
@@ -1906,7 +1822,7 @@
 	areastring = "/area/ruin/space/has_grav/hotel/bar";
 	dir = 2;
 	name = "Kitchen APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -2006,22 +1922,18 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "fe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -2039,7 +1951,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Power Storage APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -2074,11 +1986,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -2095,11 +2005,9 @@
 	pixel_y = -24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -2112,11 +2020,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -2125,7 +2031,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Staff Room APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -2144,7 +2050,7 @@
 	areastring = "/area/ruin/space/has_grav/hotel/security";
 	dir = 2;
 	name = "Security APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2153,11 +2059,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -2171,11 +2075,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -2185,11 +2087,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -2299,11 +2199,9 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -2313,11 +2211,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -2327,11 +2223,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -2435,7 +2329,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
@@ -2447,7 +2340,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -2467,7 +2359,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -2562,11 +2453,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -2576,7 +2465,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2586,7 +2474,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -2800,7 +2687,6 @@
 /obj/item/folder/blue,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -2886,11 +2772,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
@@ -2907,22 +2791,18 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/pool)
 "hg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -2948,7 +2828,6 @@
 /area/ruin/space/has_grav/hotel/pool)
 "hk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -2981,7 +2860,6 @@
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3071,7 +2949,6 @@
 /area/ruin/space/has_grav/hotel/bar)
 "hz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3081,7 +2958,7 @@
 	areastring = "/area/ruin/space/has_grav/hotel/pool";
 	dir = 2;
 	name = "Pool APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3090,11 +2967,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -3192,7 +3067,6 @@
 /area/ruin/space/has_grav/hotel/dock)
 "hP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /turf/open/floor/plating,
@@ -3234,11 +3108,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -3261,11 +3133,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3324,11 +3194,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3347,11 +3215,9 @@
 /area/ruin/space/has_grav/hotel)
 "ic" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -3391,11 +3257,9 @@
 /area/ruin/space/has_grav/hotel/bar)
 "ij" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -3438,7 +3302,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Dock APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -3459,7 +3323,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Custodial APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
@@ -3546,11 +3410,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3599,11 +3461,9 @@
 	req_access_txt = "201"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -4128,7 +3988,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "kA" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "kB" = (

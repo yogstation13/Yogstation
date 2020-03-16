@@ -50,12 +50,10 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -65,11 +63,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -80,11 +76,9 @@
 	},
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -94,12 +88,10 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -109,7 +101,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -128,11 +119,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -160,7 +149,7 @@
 /area/maintenance/starboard/aft)
 "r" = (
 /obj/structure/chair,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},

@@ -12,10 +12,10 @@ TRICORDER
 
 /obj/item/multitool/tricorder
 	name = "tricorder"
+	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
 	item_state = "analyzer"
-	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -56,7 +56,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 		return
 
 //Gas Analyzer Tank Scan
-/obj/item/multitool/tricorder/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
+/obj/item/multitool/tricorder/afterattack(atom/A as obj, mob/user, proximity)
 	if(!proximity)
 		return
 	A.analyzer_act(user, src)

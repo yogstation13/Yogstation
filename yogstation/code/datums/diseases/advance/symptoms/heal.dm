@@ -24,6 +24,10 @@
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
+	
+	if(HAS_TRAIT(M, TRAIT_NOHUNGER))
+		return FALSE
+	
 	switch(M.nutrition)
 		if(0)
 			return FALSE
@@ -45,7 +49,7 @@
 	if(!parts.len)
 		return
 		
-	M.nutrition = max(M.nutrition - (Hunger_reduction * Hunger_multi), 0) // So heal to nutrient ratio doesnt change
+	M.adjust_nutrition(-(Hunger_reduction * Hunger_multi)) // So heal to nutrient ratio doesnt change
 	
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING && !Toxin_damage)
 		M.blood_volume -= 10

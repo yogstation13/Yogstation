@@ -126,7 +126,7 @@
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -472,7 +472,7 @@
 	height = 17;
 	hidden = 1;
 	id = "syndicate";
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "syndicate infiltrator";
 	port_direction = 4;
 	width = 23
@@ -1240,6 +1240,16 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
+"CN" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen/red,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
 "In" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
@@ -1252,6 +1262,14 @@
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/medical)
+"No" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
 
 (1,1,1) = {"
 aa
@@ -1382,7 +1400,7 @@ MJ
 ac
 ag
 an
-at
+CN
 ac
 ad
 aa
@@ -1532,7 +1550,7 @@ aa
 ac
 am
 as
-at
+No
 ac
 In
 aa

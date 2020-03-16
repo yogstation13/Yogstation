@@ -138,7 +138,7 @@
 "as" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -169,11 +169,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -281,7 +279,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -295,9 +292,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/retaliate/goat{
-	name = "Pete"
-	},
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aM" = (
@@ -340,7 +335,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -413,11 +407,9 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -639,7 +631,7 @@
 "bJ" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -744,11 +736,9 @@
 /area/crew_quarters/theatre)
 "ca" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -873,7 +863,7 @@
 "cp" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -891,7 +881,7 @@
 /area/crew_quarters/bar)
 "cr" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";

@@ -421,6 +421,9 @@
 
 	if(traitorwin)
 		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
+		if(istype(greentext_achieve))
+			SSachievements.unlock_achievement(greentext_achieve,owner.current)
 	else
 		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')

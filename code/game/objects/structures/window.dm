@@ -753,3 +753,87 @@
 			return
 	..()
 	update_icon()
+
+
+
+
+
+/obj/structure/cloth_curtain
+	name = "curtain"
+	desc = "Beta brand soft sheets"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "curtain_open"
+	color = "#af439d" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.
+	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
+	layer = SIGN_LAYER
+	anchored = TRUE
+	opacity = FALSE
+	density = FALSE
+	var/open = TRUE
+
+/obj/structure/cloth_curtain/proc/toggle()
+	open = !open
+	update_icon()
+
+/obj/structure/cloth_curtain/update_icon()
+	if(!open)
+		icon_state = "curtain_closed"
+		layer = WALL_OBJ_LAYER
+		density = TRUE
+		open = FALSE
+		opacity = TRUE
+
+	else
+		icon_state = "curtain_open"
+		layer = SIGN_LAYER
+		density = FALSE
+		open = TRUE
+		opacity = FALSE
+
+/obj/structure/cloth_curtain/attackby(obj/item/W, mob/user)
+	if (istype(W, /obj/item/toy/crayon))
+		color = input(user,"","Choose Color",color) as color
+		return TRUE
+	else
+		return ..()
+
+/obj/structure/cloth_curtain/wrench_act(mob/living/user, obj/item/I)
+	default_unfasten_wrench(user, I, 50)
+	return TRUE
+
+/obj/structure/cloth_curtain/wirecutter_act(mob/living/user, obj/item/I)
+	if(anchored)
+		return TRUE
+
+	user.visible_message("<span class='warning'>[user] starts cuttting apart [src].</span>",
+		"<span class='notice'>You start to cut apart [src].</span>", "You hear cutting.")
+	if(I.use_tool(src, user, 50, volume=100) && !anchored)
+		to_chat(user, "<span class='notice'>You cut apart [src].</span>")
+		deconstruct()
+
+	return TRUE
+
+
+/obj/structure/cloth_curtain/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	playsound(loc, 'sound/effects/curtain.ogg', 50, 1)
+	toggle()
+
+/obj/structure/cloth_curtain/deconstruct(disassembled = TRUE)
+	if(QDELETED(src))
+		return
+	new /obj/item/stack/sheet/cloth(loc, 2)
+	new /obj/item/stack/rods(loc, 1)
+	qdel(src)
+
+/obj/structure/cloth_curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	if(damage_amount)
+		switch(damage_type)
+			if(BRUTE)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+			if(BURN)
+				playsound(loc, 'sound/items/welder.ogg', 80, 1)
+	else
+		playsound(loc, 'sound/weapons/tap.ogg', 50, 1)

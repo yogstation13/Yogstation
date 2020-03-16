@@ -29,7 +29,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	if(QDELETED(src))
 		return
 
-	msg = utf8_sanitize(msg, src, MAX_MESSAGE_LEN) // yogs - libvg support yo
+	msg = copytext(sanitize(to_utf8(msg, src)), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)

@@ -405,6 +405,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/bostaff
+	name = "Bo Staff"
+	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
+	item = /obj/item/twohanded/bostaff
+	cost = 8
+
 /datum/uplink_item/dangerous/shield
 	name = "Energy Shield"
 	desc = "An incredibly useful personal shield projector, capable of reflecting energy projectiles and defending \
@@ -1862,6 +1868,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Nothing is more terrifying than clowns with fully automatic weaponry."
 	item = /obj/item/storage/backpack/duffelbag/clown/syndie
 
+/datum/uplink_item/badass/crafting_weapons
+	name = "Makeshift Weapons"
+	desc = "A one use book that grants access to a number of secret crafting recipes once it has been read."
+	item = /obj/item/book/granter/crafting_recipe/weapons
+	cost = 4
+	cant_discount = TRUE
+	illegal_tech = FALSE
+
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
 	desc = "For showing that you are THE BOSS: A useless red balloon with the Syndicate logo on it. \
@@ -1892,6 +1906,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
 	desc = "Strong flavor, dense smoke, infused with omnizine."
-	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
+	item = /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	illegal_tech = FALSE

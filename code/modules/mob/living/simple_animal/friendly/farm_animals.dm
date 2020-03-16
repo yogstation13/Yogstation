@@ -12,13 +12,12 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1) // yogs change goat pelts baby
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	faction = list("goat") // yogs change replaced neutrial faction with goat faction
+	faction = list("goat")
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	/*attack_same = 1*/ // yogs No longer needed since goats got there own faction now
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
@@ -44,7 +43,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
 	. = ..()
-	if(. && sentience_type != SENTIENCE_BOSS) // yogs
+	if(. && sentience_type != SENTIENCE_BOSS)
 		//chance to go crazy and start wacking stuff
 		if(!enemies.len && prob(1))
 			Retaliate()
@@ -97,9 +96,9 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/AttackingTarget()
 	. = ..()
-	if(. && isliving(target)) //yogs start goat memes
+	if(. && isliving(target))
 		var/mob/living/L = target
-		L.visible_message("<span class='warning'>[src] rams [L]!</span>") //yogs end
+		L.visible_message("<span class='warning'>[src] rams [L]!</span>")
 	if(. && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(istype(H.dna.species, /datum/species/pod))
@@ -107,7 +106,10 @@
 			H.visible_message("<span class='warning'>[src] takes a big chomp out of [H]!</span>", \
 								  "<span class='userdanger'>[src] takes a big chomp out of your [NB]!</span>")
 			NB.dismember()
-			
+
+/mob/living/simple_animal/hostile/retaliate/goat/pete
+	name = "Pete"
+
 //cow---------------------------------------------------------------------------
 /mob/living/simple_animal/cow
 	name = "cow"
@@ -185,6 +187,9 @@
 					"<span class='revennotice'>[internal]</span>")
 	else
 		..()
+
+/mob/living/simple_animal/cow/betsy
+	name = "Betsy"
 
 //chick------------------------------------------------------------
 /mob/living/simple_animal/chick
@@ -380,7 +385,7 @@
 	. = ..()
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
-		
+
 /mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/razor))
 		if(shaved)
@@ -417,7 +422,7 @@
 /obj/item/udder
 	name = "udder"
 	var/milktype = /datum/reagent/consumable/milk
-	
+
 /obj/item/udder/sheep
 	name = "sheep udder"
 	milktype = /datum/reagent/consumable/milk/sheep
@@ -445,3 +450,16 @@
 		user.visible_message("[user] milks [src] using \the [O].", "<span class='notice'>You milk [src] using \the [O].</span>")
 	else
 		to_chat(user, "<span class='danger'>The udder is dry. Wait a bit longer...</span>")
+
+//spawner
+/obj/effect/spawner/lootdrop/mob
+	icon = 'icons/mob/screen_gen.dmi'
+	icon_state = "x2"
+
+/obj/effect/spawner/lootdrop/mob/kitchen_animal
+	name = "kitchen animal"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
+			/mob/living/simple_animal/cow/betsy = 1,
+			/mob/living/simple_animal/sheep = 1)

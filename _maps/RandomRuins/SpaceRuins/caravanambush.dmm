@@ -77,7 +77,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Tiny Freighter APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	req_access = null;
 	start_charge = 0
 	},
@@ -163,7 +163,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Tiny Freighter APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	req_access = null;
 	start_charge = 0
 	},

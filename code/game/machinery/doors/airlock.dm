@@ -52,6 +52,10 @@
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
 
+	FASTDMM_PROP(\
+		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
+	)
+
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 
 	var/security_level = 0 //How much are wires secured
@@ -388,6 +392,9 @@
 				cyclelinkedairlock.delayed_close_requested = TRUE
 			else
 				addtimer(CALLBACK(cyclelinkedairlock, .proc/close), 2)
+	if(locked && allowed(user) && aac)
+		aac.request_from_door(src)
+		return
 	..()
 
 /obj/machinery/door/airlock/proc/isElectrified()
@@ -796,7 +803,11 @@
 	return attack_hand(user)
 
 /obj/machinery/door/airlock/attack_hand(mob/user)
-	. = ..()
+	if(locked && allowed(user) && aac)
+		aac.request_from_door(src)
+		. = TRUE
+	else
+		. = ..()
 	if(.)
 		return
 	if(!(issilicon(user) || IsAdminGhost(user)))
@@ -1248,7 +1259,7 @@
 			return
 	if(safe)
 		for(var/atom/movable/M in get_turf(src))
-			if(M.density && M != src) //something is blocking the door
+			if(M.density && !(M.flags_1 & ON_BORDER_1) && M != src) //something is blocking the door
 				autoclose_in(60)
 				return
 

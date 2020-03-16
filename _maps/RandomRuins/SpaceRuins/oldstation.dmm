@@ -461,7 +461,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Charlie Station Bridge APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	start_charge = 0
 	},
 /obj/effect/decal/cleanable/cobweb,
@@ -1051,7 +1051,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/mining)
@@ -1957,7 +1957,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Beta Station Main Corridor APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -2370,7 +2370,7 @@
 "fI" = (
 /obj/machinery/power/apc{
 	name = "Beta Station Mining Equipment APC ";
-	pixel_y = -23;
+	pixel_y = -24;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/brown{
@@ -2737,7 +2737,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -2908,7 +2908,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Charlie Security APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/red{
@@ -2987,7 +2987,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -3026,7 +3026,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Delta Station RnD APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -3151,7 +3151,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Beta Station Medbay APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	start_charge = 0
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -3399,7 +3399,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3852,7 +3852,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
@@ -3887,7 +3887,7 @@
 /obj/structure/closet/crate/bin,
 /obj/machinery/airalarm/all_access{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4084,7 +4084,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Charlie Station Garden APC ";
-	pixel_y = -23;
+	pixel_y = -24;
 	start_charge = 0
 	},
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
@@ -4681,7 +4681,7 @@
 "kj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
@@ -4937,11 +4937,9 @@
 "kK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -4954,7 +4952,6 @@
 /area/ruin/space/has_grav/ancientstation/atmo)
 "kL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5070,7 +5067,6 @@
 "kW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	icon_state = "pipe11-2";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -5471,7 +5467,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /obj/machinery/light_switch{
 	pixel_x = 0;
@@ -5488,7 +5484,7 @@
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/ancientstation/medbay)
@@ -6102,7 +6098,7 @@
 "nh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/food/egg_smudge,
 /obj/structure/cable{
@@ -6157,7 +6153,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Charlie Station Kitchen APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	start_charge = 0
 	},
 /obj/machinery/light/small{
@@ -6235,7 +6231,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
@@ -6259,7 +6255,6 @@
 "ny" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -6674,7 +6669,7 @@
 "ok" = (
 /obj/machinery/airalarm/all_access{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
@@ -6843,7 +6838,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Beta Storage APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	start_charge = 0
 	},
 /obj/structure/cable,
@@ -7546,11 +7541,9 @@
 "pP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/item/stack/rods,
@@ -7607,7 +7600,6 @@
 "pT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -7773,7 +7765,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Delta Prototype Lab APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -8224,7 +8216,6 @@
 	name = "Plasma Canister Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -8291,7 +8282,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -8488,7 +8478,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -8725,7 +8714,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -8738,7 +8726,6 @@
 "Vm" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -8832,7 +8819,6 @@
 /area/ruin/space/has_grav/ancientstation/atmo)
 "Zg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,

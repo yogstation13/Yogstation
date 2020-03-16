@@ -156,7 +156,7 @@
 	var/moved = FALSE
 	if(!istype(I))
 		return FALSE
-	if(M)
+	if(M && I.loc == M)
 		if(!M.temporarilyRemoveItemFromInventory(I))
 			return FALSE
 		else

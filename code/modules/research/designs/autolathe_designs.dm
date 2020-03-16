@@ -195,6 +195,15 @@
 	category = list("initial", "Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/airalarm_electronics
+	name = "Airlock Controller Electronics"
+	id = "aac_electronics"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 50, MAT_GLASS = 50)
+	build_path = /obj/item/electronics/advanced_airlock_controller
+	category = list("initial", "Electronics")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/firealarm_electronics
 	name = "Fire Alarm Electronics"
 	id = "firealarm_electronics"
@@ -979,6 +988,15 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 100, MAT_GLASS = 20)
 	build_path = /obj/item/flashlight/pen
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/stethoscope
+	name = "Stethoscope"
+	id = "stethoscope"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 300)
+	build_path = /obj/item/clothing/neck/stethoscope
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 

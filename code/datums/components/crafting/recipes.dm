@@ -12,6 +12,33 @@
 	var/subcategory = CAT_NONE
 	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
+//Antag recipes - see granters.dm - at the top for easy viewing
+/datum/crafting_recipe/baseball_bat
+	name = "Baseball Bat"
+	result = /obj/item/melee/baseball_bat
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 30
+				)
+	tools = list(TOOL_HATCHET) //to carve the wood into shape
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/lance
+	name = "Explosive Lance (Grenade)"
+	result = /obj/item/twohanded/spear
+	reqs = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	blacklist = list(/obj/item/twohanded/spear/explosive,
+					/obj/item/grenade/flashbang)
+	parts = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	time = 15
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+//Normal recipes
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
@@ -33,21 +60,6 @@
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
-/* - yogs change: removes explosive lance for being stupid
-/datum/crafting_recipe/lance
-	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive,
-					/obj/item/grenade/flashbang) //yogs change - removes flashbangs from explosive lances for being even stupider
-	parts = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	time = 15
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-*/
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
@@ -481,10 +493,22 @@
 	result = /obj/structure/sink
 	category = CAT_MISC
 
+/datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
+	name = "Toilet"
+	reqs = 	list(/obj/item/stack/sheet/metal = 5 , /obj/structure/mopbucket = 1)
+	result = /obj/structure/toilet
+	category = CAT_MISC
+
 /datum/crafting_recipe/extendohand
 	name = "Extendo-Hand"
 	reqs = list(/obj/item/bodypart/r_arm/robot = 1, /obj/item/clothing/gloves/boxing = 1)
 	result = /obj/item/extendohand
+	category = CAT_MISC
+
+/datum/crafting_recipe/cloth_curtain
+	name = "Curtains"
+	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
+	result = /obj/structure/cloth_curtain
 	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
@@ -724,3 +748,9 @@
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
+
+/datum/crafting_recipe/urinal
+	name = "Urinal"
+	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
+	result = /obj/structure/urinal
+	category = CAT_MISC
