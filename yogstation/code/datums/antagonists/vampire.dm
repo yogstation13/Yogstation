@@ -35,7 +35,7 @@
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
 		/datum/vampire_passive/full = 420,
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
+		/obj/effect/proc_holder/spell/targeted/vampirize = 320,
 		/obj/effect/proc_holder/spell/self/revive = 350)
 
 /datum/antagonist/vampire/new_blood
@@ -107,7 +107,7 @@
 	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(full_objectives == FALSE)
-		to_chat(owner, "<span class='notice bold'>You are not required to respect or obey other vampires in any way.</span>")
+		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/vampire.ogg',80,0)
