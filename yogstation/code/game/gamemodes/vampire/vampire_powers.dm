@@ -259,13 +259,13 @@
 	addtimer(VARSET_CALLBACK(src, range, -1), 10) //Avoid fuckery
 
 /obj/effect/proc_holder/spell/targeted/vampirize
-	name = "Lilith's Pact (400)"
+	name = "Lilith's Pact (300)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "oath"
-	blood_used = 400
+	blood_used = 300
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/vampirize/cast(list/targets, mob/user = usr)
@@ -302,7 +302,9 @@
 			to_chat(target, "<span class='italics'>Strike fear into their hearts...</span>")
 			to_chat(user, "<span class='notice italics bold'>They have signed the pact!</span>")
 			to_chat(target, "<span class='userdanger'>You sign Lilith's Pact.</span>")
-			target.mind.store_memory("<B>[user] showed you the glory of Lilith. <I>You are not required to respect or obey [user] in any way</I></B>")
+			target.mind.store_memory("<B>[user] showed you the glory of Lilith. <I>You are not required to obey [user], however, you have gained a respect for them.</I></B>")
+			target.Sleeping(600)
+			target.blood_volume = 560
 			add_vampire(target, FALSE)
 			vamp.converted ++
 
