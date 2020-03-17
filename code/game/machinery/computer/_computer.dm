@@ -146,7 +146,7 @@
 /obj/machinery/computer/proc/playambience()
 	if((src.ambience_last + src.ambience_dely) >= world.time)
 		return
-	if(prob(20))
+	if(prob(50))
 		ambience_last = world.time
 		playsound(src, pick(
 		'sound/machines/computer/combine-terminal-idle3.ogg',
@@ -157,5 +157,8 @@
 		'sound/machines/computer/computer-working2.ogg',
 		'sound/machines/computer/machine-office-02.ogg',
 		'sound/machines/computer/machine-office-09.ogg',
-		'sound/machines/computer/manhack-machine-loop1.ogg'), 25, 0)
+		'sound/machines/computer/manhack-machine-loop1.ogg'
+		'sound/machines/computer/computer_broken.ogg'), 15, 0, ignore_walls = FALSE)
+	else
+		ambience_last = ambience_last + 20
 	return
