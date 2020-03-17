@@ -105,6 +105,31 @@
 	suffix = "testingsite_range3.dmm"
 	name = "Clown Bomb Range"
 
+/datum/map_template/ruin/station/box/medbay/morgue
+	id = "medbay_morgue1"
+	suffix = "medbay_morgue1.dmm"
+	name = "Morgue"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue2
+	id = "medbay_morgue2"
+	suffix = "medbay_morgue2.dmm"
+	name = "Morgue 2"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue3
+	id = "medbay_morgue3"
+	suffix = "medbay_morgue3.dmm"
+	name = "Morgue 3"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue4
+	id = "medbay_morgue4"
+	suffix = "medbay_morgue4.dmm"
+	name = "Morgue 4"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue5
+	id = "medbay_morgue5"
+	suffix = "medbay_morgue5.dmm"
+	name = "Morgue 5"
+	
 /datum/map_template/ruin/station/box/dorms_edoor
 	id = "dorms_edoor1"
 	suffix = "dorms_edoor1.dmm"
