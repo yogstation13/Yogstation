@@ -157,7 +157,7 @@
 		'sound/machines/computer/computer-working2.ogg',
 		'sound/machines/computer/machine-office-02.ogg',
 		'sound/machines/computer/machine-office-09.ogg',
-		'sound/machines/computer/manhack-machine-loop1.ogg'
+		'sound/machines/computer/manhack-machine-loop1.ogg',
 		'sound/machines/computer/computer_broken.ogg'), 15, 0, ignore_walls = FALSE)
 	else
 		ambience_last = ambience_last + 20
