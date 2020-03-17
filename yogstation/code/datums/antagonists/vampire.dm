@@ -27,16 +27,16 @@
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 175,
-		/obj/effect/proc_holder/spell/bats = 250,
+		/obj/effect/proc_holder/spell/self/revive = 100,
+		/obj/effect/proc_holder/spell/targeted/disease = 200,//why is spell-that-kills-people unlocked so early what the fuck
 		/obj/effect/proc_holder/spell/self/batform = 200,
 		/obj/effect/proc_holder/spell/self/screech = 215,
+		/obj/effect/proc_holder/spell/bats = 250,
 		/datum/vampire_passive/regen = 255,
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
 		/datum/vampire_passive/full = 420,
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
-		/obj/effect/proc_holder/spell/self/revive = 0)
+		/obj/effect/proc_holder/spell/targeted/vampirize = 450)
 
 /datum/antagonist/vampire/new_blood
 	full_objectives = FALSE
@@ -217,6 +217,7 @@
 		C.adjustFireLoss(-4)
 		C.adjustToxLoss(-4)
 		C.adjustOxyLoss(-4)
+		C.adjustCloneLoss(-4)
 		return
 	if(!get_ability(/datum/vampire_passive/full) && istype(get_area(C.loc), /area/chapel))
 		vamp_burn()
@@ -247,9 +248,9 @@
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
 			break
 		if(H.stat != DEAD)
-			blood = min(20, H.blood_volume)// if they have less than 20 blood, give them the remnant else they get 20 blood
-			total_blood += blood / 2	//divide by 2 to counted the double suction since removing cloneloss -Melandor0
-			usable_blood += blood / 2
+			blood = min(20, H.blood_volume)	// if they have less than 20 blood, give them the remnant else they get 20 blood
+			total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
+			usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
 		else
 			blood = min(5, H.blood_volume)	// The dead only give 5 blood
 			total_blood += blood
@@ -259,7 +260,7 @@
 		H.blood_volume = max(H.blood_volume - 25, 0)
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood / 2), NUTRITION_LEVEL_WELL_FED)
-		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1)
+		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
 
 	draining = null
 	to_chat(owner, "<span class='notice'>You stop draining [H.name] of blood.</span>")
