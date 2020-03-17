@@ -9,7 +9,9 @@
 
 	var/usable_blood = 0
 	var/total_blood = 0
+	var/converted = 0
 	var/fullpower = FALSE
+	var/full_objectives = TRUE
 	var/draining
 	var/list/objectives_given = list()
 
@@ -35,6 +37,11 @@
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
 		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
 		/obj/effect/proc_holder/spell/self/revive = 0)
+
+/datum/antagonist/vampire/new_blood
+	full_objectives = FALSE
+	roundend_category = "new bloods"
+	show_in_antagpanel = FALSE
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
@@ -99,6 +106,8 @@
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
 	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
+	if(full_objectives == FALSE)
+		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/vampire.ogg',80,0)
@@ -109,8 +118,14 @@
 	blood_objective.gen_amount_goal()
 	add_objective(blood_objective)
 
-	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
-		forge_single_objective()
+	if(full_objectives)
+		for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
+			forge_single_objective()
+
+		var/datum/objective/convert/convert_objective = new
+		convert_objective.owner = owner
+		convert_objective.gen_amount_goal()
+		add_objective(convert_objective)
 
 	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new

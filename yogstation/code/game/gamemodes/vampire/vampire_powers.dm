@@ -259,16 +259,17 @@
 	addtimer(VARSET_CALLBACK(src, range, -1), 10) //Avoid fuckery
 
 /obj/effect/proc_holder/spell/targeted/vampirize
-	name = "Lilith's Pact (400)"
+	name = "Lilith's Pact (300)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "oath"
-	blood_used = 400
+	blood_used = 300
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/vampirize/cast(list/targets, mob/user = usr)
+	var/datum/antagonist/vampire/vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	for(var/mob/living/carbon/target in targets)
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
@@ -276,12 +277,12 @@
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
 			continue
-		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
+		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, pure dread eminating from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
 				if(1)
-					to_chat(target, "<span class='warning'>Visions of dread flood your vision...</span>")
+					to_chat(target, "<span class='danger'>Wicked shadows invade your sight, beckoning to you.</span>")
 					to_chat(user, "<span class='notice'>We begin to drain [target]'s blood in, so Lilith can bless it.</span>")
 				if(2)
 					to_chat(target, "<span class='danger'>Demonic whispers fill your mind, and they become irressistible...</span>")
@@ -301,9 +302,11 @@
 			to_chat(target, "<span class='italics'>Strike fear into their hearts...</span>")
 			to_chat(user, "<span class='notice italics bold'>They have signed the pact!</span>")
 			to_chat(target, "<span class='userdanger'>You sign Lilith's Pact.</span>")
-			target.mind.store_memory("<B>[user] showed you the glory of Lilith. <I>You are not required to respect or obey [user] in any way</I></B>")
-			add_vampire(target)
-
+			target.mind.store_memory("<B>[user] showed you the glory of Lilith. <I>You are not required to obey [user], however, you have gained a respect for them.</I></B>")
+			target.Sleeping(600)
+			target.blood_volume = 560
+			add_vampire(target, FALSE)
+			vamp.converted ++
 
 /obj/effect/proc_holder/spell/self/revive
 	name = "Revive"
