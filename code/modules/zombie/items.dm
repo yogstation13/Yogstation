@@ -14,6 +14,7 @@
 	force = 21 // Just enough to break airlocks with melee attacks
 	damtype = "brute"
 	var/inserted_organ = /obj/item/organ/zombie_infection
+	var/infect_chance = 100 //Before armor calculations
 
 /obj/item/zombie_hand/Initialize()
 	. = ..()
@@ -36,7 +37,7 @@
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			var/flesh_wound = ran_zone(user.zone_selected)
-			if(prob(100-H.getarmor(flesh_wound, "melee")))
+			if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
 				try_to_zombie_infect(target, inserted_organ)
 		else
 			check_feast(target, user)
@@ -81,6 +82,8 @@
 
 /obj/item/zombie_hand/gamemode
 	inserted_organ = /obj/item/organ/zombie_infection/gamemode
+	infect_chance = 50
 
 /obj/item/zombie_hand/gamemode/runner
-	force = 15
+	force = 13
+	infect_chance = 20

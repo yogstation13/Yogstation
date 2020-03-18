@@ -73,7 +73,7 @@
 			continue
 		antag.start_timer()
 
-	addtimer(CALLBACK(src, .proc/call_shuttle), 90 MINUTES) //Shuttle called after 1.5 hours if it hasn't been
+	addtimer(CALLBACK(src, .proc/call_shuttle), 60 MINUTES) //Shuttle called after 1 hour if it hasn't been
 	. = ..()
 
 /datum/game_mode/zombie/proc/call_shuttle()

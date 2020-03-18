@@ -1,5 +1,4 @@
 #define REGENERATION_DELAY 60  // After taking damage, how long it takes for automatic regeneration to begin
-#define SPIT_COOLDOWN 1500
 
 /datum/species/zombie
 	// 1spooky
@@ -129,36 +128,5 @@
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
 
-/mob/living/carbon/proc/spitter_zombie_acid(O as obj|turf in oview(1)) // right click menu verb ugh
-	set name = "Corrosive Acid"
-
-	if(!isinfected(usr))
-		return
-	var/mob/living/carbon/user = usr
-	var/datum/antagonist/zombie/A = locate() in user.mind.antag_datums
-	if(!A)
-		return
-
-	if(A.spit_cooldown > world.time)
-		to_chat(user, "<span class='userdanger'>Please wait. You will be able to use this ability in [(A.spit_cooldown - world.time) / 10] seconds</span>")
-		return
-
-	if(corrode_object(O, user))
-		A.spit_cooldown = world.time + SPIT_COOLDOWN
-
-/mob/living/carbon/proc/corrode_object(atom/target, mob/living/carbon/user = usr)
-	if(target in oview(1, user))
-		if(target.acid_act(300, 150))
-			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
-			return TRUE
-		else
-			to_chat(user, "<span class='noticealien'>You cannot dissolve this object.</span>")
-
-
-			return FALSE
-	else
-		to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
-		return FALSE
 
 #undef REGENERATION_DELAY
-#undef SPIT_COOLDOWN

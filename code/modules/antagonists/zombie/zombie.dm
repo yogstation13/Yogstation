@@ -5,9 +5,16 @@
 
 	var/datum/action/innate/zombie/zomb/zombify = new
 
-	var/datum/action/innate/zombie/talk/communicate = new
+
 
 	var/datum/action/innate/zombie/choose_class/evolution = new
+
+	//EVOLUTION
+	var/evolutionTime = 0 //When can we evolve?
+
+	//SPITTER ABILITIES
+	var/obj/effect/proc_holder/zombie/spit/spit
+	var/obj/effect/proc_holder/zombie/acid/acid
 
 	job_rank = ROLE_ZOMBIE
 
@@ -43,7 +50,6 @@
 
 /datum/antagonist/zombie/Destroy()
 	QDEL_NULL(zombify)
-	QDEL_NULL(communicate)
 	return ..()
 
 
@@ -70,12 +76,10 @@
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction |= "zombies"
-	communicate.Grant(current)
 
 /datum/antagonist/zombie/remove_innate_effects()
 	. = ..()
 	var/mob/living/current = owner.current
-	communicate.Remove(current)
 	current.faction -= "zombies"
 
 
@@ -242,10 +246,74 @@
 			to_chat(owner, "<span class='warning'>You can now take quite a beating, and heal a bit slower.</span>")
 		if("Spitter")
 			H.set_species(/datum/species/zombie/infectious/gamemode/spitter)
-			H.verbs.Add(/mob/living/carbon/proc/spitter_zombie_acid)
+			Z.spit = new()
+			Z.acid = new()
+			H.AddAbility(Z.spit)
+			H.AddAbility(Z.acid)
 			to_chat(owner, "<span class='warning'>You can now right click on walls and doors, and cover them in acid! You are weaker in combat though.</span>")
 
 	owner.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!</span>", "<span class='alien'>You have evolved into a [class]</span>")
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	H.do_jitter_animation(15)
 	Z.evolution.Remove(H)
+
+/obj/effect/proc_holder/zombie
+	name = "Zombie Power"
+	panel = "Zombie"
+	has_action = TRUE
+	base_action = /datum/action/spell_action
+	action_icon = 'icons/mob/actions/actions_xeno.dmi'
+	action_icon_state = "spell_default"
+	action_background_icon_state = "bg_alien"
+	var/ready = TRUE
+	var/cooldown_ends = 0
+	var/cooldown_time = 1 SECONDS
+
+	var/silent = TRUE //Do you have to be conscious to use this?
+
+/obj/effect/proc_holder/zombie/Initialize()
+	. = ..()
+	action = new(src)
+
+/obj/effect/proc_holder/zombie/Click()
+	if(!iscarbon(usr))
+		return TRUE
+	var/mob/living/carbon/user = usr
+	if(can_cast(user))
+		fire(user)
+	return TRUE
+
+/obj/effect/proc_holder/zombie/on_gain(mob/living/carbon/user)
+	return
+
+/obj/effect/proc_holder/zombie/on_lose(mob/living/carbon/user)
+	return
+
+/obj/effect/proc_holder/zombie/fire(mob/living/carbon/user)
+	start_cooldown()
+	return TRUE
+
+/obj/effect/proc_holder/zombie/get_panel_text()
+	. = ..()
+	if((cooldown_ends - world.time) > 0)
+		return "[(cooldown_ends - world.time) / 10] seconds"
+
+/obj/effect/proc_holder/zombie/proc/can_cast(mob/living/carbon/user)
+	if(!isinfected(user))
+		return FALSE
+
+	if(user.stat)
+		if(!silent)
+			to_chat(user, "<span class='userdanger'>You must be conscious to do this.</span>")
+		return FALSE
+
+	return ready
+
+/obj/effect/proc_holder/zombie/proc/reset_cooldown()
+	ready = TRUE
+
+/obj/effect/proc_holder/zombie/proc/start_cooldown()
+	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown_time)
+	cooldown_ends = world.time + cooldown_time
+	ready = FALSE
+

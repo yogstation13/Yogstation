@@ -77,6 +77,10 @@
 			if(hivemind)
 				stat("Hivemind Vessels", "[hivemind.hive_size] (+[hivemind.size_mod])")
 				stat("Psychic Link Duration", "[(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds")
+			var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
+			if(zombie)
+				if((zombie.evolutionTime - world.time) > 0)
+					stat("Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds")
 
 	//NINJACODE
 	if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)) //Only display if actually a ninja.
@@ -995,7 +999,7 @@
 
 /mob/living/carbon/human/species/golem/durathread
 	race = /datum/species/golem/durathread
-	
+
 /mob/living/carbon/human/species/golem/snow
 	race = /datum/species/golem/snow
 
