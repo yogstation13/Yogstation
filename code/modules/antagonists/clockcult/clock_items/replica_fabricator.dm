@@ -12,6 +12,7 @@
 	var/speed_multiplier = 1 //The speed ratio the fabricator operates at
 	var/uses_power = TRUE
 	var/repairing = null //what we're currently repairing, if anything
+	var/agent = FALSE //version that can make soul vessels
 
 /obj/item/clockwork/replica_fabricator/scarab
 	name = "scarab fabricator"
@@ -221,3 +222,6 @@
 			<b>[DisplayEnergy(repair_values["amount_to_heal"]*MIN_CLOCKCULT_POWER, MIN_CLOCKCULT_POWER)]</b> to fully repair [target == user ? "yourself" : "[target.p_them()]"]!</span>")
 		return FALSE
 	return TRUE
+
+/obj/item/clockwork/replica_fabricator/agent
+	agent = TRUE

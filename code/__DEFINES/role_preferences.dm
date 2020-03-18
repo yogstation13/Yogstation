@@ -42,6 +42,8 @@
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" //Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
+#define ROLE_CLOCK_AGENT		"Clockwork Agent" //Yogs
+//#define ROLE_BLOOD_AGENT		"Cultist Agent" //Yogs
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -52,6 +54,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BROTHER = /datum/game_mode/traitor/bros,
 	ROLE_OPERATIVE = /datum/game_mode/nuclear,
 	ROLE_CHANGELING = /datum/game_mode/changeling,
+	ROLE_CLOCK_AGENT = /datum/game_mode/traitor/traitorcult,
+	//ROLE_BLOOD_AGENT = /datum/game_mode/traitor/traitorcult,
 	ROLE_WIZARD = /datum/game_mode/wizard,
 	ROLE_MALF,
 	ROLE_REV = /datum/game_mode/revolution,

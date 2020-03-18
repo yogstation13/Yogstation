@@ -108,12 +108,6 @@ Credit where due:
 			" in an endless grey void.<br>It cannot be allowed to escape"].</span>")
 			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
-	if(agent && L)
-		if(.)
-			to_chat(L, "<span class='sevtug'>Here's the deal; Rats wants some stuff from this station and he's got me herding you idiots to get it. \
-			We're running on fumes especially this far out so you'll be missing some scriptures, mainly the ones that make more cultists. Just finish our little shopping list and make a getaway. \
-			There's some minds I can sense that seem to be stronger than the others, probably being manipulated by our enemy. Watch yourself.</span>")
-			L.playsound_local(get_turf(L),'sound/effects/screech.ogg' , 100, FALSE, pressure_affected = FALSE)
 
 /proc/remove_servant_of_ratvar(mob/L, silent = FALSE)
 	if(!L || !L.mind)

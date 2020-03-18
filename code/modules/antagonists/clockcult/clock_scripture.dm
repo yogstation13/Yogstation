@@ -255,11 +255,11 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	return object_path
 
 /datum/clockwork_scripture/create_object/scripture_effects()
+	var/to_spawn = get_spawn_path(invoker)//in case flavortextchanges
 	if(creator_message && observer_message)
 		invoker.visible_message(observer_message, creator_message)
 	else if(creator_message)
 		to_chat(invoker, creator_message)
-	var/to_spawn = get_spawn_path(invoker)
 	var/obj/O = new to_spawn(get_turf(invoker))
 	O.ratvar_act() //update the new object so it gets buffed if ratvar is alive
 	if(isitem(O) && put_object_in_hands)

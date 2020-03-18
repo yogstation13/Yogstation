@@ -11,14 +11,6 @@
 	var/agent = FALSE			//Can't use stuff deemed "too dangerous for non-cult rounds"
 	var/ignore_holy_water = FALSE	//Can the cultists be deconverted with holy water? set to no for traitorcultists because they aren't conversion antags
 
-/datum/antagonist/clockcult/agent
-	name = "ClockCult Agent"
-	antagpanel_category = "Cult Agent"
-	silent = TRUE
-	make_team = FALSE
-	agent = TRUE
-	ignore_holy_water = TRUE
-
 /datum/antagonist/clockcult/silent
 	silent = TRUE
 	show_in_antagpanel = FALSE //internal
@@ -59,6 +51,9 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/clockcult/on_gain()
+	if(agent)
+		..()//SKIPP
+		return
 	var/mob/living/current = owner.current
 	SSticker.mode.servants_of_ratvar += owner
 	SSticker.mode.update_servant_icons_added(owner)
@@ -186,16 +181,6 @@
 	remove_servant_of_ratvar(owner.current, TRUE)
 	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
-
-/datum/antagonist/clockcult/agent/admin_add(datum/mind/new_owner, mob/admin)
-	add_servant_of_ratvar(new_owner.current, TRUE, FALSE, TRUE)
-	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a Clockwork Agent.")
-	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a Clockwork Agent.")
-
-/datum/antagonist/clockcult/agent/admin_remove(mob/user)
-	remove_servant_of_ratvar(owner.current, TRUE)
-	message_admins("[key_name_admin(user)] has removed clockwork agent status from [key_name_admin(owner)].")
-	log_admin("[key_name(user)] has removed clockwork agent status from [key_name(owner)].")
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()

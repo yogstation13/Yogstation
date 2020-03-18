@@ -18,7 +18,7 @@
 	var/agent = FALSE //is the motor able to convert
 
 /obj/structure/destructible/clockwork/powered/mania_motor/agent
-	neutered = TRUE
+	agent = TRUE
 	clockwork_desc = "A transmitter that allows Sevtug to whisper into the minds of nearby non-servants, causing a variety of negative mental effects."
 
 /obj/structure/destructible/clockwork/powered/mania_motor/examine(mob/user)

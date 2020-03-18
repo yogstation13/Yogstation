@@ -527,10 +527,9 @@
 	/datum/clockwork_scripture/vanguard, /datum/clockwork_scripture/ranged_ability/hateful_manacles)
 
 /obj/item/clockwork/slab/agent/attack_self(mob/living/user)
-	if(!is_servant_of_ratvar(user) && !spent)
+	if(!is_servant_of_ratvar(user))
 		to_chat(user, "<span class='userdanger'>You press your hand onto [src], golden tendrils of light latching onto you. Was this the best of ideas?</span>")
 		if(add_servant_of_ratvar(user, TRUE, FALSE, TRUE))
-			spent = TRUE
 			// Add some (5 KW) power so they don't suffer for 100 ticks
 			GLOB.clockwork_power += 5000
 			// This intentionally does not use adjust_clockwork_power.
