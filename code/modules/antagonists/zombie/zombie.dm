@@ -97,7 +97,7 @@
 
 /datum/antagonist/zombie/proc/add_button_timed()
 	zombify.Grant(owner.current)
-	to_chat(owner.current, "<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie.<b>")
+	to_chat(owner.current, "<span class='userdanger'><b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie.<b></span>")
 
 /datum/antagonist/zombie/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.add_antag_datum(src)
