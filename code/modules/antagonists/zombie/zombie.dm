@@ -306,6 +306,8 @@
 		if(!silent)
 			to_chat(user, "<span class='userdanger'>You must be conscious to do this.</span>")
 		return FALSE
+	if(!ready)
+		to_chat(user, "<span class='userdanger'>You can use this ability in [(cooldown_ends - world.time) / 10] seconds.</span>")
 
 	return ready
 
