@@ -56,8 +56,6 @@ SUBSYSTEM_DEF(Yogs)
 			else if(findtext(reg,is_phrase)) // If a phrase
 				accent_lists[1][regex(reg,"gi")] = accent_regex2replace[original_reg]
 			else
-				if(accent ==  "heavy Shakespearean")
-					message_admins(reg)
 				accent_lists[3][regex(reg,"gi")] = accent_regex2replace[original_reg]
 		GLOB.accents_name2regexes[accent] = accent_lists
 
