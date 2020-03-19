@@ -3,7 +3,7 @@
 	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
 	action_icon_state = "alien_neurotoxin_0"
 	active = FALSE
-	cooldown_time = 1.5 MINUTES
+	cooldown_time = 1 MINUTES
 
 
 /obj/effect/proc_holder/zombie/spit/fire(mob/living/carbon/user)
