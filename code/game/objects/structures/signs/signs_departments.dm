@@ -79,7 +79,7 @@
 	icon_state = "minskycommand"
 
 /obj/structure/sign/departments/minsky/command/hop
-	name = "Command Deck"
+	name = "Head of Personnel's Office"
 	desc = "A sign labeling the Head of Personnel's Office. Bribe for All Access here."
 	icon_state = "minskyhop"
 
