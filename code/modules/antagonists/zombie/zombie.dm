@@ -25,6 +25,8 @@
 
 	var/spit_cooldown = 0
 
+	var/zombified = FALSE
+
 
 /datum/antagonist/zombie/get_team()
 	return team
@@ -97,7 +99,12 @@
 
 /datum/antagonist/zombie/proc/add_button_timed()
 	zombify.Grant(owner.current)
-	to_chat(owner.current, "<span class='userdanger'><b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie.<b></span>")
+	to_chat(owner.current, "<span class='userdanger'><b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b></span>")
+	addtimer(CALLBACK(src, .proc/force_zombify), 5 MINUTES)
+
+/datum/antagonist/zombie/proc/force_zombify()
+	if(!zombified)
+		zombify.Activate()
 
 /datum/antagonist/zombie/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.add_antag_datum(src)
@@ -166,12 +173,12 @@
 	desc = "Initiate the infection, and kill this host.. THIS ACTION IS INSTANT."
 	button_icon_state = "chameleon_skin"
 
-/datum/action/innate/zombie/zomb/Activate()
+/datum/action/innate/zombie/zomb/Activate(forced = FALSE)
 	var/mob/living/carbon/human/H = usr
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
-
-	if(alert(H, "Are you sure you want to kill yourself, and revive as a zombie some time after?", "Confirmation", "Yes", "No") == "No")
-		return FALSE
+	if(!forced)
+		if(alert(H, "Are you sure you want to kill yourself, and revive as a zombie some time after?", "Confirmation", "Yes", "No") == "No")
+			return FALSE
 
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/gamemode/ZI = new()
@@ -179,6 +186,7 @@
 
 	H.death()
 	Z.zombify.Remove(H)
+	zombified = TRUE
 
 
 /datum/action/innate/zombie/talk
