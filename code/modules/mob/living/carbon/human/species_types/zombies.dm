@@ -94,8 +94,9 @@
 //The special zombie you get turned into in the zombie gamemode
 /datum/species/zombie/infectious/gamemode
 	armor = 20
-	brutemod = 0.95
-	burnmod = 0.95
+	brutemod = 0.9
+	burnmod = 0.9
+	speedmod = 1.4
 	mutanthands = /obj/item/zombie_hand/gamemode
 	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
 	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
@@ -103,18 +104,18 @@
 
 /datum/species/zombie/infectious/gamemode/runner
 	mutanthands = /obj/item/zombie_hand/gamemode/runner
-	armor = 10 // 120 damage to KO a zombie, which kills it
-	speedmod = 0.5
+	armor = 10 // 110 damage to KO a zombie, which kills it
+	speedmod = 0.4
 	brutemod = 1
 
 /datum/species/zombie/infectious/gamemode/juggernaut
-	armor = 30 // 120 damage to KO a zombie, which kills it
-	brutemod = 0.85
-	speedmod = 1.9
+	armor = 35 // 135 damage to KO a zombie, which kills it
+	brutemod = 0.8
+	speedmod = 1.7
 	heal_rate = 1.15
 
 /datum/species/zombie/infectious/gamemode/spitter
-	armor = 10 // 120 damage to KO a zombie, which kills it
+	armor = 10 // 110 damage to KO a zombie, which kills it
 	brutemod = 1
 	burnmod = 1
 

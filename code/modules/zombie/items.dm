@@ -82,8 +82,8 @@
 
 /obj/item/zombie_hand/gamemode
 	inserted_organ = /obj/item/organ/zombie_infection/gamemode
-	infect_chance = 50
+	infect_chance = 60
 
 /obj/item/zombie_hand/gamemode/runner
-	force = 13
-	infect_chance = 20
+	force = 14
+	infect_chance = 30
