@@ -186,7 +186,7 @@
 
 	H.death()
 	Z.zombify.Remove(H)
-	zombified = TRUE
+	Z.zombified = TRUE
 
 
 /datum/action/innate/zombie/talk
@@ -229,7 +229,8 @@
 	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Runner", "Juggernaut", "Spitter")
 	if(!selected || !IsAvailable())
 		return
-
+	if(!isinfectedzombie(owner))
+		return
 	evolve(selected)
 
 /datum/action/innate/zombie/choose_class/IsAvailable()
