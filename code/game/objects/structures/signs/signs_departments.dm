@@ -78,6 +78,11 @@
 	desc = "A sign labeling the station's command deck. The good idea fairy lives around here."
 	icon_state = "minskycommand"
 
+/obj/structure/sign/departments/minsky/command/hop
+	name = "Command Deck"
+	desc = "A sign labeling the Head of Personnel's Office. Bribe for All Access here."
+	icon_state = "minskyhop"
+
 /obj/structure/sign/departments/minsky/command/bridge
 	name = "Bridge Deck"
 	desc = "A sign labeling the station's bridge."
