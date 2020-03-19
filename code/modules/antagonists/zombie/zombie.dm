@@ -103,6 +103,7 @@
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has zombied'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has zombied'ed [key_name(new_owner)].")
+	start_timer()
 
 
 /datum/antagonist/zombie/get_admin_commands()
