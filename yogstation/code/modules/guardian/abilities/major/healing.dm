@@ -21,16 +21,16 @@
 		if(target == guardian)
 			to_chat(guardian, "<span class='danger bold'>You can't heal yourself!</span>")
 			return TRUE
-		if(target == guardian.summoner?.current && healuser == FALSE)
+		if((target == guardian.summoner?.current || summoner.hasparasites().Find(target)) && healuser == FALSE)
 			to_chat(guardian, "<span class='danger bold'>You can't heal your user!</span>")
 			return TRUE
 		if(isliving(target))
 			var/mob/living/L = target
 			guardian.do_attack_animation(L)
-			L.adjustBruteLoss(-(master_stats.potential * 1.5))
-			L.adjustFireLoss(-(master_stats.potential * 1.5))
-			L.adjustOxyLoss(-(master_stats.potential * 1.5))
-			L.adjustToxLoss(-(master_stats.potential * 1.5))
+			L.adjustBruteLoss(-(master_stats.potential * 1.5, TRUE))
+			L.adjustFireLoss(-(master_stats.potential * 1.5, TRUE))
+			L.adjustOxyLoss(-(master_stats.potential * 1.5, TRUE))
+			L.adjustToxLoss(-(master_stats.potential * 1.5, TRUE))
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(L))
 			if(guardian.namedatum)
 				H.color = guardian.namedatum.colour
