@@ -21,7 +21,7 @@
 		if(target == guardian)
 			to_chat(guardian, "<span class='danger bold'>You can't heal yourself!</span>")
 			return TRUE
-		if((target == guardian.summoner?.current || summoner.hasparasites().Find(target)) && healuser == FALSE)
+		if((target == guardian.summoner?.current || guadrian.summoner?.current?.hasparasites().Find(target)) && healuser == FALSE)
 			to_chat(guardian, "<span class='danger bold'>You can't heal your user!</span>")
 			return TRUE
 		if(isliving(target))
