@@ -27,10 +27,10 @@
 		if(isliving(target))
 			var/mob/living/L = target
 			guardian.do_attack_animation(L)
-			L.adjustBruteLoss(-(master_stats.potential * 1.5, TRUE))
-			L.adjustFireLoss(-(master_stats.potential * 1.5, TRUE))
-			L.adjustOxyLoss(-(master_stats.potential * 1.5, TRUE))
-			L.adjustToxLoss(-(master_stats.potential * 1.5, TRUE))
+			L.adjustBruteLoss(-(master_stats.potential * 1.5), forced = TRUE)
+			L.adjustFireLoss(-(master_stats.potential * 1.5), forced = TRUE)
+			L.adjustOxyLoss(-(master_stats.potential * 1.5), forced = TRUE)
+			L.adjustToxLoss(-(master_stats.potential * 1.5), forced = TRUE)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(L))
 			if(guardian.namedatum)
 				H.color = guardian.namedatum.colour
