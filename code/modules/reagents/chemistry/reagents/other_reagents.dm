@@ -116,6 +116,7 @@
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
+	viscosity = 0.25
 
 /*
  *	Water reaction to turf
