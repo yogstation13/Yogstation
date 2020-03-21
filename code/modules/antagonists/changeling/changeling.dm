@@ -1,6 +1,6 @@
 #define LING_FAKEDEATH_TIME					400 //40 seconds
 #define LING_DEAD_GENETICDAMAGE_HEAL_CAP	50	//The lowest value of geneticdamage handle_changeling() can take it to while dead.
-#define LING_ABSORB_RECENT_SPEECH			8	//The amount of recent spoken lines to gain on absorbing a mob
+#define LING_ABSORB_RECENT_SPEECH			20	//The amount of recent spoken lines to gain on absorbing a mob
 
 /datum/antagonist/changeling
 	name = "Changeling"
