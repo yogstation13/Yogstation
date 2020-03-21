@@ -129,9 +129,14 @@
 				if(!L.can_inject(user, TRUE))
 					return
 				if(L != user)
+					var/viscosity_highest = 0
+					for(var/datum/reagent/R in reagents.reagent_list)
+						if(R.viscosity > viscosity_highest) // takes the highest viscosity of all reagents in syringe - Hopek
+							viscosity_highest = R.viscosity
+
 					L.visible_message("<span class='danger'>[user] is trying to inject [L]!</span>", \
 											"<span class='userdanger'>[user] is trying to inject [L]!</span>")
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+					if(!do_mob(user, L, time = (30 * viscosity_highest), extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
 						return
 					if(!reagents.total_volume)
 						return
