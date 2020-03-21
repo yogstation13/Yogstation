@@ -40,7 +40,6 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/self_consuming = FALSE
 	var/reagent_weight = 1 //affects how far it travels when sprayed
 	var/metabolizing = FALSE
-	var/viscosity = 1 // affects how rapidly it can be injected via syringe (lower = faster; formula is viscosity * 30 deciseconds
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
