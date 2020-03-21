@@ -81,7 +81,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	if (!ui)
 		for(var/datum/minimap/M in SSmapping.station_minimaps)
 			M.send(user)
-		ui = new(user, src, ui_key, "CameraConsole", "Crew Monitoring Console", 1000, 600 , master_ui, state)
+		ui = new(user, src, ui_key, "CrewConsole", "Crew Monitoring Console", 1000, 600 , master_ui, state)
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
