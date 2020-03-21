@@ -119,7 +119,7 @@
   *
   *
  **/
-/datum/proc/ui_close()
+/datum/proc/ui_close(mob/user)
 
  /**
   * verb
