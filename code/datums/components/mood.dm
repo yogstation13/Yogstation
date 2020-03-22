@@ -354,5 +354,9 @@
 		if(ETHEREAL_CHARGE_ALMOSTFULL to ETHEREAL_CHARGE_FULL)
 			add_event(null, "charge", /datum/mood_event/charged)
 
+/datum/component/mood/proc/check_area_mood(datum/source, area/A)
+	if(A.mood_bonus)
+		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
+
 #undef MINOR_INSANITY_PEN
 #undef MAJOR_INSANITY_PEN
