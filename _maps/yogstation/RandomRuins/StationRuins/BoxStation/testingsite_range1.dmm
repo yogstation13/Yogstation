@@ -26,11 +26,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"g" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "h" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -40,6 +35,12 @@
 "j" = (
 /turf/open/space/basic,
 /area/space)
+"k" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "l" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -97,6 +98,14 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"A" = (
+/obj/structure/table,
+/obj/item/storage/box/mre,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "B" = (
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -108,11 +117,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"G" = (
-/obj/structure/table,
-/obj/item/storage/box/mre,
-/turf/open/floor/plating/airless,
-/area/science/test_area)
 "H" = (
 /obj/structure/chair{
 	dir = 8
@@ -120,6 +124,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"I" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "J" = (
@@ -150,6 +160,12 @@
 /area/science/test_area)
 "T" = (
 /obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"Y" = (
+/obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
@@ -247,9 +263,9 @@ c
 t
 t
 l
+Y
 B
-B
-B
+k
 O
 t
 t
@@ -281,9 +297,9 @@ c
 t
 t
 N
-G
+A
 B
-g
+I
 P
 t
 t
