@@ -54,6 +54,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"i" = (
+/obj/item/target/syndicate,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "j" = (
 /turf/open/space/basic,
 /area/space)
@@ -73,6 +78,12 @@
 "n" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"r" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -151,8 +162,17 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
-"U" = (
+"V" = (
 /obj/item/target/syndicate,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"W" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 
@@ -248,9 +268,9 @@ c
 t
 t
 y
+r
 B
-B
-B
+W
 C
 t
 t
@@ -282,9 +302,9 @@ c
 t
 t
 A
-U
+V
 I
-U
+i
 n
 t
 t

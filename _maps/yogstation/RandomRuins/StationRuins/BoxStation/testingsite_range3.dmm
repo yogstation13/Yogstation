@@ -101,6 +101,10 @@
 /obj/item/beacon,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"x" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "B" = (
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -132,6 +136,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"L" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "N" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/stripes/line{
@@ -158,9 +168,21 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"T" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
 "U" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"W" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -257,9 +279,9 @@ c
 t
 t
 J
-B
+L
 G
-B
+W
 p
 t
 t
@@ -291,9 +313,9 @@ c
 t
 t
 N
+T
 B
-B
-B
+x
 P
 t
 t
