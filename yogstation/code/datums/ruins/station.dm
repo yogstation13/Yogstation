@@ -89,3 +89,73 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/medbay/morgue
+	id = "medbay_morgue1"
+	suffix = "medbay_morgue1.dmm"
+	name = "Morgue"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue2
+	id = "medbay_morgue2"
+	suffix = "medbay_morgue2.dmm"
+	name = "Morgue 2"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue3
+	id = "medbay_morgue3"
+	suffix = "medbay_morgue3.dmm"
+	name = "Morgue 3"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue4
+	id = "medbay_morgue4"
+	suffix = "medbay_morgue4.dmm"
+	name = "Morgue 4"
+
+/datum/map_template/ruin/station/box/medbay/morgue/morgue5
+	id = "medbay_morgue5"
+	suffix = "medbay_morgue5.dmm"
+	name = "Morgue 5"
+	
+/datum/map_template/ruin/station/box/dorms_edoor
+	id = "dorms_edoor1"
+	suffix = "dorms_edoor1.dmm"
+	name = "Dorm east door 1"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm2
+	id = "dorms_edoor2"
+	suffix = "dorms_edoor2.dmm"
+	name = "Dorm east door 2"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm3
+	id = "dorms_edoor3"
+	suffix = "dorms_edoor3.dmm"
+	name = "Dorm east door 3"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm4
+	id = "dorms_edoor4"
+	suffix = "dorms_edoor4.dmm"
+	name = "Dorm east door 4"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm5
+	id = "dorms_edoor5"
+	suffix = "dorms_edoor5.dmm"
+	name = "Dorm east door 5"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm6
+	id = "dorms_edoor6"
+	suffix = "dorms_edoor6.dmm"
+	name = "Dorm east door 6"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm7
+	id = "dorms_edoor7"
+	suffix = "dorms_edoor7.dmm"
+	name = "Dorm east door 7"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm8
+	id = "dorms_edoor8"
+	suffix = "dorms_edoor8.dmm"
+	name = "Dorm east door 8"
+
+/datum/map_template/ruin/station/box/dorms_edoor/dorm9
+	id = "dorms_edoor9"
+	suffix = "dorms_edoor9.dmm"
+	name = "Dorm east door 9"

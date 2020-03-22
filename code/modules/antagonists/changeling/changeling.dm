@@ -12,7 +12,6 @@
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
 	var/team_mode = FALSE //Should assign team objectives ?
-	var/competitive_objectives = FALSE //Should we assign objectives in competition with other lings?
 
 	//Changeling Stuff
 
@@ -51,7 +50,6 @@
 			continue
 		if(C.was_absorbed) //make sure the other ling wasn't already killed by another one. only matters if the changeling that absorbed them was gibbed after.
 			continue
-		competitive_objectives = TRUE
 		break
 
 /datum/antagonist/changeling/Destroy()
