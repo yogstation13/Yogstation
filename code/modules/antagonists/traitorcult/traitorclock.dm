@@ -68,6 +68,7 @@
 	add_objective(new/datum/objective/soul_extraction)
 	add_objective(new/datum/objective/implant)
 	add_objective(new/datum/objective/escape/onesurvivor/clockagent)
+	GLOB.clockwork_power += 5000
 	return
 
 /datum/team/clock_agents/proc/add_objective(datum/objective/O)
