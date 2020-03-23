@@ -236,5 +236,5 @@
 	
 /obj/item/organ/cyberimp/arm/clockwork
 	name = "Clockwork toolset implant"
-	desc = "a variant of the integrated toolset reverse engineered by clockwork cultists and made into gears and clockwork."
+	desc = "a variant of the integrated toolset, reverse engineered by clockwork cultists and made into gears and clockwork."
 	contents = newlist(/obj/item/crowbar/brass,/obj/item/weldingtool/experimental/brass,/obj/item/screwdriver/brass,/obj/item/wirecutters/brass,/obj/item/wrench/brass)
