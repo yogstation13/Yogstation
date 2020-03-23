@@ -42,6 +42,7 @@
 			clock.special_role = ROLE_CLOCK_AGENT
 			clock.restricted_roles = restricted_jobs
 			equip_clock_agent(clock)
+		clock_agent_team.forge_clock_objectives()
 		/*blood_agent_team = new //to be added in the "bloodcult" DLC expansion pack
 		for(var/k = 1 to team_size)
 			var/datum/mind/blood = antag_pick(possible_bloods)
