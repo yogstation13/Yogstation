@@ -12,9 +12,8 @@
 	owner.special_role = ROLE_CLOCK_AGENT
 	agent_team = SSticker.mode.clock_agent_team //only one agent team can exist for each side
 	if(!agent_team)
-		agent_team = new
+		agent_team = new(owner)
 		SSticker.mode.clock_agent_team = agent_team
-		agent_team.add_member(owner)
 		agent_team.forge_clock_objectives()
 		objectives += agent_team.objectives
 	else

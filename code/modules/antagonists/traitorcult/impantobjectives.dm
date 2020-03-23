@@ -3,14 +3,13 @@
 	explanation_text = "<span class='sevtug'>STab some dudes with these funny things</span>"
 	var/dudes_to_stab = 0						//list of people who need to be implanted to win
 	var/list/datum/mind/dudes_stabbed = list()  //list of people with the implants
-	var/linkedteam = "clockagents"				//team the objective is linked with
 
 /datum/objective/implant/New()
-	dudes_to_stab = SSticker.mode.[linkedteam].len * rand(1,5) //1 to 5 implantees per clock agent
-	update_explanation_text()
 	..()
+	update_explanation_text()
 
 /datum/objective/implant/update_explanation_text()
+	dudes_to_stab = team.members.len * rand(1,5) //1 to 5 implantees per clock agent
 	explanation_text = "<span class='sevtug'>Implant at least [dudes_to_stab] of these heretics with guvax capacitors, I'll need them later. Use a replica fabricator on an implanter to make one, and try to keep them alive please and thank you.</span>"
 
 /datum/objective/implant/check_completion()
@@ -100,8 +99,17 @@
 	name = "guvax capacitor"
 	activated = FALSE
 	var/linkedantag = /datum/antagonist/cult_implanted //antag given to implantee
-	var/linkedteam = "clock_agent_team" //team that gets points
+	var/cult_team = "clock"
+	var/datum/team/linkedteam //team that gets points
 	var/break_sound = 'sound/magic/clockwork/anima_fragment_death.ogg' //sound when removed
+
+/obj/item/implant/cult/New()
+	..()
+	switch(cult_team)
+		if("clock")
+			linkedteam = SSticker.mode.clock_agent_team
+		if("blood")
+			linkedteam = SSticker.mode.blood_agent_team
 
 /obj/item/implant/cult/can_be_implanted_in(mob/living/target)
 	if(is_servant_of_ratvar(target) || iscultist(target) || !target.mind || HAS_TRAIT(target, TRAIT_MINDSHIELD) || target.mind.has_antag_datum(/datum/antagonist/cult_implanted))//cannot implant clockies, bloodcultists, mindless, or mindshielded
@@ -115,7 +123,7 @@
 	if(.)
 		var/datum/mind/M = target.mind
 		M.add_antag_datum(linkedantag)
-		for(var/datum/objective/implant/O in SSticker.mode.[linkedteam]?.objectives)
+		for(var/datum/objective/implant/O in linkedteam?.objectives)
 			O.dudes_stabbed += M
 		target.SetSleeping(200)
 
@@ -128,7 +136,6 @@
 
 /*/datum/objective/implant/blood //to be added in the "bloodcult" DLC expansion pack
 	name = "bloodcult implant"
-	linkedteam = "blood_agent_team"
 
 /datum/objective/implant/blood/update_explanation_text()
 	explanation_text = "<span class='cultbold'>Implant at least [dudes_to_stab] of the inhabitants of this place with soulshards created from using twisted construction on implanters. Keeping them alive is preferable but not required.</span>"
@@ -149,5 +156,5 @@
 /obj/item/implant/cult/blood
 	name = "soulshard"
 	linkedantag = /datum/antagonist/cult_implanted/blood
-	linkedteam = "blood_agent_team"
+	cult_team = "blood"
 	break_sound = 'sound/effects/glassbr2.ogg'*/
