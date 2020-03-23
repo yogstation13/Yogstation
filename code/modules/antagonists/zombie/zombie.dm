@@ -1,3 +1,5 @@
+#define TIER_2_TIME 9000
+
 /datum/antagonist/zombie
 	name = "Zombie"
 	roundend_category = "zombies"
@@ -5,9 +7,11 @@
 
 	var/datum/action/innate/zombie/zomb/zombify = new
 
-
+	var/datum/action/innate/zombie/talk/talk_action
 
 	var/datum/action/innate/zombie/choose_class/evolution = new
+
+	var/datum/action/innate/zombie/choose_class/tier2/evolution2 = new
 
 	//EVOLUTION
 	var/evolutionTime = 0 //When can we evolve?
@@ -16,16 +20,28 @@
 	var/obj/effect/proc_holder/zombie/spit/spit
 	var/obj/effect/proc_holder/zombie/acid/acid
 
+	//Necromancer
+	var/obj/effect/proc_holder/zombie/necromance/necro
+
+	//Runner
+	var/obj/effect/proc_holder/zombie/adrenaline/adren
+
+	//Juggernaut
+	var/obj/effect/proc_holder/zombie/tank/tank
+
 	job_rank = ROLE_ZOMBIE
 
 	var/datum/team/zombie/team
 	var/hud_type = "zombie"
 
 	var/class_chosen = FALSE
+	var/class_chosen_2 = FALSE
 
 	var/spit_cooldown = 0
 
 	var/zombified = FALSE
+
+	var/evolution_ready = FALSE
 
 
 /datum/antagonist/zombie/get_team()
@@ -124,6 +140,13 @@
 /datum/antagonist/zombie/proc/remove_button(mob/admin)
 	zombify.Remove(owner.current)
 
+/datum/antagonist/zombie/proc/start_evolution_2()
+	addtimer(CALLBACK(src, .proc/finish_evolution_2), TIER_2_TIME)
+
+/datum/antagonist/zombie/proc/finish_evolution_2()
+	evolution_ready = TRUE
+	evolution2.Grant(owner.current)
+	to_chat(owner.current, "<span class='userdanger'><b>You can now evolve into a Tier 2 zombie! There can only be tier 2 zombies equal to the amount of starting zombies!<b></span>")
 
 /datum/team/zombie
 	name = "Zombies"
@@ -187,6 +210,10 @@
 	H.death()
 	Z.zombify.Remove(H)
 	Z.zombified = TRUE
+	Z.evolutionTime = TIER_2_TIME + world.time
+	Z.start_evolution_2()
+
+
 
 
 /datum/action/innate/zombie/talk
@@ -206,8 +233,8 @@
 	var/my_message
 	if(!message)
 		return
-	var/title = "Zombie"
-	var/span = "cult"
+	var/title = "Horde Coordinator"
+	var/span = "cultlarge"
 	my_message = "<span class='[span]'><b>\[[title]] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
@@ -233,12 +260,12 @@
 		return
 	evolve(selected)
 
-/datum/action/innate/zombie/choose_class/IsAvailable()
+/datum/action/innate/zombie/choose_class/IsAvailable(forced = FALSE)
 	if(!isinfected(owner))
 		return
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
 
-	if(Z.class_chosen)
+	if(Z.class_chosen && !forced)
 		return FALSE
 	return ..()
 
@@ -250,9 +277,13 @@
 	switch(class)
 		if("Runner")
 			H.set_species(/datum/species/zombie/infectious/gamemode/runner)
+			Z.adren = new()
+			H.AddAbility(Z.adren)
 			to_chat(owner, "<span class='warning'>You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though.</span>")
 		if("Juggernaut")
 			H.set_species(/datum/species/zombie/infectious/gamemode/juggernaut)
+			Z.tank = new()
+			H.AddAbility(Z.tank)
 			to_chat(owner, "<span class='warning'>You can now take quite a beating, and heal a bit slower.</span>")
 		if("Spitter")
 			H.set_species(/datum/species/zombie/infectious/gamemode/spitter)
@@ -266,6 +297,72 @@
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	H.do_jitter_animation(15)
 	Z.evolution.Remove(H)
+	Z.class_chosen = TRUE
+
+/datum/action/innate/zombie/choose_class/tier2
+	name = "Evolve - Tier 2"
+	desc = "Evolve into a Tier 2 special class."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "cultfist"
+
+/datum/action/innate/zombie/choose_class/tier2/IsAvailable()
+	if(!isinfected(owner))
+		return
+	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+
+	if(Z.class_chosen_2)
+		return FALSE
+
+	if(!Z.class_chosen)
+		return FALSE
+	return ..(TRUE)
+
+/datum/action/innate/zombie/choose_class/tier2/Activate()
+	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Necromancer", "Coordinator")
+	if(!selected || !IsAvailable())
+		return
+	if(!isinfectedzombie(owner))
+		return
+
+	var/datum/game_mode/zombie/mode = SSticker.mode
+	if(!mode.can_evolve_tier_2())
+		to_chat(usr, "<span class='userdanger'>There are currently too many tier 2 zombies. Please wait.</span>")
+		return
+	evolve(selected)
+
+/datum/action/innate/zombie/choose_class/tier2/evolve(class)
+	var/mob/living/carbon/human/H = owner
+	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+	if(!isinfected(H))
+		return
+	switch(class)
+		if("Necromancer")
+			H.set_species(/datum/species/zombie/infectious/gamemode/necromancer)
+			Z.necro = new()
+			H.AddAbility(Z.necro)
+			to_chat(owner, "<span class='warning'>You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though.</span>")
+		if("Coordinator")
+			H.set_species(/datum/species/zombie/infectious/gamemode/coordinator)
+			Z.talk_action = new()
+			Z.talk_action.Grant(H)
+			to_chat(owner, "<span class='warning'>You can now communicate with the horde!</span>")
+
+
+	if(Z.spit)
+		H.RemoveAbility(Z.spit)
+	if(Z.acid)
+		H.RemoveAbility(Z.acid)
+	if(Z.adren)
+		H.RemoveAbility(Z.adren)
+	if(Z.tank)
+		H.RemoveAbility(Z.tank)
+
+
+	owner.visible_message("<span class='danger'>[owner] suddenly convulses, as [owner.p_they()] evolve into a [class]!</span>", "<span class='alien'>You have evolved into a [class]</span>")
+	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
+	H.do_jitter_animation(15)
+	Z.evolution2.Remove(H)
+	Z.class_chosen_2 = TRUE
 
 /obj/effect/proc_holder/zombie
 	name = "Zombie Power"
@@ -329,3 +426,4 @@
 	cooldown_ends = world.time + cooldown_time
 	ready = FALSE
 
+#undef TIER_2_TIME

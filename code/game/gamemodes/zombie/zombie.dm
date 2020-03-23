@@ -30,6 +30,8 @@
 
 	var/datum/team/zombie/main_team
 
+	var/actual_roundstart_zombies = 0
+
 
 /datum/game_mode/zombie/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -61,6 +63,23 @@
 		setup_error = "Not enough zombie candidates."
 		return FALSE
 
+/datum/game_mode/zombie/proc/can_evolve_tier_2()
+	var/count = 0
+	for(var/datum/mind/zombie in zombies)
+		if(!zombie.current)
+			continue
+		var/mob/living/carbon/human/H = zombie.current
+		if(H)
+			if(H.stat == DEAD || QDELETED(H))
+				continue
+			if(istype(H.dna.species, /datum/species/zombie/infectious/gamemode/necromancer))
+				count++
+			else if(istype(H.dna.species, /datum/species/zombie/infectious/gamemode/coordinator))
+				count++
+
+	if(count < actual_roundstart_zombies)
+		return TRUE
+	return FALSE
 
 /datum/game_mode/zombie/post_setup()
 	main_team = new
@@ -71,6 +90,7 @@
 		var/datum/antagonist/zombie/antag = add_zombie(minds)
 		if(!istype(antag))
 			continue
+		actual_roundstart_zombies++
 		antag.start_timer()
 
 	addtimer(CALLBACK(src, .proc/call_shuttle), 60 MINUTES) //Shuttle called after 1 hour if it hasn't been

@@ -130,4 +130,35 @@
 		regen_cooldown = world.time + REGENERATION_DELAY
 
 
+/datum/species/zombie/infectious/gamemode/coordinator
+	armor = 17
+	speedmod = 1.2
+
+/datum/species/zombie/infectious/gamemode/necromancer
+	mutanthands = /obj/item/zombie_hand/gamemode/necro
+	armor = 10
+	speedmod = 1.2
+
+/datum/species/zombie/infectious/gamemode/necromanced_minion
+	var/mob/living/carbon/human/master
+	var/max_distance = 1 //Default value
+	armor = 10
+	brutemod = 1.05
+	burnmod = 1.05
+	species_traits = list(NO_UNDERWEAR, NOBLOOD, NOZOMBIE, NOTRANSSTING)
+	inherent_traits = list(TRAIT_EASYDISMEMBER, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE,
+	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA)
+
+/datum/species/zombie/infectious/gamemode/necromanced_minion/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if(prob(50) && !H.stat)
+		if(get_dist(get_turf(master), get_turf(H)) > max_distance)
+			if(prob(20))
+				to_chat(H, "<span class='userdanger'>You are too far away from your master! You are taking damage!</span>")
+			apply_damage(7.5, BRUTE, null, FALSE, H)
+
+		if(master.stat == DEAD || QDELETED(master))
+			to_chat(H, "<span class='userdanger'>Your master is dead. And with his death, comes yours!</span>")
+			H.dust()
+
 #undef REGENERATION_DELAY

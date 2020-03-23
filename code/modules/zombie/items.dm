@@ -15,6 +15,12 @@
 	damtype = "brute"
 	var/inserted_organ = /obj/item/organ/zombie_infection
 	var/infect_chance = 100 //Before armor calculations
+	var/scaled_infect_chance = FALSE //Does infection chance scale with damage? (100% of infect chance at 50% health(Crit, humans have 200% health!), 0% at max health)
+	//Approx chances, with 100 infect_chance
+	//20% at 40 damage
+	//40% at 60 damage
+	//70% at 80 damage
+	//100% at 100 damage
 
 /obj/item/zombie_hand/Initialize()
 	. = ..()
@@ -37,8 +43,21 @@
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			var/flesh_wound = ran_zone(user.zone_selected)
-			if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
-				try_to_zombie_infect(target, inserted_organ)
+			if(scaled_infect_chance)
+				var/mob/living/mob_target = target
+				var/total_damage = mob_target.get_damage_amount(BRUTE) + mob_target.get_damage_amount(BURN) + mob_target.get_damage_amount(TOX) + mob_target.get_damage_amount(OXY) + mob_target.get_damage_amount(CLONE)
+
+				var/infect_modifier = (total_damage ** 2) / 100
+
+				infect_modifier = clamp(infect_modifier, 0, 100)
+
+				if(prob(infect_modifier))
+					if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
+						try_to_zombie_infect(target, inserted_organ)
+
+			else
+				if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
+					try_to_zombie_infect(target, inserted_organ)
 		else
 			check_feast(target, user)
 
@@ -82,8 +101,16 @@
 
 /obj/item/zombie_hand/gamemode
 	inserted_organ = /obj/item/organ/zombie_infection/gamemode
-	infect_chance = 60
+	infect_chance = 70
+	scaled_infect_chance = TRUE
+	force = 15
+	var/door_open_modifier = 1
 
 /obj/item/zombie_hand/gamemode/runner
-	force = 14
+	force = 10
+	infect_chance = 35
+	door_open_modifier = 1.5
+
+/obj/item/zombie_hand/gamemode/necro
+	force = 7
 	infect_chance = 30

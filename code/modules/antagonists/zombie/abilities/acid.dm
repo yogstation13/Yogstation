@@ -25,7 +25,7 @@
 		return 0
 
 
-/obj/effect/proc_holder/zombie/acid/fire(mob/living/carbon/alien/user)
+/obj/effect/proc_holder/zombie/acid/fire(mob/living/carbon/user)
 	var/O = input("Select what to dissolve:", "Dissolve", null) as obj|turf in oview(1,user)
 	if(!O || user.incapacitated())
 		return FALSE
