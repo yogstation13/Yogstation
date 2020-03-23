@@ -243,6 +243,11 @@
 	quickbind = TRUE
 	quickbind_desc = "Creates a new Clockwork Slab."
 
+/datum/clockwork_scripture/create_object/replicant/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		return /obj/item/clockwork/slab/agent
+	return ..()
+
 
 //Wraith Spectacles: Creates a pair of wraith spectacles, which grant xray vision but damage vision slowly.
 /datum/clockwork_scripture/create_object/wraith_spectacles
