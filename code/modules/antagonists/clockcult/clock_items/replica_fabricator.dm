@@ -224,4 +224,10 @@
 	return TRUE
 
 /obj/item/clockwork/replica_fabricator/agent
+	clockwork_desc = "A replica fabricator engineered for agent teams to convert stationside assets into items crucial for their objectives."
 	agent = TRUE
+
+/obj/item/clockwork/replica_fabricator/agent/examine(mob/living/user)
+	. = ..()
+	if(user.mind?.has_antag_datum(/datum/antagonist/clockcult/agent))
+		. += "<span class='brass'>This fabricator can also be used to produce</span> <span class='nezbere'>soul vessels from MMI frames</span> <span class='brass'>and</span> <span class='sevtug'>Guvax capacitors from implanters.</span>"

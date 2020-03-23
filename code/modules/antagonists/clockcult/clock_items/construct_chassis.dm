@@ -76,6 +76,8 @@
 	creation_message = "<span class='neovgre_small bold'>Crimson fire begins to rage in the armor as it rises into the air with its armaments!</span>"
 	construct_type = /mob/living/simple_animal/hostile/clockwork/marauder
 
+/obj/item/clockwork/construct_chassis/clockwork_marauder/agent
+	construct_type = /mob/living/simple_animal/hostile/clockwork/marauder/agent
 
 //Cogscarab shell, used to create cogcarabs - fragile but zippy little drones that build and maintain the base.
 /obj/item/clockwork/construct_chassis/cogscarab

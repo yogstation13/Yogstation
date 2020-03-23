@@ -95,6 +95,11 @@
 	var/static/time_since_last_marauder = 0
 	var/static/scaled_recital_time = 0
 
+/datum/clockwork_scripture/create_object/construct/clockwork_marauder/get_spawn_path(mob/user)
+	if(!is_servant_of_ratvar(user, TRUE))
+		return /obj/item/clockwork/construct_chassis/clockwork_marauder/agent
+	return ..()
+
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/update_construct_limit()
 	var/human_servants = 0
 	for(var/V in SSticker.mode.servants_of_ratvar)

@@ -41,6 +41,12 @@
 	message_admins("[key_name_admin(user)] has removed clockwork agent status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork agent status from [key_name(owner)].")
 
+/datum/antagonist/clockcult/agent/admin_give_slab(mob/admin)
+	if(!SSticker.mode.equip_clock_agent(owner.current))
+		to_chat(admin, "<span class='warning'>Failed to outfit [owner.current]!</span>")
+	else
+		to_chat(admin, "<span class='notice'>Successfully gave [owner.current] a slab!</span>")
+
 /datum/antagonist/clockcult/agent/create_team(datum/team/clock_agents/new_team)
 	if(!new_team)
 		return
@@ -53,13 +59,14 @@
 
 /datum/team/clock_agents/proc/forge_clock_objectives()
 	objectives = list()
-	var/list/active_ais = active_ais()
+	/*var/list/active_ais = active_ais() //will be added in the "i'm done with the gamemode" DLC pack, currently out for soul extraction testing
 	if(active_ais.len && prob(50))
 		var/datum/objective/steal/AI = new
-		AI.targetinfo = new /datum/objective_item/steal/functionalai
+		AI.targetinfo = /datum/objective_item/steal/functionalai
 		add_objective(AI)
-	else
-		add_objective(new/datum/objective/soul_extraction)
+	else*/
+	add_objective(new/datum/objective/soul_extraction)
+	add_objective(new/datum/objective/implant)
 	add_objective(new/datum/objective/escape/onesurvivor/clockagent)
 	return
 
@@ -68,40 +75,16 @@
 	O.update_explanation_text()
 	objectives += O
 
-/datum/objective/soul_extraction
-	name = "soul extraction (clock antag required)"
-	var/obj/item/mmi/posibrain/soul_vessel/agent/linked_vessel
-	explanation_text = "<span class='nezbere'>tear out some fucker's brain hahaha</span>"
-
-/datum/objective/soul_extraction/New()
-	target = find_target_by_role(role = ROLE_CLOCK_AGENT, role_type = TRUE, invert = TRUE)
-	update_explanation_text()
-
-/datum/objective/soul_extraction/update_explanation_text()
-	if(!target)
-		explanation_text = "Free Objective"
-	else
-		explanation_text = "<span class='nezbere'>Extract the brain of [target], the [target.assigned_role] into a soul vessel. You'll need use a replica fabricator on a positronic brain to do this.</span>"
-
-/datum/objective/soul_extraction/admin_edit(mob/admin)
-	admin_simple_target_pick(admin)
-
-/datum/objective/soul_extraction/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	if(!target)
-		return TRUE
-	for(var/datum/mind/M in owners)
-		if(!isliving(M.current))
-			continue
-
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
-
-		for(var/obj/item/mmi/posibrain/soul_vessel/agent/A in all_items) //Check for items
-			if(A && A.brainmob?.mind == target)
-				return TRUE
-	return FALSE
-
-/datum/objective/escape/onesurvivor/clockagent
+/datum/objective/escape/onesurvivor/clockagent //flavortext variant
 	name = "escape clock agent"
 	explanation_text = "<span class='inathneq'>Escape alive and out of custody.</span>"
 	team_explanation_text = "<span class='inathneq'>Escape with your entire team intact and at least one member alive. Do not get captured.</span>"
+
+/obj/item/clockwork/slab/agent
+	quickbound = list(/datum/clockwork_scripture/create_object/integration_cog, \
+	/datum/clockwork_scripture/vanguard, /datum/clockwork_scripture/ranged_ability/hateful_manacles)
+
+/obj/item/clockwork/slab/agent/examine(mob/user)
+	. = ..()
+	if(user.mind?.has_antag_datum(/datum/antagonist/clockcult/agent))
+		. += "<span class='sevtug'>This slab's connection to the Justicar is modified for covert operations, with some scriptures being weakened or unusable. Additionally, replica fabricators made with this slab have extra uses for specific objectives.</span>"

@@ -93,7 +93,7 @@
 	integer = FALSE
 	min_val = 1
 
-/datum/config_entry/number/agent_scaling_coeff	//how many players per clock/blood agent
+/datum/config_entry/number/agent_scaling_coeff	//how many players per clock&blood agent
 	config_entry_value = 20
 
 /datum/config_entry/number/traitor_objectives_amount
