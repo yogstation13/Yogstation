@@ -53,7 +53,8 @@
 
 				if(prob(infect_modifier))
 					if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
-						try_to_zombie_infect(target, inserted_organ)
+						if(!H.stat)
+							try_to_zombie_infect(target, inserted_organ)
 
 			else
 				if(prob(infect_chance - H.getarmor(flesh_wound, "melee")))
