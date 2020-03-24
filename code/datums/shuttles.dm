@@ -211,7 +211,6 @@
 	admin_notes = "This shuttle will likely crush escape, killing anyone there."
 	credit_cost = 15000
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
-	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/luxury
 	suffix = "luxury"
