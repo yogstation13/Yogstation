@@ -1,4 +1,5 @@
 import { Achievements } from './interfaces/Achievements';
+import { AdvancedAirlockController } from './interfaces/AdvancedAirlockController';
 import { AiAirlock } from './interfaces/AiAirlock';
 import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
@@ -79,6 +80,10 @@ const ROUTES = {
   ai_airlock: {
     component: () => AiAirlock,
     scrollable: false,
+  },
+  advanced_airlock_controller: {
+    component: () => AdvancedAirlockController,
+    scrollabel: false,
   },
   airalarm: {
     component: () => AirAlarm,
