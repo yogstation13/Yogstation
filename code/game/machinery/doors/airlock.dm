@@ -1196,7 +1196,7 @@
 			prying_so_hard = FALSE
 
 
-	if(istype(I, /obj/item/zombie_hand/gamemode))
+	if(istype(I, /obj/item/zombie_hand/gamemode) || istype(I, /obj/item/zombie_hand/gamemode/runner) || istype(I, /obj/item/zombie_hand/gamemode/necro))
 		var/obj/item/zombie_hand/gamemode/hands = I
 		var/door_time_multiplier = hands.door_open_modifier
 		var/time_to_open = 10 * door_time_multiplier
@@ -1228,7 +1228,7 @@
 
 
 /obj/machinery/door/airlock/open(forced=0)
-	if( operating || welded || locked || brace) //yogs - brace
+	if( (operating || welded || locked || brace) && !forced) //yogs - brace
 		return FALSE
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
