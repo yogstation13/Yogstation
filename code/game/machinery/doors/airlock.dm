@@ -1199,7 +1199,7 @@
 	if(istype(I, /obj/item/zombie_hand/gamemode) || istype(I, /obj/item/zombie_hand/gamemode/runner) || istype(I, /obj/item/zombie_hand/gamemode/necro))
 		var/obj/item/zombie_hand/gamemode/hands = I
 		var/door_time_multiplier = hands.door_open_modifier
-		var/time_to_open = 10 * door_time_multiplier
+		var/time_to_open = 50 * door_time_multiplier
 
 
 
@@ -1218,8 +1218,8 @@
 			to_chat(user, "<span class='warning'>The bolts are down, and it's welded.Forcing the bolts and breaking the seal will take a long while...</span>")
 			time_to_open = 240 * door_time_multiplier
 
+
 		if(hasPower())
-			time_to_open = 50 * door_time_multiplier
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 			if(do_after(user, time_to_open, TRUE, src))
 				open(2)
@@ -1262,6 +1262,11 @@
 
 	if(!density)
 		return TRUE
+	if(forced < 2)
+		if(locked)
+			locked = !locked
+		if(welded)
+			welded = !welded
 	operating = TRUE
 	update_icon(AIRLOCK_OPENING, 1)
 	sleep(1)
