@@ -7,7 +7,7 @@
 
 	var/datum/action/innate/zombie/zomb/zombify = new
 
-	var/datum/action/innate/zombie/talk/talk_action
+	var/datum/action/innate/zombie/talk/talk_action = new
 
 	var/datum/action/innate/zombie/choose_class/evolution = new
 
@@ -94,11 +94,13 @@
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction |= "zombies"
+	talk_action.Grant(current)
 
 /datum/antagonist/zombie/remove_innate_effects()
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction -= "zombies"
+	talk_action.Remove(current)
 
 
 /datum/antagonist/zombie/on_removal()
@@ -318,7 +320,7 @@
 	return ..(TRUE)
 
 /datum/action/innate/zombie/choose_class/tier2/Activate()
-	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Necromancer", "Coordinator")
+	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Necromancer")
 	if(!selected || !IsAvailable())
 		return
 	if(!isinfectedzombie(owner))
@@ -343,8 +345,6 @@
 			to_chat(owner, "<span class='warning'>You can now run, and your movement speed is considerably faster. You do less damage and can take less damage though.</span>")
 		if("Coordinator")
 			H.set_species(/datum/species/zombie/infectious/gamemode/coordinator)
-			Z.talk_action = new()
-			Z.talk_action.Grant(H)
 			to_chat(owner, "<span class='warning'>You can now communicate with the horde!</span>")
 
 
