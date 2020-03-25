@@ -1501,7 +1501,7 @@
 		new /obj/item/clothing/shoes/galoshes/dry(t_loc)
 		
 /datum/reagent/americajuice
-	name = "America Juice"
+	name = "Freedom Juice"
 	description = "Despite its name it is not a juice"
 	reagent_state = LIQUID
 	color = "#A70FFF"
