@@ -66,6 +66,8 @@ SUBSYSTEM_DEF(achievements)
 
 //Ad-hoc procs
 /datum/controller/subsystem/achievements/proc/unlock_achievement(achievementPath, client/C)
+	if(!C)
+		return FALSE
 	var/datum/achievement/achievement = get_achievement(achievementPath)
 	if(!achievement)
 		log_sql("Achievement [achievementPath] not found in list of achievements when trying to unlock for [ckey(C.ckey)]")
