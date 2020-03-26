@@ -235,8 +235,8 @@
 	var/my_message
 	if(!message)
 		return
-	var/title = "Horde Coordinator"
-	var/span = "cultlarge"
+	var/title = "Zombie"
+	var/span = "cult"
 	my_message = "<span class='[span]'><b>\[[title]] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
