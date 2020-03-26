@@ -1713,6 +1713,7 @@
 		close()
 	else
 		open()
+		
 
 #undef AIRLOCK_CLOSED
 #undef AIRLOCK_CLOSING
