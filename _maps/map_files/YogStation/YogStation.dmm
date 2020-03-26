@@ -11723,17 +11723,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"ayI" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_x = 32
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "ayJ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -12267,28 +12256,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/fore)
-"azS" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "EVA Maintenance";
-	req_access_txt = "18"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -12899,21 +12866,6 @@
 /obj/item/target/alien,
 /turf/open/floor/plasteel,
 /area/clerk)
-"aBh" = (
-/obj/machinery/camera{
-	c_tag = "EVA Maintenance";
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "aBi" = (
 /obj/machinery/camera/motion{
 	c_tag = "AI Chamber South";
@@ -12922,17 +12874,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"aBj" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/tank/jetpack/carbondioxide,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "aBk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -13789,18 +13730,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"aCZ" = (
-/obj/machinery/meter{
-	target_layer = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "aDa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -51133,6 +51062,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"dcy" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/button/door{
+	id = "eva_maintenance";
+	name = "EVA Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	pixel_y = 8;
+	req_one_access_txt = "18";
+	specialfunctions = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "dcF" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
@@ -51148,6 +51094,21 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"dhC" = (
+/obj/machinery/meter{
+	target_layer = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "dif" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
@@ -55008,6 +54969,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
+"mKf" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_x = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/camera{
+	c_tag = "EVA Maintenance";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "mKj" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute{
@@ -55389,6 +55365,26 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"nqK" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/tank/jetpack/carbondioxide,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/button/door{
+	id = "eva_maintenance";
+	name = "EVA Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	pixel_y = 8;
+	req_one_access_txt = "18";
+	specialfunctions = 4
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
 "nrj" = (
 /obj/structure/rack,
 /obj/item/storage/briefcase,
@@ -59427,6 +59423,30 @@
 /obj/effect/landmark/stationroom/box/aftmaint,
 /turf/template_noop,
 /area/template_noop)
+"xaU" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance{
+	id_tag = "eva_maintenance";
+	name = "EVA Maintenance";
+	req_access_txt = "18"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel,
+/area/maintenance/fore)
 "xcL" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -86386,10 +86406,10 @@ ape
 apS
 avr
 avR
-ayI
+mKf
 azO
-aBh
-aCZ
+dcy
+dhC
 aDz
 aEV
 aGg
@@ -86644,7 +86664,7 @@ aqR
 avt
 ayL
 ayL
-azS
+xaU
 ayL
 ayL
 ayL
@@ -86902,7 +86922,7 @@ wIv
 ayL
 ayK
 aAb
-aBj
+nqK
 aBO
 aDC
 ayL
