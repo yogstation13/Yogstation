@@ -39,7 +39,7 @@
 			if(M.real_name == account_holder)
 				SSachievements.unlock_achievement(/datum/achievement/cargo/bourgeois, M.client)
 				is_bourgeois = TRUE
-				break
+				//break would result in the possibility of this being given to changeling who has duplicated the millionaire, and not to the actual millionaire
 
 /datum/bank_account/proc/has_money(amt)
 	return account_balance >= amt
