@@ -86,8 +86,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/subtlemessage_faction, // yogs -- SM to entire factions/antag types
 	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
 	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
-	/client/proc/queue_check // Yogs -- Some queue manipulation/debuggin kinda verbs,
-	/client/proc/cmd_view_polls()
+	/client/proc/queue_check, // Yogs -- Some queue manipulation/debuggin kinda verbs
+	/client/proc/cmd_view_polls
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
