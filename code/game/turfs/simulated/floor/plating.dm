@@ -150,3 +150,37 @@
 
 /turf/open/floor/plating/foam/tool_act(mob/living/user, obj/item/I, tool_type)
 	return
+
+/turf/open/floor/plating/maint_plate_floor // Maintenance tile. Has a chance to be broken/burned and also have cleanable junk on it - Hopek
+	icon_state = "maint_floor"
+	
+
+/turf/open/floor/plating/maint_plate_floor/Initialize()
+	var/list/cleanable_list = list(
+		/obj/effect/decal/cleanable/dirt = 50,
+		/obj/effect/decal/cleanable/glass = 20,
+		/obj/effect/decal/cleanable/food = 10,
+		/obj/effect/decal/cleanable/oil = 7,
+		/obj/effect/decal/cleanable/generic = 6,
+		/obj/effect/decal/cleanable/vomit = 5,
+		/obj/effect/decal/cleanable/cobweb = 2
+	)
+	if (!broken_states)
+		broken_states = list("platingdmg1", "platingdmg2", "platingdmg3")
+	if (!burnt_states)
+		burnt_states = list("panelscorched")
+	if(prob(8))
+		if(prob(70))
+			icon_state = pick(broken_states)
+			broken = TRUE
+		else
+			icon_state = pick(burnt_states)
+			burnt = TRUE
+	if(prob(6))
+		var/location = get_turf(src)
+		var/chosen = (pick(cleanable_list))
+		if (location && chosen)
+			new chosen(location)
+	if(!broken && !burnt)
+		icon_state = "plating"
+	..()

@@ -363,3 +363,9 @@
 				/obj/item/circuitboard/computer/apc_control,
 				/obj/item/circuitboard/computer/robotics
 				)
+
+/obj/effect/spawner/lootdrop/wall/wall_50_percent // 50% chance to spawn a wall , 4% for it to be rusted
+	icon = 'icons/obj/structures_spawners.dmi'
+	icon_state = "wall_50_percent"
+	name = "wall spawner 50%"
+	loot = list( /turf/closed/wall = 46, "" = 50, /turf/closed/wall/rust = 4 )
