@@ -150,6 +150,8 @@
 	//If have no DNA or can be Ignited, call parent handling to light user
 	//If firestacks are high enough
 	if(!dna || dna.species.CanIgniteMob(src))
+		if(get_thermal_protection() > FIRE_SUIT_MAX_TEMP_PROTECT*0.95) // If they're resistant to fire (slightly undercut to make sure get_thermal_protection doesn't fuck over this achievement due to floating-point errors
+			SSachievements.unlock_achievement(/datum/achievement/engineering/toasty,src.client) // Fear the reaper man!
 		return ..()
 	. = FALSE //No ignition
 

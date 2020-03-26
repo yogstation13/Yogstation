@@ -60,7 +60,7 @@
 	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
 	.["melee"] = !saved_stats.ranged
 	.["abilities_major"] = list()
-	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : ((subtypesof(/datum/guardian_ability/major)-/datum/guardian_ability/major/healing) - typesof(/datum/guardian_ability/major/special))
 	for(var/ability in types)
 		var/datum/guardian_ability/major/GA = new ability
 		GA.master_stats = saved_stats
@@ -124,7 +124,7 @@
 			QDEL_NULL(saved_stats.ability)
 		if("ability_major")
 			var/ability = text2path(params["path"])
-			var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+			var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : ((subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/healing) - typesof(/datum/guardian_ability/major/special))
 			if(ispath(ability))
 				if(saved_stats.ability && saved_stats.ability.type == ability)
 					QDEL_NULL(saved_stats.ability)

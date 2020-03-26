@@ -28,6 +28,9 @@
 /obj/structure/spawner/lavaland/magmawing
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril)
 
+/obj/structure/spawner/lavaland/icewatcher
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing)
+
 GLOBAL_LIST_INIT(tendrils, list())
 /obj/structure/spawner/lavaland/Initialize()
 	. = ..()

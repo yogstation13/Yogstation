@@ -319,3 +319,7 @@ Key procs
 /datum/language_holder/universal/New()
 	..()
 	grant_all_languages()
+
+/datum/language_holder/mouse
+	understood_languages = list(/datum/language/mouse = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/mouse = list(LANGUAGE_ATOM))
