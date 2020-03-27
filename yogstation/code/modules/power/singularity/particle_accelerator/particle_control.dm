@@ -5,7 +5,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='danger'>The laws of physics no longer apply in the future, god help you...</span>")
-	SSachievements.unlock_achievement(/datum/achievement/pa_emag, user.client)
+	SSachievements.unlock_achievement(/datum/achievement/engineering/pa_emag, user.client)
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
 

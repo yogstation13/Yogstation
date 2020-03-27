@@ -51,7 +51,6 @@ SUBSYSTEM_DEF(chat)
 				C.chatOutput.messageQueue += message
 				continue
 
-			message = to_utf8(message, I) // yogs - LibVG
 			payload[C] += url_encode(url_encode(message))
 
 	else
@@ -64,5 +63,4 @@ SUBSYSTEM_DEF(chat)
 			C.chatOutput.messageQueue += message
 			return
 
-		message = to_utf8(message, target) // yogs - LibVG
 		payload[C] += url_encode(url_encode(message))

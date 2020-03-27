@@ -78,6 +78,7 @@ SUBSYSTEM_DEF(job)
 		SetupOccupations()
 	return type_occupations[jobtype]
 
+// Attempts to Assign player to Role
 /datum/controller/subsystem/job/proc/AssignRole(mob/dead/new_player/player, rank, latejoin = FALSE)
 	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 	if(player && player.mind && rank)
@@ -131,8 +132,8 @@ SUBSYSTEM_DEF(job)
 			candidates += player
 	return candidates
 
-/datum/controller/subsystem/job/proc/GiveRandomJob(mob/dead/new_player/player)
-	JobDebug("GRJ Giving random job, Player: [player]")
+// Fetch a random job that a specific player can use
+/datum/controller/subsystem/job/proc/GetRandomJob(mob/dead/new_player/player)
 	. = FALSE
 	for(var/datum/job/job in shuffle(occupations))
 		if(!job)
@@ -164,9 +165,17 @@ SUBSYSTEM_DEF(job)
 			continue
 
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
-			if(AssignRole(player, job.title))
-				return TRUE
+			JobDebug("GRJ Random job can give, Player: [player], Job: [job]")
+			return job
+
+// Assign a random job to a specific player
+/datum/controller/subsystem/job/proc/GiveRandomJob(mob/dead/new_player/player)
+	JobDebug("GRJ Giving random job, Player: [player]")
+	. = FALSE
+	var/datum/job/job = GetRandomJob(player)
+	if(job != FALSE && AssignRole(player, job.title))
+		JobDebug("GRJ Random job given, Player: [player], Job: [job]")
+		return TRUE
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")

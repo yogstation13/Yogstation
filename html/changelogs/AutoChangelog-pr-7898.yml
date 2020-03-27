@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "darkspawn mindlink work in contents"

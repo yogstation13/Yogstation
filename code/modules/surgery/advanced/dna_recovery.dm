@@ -17,8 +17,7 @@
 
 	if(!HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /datum/surgery_step/dna_recovery
 	name = "recover DNA"

@@ -3,7 +3,6 @@
 #define MOLES			1
 #define ARCHIVE			2
 #define GAS_META		3
-#define INNER_MOLES		4
 #define META_GAS_SPECIFIC_HEAT	1
 #define META_GAS_NAME			2
 #define META_GAS_MOLES_VISIBLE	3
@@ -170,7 +169,10 @@
 
 //LAVALAND
 #define LAVALAND_EQUIPMENT_EFFECT_PRESSURE 50 //what pressure you have to be under to increase the effect of equipment meant for lavaland
+
+//PLANETARY ATMOS MIXES
 #define LAVALAND_DEFAULT_ATMOS "o2=14;n2=23;TEMP=300"
+#define ICEMOON_DEFAULT_ATMOS "o2=14;n2=23;TEMP=180"
 
 //ATMOSIA GAS MONITOR TAGS
 #define ATMOS_GAS_MONITOR_INPUT_O2 "o2_in"
@@ -285,13 +287,6 @@
 	out_var = 0;\
 	for(var/total_moles_id in cached_gases){\
 		out_var += cached_gases[total_moles_id][MOLES];\
-	}
-
-#define TOTAL_MOLES_INNER(cached_gases, out_var)\
-	out_var = 0;\
-	for(var/total_moles_id in cached_gases){\
-		var/list/total_moles_cached_gas = cached_gases[total_moles_id];\
-		out_var += min(total_moles_cached_gas[INNER_MOLES], total_moles_cached_gas[MOLES]);\
 	}
 
 #ifdef TESTING

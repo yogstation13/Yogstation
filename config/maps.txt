@@ -58,6 +58,11 @@ map yogsdelta
 	votable
 endmap
 
+map icebox
+	minplayers 25
+	votable
+endmap
+
 map runtimestation
 endmap
 

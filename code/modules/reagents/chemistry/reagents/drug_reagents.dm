@@ -60,6 +60,30 @@
 /datum/reagent/drug/nicotine/overdose_process(mob/living/M)
 	M.adjustToxLoss(0.1*REM, 0)
 	M.adjustOxyLoss(1.1*REM, 0)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
+	if(prob(5) && iscarbon(M))
+		M.Jitter(10)
+	..()
+
+/datum/reagent/drug/nicotine/addiction_act_stage2(mob/living/M)
+	if(prob(20) && iscarbon(M))
+		M.Jitter(10)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage3(mob/living/M)
+	if(prob(20) && iscarbon(M))
+		M.Jitter(10)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage4(mob/living/M)
+	if(prob(40) && iscarbon(M))
+		M.Jitter(10)
 	..()
 	. = 1
 

@@ -1,5 +1,61 @@
 // CHAPLAIN CUSTOM ARMORS //
 
+/obj/item/clothing/suit/space/hardsuit/darktemplarfollower
+	name = "Black Templar armor"
+	desc = "Custom-made Black Templar armor, it's abnormally light. The words 'Purge Heresy' are written on the back."
+	icon_state = "darktemplar-follower0"
+	item_state = "darktemplar-follower0"
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	slowdown = 0.8
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
+
+/obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap
+	name = "Black Templar chaplain battle-armor"
+	desc = "Custom-made Black Templar chaplain armor, it's abnormally light. The words 'Purge Heresy' are written on the back."
+	icon_state = "darktemplar-chaplain0"
+	item_state = "darktemplar-chaplain0"
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	slowdown = 0.8
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
+
+/obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
+	name = "Black Templar helmet"
+	desc = "A custom-made Black Templar helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
+	icon_state = "darktemplar-follower1"
+	item_state = "darktemplar-follower1"
+	armor = list("melee" = 20, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	strip_delay = 50
+	actions_types = list()
+
+/obj/item/clothing/head/helmet/space/hardsuit/darktemplarchap
+	name = "Black Templar chaplain battle-helmet"
+	desc = "A custom-made Black Templar chaplain battle-helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
+	icon_state = "darktemplar-chaplain1"
+	item_state = "darktemplar-chaplain1"
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 55)
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	strip_delay = 50
+	actions_types = list()
+
 /obj/item/clothing/head/helmet/chaplain
 	name = "crusader helmet"
 	desc = "Deus Vult."
@@ -16,7 +72,7 @@
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 
 /obj/item/choice_beacon/holy
 	name = "armaments beacon"
@@ -70,7 +126,7 @@
 	icon_state = "studentuni"
 	item_state = "studentuni"
 	body_parts_covered = ARMS|CHEST
-	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 
 /obj/item/clothing/head/helmet/chaplain/cage
 	name = "cage"
@@ -138,7 +194,7 @@
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood
 
 /obj/item/clothing/head/hooded/chaplain_hood
@@ -160,6 +216,14 @@
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
 
+/obj/item/storage/box/holy/darktemplar
+	name = "Founder Kit of the Black Templars"
+
+/obj/item/storage/box/holy/darktemplar/PopulateContents()
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollower(src)
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollower(src)
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollower(src)
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap(src)
 
 // CHAPLAIN NULLROD AND CUSTOM WEAPONS //
 

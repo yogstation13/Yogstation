@@ -101,6 +101,7 @@
 		// Yogs End
 		current.mind = null
 		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
 
 	if(key)
@@ -133,6 +134,8 @@
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	if(accent_name)
+		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
 	current.update_atom_languages()
