@@ -9,6 +9,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	shoes = /obj/item/clothing/shoes/laceup
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
+	belt = /obj/item/pda/bar
 
 /datum/outfit/job/plasmaman/cook
 	name = "Plasmaman Cook"
@@ -19,6 +20,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/chef
 	suit = /obj/item/clothing/suit/toggle/chef
 	ears = /obj/item/radio/headset/headset_srv
+	belt = /obj/item/pda/cook
 
 /datum/outfit/job/plasmaman/botanist
 	name = "Plasmaman Botanist"
@@ -33,6 +35,7 @@
 	suit_store = /obj/item/plant_analyzer
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd
+	belt = /obj/item/pda/botanist
 
 /datum/outfit/job/plasmaman/curator
 	name = "Plasmaman Curator"
@@ -46,6 +49,7 @@
 	r_pocket = /obj/item/key/displaycase
 	l_pocket = /obj/item/laser_pointer
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
+	belt = /obj/item/pda/curator
 
 /datum/outfit/job/plasmaman/chaplain
 	name = "Plasmaman Chaplain"
@@ -57,6 +61,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack
+	belt = /obj/item/pda/chaplain
 
 
 /datum/outfit/job/plasmaman/janitor
@@ -67,6 +72,7 @@
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/janitor
 	ears = /obj/item/radio/headset/headset_srv
+	belt = /obj/item/pda/janitor
 
 /datum/outfit/job/plasmaman/security
 	name = "Plasmaman Security Officer"
@@ -85,6 +91,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
+	belt = /obj/item/pda/security
 
 /datum/outfit/job/plasmaman/detective
 	name = "Plasmaman Detective"
@@ -99,6 +106,7 @@
 	suit = /obj/item/clothing/suit/det_suit
 	gloves = /obj/item/clothing/gloves/color/black
 	l_pocket = /obj/item/toy/crayon/white
+	belt = /obj/item/pda/detective
 
 /datum/outfit/job/plasmaman/warden
 	name = "Plasmaman Warden"
@@ -118,6 +126,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
+	belt = /obj/item/pda/warden
 
 /datum/outfit/job/plasmaman/cargo_tech
 	name = "Plasmaman Cargo Technician"
@@ -128,6 +137,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	l_hand = /obj/item/export_scanner
+	belt = /obj/item/pda/cargo
 
 /datum/outfit/job/plasmaman/quartermaster
 	name = "Plasmaman Quartermaster"
@@ -140,6 +150,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
+	belt = /obj/item/pda/quartermaster
 
 /datum/outfit/job/plasmaman/miner
 	name = "Plasmaman Shaft Miner"
@@ -156,6 +167,7 @@
 	backpack = /obj/item/storage/backpack/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
+	belt = /obj/item/pda/shaftminer
 
 /datum/outfit/job/plasmaman/lawyer
 	name = "Plasmaman Laywer"
@@ -172,6 +184,7 @@
 	l_hand = /obj/item/storage/briefcase/lawyer
 	l_pocket = /obj/item/laser_pointer
 	r_pocket = /obj/item/clothing/accessory/lawyers_badge
+	belt = /obj/item/pda/lawyer
 
 /datum/outfit/job/plasmaman/doctor
 	name = "Plasmaman Medical Doctor"
@@ -187,6 +200,7 @@
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	belt = /obj/item/pda/medical
 
 /datum/outfit/job/plasmaman/virologist
 	name = "Plasmaman Virologist"
@@ -202,6 +216,7 @@
 	backpack = /obj/item/storage/backpack/virology
 	satchel = /obj/item/storage/backpack/satchel/vir
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	belt = /obj/item/pda/viro
 
 
 /datum/outfit/job/plasmaman/chemist
@@ -218,6 +233,7 @@
 	backpack = /obj/item/storage/backpack/chemistry
 	satchel = /obj/item/storage/backpack/satchel/chem
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	belt = /obj/item/pda/chemist
 
 /datum/outfit/job/plasmaman/geneticist
 	name = "Plasmaman Geneticist"
@@ -234,6 +250,7 @@
 	backpack = /obj/item/storage/backpack/genetics
 	satchel = /obj/item/storage/backpack/satchel/gen
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	belt = /obj/item/pda/geneticist
 
 /datum/outfit/job/plasmaman/scientist
 	name = "Plasmaman Scientist"
@@ -247,6 +264,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
+	belt = /obj/item/pda/toxins
 
 /datum/outfit/job/plasmaman/roboticist
 	name = "Plasmaman Roboticist"
@@ -260,6 +278,8 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
+	l_pocket = /obj/item/pda/roboticist
+
 
 /datum/outfit/job/plasmaman/engineer
 	name = "Plasmaman Station Engineer"
@@ -275,6 +295,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
+	l_pocket = /obj/item/pda/engineering
 
 /datum/outfit/job/plasmaman/atmos
 	name = "Plasmaman Atmospheric Technician"
@@ -289,6 +310,7 @@
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
+	l_pocket = /obj/item/pda/atmos
 
 /datum/outfit/job/plasmaman/mime
 	name = "Plasmaman Mime"
@@ -302,6 +324,7 @@
 	suit = /obj/item/clothing/suit/suspenders
 	backpack = /obj/item/storage/backpack/mime
 	satchel = /obj/item/storage/backpack/mime
+	belt = /obj/item/pda/mime
 
 /datum/outfit/job/plasmaman/clown
 	name = "Plasmaman Clown"
@@ -313,6 +336,7 @@
 	ears = /obj/item/radio/headset/headset_srv
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	l_pocket = /obj/item/bikehorn
+	belt = /obj/item/pda/clown
 	backpack = /obj/item/storage/backpack/clown
 	satchel = /obj/item/storage/backpack/clown
 	duffelbag = /obj/item/storage/backpack/duffelbag/clown
