@@ -161,7 +161,7 @@
 		message = replacetext(message,"a",pick("å","ä","a"))
 		message = replacetext(message,"bo","bjo")
 		message = replacetext(message,"o",pick("ö","o"))
-		message = replacetext(message, regex(@"the (([^\W]|å|ä|ö)*)", "gmi"), pick("$1en", "$1et"))
+		message = replacetext(message, regex(@"([^\w]?)the (([^\W]|å|ä|ö)*)", "gmi"), pick("$1$2en", "$1$2et"))
 		if(prob(30))
 			message += " Bork[pick("",", bork",", bork, bork")]!"
 		speech_args[SPEECH_MESSAGE] = trim(message)
