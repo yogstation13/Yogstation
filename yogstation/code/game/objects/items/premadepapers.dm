@@ -154,7 +154,7 @@
 	written += new/datum/langtext("<b>Name:</b> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
-	written += new/datum/langtext("<b>Item Requested: ",/datum/language/common)
+	written += new/datum/langtext("<b>Item Requested:</b> ",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Reason Requested: </b>",/datum/language/common)
