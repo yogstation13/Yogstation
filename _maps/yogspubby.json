@@ -1,7 +1,7 @@
 {
     "map_name": "YogsPubby",
-    "map_path": "map_files/Yogspubby",
-    "map_file": "Yogspubby.dmm",
+    "map_path": "map_files/YogsPubby",
+    "map_file": "YogsPubby.dmm",
     "shuttles": {
 	    "emergency": "emergency_pubby",
 	    "whiteship": "whiteship_pubby",
