@@ -71,7 +71,6 @@
 	name = "venus human trap"
 	desc = "Now you know how the fly feels."
 	icon_state = "venus_human_trap"
-	health_doll_icon = "venus_human_trap"
 	layer = SPACEVINE_MOB_LAYER
 	health = 50
 	maxHealth = 50
