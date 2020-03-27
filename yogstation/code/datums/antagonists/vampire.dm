@@ -116,11 +116,16 @@
 	if(full_vampire)
 		for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 			forge_single_objective()
-
-		var/datum/objective/convert/convert_objective = new
-		convert_objective.owner = owner
-		convert_objective.gen_amount_goal()
-		add_objective(convert_objective)
+		if(prob(50))
+			var/datum/objective/convert/convert_objective = new
+			convert_objective.owner = owner
+			convert_objective.gen_amount_goal()
+			add_objective(convert_objective)
+		else
+			var/datum/objective/blood/blood_objective = new
+			blood_objective.owner = owner
+			blood_objective.gen_amount_goal()
+			add_objective(blood_objective)
 	else
 		var/datum/objective/blood/blood_objective = new
 		blood_objective.owner = owner
