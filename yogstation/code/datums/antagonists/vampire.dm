@@ -11,7 +11,7 @@
 	var/total_blood = 0
 	var/converted = 0
 	var/fullpower = FALSE
-	var/full_objectives = TRUE
+	var/full_vampire = TRUE
 	var/draining
 	var/list/objectives_given = list()
 
@@ -39,7 +39,7 @@
 		/obj/effect/proc_holder/spell/targeted/vampirize = 450)
 
 /datum/antagonist/vampire/new_blood
-	full_objectives = FALSE
+	full_vampire = FALSE
 	roundend_category = "new bloods"
 	show_in_antagpanel = FALSE
 
@@ -106,26 +106,31 @@
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
 	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
-	if(full_objectives == FALSE)
+	if(full_vampire == FALSE)
 		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/vampire.ogg',80,0)
 
 /datum/antagonist/vampire/proc/give_objectives()
-	var/datum/objective/blood/blood_objective = new
-	blood_objective.owner = owner
-	blood_objective.gen_amount_goal()
-	add_objective(blood_objective)
-
-	if(full_objectives)
+	if(full_vampire)
 		for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 			forge_single_objective()
-
-		var/datum/objective/convert/convert_objective = new
-		convert_objective.owner = owner
-		convert_objective.gen_amount_goal()
-		add_objective(convert_objective)
+		if(prob(50))
+			var/datum/objective/convert/convert_objective = new
+			convert_objective.owner = owner
+			convert_objective.gen_amount_goal()
+			add_objective(convert_objective)
+		else
+			var/datum/objective/blood/blood_objective = new
+			blood_objective.owner = owner
+			blood_objective.gen_amount_goal()
+			add_objective(blood_objective)
+	else
+		var/datum/objective/blood/blood_objective = new
+		blood_objective.owner = owner
+		blood_objective.gen_amount_goal()
+		add_objective(blood_objective)
 
 	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new
