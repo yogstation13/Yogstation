@@ -1,7 +1,7 @@
 {
-    "map_name": "MinskyStation",
-    "map_path": "map_files/MinskyStation",
-    "map_file": "MinskyStation.dmm",
+    "map_name": "EclipseStation",
+    "map_path": "map_files/EclipseStation",
+    "map_file": "EclipseStation.dmm",
     "shuttles": {
 	    "emergency": "emergency_box",
 	    "ferry": "ferry_fancy",
