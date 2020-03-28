@@ -1702,9 +1702,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer3{
-	name = "Waste Out";
+	dir = 4;
 	icon_state = "pump_on_map-3";
-	dir = 4
+	name = "Waste Out"
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAS)
@@ -2652,26 +2652,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
-"afk" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "permabolt2";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	req_access_txt = "0";
-	specialfunctions = 4
-	},
-/obj/structure/chair,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "afl" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
@@ -2877,26 +2857,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
-"afH" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "permabolt1";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	req_access_txt = "0";
-	specialfunctions = 4
-	},
-/obj/structure/chair,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "afI" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/plasteel/dark,
@@ -2990,18 +2950,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/medbay/central)
-"afW" = (
-/obj/machinery/flasher{
-	id = "PCell 2";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "afX" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plasteel/dark,
@@ -3110,18 +3058,6 @@
 	},
 /turf/open/floor/wood,
 /area/medical/medbay/central)
-"agl" = (
-/obj/machinery/flasher{
-	id = "PCell 1";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "agm" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -3365,27 +3301,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"agI" = (
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Permabrig Cell 2";
-	network = list("ss13","prison")
-	},
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	dir = 2;
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/toy/plush/slimeplushie,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "agJ" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/security_officer,
@@ -3400,27 +3315,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"agL" = (
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Permabrig Cell 1";
-	network = list("ss13","prison")
-	},
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	dir = 2;
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/prisoner,
-/obj/item/toy/plush/lizardplushie,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "agM" = (
 /obj/machinery/door/window/westleft{
 	base_state = "left";
@@ -3515,13 +3409,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"agY" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "agZ" = (
 /obj/machinery/button/flasher{
 	id = "executionflash";
@@ -3767,9 +3654,9 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer1{
-	name = "Air Out";
+	dir = 8;
 	icon_state = "pump_on_map-1";
-	dir = 8
+	name = "Air Out"
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAP)
@@ -11167,48 +11054,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"avs" = (
-/obj/structure/bed,
-/obj/machinery/flasher{
-	id = "Cell 1";
-	pixel_x = -28
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "avt" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/security/brig)
-"avu" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 1";
-	name = "Cell 1 Locker"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
-"avv" = (
-/obj/structure/bed,
-/obj/machinery/flasher{
-	id = "Cell 2";
-	pixel_x = -28
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "avw" = (
@@ -11218,42 +11068,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"avx" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 2";
-	name = "Cell 2 Locker"
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
-"avy" = (
-/obj/structure/bed,
-/obj/machinery/flasher{
-	id = "Cell 3";
-	pixel_x = -28
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "avz" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
-"avA" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 3";
-	name = "Cell 3 Locker"
-	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -35023,8 +34838,8 @@
 /area/security/checkpoint/science)
 "boa" = (
 /obj/machinery/atmospherics/components/binary/valve/layer1{
-	icon_state = "mvalve_map-1";
-	dir = 8
+	dir = 8;
+	icon_state = "mvalve_map-1"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
@@ -57325,6 +57140,25 @@
 /obj/effect/spawner/lootdrop/two_percent_xeno_egg_spawner,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"eUA" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "permabolt2";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	req_access_txt = "0";
+	specialfunctions = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "eVy" = (
 /obj/effect/turf_decal/arrows{
 	dir = 8
@@ -57559,6 +57393,18 @@
 "fRs" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/hor)
+"fSU" = (
+/obj/machinery/flasher{
+	id = "Cell 2";
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/variation/box/sec/brig_cell,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "fTY" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -57607,6 +57453,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"gfs" = (
+/obj/machinery/flasher{
+	id = "Cell 1";
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/variation/box/sec/brig_cell,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "giI" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -58480,6 +58338,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"jrO" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "permabolt1";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	req_access_txt = "0";
+	specialfunctions = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jsf" = (
 /obj/item/toy/katana,
 /turf/open/floor/plating,
@@ -58611,6 +58488,10 @@
 /obj/item/storage/book/bible,
 /turf/open/floor/carpet,
 /area/chapel/office)
+"kgG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "kgR" = (
 /obj/structure/toilet{
 	dir = 4
@@ -58713,6 +58594,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+"kxF" = (
+/obj/machinery/camera{
+	c_tag = "Permabrig Cell 2";
+	network = list("ss13","prison")
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	dir = 2;
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/toy/plush/slimeplushie,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "kyq" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "Singularity";
@@ -58990,6 +58890,18 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+"ltx" = (
+/obj/machinery/flasher{
+	id = "Cell 3";
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/variation/box/sec/brig_cell,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "lzJ" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/carpet,
@@ -59423,6 +59335,25 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"nmN" = (
+/obj/machinery/camera{
+	c_tag = "Permabrig Cell 1";
+	network = list("ss13","prison")
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	dir = 2;
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/lizardplushie,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "nnf" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -60983,6 +60914,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"tbL" = (
+/obj/machinery/flasher{
+	id = "PCell 1";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/obj/effect/variation/box/sec/brig_cell/perma,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tcb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -61674,6 +61618,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"vTN" = (
+/obj/machinery/flasher{
+	id = "PCell 2";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/obj/effect/variation/box/sec/brig_cell/perma,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "vXt" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -82090,8 +82047,8 @@ afM
 aeU
 aeU
 agy
-agI
-afW
+kxF
+vTN
 agy
 adS
 aiE
@@ -82604,8 +82561,8 @@ ahW
 aeU
 aeU
 agy
-afk
-agY
+eUA
+kgG
 agy
 aig
 aiE
@@ -82882,7 +82839,7 @@ aon
 akO
 alt
 arS
-avs
+gfs
 awI
 axF
 aAA
@@ -83118,8 +83075,8 @@ aiC
 aeU
 aeU
 agy
-agL
-agl
+nmN
+tbL
 agy
 adW
 aiI
@@ -83396,7 +83353,7 @@ aqf
 akQ
 alu
 arq
-avu
+avt
 awJ
 axG
 aAJ
@@ -83632,8 +83589,8 @@ afI
 aeU
 aeU
 agy
-afH
-agY
+jrO
+kgG
 agy
 ahI
 ajf
@@ -83910,7 +83867,7 @@ aqf
 akQ
 alu
 arS
-avv
+fSU
 awK
 axG
 aAK
@@ -84424,7 +84381,7 @@ aqf
 akQ
 alu
 arq
-avx
+avw
 awJ
 axG
 aAK
@@ -84938,7 +84895,7 @@ aqf
 akQ
 alu
 arS
-avy
+ltx
 awK
 axG
 aAK
@@ -85452,7 +85409,7 @@ arh
 akQ
 alw
 arq
-avA
+avz
 awJ
 axG
 aAK
