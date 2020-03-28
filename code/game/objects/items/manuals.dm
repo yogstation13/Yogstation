@@ -453,3 +453,11 @@
 	title = "Easy Guide to Setting up the Supermatter Engine"
 	page_link = "Supermatter"
 //YOGS end
+
+/obj/item/book/manual/wiki/rules
+	name = "The Rules"
+	icon = 'yogstation/icons/obj/library.dmi'
+	icon_state = "book6"
+	author = "Yogstation Administration"
+	title = "Yogstation 13 Server Rules"
+	page_link = "Rules"
