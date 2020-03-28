@@ -1196,7 +1196,7 @@
 			prying_so_hard = FALSE
 
 
-	if(istype(I, /obj/item/zombie_hand/gamemode) || istype(I, /obj/item/zombie_hand/gamemode/runner) || istype(I, /obj/item/zombie_hand/gamemode/necro))
+	if(istype(I, /obj/item/zombie_hand/gamemode))
 		var/obj/item/zombie_hand/gamemode/hands = I
 		var/door_time_multiplier = hands.door_open_modifier
 		var/time_to_open = 50 * door_time_multiplier

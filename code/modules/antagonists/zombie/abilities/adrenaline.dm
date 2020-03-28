@@ -23,6 +23,6 @@
 /obj/effect/proc_holder/zombie/adrenaline/fire(mob/living/carbon/user)
 	if(user.incapacitated())
 		return FALSE
-	else
-		if(add_reagent(user))
-			return ..()
+
+	if(add_reagent(user))
+		return ..()

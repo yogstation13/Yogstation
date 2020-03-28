@@ -7,13 +7,10 @@
 
 
 /obj/effect/proc_holder/zombie/spit/fire(mob/living/carbon/user)
-	var/message
 	if(active)
-		message = "<span class='notice'>You close your neurotoxin reserves.</span>"
-		remove_ranged_ability(message)
+		remove_ranged_ability("<span class='notice'>You close your neurotoxin reserves.</span>")
 	else
-		message = "<span class='notice'>You open your neurotoxin reserves. <B>Left-click to fire at a target!</B></span>"
-		add_ranged_ability(user, message, TRUE)
+		add_ranged_ability(user, "<span class='notice'>You open your neurotoxin reserves. <B>Left-click to fire at a target!</B></span>", TRUE)
 
 /obj/effect/proc_holder/zombie/spit/update_icon()
 	action.button_icon_state = "alien_neurotoxin_[active]"
@@ -21,21 +18,21 @@
 
 /obj/effect/proc_holder/zombie/spit/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(..())
-		return
-	if(!isinfected(ranged_ability_user) || ranged_ability_user.stat)
+		return FALSE
+	if(!isinfected(ranged_ability_user) || ranged_ability_user.stat != CONSCIOUS)
 		remove_ranged_ability()
-		return
+		return FALSE
 
 	var/mob/living/carbon/user = ranged_ability_user
 
 	if(!ready)
 		to_chat(user, "<span class='warning'>You cannot currently spit. You can spit again in [(cooldown_ends - world.time) / 10] seconds</span>")
 		remove_ranged_ability()
-		return
+		return FALSE
 
 	var/turf/T = user.loc
 	var/turf/U = get_step(user, user.dir) // Get the tile infront of the move, based on their direction
-	if(!isturf(U) || !isturf(T))
+	if(!U || !T)
 		return FALSE
 
 	user.visible_message("<span class='danger'>[user] spits neurotoxin!", "<span class='alertalien'>You spit neurotoxin.</span>")

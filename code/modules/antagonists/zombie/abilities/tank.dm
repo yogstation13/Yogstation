@@ -11,15 +11,14 @@
 
 /obj/effect/proc_holder/zombie/tank/proc/run_ability(mob/living/carbon/human/user)
 	addtimer(CALLBACK(src, .proc/stop, user), duration)
-	var/datum/species/zombie/infectious/gamemode/juggernaut/species = user.dna.species
-	species.armor += armor_boost
+	user.dna.species.armor += armor_boost
 	user.adjustBruteLoss(-(heal * user.getBruteLoss()))
 	user.adjustFireLoss(-(heal * user.getFireLoss()))
 	return TRUE
 
 /obj/effect/proc_holder/zombie/tank/proc/stop(mob/living/carbon/human/user)
-	var/datum/species/zombie/infectious/gamemode/juggernaut/species = user.dna.species
-	species.armor -= armor_boost
+
+	user.dna.species.armor -= armor_boost
 	to_chat(user, "<span class='userdanger'>Your armor boost has ended!</span>")
 
 /obj/effect/proc_holder/zombie/tank/fire(mob/living/carbon/user)

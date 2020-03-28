@@ -65,7 +65,8 @@
 
 /datum/game_mode/zombie/proc/can_evolve_tier_2()
 	var/count = 0
-	for(var/datum/mind/zombie in zombies)
+	for(var/Z in zombies)
+		var/datum/mind/zombie = Z
 		if(!zombie.current)
 			continue
 		var/mob/living/carbon/human/H = zombie.current
@@ -86,7 +87,8 @@
 
 	main_team.setup_objectives()
 
-	for(var/datum/mind/minds in people_to_infect)
+	for(var/M in people_to_infect)
+		var/datum/mind/minds = M
 		var/datum/antagonist/zombie/antag = add_zombie(minds)
 		if(!istype(antag))
 			continue
@@ -97,10 +99,10 @@
 	. = ..()
 
 /datum/game_mode/zombie/proc/call_shuttle()
+	priority_announce("Foreign Biosignatures present onboard station. Activating automatic evacuation system...")
+	SSshuttle.emergencyNoRecall = TRUE
 	if(EMERGENCY_IDLE_OR_RECALLED)
-		priority_announce("Foreign Biosignatures present onboard station. Activating automatic evacuation system...")
 		SSshuttle.emergency.request(null, set_coefficient=0.5)
-		SSshuttle.emergencyNoRecall = TRUE
 
 /datum/game_mode/zombie/proc/add_zombie(datum/mind/zombie_mind)
 	if (!istype(zombie_mind))
@@ -109,9 +111,7 @@
 	if(!main_team)
 		return FALSE
 
-	var/datum/antagonist/zombie/new_zombie = new()
-
-	return zombie_mind.add_antag_datum(new_zombie, main_team)
+	return zombie_mind.add_antag_datum(/datum/antagonist/zombie, main_team)
 
 /datum/game_mode/zombie/check_finished()
 	if(SSshuttle.emergency && (SSshuttle.emergency.mode == SHUTTLE_ENDGAME))

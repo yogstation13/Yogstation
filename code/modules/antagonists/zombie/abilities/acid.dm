@@ -11,27 +11,26 @@
 	user.verbs.Remove(/mob/living/carbon/proc/spitter_zombie_acid)
 
 /obj/effect/proc_holder/zombie/acid/proc/corrode(atom/target,mob/living/carbon/user = usr)
-	if(target in oview(1,user))
+	if(target in oview(1, user))
 		if(target.acid_act(200, 100))
 			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
-			return 1
+			return TRUE
 		else
 			to_chat(user, "<span class='noticealien'>You cannot dissolve this object.</span>")
 
 
-			return 0
+			return FALSE
 	else
 		to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
-		return 0
+		return FALSE
 
 
 /obj/effect/proc_holder/zombie/acid/fire(mob/living/carbon/user)
 	var/O = input("Select what to dissolve:", "Dissolve", null) as obj|turf in oview(1,user)
 	if(!O || user.incapacitated())
 		return FALSE
-	else
-		if(user.corrode_object(O, user))
-			return ..()
+	if(corrode(O, user))
+		return ..()
 
 
 /mob/living/carbon/proc/spitter_zombie_acid(O as obj|turf in oview(1)) // right click menu verb ugh
@@ -48,20 +47,5 @@
 		to_chat(user, "<span class='userdanger'>Please wait. You will be able to use this ability in [(A.cooldown_ends - world.time) / 10] seconds</span>")
 		return
 
-	if(corrode_object(O, user))
+	if(A.corrode(O, user))
 		A.start_cooldown()
-
-/mob/living/carbon/proc/corrode_object(atom/target, mob/living/carbon/user = usr)
-	if(target in oview(1, user))
-		if(target.acid_act(300, 150))
-			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
-			return TRUE
-		else
-			to_chat(user, "<span class='noticealien'>You cannot dissolve this object.</span>")
-
-
-			return FALSE
-	else
-		to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
-		return FALSE
-
