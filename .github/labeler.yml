@@ -1,6 +1,17 @@
+Admin:
+  - 'code/modules/admin/**'
+
 # Any file within the config subfolder
 Config: 
   - 'config/**'
+  
+Council Vote:
+  - 'config/**'
+
+Dependencies:
+  - '**/package.json'
+  - '**/package-lock.json'
+  - '**/yarn.lock'
 
 # When the .DME is changed
 DME Edit: 
