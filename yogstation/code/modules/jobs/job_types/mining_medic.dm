@@ -19,7 +19,7 @@
 
 	changed_maps = list("EclipseStation")
 
-/datum/job/clerk/proc/EclipseStationChanges()
+/datum/job/miningmedic/proc/EclipseStationChanges()
 	total_positions = 2
 	spawn_positions = 1
 
