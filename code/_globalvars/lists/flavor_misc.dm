@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Bliss",
 	"Blob",
 	"Blue",
+	"Cat",
 	"Clown",
 	"Database",
 	"Dorf",
