@@ -23,9 +23,9 @@
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
-	changed_maps = list("MinskyStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
-/datum/job/detective/proc/MinskyStationChanges()
+/datum/job/detective/proc/EclipseStationChanges()
 	total_positions = 2
 	spawn_positions = 2
 
