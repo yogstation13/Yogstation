@@ -43,10 +43,10 @@
 
 /obj/effect/proc_holder/zombie/necromance/proc/total_minion_count()
 	var/count = 0
-	for(var/mob/living/M in summoned_minions)
+	for(var/MU in summoned_minions)
+		var/mob/living/M = MU
+
 		if(!M.stat)
-			continue
-		if(M.stat != DEAD)
 			count++
 	return count
 
