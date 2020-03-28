@@ -90,6 +90,21 @@
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
 
+/datum/map_template/ruin/station/box/testingsite/bunker
+	id = "testing_site_1"
+	suffix = "testingsite_range1.dmm"
+	name = "Bunker Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/syndicate
+	id = "testing_site_2"
+	suffix = "testingsite_range2.dmm"
+	name = "Syndicate Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/clown
+	id = "testing_site_3"
+	suffix = "testingsite_range3.dmm"
+	name = "Clown Bomb Range"
+
 /datum/map_template/ruin/station/box/medbay/morgue
 	id = "medbay_morgue1"
 	suffix = "medbay_morgue1.dmm"
@@ -159,3 +174,4 @@
 	id = "dorms_edoor9"
 	suffix = "dorms_edoor9.dmm"
 	name = "Dorm east door 9"
+
