@@ -8,22 +8,6 @@
 "ac" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
-"ad" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	icon_state = "connector_map-2";
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
-"ae" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
 "af" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
@@ -49,25 +33,12 @@
 /obj/item/ammo_box/magazine/m10mm/rifle,
 /turf/open/floor/plating,
 /area/ruin/powered/gasstation)
-"ai" = (
-/obj/machinery/atmospherics/components/binary/valve,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
 "aj" = (
 /turf/closed/wall/rust,
 /area/ruin/powered/gasstation)
 "ak" = (
 /obj/machinery/atmospherics/pipe/simple,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
-"al" = (
-/obj/machinery/door/airlock,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "gasstation"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
 /area/ruin/powered/gasstation)
 "an" = (
 /obj/item/trash/syndi_cakes,
@@ -183,16 +154,16 @@
 /area/ruin/powered/gasstation)
 "aC" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
 "aD" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -387,8 +358,8 @@
 "aW" = (
 /obj/structure/table/reinforced,
 /obj/machinery/paystand/register{
-	icon_state = "register";
-	dir = 8
+	dir = 8;
+	icon_state = "register"
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "cashiershutters";
@@ -687,8 +658,8 @@
 /area/lavaland/surface)
 "by" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
@@ -729,23 +700,7 @@
 	temperature = 273.15
 	},
 /area/ruin/powered/gasstation)
-"dc" = (
-/obj/effect/turf_decal/sand,
-/obj/item/beacon,
-/turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
-"fP" = (
-/obj/structure/toilet{
-	icon_state = "toilet00";
-	dir = 4
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered/gasstation)
-"gF" = (
-/obj/effect/turf_decal/sand,
+"dQ" = (
 /obj/machinery/camera{
 	c_tag = "Outside Back Exit Camera";
 	dir = 1;
@@ -753,7 +708,17 @@
 	network = list("gasstation")
 	},
 /turf/open/floor/plasteel,
-/area/lavaland/surface)
+/area/ruin/powered/gasstation)
+"fP" = (
+/obj/structure/toilet{
+	dir = 4;
+	icon_state = "toilet00"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered/gasstation)
 "gV" = (
 /obj/machinery/camera{
 	c_tag = "Inside Right Side Gas Station Camera";
@@ -781,17 +746,22 @@
 /area/ruin/powered/gasstation)
 "md" = (
 /obj/machinery/shower{
-	icon_state = "shower";
-	dir = 1
+	dir = 1;
+	icon_state = "shower"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered/gasstation)
-"pE" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/teleport/hub,
+"qd" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/gasstation)
+"rp" = (
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
 "rr" = (
@@ -804,6 +774,10 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
+/area/ruin/powered/gasstation)
+"sp" = (
+/obj/machinery/teleport/station,
+/turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
 "su" = (
 /obj/machinery/light/small{
@@ -833,6 +807,14 @@
 	temperature = 273.15
 	},
 /area/ruin/powered/gasstation)
+"vn" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4;
+	icon_state = "connector_map-2"
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel,
+/area/ruin/powered/gasstation)
 "wF" = (
 /obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/rust,
@@ -859,13 +841,8 @@
 	temperature = 273.15
 	},
 /area/ruin/powered/gasstation)
-"zr" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/computer/teleporter{
-	dir = 1;
-	icon_state = "computer";
-	id = null
-	},
+"Aj" = (
+/obj/machinery/teleport/hub,
 /turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
 "AD" = (
@@ -889,9 +866,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/lavaland/surface)
+"Ez" = (
+/obj/item/beacon,
+/turf/open/floor/plasteel,
+/area/ruin/powered/gasstation)
 "FJ" = (
 /obj/machinery/light_switch,
 /turf/closed/wall/rust,
+/area/ruin/powered/gasstation)
+"GR" = (
+/obj/machinery/computer/teleporter{
+	dir = 1;
+	icon_state = "computer";
+	id = null
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/gasstation)
+"GX" = (
+/turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
 "Hu" = (
 /obj/machinery/light/small{
@@ -920,6 +912,11 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
+/area/ruin/powered/gasstation)
+"LQ" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/glass_large,
+/turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
 "Mq" = (
 /obj/structure/sign/poster/contraband/robust_softdrinks,
@@ -969,10 +966,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/lavaland/surface)
-"Tu" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/teleport/station,
-/turf/open/floor/plasteel,
+"VK" = (
+/obj/machinery/door/airlock,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "gasstation"
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/gasstation)
 "Wf" = (
 /obj/machinery/button/door{
@@ -992,6 +991,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/lavaland/surface)
+"WY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/gasstation)
+"Xe" = (
+/obj/machinery/atmospherics/components/binary/valve,
+/turf/open/floor/plasteel,
+/area/ruin/powered/gasstation)
 "Xr" = (
 /obj/structure/sign/poster/official/foam_force_ad,
 /turf/closed/wall/rust,
@@ -1006,9 +1015,9 @@ aa
 aa
 aa
 aa
-ab
-ab
 aa
+ab
+ab
 aa
 aa
 aa
@@ -1030,6 +1039,7 @@ aa
 (2,1,1) = {"
 aa
 aa
+aa
 ab
 ab
 ab
@@ -1049,11 +1059,11 @@ ac
 ac
 ac
 ac
-aa
 aa
 aa
 "}
 (3,1,1) = {"
+aa
 aa
 ab
 af
@@ -1077,9 +1087,9 @@ ac
 ac
 ac
 aa
-aa
 "}
 (4,1,1) = {"
+aa
 aa
 ab
 af
@@ -1103,9 +1113,9 @@ by
 ac
 ac
 aa
-aa
 "}
 (5,1,1) = {"
+aa
 aa
 ab
 af
@@ -1129,9 +1139,9 @@ bF
 ac
 ac
 aa
-aa
 "}
 (6,1,1) = {"
+aa
 aa
 ab
 af
@@ -1155,9 +1165,9 @@ bA
 ac
 ac
 aa
-aa
 "}
 (7,1,1) = {"
+ab
 ab
 ab
 ag
@@ -1181,12 +1191,12 @@ ac
 ac
 ac
 ac
-aa
 "}
 (8,1,1) = {"
 ab
-ab
-af
+aj
+aj
+aj
 aj
 ao
 ar
@@ -1207,12 +1217,12 @@ ac
 ac
 ac
 ac
-aa
 "}
 (9,1,1) = {"
 ab
-ad
-af
+aj
+vn
+GX
 aj
 ap
 ar
@@ -1233,12 +1243,12 @@ bA
 ac
 ac
 ac
-aa
 "}
 (10,1,1) = {"
 ab
-ae
-ai
+aj
+qd
+Xe
 ak
 aq
 ar
@@ -1259,12 +1269,12 @@ bF
 ac
 ac
 ac
-aa
 "}
 (11,1,1) = {"
 ab
-af
-gF
+LQ
+GX
+dQ
 wF
 wQ
 ar
@@ -1285,13 +1295,13 @@ bC
 ac
 ac
 ac
-aa
 "}
 (12,1,1) = {"
-ac
-af
-af
-al
+ab
+rp
+GX
+GX
+VK
 ar
 ar
 ar
@@ -1311,12 +1321,12 @@ by
 ac
 ac
 ac
-aa
 "}
 (13,1,1) = {"
-ac
-af
-af
+ab
+aj
+WY
+GX
 Xt
 tZ
 ar
@@ -1337,12 +1347,12 @@ bF
 ac
 ac
 ac
-aa
 "}
 (14,1,1) = {"
 ab
-af
-zr
+aj
+GX
+GR
 aj
 as
 ar
@@ -1363,12 +1373,12 @@ bD
 ac
 ac
 ac
-aa
 "}
 (15,1,1) = {"
 ab
-dc
-Tu
+aj
+Ez
+sp
 aj
 at
 ar
@@ -1389,12 +1399,12 @@ ac
 ac
 ac
 ac
-aa
 "}
 (16,1,1) = {"
 ab
-ab
-pE
+aj
+GX
+Aj
 aj
 au
 aB
@@ -1415,12 +1425,12 @@ ac
 ac
 ac
 ac
-aa
 "}
 (17,1,1) = {"
 ab
-ab
-af
+aj
+aj
+aj
 aj
 av
 ar
@@ -1441,9 +1451,9 @@ bE
 ac
 ac
 ac
-aa
 "}
 (18,1,1) = {"
+ab
 ab
 ab
 ag
@@ -1467,9 +1477,9 @@ bF
 ac
 ac
 ac
-aa
 "}
 (19,1,1) = {"
+aa
 aa
 ab
 af
@@ -1493,9 +1503,9 @@ bC
 ac
 ac
 ac
-aa
 "}
 (20,1,1) = {"
+aa
 aa
 ab
 af
@@ -1519,9 +1529,9 @@ ac
 ac
 ac
 aa
-aa
 "}
 (21,1,1) = {"
+aa
 aa
 ab
 af
@@ -1545,9 +1555,9 @@ ac
 ac
 aa
 aa
-aa
 "}
 (22,1,1) = {"
+aa
 aa
 ab
 af
@@ -1571,11 +1581,11 @@ ac
 ac
 aa
 aa
-aa
 "}
 (23,1,1) = {"
 aa
 aa
+aa
 ab
 ab
 ab
@@ -1595,7 +1605,6 @@ ac
 ac
 ac
 ac
-aa
 aa
 aa
 "}
@@ -1603,6 +1612,7 @@ aa
 aa
 aa
 aa
+aa
 ab
 ab
 ab
@@ -1622,6 +1632,5 @@ ac
 ac
 ac
 ac
-aa
 aa
 "}

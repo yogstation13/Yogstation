@@ -38,6 +38,8 @@
 	var/list/lines = splittext(file2text("./tmp/techweb_out.txt"), regex("\\r?\\n"))
 	for(var/line in lines)
 		var/list/split = splittext(line, " ")
+		if(!split.len)
+			continue
 		if(split[1] != "node")
 			continue
 		var/datum/techweb_node/node = techweb_nodes[split[2]]

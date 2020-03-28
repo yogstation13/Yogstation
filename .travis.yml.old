@@ -16,9 +16,15 @@ matrix:
             - python3
             - python3-pip
             - python3-setuptools
+            - pcregrep
+            - rustc
+            - cargo
+      cache:
+        directories:
+          - $HOME/SpacemanDMM
       install:
         - tools/travis/install_build_tools.sh
-        - tools/travis/install_dreamchecker.sh
+        - tools/travis/install_spaceman_dmm.sh dreamchecker
       script:
         - tools/travis/check_filedirs.sh yogstation.dme
         - tools/travis/check_changelogs.sh
