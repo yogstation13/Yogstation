@@ -25,7 +25,7 @@
 /datum/job/geneticist/proc/OmegaStationChanges()
 	return TRUE
 
-/datum/job/geneticist/proc/OmegaStationChanges()
+/datum/job/geneticist/proc/EclipseStationChanges()
 	total_positions = 3
 	spawn_positions = 3
 

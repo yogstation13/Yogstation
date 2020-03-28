@@ -24,7 +24,7 @@
 	spawn_positions = 1
 	supervisors = "the captain and the head of personnel"
 
-/datum/job/paramedic/proc/OmegaStationChanges()
+/datum/job/paramedic/proc/EclipseStationChanges()
 	total_positions = 4
 	spawn_positions = 2
 

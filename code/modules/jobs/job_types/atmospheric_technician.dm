@@ -28,7 +28,7 @@
 
 /datum/job/atmos/proc/EclipseStationChanges()
 	total_positions = 3
-	spawn_position = 3
+	spawn_positions = 3
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"
