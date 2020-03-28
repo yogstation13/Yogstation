@@ -49,7 +49,6 @@
 
 /datum/antagonist/zombie/create_team(datum/team/zombie/new_team)
 	if(!new_team)
-
 		for(var/datum/antagonist/zombie/H in GLOB.antagonists)
 			if(!H.owner)
 				continue

@@ -25,6 +25,6 @@
 /obj/effect/proc_holder/zombie/tank/fire(mob/living/carbon/user)
 	if(user.incapacitated())
 		return FALSE
-	else
-		if(run_ability(user))
-			return ..()
+
+	if(run_ability(user))
+		return ..()

@@ -23,10 +23,10 @@
 
 	announce_span = "zombie"
 	announce_text = "Some crew members have been infected with a zombie virus!\n\
-	<span class='cult'>Zombies</span>: Take over the station!.\n\
+	<span class='danger'>Zombies</span>: Take over the station!.\n\
 	<span class='notice'>Crew</span>: Kill the zombies and escape!."
 
-	var/list/people_to_infect = list() //the cultists we'll convert
+	var/list/people_to_infect = list() //the zombies we'll infect at roundstart
 
 	var/datum/team/zombie/main_team
 
