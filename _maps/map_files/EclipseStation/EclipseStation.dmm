@@ -22209,7 +22209,7 @@
 	dir = 8
 	},
 /obj/item/bedsheet/captain,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/heads/captain/private)
 "aVj" = (
 /obj/structure/bookcase{
@@ -25118,7 +25118,7 @@
 /obj/item/storage/box/matches,
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/item/reagent_containers/food/drinks/flask/gold,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/heads/captain/private)
 "bbc" = (
 /turf/open/floor/plating,
@@ -81852,6 +81852,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"efM" = (
+/turf/open/floor/carpet/exoticblue,
+/area/crew_quarters/heads/captain/private)
 "eht" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Dormitories Maintenance";
@@ -123597,8 +123600,8 @@ afx
 afx
 awx
 aTa
-aVh
-aVh
+efM
+efM
 aVh
 aZA
 bbe
