@@ -1,4 +1,4 @@
-/client/verb/cmd_view_polls()
+/client/proc/cmd_view_polls()
 	set category = "Server"
 	set name = "View poll results"
 
