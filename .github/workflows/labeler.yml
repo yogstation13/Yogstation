@@ -1,4 +1,4 @@
-name: Pull request labeler
+name: PR Labeler
 on:
   schedule:
     - cron: '*/5 * * * *'
