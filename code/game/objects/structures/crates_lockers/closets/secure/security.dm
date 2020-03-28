@@ -240,7 +240,6 @@
 /obj/structure/closet/secure_closet/brig/cell
 	name = "cell locker"
 	
-
 /obj/structure/closet/secure_closet/evidence
 	anchored = TRUE
 	name = "Secure Evidence Closet"
