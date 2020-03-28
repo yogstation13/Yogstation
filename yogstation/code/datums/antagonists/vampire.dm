@@ -9,7 +9,9 @@
 
 	var/usable_blood = 0
 	var/total_blood = 0
+	var/converted = 0
 	var/fullpower = FALSE
+	var/full_vampire = TRUE
 	var/draining
 	var/list/objectives_given = list()
 
@@ -25,16 +27,21 @@
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 175,
-		/obj/effect/proc_holder/spell/bats = 250,
+		/obj/effect/proc_holder/spell/self/revive = 100,
+		/obj/effect/proc_holder/spell/targeted/disease = 200,//why is spell-that-kills-people unlocked so early what the fuck
 		/obj/effect/proc_holder/spell/self/batform = 200,
 		/obj/effect/proc_holder/spell/self/screech = 215,
+		/obj/effect/proc_holder/spell/bats = 250,
 		/datum/vampire_passive/regen = 255,
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
 		/datum/vampire_passive/full = 420,
 		/obj/effect/proc_holder/spell/self/summon_coat = 420,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
-		/obj/effect/proc_holder/spell/self/revive = 350)
+		/obj/effect/proc_holder/spell/targeted/vampirize = 450)
+
+/datum/antagonist/vampire/new_blood
+	full_vampire = FALSE
+	roundend_category = "new bloods"
+	show_in_antagpanel = FALSE
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
@@ -99,18 +106,31 @@
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
 	to_chat(owner, "<span class='userdanger'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living, non-vampiric creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
+	if(full_vampire == FALSE)
+		to_chat(owner, "<span class='notice bold'>You are not required to obey other vampires, however, you have gained a respect for them.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/vampire.ogg',80,0)
 
 /datum/antagonist/vampire/proc/give_objectives()
-	var/datum/objective/blood/blood_objective = new
-	blood_objective.owner = owner
-	blood_objective.gen_amount_goal()
-	add_objective(blood_objective)
-
-	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
-		forge_single_objective()
+	if(full_vampire)
+		for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
+			forge_single_objective()
+		if(prob(50))
+			var/datum/objective/convert/convert_objective = new
+			convert_objective.owner = owner
+			convert_objective.gen_amount_goal()
+			add_objective(convert_objective)
+		else
+			var/datum/objective/blood/blood_objective = new
+			blood_objective.owner = owner
+			blood_objective.gen_amount_goal()
+			add_objective(blood_objective)
+	else
+		var/datum/objective/blood/blood_objective = new
+		blood_objective.owner = owner
+		blood_objective.gen_amount_goal()
+		add_objective(blood_objective)
 
 	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new
@@ -202,6 +222,7 @@
 		C.adjustFireLoss(-4)
 		C.adjustToxLoss(-4)
 		C.adjustOxyLoss(-4)
+		C.adjustCloneLoss(-4)
 		return
 	if(!get_ability(/datum/vampire_passive/full) && istype(get_area(C.loc), /area/chapel))
 		vamp_burn()
@@ -232,9 +253,9 @@
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
 			break
 		if(H.stat != DEAD)
-			blood = min(20, H.blood_volume)// if they have less than 20 blood, give them the remnant else they get 20 blood
-			total_blood += blood / 2	//divide by 2 to counted the double suction since removing cloneloss -Melandor0
-			usable_blood += blood / 2
+			blood = min(20, H.blood_volume)	// if they have less than 20 blood, give them the remnant else they get 20 blood
+			total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
+			usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
 		else
 			blood = min(5, H.blood_volume)	// The dead only give 5 blood
 			total_blood += blood
@@ -244,7 +265,7 @@
 		H.blood_volume = max(H.blood_volume - 25, 0)
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood / 2), NUTRITION_LEVEL_WELL_FED)
-		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1)
+		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
 
 	draining = null
 	to_chat(owner, "<span class='notice'>You stop draining [H.name] of blood.</span>")
