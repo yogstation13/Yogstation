@@ -80,7 +80,7 @@
 	. = ..()
 	var/mob/living/current = owner.current
 	add_objectives()
-	SSticker.mode.zombies += owner
+	GLOB.zombies += owner
 
 	current.log_message("has been made a zombie!", LOG_ATTACK, color="#960000")
 
@@ -103,7 +103,7 @@
 
 
 /datum/antagonist/zombie/on_removal()
-	SSticker.mode.zombies -= owner
+	GLOB.zombies -= owner
 
 	var/datum/atom_hud/antag/zombie_hud = GLOB.huds[ANTAG_HUD_ZOMBIE]
 	zombie_hud.leave_hud(owner.current)

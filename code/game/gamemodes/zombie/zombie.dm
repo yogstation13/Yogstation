@@ -1,8 +1,6 @@
 #define ZOMBIE_SCALING_COEFFICIENT 18.5 //Roughly one new zombie at roundstart per this many players
 
-
-/datum/game_mode
-	var/list/datum/mind/zombies = list()
+GLOBAL_LIST_EMPTY(zombies)
 
 /proc/isinfected(mob/living/M)
 	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/zombie)
@@ -14,8 +12,8 @@
 	report_type = "zombie"
 	antag_flag = ROLE_ZOMBIE
 	false_report_weight = 10
-	restricted_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer")
-	protected_jobs = list()
+	restricted_jobs = list("AI", "Cyborg")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer")
 	required_players = 40
 	required_enemies = 3
 	recommended_enemies = 3
@@ -65,7 +63,7 @@
 
 /datum/game_mode/zombie/proc/can_evolve_tier_2()
 	var/count = 0
-	for(var/Z in zombies)
+	for(var/Z in GLOB.zombies)
 		var/datum/mind/zombie = Z
 		if(!zombie.current)
 			continue
