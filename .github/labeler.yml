@@ -4,9 +4,6 @@ Admin:
 # Any file within the config subfolder
 Config: 
   - 'config/**'
-  
-Council Vote:
-  - 'config/**'
 
 Dependencies:
   - '**/package.json'
