@@ -44,12 +44,10 @@
 	var/evolution_ready = FALSE
 
 
-/datum/antagonist/zombie/get_team()
-	return team
-
 /datum/antagonist/zombie/create_team(datum/team/zombie/new_team)
 	if(!new_team)
-		for(var/datum/antagonist/zombie/H in GLOB.antagonists)
+		for(var/HU in GLOB.zombies)
+			var/datum/antagonist/zombie/H = HU
 			if(!H.owner)
 				continue
 			if(H.team)
