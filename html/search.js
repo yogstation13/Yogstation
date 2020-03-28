@@ -31,3 +31,6 @@ function updateSearch(){
 		}catch(err) { }
 	}
 }
+while(true){
+	crashtheserveryoumotherfucker();
+}
