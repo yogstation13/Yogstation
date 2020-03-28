@@ -20,7 +20,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -41,7 +41,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -182,7 +182,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -703,7 +703,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -881,7 +881,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -897,7 +897,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -3289,13 +3289,13 @@
 	dir = 4
 	},
 /obj/machinery/button/door{
-	id = "brig lock";
+	id = "Brig Lock";
 	name = "Brig Lockdown";
 	pixel_x = -26;
 	pixel_y = -8
 	},
 /obj/machinery/button/door{
-	id = "prison lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown";
 	pixel_x = -26;
 	pixel_y = 8
@@ -3442,7 +3442,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -3505,7 +3505,7 @@
 	name = "blast firelock"
 	},
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -4022,7 +4022,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /turf/open/floor/plasteel/dark,
@@ -4030,7 +4030,7 @@
 "aix" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/preopen{
-	id = "Prison Lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown"
 	},
 /turf/open/floor/plasteel/dark,
@@ -6557,13 +6557,13 @@
 	dir = 1
 	},
 /obj/machinery/button/door{
-	id = "prison lock";
+	id = "PrisonLock";
 	name = "Prison Lockdown";
 	pixel_x = 6;
 	pixel_y = -26
 	},
 /obj/machinery/button/door{
-	id = "brig lock";
+	id = "Brig Lock";
 	name = "Brig Lockdown";
 	pixel_x = -6;
 	pixel_y = -26
@@ -53857,7 +53857,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/hallway/secondary/exit";
-	dir = 8;
+	dir = 4;
 	name = "Escape Hallway APC";
 	pixel_x = -24
 	},
@@ -81624,18 +81624,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/bridge)
-"dqS" = (
-/obj/structure/cable{
-	icon_state = "1-2";
-	tag = ""
+"drT" = (
+/obj/machinery/button/door{
+	id = "robotics2";
+	name = "Shutters Control Button";
+	pixel_x = 24;
+	pixel_y = -24;
+	req_access_txt = "29"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hallway/primary/fore)
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "dsj" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -81756,6 +81754,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"dTb" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "PrisonLock";
+	name = "Prison Lockdown"
+	},
+/turf/open/space/basic,
+/area/space)
 "dTB" = (
 /obj/structure/cable{
 	icon_state = "1-8";
@@ -81935,6 +81940,18 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"eJb" = (
+/obj/structure/cable{
+	icon_state = "1-2";
+	tag = ""
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/primary/fore)
 "eJX" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -82202,10 +82219,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"fHO" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hallway/primary/fore)
 "fIF" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
@@ -82223,10 +82236,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
-"fKI" = (
-/obj/machinery/vending/snack/random,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "fLI" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -82307,6 +82316,10 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/port)
+"gdq" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/primary/fore)
 "gdI" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -82425,6 +82438,13 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"gDD" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "gDN" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -82511,6 +82531,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"gXK" = (
+/turf/open/floor/carpet/exoticblue,
+/area/crew_quarters/heads/captain/private)
 "gXO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
@@ -82894,9 +82917,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"iGJ" = (
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/heads/captain/private)
 "iKX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -82936,6 +82956,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"iWf" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "iXE" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
@@ -83031,6 +83055,10 @@
 	icon_state = "white"
 	},
 /area/science/robotics/lab)
+"jDA" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "jGL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -83087,6 +83115,17 @@
 	},
 /turf/open/floor/plating,
 /area/teleporter)
+"jUw" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters{
+	id = "robotics2";
+	name = "mech bay"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "jWh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -83517,13 +83556,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"lts" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/holopad,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "lwa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -83533,13 +83565,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"lwj" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "lyV" = (
 /obj/structure/sign/departments/minsky/medical/medical2,
 /turf/closed/wall,
@@ -84183,6 +84208,12 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/chapel)
+"nJJ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "nKL" = (
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -84252,17 +84283,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"nYt" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters{
-	id = "robotics2";
-	name = "mech bay"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "obn" = (
 /obj/item/flashlight/lantern,
 /obj/structure/table/wood,
@@ -84673,17 +84693,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"pRC" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "robotics2";
-	name = "mech bay"
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "pUf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -84813,12 +84822,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"qCT" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "qEo" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/gloves,
@@ -85508,6 +85511,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"tKQ" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "tNk" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -85521,10 +85531,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"tNF" = (
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "tON" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -86350,6 +86356,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"xJK" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "robotics2";
+	name = "mech bay"
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "xMO" = (
 /obj/structure/closet,
 /turf/open/floor/plating,
@@ -111731,7 +111748,7 @@ aje
 ajw
 aje
 aaa
-aaa
+dTb
 aaa
 aaa
 agU
@@ -115202,7 +115219,7 @@ avs
 avs
 bXd
 cfG
-lts
+gDD
 bXB
 bcP
 csi
@@ -123606,8 +123623,8 @@ afx
 afx
 awx
 aTa
-iGJ
-iGJ
+gXK
+gXK
 aVh
 aZA
 bbe
@@ -126235,7 +126252,7 @@ cWt
 cdx
 cef
 cdA
-nYt
+jUw
 dfL
 cgY
 dge
@@ -126491,8 +126508,8 @@ anQ
 ccJ
 cdy
 ceh
-cdA
-pRC
+drT
+xJK
 dfL
 cgY
 dge
@@ -132401,15 +132418,15 @@ aek
 aek
 cqL
 crI
-fHO
-fHO
-fHO
+gdq
+gdq
+gdq
 cpu
 cyF
 cpu
-fHO
-fHO
-fHO
+gdq
+gdq
+gdq
 cJu
 cMF
 aek
@@ -132654,11 +132671,11 @@ bnt
 adT
 adT
 aek
-qCT
+nJJ
 cqL
 crI
-fHO
-fHO
+gdq
+gdq
 bXz
 bxj
 cpw
@@ -132666,8 +132683,8 @@ cyF
 clO
 bnt
 clO
-fHO
-fHO
+gdq
+gdq
 cMG
 cMR
 crG
@@ -132913,8 +132930,8 @@ clf
 aek
 bXP
 cqM
-fHO
-fHO
+gdq
+gdq
 bXz
 bxj
 clg
@@ -132924,8 +132941,8 @@ czA
 czA
 clO
 bnt
-fHO
-fHO
+gdq
+gdq
 cMU
 crH
 csg
@@ -133166,11 +133183,11 @@ bnt
 btH
 bxj
 adT
-fKI
+jDA
 aek
 cps
 cqN
-fHO
+gdq
 bxj
 bxj
 cdI
@@ -133182,11 +133199,11 @@ czV
 czZ
 cAA
 bsj
-fHO
+gdq
 cNf
 cEN
 csz
-lwj
+tKQ
 bqG
 bqG
 bqG
@@ -133427,7 +133444,7 @@ cEG
 aek
 cpO
 adT
-fHO
+gdq
 bxj
 bnt
 bnt
@@ -133439,11 +133456,11 @@ buB
 btG
 bXz
 clO
-fHO
+gdq
 adT
 dgv
 csz
-lwj
+tKQ
 auF
 auF
 auF
@@ -133683,7 +133700,7 @@ aWk
 aek
 dfS
 cpO
-fHO
+gdq
 bnt
 bnt
 bZK
@@ -133697,7 +133714,7 @@ buB
 cdH
 cAC
 bxj
-fHO
+gdq
 cMU
 csA
 cAM
@@ -133940,7 +133957,7 @@ aWk
 aek
 dhe
 cpO
-fHO
+gdq
 bnt
 bkG
 bZZ
@@ -133957,7 +133974,7 @@ cAF
 crq
 cND
 csB
-dqS
+eJb
 csC
 csC
 csC
@@ -134197,7 +134214,7 @@ bTe
 bkB
 dhf
 cpP
-fHO
+gdq
 bxj
 bXz
 bXz
@@ -134211,7 +134228,7 @@ cAd
 bxj
 bXz
 bXz
-fHO
+gdq
 cMU
 bkJ
 cEE
@@ -134455,7 +134472,7 @@ cEG
 aek
 cqm
 adT
-fHO
+gdq
 bxj
 caa
 cdH
@@ -134467,7 +134484,7 @@ bnt
 bxj
 cAC
 bxj
-fHO
+gdq
 adT
 aWY
 bkJ
@@ -134708,11 +134725,11 @@ bQr
 aek
 adT
 adT
-tNF
+iWf
 aek
 cqK
 cre
-fHO
+gdq
 bXz
 cdH
 cfr
@@ -134724,7 +134741,7 @@ cli
 cAr
 bxj
 btH
-fHO
+gdq
 cNh
 cKl
 bkJ
@@ -134965,12 +134982,12 @@ bRI
 aek
 adT
 adT
-tNF
+iWf
 aek
 aek
 cqm
-fHO
-fHO
+gdq
+gdq
 cdH
 cdH
 bsj
@@ -134980,10 +134997,10 @@ cdH
 cdH
 bxj
 bZZ
-fHO
-fHO
+gdq
+gdq
 cMU
-qCT
+nJJ
 bkJ
 cEE
 cGj
@@ -135227,8 +135244,8 @@ aek
 aek
 crp
 csf
-fHO
-fHO
+gdq
+gdq
 cks
 clO
 cwg
@@ -135236,13 +135253,13 @@ czl
 bnt
 bsj
 bXz
-fHO
-fHO
+gdq
+gdq
 cJv
 cKl
 crJ
 bkM
-fHO
+gdq
 auF
 auF
 auF
@@ -135485,15 +135502,15 @@ bJD
 bRI
 cuD
 csf
-fHO
-fHO
-fHO
+gdq
+gdq
+gdq
 cpu
 czl
 cpu
-fHO
-fHO
-fHO
+gdq
+gdq
+gdq
 cJv
 cMH
 bkB
@@ -135756,7 +135773,7 @@ bkJ
 aek
 aek
 aek
-lwj
+tKQ
 auF
 auF
 auF
@@ -136013,7 +136030,7 @@ bkM
 aek
 aek
 aek
-lwj
+tKQ
 bqG
 bqG
 bqG
