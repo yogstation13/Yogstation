@@ -84,10 +84,13 @@ jobs:
           echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
           
-      - name: Compile and Run maps
+      - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
           tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
+  with:
+    name: my-artifact
+    path: path/to/artifact
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-latest
@@ -138,3 +141,21 @@ jobs:
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           tools/travis/run_server.sh
+          
+      - name: Upload gamefiles
+        uses: actions/upload-artifact@v1
+        with: 
+          name: game
+          path: $GITHUB_WORKSPACE
+      
+      - name: Upload DMB
+        uses: actions/upload-artifact@v1
+        with: 
+          name: game
+          path: $GITHUB_WORKSPACE/yogstation.dmb
+          
+      - name: Upload RSC
+        uses: actions/upload-artifact@v1
+        with: 
+          name: game
+          path: $GITHUB_WORKSPACE/yogstation.rsc
