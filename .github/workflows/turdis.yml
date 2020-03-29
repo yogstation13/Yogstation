@@ -84,7 +84,7 @@ jobs:
           echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
           
-      - name: Compile and Run maps
+      - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
           tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
