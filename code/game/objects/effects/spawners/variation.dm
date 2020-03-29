@@ -51,7 +51,7 @@ This is mainly to prevent creating new map files when creating variations if pos
 		qdel(src) // deletes the landmark after storing location values in choice() so it doesn't show up on the final product
 		chosen = TRUE
 		choice = rand(1,variations)
-		log_world("Chosen variation [choice] out of [variations] for [name]. Spawning on [ref_x],[ref_y],[ref_z] .")
+		log_world("Chosen variation [choice] out of [variations] for [name]. Spawning on [ref_x],[ref_y],[ref_z]")
 		return choice
 	else
 		return choice
