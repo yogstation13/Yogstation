@@ -1151,6 +1151,9 @@
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(!SSmapping.level_trait(T.z, ZTRAIT_MINING))
+		to_chat(user, "<span class='warning'>The club fizzles wekaly, it seem his power does not reach to this realm.</span>" )
+		return
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
 	if(proximity_flag)
@@ -1203,6 +1206,10 @@
 	update_icon()
 
 /obj/item/hierophant_club/ui_action_click(mob/user, action)
+	var/turf/user_turf = get_turf(user)
+	if(!SSmapping.level_trait(user_turf, ZTRAIT_MINING))
+		to_chat(user, "<span class='warning'>The club fizzles wekaly, it seem his power does not reach to this realm.</span>")
+		return
 	if(istype(action, /datum/action/item_action/toggle_unfriendly_fire)) //toggle friendly fire...
 		friendly_fire_check = !friendly_fire_check
 		to_chat(user, "<span class='warning'>You toggle friendly fire [friendly_fire_check ? "off":"on"]!</span>")
