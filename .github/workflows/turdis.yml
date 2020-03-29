@@ -8,7 +8,8 @@ on:
   pull_request:
     branches: master
   push:
-    branches: master
+    branches:
+      -  "*"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -138,3 +139,22 @@ jobs:
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           tools/travis/run_server.sh
+
+      - name: Upload gamefiles
+        uses: actions/upload-artifact@v1
+        with: 
+          name: game
+          path: ${{ github.workspace }}
+      
+      - name: Upload DMB
+        uses: actions/upload-artifact@v1
+        with: 
+          name: game
+          path: ${{ github.workspace }}/yogstation.dmb
+          
+      - name: Upload RSC
+        uses: actions/upload-artifact@v1
+        with: 
+          name: game
+          path: ${{ github.workspace }}/yogstation.rsc
+
