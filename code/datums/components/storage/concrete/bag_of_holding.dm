@@ -26,7 +26,7 @@
 		for(var/turf/T in range(1,loccheck))
 			if(istype(T, /turf/open/space/transit))
 				continue
-			for(var/atom/A in T)
+			for(var/atom/AT in T)
 				A.ex_act(EXPLODE_DEVASTATE)
 			T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
 		for(var/fabricarea in get_areas(/area/fabric_of_reality))
