@@ -27,7 +27,7 @@
 				continue
 			for(var/atom/AT in T)
 				AT.emp_act(EMP_HEAVY)
-				if(istype(AT, /obj)
+				if(istype(AT, /obj))
 					var/obj/O = AT
 					O.obj_break()
 				if(istype(AT, /mob/living))
