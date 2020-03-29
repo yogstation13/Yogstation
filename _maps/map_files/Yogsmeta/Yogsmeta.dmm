@@ -1801,6 +1801,41 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"ads" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 3";
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"adt" = (
+/obj/structure/chair/stool,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "permabolt3";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"adu" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 2";
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "adv" = (
 /obj/machinery/button/door{
 	id = "permacell2";
@@ -1837,6 +1872,16 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
+/area/security/prison)
+"adx" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 1";
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
 /area/security/prison)
 "ady" = (
 /obj/structure/chair/stool,
@@ -1897,6 +1942,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"adC" = (
+/obj/machinery/flasher{
+	id = "PCell 3";
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/security/prison)
 "adD" = (
 /obj/structure/lattice,
 /obj/machinery/camera/motion{
@@ -2037,11 +2095,46 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
+"adO" = (
+/obj/structure/table,
+/obj/item/paper,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"adP" = (
+/obj/machinery/flasher{
+	id = "PCell 2";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "adQ" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/security/prison)
+"adR" = (
+/obj/machinery/flasher{
+	id = "PCell 1";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "adS" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible/layer1,
@@ -15494,6 +15587,37 @@
 	dir = 4;
 	pixel_x = -26
 	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"aAY" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"aAZ" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"aBa" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 2";
+	name = "Cell 2 Locker"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"aBb" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 3";
+	name = "Cell 3 Locker"
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aBc" = (
@@ -83214,14 +83338,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"fCd" = (
-/obj/machinery/camera{
-	c_tag = "Prison Cell 2";
-	network = list("ss13","prison")
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "fEQ" = (
 /turf/closed/wall,
 /area/science/nanite)
@@ -83403,19 +83519,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"inS" = (
-/obj/machinery/flasher{
-	id = "PCell 1";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/obj/effect/variation/box/sec/brig_cell/perma,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "ipa" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -83874,14 +83977,6 @@
 	},
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
-"oiS" = (
-/obj/machinery/camera{
-	c_tag = "Prison Cell 3";
-	network = list("ss13","prison")
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "oub" = (
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
@@ -83929,22 +84024,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"pez" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
-"pjY" = (
-/obj/machinery/camera{
-	c_tag = "Prison Cell 1";
-	network = list("ss13","prison")
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "pmZ" = (
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
@@ -84040,11 +84119,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"qnw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/variation/box/sec/brig_cell,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "qBh" = (
 /obj/structure/table,
 /obj/item/paicard,
@@ -84088,20 +84162,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"rrk" = (
-/obj/machinery/flasher{
-	id = "PCell 3";
-	pixel_x = -28
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/obj/effect/variation/box/sec/brig_cell/perma,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/security/prison)
 "rrB" = (
 /turf/closed/wall,
 /area/vacant_room/commissary)
@@ -84164,10 +84224,6 @@
 /obj/structure/girder/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
-"szN" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "sBu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1;
@@ -84208,19 +84264,6 @@
 "sJW" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/engine/break_room)
-"sLH" = (
-/obj/machinery/flasher{
-	id = "PCell 2";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4;
-	icon_state = "vent_map_on-1"
-	},
-/obj/effect/variation/box/sec/brig_cell/perma,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "sTD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -84233,20 +84276,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/fore)
-"ttI" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "permabolt3";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "tDM" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -106545,8 +106574,8 @@ abZ
 acq
 acD
 abe
-oiS
-rrk
+ads
+adC
 abe
 adf
 adh
@@ -107059,8 +107088,8 @@ abE
 aaI
 acF
 abe
-ttI
-pez
+adt
+adO
 abe
 adn
 aeY
@@ -107573,8 +107602,8 @@ abX
 acc
 acn
 abe
-fCd
-sLH
+adu
+adP
 abe
 add
 afC
@@ -108088,7 +108117,7 @@ acu
 aaR
 abe
 adw
-pez
+adO
 abe
 adv
 afh
@@ -108601,8 +108630,8 @@ abC
 acw
 acH
 abe
-pjY
-inS
+adx
+adR
 abe
 adL
 afK
@@ -109116,7 +109145,7 @@ acx
 acM
 abe
 ady
-pez
+adO
 abe
 adM
 aeT
@@ -109394,7 +109423,7 @@ arr
 asf
 aiq
 awG
-qnw
+aAY
 aCk
 aDw
 aDC
@@ -109908,7 +109937,7 @@ asx
 asg
 dBG
 axd
-szN
+aAZ
 aCm
 aDw
 aCs
@@ -110422,7 +110451,7 @@ asx
 asj
 aiq
 axm
-qnw
+aAY
 aCk
 aDw
 ayn
@@ -110936,7 +110965,7 @@ asx
 asg
 dBG
 axd
-szN
+aBa
 aCm
 aDw
 ayy
@@ -111450,7 +111479,7 @@ asx
 asj
 aiq
 axp
-qnw
+aAY
 aCk
 aDw
 ayy
@@ -111964,7 +111993,7 @@ aAH
 asm
 dBG
 axd
-szN
+aBb
 aCm
 aDw
 ayX
