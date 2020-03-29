@@ -368,4 +368,4 @@
 	icon = 'icons/obj/structures_spawners.dmi'
 	icon_state = "wall_50_percent"
 	name = "wall spawner 50%"
-	loot = list( /turf/closed/wall = 46, "" = 50, /turf/closed/wall/rust = 4 )
+	loot = list( /turf/closed/wall = 40, "" = 50, /turf/closed/wall/rust = 4, /obj/structure/girder = 6)
