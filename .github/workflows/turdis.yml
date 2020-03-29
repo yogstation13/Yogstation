@@ -138,21 +138,3 @@ jobs:
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           tools/travis/run_server.sh
-          
-      - name: Upload gamefiles
-        uses: actions/upload-artifact@v1
-        with: 
-          name: game
-          path: $GITHUB_WORKSPACE
-      
-      - name: Upload DMB
-        uses: actions/upload-artifact@v1
-        with: 
-          name: game
-          path: $GITHUB_WORKSPACE/yogstation.dmb
-          
-      - name: Upload RSC
-        uses: actions/upload-artifact@v1
-        with: 
-          name: game
-          path: $GITHUB_WORKSPACE/yogstation.rsc
