@@ -1,6 +1,6 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
 
-#define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
+#define HIEROPHANT_CLUB_DAMAGE 20
 
 
 /obj/structure/closet/crate/necropolis
@@ -1165,8 +1165,7 @@
 			if(isliving(target) && chaser_timer <= world.time) //living and chasers off cooldown? fire one!
 				chaser_timer = world.time + chaser_cooldown
 				var/obj/effect/temp_visual/hierophant/chaser/C = new(get_turf(user), user, target, chaser_speed, friendly_fire_check)
-				C.damage = 30
-				C.monster_damage_boost = FALSE
+				C.damage = HIEROPHANT_CLUB_DAMAGE
 				log_combat(user, target, "fired a chaser at", src)
 			else
 				INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user) //otherwise, just do cardinal blast
@@ -1338,8 +1337,7 @@
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
 	sleep(2)
 	var/obj/effect/temp_visual/hierophant/blast/B = new(T, user, friendly_fire_check)
-	B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
-	B.monster_damage_boost = FALSE
+	B.damage = HIEROPHANT_CLUB_DAMAGE
 	for(var/d in GLOB.cardinals)
 		INVOKE_ASYNC(src, .proc/blast_wall, T, d, user)
 
@@ -1353,8 +1351,7 @@
 		if(!J)
 			return
 		var/obj/effect/temp_visual/hierophant/blast/B = new(J, user, friendly_fire_check)
-		B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
-		B.monster_damage_boost = FALSE
+		B.damage = HIEROPHANT_CLUB_DAMAGE
 		previousturf = J
 		J = get_step(previousturf, dir)
 
@@ -1366,7 +1363,7 @@
 	sleep(2)
 	for(var/t in RANGE_TURFS(1, T))
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
-		B.damage = 15 //keeps monster damage boost due to lower damage
+		B.damage = 15 //still lower damage since its spammable
 
 
 //Just some minor stuff
