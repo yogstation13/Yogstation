@@ -15152,16 +15152,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"azq" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "azr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
@@ -15170,17 +15160,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8;
 	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
-"azs" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -20661,32 +20640,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"aHQ" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "permabolt3";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/structure/chair/stool,
-/obj/machinery/camera{
-	c_tag = "Prison - Cell 3";
-	dir = 2;
-	name = "prison camera";
-	network = list("ss13","prison")
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/security/prison)
 "aHR" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -20699,34 +20652,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
-"aHS" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "permabolt2";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/item/chair/stool,
-/obj/machinery/camera{
-	c_tag = "Prison - Cell 2";
-	dir = 2;
-	name = "prison camera";
-	network = list("ss13","prison")
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -20787,36 +20712,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
-"aIa" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "permabolt1";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera{
-	c_tag = "Prison - Cell 1";
-	dir = 2;
-	name = "prison camera";
-	network = list("ss13","prison")
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aIb" = (
 /obj/machinery/door/window/eastright{
 	name = "Theatre Stage"
@@ -28933,17 +28828,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"aUv" = (
-/obj/structure/bed,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aUw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/brown,
@@ -28966,18 +28850,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"aUy" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aUz" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mining Office";
@@ -114094,24 +113966,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"doV" = (
-/obj/machinery/flasher{
-	id = "PCell 3";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "doW" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8
@@ -114382,20 +114236,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"dpt" = (
-/obj/machinery/flasher{
-	id = "PCell 2";
-	pixel_x = -28
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/security/prison)
 "dpu" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -114450,19 +114290,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/medbay/central)
-"dpz" = (
-/obj/machinery/flasher{
-	id = "PCell 1";
-	pixel_x = -28
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/security/prison)
 "dpA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -117447,6 +117274,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"duI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "duO" = (
 /obj/machinery/computer/mecha{
 	dir = 8
@@ -121347,8 +121184,8 @@
 	pixel_x = -32
 	},
 /obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 4
+	dir = 4;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office/private_investigators_office)
@@ -121647,8 +121484,8 @@
 "dNi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 4
+	dir = 4;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office/private_investigators_office)
@@ -126900,6 +126737,33 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"lSP" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "permabolt2";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Prison - Cell 2";
+	dir = 2;
+	name = "prison camera";
+	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "lTo" = (
 /obj/docking_port/stationary{
 	area_type = /area/construction/mining/aux_base;
@@ -126943,6 +126807,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
+"mmP" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "permabolt3";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Prison - Cell 3";
+	dir = 2;
+	name = "prison camera";
+	network = list("ss13","prison")
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/security/prison)
 "mvm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -127112,6 +127001,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"oRT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oSD" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -127135,6 +127032,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"oWw" = (
+/obj/machinery/flasher{
+	id = "PCell 1";
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/effect/variation/box/sec/brig_cell/perma,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/security/prison)
 "oYI" = (
 /obj/machinery/igniter/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -127150,6 +127061,25 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
+"pby" = (
+/obj/machinery/flasher{
+	id = "PCell 3";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/effect/variation/box/sec/brig_cell/perma,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pfG" = (
 /obj/effect/turf_decal/bot,
 /obj/item/twohanded/required/kirbyplants/random,
@@ -127396,6 +127326,28 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"sgY" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"skr" = (
+/obj/machinery/flasher{
+	id = "PCell 2";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/effect/variation/box/sec/brig_cell/perma,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/security/prison)
 "svv" = (
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -127484,6 +127436,15 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/security/prison)
+"uWt" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "uYS" = (
 /obj/machinery/door/airlock/atmos/glass/critical{
@@ -127687,6 +127648,35 @@
 "xdD" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
+"xCp" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "permabolt1";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Prison - Cell 1";
+	dir = 2;
+	name = "prison camera";
+	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xDZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -179792,8 +179782,8 @@ ayu
 aPh
 aQZ
 aKV
-aUv
-doV
+uWt
+pby
 aAi
 aNM
 aCH
@@ -180306,8 +180296,8 @@ ayw
 aBE
 aRb
 aKV
-aHQ
-azq
+mmP
+sgY
 aKV
 aOE
 aCH
@@ -180820,8 +180810,8 @@ ayN
 ats
 aRd
 aKV
-aUy
-dpt
+duI
+skr
 aAi
 aOP
 aCG
@@ -181334,8 +181324,8 @@ ayY
 aPn
 aRe
 aKV
-aHS
-azq
+lSP
+sgY
 aKV
 aOY
 aOM
@@ -181848,8 +181838,8 @@ azb
 aPp
 aRg
 aKV
-aUv
-dpz
+uWt
+oWw
 aAi
 aPi
 aCG
@@ -182362,8 +182352,8 @@ azr
 aPr
 aRi
 aKV
-aIa
-azs
+xCp
+oRT
 aKV
 aPN
 aCL
