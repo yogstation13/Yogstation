@@ -88,9 +88,6 @@ jobs:
         run: |
           tools/travis/template_dm_generator.py
           tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
-  with:
-    name: my-artifact
-    path: path/to/artifact
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-latest
