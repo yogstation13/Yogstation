@@ -466,4 +466,4 @@
 	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
 			/mob/living/simple_animal/cow/betsy = 1,
 			/mob/living/simple_animal/sheep = 1,
-			/mob/living/simple_animal/sheep/shawn)
+			/mob/living/simple_animal/sheep/shawn = 1)
