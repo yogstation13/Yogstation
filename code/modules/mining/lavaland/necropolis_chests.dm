@@ -1151,8 +1151,8 @@
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
-	if(!SSmapping.level_trait(T.z, ZTRAIT_MINING))
-		to_chat(user, "<span class='warning'>The club fizzles wekaly, it seem his power does not reach to this realm.</span>" )
+	if(!is_mining_level(T.z))
+		to_chat(user, "<span class='warning'>The club fizzles weakly, it seem its power doesn't reach this area.</span>" )
 		return
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
