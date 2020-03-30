@@ -14,6 +14,7 @@
 	"Ork": "accent_ork.json",
 	"Pirate": "accent_pirate.json",
 	"Light Pirate": "accent_piratelight.json", 
+	"Psuedo-Latin":"accent_pseudolatin.json",
 	"Scottish": "accent_scottish.json", 
 	"Light Scottish": "accent_scottishlight.json",
 	"Light Shakespearean": "accent_shakespeareanlight.json",
