@@ -63,6 +63,7 @@ jobs:
         
       - name: Install dependencies
         run: |
+          curl https://repogen.simplylinux.ch/txt/bionic/sources_3a64d21a7855de8236118d7d04a3c5fef63083fb.txt | sudo tee /etc/apt/sources.list
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386
@@ -104,6 +105,7 @@ jobs:
         
       - name: Install dependencies
         run: |
+          curl https://repogen.simplylinux.ch/txt/bionic/sources_3a64d21a7855de8236118d7d04a3c5fef63083fb.txt | sudo tee /etc/apt/sources.list
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo dpkg --add-architecture i386
           sudo apt-get update
