@@ -1206,10 +1206,6 @@
 	update_icon()
 
 /obj/item/hierophant_club/ui_action_click(mob/user, action)
-	var/turf/user_turf = get_turf(user)
-	if(!SSmapping.level_trait(user_turf, ZTRAIT_MINING))
-		to_chat(user, "<span class='warning'>The club fizzles wekaly, it seem his power does not reach to this realm.</span>")
-		return
 	if(istype(action, /datum/action/item_action/toggle_unfriendly_fire)) //toggle friendly fire...
 		friendly_fire_check = !friendly_fire_check
 		to_chat(user, "<span class='warning'>You toggle friendly fire [friendly_fire_check ? "off":"on"]!</span>")
