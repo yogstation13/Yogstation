@@ -13,7 +13,7 @@
 
 /obj/item/reagent_containers/pill/patch/attack(mob/living/L, mob/user)
 	if(ishuman(L))
-		if(!L.can_inject(user, TRUE))
+		if(!L.can_inject(user, TRUE, check_zone(user.zone_selected)))
 			return
 		var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
 		if(!affecting)
