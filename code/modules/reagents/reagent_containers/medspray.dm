@@ -37,7 +37,7 @@
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return
 	
-	if(!M.can_inject(user, TRUE))
+	if(!M.can_inject(user, TRUE, check_zone(user.zone_selected)))
 		return
 		
 	if(M == user)
