@@ -303,8 +303,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 					if (cartridge.access & CART_STATUS_DISPLAY)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=666'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
 					else if (cartridge.access & CART_SECURITY)
-							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_SECURITY_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
-							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Incident Report Form</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_SECURITY_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Incident Report Form</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=3'>[PDAIMG(atmos)]Atmospheric Scan</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'>[PDAIMG(flashlight)][fon ? "Disable" : "Enable"] Flashlight</a></li>"
 				if (pai)
