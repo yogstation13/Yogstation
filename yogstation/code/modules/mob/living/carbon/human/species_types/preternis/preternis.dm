@@ -88,7 +88,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			to_chat(H,"<span class='danger'>ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED.</span>")
 
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
+	..()
+	. = FALSE
 
 	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
