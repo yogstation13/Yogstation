@@ -14,7 +14,7 @@ on:
 jobs:
   lint:
     name: Lints
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
         
@@ -57,12 +57,13 @@ jobs:
         run: ~/dreamchecker
   compile:
     name: Compile All Maps
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
         
       - name: Install dependencies
         run: |
+          curl https://repogen.simplylinux.ch/txt/bionic/sources_3a64d21a7855de8236118d7d04a3c5fef63083fb.txt | sudo tee /etc/apt/sources.list
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386
@@ -84,13 +85,13 @@ jobs:
           echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
           
-      - name: Compile and Run maps
+      - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
           tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
   test:
     name: Compile and Run Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     services:
       mariadb:
        image: mariadb/server
@@ -104,6 +105,7 @@ jobs:
         
       - name: Install dependencies
         run: |
+          curl https://repogen.simplylinux.ch/txt/bionic/sources_3a64d21a7855de8236118d7d04a3c5fef63083fb.txt | sudo tee /etc/apt/sources.list
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo dpkg --add-architecture i386
           sudo apt-get update
@@ -138,3 +140,16 @@ jobs:
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           tools/travis/run_server.sh
+      
+      - name: Upload DMB
+        uses: actions/upload-artifact@v1
+        with: 
+          name: DMB
+          path: ${{ github.workspace }}/yogstation.dmb
+          
+      - name: Upload RSC
+        uses: actions/upload-artifact@v1
+        with: 
+          name: RSC
+          path: ${{ github.workspace }}/yogstation.rsc
+

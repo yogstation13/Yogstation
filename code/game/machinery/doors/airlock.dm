@@ -1691,8 +1691,10 @@
 			to_chat(user, "<span class='warning'>The door has no power - you can't raise the door bolts.</span>")
 		else
 			unbolt()
+			to_chat(user, "Door bolts raised.")
 	else
 		bolt()
+		to_chat(user, "Door bolts dropped.")
 
 /obj/machinery/door/airlock/proc/toggle_emergency(mob/user)
 	if(!user_allowed(user))
@@ -1711,6 +1713,7 @@
 		close()
 	else
 		open()
+		
 
 #undef AIRLOCK_CLOSED
 #undef AIRLOCK_CLOSING

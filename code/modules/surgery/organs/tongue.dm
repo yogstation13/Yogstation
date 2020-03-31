@@ -19,6 +19,7 @@
 		/datum/language/ratvar,
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
+		/datum/language/sylvan,
 		/datum/language/japanese,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn //also yogs
