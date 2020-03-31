@@ -304,8 +304,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=666'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
 					else
 						if (cartridge.access & (CART_SECURITY))
-							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=3'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
-							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=2'>[PDAIMG(notes)]Print Incident Report Form</a></li>"
+							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_SECURITY_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
+							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Incident Report Form</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=3'>[PDAIMG(atmos)]Atmospheric Scan</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'>[PDAIMG(flashlight)][fon ? "Disable" : "Enable"] Flashlight</a></li>"
 				if (pai)
@@ -645,6 +645,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 							usr.put_in_hands(new /obj/item/paper/paperwork/incident_report(user_turf))
 						if (PDA_PRINTING_SECURITY_INCIDENT_REPORT)
 							usr.put_in_hands(new /obj/item/paper/paperwork/sec_incident_report(user_turf))
+
 
 
 //LINK FUNCTIONS===================================
