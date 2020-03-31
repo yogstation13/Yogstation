@@ -287,7 +287,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					if (cartridge.access & CART_DRONEPHONE)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'>[PDAIMG(dronephone)]Drone Phone</a></li>"
 					if (cartridge.access & (CART_MANIFEST | CART_STATUS_DISPLAY))
-						dat += "<li><a href='byond://?src=[REF(src)];choice=69'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=666'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
 					else
 						if (cartridge.access & (CART_SECURITY))
 							dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=3'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
 				dat += "<br>"
 
-			if (69)
+			if (666)
 				dat += "<h4>Bluespace Paperwork Printing</h4><i>Putting the paper in paperwork!</i><ul>"
 				//BYOND SHITCODE TIME AHA
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=0'>General Request Form</a></li>"
@@ -447,7 +447,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if(mode<=9)
 					mode = 0
 				else
-					if(mode == 69)
+					if(mode == 666)
 						mode = 0
 					else
 						mode = round(mode/10)
@@ -483,8 +483,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 				mode = 3
 			if("4")//Redirects to hub
 				mode = 0
-			if("69")
-				mode = 69
+			if("666")
+				mode = 666
 
 
 //MAIN FUNCTIONS===================================
