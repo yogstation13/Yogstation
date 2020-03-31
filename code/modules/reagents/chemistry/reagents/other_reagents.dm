@@ -934,12 +934,6 @@
 		return
 	..()
 
-/datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(!ispreternis(M))
-		M.adjustToxLoss(1, 0)
-	..()
-	return TRUE //more like stupid ternis lol.
-
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"

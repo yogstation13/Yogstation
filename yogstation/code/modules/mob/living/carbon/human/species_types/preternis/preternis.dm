@@ -20,14 +20,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
-	 // Remember the Virus boost? Me neither you powergaming FUCK.
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
 	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
-	screamsound = 'goon/sound/robot_scream.ogg' //haha stole from goon lol
+	screamsound = 'goon/sound/robot_scream.ogg'
 	species_language_holder = /datum/language_holder/preternis
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
@@ -94,7 +93,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/fuel))
-		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY) //Preternis can have a little bit of brute healing,as a treat...
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
@@ -128,7 +127,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.reagents.del_reagent(chem.type)
 
 
-	return FALSE
+	return
 
 /datum/species/preternis/spec_fully_heal(mob/living/carbon/human/H)
 	. = ..()
