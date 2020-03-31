@@ -49,4 +49,4 @@
 	gas_stimulation_min = 0.1 //fucking filters removing my stimulants this is so cringe can we NEVER HAVE THIS FEATURE,ALEXKAR YOU FAT FUCKING WHORE WHO USES STIMULIUM LITERALLY WH
 	heat_level_1_threshold = 320
 	heat_level_2_threshold = 400
-	heat_level_3_threshold = 600 //HALP MY LUNGS ARE ON FIRE+fuck cold because monstermos and its consequences for the human race have been a disaster for preternis
+	heat_level_3_threshold = 600 //HALP MY LUNGS ARE ON FIRE+fuck cold because monstermos and its consequences for the human race have been a disaster for preternis.

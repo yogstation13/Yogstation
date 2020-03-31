@@ -938,7 +938,7 @@
 	if(!ispreternis(M))
 		M.adjustToxLoss(1, 0)
 	..()
-	return TRUE //more like stupid ternis lol
+	return TRUE //more like stupid ternis lol.
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
