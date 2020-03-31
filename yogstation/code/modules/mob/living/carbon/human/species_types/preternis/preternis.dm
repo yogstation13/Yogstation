@@ -16,20 +16,18 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
-	brutemod = 1.25
-	burnmod = 1.5
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
-	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	 // Remember the Virus boost? Me neither you powergaming FUCK.
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
 	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
-	screamsound = 'goon/sound/robot_scream.ogg'
+	screamsound = 'goon/sound/robot_scream.ogg' //haha stole from goon lol
 	species_language_holder = /datum/language_holder/preternis
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
@@ -96,7 +94,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent("welding_fuel"))
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY) //Preternis can have a little bit of brute healing,as a treat.
 
 	if(H.reagents.has_reagent("teslium",10)) //10 u otherwise it wont update and they will remain quikk
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))

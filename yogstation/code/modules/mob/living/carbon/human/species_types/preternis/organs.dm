@@ -46,17 +46,7 @@
 	name = "preternis lungs"
 	desc = "An experimental set of lungs.Due to the cybernetic nature of these lungs,they are less resistant to heat and cold but are more efficent at filtering oxygen."
 	icon_state = "lungs-c"
-	safe_oxygen_min = 12
-	safe_toxins_max = 10
-	gas_stimulation_min = 0.1 //fucking filters removing my stimulants
-
-	cold_level_1_threshold = 280
-	cold_level_1_damage = 1.5
-	cold_level_2_threshold = 260
-	cold_level_2_damage = 3
-	cold_level_3_threshold = 200
-	cold_level_3_damage = 4.5
-
+	gas_stimulation_min = 0.1 //fucking filters removing my stimulants this is so cringe can we NEVER HAVE THIS FEATURE,ALEXKAR YOU FAT FUCKING WHORE WHO USES STIMULIUM LITERALLY WH
 	heat_level_1_threshold = 320
 	heat_level_2_threshold = 400
-	heat_level_3_threshold = 600 //HALP MY LUNGS ARE ON FIRE
+	heat_level_3_threshold = 600 //HALP MY LUNGS ARE ON FIRE+fuck cold because monstermos and its consequences for the human race have been a disaster for preternis
