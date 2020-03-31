@@ -10,7 +10,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER) //im sorry atmos,forgive me but it MUST BE DONE!
+	inherent_traits = list(TRAIT_NOHUNGER)
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -87,15 +87,17 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			to_chat(H,"<span class='danger'>ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED.</span>")
 
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
+	..()
+	. = FALSE
 
 	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/fuel))
-		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY) //Preternis can have a little bit of brute healing,as a treat.
+		. = TRUE
 
-	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
+	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quick
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 		if(H.health < 50 && H.health > 0)
 			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
