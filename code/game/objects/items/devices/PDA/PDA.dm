@@ -3,13 +3,27 @@
 
 GLOBAL_LIST_EMPTY(PDAs)
 
-#define PDA_SCANNER_NONE		0
-#define PDA_SCANNER_MEDICAL		1
-#define PDA_SCANNER_FORENSICS	2 //unused
-#define PDA_SCANNER_REAGENT		3
-#define PDA_SCANNER_HALOGEN		4
-#define PDA_SCANNER_GAS			5
-#define PDA_SPAM_DELAY		    2 MINUTES
+#define PDA_SCANNER_NONE		                  0
+#define PDA_SCANNER_MEDICAL		                  1
+#define PDA_SCANNER_FORENSICS	                  2 //unused
+#define PDA_SCANNER_REAGENT		                  3
+#define PDA_SCANNER_HALOGEN		                  4
+#define PDA_SCANNER_GAS			                  5
+#define PDA_SPAM_DELAY		                      2 MINUTES
+
+//redd's defines, do not touch
+#define PDA_PRINTING_GENERAL_REQUEST              "0"
+#define PDA_PRINTING_COMPLAINT                    "1"
+#define PDA_PRINTING_INCIDENT_REPORT              "2"
+#define PDA_PRINTING_SECURITY_INCIDENT_REPORT     "3"
+#define PDA_PRINTING_ITEM_REQUEST                 "4"
+#define PDA_PRINTING_CYBERIZATION_CONSENT         "5"
+#define PDA_PRINTING_HOP_ACCESS_REQUEST           "6"
+#define PDA_PRINTING_JOB_CHANGE                   "7"
+#define PDA_PRINTING_RESEARCH_REQUEST             "8"
+#define PDA_PRINTING_MECH_REQUEST                 "9"
+#define PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE "10"
+
 
 /obj/item/pda
 	name = "\improper PDA"
@@ -286,7 +300,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Toggle Door'>[PDAIMG(rdoor)]Toggle Remote Door</a></li>"
 					if (cartridge.access & CART_DRONEPHONE)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'>[PDAIMG(dronephone)]Drone Phone</a></li>"
-					if (cartridge.access & (CART_MANIFEST | CART_STATUS_DISPLAY))
+					if (cartridge.access & (CART_STATUS_DISPLAY))
 						dat += "<li><a href='byond://?src=[REF(src)];choice=666'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
 					else
 						if (cartridge.access & (CART_SECURITY))
@@ -381,18 +395,17 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 			if (666)
 				dat += "<h4>Bluespace Paperwork Printing</h4><i>Putting the paper in paperwork!</i><ul>"
-				//BYOND SHITCODE TIME AHA
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=0'>General Request Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=1'>Complaint Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=2'>Incident Report Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=3'>Security Incident Report Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=4'>Item Request Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=5'>Cyberization Consent Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=6'>HoP Access Request Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=7'>Job Change Request Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=8'>Research Request Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=9'>Mech Request Form</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=10'>Job Reassignment Certificate</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_GENERAL_REQUEST]'>General Request Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_COMPLAINT]'>Complaint Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_INCIDENT_REPORT]'>Incident Report Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_SECURITY_INCIDENT_REPORT]'>Security Incident Report Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_ITEM_REQUEST]'>Item Request Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_CYBERIZATION_CONSENT]'>Cyberization Consent Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_HOP_ACCESS_REQUEST]'>HoP Access Request Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_JOB_CHANGE]'>Job Change Request Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_RESEARCH_REQUEST]'>Research Request Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_MECH_REQUEST]'>Mech Request Form</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE]'>Job Reassignment Certificate</a></li>"
 				dat += "</ul>"
 
 			else//Else it links to the cart menu proc. Although, it really uses menu hub 4--menu 4 doesn't really exist as it simply redirects to hub.
@@ -598,27 +611,27 @@ GLOBAL_LIST_EMPTY(PDAs)
 				to_chat(usr, "<span class='warning'>The PDA whirrs as a paper materializes!</span>")
 				playsound(src,"sound/items/polaroid1.ogg",30,1)
 				switch(href_list["paper"])
-					if("0") //obj/item/paper/paperwork/general_request_form(src)
+					if (PDA_PRINTING_GENERAL_REQUEST) //obj/item/paper/paperwork/general_request_form(src)
 						usr.put_in_hands(new /obj/item/paper/paperwork/general_request_form(usr))
-					if ("1")//obj/item/paper/paperwork/complaint_form
+					if (PDA_PRINTING_COMPLAINT)//obj/item/paper/paperwork/complaint_form
 						usr.put_in_hands(new /obj/item/paper/paperwork/complaint_form(usr))
-					if ("2")
+					if (PDA_PRINTING_INCIDENT_REPORT)
 						usr.put_in_hands(new /obj/item/paper/paperwork/incident_report(usr))
-					if ("3")
+					if (PDA_PRINTING_SECURITY_INCIDENT_REPORT)
 						usr.put_in_hands(new /obj/item/paper/paperwork/sec_incident_report(usr))
-					if ("4")
+					if (PDA_PRINTING_ITEM_REQUEST)
 						usr.put_in_hands(new /obj/item/paper/paperwork/item_form(usr))
-					if ("5")
+					if (PDA_PRINTING_CYBERIZATION_CONSENT)
 						usr.put_in_hands(new /obj/item/paper/paperwork/cyborg_request_form(usr))
-					if ("6")
+					if (PDA_PRINTING_HOP_ACCESS_REQUEST)
 						usr.put_in_hands(new /obj/item/paper/paperwork/hopaccessrequestform(usr))
-					if ("7")
+					if (PDA_PRINTING_JOB_CHANGE)
 						usr.put_in_hands(new /obj/item/paper/paperwork/hop_job_change_form(usr))
-					if ("8")
+					if (PDA_PRINTING_RESEARCH_REQUEST)
 						usr.put_in_hands(new /obj/item/paper/paperwork/rd_form(usr))
-					if ("9")
+					if (PDA_PRINTING_MECH_REQUEST)
 						usr.put_in_hands(new /obj/item/paper/paperwork/mech_form(usr))
-					if ("10")
+					if (PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE)
 						usr.put_in_hands(new /obj/item/paper/paperwork/jobchangecert(usr))
 
 //LINK FUNCTIONS===================================
@@ -1119,3 +1132,15 @@ GLOBAL_LIST_EMPTY(PDAs)
 #undef PDA_SCANNER_HALOGEN
 #undef PDA_SCANNER_GAS
 #undef PDA_SPAM_DELAY
+#undef PDA_PRINTING_GENERAL_REQUEST
+#undef PDA_PRINTING_COMPLAINT
+#undef PDA_PRINTING_INCIDENT_REPORT
+#undef PDA_PRINTING_SECURITY_INCIDENT_REPORT
+#undef PDA_PRINTING_ITEM_REQUEST
+#undef PDA_PRINTING_CYBERIZATION_CONSENT
+#undef PDA_PRINTING_HOP_ACCESS_REQUEST
+#undef PDA_PRINTING_JOB_CHANGE
+#undef PDA_PRINTING_RESEARCH_REQUEST
+#undef PDA_PRINTING_MECH_REQUEST
+#undef PDA_PRINTING_JOB_REASSIGNMENT_CERTIFICATE
+
