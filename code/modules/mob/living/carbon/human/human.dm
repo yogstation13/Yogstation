@@ -1,4 +1,7 @@
 /mob/living/carbon/human
+	var/lockdown = 0
+
+/mob/living/carbon/human
 	name = "Unknown"
 	real_name = "Unknown"
 	icon = 'icons/mob/human.dmi'
@@ -41,6 +44,7 @@
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
+	GLOB.crew_mobs -= src
 	return ..()
 
 
@@ -896,6 +900,13 @@
 		return FALSE
 	return ..()
 
+/mob/living/carbon/human/proc/SetLockdown(state = 1)
+	if(state)
+		throw_alert("locked", /obj/screen/alert/crewlocked)
+	else
+		clear_alert("locked")
+	lockdown = state
+
 /mob/living/carbon/human/species
 	var/race = null
 
@@ -995,7 +1006,7 @@
 
 /mob/living/carbon/human/species/golem/durathread
 	race = /datum/species/golem/durathread
-	
+
 /mob/living/carbon/human/species/golem/snow
 	race = /datum/species/golem/snow
 
