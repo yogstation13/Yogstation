@@ -42,8 +42,9 @@
 	belt = /obj/item/storage/belt/utility/full/engi
 	l_pocket = /obj/item/pda/engineering
 	ears = /obj/item/radio/headset/headset_eng
-	uniform = /obj/item/clothing/under/rank/engineer
-	shoes = /obj/item/clothing/shoes/workboots
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	head = /obj/item/clothing/head/hardhat
 	r_pocket = /obj/item/t_scanner
 
