@@ -37,3 +37,7 @@ Assistant
 		uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat
+
+/datum/outfit/job/assistant/post_equip(mob/living/carbon/human/H)
+	..()
+	H.gib()
