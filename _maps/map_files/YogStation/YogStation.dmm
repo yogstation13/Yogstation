@@ -53864,6 +53864,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jEr" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/mob/living/simple_animal/mouse/gray{
+	desc = "DaGiantRat that makes all the rules.";
+	name = "Josh"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet)
 "jHx" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -94912,7 +94922,7 @@ awv
 awr
 aze
 aAh
-aBz
+jEr
 aBz
 aJh
 aAh
