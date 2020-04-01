@@ -29,8 +29,9 @@
 
 	belt = /obj/item/pda/quartermaster
 	ears = /obj/item/radio/headset/headset_cargo
-	uniform = /obj/item/clothing/under/rank/cargo
-	shoes = /obj/item/clothing/shoes/sneakers/brown
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/export_scanner
