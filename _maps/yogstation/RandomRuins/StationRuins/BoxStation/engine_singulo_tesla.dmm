@@ -59,10 +59,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"aj" = (
-/obj/machinery/power/hugbox_engine,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "ak" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -662,6 +658,10 @@
 /area/space)
 "bS" = (
 /obj/machinery/the_singularitygen/tesla,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
+"bT" = (
+/obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "bU" = (
@@ -1542,7 +1542,7 @@ aa
 aa
 bN
 aR
-aj
+aR
 aR
 aa
 aa
@@ -1570,7 +1570,7 @@ aT
 aQ
 aQ
 aR
-aR
+bT
 aR
 aa
 aa

@@ -32,8 +32,6 @@ Assistant
 /datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/H)
 	..()
 	if (CONFIG_GET(flag/grey_assistants))
-		uniform = /obj/item/clothing/under/rank/clown
+		uniform = /obj/item/clothing/under/color/grey
 	else
-		uniform = /obj/item/clothing/under/rank/clown
-	shoes = /obj/item/clothing/shoes/clown_shoes
-	mask = /obj/item/clothing/mask/gas/clown_hat
+		uniform = /obj/item/clothing/under/color/random
