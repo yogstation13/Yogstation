@@ -11,6 +11,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_RADIMMUNE)
+	inherent_biotypes = list(MOB_INORGANIC)
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -19,7 +20,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
-	yogs_virus_infect_chance = 0
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
