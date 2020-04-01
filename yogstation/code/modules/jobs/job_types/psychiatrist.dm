@@ -27,9 +27,7 @@
 	jobtype = /datum/job/psych
 
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	uniform = /obj/item/clothing/under/rank/clown
-	shoes = /obj/item/clothing/shoes/clown_shoes
-	mask = /obj/item/clothing/mask/gas/clown_hat
+	uniform = /obj/item/clothing/under/suit_jacket/burgundy
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
 	belt = /obj/item/pda

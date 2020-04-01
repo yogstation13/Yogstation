@@ -37,8 +37,6 @@
 
 	belt = /obj/item/pda/cargo
 	ears = /obj/item/radio/headset/headset_cargo
-	uniform = /obj/item/clothing/under/rank/clown
-	shoes = /obj/item/clothing/shoes/clown_shoes
-	mask = /obj/item/clothing/mask/gas/clown_hat
+	uniform = /obj/item/clothing/under/rank/cargotech
 	l_hand = /obj/item/export_scanner
 
