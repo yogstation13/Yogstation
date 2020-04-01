@@ -5,8 +5,8 @@
 	icon_state = "honkbot"
 	density = FALSE
 	anchored = FALSE
-	health = 25
-	maxHealth = 25
+	health = 25000000 //yogs april fools meme
+	maxHealth = 25000000 //yogs april fools meme
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB
 

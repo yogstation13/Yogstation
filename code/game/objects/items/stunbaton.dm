@@ -1,6 +1,6 @@
 /obj/item/melee/baton
-	name = "stun baton"
-	desc = "A stun baton for incapacitating people with."
+	name = "arrest baton"
+	desc = "An arrest baton for arresting people with."
 	icon_state = "stunbaton"
 	item_state = "baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -111,12 +111,27 @@
 	update_icon()
 	add_fingerprint(user)
 
+/obj/item/melee/baton/proc/move_to_jail(mob/living/L, user)
+	//pick randomly from a list of prison turfs to teleport the RDMer to
+	var/list/validturfs = list() //Find all open prison turfs so we can pick from them later
+	for(var/area/security/prison/P in SSmapping.areas_in_z["[SSmapping.station_start]"])
+		for(var/turf/open/floor/F in P.contents)
+			validturfs += F
+	if(LAZYLEN(validturfs))
+		var/turf/newturf = pick(validturfs)
+		L.loc = newturf
+		priority_announce("[L] has been arrested for 300 seconds")
+		to_chat(L,"You have been arrested for 300 seconds")
+		if(L != user)
+			to_chat(user,"You have arrested [L] for 300 seconds")
+
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
+		move_to_jail(user,user)
 		return
 	//yogs edit begin ---------------------------------
 	if(status && ishuman(M))
@@ -164,6 +179,7 @@
 		if(!deductcharge(hitcost))
 			return 0
 
+	move_to_jail(L, user)
 	L.Paralyze(stunforce)
 	L.apply_effect(EFFECT_STUTTER, stunforce)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
