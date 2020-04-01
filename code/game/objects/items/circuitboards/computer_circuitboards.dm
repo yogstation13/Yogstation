@@ -482,3 +482,8 @@
 	name = "Mining Shuttle (Computer Board)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/shuttle/mining
+
+/obj/item/circuitboard/computer/crewcontrol
+	name = "Crew Control (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/crewcontrol

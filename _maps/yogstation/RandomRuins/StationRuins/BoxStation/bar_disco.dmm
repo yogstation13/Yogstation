@@ -395,7 +395,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
-/obj/effect/spawner/lootdrop/mob/kitchen_animal,
+/mob/living/simple_animal/hostile/retaliate/goat/king,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
