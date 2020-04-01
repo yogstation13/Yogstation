@@ -174,6 +174,14 @@
 		if(P.client)
 			P.client.playtitlemusic()
 
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=qOVLUiha1B8", //yogs meme songs
+		"https://www.youtube.com/watch?v=ytWz0qVvBZ0", // yogs meme songs
+		"https://www.youtube.com/watch?v=rbBl5Jqs7ls", //yogs meme
+		"https://www.youtube.com/watch?v=36VQq9bYXEs", //wait we are yogs right
+		"https://www.youtube.com/watch?v=PWZylTw6RGY" //embrace the memes
+	)
+
 /datum/holiday/spess
 	name = "Cosmonautics Day"
 	begin_day = 12
