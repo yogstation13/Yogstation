@@ -697,6 +697,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "teleporter"
 	minimap_color = "#6b6b6b"
 
+/area/teleporter/hub/evac
+	name = "Evac Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
 
 //End Minsky specific teleporters
 
