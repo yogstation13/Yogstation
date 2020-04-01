@@ -169,7 +169,7 @@ Difficulty: Very Hard
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/colossus(startloc)
+	var/obj/item/projectile/P = new /obj/item/projectile/beam/pulse(startloc)
 	P.preparePixelProjectile(marker, startloc)
 	P.firer = src
 	if(target)
