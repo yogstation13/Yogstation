@@ -92,7 +92,7 @@
 
 /datum/disease/transformation/jungle_fever
 	name = "Jungle Fever"
-	cure_text = "Clown's Tears"
+	cure_text = "Clown's Tears."
 	cures = list(/datum/reagent/consumable/clownstears)
 	spread_text = "Monkey Bites"
 	spread_flags = DISEASE_SPREAD_SPECIAL
