@@ -182,10 +182,6 @@ const ROUTES = {
     component: () => CrewConsole,
     scrollable: true,
   },
-    crew_control_console: {
-    component: () => CrewControlConsole,
-    scrollable: true,
-  },
   cryo: {
     component: () => Cryo,
     scrollable: false,
