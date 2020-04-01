@@ -38,7 +38,7 @@
 		/obj/item/reagent_containers/spray/waterflower = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
 		/obj/item/instrument/bikehorn = 1,
-		/obj/item/gun/energy/pulse
+		/obj/item/gun/energy/pulse/headcoder
 		)
 
 	implants = list(/obj/item/implant/sad_trombone)
@@ -60,3 +60,6 @@
 	H.dna.add_mutation(CLOWNMUT)
 	for(var/datum/mutation/human/clumsy/M in H.dna.mutations)
 		M.mutadone_proof = TRUE
+
+/obj/item/gun/energy/pulse/headcoder
+	pin = /obj/item/firing_pin/clown/ultra
