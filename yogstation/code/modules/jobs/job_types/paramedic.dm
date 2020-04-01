@@ -31,9 +31,10 @@
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
 	belt = /obj/item/pda/para
 	ears = /obj/item/radio/headset/headset_med
-	uniform = /obj/item/clothing/under/rank/medical
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt
-	shoes = /obj/item/clothing/shoes/sneakers/white
 	l_hand = /obj/item/roller
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/gps
