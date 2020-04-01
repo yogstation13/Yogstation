@@ -402,7 +402,7 @@
 		if(GLOB.highlander)
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
-	
+
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
@@ -512,6 +512,7 @@
 	new_character = .
 	if(transfer_after)
 		transfer_character()
+	GLOB.crew_mobs += .
 
 /mob/dead/new_player/proc/transfer_character()
 	. = new_character

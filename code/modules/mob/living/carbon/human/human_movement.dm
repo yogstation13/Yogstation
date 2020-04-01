@@ -50,6 +50,8 @@
 	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)))
 
 /mob/living/carbon/human/Move(NewLoc, direct)
+	if(lockdown)
+		return FALSE
 	. = ..()
 
 	if(shoes)
