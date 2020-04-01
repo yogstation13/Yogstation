@@ -18,9 +18,9 @@
 /datum/outfit/job/tourist
 	name = "Tourist"
 	jobtype = /datum/job/tourist
-	shoes = /obj/item/clothing/shoes/clown_shoes
-	mask = /obj/item/clothing/mask/gas/clown_hat
-	uniform = /obj/item/clothing/under/rank/clown
+
+	uniform = /obj/item/clothing/under/yogs/tourist
+	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset
 	belt = /obj/item/pda
 	backpack_contents = list(/obj/item/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
