@@ -1151,6 +1151,9 @@
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(!is_mining_level(T.z))
+		to_chat(user, "<span class='warning'>The club fizzles weakly, it seem its power doesn't reach this area.</span>" )
+		return
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
 	if(proximity_flag)

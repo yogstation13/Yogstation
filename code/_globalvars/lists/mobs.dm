@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(drones_list)
 GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
 GLOBAL_LIST_EMPTY(silicon_mobs)				//all silicon mobs
+GLOBAL_LIST_EMPTY(crew_mobs)				//all crew member mobs
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
 GLOBAL_LIST_EMPTY(ai_list)
@@ -39,7 +40,8 @@ GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
 
-GLOBAL_LIST_INIT(accents,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
+GLOBAL_LIST_INIT(accents_name2file,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
+GLOBAL_LIST_EMPTY(accents_name2regexes) // Holds some complex data regarding accents
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()
@@ -67,7 +69,7 @@ GLOBAL_LIST_INIT(accents,strings("accents.json", "accent_file_names", directory 
 			.[E.key] = list(E)
 		else
 			.[E.key] += E
-		
+
 		if(!.[E.key_third_person])
 			.[E.key_third_person] = list(E)
 		else
