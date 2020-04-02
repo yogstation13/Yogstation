@@ -54270,6 +54270,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"kLJ" = (
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "kNE" = (
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/preopen{
@@ -54727,11 +54731,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
-"lZq" = (
-/obj/machinery/smartfridge/disks,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "mag" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -56724,6 +56723,11 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"qKS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "qLj" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -102586,7 +102590,7 @@ aGF
 aGV
 aJe
 aIp
-lZq
+qKS
 aOo
 aIp
 aOX
@@ -103100,7 +103104,7 @@ aEk
 aaa
 aIp
 aJO
-aRJ
+kLJ
 aUS
 aNN
 aOR
