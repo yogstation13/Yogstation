@@ -74,82 +74,92 @@
 	icon_state = "bluecross2"
 
 /obj/structure/sign/departments/minsky/command
-	name = "Command Deck"
+	name = "\improper Command Deck"
 	desc = "A sign labeling the station's command deck. The good idea fairy lives around here."
 	icon_state = "minskycommand"
 
 /obj/structure/sign/departments/minsky/command/hop
-	name = "Head of Personnel's Office"
+	name = "\improper Head of Personnel's Office"
 	desc = "A sign labeling the Head of Personnel's Office. Bribe for All Access here."
 	icon_state = "minskyhop"
 
+/obj/structure/sign/departments/minsky/command/quantumhub
+	name = "\improper Quantum Hub"
+	desc = "A sign labeling one of the station's quantum hubs. "
+	icon_state = "minskyhub"
+
+/obj/structure/sign/departments/minsky/command/quantumhub
+	name = "\improper Evacuation Area"
+	desc = "A sign labeling one of the station's evacuation area. No guarantees. "
+	icon_state = "minskyevac"
+
 /obj/structure/sign/departments/minsky/command/bridge
-	name = "Bridge Deck"
+	name = "\improper Bridge Deck"
 	desc = "A sign labeling the station's bridge."
 	icon_state = "minskybridge"
 
 /obj/structure/sign/departments/minsky/command/charge
-	name = "Charging Module"
+	name = "\improper Charging Module"
 	desc = "A sign labeling a borge charging module. May not be fit for human habitation"
 	icon_state = "minskycharge"
 
 /obj/structure/sign/departments/minsky/research/research
-	name = "Research Department"
+	name = "\improper Research Department"
 	desc = "A sign labeling where the research and development of new technologies takes place. It's not an experiment if you know what's going on."
 	icon_state = "minskyrd"
 
 /obj/structure/sign/departments/minsky/research/genetics
-	name = "Genetics Division"
+	name = "\improper Genetics Division"
 	desc = "A sign labeling the genetics division of the station. Watch for mutants."
 	icon_state = "minskygene"
 
 /obj/structure/sign/departments/minsky/research/robotics
-	name = "Robotics Division"
+	name = "\improper Robotics Division"
 	desc = "A sign labeling the robotics division of the station. Produces $6 cyborgs."
 	icon_state = "minskyrobo"
 
 /obj/structure/sign/departments/minsky/research/xenobiology
-	name = "Xenobiology Division"
+	name = "\improper Xenobiology Division"
 	desc = "A sign labeling the xenobiology division of the station. Xeno Animal Handling Permit #180924609"
 	icon_state = "minskyxeno"
 
 /obj/structure/sign/departments/minsky/engineering/engineering
-	name = "Engineering Department"
+	name = "\improper Engineering Department"
 	desc = "A sign labeling the engineering department of the station. The fewer moving parts the better."
 	icon_state = "minskyengi"
 
 /obj/structure/sign/departments/minsky/engineering/telecommmunications
-	name = "Telecommunications Department"
+	name = "\improper Telecommunications Department"
 	desc = "A sign labeling the telecommunications division of the station. 'Nuff said."
 	icon_state = "minskytcom"
 
 /obj/structure/sign/departments/minsky/engineering/atmospherics
-	name = "Atmospherics Division"
+	name = "\improper Atmospherics Division"
 	desc = "A sign labeling the atmospherics division of the station. Making Comrade Dyatlov proud since April 26th, 1981."
 	icon_state = "minskyatmo"
 
 /obj/structure/sign/departments/minsky/medical/medical1
-	name = "Medical Department"
+	name = "\improper Medical Department"
 	desc = "A sign labeling the medical department of the station. You'll probably get treatment here."
 	icon_state = "minskymedic"
 
 /obj/structure/sign/departments/minsky/medical/medical2
-	name = "Medical Department"
+	name = "\improper Medical Department"
 	desc = "A sign labeling the medical department of the station. You'll probably get treatment here."
 	icon_state = "minskymedicb"
 
 /obj/structure/sign/departments/minsky/medical/clone/cloning1
-	name = "Cloning Ward"
+	name = "\improper Cloning Ward"
 	desc = "A sign labeling the cloning facilities on the station. Your last hope."
 	icon_state = "minskyclone"
 
 /obj/structure/sign/departments/minsky/medical/clone/cloning2
-	name = "Cloning Ward"
+	name = "\improper Cloning Ward"
 	desc = "A sign labeling the cloning facilities on the station. Your last hope."
 	icon_state = "minskycloneb"
 
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical1
-	name = "Chemistry Division"
+	name = "\improper Chemistry Division"
 	desc = "A sign labeling the chemicals division of the station. Similar to the kitchens, just don't lick the spoon."
 	icon_state = "minskychem"
 
@@ -159,36 +169,36 @@
 	icon_state = "minskychemb"
 
 /obj/structure/sign/departments/minsky/medical/virology/virology1
-	name = "Virology Division"
+	name = "\improper Virology Division"
 	desc = "A sign labeling the virology division of the station. Free hugs!!"
 	icon_state = "minskyviro"
 
 /obj/structure/sign/departments/minsky/medical/virology/virology2
-	name = "Virology Division"
+	name = "\improper Virology Division"
 	desc = "A sign labeling the virology division of the station. Free hugs!!"
 	icon_state = "minskyvirob"
 
 /obj/structure/sign/departments/minsky/security/security
-	name = "Security Department"
+	name = "\improper Security Department"
 	desc = "A sign labeling the security department of the station. Guilty until proven innocent."
 	icon_state = "minskysec"
 
 /obj/structure/sign/departments/minsky/supply/cargo
-	name = "Cargo Division"
+	name = "\improper Cargo Division"
 	desc = "A sign labeling the cargo division of the station. Watch your pockets and credit disks."
 	icon_state = "minskycargo"
 
 /obj/structure/sign/departments/minsky/supply/mining
-	name = "Mining Division"
+	name = "\improper Mining Division"
 	desc = "A sign labeling the mining division of the station. Minions of Smaug."
 	icon_state = "minskymine"
 
 /obj/structure/sign/departments/minsky/supply/janitorial
-	name = "Janitorial Division"
+	name = "\improper Janitorial Division"
 	desc = "A sign labeling the janitorial closet of the station. Clean up after yourself... please."
 	icon_state = "minskyjani"
 
 /obj/structure/sign/departments/minsky/supply/hydroponics
-	name = "Hydroponics Division"
+	name = "\improper Hydroponics Division"
 	desc = "A sign labeling the hydroponics division of the station. Don't mind the redeyes and giggles."
 	icon_state = "minskyhydro"
