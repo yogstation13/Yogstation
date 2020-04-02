@@ -34,6 +34,33 @@
         gold_core_spawnable = FRIENDLY_SPAWN
         obj_damage = 0
         environment_smash = ENVIRONMENT_SMASH_NONE
+		var/obj/item/udder/snake/udder = null
+		
+/mob/living/simple_animal/hostile/retaliate/poison/snake/Initialize()
+	udder = new()
+	. = ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/Destroy()
+	qdel(udder)
+	udder = null
+	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/attackby(obj/item/O, mob/user, params)
+	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+		udder.milkAnimal(O, user)
+		return 1
+	else
+		return ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/Life()
+	. = ..()
+	if(stat == CONSCIOUS)
+		udder.generateMilk()
+
+/obj/item/udder/snake
+	name = "Snake Venom Gland"
+	milktype = /datum/reagent/toxin/venom
+
 
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
