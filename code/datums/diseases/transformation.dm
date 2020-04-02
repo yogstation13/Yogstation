@@ -92,8 +92,8 @@
 
 /datum/disease/transformation/jungle_fever
 	name = "Jungle Fever"
-	cure_text = "Clown's Tears."
-	cures = list(/datum/reagent/consumable/clownstears)
+	cure_text = "Death."
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	spread_text = "Monkey Bites"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	viable_mobtypes = list(/mob/living/carbon/monkey, /mob/living/carbon/human)
@@ -145,6 +145,9 @@
 /datum/disease/transformation/jungle_fever/monkeymode
 	visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
 	disease_flags = CAN_CARRY //no vaccines! no cure!
+	cure_text = "Clown's Tears."
+	cures = list(/datum/reagent/consumable/clownstears)
+	
 
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
