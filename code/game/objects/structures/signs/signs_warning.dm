@@ -26,6 +26,11 @@
 	desc = "A warning sign which reads 'HARD VACUUM AHEAD'."
 	icon_state = "space"
 
+/obj/structure/sign/warning/vacuum/minsky
+	name = "\improper HARD VACUUM AHEAD"
+	desc = "A warning sign which reads 'HARD VACUUM AHEAD'."
+	icon_state = "minskyspace"
+
 /obj/structure/sign/warning/vacuum/external
 	name = "\improper EXTERNAL AIRLOCK"
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'."
