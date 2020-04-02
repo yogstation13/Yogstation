@@ -88,7 +88,7 @@
 	desc = "A sign labeling one of the station's quantum hubs. "
 	icon_state = "minskyhub"
 
-/obj/structure/sign/departments/minsky/command/quantumhub
+/obj/structure/sign/departments/minsky/command/evac
 	name = "\improper Evacuation Area"
 	desc = "A sign labeling one of the station's evacuation area. No guarantees. "
 	icon_state = "minskyevac"
