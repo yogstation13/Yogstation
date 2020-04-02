@@ -154,7 +154,6 @@
 		visibility_flags = NONE
 
 
-
 /datum/disease/transformation/robot
 
 	name = "Robotic Transformation"
