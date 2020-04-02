@@ -70,7 +70,7 @@
 				new_mob.key = affected_mob.key
 
 		new_mob.name = affected_mob.real_name
-		new_mo.real_name = new_mob.name
+		new_mob.real_name = new_mob.name
 		qdel(affected_mob)
 
 /datum/disease/transformation/proc/replace_banned_player(var/mob/living/new_mob) // This can run well after the mob has been transferred, so need a handle on the new mob to kill it if needed.
