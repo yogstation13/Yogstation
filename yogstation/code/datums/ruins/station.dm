@@ -59,6 +59,11 @@
 	id = "bar_cheese"
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
+	
+/datum/map_template/ruin/station/box/bar/clock
+	id = "bar_clock"
+	suffix = "bar_clock.dmm"
+	name = "Bar Clock"
 
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
