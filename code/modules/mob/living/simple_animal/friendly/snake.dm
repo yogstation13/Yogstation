@@ -58,7 +58,7 @@
 		udder.generateMilk()
 
 /obj/item/udder/snake
-	name = "Snake Venom Gland"
+	name = "snake venom gland"
 	milktype = /datum/reagent/toxin/venom
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
