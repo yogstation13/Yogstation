@@ -36,5 +36,5 @@
 		"[user] successfully repairs some of [target]'s DNA",
 		"[user] completes the surgery on [target]'s brain.")
 	REMOVE_TRAIT(target, TRAIT_BADDNA, CHANGELING_DRAIN)
-	cure_husk()
+	target.cure_husk()
 	return TRUE
