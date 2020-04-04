@@ -52047,6 +52047,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"fDQ" = (
+/obj/machinery/rnd/bepis,
+/turf/open/floor/engine,
+/area/science/misc_lab)
 "fEe" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -109570,7 +109574,7 @@ afR
 aex
 ado
 bTl
-bTl
+fDQ
 caY
 bTl
 bQZ

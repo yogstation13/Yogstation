@@ -34,8 +34,7 @@
 	var/positive_cash_offset = 0
 	var/negative_cash_offset = 0
 	var/minor_rewards = list(/obj/item/stack/circuit_stack/full,	//To add a new minor reward, add it here.
-					/obj/item/airlock_painter/decal,
-					/obj/item/reagent_containers/hypospray/medipen/survival,
+					/obj/item/reagent_containers/hypospray/medipen/survival,   //could not get the decal sprayers spite to work, therefore I have left it out.
 					/obj/item/circuitboard/machine/sleeper/party,
 					/obj/item/toy/sprayoncan)
 	var/static/list/item_list = list()
@@ -92,7 +91,7 @@
 		update_icon()
 		say("Attempting to deposit 0 credits. Aborting.")
 		return
-	deposit_value = clamp(round(deposit_value, 1), 1, 15000)
+	deposit_value = CLAMP(round(deposit_value, 1), 1, 15000)
 	if(!account)
 		say("Cannot find user account. Please swipe a valid ID.")
 		return
