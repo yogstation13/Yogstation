@@ -34,8 +34,9 @@
 	var/positive_cash_offset = 0
 	var/negative_cash_offset = 0
 	var/minor_rewards = list(/obj/item/stack/circuit_stack/full,	//To add a new minor reward, add it here.
-					/obj/item/reagent_containers/hypospray/medipen/survival,   //could not get the decal sprayers spite to work, therefore I have left it out.
+					/obj/item/reagent_containers/hypospray/medipen/survival,
 					/obj/item/circuitboard/machine/sleeper/party,
+					/obj/item/airlock_painter/decal,
 					/obj/item/toy/sprayoncan)
 	var/static/list/item_list = list()
 
