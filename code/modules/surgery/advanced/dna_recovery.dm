@@ -15,7 +15,7 @@
 	if(!..())
 		return FALSE
 
-	if(!HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN) || !HAS_TRAIT(target, TRAIT_HUSK))
+	if(!HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN) && !HAS_TRAIT(target, TRAIT_HUSK))
 		return FALSE
 	return TRUE
 
