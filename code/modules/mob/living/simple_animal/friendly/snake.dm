@@ -42,7 +42,6 @@
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/Destroy()
 	qdel(udder)
-	udder = null
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/attackby(obj/item/O, mob/user, params)
