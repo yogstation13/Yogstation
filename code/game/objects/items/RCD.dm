@@ -649,6 +649,7 @@ RLD
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	matter = 200
 	max_matter = 200
+	var/matter_divisor = 35
 	var/mode = LIGHT_MODE
 	actions_types = list(/datum/action/item_action/pick_color)
 
@@ -671,7 +672,7 @@ RLD
 		..()
 
 /obj/item/construction/rld/update_icon()
-	icon_state = "rld-[round(matter/35)]"
+	icon_state = "rld-[round(matter/matter_divisor)]"
 	..()
 
 
@@ -707,7 +708,7 @@ RLD
 			if(istype(A, /obj/machinery/light/))
 				if(checkResource(deconcost, user))
 					to_chat(user, "<span class='notice'>You start deconstructing [A]...</span>")
-					user.Beam(A,icon_state="nzcrentrs_power",time=15)
+					user.Beam(A,icon_state="light_beam",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 					if(do_after(user, decondelay, target = A))
 						if(!useResource(deconcost, user))
@@ -721,7 +722,7 @@ RLD
 				var/turf/closed/wall/W = A
 				if(checkResource(floorcost, user))
 					to_chat(user, "<span class='notice'>You start building a wall light...</span>")
-					user.Beam(A,icon_state="nzcrentrs_power",time=15)
+					user.Beam(A,icon_state="light_beam",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, 0)
 					if(do_after(user, floordelay, target = A))
@@ -762,12 +763,13 @@ RLD
 						L.light_color = L.color
 						return TRUE
 				return FALSE
+				
 
 			if(isfloorturf(A))
 				var/turf/open/floor/F = A
 				if(checkResource(floorcost, user))
 					to_chat(user, "<span class='notice'>You start building a floor light...</span>")
-					user.Beam(A,icon_state="nzcrentrs_power",time=15)
+					user.Beam(A,icon_state="light_beam",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, 1)
 					if(do_after(user, floordelay, target = A))
@@ -795,6 +797,16 @@ RLD
 				G.update_brightness()
 				return TRUE
 			return FALSE
+/obj/item/construction/rld/mini
+	name = "mini-rapid-light-device (MRLD)"
+	desc = "A device used to rapidly provide lighting sources to an area. Reload with metal, plasteel, glass or compressed matter cartridges."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "rld-5"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	matter = 100
+	max_matter = 100
+	matter_divisor = 20
 
 /obj/item/rcd_upgrade
 	name = "RCD advanced design disk"

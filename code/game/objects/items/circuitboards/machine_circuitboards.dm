@@ -739,6 +739,10 @@
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stack/sheet/glass = 2)
 // yogs end
+/obj/item/circuitboard/machine/sleeper/party
+	name = "Party Pod (Machine Board)"
+	build_path = /obj/machinery/sleeper/party
+
 /obj/item/circuitboard/machine/smoke_machine
 	name = "Smoke Machine (Machine Board)"
 	icon_state = "medical"
@@ -905,6 +909,17 @@
 	name = "\improper Departmental Techfab (Machine Board) - Science"
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/techfab/department/science
+
+/obj/item/circuitboard/machine/bepis
+	name = "BEPIS Chamber (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/rnd/bepis
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/scanning_module = 1)
 
 //Security
 

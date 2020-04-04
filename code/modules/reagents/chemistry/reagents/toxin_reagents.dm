@@ -899,3 +899,20 @@
 				to_chat(M, "<span class='warning'>Your missing arm aches from wherever you left it.</span>")
 				M.emote("sigh")
 	return ..()
+
+/datum/reagent/toxin/leadacetate
+	name = "Lead Acetate"
+	description = "Used hundreds of years ago as a sweetener, before it was realized that it's incredibly poisonous."
+	reagent_state = SOLID
+	color = "#2b2b2b" // rgb: 127, 132, 0
+	toxpwr = 0.5
+	taste_mult = 1.3
+	taste_description = "sugary sweetness"
+
+/datum/reagent/toxin/leadacetate/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_EARS,1)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN,1)
+	if(prob(1))
+		to_chat(M, "<span class='notice'>Ah, what was that? You thought you heard something...</span>")
+		M.confused += 5
+	return ..()
