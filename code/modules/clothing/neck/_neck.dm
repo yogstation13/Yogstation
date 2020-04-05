@@ -196,7 +196,7 @@
 
 /obj/item/clothing/neck/petcollar
 	name = "pet collar"
-	desc = "It's for pets."
+	desc = "It has a little bell!"
 	icon_state = "petcollar"
 	item_color = "petcollar"
 	var/tagname = null
