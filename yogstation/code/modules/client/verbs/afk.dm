@@ -64,7 +64,7 @@
 						if("Nuclear Operative","Clown Operative","Syndicate Cyborg","Lone Operative") // Le nukie bois
 							channels = list(".t") // Broadcast their AFK-hood on syndicate channels
 				if(H.mind.has_antag_datum(/datum/antagonist/ert)) // A bit awkward, but they lack a special_role and it would break some things to make them have one
-					special_role = H.mind.assigned_job // This normally works.
+					special_role = H.mind.assigned_role // This normally works.
 					channels = list(".y",".c") // Y for.... Centcom, of course!
 		else if(isalien(M))
 			alert_admins = TRUE
