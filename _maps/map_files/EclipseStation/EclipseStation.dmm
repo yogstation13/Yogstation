@@ -36667,6 +36667,10 @@
 	map_pad_id = "bridgetoevac";
 	map_pad_link_id = "evactobridge"
 	},
+/obj/structure/sign/departments/evac{
+	pixel_x = -32;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/bridge)
 "bxd" = (
@@ -80081,6 +80085,10 @@
 	icon_state = "tile_corner";
 	dir = 8
 	},
+/obj/structure/sign/departments/evac{
+	pixel_x = 32;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "dft" = (
@@ -83803,6 +83811,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"hga" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/quantumpad{
+	map_pad_id = "bridgetoevac";
+	map_pad_link_id = "evactobridge"
+	},
+/obj/structure/sign/departments/evac{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/bridge)
+"hgA" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white,
+/obj/structure/sign/departments/evac{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "hgC" = (
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -83871,6 +83902,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"hqI" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/structure/sign/departments/evac{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/medical)
 "hsI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -83881,6 +83924,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"hvo" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/structure/sign/departments/evac{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/medical)
 "hxY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -84698,6 +84753,17 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"klh" = (
+/obj/structure/sign/departments/evac{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/quantumpad{
+	map_pad_id = "scitoevac";
+	map_pad_link_id = "evactosci"
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/science)
 "koi" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
 	dir = 1
@@ -85119,6 +85185,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"lNQ" = (
+/obj/effect/turf_decal/tile/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/science)
 "lOl" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -85373,6 +85448,17 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"mCK" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/quantumpad{
+	map_pad_id = "sectoevac";
+	map_pad_link_id = "evactosec"
+	},
+/obj/structure/sign/departments/evac{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/security)
 "mDd" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -85820,6 +85906,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"nWu" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/quantumpad{
+	map_pad_id = "scitoevac";
+	map_pad_link_id = "evactosci"
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter/hub/science)
 "nWA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -106768,9 +106862,9 @@ bDC
 bJz
 bJw
 bJw
+hqI
 diw
-diw
-diw
+hvo
 bJw
 bJw
 aaa
@@ -118372,8 +118466,8 @@ cIH
 cKU
 cIH
 cIH
-cIH
-cIH
+lNQ
+nWu
 czP
 ckd
 cly
@@ -118576,7 +118670,7 @@ boP
 boP
 bss
 bdn
-bxc
+hga
 tJB
 bCq
 boP
@@ -118629,8 +118723,8 @@ hDV
 jPz
 cIH
 cIH
-cIH
-cIH
+lNQ
+klh
 czP
 ckd
 cly
@@ -118886,8 +118980,8 @@ cIZ
 cLi
 cIH
 cIH
-cIH
-cIH
+lNQ
+nWu
 czP
 ckJ
 cxk
@@ -119313,7 +119407,7 @@ aFI
 aFI
 aFI
 aFn
-aFq
+mCK
 aBF
 aGA
 adH
@@ -138874,7 +138968,7 @@ xjA
 dZf
 dcT
 dcT
-dcT
+hgA
 ddw
 aFp
 ddJ
