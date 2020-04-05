@@ -23,6 +23,7 @@
 	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
 	var/wander = 1	// Does the mob wander around when idle?
 	var/stop_automated_movement_when_pulled = 1 //When set to 1 this stops the animal from moving when someone is pulling it.
+	var/wearing_collar = FALSE
 
 	//Interaction
 	var/response_help   = "pokes"
@@ -93,6 +94,8 @@
 
 	var/do_footstep = FALSE
 
+	var/footstep = 0 //counts the number of steps the animal has taken before playing another sound for when they wear a collar
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
@@ -144,11 +147,24 @@
 			stat = CONSCIOUS
 	med_hud_set_status()
 
-
 /mob/living/simple_animal/handle_status_effects()
 	..()
 	if(stuttering)
 		stuttering = 0
+
+/mob/living/simple_animal/Move(NewLoc, direct)
+	. = ..()
+
+	if(wearing_collar == TRUE)
+		if(mobility_flags)
+			if(loc == NewLoc)
+				if(!has_gravity(loc))
+					return
+				if(footstep > 2)
+					playsound(src, "collarbell",50, 1)
+					footstep = 0
+				else
+					footstep++
 
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
