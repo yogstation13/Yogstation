@@ -28,6 +28,8 @@
 			RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 			if(istype(parent, /obj/item/clothing/shoes))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
+			if(istype(parent, /obj/item/clothing/neck))
+				RegisterSignal(parent, COMSIG_NECK_STEP_ACTION, .proc/step_squeak)
 
 	override_squeak_sounds = custom_sounds
 	if(chance_override)

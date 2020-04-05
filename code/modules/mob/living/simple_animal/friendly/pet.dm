@@ -20,6 +20,7 @@
 	pcollar = P
 	regenerate_icons()
 	to_chat(user, "<span class='notice'>You put the [P] around [src]'s neck.</span>")
+	wearing_collar = TRUE
 	if(P.tagname && !unique_pet)
 		fully_replace_character_name(null, "\proper [P.tagname]")
 
