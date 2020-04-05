@@ -45,9 +45,14 @@
 				if(M.job in GLOB.command_positions)
 					alert_admins = TRUE
 					channels += ".c"
+				if(M.job in GLOB.security_positions)
+					alert_admins = TRUE
+					channels += ".s"
 		else // This guy is some strange sorta mob
 			alert_admins = (alert("Should admins know about you going AFK?","AFK Verb Notice","Yes","No") == "Yes")
 		
+		if (M.mind && M.mind.special_role)
+			alert_admins = TRUE
 		//The actual loop where the mob speaks in IC
 		for(var/i in channels)
 			var/channel = channels[i]
