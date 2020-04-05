@@ -188,11 +188,11 @@
 	icon_state = "medi_holo"
 	duration = 30
 
-/obj/effect/temp_visual/medical_holosign/Initialize(mapload, creator)
+/obj/effect/temp_visual/medical_holosign/Initialize(mapload, mob/creator)
 	. = ..()
 	playsound(loc, 'sound/machines/ping.ogg', 50, 0) //make some noise!
 	if(creator)
-		visible_message("<span class='danger'>[creator] created a medical hologram!</span>")
+		visible_message("<span class='danger'>[creator] created a medical hologram, indicating that [creator.p_theyre(FALSE, FALSE)] coming to help!</span>")
 
 
 /obj/item/flashlight/seclite
