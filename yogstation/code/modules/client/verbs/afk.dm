@@ -46,7 +46,7 @@
 		else if(issilicon(M))
 			alert_admins = TRUE
 			text = borgtext[time]
-			channels = list(".o",".c")
+			channels = list(".o",".c",".b") // AI Private, Command, and Binary.
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			text = humantext[time]
