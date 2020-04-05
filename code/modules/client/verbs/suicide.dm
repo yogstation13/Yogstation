@@ -241,12 +241,12 @@
 		if(CONSCIOUS)
 			return TRUE
 		if(SOFT_CRIT)
-			to_chat(src, "You can't commit suicide while in a critical condition!")
+			to_chat(src, "<span class='warning'>You can't commit suicide while in a critical condition!</span>")
 		if(UNCONSCIOUS)
-			to_chat(src, "You need to be conscious to commit suicide!")
+			to_chat(src, "<span class='warning'>You need to be conscious to commit suicide!</span>")
 		if(DEAD)
-			to_chat(src, "You're already dead!")
 	return
+			to_chat(src, "<span class='warning'>You're already dead!</span>")
 
 /mob/living/carbon/canSuicide()
 	if(!..())
