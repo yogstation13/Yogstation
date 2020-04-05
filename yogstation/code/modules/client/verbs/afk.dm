@@ -29,6 +29,7 @@
 		
 		var/text // The text that this guy will broadcast as best he can in IC channels.
 		var/alert_admins = FALSE
+		var/special_role
 		var/list/channels = list() // What channels to broadcast their IC message on
 		if(isdrone(M))// :altoids:
 			text = borgtext[time]
@@ -38,13 +39,24 @@
 			text = borgtext[time]
 			channels = list(".o",".c")
 		else if(ishuman(M))
+			var/mob/living/carbon/human/H = M
 			text = humantext[time]
 			channels = list(".h")
-			if(M.job)
+			if(H.job)
 				text += " This is the [M.job] signing off for now."
-				if(M.job in GLOB.command_positions)
+				if(H.job in GLOB.command_positions)
 					alert_admins = TRUE
 					channels += ".c"
+			if(H.mind)
+				if(H.mind.special_role) // This catches if they are a typical variety of antag (clockwork, traitor, zombie, wizard, etc)
+					alert_admins = TRUE
+					special_role = H.mind.special_role
+					switch(special_role)
+						if("Nuclear Operative","Clown Operative","Syndicate Cyborg","Lone Operative") // Le nukie bois
+							channels = list(".t") // Broadcast their AFK-hood on syndicate channels
+				if(H.mind.has_antag_datum(/datum/antagonist/ert)) // A bit awkward, but they lack a special_role and it would break some things to make them have one
+					special_role = H.mind.assigned_job // This normally works.
+					channels = list(".y",".c") // Y for.... Centcom, of course!
 		else // This guy is some strange sorta mob
 			alert_admins = (alert("Should admins know about you going AFK?","AFK Verb Notice","Yes","No") == "Yes")
 		
@@ -56,7 +68,8 @@
 		//Now we try to do the OOC bits, if necessary
 		if(alert_admins)
 			var/reason = stripped_input(src, "Do you have time to give a reason? If so, please give it:")
-			adminhelp("I need to go AFK as '[M.job]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
+			var/important_role = special_role || M.job || initial(M.name) || "something important"
+			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
 		else
 			to_chat(src, "<span class='danger'>Admins will not be specifically alerted, because you are not in a critical station role.</span>")
 	else
