@@ -19,6 +19,15 @@
 		"30 minutes" = "I need to shut my eyes for quite a while. Please keep an eye on me while I am resting.",
 		"Whole round" = "I need to shut my eyes for a long time... Someone please take over my station responsibilities."
 	)
+	
+	var/static/list/alientext = list(
+		"Unknown" = "My broodmembers, I must go quiet for a time. Please watch over me.",
+		"5 minutes" = "My broodmembers, I must go quiet for a time. I will awaken very soon.",
+		"10 minutes" = "My broodmembers, I must go quiet for a time. I will awaken soon.",
+		"15 minutes" = "My broodmembers, I must go quiet for a time. I will awaken in time.",
+		"30 minutes" = "My broodmembers, I must go quiet for a time. It will be some time before I awaken.",
+		"Whole round" = "My broodmembers, I must go quiet. I may never awaken during this cycle.",
+	)
 	if(mob && !isdead(mob))
 		var/mob/M = mob
 		
@@ -57,6 +66,10 @@
 				if(H.mind.has_antag_datum(/datum/antagonist/ert)) // A bit awkward, but they lack a special_role and it would break some things to make them have one
 					special_role = H.mind.assigned_job // This normally works.
 					channels = list(".y",".c") // Y for.... Centcom, of course!
+		else if(isalien(M))
+			alert_admins = TRUE
+			text = alientext[time]
+			channels = list(".a")
 		else // This guy is some strange sorta mob
 			alert_admins = (alert("Should admins know about you going AFK?","AFK Verb Notice","Yes","No") == "Yes")
 		
