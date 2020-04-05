@@ -56,7 +56,7 @@
 				if(H.job in GLOB.command_positions)
 					alert_admins = TRUE
 					channels += ".c"
-				else if(job in GLOB.security_positions)
+				else if(H.job in GLOB.security_positions)
 					alert_admins = TRUE
 					//Already implicitly sending an IC message on sec channels via the .h above
 			if(H.mind)
