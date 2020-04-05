@@ -84,6 +84,6 @@
 			var/important_role = special_role || M.job || initial(M.name) || "something important"
 			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
 		else
-			to_chat(src, "<span class='danger'>Admins will not be specifically alerted, because you are not in a critical station role.</span>")
+			to_chat(src, "<span class='danger'>Admins will not be automatically alerted, because you are not in a critical station role.</span>")
 	else
 		to_chat(src, "<span class='boldnotice'>It is not necessary to report being AFK if you are not in the game.</span>")
