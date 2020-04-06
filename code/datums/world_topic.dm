@@ -144,9 +144,6 @@
 
 	return jointext(message, "")
 
-
-	return jointext(message, "")
-
 /datum/world_topic/status
 	keyword = "status"
 
