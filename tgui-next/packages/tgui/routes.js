@@ -14,7 +14,6 @@ import { BluespaceArtillery } from './interfaces/BluespaceArtillery';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canister } from './interfaces/Canister';
-import { Canvas } from './interfaces/Canvas';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CargoHoldTerminal } from './interfaces/CargoHoldTerminal';
 import { CellularEmporium } from './interfaces/CellularEmporium';
@@ -30,6 +29,7 @@ import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { RadioactiveMicrolaser } from './interfaces/RadioactiveMicrolaser';
 import { RemoteRobotControl } from './interfaces/RemoteRobotControl';
+import { DnaConsole } from './interfaces/DnaConsole';
 import { DnaVault } from './interfaces/DnaVault';
 import { Electropack } from './interfaces/Electropack';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
@@ -88,7 +88,6 @@ import { TankDispenser } from './interfaces/TankDispenser';
 import { Teleporter } from './interfaces/Teleporter';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { Timer } from './interfaces/Timer';
-import { TransferValve } from './interfaces/TransferValve';
 import { TurbineComputer } from './interfaces/TurbineComputer';
 import { Uplink } from './interfaces/Uplink';
 import { VaultController } from './interfaces/VaultController';
@@ -131,6 +130,10 @@ const ROUTES = {
   },
   robotics_control_console: {
     component: () => RoboticsControlConsole,
+    scrollable: true,
+  },
+  scan_consolenew: {
+    component: () => DnaConsole,
     scrollable: true,
   },
   airlock_electronics: {
@@ -179,10 +182,6 @@ const ROUTES = {
   },
   canister: {
     component: () => Canister,
-    scrollable: false,
-  },
-  canvas: {
-    component: () => Canvas,
     scrollable: false,
   },
   cargo: {
@@ -492,10 +491,6 @@ const ROUTES = {
   },
   timer: {
     component: () => Timer,
-    scrollable: false,
-  },
-  transfer_valve: {
-    component: () => TransferValve,
     scrollable: false,
   },
   turbine_computer: {
