@@ -192,7 +192,6 @@
 					pcollar = null
 					update_corgi_fluff()
 					regenerate_icons()
-					wearing_collar = FALSE
 
 		show_inv(usr)
 
@@ -204,7 +203,6 @@
 			if("collar")
 				add_collar(usr.get_active_held_item(), usr)
 				update_corgi_fluff()
-				wearing_collar = TRUE
 
 			if(BODY_ZONE_HEAD)
 				place_on_head(usr.get_active_held_item(),usr)
