@@ -13,7 +13,7 @@
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = 0
 
-/datum/surgery/advanced/revival/can_start(mob/user, mob/living/carbon/target)
+/datum/surgery/revival/can_start(mob/user, mob/living/carbon/target)
 	. = ..()
 		return FALSE
 	if(target.stat != DEAD)
