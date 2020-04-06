@@ -670,6 +670,12 @@
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/security
 
+/obj/item/borg/upgrade/transform/enhancedengineering
+	name = "borg module picker (Engineering+)"
+	desc = "Allows you to give godlike powers to a engineering cyborg."
+	icon_state = "cyborg_upgrade3"
+	new_module = /obj/item/robot_module/engineering/enhanced
+
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
 		to_chat(user, "<span class='warning'>Nanotrasen policy disallows the use of weapons of mass destruction.</span>")

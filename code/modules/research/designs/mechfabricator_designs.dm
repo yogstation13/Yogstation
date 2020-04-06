@@ -668,7 +668,7 @@
 	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_BANANIUM = 1000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
-	
+
 
 /datum/design/borg_transform_security
 	name = "Cyborg Upgrade (Security Module)"
@@ -676,6 +676,15 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/security
 	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_DIAMOND = 3000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_transform_enhancedengineering
+	name = "Cyborg Upgrade (Enhanced Engineering Module)"
+	id = "borg_transform_enhancedengineering"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/transform/enhancedengineering
+	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_DIAMOND = 3000, MAT_TITANIUM = 5000, MAT_URANIUM = 1000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
