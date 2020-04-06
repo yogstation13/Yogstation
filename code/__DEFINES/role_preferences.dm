@@ -43,7 +43,7 @@
 #define ROLE_DARKSPAWN			"darkspawn" //Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
 #define ROLE_CLOCK_AGENT		"Clockwork Agent" //Yogs
-//#define ROLE_BLOOD_AGENT		"Cultist Agent" //Yogs //something bloodcult DLC
+#define ROLE_BLOOD_AGENT		"Cultist Agent" //Yogs
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
 	ROLE_CLOCK_AGENT = /datum/game_mode/traitor/traitorcult,
-	//ROLE_BLOOD_AGENT = /datum/game_mode/traitor/traitorcult, //something bloodcult DLC
+	ROLE_BLOOD_AGENT = /datum/game_mode/traitor/traitorcult,
 	ROLE_SENTIENCE
 ))
 

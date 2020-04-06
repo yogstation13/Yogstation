@@ -1423,6 +1423,7 @@
 #include "code\modules\antagonists\traitor\IAA\internal_affairs.dm"
 #include "code\modules\antagonists\traitorcult\impantobjectives.dm"
 #include "code\modules\antagonists\traitorcult\soulextractobjectives.dm"
+#include "code\modules\antagonists\traitorcult\traitorblood.dm"
 #include "code\modules\antagonists\traitorcult\traitorclock.dm"
 #include "code\modules\antagonists\valentines\valentine.dm"
 #include "code\modules\antagonists\wishgranter\wishgranter.dm"

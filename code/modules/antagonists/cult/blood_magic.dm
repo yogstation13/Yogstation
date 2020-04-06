@@ -573,7 +573,9 @@
 		var/turf/T = get_turf(target)
 		if(istype(target, /obj/item/stack/sheet/metal))
 			var/obj/item/stack/sheet/candidate = target
-			if(candidate.use(METAL_TO_CONSTRUCT_SHELL_CONVERSION))
+			if(!iscultist(user, TRUE))
+				to_chat(user, "<span class='warning'>The Veil is too strong here for you to effectively make constructs...</span>")
+			else if(candidate.use(METAL_TO_CONSTRUCT_SHELL_CONVERSION))
 				uses--
 				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a construct shell!</span>")
 				new /obj/structure/constructshell(T)
@@ -591,7 +593,9 @@
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/mob/living/silicon/robot))
 			var/mob/living/silicon/robot/candidate = target
-			if(candidate.mmi)
+			if(!iscultist(user, TRUE))
+				to_chat(user, "<span class='warning'>The Veil is too strong here for you to effectively make constructs...</span>")
+			else if(candidate.mmi)
 				user.visible_message("<span class='danger'>A dark cloud emanates from [user]'s hand and swirls around [candidate]!</span>")
 				playsound(T, 'sound/machines/airlock_alien_prying.ogg', 80, 1)
 				var/prev_color = candidate.color
@@ -810,7 +814,9 @@
 						to_chat(user, "<span class='cultitalic'>You need a free hand for this rite!</span>")
 						qdel(rite)
 			if("Blood Beam (500)")
-				if(uses < BLOOD_BEAM_COST)
+				if(!iscultist(user, TRUE))
+					to_chat(user, "<span class='warning'>The Veils is not weak enough here to call upon this power.</span>")
+				else if(uses < BLOOD_BEAM_COST)
 					to_chat(user, "<span class='cultitalic'>You need [BLOOD_BEAM_COST] charges to perform this rite.</span>")
 				else
 					var/obj/rite = new /obj/item/blood_beam()

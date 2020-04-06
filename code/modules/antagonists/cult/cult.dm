@@ -11,14 +11,16 @@
 	job_rank = ROLE_CULTIST
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
+	var/make_team = TRUE //do we make a team?
 	var/datum/team/cult/cult_team
-
+	var/ignore_holy_water = FALSE //is deconversion impossible via holywater?
+	var/agent = FALSE //can the cult use its full power?
 
 /datum/antagonist/cult/get_team()
 	return cult_team
 
 /datum/antagonist/cult/create_team(datum/team/cult/new_team)
-	if(!new_team)
+	if(!new_team && make_team)
 		//todo remove this and allow admin buttons to create more than one cult
 		for(var/datum/antagonist/cult/H in GLOB.antagonists)
 			if(!H.owner)
@@ -29,7 +31,7 @@
 		cult_team = new /datum/team/cult
 		cult_team.setup_objectives()
 		return
-	if(!istype(new_team))
+	if(make_team && !istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
 	cult_team = new_team
 
@@ -62,7 +64,7 @@
 	SSticker.mode.update_cult_icons_added(owner)
 	current.log_message("has been converted to the cult of Nar'Sie!", LOG_ATTACK, color="#960000")
 
-	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
+	if(cult_team?.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
 
@@ -105,13 +107,13 @@
 		current = mob_override
 	current.faction |= "cult"
 	current.grant_language(/datum/language/narsie, TRUE, TRUE, LANGUAGE_CULTIST)
-	if(!cult_team.cult_master)
+	if(!cult_team?.cult_master)
 		vote.Grant(current)
 	communion.Grant(current)
 	if(ishuman(current))
 		magic.Grant(current)
 	current.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
-	if(cult_team.cult_risen)
+	if(cult_team?.cult_risen)
 		cult_team.rise(current)
 		if(cult_team.cult_ascendent)
 			cult_team.ascend(current)
@@ -205,13 +207,13 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(!cult_team.reckoning_complete)
+	if(!cult_team?.reckoning_complete)
 		reckoning.Grant(current)
 	bloodmark.Grant(current)
 	throwing.Grant(current)
 	current.update_action_buttons_icon()
 	current.apply_status_effect(/datum/status_effect/cult_master)
-	if(cult_team.cult_risen)
+	if(cult_team?.cult_risen)
 		cult_team.rise(current)
 		if(cult_team.cult_ascendent)
 			cult_team.ascend(current)

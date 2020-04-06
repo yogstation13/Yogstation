@@ -1,6 +1,6 @@
 /datum/antagonist/cult/agent
-	name = "cult Agent"
-	antagpanel_category = "Cult Agent"
+	name = "Blood Agent"
+	antagpanel_category = "Blood Agent"
 	make_team = FALSE
 	agent = TRUE
 	ignore_holy_water = TRUE
@@ -24,22 +24,20 @@
 
 /datum/antagonist/cult/agent/greet()
 	if(considered_alive(owner))
-		to_chat(owner, "<span class='sevtug'>Here's the deal; Rats wants some stuff from this station and he's got me herding you idiots to get it. \
-						We're running on fumes especially this far out so you'll be missing some scriptures, mainly the ones that make more cultists. Just finish our little shopping list and make a getaway. \
-						There's some minds I can sense that seem to be stronger than the others, probably being manipulated by our enemy. I shouldn't have to say this more than once: Be. Careful.</span>")
+		to_chat(owner, "<span class='narsiesmall'>FLAVORTEXT.</span>")
 	owner.current.playsound_local(get_turf(owner.current),'sound/effects/screech.ogg' , 100, FALSE, pressure_affected = FALSE)
 	owner.announce_objectives()
 
 /datum/antagonist/cult/agent/admin_add(datum/mind/new_owner, mob/admin)
-	add_servant_of_ratvar(new_owner.current, TRUE, FALSE, TRUE)
+	owner.add_antag_datum(/datum/antagonist/cult/agent)
 	agent_team = SSticker.mode.blood_agent_team
-	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a bloodwork Agent.")
-	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a bloodwork Agent.")
+	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a Blood Agent.")
+	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a Blood Agent.")
 
 /datum/antagonist/cult/agent/admin_remove(mob/user)
-	remove_servant_of_ratvar(owner.current, TRUE)
-	message_admins("[key_name_admin(user)] has removed bloodwork agent status from [key_name_admin(owner)].")
-	log_admin("[key_name(user)] has removed bloodwork agent status from [key_name(owner)].")
+	owner.remove_antag_datum(/datum/antagonist/cult/agent)
+	message_admins("[key_name_admin(user)] has removed blood agent status from [key_name_admin(owner)].")
+	log_admin("[key_name(user)] has removed blood agent status from [key_name(owner)].")
 
 /datum/antagonist/cult/agent/create_team(datum/team/blood_agents/new_team)
 	if(!new_team)

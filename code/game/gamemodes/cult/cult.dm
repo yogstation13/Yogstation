@@ -3,8 +3,11 @@
 /datum/game_mode
 	var/list/datum/mind/cult = list()
 
-/proc/iscultist(mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/cult)
+/proc/iscultist(mob/living/M, require_cult = FALSE, holy_water_check = FALSE)
+	if(!istype(M))
+		return FALSE
+	var/datum/antagonist/cult/D = M?.mind?.has_antag_datum(/datum/antagonist/cult)
+	return D && (!require_cult || !D.agent) && (!holy_water_check || !D.ignore_holy_water)
 
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
 	for(var/datum/objective/sacrifice/sac_objective in objectives)

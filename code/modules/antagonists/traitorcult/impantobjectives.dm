@@ -4,10 +4,6 @@
 	var/dudes_to_stab = 0						//list of people who need to be implanted to win
 	var/list/datum/mind/dudes_stabbed = list()  //list of people with the implants
 
-/datum/objective/implant/New()
-	..()
-	update_explanation_text()
-
 /datum/objective/implant/update_explanation_text()
 	dudes_to_stab = team.members.len * rand(1,5) //1 to 5 implantees per clock agent
 	explanation_text = "<span class='sevtug'>Implant at least [dudes_to_stab] of these heretics with guvax capacitors, I'll need them later. Use a replica fabricator on an implanter to make one, and try to keep them alive please and thank you.</span>"
@@ -81,8 +77,8 @@
 /obj/item/implanter/cult/examine(mob/user)
 	if(clockwork_desc && (is_servant_of_ratvar(user) || isobserver(user)))
 		desc = clockwork_desc
-	/*if(blood_desc && (iscultist(user)) || (istype(src, /obj/item/implanter/cult/blood) && isobserver(user))) //to be added in the "bloodcult" DLC expansion pack
-		desc = blood_desc*/
+	if(blood_desc && (iscultist(user)) || (istype(src, /obj/item/implanter/cult/blood) && isobserver(user)))
+		desc = blood_desc
 	. = ..()
 	desc = initial(desc)
 
@@ -134,7 +130,7 @@
 		QDEL_NULL(src)
 
 
-/*/datum/objective/implant/blood //to be added in the "bloodcult" DLC expansion pack
+/datum/objective/implant/blood //to be added in the "bloodcult" DLC expansion pack
 	name = "bloodcult implant"
 
 /datum/objective/implant/blood/update_explanation_text()
@@ -157,4 +153,4 @@
 	name = "soulshard"
 	linkedantag = /datum/antagonist/cult_implanted/blood
 	cult_team = "blood"
-	break_sound = 'sound/effects/glassbr2.ogg'*/
+	break_sound = 'sound/effects/glassbr2.ogg'

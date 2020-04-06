@@ -2,7 +2,7 @@
 	var/list/datum/mind/clockagents = list()	//list of clock agents for objective scaling
 	var/datum/team/clock_agents/clock_agent_team//clock team for tracking objectives
 	var/list/datum/mind/bloodagents = list()	//ditto for blood
-	var/datum/team/blood_agent_team				//same
+	var/datum/team/blood_agents/blood_agent_team //same
 
 /datum/game_mode/traitor/traitorcult
 	name = "traitor+cultagents"
@@ -26,7 +26,7 @@
 		restricted_jobs += "Assistant"
 
 		var/list/datum/mind/possible_clocks = get_players_for_role(ROLE_CLOCK_AGENT)
-		//var/list/datum/mind/possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
+		var/list/datum/mind/possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
 
 		var/asc = CONFIG_GET(number/agent_scaling_coeff)
 		var/team_size = min_team_size
@@ -43,14 +43,14 @@
 			clock.restricted_roles = restricted_jobs
 			equip_clock_agent(clock)
 		clock_agent_team.forge_clock_objectives()
-		/*blood_agent_team = new //to be added in the "bloodcult" DLC expansion pack
+		blood_agent_team = new
 		for(var/k = 1 to team_size)
 			var/datum/mind/blood = antag_pick(possible_bloods)
 			possible_bloods -= blood
 			antag_candidates -= blood
 			blood_agent_team.add_member(blood)
 			blood.special_role = ROLE_BLOOD_AGENT
-			blood.restricted_roles = restricted_jobs*/
+			blood.restricted_roles = restricted_jobs
 	return ..()
 
 /datum/game_mode/proc/equip_clock_agent(mob/living/M)
@@ -75,9 +75,9 @@
 
 /datum/game_mode/traitor/traitorcult/post_setup()
 	clock_agent_team.forge_clock_objectives()
-	//blood_agent_team.forge_blood_objectives()
+	blood_agent_team.forge_blood_objectives()
 	for(var/datum/mind/M in clock_agent_team.members)
 		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
-	//for(var/datum/mind/M in blood_agent_team.members)
-		//M.add_antag_datum(/datum/antagonist/cult/agent)
+	for(var/datum/mind/M in blood_agent_team.members)
+		M.add_antag_datum(/datum/antagonist/cult/agent)
 	return ..()

@@ -30,7 +30,7 @@
 
 /mob/living/simple_animal/hostile/clockwork/Login()
 	..()
-	add_servant_of_ratvar(src, TRUE, !agent, agent)
+	add_servant_of_ratvar(src, TRUE, !agent) //since marauders get deleted if they die they aren't put in an agent team
 	to_chat(src, playstyle_string)
 	if(GLOB.ratvar_approaches)
 		to_chat(src, empower_string)

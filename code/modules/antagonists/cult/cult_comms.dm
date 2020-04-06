@@ -74,7 +74,7 @@
 
 /datum/action/innate/cult/mastervote/IsAvailable()
 	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	if(!C || C.cult_team.cult_vote_called || !ishuman(owner))
+	if(!C?.cult_team || C.cult_team.cult_vote_called || !ishuman(owner))
 		return FALSE
 	return ..()
 
@@ -82,6 +82,9 @@
 	var/choice = alert(owner, "The mantle of leadership is heavy. Success in this role requires an expert level of communication and experience. Are you sure?",, "Yes", "No")
 	if(choice == "Yes" && IsAvailable())
 		var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
+		if(!C.cult_team)
+			to_chat(owner, "<span class='cult bold'>The Veil is too strong for you to make use of this power.</span>")
+			return
 		pollCultists(owner,C.cult_team)
 
 /proc/pollCultists(var/mob/living/Nominee,datum/team/cult/team) //Cult Master Poll
@@ -150,6 +153,9 @@
 /datum/action/innate/cult/master/finalreck/Activate()
 	var/datum/antagonist/cult/antag = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!antag)
+		return
+	if(!antag.cult_team)
+		to_chat(owner, "<span class='cult bold'>Your team is too small for this to be worthwhile.</span>")
 		return
 	for(var/i in 1 to 4)
 		chant(i)
@@ -261,6 +267,10 @@
 		return FALSE
 
 	var/datum/antagonist/cult/C = caller.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
+	if(!C.cult_team)
+		to_chat(ranged_ability_user, "<span class='cultlarge'>Your team is too small for this to be worthwhile.</span>")
+		remove_ranged_ability()
+		return
 
 	if(target in view(7, get_turf(ranged_ability_user)))
 		if(C.cult_team.blood_target)
@@ -331,7 +341,7 @@
 /datum/action/innate/cult/ghostmark/Activate()
 	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(C.cult_team.blood_target)
-		if(cooldown>world.time)
+		if(cooldown > world.time)
 			reset_blood_target(C.cult_team)
 			to_chat(owner, "<span class='cultbold'>You have cleared the cult's blood target!</span>")
 			deltimer(C.cult_team.blood_target_reset_timer)
