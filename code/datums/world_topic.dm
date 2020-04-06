@@ -135,12 +135,15 @@
 	return ircadminwho()
 
 /datum/world_topic/mentorwho/Run(list/input)
-     var/list/message = list("Mentors: ")
-     for(var/client/mentor in GLOB.mentors)
-         if(LAZYLEN(message) > 1)
-             message += ", [mentor]"
-         else
-             message += "[mentor]"
+	var/list/message = list("Mentors: ")
+	for(var/client/mentor in GLOB.mentors)
+		if(LAZYLEN(message) > 1)
+			message += ", [mentor]"
+		else
+			message += "[mentor]"
+
+	return jointext(message, "")
+
 
 	return jointext(message, "")
 
