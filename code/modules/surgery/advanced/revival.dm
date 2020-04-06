@@ -1,4 +1,4 @@
-/datum/surgery/advanced/revival
+/datum/surgery/revival
 	name = "Revival"
 	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
 	steps = list(/datum/surgery_step/incise,
@@ -14,7 +14,7 @@
 	requires_bodypart_type = 0
 
 /datum/surgery/advanced/revival/can_start(mob/user, mob/living/carbon/target)
-	if(!..())
+	. = ..()
 		return FALSE
 	if(target.stat != DEAD)
 		return FALSE
@@ -23,7 +23,6 @@
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE
-	return TRUE
 
 /datum/surgery_step/revive
 	name = "shock body"
