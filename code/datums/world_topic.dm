@@ -138,9 +138,9 @@
 	var/list/message = list("Mentors: ")
 	for(var/client/mentor in GLOB.mentors)
 		if(LAZYLEN(message) > 1)
-			message += ", [mentor]"
+			message += ", [mentor.key]"
 		else
-			message += "[mentor]"
+			message += "[mentor.key]"
 
 	return jointext(message, "")
 
