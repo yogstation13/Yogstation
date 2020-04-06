@@ -626,13 +626,6 @@
 	surgery = /datum/surgery/healing/combo/upgraded/femto
 	id = "surgery_heal_combo_upgrade_femto"
 
-/datum/design/surgery/revival
-	name = "Revival"
-	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
-	id = "surgery_revival"
-	surgery = /datum/surgery/advanced/revival
-	research_icon_state = "surgery_head"
-
 /datum/design/surgery/dna_recovery
 	name= "DNA Recovery"
 	desc= "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
