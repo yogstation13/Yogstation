@@ -37,7 +37,6 @@
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
-
 /obj/item/lightreplacer
 
 	name = "light replacer"
@@ -65,6 +64,15 @@
 	var/bulb_shards = 0
 	// when we get this many shards, we get a free bulb.
 	var/shards_required = 4
+
+
+//redds engiborg light replace because fuck you
+/obj/item/lightreplacer/cyborg/engineer
+	name = "engineering cyborg light replacer"
+	desc = "A device to automatically replace a single light. Refill with a broken or working light bulb, or a sheet of glass."
+	max_uses = 1
+	uses = 1
+	increment = 1
 
 /obj/item/lightreplacer/examine(mob/user)
 	. = ..()
