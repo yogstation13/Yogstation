@@ -1,5 +1,5 @@
 // robot_upgrades.dm
-// Contains various borg upgrades.
+// Contains various borg upgrades
 
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
