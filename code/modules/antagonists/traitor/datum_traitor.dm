@@ -381,24 +381,33 @@
 	var/completed_contracts = contractor_hub.contracts_completed
 	var/tc_total = contractor_hub.contract_TC_payed_out + contractor_hub.contract_TC_to_redeem
 
+	var/contractor_item_icons = "" // Icons of purchases
+	var/contractor_support_unit = "" // Set if they had a support unit - and shows appended to their contracts completed
 
+	/// Get all the icons/total cost for all our items bought
+	for (var/datum/contractor_item/contractor_purchase in contractor_hub.purchased_items)
+		contractor_item_icons += "<span class='tooltip_container'>\[ <i class=\"fas [contractor_purchase.item_icon]\"></i><span class='tooltip_hover'><b>[contractor_purchase.name] - [contractor_purchase.cost] Rep</b><br><br>[contractor_purchase.desc]</span> \]</span>"
+
+		total_spent_rep += contractor_purchase.cost
+
+		/// Special case for reinforcements, we want to show their ckey and name on round end.
+		if (istype(contractor_purchase, /datum/contractor_item/contractor_partner))
+			var/datum/contractor_item/contractor_partner/partner = contractor_purchase
+			contractor_support_unit += "<br><b>[partner.partner_mind.key]</b> played <b>[partner.partner_mind.current.name]</b>, their contractor support unit."
+
+	if (contractor_hub.purchased_items.len)
+		result += "<br>(used [total_spent_rep] Rep) "
+		result += contractor_item_icons
+	result += "<br>"
 	if (completed_contracts > 0)
 		var/pluralCheck = "contract"
 		if (completed_contracts > 1)
 			pluralCheck = "contracts"
-		result += "<br>Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
-					<span class='greentext'>[tc_total] TC</span>!<br>"
 
-	if(traitorwin)
-		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
-		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
-		if(istype(greentext_achieve))
-			SSachievements.unlock_achievement(greentext_achieve,owner.current)
-	else
-		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
-		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
+		result += "Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
+					<span class='greentext'>[tc_total] TC</span>![contractor_support_unit]<br>"
 
-	return result.Join("<br>")
+	return result
 
 /datum/antagonist/traitor/roundend_report_footer()
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")

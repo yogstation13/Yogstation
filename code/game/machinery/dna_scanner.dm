@@ -15,6 +15,7 @@
 	var/precision_coeff
 	var/message_cooldown
 	var/breakout_time = 1200
+	var/obj/machinery/computer/scan_consolenew/linked_console = null
 
 /obj/machinery/dna_scannernew/RefreshParts()
 	scan_level = 0
@@ -104,9 +105,8 @@
 
 	// DNA manipulators cannot operate on severed heads or brains
 	if(iscarbon(occupant))
-		var/obj/machinery/computer/scan_consolenew/console = locate_computer(/obj/machinery/computer/scan_consolenew)
-		if(console)
-			console.on_scanner_close()
+		if(linked_console)
+			linked_console.on_scanner_close()
 
 	return TRUE
 
@@ -115,6 +115,9 @@
 		return FALSE
 
 	..()
+
+	if(linked_console)
+		linked_console.on_scanner_open()
 
 	return TRUE
 
@@ -148,3 +151,26 @@
 	if(user.stat || (isliving(user) && (!(L.mobility_flags & MOBILITY_STAND) || !(L.mobility_flags & MOBILITY_UI))) || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
 		return
 	close_machine(target)
+
+
+//Just for transferring between genetics machines.
+/obj/item/disk/data_dna
+	name = "DNA data disk"
+	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
+	var/list/genetic_makeup_buffer = list()
+	var/list/mutations = list()
+	var/max_mutations = 6
+	var/read_only = FALSE //Well,it's still a floppy disk
+
+/obj/item/disk/data_dna/Initialize()
+	. = ..()
+	icon_state = "datadisk[rand(0,6)]"
+	add_overlay("datadisk_gene")
+
+/obj/item/disk/data_dna/attack_self(mob/user)
+	read_only = !read_only
+	to_chat(user, "<span class='notice'>You flip the write-protect tab to [read_only ? "protected" : "unprotected"].</span>")
+
+/obj/item/disk/data_dna/examine(mob/user)
+	. = ..()
+	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."

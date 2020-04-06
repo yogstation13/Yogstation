@@ -41,8 +41,6 @@
 	unset_control() //remove from control computer
 	return ..()
 
-/obj/machinery/power/solar/should_have_node()
-	return TRUE
 
 //set the control of the panel to a given computer
 /obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
@@ -115,7 +113,6 @@
 		add_overlay(mutable_appearance(icon, "solar_panel-b", FLY_LAYER))
 	else
 		add_overlay(mutable_appearance(icon, "solar_panel", FLY_LAYER))
-		src.setDir(angle2dir(adir))
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
@@ -166,7 +163,7 @@
 	else
 		//dot product of sun and panel -- Lambert's Cosine Law
 		. = cos(azimuth_current - sun_azimuth)
-		. = CLAMP(round(., 0.01), 0, 1)
+		. = clamp(round(., 0.01), 0, 1)
 	sunfrac = .
 
 /obj/machinery/power/solar/process()
@@ -328,16 +325,16 @@
 					if(!T.control) //i.e unconnected
 						T.set_control(src)
 
-/obj/machinery/power/solar_control/update_overlays()
-	. = ..()
+/obj/machinery/power/solar_control/update_icon()
+	cut_overlays()
 	if(stat & NOPOWER)
-		. += mutable_appearance(icon, "[icon_keyboard]_off")
+		add_overlay("[icon_keyboard]_off")
 		return
-	. += mutable_appearance(icon, icon_keyboard)
+	add_overlay(icon_keyboard)
 	if(stat & BROKEN)
-		. += mutable_appearance(icon, "[icon_state]_broken")
+		add_overlay("[icon_state]_broken")
 	else
-		. += mutable_appearance(icon, icon_screen)
+		add_overlay(icon_screen)
 
 /obj/machinery/power/solar_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
@@ -378,7 +375,7 @@
 		if(adjust)
 			value = azimuth_rate + adjust
 		if(value != null)
-			azimuth_rate = round(CLAMP(value, -2 * SSsun.base_rotation, 2 * SSsun.base_rotation), 0.01)
+			azimuth_rate = round(clamp(value, -2 * SSsun.base_rotation, 2 * SSsun.base_rotation), 0.01)
 			return TRUE
 		return FALSE
 	if(action == "tracking")
@@ -392,11 +389,9 @@
 		return TRUE
 	if(action == "refresh")
 		search_for_connected()
-		if(last_user && last_user.client && was_not_connected && connected_tracker && connected_panels.len) // If this guy finished up the solars
+		if(last_user && last_user.client && connected_tracker && connected_panels.len) // If this guy finished up the solars
 			if(last_user.stat != DEAD && (last_user.mind?.assigned_role in GLOB.engineering_positions)) // and he's an engineer who isn't long-dead or adminbussing
 				SSachievements.unlock_achievement(/datum/achievement/engineering/solar, last_user.client) // Give him the achievement
-		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(SSsun.angle)
 		return TRUE
 	return FALSE
 
@@ -462,7 +457,7 @@
 
 ///Rotates the panel to the passed angles
 /obj/machinery/power/solar_control/proc/set_panels(azimuth)
-	azimuth = CLAMP(round(azimuth, 0.01), -360, 719.99)
+	azimuth = clamp(round(azimuth, 0.01), -360, 719.99)
 	if(azimuth >= 360)
 		azimuth -= 360
 	if(azimuth < 0)

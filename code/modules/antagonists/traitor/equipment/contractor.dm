@@ -1,3 +1,29 @@
+/// Support unit gets it's own very basic antag datum for admin logging.
+/datum/antagonist/traitor/contractor_support
+	name = "Contractor Support Unit"
+	antag_moodlet = /datum/mood_event/focused
+
+	show_in_roundend = FALSE /// We're already adding them in to the contractor's roundend.
+	give_objectives = TRUE /// We give them their own custom objective.
+	show_in_antagpanel = FALSE /// Not a proper/full antag.
+	should_equip = FALSE /// Don't give them an uplink.
+
+	var/datum/team/contractor_team/contractor_team
+
+/// Team for storing both the contractor and their support unit - only really for the HUD and admin logging.
+/datum/team/contractor_team
+	show_roundend_report = FALSE
+
+/datum/antagonist/traitor/contractor_support/forge_traitor_objectives()
+	var/datum/objective/generic_objective = new
+
+	generic_objective.name = "Follow Contractor's Orders"
+	generic_objective.explanation_text = "Follow your orders. Assist agents in this mission area."
+
+	generic_objective.completed = TRUE
+
+	add_objective(generic_objective)
+
 /datum/contractor_hub
 	var/contract_rep = 0
 	var/list/hub_items = list()
@@ -131,6 +157,7 @@
 	item_icon = "user-friends"
 	limited = 1
 	cost = 2
+	var/datum/mind/partner_mind = null
 
 /datum/contractor_item/contractor_partner/handle_purchase(var/datum/contractor_hub/hub, mob/living/user)
 	. = ..()
@@ -149,6 +176,7 @@
 			// refund and add the limit back.
 			limited += 1
 			hub.contract_rep += cost
+			hub.purchased_items -= src
 
 /datum/outfit/contractor_partner
 	name = "Contractor Support Unit"
@@ -163,8 +191,7 @@
 	id = /obj/item/card/id/syndicate
 	r_hand = /obj/item/storage/toolbox/syndicate
 
-	backpack_contents = list(/obj/item/storage/box/survival, /obj/item/implanter/uplink, /obj/item/clothing/mask/chameleon,
-							/obj/item/storage/fancy/cigarettes/cigpack_syndicate, /obj/item/lighter)
+	backpack_contents = list(/obj/item/storage/box/survival, /obj/item/implanter/uplink, /obj/item/clothing/mask/chameleon,  /obj/item/lighter)
 
 /datum/outfit/contractor_partner/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -183,8 +210,9 @@
 
 	arrival_pod.style = STYLE_SYNDICATE
 	arrival_pod.explosionSize = list(0,0,0,1)
+	arrival_pod.bluespace = TRUE
 
-	var/turf/free_location = find_obstruction_free_location(3, user)
+	var/turf/free_location = find_obstruction_free_location(2, user)
 
 	// We really want to send them - if we can't find a nice location just land it on top of them.
 	if (!free_location)
@@ -192,12 +220,14 @@
 
 	partner.forceMove(arrival_pod)
 	partner.ckey = key
+	/// We give a reference to the mind that'll be the support unit
+	partner_mind = partner.mind
+
+	partner_mind.make_Contractor_Support()
 
 	// flavour text
-	to_chat(partner, "<span class='big bold'>You are the Syndicate agent that answered the requested for backup.</span><span class='big'> <span class='danger'><b>Your mission is to support the specialist agent, [user.real_name], anyway possible - you must stay with them, and follow any orders they give.</b></span><br>\
-	<br>\
-	<span class='danger'><b>Work as a team with your assigned agent, their mission comes first above all else.</b></span></span>")
-	partner.playsound_local(partner, 'sound/ambience/antag/tatoralert.ogg', 100)
+	to_chat(partner_mind.current, "\n<span class='alertwarning'>[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only.</span>")
+	to_chat(partner_mind.current, "<span class='alertwarning'>Should they perish, or be otherwise unavailable, you're to assist other active agents in this mission area to the best of your ability.</span>\n\n")
 
 	new /obj/effect/DPtarget(free_location, arrival_pod)
 
@@ -227,6 +257,7 @@
 		limited -= 1
 	else if (limited == 0)
 		return FALSE
+
 
 	hub.purchased_items.Add(src)
 
