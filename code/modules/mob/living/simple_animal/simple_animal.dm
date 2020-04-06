@@ -93,8 +93,6 @@
 
 	var/do_footstep = FALSE
 
-	var/footstep = 0 //counts the number of steps the animal has taken before playing another sound for when they wear a collar
-
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
