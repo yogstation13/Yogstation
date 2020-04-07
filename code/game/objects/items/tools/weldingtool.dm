@@ -362,7 +362,7 @@
 	var/nextrefueltick = 0
 
 /obj/item/weldingtool/experimental/cyborg
-	name = "cyborg experimental welding tool"
+	name = "experimental integrated welding tool"
 
 /obj/item/weldingtool/experimental/brass
 	name = "brass welding tool"
