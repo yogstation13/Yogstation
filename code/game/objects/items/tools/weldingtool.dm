@@ -361,6 +361,9 @@
 	toolspeed = 0.5
 	var/nextrefueltick = 0
 
+/obj/item/weldingtool/experimental/cyborg
+	name = "cyborg experimental welding tool"
+
 /obj/item/weldingtool/experimental/brass
 	name = "brass welding tool"
 	desc = "A brass welder that seems to constantly refuel itself. It is faintly warm to the touch."

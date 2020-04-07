@@ -92,3 +92,6 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	to_chat(user, "\t <font color='Fuchsia'>*</font> Brain Activity: <font color ='orange'>[brain_status >= 200 ? "<font color='red'>Not Detected</font>" : brain_status > 100 ? "Low" : brain_status > 0 ? "High" : "<font color='blue'>Full</font>"]</font></span>")
 	//Radiation
 	to_chat(user, "\t <font color='yellow'>*</font> Radiation Levels: [M.radiation ? "<font color='red'>[M.radiation]</font>" : "<font color='blue'>None</font>"]</span>")
+
+/obj/item/multitool/tricorder/cyborg
+	name = "cyborg tricorder"

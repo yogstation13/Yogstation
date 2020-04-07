@@ -173,6 +173,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/datum/techweb_node/adv_engi_cyborg
+	id = "adv_engi_cyborg"
+	display_name = "Advanced Cyborg Engineering"
+	description = "By installing experimental tools, cyborgs become a lot more handy."
+	prereq_ids = list("exp_tools","adv_robotics")
+	design_ids = list("borg_transform_enhancedengineering")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	export_price = 5000
+
 /////////////////////////Bluespace tech/////////////////////////
 /datum/techweb_node/bluespace_basic //Bluespace-memery
 	id = "bluespace_basic"

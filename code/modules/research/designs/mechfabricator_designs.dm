@@ -684,7 +684,7 @@
 	id = "borg_transform_enhancedengineering"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/enhancedengineering
-	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_DIAMOND = 3000, MAT_TITANIUM = 5000, MAT_URANIUM = 1000)
+	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_DIAMOND = 3000, MAT_TITANIUM = 15000, MAT_URANIUM = 15000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
