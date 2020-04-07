@@ -66,8 +66,7 @@
 	var/shards_required = 4
 
 
-//redds engiborg light replace because fuck you
-/obj/item/lightreplacer/cyborg/engineer
+/obj/item/lightreplacer/cyborg/engineer //redds engiborg light replacer
 	name = "engineering cyborg light replacer"
 	desc = "A device to automatically replace a single light. Refill with a broken or working light bulb, or a sheet of glass."
 	max_uses = 1
