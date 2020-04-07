@@ -672,7 +672,7 @@
 
 /obj/item/borg/upgrade/transform/enhancedengineering
 	name = "borg module picker (Engineering+)"
-	desc = "Allows you to give godlike powers to a engineering cyborg."
+	desc = "Allows you to give better tools to a engineering cyborg."
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/engineering/enhanced
 
