@@ -127519,7 +127519,7 @@
 	dir = 1
 	},
 /obj/item/stack/sheet/plasteel/fifty,
-/obj/item/crowbar/power,
+/obj/item/bettertools/jawsoflife,
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
 	},

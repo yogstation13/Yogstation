@@ -5,8 +5,10 @@
 	desc = "please contact a coder"
 	icon_state = "crowbar"
 
+//the new and improved jaws
 /obj/item/bettertools/jawsoflife
 	name = "jaws of life"
+	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
@@ -18,6 +20,25 @@
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
 
+//jaws of life suicide code
+/obj/item/bettertools/jawsoflife/suicide_act(mob/user)
+	switch(tool_behaviour)
+		if(TOOL_CROWBAR)
+			user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
+			playsound(loc, 'sound/items/jaws_pry.ogg', 50, 1, -1)
+			return (BRUTELOSS)
+		if(TOOL_WIRECUTTER)
+			user.visible_message("<span class='suicide'>[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!</span>")
+			playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
+			if(iscarbon(user))
+				var/mob/living/carbon/C = user
+				var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
+				if(BP)
+					BP.drop_limb()
+					playsound(loc,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
+			return (BRUTELOSS)
+
+//jaws of life changing jaw code
 /obj/item/bettertools/jawsoflife/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	if (tool_behaviour == TOOL_CROWBAR)
@@ -48,7 +69,19 @@
 		to_chat(user,"<span class='warning'>You shouldn't be able to see this! Please contact a coder!</span>")
 		playsound(get_turf(user), 'sound/effects/adminhelp.ogg', 50, 1)
 
-//shitcode time
+/obj/item/bettertools/jawsoflife/attack(mob/living/carbon/C, mob/user)
+	if (tool_behaviour == TOOL_WIRECUTTER)
+		if(istype(C) && C.handcuffed)
+			user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
+			qdel(C.handcuffed)
+			return
+		else
+			..()
+	else
+		..()
+
+
+//better handdrill
 /obj/item/bettertools/handdrill
 	name = "hand drill"
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
@@ -68,6 +101,10 @@
 	toolspeed = 0.7
 	tool_behaviour = TOOL_SCREWDRIVER
 
+/obj/item/bettertools/handdrill/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return(BRUTELOSS)
+
 /obj/item/bettertools/handdrill/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (tool_behaviour == TOOL_SCREWDRIVER)
@@ -75,7 +112,7 @@
 			to_chat(user,"<span class='notice'>Your servos whirr as the drill reconfigures into bolt mode.</span>")
 		else
 			to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
-		//desc = "A simple powered hand drill. It's fitted with a bolt bit."
+		desc = "A simple powered hand drill. It's fitted with a bolt bit."
 		icon_state = "drill_bolt"
 		item_state = "drill"
 		tool_behaviour = TOOL_WRENCH
