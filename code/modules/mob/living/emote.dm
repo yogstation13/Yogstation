@@ -119,11 +119,8 @@
 /datum/emote/living/trip/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(. && isliving(user))
-		if(FLYING)
-			return
-		else
-			var/mob/living/L = user
-			L.Knockdown(60)
+		var/mob/living/L = user
+		L.Knockdown(60)
 
 /datum/emote/living/flap
 	key = "flap"
