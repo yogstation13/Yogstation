@@ -140,16 +140,16 @@ jobs:
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           tools/travis/run_server.sh
-      
-      - name: Upload DMB
-        uses: actions/upload-artifact@v1
-        with: 
-          name: DMB
-          path: ${{ github.workspace }}/yogstation.dmb
           
-      - name: Upload RSC
+      - name: Prepare artifacts
+        run: |
+          mkdir ~/artifacts
+          cp yogstation.dme ~/artifacts
+          cp yogstation.rsc ~/artifacts
+      
+      - name: Upload DMB + RSC
         uses: actions/upload-artifact@v1
         with: 
-          name: RSC
-          path: ${{ github.workspace }}/yogstation.rsc
+          name: DMB + RSC
+          path: ~/yogstation.dmb
 
