@@ -18472,14 +18472,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"aMG" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/shovel/spade,
-/obj/item/wrench,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/wirecutters,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "aMH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -18490,11 +18482,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"aMI" = (
-/obj/machinery/light/small,
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "aMJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
@@ -57283,6 +57270,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"skk" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "slk" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -58493,6 +58484,15 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/solar/port/fore)
+"uRs" = (
+/obj/machinery/light/small,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/shovel/spade,
+/obj/item/wrench,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/wirecutters,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "uVA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -101292,7 +101292,7 @@ aIp
 aIj
 aIp
 aKW
-aMG
+aKK
 aIp
 aIp
 aMl
@@ -101549,7 +101549,7 @@ aIp
 aLb
 aIp
 aKH
-aMI
+uRs
 aIp
 aOV
 aOX
@@ -102062,7 +102062,7 @@ aGE
 aIp
 aIo
 aIp
-aKK
+skk
 aUh
 aIp
 aOX
