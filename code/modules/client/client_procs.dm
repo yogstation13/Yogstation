@@ -880,6 +880,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			var/file = GLOB.vox_sounds_male[name]
 			Export("##action=load_rsc", file)
 			stoplag() //YOGS end - male vox
+		for (var/name in GLOB.vox_sounds_military)
+			var/file = GLOB.vox_sounds_military[name]
+			Export("##action=load_rsc", file)
+			stoplag()
 		#endif
 
 
