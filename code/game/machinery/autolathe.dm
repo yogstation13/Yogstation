@@ -57,14 +57,14 @@
 	return ..()
 
 /obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-  ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-  if(!is_operational())
-  	return
-  if(shocked && !(stat & NOPOWER))
-  	shock(user,50)
-  if(!ui)
-    ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)
-    ui.open()
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!is_operational())
+		return
+	if(shocked && !(stat & NOPOWER))
+		shock(user,50)
+	if(!ui)
+		ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)
+		ui.open()
 
 /obj/machinery/autolathe/proc/wallcheck(direction)
 	if(iswallturf(get_step(src,(direction))))
@@ -150,7 +150,7 @@
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])
-			multiplier = clamp(multiplier,1,50)
+			multiplier = CLAMP(multiplier,1,50)
 			if((autoqueue.len + 1) < queue_max_len)
 				add_to_queue(request, multiplier)
 			else
@@ -163,7 +163,7 @@
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])
-			multiplier = clamp(multiplier,1,50)
+			multiplier = CLAMP(multiplier,1,50)
 			make_item(request, multiplier)
 			processing_queue = 0
 
