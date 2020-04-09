@@ -134,25 +134,21 @@ jobs:
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
           tools/travis/build_bsql.sh
           
-      - name: Test
-        run: |
-          echo ${{env.HOME}}
-          
       - name: Compile
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
       - name: Prepare Artifacts
         run: |
-          mkdir ~/artifacts
-          cp yogstation.dme ~/artifacts
-          cp yogstation.rsc ~/artifacts
+          mkdir artifacts
+          cp yogstation.dme artifacts
+          cp yogstation.rsc artifacts
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v1
         with: 
           name: DMB + RSC
-          path: ${{env.HOME}}/artifacts
+          path: ${{github.workspace}}/artifacts
           
       - name: Run Tests
         run: |
