@@ -1015,6 +1015,7 @@ GLOBAL_LIST_INIT(vox_sounds_military, list("errorbeep" = 'sound/vox/00_error_bee
 "bravo" = 'sound/vox/bravo.ogg',
 "breach" = 'sound/vox/breach.ogg',
 "buzwarn" = 'sound/vox/buzwarn.ogg',
+"bizwarn" = 'yogstation/sound/vox/bizwarn.ogg',		//Added to complete the alarms
 "bypass" = 'sound/vox/bypass.ogg',
 "switchover" = 'sound/vox/c1a3_05_switchover.ogg',
 "cable" = 'sound/vox/cable.ogg',
