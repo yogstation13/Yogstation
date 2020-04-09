@@ -151,7 +151,9 @@
 	light_color = LIGHT_COLOR_FIRE
 	density = FALSE
 	anchored = TRUE
-	buckle_lying = 0
+	buckle_lying = FALSE
+	buckle_requires_restraints = TRUE
+	can_buckle = TRUE
 	var/burning = 0
 	var/burn_icon = "bonfire_on_fire" //for a softer more burning embers icon, use "bonfire_warm"
 	var/grill = FALSE
