@@ -10,11 +10,11 @@
 
 	var/message = input(src, "WARNING: Misuse of this verb can result in you being yelled at by Ross.", "Announcement") as text
 	//^ Remember to replace "Ross" with whoever owns the server in 20,000 years after Ross either dies of natural causes or is assassinated by Oakboscage
-
+	
 	if(!message)
 		return
-
-	var/voxType = input(src, "Male, female, or military VOX?", "VOX-gender") in list("male", "female", "military")
+	
+	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female")
 
 
 	var/list/words = splittext(trim(message), " ")//Turns the received text into an array of words
@@ -24,7 +24,7 @@
 		// While normally the length of an array is something you can only read and never write,
 		//in DM, len is actually how you manage the size of the array. Editing it to value to like this is actually totally doable.
 		words.len = 30
-
+	
 	var/list/voxlist
 	if(voxType == "female") // The if for this is OUTSIDE the for-loop, for optimization.
 		//Putting it inside makes it check for it every single damned time it parses a word,
@@ -32,12 +32,10 @@
 		voxlist = GLOB.vox_sounds
 	else if(voxType == "male") // If we're doing the yog-ly male AI vox voice
 		voxlist = GLOB.vox_sounds_male
-	else if(voxType == "military") // If we're doing the also yog-ly male AI vox voice but from Black Mesa
-		voxlist = GLOB.vox_sounds_military
 	else
 		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>", confidential=TRUE)
 		return
-
+	
 	for(var/word in words) // For each word
 		word = lowertext(trim(word)) // We store the words as lowercase, so lowercase the word and trim off any weirdness like newlines
 		if(!word) // If we accidentally captured a space or something weird like that
@@ -45,7 +43,7 @@
 			continue // and skip over it
 		if(!voxlist[word])
 			incorrect_words += word
-
+	
 	if(incorrect_words.len)
 		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>", confidential=TRUE)
 		return
@@ -54,7 +52,7 @@
 	if(alert("Select a playback speed: ",,"Default","Custom...") == "Custom...")
 		pitch = input("Input a custom playback speed (preferably as a number between 0 and 2)","AI Vox Command") as num
 		if(isnull(pitch)) pitch = 0
-
+	
 	log_admin("[key_name(src)] made an admin AI vocal announcement with the following message: [message].")
 	message_admins("[key_name(src)] made an admin AI vocal announcement with the following message: [message].")
 	var/z_level = 2 // Default value should be the station's z-level
