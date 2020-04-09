@@ -977,7 +977,7 @@ GLOBAL_LIST_INIT(vox_sounds, list("abduction" = 'sound/vox_fem/abduction.ogg',
 "zulu" = 'sound/vox_fem/zulu.ogg'))
 
 GLOBAL_LIST_INIT(vox_sounds_military, list("errorbeep" = 'sound/vox/00_error_beep01.ogg',
-"signonbeep" = 'sound/vox/00_signon_beep01.ogg',
+"signonbeep" = 'sound/vox/00_signon_beep01.ogg', //The best sound
 "access" = 'sound/vox/access.ogg',
 "acknowledged" = 'sound/vox/acknowledged.ogg',
 "activate" = 'sound/vox/activate.ogg',
