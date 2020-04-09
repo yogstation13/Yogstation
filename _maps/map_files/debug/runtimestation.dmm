@@ -448,8 +448,8 @@
 /area/engine/atmos)
 "bo" = (
 /obj/structure/table,
-/obj/item/bettertools/handdrill,
-/obj/item/bettertools/jawsoflife,
+/obj/item/handdrill,
+/obj/item/jawsoflife,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bp" = (

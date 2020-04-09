@@ -1,27 +1,22 @@
-//better tools time
-/obj/item/bettertools
-	icon = 'icons/obj/tools.dmi'
-	name = "you shouldn't see this"
-	desc = "please contact a coder"
-	icon_state = "crowbar"
 
 //the new and improved jaws
-/obj/item/bettertools/jawsoflife
+/obj/item/jawsoflife
 	name = "jaws of life"
 	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
-	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
-	icon_state = "jaws_pry"
+	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "jaws_cutter"
 	item_state = "jawsoflife"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 
-	usesound = 'sound/items/jaws_pry.ogg'
+	usesound = 'sound/items/jaws_cut.ogg'
 	force = 15
 	toolspeed = 0.7
-	tool_behaviour = TOOL_CROWBAR
+	tool_behaviour = TOOL_WIRECUTTER
 
 //jaws of life suicide code
-/obj/item/bettertools/jawsoflife/suicide_act(mob/user)
+/obj/item/jawsoflife/suicide_act(mob/user)
 	switch(tool_behaviour)
 		if(TOOL_CROWBAR)
 			user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -39,7 +34,7 @@
 			return (BRUTELOSS)
 
 //jaws of life changing jaw code
-/obj/item/bettertools/jawsoflife/attack_self(mob/user)
+/obj/item/jawsoflife/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
 	if (tool_behaviour == TOOL_CROWBAR)
 		desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
@@ -69,7 +64,7 @@
 		to_chat(user,"<span class='warning'>You shouldn't be able to see this! Please contact a coder!</span>")
 		playsound(get_turf(user), 'sound/effects/adminhelp.ogg', 50, 1)
 
-/obj/item/bettertools/jawsoflife/attack(mob/living/carbon/C, mob/user)
+/obj/item/jawsoflife/attack(mob/living/carbon/C, mob/user)
 	if (tool_behaviour == TOOL_WIRECUTTER)
 		if(istype(C) && C.handcuffed)
 			user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
@@ -82,10 +77,11 @@
 
 
 //better handdrill
-/obj/item/bettertools/handdrill
+/obj/item/handdrill
 	name = "hand drill"
-	desc = "A simple powered hand drill. It's fitted with a screw bit."
-	icon_state = "drill_screw"
+	desc = "A simple powered hand drill. It's fitted with a bolt bit."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "drill_bolt"
 	item_state = "drill"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -99,13 +95,13 @@
 	hitsound = 'sound/items/drill_hit.ogg'
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.7
-	tool_behaviour = TOOL_SCREWDRIVER
+	tool_behaviour = TOOL_WRENCH
 
-/obj/item/bettertools/handdrill/suicide_act(mob/user)
+/obj/item/handdrill/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(BRUTELOSS)
 
-/obj/item/bettertools/handdrill/attack_self(mob/user)
+/obj/item/handdrill/attack_self(mob/user)
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (tool_behaviour == TOOL_SCREWDRIVER)
 		if (iscyborg(user))
