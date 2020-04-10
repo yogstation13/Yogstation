@@ -257,7 +257,6 @@
 	actions_types = list()
 	var/fuel = 0
 	var/on_damage = 7
-	var/produce_heat = 1500
 	var/frng_min = 800
 	var/frng_max = 1000
 	heat = 1000
@@ -328,6 +327,16 @@
 	brightness_on = 3
 	frng_min = 40
 	frng_max = 70
+
+/obj/item/flashlight/flare/signal
+	name = "signalling flare"
+	desc = "A specialized formulation of the standard Nanotrasen-issued flare, containing increased magnesium content. There are instructions on the side, it reads 'pull cord, make intense light'."
+	brightness_on = 5
+	flashlight_power = 2
+	light_color = LIGHT_COLOR_HALOGEN
+	frng_min = 540
+	frng_max = 700
+	heat = 2500
 
 /obj/item/flashlight/flare/torch
 	name = "torch"
