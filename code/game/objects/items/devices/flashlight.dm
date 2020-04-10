@@ -274,6 +274,8 @@
 		turn_off()
 		if(!fuel)
 			icon_state = "[initial(icon_state)]-empty"
+			name = "spent [initial(src.name)]"
+			desc = "[initial(src.desc)] It's all used up."
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/ignition_effect(atom/A, mob/user)
@@ -287,6 +289,9 @@
 	on = FALSE
 	force = initial(src.force)
 	damtype = initial(src.damtype)
+	hitsound = initial(src.hitsound)
+	desc = initial(src.desc)
+	attack_verb = initial(src.attack_verb)
 	if(ismob(loc))
 		var/mob/U = loc
 		update_brightness(U)
@@ -315,7 +320,11 @@
 	if(.)
 		user.visible_message("<span class='notice'>[user] lights \the [src].</span>", "<span class='notice'>You light \the [src]!</span>")
 		force = on_damage
+		name = "lit [initial(src.name)]"
+		desc = "[initial(src.desc)] This one is lit."
 		damtype = "fire"
+		attack_verb = list("burnt","scorched","scalded")
+		hitsound = 'sound/items/welder.ogg'
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/is_hot()
@@ -337,6 +346,7 @@
 	frng_min = 540
 	frng_max = 700
 	heat = 2500
+	grind_results = list(/datum/reagent/sulfur = 15, /datum/reagent/potassium = 10)
 
 /obj/item/flashlight/flare/torch
 	name = "torch"
