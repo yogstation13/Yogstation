@@ -2,6 +2,7 @@
 #define AB_CHECK_STUN 2
 #define AB_CHECK_LYING 4
 #define AB_CHECK_CONSCIOUS 8
+#define AB_CHECK_SYNDICATE 16
 
 /datum/action
 	var/name = "Generic Action"
@@ -19,6 +20,7 @@
 	var/icon_icon = 'icons/mob/actions.dmi' //This is the file for the ACTION icon
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
+	var/syndicate = FALSE // are these buttons only for syndicates?
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -47,6 +49,8 @@
 				return
 			Remove(owner)
 		owner = M
+		if(syndicate && !is_syndicate(M)) // if a syndicate check is failed; don't generate button on the hud at all. - Hopek
+			return
 
 		//button id generation
 		var/counter = 0

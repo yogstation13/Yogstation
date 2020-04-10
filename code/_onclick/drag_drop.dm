@@ -86,6 +86,7 @@
 
 /obj/item
 	var/canMouseDown = FALSE
+	var/syndicate = FALSE // Does this item have syndicate only functionality via hud buttons? Needs to be in this scope to encompass all Chameleon items - Hopek
 
 /obj/item/gun
 	var/automatic = 0 //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds

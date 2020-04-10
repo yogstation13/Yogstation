@@ -272,6 +272,8 @@
 /obj/item/storage/briefcase/launchpad/attack_self(mob/user)
 	if(!isturf(user.loc)) //no setting up in a locker
 		return
+	if(!is_syndicate(user)) // You don't know how to use launchpad as non syndicate. 
+		return
 	add_fingerprint(user)
 	user.visible_message("<span class='notice'>[user] starts setting down [src]...", "You start setting up [pad]...</span>")
 	if(do_after(user, 30, target = user))
@@ -306,10 +308,14 @@
 
 /obj/item/launchpad_remote/attack_self(mob/user)
 	. = ..()
+	if(!is_syndicate(user)) // you don't know how to use the launchpad stealth remote as a non syndicate
+		return
 	ui_interact(user)
 	to_chat(user, "<span class='notice'>[src] projects a display onto your retina.</span>")
 
 /obj/item/launchpad_remote/ui_interact(mob/user, ui_key = "launchpad_remote", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	if(!is_syndicate(user)) // you don't know how to use the launchpad stealth remote as a non syndicate
+		return
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "launchpad_remote", "Briefcase Launchpad Remote", 550, 400, master_ui, state) //width, height
