@@ -1,0 +1,6 @@
+author: "partykp"
+delete-after: true 
+changes: 
+  - rscadd: "second locker"
+  - rscdel: "plant has been annihilated"
+  - tweak: "moved the vendor and crate around"

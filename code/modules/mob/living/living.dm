@@ -228,8 +228,8 @@
 	var/current_dir
 	if(isliving(AM))
 		current_dir = AM.dir
-	if(step(AM, t))
-		step(src, t)
+	if(AM.Move(get_step(AM.loc, t), t, glide_size))
+		Move(get_step(loc, t), t)
 	if(current_dir)
 		AM.setDir(current_dir)
 	now_pushing = FALSE
@@ -572,10 +572,10 @@
 /mob/living/proc/update_damage_overlays()
 	return
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direct, glide_size_override)
 	if (buckled && buckled.loc != newloc) //not updating position
 		if (!buckled.anchored)
-			return buckled.Move(newloc, direct)
+			return buckled.Move(newloc, direct, glide_size)
 		else
 			return 0
 
