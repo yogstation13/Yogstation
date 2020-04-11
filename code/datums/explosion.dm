@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(explosions)
 	var/list/affected_turfs = GatherSpiralTurfs(max_range, epicenter)
 
 	var/reactionary = CONFIG_GET(flag/reactionary_explosions)
-	var/list/cached_exp_block
+	var/list/cached_exp_block = list()
 
 	if(reactionary)
 		cached_exp_block = CaculateExplosionBlock(affected_turfs)
