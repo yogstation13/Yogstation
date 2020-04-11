@@ -11,7 +11,8 @@ Dependencies:
   - '**/yarn.lock'
 
 # When the .DME is changed
-DME Edit: 
+DME Edit:
+  - './*.dme'
   - '**/*.dme'
 
 # Any .dmi changes
