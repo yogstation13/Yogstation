@@ -73,10 +73,21 @@
 /obj/structure/sign/departments/medbay/alt
 	icon_state = "bluecross2"
 
+
 /obj/structure/sign/departments/minsky/command
 	name = "Command Deck"
 	desc = "A sign labeling the station's command deck. The good idea fairy lives around here."
 	icon_state = "minskycommand"
+
+/obj/structure/sign/departments/minsky/command/evac
+	name = "Evacuation Area"
+	desc = "A sign labeling the station's evacuation area. No guarantees."
+	icon_state = "minskyevac"
+
+/obj/structure/sign/departments/minsky/command/space
+	name = "Leads to Space"
+	desc = "A sign labeling an exterior access. Authorized personnel only."
+	icon_state = "minskyspace"
 
 /obj/structure/sign/departments/minsky/command/hop
 	name = "Head of Personnel's Office"
