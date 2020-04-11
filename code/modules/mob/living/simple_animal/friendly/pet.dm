@@ -26,12 +26,16 @@
 /mob/living/simple_animal/pet/Move(NewLoc, direct)
 	. = ..()
 
-	if(pcollar)
-		if(mobility_flags)
-			if(loc == NewLoc)
-				if(!has_gravity(loc))
-					return
-				pcollar.step_action()
+	if(!pcollar)
+		return
+	if (!(mobility_flags & MOBILITY_STAND))
+		return
+	if(loc != NewLoc)
+		return
+	if(!has_gravity(loc))
+		return
+		
+	pcollar.step_action()
 
 /mob/living/simple_animal/pet/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
@@ -82,4 +86,3 @@
 	if(pcollar && collar_type)
 		add_overlay("[collar_type]collar")
 		add_overlay("[collar_type]tag")
-
