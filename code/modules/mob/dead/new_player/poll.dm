@@ -89,7 +89,6 @@
 				output += "<p><input type='submit' value='Vote'>"
 				output += "</form>"
 			output += "</div>"
-			src << browse(null ,"window=playerpolllist")
 			src << browse(output,"window=playerpoll;size=500x250")
 		if(POLLTYPE_TEXT)
 			var/datum/DBQuery/query_text_get_votes = SSdbcore.NewQuery("SELECT replytext FROM [format_table_name("poll_textreply")] WHERE pollid = [pollid] AND ckey = '[ckey]'")
