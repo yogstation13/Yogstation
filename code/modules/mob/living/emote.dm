@@ -113,7 +113,7 @@
 
 /datum/emote/living/trip
 	key = "trip"
-	key_third_person = "trip"
+	key_third_person = "trips"
 	message = "trips and falls!"
 
 /datum/emote/living/trip/run_emote(mob/user, params, type_override, intentional)
