@@ -134,6 +134,16 @@
 /datum/world_topic/adminwho/Run(list/input)
 	return ircadminwho()
 
+/datum/world_topic/mentorwho/Run(list/input)
+	var/list/message = list("Mentors: ")
+	for(var/client/mentor in GLOB.mentors)
+		if(LAZYLEN(message) > 1)
+			message += ", [mentor.key]"
+		else
+			message += "[mentor.key]"
+
+	return jointext(message, "")
+
 /datum/world_topic/status
 	keyword = "status"
 
