@@ -138,6 +138,7 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
+				CONFIG_SET(flag/allow_vote_map, FALSE)
 	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
