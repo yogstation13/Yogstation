@@ -10,6 +10,7 @@
 	SSticker.mode.bloodagents += owner
 	SSticker.mode.update_servant_icons_added(owner)
 	owner.special_role = ROLE_BLOOD_AGENT
+	equip_cultist(FALSE)
 	agent_team = SSticker.mode.blood_agent_team //only one agent team can exist for each side
 	if(!agent_team)
 		agent_team = new
@@ -20,7 +21,6 @@
 	else
 		agent_team.add_member(owner)
 		objectives += agent_team.objectives
-	..()
 
 /datum/antagonist/cult/agent/greet()
 	if(considered_alive(owner))
@@ -47,7 +47,7 @@
 	agent_team = new_team
 
 /datum/team/blood_agents
-	name = "bloodwork Agents"
+	name = "Blood Agents"
 
 /datum/team/blood_agents/proc/forge_blood_objectives()
 	objectives = list()
