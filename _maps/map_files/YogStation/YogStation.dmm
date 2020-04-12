@@ -42973,10 +42973,6 @@
 "bKH" = (
 /turf/open/floor/engine/co2,
 /area/engine/atmos_distro)
-"bKI" = (
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/engine/air,
-/area/engine/atmos_distro)
 "bKJ" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/landmark/event_spawn,
@@ -43721,10 +43717,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"bMF" = (
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/engine/plasma,
-/area/engine/atmos_distro)
 "bMG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -94152,7 +94144,7 @@ avy
 aaa
 bvA
 bJq
-bKI
+bJq
 bJq
 bvA
 bLD
@@ -98785,7 +98777,7 @@ bLQ
 bLQ
 bLQ
 bvA
-bMF
+bMA
 bMA
 bMA
 bvA
