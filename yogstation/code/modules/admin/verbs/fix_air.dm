@@ -18,3 +18,19 @@
 			GM.parse_gas_string(F.initial_gas_mix)
 			F.copy_air(GM)
 			F.update_visuals()
+
+/client/proc/fillspace()
+	set category = "Special Verbs"
+	set name = "Fill Space with floor"
+	if(!holder)
+		src << "Only administrators may use this command."
+		return
+	if(check_rights(R_ADMIN,1))
+		var/area/location = usr.loc.loc
+		if(istype(location,/area/space))
+			return
+		if(location.name != "Space")
+			for(var/turf/open/space/S in location)
+				S.ChangeTurf(/turf/open/floor/plating)
+			for(var/turf/open/O in location)
+				O.ChangeTurf(/turf/open/floor/plating)
