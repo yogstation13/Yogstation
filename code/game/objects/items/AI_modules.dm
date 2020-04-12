@@ -364,7 +364,8 @@ AI MODULES
 /obj/item/aiModule/core/full/asimov
 	name = "'Asimov' Core AI Module"
 	law_id = "asimov"
-	var/subject = "human being"
+	//var/subject = "human being"
+	var/subject = "crew member"
 
 /obj/item/aiModule/core/full/asimov/attack_self(var/mob/user as mob)
 	var/targName = stripped_input(user, "Please enter a new subject that asimov is concerned with.", "Asimov to whom?", subject, MAX_NAME_LEN)
