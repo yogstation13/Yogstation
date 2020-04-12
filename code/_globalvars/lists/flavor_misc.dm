@@ -44,7 +44,6 @@ GLOBAL_LIST_INIT(ghost_forms_with_accessories_list, list("ghost")) //stores the 
 
 GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	":thinking:",
-	"Adrian",
 	"Alien",
 	"Angel",
 	"Banned",
@@ -71,6 +70,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Murica",
 	"Nanotrasen",
 	"Not Malf",
+	"Plain",
 	"President",
 	"Random",
 	"Rainbow",
