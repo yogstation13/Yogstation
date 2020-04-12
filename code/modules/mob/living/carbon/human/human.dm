@@ -575,7 +575,7 @@
 	if(istype(head, /obj/item/clothing/head/wizard) || istype(head, /obj/item/clothing/head/helmet/space/hardsuit/wizard))
 		threatcount += 2
 
-	//Check for nonhuman scum
+	//Check if nonhuman
 	if(dna && dna.species.id && dna.species.id != "human")
 		threatcount += 1
 
@@ -995,7 +995,7 @@
 
 /mob/living/carbon/human/species/golem/durathread
 	race = /datum/species/golem/durathread
-	
+
 /mob/living/carbon/human/species/golem/snow
 	race = /datum/species/golem/snow
 
