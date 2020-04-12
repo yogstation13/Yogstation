@@ -646,6 +646,7 @@
 	nodamage = FALSE
 
 	//explosion values
+	var/exp_dev = 0
 	var/exp_heavy = 0
 	var/exp_light = 2
 	var/exp_flash = 3
@@ -678,6 +679,23 @@
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
+
+/obj/item/projectile/magic/aoe/fireball/bus
+	name = "super fireball"
+	exp_dev = 3 //maxcap
+	exp_heavy = 6
+	exp_light = 12
+	exp_fire = 13
+	exp_flash = 15
+
+/obj/item/projectile/magic/aoe/fireball/bus/on_hit(target)
+	. = ..()
+//	if(ismob(target))
+//		var/mob/living/M = target
+//		if(M.anti_magic_check())
+//			return BULLET_ACT_BLOCK
+	var/turf/T = get_turf(target)
+	explosion(T, exp_dev, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire)
 
 //still magic related, but a different path
 

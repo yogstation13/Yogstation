@@ -124,6 +124,10 @@
 	deactive_msg = "You extinguish your fireball... for now."
 	active = FALSE
 
+/obj/effect/proc_holder/spell/aimed/fireball_bus
+	name = "Super Fireball"
+	projectile_type = /obj/item/projectile/magic/aoe/fireball/bus
+
 /obj/effect/proc_holder/spell/aimed/spell_cards
 	name = "Spell Cards"
 	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
