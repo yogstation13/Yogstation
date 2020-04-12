@@ -111,6 +111,17 @@
 		var/mob/living/L = user
 		L.SetSleeping(200)
 
+/datum/emote/living/trip
+	key = "trip"
+	key_third_person = "trips"
+	message = "trips and falls!"
+
+/datum/emote/living/trip/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.Knockdown(60)
+
 /datum/emote/living/flap
 	key = "flap"
 	key_third_person = "flaps"

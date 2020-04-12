@@ -133,6 +133,10 @@
 
 /datum/world_topic/adminwho/Run(list/input)
 	return ircadminwho()
+	
+/datum/world_topic/mentorwho
+	keyword = "mentorwho"
+	require_comms_key = TRUE
 
 /datum/world_topic/mentorwho/Run(list/input)
 	var/list/message = list("Mentors: ")
