@@ -77,7 +77,7 @@
 // Bluespace Tomato
 /obj/item/seeds/tomato/blue/bluespace
 	name = "pack of bluespace tomato seeds"
-	desc = "These seeds grow into bluespace tomato plants."
+	desc = "Tomatoes capable of using inter-dimensional fatigue to create a temporary overlap between the current dimension and bluespace, spontaneously teleporting entities."
 	icon_state = "seed-bluespacetomato"
 	species = "bluespacetomato"
 	plantname = "Bluespace Tomato Plants"
