@@ -14,8 +14,7 @@ Format:
 endmap
 
 map yogstation
-	default
-	voteweight 1.5
+	voteweight 1.6
 	votable
 endmap
 
@@ -24,35 +23,18 @@ map eclipsestation
 	minplayers 50
 endmap
 
-#map boxstation
-	#default
-	#voteweight 1.5
-#endmap
-
 map omegastation
 	maxplayers 35
 endmap
-
-
-#map metastation
-	#minplayers 25
-#endmap
 
 map yogsmeta
 	minplayers 25
 	votable
 endmap
 
-#map pubbystation
-#endmap
-
 map yogspubby
 	votable
 endmap
-
-#map deltastation
-	#minplayers 50
-#endmap
 
 map yogsdelta
 	minplayers 50
@@ -61,7 +43,6 @@ endmap
 
 map icebox
 	minplayers 25
-	votable
 endmap
 
 map runtimestation
@@ -69,3 +50,12 @@ endmap
 
 map multiz_debug
 endmap
+
+map eclipsestation
+	voteweight 0
+endmap
+
+
+
+
+
