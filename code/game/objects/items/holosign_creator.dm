@@ -13,6 +13,7 @@
 	throw_range = 7
 	item_flags = NOBLUDGEON
 	var/list/signs = list()
+	var/list/holodesigns = list()
 	var/max_signs = 10
 	var/creation_time = 0 //time to create a holosign in deciseconds.
 	var/holosign_type = /obj/structure/holosign/wetsign
@@ -138,23 +139,22 @@
 			qdel(H)
 		to_chat(user, "<span class='notice'>You clear all active holograms.</span>")
 
-/obj/item/holosign_creator/CE
-	name = "CE holofan projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmosphere conditions or engineering barriers."
-	icon_state = "signmaker_atmos"
-	holosign_type = /obj/structure/holosign/barrier/atmos
-	creation_time = 0
-	max_signs = 5
+/obj/item/holosign_creator/multi
+	name = "multiple holosign projector"  //Fork from this to make multiple barriers
 
-/obj/item/holosign_creator/CE/attack_self(mob/user)
+/obj/item/holosign_creator/multi/attack_self(mob/user)
 	if(signs.len)
 		for(var/H in signs)
 			qdel(H)
 		to_chat(user, "<span class='notice'>You clear all active holograms.</span>")
 	else
-		if(holosign_type == /obj/structure/holosign/barrier/atmos)
-			to_chat(user, "<span class='notice'>You change the holobarrier type to: Engineering</span>")
-			holosign_type = /obj/structure/holosign/barrier/engineering
-		else if(holosign_type == /obj/structure/holosign/barrier/engineering)
-			to_chat(user, "<span class='notice'>You change the holobarrier type to: ATMOS</span>")
-			holosign_type = /obj/structure/holosign/barrier/atmos
+		holosign_type = next_list_item(holosign_type, holodesigns)
+		to_chat(user, "<span class='notice'>You switch to [holosign_type]</span>")
+
+/obj/item/holosign_creator/multi/CE
+	name = "CE holofan projector"
+	desc = "A holographic projector that creates holographic barriers that prevent changes in atmosphere conditions or engineering barriers."
+	icon_state = "signmaker_atmos"
+	holosign_type = /obj/structure/holosign/barrier/atmos
+	max_signs = 5
+	holodesigns = list(/obj/structure/holosign/barrier/atmos, /obj/structure/holosign/barrier/engineering)
