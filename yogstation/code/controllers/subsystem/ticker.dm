@@ -32,7 +32,7 @@
 		"https://www.youtube.com/watch?v=cJxSwxexZYo",						// Thomas Dolby - She blinded me with science (2009 Remaster)
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8")                      // Blue Oyster Cult - Sole Survivor
 
-	selected_lobby_music = pick(songs) //As songs are selected randomly, the list should be concise so that certain songs play more often. Songs present for more than one month are eligible to be replaced/removed
+	selected_lobby_music = pick(songs) //As songs are selected randomly, the list should be concise so that certain songs play more often. Songs present for more than one month are eligible to be replaced/removed to achieve this and to keep the list fresh.
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
 		for(var/holidayname in SSevents.holidays)
