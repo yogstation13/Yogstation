@@ -401,6 +401,10 @@
 	bullet_bounce_sound = null
 	digResult = /obj/item/stack/sheet/mineral/snow
 
+/turf/open/floor/plating/asteroid/snow/getDug()
+	..()
+	slowdown = 0
+
 /turf/open/floor/plating/asteroid/snow/burn_tile()
 	if(!burnt)
 		visible_message("<span class='danger'>[src] melts away!.</span>")
