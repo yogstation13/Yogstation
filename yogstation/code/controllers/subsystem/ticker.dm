@@ -4,6 +4,7 @@
 /datum/controller/subsystem/ticker/proc/choose_lobby_music()
 	//Add/remove songs from this list individually, rather than multiple at once. This makes it easier to judge PRs that change the list, since PRs that change it up heavily are less likely to meet broad support
 	//Add a comment after the song link in the format [Artist - Name]
+	//Songs added to the list should be fitting lobby music; sci-fi is encouraged
 	var/list/songs = list("https://www.youtube.com/watch?v=s7dTBoW5H9k", 	// Electric Light Orchestra - Mr. Blue Sky
 		"https://www.youtube.com/watch?v=WEhS9Y9HYjU", 						// Noel Harrison - The Windmills of Your Mind
 		"https://www.youtube.com/watch?v=UPHmazxB38g", 						// MashedByMachines - Sector11
@@ -31,7 +32,7 @@
 		"https://www.youtube.com/watch?v=cJxSwxexZYo",						// Thomas Dolby - She blinded me with science (2009 Remaster)
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8")                      // Blue Oyster Cult - Sole Survivor
 
-	selected_lobby_music = pick(songs)
+	selected_lobby_music = pick(songs) //As songs are selected randomly, the list should be concise so that certain songs play more often. Songs present for more than one month are eligible to be replaced/removed
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
 		for(var/holidayname in SSevents.holidays)
