@@ -13,9 +13,9 @@
 	set name = "Config/Launch Supplypod"
 	set desc = "Configure and launch a Centcom supplypod full of whatever your heart desires!"
 	set category = "Fun"
-	var/datum/centcom_podlauncher/plaunch  = new(usr)//create the datum
 	if(!check_rights(R_FUN))
 		return
+	var/datum/centcom_podlauncher/plaunch  = new(usr)//create the datum
 	plaunch.ui_interact(usr)//datum has a tgui component, here we open the window
 
 //Variables declared to change how items in the launch bay are picked and launched. (Almost) all of these are changed in the ui_act proc
