@@ -158,6 +158,10 @@
 									forced_ruins[linked] = pick(SSmapping.levels_by_trait(ZTRAIT_LAVA_RUINS))
 								if(PLACE_SPACE_RUIN)
 									forced_ruins[linked] = pick(SSmapping.levels_by_trait(ZTRAIT_SPACE_RUINS))
+								if(PLACE_ICE_RUIN)
+									forced_ruins[linked] = pick(SSmapping.levels_by_trait(ZTRAIT_ICE_RUINS))
+								if(PLACE_ICE_UNDERGROUND_RUIN)
+									forced_ruins[linked] = pick(SSmapping.levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND))
 								if(PLACE_DEFAULT)
 									forced_ruins[linked] = -1
 								if(PLACE_BELOW)
