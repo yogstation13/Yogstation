@@ -53879,6 +53879,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
+"jXt" = (
+/obj/structure/lattice,
+/turf/open/space,
+/area)
 "jXF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -54721,6 +54725,9 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"mjF" = (
+/turf/open/space/basic,
+/area)
 "mkO" = (
 /obj/machinery/nanite_program_hub,
 /obj/effect/turf_decal/bot,
@@ -57248,6 +57255,13 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"shR" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area)
 "sjo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -110862,7 +110876,7 @@ cNW
 aaf
 aaf
 aaf
-aaf
+jXt
 aaf
 aaf
 aaf
@@ -111120,7 +111134,7 @@ bPT
 aaa
 aaa
 aaa
-aaa
+mjF
 aaf
 aaa
 xnl
@@ -111377,8 +111391,8 @@ bPT
 bPT
 bPT
 aaa
-aaa
-aaf
+mjF
+jXt
 aaa
 aaa
 crD
@@ -111635,7 +111649,7 @@ eEj
 bYI
 cpi
 cpi
-cpi
+shR
 cqJ
 crk
 crk
@@ -111892,7 +111906,7 @@ lLH
 bPT
 aaa
 aaa
-aaf
+jXt
 aaa
 aaa
 crF
@@ -112150,7 +112164,7 @@ aaa
 aaa
 aaa
 aaf
-aaa
+mjF
 xnl
 crE
 fZJ
