@@ -1372,7 +1372,7 @@
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage
 
-/obj/item/hierophant_club/admin
+/obj/item/hierophant_club/station
 	z_level_check = FALSE
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
