@@ -81,14 +81,14 @@ export class Autolathe extends Component {
                 mr={10}  
                 ml={2}
                 mb={1}
-                disabled={data.abovewall === 1 ? 1 : 0}
+                disabled={!!data.abovewall}
                 color={data.printdir === 1 ? ("green"):("yellow")}    
                 icon={"chevron-up"}
                 onClick={() => act(ref, 'printdir', { direction: '1' })}
               />
               <br /><Button
                 ml={1}
-                disabled={data.leftwall === 1 ? 1 : 0}
+                disabled={!!data.leftwall}
                 color={data.printdir === 8 ? ("green"):("yellow")}    
                 icon={"chevron-left"}
                 onClick={() => act(ref, 'printdir', { direction: '8' })}
@@ -102,7 +102,7 @@ export class Autolathe extends Component {
               <Button
                 ml={1}
                 mr={5}
-                disabled={data.rightwall === 1 ? 1 : 0}
+                disabled={!!data.rightwall}
                 color={data.printdir === 4 ? ("green"):("yellow")}     
                 icon={"chevron-right"}
                 onClick={() => act(ref, 'printdir', { direction: '4' })}
@@ -112,7 +112,7 @@ export class Autolathe extends Component {
                 ml={0.7}
                 mt={0.8}
                 mr={10}
-                disabled={data.belowwall === 1 ? 1 : 0}
+                disabled={!!data.belowwall}
                 color={data.printdir === 2 ? ("green"):("yellow")}   
                 icon={"chevron-down"}
                 onClick={() => act(ref, 'printdir', { direction: '2' })}
@@ -184,7 +184,7 @@ export class Autolathe extends Component {
                   selected={data.selected_category === categoryName}
                   color="transparent"
                   content={categoryName}
-                  onClick={(searchterms === "" ? (
+                  onClick={(!searchterms ? (
                     () => act(ref, 'set_category', { category: categoryName })
                   ):(
                     () => this.setSearchText("")))}
@@ -325,7 +325,7 @@ export class Autolathe extends Component {
             
                           </Grid.Column>
                           <Grid.Column size={1}>
-                            {design.materials_glass === 0 ? (
+                            {!design.materials_glass > 0 ? (
                               ""
                             ):(
                               <Box ml={0} mr={0} inline
@@ -354,7 +354,7 @@ export class Autolathe extends Component {
           <Flex.Item>
             <Section title="Autolathe Queue" width="100vw">
               <NoticeBox ml={1} mr={1} mt={1} mb={1}>
-                {data.isprocessing === 1 ? (
+                {data.isprocessing ? (
                   <font size="3">Processing: {data.processing}</font>
                 ) : (
                   <font size="3">
@@ -375,13 +375,13 @@ export class Autolathe extends Component {
                       </Grid.Column>
                       <Grid.Column>
                         <Button
-                          disabled={(build.index === 1 ? 1 : 0)}
+                          disabled={(build.index === 1)}
                           icon="chevron-up"
                           onClick={() => act(ref, 'queue_move', 
                             { queue_move: -1, index: build.index })}
                         />
                         <Button
-                          disabled={(build.index < data.queue_len ? 0 : 1)}
+                          disabled={(build.index === data.queuelength)}
                           icon="chevron-down"
                           onClick={() => act(ref, 'queue_move', 
                             { queue_move: +1, index: build.index })}
@@ -398,12 +398,12 @@ export class Autolathe extends Component {
                 ))}
               </font>
               <Button
-                disabled={data.queuelength === 0 ? 1 : 0}
-                content={data.isprocessing === 0 ? ("Process Queue"):("Stop Processing")}
+                disabled={!data.queuelength}
+                content={!data.isprocessing ? ("Process Queue"):("Stop Processing")}
                 onClick={() => act(ref, 'process_queue')}
               />
               <Button
-                disabled={data.isprocessing === 0 ? 0 : 1}
+                disabled={data.isprocessing}
                 content={"Clear Queue"}
                 onClick={() => act(ref, 'clear_queue')}
               />
