@@ -11,6 +11,7 @@
 	cooldown_min = 60 //35 deciseconds reduction per rank
 	max_targets = 0
 	proj_type = /obj/item/projectile/magic/spell/magic_missile
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "magicm"
 	sound = 'sound/magic/magic_missile.ogg'
 
@@ -44,6 +45,7 @@
 	duration = 300
 	cooldown_min = 300 //25 deciseconds reduction per rank
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mutate"
 	sound = 'sound/magic/mutate.ogg'
 
@@ -165,6 +167,7 @@
 	range = 0
 	cooldown_min = 100
 	summon_amt = 1
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "time"
 
 	summon_type = list(/obj/effect/timestop/wizard)
@@ -336,6 +339,7 @@
 	range = 6
 	include_user = TRUE
 	selection_type = "view"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "sacredflame"
 	sound = 'sound/magic/fireball.ogg'
 
