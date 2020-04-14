@@ -16,6 +16,16 @@
 	cmd_mentor_pm(targets[target],null)
 	SSblackbox.record_feedback("tally", "Mentor_verb", 1, "APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_mentor_pm_context(mob/M in GLOB.mob_list)
+	set category = null
+	set name = "Mentor PM Mob"
+
+	if(!is_mentor())
+		return
+	if(!ismob(M))
+		return
+	if(M.client)
+		cmd_mentor_pm(M, null)
 
 //takes input from cmd_mentor_pm_context, cmd_Mentor_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
