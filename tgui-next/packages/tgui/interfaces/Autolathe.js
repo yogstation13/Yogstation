@@ -81,14 +81,14 @@ export class Autolathe extends Component {
                 mr={10}  
                 ml={2}
                 mb={1}
-                disabled={!!data.abovewall}
+                disabled={data.abovewall}
                 color={data.printdir === 1 ? ("green"):("yellow")}    
                 icon={"chevron-up"}
                 onClick={() => act(ref, 'printdir', { direction: '1' })}
               />
               <br /><Button
                 ml={1}
-                disabled={!!data.leftwall}
+                disabled={data.leftwall}
                 color={data.printdir === 8 ? ("green"):("yellow")}    
                 icon={"chevron-left"}
                 onClick={() => act(ref, 'printdir', { direction: '8' })}
@@ -102,7 +102,7 @@ export class Autolathe extends Component {
               <Button
                 ml={1}
                 mr={5}
-                disabled={!!data.rightwall}
+                disabled={data.rightwall}
                 color={data.printdir === 4 ? ("green"):("yellow")}     
                 icon={"chevron-right"}
                 onClick={() => act(ref, 'printdir', { direction: '4' })}
@@ -112,7 +112,7 @@ export class Autolathe extends Component {
                 ml={0.7}
                 mt={0.8}
                 mr={10}
-                disabled={!!data.belowwall}
+                disabled={data.belowwall}
                 color={data.printdir === 2 ? ("green"):("yellow")}   
                 icon={"chevron-down"}
                 onClick={() => act(ref, 'printdir', { direction: '2' })}
