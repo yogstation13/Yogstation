@@ -31,12 +31,11 @@
 	var/search
 	var/datum/material_container/materials
 	var/queue_max_len = 12
-	var/processing_queue = 0
+	var/processing_queue = FALSE
 	var/datum/design/item_beingbuilt
 	var/datum/design/request
 	var/list/being_built = list()
 	var/list/autoqueue = list()
-	var/list/uidata = list()
 	var/processing_line
 	var/printdirection = 0
 	var/queuelength = 0
@@ -63,16 +62,16 @@
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(!ui)
-		ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)
+		ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)  //Create the TGUI from autolathe.js
 		ui.open()
 
-/obj/machinery/autolathe/proc/wallcheck(direction)
+/obj/machinery/autolathe/proc/wallcheck(direction) //Check for nasty walls and update ui
 	if(iswallturf(get_step(src,(direction))))
 		return 1
 	else
 		return 0
 
-/obj/machinery/autolathe/ui_data(mob/user)
+/obj/machinery/autolathe/ui_data(mob/user) // All the data the ui will need
 	var/list/data = list()
 	var/list/designs = list()
 
@@ -85,7 +84,7 @@
 	data["categories"] = categories
 	data["selected_category"] = selected_category
 
-	data["rightwall"] = wallcheck(4)
+	data["rightwall"] = wallcheck(4) // Wall data for ui
 	data["leftwall"] = wallcheck(8)
 	data["abovewall"] = wallcheck(1)
 	data["belowwall"] = wallcheck(2)
@@ -145,14 +144,14 @@
 		if("set_category")
 			selected_category = params["category"]
 
-		if("make")
+		if("make") // Lets try make the item supplied via the UI
 			request = stored_research.isDesignResearchedID(params["item_id"])
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])
 			multiplier = CLAMP(multiplier,1,50)
 			if((autoqueue.len + 1) < queue_max_len)
-				add_to_queue(request, multiplier)
+				add_to_queue(request, multiplier) // Add item to queue for processing
 			else
 				to_chat(usr, "<span class='warning'>The autolathe queue is full!</span>")
 
@@ -167,7 +166,7 @@
 			make_item(request, multiplier)
 			processing_queue = 0
 
-		if("process_queue")
+		if("process_queue")   // Processing queue flag triggers the queue
 			if(processing_queue)
 				processing_queue = 0
 				return
@@ -179,7 +178,7 @@
 			if(isnum(index) && ISINRANGE(index, 1, autoqueue.len))
 				remove_from_queue(index)
 
-		if("queue_move")
+		if("queue_move")  // Moves items up and down the list
 			var/index = text2num(params["index"])
 			var/new_index = index + text2num(params["queue_move"])
 			if(isnum(index) && isnum(new_index))
@@ -190,11 +189,13 @@
 			queuelength = 0
 			processing_queue = 0
 			autoqueue = list()
-			uidata = list()
 			processing_line = null
 
 		if("printdir")
 			printdirection = text2num(params["direction"])
+			say("Direction = [printdirection]")
+			if(printdirection > 8)  // Simple Sanity Check
+				printdirection = 0
 
 	update_icon()
 
@@ -279,6 +280,9 @@
 		return FALSE
 	if(D.materials[MAT_GLASS] && (materials.amount(MAT_GLASS) < (D.materials[MAT_GLASS] * coeff * amount)))
 		return FALSE
+	if(wallcheck(printdirection) == 1)
+		say("Output blocked, please remove obstruction.")
+		return FALSE
 	return TRUE
 
 /obj/machinery/autolathe/proc/get_design_cost_metal(datum/design/D)
@@ -353,22 +357,23 @@
 	if (!materials)
 		say("No access to material storage, please contact the quartermaster.")
 		return 0
-	if(can_build(D, multiplier))
+	if(can_build(D, multiplier))  // Check if we can build if not, return
 		if((materials.amount(MAT_METAL) >= metal_cost * multiplier * coeff) && (materials.amount(MAT_GLASS) >= glass_cost * multiplier * coeff))
 			use_power(power)
-
 			var/list/materials_used = list(MAT_METAL=metal_cost * coeff * multiplier, MAT_GLASS=glass_cost * coeff*multiplier)
 			materials.use_amount(materials_used)
 			being_built = list(D, multiplier)
 			desc = "It's building \a [initial(D.name)]."
 			icon_state = "autolathe_n"
+			var/time = is_stack ? 32 : 32 * coeff * multiplier
+			sleep(time)
+			if(wallcheck(printdirection) == 1)
+				printdirection = 0
 			var/atom/A = drop_location()
 			var/location = get_step(src,(printdirection))
 			if(printdirection)
 				A = location
-			var/time = is_stack ? 32 : 32 * coeff * multiplier
-			sleep(time)
-			if(is_stack)
+			if(is_stack) // If its a stack we need to define it as so
 				var/obj/item/stack/N = new D.build_path(A, multiplier)
 				N.update_icon()
 				N.autolathe_crafted(src)
@@ -404,7 +409,7 @@
 	autoqueue.Cut(index,++index)
 	return 1
 
-/obj/machinery/autolathe/proc/process_queue()
+/obj/machinery/autolathe/proc/process_queue() //Process the queue from the autoqueue list. Will add temp metal and glass later.
 	var/datum/design/D = autoqueue[1][1]
 	var/multiplier = autoqueue[1][2]
 	if(!D)
@@ -433,7 +438,7 @@
 	say("Queue processing finished successfully.")
 	processing_queue = 0
 
-/obj/machinery/autolathe/proc/get_processing_line()
+/obj/machinery/autolathe/proc/get_processing_line()  //Gets processing line for whats building for UI
 	var/datum/design/D = being_built[1]
 	var/multiplier = being_built[2]
 	var/is_stack = (multiplier>1)
