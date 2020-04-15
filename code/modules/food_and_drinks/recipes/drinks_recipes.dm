@@ -43,6 +43,12 @@
 	results = list(/datum/reagent/consumable/ethanol/moonshine = 10)
 	required_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 5)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+	
+/datum/chemical_reaction/gravedigger
+	name = "Grave-Digger"
+	id = /datum/reagent/consumable/graveyard
+	results = list(/datum/reagent/consumable/gravedigger = 3)
+	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
 
 /datum/chemical_reaction/wine
 	name = "Wine"
