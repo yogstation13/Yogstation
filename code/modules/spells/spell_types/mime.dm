@@ -14,6 +14,7 @@
 	cast_sound = null
 	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -43,6 +44,7 @@
 	cast_sound = null
 	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -80,6 +82,7 @@
 	cast_sound = null
 	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -114,6 +117,7 @@
 	range = -1
 	include_user = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -156,6 +160,7 @@
 	range = -1
 	include_user = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -187,6 +192,7 @@
 	deactive_msg = "You put your fingers at ease. Another time."
 	active = FALSE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 	base_icon_state = "mime"
