@@ -253,18 +253,18 @@
 	switch(stat)
 		if(SOFT_CRIT)
 			to_chat(src, "<span class='warning'>You can't commit suicide while in a critical condition!</span>")
-			return
+			return FALSE
 		if(UNCONSCIOUS)
 			to_chat(src, "<span class='warning'>You need to be conscious to commit suicide!</span>")
-			return
+			return FALSE
 		if(DEAD)
 			to_chat(src, "<span class='warning'>You're already dead!</span>")
-			return
+			return FALSE
 	//We're assuming they're CONSCIOUS
 	if(is_important()) // If they are someone critical to the round, for some reason
 		var/result = (alert("WARNING: You seem to be serving a critical role. Suiciding now may be against the rules. Consider using the AFK verb instead. Continue regardless?","Suicide Warning","Yes","No") == "Yes")
 		if(!result)
-			return
+			return FALSE
 		message_admins("[key_name(src)] may be committing suicide as an important role!")
 	return TRUE
 
