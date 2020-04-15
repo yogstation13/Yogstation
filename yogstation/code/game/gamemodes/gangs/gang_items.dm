@@ -271,6 +271,17 @@
 	cost = 20
 	item_path = /obj/item/clothing/shoes/combat/gang
 
+/datum/gang_item/equipment/implant_breaker
+	name = "Implant Breaker"
+	id = "implant_breaker"
+	cost = 20
+	item_path = /obj/item/implanter/gang
+	spawn_msg = "<span class='notice'>The <b>implant breaker</b> is a single-use device that destroys all implants within the target before trying to recruit them to your gang. Also works on enemy gangsters.</span>"
+	
+/datum/gang_item/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	var/obj/item/O = new item_path(user.loc, gang)
+	user.put_in_hands(O)
+
 /obj/item/clothing/shoes/combat/gang
 	name = "Wetwork boots"
 	desc = "A gang's best hitmen are prepared for anything."
