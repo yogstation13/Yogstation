@@ -7,6 +7,7 @@
 	invocation = "TARCOL MINTI ZHERI"
 	invocation_type = "shout"
 	sound = 'sound/magic/forcewall.ogg'
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "shield"
 	range = -1
 	include_user = TRUE
