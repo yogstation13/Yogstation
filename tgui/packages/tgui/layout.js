@@ -13,6 +13,22 @@ import { getRoute } from './routes';
 
 const logger = createLogger('Layout');
 
+const LayoutContent = props => {
+  const { scrollable, children } = props;
+  return (
+    <div
+      id="Layout__content"
+      className={classes([
+        'Layout__content',
+        scrollable && 'Layout__content--scrollable',
+      ])}>
+      <Box m={1}>
+        {children}
+      </Box>
+    </div>
+  );
+};
+
 export class Layout extends Component {
   componentDidMount() {
     refocusLayout();
@@ -23,33 +39,33 @@ export class Layout extends Component {
     const { state, dispatch } = props;
     const { config } = state;
     const route = getRoute(state);
-    if (!route) {
-      return `Component for '${config.interface}' was not found.`;
-    }
-    const RoutedComponent = route.component();
-    const WrapperComponent = route.wrapper && route.wrapper();
-    const { scrollable, theme } = route;
-    // Render content
-    let contentElement = (
-      <div
-        id="Layout__content"
-        className={classes([
-          'Layout__content',
-          scrollable && 'Layout__content--scrollable',
-        ])}>
-        <Box m={1}>
-          <RoutedComponent state={state} dispatch={dispatch} />
-        </Box>
-      </div>
-    );
-    // Wrap into the wrapper component
-    if (WrapperComponent) {
+    const { scrollable, theme } = route || {};
+    let contentElement;
+    if (route) {
+      const RoutedComponent = route.component();
+      const WrapperComponent = route.wrapper && route.wrapper();
+      // Render content
       contentElement = (
-        <WrapperComponent
-          state={state}
-          dispatch={dispatch}>
-          {contentElement}
-        </WrapperComponent>
+        <LayoutContent scrollable={scrollable}>
+          <RoutedComponent state={state} dispatch={dispatch} />
+        </LayoutContent>
+      );
+      // Wrap into the wrapper component
+      if (WrapperComponent) {
+        contentElement = (
+          <WrapperComponent
+            state={state}
+            dispatch={dispatch}>
+            {contentElement}
+          </WrapperComponent>
+        );
+      }
+    }
+    else {
+      contentElement = (
+        <LayoutContent>
+          Route entry missing for <b>{config.interface}</b>.
+        </LayoutContent>
       );
     }
     // Determine when to show dimmer
