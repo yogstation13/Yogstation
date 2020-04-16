@@ -144,7 +144,6 @@
 			stat = CONSCIOUS
 	med_hud_set_status()
 
-
 /mob/living/simple_animal/handle_status_effects()
 	..()
 	if(stuttering)
