@@ -1050,7 +1050,7 @@
 	name = "Bone Chill"
 	desc = "Rattle your bones and strike fear into your enemies!"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "bonechill"
 	var/cooldown = 600
 	var/last_use
