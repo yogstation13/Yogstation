@@ -23,6 +23,7 @@
 		"https://www.youtube.com/watch?v=na_Zac23b5E",						// Basil Poledouris - Klendathu Drop
 		"https://www.youtube.com/watch?v=WcLzUZSGT6Q",						// Hans Zimmer, Benjamin Wallfisch - Mesa
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
+		"https://www.youtube.com/watch?v=qx8hrhBZJ98",						// Tonio Delafuente - Epic of Manas
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
 	    "https://www.youtube.com/watch?v=UlHGGKgzgzI",                      // Elbow - Leaders of the Free World
 		"https://www.youtube.com/watch?v=fMn30T5wEVg",						// Mike Morasky - SynTek Residential Mall (Extended by FoxOnTheRails)
