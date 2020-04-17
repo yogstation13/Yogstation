@@ -30,7 +30,8 @@
 	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=cJxSwxexZYo",						// Thomas Dolby - She blinded me with science (2009 Remaster)
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",                      // Blue Oyster Cult - Sole Survivor
-		"https://www.youtube.com/watch?v=51Uw-9lNl08")                      // fIREHOSE - Brave Captain
+		"https://www.youtube.com/watch?v=51Uw-9lNl08",                      // fIREHOSE - Brave Captain
+		"https://www.youtube.com/watch?v=oa3WTj_vuvc")                      // Ennio Morricone - Humanity (Pt.2)
 
 	selected_lobby_music = pick(songs)
 
