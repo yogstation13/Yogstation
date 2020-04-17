@@ -16,6 +16,7 @@
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
 		"https://www.youtube.com/watch?v=3W7mwRpUbqQ", 						// Stellardrone - Comet Haley
 		"https://www.youtube.com/watch?v=lyMTHk5-B30", 						// Visager - Miniboss fight
+		"https://www.youtube.com/watch?v=y8g7MhYQm4A",						// Kelly Bailey - Nuclear Missile Jam
 		"https://www.youtube.com/watch?v=2ziRMLrriu0", 						// Jeroen Tel - Tintin on the Moon (Remix by Admiral Hippie)
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=w34fSnJNP-4",						// Leslie Fish - Dawson's Chrstian (Singer unknown)
