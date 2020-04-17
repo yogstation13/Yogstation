@@ -119,3 +119,5 @@ require only minor tweaks.
 #define PLACE_SPACE_RUIN "space"
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_LAVA_RUIN "lavaland"
+#define PLACE_ICE_RUIN "icesurface"
+#define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"
