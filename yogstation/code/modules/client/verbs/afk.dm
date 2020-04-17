@@ -87,7 +87,7 @@
 			var/reason = stripped_input(src, "Do you have time to give a reason? If so, please give it:")
 			var/important_role = special_role || M.job || initial(M.name) || "something important"
 			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
-			log_message("is now AFK for [time] [reason ? " with the reason: '[reason]'" : ""]", LOG_OWNERSHIP)
+			mob.log_message("is now AFK for [time] [reason ? " with the reason: '[reason]'" : ""]", LOG_OWNERSHIP)
 		else
 			to_chat(src, "<span class='danger'>Admins will not be automatically alerted, because you do not seem to be in a critical station role.</span>")
 	else
