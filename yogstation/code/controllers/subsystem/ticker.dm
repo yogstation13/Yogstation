@@ -16,21 +16,21 @@
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
 		"https://www.youtube.com/watch?v=3W7mwRpUbqQ", 						// Stellardrone - Comet Haley
 		"https://www.youtube.com/watch?v=lyMTHk5-B30", 						// Visager - Miniboss fight
-		"https://www.youtube.com/watch?v=2ziRMLrriu0", 						// Jeroen Tel - Tintin on the Moon (Remix by Admiral Hippie)
+		"https://www.youtube.com/watch?v=YKVmXn-Gv0M", 						// Jeroen Tel - Tintin on the Moon (Remix by Cuboos)
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=w34fSnJNP-4",						// Leslie Fish - Dawson's Chrstian (Singer unknown)
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
-		"https://www.youtube.com/watch?v=na_Zac23b5E",						// Basil Poledouris - Klendathu Drop
+		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
 		"https://www.youtube.com/watch?v=WcLzUZSGT6Q",						// Hans Zimmer, Benjamin Wallfisch - Mesa
 		"https://www.youtube.com/watch?v=Wqh11D_VQ00",						// Daft Punk - Too Long (Gonzales Version)
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
 	    "https://www.youtube.com/watch?v=UlHGGKgzgzI",                      // Elbow - Leaders of the Free World
-		"https://www.youtube.com/watch?v=fMn30T5wEVg",						// Mike Morasky - SynTek Residential Mall (Extended by FoxOnTheRails)
 	    "https://www.youtube.com/watch?v=iB5Az3vbkYs",						// Coalescence - Risk of Rain (Cover by Nahu Pyrope)
 	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=cJxSwxexZYo",						// Thomas Dolby - She blinded me with science (2009 Remaster)
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",                      // Blue Oyster Cult - Sole Survivor
+		"https://www.youtube.com/watch?v=NQPUMvP2fyM",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=51Uw-9lNl08")                      // fIREHOSE - Brave Captain
 
 	selected_lobby_music = pick(songs)
