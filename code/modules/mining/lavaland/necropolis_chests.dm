@@ -1117,6 +1117,7 @@
 	attack_verb = list("clubbed", "beat", "pummeled")
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	actions_types = list(/datum/action/item_action/vortex_recall, /datum/action/item_action/toggle_unfriendly_fire)
+	var/z_level_check = TRUE //Whether or not it checks for mining z level
 	var/cooldown_time = 20 //how long the cooldown between non-melee ranged attacks is
 	var/chaser_cooldown = 81 //how long the cooldown between firing chasers at mobs is
 	var/chaser_timer = 0 //what our current chaser cooldown is
@@ -1151,7 +1152,7 @@
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
-	if(!is_mining_level(T.z))
+	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, "<span class='warning'>The club fizzles weakly, it seem its power doesn't reach this area.</span>" )
 		return
 	calculate_anger_mod(user)
@@ -1371,7 +1372,8 @@
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage
 
-
+/obj/item/hierophant_club/station
+	z_level_check = FALSE
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"
