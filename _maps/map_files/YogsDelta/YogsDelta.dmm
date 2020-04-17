@@ -1551,10 +1551,6 @@
 	},
 /turf/open/space,
 /area/solar/starboard/fore)
-"acR" = (
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/clerk)
 "acS" = (
 /obj/machinery/vending/games,
 /turf/open/floor/wood,
@@ -121347,8 +121343,8 @@
 	pixel_x = -32
 	},
 /obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 4
+	dir = 4;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office/private_investigators_office)
@@ -121647,8 +121643,8 @@
 "dNi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 4
+	dir = 4;
+	icon_state = "0"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office/private_investigators_office)
@@ -127135,6 +127131,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"oTv" = (
+/obj/machinery/light,
+/obj/machinery/vending/gifts,
+/turf/open/floor/wood,
+/area/clerk)
 "oYI" = (
 /obj/machinery/igniter/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -169052,7 +169053,7 @@ cim
 acg
 acj
 acy
-acR
+oTv
 aaZ
 aKP
 cca

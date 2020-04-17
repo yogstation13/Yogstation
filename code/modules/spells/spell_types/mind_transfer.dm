@@ -12,6 +12,7 @@
 	var/unconscious_amount_caster = 400 //how much the caster is stunned for after the spell
 	var/unconscious_amount_victim = 400 //how much the victim is stunned for after the spell
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mindswap"
 
 /*
