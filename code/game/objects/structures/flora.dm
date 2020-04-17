@@ -303,7 +303,7 @@
 
 /obj/item/twohanded/required/kirbyplants
 	name = "potted plant"
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed path
+	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
@@ -324,7 +324,7 @@
 
 /obj/item/twohanded/required/kirbyplants/random/Initialize()
 	. = ..()
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed icon path
+	icon = 'icons/obj/flora/plants.dmi'
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
