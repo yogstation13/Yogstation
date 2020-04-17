@@ -20,7 +20,7 @@
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=w34fSnJNP-4",						// Leslie Fish - Dawson's Chrstian (Singer unknown)
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
-		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK: Beyond)
+		"https://www.youtube.com/watch?v=w5hBQDepXOE",						// Michael Giacchino - Main Theme (STAR TREK Beyond)
 		"https://www.youtube.com/watch?v=WcLzUZSGT6Q",						// Hans Zimmer, Benjamin Wallfisch - Mesa
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
