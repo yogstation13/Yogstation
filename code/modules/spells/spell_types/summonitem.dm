@@ -13,6 +13,7 @@
 
 	var/obj/marked_item
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "summons"
 
 /obj/effect/proc_holder/spell/targeted/summonitem/cast(list/targets,mob/user = usr)
