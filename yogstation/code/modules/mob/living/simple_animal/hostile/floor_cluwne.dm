@@ -420,7 +420,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 //manifestation animation
 /obj/effect/temp_visual/fcluwne_manifest
-	icon = 'yogstation/icons/turf/floors.dmi'
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "fcluwne_open"
 	layer = TURF_LAYER
 	duration = 600
