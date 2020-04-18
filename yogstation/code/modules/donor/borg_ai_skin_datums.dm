@@ -252,10 +252,10 @@
 	owner = "jierda"
 	module_locked = "Engineering"
 
-/datum/borg_skin/atlas
+/datum/borg_skin/icarus
 	name = "Icarus"
 	icon_state = "icarus"
-	owner = null
+	owner = "reddsnotdead"
 	module_locked = "Engineering"
 
 //Begin AI skins://
