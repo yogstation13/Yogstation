@@ -75,18 +75,3 @@
 	desc = "A chromosome that reduces cooldown on action based mutations by 50%."
 	icon_state = "energy"
 	energy_coeff = 0.5
-
-/obj/item/chromosome/reinforcer
-	name = "reinforcement chromosome"
-	desc = "Renders the mutation immune to mutadone."
-	icon_state = "reinforcer"
-	weight = 3
-
-/obj/item/chromosome/reinforcer/can_apply(datum/mutation/human/HM)
-	if(!HM || !(HM.can_chromosome == CHROMOSOME_NONE))
-		return FALSE
-	return !HM.mutadone_proof
-
-/obj/item/chromosome/reinforcer/apply(datum/mutation/human/HM)
-	HM.mutadone_proof = TRUE
-	..()
