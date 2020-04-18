@@ -100,7 +100,7 @@
 
 	last_announcement = message
 
-	var/voxType = input(src, "Male, female, or military VOX?", "VOX-gender") in list("male", "female", "military") //yogs - male vox
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor", "Verity", "Oscar") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military
 
 	if(!message || announcing_vox > world.time)
 		return
@@ -123,11 +123,11 @@
 		if(!word)
 			words -= word
 			continue
-		if(!GLOB.vox_sounds[word] && voxType == "female") //yogs start - male vox
+		if(!GLOB.vox_sounds[word] && voxType == "Verity") //yogs start - male vox
 			incorrect_words += word
-		if(!GLOB.vox_sounds_male[word] && voxType == "male")
+		if(!GLOB.vox_sounds_male[word] && voxType == "Victor")
 			incorrect_words += word  //yogs end- male vox
-		if(!GLOB.vox_sounds_military[word] && voxType == "military")
+		if(!GLOB.vox_sounds_military[word] && voxType == "Oscar")
 			incorrect_words += word
 
 	if(incorrect_words.len)
@@ -142,17 +142,17 @@
 		play_vox_word(word, src.z, null, voxType) //yogs - male vox
 
 
-/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "female", pitch = 0) // Yogs -- Pitch variation
+/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "Verity", pitch = 0) // Yogs -- Pitch variation
 
 	word = lowertext(word)
 
-	if( (GLOB.vox_sounds[word] && voxType == "female") || (GLOB.vox_sounds_male[word] &&voxType == "male") || (GLOB.vox_sounds_military[word] &&voxType == "military") ) //yogs - male vox
+	if( (GLOB.vox_sounds[word] && voxType == "Verity") || (GLOB.vox_sounds_male[word] &&voxType == "Victor") || (GLOB.vox_sounds_military[word] &&voxType == "Oscar") ) //yogs - male vox
 
 		var/sound_file //yogs start - male vox
 
-		if(voxType == "female")
+		if(voxType == "Verity")
 			sound_file = GLOB.vox_sounds[word]
-		else if(voxType == "male")
+		else if(voxType == "Victor")
 			sound_file = GLOB.vox_sounds_male[word] //yogs end - male vox
 		else
 			sound_file = GLOB.vox_sounds_military[word]
