@@ -300,20 +300,6 @@
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"aH" = (
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/obj/effect/spawner/structure/window{
-	color = "purple"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "aI" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
@@ -475,11 +461,21 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aY" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/westright,
-/turf/open/floor/light,
-/area/crew_quarters/kitchen)
+/obj/structure/table,
+/obj/effect/turf_decal/tile/purple{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	icon_state = "booze_dispenser";
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "aZ" = (
 /obj/effect/turf_decal/tile/purple{
 	icon_state = "tile_corner";
@@ -795,21 +791,18 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bE" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/structure/table,
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/chem_dispenser/drinks/beer{
-	icon_state = "booze_dispenser";
-	dir = 8
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
+/turf/open/floor/light,
+/area/crew_quarters/kitchen)
 "bF" = (
 /obj/machinery/door/window/southright{
 	dir = 8;
@@ -1043,10 +1036,13 @@
 /area/crew_quarters/bar)
 "cb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
 /obj/machinery/door/window/westright,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/light,
 /area/crew_quarters/kitchen)
 "cc" = (
@@ -1120,8 +1116,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
@@ -1129,8 +1124,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -1305,8 +1299,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/effect/turf_decal/tile/purple{
 	icon_state = "tile_corner";
@@ -1659,7 +1652,7 @@ ab
 at
 cd
 cf
-aH
+aW
 bA
 bK
 cJ
@@ -1724,7 +1717,7 @@ aw
 aM
 cg
 ab
-bE
+aY
 bO
 cL
 cj
@@ -1742,9 +1735,9 @@ ab
 ab
 ak
 ak
-cb
+bE
 ak
-aY
+cb
 ak
 bo
 ak
