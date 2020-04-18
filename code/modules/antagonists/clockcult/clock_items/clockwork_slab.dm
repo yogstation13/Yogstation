@@ -22,7 +22,7 @@
 	var/recollection_category = "Default"
 
 	var/list/quickbound = list(/datum/clockwork_scripture/abscond, \
-	/datum/clockwork_scripture/ranged_ability/kindle, /datum/clockwork_scripture/ranged_ability/hateful_manacles) //quickbound scripture, accessed by index
+	/datum/clockwork_scripture/ranged_ability/kindle, /datum/clockwork_scripture/ranged_ability/hateful_manacles, /datum/clockwork_scripture/ranged_ability/sentinels_compromise) //quickbound scripture, accessed by index
 	var/maximum_quickbound = 5 //how many quickbound scriptures we can have
 
 	var/obj/structure/destructible/clockwork/trap/linking //If we're linking traps together, which ones we're doing
