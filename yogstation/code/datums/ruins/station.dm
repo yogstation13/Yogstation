@@ -30,6 +30,11 @@
 	suffix = "bar_casino.dmm"
 	name = "Bar Casino"
 
+/datum/map_template/ruin/station/box/bar/citadel
+	id = "bar_citadel"
+	suffix = "bar_citadel.dmm"
+	name = "Bar Citadel"
+
 /datum/map_template/ruin/station/box/bar/conveyor
 	id = "bar_conveyor"
 	suffix = "bar_conveyor.dmm"
