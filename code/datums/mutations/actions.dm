@@ -180,6 +180,7 @@
 	charge_max = 600
 	invocation = "DOOOOOOOOOOOOOOOOOOOOM!!!"
 	invocation_type = "shout"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "void_magnet"
 
 /obj/effect/proc_holder/spell/self/void/can_cast(mob/user = usr)

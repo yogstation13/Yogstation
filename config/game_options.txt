@@ -36,8 +36,8 @@ EMOJIS
 ## To speed things up make the number negative, to slow things down, make the number positive.
 
 ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
-RUN_DELAY 1
-WALK_DELAY 4
+RUN_DELAY 2
+WALK_DELAY 6
 
 ## The variables below affect the movement of specific mob types. THIS AFFECTS ALL SUBTYPES OF THE TYPE YOU CHOOSE!
 ## Entries completely override all subtypes. Later entries have precedence over earlier entries.
@@ -45,7 +45,7 @@ WALK_DELAY 4
 ## /mob/living/carbon/human on the last entry, the last entry will override the first.
 ##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/human 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/silicon/robot 0
-##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/monkey 0
+MULTIPLICATIVE_MOVESPEED /mob/living/carbon/monkey 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/alien 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal/slime 0
 MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
@@ -53,13 +53,13 @@ MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 
 ## NAMES ###
 ## If uncommented this adds a random surname to a player's name if they only specify one name.
-#HUMANS_NEED_SURNAMES
+HUMANS_NEED_SURNAMES
 
 ## If uncommented, this forces all players to use random names !and appearances!.
 #FORCE_RANDOM_NAMES
 
 ## Unhash this to turn on automatic reopening of a player's job if they suicide at roundstart
-#REOPEN_ROUNDSTART_SUICIDE_ROLES
+REOPEN_ROUNDSTART_SUICIDE_ROLES
 
 ## Unhash to enable reopening of command level positions
 #REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_POSITIONS
@@ -70,7 +70,7 @@ MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 #REOPEN_ROUNDSTART_SUICIDE_ROLES_DELAY 240
 
 ## Unhash to enable a printed command report for reopened roles listing what roles were reopened.
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_REPORT
+REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_REPORT
 
 
 ## ALERT LEVELS ###
@@ -92,24 +92,41 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Default probablity is 1, increase to make that mode more likely to be picked.
 ## Set to 0 to disable that mode.
 
-PROBABILITY TRAITOR 5
-PROBABILITY TRAITORBRO 2
-PROBABILITY TRAITORCHAN 4
-PROBABILITY TRAITORVAMP 3
-PROBABILITY VAMPIRE 3
+# Lowpop
+PROBABILITY TRAITOR 6
+PROBABILITY TRAITORBRO 6
+PROBABILITY TRAITORCHAN 6
 PROBABILITY INTERNAL_AFFAIRS 3
-PROBABILITY MALF 4
-PROBABILITY NUCLEAR 2
-PROBABILITY REVOLUTION 2
-PROBABILITY CULT 2
-PROBABILITY CHANGELING 2
-PROBABILITY WIZARD 4
+PROBABILITY CHANGELING 3
+
+# Group antags
+PROBABILITY REVOLUTION 9
+PROBABILITY CLOCKWORK_CULT 5
+PROBABILITY GANG 5
+PROBABILITY CULT 9
+
+# Snowflakes
+PROBABILITY SHADOWLING 4
+PROBABILITY WIZARD 7
+PROBABILITY NUCLEAR 9
+PROBABILITY MALF 6
+PROBABILITY CLOWNOPS 0
+PROBABILITY MALFUNCTION 6
+
+# New
+PROBABILITY HIVEMIND 0
+PROBABILITY OVERTHROW 0
+PROBABILITY TRAITORVAMP 2
+PROBABILITY VAMPIRE 2
+
+# Special
+PROBABILITY RAGINMAGES 1
+PROBABILITY MONKEY 0
 PROBABILITY METEOR 0
 PROBABILITY EXTENDED 0
 PROBABILITY SECRET_EXTENDED 0
 PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
-PROBABILITY CLOWNOPS 0
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -163,7 +180,7 @@ MIDROUND_ANTAG MALF
 #MIN_POP TRAITOR 0
 #MAX_POP TRAITOR -1
 
-#MIN_POP TRAITORBRO 0
+#MIN_POP TRAITORBRO 25
 #MAX_POP TRAITORBRO -1
 
 #MIN_POP TRAITORCHAN 15
@@ -214,14 +231,14 @@ SHUTTLE_REFUEL_DELAY 12000
 ## Variables calculate how number of antagonists will scale to population.
 ## Used as (Antagonists = Population / Coeff)
 ## Set to 0 to disable scaling and use default numbers instead.
-TRAITOR_SCALING_COEFF 6
-BROTHER_SCALING_COEFF 6
-CHANGELING_SCALING_COEFF 6
+TRAITOR_SCALING_COEFF 7
+BROTHER_SCALING_COEFF 10
+CHANGELING_SCALING_COEFF 8
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)
 ## Set to 0 to disable scaling and use default numbers instead.
-SECURITY_SCALING_COEFF 8
+SECURITY_SCALING_COEFF 7
 
 ## The number of objectives traitors get.
 ## Not including escaping/hijacking.
@@ -230,7 +247,7 @@ BROTHER_OBJECTIVES_AMOUNT 2
 
 ## Uncomment to prohibit jobs that start with loyalty
 ## implants from being most antagonists.
-#PROTECT_ROLES_FROM_ANTAGONIST
+PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Uncomment to prohibit assistants from becoming most antagonists.
 #PROTECT_ASSISTANT_FROM_ANTAGONIST
@@ -239,7 +256,7 @@ BROTHER_OBJECTIVES_AMOUNT 2
 #PROTECT_AI_FROM_TRAITOR
 
 ## If non-human species are barred from joining as a head of staff
-#ENFORCE_HUMAN_AUTHORITY
+ENFORCE_HUMAN_AUTHORITY
 
 ## If late-joining players have a chance to become a traitor/changeling
 ALLOW_LATEJOIN_ANTAGONISTS
@@ -248,7 +265,7 @@ ALLOW_LATEJOIN_ANTAGONISTS
 ## roll antagonist in subsequent rounds until they get it.
 ##
 ## For details See the comments for /datum/game_mode/proc/antag_pick in code/game/gamemodes/game_mode.dm
-# USE_ANTAG_REP
+USE_ANTAG_REP
 
 ## The maximum amount of antagonist reputation tickets a player can bank (not use at once)
 ANTAG_REP_MAXIMUM 200
@@ -260,7 +277,7 @@ DEFAULT_ANTAG_TICKETS 100
 MAX_TICKETS_PER_ROLL 100
 
 ## Uncomment to allow players to see the set odds of different rounds in secret/random in the get server revision screen. This will NOT tell the current roundtype.
-#SHOW_GAME_TYPE_ODDS
+SHOW_GAME_TYPE_ODDS
 
 ## RANDOM EVENTS ###
 ## Comment this out to disable random events during the round.
@@ -309,7 +326,7 @@ GATEWAY_DELAY 18000
 ## If the number of players ready at round starts exceeds this threshold, JOBS_HAVE_MINIMAL_ACCESS will automatically be enabled. Otherwise, it will be disabled.
 ## This is useful for accomodating both low and high population rounds on the same server.
 ## Comment this out or set to 0 to disable this automatic toggle.
-MINIMAL_ACCESS_THRESHOLD 20
+MINIMAL_ACCESS_THRESHOLD 8
 
 ## Comment this out this if you wish to use the setup where jobs have more access.
 ## This is intended for servers with low populations - where there are not enough
@@ -321,7 +338,7 @@ MINIMAL_ACCESS_THRESHOLD 20
 #ASSISTANTS_HAVE_MAINT_ACCESS
 
 ## Uncoment to give security maint access. Note that if you dectivate JOBS_HAVE_MINIMAL_ACCESS security already gets maint from that.
-#SECURITY_HAS_MAINT_ACCESS
+SECURITY_HAS_MAINT_ACCESS
 
 ## Uncomment to give everyone maint access.
 #EVERYONE_HAS_MAINT_ACCESS
@@ -332,11 +349,11 @@ SEC_START_BRIG
 
 ## GHOST INTERACTION ###
 ## Uncomment to let ghosts spin chairs. You may be wondering why this is a config option. Don't ask.
-#GHOST_INTERACTION
+GHOST_INTERACTION
 
 ## NEAR-DEATH EXPERIENCE ###
 ## Comment this out to disable mobs hearing ghosts when unconscious and very close to death
-NEAR_DEATH_EXPERIENCE
+#NEAR_DEATH_EXPERIENCE
 
 ## NON-VOCAL SILICONS ###
 ## Uncomment these to stop the AI, or cyborgs, from having vocal communication.
@@ -349,7 +366,7 @@ NEAR_DEATH_EXPERIENCE
 ## Set to 1 for "custom", silicons will start with the custom laws defined in silicon_laws.txt. (If silicon_laws.txt is empty, the AI will spawn with asimov and Custom boards will auto-delete.)
 ## Set to 2 for "random", silicons will start with a random lawset picked from random laws specified below.
 ## Set to 3 for "weighted random", using values in "silicon_weights.txt", a law will be selected, with weights specifed in that file.
-DEFAULT_LAWS 0
+DEFAULT_LAWS 3
 
 ## RANDOM LAWS ##
 ## ------------------------------------------------------------------------------------------
@@ -364,11 +381,11 @@ RANDOM_LAWS robocop
 RANDOM_LAWS corporate
 
 ## Quirky laws. Shouldn't cause too much harm
-#RANDOM_LAWS hippocratic
-#RANDOM_LAWS maintain
+RANDOM_LAWS hippocratic
+RANDOM_LAWS maintain
 #RANDOM_LAWS drone
-#RANDOM_LAWS liveandletlive
-#RANDOM_LAWS peacekeeper
+RANDOM_LAWS liveandletlive
+RANDOM_LAWS peacekeeper
 #RANDOM_LAWS reporter
 #RANDOM_LAWS hulkamania
 
@@ -399,11 +416,10 @@ LAW_WEIGHT corporate,12
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,3
 LAW_WEIGHT maintain,4
-LAW_WEIGHT drone,3
+LAW_WEIGHT drone,0
 LAW_WEIGHT liveandletlive,3
 LAW_WEIGHT peacekeeper,3
-LAW_WEIGHT reporter,4
-LAW_WEIGHT hulkamania,4
+LAW_WEIGHT reporter,0
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
@@ -418,7 +434,7 @@ LAW_WEIGHT buildawall,0
 ## SILICON LAW MAX AMOUNT ###
 ## The maximum number of laws a silicon can have
 ## Attempting to upload laws past this point will fail unless the AI is reset
-SILICON_MAX_LAW_AMOUNT 12
+SILICON_MAX_LAW_AMOUNT 10
 
 ##------------------------------------------------
 
@@ -440,7 +456,7 @@ ROUNDSTART_RACES human
 ROUNDSTART_RACES lizard
 #ROUNDSTART_RACES gorilla
 #ROUNDSTART_RACES fly
-#ROUNDSTART_RACES moth
+ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
@@ -484,10 +500,10 @@ OVERFLOW_CAP -1
 
 ## Starlight for exterior walls and breaches. Uncomment for starlight!
 ## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
-#STARLIGHT
+STARLIGHT
 
 ## Uncomment to bring back old grey suit assistants instead of the now default rainbow colored assistants.
-#GREY_ASSISTANTS
+GREY_ASSISTANTS
 
 ## Midround Antag (aka Mulligan antag) config options ###
 
@@ -507,10 +523,12 @@ REACTIONARY_EXPLOSIONS
 ## eg: If you give the number 20. The bomb cap will be 5,10,20.
 ## Can be any number above 4, some examples are provided below.
 
+## Yogs (3, 6, 12)
+BOMBCAP 12
 ## Small (3, 7, 14)
 #BOMBCAP 14
 ## Default (5, 10, 20) (recommended if you enable REACTIONARY_EXPLOSIONS above)
-BOMBCAP 20
+#BOMBCAP 20
 ## LagHell (7, 14, 28)
 #BOMBCAP 28
 
@@ -540,7 +558,7 @@ ARRIVALS_SHUTTLE_DOCK_WINDOW 55
 
 ## How many wirechewing rodents you want to spawn on exposed maintenane wires at the start of the round. You may wish to set this to 0 if you're testing powernets.
 
-MICE_ROUNDSTART 10
+MICE_ROUNDSTART 5
 
 ## If the percentage of players alive (doesn't count conversions) drops below this threshold the emergency shuttle will be forcefully called (provided it can be)
 #EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.2
@@ -553,7 +571,7 @@ MICE_ROUNDSTART 10
 ROUNDSTART_TRAITS
 
 ## Uncomment to disable human moods.
-#DISABLE_HUMAN_MOOD
+DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
@@ -565,7 +583,7 @@ ROUNDSTART_TRAITS
 #SHIFT_TIME_REALTIME
 
 ## A cap on how many monkeys may be created via monkey cubes
-MONKEYCAP 64
+#MONKEYCAP 64
 
 ## Enable the capitalist agenda on your server.
 ECONOMY
