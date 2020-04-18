@@ -67,7 +67,7 @@ ynot01	=	Moderator
  
 05rhardy	=	ModeratorOnProbation
  
-Identification	=	Maintainer
+Identification	=	Host
 Theos	=	Maintainer
 fluffe9911	=	Maintainer
 McDonald072	=	Maintainer
