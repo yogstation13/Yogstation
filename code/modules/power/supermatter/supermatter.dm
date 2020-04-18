@@ -256,11 +256,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			log_game("The supermatter crystal: [DisplayTimeText(i, TRUE)] remain before causality stabilization.") // yogs start - Logs SM chatter
 			investigate_log("The supermatter crystal: [DisplayTimeText(i, TRUE)] remain before causality stabilization.", INVESTIGATE_SUPERMATTER)
 			if(i == 300)	//Yogs- also adds audio when SM hits countdown
-				playsound(src, 'yogstation/sound/voice/sm/fcitadel_30sectosingularity.ogg', 100)
+				playsound(src, 'sound/voice/sm/fcitadel_30sectosingularity.ogg', 100)
 			if(i == 150)
-				playsound(src, 'yogstation/sound/voice/sm/fcitadel_15sectosingularity.ogg', 100)
+				playsound(src, 'sound/voice/sm/fcitadel_15sectosingularity.ogg', 100)
 			if(i == 100)
-				playsound(src, 'yogstation/sound/voice/sm/fcitadel_10sectosingularity.ogg', 100)	// yogs end
+				playsound(src, 'sound/voice/sm/fcitadel_10sectosingularity.ogg', 100)	// yogs end
 		else
 			speaking = "[i*0.1]..."
 			log_game("The supermatter crystal: [i*0.1]...") // yogs start - Logs SM chatter

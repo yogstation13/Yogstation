@@ -7,7 +7,7 @@
 	health = INFINITY
 	maxHealth = INFINITY
 	attacktext = "rips apart"
-	attack_sound = 'yogstation/sound/creatures/progenitor_attack.ogg'
+	attack_sound = 'sound/creatures/progenitor_attack.ogg'
 	friendly = "stares down"
 	speak_emote = list("roars")
 	armour_penetration = 100
@@ -41,7 +41,7 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/AttackingTarget()
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
-		playsound(target, 'yogstation/sound/magic/pass_smash_door.ogg', 100, FALSE)
+		playsound(target, 'sound/magic/pass_smash_door.ogg', 100, FALSE)
 		obj_damage = 60
 	. = ..()
 
@@ -69,10 +69,10 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
-	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 100, TRUE)
+	playsound(src, 'sound/creatures/progenitor_roar.ogg', 100, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
-			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 75, FALSE, falloff = 5)
+			M.playsound_local(src, 'sound/creatures/progenitor_distant.ogg', 75, FALSE, falloff = 5)
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF

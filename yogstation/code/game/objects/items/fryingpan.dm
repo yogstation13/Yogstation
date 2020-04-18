@@ -14,7 +14,7 @@
 	block_chance = 10
 	materials = list(MAT_METAL=75)
 	attack_verb = list("BONKED", "panned")
-	hitsound = 'yogstation/sound/weapons/pan.ogg'
+	hitsound = 'sound/weapons/pan.ogg'
 
 /obj/item/melee/fryingpan/get_clamped_volume()
 	return 100 // BONK!

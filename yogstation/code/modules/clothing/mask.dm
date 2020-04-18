@@ -18,17 +18,17 @@
 
 /obj/item/clothing/mask/yogs/cluwne/proc/play_laugh1()
 	if(world.time - delay > last_sound)
-		playsound (src, 'yogstation/sound/voice/cluwnelaugh1.ogg', 30, 1)
+		playsound (src, 'sound/voice/cluwnelaugh1.ogg', 30, 1)
 		last_sound = world.time
 
 /obj/item/clothing/mask/yogs/cluwne/proc/play_laugh2()
 	if(world.time - delay > last_sound)
-		playsound (src, 'yogstation/sound/voice/cluwnelaugh2.ogg', 30, 1)
+		playsound (src, 'sound/voice/cluwnelaugh2.ogg', 30, 1)
 		last_sound = world.time
 
 /obj/item/clothing/mask/yogs/cluwne/proc/play_laugh3()
 	if(world.time - delay > last_sound)
-		playsound (src, 'yogstation/sound/voice/cluwnelaugh3.ogg', 30, 1)
+		playsound (src, 'sound/voice/cluwnelaugh3.ogg', 30, 1)
 		last_sound = world.time
 
 /obj/item/clothing/mask/yogs/cluwne/equipped(mob/user, slot) //when you put it on
@@ -61,7 +61,7 @@
 	name = "Happy Cluwne Mask"
 	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be %99 curse free and %99.9 not haunted. "
 	flags_1 = MASKINTERNALS
-	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
+	alternate_screams = list('sound/voice/cluwnelaugh1.ogg','sound/voice/cluwnelaugh2.ogg','sound/voice/cluwnelaugh3.ogg')
 	item_flags = ABSTRACT
 	var/can_cluwne = FALSE
 	var/is_cursed = FALSE //i don't care that this is *slightly* memory wasteful, it's just one more byte and it's not like some madman is going to spawn thousands of these

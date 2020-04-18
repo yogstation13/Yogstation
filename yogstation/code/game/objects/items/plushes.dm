@@ -81,7 +81,7 @@
 	icon_state = "flowerbunch"
 
 /obj/item/toy/plush/goatplushie
-	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
+	squeak_override = list('sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/realgoat
 	name = "goat plushie"
@@ -91,7 +91,7 @@
 	name = "goat plushie"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same, or atleast it would if it wasnt a normal plushie."
 	icon_state = "realgoat"
-	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
+	squeak_override = list('sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat
 	name = "King Goat Plushie"

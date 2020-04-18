@@ -587,7 +587,7 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
 	sharpness = IS_SHARP
-	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
+	hitsound = 'sound/weapons/rs_slash.ogg'
 	attack_verb = list("slashed","pk'd","atk'd")
 
 //Potion of Flight

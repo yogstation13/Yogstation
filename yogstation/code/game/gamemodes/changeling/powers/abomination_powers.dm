@@ -5,7 +5,7 @@
 	range = 7
 	charge_max = 100
 	clothes_req = 0
-	sound = 'yogstation/sound/effects/creepyshriek.ogg'
+	sound = 'sound/effects/creepyshriek.ogg'
 
 /obj/effect/proc_holder/spell/aoe_turf/abomination/screech/cast(list/targets,mob/user = usr)
 	if(!istype(user, /mob/living/simple_animal/hostile/abomination))

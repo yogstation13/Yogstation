@@ -42,7 +42,7 @@
 		current_tool.on_unset(src)
 	current_tool = mode
 	current_tool.on_set(src)
-	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
+	playsound(loc, 'sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
 	update_icon()
 	user.regenerate_icons()
 

@@ -93,7 +93,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		On_Stage()
 
 	if(stage == STAGE_ATTACK)
-		playsound(src, 'yogstation/sound/misc/cluwne_breathing.ogg', 75, 1)
+		playsound(src, 'sound/misc/cluwne_breathing.ogg', 75, 1)
 
 	if(eating)
 		return
@@ -220,10 +220,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				H.blur_eyes(1)
 
 			if(prob(5))
-				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2_reversed.ogg', 1)
+				H.playsound_local(src,'sound/voice/cluwnelaugh2_reversed.ogg', 1)
 
 			if(prob(5))
-				H.playsound_local(src,'yogstation/sound/misc/bikehorn_creepy.ogg', 5)
+				H.playsound_local(src,'sound/misc/bikehorn_creepy.ogg', 5)
 
 			if(prob(3))
 				var/obj/item/I = locate() in orange(H, 8)
@@ -238,13 +238,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				to_chat(H, "<span class='warning'>The floor shifts underneath you!</span>")
 
 			if(prob(5))
-				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2.ogg', 2)
+				H.playsound_local(src,'sound/voice/cluwnelaugh2.ogg', 2)
 
 			if(prob(5))
-				H.playsound_local(src,'yogstation/sound/voice/cluwnelaugh2_reversed.ogg', 2)
+				H.playsound_local(src,'sound/voice/cluwnelaugh2_reversed.ogg', 2)
 
 			if(prob(5))
-				H.playsound_local(src,'yogstation/sound/misc/bikehorn_creepy.ogg', 10)
+				H.playsound_local(src,'sound/misc/bikehorn_creepy.ogg', 10)
 				to_chat(H, "<i>knoh</i>")
 
 			if(prob(5))
@@ -281,13 +281,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				playsound(src,pick('sound/spookoween/scary_horn.ogg', 'sound/spookoween/scary_horn2.ogg', 'sound/spookoween/scary_horn3.ogg'), 30, 1)
 
 			if(prob(3))
-				playsound(src,'yogstation/sound/voice/cluwnelaugh1.ogg', 30, 1)
+				playsound(src,'sound/voice/cluwnelaugh1.ogg', 30, 1)
 
 			if(prob(3))
-				playsound(src,'yogstation/sound/voice/cluwnelaugh2_reversed.ogg', 30, 1)
+				playsound(src,'sound/voice/cluwnelaugh2_reversed.ogg', 30, 1)
 
 			if(prob(5))
-				playsound(src,'yogstation/sound/misc/bikehorn_creepy.ogg', 30, 1)
+				playsound(src,'sound/misc/bikehorn_creepy.ogg', 30, 1)
 
 			if(prob(4))
 				for(var/obj/item/I in orange(H, 8))
@@ -355,12 +355,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	for(var/I in 1 to get_dist(src, H))
 		if(do_after(src, 5, target = H))
 			step_towards(H, src)
-			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
+			playsound(H, pick('sound/effects/bodyscrape-01.ogg', 'sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			if(prob(40))
 				H.emote("scream")
 			else if(prob(25))
 				H.say(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
-				playsound(src, pick('yogstation/sound/voice/cluwnelaugh1.ogg', 'yogstation/sound/voice/cluwnelaugh2.ogg', 'yogstation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
+				playsound(src, pick('sound/voice/cluwnelaugh1.ogg', 'sound/voice/cluwnelaugh2.ogg', 'sound/voice/cluwnelaugh3.ogg'), 50, 1)
 
 	if(get_dist(src,H) <= 1)
 		visible_message("<span class='danger'>[src] begins dragging [H] under the floor!</span>")
@@ -385,7 +385,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	if(!istype(H) || !H.client)
 		Acquire_Victim()
 		return
-	playsound(H, 'yogstation/sound/effects/cluwne_feast.ogg', 100, 0, -4)
+	playsound(H, 'sound/effects/cluwne_feast.ogg', 100, 0, -4)
 	var/old_color = H.client.color
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
@@ -412,7 +412,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	eating = FALSE
 	switch_stage = switch_stage * 0.75 //he gets faster after each feast
 	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(get_turf(M), 'yogstation/sound/misc/honk_echo_distant.ogg', 50, 1, pressure_affected = FALSE)
+		M.playsound_local(get_turf(M), 'sound/misc/honk_echo_distant.ogg', 50, 1, pressure_affected = FALSE)
 
 	interest = 0
 	stage = STAGE_HAUNT
@@ -428,7 +428,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /obj/effect/temp_visual/fcluwne_manifest/Initialize()
 	. = ..()
-	playsound(src, 'yogstation/sound/misc/floor_cluwne_emerge.ogg', 100, 1)
+	playsound(src, 'sound/misc/floor_cluwne_emerge.ogg', 100, 1)
 	flick("fcluwne_manifest",src)
 
 /obj/effect/dummy/floorcluwne_orbit

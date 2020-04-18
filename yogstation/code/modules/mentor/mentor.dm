@@ -97,9 +97,9 @@ GLOBAL_PROTECT(mentor_href_token)
 			new /datum/mentors(ckey)
 
 		qdel(query_load_mentors)
-	
+
 /proc/send_mentor_sound(client/C)
-	var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+	var/sound/pingsound = sound('sound/misc/bikehorn_alert.ogg')
 	pingsound.volume = 90
 	pingsound.pan = 80
 	SEND_SOUND(C,pingsound)

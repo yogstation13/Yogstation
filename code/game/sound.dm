@@ -172,5 +172,5 @@
 			if("goose")
 				soundin = pick('sound/creatures/goose1.ogg', 'sound/creatures/goose2.ogg', 'sound/creatures/goose3.ogg', 'sound/creatures/goose4.ogg')
 			if ("crawling_shadows_walk")
-				soundin = pick('yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_01.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_02.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_03.ogg') //WELCOME TO PATH HELL
+				soundin = pick('sound/creatures/crawlingshadows/crawling_shadows_walk_01.ogg', 'sound/creatures/crawlingshadows/crawling_shadows_walk_02.ogg', 'sound/creatures/crawlingshadows/crawling_shadows_walk_03.ogg') //WELCOME TO PATH HELL
 	return soundin

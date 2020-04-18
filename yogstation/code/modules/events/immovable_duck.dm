@@ -36,7 +36,7 @@
 
 /obj/effect/immovablerod/duck/Bump(atom/clong)
 	if(prob(90))
-		playsound(src, 'yogstation/sound/misc/quack.ogg', 50, 1)
+		playsound(src, 'sound/misc/quack.ogg', 50, 1)
 		if(prob(50))
 			audible_message("<span class='danger'>You hear a QUACK!</span>")
 

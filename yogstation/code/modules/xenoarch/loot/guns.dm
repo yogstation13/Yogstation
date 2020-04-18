@@ -15,7 +15,7 @@
 
 /obj/item/gun/energy/polarstar/New(loc, ...)
 	. = ..()
-	playsound(src, 'yogstation/sound/weapons/spur_spawn.ogg')
+	playsound(src, 'sound/weapons/spur_spawn.ogg')
 
 /obj/item/gun/energy/polarstar/update_icon(force_update)
 	var/maxcharge = cell.maxcharge
@@ -24,21 +24,21 @@
 	var/oldsound = chargesound
 	var/obj/item/ammo_casing/energy/AC = ammo_type[select] //shouldnt be anything other than the normal but eh,adminbus resistance doesnt hurt
 	if(charge >= ((maxcharge/3) * 2)) // 2 third charged
-		chargesound = 'yogstation/sound/weapons/spur_chargehigh.ogg'
+		chargesound = 'sound/weapons/spur_chargehigh.ogg'
 		recoil = 1
-		fire_sound = 'yogstation/sound/weapons/spur_high.ogg'
+		fire_sound = 'sound/weapons/spur_high.ogg'
 	else if(charge >= ((maxcharge/3) * 1)) // 1 third charged
-		chargesound = 'yogstation/sound/weapons/spur_chargemed.ogg'
+		chargesound = 'sound/weapons/spur_chargemed.ogg'
 		recoil = 0
-		fire_sound = 'yogstation/sound/weapons/spur_medium.ogg'
+		fire_sound = 'sound/weapons/spur_medium.ogg'
 	else if(charge >= AC.e_cost) // less than that
-		chargesound = 'yogstation/sound/weapons/spur_chargehigh.ogg'
+		chargesound = 'sound/weapons/spur_chargehigh.ogg'
 		recoil = 0
-		fire_sound = 'yogstation/sound/weapons/spur_low.ogg'
+		fire_sound = 'sound/weapons/spur_low.ogg'
 	else
 		chargesound = null
 		recoil = 0
-		fire_sound = 'yogstation/sound/weapons/spur_low.ogg'
+		fire_sound = 'sound/weapons/spur_low.ogg'
 
 	if(chargesound != oldsound)
 		playsound(src, chargesound, 100)
@@ -124,10 +124,10 @@
 
 	if(ismob(target))
 		impact_icon = "spur_hitmob"
-		impact_sound = 'yogstation/sound/weapons/spur_hitmob.ogg'
+		impact_sound = 'sound/weapons/spur_hitmob.ogg'
 	else
 		impact_icon = "spur_hitwall"
-		impact_sound = 'yogstation/sound/weapons/spur_hitwall.ogg'
+		impact_sound = 'sound/weapons/spur_hitwall.ogg'
 
 	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',target,impact_icon)
 	target.overlays += impact
