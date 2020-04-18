@@ -60,6 +60,8 @@
 					new /obj/effect/hotspot(F)
 	if(iswallturf(T))
 		var/turf/closed/wall/W = T
+		if(istype(T, /turf/closed/wall/r_wall))
+			return
 		if(prob(reac_volume))
 			W.ScrapeAway()
 
