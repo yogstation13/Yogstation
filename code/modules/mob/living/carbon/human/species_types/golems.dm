@@ -655,6 +655,7 @@
 	damage_overlay_type = "synth"
 	prefix = "Clockwork"
 	special_names = list("Remnant", "Relic", "Scrap", "Vestige") //RIP Ratvar
+	species_language_holder = /datum/language_holder/clockwork
 	var/has_corpse
 
 /datum/species/golem/clockwork/on_species_gain(mob/living/carbon/human/H)
@@ -1049,7 +1050,7 @@
 	name = "Bone Chill"
 	desc = "Rattle your bones and strike fear into your enemies!"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "bonechill"
 	var/cooldown = 600
 	var/last_use

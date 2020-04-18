@@ -141,6 +141,7 @@
 #define TRAIT_SHELTERED			"sheltered"
 #define TRAIT_ONEWAYROAD		"one-way road"
 #define TRAIT_RANDOM_ACCENT		"random_accent"
+#define TRAIT_MEDICALIGNORE     "medical_ignore"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it

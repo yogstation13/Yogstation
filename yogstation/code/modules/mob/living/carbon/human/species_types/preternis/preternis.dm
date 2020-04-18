@@ -10,7 +10,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_RADIMMUNE)
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
@@ -92,13 +92,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.reagents.has_reagent("oil"))
+	if(H.reagents.has_reagent(/datum/reagent/oil))
 		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
-	if(H.reagents.has_reagent("welding_fuel"))
+	if(H.reagents.has_reagent(/datum/reagent/fuel))
 		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
-	if(H.reagents.has_reagent("teslium",10)) //10 u otherwise it wont update and they will remain quikk
+	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 		if(H.health < 50 && H.health > 0)
 			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)

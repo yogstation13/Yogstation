@@ -77,6 +77,13 @@
 					update_inv_shoes()
 				//End bloody footprints
 				S.step_action()
+	if(wear_neck)
+		if(mobility_flags & MOBILITY_STAND)
+			if(loc == NewLoc)
+				if(!has_gravity(loc))
+					return
+				var/obj/item/clothing/neck/N = wear_neck
+				N.step_action()
 
 /mob/living/carbon/human/Process_Spacemove(movement_dir = 0) //Temporary laziness thing. Will change to handles by species reee.
 	if(dna.species.space_move(src))
