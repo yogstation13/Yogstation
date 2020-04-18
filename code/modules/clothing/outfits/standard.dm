@@ -210,13 +210,18 @@
 	glasses = /obj/item/clothing/glasses/eyepatch
 	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
 	head = /obj/item/clothing/head/centhat
-	belt = /obj/item/gun/ballistic/revolver/mateba
+	belt = /obj/item/storage/belt/security/full
 	r_pocket = /obj/item/lighter
 	l_pocket = /obj/item/ammo_box/a357
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id
+	suit_store = /obj/item/gun/ballistic/revolver/mateba
+	backpack_contents = list(/obj/item/storage/box/hug/survival=1)
 
 /datum/outfit/centcom_commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
+	L.implant(H, null, 1) // mindshields the Commander
+	
 	if(visualsOnly)
 		return
 
