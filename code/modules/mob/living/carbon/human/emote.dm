@@ -36,7 +36,7 @@
 	key_third_person = "hisses"
 	message = "hisses."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/voice/lizard/alien_hiss2.ogg'
+	sound = 'sound/voice/lizard/hiss.ogg'
 
 /datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	if(!ishuman(user))
