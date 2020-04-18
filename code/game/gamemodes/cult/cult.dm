@@ -2,6 +2,8 @@
 
 /datum/game_mode
 	var/list/datum/mind/cult = list()
+	var/list/bloodstone_list = list()
+	var/anchor_bloodstone
 
 /proc/iscultist(mob/living/M)
 	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/cult)

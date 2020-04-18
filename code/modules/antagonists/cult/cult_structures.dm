@@ -262,6 +262,240 @@
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You summon the [choice] from the archives!</span>")
 
+
+/obj/structure/destructible/cult/pillar
+	name = "obsidian pillar"
+	icon_state = "pillar-enter"
+	icon = 'icons/obj/cult_64x64.dmi'
+	pixel_x = -16
+	obj_integrity = 200
+	max_integrity = 200
+	break_sound = 'sound/effects/meteorimpact.ogg'
+	layer = MASSIVE_OBJ_LAYER
+	var/alt = 0
+
+/obj/structure/destructible/cult/pillar/New()
+	..()
+	var/turf/T = loc
+	if (!T)
+		qdel(src)
+		return
+	for (var/obj/O in loc)
+		if(O == src)
+			continue
+		O.ex_act(2)
+		if(!QDELETED(O) && (istype(O, /obj/structure) || istype(O, /obj/machinery)))
+			qdel(O)
+	T.narsie_act()
+
+/obj/structure/destructible/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+	..()
+	update_icon()
+
+/obj/structure/destructible/cult/pillar/Destroy()
+	new /obj/effect/decal/cleanable/ash(loc)
+	..()
+
+/obj/structure/destructible/cult/pillar/alt
+	icon_state = "pillaralt-enter"
+	alt = 1
+
+/obj/structure/destructible/cult/pillar/update_icon()
+	icon_state = "pillar[alt ? "alt": ""]2"
+	overlays.len = 0
+	if (obj_integrity < max_integrity/3)
+		icon_state = "pillar[alt ? "alt": ""]0"
+	else if (obj_integrity < 2*max_integrity/3)
+		icon_state = "pillar[alt ? "alt": ""]1"
+
+/obj/structure/destructible/cult/pillar/conceal()
+	return
+
+/obj/structure/destructible/cult/pillar/ex_act(var/severity)
+	switch(severity)
+		if (1)
+			take_damage(200)
+		if (2)
+			take_damage(100)
+		if (3)
+			take_damage(20)
+
+/obj/structure/destructible/cult/bloodstone
+	name = "bloodstone"
+	desc = "A large, red stone filling with... something. You get a headache even being near it."
+	icon_state = "bloodstone-enter1"
+	icon = 'icons/obj/cult_64x64.dmi'
+	pixel_x = -16
+	obj_integrity = 600
+	max_integrity = 600
+	break_sound = 'sound/effects/glassbr2.ogg'
+	layer = MASSIVE_OBJ_LAYER
+	light_color = "#FF0000"
+	var/current_fullness = 0
+	var/anchor_time2kill = 300 //5 minutes to complete minus one per surviving bloodstone
+	var/anchor = FALSE //are we the bloodstone used to summon nar-sie? used in the final part of the summoning
+
+/obj/structure/destructible/cult/bloodstone/New()
+	..()
+	SSticker.mode.bloodstone_list.Add(src)
+	for (var/obj/O in loc)
+		if (O != src)
+			O.ex_act(2)
+	safe_space()
+	set_light(3)
+	for(var/mob/M in GLOB.player_list)
+		if (M.z == z && M.client)
+			if (get_dist(M,src)<=20)
+				M.playsound_local(src, get_sfx("explosion"), 50, 1)
+				shake_camera(M, 4, 1)
+			else
+				M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
+				shake_camera(M, 1, 1)
+
+	spawn(10)
+		var/list/pillars = list()
+		icon_state = "bloodstone-enter2"
+		for(var/mob/M in GLOB.player_list)
+			if (M.z == z && M.client)
+				if (get_dist(M,src)<=20)
+					M.playsound_local(src, get_sfx("explosion"), 50, 1)
+					shake_camera(M, 4, 1)
+				else
+					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
+					shake_camera(M, 1, 1)
+		var/turf/T1 = locate(x-2,y-2,z)
+		pillars += new /obj/structure/destructible/cult/pillar(T1)
+		var/turf/T2 = locate(x+2,y-2,z)
+		pillars += new /obj/structure/destructible/cult/pillar/alt(T2)
+		var/turf/T3 = locate(x-2,y+2,z)
+		pillars += new /obj/structure/destructible/cult/pillar(T3)
+		var/turf/T4 = locate(x+2,y+2,z)
+		pillars += new /obj/structure/destructible/cult/pillar/alt(T4)
+		sleep(10)
+		icon_state = "bloodstone-enter3"
+		for(var/mob/M in GLOB.player_list)
+			if (M.z == z && M.client)
+				if (get_dist(M,src)<=20)
+					M.playsound_local(src, get_sfx("explosion"), 50, 1)
+					shake_camera(M, 4, 1)
+				else
+					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
+					shake_camera(M, 1, 1)
+		for (var/obj/structure/destructible/cult/pillar/P in pillars)
+			P.update_icon()
+	addtimer(CALLBACK(src, .proc/increase_power), 300) //30 seconds per stage
+
+/obj/structure/destructible/cult/bloodstone/proc/increase_power()
+	if(current_fullness == 9)
+		begin_fuckdeath()
+	else
+		current_fullness++
+		addtimer(CALLBACK(src, .proc/increase_power), 300)
+	update_icon()
+
+/obj/structure/destructible/cult/bloodstone/proc/begin_fuckdeath()
+	if(SSticker.mode.anchor_bloodstone)
+		return
+	var/obj/structure/destructible/cult/bloodstone/anchor_target = src //which bloodstone is the current cantidate for anchorship
+	var/anchor_power = 0 //anchor will be faster if there are more stones
+	for(var/obj/structure/destructible/cult/bloodstone/B in SSticker.mode.bloodstone_list)
+		anchor_power++
+		if(B.obj_integrity > anchor_target.obj_integrity)
+			anchor_target = B
+	SSticker.mode.anchor_bloodstone = anchor_target
+	anchor_target.anchor = TRUE
+	anchor_target.max_integrity = 1200
+	anchor_target.obj_integrity = 1200
+	anchor_time2kill -= anchor_power * 60 //one minute of bloodfuckery shaved off per surviving bloodstone.
+	anchor_target.set_animate()
+
+/obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+	..()
+	update_icon()
+
+/obj/structure/destructible/cult/bloodstone/ex_act(var/severity)
+	switch(severity)
+		if (1)
+			take_damage(200)
+		if (2)
+			take_damage(100)
+		if (3)
+			take_damage(20)
+
+/obj/structure/destructible/cult/bloodstone/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	SSticker.mode.bloodstone_list.Remove(src)
+	new /obj/effect/decal/cleanable/ash(loc)
+	new /obj/item/ectoplasm(loc)
+	for(var/obj/structure/destructible/cult/bloodstone/B in SSticker.mode.bloodstone_list)
+		if (B != src && !B.loc)
+			message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
+			qdel(B)
+
+	if (SSticker.mode.bloodstone_list.len <= 0 || anchor)
+		if(anchor)
+			SSticker.mode.anchor_bloodstone -= src
+	for(var/mob/M in view(src, 7))
+		M.playsound_local('sound/creatures/legion_death.ogg', 75, 0)
+	..()
+
+/obj/structure/destructible/cult/bloodstone/proc/safe_space()
+	for(var/turf/T in range(5,src))
+		var/dist = get_dist(src, T)
+		if (dist <= 2)
+			T.ChangeTurf(/turf/open/floor/engine/cult)
+			for (var/obj/structure/S in T)
+				if (!istype(S,/obj/structure/destructible/cult))
+					S.ex_act(1)
+			for (var/obj/machinery/M in T)
+				qdel(M)
+		else if (dist <= 4)
+			if (istype(T,/turf/open/space))
+				T.ChangeTurf(/turf/open/floor/engine/cult)
+			else
+				T.narsie_act(TRUE)
+		else if (dist <= 5)
+			if (istype(T,/turf/open/space))
+				T.ChangeTurf(/turf/closed/wall/mineral/cult)
+			else
+				T.narsie_act(TRUE)
+
+/obj/structure/destructible/cult/bloodstone/update_icon()
+	icon_state = "bloodstone-[current_fullness]"
+	overlays.len = 0
+	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
+	I_base.appearance_flags |= RESET_COLOR//we don't want the stone to pulse
+	overlays += I_base
+	if (obj_integrity < max_integrity/3)
+		overlays.Add("bloodstone_damage2")
+	else if (obj_integrity < 2*max_integrity/3)
+		overlays.Add("bloodstone_damage1")
+
+/obj/structure/destructible/cult/bloodstone/proc/set_animate()
+	animate(src, color = list(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0), time = 10, loop = -1)
+	animate(color = list(1.125,0.06,0,0,0,1.125,0.06,0,0.06,0,1.125,0,0,0,0,1,0,0,0,0), time = 2)
+	animate(color = list(1.25,0.12,0,0,0,1.25,0.12,0,0.12,0,1.25,0,0,0,0,1,0,0,0,0), time = 2)
+	animate(color = list(1.375,0.19,0,0,0,1.375,0.19,0,0.19,0,1.375,0,0,0,0,1,0,0,0,0), time = 1.5)
+	animate(color = list(1.5,0.27,0,0,0,1.5,0.27,0,0.27,0,1.5,0,0,0,0,1,0,0,0,0), time = 1.5)
+	animate(color = list(1.625,0.35,0.06,0,0.06,1.625,0.35,0,0.35,0.06,1.625,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.75,0.45,0.12,0,0.12,1.75,0.45,0,0.45,0.12,1.75,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.875,0.56,0.19,0,0.19,1.875,0.56,0,0.56,0.19,1.875,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(2,0.67,0.27,0,0.27,2,0.67,0,0.67,0.27,2,0,0,0,0,1,0,0,0,0), time = 5)
+	animate(color = list(1.875,0.56,0.19,0,0.19,1.875,0.56,0,0.56,0.19,1.875,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.75,0.45,0.12,0,0.12,1.75,0.45,0,0.45,0.12,1.75,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.625,0.35,0.06,0,0.06,1.625,0.35,0,0.35,0.06,1.625,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.5,0.27,0,0,0,1.5,0.27,0,0.27,0,1.5,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.375,0.19,0,0,0,1.375,0.19,0,0.19,0,1.375,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.25,0.12,0,0,0,1.25,0.12,0,0.12,0,1.25,0,0,0,0,1,0,0,0,0), time = 1)
+	animate(color = list(1.125,0.06,0,0,0,1.125,0.06,0,0.06,0,1.125,0,0,0,0,1,0,0,0,0), time = 1)
+	update_icon()
+
+/obj/structure/destructible/cult/bloodstone/conceal() //lol
+	return
+
+/obj/structure/destructible/cult/bloodstone/reveal()
+	return
+
 /obj/effect/gateway
 	name = "gateway"
 	desc = "You're pretty sure that abyss is staring back."
