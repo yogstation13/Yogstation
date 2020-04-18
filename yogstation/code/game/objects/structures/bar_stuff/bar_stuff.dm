@@ -16,12 +16,12 @@
 
 turf/open/floor/plasteel/blackwhite
 	name = "ameritard floor"
-	icon = 'yogstation/icons/turf/floors.dmi'
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "blackwhite"
 
 turf/open/floor/plasteel/ameridiner
 	name = "diner floor"
-	icon = 'yogstation/icons/turf/floors.dmi'
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "ameridiner_kitchen"
 
 /obj/structure/chair/americandiner/booth
