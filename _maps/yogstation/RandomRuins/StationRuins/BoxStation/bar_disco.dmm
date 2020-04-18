@@ -350,9 +350,13 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "aU" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
+/obj/structure/table,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -527,12 +531,10 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "br" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+/obj/machinery/vending/boozeomat,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -635,7 +637,9 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bD" = (
-/obj/machinery/vending/boozeomat,
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks,
+/obj/machinery/door/window/westright,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bE" = (
@@ -720,17 +724,6 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bR" = (
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks,
-/obj/machinery/door/window/eastleft{
-	dir = 8;
-	icon_state = "right";
-	name = "Soda Dispenser";
-	req_access_txt = "0"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bS" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -742,8 +735,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -805,8 +797,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -859,8 +850,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -1166,7 +1156,7 @@ ai
 ai
 Nh
 aG
-bR
+bD
 cu
 be
 cu
@@ -1198,7 +1188,7 @@ aJ
 ag
 bq
 aS
-aU
+cv
 bV
 cv
 cv
@@ -1213,8 +1203,8 @@ av
 aK
 aT
 ai
+aU
 br
-bD
 cv
 ck
 cv
