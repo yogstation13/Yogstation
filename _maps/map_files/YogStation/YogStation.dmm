@@ -41512,12 +41512,6 @@
 	},
 /turf/open/space/basic,
 /area/tcommsat/entrance)
-"bGR" = (
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bGS" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -46571,6 +46565,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
+"bXD" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "bXF" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
@@ -51180,6 +51179,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"dDo" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "dEb" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -57673,13 +57680,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"teE" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "tfA" = (
 /turf/template_noop,
 /area/space)
@@ -97978,7 +97978,7 @@ bvj
 nOK
 bqW
 bCT
-bGR
+bXD
 bIj
 ihS
 btU
@@ -98489,7 +98489,7 @@ bxT
 bxQ
 bAt
 bvj
-teE
+dDo
 bqW
 bDR
 bDR
