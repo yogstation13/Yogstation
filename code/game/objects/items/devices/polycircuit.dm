@@ -13,7 +13,7 @@
 
 /obj/item/stack/circuit_stack/attack_hand(mob/user)
 	var/mob/living/carbon/human/H = user
-	if(!user.get_inactive_held_item() == src)
+	if(user.get_inactive_held_item() != src)
 		return ..()
 	else
 		if(zero_amount())
