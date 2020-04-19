@@ -34,7 +34,7 @@
 				circuit_type = /obj/item/electronics/apc
 		to_chat(user, "<span class='notice'>You spot your circuit, and carefully attempt to remove it from [src], hold still!</span>")
 		if(do_after(user, 30, target = user))
-			if(!src || QDELETED(src))//Sanity Check.
+			ifQDELETED(src))//Sanity Check.
 				return
 			var/returned_circuit = new circuit_type(src)
 			user.put_in_hands(returned_circuit)
