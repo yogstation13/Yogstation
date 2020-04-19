@@ -1714,7 +1714,6 @@
 	else
 		open()
 
-
 #undef AIRLOCK_CLOSED
 #undef AIRLOCK_CLOSING
 #undef AIRLOCK_OPEN
