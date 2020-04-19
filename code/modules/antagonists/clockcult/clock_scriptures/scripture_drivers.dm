@@ -82,7 +82,7 @@
 	ranged_message = "<span class='brass'><i>You charge the clockwork slab with divine energy.</i>\n\
 	<b>Left-click a target within melee range to stun!\n\
 	Click your slab to cancel.</b></span>"
-	timeout_time = 150
+	timeout_time = 50
 	chant_slowdown = 1
 	no_mobility = FALSE
 	important = TRUE
