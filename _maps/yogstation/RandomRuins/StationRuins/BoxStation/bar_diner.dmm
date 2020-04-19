@@ -431,12 +431,11 @@
 	},
 /area/crew_quarters/bar)
 "bc" = (
-/obj/structure/chair/americandiner/booth{
-	dir = 1;
-	icon_state = "ameribooth";
-	tag = ""
-	},
 /obj/effect/turf_decal/ameritard,
+/obj/structure/chair/americandiner/booth/end_left{
+	icon_state = "ameribooth-end1";
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bd" = (
@@ -545,12 +544,14 @@
 	},
 /area/crew_quarters/kitchen)
 "bq" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -744,8 +745,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -816,6 +816,14 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"bS" = (
+/obj/effect/turf_decal/ameritard,
+/obj/structure/chair/americandiner/booth/end_right{
+	icon_state = "ameribooth-end2";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "bT" = (
 /obj/structure/table/american,
 /obj/item/reagent_containers/food/snacks/burger/superbite,
@@ -836,6 +844,33 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"bV" = (
+/obj/effect/turf_decal/ameritard,
+/obj/structure/chair/americandiner/booth/single{
+	icon_state = "ameribooth_single";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"bW" = (
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/camera{
+	c_tag = "Bar";
+	dir = 8;
+	network = list("SS13")
+	},
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
 "bX" = (
 /obj/structure/table/american/end,
 /obj/structure/window/reinforced,
@@ -877,8 +912,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -911,24 +945,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"ci" = (
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8;
-	network = list("SS13")
-	},
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
 "cj" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel{
@@ -1206,7 +1222,7 @@ az
 aB
 aO
 aO
-bc
+bS
 az
 az
 ca
@@ -1269,13 +1285,13 @@ ab
 am
 aD
 aO
-bc
+bS
 aD
 aO
-bc
+bS
 aD
 aO
-bc
+bS
 az
 az
 cp
@@ -1317,7 +1333,7 @@ ab
 as
 aA
 aO
-bc
+bV
 az
 bu
 bA
@@ -1385,7 +1401,7 @@ ab
 bq
 by
 cv
-ci
+bW
 cv
 bZ
 az
