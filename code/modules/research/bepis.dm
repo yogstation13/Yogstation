@@ -86,8 +86,7 @@
 	inaccuracy_percentage = (1.5 - S)
 
 /obj/machinery/rnd/bepis/proc/depositcash()
-	var/deposit_value = 0
-	deposit_value = banking_amount
+	var/deposit_value = banking_amount
 	if(deposit_value == 0)
 		update_icon()
 		say("Attempting to deposit 0 credits. Aborting.")
