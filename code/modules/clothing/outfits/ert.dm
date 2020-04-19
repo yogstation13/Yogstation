@@ -256,7 +256,7 @@
 	belt = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
 	l_pocket = /obj/item/reagent_containers/hypospray/combat
-	r_pcoket = /obj/item/reagent_containers/hypospray/combat/heresypurge
+	r_pocket = /obj/item/reagent_containers/hypospray/combat/heresypurge
 	suit_store = /obj/item/gun/medbeam
 
 	backpack_contents = list(
