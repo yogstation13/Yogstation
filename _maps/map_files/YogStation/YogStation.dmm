@@ -39479,14 +39479,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"bCG" = (
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/item/gun/syringe,
-/obj/item/reagent_containers/dropper,
-/obj/item/soap/nanotrasen,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bCH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -39518,14 +39510,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bCL" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/machinery/camera{
-	c_tag = "Medbay Storage";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bCN" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
@@ -58891,6 +58875,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/maintenance/fore)
+"vVV" = (
+/obj/structure/table,
+/obj/item/folder/white,
+/obj/item/reagent_containers/dropper,
+/obj/item/soap/nanotrasen,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "vVZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -59191,6 +59182,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wyT" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/machinery/camera{
+	c_tag = "Medbay Storage";
+	network = list("ss13","medbay")
+	},
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "wzt" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -96947,7 +96947,7 @@ bxN
 bze
 bzg
 bvh
-bCG
+vVV
 bBd
 brT
 bDD
@@ -98746,7 +98746,7 @@ bxS
 bzh
 bzF
 bvj
-bCL
+wyT
 bqW
 bDR
 bDR
