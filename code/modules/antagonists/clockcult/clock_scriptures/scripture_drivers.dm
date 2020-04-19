@@ -71,7 +71,7 @@
 	desc = "Charges your slab with divine energy, allowing you to overwhelm a target with Ratvar's light."
 	invocations = list("Divinity, show them your light!")
 	whispered = TRUE
-	channel_time = 30
+	channel_time = 50
 	power_cost = 150
 	usage_tip = "The light can be used from up to two tiles away. Damage taken will GREATLY REDUCE the stun's duration."
 	tier = SCRIPTURE_DRIVER
