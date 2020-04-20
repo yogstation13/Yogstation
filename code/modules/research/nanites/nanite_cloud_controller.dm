@@ -25,6 +25,18 @@
 	else
 		..()
 
+/obj/machinery/computer/nanite_cloud_controller/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
+
+/obj/machinery/computer/nanite_cloud_controller/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
+
 /obj/machinery/computer/nanite_cloud_controller/proc/eject(mob/living/user)
 	if(!disk)
 		return
