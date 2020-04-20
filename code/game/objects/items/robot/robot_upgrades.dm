@@ -622,7 +622,7 @@
 
 /obj/item/borg/upgrade/plasmacutter
 	name = "mining cyborg plasma cutter"
-	desc = "plasma cutter module for the mining cybord."
+	desc = "A plasma cutter module for the mining cyborg."
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "adv_plasmacutter"
 	require_module = TRUE
