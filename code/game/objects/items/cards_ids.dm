@@ -586,6 +586,3 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/sec
 	department_ID = ACCOUNT_SEC
 	department_name = ACCOUNT_SEC_NAME
-
-//CentCom
-
