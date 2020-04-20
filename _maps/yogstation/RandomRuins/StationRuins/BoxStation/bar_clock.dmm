@@ -15,6 +15,12 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"ac" = (
+/obj/item/instrument/trumpet,
+/obj/item/instrument/trombone,
+/obj/structure/table/bronze,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/theatre)
 "ad" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -319,8 +325,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -556,13 +561,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/bronze,
 /area/crew_quarters/theatre)
-"wg" = (
-/obj/item/instrument/trumpet,
-/obj/item/instrument/trombone,
-/obj/structure/window/reinforced/bronze,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/theatre)
 "wz" = (
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/bronze/reebe,
@@ -774,8 +772,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
@@ -823,10 +820,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"HJ" = (
-/obj/structure/window/reinforced/bronze,
-/turf/template_noop,
-/area/template_noop)
 "HX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/bronze,
@@ -1189,9 +1182,9 @@ Ws
 "}
 (2,1,1) = {"
 aa
-HJ
+aa
 lG
-wg
+ac
 Rk
 Nc
 xr

@@ -1372,8 +1372,28 @@
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage
 
+/obj/item/hierophant_antenna
+	name = "hierophant's antenna"
+	icon = 'icons/obj/lavaland/artefacts.dmi' 
+	icon_state = "hierophant_antenna"
+	item_state = "hierophant_antenna"
+	desc = "Extends the range of the herald's power."
+
+/obj/item/hierophant_club/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/hierophant_antenna))
+		if(z_level_check)
+			z_level_check = FALSE
+			desc += " It has an ominous antenna attached."
+			qdel(I)
+		else
+			to_chat(user, "<span class='warning'>The herald's power already reaches this club!</span>")
+		return TRUE
+	else
+		return ..()
+
 /obj/item/hierophant_club/station
 	z_level_check = FALSE
+
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"
