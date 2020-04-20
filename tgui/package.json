@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "tgui-next",
-  "version": "0.1.0",
+  "name": "tgui",
+  "version": "3.0.0",
   "workspaces": [
     "packages/*"
   ],

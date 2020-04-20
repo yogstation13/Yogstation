@@ -340,7 +340,7 @@
 												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "solar_control", name, 380, 230, master_ui, state)
+		ui = new(user, src, ui_key, "SolarControl", name, 380, 230, master_ui, state)
 		ui.open()
 	if(ishuman(user))
 		last_user = user

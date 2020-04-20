@@ -809,7 +809,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, ui_key, "Apc", name, 535, 515, master_ui, state)
 		ui.open()
 	if(ui)
 		ui.set_autoupdate(state = (failure_timer ? 1 : 0))

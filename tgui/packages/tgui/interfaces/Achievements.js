@@ -4,6 +4,8 @@ import { Collapsible, Section } from '../components';
 export const Achievements = props => {
   const { data } = useBackend(props);
   return (
+    <Window>
+        <Window.Content>
     data["achievements"].map(achievement => (
       <Collapsible
         title={achievement.unlocked
@@ -16,6 +18,8 @@ export const Achievements = props => {
           {achievement.desc}<br />
         </Section>
       </Collapsible>
-    ))
+    )
+    </Window.Content>
+    </Window>)
   );
 };
