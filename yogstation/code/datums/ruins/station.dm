@@ -209,3 +209,8 @@
 	id = "hydro5"
 	suffix = "hydro5.dmm"
 	name = "Hydroponics 5"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro6
+	id = "hydro6"
+	suffix = "hydro6.dmm"
+	name = "Hydroponics 6"
