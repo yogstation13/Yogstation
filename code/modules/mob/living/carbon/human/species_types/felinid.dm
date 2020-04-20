@@ -11,6 +11,9 @@
 	mutanttail = /obj/item/organ/tail/cat
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
+	disliked_food = JUNKFOOD | VEGETABLES | FRUIT
+	liked_food = GROSS | MEAT | RAW
+	
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE
 
