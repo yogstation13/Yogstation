@@ -35,19 +35,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/template_noop,
 /area/hydroponics)
-"p" = (
-/obj/effect/landmark/start/botanist,
+"o" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
 /turf/template_noop,
 /area/hydroponics)
 "r" = (
 /obj/machinery/seed_extractor,
-/turf/template_noop,
-/area/hydroponics)
-"s" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/obj/machinery/hydroponics/constructable,
 /turf/template_noop,
 /area/hydroponics)
 "v" = (
@@ -60,6 +55,20 @@
 /area/hydroponics)
 "x" = (
 /obj/item/reagent_containers/glass/bucket,
+/turf/template_noop,
+/area/hydroponics)
+"y" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/item/reagent_containers/glass/bucket,
+/turf/template_noop,
+/area/hydroponics)
+"B" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/effect/landmark/start/botanist,
 /turf/template_noop,
 /area/hydroponics)
 "C" = (
@@ -119,20 +128,20 @@
 /area/hydroponics)
 
 (1,1,1) = {"
-V
+N
+N
+E
 R
-V
 R
-R
-R
-v
 X
 P
+R
+v
 "}
 (2,1,1) = {"
-V
-p
-s
+R
+R
+o
 d
 R
 R
@@ -141,45 +150,45 @@ R
 R
 "}
 (3,1,1) = {"
+R
 V
-x
 J
-R
 V
-R
+V
+V
 R
 R
 R
 "}
 (4,1,1) = {"
+R
+R
+B
 V
 R
-J
-R
-V
 R
 R
-g
+C
 R
 "}
 (5,1,1) = {"
+R
+R
+y
 V
 R
-J
-R
-V
 R
 R
-r
+C
 R
 "}
 (6,1,1) = {"
-V
 R
+V
 J
-R
 V
-R
+V
+V
 R
 H
 R
@@ -197,12 +206,12 @@ R
 "}
 (8,1,1) = {"
 Y
-R
-E
+V
+V
+V
+V
+g
+r
 a
-C
-C
-N
-N
 R
 "}

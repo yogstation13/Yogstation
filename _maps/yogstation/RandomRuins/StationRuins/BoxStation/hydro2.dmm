@@ -1,191 +1,200 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
+"a" = (
+/obj/structure/table/glass,
 /turf/template_noop,
-/area/space)
-"d" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/turf/template_noop,
-/area/space)
-"g" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
-/turf/template_noop,
-/area/space)
-"j" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/template_noop,
-/area/space)
-"l" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/template_noop,
-/area/space)
-"n" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
-	},
-/turf/template_noop,
-/area/space)
-"t" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/template_noop,
-/area/space)
-"x" = (
-/obj/machinery/seed_extractor,
-/turf/template_noop,
-/area/space)
-"z" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1
-	},
-/turf/template_noop,
-/area/space)
-"A" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/template_noop,
-/area/space)
-"B" = (
-/obj/machinery/vending/hydronutrients,
-/turf/template_noop,
-/area/space)
-"E" = (
+/area/hydroponics)
+"b" = (
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
 /turf/template_noop,
-/area/space)
-"L" = (
+/area/hydroponics)
+"e" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/turf/template_noop,
+/area/hydroponics)
+"f" = (
+/obj/machinery/vending/hydronutrients,
+/turf/template_noop,
+/area/hydroponics)
+"h" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/template_noop,
+/area/hydroponics)
+"m" = (
+/obj/effect/landmark/start/botanist,
+/turf/template_noop,
+/area/hydroponics)
+"p" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/template_noop,
+/area/hydroponics)
+"r" = (
 /obj/machinery/biogenerator,
 /turf/template_noop,
-/area/space)
-"N" = (
+/area/hydroponics)
+"u" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/turf/template_noop,
+/area/hydroponics)
+"y" = (
+/obj/structure/chair/stool,
+/obj/effect/landmark/start/botanist,
+/turf/template_noop,
+/area/hydroponics)
+"A" = (
+/obj/machinery/hydroponics/constructable,
+/turf/template_noop,
+/area/hydroponics)
+"D" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
 /turf/template_noop,
-/area/space)
-"P" = (
+/area/hydroponics)
+"G" = (
+/turf/template_noop,
+/area/hydroponics)
+"H" = (
+/obj/machinery/seed_extractor,
+/turf/template_noop,
+/area/hydroponics)
+"L" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"M" = (
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
+/turf/template_noop,
+/area/hydroponics)
+"N" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
 /obj/machinery/hydroponics/constructable,
 /turf/template_noop,
-/area/space)
-"T" = (
+/area/hydroponics)
+"O" = (
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/template_noop,
-/area/space)
-"W" = (
-/obj/structure/reagent_dispensers/watertank/high,
+/area/hydroponics)
+"Q" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/template_noop,
-/area/space)
-"Y" = (
-/obj/effect/landmark/start/botanist,
-/obj/structure/chair/stool,
+/area/hydroponics)
+"U" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
 /turf/template_noop,
-/area/space)
+/area/hydroponics)
 "Z" = (
-/obj/effect/landmark/start/botanist,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/template_noop,
-/area/space)
+/area/hydroponics)
 
 (1,1,1) = {"
-E
-P
-P
-T
-T
-P
-P
-W
-E
+p
+G
+G
+G
+G
+G
+G
+G
+b
 "}
 (2,1,1) = {"
-T
-T
-d
-n
-T
-T
-T
-T
-T
+a
+G
+u
+U
+G
+G
+G
+G
+G
 "}
 (3,1,1) = {"
-P
-T
-j
-T
-T
-T
-Z
-T
-T
+A
+G
+N
+G
+A
+G
+A
+G
+G
 "}
 (4,1,1) = {"
-P
-T
-j
-x
-B
-T
-T
-P
-T
+A
+G
+N
+m
+A
+G
+A
+G
+G
 "}
 (5,1,1) = {"
-P
-T
-j
-L
-g
-T
-T
-P
-T
+A
+G
+N
+h
+A
+G
+A
+G
+G
 "}
 (6,1,1) = {"
-P
-T
-j
-T
-T
-T
-T
-Y
-T
+A
+G
+N
+G
+A
+G
+A
+y
+G
 "}
 (7,1,1) = {"
-t
-A
-c
-z
-T
-T
-T
-l
-T
+Z
+Q
+e
+L
+G
+G
+G
+h
+G
 "}
 (8,1,1) = {"
-N
-P
-P
-P
-P
-P
-P
-W
-T
+D
+r
+H
+M
+f
+p
+O
+G
+G
 "}
