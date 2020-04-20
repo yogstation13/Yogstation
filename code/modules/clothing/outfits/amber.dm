@@ -63,7 +63,6 @@
 	head = /obj/item/clothing/head/helmet/riot/raised
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/centcom
-	glasses = /obj/item/clothing/glasses/hud/security
 	
 
 
@@ -99,6 +98,8 @@
 	belt = /obj/item/storage/belt/military/amber_commander
 	r_pocket = /obj/item/clothing/mask/breath/tactical
 	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
+	glasses = /obj/item/clothing/glasses/hud/security
+
 	
 /datum/outfit/amber/medic
 	name = "Amber Medic"
