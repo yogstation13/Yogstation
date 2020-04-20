@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Murica",
 	"Nanotrasen",
 	"Not Malf",
+	"Plain",
 	"President",
 	"Random",
 	"Rainbow",
