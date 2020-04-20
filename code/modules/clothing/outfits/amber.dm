@@ -63,6 +63,7 @@
 	head = /obj/item/clothing/head/helmet/riot/raised
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/centcom
+	implants = list(/obj/item/implant/mindshield)
 	
 
 
@@ -72,10 +73,7 @@
 
 	H.facial_hair_style = "None" // Everyone in the Amber task force is bald and has no facial hair
 	H.hair_style = "None"
-
-	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
-	L.implant(H, null, 1)
-
+	
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_CENTCOM)
 	R.freqlock = TRUE

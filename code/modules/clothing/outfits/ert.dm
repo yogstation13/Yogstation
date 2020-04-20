@@ -5,13 +5,12 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
+	implants = list(/obj/item/implant/mindshield)
+
 
 /datum/outfit/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
-
-	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
-	L.implant(H, null, 1)
 
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_CENTCOM)
@@ -196,15 +195,13 @@
 	back = /obj/item/storage/backpack/satchel/leather
 	r_pocket = /obj/item/pda/heads
 	id = /obj/item/card/id
+	implants = list(/obj/item/implant/mindshield)
 	backpack_contents = list(
 		/obj/item/storage/box/survival  = 1,
 		/obj/item/clipboard = 1
 	)
 
-/datum/outfit/centcom_official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
-	L.implant(H, null, 1) // mindshields the Commander
-	
+/datum/outfit/centcom_official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)	
 	if(visualsOnly)
 		return
 
