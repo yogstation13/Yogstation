@@ -11,9 +11,30 @@
 /obj/structure/chair/stool,
 /turf/template_noop,
 /area/hydroponics)
-"g" = (
+"c" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"e" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
+"g" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -27,7 +48,25 @@
 /obj/structure/table/glass,
 /turf/template_noop,
 /area/hydroponics)
+"n" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
 "o" = (
+/turf/template_noop,
+/area/hydroponics)
+"p" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
 /turf/template_noop,
 /area/hydroponics)
 "r" = (
@@ -35,6 +74,12 @@
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
+	},
+/turf/template_noop,
+/area/hydroponics)
+"s" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -46,21 +91,75 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
 /turf/template_noop,
 /area/hydroponics)
-"w" = (
-/obj/effect/landmark/start/botanist,
-/turf/template_noop,
-/area/hydroponics)
-"D" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
+"v" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
 	},
 /turf/template_noop,
 /area/hydroponics)
-"F" = (
+"A" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/template_noop,
+/area/hydroponics)
+"B" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/template_noop,
+/area/hydroponics)
+"G" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/template_noop,
+/area/hydroponics)
+"I" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
 /obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black,
+/turf/template_noop,
+/area/hydroponics)
+"J" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
+"L" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
 /turf/template_noop,
 /area/hydroponics)
 "M" = (
@@ -70,6 +169,20 @@
 "P" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/template_noop,
+/area/hydroponics)
+"Q" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black,
 /turf/template_noop,
 /area/hydroponics)
 "R" = (
@@ -106,7 +219,11 @@
 /turf/template_noop,
 /area/hydroponics)
 "X" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
 /turf/template_noop,
@@ -115,70 +232,77 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/template_noop,
 /area/hydroponics)
+"Z" = (
+/obj/effect/landmark/start/botanist,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
 
 (1,1,1) = {"
-m
-F
-F
-o
-o
-F
-F
-t
+B
+Q
+Q
+n
+L
+Q
+Q
+X
 r
 "}
 (2,1,1) = {"
-w
-o
+Z
 g
-D
-o
-o
-o
-o
+e
+p
+v
+g
+g
+c
 o
 "}
 (3,1,1) = {"
-Y
-o
-X
-o
-o
-o
-o
+A
+G
+u
+G
+G
+G
+s
 o
 o
 "}
 (4,1,1) = {"
-F
-F
-u
-F
-F
-F
-o
+Q
+Q
+I
+Q
+Q
+Q
+n
 m
 o
 "}
 (5,1,1) = {"
-F
-F
-u
-F
-F
-F
-o
+Q
+Q
+I
+Q
+Q
+Q
+n
 m
 o
 "}
 (6,1,1) = {"
-o
-o
-X
-o
-o
-o
-o
+g
+g
+J
+g
+g
+g
+c
 b
 o
 "}
