@@ -247,3 +247,43 @@
 			user.visible_message("You untie [oldName] back into a [newBand.name]", "[user] unties [oldName] back into a [newBand.name]")
 		else
 			to_chat(user, "<span class='warning'>You must be holding [src] in order to untie it!</span>")
+
+//CentCom
+
+/obj/item/clothing/neck/pauldron
+	name = "major's pauldron"
+	icon_state = "major"
+	item_state = "major"
+	desc = "A red padded pauldron signifying the rank of Major; offers a small amount of protection to the wearer."
+	w_class = WEIGHT_CLASS_SMALL
+	body_parts_covered = CHEST
+	armor = list("melee" = 15, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/clothing/neck/pauldron/commander
+	name = "commander's pauldron"
+	desc = "A gold alloy reinforced pauldron signifying the rank of Commander; offers a moderate amount of protection to the wearer."
+	icon_state = "commander"
+	item_state = "commander"
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 20, "energy" = 20, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 50)
+
+/obj/item/clothing/neck/pauldron/colonel
+	name = "colonel's pauldrons"
+	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slighty more protection than the Commander's pauldron to the wearer."
+	icon_state = "colonel"
+	item_state = "colonel"
+	armor = list("melee" = 35, "bullet" = 30, "laser" = 35, "energy" = 35, "bomb" = 5, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 90)
+
+/obj/item/clothing/neck/cape
+	name = "admiral's cape"
+	desc = "A large green cape with gold connects."
+	icon_state = "admiralcape"
+	item_state = "admiralcape"
+	w_class = WEIGHT_CLASS_SMALL
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_inv = HIDESUITSTORAGE
+
+/obj/item/clothing/neck/cape/grand
+	name = "grand admiral's cape"
+	desc = "A large white cape with gold connects."
+	icon_state = "grandadmiral"
+	item_state = "grand_admiral"
