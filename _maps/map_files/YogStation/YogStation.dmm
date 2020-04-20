@@ -56667,9 +56667,6 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"rpi" = (
-/turf/open/floor/plasteel,
-/area/space)
 "rqq" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Corridor West";
@@ -101360,10 +101357,10 @@ aIp
 aKH
 uRs
 aIp
-rpi
-rpi
-rpi
-rpi
+aRJ
+aRJ
+aRJ
+aRJ
 ovO
 kUu
 aRJ
@@ -101874,7 +101871,7 @@ aIp
 skk
 aUh
 aIp
-rpi
+aRJ
 aRJ
 aRJ
 aRJ
@@ -102388,7 +102385,7 @@ aIp
 lZq
 aOo
 aIp
-rpi
+aRJ
 aRJ
 aRJ
 aRJ
@@ -102645,7 +102642,7 @@ aIp
 aKL
 aUh
 aNQ
-rpi
+aRJ
 aRJ
 aRJ
 aRJ
@@ -102902,7 +102899,7 @@ aJO
 aRJ
 aUS
 aNN
-rpi
+aRJ
 aRJ
 aRJ
 aRJ
@@ -103159,13 +103156,13 @@ aJN
 aLd
 aMN
 aNQ
-rpi
-rpi
-rpi
-rpi
-rpi
+aRJ
+aRJ
+aRJ
+aRJ
+aRJ
 afE
-rpi
+aRJ
 pXY
 bam
 bfO
