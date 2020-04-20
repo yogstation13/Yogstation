@@ -216,12 +216,10 @@
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id
 	suit_store = /obj/item/gun/ballistic/revolver/mateba
+	implants = list(/obj/item/implant/mindshield)
 	backpack_contents = list(/obj/item/storage/box/hug/survival=1)
 
 /datum/outfit/centcom_commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
-	L.implant(H, null, 1) // mindshields the Commander
-	
 	if(visualsOnly)
 		return
 
@@ -393,6 +391,7 @@
 	r_hand = /obj/item/gun/energy/pulse/loyalpin
 	id = /obj/item/card/id
 	ears = /obj/item/radio/headset/headset_cent/alt
+	implants = list(/obj/item/implant/mindshield)
 
 	backpack_contents = list(/obj/item/storage/box=1,\
 		/obj/item/ammo_box/a357=1,\
@@ -408,10 +407,6 @@
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_CENTCOM)
 	R.freqlock = TRUE
-
-	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)//Here you go Deuryn
-	L.implant(H, null, 1)
-
 
 	var/obj/item/card/id/W = H.wear_id
 	W.icon_state = "centcom"
