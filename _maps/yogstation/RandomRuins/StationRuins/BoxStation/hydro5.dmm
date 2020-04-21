@@ -101,12 +101,19 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"q" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
+"p" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -137,6 +144,12 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
+"y" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
 "A" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
@@ -147,6 +160,12 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"B" = (
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -191,6 +210,18 @@
 /obj/effect/turf_decal/tile/black,
 /obj/effect/turf_decal/tile/black{
 	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
+"O" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -260,11 +291,11 @@
 
 (1,1,1) = {"
 M
-n
+p
 M
 x
 R
-R
+y
 v
 X
 P
@@ -337,11 +368,11 @@ R
 "}
 (8,1,1) = {"
 Y
-R
+B
 E
 a
 e
-q
+O
 m
 m
 R

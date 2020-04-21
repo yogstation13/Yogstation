@@ -19,6 +19,23 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
+"c" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/black,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
 "d" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -257,6 +274,23 @@
 /obj/effect/turf_decal/tile/green,
 /turf/template_noop,
 /area/hydroponics)
+"U" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/black,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
 "V" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -297,11 +331,11 @@
 
 (1,1,1) = {"
 R
-a
+U
 a
 i
 K
-a
+U
 a
 H
 x
@@ -374,11 +408,11 @@ y
 "}
 (8,1,1) = {"
 C
+c
 a
 a
 a
-a
-a
+c
 a
 u
 y
