@@ -17248,12 +17248,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"aJN" = (
-/obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
-/obj/item/paper/guides/jobs/hydroponics,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "aJO" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -52830,6 +52824,17 @@
 "ihS" = (
 /turf/closed/wall/r_wall,
 /area/medical/sleeper)
+"iio" = (
+/obj/machinery/requests_console{
+	department = "Hydroponics";
+	departmentType = 2;
+	pixel_y = 30
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "ijY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
@@ -53043,14 +53048,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"iHO" = (
-/obj/machinery/requests_console{
-	department = "Hydroponics";
-	departmentType = 2;
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "iMq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -54654,6 +54651,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
+"mDD" = (
+/obj/structure/table,
+/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/clothing/accessory/armband/hydro,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "mFi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -55501,19 +55505,6 @@
 /obj/item/crowbar/red,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"ovO" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "oyj" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -101361,7 +101352,7 @@ aRJ
 aRJ
 aRJ
 aRJ
-ovO
+aRJ
 kUu
 aRJ
 aRJ
@@ -101614,7 +101605,7 @@ aJB
 aKD
 aTC
 aIp
-iHO
+iio
 aRJ
 aRJ
 aRJ
@@ -103152,12 +103143,12 @@ aoq
 bOL
 alP
 aIp
-aJN
+mDD
 aLd
 aMN
 aNQ
 aRJ
-aRJ
+afE
 aRJ
 aRJ
 aRJ
