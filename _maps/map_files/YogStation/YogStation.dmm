@@ -2839,12 +2839,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"afE" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "afF" = (
 /obj/structure/table,
 /obj/item/assembly/signaler,
@@ -52824,17 +52818,6 @@
 "ihS" = (
 /turf/closed/wall/r_wall,
 /area/medical/sleeper)
-"iio" = (
-/obj/machinery/requests_console{
-	department = "Hydroponics";
-	departmentType = 2;
-	pixel_y = 30
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "ijY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
@@ -54015,12 +53998,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/engine/atmos_distro)
-"kUu" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "kVO" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
@@ -57040,6 +57017,14 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"shN" = (
+/obj/machinery/requests_console{
+	department = "Hydroponics";
+	departmentType = 2;
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "sjo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59002,6 +58987,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"wBr" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/effect/landmark/stationroom/box/hydroponics,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "wCj" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -59440,19 +59433,6 @@
 /obj/item/clothing/under/yogs/rank/clerk/skirt,
 /turf/open/floor/plasteel,
 /area/clerk)
-"xSz" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/obj/effect/landmark/stationroom/box/hydroponics,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "xTD" = (
 /obj/structure/table/glass,
 /obj/item/paper_bin{
@@ -101353,10 +101333,10 @@ aRJ
 aRJ
 aRJ
 aRJ
-kUu
 aRJ
 aRJ
-xSz
+aRJ
+wBr
 bam
 aYV
 aYV
@@ -101605,7 +101585,7 @@ aJB
 aKD
 aTC
 aIp
-iio
+shN
 aRJ
 aRJ
 aRJ
@@ -103148,11 +103128,11 @@ aLd
 aMN
 aNQ
 aRJ
-afE
 aRJ
 aRJ
 aRJ
-afE
+aRJ
+aRJ
 aRJ
 pXY
 bam

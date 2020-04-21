@@ -90,10 +90,6 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"p" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/template_noop,
-/area/hydroponics)
 "q" = (
 /obj/effect/landmark/start/botanist,
 /obj/effect/turf_decal/tile/green{
@@ -109,7 +105,15 @@
 /turf/template_noop,
 /area/hydroponics)
 "r" = (
-/obj/machinery/biogenerator,
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/template_noop,
 /area/hydroponics)
 "v" = (
@@ -126,6 +130,14 @@
 "z" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"B" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -176,6 +188,13 @@
 /obj/machinery/seed_extractor,
 /turf/template_noop,
 /area/hydroponics)
+"I" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
 "J" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -197,15 +216,6 @@
 	},
 /obj/effect/turf_decal/tile/black{
 	dir = 1
-	},
-/turf/template_noop,
-/area/hydroponics)
-"L" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -282,14 +292,21 @@
 /obj/effect/turf_decal/tile/green,
 /turf/template_noop,
 /area/hydroponics)
+"Z" = (
+/obj/machinery/biogenerator,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
 
 (1,1,1) = {"
 i
-i
+B
 G
 G
 G
-L
+r
 d
 a
 b
@@ -362,11 +379,11 @@ G
 "}
 (8,1,1) = {"
 D
-r
+Z
 H
 M
 f
-p
+I
 O
 G
 G

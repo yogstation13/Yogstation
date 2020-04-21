@@ -99,6 +99,36 @@
 /obj/effect/turf_decal/tile/black,
 /turf/template_noop,
 /area/hydroponics)
+"l" = (
+/obj/machinery/biogenerator,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
+"o" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/black,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
 "p" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -169,6 +199,15 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/template_noop,
 /area/hydroponics)
+"x" = (
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/template_noop,
+/area/hydroponics)
 "y" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
@@ -177,16 +216,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green,
-/turf/template_noop,
-/area/hydroponics)
-"z" = (
-/obj/machinery/biogenerator,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
 /turf/template_noop,
 /area/hydroponics)
 "A" = (
@@ -310,9 +339,11 @@
 /obj/item/hand_labeler,
 /turf/template_noop,
 /area/hydroponics)
-"X" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
+"W" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/template_noop,
 /area/hydroponics)
@@ -329,11 +360,11 @@
 
 (1,1,1) = {"
 w
-w
+W
 E
 R
 R
-X
+x
 P
 R
 v
@@ -406,11 +437,11 @@ R
 "}
 (8,1,1) = {"
 c
+o
 k
 k
 k
-k
-z
+l
 r
 a
 R
