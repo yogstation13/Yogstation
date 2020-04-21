@@ -6,7 +6,36 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"b" = (
+"d" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"e" = (
+/obj/structure/table/glass,
+/obj/item/stack/packageWrap,
+/obj/item/stack/packageWrap,
+/obj/item/hand_labeler,
+/turf/template_noop,
+/area/hydroponics)
+"f" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/template_noop,
+/area/hydroponics)
+"g" = (
+/obj/machinery/biogenerator,
+/turf/template_noop,
+/area/hydroponics)
+"h" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6
 	},
@@ -23,76 +52,7 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"d" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/template_noop,
-/area/hydroponics)
-"e" = (
-/obj/effect/landmark/start/botanist,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/template_noop,
-/area/hydroponics)
-"g" = (
-/obj/machinery/biogenerator,
-/turf/template_noop,
-/area/hydroponics)
 "j" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/template_noop,
-/area/hydroponics)
-"k" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/template_noop,
-/area/hydroponics)
-"n" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/template_noop,
-/area/hydroponics)
-"o" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/template_noop,
-/area/hydroponics)
-"q" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
@@ -109,8 +69,55 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
+"l" = (
+/obj/effect/landmark/start/botanist,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"m" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/turf/template_noop,
+/area/hydroponics)
+"n" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"q" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/template_noop,
+/area/hydroponics)
 "r" = (
 /obj/machinery/seed_extractor,
+/turf/template_noop,
+/area/hydroponics)
+"s" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
 /turf/template_noop,
 /area/hydroponics)
 "v" = (
@@ -122,16 +129,28 @@
 /turf/template_noop,
 /area/hydroponics)
 "x" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/template_noop,
-/area/hydroponics)
-"y" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
 /turf/template_noop,
 /area/hydroponics)
-"B" = (
+"A" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"D" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
@@ -145,21 +164,8 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"C" = (
-/obj/structure/table/glass,
-/turf/template_noop,
-/area/hydroponics)
 "E" = (
 /obj/item/twohanded/required/kirbyplants/random,
-/turf/template_noop,
-/area/hydroponics)
-"F" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
 /turf/template_noop,
 /area/hydroponics)
 "H" = (
@@ -167,43 +173,14 @@
 /obj/effect/landmark/start/botanist,
 /turf/template_noop,
 /area/hydroponics)
-"M" = (
-/obj/item/reagent_containers/glass/bucket,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
+"K" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
 /turf/template_noop,
 /area/hydroponics)
-"N" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/template_noop,
-/area/hydroponics)
-"P" = (
-/obj/machinery/vending/hydronutrients,
-/turf/template_noop,
-/area/hydroponics)
-"R" = (
-/turf/template_noop,
-/area/hydroponics)
-"T" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/template_noop,
-/area/hydroponics)
-"U" = (
+"M" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/black{
 	dir = 1
@@ -217,22 +194,50 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"V" = (
+"P" = (
+/obj/machinery/vending/hydronutrients,
+/turf/template_noop,
+/area/hydroponics)
+"Q" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
 /turf/template_noop,
 /area/hydroponics)
-"W" = (
+"R" = (
+/turf/template_noop,
+/area/hydroponics)
+"S" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/turf/template_noop,
+/area/hydroponics)
+"T" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/template_noop,
+/area/hydroponics)
+"U" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -254,10 +259,10 @@
 /area/hydroponics)
 
 (1,1,1) = {"
-U
-V
-U
-W
+M
+n
+M
+x
 R
 R
 v
@@ -265,69 +270,69 @@ X
 P
 "}
 (2,1,1) = {"
-U
-e
-b
-n
-d
-k
+M
+l
+h
+A
+K
+f
 R
 R
 R
 "}
 (3,1,1) = {"
-U
 M
-q
-V
-U
-W
+n
+j
+n
+M
+x
 R
 R
 R
 "}
 (4,1,1) = {"
-U
-V
-q
-V
-U
-W
+M
+n
+j
+n
+M
+x
 R
 g
 R
 "}
 (5,1,1) = {"
-U
-V
-q
-V
-U
-W
+M
+n
+j
+n
+M
+S
 R
 r
 R
 "}
 (6,1,1) = {"
-U
-V
-q
-V
-U
-W
+M
+n
+j
+n
+M
+x
 R
 H
 R
 "}
 (7,1,1) = {"
-B
+D
+Q
 T
-j
-o
-F
-y
+d
+U
+s
 R
-x
+R
 R
 "}
 (8,1,1) = {"
@@ -335,9 +340,9 @@ Y
 R
 E
 a
-C
-C
-N
-N
+e
+q
+m
+m
 R
 "}
