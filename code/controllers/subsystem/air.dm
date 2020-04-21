@@ -66,12 +66,8 @@ SUBSYSTEM_DEF(air)
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
 	..(msg)
 
-
-/datum/controller/subsystem/air/PreInit()
-	. = ..()
-	extools_update_ssair()
-
 /datum/controller/subsystem/air/Initialize(timeofday)
+	extools_update_ssair()
 	map_loading = FALSE
 	setup_allturfs()
 	setup_atmos_machinery()
