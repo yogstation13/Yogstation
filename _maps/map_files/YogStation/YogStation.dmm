@@ -40650,17 +40650,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/disposal)
-"hCS" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/quartermaster/sorting)
-"hDa" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
 /area/maintenance/department/tcoms)
 "bCD" = (
 /obj/structure/table,
@@ -42509,12 +42498,6 @@
 	dir = 4
 	},
 /turf/open/space/basic,
-/area/space/nearstation)
-"jbI" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
 /area/tcommsat/entrance)
 "bGS" = (
 /obj/effect/turf_decal/stripes/corner,
@@ -46063,10 +46046,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"mlj" = (
-/obj/machinery/light,
-/obj/structure/sign/warning/electricshock{
-	pixel_y = -32
 "bXD" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -51265,13 +51244,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
-/area/quartermaster/office)
-"qTm" = (
-/obj/machinery/door/airlock/external{
-	name = "Atmospherics External Airlock";
-	req_access_txt = "24"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
 /area/engine/atmos)
 "dDo" = (
 /obj/structure/closet/secure_closet/medical3,
@@ -57780,21 +57752,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/window/southleft{
-	name = "Virology";
-	req_access_txt = "39;24"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
-"wrm" = (
-/obj/machinery/vending/wardrobe/robo_wardrobe,
-/turf/open/floor/plasteel/white,
-/area/science/robotics/lab)
-"wrz" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "tfA" = (
@@ -59046,11 +59003,6 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/doorButtons/access_button{
-	idDoor = "telecomms_airlock_exterior";
-	idSelf = "telecomms_airlock_control";
-	pixel_x = 24;
-	pixel_y = -24
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/maintenance/fore)
@@ -59332,9 +59284,6 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/item/camera,
-/obj/item/storage/photo_album{
-	pixel_y = -10
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "wyT" = (
@@ -100597,7 +100546,6 @@ qQV
 qQV
 qQV
 qQV
-aRH
 qQV
 qQV
 qQV
