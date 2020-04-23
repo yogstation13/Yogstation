@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/table/glass,
-/turf/template_noop,
-/area/hydroponics)
 "b" = (
 /obj/structure/sink{
 	dir = 8;
@@ -127,10 +123,18 @@
 	},
 /turf/template_noop,
 /area/hydroponics)
-"z" = (
+"y" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/structure/chair/stool,
+/turf/template_noop,
+/area/hydroponics)
+"A" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/template_noop,
 /area/hydroponics)
 "B" = (
@@ -188,13 +192,6 @@
 /obj/machinery/seed_extractor,
 /turf/template_noop,
 /area/hydroponics)
-"I" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/template_noop,
-/area/hydroponics)
 "J" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -233,10 +230,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green,
-/turf/template_noop,
-/area/hydroponics)
-"O" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/template_noop,
 /area/hydroponics)
 "R" = (
@@ -308,7 +301,7 @@ G
 G
 r
 d
-a
+G
 b
 "}
 (2,1,1) = {"
@@ -374,7 +367,7 @@ o
 V
 V
 V
-z
+y
 G
 "}
 (8,1,1) = {"
@@ -383,8 +376,8 @@ Z
 H
 M
 f
-I
-O
+A
+G
 G
 G
 "}
