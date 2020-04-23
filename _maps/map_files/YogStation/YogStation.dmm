@@ -51142,16 +51142,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dEe" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "dEY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
@@ -52211,6 +52201,19 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
+"giU" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/bridge/meeting_room";
+	dir = 4;
+	name = "Conference Room APC";
+	pixel_x = 24
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "gjl" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
@@ -52513,6 +52516,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"gRd" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "gUn" = (
 /obj/machinery/button/door{
 	id = "atmos";
@@ -52990,6 +53002,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hXh" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/chair/stool{
+	pixel_x = 1
+	},
+/obj/machinery/door/window/eastright,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "hXW" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -53099,6 +53124,18 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"iuy" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/chair/stool{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/machinery/door/window/eastleft,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "iuF" = (
 /obj/machinery/telecomms/server/presets/security,
 /obj/effect/turf_decal/tile/neutral{
@@ -54162,19 +54199,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"kMd" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/bridge/meeting_room";
-	dir = 4;
-	name = "Conference Room APC";
-	pixel_x = 24
-	},
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "kNE" = (
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/preopen{
@@ -55962,17 +55986,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"pln" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "pmW" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -57113,14 +57126,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"rRX" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "rVk" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -58048,6 +58053,18 @@
 "tQD" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/aft)
+"tRq" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/item/pen,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "tRr" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 4;
@@ -58196,13 +58213,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"ugX" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "uiz" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
@@ -59012,6 +59022,20 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"wje" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/pen,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "wjn" = (
 /obj/structure/cable,
 /obj/structure/cable{
@@ -86944,10 +86968,10 @@ bkT
 mlj
 mlj
 boX
-pln
-rRX
-rRX
-dEe
+wje
+iuy
+hXh
+tRq
 bwg
 aJw
 aJq
@@ -87199,7 +87223,7 @@ bie
 bjB
 bkW
 mlj
-ugX
+gRd
 bpa
 bqy
 cBr
@@ -87967,7 +87991,7 @@ bdY
 aMv
 bgI
 aZP
-kMd
+giU
 bkX
 bmo
 bnO
