@@ -148,6 +148,8 @@
 	..()
 	if(stuttering)
 		stuttering = 0
+	if(slurring)
+		slurring = max(slurring-1,0)
 
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
