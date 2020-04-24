@@ -242,7 +242,7 @@
 
 
 /datum/outfit/mulligan
-	name = "a Mulligan"
+	name = "a Mulligan (Naked)"
 
 /datum/outfit/mulligan/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
