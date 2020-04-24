@@ -253,7 +253,7 @@
 
 /obj/item/storage/box/fancy/cigarettes/cigpack_nonico
 	name = "nicotine-free cigarette packet"
-	desc = "A dull boring packet of cigarettes."
+	desc = "A dull-looking pack of cigarettes."
 	icon_state = "nonico"
 	spawn_type = /obj/item/clothing/mask/cigarette/nonico
 
