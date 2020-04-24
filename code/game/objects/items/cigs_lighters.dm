@@ -334,7 +334,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/nonico
 	desc = "A nicotine-free cigarette."
-	list_reagents = list(/datum/reagent/silicon = 15)
+	list_reagents = list(/datum/reagent/carbon = 15)
 
 // Rollies.
 
