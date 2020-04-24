@@ -578,3 +578,47 @@
 	H.remove_language(/datum/language/common)
 	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
+
+/datum/quirk/allergic
+	name = "Allergic Reaction"
+	desc = "You have had an allergic reaction to this in the past. Better stay away from it!"
+	value = -2
+	mob_trait = TRAIT_ALLERGIC
+	gain_text = "<span class='danger'>You are very allergic to something.</span>"
+	lose_text = "<span class='notice'>You no longer are allergic to something.</span>"
+	medical_record_text = "Patient has a severe allergic reaction to a chemical reagent."
+//	var/allergy_list = list(/obj/item/reagent_containers/food/snacks/grown/apple,
+//							/obj/item/reagent_containers/food/snacks/grown/banana
+//							/obj/item/reagent_containers/food/snacks/grown/berries
+//							/obj/item/reagent_containers/food/snacks/grown/cherries
+//							/obj/item/reagent_containers/food/snacks/grown/grapes
+//							/obj/item/reagent_containers/food/snacks/grown/pineapple
+//							/obj/item/reagent_containers/food/snacks/grown/tomato
+							//Was going to make it pick if you allergic to eating a food, or a chem. too much work
+	var/allergy_chem_list = list(	/datum/reagent/medicine/inacusiate,
+									/datum/reagent/medicine/silver_sulfadiazine,
+									/datum/reagent/medicine/styptic_powder,
+									/datum/reagent/medicine/omnizine,
+									/datum/reagent/medicine/oculine,
+									/datum/reagent/medicine/neurine,
+									/datum/reagent/medicine/bicaridine,
+									/datum/reagent/medicine/kelotane,) //Everything in the list can be healed from another source round-start
+	var/reagent_id
+	var/cooldown_duration = 600 //1 minute. Cant act again until the first wears off. Test to make sure this is enough
+	var/cooldown = 0
+
+/datum/quirk/allergic/on_spawn()
+	reagent_id = pick(allergy_chem_list)
+
+/datum/quirk/allergic/on_process()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(cooldown == 1)
+		if(cooldown_duration >0)
+			cooldown_duration--
+		else
+			cooldown = 0
+	else if(cooldown == 0)
+		if(H.reagents.has_reagent(reagent_id))
+			to_chat(quirk_holder, "<span class='danger'>You just remembered you were allergic to!</span>")
+			H.reagents.add_reagent(/datum/reagent/toxin/histamine, 10)
+			cooldown = 1
