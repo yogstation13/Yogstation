@@ -71,6 +71,7 @@ import { Uplink } from './interfaces/Uplink';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
 import { Guardian } from './interfaces/Guardian';
+import { Autolathe } from './interfaces/Autolathe';
 
 const ROUTES = {
   achievements: {
@@ -383,6 +384,10 @@ const ROUTES = {
   },
   guardian: {
     component: () => Guardian,
+    scrollable: true,
+  },
+  autolathe: {
+    component: () => Autolathe,
     scrollable: true,
   },
 };

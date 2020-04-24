@@ -39479,14 +39479,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"bCG" = (
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/item/gun/syringe,
-/obj/item/reagent_containers/dropper,
-/obj/item/soap/nanotrasen,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bCH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -39518,14 +39510,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bCL" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/machinery/camera{
-	c_tag = "Medbay Storage";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bCN" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
@@ -41512,12 +41496,6 @@
 	},
 /turf/open/space/basic,
 /area/tcommsat/entrance)
-"bGR" = (
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bGS" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -45372,21 +45350,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
-"bQu" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/tcommsat/computer";
-	dir = 1;
-	name = "Telecomms Control APC";
-	pixel_y = 24
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/tcoms)
 "bQv" = (
 /obj/machinery/power/apc{
 	areastring = "/area/tcommsat/lounge";
@@ -46571,6 +46534,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
+"bXD" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "bXF" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
@@ -51180,6 +51148,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"dDo" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "dEb" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -54073,6 +54049,22 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"kup" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/tcommsat/computer";
+	dir = 1;
+	name = "Telecomms Control APC";
+	pixel_y = 24
+	},
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
+/area/maintenance/department/tcoms)
 "kxR" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -57673,13 +57665,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"teE" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "tfA" = (
 /turf/template_noop,
 /area/space)
@@ -58891,6 +58876,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/maintenance/fore)
+"vVV" = (
+/obj/structure/table,
+/obj/item/folder/white,
+/obj/item/reagent_containers/dropper,
+/obj/item/soap/nanotrasen,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "vVZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -59191,6 +59183,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wyT" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/machinery/camera{
+	c_tag = "Medbay Storage";
+	network = list("ss13","medbay")
+	},
+/obj/item/gun/syringe,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "wzt" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -96947,7 +96948,7 @@ bxN
 bze
 bzg
 bvh
-bCG
+vVV
 bBd
 brT
 bDD
@@ -97978,7 +97979,7 @@ bvj
 nOK
 bqW
 bCT
-bGR
+bXD
 bIj
 ihS
 btU
@@ -98489,7 +98490,7 @@ bxT
 bxQ
 bAt
 bvj
-teE
+dDo
 bqW
 bDR
 bDR
@@ -98746,7 +98747,7 @@ bxS
 bzh
 bzF
 bvj
-bCL
+wyT
 bqW
 bDR
 bDR
@@ -100850,7 +100851,7 @@ aaa
 aaa
 bbf
 bVJ
-bQu
+kup
 bwE
 bEe
 bGm

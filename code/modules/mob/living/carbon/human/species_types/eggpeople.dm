@@ -24,7 +24,7 @@
 	disliked_food = GROSS | DAIRY | EGG
 	liked_food = MEAT // Eggpeople are carnivores.
 	screamsound = 'yogstation/sound/voice/eggperson/egg_scream.ogg' // (Hopefully) the sound of an egg cracking
-	species_language_holder = /datum/language/egg
+	species_language_holder = /datum/language_holder/egg
 
 /datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
 	if(damagetype == BRUTE) // Dynamic brute resist based on burn damage. The more fried the egg, the harder the shell!!
