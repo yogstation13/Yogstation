@@ -17,7 +17,8 @@
 		"https://www.youtube.com/watch?v=UXKr4HSPHT8", // Internationale - german
 		"https://www.youtube.com/watch?v=t8EMx7Y16Vo", // Internationale - russian
 		"https://www.youtube.com/watch?v=lyfhs42mdyA", // Internationale - japanese
-		"https://www.youtube.com/watch?v=5DTbashsKic" // Internationale - english
+		"https://www.youtube.com/watch?v=5DTbashsKic", // Internationale - english (alistair hulett)
+		"https://www.youtube.com/watch?v=PPExpmtdMEw"  // Internationale - english (billy bragg)
 		)
 
 /datum/holiday/spess
