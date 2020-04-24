@@ -400,7 +400,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigar2off"
 	smoketime = 600 // 20 minutes
 	chem_volume = 80
-	list_reagents =list(/datum/reagent/drug/nicotine = 40)
+	list_reagents =list(/datum/reagent/drug/nicotine = 35)
 
 /obj/item/clothing/mask/cigarette/cigar/havana
 	name = "premium Havanian cigar"
