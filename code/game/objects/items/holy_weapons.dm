@@ -274,7 +274,7 @@
 			nullrod_icons += list(initial(rodtype.name) = image(icon = initial(rodtype.icon), icon_state = initial(rodtype.icon_state)))
 
 	nullrod_icons = sortList(nullrod_icons)
-	var/choice = show_radial_menu(M, src , nullrod_icons, custom_check = CALLBACK(src, .proc/check_menu, M), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(M, src , nullrod_icons, custom_check = CALLBACK(src, .proc/check_menu, M), radius = 42, require_near = TRUE, tooltips = TRUE)
 	if(!choice || !check_menu(M))
 		return
 
