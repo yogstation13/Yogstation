@@ -29532,18 +29532,6 @@
 "bjB" = (
 /turf/open/floor/plating,
 /area/maintenance/central)
-"bjC" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/bridge/meeting_room";
-	dir = 4;
-	name = "Conference Room APC";
-	pixel_x = 24
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "bjD" = (
 /obj/structure/table,
 /obj/item/stack/sheet/glass/fifty,
@@ -30917,11 +30905,6 @@
 "bmo" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/hop)
-"bmp" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "bmq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -33162,10 +33145,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"bqv" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/hallway/primary/central)
 "bqw" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -48964,6 +48943,18 @@
 "cmd" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"cmg" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/item/pen,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "cmn" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -51319,6 +51310,18 @@
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"ehN" = (
+/obj/structure/window/reinforced,
+/obj/structure/chair/stool{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/machinery/door/window/westright,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "eiN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -54241,6 +54244,15 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/engine/atmos_distro)
+"kUa" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "kVO" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
@@ -55168,6 +55180,20 @@
 "nds" = (
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"nfX" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/pen,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "ngM" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
@@ -57592,6 +57618,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"sWd" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/bridge/meeting_room";
+	dir = 4;
+	name = "Conference Room APC";
+	pixel_x = 24
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "sYf" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -58922,6 +58961,19 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"vZM" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/chair/stool{
+	pixel_x = 1
+	},
+/obj/machinery/door/window/westleft,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "vZX" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -86916,10 +86968,10 @@ bkT
 mlj
 mlj
 boX
-bqv
-bqv
-bqv
-bqv
+nfX
+ehN
+vZM
+cmg
 bwg
 aJw
 aJq
@@ -87170,8 +87222,8 @@ bgH
 bie
 bjB
 bkW
-bmp
 mlj
+kUa
 bpa
 bqy
 cBr
@@ -87427,7 +87479,7 @@ aZP
 aZP
 bjA
 bqG
-bmo
+bmr
 bmr
 boZ
 bqx
@@ -87939,7 +87991,7 @@ bdY
 aMv
 bgI
 aZP
-bjC
+sWd
 bkX
 bmo
 bnO
