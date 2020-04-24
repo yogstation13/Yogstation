@@ -581,12 +581,12 @@
 
 /datum/quirk/allergic
 	name = "Allergic Reaction"
-	desc = "You have had an allergic reaction to this in the past. Better stay away from it!"
-	value = -2
+	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
+	value = -1
 	mob_trait = TRAIT_ALLERGIC
-	gain_text = "<span class='danger'>You are very allergic to something.</span>"
-	lose_text = "<span class='notice'>You no longer are allergic to something.</span>"
-	medical_record_text = "Patient has a severe allergic reaction to a chemical reagent."
+	gain_text = "<span class='danger'>You remember your allergic reaction to a common medicine.</span>"
+	lose_text = "<span class='notice'>You no longer are allergic to medicine.</span>"
+	medical_record_text = "Patient has a severe allergic reaction to a commong medicine."
 //	var/allergy_list = list(/obj/item/reagent_containers/food/snacks/grown/apple,
 //							/obj/item/reagent_containers/food/snacks/grown/banana
 //							/obj/item/reagent_containers/food/snacks/grown/berries
@@ -604,21 +604,26 @@
 									/datum/reagent/medicine/bicaridine,
 									/datum/reagent/medicine/kelotane,) //Everything in the list can be healed from another source round-start
 	var/reagent_id
-	var/cooldown_duration = 600 //1 minute. Cant act again until the first wears off. Test to make sure this is enough
+	var/cooldown_time = 600 //1 minute. Cant act again until the first wears off. Test to make sure this is enough
 	var/cooldown = 0
 
 /datum/quirk/allergic/on_spawn()
 	reagent_id = pick(allergy_chem_list)
+	announce_allergy()
+
+/datum/quirk/allergic/proc/announce_allergy()
+	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
+	to_chat(quirk_holder, "<span class='danger'>You remember you are allergic to [allergy.name].</span>")
 
 /datum/quirk/allergic/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(cooldown == 1)
-		if(cooldown_duration >0)
-			cooldown_duration--
-		else
-			cooldown = 0
-	else if(cooldown == 0)
+	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
+	if(cooldown == 0)
 		if(H.reagents.has_reagent(reagent_id))
-			to_chat(quirk_holder, "<span class='danger'>You just remembered you were allergic to!</span>")
-			H.reagents.add_reagent(/datum/reagent/toxin/histamine, 10)
+			to_chat(quirk_holder, "<span class='danger'>You forgot you were allergic to [allergy.name]!</span>")
+			H.reagents.add_reagent(/datum/reagent/toxin/histamine, 5)
 			cooldown = 1
+			addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown_time)
+
+/datum/quirk/allergic/proc/reset_cooldown()
+	cooldown = 0
