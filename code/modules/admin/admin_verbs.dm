@@ -47,7 +47,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_headset_message,	/*send an message to somebody through their headset as CentCom*/
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_admin_check_contents,	/*displays the contents of an instance*/
-	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
 	/client/proc/check_antagonists,		/*shows all antags*/
 	/datum/admins/proc/access_news_network,	/*allows access of newscasters*/
 	/client/proc/jumptocoord,			/*we ghost and jump to a coordinate*/
@@ -118,7 +117,8 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/spawn_floor_cluwne, // Yogs
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_vox, // yogs - Admin AI Vox
-	/client/proc/admin_away
+	/client/proc/admin_away,
+	/client/proc/centcom_podlauncher/*Open a window to launch a Supplypod and configure it or it's contents*/
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))

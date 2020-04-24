@@ -44,6 +44,12 @@
 		disk.forceMove(drop_location())
 	disk = null
 
+/obj/machinery/nanite_program_hub/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
+
 /obj/machinery/nanite_program_hub/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)

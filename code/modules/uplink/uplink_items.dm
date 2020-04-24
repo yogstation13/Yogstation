@@ -1840,6 +1840,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/hug/reverse_revolver
 	restricted_roles = list("Clown")
 
+/datum/uplink_item/role_restricted/hierophant_antenna
+	name = "Hierophant's Antenna"
+	desc = "Amplifies the reception signals of the hierophant staff, allows the herald's power to reach the station!"
+	cost = 14
+	item = /obj/item/hierophant_antenna
+	restricted_roles = list("Shaft Miner")
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
