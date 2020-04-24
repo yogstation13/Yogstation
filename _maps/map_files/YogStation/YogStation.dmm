@@ -53927,6 +53927,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"kbw" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/security/processing)
 "kcy" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -55691,19 +55703,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"oqd" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "oqv" = (
 /obj/structure/sign/warning/pods,
 /turf/closed/wall,
@@ -56021,13 +56020,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/security/main)
-"pqk" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "prH" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -56040,16 +56032,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"psq" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/solars/port/fore)
 "ptH" = (
 /turf/closed/wall,
 /area/escapepodbay)
@@ -56500,6 +56482,19 @@
 /obj/structure/grille/broken,
 /turf/open/space/basic,
 /area/space/nearstation)
+"qxr" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
+/area/security/processing)
 "qxX" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -56542,6 +56537,17 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
+"qBb" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "qBq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -56721,6 +56727,23 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"qPC" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "qPL" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -57572,15 +57595,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
-"sSm" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/security/processing)
 "sTv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -58550,6 +58564,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
+"vcH" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/fore)
 "vcV" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -74849,7 +74877,7 @@ aaa
 aaa
 aag
 cXq
-pqk
+qBb
 qFW
 rVA
 avq
@@ -77924,7 +77952,7 @@ ady
 ady
 ajq
 pmW
-psq
+vcH
 mJV
 ema
 okC
@@ -84105,7 +84133,7 @@ aaa
 aaa
 aaf
 arP
-oqd
+qPC
 arP
 avA
 ayH
@@ -85121,11 +85149,11 @@ aaf
 aaf
 aaf
 akG
-sSm
+qxr
 aiT
 aaa
 aiT
-sSm
+kbw
 akG
 aaf
 aaf
