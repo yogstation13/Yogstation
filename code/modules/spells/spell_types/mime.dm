@@ -91,7 +91,7 @@
 	var/turf/T = user.loc
 	for (var/obj/item/storage/box/mime/B in T)
 		user.put_in_hands(B)
-		if(usr.get_active_held_item() == B)
+		if(user.get_active_held_item() == B)
 			B.alpha = 255
 		addtimer(CALLBACK(B, /obj/item/storage/box/mime/.proc/emptyStorage, FALSE), (summon_lifespan - 1))
 
