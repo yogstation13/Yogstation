@@ -289,11 +289,11 @@
 		qdel(src)
 		M.put_in_active_hand(holy_weapon)
 
-/**
-  * check_menu: Checks if we are allowed to interact with a radial menu
-  *
-  * Arguments:
-  * * user The mob interacting with a menu
+  /*
+  check_menu : Checks if we are allowed to interact with a radial menu
+  
+  Arguments:
+  user : The mob interacting with a menu
   */
 /obj/item/nullrod/proc/check_menu(mob/user)
 	if(!istype(user))
