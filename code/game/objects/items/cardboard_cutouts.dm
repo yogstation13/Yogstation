@@ -6,12 +6,9 @@
 	icon_state = "cutout_basic"
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
-	/// Possible restyles for the cutout, add an entry in change_appearance() if you add to here
-	var/list/possible_appearances = list()
-	/// If the cutout is pushed over and has to be righted
-	var/pushed_over = FALSE
-	/// If the cutout actually appears as what it portray and not a discolored version
-	var/deceptive = FALSE
+	var/list/possible_appearances = list() // Possible restyles for the cutout, add an entry in change_appearance() if you add to here
+	var/pushed_over = FALSE // If the cutout is pushed over and has to be righted
+	var/deceptive = FALSE // If the cutout actually appears as what it portray and not a discolored version
 
 /obj/item/cardboard_cutout/Initialize()
 	. = ..()
@@ -95,12 +92,12 @@
 		push_over()
 	return BULLET_ACT_HIT
 
-/**
-  * change_appearance: Changes a skin of the cardboard cutout based on a user's choice
-  *
-  * Arguments:
-  * * crayon The crayon used to change and recolor the cardboard cutout
-  * * user The mob choosing a skin of the cardboard cutout
+  /*
+  change_appearance: Changes a skin of the cardboard cutout based on a user's choice
+  
+  Arguments:
+  crayon : The crayon used to change and recolor the cardboard cutout
+  user : The mob choosing a skin of the cardboard cutout
   */
 
 /obj/item/cardboard_cutout/proc/change_appearance(obj/item/toy/crayon/crayon, mob/living/user)
@@ -203,12 +200,12 @@
 			return FALSE
 	return TRUE
 
-/**
-  * check_menu: Checks if we are allowed to interact with a radial menu
-  *
-  * Arguments:
-  * * user The mob interacting with a menu
-  * * crayon The crayon used to interact with a menu
+  /*
+  check_menu: Checks if we are allowed to interact with a radial menu
+  
+  Arguments:
+  user : The mob interacting with a menu
+  crayon : The crayon used to interact with a menu
   */
 /obj/item/cardboard_cutout/proc/check_menu(mob/living/user, obj/item/toy/crayon/crayon)
 	if(!istype(user))
