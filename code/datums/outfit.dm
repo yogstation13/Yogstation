@@ -239,3 +239,12 @@
 			implants += imptype
 	accessory = text2path(outfit_data["accessory"])
 	return TRUE
+
+
+/datum/outfit/mulligan
+	name = "a Mulligan (Naked)"
+
+/datum/outfit/mulligan/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	var/mob/living/carbon/human/M = H
+	randomize_human(M)
