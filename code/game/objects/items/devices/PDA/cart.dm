@@ -606,7 +606,7 @@ Code:
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", message1, message2)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [stat_msg1] - [stat_msg2].")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [message1] - [message2].")
 				if("alert")
 					post_status("alert", href_list["alert"])
 				if("setmsg1")
