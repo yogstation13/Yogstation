@@ -53,7 +53,6 @@
 		return
 	usr.set_machine(src)
 
-
 	if(!href_list["operation"])
 		return
 	var/obj/item/circuitboard/computer/communications/CM = circuit
