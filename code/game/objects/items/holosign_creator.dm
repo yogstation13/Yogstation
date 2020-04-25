@@ -13,7 +13,6 @@
 	throw_range = 7
 	item_flags = NOBLUDGEON
 	var/list/signs = list()
-	var/list/holodesigns = list()
 	var/max_signs = 10
 	var/creation_time = 0 //time to create a holosign in deciseconds.
 	var/holosign_type = /obj/structure/holosign/wetsign
@@ -141,6 +140,7 @@
 
 /obj/item/holosign_creator/multi
 	name = "multiple holosign projector"  //Fork from this to make multiple barriers
+	var/list/holodesigns = list()
 
 /obj/item/holosign_creator/multi/attack_self(mob/user)
 	if(signs.len)
