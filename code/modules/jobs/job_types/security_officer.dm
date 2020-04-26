@@ -93,8 +93,8 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 			ears = /obj/item/radio/headset/headset_sec/alt/department/service
 			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE)
 			destination = /area/security/checkpoint/service
-			spawn_point = locate(/obj/effect/landmark/start/depsec/srv) in GLOB.department_security_spawns
-			accessory =  /obj/item/clothing/accessory/armband/medblue
+			spawn_point = locate(/obj/effect/landmark/start/depsec/service) in GLOB.department_security_spawns
+			accessory =  /obj/item/clothing/accessory/armband/service
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
