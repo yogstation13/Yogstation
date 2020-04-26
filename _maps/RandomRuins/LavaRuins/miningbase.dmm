@@ -2052,10 +2052,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"lJ" = (
-/obj/structure/closet/crate/rcd,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "lZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3328,7 +3324,7 @@ ac
 ac
 ak
 bQ
-lJ
+bY
 bF
 cr
 bQ
