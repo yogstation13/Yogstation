@@ -189,9 +189,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 
 /obj/item/circuitboard/machine/gulag_processor
 	name = "labor camp processor (Machine Board)"
-	build_path = /obj/machinery/gulag_teleporter
+	build_path = /obj/machinery/gulag_processor
 	req_components = list(
-							/obj/item/stack/ore/bluespace_crystal = 2,
 							/obj/item/stock_parts/scanning_module,
 							/obj/item/stock_parts/manipulator)
-	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
