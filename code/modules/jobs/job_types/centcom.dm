@@ -227,7 +227,7 @@
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
 	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1. /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/admiral/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
