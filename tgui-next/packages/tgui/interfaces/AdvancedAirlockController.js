@@ -235,15 +235,17 @@ const Vent = props => {
     name,
     role,
   } = props;
-  const { act } = useBackend(props);
+  const { act, data } = useBackend(props);
   return (
     <Section
       level={2}
       title={decodeHtmlEntities(name)}
-      onmouseover={() => { act('set_vis_vent', {
-        vent_id: vent_id,
-      }); }}
-      onmouseout={() => { act('clear_vis'); }}>
+      buttons={(<Button 
+        content="Show Hologram"
+        selected={data.vis_target === vent_id}
+        onClick={() => act(data.vis_target === vent_id ? 'clear_vis' : 'set_vis_vent', {
+          vent_id,
+        })} />)}>
       <LabeledList>
         <LabeledList.Item label="Roles">
           <Button
@@ -291,15 +293,17 @@ const Airlock = props => {
     role,
     access,
   } = props;
-  const { act } = useBackend(props);
+  const { act, data } = useBackend(props);
   return (
     <Section
       level={2}
       title={decodeHtmlEntities(name)}
-      onmouseover={() => { act('set_vis_airlock', {
-        airlock_id: airlock_id,
-      }); }}
-      onmouseout={() => { act('clear_vis'); }}>
+      buttons={(<Button 
+        content="Show Hologram"
+        selected={data.vis_target === airlock_id}
+        onClick={() => act(data.vis_target === airlock_id ? 'clear_vis' : 'set_vis_airlock', {
+          airlock_id,
+        })} />)}>
       <LabeledList>
         <LabeledList.Item label="Roles">
           <Button
