@@ -251,6 +251,12 @@
 	icon_state = "slime"
 	spawn_type = /obj/item/clothing/mask/cigarette/xeno
 
+/obj/item/storage/box/fancy/cigarettes/cigpack_nonico
+	name = "nicotine-free cigarette packet"
+	desc = "A dull-looking pack of cigarettes."
+	icon_state = "nonico"
+	spawn_type = /obj/item/clothing/mask/cigarette/nonico
+
 /obj/item/storage/box/fancy/cigarettes/cigpack_cannabis
 	name = "\improper Freak Brothers' Special packet"
 	desc = "A label on the packaging reads, \"Endorsed by Phineas, Freddy and Franklin.\""
