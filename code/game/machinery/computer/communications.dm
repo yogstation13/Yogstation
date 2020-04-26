@@ -703,7 +703,7 @@
 	if(!SScommunications.can_announce(user, is_silicon))
 		to_chat(user, "Intercomms recharging. Please stand by.")
 		return
-	var/input = input(user, "Please choose a message to announce to the station crew.", "What?")as message|null
+	var/input = stripped_multiline_input(user, "Please choose a message to announce to the station crew.", "What?")
 	if(!input || !user.canUseTopic(src, !issilicon(usr)))
 		return
 	SScommunications.make_announcement(user, is_silicon, input)
