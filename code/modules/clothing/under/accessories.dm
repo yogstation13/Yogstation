@@ -270,8 +270,8 @@
 /obj/item/clothing/accessory/armband/service
 	name = "service guard armband"
 	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is ."
-	icon_state = "medband"
-	item_color = "medband"
+	icon_state = "serviceband"
+	item_color = "serviceband"
 
 /obj/item/clothing/accessory/armband/hydro
 	name = "hydroponics guard armband"
