@@ -233,7 +233,7 @@
 		H.dna.remove_mutation(CLOWNMUT)
 
 	if(give_flash)
-		var/obj/item/assembly/flash/T = new(H)
+		var/obj/item/assembly/flash/handheld/T = new(H)
 		var/list/slots = list (
 			"backpack" = SLOT_IN_BACKPACK,
 			"left pocket" = SLOT_L_STORE,
@@ -338,7 +338,7 @@
 			SSachievements.unlock_achievement(/datum/achievement/greentext/revolution,M.current.client)
 			if(M.has_antag_datum(/datum/antagonist/rev/head))
 				SSachievements.unlock_achievement(/datum/achievement/greentext/revolution/head,M.current.client)
-	
+
 	if(headrevs.len)
 		var/list/headrev_part = list()
 		headrev_part += "<span class='header'>The head revolutionaries were:</span>"

@@ -83,8 +83,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	GLOB.spacepods_list += src
 	START_PROCESSING(SSfastprocess, src)
 	cabin_air = new
-	cabin_air.temperature = T20C
-	cabin_air.volume = 200
+	cabin_air.set_temperature(T20C)
+	cabin_air.set_volume(200)
 	/*cabin_air.assert_gas(/datum/gas/oxygen)
 	cabin_air.assert_gas(/datum/gas/nitrogen)
 	cabin_air.gases[/datum/gas/oxygen][MOLES] = ONE_ATMOSPHERE*O2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
@@ -264,9 +264,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	return cabin_air.remove(amount)
 
 /obj/spacepod/proc/slowprocess()
-	if(cabin_air && cabin_air.volume > 0)
-		var/delta = cabin_air.temperature - T20C
-		cabin_air.temperature -= max(-10, min(10, round(delta/4,0.1)))
+	if(cabin_air && cabin_air.return_volume() > 0)
+		var/delta = cabin_air.return_temperature() - T20C
+		cabin_air.set_temperature(cabin_air.return_temperature() - max(-10, min(10, round(delta/4,0.1))))
 	if(internal_tank && cabin_air)
 		var/datum/gas_mixture/tank_air = internal_tank.return_air()
 
