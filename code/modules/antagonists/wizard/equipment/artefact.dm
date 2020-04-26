@@ -22,6 +22,10 @@
 	var/rend_desc = "You should run now."
 	var/spawn_fast = 0 //if 1, ignores checking for mobs on loc before spawning
 
+/obj/item/veilrender/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 80, 100)
+
 /obj/item/veilrender/attack_self(mob/user)
 	if(charges > 0)
 		new /obj/effect/rend(get_turf(user), spawn_type, spawn_amt, rend_desc, spawn_fast)

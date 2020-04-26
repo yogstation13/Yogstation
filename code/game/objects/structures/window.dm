@@ -388,6 +388,13 @@
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
 
+/obj/structure/window/reinforced/bronze
+	name = "bronze window"
+	desc = "A paper-thin pane of translucent yet reinforced bronze."
+	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window_single"
+	glass_type = /obj/item/stack/tile/bronze
+
 /obj/structure/window/reinforced/spawner/east
 	dir = EAST
 
@@ -540,6 +547,13 @@
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	level = 3
 	glass_amount = 2
+
+/obj/structure/window/reinforced/fulltile/bronze
+	name = "bronze window"
+	desc = "A pane of translucent yet reinforced bronze."
+	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window"
+	glass_type = /obj/item/stack/tile/bronze
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
