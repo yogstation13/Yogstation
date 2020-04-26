@@ -185,3 +185,32 @@
 	suffix = "dorms_edoor9.dmm"
 	name = "Dorm east door 9"
 
+/datum/map_template/ruin/station/box/hydroponics/hydro1
+	id = "hydro1"
+	suffix = "hydro1.dmm"
+	name = "Hydroponics 1"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro2
+	id = "hydro2"
+	suffix = "hydro2.dmm"
+	name = "Hydroponics 2"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro3
+	id = "hydro3"
+	suffix = "hydro3.dmm"
+	name = "Hydroponics 3"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro4
+	id = "hydro4"
+	suffix = "hydro4.dmm"
+	name = "Hydroponics 4"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro5
+	id = "hydro5"
+	suffix = "hydro5.dmm"
+	name = "Hydroponics 5"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro6
+	id = "hydro6"
+	suffix = "hydro6.dmm"
+	name = "Hydroponics 6"
