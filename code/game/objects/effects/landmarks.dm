@@ -232,7 +232,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "science_sec"
 
 /obj/effect/landmark/start/depsec/service
-	name = "medical_svr"
+	name = "service_sec"
 
 //Antagonist spawns
 
