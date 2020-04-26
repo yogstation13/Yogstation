@@ -17,6 +17,10 @@
 /obj/effect/landmark/stationroom/box/foreportmaint1,
 /turf/template_noop,
 /area/template_noop)
+"aad" = (
+/obj/machinery/gulag_processor,
+/turf/open/floor/plasteel,
+/area/security/processing)
 "aae" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
@@ -629,6 +633,13 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"abs" = (
+/obj/machinery/computer/prisoner,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
 "abt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -947,6 +958,12 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"abX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
 "abY" = (
 /obj/structure/grille,
 /turf/open/space,
@@ -1462,6 +1479,20 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
+"acU" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+"acV" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "acW" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -1688,6 +1719,22 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"adr" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+"ads" = (
+/obj/structure/plasticflaps{
+	opacity = 1
+	},
+/turf/open/floor/plating,
+/area/security/processing)
 "adt" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -2024,6 +2071,9 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/fore)
+"adZ" = (
+/turf/open/floor/plating,
+/area/security/processing)
 "aea" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
@@ -2307,6 +2357,11 @@
 /obj/item/pen,
 /turf/open/floor/plasteel,
 /area/security/main)
+"aeC" = (
+/obj/item/bedsheet/red,
+/mob/living/simple_animal/bot/secbot/beepsky,
+/turf/open/floor/plating,
+/area/security/processing)
 "aeD" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -2331,6 +2386,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/space/basic,
 /area/space/nearstation)
+"aeG" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/potato{
+	name = "\improper Beepsky's emergency battery"
+	},
+/turf/open/floor/plating,
+/area/security/processing)
 "aeH" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
@@ -2472,6 +2535,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"aeR" = (
+/obj/item/paper/fluff/jobs/security/beepsky_mom,
+/turf/open/floor/plating,
+/area/security/processing)
 "aeS" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
 	dir = 6
@@ -2692,6 +2759,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"afl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/security/processing)
+"afm" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+"afn" = (
+/obj/structure/sign/warning/securearea{
+	pixel_x = 32
+	},
+/obj/structure/table,
+/obj/item/storage/box/prisoner,
+/obj/machinery/camera{
+	c_tag = "Labor Shuttle Dock North"
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
 "afo" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Three"
@@ -4758,26 +4852,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/fore)
-"ajr" = (
-/obj/machinery/computer/prisoner,
-/turf/open/floor/plasteel,
-/area/security/processing)
-"ajs" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel,
-/area/security/processing)
-"ajt" = (
-/obj/structure/sign/warning/securearea{
-	pixel_x = 32
-	},
-/obj/structure/table,
-/obj/item/storage/box/prisoner,
-/obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock North"
-	},
-/obj/item/restraints/handcuffs,
-/turf/open/floor/plasteel,
-/area/security/processing)
 "aju" = (
 /obj/machinery/computer/security{
 	name = "Labor Camp Monitoring";
@@ -4945,18 +5019,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"ajJ" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/processing)
 "ajK" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hos";
@@ -5129,15 +5191,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"akb" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/processing)
 "akc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -6530,13 +6583,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"amX" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/bot_assembly/secbot,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "amY" = (
 /obj/structure/chair{
 	dir = 1
@@ -6713,10 +6759,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"anu" = (
-/obj/item/paper/fluff/jobs/security/beepsky_mom,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "anv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -7160,15 +7202,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"aou" = (
-/obj/structure/window/reinforced,
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/potato{
-	name = "\improper Beepsky's emergency battery"
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "aov" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -8148,17 +8181,6 @@
 "aqR" = (
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"aqS" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel,
-/area/security/processing)
 "aqT" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -8888,15 +8910,6 @@
 /obj/item/clothing/ears/earmuffs,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"asL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/paper/guides/jobs/security/labor_lockers,
-/turf/open/floor/plasteel,
-/area/security/processing)
 "asM" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -45546,22 +45559,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"bQP" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/personal/prisoner,
-/turf/open/floor/plasteel,
-/area/security/processing)
 "bQQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -45571,45 +45568,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"bQR" = (
-/obj/machinery/door/window/northright{
-	name = "Labor Camp Storage"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/processing)
-"bQS" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/personal/prisoner,
-/turf/open/floor/plasteel,
-/area/security/processing)
-"bQT" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/personal/prisoner,
-/turf/open/floor/plasteel,
-/area/security/processing)
-"bQU" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/processing)
 "bQZ" = (
 /turf/closed/wall/r_wall,
 /area/science/misc_lab)
@@ -85660,18 +85618,18 @@ aaf
 aaa
 aaf
 aiT
-ajs
-akb
+aad
+abX
 akI
 tPc
 amc
 aiT
 ant
 tPc
-asL
-bQP
-bQS
-bQT
+afl
+aiT
+aeR
+aeC
 arP
 asT
 aqR
@@ -85917,8 +85875,8 @@ aaf
 aaa
 aaa
 akG
-ajr
-alq
+abs
+acU
 apn
 lhn
 asp
@@ -85926,9 +85884,9 @@ aiU
 apb
 lhn
 axY
-bQR
-bQU
-alq
+ads
+adZ
+aeG
 arP
 asS
 aqR
@@ -86175,7 +86133,7 @@ aaa
 aaa
 akG
 aju
-ajJ
+afm
 akK
 jCA
 lLO
@@ -86431,13 +86389,13 @@ aai
 aai
 aai
 aai
-ajt
+afn
 ajM
 akJ
 alr
 alq
 aiU
-aqS
+adr
 alq
 anX
 apc
@@ -92326,8 +92284,8 @@ aaa
 aaa
 aaf
 abp
-amX
-aou
+acV
+aqI
 abP
 aco
 acO
@@ -92583,7 +92541,7 @@ aaa
 aaa
 aaa
 afu
-anu
+abO
 aqN
 abO
 abO
