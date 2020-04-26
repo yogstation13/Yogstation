@@ -58,6 +58,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 	if(id)
 		id.forceMove(get_turf(src))
 		id = null
+	..()
 
 /obj/machinery/gulag_processor/power_change()
 	..()
