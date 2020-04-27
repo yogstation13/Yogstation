@@ -143,11 +143,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)
 		return
-	
+
 	if(!SSjob || (SSjob.occupations.len <= 0))
 		to_chat(user, "<span class='notice'>The job SSticker is not yet finished creating jobs, please try again later</span>")
 		return
-	
+
 	update_preview_icon()
 	var/list/dat = list("<center>")
 
@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Custom Job Preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
 			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR>"
-			
+
 			dat += "<b>Language:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=accent;task=input'><b>Accent:</b> [accent ? accent : "None"]</a><BR></td>"
 
@@ -1501,7 +1501,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
-						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+						max_chat_length = CLAMP(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 			// yogs start - Custom keybindings
 			if(href_list["keybinding"])
 				update_keybindings(user, href_list["keybinding"], href_list["dir"])
