@@ -276,6 +276,7 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
+.dronesay 				{color: #ffbf00; background-color: #000000; display: block;}
 .radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
 .commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #993399;}
