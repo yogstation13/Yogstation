@@ -46,7 +46,7 @@
 
 /obj/item/storage/book/bible/attack(mob/living/M, mob/living/carbon/human/user, heal_mode = TRUE)
 	. = ..()
-	if(!(user.mind && user.mind.isholy) && is_vampire(user))
+	if(!(user.mind && user.mind.holy_role) && is_vampire(user))
 		to_chat(user, "<span class='danger'>[deity_name] channels through \the [src] and sets you ablaze for your blasphemy!</span>")
 		user.fire_stacks += 5
 		user.IgniteMob()
