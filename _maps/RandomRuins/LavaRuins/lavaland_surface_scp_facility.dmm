@@ -15,7 +15,7 @@
 /obj/item/melee/baton/loaded{
 	pixel_x = 2
 	},
-/turf/open/floor/plasteel/dak,
+/turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "ae" = (
 /obj/structure/table/reinforced,
