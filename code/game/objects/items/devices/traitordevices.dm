@@ -165,7 +165,7 @@ effective or pretty fucking useless.
 				. = TRUE
 			if(.)
 				target = round(target)
-				intensity = clamp(target, 1, 20)
+				intensity = CLAMP(target, 1, 20)
 		if("radwavelength")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
@@ -187,7 +187,7 @@ effective or pretty fucking useless.
 				. = TRUE
 			if(.)
 				target = round(target)
-				wavelength = clamp(target, 0, 120)
+				wavelength = CLAMP(target, 0, 120)
 
 /obj/item/shadowcloak
 	name = "cloaker belt"
