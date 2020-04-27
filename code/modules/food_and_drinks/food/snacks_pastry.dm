@@ -221,6 +221,9 @@
 	tastes = list("meat" = 2, "dough" = 2)
 	foodtype = GRAIN | VEGETABLES
 
+/obj/item/reagent_containers/food/snacks/cookie/sleepy
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
+
 /obj/item/reagent_containers/food/snacks/fortunecookie
 	name = "fortune cookie"
 	desc = "A true prophecy in each cookie!"
