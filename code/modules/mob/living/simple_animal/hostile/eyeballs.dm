@@ -14,16 +14,10 @@
 	speed = 0
 	gender = NEUTER
 	mob_biotypes = MOB_ORGANIC
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
 	emote_taunt = list("glares")
 	taunt_chance = 25
 	speak_emote = list("telepathically cries")
 	turns_per_move = 5
-	attack_verb_continuous = "blinks at"
-	attack_verb_simple = "blink at"
 	attack_sound = 'sound/weapons/pierce.ogg'
 	movement_type = FLYING
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
