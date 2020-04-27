@@ -431,7 +431,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "bt" = (
-/mob/living/simple_animal/hostile/carp/eyeball{
+/mob/living/simple_animal/hostile/eyeball{
 	health = 75;
 	maxHealth = 75;
 	melee_damage_lower = 25;
