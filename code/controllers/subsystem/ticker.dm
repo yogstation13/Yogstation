@@ -668,6 +668,7 @@ SUBSYSTEM_DEF(ticker)
 		'yogstation/sound/roundend/ass_blast_usa.ogg', // yogs -- adds "Ass Blast USA" vox
 		'sound/roundend/itshappening.ogg',
 		'yogstation/sound/roundend/bamboozeled.ogg',// yogs -- adds "We've been tricked, we've been backstabed, and we've quite possibly been bamboozeled.
+		'sound/roundend/yoggers.ogg', //yogs -- adds yogurt saying "Can we get a yoggers in the chat?"
 		'sound/roundend/disappointed.ogg',
 		'sound/roundend/scrunglartiy.ogg',
 		'sound/roundend/windowsxp.ogg'\
