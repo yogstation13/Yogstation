@@ -64,6 +64,7 @@
 #define ADMIN_INDIVIDUALLOG(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];individuallog=[REF(user)]'>LOGS</a>)"
 
 #define ADMIN_PUNISHMENT_LIGHTNING "Lightning bolt"
+#define ADMIN_PUNISHMENT_SPIDERIZE "Spiderize"
 #define ADMIN_PUNISHMENT_BRAINDAMAGE "Brain damage"
 #define ADMIN_PUNISHMENT_GIB "Gib"
 #define ADMIN_PUNISHMENT_BSA "Bluespace Artillery Device"
