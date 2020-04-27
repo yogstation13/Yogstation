@@ -607,7 +607,6 @@
 					if(!check_menu(user))
 						return
 					if(QDELETED(candidate))
-						channeling = FALSE
 						return
 					user.visible_message("<span class='danger'>The dark cloud recedes from what was formerly [candidate], revealing a\n [construct_class]!</span>")
 					switch(construct_class)

@@ -144,7 +144,7 @@
 	var/list/items = list(
 		"Shielded Robe" = image(icon = 'icons/obj/clothing/suits.dmi', icon_state = "cult_armor"),
 		"Flagellant's Robe" = image(icon = 'icons/obj/clothing/suits.dmi', icon_state = "cultrobes"),
-		"Mirror Shield" = image(icon = 'icons/obj/shields.dmi', icon_state = "mirror_shield")
+		"Mirror Shield" = image(icon = 'icons/obj/items_and_weapons.dmi', icon_state = "mirror_shield")
 		)
 	var/choice = show_radial_menu(user, src, items, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	var/list/pickedtype = list()
