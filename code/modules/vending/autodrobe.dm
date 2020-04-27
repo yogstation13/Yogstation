@@ -7,8 +7,8 @@
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(/obj/item/clothing/suit/chickensuit = 1,
-		            /obj/item/clothing/head/chicken = 1,
-		            /obj/item/clothing/under/rank/blueclown = 1,
+					/obj/item/clothing/head/chicken = 1,
+					/obj/item/clothing/under/rank/blueclown = 1,
 					/obj/item/clothing/under/rank/greenclown = 1,
 					/obj/item/clothing/under/rank/yellowclown = 1,
 					/obj/item/clothing/under/rank/orangeclown = 1,
@@ -16,6 +16,7 @@
 					/obj/item/clothing/under/gladiator = 1,
 					/obj/item/clothing/head/helmet/gladiator = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit = 1,
+					/obj/item/clothing/under/gimmick/rank/captain/suit/skirt = 1,
 					/obj/item/clothing/head/flatcap = 1,
 					/obj/item/clothing/suit/toggle/labcoat/mad = 1,
 					/obj/item/clothing/shoes/jackboots = 10, //yogs added more jack boots
@@ -30,8 +31,8 @@
 					/obj/item/clothing/under/suit_jacket = 1,
 					/obj/item/clothing/head/that = 1,
 					/obj/item/clothing/under/kilt = 1,
-					/obj/item/clothing/head/beret = 1,
-					/obj/item/clothing/accessory/waistcoat = 1,
+					/obj/item/clothing/head/beret/vintage = 1,
+					/obj/item/clothing/head/beret/archaic = 1,
 					/obj/item/clothing/glasses/monocle = 1, //yogs added a single space the horrors!
 					/obj/item/clothing/head/bowler = 1,
 					/obj/item/cane = 1,
@@ -54,12 +55,12 @@
 					/obj/item/clothing/suit/pirate = 1,
 					/obj/item/clothing/head/pirate = 1,
 					/obj/item/clothing/head/bandana = 1,
-					/obj/item/clothing/head/bandana = 1,
 					/obj/item/clothing/under/soviet = 1,
 					/obj/item/clothing/head/ushanka = 1,
 					/obj/item/clothing/suit/imperium_monk = 1,
 					/obj/item/clothing/mask/gas/cyborg = 1,
-					/obj/item/clothing/suit/holidaypriest = 1,
+					/obj/item/clothing/suit/chaplainsuit/holidaypriest = 1,
+					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/wizard/marisa/fake = 1,
 					/obj/item/clothing/suit/wizrobe/marisa/fake = 1,
 					/obj/item/clothing/under/sundress = 1,
@@ -72,6 +73,7 @@
 					/obj/item/clothing/under/rank/clown/sexy = 1,
 					/obj/item/clothing/mask/gas/sexymime = 1,
 					/obj/item/clothing/under/sexymime = 1,
+					/obj/item/clothing/under/rank/mime/skirt = 1,
 					/obj/item/clothing/mask/rat/bat = 1,
 					/obj/item/clothing/mask/rat/bee = 1,
 					/obj/item/clothing/mask/rat/bear = 1,
@@ -183,28 +185,34 @@
 					/obj/item/clothing/suit/yogs/armor/sith_suit = 1,
 					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1) //yogs clothes for autodrobe end here
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
-		              /obj/item/clothing/head/powdered_wig = 1,
-		              /obj/item/gun/magic/wand = 2,
-		              /obj/item/clothing/glasses/sunglasses/garb = 2,
-		              /obj/item/clothing/glasses/blindfold = 1,
-		              /obj/item/clothing/mask/muzzle = 2)
+					  /obj/item/clothing/head/powdered_wig = 1,
+					  /obj/item/gun/magic/wand = 2,
+					  /obj/item/clothing/glasses/sunglasses/garb = 2,
+					  /obj/item/clothing/glasses/blindfold = 1,
+					  /obj/item/clothing/mask/muzzle = 2)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
-		           /obj/item/clothing/head/pirate/captain = 2,
+				   /obj/item/clothing/head/pirate/captain = 2,
 				   /obj/item/clothing/under/rank/rainbowclown = 1,
-		           /obj/item/clothing/head/helmet/roman/fake = 1,
-		           /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,
-		           /obj/item/clothing/under/roman = 1,
-		           /obj/item/clothing/shoes/roman = 1,
-		           /obj/item/shield/riot/roman/fake = 1,
+				   /obj/item/clothing/head/helmet/roman/fake = 1,
+				   /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,
+				   /obj/item/clothing/under/roman = 1,
+				   /obj/item/clothing/shoes/roman = 1,
+				   /obj/item/shield/riot/roman/fake = 1,
+				   /obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
+				   /obj/item/clothing/head/clownmitre = 1,
 		           /obj/item/skub = 1,
+		           /obj/item/clothing/under/lampskirt = 1,
 		           /obj/item/clothing/under/yogs/soviet_dress_uniform = 1, //yogs start
 		           /obj/item/clothing/under/yogs/enclaveo = 1,
 		           /obj/item/clothing/under/yogs/rycliesuni = 1,
 		           /obj/item/clothing/head/yogs/toad = 1,
 		           /obj/item/clothing/head/helmet/justice = 1,
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
-
 	refill_canister = /obj/item/vending_refill/autodrobe
+
+/obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
+	return (I.type in products)
+
 	default_price = 50
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
@@ -215,3 +223,39 @@
 /obj/item/vending_refill/autodrobe
 	machine_name = "AutoDrobe"
 	icon_state = "refill_costume"
+
+/obj/machinery/vending/autodrobe/capdrobe
+	name = "\improper CapDrobe"
+	desc = "A vending machine for captain outfits."
+	icon_state = "capdrobe"
+	icon_deny = "capdrobe-deny"
+	req_access = list(ACCESS_CAPTAIN)
+	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the Captain's Autodrobe!"
+	vend_reply = "Thank you for using the Captain's Autodrobe!"
+	products = list(/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
+					/obj/item/storage/backpack/captain = 1,
+					/obj/item/storage/backpack/satchel/cap = 1,
+					/obj/item/storage/backpack/duffelbag/captain = 1,
+					/obj/item/clothing/neck/cloak/cap = 1,
+					/obj/item/clothing/shoes/sneakers/brown = 1,
+					/obj/item/clothing/under/rank/captain = 1,
+					/obj/item/clothing/under/rank/captain/skirt = 1,
+					/obj/item/clothing/suit/armor/vest/capcarapace = 1,
+					/obj/item/clothing/head/caphat = 1,
+					/obj/item/clothing/under/captainparade = 1,
+					/obj/item/clothing/suit/armor/vest/capcarapace/alt = 1,
+					/obj/item/clothing/head/caphat/parade = 1,
+					/obj/item/clothing/suit/captunic = 1,
+					/obj/item/clothing/glasses/sunglasses/gar/supergar = 1,
+					/obj/item/clothing/gloves/color/captain = 1,
+					/obj/item/clothing/under/yogs/captainartillery = 1,
+					/obj/item/clothing/under/yogs/casualcaptain = 1,
+					/obj/item/clothing/under/yogs/whitecaptainsuit = 1,
+					/obj/item/clothing/head/yogs/whitecaptaincap = 1,
+					/obj/item/clothing/under/yogs/victoriouscaptainuniform = 1,
+					/obj/item/clothing/head/beret/captain = 1)
+	premium = list(/obj/item/clothing/head/crown/fancy = 1)
+
+	default_price = 50
+	extra_price = 75
+	payment_department = ACCOUNT_SRV

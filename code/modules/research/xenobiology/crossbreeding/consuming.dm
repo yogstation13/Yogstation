@@ -20,7 +20,7 @@ Consuming extracts:
 		if(last_produced + cooldown > world.time)
 			to_chat(user, "<span class='warning'>[src] is still digesting after its last meal!<span>")
 			return
-		var/datum/reagent/N = O.reagents.has_reagent("nutriment")
+		var/datum/reagent/N = O.reagents.has_reagent(/datum/reagent/consumable/nutriment)
 		if(N)
 			nutriment_eaten += N.volume
 			to_chat(user, "<span class='notice'>[src] opens up and swallows [O] whole!</span>")
@@ -76,7 +76,7 @@ Consuming extracts:
 			to_chat(M, "Tastes like [taste].")
 		playsound(get_turf(M), 'sound/items/eatfood.ogg', 20, 1)
 		if(nutrition)
-			M.reagents.add_reagent("nutriment",nutrition)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment,nutrition)
 		do_effect(M, user)
 		qdel(src)
 		return
@@ -101,7 +101,7 @@ Consuming extracts:
 
 /obj/item/slime_cookie/orange
 	name = "fiery cookie"
-	desc = "A orange cookie with a fiery pattern. Feels warm."
+	desc = "An orange cookie with a fiery pattern. Feels warm."
 	icon_state = "orange"
 	taste = "cinnamon and burning"
 
@@ -125,7 +125,7 @@ Consuming extracts:
 	M.adjustToxLoss(-5, forced=1) //To heal slimepeople.
 	M.adjustOxyLoss(-5)
 	M.adjustCloneLoss(-5)
-	M.adjustBrainLoss(-5)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -5)
 
 /obj/item/slimecross/consuming/blue
 	colour = "blue"
@@ -136,7 +136,7 @@ Consuming extracts:
 	name = "water cookie"
 	desc = "A transparent blue cookie. Constantly dripping wet."
 	icon_state = "blue"
-	taste = "water"
+	taste = /datum/reagent/water
 
 /obj/item/slime_cookie/blue/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/watercookie)
@@ -150,7 +150,7 @@ Consuming extracts:
 	name = "metallic cookie"
 	desc = "A shiny grey cookie. Hard to the touch."
 	icon_state = "metal"
-	taste = "copper"
+	taste = /datum/reagent/copper
 
 /obj/item/slime_cookie/metal/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/metalcookie)
@@ -211,7 +211,7 @@ Consuming extracts:
 	nutrition = 0 //We don't want normal nutriment
 
 /obj/item/slime_cookie/silver/do_effect(mob/living/M, mob/user)
-	M.reagents.add_reagent("stabilizednutriment",10)
+	M.reagents.add_reagent(/datum/reagent/consumable/nutriment/stabilized,10)
 
 /obj/item/slimecross/consuming/bluespace
 	colour = "bluespace"
@@ -343,12 +343,12 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/green
 	colour = "green"
-	effect_desc = "Creates a slime cookie that is absolutely disgusting, makes the target vomit, however all reagent in their body are also removed."
+	effect_desc = "Creates a slime cookie that is absolutely disgusting. Makes the target vomit, however all reagents in their body are also removed."
 	cookietype = /obj/item/slime_cookie/green
 
 /obj/item/slime_cookie/green
 	name = "gross cookie"
-	desc = "A disgusting green cookie, seeping with pus. You kind of feel ill just looking at it."
+	desc = "A disgusting green cookie, seeping with pus. You feel ill just looking at it."
 	icon_state = "green"
 	taste = "the contents of your stomach"
 

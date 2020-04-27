@@ -20,7 +20,7 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.registered_name = H.real_name
 	W.update_label(W.registered_name, W.assignment)
-	
+
 	H.ignores_capitalism = TRUE // Yogs -- Lets ERTs buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander
@@ -193,7 +193,7 @@
 	W.assignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
-	
+
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander/inquisitor
@@ -304,3 +304,39 @@
 		/obj/item/clothing/mask/gas/sechailer=1,\
 		/obj/item/grenade/clusterbuster/cleaner=3)
 
+/datum/outfit/ert/clown
+	name = "Honk Squad Clown"
+	id = /obj/item/card/id/ert/clown
+	belt = /obj/item/pda/clown
+	ears = /obj/item/radio/headset/headset_cent
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	l_pocket = /obj/item/bikehorn
+	r_hand = /obj/item/pneumatic_cannon/pie/selfcharge
+	backpack_contents = list(
+		/obj/item/stamp/clown = 1,
+		/obj/item/reagent_containers/spray/waterflower = 1,
+		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
+		/obj/item/instrument/bikehorn = 1,
+		)
+	implants = list(/obj/item/implant/sad_trombone)
+	back = /obj/item/storage/backpack/clown
+	box = /obj/item/storage/box/hug/survival
+	chameleon_extras = /obj/item/stamp/clown
+
+/datum/outfit/ert/clown/leader
+	name = "Honk Squad Leader"
+	id = /obj/item/card/id/ert/clown
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	gloves = /obj/item/clothing/gloves/color/black
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	ears = /obj/item/radio/headset/headset_cent
+	glasses = /obj/item/clothing/glasses/thermal/monocle
+	suit = /obj/item/clothing/suit/hooded/chaplain_hoodie
+	back = /obj/item/storage/backpack/clown
+	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
+	r_pocket = /obj/item/bikehorn
+	r_hand = /obj/item/twohanded/fireaxe
+	l_hand = /obj/item/pneumatic_cannon/pie/selfcharge

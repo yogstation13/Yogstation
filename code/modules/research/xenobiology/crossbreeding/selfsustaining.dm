@@ -44,7 +44,7 @@ Self-sustaining extracts:
 		amount = 4
 		reagentselect = "plasma"
 	if(reagentselect == "holy water and uranium")
-		reagentselect = "holywater"
+		reagentselect = /datum/reagent/water/holywater
 		secondary = "uranium"
 	extract.forceMove(user.drop_location())
 	qdel(src)
@@ -54,9 +54,9 @@ Self-sustaining extracts:
 		extract.reagents.add_reagent(secondary,amount)
 
 /obj/item/autoslime/examine(mob/user)
-    ..()
-    if(effect_desc)
-        to_chat(user, "<span class='notice'>[effect_desc]</span>")
+  . = ..()
+  if(effect_desc)
+    . += "<span class='notice'>[effect_desc]</span>"
 
 //Different types.
 

@@ -43,6 +43,9 @@
 
 /obj/item/gun/energy/disabler/cyborg
 	name = "cyborg disabler"
-	desc = "An integrated disabler that draws from a cyborg's power cell. This weapon contains a limiter to prevent the cyborg's power cell from overheating."
+	desc = "A cyborg-integrated disabler that self charges."
+	charge_delay = 5
 	can_charge = FALSE
-	use_cyborg_cell = TRUE
+	selfcharge = TRUE
+	charge_amount = 3
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/cyborg)

@@ -48,10 +48,9 @@
 		if(target_zone == surgery.location)
 			if(get_location_accessible(target, target_zone) || surgery.ignore_clothes)
 				initiate(user, target, target_zone, tool, surgery, try_to_fail)
-				return 1
 			else
 				to_chat(user, "<span class='warning'>You need to expose [target]'s [parse_zone(target_zone)] to perform surgery on it!</span>")
-				return 1	//returns 1 so we don't stab the guy in the dick or wherever.
+			return TRUE	//returns TRUE so we don't stab the guy in the dick or wherever.
 
 	if(repeatable)
 		var/datum/surgery_step/next_step = surgery.get_surgery_next_step()
@@ -88,7 +87,8 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_propability_multiplier()
 
-		if((prob(prob_chance) || iscyborg(user)) && chem_check(target) && !try_to_fail)
+		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
+	 tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
 				advance = 1
 		else
@@ -104,33 +104,45 @@
 
 
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] begins to perform surgery on [target].", "<span class='notice'>You begin to perform surgery on [target]...</span>")
-
+	display_results(user, target, "<span class='notice'>You begin to perform surgery on [target]...</span>",
+		"[user] begins to perform surgery on [target].",
+		"[user] begins to perform surgery on [target].")
 
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] succeeds!", "<span class='notice'>You succeed.</span>")
-	return 1
+	display_results(user, target, "<span class='notice'>You succeed.</span>",
+		"[user] succeeds!",
+		"[user] finishes.")
+	return TRUE
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("<span class='warning'>[user] screws up!</span>", "<span class='warning'>You screw up!</span>")
-	return 0
+	display_results(user, target, "<span class='warning'>You screw up!</span>",
+		"<span class='warning'>[user] screws up!</span>",
+		"[user] finishes.", TRUE) //By default the patient will notice if the wrong thing has been cut
+	return FALSE
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return 1
 
-/datum/surgery_step/proc/chem_check(mob/living/carbon/target)
+/datum/surgery_step/proc/chem_check(mob/living/carbon/target, user,  obj/item/tool)
 	if(!LAZYLEN(chems_needed))
 		return TRUE
-
+	var/obj/item/reagent_containers/syringe/S
+	if(target.can_inject(user, FALSE))
+		S = tool
 	if(require_all_chems)
 		. = TRUE
 		for(var/R in chems_needed)
 			if(!target.reagents.has_reagent(R))
-				return FALSE
+				if(!(S && S.reagents.has_reagent(R)))
+					return FALSE
+				S.reagents.remove_reagent(R, min(S.amount_per_transfer_from_this, S.reagents.get_reagent_amount(R)))
 	else
 		. = FALSE
 		for(var/R in chems_needed)
 			if(target.reagents.has_reagent(R))
+				return TRUE
+			if(S && S.reagents.has_reagent(R))
+				S.reagents.remove_reagent(R, min(S.amount_per_transfer_from_this, S.reagents.get_reagent_amount(R)))
 				return TRUE
 
 /datum/surgery_step/proc/get_chem_list()
@@ -143,3 +155,11 @@
 			var/chemname = temp.name
 			chems += chemname
 	return english_list(chems, and_text = require_all_chems ? " and " : " or ")
+
+//Replaces visible_message during operations so only people looking over the surgeon can tell what they're doing, allowing for shenanigans.
+/datum/surgery_step/proc/display_results(mob/user, mob/living/carbon/target, self_message, detailed_message, vague_message, target_detailed = FALSE)
+	var/list/detailed_mobs = get_hearers_in_view(1, user) //Only the surgeon and people looking over his shoulder can see the operation clearly
+	if(!target_detailed)
+		detailed_mobs -= target //The patient can't see well what's going on, unless it's something like getting cut
+	user.visible_message(detailed_message, self_message, vision_distance = 1, ignored_mobs = target_detailed ? null : target)
+	user.visible_message(vague_message, "", ignored_mobs = detailed_mobs)

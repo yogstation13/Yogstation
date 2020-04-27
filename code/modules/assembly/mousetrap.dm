@@ -5,12 +5,13 @@
 	item_state = "mousetrap"
 	materials = list(MAT_METAL=100)
 	attachable = TRUE
+	layer = BELOW_OBJ_LAYER
 	var/armed = FALSE
 
 
 /obj/item/assembly/mousetrap/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The pressure plate is [armed?"primed":"safe"].</span>")
+	. = ..()
+	. += "<span class='notice'>The pressure plate is [armed?"primed":"safe"].</span>"
 
 /obj/item/assembly/mousetrap/activate()
 	if(..())
@@ -108,7 +109,7 @@
 					if(H.m_intent == MOVE_INTENT_RUN)
 						triggered(H)
 						H.visible_message("<span class='warning'>[H] accidentally steps on [src].</span>", \
-										  "<span class='warning'>You accidentally step on [src]</span>")
+										  "<span class='warning'>You accidentally step on [src].</span>")
 				else if(ismouse(MM))
 					triggered(MM)
 		else if(AM.density) // For mousetrap grenades, set off by anything heavy

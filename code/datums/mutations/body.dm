@@ -86,21 +86,20 @@
 	quality = POSITIVE
 	difficulty = 16
 	instability = 5
+	conflicts = list(GIGANTISM)
 	locked = TRUE    // Default intert species for now, so locked from regular pool.
 
 /datum/mutation/human/dwarfism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.resize = 0.8
-	owner.update_transform()
+	owner.transform = owner.transform.Scale(1, 0.8)
 	owner.pass_flags |= PASSTABLE
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
 
 /datum/mutation/human/dwarfism/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.resize = 1.25
-	owner.update_transform()
+	owner.transform = owner.transform.Scale(1, 1.25)
 	owner.pass_flags &= ~PASSTABLE
 	owner.visible_message("<span class='danger'>[owner] suddenly grows!</span>", "<span class='notice'>Everything around you seems to shrink..</span>")
 
@@ -108,7 +107,7 @@
 //Clumsiness has a very large amount of small drawbacks depending on item.
 /datum/mutation/human/clumsy
 	name = "Clumsiness"
-	desc = "A genome that inhibits certain brain functions, causing the holder to appear clumsy. Honk"
+	desc = "A genome that inhibits certain brain functions, causing the holder to appear clumsy. Honk!"
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>You feel lightheaded.</span>"
 
@@ -189,23 +188,37 @@
 	text_gain_indication = "<span class='notice'>Your skin begins to glow softly.</span>"
 	instability = 5
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
-	var/glow = 1.5
+	var/glow = 2.5
+	var/range = 2.5
 	power_coeff = 1
+	conflicts = list(/datum/mutation/human/glow/anti)
 
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	glowth = new(owner)
-	glowth.set_light(glow, glow, dna.features["mcolor"])
+	modify()
 
-/datum/mutation/human/glow/modify(mob/living/carbon/human/owner)
-	if(glowth)
-		glowth.set_light(glow + GET_MUTATION_POWER(src) , glow + GET_MUTATION_POWER(src), dna.features["mcolor"])
+/datum/mutation/human/glow/modify()
+	if(!glowth)
+		return
+	var/power = GET_MUTATION_POWER(src)
+	glowth.set_light(range * power, glow * power, dna.features["mcolor"])
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
-	qdel(glowth)
+	QDEL_NULL(glowth)
+
+/datum/mutation/human/glow/anti
+	name = "Anti-Glow"
+	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
+	text_gain_indication = "<span class='notice'>Your light around you seems to disappear.</span>"
+	glow = -3.5 //Slightly stronger, since negating light tends to be harder than making it.
+	conflicts = list(/datum/mutation/human/glow)
+	locked = TRUE
 
 /datum/mutation/human/strong
 	name = "Strength"
@@ -235,7 +248,7 @@
 
 /datum/mutation/human/fire
 	name = "Fiery Sweat"
-	desc = "The user's skin will randomly combust, but is generally alot more resilient to burning."
+	desc = "The user's skin will randomly combust, but is generally a lot more resilient to burning."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>You feel hot.</span>"
 	text_lose_indication = "<span class'notice'>You feel a lot cooler.</span>"
@@ -272,9 +285,9 @@
 	var/warpchance = 0
 
 /datum/mutation/human/badblink/on_life()
-	if(prob(warpchance))
+	if(prob(warpchance) && isturf(owner.loc))	//checks if the owner is inside something so they can't teleport out of the cloner
 		var/warpmessage = pick(
-		"<span class='warning'>With a sickening 720 degree twist of their back, [owner] vanishes into thin air.</span>",
+		"<span class='warning'>With a sickening 720-degree twist of [owner.p_their()] back, [owner] vanishes into thin air.</span>",
 		"<span class='warning'>[owner] does some sort of strange backflip into another dimension. It looks pretty painful.</span>",
 		"<span class='warning'>[owner] does a jump to the left, a step to the right, and warps out of reality.</span>",
 		"<span class='warning'>[owner]'s torso starts folding inside out until it vanishes from reality, taking [owner] with it.</span>",
@@ -290,10 +303,10 @@
 
 /datum/mutation/human/acidflesh
 	name = "Acidic Flesh"
-	desc = "Subject has acidic chemicals building up underneath their skin. This is often lethal."
+	desc = "Subject has acidic chemicals building up underneath the skin. This is often lethal."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='userdanger'>A horrible burning sensation envelops you as your flesh turns to acid!</span>"
-	text_lose_indication = "<span class'notice'>A feeling of relief covers you as your flesh goes back to normal.</span>"
+	text_lose_indication = "<span class'notice'>A feeling of relief fills you as your flesh goes back to normal.</span>"
 	difficulty = 18//high so it's hard to unlock and use on others
 	var/msgcooldown = 0
 
@@ -309,7 +322,7 @@
 
 /datum/mutation/human/gigantism
 	name = "Gigantism"//negative version of dwarfism
-	desc = "The cells within the subject spread out to cover more area, making them appear larger."
+	desc = "The cells within the subject spread out to cover more area, making the subject appear larger."
 	quality = MINOR_NEGATIVE
 	difficulty = 12
 	conflicts = list(DWARFISM)
@@ -327,3 +340,38 @@
 	owner.resize = 0.8
 	owner.update_transform()
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
+
+/datum/mutation/human/spastic
+	name = "Spastic"
+	desc = "Subject suffers from muscle spasms."
+	quality = NEGATIVE
+	text_gain_indication = "<span class='warning'>You flinch.</span>"
+	text_lose_indication = "<span class'notice'>Your flinching subsides.</span>"
+	difficulty = 16
+
+/datum/mutation/human/spastic/on_acquiring()
+	if(..())
+		return
+	owner.apply_status_effect(STATUS_EFFECT_SPASMS)
+
+/datum/mutation/human/spastic/on_losing()
+	if(..())
+		return
+	owner.remove_status_effect(STATUS_EFFECT_SPASMS)
+
+/datum/mutation/human/extrastun
+	name = "Two Left Feet"
+	desc = "A mutation that replaces the right foot with another left foot. It makes standing up after getting knocked down very difficult."
+	quality = NEGATIVE
+	text_gain_indication = "<span class='warning'>Your right foot feels... left.</span>"
+	text_lose_indication = "<span class'notice'>Your right foot feels alright.</span>"
+	difficulty = 16
+	var/stun_cooldown = 0
+
+/datum/mutation/human/extrastun/on_life()
+	if(world.time > stun_cooldown)
+		if(owner.AmountKnockdown() || owner.AmountStun())
+			owner.SetKnockdown(owner.AmountKnockdown()*2)
+			owner.SetStun(owner.AmountStun()*2)
+			owner.visible_message("<span class='danger'>[owner] tries to stand up, but trips!</span>", "<span class='userdanger'>You trip over your own feet!</span>")
+			stun_cooldown = world.time + 300

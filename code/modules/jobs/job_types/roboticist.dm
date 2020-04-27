@@ -20,6 +20,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/roboticist/proc/OmegaStationChanges()
+	supervisors = "the captain and the head of personnel"
+
 /datum/outfit/job/roboticist
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist

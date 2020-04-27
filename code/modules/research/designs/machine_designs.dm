@@ -4,7 +4,7 @@
 
 /datum/design/board/smes
 	name = "Machine Design (SMES Board)"
-	desc = "The circuit board for a SMES."
+	desc = "The circuit board for an SMES."
 	id = "smes"
 	build_path = /obj/item/circuitboard/machine/smes
 	category = list ("Engineering Machinery")
@@ -108,7 +108,7 @@
 
 /datum/design/board/launchpad
 	name = "Machine Design (Bluespace Launchpad Board)"
-	desc = "The circuit board for a bluespace Launchpad."
+	desc = "The circuit board for a bluespace launchpad."
 	id = "launchpad"
 	build_path = /obj/item/circuitboard/machine/launchpad
 	category = list ("Teleportation Machinery")
@@ -116,7 +116,7 @@
 
 /datum/design/board/launchpad_console
 	name = "Machine Design (Bluespace Launchpad Console Board)"
-	desc = "The circuit board for a bluespace launchpad Console."
+	desc = "The circuit board for a bluespace launchpad console."
 	id = "launchpad_console"
 	build_path = /obj/item/circuitboard/computer/launchpad_console
 	category = list ("Teleportation Machinery")
@@ -137,14 +137,6 @@
 	build_path = /obj/item/circuitboard/machine/sleeper
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	category = list ("Medical Machinery") //yogs end
-
-/datum/design/board/vr_sleeper
-	name = "Machine Design (VR Sleeper Board)"
-	desc = "The circuit board for a VR sleeper."
-	id = "vr_sleeper"
-	build_path = /obj/item/circuitboard/machine/vr_sleeper
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
-	category = list ("Medical Machinery")
 
 /datum/design/board/cryotube
 	name = "Machine Design (Cryotube Board)"
@@ -196,7 +188,7 @@
 
 /datum/design/board/clonecontrol
 	name = "Computer Design (Cloning Machine Console)"
-	desc = "Allows for the construction of circuit boards used to build a new Cloning Machine console."
+	desc = "Allows for the construction of circuit boards used to build a cloning machine console."
 	id = "clonecontrol"
 	build_path = /obj/item/circuitboard/computer/cloning
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -204,7 +196,7 @@
 
 /datum/design/board/clonepod
 	name = "Machine Design (Clone Pod)"
-	desc = "Allows for the construction of circuit boards used to build a Cloning Pod."
+	desc = "Allows for the construction of circuit boards used to build a cloning pod."
 	id = "clonepod"
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 	build_path = /obj/item/circuitboard/machine/clonepod
@@ -212,7 +204,7 @@
 
 /datum/design/board/clonescanner
 	name = "Machine Design (Cloning Scanner)"
-	desc = "Allows for the construction of circuit boards used to build a Cloning Scanner."
+	desc = "Allows for the construction of circuit boards used to build a cloning scanner."
 	id = "clonescanner"
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 	build_path = /obj/item/circuitboard/machine/clonescanner

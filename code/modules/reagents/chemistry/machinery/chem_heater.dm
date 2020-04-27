@@ -52,9 +52,9 @@
 		heater_coefficient *= M.rating
 
 /obj/machinery/chem_heater/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>")
+		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>"
 
 /obj/machinery/chem_heater/process()
 	..()
@@ -92,7 +92,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_heater", name, 275, 400, master_ui, state)
+		ui = new(user, src, ui_key, "chem_heater", name, 275, 320, master_ui, state)
 		ui.open()
 
 /obj/machinery/chem_heater/ui_data()

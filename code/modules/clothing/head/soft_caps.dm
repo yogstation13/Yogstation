@@ -41,8 +41,8 @@
 		usr.update_inv_head()	//so our mob-overlays update
 
 /obj/item/clothing/head/soft/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click the cap to flip it [flipped ? "forwards" : "backwards"].</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click the cap to flip it [flipped ? "forwards" : "backwards"].</span>"
 
 /obj/item/clothing/head/soft/red
 	name = "red cap"
@@ -127,5 +127,12 @@
 	name = "EMT cap"
 	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top."
 	icon_state = "emtsoft"
+	item_color = "emt"
+	dog_fashion = null
+
+/obj/item/clothing/head/soft/emt/green
+	name = "green EMT cap"
+	desc = "It's a baseball hat with a green color and a reflective cross on the top."
+	icon_state = "emtgrsoft"
 	item_color = "emt"
 	dog_fashion = null

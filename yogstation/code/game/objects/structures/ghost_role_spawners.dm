@@ -12,7 +12,7 @@
 	..()
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
-		H.grant_all_languages(omnitongue=TRUE) // Is this powercreep?
+		H.grant_all_languages() // Is this powercreep?
 		to_chat(H, "<span class='notice'>You are familiar with these human's language. Use this to your advantage to communicate with those authentic with it.</span>")
 	to_chat(new_spawn, "<span class='notice'>When you are close to death you will enter a chrysalis state where you will slowly regenerate. During this state you are very vunerable.</span>")
 
@@ -90,7 +90,7 @@
 		ashwalker.forceMove(get_turf(src))
 		ashwalker.real_name = name
 		ashwalker.name = name
-		ashwalker.blood_volume = BLOOD_VOLUME_NORMAL
+		ashwalker.blood_volume = BLOOD_VOLUME_NORMAL(ashwalker)
 		reset_rebirth()
 		ashwalker.grab_ghost()
 		ashwalker = null

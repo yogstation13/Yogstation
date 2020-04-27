@@ -51,8 +51,6 @@
 	P.info = text("<center><B>Forensic Record - (FR-[])</B></center><HR><BR>", frNum)
 	P.info += jointext(log, "<BR>")
 	P.info += "<HR><B>Notes:</B><BR>"
-	P.info_links = P.info
-	P.updateinfolinks()
 	P.update_icon()
 
 	if(ismob(loc))
@@ -199,9 +197,9 @@
 	log = list()
 
 /obj/item/detective_scanner/examine(mob/user)
-	..()
+	. = ..()
 	if(LAZYLEN(log) && !scanning)
-		to_chat(user, "<span class='notice'>Alt-click to clear scanner logs.</span>")
+		. += "<span class='notice'>Alt-click to clear scanner logs.</span>"
 
 /obj/item/detective_scanner/proc/displayDetectiveScanResults(mob/living/user)
 	// No need for can-use checks since the action button should do proper checks

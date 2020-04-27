@@ -65,6 +65,8 @@
 			B.name = "The Necronomicon"
 		if("hinduism")
 			B.name = "The Vedas"
+		if("zoroastrianism")
+			B.name = "The Avesta"
 		if("homosexuality")
 			B.name = pick("Guys Gone Wild","Coming Out of The Closet")
 		if("imperium")
@@ -77,7 +79,7 @@
 			B.name = "Fluorescent Incandescence"
 		if("lol", "wtf", "gay", "penis", "ass", "poo", "badmin", "shitmin", "deadmin", "cock", "cocks", "meme", "memes")
 			B.name = pick("Woodys Got Wood: The Aftermath", "War of the Cocks", "Sweet Bro and Hella Jef: Expanded Edition","F.A.T.A.L. Rulebook")
-			H.adjustBrainLoss(100) // starts off retarded as fuck
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100) // starts off retarded as fuck
 		if("monkeyism","apism","gorillism","primatism")
 			B.name = pick("Going Bananas", "Bananas Out For Harambe")
 		if("mormonism")

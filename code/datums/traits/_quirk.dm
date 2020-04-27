@@ -11,9 +11,13 @@
 	var/mood_quirk = FALSE //if true, this quirk affects mood and is unavailable if moodlets are disabled
 	var/mob_trait //if applicable, apply and remove this mob trait
 	var/mob/living/quirk_holder
+	var/not_init = FALSE // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
 
-/datum/quirk/New(mob/living/quirk_mob, spawn_effects)
+/datum/quirk/New(mob/living/quirk_mob, spawn_effects, no_init = FALSE)
 	..()
+	if(no_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
+		not_init = TRUE
+		return
 	if(!quirk_mob || (human_only && !ishuman(quirk_mob)) || quirk_mob.has_quirk(type))
 		qdel(src)
 	quirk_holder = quirk_mob
@@ -29,6 +33,8 @@
 		addtimer(CALLBACK(src, .proc/post_add), 30)
 
 /datum/quirk/Destroy()
+	if(not_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
+		return ..()
 	STOP_PROCESSING(SSquirks, src)
 	remove()
 	if(quirk_holder)
@@ -57,6 +63,9 @@
 
 /datum/quirk/proc/clone_data() //return additional data that should be remembered by cloning
 /datum/quirk/proc/on_clone(data) //create the quirk from clone data
+
+/datum/quirk/proc/check_quirk(datum/preferences/prefs) // Yogs -- allows quirks to check the preferences of the user who may acquire it
+	return FALSE
 
 /datum/quirk/process()
 	if(QDELETED(quirk_holder))

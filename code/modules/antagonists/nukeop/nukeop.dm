@@ -53,6 +53,13 @@
 	memorize_code()
 	if(send_to_spawnpoint)
 		move_to_spawnpoint()
+		// grant extra TC for the people who start in the nukie base ie. not the lone op
+		var/extra_tc = CEILING(GLOB.joined_player_list.len/5, 5)
+		var/datum/component/uplink/U = owner.find_syndicate_uplink()
+		if (U)
+			U.telecrystals += extra_tc
+
+
 
 /datum/antagonist/nukeop/get_team()
 	return nuke_team
@@ -60,7 +67,7 @@
 /datum/antagonist/nukeop/proc/assign_nuke()
 	if(nuke_team && !nuke_team.tracked_nuke)
 		nuke_team.memorized_code = random_nukecode()
-		var/obj/machinery/nuclearbomb/syndicate/nuke = locate() in GLOB.nuke_list
+		var/obj/machinery/nuclearbomb/syndicate/nuke = find_nuke() //Yogs -- Puts find_nuke() here to fix bananium nukes fucking up normal nuke ops
 		if(nuke)
 			nuke_team.tracked_nuke = nuke
 			if(nuke.r_code == "ADMIN")
@@ -362,8 +369,24 @@
 		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
 
 	parts += text
-
+	handle_achievements()
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/nuclear/proc/handle_achievements()
+	switch(get_result())
+		if(NUKE_RESULT_FLUKE)
+			for(var/mob/living/carbon/human/H in GLOB.player_list) //if you observe, too bad
+				if(!is_nuclear_operative(H))
+					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
+		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				var/datum/mind/M = H.mind
+				if(M && M.has_antag_datum(/datum/antagonist/nukeop))
+					if(M.has_antag_datum(/datum/antagonist/nukeop/clownop) || M.has_antag_datum(/datum/antagonist/nukeop/leader/clownop))
+						SSachievements.unlock_achievement(/datum/achievement/greentext/clownop, H.client)
+					else
+						SSachievements.unlock_achievement(/datum/achievement/greentext/nukewin, H.client)
+
 
 /datum/team/nuclear/antag_listing_name()
 	if(syndicate_name)

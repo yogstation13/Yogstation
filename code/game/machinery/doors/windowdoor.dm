@@ -53,6 +53,7 @@
 		icon_state = base_state
 	else
 		icon_state = "[base_state]open"
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/window/proc/open_and_close()
 	if(!open())
@@ -219,6 +220,10 @@
 		open(2)
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/living/user, params)
+
+	if(istype(I, /obj/item/airlock_scanner))		//yogs start
+		var/obj/item/airlock_scanner/S = I
+		S.show_access(src, user)					//yogs end
 
 	if(operating)
 		return

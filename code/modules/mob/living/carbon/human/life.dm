@@ -28,9 +28,11 @@
 	if (QDELETED(src))
 		return 0
 
-	if(!IsInStasis())
+	if(!IS_IN_STASIS(src))
 		if(.) //not dead
-			handle_active_genes()
+
+			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
+				HM.on_life()
 
 		if(stat != DEAD)
 			//heart attack stuff
@@ -39,9 +41,6 @@
 		if(stat != DEAD)
 			//Stuff jammed in your limbs hurts
 			handle_embedded_objects()
-
-		if(stat != DEAD)
-			handle_hygiene()
 
 		dna.species.spec_life(src) // for mutantraces
 
@@ -75,7 +74,7 @@
 	else if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
-	if (getBrainLoss() >= 60)
+	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
@@ -151,6 +150,8 @@
 	//If have no DNA or can be Ignited, call parent handling to light user
 	//If firestacks are high enough
 	if(!dna || dna.species.CanIgniteMob(src))
+		if(get_thermal_protection() > FIRE_SUIT_MAX_TEMP_PROTECT*0.95) // If they're resistant to fire (slightly undercut to make sure get_thermal_protection doesn't fuck over this achievement due to floating-point errors
+			SSachievements.unlock_achievement(/datum/achievement/engineering/toasty,src.client) // Fear the reaper man!
 		return ..()
 	. = FALSE //No ignition
 
@@ -315,10 +316,6 @@
 					clear_alert("embeddedobject")
 					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
-/mob/living/carbon/human/proc/handle_active_genes()
-	for(var/datum/mutation/human/HM in dna.mutations)
-		HM.on_life()
-
 /mob/living/carbon/human/proc/handle_heart()
 	var/we_breath = !HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT)
 
@@ -330,36 +327,6 @@
 		Unconscious(80)
 	// Tissues die without blood circulation
 	adjustBruteLoss(2)
-
-/mob/living/carbon/human/proc/handle_hygiene()
-	if(HAS_TRAIT(src, TRAIT_ALWAYS_CLEAN))
-		set_hygiene(HYGIENE_LEVEL_CLEAN)
-		return
-
-	var/hygiene_loss = -HYGIENE_FACTOR * 0.25 //Small loss per life
-
-	//If you're covered in blood, you'll start smelling like shit faster.
-	var/obj/item/head = get_item_by_slot(SLOT_HEAD)
-	if(head && HAS_BLOOD_DNA(head))
-		hygiene_loss -= 1 * HYGIENE_FACTOR
-
-	var/obj/item/mask = get_item_by_slot(SLOT_HEAD)
-	if(mask && HAS_BLOOD_DNA(mask))
-		hygiene_loss -= 1 * HYGIENE_FACTOR
-
-	var/obj/item/uniform = get_item_by_slot(SLOT_W_UNIFORM)
-	if(uniform && HAS_BLOOD_DNA(uniform))
-		hygiene_loss -= 4 * HYGIENE_FACTOR
-
-	var/obj/item/suit = get_item_by_slot(SLOT_WEAR_SUIT)
-	if(suit && HAS_BLOOD_DNA(suit))
-		hygiene_loss -= 3 * HYGIENE_FACTOR
-
-	var/obj/item/feet = get_item_by_slot(SLOT_SHOES)
-	if(feet && HAS_BLOOD_DNA(feet))
-		hygiene_loss -= 0.5 * HYGIENE_FACTOR
-
-	adjust_hygiene(hygiene_loss)
 
 
 #undef THERMAL_PROTECTION_HEAD

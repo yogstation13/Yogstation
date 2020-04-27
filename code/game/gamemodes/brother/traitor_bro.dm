@@ -54,7 +54,6 @@
 		team.forge_brother_objectives()
 		for(var/datum/mind/M in team.members)
 			M.add_antag_datum(/datum/antagonist/brother, team)
-			equip_brother(M.current) // Yogs -- Adds Bloodbro bundle thingies, because Fluffe fucked it up
 		team.update_name()
 	brother_teams += pre_brother_teams
 	return ..()

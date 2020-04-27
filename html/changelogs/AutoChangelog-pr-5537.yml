@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "timestop is properly defeated by antimagic."
-  - bugfix: "timestop only checks antimagic once"

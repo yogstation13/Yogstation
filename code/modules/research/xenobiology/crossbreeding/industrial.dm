@@ -13,8 +13,8 @@ Industrial extracts:
 	var/itemamount = 1 //How many items to spawn
 
 /obj/item/slimecross/industrial/examine(mob/user)
-	..()
-	to_chat(user, "It currently has [plasmaabsorbed] units of plasma floating inside the outer shell, out of [plasmarequired] units.")
+	. = ..()
+	. += "It currently has [plasmaabsorbed] units of plasma floating inside the outer shell, out of [plasmarequired] units."
 
 /obj/item/slimecross/industrial/proc/do_after_spawn(obj/item/spawned)
 	return
@@ -30,13 +30,13 @@ Industrial extracts:
 
 /obj/item/slimecross/industrial/process()
 	var/IsWorking = FALSE
-	if(reagents.has_reagent("plasma",amount = 2) && plasmarequired > 1) //Can absorb as much as 2
+	if(reagents.has_reagent(/datum/reagent/toxin/plasma,amount = 2) && plasmarequired > 1) //Can absorb as much as 2
 		IsWorking = TRUE
-		reagents.remove_reagent("plasma",2)
+		reagents.remove_reagent(/datum/reagent/toxin/plasma,2)
 		plasmaabsorbed += 2
-	else if(reagents.has_reagent("plasma",amount = 1)) //Can absorb as little as 1
+	else if(reagents.has_reagent(/datum/reagent/toxin/plasma,amount = 1)) //Can absorb as little as 1
 		IsWorking = TRUE
-		reagents.remove_reagent("plasma",1)
+		reagents.remove_reagent(/datum/reagent/toxin/plasma,1)
 		plasmaabsorbed += 1
 
 	if(plasmaabsorbed >= plasmarequired)
@@ -180,13 +180,13 @@ Industrial extracts:
 	colour = "black"
 	effect_desc = "Produces slime brand regenerative cigarettes."
 	plasmarequired = 6
-	itempath = /obj/item/storage/fancy/cigarettes/cigpack_xeno
+	itempath = /obj/item/storage/box/fancy/cigarettes/cigpack_xeno
 
 /obj/item/slimecross/industrial/lightpink
 	colour = "light pink"
 	effect_desc = "Produces heart shaped boxes that have candies in them."
 	plasmarequired = 3
-	itempath = /obj/item/storage/fancy/heart_box
+	itempath = /obj/item/storage/box/fancy/heart_box
 
 /obj/item/slimecross/industrial/adamantine
 	colour = "adamantine"

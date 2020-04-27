@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Scrubbers now stop scrubbing if their internal pressure gets too high."

@@ -22,7 +22,7 @@
 					other_traitors -= objective.target
 			for(var/tator in other_traitors)
 				var/datum/mind/tatortottle = tator
-				if(!tatortottle.current || tatortottle.current.stat == DEAD)
+				if(!tatortottle.current || tatortottle.current.stat == DEAD || iscyborg(tatortottle.current))
 					other_traitors -= tatortottle
 
 			if(other_traitors.len)
@@ -58,7 +58,7 @@
 					add_objective(hijack_objective)
 
 			if(uplink_holder && owner.current && ishuman(owner.current))
-				GET_COMPONENT_FROM(uplink, /datum/component/uplink, uplink_holder)
+				var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
 				uplink.telecrystals += 5
 				to_chat(owner, "<span class='notice'>You have been given 5 TC as a reward for completing your objective!</span>")
 

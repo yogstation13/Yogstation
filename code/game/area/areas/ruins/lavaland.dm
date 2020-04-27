@@ -32,6 +32,10 @@
 /area/ruin/powered/seedvault
 	icon_state = "dk_yellow"
 
+/area/ruin/powered/kinggoatlair
+	name = "King Goat Lair"
+	icon_state = "dk_yellow"
+
 /area/ruin/powered/gasstation //yogs start
 	name = "Lavaland Gas Station"
 	icon_state = "dk_yellow" // yogs end

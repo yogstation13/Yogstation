@@ -7,7 +7,7 @@
 #define WRITE_LOG(log, text) rustg_log_write(log, text)
 
 //print a warning message to world.log
-#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
+#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
 /proc/warning(msg)
 	msg = "## WARNING: [msg]"
 	log_world(msg)
@@ -139,6 +139,10 @@
 	if (CONFIG_GET(flag/log_telecomms))
 		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
 
+/proc/log_ntsl(text)
+	if (CONFIG_GET(flag/log_ntsl))
+		WRITE_LOG(GLOB.world_ntsl_log, "NTSL: [text]")
+
 /proc/log_chat(text)
 	if (CONFIG_GET(flag/log_pda))
 		//same thing here
@@ -187,6 +191,11 @@
 /proc/log_mapping(text)
 	WRITE_LOG(GLOB.world_map_error_log, text)
 
+/* ui logging */
+
+/proc/log_tgui(text)
+	WRITE_LOG(GLOB.tgui_log, text)
+
 /* For logging round startup. */
 /proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.round_id].\n-------------------------")
@@ -194,6 +203,7 @@
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
 	rustg_log_close_all()
+	quickwrite_close_all()
 
 
 /* Helper procs for building detailed log lines */

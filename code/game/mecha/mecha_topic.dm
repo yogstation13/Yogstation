@@ -78,7 +78,7 @@
 	if (internal_tank)
 		int_tank_air = internal_tank.return_air()
 		tank_pressure = internal_tank ? round(int_tank_air.return_pressure(),0.01) : "None"
-		tank_temperature = internal_tank ? int_tank_air.temperature : "Unknown"
+		tank_temperature = internal_tank ? int_tank_air.return_temperature() : "Unknown"
 		cabin_pressure = round(return_pressure(),0.01)
 	. = {"[report_internal_damage()]
 						[integrity<30?"<span class='userdanger'>DAMAGE LEVEL CRITICAL</span><br>":null]
@@ -286,7 +286,9 @@
 		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
 		if(!isnull(userinput))
 			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			name = newname ? newname : initial(name)
+			if(newname)
+				log_game("[key_name(usr)] renamed [name] to [newname]")
+				name = newname ? newname : initial(name)
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access

@@ -35,10 +35,6 @@
 /datum/config_entry/keyed_list/midround_antag/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
-/datum/config_entry/keyed_list/policy
-	key_mode = KEY_MODE_TEXT
-	value_mode = VALUE_MODE_TEXT
-
 /datum/config_entry/number/damage_multiplier
 	config_entry_value = 1
 	integer = FALSE
@@ -159,12 +155,6 @@
 	value_mode = VALUE_MODE_FLAG
 
 /datum/config_entry/flag/join_with_mutant_humans	//players can pick mutant bodyparts for humans before joining the game
-
-/datum/config_entry/flag/no_summon_guns	//No
-
-/datum/config_entry/flag/no_summon_magic	//Fun
-
-/datum/config_entry/flag/no_summon_events	//Allowed
 
 /datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
@@ -288,8 +278,6 @@
 /datum/config_entry/flag/silent_ai
 /datum/config_entry/flag/silent_borg
 
-/datum/config_entry/flag/sandbox_autoclose	// close the sandbox panel after spawning an item, potentially reducing griff
-
 /datum/config_entry/number/default_laws //Controls what laws the AI spawns with.
 	config_entry_value = 0
 	min_val = 0
@@ -323,6 +311,11 @@
 
 /datum/config_entry/number/lavaland_budget
 	config_entry_value = 60
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/icemoon_budget
+	config_entry_value = 90
 	integer = FALSE
 	min_val = 0
 

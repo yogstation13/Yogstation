@@ -29,9 +29,10 @@
 			break
 
 /obj/machinery/stasis/examine(mob/user)
-	..()
-	var/turn_on_or_off = stasis_enabled ? "turn off" : "turn on"
-	to_chat(user, "<span class='notice'>Alt-click to [turn_on_or_off] the machine.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.</span>"
+	if(obj_flags & EMAGGED)
+		. += "<span class='warning'>There's a worrying blue mist surrounding it.</span>"
 
 /obj/machinery/stasis/proc/play_power_sound()
 	var/_running = stasis_running()
@@ -44,7 +45,7 @@
 		last_stasis_sound = _running
 
 /obj/machinery/stasis/AltClick(mob/user)
-	if(world.time >= stasis_can_toggle && user.canUseTopic(src))
+	if(world.time >= stasis_can_toggle && user.canUseTopic(src, !issilicon(user)))
 		stasis_enabled = !stasis_enabled
 		stasis_can_toggle = world.time + STASIS_TOGGLE_COOLDOWN
 		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
@@ -54,7 +55,7 @@
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
 		var/mob/living/L = AM
-		if(L.IsInStasis())
+		if(IS_IN_STASIS(L))
 			thaw_them(L)
 	. = ..()
 
@@ -79,9 +80,6 @@
 
 	SSvis_overlays.remove_vis_overlay(src, overlays_to_remove)
 
-	if(occupant)
-		SSvis_overlays.add_vis_overlay(src, 'icons/obj/machines/stasis.dmi', "tubes", LYING_MOB_LAYER + 0.1, plane, dir) //using vis_overlays instead of normal overlays for mouse_opacity here
-
 	if(stat & BROKEN)
 		icon_state = "stasis_broken"
 		return
@@ -105,12 +103,14 @@
 		return
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
-	target.SetStasis(TRUE)
+	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
+	if(obj_flags & EMAGGED)
+		to_chat(target, "<span class='warning'>Your limbs start to feel numb...</span>")
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
-	target.SetStasis(FALSE)
+	target.remove_status_effect(STATUS_EFFECT_STASIS)
 	if(target == occupant)
 		use_power = IDLE_POWER_USE
 
@@ -145,9 +145,11 @@
 		return
 	var/mob/living/L_occupant = occupant
 	if(stasis_running())
-		if(!L_occupant.IsInStasis())
+		if(!IS_IN_STASIS(L_occupant))
 			chill_out(L_occupant)
-	else if(L_occupant.IsInStasis())
+		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
+			L_occupant.adjustStaminaLoss(5)
+	else if(IS_IN_STASIS(L_occupant))
 		thaw_them(L_occupant)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
@@ -165,4 +167,12 @@
 		unbuckle_mob(occupant)
 	else
 		..()
+
+/obj/machinery/stasis/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>The stasis bed's safeties are already overriden!</span>")
+		return
+	to_chat(user, "<span class='notice'>You override the stasis bed's safeties!</span>")
+	obj_flags |= EMAGGED
+
 #undef STASIS_TOGGLE_COOLDOWN

@@ -31,7 +31,7 @@
 	if(!T)
 		vis_contents.len = 0
 		if(prune_on_fail)
-			ChangeTurf(/turf/open/floor/plating)
+			ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 		return FALSE
 	if(init)
 		vis_contents += T
@@ -101,8 +101,18 @@
 				qdel(L)
 				playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You build a floor.</span>")
-				PlaceOnTop(/turf/open/floor/plating)
+				PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			else
 				to_chat(user, "<span class='warning'>You need one floor tile to build a floor!</span>")
 		else
 			to_chat(user, "<span class='warning'>The plating is going to need some support! Place metal rods first.</span>")
+
+/turf/open/openspace/icemoon
+	name = "ice chasm"
+	baseturfs = /turf/open/openspace/icemoon
+	can_cover_up = FALSE
+	can_build_on = FALSE
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/openspace/icemoon/can_zFall(atom/movable/A, levels = 1, turf/target)
+	return TRUE

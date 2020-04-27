@@ -356,7 +356,7 @@
 	name = "Flat Top (Big)"
 	icon_state = "hair_bigflattop"
 
-/datum/sprite_accessory/hair/fag
+/datum/sprite_accessory/hair/flow
 	name = "Flow Hair"
 	icon_state = "hair_f"
 
@@ -857,10 +857,6 @@
 /datum/sprite_accessory/facial_hair/moonshiner
 	name = "Beard (Moonshiner)"
 	icon_state = "facial_moonshiner"
-
-/datum/sprite_accessory/facial_hair/tribearder
-	name = "Beard (Tribearder)"
-	icon_state = "facial_tribearder"
 
 /datum/sprite_accessory/facial_hair/longbeard
 	name = "Beard (Long)"
@@ -1477,6 +1473,10 @@
 	name = "Knee-high (White)"
 	icon_state = "white_knee"
 
+/datum/sprite_accessory/socks/bee_knee
+	name = "Knee-high (Bee)"
+	icon_state = "bee_knee"
+
 /datum/sprite_accessory/socks/black_norm
 	name = "Normal (Black)"
 	icon_state = "black_norm"
@@ -1496,6 +1496,38 @@
 /datum/sprite_accessory/socks/white_short
 	name = "Short (White)"
 	icon_state = "white_short"
+
+/datum/sprite_accessory/socks/stockings_blue
+	name = "Stockings (Blue)"
+	icon_state = "stockings_blue"
+
+/datum/sprite_accessory/socks/stockings_cyan
+	name = "Stockings (Cyan)"
+	icon_state = "stockings_cyan"
+
+/datum/sprite_accessory/socks/stockings_dpink
+	name = "Stockings (Dark Pink)"
+	icon_state = "stockings_dpink"
+
+/datum/sprite_accessory/socks/stockings_green
+	name = "Stockings (Green)"
+	icon_state = "stockings_black"
+
+/datum/sprite_accessory/socks/stockings_orange
+	name = "Stockings (Orange)"
+	icon_state = "stockings_orange"
+
+/datum/sprite_accessory/socks/stockings_programmer
+	name = "Stockings (Programmer)"
+	icon_state = "stockings_lpink"
+
+/datum/sprite_accessory/socks/stockings_purple
+	name = "Stockings (Purple)"
+	icon_state = "stockings_purple"
+
+/datum/sprite_accessory/socks/stockings_yellow
+	name = "Stockings (Yellow)"
+	icon_state = "stockings_yellow"
 
 /datum/sprite_accessory/socks/black_thigh
 	name = "Thigh-high (Black)"
@@ -1528,6 +1560,10 @@
 /datum/sprite_accessory/socks/white_thigh
 	name = "Thigh-high (White)"
 	icon_state = "white_thigh"
+
+/datum/sprite_accessory/socks/bee_thigh
+	name = "Thigh-high (Bee)"
+	icon_state = "bee_thigh"
 
 //////////.//////////////////
 // MutantParts Definitions //
@@ -1677,14 +1713,6 @@
 /datum/sprite_accessory/wings_open
 	icon = 'icons/mob/wings.dmi'
 
-/datum/sprite_accessory/wings_open/angel
-	name = "Angel"
-	icon_state = "angel"
-	color_src = 0
-	dimension_x = 46
-	center = TRUE
-	dimension_y = 34
-
 /datum/sprite_accessory/wings
 	icon = 'icons/mob/wings.dmi'
 
@@ -1696,6 +1724,29 @@
 	center = TRUE
 	dimension_y = 34
 	locked = TRUE
+
+/datum/sprite_accessory/wings_open/angel
+	name = "Angel"
+	icon_state = "angel"
+	color_src = 0
+	dimension_x = 46
+	center = TRUE
+	dimension_y = 34
+
+/datum/sprite_accessory/wings/dragon
+	name = "Dragon"
+	icon_state = "dragon"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+
+/datum/sprite_accessory/wings_open/dragon
+	name = "Dragon"
+	icon_state = "dragon"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
 
 /datum/sprite_accessory/frills
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1788,7 +1839,7 @@
 	icon_state = "round"
 
 /datum/sprite_accessory/moth_wings
-	icon = 'icons/mob/wings.dmi'
+	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
 
 /datum/sprite_accessory/moth_wings/plain

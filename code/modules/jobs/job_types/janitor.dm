@@ -8,7 +8,6 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#bbe291"
-	var/global/janitors = 0
 
 	outfit = /datum/outfit/job/janitor
 
@@ -18,6 +17,13 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_JANITOR
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/janitor/proc/OmegaStationChanges()
+	access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/janitor
 	name = "Janitor"

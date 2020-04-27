@@ -42,7 +42,7 @@
 
 /obj/item/clothing/head/yogs/drinking_hat
 	name = "drinking hat"
-	desc = "A utilitarian drinking hat."
+	desc = "An utilitarian drinking hat."
 	icon_state = "drinking_hat"
 	item_state = "drinking_hat"
 

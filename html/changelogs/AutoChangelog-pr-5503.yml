@@ -1,4 +1,0 @@
-author: " Naksu"
-delete-after: true 
-changes: 
-  - tweak: "Pipeline gas reconciliation is now faster. This should improve atmos performance in pipes."

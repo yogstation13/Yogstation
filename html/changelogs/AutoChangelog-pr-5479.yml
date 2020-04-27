@@ -1,4 +1,0 @@
-author: " nemvar"
-delete-after: true 
-changes: 
-  - bugfix: "You can now reuse chemical grenade casings if they fail to react."

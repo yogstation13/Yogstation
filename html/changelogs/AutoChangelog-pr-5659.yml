@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - rscadd: "Added support for a widescreen toggle, actual widescreen will require a config change."
-  - tweak: "Auto-fit view is now the default. This will only apply to new players."

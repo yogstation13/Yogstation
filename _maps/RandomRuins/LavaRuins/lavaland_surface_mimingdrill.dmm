@@ -1,0 +1,427 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/ruin/unpowered)
+"b" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/unpowered)
+"c" = (
+/obj/structure/falsewall/titanium,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
+"d" = (
+/obj/structure/window/shuttle,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"e" = (
+/obj/structure/closet,
+/obj/item/clothing/mask/gas/mime,
+/obj/item/clothing/shoes/sneakers/mime,
+/obj/item/clothing/under/rank/mime,
+/obj/item/toy/crayon/spraycan/mimecan,
+/obj/item/toy/figure/mime,
+/obj/item/storage/backpack/mime,
+/obj/item/storage/box/syndie_kit/mimery,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"f" = (
+/obj/structure/closet/crate/internals,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"g" = (
+/obj/machinery/computer,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"h" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"i" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"j" = (
+/obj/structure/closet/crate,
+/obj/item/tank/internals/emergency_oxygen,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"k" = (
+/obj/structure/closet,
+/obj/item/clothing/mask/gas/mime,
+/obj/item/clothing/shoes/sneakers/mime,
+/obj/item/clothing/under/rank/mime,
+/obj/item/storage/backpack/mime,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"l" = (
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"m" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"n" = (
+/obj/structure/table,
+/obj/item/pickaxe/drill/diamonddrill,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"o" = (
+/obj/machinery/door/airlock/silver,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"p" = (
+/obj/item/chair,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"q" = (
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"r" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/plasteel/white,
+/area/ruin/unpowered)
+"s" = (
+/obj/item/storage/bag/ore,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"t" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/customizable/sandwich{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/customizable/sandwich{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"u" = (
+/obj/structure/girder,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"v" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"w" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"x" = (
+/obj/structure/table,
+/obj/item/storage/bag/ore,
+/obj/item/mining_scanner,
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"y" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"z" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"A" = (
+/obj/item/shard,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"B" = (
+/obj/structure/table,
+/obj/item/pickaxe,
+/obj/item/tank/internals/emergency_oxygen,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"C" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"D" = (
+/turf/open/chasm,
+/area/ruin/unpowered)
+"E" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"F" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered)
+"G" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"H" = (
+/obj/item/pickaxe,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+"I" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/asteroid/basalt/lava,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+u
+q
+q
+u
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+c
+c
+b
+v
+q
+q
+u
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+c
+e
+i
+r
+q
+q
+q
+q
+q
+u
+a
+q
+u
+a
+"}
+(4,1,1) = {"
+a
+c
+f
+i
+c
+q
+q
+q
+q
+q
+q
+q
+q
+u
+a
+"}
+(5,1,1) = {"
+a
+c
+c
+o
+c
+q
+q
+C
+E
+E
+E
+E
+H
+a
+a
+"}
+(6,1,1) = {"
+a
+c
+g
+i
+c
+q
+y
+y
+y
+y
+y
+q
+q
+q
+a
+"}
+(7,1,1) = {"
+a
+c
+h
+i
+c
+q
+y
+D
+D
+D
+y
+q
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+d
+i
+p
+d
+q
+y
+D
+F
+D
+y
+q
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+b
+d
+d
+b
+q
+y
+D
+D
+D
+y
+q
+u
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+j
+q
+s
+w
+z
+E
+E
+G
+y
+q
+q
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+k
+q
+q
+q
+A
+q
+q
+q
+q
+q
+q
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+l
+q
+q
+q
+q
+q
+A
+q
+q
+a
+I
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+m
+q
+q
+q
+q
+q
+q
+q
+u
+a
+w
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+n
+q
+t
+x
+B
+q
+a
+a
+a
+a
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

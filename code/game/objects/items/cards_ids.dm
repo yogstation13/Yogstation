@@ -88,6 +88,7 @@
 	var/atom/A = target
 	if(!proximity && prox_check)
 		return
+	log_combat(user, A, "attempted to emag")
 	A.emag_act(user)
 
 /obj/item/card/emagfake
@@ -124,6 +125,13 @@
 	. = ..()
 	if(mapload && access_txt)
 		access = text2access(access_txt)
+
+/obj/item/card/id/Destroy()
+	if (registered_account)
+		registered_account.bank_cards -= src
+	if (my_store && my_store.my_card == src)
+		my_store.my_card = null
+	return ..()
 
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
@@ -186,7 +194,7 @@
 		if(!alt_click_can_use_id(user))
 			return
 		if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
-			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span")
+			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
 			return
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
@@ -219,21 +227,22 @@
 		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
 
 /obj/item/card/id/examine(mob/user)
-	..()
+	.=..()
 	if(mining_points)
-		to_chat(user, "There's [mining_points] mining equipment redemption point\s loaded onto this card.")
+		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
+
 	if(registered_account)
-		to_chat(user, "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of $[registered_account.account_balance].")
+		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of $[registered_account.account_balance]."
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				to_chat(user, "The [D.account_holder] reports a balance of $[D.account_balance].")
-		to_chat(user, "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>")
-		to_chat(user, "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>")
+				. += "The [D.account_holder] reports a balance of $[D.account_balance]."
+		. += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
+		. += "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>"
 		if(registered_account.account_holder == user.real_name)
-			to_chat(user, "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>")
+			. += "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>"
 	else
-		to_chat(user, "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>")
+		. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -359,9 +368,11 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
+	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh
 	. = ..()
 
 /obj/item/card/id/ert
@@ -370,9 +381,11 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
+	item_flags = ABSTRACT | DROPDEL //admemes arnt the smartest tools in the shed x2
 
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh x2
 	. = ..()
 
 /obj/item/card/id/ert/Security
@@ -412,6 +425,14 @@ update_label("John Doe", "Clowny")
 	assignment = "Janitorial Response Officer"
 
 /obj/item/card/id/ert/Janitor/Initialize()
+	access = get_all_accesses()
+	. = ..()
+
+/obj/item/card/id/ert/clown
+	registered_name = "Clown"
+	assignment = "Clown ERT"
+
+/obj/item/card/id/ert/clown/Initialize()
 	access = get_all_accesses()
 	. = ..()
 

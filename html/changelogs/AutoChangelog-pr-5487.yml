@@ -1,4 +1,0 @@
-author: " Naksu"
-delete-after: true 
-changes: 
-  - experiment: "The number-two most-called proc get_area() is now a define rather than a proc. All coders please clap."

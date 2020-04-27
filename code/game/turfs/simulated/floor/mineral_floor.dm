@@ -214,7 +214,7 @@
 
 /turf/open/floor/mineral/uranium/proc/radiate()
 	if(!active)
-		if(world.time > last_event+15)
+		if((SSticker.current_state == GAME_STATE_PLAYING) && (world.time > last_event+15))
 			active = 1
 			radiation_pulse(src, 10)
 			for(var/turf/open/floor/mineral/uranium/T in orange(1,src))

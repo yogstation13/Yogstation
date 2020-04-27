@@ -13,6 +13,11 @@
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
+	var/datum/syndicate_contract/current_contract
+	var/list/datum/syndicate_contract/assigned_contracts = list()
+	var/contract_TC_payed_out = 0
+	var/contract_TC_to_redeem = 0
+	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()
@@ -24,7 +29,49 @@
 	if(give_objectives)
 		forge_traitor_objectives()
 	finalize_traitor()
+	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	..()
+
+/datum/antagonist/traitor/proc/create_contracts()
+	// 6 contracts
+	var/list/to_generate = list(
+		CONTRACT_PAYOUT_LARGE,
+		CONTRACT_PAYOUT_MEDIUM,
+		CONTRACT_PAYOUT_SMALL,
+		CONTRACT_PAYOUT_SMALL,
+		CONTRACT_PAYOUT_SMALL,
+		CONTRACT_PAYOUT_SMALL
+	)
+
+	// We don't want the sum of all the payouts to be under this amount
+	var/lowest_TC_threshold = 30
+
+	var/total = 0
+	var/lowest_paying_sum = 0
+	var/datum/syndicate_contract/lowest_paying_contract
+
+	// Randomise order, so we don't have contracts always in payout order.
+	to_generate = shuffle(to_generate)
+
+	var/list/assigned_targets = list()
+	// Generate contracts, and find the lowest paying.
+	for (var/i = 1; i <= to_generate.len; i++)
+		var/datum/syndicate_contract/contract_to_add = new(owner, to_generate[i], assigned_targets)
+		var/contract_payout_total = contract_to_add.contract.payout + contract_to_add.contract.payout_bonus
+
+		assigned_targets.Add(contract_to_add.contract.target)
+
+		if (!lowest_paying_contract || (contract_payout_total < lowest_paying_sum))
+			lowest_paying_sum = contract_payout_total
+			lowest_paying_contract = contract_to_add
+
+		total += contract_payout_total
+		contract_to_add.id = i
+		assigned_contracts.Add(contract_to_add)
+
+	// If the threshold for TC payouts isn't reached, boost the lowest paying contract
+	if (total < lowest_TC_threshold)
+		lowest_paying_contract.contract.payout_bonus += (lowest_TC_threshold - total)
 
 /datum/antagonist/traitor/apply_innate_effects()
 	if(owner.assigned_role == "Clown")
@@ -45,15 +92,22 @@
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
-		A.verbs -= /mob/living/silicon/ai/proc/choose_modules
-		A.malf_picker.remove_malf_verbs(A)
-		qdel(A.malf_picker)
-
+		if(malf)
+			A.verbs -= /mob/living/silicon/ai/proc/choose_modules
+			A.malf_picker.remove_malf_verbs(A)
+			qdel(A.malf_picker)
+	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='userdanger'> You are no longer the [special_role]! </span>")
 	owner.special_role = null
 	..()
+
+/datum/antagonist/traitor/proc/handle_hearing(datum/source, list/hearing_args)
+	var/message = hearing_args[HEARING_MESSAGE]
+	message = GLOB.syndicate_code_phrase_regex.Replace(message, "<span class='blue'>$1</span>")
+	message = GLOB.syndicate_code_response_regex.Replace(message, "<span class='red'>$1</span>")
+	hearing_args[HEARING_MESSAGE] = message
 
 /datum/antagonist/traitor/proc/add_objective(datum/objective/O)
 	objectives += O
@@ -197,7 +251,7 @@
 			.=2
 
 /datum/antagonist/traitor/greet()
-	to_chat(owner.current, "<B><font size=3 color=red>You are the [owner.special_role].</font></B>")
+	to_chat(owner.current, "<span class='alertsyndie'>You are the [owner.special_role].</span>")
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
@@ -217,7 +271,7 @@
 		if(TRAITOR_AI)
 			add_law_zero()
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
-			owner.current.grant_language(/datum/language/codespeak)
+			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)
@@ -264,7 +318,8 @@
 	killer.set_zeroth_law(law, law_borg)
 	killer.set_syndie_radio()
 	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
-	killer.add_malf_picker()
+	if(malf)
+		killer.add_malf_picker()
 
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
@@ -343,14 +398,32 @@
 		if(TC_uses==0 && traitorwin)
 			var/static/icon/badass = icon('icons/badass.dmi', "badass")
 			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
+			SSachievements.unlock_achievement(/datum/achievement/badass, owner.current.client)
 		result += uplink_text
 
 	result += objectives_text
 
 	var/special_role_text = lowertext(name)
 
+	var/completed_contracts = 0
+	var/tc_total = contract_TC_payed_out + contract_TC_to_redeem
+	for (var/datum/syndicate_contract/contract in assigned_contracts)
+		if (contract.status == CONTRACT_STATUS_COMPLETE)
+			completed_contracts++
+
+
+	if (completed_contracts > 0)
+		var/pluralCheck = "contract"
+		if (completed_contracts > 1)
+			pluralCheck = "contracts"
+		result += "<br>Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
+					<span class='greentext'>[tc_total] TC</span>!<br>"
+
 	if(traitorwin)
 		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
+		if(istype(greentext_achieve))
+			SSachievements.unlock_achievement(greentext_achieve,owner.current)
 	else
 		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')

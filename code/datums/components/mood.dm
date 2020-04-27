@@ -201,11 +201,11 @@
 			clear_event(null, "depression")
 
 	HandleNutrition(owner)
-	HandleHygiene(owner)
 
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)
 	var/mob/living/owner = parent
 
+	amount = CLAMP(amount, minimum, maximum)
 	if(amount == sanity)
 		return
 	// If we're out of the acceptable minimum-maximum range move back towards it in steps of 0.5
@@ -301,7 +301,7 @@
 	screen_obj_sanity = new
 	hud.infodisplay += screen_obj
 	hud.infodisplay += screen_obj_sanity
-	RegisterSignal(hud, COMSIG_PARENT_QDELETED, .proc/unmodify_hud)
+	RegisterSignal(hud, COMSIG_PARENT_QDELETING, .proc/unmodify_hud)
 	RegisterSignal(screen_obj, COMSIG_CLICK, .proc/hud_click)
 
 /datum/component/mood/proc/unmodify_hud(datum/source)
@@ -344,7 +344,7 @@
 
 /datum/component/mood/proc/HandleCharge(mob/living/carbon/human/H)
 	var/datum/species/ethereal/E = H.dna?.species
-	switch(E.ethereal_charge)
+	switch(E.get_charge(H))
 		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
 			add_event(null, "charge", /datum/mood_event/decharged)
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
@@ -354,37 +354,9 @@
 		if(ETHEREAL_CHARGE_ALMOSTFULL to ETHEREAL_CHARGE_FULL)
 			add_event(null, "charge", /datum/mood_event/charged)
 
-
-/datum/component/mood/proc/HandleHygiene(mob/living/carbon/human/H)
-	switch(H.hygiene)
-		if(0 to HYGIENE_LEVEL_DIRTY)
-			if(HAS_TRAIT(H, TRAIT_NEAT))
-				add_event(null, "neat", /datum/mood_event/dirty)
-			if(HAS_TRAIT(H, TRAIT_NEET))
-				add_event(null, "NEET", /datum/mood_event/happy_neet)
-			HygieneMiasma(H)
-		if(HYGIENE_LEVEL_DIRTY to HYGIENE_LEVEL_NORMAL)
-			if(HAS_TRAIT(H, TRAIT_NEAT))
-				clear_event(null, "neat")
-			if(HAS_TRAIT(H, TRAIT_NEET))
-				clear_event(null, "NEET")
-		if(HYGIENE_LEVEL_NORMAL to HYGIENE_LEVEL_CLEAN)
-			if(HAS_TRAIT(H, TRAIT_NEAT))
-				add_event(null, "neat", /datum/mood_event/neat)
-			if(HAS_TRAIT(H, TRAIT_NEET))
-				clear_event(null, "NEET")
-
-/datum/component/mood/proc/HygieneMiasma(mob/living/carbon/human/H)
-	// Properly stored humans shouldn't create miasma
-	if(istype(H.loc, /obj/structure/closet/crate/coffin)|| istype(H.loc, /obj/structure/closet/body_bag) || istype(H.loc, /obj/structure/bodycontainer))
-		return
-
-	var/turf/T = get_turf(H)
-	var/datum/gas_mixture/stank = new
-	ADD_GAS(/datum/gas/miasma, stank.gases)
-	stank.gases[/datum/gas/miasma][MOLES] = MIASMA_HYGIENE_MOLES
-	T.assume_air(stank)
-	T.air_update_turf()
+/datum/component/mood/proc/check_area_mood(datum/source, area/A)
+	if(A.mood_bonus)
+		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
 
 #undef MINOR_INSANITY_PEN
 #undef MAJOR_INSANITY_PEN

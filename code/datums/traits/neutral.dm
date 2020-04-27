@@ -32,7 +32,7 @@
 			species.liked_food |= MEAT
 		if(!initial(species.disliked_food) & MEAT)
 			species.disliked_food &= ~MEAT
-	
+
 /datum/quirk/pineapple_liker
 	name = "Ananas Affinity"
 	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
@@ -93,15 +93,6 @@
 		species.liked_food = initial(species.liked_food)
 		species.disliked_food = initial(species.disliked_food)
 
-/datum/quirk/neat
-	name = "Neat"
-	desc = "You really don't like being unhygienic, and will get sad if you are."
-	mob_trait = TRAIT_NEAT
-	gain_text = "<span class='notice'>You feel like you have to stay clean.</span>"
-	lose_text = "<span class='danger'>You no longer feel the need to always be clean.</span>"
-	mood_quirk = TRUE
-	medical_record_text = "While waiting for the exam to begin, patient cleaned the examination room."
-
 /datum/quirk/monochromatic
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
@@ -119,3 +110,19 @@
 /datum/quirk/monochromatic/remove()
 	if(quirk_holder)
 		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/random_accent
+	name = "Randomized Accent"
+	desc = "You have developed a random accent."
+	value = 0
+	mob_trait = TRAIT_RANDOM_ACCENT
+	gain_text = "<span class='danger'>You have developed an accent.</span>"
+	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
+	medical_record_text = "Patient is difficult to understand."
+
+/datum/quirk/random_accent/post_add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(!H.mind.accent_name)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents_name2file))// Right now this pick just picks a straight random one from all implemented.
+

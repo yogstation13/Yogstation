@@ -28,7 +28,9 @@ Bonus
 	symptom_delay_min = 1
 	symptom_delay_max = 1
 	var/regenerate_blood = FALSE
-	threshold_desc = "<b>Resistance 8:</b>Additionally regenerates lost blood.<br>"
+	threshold_descs = list(
+		"Resistance 8" = "Additionally regenerates lost blood."
+	)
 
 /datum/symptom/oxygen/Start(datum/disease/advance/A)
 	if(!..())
@@ -44,7 +46,7 @@ Bonus
 		if(4, 5)
 			M.adjustOxyLoss(-7, 0)
 			M.losebreath = max(0, M.losebreath - 4)
-			if(regenerate_blood && M.blood_volume < BLOOD_VOLUME_NORMAL)
+			if(regenerate_blood && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 				M.blood_volume += 1
 		else
 			if(prob(base_message_chance))

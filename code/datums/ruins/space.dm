@@ -36,7 +36,7 @@
 	suffix = "asteroid4.dmm"
 	name = "Asteroid 4"
 	description = "Nanotrasen Escape Pods have a 100%* success rate, and a 99%* customer satisfaction rate. \
-	*Please note that these statistics, are taken from pods that have successfully docked with a recovery vessel."
+	*Please note that these statistics are taken from pods that have successfully docked with a recovery vessel."
 
 /datum/map_template/ruin/space/asteroid5
 	id = "asteroid5"
@@ -48,7 +48,7 @@
 	id = "deep-storage"
 	suffix = "deepstorage.dmm"
 	name = "Survivalist Bunker"
-	description = "Assume the best, prepare for the worst. Generally, you should do so by digging a three man heavily fortified bunker into a giant unused asteroid. \
+	description = "Assume the best, prepare for the worst. Generally, you should do so by digging a three-man heavily fortified bunker into a giant unused asteroid. \
 	Then make it self sufficient, mask any evidence of construction, hook it covertly into the telecommunications network and hope for the best."
 
 /datum/map_template/ruin/space/bigderelict1
@@ -103,7 +103,7 @@
 	id = "empty-shell"
 	suffix = "emptyshell.dmm"
 	name = "Empty Shell"
-	description = "Cosy, rural property availible for young professional couple. Only twelve parsecs from the nearest hyperspace lane!"
+	description = "Cosy, rural property available for young professional couple. Only twelve parsecs from the nearest hyperspace lane!"
 
 /datum/map_template/ruin/space/gas_the_lizards
 	id = "gas-the-lizards"
@@ -158,7 +158,6 @@
 
 /datum/map_template/ruin/space/oldshuttle
 	id = "spaceman-origins"
-	prefix = "_maps/yogstation/RandomRuins/SpaceRuins/"//yogs - use Yogs custom old shuttle instead of upstream
 	suffix = "shuttlerelic.dmm"
 	name = "Strange Ship"
 	description = "A ship seemingly lost, drifting along the stars. This thing looks like it belongs in ancient times."
@@ -187,28 +186,28 @@
 	suffix = "abandonedteleporter.dmm"
 	name = "Abandoned Teleporter"
 	description = "In space construction the teleporter is often the first system brought online. \
-	This lonely half built teleporter is a sign of a proposed structure that for one reason or another just never got built."
+	This lonely, half-built teleporter is a sign of a proposed structure that for one reason or another just never got built."
 
 /datum/map_template/ruin/space/crashedclownship
 	id = "crashedclownship"
 	suffix = "crashedclownship.dmm"
 	name = "Crashed Clown Ship"
 	description = "For centuries the promise of a new clown homeworld has been the siren call for countless clown vessels. \
-	Alas the clown's lust for shenanagans means that successful voyages are almost unheard of, with most vessels falling to hilarious consequences almost immediately."
+	Alas, the clown's lust for shenanigans means that successful voyages are almost unheard of, with most vessels falling to hilarious consequences almost immediately."
 
 /datum/map_template/ruin/space/crashedship
 	id = "crashedship"
 	suffix = "crashedship.dmm"
 	name = "Crashed Ship"
 	description = "Among civilian vessels the most common cause of tragedy is lack of food. \
-	This ship was outfited with a multitude of food generating features, then summarily ran into an asteroid shortly after takeoff."
+	This ship was outfitted with a multitude of food-generating features, then summarily ran into an asteroid shortly after takeoff."
 
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"
 	suffix = "listeningstation.dmm"
 	name = "Syndicate Listening Station"
-	description = "Listening stations form the backbone of the syndicate's information gathering operations. \
-	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessently about the most meaningless things."
+	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
+	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
 
 /datum/map_template/ruin/space/oldAIsat
 	id = "oldAIsat"
@@ -235,8 +234,8 @@
 	id = "bus"
 	suffix = "bus.dmm"
 	name = "Waylaid Buses"
-	description = "There seems to be a pair of buses that pulled over for repairs. What were they doing..? Their shipment sure  seems to be filled with a strange mix. \
-	Anyway, it looks like some people tried to fix it up for a long time but really didn't get anywhere..."
+	description = "There seems to be a pair of buses that pulled over for repairs. What were they doing...? Their shipment sure  seems to be filled with a strange mix. \
+	Anyway, it looks like some people tried to fix it up for a long time but didn't really get anywhere..."
 
 /datum/map_template/ruin/space/oldstation
 	id = "oldstation"
@@ -249,7 +248,7 @@
 	id = "miracle"
 	suffix = "miracle.dmm"
 	name = "Ordinary Space Tile"
-	description = "Absolutely nothing strange going on here please move along, plenty more space to see right this way!"
+	description = "Absolutely nothing strange going on here, please move along, plenty more space to see right this way!"
 
 /datum/map_template/ruin/space/gondoland
 	id = "gondolaasteroid"
@@ -288,3 +287,41 @@
 	suffix = "hilbertshoteltestingsite.dmm"
 	name = "Hilbert Research Facility"
 	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."
+
+/datum/map_template/ruin/space/hippie_shuttle
+	id = "hippie_shuttle"
+	suffix = "hippie_shuttle.dmm"
+	name= "Hippie Shuttle"
+	description = "These hippies went a little too far out..."
+
+/datum/map_template/ruin/space/wizard_academy
+	id = "wizard-academy"
+	suffix = "Academy.dmm"
+	name = "Wizard Academy"
+	description = "The Wizard Federation has designated a hectic but \
+		well-isolated space station to house wizards in training. \
+		Given the plethora of valuable, magical equipment hidden within, \
+		it is incredibly well-hidden, to the point where no documentation \
+		of the area exists in any records. After all, it's not like \
+		some doofus with an EVA suit and jetpack can just waltz around \
+		in space and find it..."
+
+/datum/map_template/ruin/space/spacebar
+	id = "spacebar"
+	suffix = "spacebar.dmm"
+	name = "The Rampant Golem and Yellow Hound"
+	description = "No questions asked. No shoes/foot protection, no service. \
+		No tabs. No violence in the inside areas. That's it. Welcome to the \
+		Rampant Golem and Yellow Hound. Can I take your order?"
+
+/datum/map_template/ruin/space/goat_transport
+	id = "goatresearch"
+	suffix = "goatresearch.dmm"
+	name= "Exotic Goat Transport Vessel"
+	description = "A ship transporting goats attacked by goats. How ironic..."
+
+/datum/map_template/ruin/space/drifting_spacepod
+	id = "drifting_spacepod"
+	suffix = "drifting_spacepod.dmm"
+	name = "Drifting Spacepod"
+	description = "An abandoned spacepod, just drifting through space."
