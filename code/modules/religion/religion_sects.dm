@@ -82,11 +82,11 @@
 		. = favor //if favor = 5 and we want to subtract 10, we'll only be able to subtract 5
 	if((favor + amount > max_favor))
 		. = (max_favor-favor) //if favor = 5 and we want to add 10 with a max of 10, we'll only be able to add 5
-	favor = clamp(0,max_favor, favor+amount)
+	favor = CLAMP(0,max_favor, favor+amount)
 
 /// Sets favor to a specific amount. Can provide optional features based on a user.
 /datum/religion_sect/proc/set_favor(amount = 0, mob/living/L)
-	favor = clamp(0,max_favor,amount)
+	favor = CLAMP(0,max_favor,amount)
 	return favor
 
 /// Activates when an individual uses a rite. Can provide different/additional benefits depending on the user.
