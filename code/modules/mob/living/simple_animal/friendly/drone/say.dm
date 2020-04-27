@@ -21,7 +21,7 @@
 
 
 /mob/living/simple_animal/drone/proc/drone_chat(msg)
-	alert_drones("<span class='binarysay'><i>Drone Chat: <span class='name'>[name]</span> <span class='message'>[say_quote(msg)]</span></i></span>", TRUE)
+	alert_drones("<span class='dronesay'><i>Drone Chat: <span class='name'>[name]</span> <span class='message'>[say_quote(msg)]</span></i></span>", TRUE)
 
 /mob/living/simple_animal/drone/binarycheck()
 	return TRUE
