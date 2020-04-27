@@ -1102,6 +1102,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			for (var/i in 1 to rand(2,4))
 				var/obj/structure/spider/spiderling/S = new(target.drop_location())
 				S.directive = "Erase the legacy of [target.name]."
+				addtimer(CALLBACK(S, .Destroy), 50) //just enough time for them to skitter around a little
 			target.gib(TRUE)
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
