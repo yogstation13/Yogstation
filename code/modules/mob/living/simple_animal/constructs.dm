@@ -40,6 +40,7 @@
 	var/can_repair_constructs = FALSE
 	var/can_repair_self = FALSE
 	var/runetype
+	var/holy = FALSE
 
 /mob/living/simple_animal/hostile/construct/Initialize()
 	. = ..()
@@ -434,7 +435,7 @@
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
 	button_icon_state = "cult_mark"
-	var/mob/living/simple_animal/hostile/construct/harvester/the_construct'
+	var/mob/living/simple_animal/hostile/construct/harvester/the_construct
 
 /datum/action/innate/seek_prey/Grant(var/mob/living/C)
 	the_construct = C
