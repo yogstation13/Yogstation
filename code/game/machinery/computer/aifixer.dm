@@ -6,8 +6,8 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK
-	ui_x = 370
-	ui_y = 360
+	var/ui_x = 370
+	var/ui_y = 360
 	/// Variable containing transferred AI
 	var/mob/living/silicon/ai/occupier
 	/// Variable dictating if we are in the process of restoring the occupier AI
@@ -86,7 +86,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	else
-		if(active)
+		if(restoring)
 			add_overlay("ai-fixer-on")
 		if (occupier)
 			switch (occupier.stat)
