@@ -24,6 +24,8 @@
 	var/scheduled_destruction
 	/// Contains the approximate amount of lines for height decay
 	var/approx_lines
+	/// Dumb 512 workaround static list
+	var/static/list/symbol_to_pixel_lookup = list("i" = 2, "I" = 2, "l" = 2, "!" = 2, "j" = 2, "." = 2, "!" = 2, "," = 2, "|" = 2, ";" = 2, "f" = 3, "1" = 3, "*" = 3, "(" = 3, ")" = 2, "/" = 3, "\\" = 3, "-" = 3, "{" = 3, "}" = 3, "x" = 4, "b" = 4, "^" = 4, "+" = 4, ">" = 4, "Z" = 6, "<" = 4, "A" = 6, "#" = 6, "&" = 6, "G" = 7, "Q" = 7, "R" = 7, "O" = 7, "A" = 7, "H" = 7, "N" = 7, "%" = 7, "W" = 8, "m" = 8, "M" = 9, "@" = 9, "L" = 5, "J" = 5)
 
 /**
   * Constructs a chat message overlay
@@ -70,6 +72,9 @@
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel, src)
 
+	var/pixels = 10 //It's better to have extra height than lose a line
+	var/bold = FALSE
+
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
 	if (length(text) > maxlen)
@@ -82,9 +87,10 @@
 		target.chat_color_name = target.name
 
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
+	/* Disabled, doesn't work well in 512, thanks HCs
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
 	text = replacetext(text, url_scheme, "")
-
+	*/
 	// Reject whitespace
 	var/static/regex/whitespace = new(@"^\s*$")
 	if (whitespace.Find(text))
@@ -94,6 +100,26 @@
 	// Non mobs speakers can be small
 	if (!ismob(target))
 		extra_classes |= "small"
+
+	//Below you'll encounter A TERRIBLE WORKAROUND
+	var/cur_char
+	var/cur_lower
+	if(copytext_char(text, -2) == "!!" || extra_classes.Find("bold"))
+		bold = TRUE
+	for(var/i in 1 to length(text))
+		cur_char = text[i]
+		cur_lower = lowertext(cur_char)
+		if(bold)
+			pixels += 2
+		if (cur_char in symbol_to_pixel_lookup)
+			if(symbol_to_pixel_lookup[cur_char] == 2 && bold)
+				pixels += symbol_to_pixel_lookup[cur_char] - 1
+			else
+				pixels += symbol_to_pixel_lookup[cur_char]
+		else if (cur_char != cur_lower) //unfiltered uppercase take 6
+			pixels += 6
+		else //unfiltered lowercase take 5
+			pixels += 5
 
 	// Append radio icon if from a virtual speaker
 	if (extra_classes.Find("virtual-speaker"))
@@ -109,8 +135,13 @@
 	// Construct text
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [tgt_color]'>[text]</span>"
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
-	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
+
+	var/lines_est = max(1,(CEILING((pixels/CHAT_MESSAGE_WIDTH),1)))
+	var/mheight = 2 + (lines_est * 9)
+	//var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
+	//approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
+	approx_lines = lines_est
+
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target
