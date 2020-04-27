@@ -59,7 +59,8 @@
 		/obj/item/forcefield_projector,
 		/obj/item/assembly/signaler,
 		/obj/item/lightreplacer,
-		/obj/item/holosign_creator/multi/CE
+		/obj/item/holosign_creator/multi/CE,
+		/obj/item/storage/bag/construction
 		))
 
 /obj/item/storage/belt/utility/chief
