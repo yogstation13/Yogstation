@@ -124,7 +124,7 @@
 /area/icemoon/underground/explored)
 "mi" = (
 /obj/effect/decal/remains/human,
-/mob/living/simple_animal/hostile/construct/armored/hostile{
+/mob/living/simple_animal/hostile/construct/juggernaut/hostile{
 	health = 450;
 	maxHealth = 450;
 	name = "Right Hand of the Elder"
@@ -354,7 +354,7 @@
 "EF" = (
 /obj/effect/decal/cleanable/blood/gibs/torso,
 /obj/effect/decal/remains/human,
-/mob/living/simple_animal/hostile/construct/armored/hostile{
+/mob/living/simple_animal/hostile/construct/juggernaut/hostile{
 	health = 450;
 	maxHealth = 450;
 	name = "Left Hand of the Elder"
