@@ -586,15 +586,7 @@
 	mob_trait = TRAIT_ALLERGIC
 	gain_text = "<span class='danger'>You remember your allergic reaction to a common medicine.</span>"
 	lose_text = "<span class='notice'>You no longer are allergic to medicine.</span>"
-	medical_record_text = "Patient has a severe allergic reaction to a commong medicine."
-//	var/allergy_list = list(/obj/item/reagent_containers/food/snacks/grown/apple,
-//							/obj/item/reagent_containers/food/snacks/grown/banana
-//							/obj/item/reagent_containers/food/snacks/grown/berries
-//							/obj/item/reagent_containers/food/snacks/grown/cherries
-//							/obj/item/reagent_containers/food/snacks/grown/grapes
-//							/obj/item/reagent_containers/food/snacks/grown/pineapple
-//							/obj/item/reagent_containers/food/snacks/grown/tomato
-							//Was going to make it pick if you allergic to eating a food, or a chem. too much work
+	medical_record_text = "Patient has a severe allergic reaction to a common medicine."
 	var/allergy_chem_list = list(	/datum/reagent/medicine/inacusiate,
 									/datum/reagent/medicine/silver_sulfadiazine,
 									/datum/reagent/medicine/styptic_powder,
@@ -604,26 +596,19 @@
 									/datum/reagent/medicine/bicaridine,
 									/datum/reagent/medicine/kelotane,) //Everything in the list can be healed from another source round-start
 	var/reagent_id
-	var/cooldown_time = 600 //1 minute. Cant act again until the first wears off. Test to make sure this is enough
-	var/cooldown = 0
+	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
+	var/cooldown = FALSE
 
 /datum/quirk/allergic/on_spawn()
 	reagent_id = pick(allergy_chem_list)
-	announce_allergy()
-
-/datum/quirk/allergic/proc/announce_allergy()
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
 	to_chat(quirk_holder, "<span class='danger'>You remember you are allergic to [allergy.name].</span>")
 
 /datum/quirk/allergic/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
+	var/mob/living/carbon/H = quirk_holder
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
-	if(cooldown == 0)
-		if(H.reagents.has_reagent(reagent_id))
-			to_chat(quirk_holder, "<span class='danger'>You forgot you were allergic to [allergy.name]!</span>")
-			H.reagents.add_reagent(/datum/reagent/toxin/histamine, 5)
-			cooldown = 1
-			addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown_time)
-
-/datum/quirk/allergic/proc/reset_cooldown()
-	cooldown = 0
+	if(cooldown == FALSE && H.reagents.has_reagent(reagent_id))
+		to_chat(quirk_holder, "<span class='danger'>You forgot you were allergic to [allergy.name]!</span>")
+		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
