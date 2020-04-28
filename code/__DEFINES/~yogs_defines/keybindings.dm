@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_TARGETGROIN = "Numpad2",
 	ACTION_TARGETLLEG = "Numpad3",
 
-	ACTION_GIVE = "F",
+	ACTION_GIVE = "C",
 	ACTION_RESIST = "B",
 
 	ACTION_TOGGLETHROW = "R",
