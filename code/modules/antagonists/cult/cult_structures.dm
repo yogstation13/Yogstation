@@ -6,6 +6,7 @@
 	var/cooldowntime = 0
 	break_sound = 'sound/hallucinations/veryfar_noise.ogg'
 	debris = list(/obj/item/stack/sheet/runed_metal = 1)
+	var/is_endgame = FALSE //is the structure part of the endgame? stuff that can't be healed/moved have this set to TRUE
 
 /obj/structure/destructible/cult/proc/conceal() //for spells that hide cult presence
 	density = FALSE
@@ -42,6 +43,8 @@
 	return ..()
 
 /obj/structure/destructible/cult/attack_animal(mob/living/simple_animal/M)
+	if(is_endgame && iscultist(M))
+		return FALSE //no smash or healing
 	if(istype(M, /mob/living/simple_animal/hostile/construct/builder))
 		if(obj_integrity < max_integrity)
 			M.changeNext_move(CLICK_CD_MELEE)
@@ -54,7 +57,14 @@
 	else
 		..()
 
+/obj/structure/destructible/cult/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	if(iscultist(user) && is_endgame)
+		return FALSE
+	return ..()
+
 /obj/structure/destructible/cult/attackby(obj/I, mob/user, params)
+	if(is_endgame && iscultist(user))
+		return FALSE
 	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "":"un"]secure \the [src] [anchored ? "to":"from"] the floor.</span>")
@@ -262,7 +272,7 @@
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You summon the [choice] from the archives!</span>")
 
-
+/////////////////////////////WE'RE IN THE ENDGAME NOW/////////////////////////////
 /obj/structure/destructible/cult/pillar
 	name = "obsidian pillar"
 	icon_state = "pillar-enter"
@@ -271,8 +281,10 @@
 	obj_integrity = 200
 	max_integrity = 200
 	break_sound = 'sound/effects/meteorimpact.ogg'
+	break_message = "<span class='warning'>The pillar crumbles!</span>"
 	layer = MASSIVE_OBJ_LAYER
 	var/alt = 0
+	is_endgame = TRUE
 
 /obj/structure/destructible/cult/pillar/New()
 	..()
@@ -329,14 +341,19 @@
 	obj_integrity = 600
 	max_integrity = 600
 	break_sound = 'sound/effects/glassbr2.ogg'
+	break_message = "<span class='warning'>The bloodstone resonates violently before crumbling to the floor!</span>"
 	layer = MASSIVE_OBJ_LAYER
 	light_color = "#FF0000"
 	var/current_fullness = 0
-	var/anchor_time2kill = 300 //5 minutes to complete minus one per surviving bloodstone
 	var/anchor = FALSE //are we the bloodstone used to summon nar-sie? used in the final part of the summoning
+	is_endgame = TRUE
 
 /obj/structure/destructible/cult/bloodstone/New()
 	..()
+	if (!src.loc)
+		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
+		qdel(src)
+	SSshuttle.registerHostileEnvironment(src)
 	SSticker.mode.bloodstone_list.Add(src)
 	for (var/obj/O in loc)
 		if (O != src)
@@ -383,31 +400,9 @@
 					shake_camera(M, 1, 1)
 		for (var/obj/structure/destructible/cult/pillar/P in pillars)
 			P.update_icon()
-	addtimer(CALLBACK(src, .proc/increase_power), 300) //30 seconds per stage
 
-/obj/structure/destructible/cult/bloodstone/proc/increase_power()
-	if(current_fullness == 9)
-		begin_fuckdeath()
-	else
-		current_fullness++
-		addtimer(CALLBACK(src, .proc/increase_power), 300)
-	update_icon()
-
-/obj/structure/destructible/cult/bloodstone/proc/begin_fuckdeath()
-	if(SSticker.mode.anchor_bloodstone)
-		return
-	var/obj/structure/destructible/cult/bloodstone/anchor_target = src //which bloodstone is the current cantidate for anchorship
-	var/anchor_power = 0 //anchor will be faster if there are more stones
-	for(var/obj/structure/destructible/cult/bloodstone/B in SSticker.mode.bloodstone_list)
-		anchor_power++
-		if(B.obj_integrity > anchor_target.obj_integrity)
-			anchor_target = B
-	SSticker.mode.anchor_bloodstone = anchor_target
-	anchor_target.anchor = TRUE
-	anchor_target.max_integrity = 1200
-	anchor_target.obj_integrity = 1200
-	anchor_time2kill -= anchor_power * 60 //one minute of bloodfuckery shaved off per surviving bloodstone.
-	anchor_target.set_animate()
+/obj/structure/destructible/cult/bloodstone/proc/summon()
+	new /obj/singularity/narsie/large/cult(loc)
 
 /obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	..()
@@ -423,21 +418,29 @@
 			take_damage(20)
 
 /obj/structure/destructible/cult/bloodstone/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	for(var/mob/M in range(7, loc))
+		M.playsound_local(M, 'sound/creatures/legion_death.ogg', 75, FALSE) //make it suitably loud
 	SSticker.mode.bloodstone_list.Remove(src)
+	SSshuttle.clearHostileEnvironment(src)
 	new /obj/effect/decal/cleanable/ash(loc)
 	new /obj/item/ectoplasm(loc)
-	for(var/obj/structure/destructible/cult/bloodstone/B in SSticker.mode.bloodstone_list)
-		if (B != src && !B.loc)
-			message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
-			qdel(B)
+	new /obj/structure/destructible/dead_bloodstone(loc)
 
-	if (SSticker.mode.bloodstone_list.len <= 0 || anchor)
+	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSticker.mode.bloodstone_cooldown && SSticker.mode.bloodstone_list.len <= 0 || anchor))
 		if(anchor)
-			SSticker.mode.anchor_bloodstone -= src
-	for(var/mob/M in view(src, 7))
-		M.playsound_local('sound/creatures/legion_death.ogg', 75, 0)
+			SSticker.mode.anchor_bloodstone = null
+			SSticker.mode.cult_loss_anchor()
+		else
+			SSticker.mode.cult_loss_bloodstones()
 	..()
+
+/obj/structure/destructible/cult/bloodstone/mech_melee_attack(obj/mecha/M)
+	M.force = round(M.force/6, 1) //damage is reduced since mechs deal triple damage to objects, this sets gygaxes to 15 (5*3) damage and durands to 21 (7*3) damage
+	. = ..()
+	M.force = initial(M.force)
+
+/obj/structure/destructible/cult/bloodstone/hulk_damage()
+	return 15 //no
 
 /obj/structure/destructible/cult/bloodstone/proc/safe_space()
 	for(var/turf/T in range(5,src))
@@ -445,7 +448,7 @@
 		if (dist <= 2)
 			T.ChangeTurf(/turf/open/floor/engine/cult)
 			for (var/obj/structure/S in T)
-				if (!istype(S,/obj/structure/destructible/cult))
+				if(!istype(S,/obj/structure/destructible/cult))
 					S.ex_act(1)
 			for (var/obj/machinery/M in T)
 				qdel(M)
@@ -453,12 +456,12 @@
 			if (istype(T,/turf/open/space))
 				T.ChangeTurf(/turf/open/floor/engine/cult)
 			else
-				T.narsie_act(TRUE)
+				T.narsie_act(TRUE, TRUE)
 		else if (dist <= 5)
 			if (istype(T,/turf/open/space))
 				T.ChangeTurf(/turf/closed/wall/mineral/cult)
 			else
-				T.narsie_act(TRUE)
+				T.narsie_act(TRUE, TRUE)
 
 /obj/structure/destructible/cult/bloodstone/update_icon()
 	icon_state = "bloodstone-[current_fullness]"
@@ -466,10 +469,11 @@
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
 	I_base.appearance_flags |= RESET_COLOR//we don't want the stone to pulse
 	overlays += I_base
-	if (obj_integrity < max_integrity/3)
+	if (obj_integrity <= max_integrity/3)
 		overlays.Add("bloodstone_damage2")
-	else if (obj_integrity < 2*max_integrity/3)
+	else if (obj_integrity <= 2*max_integrity/3)
 		overlays.Add("bloodstone_damage1")
+	set_light(3+current_fullness, 2+current_fullness)
 
 /obj/structure/destructible/cult/bloodstone/proc/set_animate()
 	animate(src, color = list(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0), time = 10, loop = -1)
@@ -488,6 +492,7 @@
 	animate(color = list(1.375,0.19,0,0,0,1.375,0.19,0,0.19,0,1.375,0,0,0,0,1,0,0,0,0), time = 1)
 	animate(color = list(1.25,0.12,0,0,0,1.25,0.12,0,0.12,0,1.25,0,0,0,0,1,0,0,0,0), time = 1)
 	animate(color = list(1.125,0.06,0,0,0,1.125,0.06,0,0.06,0,1.125,0,0,0,0,1,0,0,0,0), time = 1)
+	set_light(20, 20)
 	update_icon()
 
 /obj/structure/destructible/cult/bloodstone/conceal() //lol
@@ -495,6 +500,13 @@
 
 /obj/structure/destructible/cult/bloodstone/reveal()
 	return
+
+/obj/structure/destructible/dead_bloodstone
+	name = "shattered bloodstone"
+	desc = "The base of a destroyed bloodstone."
+	icon = 'icons/obj/cult_64x64.dmi'
+	icon_state = "bloodstone-base"
+	pixel_x = -16
 
 /obj/effect/gateway
 	name = "gateway"

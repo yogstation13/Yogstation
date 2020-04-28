@@ -461,21 +461,25 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Ritual of Dimensional Rending: Calls forth the avatar of Nar-Sie upon the station.
 /obj/effect/rune/narsie
 	cultist_name = "Nar-Sie"
-	cultist_desc = "tears apart dimensional barriers, calling forth the Geometer. Requires 9 invokers."
+	cultist_desc = "tears apart dimensional barriers, beginning the Red Harvest. You will need to protect 4 Bloodstones around the station, then the Anchor Bloodstone after invoking this rune or the summoning will backfire and need to be restarted. Requires 9 invokers, with the cult leader counting as half of this if they invoke the rune."
 	invocation = "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
 	req_cultists = 9
+	req_cultists_text = "9 cultists, with the cult leader counting as 5 if they are the invoker"
 	icon = 'icons/effects/96x96.dmi'
 	color = RUNE_COLOR_DARKRED
 	icon_state = "rune_large"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -32
-	scribe_delay = 500 //how long the rune takes to create
-	scribe_damage = 40.1 //how much damage you take doing it
+	scribe_delay = 300 //how long the rune takes to create
+	scribe_damage = 20 //how much damage you take doing it
 	var/used = FALSE
 
 /obj/effect/rune/narsie/Initialize(mapload, set_keyword)
 	. = ..()
 	GLOB.poi_list |= src
+	var/area/A = get_area(src)
+	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
+
 
 /obj/effect/rune/narsie/Destroy()
 	GLOB.poi_list -= src
@@ -483,6 +487,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/narsie/conceal() //can't hide this, and you wouldn't want to
 	return
+
+/obj/effect/rune/narsie/attack_hand(mob/living/user)
+	if(user.mind?.has_antag_datum(/datum/antagonist/cult/master))
+		req_cultists -= 4 //leader counts as 5 cultists if they are the invoker
+	..()
+	req_cultists = initial(req_cultists)
 
 /obj/effect/rune/narsie/invoke(var/list/invokers)
 	if(used)
@@ -501,15 +511,24 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, "<span class='warning'>Nar-Sie is already on this plane!</span>")
 		log_game("Nar-Sie rune failed - already summoned")
 		return
+	if(SSticker.mode.bloodstone_cooldown)
+		for(var/M in invokers)
+			to_chat(M, "<span class='warning'>The summoning was recently disrupted! you will need to wait before the cult can manage another attempt!</span>")
+		return
+	if(SSticker.mode.bloodstone_list.len)
+		for(var/M in invokers)
+			to_chat(M, "<span class='warning'>The Red Harvest is already in progress! Protect the bloodstones!</span>")
+		log_game("Nar-Sie rune failed - bloodstones present")
+		return
 	//BEGIN THE SUMMONING
 	used = TRUE
 	..()
-	sound_to_playing_players('sound/effects/dimensional_rend.ogg')
-	var/turf/T = get_turf(src)
-	sleep(40)
+	sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg', volume = 100)
+	sleep(20)
 	if(src)
 		color = RUNE_COLOR_RED
-	new /obj/singularity/narsie/large/cult(T) //Causes Nar-Sie to spawn even if the rune has been removed
+	SSticker.mode.begin_bloodstone_phase() //activate the FINAL STAGE
+	used = FALSE
 
 /obj/effect/rune/narsie/attackby(obj/I, mob/user, params)	//Since the narsie rune takes a long time to make, add logging to removal.
 	if((istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user)))
