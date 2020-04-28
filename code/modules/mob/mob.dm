@@ -290,6 +290,16 @@
 /mob/proc/show_inv(mob/user)
 	return
 
+/mob/verb/giveitem(atom/A as mob in range(1))
+	set name = "Give"
+	set category = "IC"
+	if(!iscarbon(src))
+		to_chat(src, "<span class='warning'>You can't give items!</span>")
+		return
+	if(A && A != src && get_dist(src, A) < 2)
+		var/mob/living/carbon/C = src
+		C.give()
+
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
