@@ -37,7 +37,7 @@
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
 
 // Cotangent
-#define COT(x) (1 / TAN(x))
+#define COT(x) (1 / tan(x))
 
 // Secant
 #define SEC(x) (1 / cos(x))
