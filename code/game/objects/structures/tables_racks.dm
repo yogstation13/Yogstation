@@ -113,7 +113,7 @@
 
 /obj/structure/table/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSTABLE)
 
@@ -531,7 +531,7 @@
 
 /obj/structure/rack/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSTABLE)
 
