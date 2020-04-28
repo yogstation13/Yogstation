@@ -86,7 +86,6 @@
 		return FALSE
 	currentcolor = choice
 	update_icon()
-	return
 
 /turf/open/floor/light/attackby(obj/item/C, mob/user, params)
 	if(..())
