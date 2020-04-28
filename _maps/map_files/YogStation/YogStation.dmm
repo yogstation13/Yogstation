@@ -33222,11 +33222,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"bra" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/rxglasses,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "brb" = (
 /obj/machinery/computer/scan_consolenew{
 	dir = 8
@@ -34159,14 +34154,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"bsK" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/disks{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "bsL" = (
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -54220,6 +54207,11 @@
 	},
 /turf/open/space/basic,
 /area/maintenance/disposal/incinerator)
+"lvD" = (
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/medical_genetics,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "lxr" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -59506,6 +59498,15 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"xXp" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/rxglasses,
+/obj/item/storage/box/disks{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "xYi" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -101388,8 +101389,8 @@ rZt
 bjK
 bon
 bpH
-bra
-bsK
+xXp
+lvD
 bpE
 bpE
 bpE
