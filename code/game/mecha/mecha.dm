@@ -215,8 +215,6 @@
 
 /obj/mecha/proc/restore_equipment()
 	equipment_disabled = 0
-	if(istype(src, /obj/mecha/combat))
-		mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
 	if(occupant)
 		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
@@ -1044,7 +1042,7 @@
 		capacitor = null
 		update_part_values()
 		return
-		
+
 /obj/mecha/proc/go_out(forced, atom/newloc = loc)
 	if(!occupant)
 		return
