@@ -1483,6 +1483,9 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/processing)
 "acV" = (
@@ -2783,6 +2786,9 @@
 /obj/item/storage/box/prisoner,
 /obj/machinery/camera{
 	c_tag = "Labor Shuttle Dock North"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
