@@ -793,7 +793,7 @@
 		return
 	var/O = src
 	var/choice = show_radial_menu(usr,src, handradial, custom_check = FALSE, radius = 36, require_near = TRUE)
-	if(!choice)
+	if(!choice) 
 		return FALSE
 	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
 	src.currenthand -= choice
