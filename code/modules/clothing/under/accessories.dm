@@ -269,7 +269,7 @@
 
 /obj/item/clothing/accessory/armband/service
 	name = "service guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is ."
+	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green."
 	icon_state = "serviceband"
 	item_color = "serviceband"
 
