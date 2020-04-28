@@ -2784,6 +2784,9 @@
 /obj/machinery/camera{
 	c_tag = "Labor Shuttle Dock North"
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/processing)
 "afo" = (
