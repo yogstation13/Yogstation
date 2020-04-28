@@ -648,10 +648,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 		return
 	var/mob/living/user = invokers[1]
 	..()
-	if(!density) //yogs: barrier runes used to invert their density before this
+	if(!density) //yogs: barrier runes used to invert their density before this...
 		spread_density()
 	else
-		lose_density() //stopping lose_density from doing anything on invoke
+		lose_density() //...this would stop lose_density from doing anything if it was manually deactivated
 	var/carbon_user = iscarbon(user)
 	user.visible_message("<span class='warning'>[user] [carbon_user ? "places [user.p_their()] hands on":"stares intently at"] [src], and [density ? "the air above it begins to shimmer" : "the shimmer above it fades"].</span>", \
 						 "<span class='cult italic'>You channel [carbon_user ? "your life ":""]energy into [src], [density ? "temporarily preventing" : "allowing"] passage above it.</span>")
