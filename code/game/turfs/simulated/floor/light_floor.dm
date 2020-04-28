@@ -1,6 +1,6 @@
 /turf/open/floor/light
 	name = "light floor"
-	desc = "A wired glass tile embedded into the floor. Modify the color with a Multitool."
+	desc = "A wired glass tile embedded into the floor. Modify the color with a Screwdriver."
 	light_range = 5
 	icon_state = "light_on"
 	floor_tile = /obj/item/stack/tile/light
@@ -66,7 +66,7 @@
 	return ..()
 
 /turf/open/floor/light/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_MULTITOOL)
+	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		. = ..()
 		if(.)
 			return
@@ -79,7 +79,14 @@
 		update_icon()
 
 /turf/open/floor/light/attack_ai(mob/user)
-	return attack_hand(user)
+	if(!can_modify_colour)
+		return
+	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = FALSE, radius = 36, require_near = FALSE)
+	if(!choice)
+		return FALSE
+	currentcolor = choice
+	update_icon()
+	return
 
 /turf/open/floor/light/attackby(obj/item/C, mob/user, params)
 	if(..())
