@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	access_card.access = get_all_accesses()//THERE IS NO ESCAPE
-	access_card.add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	invalid_area_typecache = typecacheof(invalid_area_typecache)
 	Manifest()
 	if(!current_victim)
@@ -80,8 +80,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/Life()
 	do_jitter_animation(1000)
 	pixel_y = 8
-
-	if(is_type_in_typecache(get_area(src.loc), invalid_area_typecache) || !is_station_level(z))
+	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a funky macro
+	if(is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(z))
 		var/area = pick(GLOB.teleportlocs)
 		var/area/tp = GLOB.teleportlocs[area]
 		forceMove(pick(get_area_turfs(tp.type)))
@@ -99,12 +99,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		return
 
 	var/turf/T = get_turf(current_victim)
+	A = get_area(T) // Has to be separated from the below since is_type_in_typecache is also a funky macro
 	if(prob(5))//checks roughly every 20 ticks
-		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(get_area(T), invalid_area_typecache) || !is_station_level(current_victim.z))
+		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(current_victim.z))
 			if(!Found_You())
 				Acquire_Victim()
 
-	if(get_dist(src, current_victim) > 9 && !manifested &&  !is_type_in_typecache(get_area(T), invalid_area_typecache))//if cluwne gets stuck he just teleports
+	if(get_dist(src, current_victim) > 9 && !manifested &&  !is_type_in_typecache(A, invalid_area_typecache))//if cluwne gets stuck he just teleports
 		do_teleport(src, T)
 
 	interest++
@@ -123,7 +124,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	..()
 
 /mob/living/simple_animal/hostile/floor_cluwne/Goto(target, delay, minimum_distance)
-	if(!manifested && !is_type_in_typecache(get_area(current_victim.loc), invalid_area_typecache) && is_station_level(current_victim.z))
+	var/area/A = get_area(current_victim.loc)
+	if(!manifested && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(current_victim.z))
 		walk_to(src, target, minimum_distance, delay)
 	else
 		walk_to(src,0)
@@ -160,13 +162,15 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
 		var/mob/living/carbon/human/H = pick(GLOB.player_list)//so the check is fair
-
+		var/area/A
 		if(specific)
 			H = specific
-			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(get_area(H.loc), invalid_area_typecache) && is_station_level(H.z))
+			A = get_area(H.loc)
+			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 				return target = current_victim
 
-		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(get_area(H.loc), invalid_area_typecache) && is_station_level(H.z))
+		A = get_area(H.loc)
+		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 			current_victim = H
 			interest = 0
 			stage = STAGE_HAUNT
@@ -207,10 +211,11 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/On_Stage()
 	var/mob/living/carbon/human/H = current_victim
+	if(!H)
+		FindTarget()
+		return
 	switch(stage)
-
 		if(STAGE_HAUNT)
-
 			if(prob(5))
 				H.blur_eyes(1)
 
@@ -227,7 +232,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					to_chat(H, "<span class='warning'>What threw that?</span>")
 
 		if(STAGE_SPOOK)
-
 			if(prob(4))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
@@ -268,7 +272,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Reset_View, screens), 10)
 
 		if(STAGE_TORMENT)
-
 			if(prob(5))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
@@ -313,9 +316,9 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				to_chat(H, "<span class='userdanger'>WHAT THE FUCK IS THAT?!</span>")
 				to_chat(H, "<i>.KNOH !nuf hcum os si uoy htiw gniyalP .KNOH KNOH KNOH</i>")
 				H.playsound_local(src,'sound/hallucinations/im_here1.ogg', 25)
-				H.reagents.add_reagent("mindbreaker", 3)
-				H.reagents.add_reagent("laughter", 5)
-				H.reagents.add_reagent("mercury", 3)
+				H.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 3)
+				H.reagents.add_reagent(/datum/reagent/consumable/laughter, 5)
+				H.reagents.add_reagent(/datum/reagent/mercury, 3)
 				Appear()
 				manifested = FALSE
 				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
@@ -339,9 +342,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				manifested = TRUE
 				Manifest()
 				if(!eating)
+					empulse(src, 6, 6)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
-						O.MakeSlippery(TURF_WET_LUBE, 20)
+						O.MakeSlippery(TURF_WET_LUBE, 30)
 						playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 				eating = TRUE
 
@@ -396,7 +400,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		else
 			H.cluwneify()
 			H.adjustBruteLoss(30)
-			H.adjustBrainLoss(100)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100)
 			H.cure_blind()
 			H.layer = initial(H.layer)
 			H.invisibility = initial(H.invisibility)

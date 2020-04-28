@@ -115,7 +115,7 @@
 		unreveal_time = 0
 		revealed = FALSE
 		incorporeal_move = INCORPOREAL_MOVE_JAUNT
-		GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+		var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 		if(incorp)
 			incorp.signal_enabled = TRUE //yogs end
 		invisibility = INVISIBILITY_REVENANT
@@ -185,6 +185,11 @@
 /mob/living/simple_animal/revenant/ratvar_act()
 	return //clocks get out reee
 
+/mob/living/simple_animal/revenant/bullet_act()
+	if(!revealed || stasis)
+		return BULLET_ACT_FORCE_PIERCE
+	return ..()
+
 //damage, gibbing, and dying
 /mob/living/simple_animal/revenant/attackby(obj/item/W, mob/living/user, params)
 	. = ..()
@@ -250,7 +255,7 @@
 	revealed = TRUE
 	invisibility = 0
 	incorporeal_move = FALSE
-	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 	if(incorp)
 		incorp.signal_enabled = FALSE //yogs end
 	if(!unreveal_time)
@@ -339,7 +344,7 @@
 	inhibited = FALSE
 	draining = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
-	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 	if(incorp)
 		incorp.signal_enabled = TRUE //yogs end
 	invisibility = INVISIBILITY_REVENANT
@@ -391,11 +396,11 @@
 	scatter()
 
 /obj/item/ectoplasm/revenant/examine(mob/user)
-	..()
+	. = ..()
 	if(inert)
-		to_chat(user, "<span class='revennotice'>It seems inert.</span>")
+		. += "<span class='revennotice'>It seems inert.</span>"
 	else if(reforming)
-		to_chat(user, "<span class='revenwarning'>It is shifting and distorted. It would be wise to destroy this.</span>")
+		. += "<span class='revenwarning'>It is shifting and distorted. It would be wise to destroy this.</span>"
 
 /obj/item/ectoplasm/revenant/proc/reform()
 	if(QDELETED(src) || QDELETED(revenant) || inert)

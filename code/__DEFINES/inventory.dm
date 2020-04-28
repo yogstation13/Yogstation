@@ -28,6 +28,9 @@
 #define ITEM_SLOT_POCKET		(1<<11) // this is to allow items with a w_class of WEIGHT_CLASS_NORMAL or WEIGHT_CLASS_BULKY to fit in pockets.
 #define ITEM_SLOT_DENYPOCKET	(1<<12) // this is to deny items with a w_class of WEIGHT_CLASS_SMALL or WEIGHT_CLASS_TINY to fit in pockets.
 #define ITEM_SLOT_NECK			(1<<13)
+#define ITEM_SLOT_HANDS			(1<<14)
+#define ITEM_SLOT_BACKPACK		(1<<15)
+#define ITEM_SLOT_SUIT			(1<<16) //yogs: suit storage inventory check
 
 //SLOTS
 #define SLOT_BACK			1
@@ -84,6 +87,12 @@
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_L_STORE, SLOT_R_STORE)
 			. = ITEM_SLOT_POCKET
+		if(SLOT_HANDS)
+			. = ITEM_SLOT_HANDS
+		if(SLOT_IN_BACKPACK)
+			. = ITEM_SLOT_BACKPACK
+		if(SLOT_S_STORE) //yogs: suit storage inventory check
+			. = ITEM_SLOT_SUIT //yogs
 
 
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
@@ -118,6 +127,10 @@
 #define HANDS		(HAND_LEFT | HAND_RIGHT)
 #define NECK		(1<<11)
 #define FULL_BODY	(~0)
+
+//defines for the index of hands
+#define LEFT_HANDS 1
+#define RIGHT_HANDS 2
 
 //flags for female outfits: How much the game can safely "take off" the uniform without it looking weird
 #define NO_FEMALE_UNIFORM			0
@@ -183,7 +196,7 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/melee/classic_baton,
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
-	/obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/fancy/cigarettes,
 	/obj/item/tank/internals/emergency_oxygen,
 	/obj/item/tank/internals/plasmaman)))
 
@@ -205,7 +218,7 @@ GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
-	/obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/fancy/cigarettes,
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/lighter,

@@ -22,6 +22,7 @@
 	var/produced_power
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
+	var/max_balls = 10
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
@@ -71,9 +72,9 @@
 		energy = 0 // ensure we dont have miniballs of miniballs
 
 /obj/singularity/energy_ball/examine(mob/user)
-	..()
+	. = ..()
 	if(orbiting_balls.len)
-		to_chat(user, "The amount of orbiting mini-balls is [orbiting_balls.len].")
+		. += "There are [orbiting_balls.len] mini-balls orbiting it."
 
 
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
@@ -92,7 +93,7 @@
 
 
 /obj/singularity/energy_ball/proc/handle_energy()
-	if(energy >= energy_to_raise)
+	if((energy >= energy_to_raise) && (orbiting_balls.len < max_balls))
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 

@@ -4,11 +4,21 @@
 	icon_state = "heart-on"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
+	healing_factor = STANDARD_ORGAN_HEALING
+	decay_factor = 5 * STANDARD_ORGAN_DECAY		//designed to fail about 5 minutes after death
+
+	low_threshold_passed = "<span class='info'>Prickles of pain appear then die out from within your chest...</span>"
+	high_threshold_passed = "<span class='warning'>Something inside your chest hurts, and the pain isn't subsiding. You notice yourself breathing far faster than before.</span>"
+	now_fixed = "<span class='info'>Your heart begins to beat again.</span>"
+	high_threshold_cleared = "<span class='info'>The pain in your chest has died down, and your breathing becomes more relaxed.</span>"
+
 	// Heart attack code is in code/modules/mob/living/carbon/human/life.dm
 	var/beating = 1
 	var/icon_base = "heart"
 	attack_verb = list("beat", "thumped")
 	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
+	var/failed = FALSE		//to prevent constantly running failing code
+	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
 
 /obj/item/organ/heart/update_icon()
 	if(beating)
@@ -49,10 +59,13 @@
 	return S
 
 /obj/item/organ/heart/on_life()
+	..()
 	if(owner.client && beating)
+		failed = FALSE
 		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 		var/mob/living/carbon/H = owner
+
 
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
@@ -69,12 +82,25 @@
 		else if(beat == BEAT_FAST)
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
+	if(HAS_TRAIT(owner, TRAIT_FAT) && owner.stat != DEAD) //yogs: being fat causes heart damage
+		owner.adjustOrganLoss(ORGAN_SLOT_HEART, maxHealth * STANDARD_ORGAN_DECAY, 85) //eat happy, eat healthy
+		if(damage >= 80 && beating)
+			if(prob(1))
+				if(owner.stat == CONSCIOUS)
+					owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
+				owner.set_heartattack(TRUE) //yogs end
+	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
+		if(owner.stat == CONSCIOUS)
+			owner.visible_message("<span class='userdanger'>[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!</span>")
+		owner.set_heartattack(TRUE)
+		failed = TRUE
 
 /obj/item/organ/heart/cursed
 	name = "cursed heart"
 	desc = "A heart that, when inserted, will force you to pump it manually."
 	icon_state = "cursedheart-off"
 	icon_base = "cursedheart"
+	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/cursed_heart)
 	var/last_pump = 0
 	var/add_colour = TRUE //So we're not constantly recreating colour datums
@@ -137,7 +163,7 @@
 		var/mob/living/carbon/human/H = owner
 		if(istype(H))
 			if(H.dna && !(NOBLOOD in H.dna.species.species_traits))
-				H.blood_volume = min(H.blood_volume + cursed_heart.blood_loss*0.5, BLOOD_VOLUME_MAXIMUM)
+				H.blood_volume = min(H.blood_volume + cursed_heart.blood_loss*0.5, BLOOD_VOLUME_MAXIMUM(H))
 				H.remove_client_colour(/datum/client_colour/cursed_heart_blood)
 				cursed_heart.add_colour = TRUE
 				H.adjustBruteLoss(-cursed_heart.heal_brute)
@@ -151,13 +177,9 @@
 
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
+	desc = "An electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c"
-	synthetic = TRUE
-	var/dose_available = TRUE
-
-	var/rid = "epinephrine"
-	var/ramount = 10
+	organ_flags = ORGAN_SYNTHETIC
 
 /obj/item/organ/heart/cybernetic/emp_act()
 	. = ..()
@@ -165,28 +187,32 @@
 		return
 	Stop()
 
-/obj/item/organ/heart/cybernetic/on_life()
+/obj/item/organ/heart/cybernetic/upgraded
+	name = "upgraded cybernetic heart"
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma, regenerates after use."
+	icon_state = "heart-c-u"
+	var/dose_available = TRUE
+	var/rid = /datum/reagent/medicine/epinephrine
+	var/ramount = 10
+
+/obj/item/organ/heart/cybernetic/upgraded/on_life()
 	. = ..()
 	if(dose_available && owner.stat == UNCONSCIOUS && !owner.reagents.has_reagent(rid))
 		owner.reagents.add_reagent(rid, ramount)
 		used_dose()
 
-/obj/item/organ/heart/cybernetic/proc/used_dose()
+/obj/item/organ/heart/cybernetic/upgraded/proc/used_dose()
 	dose_available = FALSE
-
-/obj/item/organ/heart/cybernetic/upgraded
-	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma. This upgraded model can regenerate its dose after use."
-	icon_state = "heart-c-u"
-
-/obj/item/organ/heart/cybernetic/upgraded/used_dose()
-	. = ..()
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
+
+/obj/item/organ/heart/cybernetic/upgraded/emp_act()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/Restart), 80) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"
 	desc = "This heart pumps with the passion to give... something freedom."
-	synthetic = TRUE //the power of freedom prevents heart attacks
+	organ_flags = ORGAN_SYNTHETIC //the power of freedom prevents heart attacks
 	var/min_next_adrenaline = 0
 
 /obj/item/organ/heart/freedom/on_life()
@@ -195,5 +221,5 @@
 		min_next_adrenaline = world.time + rand(250, 600) //anywhere from 4.5 to 10 minutes
 		to_chat(owner, "<span class='userdanger'>You feel yourself dying, but you refuse to give up!</span>")
 		owner.heal_overall_damage(15, 15, 0, BODYPART_ORGANIC)
-		if(owner.reagents.get_reagent_amount("ephedrine") < 20)
-			owner.reagents.add_reagent("ephedrine", 10)
+		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/ephedrine) < 20)
+			owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 10)

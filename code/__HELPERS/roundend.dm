@@ -192,6 +192,9 @@
 	//Set news report and mode result
 	mode.set_round_result()
 
+	// Check whether the cargo king achievement was achieved
+	cargoking()
+
 	send2irc("Server", "Round just ended.")
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
@@ -227,6 +230,8 @@
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
 
+	toggle_all_ctf()
+
 	sleep(50)
 	ready_for_reboot = TRUE
 	standard_reboot()
@@ -260,6 +265,11 @@
 	CHECK_TICK
 	//Medals
 	parts += medal_report()
+	CHECK_TICK
+
+	parts += mouse_report()
+
+	CHECK_TICK
 	//Station Goals
 	parts += goal_report()
 
@@ -330,6 +340,11 @@
 			else
 				parts += "<div class='panel greenborder'>"
 				parts += "<span class='greentext'>You managed to survive the events on [station_name()] as [M.real_name].</span>"
+				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
+				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/cargo, C)
+
 
 		else
 			parts += "<div class='panel redborder'>"
@@ -359,7 +374,9 @@
 		if(aiPlayer.mind)
 			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
-
+		else if(aiPlayer.deployed_shell?.mind)
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.deployed_shell.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
@@ -405,6 +422,16 @@
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
 
+/datum/controller/subsystem/ticker/proc/mouse_report()
+	if(GLOB.mouse_food_eaten)
+		var/list/parts = list()
+		parts += "<span class='header'>Mouse stats:</span>"
+		parts += "Mice Born: [GLOB.mouse_spawned]"
+		parts += "Mice Killed: [GLOB.mouse_killed]"
+		parts += "Trash Eaten: [GLOB.mouse_food_eaten]"
+		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
+	return ""
+
 /datum/controller/subsystem/ticker/proc/antag_report()
 	var/list/result = list()
 	var/list/all_teams = list()
@@ -414,7 +441,7 @@
 		if(!A.members)
 			continue
 		all_teams |= A
-	
+
 	for(var/datum/antagonist/A in GLOB.antagonists)
 		if(!A.owner)
 			continue
@@ -590,3 +617,25 @@
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
+
+/datum/controller/subsystem/ticker/proc/cargoking()
+	var/datum/achievement/cargoking/CK = SSachievements.get_achievement(/datum/achievement/cargoking)
+	var/cargoking = FALSE
+	var/ducatduke = FALSE
+	if(SSshuttle.points > 1000000)//Why is the cargo budget on SSshuttle instead of SSeconomy :thinking:
+		ducatduke = TRUE
+		if(SSshuttle.points > CK.amount)
+			cargoking = TRUE
+	var/hasQM = FALSE //we only wanna update the record if there's a QM
+	for(var/mob/M in GLOB.player_list)
+		if(M.mind && M.mind.assigned_role && M.mind.assigned_role == "Quartermaster")
+			if(ducatduke)
+				SSachievements.unlock_achievement(/datum/achievement/ducatduke, M.client)
+				if(cargoking)
+					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
+			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
+	if(hasQM && cargoking)
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET value = '[SSshuttle.points]' WHERE key = 'cargorecord'")
+		Q.Execute()
+		qdel(Q)
+

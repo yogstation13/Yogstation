@@ -214,7 +214,7 @@
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
-	desc = "Damn, they better have the /tg/ channel on these things."
+	desc = "Damn, they better have the Yogs Channel on these things... Nope, just the /tg/ channel! Aww..."
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "entertainment_blank"
 	network = list("thunder")
@@ -227,7 +227,7 @@
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize()
 	. = ..()
-	AddComponent(/datum/component/redirect, list(COMSIG_CLICK = CALLBACK(src, .proc/BigClick)))
+	RegisterSignal(src, COMSIG_CLICK, .proc/BigClick)
 
 // Bypass clickchain to allow humans to use the telescreen from a distance
 /obj/machinery/computer/security/telescreen/entertainment/proc/BigClick()
@@ -261,7 +261,7 @@
 
 /obj/machinery/computer/security/telescreen/cmo
 	name = "\improper Chief Medical Officer's telescreen"
-	desc = "A telescreen with access to the medbay's camera network."
+	desc = "A telescreen that connects to the medbay's camera network."
 	network = list("medbay")
 
 /obj/machinery/computer/security/telescreen/vault

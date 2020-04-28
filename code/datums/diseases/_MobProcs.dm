@@ -8,9 +8,6 @@
 
 
 /mob/living/proc/CanContractDisease(datum/disease/D)
-	if(stat == DEAD && !D.process_dead)
-		return FALSE
-
 	if(D.GetDiseaseID() in disease_resistances)
 		return FALSE
 
@@ -111,13 +108,15 @@
 		D.try_infect(src)
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
+	if(stat == DEAD) // no breathing when your dead
+		return
 	if( ((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob((50*D.permeability_mod) - 1))
 		ForceContractDisease(D)
 
 /mob/living/carbon/AirborneContractDisease(datum/disease/D, force_spread)
 	if(internal)
 		return
-	if(has_trait(TRAIT_NOBREATH))
+	if(HAS_TRAIT(src, TRAIT_NOBREATH))
 		return
 	..()
 
@@ -137,7 +136,7 @@
 
 /mob/living/carbon/human/CanContractDisease(datum/disease/D)
 	if(dna)
-		if(has_trait(TRAIT_VIRUSIMMUNE) && !D.bypasses_immunity)
+		if(HAS_TRAIT(src, TRAIT_VIRUSIMMUNE) && !D.bypasses_immunity)
 			return FALSE
 
 	for(var/thing in D.required_organs)

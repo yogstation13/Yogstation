@@ -6,43 +6,43 @@
 
 /obj/item/clothing/head/yogs/fez
 	name = "fez hat"
-	desc = "Best used ontop of a monkey."
+	desc = "Best used on top of a monkey."
 	icon_state = "fez"
 	item_state = "fez"
 
 /obj/item/clothing/head/yogs/trickster
 	name = "trickster hat"
-	desc = "Riddle me this spaceman!"
+	desc = "Riddle me this, spaceman!"
 	icon_state = "tricksterhat"
 	item_state = "tricksterhat"
 
 /obj/item/clothing/head/yogs/penguin
 	name = "penguin hat"
-	desc = "Sadly not a actual penguin hat."
+	desc = "Sadly not an actual penguin hat."
 	icon_state = "penguinhat"
 	item_state = "penguinhat"
 
 /obj/item/clothing/head/yogs/dresden
 	name = "dresden fedora"
-	desc = "Im not certain what this fedeora is a reference to honestly but I bet its super hero related!"
+	desc = "I'm not certain what this fedeora is a reference to but I bet it's superhero related!"
 	icon_state = "dresdendora"
 	item_state = "dresdendora"
 
 /obj/item/clothing/head/yogs/boater
 	name = "boater hat"
-	desc = "Perfect hat for singing in a quartet."
+	desc = "The perfect hat for singing in a quartet."
 	icon_state = "boater"
 	item_state = "boater"
 
 /obj/item/clothing/head/yogs/namhelmfake
 	name = "nam helmet"
-	desc = "A replica of a ancient war helmet filled with styrofoam, you can almost smell the napalm in the morning!"
+	desc = "A replica of an ancient war helmet filled with styrofoam. You can almost smell the napalm in the morning!"
 	icon_state = "namhelm"
 	item_state = "namhelm"
 
 /obj/item/clothing/head/helmet/namhelm
 	name = "nam helmet"
-	desc = "A ancient war helmet that is perfect for protecting your noggin from greytide clobberin!"
+	desc = "An ancient war helmet that is perfect for protecting your noggin from greytide clobberin'!"
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "namhelm"
@@ -50,13 +50,13 @@
 
 /obj/item/clothing/head/yogs/headpiece
 	name = "indian chief hat"
-	desc = "Perfect for a indian play!"
+	desc = "Perfect for an Indian play!"
 	icon_state = "headpiece"
 	item_state = "headpiece"
 
 /obj/item/clothing/head/yogs/indianfether
 	name = "indian feather hat"
-	desc = "Perfect for a indian play!"
+	desc = "Perfect for an Indian play!"
 	icon_state = "single_fether"
 	item_state = "single_fether"
 
@@ -68,13 +68,13 @@
 
 /obj/item/clothing/head/yogs/tricornhat
 	name = "tricorn hat"
-	desc = "four score and seven years ago..."
+	desc = "Four score and seven years ago..."
 	icon_state = "tricorn_hat"
 	item_state = "tricorn_hat"
 
 /obj/item/clothing/head/yogs/truecowboy
 	name = "classic cowboy hat"
-	desc = "YEE and I cannot stress this enough HAW!!!"
+	desc = "YEE, and I cannot stress this enough, HAW!!!"
 	icon_state = "cowboyhat"
 	item_state = "cowboyhat"
 
@@ -92,7 +92,7 @@
 
 /obj/item/clothing/head/yogs/infhat
 	name = "russian gangster hat"
-	desc = "So you wanna be a gangster ay?"
+	desc = "So you wanna be a gangster, ay?"
 	icon_state = "infhat"
 	item_state = "infhat"
 
@@ -116,7 +116,7 @@
 
 /obj/item/clothing/head/helmet/warhelmet
 	name = "war helmet"
-	desc = "Get ready boys we are going to war!"
+	desc = "Get ready boys, we are going to war!"
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "kr_helm"
@@ -136,13 +136,13 @@
 
 /obj/item/clothing/head/yogs/toad
 	name = "toad hat"
-	desc = "Shout out to simpleflips"
+	desc = "Shout out to simpleflips!"
 	icon_state = "toad"
 	item_state = "toad"
 
 /obj/item/clothing/head/beret/corpwarden
 	name = "corporate warden beret"
-	desc = "A special black beret with a Warden's insignia in the middle. This one is commonly warn by wardens of the corporation."
+	desc = "A special black beret with a warden's insignia in the middle. This one is commonly worn by wardens of the corporation."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_corporate_warden"
@@ -169,7 +169,7 @@
 
 /obj/item/clothing/head/beret/atmos
 	name = "atmospherics beret"
-	desc = "A beret for those who have shown immaculate proficienty in piping. Or plumbing."
+	desc = "A beret for those who have shown immaculate proficiency in piping. Or plumbing."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_atmospherics"
@@ -233,7 +233,7 @@
 
 /obj/item/clothing/head/welding/knight
 	name = "knightly welding helmet"
-	desc = "A painted welding helmet, this one looks like a knights helmet."
+	desc = "A painted welding helmet, this one looks like a knight helmet."
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
@@ -270,3 +270,16 @@
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "carpwelding"
 	item_state = "carpwelding"
+
+/obj/item/clothing/head/milliondollarhat
+	name = "millionaires hat"
+	desc = "On a small label at the bottom of the hat it reads.'My name is Doug Dimmadome, owner of the Dimmsdale Dimmadome and thank you for buying one of my top quality dimmahats!' On a even smaller label hidden in the small label it reads 'No refunds'."
+	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/1024x1024/head.dmi'
+	icon = 'yogstation/icons/obj/clothing/1024x1024/hats.dmi'
+	icon_state = "milliondollarhat"
+	item_state = "milliondollarhat"
+	worn_x_dimension = 1024
+	worn_y_dimension = 1024
+	armor = list(melee = 20) //lets say the hat itself doesnt provide any melee protection but people are so shocked at how huge your hat is they unconsciously soften there blows as to not hurt the hat.
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	strip_delay = 120

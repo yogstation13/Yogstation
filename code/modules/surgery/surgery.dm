@@ -17,6 +17,8 @@
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
 	var/lying_required = TRUE								//Does the vicitm needs to be lying down.
 	var/self_operable = FALSE								//Can the surgery be performed on yourself.
+	var/requires_tech = FALSE								//handles techweb-oriented surgeries, previously restricted to the /advanced subtype (You still need to add designs)
+	var/replaced_by											//type; doesn't show up if this type exists. Set to /datum/surgery if you want to hide a "base" surgery (useful for typing parents IE healing.dm just make sure to null it out again)
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
@@ -36,12 +38,56 @@
 	return ..()
 
 
-/datum/surgery/proc/can_start(mob/user, mob/living/carbon/target)
-	// if 0 surgery wont show up in list
-	// put special restrictions here
-	return 1
+/datum/surgery/proc/can_start(mob/user, mob/living/carbon/target) //FALSE to not show in list
+	. = TRUE
+	if(replaced_by == /datum/surgery)
+		return FALSE
+
+	if(HAS_TRAIT(user, TRAIT_SURGEON) || HAS_TRAIT(user.mind, TRAIT_SURGEON))
+		if(replaced_by)
+			return FALSE
+		else
+			return TRUE
+
+	if(!requires_tech && !replaced_by)
+		return TRUE
+	// True surgeons (like abductor scientists) need no instructions
+
+	if(requires_tech)
+		. = FALSE
+
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+		var/obj/item/surgical_processor/SP = locate() in R.module.modules
+		if(!SP || (replaced_by in SP.advanced_surgeries))
+			return FALSE
+		if(type in SP.advanced_surgeries)
+			return TRUE
+
+
+	var/turf/T = get_turf(target)
+	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
+	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
+	if(table)
+		if(!table.computer)
+			return FALSE
+		if(table.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in table.computer.advanced_surgeries)
+			return TRUE
+	if(bed)
+		if(!bed.computer)
+			return FALSE
+		if(bed.occupant != target)
+			return FALSE
+		if(bed.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in bed.computer.advanced_surgeries)
+			return TRUE //yogs end
 
 /datum/surgery/proc/next_step(mob/user, intent)
+	if(location != user.zone_selected)
+		return FALSE
 	if(step_in_progress)
 		return 1
 
@@ -51,9 +97,15 @@
 
 	var/datum/surgery_step/S = get_surgery_step()
 	if(S)
-		if(S.try_op(user, target, user.zone_selected, user.get_active_held_item(), src, try_to_fail))
-			return 1
-	return 0
+		var/obj/item/tool = user.get_active_held_item()
+		if(S.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
+			return TRUE
+		if(iscyborg(user) && user.a_intent != INTENT_HARM) //to save asimov borgs a LOT of heartache
+			return TRUE
+		if(tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
+			to_chat(user, "<span class='warning'>This step requires a different tool!</span>")
+			return TRUE
+	return FALSE
 
 /datum/surgery/proc/get_surgery_step()
 	var/step_type = steps[status]
@@ -74,8 +126,10 @@
 	var/propability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T))
+	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
 		propability = 1
+	else if(locate(/obj/machinery/stasis, T))
+		propability = 0.9
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
 	else if(locate(/obj/structure/bed, T))
@@ -85,30 +139,7 @@
 
 /datum/surgery/advanced
 	name = "advanced surgery"
-
-/datum/surgery/advanced/can_start(mob/user, mob/living/carbon/target)
-	if(!..())
-		return FALSE
-	// True surgeons (like abductor scientists) need no instructions
-	if(user.has_trait(TRAIT_SURGEON))
-		return TRUE
-
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/R = user
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules
-		if(!SP)
-			return FALSE
-		if(type in SP.advanced_surgeries)
-			return TRUE
-
-	var/turf/T = get_turf(target)
-	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	if(!table || !table.computer)
-		return FALSE
-	if(table.computer.stat & (NOPOWER|BROKEN))
-		return FALSE
-	if(type in table.computer.advanced_surgeries)
-		return TRUE
+	requires_tech = TRUE
 
 /obj/item/disk/surgery
 	name = "Surgery Procedure Disk"
@@ -125,7 +156,12 @@
 
 /obj/item/disk/surgery/debug/Initialize()
 	. = ..()
-	surgeries = subtypesof(/datum/surgery/advanced)
+	surgeries = list()
+	var/list/req_tech_surgeries = subtypesof(/datum/surgery)
+	for(var/i in req_tech_surgeries)
+		var/datum/surgery/beep = i
+		if(beep.requires_tech)
+			surgeries += beep
 
 //INFO
 //Check /mob/living/carbon/attackby for how surgery progresses, and also /mob/living/carbon/attack_hand.

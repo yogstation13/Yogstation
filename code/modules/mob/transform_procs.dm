@@ -1,4 +1,4 @@
-/mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_DEFAULTMSG))
+/mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform)
 		return
 	//Handle items on mob
@@ -73,7 +73,7 @@
 		O.setOxyLoss(getOxyLoss(), 0)
 		O.setCloneLoss(getCloneLoss(), 0)
 		O.adjustFireLoss(getFireLoss(), 0)
-		O.setBrainLoss(getBrainLoss(), 0)
+		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
 
@@ -123,6 +123,19 @@
 					qdel(G) //we lose the organs in the missing limbs
 		qdel(BP)
 
+	//transfer stuns
+	if(tr_flags & TR_KEEPSTUNS)
+		O.Stun(AmountStun(), ignore_canstun = TRUE)
+		O.Knockdown(AmountKnockdown(), ignore_canstun = TRUE)
+		O.Immobilize(AmountImmobilized(), ignore_canstun = TRUE)
+		O.Paralyze(AmountParalyzed(), ignore_canstun = TRUE)
+		O.Unconscious(AmountUnconscious(), ignore_canstun = TRUE)
+		O.Sleeping(AmountSleeping(), ignore_canstun = TRUE)
+
+	//transfer reagents
+	if(tr_flags & TR_KEEPREAGENTS)
+		reagents.trans_to(O, reagents.total_volume)
+
 	//transfer mind if we didn't yet
 	if(mind)
 		mind.transfer_to(O)
@@ -149,7 +162,7 @@
 //////////////////////////           Humanize               //////////////////////////////
 //Could probably be merged with monkeyize but other transformations got their own procs, too
 
-/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_DEFAULTMSG))
+/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
 	if (notransform)
 		return
 	//Handle items on mob
@@ -233,7 +246,7 @@
 		O.setOxyLoss(getOxyLoss(), 0)
 		O.setCloneLoss(getCloneLoss(), 0)
 		O.adjustFireLoss(getFireLoss(), 0)
-		O.setBrainLoss(getBrainLoss(), 0)
+		O.adjustOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
 
@@ -282,6 +295,19 @@
 						continue //so headless changelings don't lose their brain when transforming
 					qdel(G) //we lose the organs in the missing limbs
 		qdel(BP)
+
+	//transfer stuns
+	if(tr_flags & TR_KEEPSTUNS)
+		O.Stun(AmountStun(), ignore_canstun = TRUE)
+		O.Knockdown(AmountKnockdown(), ignore_canstun = TRUE)
+		O.Immobilize(AmountImmobilized(), ignore_canstun = TRUE)
+		O.Paralyze(AmountParalyzed(), ignore_canstun = TRUE)
+		O.Unconscious(AmountUnconscious(), ignore_canstun = TRUE)
+		O.Sleeping(AmountSleeping(), ignore_canstun = TRUE)
+
+	//transfer reagents
+	if(tr_flags & TR_KEEPREAGENTS)
+		reagents.trans_to(O, reagents.total_volume)
 
 	if(mind)
 		mind.transfer_to(O)
@@ -429,6 +455,7 @@
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
+	update_atom_languages()
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
 	. = new_xeno
@@ -518,6 +545,27 @@
 		new_gorilla.key = key
 	to_chat(new_gorilla, "<B>You are now a gorilla. Ooga ooga!</B>")
 	. = new_gorilla
+	qdel(src)
+
+/mob/living/carbon/human/proc/pacmanize()
+	if (notransform)
+		return
+	notransform = TRUE
+	Paralyze(1, ignore_canstun = TRUE)
+	for(var/obj/item/W in src)
+		dropItemToGround(W)
+	regenerate_icons()
+	icon = null
+	invisibility = INVISIBILITY_MAXIMUM
+	for(var/t in bodyparts)	//this really should not be necessary
+		qdel(t)
+
+	var/mob/living/simple_animal/pacman/new_pacman = new /mob/living/simple_animal/pacman (loc)
+	new_pacman.a_intent = INTENT_HARM
+	new_pacman.key = key
+
+	to_chat(new_pacman, "<B>You are now a pacman. I LOVE PACMAN!</B>")
+	. = new_pacman
 	qdel(src)
 
 /mob/living/carbon/human/Animalize()

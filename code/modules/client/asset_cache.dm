@@ -325,6 +325,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/size_id = sprite[SPR_SIZE]
 	return {"<span class="[name][size_id] [sprite_name]"></span>"}
 
+/datum/asset/spritesheet/proc/icon_class_name(sprite_name)
+	var/sprite = sprites[sprite_name]
+	if (!sprite)
+		return null
+	var/size_id = sprite[SPR_SIZE]
+	return {"[name][size_id] [sprite_name]"}
+
 #undef SPR_SIZE
 #undef SPR_IDX
 #undef SPRSZ_COUNT
@@ -381,14 +388,24 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/simple/tgui
 	assets = list(
-		"tgui.css"	= 'tgui/assets/tgui.css',
-		"tgui.js"	= 'tgui/assets/tgui.js',
-		"font-awesome.min.css" = 'tgui/assets/font-awesome.min.css',
-		"fontawesome-webfont.eot" = 'tgui/assets/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.woff2" = 'tgui/assets/fonts/fontawesome-webfont.woff2',
-		"fontawesome-webfont.woff" = 'tgui/assets/fonts/fontawesome-webfont.woff',
-		"fontawesome-webfont.ttf" = 'tgui/assets/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.svg" = 'tgui/assets/fonts/fontawesome-webfont.svg'
+		// tgui
+		"tgui.css" = 'tgui/assets/tgui.css',
+		"tgui.js" = 'tgui/assets/tgui.js',
+		// tgui-next
+		"tgui-main.html" = 'tgui-next/packages/tgui/public/tgui-main.html',
+		"tgui-fallback.html" = 'tgui-next/packages/tgui/public/tgui-fallback.html',
+		"tgui.bundle.js" = 'tgui-next/packages/tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui-next/packages/tgui/public/tgui.bundle.css',
+		"shim-html5shiv.js" = 'tgui-next/packages/tgui/public/shim-html5shiv.js',
+		"shim-ie8.js" = 'tgui-next/packages/tgui/public/shim-ie8.js',
+		"shim-dom4.js" = 'tgui-next/packages/tgui/public/shim-dom4.js',
+		"shim-css-om.js" = 'tgui-next/packages/tgui/public/shim-css-om.js'
+	)
+
+/datum/asset/group/tgui
+	children = list(
+		/datum/asset/simple/tgui,
+		/datum/asset/simple/fontawesome
 	)
 
 /datum/asset/simple/headers
@@ -508,7 +525,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	children = list(
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
-		/datum/asset/spritesheet/goonchat
+		/datum/asset/spritesheet/goonchat,
+		/datum/asset/simple/fontawesome
 	)
 
 /datum/asset/simple/jquery
@@ -521,14 +539,20 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	verify = FALSE
 	assets = list(
 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
-		"errorHandler.js"          = 'code/modules/goonchat/browserassets/js/errorHandler.js',
 		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'tgui/assets/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'tgui/assets/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'tgui/assets/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'tgui/assets/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'code/modules/goonchat/browserassets/css/font-awesome.css',
 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
+		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css'
+	)
+
+/datum/asset/simple/fontawesome
+	verify = FALSE
+	assets = list(
+		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
+		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
+		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
+		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
+		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
+		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
 
 /datum/asset/spritesheet/goonchat
@@ -561,6 +585,16 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"minor_button.png" = 'html/minor_button.png',
 		"none_button.png" = 'html/none_button.png',
 	)
+
+/datum/asset/simple/arcade
+	assets = list(
+		"boss1.gif" = 'icons/UI_Icons/Arcade/boss1.gif',
+		"boss2.gif" = 'icons/UI_Icons/Arcade/boss2.gif',
+		"boss3.gif" = 'icons/UI_Icons/Arcade/boss3.gif',
+		"boss4.gif" = 'icons/UI_Icons/Arcade/boss4.gif',
+		"boss5.gif" = 'icons/UI_Icons/Arcade/boss5.gif',
+		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
+		)
 
 /datum/asset/spritesheet/simple/pills
 	name ="pills"
@@ -600,7 +634,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	name = "pipes"
 
 /datum/asset/spritesheet/pipes/register()
-	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi'))
+	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi', 'icons/obj/plumbing/fluid_ducts.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 	..()
 
@@ -663,9 +697,53 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		Insert(initial(D.id), I)
 	return ..()
 
+/datum/asset/spritesheet/vending
+	name = "vending"
+
+/datum/asset/spritesheet/vending/register()
+	for (var/k in GLOB.vending_products)
+		var/atom/item = k
+
+
+		var/icon_file
+		var/icon_state
+		var/icon/I
+
+
+		if (!ispath(item, /atom))
+			continue
+
+		icon_file = initial(item.icon)
+		icon_state = initial(item.icon_state)
+
+		if(icon_state in icon_states(icon_file))
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if (!isnull(c) && c != "#FFFFFF")
+				I.Blend(initial(c), ICON_MULTIPLY)
+		else
+			item = new item()
+			I = icon(item.icon, item.icon_state, SOUTH)
+			qdel(item)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		Insert(imgid, I)
+	return ..()
+
 /datum/asset/simple/genetics
 	assets = list(
 		"dna_discovered.png"	= 'html/dna_discovered.png',
 		"dna_undiscovered.png"	= 'html/dna_undiscovered.png',
 		"dna_extra.png" 		= 'html/dna_extra.png'
 )
+
+/datum/asset/simple/mapimage // Returns an image of the current map
+	assets = list(
+		//Initialized in New()
+	)
+/datum/asset/simple/mapimage/New()
+	assets = list(
+		"map.png" = file("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
+	)
+	..()

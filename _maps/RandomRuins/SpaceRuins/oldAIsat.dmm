@@ -46,8 +46,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Worn-out APC";
-	pixel_x = 1;
-	pixel_y = 26
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -284,7 +283,7 @@
 /area/tcommsat/oldaisat)
 "aZ" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes,
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/oldaisat)
 "ba" = (
@@ -766,6 +765,13 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
+"cA" = (
+/obj/structure/frame/computer{
+	icon_state = "0";
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/tcommsat/oldaisat)
 "cB" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
 /turf/open/floor/plating,
@@ -2811,8 +2817,8 @@ ag
 ag
 ag
 aD
-aC
-aC
+cA
+cA
 ag
 bv
 ag

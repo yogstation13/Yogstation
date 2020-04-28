@@ -51,3 +51,14 @@
 		for(var/mob/living/simple_animal/hostile/carp/C in view(src, 10))
 			if(C.stat != DEAD)
 				enemies |= C
+
+/mob/living/simple_animal/hostile/retaliate/dolphin/manatee
+	name = "space manatee"
+	desc = "This one looks quite menacing."
+	icon_state = "manatee"
+	icon_living = "manatee"
+	icon_dead = "manatee_dead"
+	icon_gib = "dolphin_gib"
+	maxHealth = 50 //thicc
+	health = 50
+

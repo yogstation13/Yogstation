@@ -70,11 +70,15 @@
 	..()
 	return TRUE
 
-/proc/add_vampire(mob/living/L)
-	if(!L || !L.mind || is_vampire(L))
-		return FALSE
-	var/datum/antagonist/vampire/vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
-	return vamp
+/proc/add_vampire(mob/living/L, full_vampire = TRUE)
+    if(!L || !L.mind || is_vampire(L))
+        return FALSE
+    var/datum/antagonist/vampire/vamp
+    if(full_vampire == TRUE)
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
+    else
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire/new_blood)
+    return vamp
 
 /proc/remove_vampire(mob/living/L)
 	if(!L || !L.mind || !is_vampire(L))

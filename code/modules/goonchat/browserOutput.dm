@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
-		to_chat(owner, message, handle_whitespace=FALSE)
+		to_chat(owner, message, handle_whitespace=FALSE, confidential=TRUE)
 
 	messageQueue = null
 	sendClientData()
@@ -199,36 +199,25 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 //Global chat procs
-/proc/to_chat(target, message, handle_whitespace=TRUE)
-	if(!target)
-		return
-
-	//Ok so I did my best but I accept that some calls to this will be for shit like sound and images
-	//It stands that we PROBABLY don't want to output those to the browser output so just handle them here
-	if (istype(target, /savefile))
-		CRASH("Invalid message! [message]")
-
-	if(!istext(message))
-		if (istype(message, /image) || istype(message, /sound))
-			CRASH("Invalid message! [message]")
+/proc/to_chat_immediate(target, message, handle_whitespace = TRUE, confidential = FALSE)
+	if(!target || !message)
 		return
 
 	if(target == world)
 		target = GLOB.clients
 
 	var/original_message = message
-	//Some macros remain in the string even after parsing and fuck up the eventual output
-	message = replacetext(message, "\improper", "")
-	message = replacetext(message, "\proper", "")
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
+
+	if(!confidential)
+		SSdemo.write_chat(target, message)
 
 	if(islist(target))
 		// Do the double-encoding outside the loop to save nanoseconds
 		var/twiceEncoded = url_encode(url_encode(message))
 		for(var/I in target)
-			message = to_utf8(message, I) // yogs - LibVG
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 			if (!C)
 				continue
@@ -250,8 +239,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		if (!C)
 			return
 
-		message = to_utf8(message, target) // yogs - LibVG
-
 		//Send it to the old style output window.
 		SEND_TEXT(C, original_message)
 
@@ -265,6 +252,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
+
+/proc/to_chat(target, message, handle_whitespace = TRUE, confidential = FALSE)
+	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
+		to_chat_immediate(target, message, handle_whitespace, confidential)
+		return
+	SSchat.queue(target, message, handle_whitespace, confidential)
 
 /datum/chatOutput/proc/swaptolightmode() //Dark mode light mode stuff. Yell at KMC if this breaks! (See darkmode.dm for documentation)
 	owner.force_white_theme()

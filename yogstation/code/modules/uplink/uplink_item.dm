@@ -1,6 +1,12 @@
 /datum/uplink_item
 	var/list/include_objectives = list() //objectives to allow the buyer to buy this item
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
+	var/surplus_nullcrates
+
+/datum/uplink_item/New()	
+	. = ..()
+	if(isnull(surplus_nullcrates))
+		surplus_nullcrates = surplus
 
 /////////////////////////////////
 ////////Item re-balancing////////
@@ -33,11 +39,14 @@
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
 
-/datum/uplink_item/device_tools/emag
-	cost = 8
-
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)
+
+/datum/uplink_item/stealthy_tools/mulligan
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+
+/datum/uplink_item/device_tools/fakenucleardisk
+	surplus_nullcrates = 0
 
 //////////////////////////
 /////////New Items////////
@@ -60,6 +69,12 @@
 	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/device_tools/arm/nuke
+	cost = 15
+	exclude_modes = list()
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
@@ -86,6 +101,14 @@
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
 	surplus = 20
+
+/datum/uplink_item/implants/greytide
+	name = "Greytide Implant"
+	desc = "An implant injected into another body, forcing the victim to greytide."
+	item = /obj/item/storage/box/syndie_kit/imp_greytide
+	cost = 5
+	surplus = 20
+	restricted_roles = list("Assistant")
 
 /datum/uplink_item/badass/frying_pan
 	name = "Bananium Plated Frying Pan"

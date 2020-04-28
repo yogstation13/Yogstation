@@ -50,8 +50,8 @@
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
 	explosion_block = 2
-	hardness = 10
-	slicing_duration = 80
+	hardness = 6
+	slicing_duration = 100
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
@@ -136,7 +136,7 @@
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
-		slicing_duration = 150
+		slicing_duration = 170
 		animate(realappearance, color = "#FFC3C3", time = 5)
 	else
 		name = initial(name)

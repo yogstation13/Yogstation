@@ -50,7 +50,8 @@
 		return
 
 	var/islist = islist(D)
-	if (!islist && !istype(D))
+	var/isappearance = isappearance(D)
+	if (!islist && !istype(D) && !isappearance)
 		return
 
 	var/title = ""
@@ -59,12 +60,14 @@
 	var/hash
 
 	var/type = /list
-	if (!islist)
+	if (isappearance)
+		type = /image
+	else if (!islist)
 		type = D.type
 
 
 
-	if(istype(D, /atom))
+	if(istype(D, /atom) || isappearance)
 		var/atom/AT = D
 		if(AT.icon && AT.icon_state)
 			sprite = new /icon(AT.icon, AT.icon_state)
@@ -86,6 +89,7 @@
 			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];rename=[refid]'><b id='name'>[D]</b></a>"
 			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 			var/mob/living/M = A
+
 			atomsnowflake += {"
 				<br><font size='1'><a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=ckey' id='ckey'>[M.ckey || "No ckey"]</a> / <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=real_name' id='real_name'>[M.real_name || "No real name"]</a></font>
 				<br><font size='1'>
@@ -94,14 +98,14 @@
 					TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[M.getToxLoss()]</a>
 					OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[M.getOxyLoss()]</a>
 					CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[M.getCloneLoss()]</a>
-					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
+					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
 					STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[M.getStaminaLoss()]</a>
 				</font>
 			"}
 		else
 			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
 			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
-	else if("name" in D.vars)
+	else if(!isappearance && ("name" in D.vars))
 		atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
 	else
 		atomsnowflake += "<b>[formatted_type]</b>"
@@ -111,10 +115,10 @@
 	if(holder && holder.marked_datum && holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
-	if(!islist && (D.datum_flags & DF_VAR_EDITED))
+	if(!isappearance && !islist && (D.datum_flags & DF_VAR_EDITED))
 		varedited_line = VV_MSG_EDITED
 	var/deleted_line
-	if(!islist && D.gc_destroyed)
+	if(!isappearance && !islist && D.gc_destroyed)
 		deleted_line = VV_MSG_DELETED
 
 	var/list/dropdownoptions = list()
@@ -128,7 +132,7 @@
 			"Shuffle" = "?_src_=vars;[HrefToken()];listshuffle=[refid]",
 			"Show VV To Player" = "?_src_=vars;[HrefToken()];expose=[refid]"
 			)
-	else
+	else if (!isappearance)
 		dropdownoptions = D.vv_get_dropdown()
 	var/list/dropdownoptions_html = list()
 
@@ -140,7 +144,7 @@
 			dropdownoptions_html += "<option value>[name]</option>"
 
 	var/list/names = list()
-	if (!islist)
+	if (!islist && !isappearance)
 		for (var/V in D.vars)
 			names += V
 	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
@@ -154,6 +158,60 @@
 			if (IS_NORMAL_LIST(L) && !isnum(key))
 				value = L[key]
 			variable_html += debug_variable(i, value, 0, D)
+	else if(isappearance(D))
+		variable_html += debug_variable("animate_movement", D:animate_movement, 0, D)
+		variable_html += debug_variable("screen_loc", D:screen_loc, 0, D)
+		variable_html += debug_variable("pixel_step_size", D:pixel_step_size, 0, D)
+		variable_html += debug_variable("glide_size", D:glide_size, 0, D)
+		variable_html += debug_variable("type", D:type, 0, D)
+		variable_html += debug_variable("parent_type", D:parent_type, 0, D)
+		variable_html += debug_variable("tag", D:tag, 0, D)
+		variable_html += debug_variable("name", D:name, 0, D)
+		variable_html += debug_variable("desc", D:desc, 0, D)
+		variable_html += debug_variable("suffix", D:suffix, 0, D)
+		variable_html += debug_variable("text", D:text, 0, D)
+		variable_html += debug_variable("icon", D:icon, 0, D)
+		variable_html += debug_variable("icon_state", D:icon_state, 0, D)
+		variable_html += debug_variable("overlays", D:overlays, 0, D)
+		variable_html += debug_variable("underlays", D:underlays, 0, D)
+		variable_html += debug_variable("dir", D:dir, 0, D)
+		variable_html += debug_variable("visibility", D:visibility, 0, D)
+		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
+		variable_html += debug_variable("opacity", D:opacity, 0, D)
+		variable_html += debug_variable("density", D:density, 0, D)
+		variable_html += debug_variable("layer", D:layer, 0, D)
+		variable_html += debug_variable("gender", D:gender, 0, D)
+		variable_html += debug_variable("mouse_over_pointer", D:mouse_over_pointer, 0, D)
+		variable_html += debug_variable("mouse_drag_pointer", D:mouse_drag_pointer, 0, D)
+		variable_html += debug_variable("mouse_drop_pointer", D:mouse_drop_pointer, 0, D)
+		variable_html += debug_variable("mouse_drop_zone", D:mouse_drop_zone, 0, D)
+		variable_html += debug_variable("verbs", D:verbs, 0, D)
+		variable_html += debug_variable("invisibility", D:invisibility, 0, D)
+		variable_html += debug_variable("infra_luminosity", D:infra_luminosity, 0, D)
+		variable_html += debug_variable("pixel_x", D:pixel_x, 0, D)
+		variable_html += debug_variable("pixel_y", D:pixel_y, 0, D)
+		variable_html += debug_variable("mouse_opacity", D:mouse_opacity, 0, D)
+		variable_html += debug_variable("pixel_z", D:pixel_z, 0, D)
+		variable_html += debug_variable("override", D:override, 0, D)
+		variable_html += debug_variable("maptext", D:maptext, 0, D)
+		variable_html += debug_variable("maptext_width", D:maptext_width, 0, D)
+		variable_html += debug_variable("maptext_height", D:maptext_height, 0, D)
+		variable_html += debug_variable("transform", D:transform, 0, D)
+		variable_html += debug_variable("alpha", D:alpha, 0, D)
+		variable_html += debug_variable("color", D:color, 0, D)
+		variable_html += debug_variable("blend_mode", D:blend_mode, 0, D)
+		variable_html += debug_variable("appearance", D:appearance, 0, D)
+		variable_html += debug_variable("maptext_x", D:maptext_x, 0, D)
+		variable_html += debug_variable("maptext_y", D:maptext_y, 0, D)
+		variable_html += debug_variable("plane", D:plane, 0, D)
+		variable_html += debug_variable("appearance_flags", D:appearance_flags, 0, D)
+		variable_html += debug_variable("pixel_w", D:pixel_w, 0, D)
+		variable_html += debug_variable("filters", D:filters, 0, D)
+		variable_html += debug_variable("type", D:type, 0, D)
+		variable_html += debug_variable("text", D:text, 0, D)
+		variable_html += debug_variable("visibility", D:visibility, 0, D)
+		variable_html += debug_variable("luminosity", D:luminosity, 0, D)
+		variable_html += debug_variable("opacity", D:opacity, 0, D)
 	else
 
 		names = sortList(names)
@@ -403,7 +461,7 @@
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
-	if(DA)
+	if(DA && !isappearance(DA))
 		if (islist(DA))
 			var/index = name
 			if (value)
@@ -437,6 +495,14 @@
 	else if (isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
+	else if(istype(value, /matrix))
+		var/matrix/M = value
+		item = "[VV_HTML_ENCODE(name)] = <span class='value'>matrix([M.a], [M.b], [M.c], [M.d], [M.e], [M.f])</span>"
+
+	else if(isappearance(value))
+		var/image/I = value
+		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance(<span class='value'>[I.icon]</span>, <span class='value'>\"[I.icon_state]\"</span>)"
+
 	else if (istype(value, /datum))
 		var/datum/D = value
 		if ("[D]" != "[D.type]") //if the thing as a name var, lets use it.
@@ -448,7 +514,7 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if (L.len > 0 && !(name == "underlays" || name == "overlays" || L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
+		if (L.len > 0 && !(L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
 			for (var/i in 1 to L.len)
 				var/key = L[i]
 				var/val
@@ -841,7 +907,7 @@
 
 			if(usr.client)
 				usr.client.cmd_assume_direct_control(M)
-				
+
 		// yogs - offer control moved up
 
 		else if (href_list["modarmor"])
@@ -1323,7 +1389,7 @@
 				var/msg = "[key_name(usr)] has removed [key_name(H)] from purrbation." // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(H, msg)
-				
+
 		else if(href_list["cluwneing"]) // yogs start -- adds cluwneify verb in VV
 			if(!check_rights(R_SPAWN))	return
 			var/mob/living/carbon/human/H = locate(href_list["cluwneing"])
@@ -1333,6 +1399,23 @@
 			H.cluwneify()
 			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
 			return // yogs end
+
+		else if(href_list["makepacman"])
+			if(!check_rights(R_SPAWN))
+				return
+
+			var/mob/living/carbon/human/H = locate(href_list["makepacman"]) in GLOB.mob_list
+			if(!istype(H))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+				return
+
+			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+				return
+			if(!H)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+			holder.Topic(href, list("makepacman"=href_list["makepacman"]))
+
 
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 			if(!check_rights(NONE))
@@ -1365,8 +1448,8 @@
 					L.adjustOxyLoss(amount)
 					newamt = L.getOxyLoss()
 				if("brain")
-					L.adjustBrainLoss(amount)
-					newamt = L.getBrainLoss()
+					L.adjustOrganLoss(ORGAN_SLOT_BRAIN, amount)
+					newamt = L.getOrganLoss(ORGAN_SLOT_BRAIN)
 				if("clone")
 					L.adjustCloneLoss(amount)
 					newamt = L.getCloneLoss()
@@ -1381,7 +1464,7 @@
 				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
 				message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
 				log_admin(log_msg)
-				admin_ticket_log(L, "<span class='notice'>[log_msg]</span>")
+				admin_ticket_log(L, "<font color='blue'>[log_msg]</font>")
 				vv_update_display(L, Text, "[newamt]")
 		else if(href_list["copyoutfit"])
 			if(!check_rights(R_SPAWN))
@@ -1389,3 +1472,29 @@
 			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"]) in GLOB.carbon_list
 			if(istype(H))
 				H.copy_outfit()
+		else if(href_list["modquirks"])
+			if(!check_rights(R_SPAWN))
+				return
+
+			var/mob/living/carbon/human/H = locate(href_list["modquirks"]) in GLOB.mob_list
+			if(!istype(H))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+				return
+
+			var/list/options = list("Clear"="Clear")
+			for(var/x in subtypesof(/datum/quirk))
+				var/datum/quirk/T = x
+				var/qname = initial(T.name)
+				options[H.has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+
+			var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in options
+			if(result)
+				if(result == "Clear")
+					for(var/datum/quirk/q in H.roundstart_quirks)
+						H.remove_quirk(q.type)
+				else
+					var/T = options[result]
+					if(H.has_quirk(T))
+						H.remove_quirk(T)
+					else
+						H.add_quirk(T,TRUE)

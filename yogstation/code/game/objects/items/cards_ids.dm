@@ -70,6 +70,13 @@
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return
+	if(prob(10))
+		to_chat(user, "<span class='notice'>By some ungodly miracle, the emag gains new functionality instead of being destroyed.</span>")
+		playsound(src.loc, "sparks", 50, 1)
+		qdel(otherEmag)
+		color = rgb(40, 130, 255)
+		prox_check = FALSE
+		return
 	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
 	playsound(src.loc, "sparks", 50, 1)
 	qdel(otherEmag)

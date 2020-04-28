@@ -119,9 +119,9 @@
 
 
 /mob/living/simple_animal/parrot/examine(mob/user)
-	..()
+	. = ..()
 	if(stat)
-		to_chat(user, pick("This parrot is no more.", "This is a late parrot.", "This is an ex-parrot."))
+		. += pick("This parrot is no more.", "This is a late parrot.", "This is an ex-parrot.")
 
 /mob/living/simple_animal/parrot/death(gibbed)
 	if(held_item)
@@ -970,6 +970,7 @@
 	butcher_results = list(/obj/item/ectoplasm = 1)
 
 /mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+	LoadComponent(/datum/component/walk/jaunt)
 	memory_saved = TRUE //At this point nothing is saved
 	. = ..()
 

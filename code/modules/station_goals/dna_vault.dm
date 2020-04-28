@@ -20,9 +20,9 @@
 /datum/station_goal/dna_vault/New()
 	..()
 	animal_count = rand(15,20) //might be too few given ~15 roundstart stationside ones
-	human_count = rand(round(0.75 * SSticker.totalPlayersReady) , SSticker.totalPlayersReady) // 75%+ roundstart population.
+	human_count = rand(round(0.25 * SSticker.totalPlayersReady),round(0.5 * SSticker.totalPlayersReady)) // 25 - 50% roundstart population.
 	var/non_standard_plants = non_standard_plants_count()
-	plant_count = rand(round(0.5 * non_standard_plants),round(0.7 * non_standard_plants))
+	plant_count = rand(round(0.2 * non_standard_plants),round(0.3 * non_standard_plants))
 
 /datum/station_goal/dna_vault/proc/non_standard_plants_count()
 	. = 0
@@ -140,6 +140,7 @@
 	var/list/animals = list()
 	var/list/plants = list()
 	var/list/dna = list()
+	var/static/list/users = list()
 
 	var/completed = FALSE
 	var/list/power_lottery = list()
@@ -205,11 +206,14 @@
 	data["choiceA"] = ""
 	data["choiceB"] = ""
 	if(user && completed)
-		var/list/L = power_lottery[user]
-		if(L && L.len)
-			data["used"] = FALSE
-			data["choiceA"] = L[1]
-			data["choiceB"] = L[2]
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(!users[H])
+				var/list/L = power_lottery[user]
+				if(L && L.len)
+					data["used"] = FALSE
+					data["choiceA"] = L[1]
+					data["choiceB"] = L[2]
 	return data
 
 /obj/machinery/dna_vault/ui_act(action, params)
@@ -259,26 +263,27 @@
 				var/obj/item/organ/lungs/L = H.internal_organs_slot[ORGAN_SLOT_LUNGS]
 				L.tox_breath_dam_min = 0
 				L.tox_breath_dam_max = 0
-			H.add_trait(TRAIT_VIRUSIMMUNE, "dna_vault")
+			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
 		if(VAULT_NOBREATH)
 			to_chat(H, "<span class='notice'>Your lungs feel great.</span>")
-			H.add_trait(TRAIT_NOBREATH, "dna_vault")
+			ADD_TRAIT(H, TRAIT_NOBREATH, "dna_vault")
 		if(VAULT_FIREPROOF)
 			to_chat(H, "<span class='notice'>You feel fireproof.</span>")
 			S.burnmod = 0.5
-			H.add_trait(TRAIT_RESISTHEAT, "dna_vault")
-			H.add_trait(TRAIT_NOFIRE, "dna_vault")
+			ADD_TRAIT(H, TRAIT_RESISTHEAT, "dna_vault")
+			ADD_TRAIT(H, TRAIT_NOFIRE, "dna_vault")
 		if(VAULT_STUNTIME)
 			to_chat(H, "<span class='notice'>Nothing can keep you down for long.</span>")
 			S.stunmod = 0.5
 		if(VAULT_ARMOUR)
 			to_chat(H, "<span class='notice'>You feel tough.</span>")
 			S.armor = 30
-			H.add_trait(TRAIT_PIERCEIMMUNE, "dna_vault")
+			ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, "dna_vault")
 		if(VAULT_SPEED)
 			to_chat(H, "<span class='notice'>Your legs feel faster.</span>")
-			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-0.74, blacklisted_movetypes=(FLYING|FLOATING))
 		if(VAULT_QUICK)
 			to_chat(H, "<span class='notice'>Your arms move as fast as lightning.</span>")
 			H.next_move_modifier = 0.5
+	users[H] = TRUE
 	power_lottery[H] = list()

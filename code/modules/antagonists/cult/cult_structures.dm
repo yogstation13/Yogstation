@@ -29,10 +29,10 @@
 
 
 /obj/structure/destructible/cult/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src] is [anchored ? "":"not "]secured to the floor.</span>")
+	. = ..()
+	. += "<span class='notice'>\The [src] is [anchored ? "":"not "]secured to the floor.</span>"
 	if((iscultist(user) || isobserver(user)) && cooldowntime > world.time)
-		to_chat(user, "<span class='cult italic'>The magic in [src] is too weak, [p_they()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
+		. += "<span class='cult italic'>The magic in [src] is too weak, [p_they()] will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>"
 
 /obj/structure/destructible/cult/examine_status(mob/user)
 	if(iscultist(user) || isobserver(user))
@@ -187,7 +187,7 @@
 						var/mob/living/simple_animal/M = L
 						if(M.health < M.maxHealth)
 							M.adjustHealth(-3)
-				if(ishuman(L) && L.blood_volume < BLOOD_VOLUME_NORMAL)
+				if(ishuman(L) && L.blood_volume < BLOOD_VOLUME_NORMAL(L))
 					L.blood_volume += 1.0
 			CHECK_TICK
 	if(last_corrupt <= world.time)
@@ -213,9 +213,9 @@
 		var/turf/T = safepick(validturfs)
 		if(T)
 			if(istype(T, /turf/open/floor/plating))
-				T.PlaceOnTop(/turf/open/floor/engine/cult)
+				T.PlaceOnTop(/turf/open/floor/engine/cult, flags = CHANGETURF_INHERIT_AIR)
 			else
-				T.ChangeTurf(/turf/open/floor/engine/cult)
+				T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_INHERIT_AIR)
 		else
 			var/turf/open/floor/engine/cult/F = safepick(cultturfs)
 			if(F)
