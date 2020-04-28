@@ -740,8 +740,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		log_game("Summon Cultist rune failed - target in away mission")
 		return
-	if(istype(cultist_to_summon, /mob/living/simple_animal/shade) && (cultist_to_summon.status_flags & GODMODE))
-		cultist_to_summon.status_flags &= ~GODMODE //fixes shades being invincible after being summoned
+	if(istype(cultist_to_summon, /mob/living/simple_animal/shade) && (cultist_to_summon.status_flags & GODMODE))//yogs: fixes shades from being invincible after being summoned
+		cultist_to_summon.status_flags &= ~GODMODE //yogs end
 	cultist_to_summon.visible_message("<span class='warning'>[cultist_to_summon] suddenly disappears in a flash of red light!</span>", \
 									  "<span class='cult italic'><b>Overwhelming vertigo consumes you as you are hurled through the air!</b></span>")
 	..()
