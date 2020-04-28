@@ -87,15 +87,21 @@
 
 		message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 		log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
-
-		user.gib(TRUE, TRUE, TRUE)
-		for(var/turf/T in range(6,loccheck))
+		
+		for(var/turf/T in range(2,loccheck))
 			if(istype(T, /turf/open/space/transit))
 				continue
-			for(var/mob/living/M in T)
-				if(M.movement_type & FLYING)
-					M.visible_message("<span class='danger'>The bluespace collapse crushes the air towards it, pulling [M] towards the ground...</span>")
-					M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
+			for(var/atom/AT in T)
+				AT.emp_act(EMP_HEAVY)
+				if(istype(AT, /obj))
+					var/obj/O = AT
+					O.obj_break()
+				if(istype(AT, /mob/living))
+					var/mob/living/M = AT
+					M.take_overall_damage(85)
+					if(M.movement_type & FLYING)
+						M.visible_message("<span class='danger'>The bluespace collapse crushes the air towards it, pulling [M] towards the ground...</span>")
+						M.Paralyze(5, TRUE, TRUE)		//Overrides stun absorbs.
 			T.TerraformTurf(/turf/open/chasm/magic, /turf/open/chasm/magic)
 		for(var/fabricarea in get_areas(/area/fabric_of_reality))
 			var/area/fabric_of_reality/R = fabricarea
@@ -105,3 +111,13 @@
 		qdel(A)
 		return
 	. = ..()
+	
+/datum/component/storage/concrete/trashbag/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
+	..() // Actually sets the default return value
+	var/atom/real_location = real_location()
+	var/sum_w_class = I.w_class
+	for(var/obj/item/_I in real_location)
+		sum_w_class += _I.w_class //Adds up the combined w_classes
+	if((real_location.contents.len / max_items > 0.95 || sum_w_class / max_combined_w_class > 0.95) && !rand(0,124))
+		var/obj/item/storage/bag/trash/devito = parent
+		devito.snap(M)

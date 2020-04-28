@@ -59,7 +59,7 @@
 /area/ruin/unpowered)
 "t" = (
 /obj/structure/table/abductor,
-/obj/item/storage/box/alienhandcuffs,
+/obj/effect/spawner/lootdrop/lavaland_surface_ufo_crash,
 /turf/open/floor/plating/abductor{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},

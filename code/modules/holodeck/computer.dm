@@ -105,10 +105,24 @@
 			var/program_to_load = text2path(params["type"])
 			if(!ispath(program_to_load))
 				return FALSE
+			var/valid = FALSE
+			var/list/checked = program_cache
+			if(obj_flags & EMAGGED)
+				checked |= emag_programs
+			for(var/prog in checked)
+				var/list/P = prog
+				if(P["type"] == program_to_load)
+					valid = TRUE
+					break
+			if(!valid)
+				return FALSE
+
 			var/area/A = locate(program_to_load) in GLOB.sortedAreas
 			if(A)
 				load_program(A)
 		if("safety")
+			if(!issilicon(usr) && !IsAdminGhost(usr))
+				return
 			obj_flags ^= EMAGGED
 			if((obj_flags & EMAGGED) && program && emag_programs[program.name])
 				emergency_shutdown()
@@ -217,11 +231,13 @@
 		var/obj/effect/holodeck_effect/HE = e
 		HE.safety(active)
 
-/obj/machinery/computer/holodeck/proc/load_program(area/A, force = FALSE, add_delay = TRUE)
+/obj/machinery/computer/holodeck/proc/load_program(area/holodeck/A, force = FALSE, add_delay = TRUE)
 	if(!is_operational())
 		A = offline_program
 		force = TRUE
-
+	if(A.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
+		say("ERROR. Program currently unavailiable, the security level is not high enough.")
+		return
 	if(program == A)
 		return
 	if(current_cd > world.time && !force)

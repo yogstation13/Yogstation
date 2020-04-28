@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(garbage)
 					state = SS_RUNNING
 				break
 
-	
+
 
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
@@ -267,7 +267,7 @@ SUBSYSTEM_DEF(garbage)
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
-		SEND_SIGNAL(D, COMSIG_PARENT_QDELETED, force, hint) // Let the (remaining) components know about the result of Destroy
+		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force, hint) // Let the (remaining) components know about the result of Destroy
 		if(world.time != start_time)
 			I.slept_destroy++
 		else
@@ -279,6 +279,7 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.Queue(D)
 			if (QDEL_HINT_IWILLGC)
 				D.gc_destroyed = world.time
+				SSdemo.mark_destroyed(D)
 				return
 			if (QDEL_HINT_LETMELIVE)	//qdel should let the object live after calling destory.
 				if(!force)
@@ -298,8 +299,10 @@ SUBSYSTEM_DEF(garbage)
 
 				SSgarbage.Queue(D)
 			if (QDEL_HINT_HARDDEL)		//qdel should assume this object won't gc, and queue a hard delete
+				SSdemo.mark_destroyed(D)
 				SSgarbage.Queue(D, GC_QUEUE_HARDDELETE)
 			if (QDEL_HINT_HARDDEL_NOW)	//qdel should assume this object won't gc, and hard del it post haste.
+				SSdemo.mark_destroyed(D)
 				SSgarbage.HardDelete(D)
 			if (QDEL_HINT_FINDREFERENCE)//qdel will, if TESTING is enabled, display all references to this object, then queue the object for deletion.
 				SSgarbage.Queue(D)
@@ -318,6 +321,8 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				I.no_hint++
 				SSgarbage.Queue(D)
+		if(D)
+			SSdemo.mark_destroyed(D)
 	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
 

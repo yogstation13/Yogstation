@@ -93,6 +93,7 @@
 	throw_message = "does nothing to the tough hide of the"
 	pre_attack_icon = "goliath2"
 	crusher_loot = /obj/item/crusher_trophy/goliath_tentacle
+	crusher_drop_mod = 10
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/goliath = 2, /obj/item/stack/sheet/bone = 2)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	loot = list()
@@ -146,6 +147,18 @@
 
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril
 	fromtendril = TRUE
+
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/joe
+	name = "Joe"
+	desc = "The mining team's pet goliath! Usually found hard at work at the coin press."
+	response_help = "pets"
+	crusher_loot = null
+	guaranteed_butcher_results = list() //no plates from joe
+	move_force = MOVE_FORCE_DEFAULT
+	move_resist = MOVE_RESIST_DEFAULT
+	pull_force = PULL_FORCE_DEFAULT
+	faction = list("neutral")
+	environment_smash = ENVIRONMENT_SMASH_NONE
 
 //tentacles
 /obj/effect/temp_visual/goliath_tentacle

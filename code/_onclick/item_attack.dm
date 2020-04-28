@@ -5,7 +5,11 @@
 		var/resolved = target.attackby(src, user, params)
 		if(!resolved && target && !QDELETED(src))
 			afterattack(target, user, 1, params) // 1: clicking something Adjacent
-
+	SSdemo.mark_dirty(src)
+	if(isturf(target))
+		SSdemo.mark_turf(target)
+	else
+		SSdemo.mark_dirty(target)
 
 //Checks if the item can work as a tool, calling the appropriate tool behavior on the target
 /obj/item/proc/tool_attack_chain(mob/user, atom/target)
@@ -20,6 +24,7 @@
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	interact(user)
+	SSdemo.mark_dirty(src)
 
 /obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
 	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_NO_ATTACK)
@@ -40,7 +45,7 @@
 		return TRUE
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(user.a_intent == INTENT_HARM && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
-		GET_COMPONENT_FROM(butchering, /datum/component/butchering, I)
+		var/datum/component/butchering/butchering = I.GetComponent(/datum/component/butchering)
 		if(butchering && butchering.butchering_enabled)
 			to_chat(user, "<span class='notice'>You begin to butcher [src]...</span>")
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
@@ -60,7 +65,7 @@
 	if(item_flags & NOBLUDGEON)
 		return
 
-	if(force && user.has_trait(TRAIT_PACIFISM))
+	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 		return
 
@@ -110,9 +115,6 @@
 				add_splatter_floor(location)
 				if(get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
-					if(ishuman(user))
-						var/mob/living/carbon/human/dirtyboy = user
-						dirtyboy.adjust_hygiene(-10)
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)

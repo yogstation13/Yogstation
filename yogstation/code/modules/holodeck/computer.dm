@@ -1,6 +1,6 @@
 /obj/machinery/computer/holodeck/perma
 	holodeck_type = /area/holodeck/perma
-	var/disallowed_programs = list(/area/holodeck/rec_center/kobayashi, /area/holodeck/rec_center/firingrange)
+	var/disallowed_programs = list(/area/holodeck/rec_center/kobayashi, /area/holodeck/rec_center/firingrange, /area/holodeck/rec_center/medical)
 
 /obj/machinery/computer/holodeck/perma/generate_program_list()
 	..()

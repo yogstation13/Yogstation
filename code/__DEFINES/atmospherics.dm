@@ -140,7 +140,7 @@
 #define TANK_FRAGMENT_SCALE	    			(6.*ONE_ATMOSPHERE)		//+1 for each SCALE kPa aboe threshold
 #define TANK_MAX_RELEASE_PRESSURE 			(ONE_ATMOSPHERE*3)
 #define TANK_MIN_RELEASE_PRESSURE 			0
-#define TANK_DEFAULT_RELEASE_PRESSURE 		16
+#define TANK_DEFAULT_RELEASE_PRESSURE 		17
 
 //CANATMOSPASS
 #define ATMOS_PASS_YES 1
@@ -157,7 +157,7 @@
 #define AIRLESS_ATMOS				"TEMP=2.7" //space
 #define FROZEN_ATMOS				"o2=22;n2=82;TEMP=180" //-93.15°C snow and ice turfs
 #define KITCHEN_COLDROOM_ATMOS		"o2=33;n2=124;TEMP=193.15" //-80°C kitchen coldroom; higher amount of mol to reach about 101.3 kpA
-#define BURNMIX_ATMOS				"o2=2500;plasma=5000;TEMP=370" //used in the holodeck burn test program
+#define BURNMIX_ATMOS				"o2=100;plasma=200;TEMP=370" //used in the holodeck burn test program
 
 //ATMOSPHERICS DEPARTMENT GAS TANK TURFS
 #define ATMOS_TANK_N2O				"n2o=6000;TEMP=293.15"
@@ -169,7 +169,10 @@
 
 //LAVALAND
 #define LAVALAND_EQUIPMENT_EFFECT_PRESSURE 50 //what pressure you have to be under to increase the effect of equipment meant for lavaland
+
+//PLANETARY ATMOS MIXES
 #define LAVALAND_DEFAULT_ATMOS "o2=14;n2=23;TEMP=300"
+#define ICEMOON_DEFAULT_ATMOS "o2=14;n2=23;TEMP=180"
 
 //ATMOSIA GAS MONITOR TAGS
 #define ATMOS_GAS_MONITOR_INPUT_O2 "o2_in"
@@ -272,19 +275,23 @@
 	T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
 	T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;
 
-#define THERMAL_ENERGY(gas) (gas.temperature * gas.heat_capacity())
+#ifdef TESTING
+GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
+#define CALCULATE_ADJACENT_TURFS(T) if (SSadjacent_air.queue[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSadjacent_air.queue[T] = 1 }
+#else
+#define CALCULATE_ADJACENT_TURFS(T) SSadjacent_air.queue[T] = 1
+#endif
 
-#define ADD_GAS(gas_id, out_list)\
-	var/list/tmp_gaslist = GLOB.gaslist_cache[gas_id]; out_list[gas_id] = tmp_gaslist.Copy();
-
-#define ASSERT_GAS(gas_id, gas_mixture) if (!gas_mixture.gases[gas_id]) { ADD_GAS(gas_id, gas_mixture.gases) };
-
-//prefer this to gas_mixture/total_moles in performance critical areas
-#define TOTAL_MOLES(cached_gases, out_var)\
-	out_var = 0;\
-	for(var/total_moles_id in cached_gases){\
-		out_var += cached_gases[total_moles_id][MOLES];\
-	}
+GLOBAL_VAR(atmos_extools_initialized) // this must be an uninitialized (null) one or init_monstermos will be called twice because reasons
+#define ATMOS_EXTOOLS_CHECK if(!GLOB.atmos_extools_initialized){\
+	GLOB.atmos_extools_initialized=TRUE;\
+	if(fexists(world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")){\
+		var/result = call((world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so"),"init_monstermos")();\
+		if(result != "ok") {CRASH(result);}\
+	} else {\
+		CRASH("byond-extools.dll does not exist!");\
+	}\
+}
 
 GLOBAL_LIST_INIT(pipe_paint_colors, list(
 		"amethyst" = rgb(130,43,255), //supplymain
@@ -303,4 +310,3 @@ GLOBAL_LIST_INIT(pipe_paint_colors, list(
 
 #define MIASMA_CORPSE_MOLES 0.02
 #define MIASMA_GIBS_MOLES 0.005
-#define MIASMA_HYGIENE_MOLES 0.002

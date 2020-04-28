@@ -20,7 +20,7 @@
 	return attack_hand(user)
 
 /obj/item/dnainjector/proc/inject(mob/living/carbon/M, mob/user)
-	if(M.has_dna() && !M.has_trait(TRAIT_RADIMMUNE) && !M.has_trait(TRAIT_BADDNA))
+	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		for(var/HM in remove_mutations)
@@ -60,11 +60,12 @@
 	log_combat(user, target, "attempted to inject", src)
 
 	if(target != user)
-		target.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>", "<span class='userdanger'>[user] is trying to inject [target] with [src]!</span>")
+		target.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>", \
+			"<span class='userdanger'>[user] is trying to inject you with [src]!</span>")
 		if(!do_mob(user, target) || used)
 			return
 		target.visible_message("<span class='danger'>[user] injects [target] with the syringe with [src]!", \
-						"<span class='userdanger'>[user] injects [target] with the syringe with [src]!</span>")
+						"<span class='userdanger'>[user] injects you with the syringe with [src]!</span>")
 
 	else
 		to_chat(user, "<span class='notice'>You inject yourself with [src].</span>")
@@ -88,6 +89,11 @@
 	name = "\improper DNA injector (Hulk)"
 	desc = "This will make you big and strong, but give you a bad skin condition."
 	add_mutations = list(HULK)
+	
+/obj/item/dnainjector/firebreath
+	name = "\improper DNA injector (Fire Breath)"
+	desc = "Restores the dragon ancestry."
+	add_mutations = list(FIREBREATH)
 
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
@@ -98,7 +104,7 @@
 	name = "\improper DNA injector (Anti-X-ray)"
 	desc = "It will make you see harder."
 	remove_mutations = list(XRAY)
-	
+
 /////////////////////////////////////
 /obj/item/dnainjector/antiglasses
 	name = "\improper DNA injector (Anti-Glasses)"
@@ -359,10 +365,50 @@
 	name = "\improper DNA injector (Anti-Shock Touch)"
 	remove_mutations = list(SHOCKTOUCH)
 
+/obj/item/dnainjector/spacialinstability
+	name = "\improper DNA injector (Spacial Instability)"
+	add_mutations = list(BADBLINK)
+
+/obj/item/dnainjector/antispacialinstability
+	name = "\improper DNA injector (Anti-Spacial Instability)"
+	remove_mutations = list(BADBLINK)
+
+/obj/item/dnainjector/acidflesh
+	name = "\improper DNA injector (Acid Flesh)"
+	add_mutations = list(ACIDFLESH)
+
+/obj/item/dnainjector/antiacidflesh
+	name = "\improper DNA injector (Acid Flesh)"
+	remove_mutations = list(ACIDFLESH)
+
+/obj/item/dnainjector/gigantism
+	name = "\improper DNA injector (Gigantism)"
+	add_mutations = list(GIGANTISM)
+
+/obj/item/dnainjector/antigigantism
+	name = "\improper DNA injector (Anti-Gigantism)"
+	remove_mutations = list(GIGANTISM)
+
+/obj/item/dnainjector/spastic
+	name = "\improper DNA injector (Spastic)"
+	add_mutations = list(SPASTIC)
+
+/obj/item/dnainjector/antispastic
+	name = "\improper DNA injector (Anti-Spastic)"
+	remove_mutations = list(SPASTIC)
+
+/obj/item/dnainjector/twoleftfeet
+	name = "\improper DNA injector (Two Left Feet)"
+	add_mutations = list(EXTRASTUN)
+
+/obj/item/dnainjector/antitwoleftfeet
+	name = "\improper DNA injector (Anti-Two Left Feet)"
+	remove_mutations = list(EXTRASTUN)
+
 /obj/item/dnainjector/geladikinesis
 	name = "\improper DNA injector (Geladikinesis)"
 	add_mutations = list(GELADIKINESIS)
-	
+
 /obj/item/dnainjector/antigeladikinesis
 	name = "\improper DNA injector (Anti-Geladikinesis)"
 	remove_mutations = list(GELADIKINESIS)
@@ -383,6 +429,22 @@
 	name = "\improper DNA injector (Anti-Thermal Vision)"
 	remove_mutations = list(THERMAL)
 
+/obj/item/dnainjector/glow
+	name = "\improper DNA injector (Glowy)"
+	add_mutations = list(GLOWY)
+
+/obj/item/dnainjector/removeglow
+	name = "\improper DNA injector (Anti-Glowy)"
+	remove_mutations = list(GLOWY)
+
+/obj/item/dnainjector/antiglow
+	name = "\improper DNA injector (Antiglowy)"
+	add_mutations = list(ANTIGLOWY)
+
+/obj/item/dnainjector/removeantiglow
+	name = "\improper DNA injector (Anti-Antiglowy)"
+	remove_mutations = list(ANTIGLOWY)
+
 /obj/item/dnainjector/timed
 	var/duration = 600
 
@@ -391,7 +453,7 @@
 		to_chat(user, "<span class='notice'>You can't modify [M]'s DNA while [M.p_theyre()] dead.</span>")
 		return FALSE
 
-	if(M.has_dna() && !(M.has_trait(TRAIT_BADDNA)))
+	if(M.has_dna() && !(HAS_TRAIT(M, TRAIT_BADDNA)))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		var/endtime = world.time+duration
@@ -453,7 +515,7 @@
 	var/filled = FALSE
 
 /obj/item/dnainjector/activator/inject(mob/living/carbon/M, mob/user)
-	if(M.has_dna() && !M.has_trait(TRAIT_RADIMMUNE) && !M.has_trait(TRAIT_BADDNA))
+	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		for(var/mutation in add_mutations)
@@ -475,4 +537,3 @@
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	return FALSE
-

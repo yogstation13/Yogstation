@@ -10,7 +10,7 @@
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
 		return
 	if(isliving(src))
-		message = minor_filter(message) //yogs end - pretty filter
+		message = minor_filter(to_utf8(message)) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
@@ -29,7 +29,7 @@
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
 		return
-	message = minor_filter(message) //yogs end - pretty filter
+	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
@@ -47,7 +47,7 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	message = utf8_sanitize(message, usr, MAX_MESSAGE_LEN) // yogs - libvg support
+	message = copytext(sanitize(to_utf8(message)), 1, MAX_MESSAGE_LEN) // yogs - libvg support
 
 	usr.emote("me",1,message,TRUE)
 
@@ -93,14 +93,15 @@
 	if(key)
 		K = src.key
 
-	var/spanned = src.say_quote(message, get_spans())
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[(src.client.prefs.chat_toggles & GHOST_CKEY) ? "" : "([K]) "][name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>" //yogs
+	var/spanned = say_quote(message)
+	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[(src.client.prefs.chat_toggles & GHOST_CKEY) ? "" : "([K]) "][name]</span>[alt_name]" // yogs - i have no clue
+	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
-	deadchat_broadcast(rendered, follow_target = src, speaker_key = K)
+	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = key)
 
-/mob/proc/check_emote(message)
+/mob/proc/check_emote(message, forced)
 	if(copytext(message, 1, 2) == "*")
-		emote(copytext(message, 2), intentional = TRUE)
+		emote(copytext(message, 2), intentional = !forced)
 		return 1
 
 /mob/proc/hivecheck()

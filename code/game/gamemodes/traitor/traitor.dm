@@ -38,6 +38,9 @@
 
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
+		
+	if(CONFIG_GET(flag/protect_AI_from_traitor))
+		restricted_jobs += "AI"
 
 	var/num_traitors = 1
 

@@ -53,7 +53,7 @@
 		return
 
 	var/obj/item/reagent_containers/glass/bucket/bucket = H.get_item_for_held_index(1)
-	bucket.reagents.add_reagent("water",70)
+	bucket.reagents.add_reagent(/datum/reagent/water,70)
 
 /datum/outfit/laser_tag
 	name = "Laser Tag Red"
@@ -227,7 +227,7 @@
 	W.assignment = "CentCom Commander"
 	W.registered_name = H.real_name
 	W.update_label()
-	
+
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/spec_ops
@@ -363,15 +363,18 @@
 /datum/outfit/plasmaman
 	name = "Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
+	back = /obj/item/storage/backpack
+	ears = /obj/item/radio/headset
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/death_commando
 	name = "Death Commando"
 
-	uniform = /obj/item/clothing/under/color/green
+	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
@@ -428,7 +431,7 @@
 
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
-	uniform = /obj/item/clothing/under/patriotsuit 
+	uniform = /obj/item/clothing/under/patriotsuit
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	shoes = /obj/item/clothing/shoes/magboots/advance
 	suit_store = /obj/item/tank/internals/oxygen

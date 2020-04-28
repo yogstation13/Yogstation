@@ -10,7 +10,7 @@
 		return
 	owner.dna.add_mutation(CLOWNMUT)
 	owner.dna.add_mutation(EPILEPSY)
-	owner.setBrainLoss(200)
+	owner.setOrganLoss(ORGAN_SLOT_BRAIN,199)
 
 	var/mob/living/carbon/human/H = owner
 
@@ -32,7 +32,7 @@
 
 /datum/mutation/human/cluwne/on_life(mob/living/carbon/human/owner)
 	if((prob(15) && owner.IsUnconscious()))
-		owner.setBrainLoss(200) // there I changed it to setBrainLoss
+		owner.setOrganLoss(ORGAN_SLOT_BRAIN,199) // there I changed it to setBrainLoss
 		switch(rand(1, 6))
 			if(1)
 				owner.say("HONK")
@@ -56,7 +56,7 @@
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
 
-/datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
+/datum/mutation/human/tourettes/on_life()
 	if(prob(10) && owner.stat == CONSCIOUS)
 		owner.Stun(20)
 		switch(rand(1, 3))

@@ -320,6 +320,7 @@ CREATE TABLE `player` (
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
   `accountjoindate` DATE DEFAULT NULL,
   `flags` smallint(5) unsigned DEFAULT '0' NOT NULL,
+  `discord_id` BIGINT(20) NULL DEFAULT NULL,
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)
@@ -513,6 +514,35 @@ CREATE TABLE `stickyban_matched_cid` (
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
 
+--
+-- Table structure for table `achievements`
+--
+DROP TABLE IF EXISTS `achievements`;
+CREATE TABLE `achievements` (
+	`name` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL,
+	`descr` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `earned_achievements`
+--
+DROP TABLE IF EXISTS `earned_achievements`;
+CREATE TABLE `earned_achievements` (
+	`ckey` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `achievements`
+--
+DROP TABLE IF EXISTS `misc`;
+CREATE TABLE `misc` (
+	`key` VARCHAR(32) NOT NULL,
+	`value` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`key`)
+) ENGINE=InnoDB;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -7,7 +7,6 @@
 	anchored = TRUE
 	max_integrity = 1
 	armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
-	layer = BELOW_OBJ_LAYER
 	var/obj/item/holosign_creator/projector
 
 /obj/structure/holosign/New(loc, source_projector)
@@ -76,6 +75,14 @@
 /obj/structure/holosign/barrier/wetsign/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/vehicle/ridden/janicart))
 		return TRUE
+	if(istype(mover, /obj/structure/janitorialcart))
+		return TRUE
+	if(istype(mover, /obj/structure/mopbucket))
+		return TRUE
+	if(ishuman(mover))
+		var/mob/living/carbon/human/janitor = mover
+		if(istype(janitor.shoes, /obj/item/clothing/shoes/galoshes))
+			return TRUE
 	return ..()
 
 /obj/structure/holosign/barrier/engineering
@@ -122,8 +129,8 @@
 	var/buzzcd = 0
 
 /obj/structure/holosign/barrier/medical/examine(mob/user)
-	..()
-	to_chat(user,"<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>")
+	. = ..()
+	. += "<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>"
 
 /obj/structure/holosign/barrier/medical/CanPass(atom/movable/mover, turf/target)
 	icon_state = "holo_medical"

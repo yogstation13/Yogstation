@@ -1,0 +1,11 @@
+{
+    "map_name": "MinskyStation",
+    "map_path": "map_files/MinskyStation",
+    "map_file": "MinskyStation.dmm",
+    "shuttles": {
+	    "emergency": "emergency_minsky",
+	    "ferry": "ferry_fancy",
+	    "cargo": "cargo_box",
+	    "whiteship": "whiteship_box"
+    }
+}

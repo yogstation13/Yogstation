@@ -35,10 +35,10 @@
 	name_source = GLOB.commando_names
 
 /datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
-	owner.add_trait(TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
 
 /datum/antagonist/ert/deathsquad/remove_innate_effects(mob/living/mob_override)
-	owner.remove_trait(TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
 
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
 
@@ -108,6 +108,16 @@
 	outfit = /datum/outfit/death_commando
 	role = "Officer"
 
+/datum/antagonist/ert/clown/robust
+	name = "Clown Commander"
+	outfit = /datum/outfit/ert/clown/leader
+	role = "Clown Commander"
+
+/datum/antagonist/ert/clown
+	name = "Clown"
+	outfit = /datum/outfit/ert/clown
+	role = "Clown"
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
@@ -134,7 +144,7 @@
 	else
 		missiondesc += " Follow orders given to you by your squad leader."
 
-		missiondesc += "Avoid civilian casualites when possible."
+	missiondesc += "Avoid civilian casualties when possible."
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)

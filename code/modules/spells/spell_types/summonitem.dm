@@ -13,6 +13,7 @@
 
 	var/obj/marked_item
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "summons"
 
 /obj/effect/proc_holder/spell/targeted/summonitem/cast(list/targets,mob/user = usr)
@@ -25,7 +26,7 @@
 			for(var/obj/item/item in hand_items)
 				if(item.item_flags & ABSTRACT)
 					continue
-				if(item.has_trait(TRAIT_NODROP))
+				if(HAS_TRAIT(item, TRAIT_NODROP))
 					message += "Though it feels redundant, "
 				marked_item = 		item
 				message += "You mark [item] for recall.</span>"
@@ -78,8 +79,10 @@
 
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
-							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)
+							//yogs start -- Yogs Vorecode
+							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)	
 								C.stomach_contents -= item_to_retrieve
+							//Yogs end
 							for(var/X in C.bodyparts)
 								var/obj/item/bodypart/part = X
 								if(item_to_retrieve in part.embedded_objects)

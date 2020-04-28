@@ -149,7 +149,6 @@
 	timeout = 30
 	hidden = TRUE
 
-
 /datum/mood_event/notcreepingsevere//not hidden since it's so severe
 	description = "<span class='boldwarning'>THEY NEEEEEEED OBSESSIONNNN!!</span>\n"
 	mood_change = -30
@@ -176,6 +175,24 @@
 	description = "<span class='boldwarning'>Bags never sit right on my back, this hurts like hell!</span>\n"
 	mood_change = -15
 
+/datum/mood_event/sad_empath
+	description = "<span class='warning'>Someone seems upset...</span>\n"
+	mood_change = -2
+	timeout = 600
+
+/datum/mood_event/sad_empath/add_effects(mob/sadtarget)
+	description = "<span class='warning'>[sadtarget.name] seems upset...</span>\n"
+
+/datum/mood_event/sacrifice_bad
+	description ="<span class='warning'>Those darn savages!</span>\n"
+	mood_change = -5
+	timeout = 2 MINUTES
+
+/datum/mood_event/artbad
+	description = "<span class='warning'>I've produced better art than that from my ass.</span>\n"
+	mood_change = -2
+	timeout = 1200
+
 //These are unused so far but I want to remember them to use them later
 /datum/mood_event/cloned_corpse
 	description = "<span class='boldwarning'>I recently saw my own corpse...</span>\n"
@@ -184,3 +201,4 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
+

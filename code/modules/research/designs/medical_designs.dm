@@ -4,7 +4,7 @@
 
 /datum/design/mmi
 	name = "Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
+	desc = "The warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	id = "mmi"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(MAT_METAL = 1000, MAT_GLASS = 500)
@@ -15,7 +15,7 @@
 
 /datum/design/posibrain
 	name = "Positronic Brain"
-	desc = "The latest in Artificial Intelligences."
+	desc = "The latest in Artificial Intelligence."
 	id = "mmi_posi"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(MAT_METAL = 1700, MAT_GLASS = 1350, MAT_GOLD = 500) //Gold, because SWAG.
@@ -64,7 +64,7 @@
 
 /datum/design/bluespacesyringe
 	name = "Bluespace Syringe"
-	desc = "An advanced syringe that can hold 60 units of chemicals"
+	desc = "An advanced syringe that can hold 60 units of chemicals."
 	id = "bluespacesyringe"
 	build_type = PROTOLATHE
 	materials = list(MAT_GLASS = 2000, MAT_PLASMA = 1000, MAT_DIAMOND = 1000, MAT_BLUESPACE = 500)
@@ -164,7 +164,7 @@
 
 /datum/design/genescanner
 	name = "Genetic Sequence Analyzer"
-	desc = "A handy hand-held analyzers for quickly determining mutations and collecting the full sequence."
+	desc = "A handy hand-held analyzer for quickly determining mutations and collecting the full sequence."
 	id = "genescanner"
 	build_path = /obj/item/sequence_scanner
 	build_type = PROTOLATHE
@@ -174,7 +174,7 @@
 
 /datum/design/healthanalyzer_advanced
 	name = "Advanced Health Analyzer"
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
+	desc = "A hand-held body scanner, able to distinguish vital signs of the subject with high accuracy."
 	id = "healthanalyzer_advanced"
 	build_path = /obj/item/healthanalyzer/advanced
 	build_type = PROTOLATHE
@@ -192,6 +192,15 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/surgical_drapes
+	name = "Surgical Drapes"
+	id = "surgical_drapes"
+	build_type = PROTOLATHE
+	materials = list(MAT_PLASTIC = 2000)
+	build_path = /obj/item/surgical_drapes
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/laserscalpel
 	name = "Laser Scalpel"
 	desc = "A laser scalpel used for precise cutting."
@@ -199,27 +208,27 @@
 	build_path = /obj/item/scalpel/advanced
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 6000, MAT_GLASS = 1500, MAT_SILVER = 2000, MAT_GOLD = 1500, MAT_DIAMOND = 200, MAT_TITANIUM = 4000)
-	category = list("Medical Designs")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/mechanicalpinches
 	name = "Mechanical Pinches"
-	desc = "These pinches can be either used as retractor or hemostat."
+	desc = "These pinches can be used as a retractor or hemostat."
 	id = "mechanicalpinches"
 	build_path = /obj/item/retractor/advanced
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 12000, MAT_GLASS = 4000, MAT_SILVER = 4000, MAT_TITANIUM = 5000)
-	category = list("Medical Designs")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/searingtool
 	name = "Searing Tool"
-	desc = "Used to mend tissue togheter."
+	desc = "Used to mend tissue together."
 	id = "searingtool"
 	build_path = /obj/item/cautery/advanced
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 4000, MAT_GLASS = 2000, MAT_PLASMA = 2000, MAT_URANIUM = 3000, MAT_TITANIUM = 3000)
-	category = list("Medical Designs")
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /////////////////////////////////////////
@@ -239,7 +248,7 @@
 
 /datum/design/cyberimp_gloweyes
 	name = "Luminescent Eyes"
-	desc = "A pair of cybernetic eyes that can emit multicolored light"
+	desc = "A pair of cybernetic eyes that can emit multicolored light."
 	id = "ci-gloweyes"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -272,7 +281,7 @@
 
 /datum/design/cyberimp_toolset
 	name = "Toolset Arm Implant"
-	desc = "A stripped-down version of engineering cyborg toolset, designed to be installed on subject's arm."
+	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on the subject's arm."
 	id = "ci-toolset"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (MAT_METAL = 2500, MAT_GLASS = 1500, MAT_SILVER = 1500)
@@ -303,6 +312,17 @@
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/cyberimp_diagnostic_hud
+	name = "Diagnostic HUD Implant"
+	desc = "These cybernetic eyes will display a diagnostic HUD over everything you see. Wiggle eyes to control."
+	id = "ci-diaghud"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
+	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_SILVER = 600, MAT_GOLD = 600)
+	build_path = /obj/item/organ/cyberimp/eyes/hud/diagnostic
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/cyberimp_xray
 	name = "X-ray Eyes"
 	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
@@ -327,7 +347,7 @@
 
 /datum/design/cyberimp_antidrop
 	name = "Anti-Drop Implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ears to toggle."
 	id = "ci-antidrop"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -349,7 +369,7 @@
 
 /datum/design/cyberimp_nutriment
 	name = "Nutriment Pump Implant"
-	desc = "This implant with synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
+	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
 	id = "ci-nutriment"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -360,7 +380,7 @@
 
 /datum/design/cyberimp_nutriment_plus
 	name = "Nutriment Pump Implant PLUS"
-	desc = "This implant with synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
+	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
 	id = "ci-nutrimentplus"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -382,7 +402,7 @@
 
 /datum/design/cyberimp_thrusters
 	name = "Thrusters Set Implant"
-	desc = "This implant will allow you to use gas from environment or your internals for propulsion in zero-gravity areas."
+	desc = "This implant will allow you to use gas from the environment or your internals for propulsion in zero-gravity areas."
 	id = "ci-thrusters"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
@@ -449,7 +469,7 @@
 
 /datum/design/cybernetic_liver
 	name = "Cybernetic Liver"
-	desc = "A cybernetic liver"
+	desc = "A cybernetic liver."
 	id = "cybernetic_liver"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -460,18 +480,18 @@
 
 /datum/design/cybernetic_liver_u
 	name = "Upgraded Cybernetic Liver"
-	desc = "An upgraded cybernetic liver"
+	desc = "An upgraded cybernetic liver."
 	id = "cybernetic_liver_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER=500, MAT_GOLD=200)
 	build_path = /obj/item/organ/liver/cybernetic/upgraded
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_heart
 	name = "Cybernetic Heart"
-	desc = "A cybernetic heart"
+	desc = "A cybernetic heart."
 	id = "cybernetic_heart"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -482,11 +502,11 @@
 
 /datum/design/cybernetic_heart_u
 	name = "Upgraded Cybernetic Heart"
-	desc = "An upgraded cybernetic heart"
+	desc = "An upgraded cybernetic heart."
 	id = "cybernetic_heart_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER=500)
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER=500, MAT_GOLD=200)
 	build_path = /obj/item/organ/heart/cybernetic/upgraded
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -508,8 +528,19 @@
 	id = "cybernetic_lungs_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER = 500)
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER = 500, MAT_GOLD=200)
 	build_path = /obj/item/organ/lungs/cybernetic/upgraded
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cybernetic_appendix
+	name = "Cybernetic Appendix"
+	desc = "A replacement for those who lost a part of themselfs."
+	id = "cybernetic_appendix"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
+	materials = list(MAT_METAL = 200, MAT_GLASS = 200)
+	build_path = /obj/item/organ/appendix/cybernetic
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -528,7 +559,7 @@
 	name = "Experimental Dissection"
 	desc = "A surgical procedure which deeply analyzes the biology of a corpse, and automatically adds new findings to the research database."
 	id = "surgery_exp_dissection"
-	surgery = /datum/surgery/advanced/experimental_dissection
+	surgery = /datum/surgery/experimental_dissection
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/lobotomy
@@ -552,18 +583,61 @@
 	surgery = /datum/surgery/advanced/viral_bonding
 	research_icon_state = "surgery_chest"
 
-/datum/design/surgery/reconstruction
-	name = "Reconstruction"
-	desc = "A surgical procedure that gradually repairs damage done to a body without the assistance of chemicals. Unlike classic medicine, it is effective on corpses."
-	id = "surgery_reconstruction"
-	surgery = /datum/surgery/advanced/reconstruction
+/datum/design/surgery/healing
+	name = "Tend Wounds"
+	desc = "An upgraded version of the original surgery."
+	id = "surgery_healing_base" //holder because travis cries otherwise. Not used in techweb unlocks.
 	research_icon_state = "surgery_chest"
+
+/datum/design/surgery/healing/brute_upgrade
+	name = "Tend Wounds (Brute) Upgrade"
+	surgery = /datum/surgery/healing/brute/upgraded
+	id = "surgery_heal_brute_upgrade"
+
+/datum/design/surgery/healing/brute_upgrade_2
+	name = "Tend Wounds (Brute) Upgrade"
+	surgery = /datum/surgery/healing/brute/upgraded/femto
+	id = "surgery_heal_brute_upgrade_femto"
+
+/datum/design/surgery/healing/burn_upgrade
+	name = "Tend Wounds (Burn) Upgrade"
+	surgery = /datum/surgery/healing/burn/upgraded
+	id = "surgery_heal_burn_upgrade"
+
+/datum/design/surgery/healing/burn_upgrade_2
+	name = "Tend Wounds (Burn) Upgrade"
+	surgery = /datum/surgery/healing/brute/upgraded/femto
+	id = "surgery_heal_burn_upgrade_femto"
+
+/datum/design/surgery/healing/combo
+	name = "Tend Wounds (Physical)"
+	desc = "A surgical procedure that repairs both bruises and burns. Repair efficiency is not as high as the individual surgeries but it is faster."
+	surgery = /datum/surgery/healing/combo
+	id = "surgery_heal_combo"
+
+/datum/design/surgery/healing/combo_upgrade
+	name = "Tend Wounds (Physical) Upgrade"
+	surgery = /datum/surgery/healing/combo/upgraded
+	id = "surgery_heal_combo_upgrade"
+
+/datum/design/surgery/healing/combo_upgrade_2
+	name = "Tend Wounds (Physical) Upgrade"
+	desc = "A surgical procedure that repairs both bruises and burns faster than their individual counterparts. It is more effective than both the individual surgeries."
+	surgery = /datum/surgery/healing/combo/upgraded/femto
+	id = "surgery_heal_combo_upgrade_femto"
 
 /datum/design/surgery/revival
 	name = "Revival"
 	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
 	id = "surgery_revival"
 	surgery = /datum/surgery/advanced/revival
+	research_icon_state = "surgery_head"
+
+/datum/design/surgery/dna_recovery
+	name= "DNA Recovery"
+	desc= "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
+	id = "surgery_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing
@@ -592,6 +666,13 @@
 	desc = "A surgical procedure which severely reduces the amount of blood lost in case of injury."
 	id = "surgery_vein_thread"
 	surgery = /datum/surgery/advanced/bioware/vein_threading
+	research_icon_state = "surgery_chest"
+
+/datum/design/surgery/muscled_veins
+	name = "Vein Muscle Membrane"
+	desc = "A surgical procedure which adds a muscled membrane to blood vessels, allowing them to pump blood without a heart."
+	id = "surgery_muscled_veins"
+	surgery = /datum/surgery/advanced/bioware/muscled_veins
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_hook

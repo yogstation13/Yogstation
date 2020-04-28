@@ -22,6 +22,19 @@
 
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 
+	changed_maps = list("MinskyStation", "OmegaStation")
+
+/datum/job/engineer/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
+/datum/job/engineer/proc/OmegaStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+	access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS )
+	minimal_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS )
+	supervisors = "the captain and the head of personnel"
+
 /datum/outfit/job/engineer
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer

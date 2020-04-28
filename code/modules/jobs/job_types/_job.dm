@@ -1,5 +1,5 @@
 /datum/job
-	//The name of the job
+	//The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
@@ -13,8 +13,9 @@
 	var/list/head_announce = null
 
 	//Bitflags for the job
-	var/flag = 0
-	var/department_flag = 0
+	var/department_flag = NONE //Deprecated
+	var/flag = NONE //Deprecated
+	var/auto_deadmin_role_flags = NONE
 
 	//Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
@@ -37,7 +38,7 @@
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
-	
+
 	//Yogs start
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
 	var/space_law_notify
@@ -64,13 +65,45 @@
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
+	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+
+/* 
+	If you want to change a job on a specific map with this system, you will want to go onto that job datum
+	and add said map's name to the changed_maps list, like so:
+	
+	changed_maps = list("OmegaStation")
+	
+	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
+	actually making the changes, like so:
+
+	/datum/job/miner/proc/OmegaStationChanges()
+
+	If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
+	whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
+	on OmegaStation, we'd do the following:
+
+	/datum/job/warden
+		changed_maps = list("OmegaStation")
+	
+	/datum/job/warden/proc/OmegaStationChanges()
+		total_positions = 2
+		spawn_positions = 2
+*/
+
+
+/datum/job/New()
+	.=..()
+	if(changed_maps.len)
+		for(var/map in changed_maps)
+			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
+
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
 	if(mind_traits)
 		for(var/t in mind_traits)
-			H.mind.add_trait(t, JOB_TRAIT)
+			ADD_TRAIT(H.mind, t, JOB_TRAIT)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -143,8 +176,8 @@
 		return 0
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
-	if(!isnum(C.player_age))
-		return 0 //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
+	if(!SSdbcore.Connect())
+		return 0 //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
 	if(!isnum(minimal_player_age))
 		return 0
 

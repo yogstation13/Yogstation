@@ -49,16 +49,16 @@
 	sheet_per_ore = sheet_per_ore_temp
 
 /obj/machinery/mineral/ore_redemption/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Smelting <b>[sheet_per_ore]</b> sheet(s) per piece of ore.<br>Reward point generation at <b>[point_upgrade*100]%</b>.<br>Ore pickup speed at <b>[ore_pickup_rate]</b>.<span>")
+		. += "<span class='notice'>The status display reads: Smelting <b>[sheet_per_ore]</b> sheet(s) per piece of ore.<br>Reward point generation at <b>[point_upgrade*100]%</b>.<br>Ore pickup speed at <b>[ore_pickup_rate]</b>.<span>"
 
 /obj/machinery/mineral/ore_redemption/proc/smelt_ore(obj/item/stack/ore/O)
 	var/datum/component/material_container/mat_container = materials.mat_container
 	if (!mat_container)
 		return
-		
-	if(O.refined_type == null)
+
+	if(!O || O.refined_type == null)
 		return
 
 	ore_buffer -= O
@@ -138,9 +138,14 @@
 	if(!has_minerals)
 		return
 
-	for(var/obj/machinery/requests_console/D in GLOB.allConsoles)
-		if(D.receive_ore_updates)
-			D.createmessage("Ore Redemption Machine", "New minerals available!", msg, 1, 0)
+	var/datum/signal/subspace/messaging/rc/signal = new(src, list(
+		"ore_update" = TRUE,
+		"sender" = "Ore Redemption Machine",
+		"message" = msg,
+		"verified" = "<font color='green'><b>Verified by Ore Redemption Machine</b></font>",
+		"priority" = REQ_NORMAL_MESSAGE_PRIORITY
+	))
+	signal.send_to_receivers()
 
 /obj/machinery/mineral/ore_redemption/process()
 	if(!materials.mat_container || panel_open || !powered())
@@ -174,26 +179,18 @@
 
 	if(!powered())
 		return
-	if(istype(W, /obj/item/card/id))
-		var/obj/item/card/id/I = user.get_active_held_item()
-		if(istype(I) && !istype(inserted_id))
-			if(!user.transferItemToLoc(I, src))
-				return
-			inserted_id = I
-			interact(user)
-		return
 
 	if(istype(W, /obj/item/disk/design_disk))
 		if(user.transferItemToLoc(W, src))
 			inserted_disk = W
 			return TRUE
-			
+
 	var/obj/item/stack/ore/O = W
 	if(istype(O))
 		if(O.refined_type == null)
 			to_chat(user, "<span class='notice'>[O] has already been refined!</span>")
 			return
-		
+
 	return ..()
 
 /obj/machinery/mineral/ore_redemption/multitool_act(mob/living/user, obj/item/multitool/I)
@@ -212,9 +209,6 @@
 /obj/machinery/mineral/ore_redemption/ui_data(mob/user)
 	var/list/data = list()
 	data["unclaimedPoints"] = points
-	if(inserted_id)
-		data["hasID"] = TRUE
-		data["claimedPoints"] = inserted_id.mining_points
 
 	data["materials"] = list()
 	var/datum/component/material_container/mat_container = materials.mat_container
@@ -237,6 +231,7 @@
 		data["disconnected"] = "mineral withdrawal is on hold"
 
 	data["diskDesigns"] = list()
+	data["hasDisk"] = FALSE
 	if(inserted_disk)
 		data["hasDisk"] = TRUE
 		if(inserted_disk.blueprints.len)
@@ -252,32 +247,24 @@
 		return
 	var/datum/component/material_container/mat_container = materials.mat_container
 	switch(action)
-		if("Eject")
-			if(!inserted_id)
-				return
-			usr.put_in_hands(inserted_id)
-			inserted_id = null
-			return TRUE
-		if("Insert")
-			var/obj/item/card/id/I = usr.get_active_held_item()
-			if(istype(I))
-				if(!usr.transferItemToLoc(I,src))
-					return
-				inserted_id = I
-			else
-				to_chat(usr, "<span class='warning'>Not a valid ID!</span>")
-			return TRUE
 		if("Claim")
-			if(inserted_id)
-				inserted_id.mining_points += points
-				points = 0
+			var/mob/M = usr
+			var/obj/item/card/id/I = M.get_idcard(TRUE)
+			if(points)
+				if(I)
+					I.mining_points += points
+					points = 0
+				else
+					to_chat(usr, "<span class='warning'>No valid ID detected.</span>")
+			else
+				to_chat(usr, "<span class='warning'>No points to claim.</span>")
 			return TRUE
 		if("Release")
 			if(!mat_container)
 				return
 			if(materials.on_hold())
 				to_chat(usr, "<span class='warning'>Mineral access is on hold, please contact the quartermaster.</span>")
-			else if(!check_access(inserted_id) && !allowed(usr)) //Check the ID inside, otherwise check the user
+			else if(!allowed(usr)) //check the user
 				to_chat(usr, "<span class='warning'>Required access not found.</span>")
 			else
 				var/mat_id = params["id"]
@@ -328,7 +315,8 @@
 				return
 			var/alloy_id = params["id"]
 			var/datum/design/alloy = stored_research.isDesignResearchedID(alloy_id)
-			if((check_access(inserted_id) || allowed(usr)) && alloy)
+			var/obj/item/card/id/I = usr.get_idcard(TRUE)
+			if((check_access(I) || allowed(usr)) && alloy)
 				var/smelt_amount = can_smelt_alloy(alloy)
 				var/desired = 0
 				if (params["sheets"])

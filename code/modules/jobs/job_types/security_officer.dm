@@ -1,6 +1,7 @@
 /datum/job/officer
 	title = "Security Officer"
 	flag = OFFICER
+	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -21,6 +22,23 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+
+	changed_maps = list("MinskyStation", "YogsPubby", "OmegaStation")
+
+/datum/job/officer/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 6
+
+/datum/job/officer/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
+
+/datum/job/officer/proc/OmegaStationChanges()
+	total_positions = 3
+	spawn_positions = 3
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
+	supervisors = "the captain"
 
 /datum/job/officer/get_access()
 	var/list/L = list()

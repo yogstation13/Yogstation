@@ -190,4 +190,3 @@
 			var/mob/living/carbon/human/clown = pick(C.return_drivers())
 			owner.say("Thank you for the fun ride, [clown.name]!")
 			last_thank_time = world.time
-			C.ThanksCounter()

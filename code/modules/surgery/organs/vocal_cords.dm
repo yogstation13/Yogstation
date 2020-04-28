@@ -9,6 +9,8 @@
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_VOICE
 	gender = PLURAL
+	decay_factor = 0	//we don't want decaying vocal cords to somehow matter or appear on scanners since they don't do anything damaged
+	healing_factor = 0
 	var/list/spans = null
 
 /obj/item/organ/vocal_cords/proc/can_speak_with() //if there is any limitation to speaking with these cords
@@ -76,8 +78,10 @@
 		return FALSE
 	if(!owner)
 		return FALSE
-	if(!owner.can_speak())
-		return FALSE
+	if(isliving(owner))
+		var/mob/living/L = owner
+		if(!L.can_speak_vocal())
+			return FALSE
 	if(check_flags & AB_CHECK_CONSCIOUS)
 		if(owner.stat)
 			return FALSE
@@ -102,7 +106,7 @@
 		return FALSE
 	if(!owner)
 		return FALSE
-	if(!owner.can_speak())
+	if(!owner.can_speak_vocal())
 		to_chat(owner, "<span class='warning'>You are unable to speak!</span>")
 		return FALSE
 	return TRUE
@@ -119,20 +123,20 @@
 ///////////VOICE OF GOD///////////////
 //////////////////////////////////////
 
-/proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE)
+/proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE, forced_span = FALSE)
 	var/cooldown = 0
 
 	if(!user || !user.can_speak() || user.stat)
 		return 0 //no cooldown
 
 	var/log_message = uppertext(message)
-	if(!span_list || !span_list.len)
+	if(!forced_span)
 		if(iscultist(user))
 			span_list = list("narsiesmall")
 		else if (is_servant_of_ratvar(user))
 			span_list = list("ratvar")
-		else
-			span_list = list()
+	if(!span_list || !span_list.len)
+		span_list = list()
 
 	user.say(message, spans = span_list, sanitize = FALSE)
 

@@ -204,6 +204,14 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
+"aE" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	name = "Worn-out APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/bridge/access)
 "aF" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/end{
 	dir = 1
@@ -553,6 +561,16 @@
 /obj/item/stack/sheet/glass,
 /turf/template_noop,
 /area/ruin/space/derelict/bridge/ai_upload)
+"bN" = (
+/obj/structure/table,
+/obj/machinery/power/apc{
+	name = "Worn-out APC";
+	pixel_y = -24
+	},
+/obj/structure/cable,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/bridge)
 "bO" = (
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/bridge/ai_upload)
@@ -821,6 +839,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
+"cL" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	name = "Worn-out APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/derelict/bridge/access)
 "cM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -846,13 +872,13 @@
 	},
 /area/ruin/space/derelict/gravity_generator)
 "cQ" = (
-/obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
-/turf/open/floor/plasteel,
-/area/ruin/space/derelict/bridge/access)
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless/white,
+/area/ruin/space/derelict/medical)
 "cR" = (
 /obj/structure/rack,
 /obj/item/stock_parts/cell/high,
@@ -1329,6 +1355,22 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
+"er" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	name = "Worn-out APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/arrival)
+"es" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	name = "Worn-out APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/derelict/hallway/primary)
 "et" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1546,16 +1588,6 @@
 /area/ruin/space/derelict/bridge)
 "ff" = (
 /obj/structure/window/fulltile,
-/turf/open/floor/plasteel,
-/area/ruin/space/derelict/bridge)
-"fg" = (
-/obj/structure/table,
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -24
-	},
-/obj/structure/cable,
-/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
 "fh" = (
@@ -1973,14 +2005,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
-"gB" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/derelict/bridge/access)
 "gC" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "floorscorched2"
@@ -2810,14 +2834,6 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/medical/chapel)
-"jz" = (
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -24
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/airless/white,
-/area/ruin/space/derelict/medical)
 "jA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3079,14 +3095,6 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
-"kr" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/derelict/arrival)
 "ks" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plasteel,
@@ -3262,14 +3270,6 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
-"la" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/derelict/hallway/primary)
 "lb" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -3366,7 +3366,7 @@
 "lq" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker{
-	list_reagents = list("sacid" = 50)
+	list_reagents = list(/datum/reagent/toxin/acid = 50)
 	},
 /obj/item/paper/crumpled/bloody/ruins/thederelict/unfinished,
 /obj/item/pen,
@@ -7055,7 +7055,7 @@ hI
 hI
 hI
 jf
-jz
+cQ
 fZ
 jW
 go
@@ -8531,7 +8531,7 @@ go
 go
 kG
 jc
-la
+es
 fZ
 lu
 lt
@@ -11561,7 +11561,7 @@ fK
 fT
 gf
 fT
-gB
+cL
 cs
 cs
 ZB
@@ -11881,7 +11881,7 @@ bj
 cs
 cB
 cN
-cQ
+aE
 cs
 cs
 do
@@ -12344,7 +12344,7 @@ ea
 ea
 eM
 eR
-fg
+bN
 fo
 ay
 aa
@@ -13160,7 +13160,7 @@ hf
 hf
 hf
 kk
-kr
+er
 gW
 gW
 hf

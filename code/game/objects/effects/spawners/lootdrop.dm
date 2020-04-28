@@ -48,13 +48,6 @@
 				/obj/item/gun/ballistic/automatic/pistol/deagle,
 				/obj/item/storage/box/syndie_kit/throwing_weapons = 3)
 
-/obj/effect/spawner/lootdrop/armory_contraband/donutstation
-	loot = list(/obj/item/grenade/clusterbuster/teargas = 5,
-				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
-				/obj/item/bikehorn/golden,
-				/obj/item/grenade/clusterbuster,
-				/obj/item/storage/box/syndie_kit/throwing_weapons = 3)
-
 /obj/effect/spawner/lootdrop/gambling
 	name = "gambling valuables spawner"
 	loot = list(
@@ -67,6 +60,20 @@
 	name = "maint grille or trash spawner"
 	loot = list(/obj/structure/grille = 5,
 			/obj/item/cigbutt = 1,
+			/obj/item/trash/cheesie = 1,
+			/obj/item/trash/candy = 1,
+			/obj/item/trash/chips = 1,
+			/obj/item/reagent_containers/food/snacks/deadmouse = 1,
+			/obj/item/trash/pistachios = 1,
+			/obj/item/trash/plate = 1,
+			/obj/item/trash/popcorn = 1,
+			/obj/item/trash/raisins = 1,
+			/obj/item/trash/sosjerky = 1,
+			/obj/item/trash/syndi_cakes = 1)
+
+/obj/effect/spawner/lootdrop/trashbin
+	name = "trash spawner"
+	loot = list(/obj/item/cigbutt = 1,
 			/obj/item/trash/cheesie = 1,
 			/obj/item/trash/candy = 1,
 			/obj/item/trash/chips = 1,

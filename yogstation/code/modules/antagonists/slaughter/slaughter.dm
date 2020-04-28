@@ -62,6 +62,7 @@
 	desc = "Still it beats furiously, emanating an aura of utter hate."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
+	decay_factor = 0
 
 /obj/item/organ/heart/demon/update_icon()
 	return //always beating visually
@@ -131,7 +132,7 @@
 
 /mob/living/simple_animal/slaughter/laughter/Initialize()
 	..()
-	GET_COMPONENT(scary, /datum/component/crawl/blood/demonic)
+	var/datum/component/crawl/blood/demonic/scary = GetComponent(/datum/component/crawl/blood/demonic)
 	if(scary)
 		scary.RemoveComponent(del_holder=FALSE)
 	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
@@ -152,7 +153,7 @@
 			adjustBruteLoss(30)
 
 /mob/living/simple_animal/slaughter/laughter/proc/release_friends()
-	GET_COMPONENT(bloodcrawl, /datum/component/crawl/blood/demonic/hilarious)
+	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)
 	if(!bloodcrawl || !bloodcrawl.friends)
 		return
 	for(var/mob/living/M in bloodcrawl.friends)
@@ -168,7 +169,7 @@
 			to_chat(M, "<span class='clown'>You leave [src]'s warm embrace, and feel ready to take on the world.</span>") //Why the fuck was there a random tab in this message?
 
 /mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(var/mob/living/victim)
-	GET_COMPONENT(bloodcrawl, /datum/component/crawl/blood/demonic/hilarious)
+	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)
 	if(!bloodcrawl || !bloodcrawl.friends)
 		victim.forceMove(get_turf(victim))
 		victim.exit_blood_effect()

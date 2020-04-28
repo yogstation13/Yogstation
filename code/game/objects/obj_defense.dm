@@ -32,7 +32,7 @@
 	if(damage_flag)
 		armor_protection = armor.getRating(damage_flag)
 	if(armor_protection)		//Only apply weak-against-armor/hollowpoint effects if there actually IS armor.
-		armor_protection = CLAMP(armor_protection - armour_penetration, 0, 100)
+		armor_protection = CLAMP(armor_protection - armour_penetration, min(armor_protection, 0), 100)
 	return round(damage_amount * (100 - armor_protection)*0.01, DAMAGE_PRECISION)
 
 //the sound played when the obj is damaged.
@@ -48,6 +48,10 @@
 
 /obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	..()
+	if(isobj(AM))
+		var/obj/O = AM
+		if(O.damtype == STAMINA)
+			return
 	take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)

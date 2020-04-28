@@ -21,6 +21,19 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
+	changed_maps = list("MinskyStation", "OmegaStation")
+
+/datum/job/scientist/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
+/datum/job/scientist/proc/OmegaStationChanges()
+	total_positions = 3
+	spawn_positions = 3
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
+	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
+	supervisors = "the captain and the head of personnel"
+
 /datum/outfit/job/scientist
 	name = "Scientist"
 	jobtype = /datum/job/scientist
@@ -34,3 +47,7 @@
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
 
+/datum/outfit/job/scientist/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(prob(0.4))
+		neck = /obj/item/clothing/neck/tie/horrible

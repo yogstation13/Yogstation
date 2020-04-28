@@ -40,6 +40,10 @@
 
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
 
+#define STATUS_EFFECT_CREEP /datum/status_effect/creep //Provides immunity to lightburn for darkspawn, does nothing to anyone else //Yogs
+
+ #define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Yogs
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -76,7 +80,10 @@
 
 #define STATUS_EFFECT_SAWBLEED /datum/status_effect/saw_bleed //if the bleed builds up enough, takes a ton of damage
 
+#define STATUS_EFFECT_BLOODLETTING /datum/status_effect/saw_bleed/bloodletting //same but smaller
+
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
+#define STATUS_EFFECT_HIVEMIND_CURSE /datum/status_effect/necropolis_curse/hivemind
 #define CURSE_BLINDING	1 //makes the edges of the target's screen obscured
 #define CURSE_SPAWNING	2 //spawns creatures that attack the target only
 #define CURSE_WASTING	4 //causes gradual damage
@@ -93,6 +100,10 @@
 #define STATUS_EFFECT_DNA_MELT /datum/status_effect/dna_melt //usually does something horrible to you when you hit 100 genetic instability
 
 #define STATUS_EFFECT_GO_AWAY /datum/status_effect/go_away //makes you launch through walls in a single direction for a while
+
+#define STATUS_EFFECT_STASIS /datum/status_effect/incapacitating/stasis //Halts biological functions like bleeding, chemical processing, blood regeneration, walking, etc
+
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point of damage the target takes. //Yogs
 
 /////////////
 // NEUTRAL //
@@ -114,9 +125,23 @@
 
 #define STATUS_EFFECT_BOUNTY /datum/status_effect/bounty //rewards the person who added this to the target with refreshed spells and a fair heal
 
+#define STATUS_EFFECT_HELDUP /datum/status_effect/heldup // someone is currently pointing a gun at you
+
+#define STATUS_EFFECT_HOLDUP /datum/status_effect/holdup // you are currently pointing a gun at someone
+
+#define STATUS_EFFECT_NOTSCARED /datum/status_effect/notscared // you have had a gun pointed at you and are not startled about this fact for a minute
+
+#define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Yogs
+
+#define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
+
 /////////////
 //  SLIME  //
 /////////////
 
 #define STATUS_EFFECT_RAINBOWPROTECTION /datum/status_effect/rainbow_protection //Invulnerable and pacifistic
 #define STATUS_EFFECT_SLIMESKIN /datum/status_effect/slimeskin //Increased armor
+
+// Stasis helpers
+
+#define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))

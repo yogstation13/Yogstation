@@ -8,7 +8,7 @@
 
 /obj/item/storage/box/mre/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span_clas='notice'>An expiry date is listed on it. It reads: [expiry_date]</span>")
+	. += "<span_clas='notice'>An expiry date is listed on it. It reads: [expiry_date]</span>"
 
 /obj/item/storage/box/mre/Initialize()
 	. = ..()
@@ -44,7 +44,7 @@
 /obj/item/storage/box/mre/menu3/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/reagent_containers/food/snacks/breadslice/plain(src)
-	new /obj/item/reagent_containers/food/snacks/cheesewedge(src)
+	new /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
 	new /obj/item/reagent_containers/food/drinks/coffee/type2(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)

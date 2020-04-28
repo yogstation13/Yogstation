@@ -321,7 +321,7 @@
 		if(17)
 			//Tator Kit
 			T.visible_message("<span class='userdanger'>A suspicious box appears!</span>")
-			new /obj/item/storage/box/syndicate(drop_location())
+			new /obj/item/storage/box/syndicate/bundle_A(drop_location())
 			do_smoke(0, drop_location())
 		if(18)
 			//Captain ID
@@ -361,7 +361,8 @@
 
 	var/mob/living/target_mob
 
-	action_icon_state = "summons"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "summon_servant"
 
 /obj/effect/proc_holder/spell/targeted/summonmob/cast(list/targets,mob/user = usr)
 	if(!target_mob)
