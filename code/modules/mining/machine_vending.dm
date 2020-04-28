@@ -19,7 +19,6 @@
 	var/ui_x = 425
 	var/ui_y = 600
 	var/icon_deny = "mining-deny"
-	var/obj/item/card/id/inserted_id
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/required/kinetic_crusher,						750, VENDING_WEAPON),
@@ -174,15 +173,6 @@
 /obj/machinery/mineral/equipment_vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/mining_voucher))
 		RedeemVoucher(I, user)
-		return
-	if(istype(I, /obj/item/card/id))
-		var/obj/item/card/id/C = usr.get_active_held_item()
-		if(istype(C) && !istype(inserted_id))
-			if(!usr.transferItemToLoc(C, src))
-				return
-			inserted_id = C
-			to_chat(usr, "<span class='notice'>You insert the ID into [src]'s card slot.</span>")
-			interact(user)
 		return
 	if(default_deconstruction_screwdriver(user, "mining-open", "mining", I))
 		return
