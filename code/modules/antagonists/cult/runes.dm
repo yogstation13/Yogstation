@@ -148,7 +148,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		else if(istype(M, /obj/item/toy/plush/narplush))
 			var/obj/item/toy/plush/narplush/P = M
 			P.visible_message("<span class='cult italic'>[P] squeaks loudly!</span>")
-	if(!src.density) //barrier runes play cooldown animation properly
+	if(!src.density) //yogs: barrier runes play cooldown animation properly
 		do_invoke_glow()
 
 /obj/effect/rune/proc/do_invoke_glow()
@@ -648,10 +648,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 		return
 	var/mob/living/user = invokers[1]
 	..()
-	if(!density)
+	if(!density) //yogs: barrier runes used to invert their density before this
 		spread_density()
 	else
-		lose_density()
+		lose_density() //stopping lose_density from doing anything on invoke
 	var/carbon_user = iscarbon(user)
 	user.visible_message("<span class='warning'>[user] [carbon_user ? "places [user.p_their()] hands on":"stares intently at"] [src], and [density ? "the air above it begins to shimmer" : "the shimmer above it fades"].</span>", \
 						 "<span class='cult italic'>You channel [carbon_user ? "your life ":""]energy into [src], [density ? "temporarily preventing" : "allowing"] passage above it.</span>")
@@ -674,7 +674,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		update_state()
 		var/oldcolor = color
 		add_atom_colour("#696969", FIXED_COLOUR_PRIORITY)
-		animate(src, color = oldcolor, time = 100, easing = EASE_IN)
+		animate(src, color = oldcolor, time = 100, easing = EASE_IN) //yogs: 10 seconds instead of 5
 		addtimer(CALLBACK(src, .proc/recharge), 100)
 
 /obj/effect/rune/wall/proc/recharge()
@@ -685,10 +685,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 	deltimer(density_timer)
 	air_update_turf(1)
 	if(density)
-		density_timer = addtimer(CALLBACK(src, .proc/lose_density), 300, TIMER_STOPPABLE)
+		density_timer = addtimer(CALLBACK(src, .proc/lose_density), 300, TIMER_STOPPABLE) //yogs: 30 seconds instead of 300 I could microwave a pizza before a barrier rune went down naturally
 		var/mutable_appearance/shimmer = mutable_appearance('icons/effects/effects.dmi', "barriershimmer", ABOVE_MOB_LAYER)
 		shimmer.appearance_flags |= RESET_COLOR
-		shimmer.alpha = 200
+		shimmer.alpha = 200 //yogs: way less invisible
 		shimmer.color = "#701414"
 		add_overlay(shimmer)
 		add_atom_colour(RUNE_COLOR_RED, FIXED_COLOUR_PRIORITY)
@@ -809,7 +809,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		if(!iscultist(L) && L.blood_volume)
 			if(L.anti_magic_check(chargecost = 0))
 				continue
-			L.take_overall_damage(0, tick_damage*multiplier)
+			L.take_overall_damage(0, tick_damage*multiplier) //yogs: only burn damage since these like all runes can be placed and activated near freely
 			if(is_servant_of_ratvar(L))
 				L.adjustStaminaLoss(tick_damage*multiplier*1.5)
 
