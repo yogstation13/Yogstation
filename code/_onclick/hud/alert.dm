@@ -281,6 +281,16 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/mob/living/carbon/giver
 	var/obj/item/receiving
 
+/obj/screen/alert/give/proc/setup(mob/living/carbon/taker, mob/living/carbon/giver, obj/item/receiving)
+	name = "[giver] is offering [receiving]"
+	desc = "[giver] is offering [receiving]. Click this alert to take it."
+	icon_state = "template"
+	cut_overlays()
+	add_overlay(receiving)
+	src.receiving = receiving
+	src.giver = giver
+	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, /obj/screen/alert/give/.proc/removeAlert)
+
 /obj/screen/alert/give/proc/removeAlert()
 	to_chat(mob_viewer, "<span class='warning'>You moved out of range of [giver]!</span>")
 	mob_viewer.clear_alert("[giver]")
