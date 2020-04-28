@@ -18,22 +18,19 @@
 		return
 
 	var/datum/gas_mixture/turf_air = T.return_air()
-	var/datum/gas_mixture/stank_breath = T.remove_air(1 / turf_air.volume * turf_air.total_moles())
+	var/datum/gas_mixture/stank_breath = T.remove_air(1 / turf_air.return_volume() * turf_air.total_moles())
 	if(!stank_breath)
 		return
-	stank_breath.volume = 1
-	var/oxygen_pp = 0
-	if(stank_breath.gases[/datum/gas/oxygen])
-		oxygen_pp = stank_breath.gases[/datum/gas/oxygen][MOLES] * R_IDEAL_GAS_EQUATION * stank_breath.temperature / stank_breath.volume
+	stank_breath.set_volume(1)
+	var/oxygen_pp = stank_breath.get_moles(/datum/gas/oxygen) * R_IDEAL_GAS_EQUATION * stank_breath.return_temperature() / stank_breath.return_volume()
 	
 	if(oxygen_pp > 18)
-		var/this_amount = min((oxygen_pp - 8) * stank_breath.volume / stank_breath.temperature / R_IDEAL_GAS_EQUATION, amount)
-		stank_breath.gases[/datum/gas/oxygen][MOLES] -= this_amount
+		var/this_amount = min((oxygen_pp - 8) * stank_breath.return_volume() / stank_breath.return_temperature() / R_IDEAL_GAS_EQUATION, amount)
+		stank_breath.adjust_moles(/datum/gas/oxygen, -this_amount)
 
 		var/datum/gas_mixture/stank = new
-		ADD_GAS(/datum/gas/miasma, stank.gases)
-		stank.gases[/datum/gas/miasma][MOLES] = this_amount
-		stank.temperature = BODYTEMP_NORMAL // otherwise we have gas below 2.7K which will break our lag generator
+		stank.set_moles(/datum/gas/miasma, this_amount)
+		stank.set_temperature(BODYTEMP_NORMAL) // otherwise we have gas below 2.7K which will break our lag generator
 		stank_breath.merge(stank)
 	T.assume_air(stank_breath)
 	T.air_update_turf()

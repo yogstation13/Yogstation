@@ -31,6 +31,22 @@
 	restraint_check = TRUE
 	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/living/carbon/hiss
+	key = "hiss"
+	key_third_person = "hisses"
+	message = "hisses."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/lizard/hiss.ogg'
+
+/datum/emote/living/carbon/hiss/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(/obj/item/organ/tongue/lizard == H.dna.species.mutanttongue)
+		return TRUE
+	else
+		return FALSE
+
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"

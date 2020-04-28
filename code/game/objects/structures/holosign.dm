@@ -75,6 +75,14 @@
 /obj/structure/holosign/barrier/wetsign/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/vehicle/ridden/janicart))
 		return TRUE
+	if(istype(mover, /obj/structure/janitorialcart))
+		return TRUE
+	if(istype(mover, /obj/structure/mopbucket))
+		return TRUE
+	if(ishuman(mover))
+		var/mob/living/carbon/human/janitor = mover
+		if(istype(janitor.shoes, /obj/item/clothing/shoes/galoshes))
+			return TRUE
 	return ..()
 
 /obj/structure/holosign/barrier/engineering
