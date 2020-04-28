@@ -27,6 +27,13 @@
 	else
 		return ..()
 
+/obj/machinery/telecomms/analyzer_act(mob/living/user, obj/item/T)
+	//Prevent the tricorder's air analysis when trying to configure tcomms
+	if (istype(T, /obj/item/multitool/tricorder))
+		return 
+	else
+		return ..()
+
 /obj/machinery/telecomms/ui_interact(mob/user)
 	. = ..()
 	// You need a multitool to use this, or be silicon
