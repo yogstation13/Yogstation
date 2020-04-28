@@ -437,7 +437,7 @@
 	flags_inv = HIDEJUMPSUIT
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list("melee" = -67, "bullet" = -67, "laser" = -67,"energy" = -67, "bomb" = -67, "bio" = -67, "rad" = -67, "fire" = 0, "acid" = 0) //yogs 1.5x the damage taken
+	armor = list("melee" = -45, "bullet" = -45, "laser" = -45,"energy" = -45, "bomb" = -45, "bio" = -45, "rad" = -45, "fire" = 0, "acid" = 0)
 	slowdown = -0.6
 	hoodtype = /obj/item/clothing/head/hooded/berserkerhood
 
@@ -447,7 +447,7 @@
 	icon_state = "culthood"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
-	armor = list("melee" = -75, "bullet" = -75, "laser" = -75, "energy" = -75, "bomb" = -75, "bio" = -75, "rad" = -75, "fire" = 0, "acid" = 0) //yogs 1.5x the damage taken
+	armor = list("melee" = -50, "bullet" = -50, "laser" = -50, "energy" = -50, "bomb" = -50, "bio" = -50, "rad" = -50, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
