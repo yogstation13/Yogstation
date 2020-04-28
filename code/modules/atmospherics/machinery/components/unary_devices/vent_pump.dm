@@ -47,7 +47,7 @@
 	if(!id_tag)
 		id_tag = assign_uid_vents()
 	var/datum/gas_mixture/N = airs[1]
-	N.set_volume(1000) // Increase the volume of the air vent's node.
+	N.volume = 1000 // Increase the volume of the air vent's node.
 	// Allows it to pump much faster.
 
 /obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
@@ -152,9 +152,9 @@
 			pressure_delta = min(pressure_delta, 10)
 
 		if(pressure_delta > 0)
-			if(air_contents.return_temperature() > 0)
+			if(air_contents.temperature > 0)
 
-				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
 				last_moles_added = transfer_moles
 
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
@@ -164,21 +164,21 @@
 
 	else // external -> internal
 		last_moles_added = 0
-		if(environment.return_pressure() > 0)
-			var/our_multiplier = air_contents.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION)
-			var/moles_delta = 10000 * our_multiplier
-			if(pressure_checks&EXT_BOUND)
-				moles_delta = min(moles_delta, (environment_pressure - external_pressure_bound) * environment.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION))
-			if(pressure_checks&INT_BOUND)
-				moles_delta = min(moles_delta, (internal_pressure_bound - air_contents.return_pressure()) * our_multiplier)
-		
-			if(moles_delta > 0)
-				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
-				if (isnull(removed)) // in space
-					return
+		var/pressure_delta = 10000
+		if(pressure_checks&EXT_BOUND)
+			pressure_delta = min(pressure_delta, (environment_pressure - external_pressure_bound))
+		if(pressure_checks&INT_BOUND)
+			pressure_delta = min(pressure_delta, (internal_pressure_bound - air_contents.return_pressure()))
 
-				air_contents.merge(removed)
-				air_update_turf()
+		if(pressure_delta > 0 && environment.temperature > 0)
+			var/transfer_moles = pressure_delta * air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
+
+			var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
+			if (isnull(removed)) // in space
+				return
+
+			air_contents.merge(removed)
+			air_update_turf()
 	last_moles = environment_moles
 	update_parents()
 
@@ -352,7 +352,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/New()
 	..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.set_volume(1000)
+	air_contents.volume = 1000
 
 // mapping
 

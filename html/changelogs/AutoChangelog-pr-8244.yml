@@ -1,4 +1,0 @@
-author: "Hopekz"
-delete-after: true 
-changes: 
-  - bugfix: "ERT leaders now get told to avoid civilian casualties when possible. Also fixed a typo"

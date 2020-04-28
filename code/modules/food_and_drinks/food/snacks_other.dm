@@ -549,10 +549,9 @@
 
 /obj/item/reagent_containers/food/snacks/cannedpeaches
 	name = "Canned Peaches"
-	desc = "A nice can of ripe peaches swimming in their own juices, somehow left untouched."
+	desc = "Just a nice can of ripe peaches swimming in their own juices."
 	icon_state = "peachcan"
-	grind_results = null
-	juice_results = list(/datum/reagent/consumable/peachjuice = 20, /datum/reagent/consumable/sugar = 8, /datum/reagent/consumable/nutriment = 2)
+	list_reagents = list(/datum/reagent/consumable/peachjuice = 20, /datum/reagent/consumable/sugar = 8, /datum/reagent/consumable/nutriment = 2)
 	filling_color = "#ffdf26"
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("peaches" = 7, "tin" = 1)
@@ -560,7 +559,7 @@
 
 /obj/item/reagent_containers/food/snacks/cannedpeaches/maint
 	name = "Maintenance Peaches"
-	desc = "A can of peaches, perhaps stashed here long ago to hide them from the wizards."
+	desc = "I have a mouth and I must eat."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
 

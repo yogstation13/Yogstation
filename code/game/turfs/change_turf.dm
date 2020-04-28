@@ -149,7 +149,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		if (!istype(newTurf.air, /datum/gas_mixture/immutable/space))
 			QDEL_NULL(newTurf.air)
 			newTurf.air = stashed_air
-			update_air_ref()
 		SSair.add_to_active(newTurf)
 	else
 		if(ispath(path,/turf/closed))
@@ -306,14 +305,25 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		return
 
 	var/datum/gas_mixture/total = new//Holders to assimilate air from nearby turfs
+	var/list/total_gases = total.gases
 
 	for(var/T in atmos_adjacent_turfs)
 		var/turf/open/S = T
 		if(!S.air)
 			continue
-		total.merge(S.air)
+		var/list/S_gases = S.air.gases
+		for(var/id in S_gases)
+			ASSERT_GAS(id, total)
+			total_gases[id][MOLES] += S_gases[id][MOLES]
+		total.temperature += S.air.temperature
 
-	air.copy_from(total.remove_ratio(1/turf_count))
+	air.copy_from(total)
+
+	var/list/air_gases = air.gases
+	for(var/id in air_gases)
+		air_gases[id][MOLES] /= turf_count //Averages contents of the turfs, ignoring walls and the like
+
+	air.temperature /= turf_count
 	SSair.add_to_active(src)
 
 /turf/proc/ReplaceWithLattice()
