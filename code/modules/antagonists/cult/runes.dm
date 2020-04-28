@@ -616,7 +616,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			M.visible_message("<span class='warning'>[M] twitches.</span>")
 
 //Rite of the Corporeal Shield: When invoked, becomes solid and cannot be passed. Invoke again to undo.
-/obj/effect/rune/wall //yogs start: the entire rune's code makes me want to die
+/obj/effect/rune/wall
 	cultist_name = "Barrier"
 	cultist_desc = "when invoked, makes a temporary invisible wall to block passage. Can be invoked again to reverse this."
 	invocation = "Khari'd! Eske'te tannin!"
@@ -740,8 +740,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		log_game("Summon Cultist rune failed - target in away mission")
 		return
-	if(istype(cultist_to_summon, /mob/living/simple_animal/shade) && (cultist_to_summon.status_flags & GODMODE)) //yogstation start: fuck shades
-		cultist_to_summon.status_flags &= ~GODMODE	//tough luck pal :^) //yogs end
+	if(istype(cultist_to_summon, /mob/living/simple_animal/shade) && (cultist_to_summon.status_flags & GODMODE))
+		cultist_to_summon.status_flags &= ~GODMODE //fixes shades being invincible after being summoned
 	cultist_to_summon.visible_message("<span class='warning'>[cultist_to_summon] suddenly disappears in a flash of red light!</span>", \
 									  "<span class='cult italic'><b>Overwhelming vertigo consumes you as you are hurled through the air!</b></span>")
 	..()
@@ -809,7 +809,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		if(!iscultist(L) && L.blood_volume)
 			if(L.anti_magic_check(chargecost = 0))
 				continue
-			L.take_overall_damage(0, tick_damage*multiplier) //yogs: fuck blood boil, now  deals half damage
+			L.take_overall_damage(0, tick_damage*multiplier)
 			if(is_servant_of_ratvar(L))
 				L.adjustStaminaLoss(tick_damage*multiplier*1.5)
 
