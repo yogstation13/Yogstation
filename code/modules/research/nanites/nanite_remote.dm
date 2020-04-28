@@ -105,7 +105,7 @@
 				return
 			var/new_code = input("Set code (0000-9999):", name, code) as null|num
 			if(!isnull(new_code))
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 				code = new_code
 			. = TRUE
 		if("set_relay_code")
@@ -113,7 +113,7 @@
 				return
 			var/new_code = input("Set relay code (0000-9999):", name, code) as null|num
 			if(!isnull(new_code))
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 				relay_code = new_code
 			. = TRUE
 		if("save")
@@ -225,7 +225,7 @@
 				return
 			var/new_code = input("Set comm code (0000-9999):", name, code) as null|num
 			if(!isnull(new_code))
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 				comm_code = new_code
 			. = TRUE
 		if("set_message")

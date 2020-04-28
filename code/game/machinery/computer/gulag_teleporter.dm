@@ -108,7 +108,7 @@
 				new_goal = default_goal
 			if (new_goal > 1000)
 				to_chat(usr, "The entered amount of points is too large. Points have instead been set to the maximum allowed amount.")
-			id.goal = CLAMP(new_goal, 0, 1000) //maximum 1000 points
+			id.goal = clamp(new_goal, 0, 1000) //maximum 1000 points
 		if("toggle_open")
 			if(teleporter.locked)
 				to_chat(usr, "The teleporter is locked")

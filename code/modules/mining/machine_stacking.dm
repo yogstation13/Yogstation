@@ -149,7 +149,7 @@
 	if(W.tool_behaviour == TOOL_WRENCH && panel_open)
 		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
 		if(stsize)
-			stack_amt = CLAMP(stsize,1,50)
+			stack_amt = clamp(stsize,1,50)
 			to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>")
 			return
 
