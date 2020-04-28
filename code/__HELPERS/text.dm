@@ -258,8 +258,11 @@
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(t as text)
-	. = t[1]
-	return uppertext(.) + copytext(t, 1 + length(.))
+	. = t
+
+	if(t)
+		. = t[1]
+		return uppertext(.) + copytext(t, 1 + length(.))
 
 
 /proc/stringmerge(text,compare,replace = "*")
