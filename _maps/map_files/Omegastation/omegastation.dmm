@@ -22529,7 +22529,7 @@
 	dir = 1
 	},
 /obj/machinery/power/apc{
-	areastring = "/area/engine/break_room";
+	areastring = "/area/engine/foyer";
 	dir = 2;
 	name = "Engineering Foyer APC";
 	pixel_y = -24

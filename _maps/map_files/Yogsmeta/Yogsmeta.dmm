@@ -32346,7 +32346,7 @@
 	},
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc{
-	areastring = "/area/engine/break_room";
+	areastring = "/area/engine/foyer";
 	name = "Engineering Foyer APC";
 	pixel_y = -24
 	},

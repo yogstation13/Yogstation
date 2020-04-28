@@ -5254,7 +5254,7 @@
 /area/maintenance/fore/secondary)
 "ajW" = (
 /obj/machinery/power/apc{
-	areastring = "/area/engine/break_room";
+	areastring = "/area/engine/foyer";
 	dir = 8;
 	name = "Engineering Foyer APC";
 	pixel_x = -24
