@@ -47,30 +47,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/clerk)
-"aaj" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/vending/games,
-/obj/machinery/power/apc{
-	areastring = "/area/clerk";
-	dir = 8;
-	name = "Gift Shop APC";
-	pixel_x = -24
-	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "aak" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -1702,9 +1678,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer3{
-	name = "Waste Out";
+	dir = 4;
 	icon_state = "pump_on_map-3";
-	dir = 4
+	name = "Waste Out"
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAS)
@@ -3767,9 +3743,9 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer1{
-	name = "Air Out";
+	dir = 8;
 	icon_state = "pump_on_map-1";
-	dir = 8
+	name = "Air Out"
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAP)
@@ -35023,8 +34999,8 @@
 /area/security/checkpoint/science)
 "boa" = (
 /obj/machinery/atmospherics/components/binary/valve/layer1{
-	icon_state = "mvalve_map-1";
-	dir = 8
+	dir = 8;
+	icon_state = "mvalve_map-1"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
@@ -55078,6 +55054,30 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+"cmk" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/clerk";
+	dir = 8;
+	name = "Gift Shop APC";
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/obj/machinery/vending/gifts,
+/turf/open/floor/plasteel,
+/area/clerk)
 "cml" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -61697,6 +61697,10 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
+"waR" = (
+/obj/machinery/vending/games,
+/turf/open/floor/plasteel,
+/area/clerk)
 "wcs" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -97783,7 +97787,7 @@ aac
 aae
 aag
 aac
-aaj
+cmk
 aao
 aat
 ahN
@@ -98294,7 +98298,7 @@ aiT
 aiS
 aaa
 aac
-aag
+waR
 aah
 aac
 aam

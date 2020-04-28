@@ -15,7 +15,6 @@
 	req_access_txt = "46"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -577,11 +576,12 @@
 /area/crew_quarters/kitchen)
 "bB" = (
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -811,8 +811,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -828,8 +827,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
@@ -938,8 +936,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -947,7 +944,9 @@
 	network = list("SS13")
 	},
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "cz" = (

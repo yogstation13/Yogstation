@@ -57,10 +57,8 @@
 
 /datum/component/riding/proc/vehicle_moved(datum/source)
 	var/atom/movable/AM = parent
-	AM.set_glide_size(DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
 	for(var/mob/M in AM.buckled_mobs)
 		ride_check(M)
-		M.set_glide_size(AM.glide_size)
 	handle_vehicle_offsets()
 	handle_vehicle_layer()
 
@@ -160,6 +158,11 @@
 
 	if(world.time < last_vehicle_move + ((last_move_diagonal? 2 : 1) * vehicle_move_delay * CONFIG_GET(number/movedelay/run_delay))) //yogs - fixed this to work with movespeed
 		return
+	
+	AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
+	for(var/mob/M in AM.buckled_mobs)
+		ride_check(M)
+		M.set_glide_size(AM.glide_size)
 	last_vehicle_move = world.time
 
 	if(keycheck(user))
@@ -178,6 +181,10 @@
 			last_move_diagonal = TRUE
 		else
 			last_move_diagonal = FALSE
+		AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
+		for(var/mob/M in AM.buckled_mobs)
+			ride_check(M)
+			M.set_glide_size(AM.glide_size)
 
 		handle_vehicle_layer()
 		handle_vehicle_offsets()

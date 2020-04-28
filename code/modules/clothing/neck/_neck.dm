@@ -1,3 +1,6 @@
+/obj/item/clothing/neck/proc/step_action()
+	SEND_SIGNAL(src, COMSIG_NECK_STEP_ACTION)
+
 /obj/item/clothing/neck
 	name = "necklace"
 	icon = 'icons/obj/clothing/neck.dmi'
@@ -193,10 +196,14 @@
 
 /obj/item/clothing/neck/petcollar
 	name = "pet collar"
-	desc = "It's for pets."
+	desc = "It has a little bell!"
 	icon_state = "petcollar"
 	item_color = "petcollar"
 	var/tagname = null
+
+/obj/item/clothing/neck/petcollar/Initialize()
+	.= ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	var/mob/living/carbon/C = M
