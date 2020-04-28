@@ -1075,6 +1075,20 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Hub Visibility", "[GLOB.hub_visibility ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/spiderize_more(mob/living/target as mob, progress = 1)
+	target.SetAllImmobility(500)
+	target.do_jitter_animation(progress * 200)
+	target.visible_message("<span class='danger'>Spiders emerge from [target.name]!</span>", "<span class='userdanger'>They crawl within you.</span>")
+	for (var/i in 1 to rand(progress * 9, progress * 11))
+		var/obj/structure/spider/spiderling/S = new(target.drop_location())
+		S.directive = "Erase the legacy of [target.name]."
+		QDEL_IN(S, rand(50, 300)) //just enough time for them to skitter around a little
+	if (progress < 5)
+		addtimer(CALLBACK(src, /client/proc/spiderize_more, target, progress + 1), 75)
+	else
+		target.visible_message("<span class='danger'>[target.name] explodes into a chittering mass!</span>", "<span class='userdanger'>The gods have rended your form.</span>")
+		target.gib(TRUE)
+
 /client/proc/smite(mob/living/target as mob)
 	set name = "Smite"
 	set category = "Fun"
@@ -1098,12 +1112,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				H.electrocution_animation(40)
 			to_chat(target, "<span class='userdanger'>The gods have punished you for your sins!</span>")
 		if(ADMIN_PUNISHMENT_SPIDERIZE)
-			target.visible_message("<span class='danger'>[target.name] explodes into spiders!</span>", "<span class='userdanger'>The gods have rended your form!</span>", "<span class='italics'>You hear chittering and a horrible wet sound!</span>")
-			for (var/i in 1 to rand(2,4))
-				var/obj/structure/spider/spiderling/S = new(target.drop_location())
-				S.directive = "Erase the legacy of [target.name]."
-				addtimer(CALLBACK(S, .Destroy), 50) //just enough time for them to skitter around a little
-			target.gib(TRUE)
+			target.visible_message("<span class='danger'>[target.name] freezes!</span>", "<span class='userdanger'>You feel the weight of your actions.</span>")
+			target.SetAllImmobility(500)
+			addtimer(CALLBACK(src, /client/proc/spiderize_more, target, 1), 25)
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
 		if(ADMIN_PUNISHMENT_GIB)
