@@ -822,10 +822,15 @@
 	if(istype(C))
 		if(C.parentdeck == src.parentdeck)
 			src.currenthand += C.cardname
-			user.visible_message("<span class='notice'>[user] adds a card to [user.p_their()] hand.</span>", "<span class='notice'>You add the [C.cardname] to your hand.</span>")
+			user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [C.cardname] to your hand.</span>")
 			qdel(C)
 			interact(user)
-			update_sprite(src)
+			if(currenthand.len > 4)
+				src.icon_state = "[deckstyle]_hand5"
+			else if(currenthand.len > 3)
+				src.icon_state = "[deckstyle]_hand4"
+			else if(currenthand.len > 2)
+				src.icon_state = "[deckstyle]_hand3"
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -834,7 +839,7 @@
 /obj/item/toy/cards/cardhand/apply_card_vars(obj/item/toy/cards/newobj,obj/item/toy/cards/sourceobj)
 	..()
 	newobj.deckstyle = sourceobj.deckstyle
-	update_sprite()
+	newobj.icon_state = "[deckstyle]_hand2" // Another dumb hack, without this the hand is invisible (or has the default deckstyle) until another card is added.
 	newobj.card_hitsound = sourceobj.card_hitsound
 	newobj.card_force = sourceobj.card_force
 	newobj.card_throwforce = sourceobj.card_throwforce
@@ -913,20 +918,6 @@
 			user.put_in_active_hand(H)
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
-
-	if(istype(I, /obj/item/toy/cards/cardhand/))
-		var/obj/item/toy/cards/cardhand/H = I
-		if(H.parentdeck == parentdeck)
-			H.currenthand += cardname
-			user.visible_message("<span class='notice'>[user] adds a card to [user.p_their()] hand.</span>", "<span class='notice'>You add the [cardname] to your hand.</span>")
-			qdel(src)
-			H.interact(user)
-			H.update_sprite()
-		else
-			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
-	else
-		return ..()
-
 
 	if(istype(I, /obj/item/toy/cards/cardhand/))
 		var/obj/item/toy/cards/cardhand/H = I
