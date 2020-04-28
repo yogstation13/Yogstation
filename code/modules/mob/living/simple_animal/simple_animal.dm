@@ -132,7 +132,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	health = CLAMP(health, 0, maxHealth)
+	health = clamp(health, 0, maxHealth)
 
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)

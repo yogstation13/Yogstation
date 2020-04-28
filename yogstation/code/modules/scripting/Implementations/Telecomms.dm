@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		var/datum/radio_frequency/connection = SSradio.return_frequency(freq)
 
 		code = round(code)
-		code = CLAMP(code, 0, 100)
+		code = clamp(code, 0, 100)
 
 		var/datum/signal/signal = new
 		signal.source = S
