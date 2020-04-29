@@ -53,7 +53,6 @@
 			icon_state = "gift[icon_state]"
 		else
 			to_chat(user, "<span class='warning'>You need more paper!</span>")
-		var/overlaystring = "[icon_state]_note"
 	else
 		return ..()
 

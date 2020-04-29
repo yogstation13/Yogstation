@@ -519,9 +519,6 @@
 		soft_reset()
 		return
 
-	reagent_id = null
-	return
-
 /mob/living/simple_animal/bot/medbot/proc/check_overdose(mob/living/carbon/patient,reagent_id,injection_amount)
 	var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]
 	if(!R.overdose_threshold) //Some chems do not have an OD threshold
