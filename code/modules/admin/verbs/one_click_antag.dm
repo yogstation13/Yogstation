@@ -345,7 +345,7 @@
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
-		ertemplate = new /datum/ert/centcom/official
+		ertemplate = new /datum/ert/official
 
 	var/list/settings = list(
 		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),

@@ -57,12 +57,10 @@
 	role = "Captain"
 	outfit = /datum/outfit/centcom/captain
 
-
 /datum/antagonist/centcom/major
 	name = "CentCom Major"
 	role = "Major"
 	outfit = /datum/outfit/centcom/major
-
 
 /datum/antagonist/centcom/commander
 	name = "CentCom Commodore"
