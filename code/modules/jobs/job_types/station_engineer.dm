@@ -59,11 +59,11 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 			accessory = /obj/item/clothing/accessory/armband/cargo
 		if(ENG_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_eng/department/med
-			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING)
+			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_GENETICS)
 			accessory =  /obj/item/clothing/accessory/armband/medblue
 		if(ENG_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_eng/department/sci
-			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX)
+			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_XENOBIOLOGY, ACCESS_TOX_STORAGE)
 			accessory = /obj/item/clothing/accessory/armband/science
 		if(ENG_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_eng/department/service
