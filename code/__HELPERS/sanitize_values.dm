@@ -50,7 +50,7 @@
 	. = ""
 	for(var/i=start, i<=len, i+=length(char))
 		char = color[i]
-		switch(ascii2text(char))
+		switch(text2ascii(char))
 			if(48 to 57)
 				. += char		//numbers 0 to 9
 			if(97 to 102)
