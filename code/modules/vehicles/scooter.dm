@@ -41,7 +41,7 @@
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/scooter/skateboard
+/obj/vehicle/ridden/scooter/skateboard 
 	name = "improvised skateboard"
 	desc = "An unfinished scooter which can only barely be called a skateboard. It's still rideable, but probably unsafe. Looks like you'll need to add a few rods to make handlebars."
 	icon_state = "skateboard"
