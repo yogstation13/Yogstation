@@ -291,6 +291,6 @@
 
 /obj/item/clothing/neck/cape/grand
 	name = "grand admiral's cape"
-	desc = "A large white cape with gold connects."
+	desc = "A sizable white cape with gold connects."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
