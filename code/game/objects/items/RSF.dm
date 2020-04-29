@@ -142,7 +142,7 @@ RSF
 	cost_by_item = list(/obj/item/reagent_containers/food/snacks/cookie = 100)
 	dispense_cost = 100
 	discriptor = "cookie-units"
-	action_type = "Fabricates"
+	action_type = "Fabricating"
 	///Tracks whether or not the cookiesynth is about to print a poisoned cookie
 	var/toxin = FALSE //This might be better suited to some initialize fuckery, but I don't have a good "poisoned" sprite
 	var/cooldown = 0 	///Holds a copy of world.time taken the last time the synth gained a charge. Used with cooldowndelay to track when the next charge should be gained
