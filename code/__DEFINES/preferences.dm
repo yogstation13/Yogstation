@@ -57,6 +57,13 @@
 #define SEC_DEPT_SUPPLY "Supply"
 #define SEC_DEPT_SERVICE "Service"
 
+#define ENG_DEPT_NONE "None"
+#define ENG_DEPT_RANDOM "Random"
+#define ENG_DEPT_MEDICAL "Medical"
+#define ENG_DEPT_SCIENCE "Science"
+#define ENG_DEPT_SUPPLY "Supply"
+#define ENG_DEPT_SERVICE "Service"
+
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING			"Living"
 #define EXP_TYPE_CREW			"Crew"
