@@ -67,7 +67,7 @@ ynot01	=	Moderator
  
 05rhardy	=	ModeratorOnProbation
  
-Identification	=	Host //so i can use select equipment on private server
+Identification	=	Maintainer
 Theos	=	Maintainer
 fluffe9911	=	Maintainer
 McDonald072	=	Maintainer
