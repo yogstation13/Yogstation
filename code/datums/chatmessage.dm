@@ -104,7 +104,7 @@
 	//Below you'll encounter A TERRIBLE WORKAROUND
 	var/cur_char
 	var/cur_lower
-	if(copytext(text, -2) == "!!" || extra_classes.Find("bold"))
+	if(copytext_char(text, -2) == "!!" || extra_classes.Find("bold"))
 		bold = TRUE
 	for(var/i in 1 to length(text))
 		cur_char = text[i]
