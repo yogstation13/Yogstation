@@ -103,10 +103,11 @@
 
 
 /obj/effect/proc_holder/spell/targeted/hypnotise
-	name = "Hypnotize (20)"
+	name = "Hypnotize"
 	desc= "A piercing stare that incapacitates your victim for a good length of time."
 	action_icon_state = "hypnotize"
-	blood_used = 20
+	blood_used = 0
+	charge_max = 1500
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE

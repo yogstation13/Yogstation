@@ -214,5 +214,4 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 *.orig
 
 #Debugging and other stuff
-byond-extools.dll
 extools.dll
