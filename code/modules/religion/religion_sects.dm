@@ -1,39 +1,23 @@
-/**
-  * # Religious Sects
-  *
-  * Religious Sects are a way to convert the fun of having an active 'god' (admin) to code-mechanics so you aren't having to press adminwho.
-  *
-  * Sects are not meant to overwrite the fun of choosing a custom god/religion, but meant to enhance it.
-  * The idea is that Space Jesus (or whoever you worship) can be an evil bloodgod who takes the lifeforce out of people, a nature lover, or all things righteous and good. You decide!
-  *
+  /*
+  Religious Sects are a way to convert the fun of having an active 'god' (admin) to code-mechanics so you aren't having to press adminwho.
+
+  Sects are not meant to overwrite the fun of choosing a custom god/religion, but meant to enhance it.
+  The idea is that Space Jesus (or whoever you worship) can be an evil bloodgod who takes the lifeforce out of people, a nature lover, or all things righteous and good. You decide!
   */
 /datum/religion_sect
-/// Name of the religious sect
-	var/name = "Religious Sect Base Type"
-/// Description of the religious sect, Presents itself in the selection menu (AKA be brief)
-	var/desc = "Oh My! What Do We Have Here?!!?!?!?"
-/// Opening message when someone gets converted
-	var/convert_opener
-/// holder for alignments.
-	var/alignment = ALIGNMENT_GOOD
-/// Does this require something before being available as an option?
-	var/starter = TRUE
-/// The Sect's 'Mana'
-	var/favor = 0 //MANA!
-/// The max amount of favor the sect can have
-	var/max_favor = 1000
-/// The default value for an item that can be sacrificed
-	var/default_item_favor = 5
-/// Turns into 'desired_items_typecache', lists the types that can be sacrificed barring optional features in can_sacrifice()
-	var/list/desired_items
-/// Autopopulated by `desired_items`
-	var/list/desired_items_typecache
-/// Lists of rites by type. Converts itself into a list of rites with "name - desc (favor_cost)" = type
-	var/list/rites_list
-/// Changes the Altar of Gods icon
-	var/altar_icon
-/// Changes the Altar of Gods icon_state
-	var/altar_icon_state
+	var/name = "Religious Sect Base Type" // Name of the religious sect
+	var/desc = "Oh My! What Do We Have Here?!!?!?!?" // Description of the religious sect, Presents itself in the selection menu (AKA be brief)
+	var/convert_opener // Opening message when someone gets converted
+	var/alignment = ALIGNMENT_GOOD // holder for alignments.
+	var/starter = TRUE // Does this require something before being available as an option?
+	var/favor = 0 // The Sect's 'Mana'
+	var/max_favor = 1000 // The max amount of favor the sect can have
+	var/default_item_favor = 5 // The default value for an item that can be sacrificed
+	var/list/desired_items // Turns into 'desired_items_typecache', lists the types that can be sacrificed barring optional features in can_sacrifice()
+	var/list/desired_items_typecache // Autopopulated by `desired_items`
+	var/list/rites_list // Lists of rites by type. Converts itself into a list of rites with "name - desc (favor_cost)" = type
+	var/altar_icon // Changes the Altar of Gods icon
+	var/altar_icon_state // Changes the Altar of Gods icon_state
 
 /datum/religion_sect/New()
 	if(desired_items)

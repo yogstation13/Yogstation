@@ -63,6 +63,7 @@
 		sect_to_altar.on_sacrifice(C,user)
 		return TRUE
 	. = ..()
+
 	//everything below is assumed you're bibling it up
 	if(!istype(C, /obj/item/storage/book/bible))
 		return

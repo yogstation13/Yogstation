@@ -1,14 +1,9 @@
 /datum/religion_rites
-/// name of the religious rite
-	var/name = "religious rite"
-/// Description of the religious rite
-	var/desc = "immm gonna rooon"
-/// length it takes to complete the ritual
-	var/ritual_length = (10 SECONDS) //total length it'll take
-/// list of invocations said (strings) throughout the rite
-	var/list/ritual_invocations //strings that are by default said evenly throughout the rite
-/// message when you invoke
-	var/invoke_msg
+	var/name = "religious rite" // name of the religious rite
+	var/desc = "immm gonna rooon" // Description of the religious rite
+	var/ritual_length = (10 SECONDS) // length it takes to complete the ritual
+	var/list/ritual_invocations // list of invocations said (strings) throughout the rite
+	var/invoke_msg // message when you invoke
 	var/favor_cost = 0
 
 ///Called to perform the invocation of the rite, with args being the performer and the altar where it's being performed. Maybe you want it to check for something else?
