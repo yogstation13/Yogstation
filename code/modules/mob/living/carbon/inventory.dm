@@ -162,14 +162,14 @@
 			return
 		G.setup(C, src, receiving)
 
-/**
-  * Proc called when the player clicks the give alert
-  *
-  * Handles checking if the player taking the item has open slots and is in range of the giver
-  * Also deals with the actual transferring of the item to the players hands
-  * Arguments:
-  * * giver - The person giving the original item
-  * * I - The item being given by the giver
+  /*
+  Proc called when the player clicks the give alert
+  
+  Handles checking if the player taking the item has open slots and is in range of the giver
+  Also deals with the actual transferring of the item to the players hands
+  Arguments:
+  * giver - The person giving the original item
+  * I - The item being given by the giver
   */
 /mob/living/carbon/proc/take(mob/living/carbon/giver, obj/item/I)
 	clear_alert("[giver]")
