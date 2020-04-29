@@ -1833,14 +1833,6 @@
 	},
 /turf/open/floor/carpet,
 /area/mine/living_quarters)
-"eF" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
-	dir = 8;
-	level = 2;
-	piping_layer = 1
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "eI" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -2243,6 +2235,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/production)
+"xb" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 8;
+	level = 2;
+	piping_layer = 1;
+	volume = 50000
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "xH" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -3357,8 +3358,8 @@ ac
 ak
 bQ
 bZ
-eF
-eF
+xb
+xb
 bQ
 cF
 de
