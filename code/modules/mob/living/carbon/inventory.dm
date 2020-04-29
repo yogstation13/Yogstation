@@ -142,10 +142,10 @@
 	var/index = get_held_index_of_item(I)
 	return index && hand_bodyparts[index]
 
-/**
-  * Proc called when giving an item to another player
-  *
-  * This handles creating an alert and adding an overlay to it
+  /*
+  Proc called when giving an item to another player
+  
+  This handles creating an alert and adding an overlay to it
   */
 /mob/living/carbon/proc/give()
 	var/obj/item/receiving = get_active_held_item()
