@@ -765,7 +765,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/outfits = list() //Yogs -- a hashtable. key is a result from user input, value is an outfit path
 	var/list/options = list("Naked","Custom","As Job...","As CentCom Rank...")//Yogs
 	var/list/choices = list()//Yogs -- The actual list of options available to the user
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job, /datum/outfit/centcom)
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
 		if(initial(O.can_be_admin_equipped))

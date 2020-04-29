@@ -267,10 +267,10 @@
 	armor = list("melee" = 15, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/neck/pauldron/commander
-	name = "commander's pauldron"
-	desc = "A gold alloy reinforced pauldron signifying the rank of Commander; offers a moderate amount of protection to the wearer."
-	icon_state = "commander"
-	item_state = "commander"
+	name = "commodore's pauldron"
+	desc = "A gold alloy reinforced pauldron signifying the rank of Commodore;offers a moderate amount of protection to the wearer."
+	icon_state = "commodore"
+	item_state = "commodore"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 20, "energy" = 20, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 50)
 
 /obj/item/clothing/neck/pauldron/colonel

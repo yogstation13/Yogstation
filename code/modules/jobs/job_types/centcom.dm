@@ -1,5 +1,5 @@
 /datum/outfit/centcom/official //Generic centcom person. Whatever rank you want that is Lieutenant or lower.
-	name = "CentCom Official"
+	name = "(CO-1)CentCom Official"
 
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 	suit = null
@@ -38,7 +38,7 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/captain //CentCom Captain. Essentially a station captain.
-	name = "CentCom Captain"
+	name = "(CO-2)CentCom Captain"
 
 	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
@@ -71,7 +71,7 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/major //CentCom Major.
-	name = "CentCom Major"
+	name = "(CO-3)CentCom Major"
 
 	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
@@ -105,7 +105,7 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/commander //CentCom Commander.
-	name = "CentCom Commander"
+	name = "(CO-4)CentCom Commodore"
 
 	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
@@ -133,14 +133,14 @@
 	W.icon_state = "centcom_gold" //Important enough to have one.
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("CentCom Commander")
-	W.assignment = "CentCom Commander"
+	W.assignment = "CentCom Commodore"
 	W.registered_name = H.real_name
 	W.update_label()
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/colonel //CentCom Commander.
-	name = "CentCom Colonel"
+	name = "(CO-5)CentCom Colonel"
 
 	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/centcom
@@ -175,7 +175,7 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/rear_admiral //CentCom Rear-Admiral. Low-tier admiral.
-	name = "CentCom Rear-Admiral"
+	name = "(CO-6)CentCom Rear-Admiral"
 
 	uniform = /obj/item/clothing/under/rank/centcom_admiral
 	suit = null
@@ -210,7 +210,7 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/admiral //CentCom Admiral.
-	name = "CentCom Admiral"
+	name = "(CO-7)CentCom Admiral"
 
 	uniform = /obj/item/clothing/under/rank/centcom_admiral
 	suit = null
@@ -245,7 +245,7 @@
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/centcom/grand_admiral //CentCom Grand Admiral. The final boss.
-	name = "CentCom Grand Admiral"
+	name = "(NO-8)CentCom Grand Admiral"
 
 	uniform = /obj/item/clothing/under/rank/centcom_admiral/grand
 	suit = null
