@@ -14,7 +14,7 @@
 	if(!message)
 		return
 
-	var/voxType = input(src, "Male, female, or military VOX?", "VOX-gender") in list("male", "female", "military")
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)")
 
 
 	var/list/words = splittext(trim(message), " ")//Turns the received text into an array of words
@@ -26,13 +26,13 @@
 		words.len = 30
 
 	var/list/voxlist
-	if(voxType == "female") // The if for this is OUTSIDE the for-loop, for optimization.
+	if(voxType == "Verity (female)") // The if for this is OUTSIDE the for-loop, for optimization.
 		//Putting it inside makes it check for it every single damned time it parses a word,
 		//Which might be super shitty if someone removes the length limit above at some point.
 		voxlist = GLOB.vox_sounds
-	else if(voxType == "male") // If we're doing the yog-ly male AI vox voice
+	else if(voxType == "Victor (male)") // If we're doing the yog-ly male AI vox voice
 		voxlist = GLOB.vox_sounds_male
-	else if(voxType == "military") // If we're doing the also yog-ly male AI vox voice but from Black Mesa
+	else if(voxType == "Oscar (military)") // If we're doing the also yog-ly male AI vox voice but from Black Mesa
 		voxlist = GLOB.vox_sounds_military
 	else
 		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>", confidential=TRUE)
