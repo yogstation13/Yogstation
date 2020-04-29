@@ -147,7 +147,7 @@
 	can_adjust = FALSE //too important to look unimportant.
 
 /obj/item/clothing/under/rank/centcom_admiral/grand
-	desc = "It's a jumpsuit with gold markings worn by CentCom's highest ranking officer."
+	desc = "It's a jumpsuit with gold markings worn by CentCom's highest-ranking officer."
 	name = "\improper CentCom grand admiral's jumpsuit"
 	icon_state = "grandadmiral"
 	item_state = "grandadmiral"
