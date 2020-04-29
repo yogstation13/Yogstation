@@ -77,8 +77,8 @@
 
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
-	if (length(text) > maxlen)
-		text = copytext(text, 1, maxlen + 1) + "..." // BYOND index moment
+	if (length_char(text) > maxlen)
+		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
 	// Calculate target color if not already present
 	if (!target.chat_color || target.chat_color_name != target.name)
@@ -241,8 +241,8 @@
 	var/l = (hex2num(copytext(hash, 5, 7)) >> 2) * ((CM_COLOR_LUM_MAX - CM_COLOR_LUM_MIN) / 63) + CM_COLOR_LUM_MIN
 
 	// adjust for shifts
-	s *= CLAMP(sat_shift, 0, 1)
-	l *= CLAMP(lum_shift, 0, 1)
+	s *= clamp(sat_shift, 0, 1)
+	l *= clamp(lum_shift, 0, 1)
 
 	// convert to rgb
 	var/h_int = round(h/60) // mapping each section of H to 60 degree sections
