@@ -57,7 +57,9 @@
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
-	..() //contents explosion
+	..() //contents 
+	if(QDELETED(src))
+		return
 	if(target == src)
 		obj_integrity = 0
 		qdel(src)
