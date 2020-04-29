@@ -282,7 +282,7 @@
 
 /obj/item/clothing/neck/cape
 	name = "admiral's cape"
-	desc = "A large green cape with gold connects."
+	desc = "A sizable green cape with gold connects."
 	icon_state = "admiralcape"
 	item_state = "admiralcape"
 	w_class = WEIGHT_CLASS_SMALL
