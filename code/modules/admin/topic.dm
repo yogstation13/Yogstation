@@ -613,7 +613,7 @@
 			qdel(query_get_message_edits)
 			return
 		if(query_get_message_edits.NextRow())
-			var/edit_log = query_get_message_edits.item[1]
+			var/edit_log = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + query_get_message_edits.item[1] + "</BODY></HTML>"
 			if(!QDELETED(usr))
 				/*var/datum/browser/browser = new(usr, "Note edits", "Note edits")
 				browser.set_content(jointext(edit_log, ""))
@@ -1805,8 +1805,9 @@
 		thing_to_check = splittext(thing_to_check, ", ")
 
 
-		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
+		var/list/dat = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
+		dat += "</BODY></HTML>"
 
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
 
@@ -1977,9 +1978,10 @@
 		return alert(usr, "The game has already started.", null, null, null, null)
 	if(GLOB.master_mode != "secret")
 		return alert(usr, "The game mode has to be secret!", null, null, null, null)
-	var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
+	var/dat = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 	for(var/mode in config.modes)
 		dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 	dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
 	dat += {"Now: [GLOB.secret_force_mode]"}
+	dat += "</BODY></HTML>"
 	usr << browse(dat, "window=f_secret")

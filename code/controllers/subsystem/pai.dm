@@ -90,6 +90,7 @@ SUBSYSTEM_DEF(pai)
 
 
 	var/dat = ""
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += {"
 			<style type="text/css">
 
@@ -127,6 +128,8 @@ SUBSYSTEM_DEF(pai)
 	dat += "<a href='byond://?src=[REF(src)];option=save;new=1;candidate=[REF(candidate)]'>Save Personality</a><br>"
 	dat += "<a href='byond://?src=[REF(src)];option=load;new=1;candidate=[REF(candidate)]'>Load Personality</a><br>"
 
+	dat += "</BODY></HTML>"
+
 	M << browse(dat, "window=paiRecruit")
 
 /datum/controller/subsystem/pai/proc/spam_again()
@@ -154,7 +157,7 @@ SUBSYSTEM_DEF(pai)
 	for(var/datum/paiCandidate/c in SSpai.candidates)
 		available.Add(check_ready(c))
 	var/dat = ""
-
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += {"
 			<style type="text/css">
 
@@ -185,6 +188,8 @@ SUBSYSTEM_DEF(pai)
 		dat += "<tr class=\"d2\"><td><a href='byond://?src=[REF(src)];download=1;candidate=[REF(c)];device=[REF(p)]'>\[Download [c.name]\]</a></td><td></td></tr>"
 
 	dat += "</table>"
+
+	dat += "</BODY></HTML>"
 
 	user << browse(dat, "window=findPai")
 

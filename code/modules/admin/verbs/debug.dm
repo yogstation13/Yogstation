@@ -889,7 +889,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Display del() Log"
 	set desc = "Display del's log of everything that's passed through it."
 
-	var/list/dellog = list("<B>List of things that have gone through qdel this round</B><BR><BR><ol>")
+	var/list/dellog = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>List of things that have gone through qdel this round</B><BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
 		var/datum/qdel_item/I = SSgarbage.items[path]
@@ -909,7 +909,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			dellog += "<li>No hint: [I.no_hint]</li>"
 		dellog += "</ul></li>"
 
-	dellog += "</ol>"
+	dellog += "</ol></BODY></HTML>"
 
 	usr << browse(dellog.Join(), "window=dellog")
 
@@ -925,7 +925,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
-	usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 
 /client/proc/debug_huds(i as num)
 	set category = "Debug"

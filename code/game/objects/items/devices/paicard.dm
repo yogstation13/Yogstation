@@ -30,7 +30,10 @@
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
-	var/dat = "<TT><B>Personal AI Device</B><BR>"
+	var/dat = ""
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+	
+	dat +="<TT><B>Personal AI Device</B><BR>"
 	if(pai)
 		if(!pai.master_dna || !pai.master)
 			dat += "<a href='byond://?src=[REF(src)];setdna=1'>Imprint Master DNA</a><br>"
@@ -57,6 +60,8 @@
 		dat += "No personality installed.<br>"
 		dat += "Searching for a personality... Press view available personalities to notify potential candidates."
 		dat += "<A href='byond://?src=[REF(src)];request=1'>\[View available personalities\]</a><br>"
+	
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=paicard")
 	onclose(user, "paicard")
 	return

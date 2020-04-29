@@ -63,7 +63,7 @@
 	set name = "Get Law History"
 	set category = "Admin"
 	set desc = "View list of law changes for silicons."
-	var/data = ""
+	var/data = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
 		if(ispAI(S))
 			continue
@@ -76,4 +76,5 @@
 				laws += "<br>"
 			data += " <li>[laws]</li><br>\n"
 		data += "</ol>\n"
+	data += "</BODY></HTML>"
 	src << browse(data, "window=law_history")

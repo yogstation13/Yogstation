@@ -55,6 +55,7 @@
 	if(is_secured(user))
 		var/t1 = "-------"
 		var/dat = {"
+<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 <TT>
 
 <A href='byond://?src=[REF(src)];send=1'>Send Signal</A><BR>
@@ -74,7 +75,9 @@ Code:
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
 Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black; color: [src.label_color]'>[src.label_color]</A><BR>
 [t1]
-</TT>"}
+</TT>
+</BODY></HTML>
+"}
 		user << browse(dat, "window=radio") // yogs - signaller colors
 		onclose(user, "radio")
 		return

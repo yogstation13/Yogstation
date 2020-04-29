@@ -238,7 +238,10 @@
 
 /obj/machinery/magnetic_controller/ui_interact(mob/user)
 	. = ..()
-	var/dat = "<B>Magnetic Control Console</B><BR><BR>"
+	var/dat = ""
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+	
+	dat +="<B>Magnetic Control Console</B><BR><BR>"
 	if(!autolink)
 		dat += {"
 		Frequency: <a href='?src=[REF(src)];operation=setfreq'>[frequency]</a><br>
@@ -258,6 +261,7 @@
 	dat += "Path: {<a href='?src=[REF(src)];operation=setpath'>[path]</a>}<br>"
 	dat += "Moving: <a href='?src=[REF(src)];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
 
+	dat += "</BODY></HTML>"
 
 	user << browse(dat, "window=magnet;size=400x500")
 	onclose(user, "magnet")

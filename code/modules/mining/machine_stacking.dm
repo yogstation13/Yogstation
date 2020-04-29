@@ -24,7 +24,7 @@
 		return
 
 	var/obj/item/stack/sheet/s
-	var/dat
+	var/dat = text("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>")
 
 	dat += text("<b>Stacking unit console</b><br><br>")
 
@@ -34,6 +34,8 @@
 			dat += text("[capitalize(s.name)]: [s.amount] <A href='?src=[REF(src)];release=[s.type]'>Release</A><br>")
 
 	dat += text("<br>Stacking: [machine.stack_amt]<br><br>")
+
+	dat += text("</BODY></HTML>")
 
 	user << browse(dat, "window=console_stacking_machine")
 

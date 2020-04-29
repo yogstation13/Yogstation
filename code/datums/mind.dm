@@ -367,7 +367,8 @@
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
 		recipient = current
-	var/output = "<B>[current.real_name]'s Memories:</B><br>"
+	var/output = ""
+	output += "<B>[current.real_name]'s Memories:</B><br>"
 	output += memory
 
 
@@ -389,6 +390,7 @@
 				output += "</ul>"
 
 	if(window)
+		output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + output + "</BODY></HTML>"
 		recipient << browse(output,"window=memory")
 	else if(all_objectives.len || memory)
 		to_chat(recipient, "<i>[output]</i>")

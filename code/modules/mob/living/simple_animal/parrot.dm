@@ -182,8 +182,8 @@
 /mob/living/simple_animal/parrot/show_inv(mob/user)
 	user.set_machine(src)
 
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
-	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A>"
+	var/dat = 	"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><b>Inventory of [name]</b></div><p>"
+	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A></BODY></HTML>"
 
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "window=mob[REF(src)]")
