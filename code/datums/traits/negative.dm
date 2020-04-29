@@ -594,7 +594,7 @@
 									/datum/reagent/medicine/oculine,
 									/datum/reagent/medicine/neurine,
 									/datum/reagent/medicine/bicaridine,
-									/datum/reagent/medicine/kelotane,) //Everything in the list can be healed from another source round-start
+									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
 	var/reagent_id
 	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE
@@ -603,6 +603,7 @@
 	reagent_id = pick(allergy_chem_list)
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
 	to_chat(quirk_holder, "<span class='danger'>You remember you are allergic to [allergy.name].</span>")
+	quirk_holder.allergies += allergy
 
 /datum/quirk/allergic/on_process()
 	var/mob/living/carbon/H = quirk_holder
