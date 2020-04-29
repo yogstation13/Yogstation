@@ -20,7 +20,14 @@
 	code = "Blue"
 
 /datum/ert/amber
+	opendoors = FALSE
 	code = "Amber"
+	rename_team = "Amber Task Force"
+	mission = "Eliminate the threat to the station."
+	polldesc = "the Amber Task Force"
+	teamsize = 7
+	leader_role = /datum/antagonist/ert/amber/commander
+	roles = list(/datum/antagonist/ert/amber,/datum/antagonist/ert/amber,/datum/antagonist/ert/amber/medic) // entered duplicate here to increase change of soldiers
 
 /datum/ert/red
 	leader_role = /datum/antagonist/ert/commander/red
