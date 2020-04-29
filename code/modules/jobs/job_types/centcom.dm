@@ -1,3 +1,7 @@
+/datum/outfit/centcom
+	implants = list(/obj/item/implant/mindshield)
+	box = /obj/item/storage/box/survival
+
 /datum/outfit/centcom/official //Generic centcom person. Whatever rank you want that is Lieutenant or lower.
 	name = "(CO-1)CentCom Official"
 
@@ -14,8 +18,7 @@
 	r_pocket = /obj/item/pda/heads
 	l_hand = /obj/item/clipboard
 	id = /obj/item/card/id/centcom
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -52,8 +55,7 @@
 	l_pocket = /obj/item/melee/classic_baton/telescopic
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/silver
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/captain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -86,14 +88,13 @@
 	l_pocket = /obj/item/melee/classic_baton/telescopic
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/silver
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/major/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
-	var/obj/item/card/id/centcom/silver/W = H.wear_id.
+	var/obj/item/card/id/centcom/silver/W = H.wear_id
 	W.icon = 'icons/obj/card.dmi'
 	W.icon_state = "centcom_silver" //Neither does this guy
 	W.access = get_all_accesses()
@@ -121,8 +122,7 @@
 	l_pocket = /obj/item/ammo_box/a357
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/ammo_box/a357 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
+	backpack_contents = list(/obj/item/ammo_box/a357 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
 
 /datum/outfit/centcom/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -156,8 +156,7 @@
 	l_pocket = /obj/item/ammo_box/a357
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/ammo_box/a357 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
+	backpack_contents = list(/obj/item/ammo_box/a357 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
 
 /datum/outfit/centcom/colonel/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -191,8 +190,7 @@
 	l_pocket = /obj/item/melee/classic_baton/telescopic
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/rear_admiral/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -226,8 +224,7 @@
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/green
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/admiral/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -261,8 +258,7 @@
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/green
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(/obj/item/storage/box/hug/survival=1, /obj/item/restraints/handcuffs/cable/zipties=1)
+	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
 
 /datum/outfit/centcom/grand_admiral/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
