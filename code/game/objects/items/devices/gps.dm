@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return
 	switch(action)
 		if("rename")
-			var/a = stripped_input("Please enter desired tag.", name, gpstag, 20)
+			var/a = stripped_input(usr, "Please enter desired tag.", name, gpstag, 20)
 			gpstag = a
 			. = TRUE
 			name = "global positioning system ([gpstag])"
