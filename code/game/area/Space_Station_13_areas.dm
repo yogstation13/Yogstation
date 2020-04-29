@@ -843,6 +843,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Security Post - Research Division"
 	icon_state = "checkpoint_res"
 
+/area/security/checkpoint/service
+	name = "Security Post - Service"
+	icon_state = "checkpoint_srv"
+
 /area/security/checkpoint/customs
 	name = "Customs"
 	icon_state = "customs_point"
