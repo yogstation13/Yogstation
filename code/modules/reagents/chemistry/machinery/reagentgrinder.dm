@@ -315,3 +315,9 @@
 			var/amount = beaker.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
 			beaker.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
 			beaker.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)
+
+/obj/machinery/reagentgrinder/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, /obj/item/reagent_containers/glass/beaker))
+		attackby(dropping, user)
+	else
+		..()
