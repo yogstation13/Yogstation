@@ -275,7 +275,7 @@
 
 /obj/item/clothing/neck/pauldron/colonel
 	name = "colonel's pauldrons"
-	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slighty more protection than the Commander's pauldron to the wearer."
+	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commander's pauldron to the wearer."
 	icon_state = "colonel"
 	item_state = "colonel"
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 35, "energy" = 35, "bomb" = 5, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 90)
