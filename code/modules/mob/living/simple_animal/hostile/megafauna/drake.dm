@@ -648,11 +648,11 @@ obj/effect/temp_visual/fireball
 	name = "Tail Sweep"
 	desc = "Throw back attackers with a sweep of your tail."
 	sound = 'sound/magic/tail_swing.ogg'
-	charge_max = 300
+	charge_max = 200
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 1
-	cooldown_min = 300
+	cooldown_min = 200
 	invocation_type = "none"
 	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
 	action_icon = 'icons/mob/actions/actions_xeno.dmi'
