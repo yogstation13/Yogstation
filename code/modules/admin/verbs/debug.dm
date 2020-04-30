@@ -763,9 +763,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/robust_dress_shop()
 	var/list/outfits = list() //Yogs -- a hashtable. key is a result from user input, value is an outfit path
-	var/list/options = list("Naked","Custom","As Job...")//Yogs
+	var/list/options = list("Naked","Custom","As Job...","As CentCom Rank...")//Yogs
 	var/list/choices = list()//Yogs -- The actual list of options available to the user
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job, /datum/outfit/centcom)
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
 		if(initial(O.can_be_admin_equipped))
@@ -801,6 +801,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			custom_names[D.name] = D
 		var/selected_name = input("Select outfit", "Robust quick dress shop") as null|anything in custom_names
 		dresscode = custom_names[selected_name]
+		if(isnull(dresscode))
+			return
+
+	if (dresscode == "As CentCom Rank...")
+		var/list/job_paths = subtypesof(/datum/outfit/centcom)
+		var/list/job_outfits = list()
+		var/list/job_choices = list()
+		for(var/path in job_paths)
+			var/datum/outfit/O = path
+			if(initial(O.can_be_admin_equipped))
+				job_outfits[initial(O.name)] = path
+				job_choices += initial(O.name)
+		job_choices = sortList(job_choices,/proc/cmp_text_asc)
+		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in job_choices
+		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
 
