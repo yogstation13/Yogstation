@@ -8,9 +8,9 @@
 
 
 
-/*
- * DATA CARDS - Used for the IC data card reader
- */
+
+//DATA CARDS - Used for the IC data card reader
+
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
