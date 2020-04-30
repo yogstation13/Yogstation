@@ -16,10 +16,6 @@
 "c" = (
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
-"d" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "e" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/airless,
@@ -186,13 +182,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"x" = (
+"E" = (
 /obj/structure/lattice/catwalk,
-/turf/open/space,
+/turf/template_noop,
 /area/space/nearstation)
-"y" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+"P" = (
+/obj/structure/lattice,
+/turf/template_noop,
 /area/space/nearstation)
 
 (1,1,1) = {"
@@ -204,8 +200,8 @@ c
 f
 f
 w
-x
-y
+E
+E
 "}
 (2,1,1) = {"
 c
@@ -216,8 +212,8 @@ c
 v
 v
 v
-x
-y
+E
+E
 "}
 (3,1,1) = {"
 u
@@ -280,7 +276,7 @@ u
 u
 "}
 (8,1,1) = {"
-d
+P
 h
 k
 r
@@ -304,7 +300,7 @@ u
 u
 "}
 (10,1,1) = {"
-d
+P
 h
 k
 q
@@ -357,11 +353,11 @@ h
 k
 q
 h
-d
-d
-d
-d
-d
+P
+P
+P
+P
+P
 "}
 (15,1,1) = {"
 u
@@ -372,8 +368,8 @@ h
 u
 u
 u
-d
-d
+P
+P
 "}
 (16,1,1) = {"
 a
