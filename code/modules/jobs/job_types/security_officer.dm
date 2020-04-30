@@ -23,11 +23,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
-	changed_maps = list("MinskyStation", "YogsPubby", "OmegaStation")
-
-/datum/job/officer/proc/MinskyStationChanges()
-	total_positions = 6
-	spawn_positions = 6
+	changed_maps = list("YogsPubby", "OmegaStation")
 
 /datum/job/officer/proc/YogsPubbyChanges()
 	access += ACCESS_CREMATORIUM
