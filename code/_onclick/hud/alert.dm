@@ -1,5 +1,5 @@
 //A system to manage and display alerts on screen without needing you to do it yourself
- 
+
 //PUBLIC -  call these wherever you want
 
 
