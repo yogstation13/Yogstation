@@ -18,13 +18,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
 "d" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
-"e" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/obj/structure/grille,
+/turf/template_noop,
 /area/space/nearstation)
 "f" = (
 /turf/open/floor/plating,
@@ -49,14 +44,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"k" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
-"l" = (
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "m" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -174,10 +161,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"u" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "v" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -239,10 +222,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"y" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "z" = (
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
@@ -258,6 +237,19 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"C" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/space/nearstation)
+"E" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
+"I" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "N" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -272,8 +264,8 @@ c
 f
 f
 t
-u
-y
+I
+I
 "}
 (2,1,1) = {"
 c
@@ -284,15 +276,15 @@ c
 s
 s
 s
-u
-y
+I
+I
 "}
 (3,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
 a
 a
@@ -301,10 +293,10 @@ a
 "}
 (4,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
 a
 a
@@ -313,106 +305,106 @@ a
 "}
 (5,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
-l
+d
 a
 a
 a
 "}
 (6,1,1) = {"
 a
-y
+I
 h
 x
-y
-k
-l
+I
+C
+d
 a
 a
 a
 "}
 (7,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
-l
+d
 a
 a
 a
 "}
 (8,1,1) = {"
-d
-y
+C
+I
 h
 x
-y
+I
 a
-l
+d
 a
 a
 a
 "}
 (9,1,1) = {"
-e
-e
+E
+E
 i
 z
-y
+I
 a
-l
+d
 a
 a
 a
 "}
 (10,1,1) = {"
-d
-y
+C
+I
 h
 x
-y
-k
-l
+I
+C
+d
 a
 a
 a
 "}
 (11,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
-l
+d
 a
 a
 a
 "}
 (12,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
-l
+d
 a
 a
 a
 "}
 (13,1,1) = {"
 a
-y
+I
 h
 x
-y
+I
 a
 a
 a
@@ -425,11 +417,11 @@ N
 N
 w
 N
-d
-d
-d
-d
-d
+C
+C
+C
+C
+C
 "}
 (15,1,1) = {"
 a
@@ -440,8 +432,8 @@ N
 a
 a
 a
-d
-d
+C
+C
 "}
 (16,1,1) = {"
 n
