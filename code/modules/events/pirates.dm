@@ -396,7 +396,7 @@
 	return
 
 /datum/export/pirate/ransom
-	cost = 3000
+	cost = 8000
 	unit_name = "hostage"
 	export_types = list(/mob/living/carbon/human)
 
@@ -421,7 +421,7 @@
 			return 1000
 
 /datum/export/pirate/parrot
-	cost = 2000
+	cost = 5000
 	unit_name = "alive parrot"
 	export_types = list(/mob/living/simple_animal/parrot)
 
