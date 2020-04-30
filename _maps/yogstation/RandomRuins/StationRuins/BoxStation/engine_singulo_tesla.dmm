@@ -59,6 +59,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"aj" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "ak" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -670,10 +674,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"bV" = (
-/obj/structure/closet/wardrobe/engineering_yellow,
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "bW" = (
 /obj/machinery/power/rad_collector,
@@ -1417,7 +1417,7 @@ aa
 aa
 "}
 (14,1,1) = {"
-bV
+aj
 bI
 bE
 bG
