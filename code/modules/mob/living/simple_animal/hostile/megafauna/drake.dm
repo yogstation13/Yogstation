@@ -619,6 +619,7 @@ obj/effect/temp_visual/fireball
 	move_force = MOVE_FORCE_NORMAL
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
+	environment_smash = ENVIRONMENT_SMASH_WALLS
 	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
 	attack_action_types = list()
 	small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
