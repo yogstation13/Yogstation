@@ -848,7 +848,7 @@
 	newobj.card_attack_verb = sourceobj.card_attack_verb
 	newobj.resistance_flags = sourceobj.resistance_flags
 
-/// This proc updates the sprite for when you create a hand of cards
+///This proc updates the sprite for when you create a hand of cards
 /obj/item/toy/cards/cardhand/proc/update_sprite()
 	cut_overlays()
 	var/overlay_cards = currenthand.len
