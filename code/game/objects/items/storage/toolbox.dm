@@ -301,3 +301,14 @@
 	else
 		to_chat(user, "<span class='warning'>You need 10 floor tiles to start building a floorbot!</span>")
 		return
+
+
+/obj/item/storage/toolbox/yogurt
+	name = "a toolbox from the heavens"
+	force = 20
+	throwforce = 40
+	throw_speed = 2
+	throw_range = 5
+	materials = list(MAT_METAL=10000, MAT_GLASS=6000)
+	toolspeed = 0.5
+	sharpness = IS_SHARP
