@@ -370,6 +370,16 @@ update_label("John Doe", "Clowny")
 	assignment = "General"
 	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
 
+/obj/item/card/id/centcom/silver
+	name = "\improper silver CentCom ID"
+	desc = "A silver ID straight from Central Command."
+	icon_state = "centcom_silver"
+
+/obj/item/card/id/centcom/gold
+	name = "\improper gold CentCom ID"
+	desc = "A gold ID straight from Central Command."
+	icon_state = "centcom_gold"
+
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh

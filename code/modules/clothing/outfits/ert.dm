@@ -104,10 +104,10 @@
 	suit_store = /obj/item/gun/medbeam
 	glasses = /obj/item/clothing/glasses/hud/health
 	back = /obj/item/storage/backpack/ert/medical
-	belt = /obj/item/melee/classic_baton/telescopic 
+	belt = /obj/item/melee/classic_baton/telescopic
 	mask = /obj/item/clothing/mask/gas/sechailer
 	l_pocket = /obj/item/reagent_containers/hypospray/combat
-	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi 
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	backpack_contents = list(
 		/obj/item/storage/firstaid/toxin=1,
 		/obj/item/storage/firstaid/fire=1,
@@ -128,9 +128,9 @@
 	name = "ERT Medic - High Alert"
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	suit_store = /obj/item/gun/medbeam
-	belt = /obj/item/defibrillator/compact/combat/loaded 
+	belt = /obj/item/defibrillator/compact/combat/loaded
 	l_pocket = /obj/item/reagent_containers/hypospray/combat/nanites
-	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi 
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 
 	backpack_contents = list(
 		/obj/item/storage/box/bodybags=1,
@@ -147,7 +147,7 @@
 
 	id = /obj/item/card/id/ert/Engineer
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/engi
-	suit_store = /obj/item/tank/internals/emergency_oxygen/engi 
+	suit_store = /obj/item/tank/internals/emergency_oxygen/engi
 	glasses =  /obj/item/clothing/glasses/meson/engine
 	back = /obj/item/storage/backpack/ert/engineer
 	belt = /obj/item/storage/belt/utility/full
@@ -173,52 +173,13 @@
 /datum/outfit/ert/engineer/alert
 	name = "ERT Engineer - High Alert"
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
-	belt = /obj/item/storage/belt/utility/full/engi 
+	belt = /obj/item/storage/belt/utility/full/engi
 
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/medipen=1,
 		/obj/item/storage/box/smart_metal_foam=1,
 		/obj/item/construction/rcd/combat=1
 		)
-
-
-/datum/outfit/centcom_official
-	name = "CentCom Official"
-
-	uniform = /obj/item/clothing/under/rank/centcom_officer
-	shoes = /obj/item/clothing/shoes/sneakers/black
-	gloves = /obj/item/clothing/gloves/color/black
-	ears = /obj/item/radio/headset/headset_cent
-	glasses = /obj/item/clothing/glasses/sunglasses
-	belt = /obj/item/melee/classic_baton/telescopic
-	l_pocket = /obj/item/pen
-	back = /obj/item/storage/backpack/satchel/leather
-	r_pocket = /obj/item/pda/heads
-	id = /obj/item/card/id
-	implants = list(/obj/item/implant/mindshield)
-	backpack_contents = list(
-		/obj/item/storage/box/survival  = 1,
-		/obj/item/clipboard = 1
-	)
-
-/datum/outfit/centcom_official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)	
-	if(visualsOnly)
-		return
-
-	var/obj/item/pda/heads/pda = H.r_store
-	pda.owner = H.real_name
-	pda.ownjob = "CentCom Official"
-	pda.update_label()
-
-	var/obj/item/card/id/W = H.wear_id
-	W.icon_state = "centcom"
-	W.access = get_centcom_access("CentCom Official")
-	W.access += ACCESS_WEAPONS
-	W.assignment = "CentCom Official"
-	W.registered_name = H.real_name
-	W.update_label()
-
-	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
@@ -247,7 +208,7 @@
 
 /datum/outfit/ert/medic/inquisitor
 	name = "Inquisition Medic"
-	
+
 	r_hand = null
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 	belt = /obj/item/gun/energy/e_gun
