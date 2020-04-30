@@ -290,6 +290,16 @@
 /mob/proc/show_inv(mob/user)
 	return
 
+/mob/verb/giveitem(atom/A as mob in range(1))
+	set name = "Give"
+	set category = "IC"
+	if(!iscarbon(src))
+		to_chat(src, "<span class='warning'>You can't give items!</span>")
+		return
+	if(A && A != src && get_dist(src, A) < 2)
+		var/mob/living/carbon/C = src
+		C.give()
+
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
@@ -389,14 +399,14 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
-	
+
 	if(memory_amt > 50)
 		return
 
 	if(memory_amt == 50)
 		log_game("[key_name(src)] might be trying to crash the server by spamming memories, rate-limiting them.")
 		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] might be trying to crash the server by spamming memories, rate-limiting them.</span>")
-		
+
 	memory_amt++
 
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
