@@ -303,7 +303,7 @@
 		return
 
 
-/obj/item/storage/toolbox/yogurt
+/obj/item/storage/toolbox/admin
 	name = "a toolbox from the heavens"
 	force = 20
 	throwforce = 40
