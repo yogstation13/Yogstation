@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/backwards		// hopefully self-explanatory
 	var/movedir			// the actual direction to move stuff in
 
-	var/list/affecting	// the list of all items that will be moved this ptick
+	var/list/affecting = list()	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
 	var/verted = 1		// Inverts the direction the conveyor belt moves.
 	speed_process = TRUE
