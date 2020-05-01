@@ -390,6 +390,7 @@
 	icon_state = "DJ"
 	has_gravity = STANDARD_GRAVITY
 	blob_allowed = FALSE //Nope, no winning on the DJ station as a blob. Gotta eat the main station.
+	requires_power = TRUE // A ghost role now so power management is required
 
 /area/ruin/space/djstation/solars
 	name = "DJ Station Solars"
