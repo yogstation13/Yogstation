@@ -14,7 +14,7 @@
 	var/fluff_adjective = pick("benevolent","sacred","holy","godly","magnificent","benign","generous","caring") //lol
 	var/fluff_adverb = pick("tenderly","gently","elegantly","gracefully","mercifully","affectionately","sympathetically","politely") //am having a lot of fun here
 	var/fluff_admins = pick("admins","shitmins","podmins","moderators","bad human beings") // the fun continues years later
-	var/fluff_the = pick("The","The super","One of the ","All of the ","At least one of the ","The absolutely")
+	var/fluff_the = pick("The","The super","One of the","All of the","At least one of the","The absolutely")
 	var/fluff_decide = pick("decided","finally decided")
 	var/fluff_revive = pick("revive","rejuvenate","rekindle","renew","restore","resuscitate","revitalize","repair","enkindle")
 
