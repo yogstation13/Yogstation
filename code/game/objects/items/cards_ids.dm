@@ -316,7 +316,7 @@ update_label("John Doe", "Clowny")
 			else
 				return ..()
 
-		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset", "Change Account ID")
+		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset")
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset" && !registered_name)
@@ -331,8 +331,9 @@ update_label("John Doe", "Clowny")
 
 			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
 			if(!target_occupation)
-				registered_name = ""
 				return
+
+			registered_name = input_name
 			assignment = target_occupation
 			update_label()
 			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
