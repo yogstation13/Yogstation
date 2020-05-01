@@ -525,7 +525,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			[where_switched? "[islist(obj_count_eligible)? length(obj_count_eligible) : obj_count_eligible] objects executed on after WHERE keyword selection." : ""]<br>\
 			SDQL query took [DisplayTimeText(end_time - start_time)] to complete.</span>")
 			if(length(select_text))
-				var/text = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + islist(select_text)? select_text.Join() : select_text + "</BODY></HTML>"
+				var/text = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + (islist(select_text)? select_text.Join() : select_text) + "</BODY></HTML>"
 				var/static/result_offset = 0
 				showmob << browse(text, "window=SDQL-result-[result_offset++]")
 	show_next_to_key = null

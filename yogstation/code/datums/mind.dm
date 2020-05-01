@@ -52,7 +52,7 @@
 	var/static/list/accents_name2regexes // Key is the name of the accent, value is a length-2 list of lists.
 	//The first list contains all the regexes marked as being word or phrase replacements. They are replaced first.
 	//The second list contains all other regexes and are handled last.
-	if(!accent_name)
+	if(!(accent_name in GLOB.accents_name2file))
 		return
 	
 	var/message = speech_args[SPEECH_MESSAGE]

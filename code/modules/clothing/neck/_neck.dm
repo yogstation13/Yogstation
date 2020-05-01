@@ -1,6 +1,3 @@
-/obj/item/clothing/neck/proc/step_action()
-	SEND_SIGNAL(src, COMSIG_NECK_STEP_ACTION)
-
 /obj/item/clothing/neck
 	name = "necklace"
 	icon = 'icons/obj/clothing/neck.dmi'
