@@ -132,8 +132,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/process()
 	if(stat & (BROKEN | NOPOWER))
 		return
+		
+	affecting = list()
+		
 	if(!operating)
 		return
+		
 	use_power(6)
 	affecting = loc.contents - src		// moved items will be all in loc
 	addtimer(CALLBACK(src, .proc/convey, affecting), 1)
