@@ -170,6 +170,9 @@
 
 /datum/component/mood/process() //Called on SSmood process
 	var/mob/living/owner = parent
+	if(!owner)
+		qdel(src)
+		return
 
 	switch(mood_level)
 		if(1)
