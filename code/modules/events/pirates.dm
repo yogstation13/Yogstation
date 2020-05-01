@@ -416,9 +416,9 @@
 		return 0
 	else
 		if(H.mind.assigned_role in GLOB.command_positions)
-			return 3000
+			return 8000
 		else
-			return 1000
+			return 3000
 
 /datum/export/pirate/parrot
 	cost = 5000
