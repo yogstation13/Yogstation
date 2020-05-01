@@ -8,9 +8,9 @@
 
 
 
-/*
- * DATA CARDS - Used for the IC data card reader
- */
+
+//DATA CARDS - Used for the IC data card reader
+
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
@@ -369,6 +369,16 @@ update_label("John Doe", "Clowny")
 	registered_name = "Central Command"
 	assignment = "General"
 	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
+
+/obj/item/card/id/centcom/silver
+	name = "\improper silver CentCom ID"
+	desc = "A silver ID straight from Central Command."
+	icon_state = "centcom_silver"
+
+/obj/item/card/id/centcom/gold
+	name = "\improper gold CentCom ID"
+	desc = "A gold ID straight from Central Command."
+	icon_state = "centcom_gold"
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()

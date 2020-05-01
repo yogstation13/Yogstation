@@ -73,6 +73,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	else if(AIuser)
 		return ..(freq, level)
 	return FALSE
+	
+/obj/item/radio/headset/ui_data(mob/user)
+	. = ..()
+	.["headset"] = TRUE
 
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
 
@@ -238,7 +242,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/headset_cent
 	name = "\improper CentCom headset"
-	desc = "A headset used by the upper echelons of Nanotrasen."
+	desc = "A headset used by the upper echelons of NanoTrasen."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/headset_com
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
@@ -247,15 +251,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = null
 	keyslot2 = null
 
-/obj/item/radio/headset/headset_cent/commander
+/obj/item/radio/headset/headset_cent/alt
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
-/obj/item/radio/headset/headset_cent/alt
+/obj/item/radio/headset/headset_cent/commander
 	name = "\improper CentCom bowman headset"
 	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
 	icon_state = "cent_headset_alt"
 	item_state = "cent_headset_alt"
-	keyslot = null
+	keyslot = new /obj/item/encryptionkey/heads/captain
 
 /obj/item/radio/headset/headset_cent/alt/ComponentInitialize()
 	. = ..()
@@ -283,7 +287,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
-			
+
 			if(keyslot)
 				user.put_in_hands(keyslot)
 				keyslot = null

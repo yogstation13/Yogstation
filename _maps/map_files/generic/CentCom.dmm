@@ -18483,6 +18483,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"NH" = (
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "NI" = (
 /obj/structure/closet/lasertag/red,
 /turf/open/floor/wood,
@@ -20968,6 +20972,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Vl" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Vm" = (
 /obj/machinery/gibber,
 /obj/machinery/light{
@@ -60273,11 +60291,11 @@ ws
 wB
 yr
 sw
-sw
+Vl
 Ad
 AL
 Bx
-sw
+Vl
 Cv
 mD
 aa
@@ -61301,11 +61319,11 @@ ws
 ts
 mD
 uV
-sw
+Vl
 Ah
 AP
 Ah
-sw
+Vl
 Cz
 mD
 aa
@@ -61558,11 +61576,11 @@ ws
 ts
 qR
 pH
-zA
-sw
-zA
-sw
-zA
+NH
+Vl
+NH
+Vl
+NH
 CA
 mD
 aa

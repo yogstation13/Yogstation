@@ -781,6 +781,7 @@
 
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
 	var/list/handradial = list()
+
 	interact(user)
 
 	for(var/t in currenthand)
@@ -796,8 +797,10 @@
 	if(!choice) 
 		return FALSE
 	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
+
 	currenthand -= choice
 	handradial -= choice
+
 	C.parentdeck = src.parentdeck
 	C.cardname = choice
 	C.apply_card_vars(C,O)
@@ -816,6 +819,7 @@
 		N.pickup(cardUser)
 		cardUser.put_in_hands(N)
 		to_chat(cardUser, "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")
+
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/singlecard/C, mob/living/user, params)
 	if(istype(C))
