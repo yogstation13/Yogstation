@@ -296,8 +296,9 @@
 	if (ispath(antag, /datum/antagonist/ert))
 		var/datum/antagonist/ert/ert = antag
 		mannequin.equipOutfit(initial(ert.outfit), TRUE)
-	else if (ispath(antag, /datum/antagonist/official))
-		mannequin.equipOutfit(/datum/outfit/centcom_official, TRUE)
+	else if (ispath(antag, /datum/antagonist/centcom))
+		var/datum/antagonist/centcom/centcom = antag
+		mannequin.equipOutfit(initial(centcom.outfit), TRUE)
 
 /datum/admins/proc/makeERTPreviewIcon(list/settings)
 	// Set up the dummy for its photoshoot
@@ -344,7 +345,7 @@
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
-		ertemplate = new /datum/ert/centcom_official
+		ertemplate = new /datum/ert/official
 
 	var/list/settings = list(
 		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),

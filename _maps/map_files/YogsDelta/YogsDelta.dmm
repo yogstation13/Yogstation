@@ -60612,6 +60612,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bOi" = (
@@ -61889,12 +61892,21 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bQe" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -61905,6 +61917,10 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -63278,6 +63294,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -66796,6 +66815,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/port)
+"bXk" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -26;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/engineering)
 "bXl" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -90599,29 +90637,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cHT" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/light_switch{
-	pixel_x = -26;
-	pixel_y = -26
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/engineering)
 "cHU" = (
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
@@ -154383,7 +154398,7 @@ bTR
 bOf
 bha
 djM
-cHT
+bXk
 dlx
 dlK
 dmc
