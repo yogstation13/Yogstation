@@ -16,7 +16,7 @@
 	var/fluff_admins = pick("admins","shitmins","podmins","moderators","bad human beings") // the fun continues years later
 	var/fluff_the = pick("The","The super","One of the","All of the","At least one of the","The absolutely")
 	var/fluff_decide = pick("decided","finally decided")
-	var/fluff_revive = pick("revive","rejuvenate","rekindle","renew","restore","resuscitate","revitalize","repair","enkindle")
+	var/fluff_revive = pick("revive","rejuvenate","rekindle","renew","restore","resuscitate","revitalize","repair")
 
 	to_chat(world, "<b>[fluff_the] [fluff_adjective] [fluff_admins] have [fluff_decide] to [fluff_adverb] [fluff_revive] everyone. :)</b>")
 	message_admins("[src] revived [revive_count] mobs.")
