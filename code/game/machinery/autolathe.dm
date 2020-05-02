@@ -28,7 +28,7 @@
 	var/base_price = 25
 	var/hacked_price = 50
 	var/datum/research/files
-	var/search
+	var/searchs
 	var/datum/material_container/materials
 	var/queue_max_len = 12
 	var/processing_queue = FALSE
