@@ -31,7 +31,7 @@
 
 /obj/item/borg/upgrade/rename
 	name = "cyborg reclassification board"
-	desc = "Used to rename a cyborg.
+	desc = "Used to rename a cyborg."
 	icon_state = "cyborg_upgrade1"
 	var/heldname = ""
 	one_use = TRUE
