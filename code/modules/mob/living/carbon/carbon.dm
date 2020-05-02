@@ -171,6 +171,7 @@
 /mob/living/carbon/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
+	<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 	<HR>
 	<B><FONT size=3>[name]</FONT></B>
 	<HR>
@@ -205,6 +206,7 @@
 	dat += {"
 	<BR>
 	<BR><A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
+	</BODY></HTML>
 	"}
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "mob[REF(src)]")
@@ -381,7 +383,6 @@
 		else
 			dropItemToGround(I)
 			return
-		return TRUE
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying = 0)
 	if(lying)

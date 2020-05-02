@@ -1,6 +1,3 @@
-/obj/item/clothing/neck/proc/step_action()
-	SEND_SIGNAL(src, COMSIG_NECK_STEP_ACTION)
-
 /obj/item/clothing/neck
 	name = "necklace"
 	icon = 'icons/obj/clothing/neck.dmi'
@@ -212,7 +209,7 @@
 	return ..()
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = copytext(sanitize(input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot") as null|text),1,MAX_NAME_LEN)
+	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
 //////////////

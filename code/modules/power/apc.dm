@@ -205,7 +205,7 @@
 	GLOB.apcs_list -= src
 
 	if(malfai && operating)
-		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
+		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	area.power_light = FALSE
 	area.power_equip = FALSE
 	area.power_environ = FALSE
@@ -584,7 +584,6 @@
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
 			CRASH("attackby on APC when it's not on a turf")
-			return
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")
 			return
@@ -1340,7 +1339,7 @@
 
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
-		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
+		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	stat |= BROKEN
 	operating = FALSE
 	if(occupier)

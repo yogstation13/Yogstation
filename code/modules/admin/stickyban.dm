@@ -372,6 +372,7 @@
 
 	var/html = {"
 	<head>
+		<meta charset='UTF-8'>
 		<title>Sticky Bans</title>
 	</head>
 	<body>

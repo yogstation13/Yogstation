@@ -84,6 +84,7 @@
 		qdel(query_check_unused_rank)
 	else if(!action)
 		output += {"<head>
+		<meta charset='UTF-8'>
 		<title>Permissions Panel</title>
 		<script type='text/javascript' src='search.js'></script>
 		</head>

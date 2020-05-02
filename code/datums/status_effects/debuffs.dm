@@ -335,7 +335,7 @@
 			if(prob(severity * 0.15))
 				to_chat(owner, "<span class='sevtug[span_part]'>\"[text2ratvar(pick(mania_messages))]\"</span>")
 			owner.playsound_local(get_turf(motor), hum, severity, 1)
-			owner.adjust_drugginess(CLAMP(max(severity * 0.075, 1), 0, max(0, 50 - owner.druggy))) //7.5% of severity per second, minimum 1
+			owner.adjust_drugginess(clamp(max(severity * 0.075, 1), 0, max(0, 50 - owner.druggy))) //7.5% of severity per second, minimum 1
 			if(owner.hallucination < 50)
 				owner.hallucination = min(owner.hallucination + max(severity * 0.075, 1), 50) //7.5% of severity per second, minimum 1
 			if(owner.dizziness < 50)

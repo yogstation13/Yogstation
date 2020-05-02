@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(!ui)
 		// Variable window height, depending on how many GPS units there are
 		// to show
-		var/gps_window_height = CLAMP(325 + GLOB.GPS_list.len * 24, 325, 700)
+		var/gps_window_height = clamp(325 + GLOB.GPS_list.len * 24, 325, 700)
 		ui = new(user, src, ui_key, "gps", "Global Positioning System", 470, gps_window_height, master_ui, state) //width, height
 		ui.open()
 
@@ -119,8 +119,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return
 	switch(action)
 		if("rename")
-			var/a = input("Please enter desired tag.", name, gpstag) as text
-			a = copytext(sanitize(a), 1, 20)
+			var/a = stripped_input(usr, "Please enter desired tag.", name, gpstag, 20)
 			gpstag = a
 			. = TRUE
 			name = "global positioning system ([gpstag])"

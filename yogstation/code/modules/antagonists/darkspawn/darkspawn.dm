@@ -168,7 +168,7 @@
 	var/new_psi = input(admin, "Enter a new psi amount. (Current: [psi]/[psi_cap])", "Change Psi", psi) as null|num
 	if(!new_psi)
 		return
-	new_psi = CLAMP(new_psi, 0, psi_cap)
+	new_psi = clamp(new_psi, 0, psi_cap)
 	psi = new_psi
 
 /datum/antagonist/darkspawn/proc/admin_edit_lucidity(mob/admin)

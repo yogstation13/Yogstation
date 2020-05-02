@@ -222,6 +222,7 @@
 	var/html = {"
 <html>
 	<head>
+		<meta charset='UTF-8'>
 		<title>[title]</title>
 		<style>
 			body {

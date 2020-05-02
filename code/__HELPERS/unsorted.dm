@@ -6,25 +6,16 @@
 
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
-
-	if (!( istext(HTMLstring) ))
+	if(!istext(HTMLstring))
 		CRASH("Given non-text argument!")
-		return
-	else
-		if (length(HTMLstring) != 7)
-			CRASH("Given non-HTML argument!")
-			return
+	else if(length(HTMLstring) != 7)
+		CRASH("Given non-HTML argument!")
+	else if(length_char(HTMLstring) != 7)
+		CRASH("Given non-hex symbols in argument!")
 	var/textr = copytext(HTMLstring, 2, 4)
 	var/textg = copytext(HTMLstring, 4, 6)
 	var/textb = copytext(HTMLstring, 6, 8)
-	var/r = hex2num(textr)
-	var/g = hex2num(textg)
-	var/b = hex2num(textb)
-	textr = num2hex(255 - r, 2)
-	textg = num2hex(255 - g, 2)
-	textb = num2hex(255 - b, 2)
-	return text("#[][][]", textr, textg, textb)
-	return
+	return rgb(255 - hex2num(textr), 255 - hex2num(textg), 255 - hex2num(textb))
 
 /proc/Get_Angle(atom/movable/start,atom/movable/end)//For beams.
 	if(!start || !end)
@@ -41,7 +32,7 @@
 	else if(dx<0)
 		.+=360
 
-/proc/Get_Pixel_Angle(var/y, var/x)//for getting the angle when animating something's pixel_x and pixel_y
+/proc/Get_Pixel_Angle(y, x)//for getting the angle when animating something's pixel_x and pixel_y
 	if(!y)
 		return (x>=0)?90:270
 	.=arctan(x/y)
@@ -184,15 +175,15 @@ Turf and target are separate in case you want to teleport some distance from a t
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
 	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
-		return 0
+		return FALSE
 
 	var/i, ch, len = length(key)
 
-	for (i = 7, i <= len, ++i)
+	for (i = 7, i <= len, ++i) //we know the first 6 chars are Guest-
 		ch = text2ascii(key, i)
-		if (ch < 48 || ch > 57)
-			return 0
-	return 1
+		if (ch < 48 || ch > 57) //0-9
+			return FALSE
+	return TRUE
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
 /mob/proc/apply_pref_name(role, client/C)
@@ -281,7 +272,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/list/borgs = active_free_borgs()
 	if(borgs.len)
 		if(user)
-			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in borgs
+			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in sortList(borgs)
 		else
 			. = pick(borgs)
 	return .
@@ -290,7 +281,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)
-			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in ais
+			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in sortList(ais)
 		else
 			. = pick(ais)
 	return .
@@ -367,12 +358,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
 // Format an energy value in J, kJ, MJ, or GJ. 1W = 1J/s.
-/proc/DisplayEnergy(units)
-	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
-	// excess power into GLOB.CELLRATE energy units when charging cells.
-	// With the current configuration of wait=20 and CELLRATE=0.002, this
-	// means that one unit is 1 kJ.
-	units *= SSmachines.wait * 0.1 / GLOB.CELLRATE
+/proc/DisplayJoules(units)
 	if (units < 1000) // Less than a kJ
 		return "[round(units, 0.1)] J"
 	else if (units < 1000000) // Less than a MJ
@@ -380,6 +366,14 @@ Turf and target are separate in case you want to teleport some distance from a t
 	else if (units < 1000000000) // Less than a GJ
 		return "[round(units * 0.000001, 0.001)] MJ"
 	return "[round(units * 0.000000001, 0.0001)] GJ"
+
+// Format an energy value measured in Power Cell units.
+/proc/DisplayEnergy(units)
+	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
+	// excess power into GLOB.CELLRATE energy units when charging cells.
+	// With the current configuration of wait=20 and CELLRATE=0.002, this
+	// means that one unit is 1 kJ.
+	return DisplayJoules(units * SSmachines.wait * 0.1 / GLOB.CELLRATE)
 
 /proc/get_mob_by_ckey(key)
 	if(!key)
@@ -450,16 +444,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/x = min(world.maxx, max(1, A.x + dx))
 	var/y = min(world.maxy, max(1, A.y + dy))
 	return locate(x,y,A.z)
-
-#if DM_VERSION > 513
-#warn 513 is definitely stable now, remove this
-#endif
-#if DM_VERSION < 513
-/proc/arctan(x)
-	var/y=arcsin(x/sqrt(1+x*x))
-	return y
-#endif
-
 
 /*
 	Gets all contents of contents and returns them all in a list.
@@ -801,7 +785,7 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	/obj/structure/light_construct, /obj/machinery/light)))
 
 
-/proc/gotwallitem(loc, dir, var/check_external = 0)
+/proc/gotwallitem(loc, dir, check_external = 0)
 	var/locdir = get_step(loc, dir)
 	for(var/obj/O in loc)
 		if(is_type_in_typecache(O, GLOB.WALLITEMS) && check_external != 2)
@@ -884,8 +868,8 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	tX = splittext(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : world.view)
-	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
-	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	tX = clamp(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
+	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 /proc/screen_loc2turf(text, turf/origin, client/C)
@@ -898,8 +882,8 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	tX = text2num(tX[2])
 	tZ = origin.z
 	var/list/actual_view = getviewsize(C ? C.view : world.view)
-	tX = CLAMP(origin.x + round(actual_view[1] / 2) - tX, 1, world.maxx)
-	tY = CLAMP(origin.y + round(actual_view[2] / 2) - tY, 1, world.maxy)
+	tX = clamp(origin.x + round(actual_view[1] / 2) - tX, 1, world.maxx)
+	tY = clamp(origin.y + round(actual_view[2] / 2) - tY, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 /proc/IsValidSrc(datum/D)
@@ -1164,7 +1148,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in sortList(matches)
 		if(!chosen)
 			return
 	chosen = matches[chosen]
@@ -1264,7 +1248,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 //Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).
-/proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
+/proc/dview(range = world.view, center, invis_flags = 0)
 	if(!center)
 		return
 
@@ -1395,7 +1379,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/GUID()
 	var/const/GUID_VERSION = "b"
 	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
 
 	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
 

@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //opens the ticket listings for one of the 3 states
 /datum/admin_help_tickets/proc/BrowseTickets(state)
 	var/title
-	var/list/dat = list("<html><head><title>[title]</title></head>")
+	var/list/dat = list("<html><head><meta charset='UTF-8'><title>[title]</title></head>")
 	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/I in tickets_list)
 		var/datum/admin_help/AH = I
