@@ -123,7 +123,7 @@
 	E.storage = null
 
 /obj/item/spacepod_equipment/cargo/large/proc/spacepod_mousedrop(obj/spacepod/SP, obj/A, mob/user)
-	if(user == SP.pilot || user in SP.passengers)
+	if(user == SP.pilot || (user in SP.passengers))
 		return FALSE
 	if(istype(A, storage_type) && SP.Adjacent(A)) // For loading ore boxes
 		if(!storage)

@@ -5,7 +5,7 @@
 	var/ntype = text2num(type)
 
 	//Add client links
-	var/dat = ""
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	if(M.client)
 		dat += "<center><p>Client</p></center>"
 		dat += "<center>"
@@ -60,6 +60,8 @@
 				for(var/entry in reversed)
 					dat += "<font size=2px><b>[entry]</b><br>[reversed[entry]]</font><br>"
 			dat += "<hr>"
+
+	dat += "</BODY></HTML>"
 
 	usr << browse(dat, "window=invidual_logging_[key_name(M)];size=600x480")
 

@@ -58,6 +58,8 @@
 	M.rad_act(energy*6)
 
 /obj/effect/accelerated_particle/proc/move()
+	if(QDELETED(src))
+		return
 	if(!step(src,dir))
 		forceMove(get_step(src,dir))
 	movement_range--

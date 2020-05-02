@@ -34,7 +34,7 @@
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 	var/succ_scaling = round(num_players() / 3)
-	required_succs = CLAMP(succ_scaling, 15, 30)
+	required_succs = clamp(succ_scaling, 15, 30)
 	succ_ratio = required_succs / 15
 	return TRUE
 

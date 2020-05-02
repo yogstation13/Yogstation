@@ -35,7 +35,7 @@
 	if(!has_gravity(loc))
 		return
 		
-	pcollar.step_action()
+	SEND_SIGNAL(pcollar, COMSIG_NECK_STEP_ACTION)
 
 /mob/living/simple_animal/pet/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
