@@ -69,7 +69,10 @@
 	// Register client who owns this message
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_ownedby_deleting)
-
+	
+	if(!islist(extra_classes))
+		extra_classes = list()
+	
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
 	if (length_char(text) > maxlen)
