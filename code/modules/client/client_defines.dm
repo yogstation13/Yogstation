@@ -1,3 +1,4 @@
+
 /client
 		//////////////////////
 		//BLACK MAGIC THINGS//
@@ -79,5 +80,3 @@
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
 
 	var/encoding = "1252" // yogs - LibVG
-
-	var/list/seen_messages // Messages currently seen by this client
