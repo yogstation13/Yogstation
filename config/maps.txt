@@ -24,6 +24,7 @@ endmap
 
 map omegastation
 	maxplayers 35
+	votable
 endmap
 
 map yogsmeta

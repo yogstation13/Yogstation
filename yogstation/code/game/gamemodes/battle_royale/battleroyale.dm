@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/starter_z = 0 //What Z level did we start on?
 
 /obj/structure/battle_bus/attack_hand(mob/user)
-	if(!user in contents)
+	if(!(user in contents))
 		return
 	exit(user)
 

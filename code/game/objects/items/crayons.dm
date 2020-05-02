@@ -334,8 +334,8 @@
 	var/clicky
 
 	if(click_params && click_params["icon-x"] && click_params["icon-y"])
-		clickx = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-		clicky = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		clickx = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		clicky = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
 	if(!instant)
 		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>") // yogs -- removed a weird tab that had no reason to be here
@@ -391,7 +391,7 @@
 		to_chat(user, "<span class='notice'>You spray a [temp] on \the [target.name]</span>")
 
 	if(length(text_buffer) > 1)
-		text_buffer = copytext(text_buffer,2)
+		text_buffer = copytext(text_buffer, length(text_buffer[1]) + 1)
 		SStgui.update_uis(src)
 
 	if(post_noise)
