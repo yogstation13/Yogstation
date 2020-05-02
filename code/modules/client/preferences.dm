@@ -730,7 +730,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
 				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
 				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
-
+				BUTTON_KEY("Offer item", ACTION_GIVE)
 				BUTTON_KEY("Resist", ACTION_RESIST)
 				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
 				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
