@@ -1,5 +1,5 @@
 /*
-	Humans:
+	Humans: 
 	Adds an exception for gloves, to allow special glove types like the ninja ones.
 
 	Otherwise pretty standard.
