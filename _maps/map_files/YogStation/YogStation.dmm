@@ -49901,18 +49901,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"cIg" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 3;
-	height = 15;
-	id = "arrivals_stationary";
-	name = "arrivals";
-	roundstart_template = /datum/map_template/shuttle/arrival/box;
-	width = 7
-	},
-/turf/open/space/basic,
-/area/space)
 "cKh" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -50694,6 +50682,12 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"dwK" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
 "dxm" = (
 /obj/item/stack/ore/silver,
 /obj/item/stack/ore/silver,
@@ -50736,6 +50730,10 @@
 /obj/item/gun/syringe,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"dDW" = (
+/obj/structure/closet/wardrobe/black,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "dEb" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -50887,6 +50885,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"efl" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "ehy" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 30
@@ -51086,6 +51091,12 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"eGs" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
 "eGt" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -51237,6 +51248,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"eWj" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "eWH" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -51637,6 +51656,13 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"fPE" = (
+/obj/machinery/computer/arcade,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "fPF" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/noticeboard{
@@ -51841,6 +51867,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"gor" = (
+/obj/structure/closet/wardrobe/mixed,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "goD" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -51852,6 +51882,15 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
+"goL" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
 "grO" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway South-East";
@@ -51908,6 +51947,13 @@
 /obj/structure/transit_tube/curved/flipped,
 /turf/open/space/basic,
 /area/space/nearstation)
+"guM" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/obj/docking_port/mobile/arrivals,
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
 "guW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -52207,6 +52253,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hbi" = (
+/obj/structure/closet/wardrobe/grey,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "hbC" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/lounge)
@@ -52692,6 +52742,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ikQ" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "ilH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -52880,6 +52935,12 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"iFj" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "iGw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -53349,6 +53410,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jEa" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "jFV" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -54287,12 +54353,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"lLT" = (
+/obj/structure/shuttle/engine/propulsion/burst/right{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
 "lMg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"lMh" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "lQG" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -55265,6 +55347,13 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"nQs" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "nTg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -55347,6 +55436,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"ogD" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "ogO" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -55545,6 +55638,13 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"oKb" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "oKG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
@@ -55691,6 +55791,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"peU" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "pgv" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	target_temperature = 80
@@ -55853,6 +55962,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"pAS" = (
+/obj/structure/shuttle/engine/propulsion/burst/left{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
 "pBG" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -56354,6 +56469,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/lawoffice)
+"qBB" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
 "qCq" = (
 /obj/machinery/light{
 	dir = 1
@@ -56514,6 +56641,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"qOU" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
 "qPC" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -56544,6 +56674,9 @@
 "qQV" = (
 /turf/template_noop,
 /area/template_noop)
+"qTA" = (
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
 "qVL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -56641,6 +56774,11 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"rhs" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "riC" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -57489,6 +57627,10 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"sZa" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "sZC" = (
 /obj/structure/sign/warning{
 	name = "SECURE AREA";
@@ -58090,6 +58232,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"ulz" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "ulE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -59391,6 +59536,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/space/basic,
 /area/space)
+"xhh" = (
+/obj/machinery/requests_console{
+	department = "Arrival shuttle";
+	name = "Arrivals Shuttle console";
+	pixel_y = 30
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "xhV" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -59490,6 +59646,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"xAB" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "xBo" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -59525,6 +59685,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"xFm" = (
+/obj/structure/closet/wardrobe/green,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "xHa" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -69909,11 +70073,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+ikQ
+oKb
+oKb
+qOU
 aaa
 aaa
 aaa
@@ -70166,11 +70330,11 @@ asE
 arB
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+ogD
+qTA
+iFj
+qOU
 aaa
 aaa
 arB
@@ -70423,11 +70587,11 @@ cwT
 aAC
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+nQs
+qTA
+peU
+qOU
 aaa
 aaa
 aAC
@@ -70679,13 +70843,13 @@ iEJ
 asE
 arB
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+qOU
+qOU
+qBB
+qOU
+qOU
+qOU
 aaa
 arB
 asE
@@ -70936,13 +71100,13 @@ ayk
 awW
 aEa
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+jEa
+qTA
+qTA
+qTA
+xAB
+qOU
 aSm
 aSm
 awW
@@ -71193,13 +71357,13 @@ wrz
 vrz
 dsT
 aCK
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+lMh
+ulz
+eGs
+eGs
+eGs
+ulz
+lMh
 dvM
 qOB
 xJF
@@ -71450,13 +71614,13 @@ vpf
 awW
 asE
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+fPE
+ulz
+ulz
+ulz
+sZa
+qOU
 aSm
 asE
 awW
@@ -71707,13 +71871,13 @@ hZm
 azz
 aAF
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+efl
+xFm
+eGs
+eGs
+eGs
+ulz
+rhs
 aSm
 aOf
 azz
@@ -71964,13 +72128,13 @@ rvS
 ayl
 aAE
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+efl
+dDW
+ulz
+ulz
+ulz
+ulz
+rhs
 aSm
 aOe
 ayl
@@ -72221,13 +72385,13 @@ jzn
 ayl
 aAH
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+efl
+gor
+eGs
+eGs
+eGs
+ulz
+rhs
 aSm
 aOh
 ayl
@@ -72478,13 +72642,13 @@ qWn
 azA
 aAG
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+efl
+hbi
+ulz
+ulz
+ulz
+ulz
+rhs
 aSm
 aOg
 tqk
@@ -72735,13 +72899,13 @@ unF
 awW
 asE
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+xhh
+eGs
+eGs
+eGs
+eWj
+qOU
 aSm
 asE
 awW
@@ -72992,13 +73156,13 @@ mIY
 vrz
 qCv
 aCK
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+lMh
+ulz
+qTA
+qTA
+qTA
+ulz
+lMh
 dvM
 tRr
 xJF
@@ -73249,13 +73413,13 @@ ayJ
 awW
 aEa
 aSm
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+qOU
+goL
+goL
+goL
+goL
+goL
+qOU
 aSm
 aSm
 awW
@@ -73506,13 +73670,13 @@ azg
 azB
 aSm
 aaa
-aaa
-aaa
-aaa
-cIg
-aaa
-aaa
-aaa
+qOU
+lLT
+dwK
+guM
+dwK
+pAS
+qOU
 aaa
 aSm
 aPt
