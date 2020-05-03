@@ -30,7 +30,7 @@
 		return FALSE
 	var/turf/other = get_step(source, ini_dir)
 	var/turf/other_below = other.below()
-	return other.can_zFall(src, levels, other, below)
+	return other.can_zFall(src, levels, other, other_below)
 
 /obj/structure/railing/built //Player constructed
 	anchored = FALSE
