@@ -73,6 +73,10 @@
 /obj/structure/sign/departments/medbay/alt
 	icon_state = "bluecross2"
 
+/obj/structure/sign/departments/stairs
+	name = "\improper STAIRS"
+	desc = "A sign labeling stairs"
+	icon_state = "stairs"
 
 /obj/structure/sign/departments/minsky/command
 	name = "Command Deck"

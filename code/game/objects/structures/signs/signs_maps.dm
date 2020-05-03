@@ -46,6 +46,81 @@
 	desc = "A direction sign, pointing out which way the Command department is."
 	icon_state = "direction_bridge"
 
+/obj/structure/sign/directions/stairs
+	name = "stairs"
+	desc = "A direction sign, pointing out which way the stairs are."
+	icon_state = "direction_stair"
+
+/obj/structure/sign/directions/upstairs/science
+	name = "science department"
+	desc = "A direction sign, telling you the Science department is upstairs."
+	icon_state = "upstairs_sci"
+
+/obj/structure/sign/directions/upstairs/engineering
+	name = "engineering department"
+	desc = "A direction sign, telling you the Engineering department is upstairs."
+	icon_state = "upstairs_eng"
+
+/obj/structure/sign/directions/upstairs/security
+	name = "security department"
+	desc = "A direction sign, telling you the Security department is upstairs."
+	icon_state = "upstairs_sec"
+
+/obj/structure/sign/directions/upstairs/medical
+	name = "medical bay"
+	desc = "A direction sign, telling you the Medical Bay is upstairs."
+	icon_state = "upstairs_med"
+
+/obj/structure/sign/directions/upstairs/evac
+	name = "escape arm"
+	desc = "A direction sign, telling you the escape shuttle dock is upstairs."
+	icon_state = "upstairs_evac"
+
+/obj/structure/sign/directions/upstairs/supply
+	name = "cargo bay"
+	desc = "A direction sign, telling you the Cargo Bay is upstairs."
+	icon_state = "upstairs_supply"
+
+/obj/structure/sign/directions/upstairs/command
+	name = "command department"
+	desc = "A direction sign, telling you the Command department is upstairs."
+	icon_state = "upstairs_bridge"
+
+/obj/structure/sign/directions/downstairs/science
+	name = "science department"
+	desc = "A direction sign, telling you the Science department is downstairs."
+	icon_state = "downstairs_sci"
+
+/obj/structure/sign/directions/downstairs/engineering
+	name = "engineering department"
+	desc = "A direction sign, telling you the Engineering department is downstairs."
+	icon_state = "downstairs_eng"
+
+/obj/structure/sign/directions/downstairs/security
+	name = "security department"
+	desc = "A direction sign, telling you the Security department is downstairs."
+	icon_state = "downstairs_sec"
+
+/obj/structure/sign/directions/downstairs/medical
+	name = "medical bay"
+	desc = "A direction sign, telling you the Medical Bay is downstairs."
+	icon_state = "downstairs_med"
+
+/obj/structure/sign/directions/downstairs/evac
+	name = "escape arm"
+	desc = "A direction sign, telling you the escape shuttle dock is downstairs."
+	icon_state = "downstairs_evac"
+
+/obj/structure/sign/directions/downstairs/supply
+	name = "cargo bay"
+	desc = "A direction sign, telling you the Cargo Bay is downstairs."
+	icon_state = "downstairs_supply"
+
+/obj/structure/sign/directions/downstairs/command
+	name = "command department"
+	desc = "A direction sign, telling you the Command department is downstairs."
+	icon_state = "downstairs_bridge"
+
 //minsky variant direction signs
 
 /obj/structure/sign/directions/minsky/science

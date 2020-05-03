@@ -20,8 +20,8 @@
 	if(force_open_above)
 		force_open_above()
 		build_signal_listener()
-	update_surrounding()
 	AddComponent(/datum/component/vertical_parallax/stairs)
+	update_surrounding()
 	return ..()
 
 /obj/structure/stairs/Destroy()
@@ -56,9 +56,14 @@
 	return ..()
 
 /obj/structure/stairs/update_icon()
+	var/datum/component/vertical_parallax/stairs/S = GetComponent(/datum/component/vertical_parallax/stairs)
 	if(isTerminator())
+		if(!S)
+			AddComponent(/datum/component/vertical_parallax/stairs)
 		icon_state = "stairs_t"
 	else
+		if(S)
+			S.RemoveComponent()
 		icon_state = "stairs"
 
 /obj/structure/stairs/proc/stair_ascend(atom/movable/AM)
