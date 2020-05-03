@@ -348,7 +348,7 @@
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)
 			if (agegate && type == "note" && isnum(nsd) && isnum(nfd) && nsd > nfd)
-				var/alpha = CLAMP(100 - (age - nfd) * (85 / (nsd - nfd)), 15, 100)
+				var/alpha = clamp(100 - (age - nfd) * (85 / (nsd - nfd)), 15, 100)
 				if (alpha < 100)
 					if (alpha <= 15)
 						if (skipped)
@@ -448,7 +448,7 @@
 	else if(!type && !target_ckey && !index)
 		output += "<center></a> <a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
-	usr << browse({"<!DOCTYPE html><html><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /></head><body>[jointext(output, "")]</body></html>"}, "window=browse_messages;size=900x500")
+	usr << browse({"<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /></head><body>[jointext(output, "")]</body></html>"}, "window=browse_messages;size=900x500")
 
 /proc/get_message_output(type, target_ckey)
 	if(!SSdbcore.Connect())
