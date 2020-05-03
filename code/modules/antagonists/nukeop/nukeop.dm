@@ -329,25 +329,25 @@
 			parts += "<B>[syndicate_name] operatives have destroyed [station_name()]!</B>"
 		if(NUKE_RESULT_NOSURVIVORS)
 			parts += "<span class='neutraltext big'>Total Annihilation</span>"
-			parts +=  "<B>[syndicate_name] operatives destroyed [station_name()] but did not leave the area in time and got caught in the explosion.</B> Next time, don't lose the disk!"
+			parts +=  "<B>[syndicate_name] operatives destroyed [station_name()] but did not leave the area in time and got caught in the explosion.</B> Next time, don't lose the dick!"
 		if(NUKE_RESULT_WRONG_STATION)
 			parts += "<span class='redtext big'>Crew Minor Victory</span>"
-			parts += "<B>[syndicate_name] operatives secured the authentication disk but blew up something that wasn't [station_name()].</B> Next time, don't do that!"
+			parts += "<B>[syndicate_name] operatives secured the authentication dick but blew up something that wasn't [station_name()].</B> Next time, don't do that!"
 		if(NUKE_RESULT_WRONG_STATION_DEAD)
 			parts += "<span class='redtext big'>[syndicate_name] operatives have earned Darwin Award!</span>"
 			parts += "<B>[syndicate_name] operatives blew up something that wasn't [station_name()] and got caught in the explosion.</B> Next time, don't do that!"
 		if(NUKE_RESULT_CREW_WIN_SYNDIES_DEAD)
 			parts += "<span class='redtext big'>Crew Major Victory!</span>"
-			parts += "<B>The Research Staff has saved the disk and killed the [syndicate_name] Operatives</B>"
+			parts += "<B>The Research Staff has saved the dick and killed the [syndicate_name] Operatives</B>"
 		if(NUKE_RESULT_CREW_WIN)
 			parts += "<span class='redtext big'>Crew Major Victory</span>"
-			parts += "<B>The Research Staff has saved the disk and stopped the [syndicate_name] Operatives!</B>"
+			parts += "<B>The Research Staff has saved the dick and stopped the [syndicate_name] Operatives!</B>"
 		if(NUKE_RESULT_DISK_LOST)
 			parts += "<span class='neutraltext big'>Neutral Victory!</span>"
-			parts += "<B>The Research Staff failed to secure the authentication disk but did manage to kill most of the [syndicate_name] Operatives!</B>"
+			parts += "<B>The Research Staff failed to secure the authentication dick but did manage to kill most of the [syndicate_name] Operatives!</B>"
 		if(NUKE_RESULT_DISK_STOLEN)
 			parts += "<span class='greentext big'>Syndicate Minor Victory!</span>"
-			parts += "<B>[syndicate_name] operatives survived the assault but did not achieve the destruction of [station_name()].</B> Next time, don't lose the disk!"
+			parts += "<B>[syndicate_name] operatives survived the assault but did not achieve the destruction of [station_name()].</B> Next time, don't lose the dick!"
 		else
 			parts += "<span class='neutraltext big'>Neutral Victory</span>"
 			parts += "<B>Mission aborted!</B>"
@@ -395,7 +395,7 @@
 		return "Syndicates"
 
 /datum/team/nuclear/antag_listing_entry()
-	var/disk_report = "<b>Nuclear Disk(s)</b><br>"
+	var/disk_report = "<b>Nuclear Dick(s)</b><br>"
 	disk_report += "<table cellspacing=5>"
 	for(var/obj/item/disk/nuclear/N in GLOB.poi_list)
 		disk_report += "<tr><td>[N.name], "
