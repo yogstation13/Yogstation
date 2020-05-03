@@ -2269,9 +2269,9 @@
 "hF" = (
 /obj/structure/table,
 /obj/machinery/computer/pod/old{
+	id = "derelict_gun";
 	name = "ProComp IIe";
-	pixel_y = 7;
-	id = "derelict_gun"
+	pixel_y = 7
 	},
 /turf/open/floor/plasteel/chapel,
 /area/ruin/space/derelict/medical/chapel)
