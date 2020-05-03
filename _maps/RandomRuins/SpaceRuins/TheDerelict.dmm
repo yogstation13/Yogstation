@@ -2269,9 +2269,9 @@
 "hF" = (
 /obj/structure/table,
 /obj/machinery/computer/pod/old{
+	id = "derelict_gun";
 	name = "ProComp IIe";
-	pixel_y = 7;
-	id = "derelict_gun"
+	pixel_y = 7
 	},
 /turf/open/floor/plasteel/chapel,
 /area/ruin/space/derelict/medical/chapel)
@@ -2324,6 +2324,10 @@
 	icon_state = "damaged4"
 	},
 /area/ruin/space/derelict/singularity_engine)
+"hO" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "hP" = (
 /turf/open/floor/plating,
 /area/ruin/space/derelict/arrival)
@@ -2433,6 +2437,15 @@
 	dir = 8
 	},
 /area/ruin/space/derelict/medical/chapel)
+"ih" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "ii" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 8
@@ -2802,12 +2815,6 @@
 /obj/item/pen,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/arrival)
-"ju" = (
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
-/area/ruin/space/derelict/medical/chapel)
 "jv" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -3774,6 +3781,13 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
+"mS" = (
+/obj/machinery/button/door{
+	id = "admineventdoorbuild"
+	},
+/obj/structure/table,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "mT" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/airless,
@@ -4372,9 +4386,46 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
+"oV" = (
+/obj/machinery/computer/teleporter,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
+"qF" = (
+/obj/machinery/recharge_station,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"rp" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/button/door{
+	id = "admineventdoorbuild1"
+	},
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"rt" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "rK" = (
 /turf/template_noop,
 /area/ruin/space/derelict/medical)
+"rL" = (
+/obj/structure/table,
+/obj/item/clothing/suit/space/hardsuit,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"rM" = (
+/obj/structure/chair,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
+"sS" = (
+/obj/machinery/light,
+/obj/structure/statue/diamond/captain,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "tS" = (
 /turf/template_noop,
 /area/ruin/unpowered/no_grav)
@@ -4388,6 +4439,10 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
+"wr" = (
+/obj/machinery/teleport/hub,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "wK" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
@@ -4399,15 +4454,37 @@
 	},
 /turf/template_noop,
 /area/ruin/unpowered/no_grav)
+"xp" = (
+/obj/machinery/teleport/station,
+/obj/machinery/light,
+/obj/machinery/light,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
+"yH" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "Av" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary/port)
+"AZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "Bx" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
 	},
 /area/space/nearstation)
+"CL" = (
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "DE" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Airlock"
@@ -4417,11 +4494,46 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/derelict/arrival)
+"Ej" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/poddoor{
+	id = "admineventdoorbuild1"
+	},
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "Ev" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
 /area/space/nearstation)
+"EJ" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"ES" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"FR" = (
+/obj/structure/table,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"Ge" = (
+/obj/structure/table,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "Gu" = (
 /obj/structure/grille,
 /turf/template_noop,
@@ -4430,6 +4542,13 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/ruin/unpowered/no_grav)
+"GU" = (
+/obj/machinery/door/airlock{
+	name = "Airlock"
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating/airless,
+/area/ruin/space/derelict/medical/chapel)
 "Ih" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
@@ -4440,6 +4559,33 @@
 	icon_state = "floorscorched2"
 	},
 /area/space/nearstation)
+"IP" = (
+/obj/machinery/autolathe,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"IR" = (
+/obj/structure/tank_dispenser,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"Jq" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/chapel,
+/area/ruin/space/derelict/medical/chapel)
+"JA" = (
+/obj/structure/table,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
+"JD" = (
+/obj/machinery/space_heater,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"KJ" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "KN" = (
 /turf/closed/wall,
 /area/ruin/space/derelict/hallway/primary/port)
@@ -4458,15 +4604,98 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/derelict/arrival)
+"Lq" = (
+/obj/machinery/door/poddoor{
+	id = "admineventdoorbuild1"
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "Lv" = (
 /turf/closed/wall,
 /area/space/nearstation)
+"MV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"Nl" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/template_noop,
+/area/centcom)
+"NY" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/indestructible/hoteltile,
+/area/centcom)
+"NZ" = (
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"Og" = (
+/obj/structure/table,
+/obj/machinery/button/door{
+	id = "admineventdoorbuild2"
+	},
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "Oj" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/bridge/access)
+"Op" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/electrical,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "OT" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/hallway/primary/port)
+"Pt" = (
+/obj/structure/table,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"PY" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/electrical,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"Qa" = (
+/obj/machinery/door/poddoor{
+	id = "admineventdoorbuild1"
+	},
+/turf/open/floor/plating/airless,
+/area/centcom)
+"Qj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"QV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "Rd" = (
 /obj/item/stack/cable_coil/red,
 /turf/open/floor/plasteel/airless{
@@ -4484,21 +4713,64 @@
 "Sv" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
+"SU" = (
+/obj/machinery/shieldgen,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"SV" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/ruin/space/derelict/medical/chapel)
 "Tm" = (
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary/port)
+"Up" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/derelict/medical/chapel)
 "Uz" = (
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"UJ" = (
+/obj/machinery/door/poddoor{
+	id = "admineventdoorbuild2"
+	},
+/turf/closed/indestructible/fakeglass,
+/area/centcom)
+"Vp" = (
+/obj/machinery/door/poddoor{
+	id = "admineventdoorbuild"
+	},
+/turf/open/indestructible/hoteltile,
+/area/centcom)
 "Vz" = (
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
+"VJ" = (
+/obj/structure/statue/diamond/ai2,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
+"WY" = (
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating/airless,
+/area/ruin/space/derelict/medical/chapel)
+"WZ" = (
+/turf/closed/indestructible/opshuttle,
+/area/centcom)
 "Xq" = (
 /obj/item/stack/cable_coil/cut/red,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
 /area/ruin/space/derelict/singularity_engine)
+"Yp" = (
+/turf/open/indestructible/hoteltile,
+/area/centcom)
+"Zb" = (
+/obj/machinery/pipedispenser,
+/turf/open/indestructible/hoteltile,
+/area/ruin/space/derelict/medical/chapel)
 "ZB" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -4691,18 +4963,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
 aa
 aa
 aa
@@ -4797,9 +5069,6 @@ iU
 ie
 hR
 jL
-aY
-aY
-ZB
 aa
 aa
 aa
@@ -4807,16 +5076,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nl
+WZ
+ES
+ES
+Op
+CL
+CL
+CL
+MV
+JD
+Pt
+FR
+WZ
 aa
 aa
 aa
@@ -4910,9 +5182,6 @@ iV
 ij
 hS
 jL
-gP
-gH
-ay
 aa
 aa
 aa
@@ -4920,19 +5189,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nl
+WZ
+ES
+ES
+PY
+CL
+Zb
+CL
+EJ
+JD
+CL
+FR
+WZ
+UJ
+UJ
+WZ
 aa
 aa
 aa
@@ -5021,10 +5293,8 @@ ix
 iJ
 iW
 ii
-hT
+SV
 jL
-ay
-dE
 aa
 aa
 aa
@@ -5032,21 +5302,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nl
+WZ
+ES
+ES
+FR
+CL
+CL
+CL
+FR
+JD
+CL
+FR
+WZ
+NY
+NY
+WZ
+WZ
 aa
 aa
 aa
@@ -5134,33 +5406,33 @@ iw
 iK
 iV
 ij
-ju
+hS
 jL
-ZB
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+jL
+WY
+WY
+WY
+WY
+WY
+WY
+WZ
+WZ
+Qj
+ES
+FR
+FR
+CL
+FR
+FR
+JD
+CL
+FR
+WZ
+JA
+Yp
+mS
+WZ
+WZ
 aa
 aa
 aa
@@ -5249,31 +5521,31 @@ hT
 ii
 hT
 jL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+jL
+Up
+Up
+Up
+Up
+Up
+Up
+Qa
+Ej
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+Vp
+Yp
+Yp
+rM
+oV
+UJ
 aa
 aa
 aa
@@ -5362,31 +5634,31 @@ iX
 ij
 hS
 jL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+GU
+Up
+Up
+Up
+Up
+Up
+Up
+Qa
+Ej
+CL
+CL
+CL
+VJ
+CL
+CL
+IR
+CL
+CL
+sS
+WZ
+Yp
+Yp
+Yp
+xp
+UJ
 aa
 aa
 aa
@@ -5475,31 +5747,31 @@ hU
 ii
 hT
 jL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+jL
+Up
+Up
+Up
+Up
+Up
+Up
+Qa
+Lq
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+CL
+Vp
+Yp
+Yp
+Yp
+wr
+UJ
 aa
 aa
 aa
@@ -5585,34 +5857,34 @@ ij
 hS
 ij
 hS
-ij
+Jq
 hS
 jL
-ZB
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+jL
+WY
+WY
+WY
+WY
+WY
+WY
+WZ
+WZ
+rp
+CL
+KJ
+KJ
+CL
+yH
+yH
+SU
+CL
+rL
+WZ
+JA
+Yp
+Og
+WZ
+WZ
 aa
 aa
 aa
@@ -5701,9 +5973,6 @@ gX
 gX
 jv
 jL
-ZB
-ZB
-ay
 aa
 aa
 aa
@@ -5711,20 +5980,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nl
+WZ
+hO
+CL
+FR
+CL
+CL
+CL
+Ge
+SU
+CL
+rL
+WZ
+ih
+ih
+WZ
+WZ
 aa
 aa
 aa
@@ -5814,9 +6086,6 @@ hH
 gX
 jw
 jL
-dE
-ay
-ZB
 aa
 aa
 aa
@@ -5824,19 +6093,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nl
+WZ
+CL
+CL
+NZ
+CL
+IP
+CL
+rt
+SU
+CL
+rL
+WZ
+UJ
+UJ
+WZ
 aa
 aa
 aa
@@ -5934,19 +6206,19 @@ aY
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nl
+WZ
+qF
+qF
+QV
+CL
+CL
+CL
+AZ
+SU
+CL
+rL
+WZ
 aa
 aa
 aa
@@ -6047,18 +6319,18 @@ jL
 aa
 aa
 aa
-aa
-ZB
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
+WZ
 aa
 aa
 aa
