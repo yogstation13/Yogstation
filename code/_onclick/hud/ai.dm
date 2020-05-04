@@ -281,3 +281,13 @@
 	using = new /obj/screen/ai/add_multicam()
 	using.screen_loc = ui_ai_add_multicam
 	static_inventory += using
+	
+// Move up
+	using = new /obj/screen/move_up
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
+// Move down
+	using = new /obj/screen/move_down
+	using.screen_loc = ui_multiz
+	static_inventory += using

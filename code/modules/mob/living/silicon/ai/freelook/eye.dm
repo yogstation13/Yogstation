@@ -137,8 +137,8 @@
 	if(user.cooldown && user.cooldown < world.timeofday) // 3 seconds
 		user.sprint = initial
 
-	for(var/i = 0; i < max(user.sprint, initial); i += 20)
-		var/turf/step = get_turf(get_step(user.eyeobj, direct))
+	for(var/i = 0; i < ((direct & (UP|DOWN)) ? 1 : max(user.sprint, initial)); i += 20)
+		var/turf/step = get_turf(get_step_multiz(user.eyeobj, direct))
 		if(step)
 			user.eyeobj.setLoc(step)
 

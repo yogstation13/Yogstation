@@ -187,6 +187,10 @@
 				return
 	return ..()
 
+/mob/living/silicon/ai/zMove(direct)
+	if(client)
+		return client.AIMove(0,direct,src)
+
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
 	GLOB.shuttle_caller_list -= src
