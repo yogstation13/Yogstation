@@ -60,15 +60,18 @@
 	adjust_zoom(user)
 
 /obj/item/camera/attack_self(mob/user)
-	if(description_mode)
-		to_chat(user, "<span class='notice'>You set the [src] to standard mode.</span>")
-		description_mode = FALSE
-		return
-	else
+	if(!description_mode && can_customise)
 		to_chat(user, "<span class='notice'>You set the [src] to description mode.</span>")
 		description_mode = TRUE
 		return
-	
+	else
+		if(!can_customise)
+			to_chat(user, "<span class='notice'>This [src] does not have additional modes.</span>")
+		else
+			to_chat(user, "<span class='notice'>You set the [src] to standard mode.</span>")
+			description_mode = FALSE
+	return
+
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
 
