@@ -15,27 +15,27 @@
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_NECK
 	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
-	var/flash_enabled = TRUE
+	var/obj/item/disk/holodisk/disk
+	var/default_picture_name
+	var/description_mode = FALSE
+	var/blending = FALSE		//lets not take pictures while the previous is still processing!
+	var/on = TRUE // used to toggle the state during use.
 	var/state_on = "camera"
 	var/state_off = "camera_off"
 	var/pictures_max = 10
-	var/pictures_left = 10
-	var/on = TRUE
+	var/pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
 	var/cooldown = 64
-	var/blending = FALSE		//lets not take pictures while the previous is still processing!
 	var/see_ghosts = CAMERA_NO_GHOSTS //for the spoop of it
-	var/obj/item/disk/holodisk/disk
 	var/sound/custom_sound
-	var/silent = FALSE
-	var/picture_size_x = 2
-	var/picture_size_y = 2
+	var/picture_size_x = 2 // default x
+	var/picture_size_y = 2 // default y
 	var/picture_size_x_min = 1
 	var/picture_size_y_min = 1
 	var/picture_size_x_max = 4
 	var/picture_size_y_max = 4
+	var/silent = FALSE
 	var/can_customise = TRUE
-	var/default_picture_name
-	var/description_mode = FALSE
+	var/flash_enabled = TRUE
 
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
