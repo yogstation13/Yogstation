@@ -58,7 +58,7 @@
 /obj/vehicle/ridden/scooter/skateboard/Initialize()
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-	D.vehicle_move_delay = 1.5
+	D.vehicle_move_delay = 0.65 ///Change this value to change how fast the skateboard goes. Lower = Faster
 	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)
 	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
