@@ -24,7 +24,7 @@
 		return
 
 	var/obj/item/stack/sheet/s
-	var/dat
+	var/dat = text("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>")
 
 	dat += text("<b>Stacking unit console</b><br><br>")
 
@@ -34,6 +34,8 @@
 			dat += text("[capitalize(s.name)]: [s.amount] <A href='?src=[REF(src)];release=[s.type]'>Release</A><br>")
 
 	dat += text("<br>Stacking: [machine.stack_amt]<br><br>")
+
+	dat += text("</BODY></HTML>")
 
 	user << browse(dat, "window=console_stacking_machine")
 
@@ -149,7 +151,7 @@
 	if(W.tool_behaviour == TOOL_WRENCH && panel_open)
 		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
 		if(stsize)
-			stack_amt = CLAMP(stsize,1,50)
+			stack_amt = clamp(stsize,1,50)
 			to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>")
 			return
 

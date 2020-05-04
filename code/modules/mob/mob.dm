@@ -64,11 +64,10 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	var/t =	"<span class='notice'>Coordinates: [x],[y] \n</span>"
-	t +=	"<span class='danger'>Temperature: [environment.temperature] \n</span>"
-	for(var/id in environment.gases)
-		var/gas = environment.gases[id]
-		if(gas[MOLES])
-			t+="<span class='notice'>[gas[GAS_META][META_GAS_NAME]]: [gas[MOLES]] \n</span>"
+	t +=	"<span class='danger'>Temperature: [environment.return_temperature()] \n</span>"
+	for(var/id in environment.get_gases())
+		if(environment.get_moles(id))
+			t+="<span class='notice'>[GLOB.meta_gas_info[id][META_GAS_NAME]]: [environment.get_moles(id)] \n</span>"
 
 	to_chat(usr, t)
 
@@ -80,7 +79,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type & 1 && eye_blind )//Vision related
@@ -260,7 +259,7 @@
 /mob/proc/reset_perspective(atom/A)
 	if(client)
 		if(A)
-			if(ismovableatom(A))
+			if(ismovable(A))
 				//Set the the thing unless it's us
 				if(A != src)
 					client.perspective = EYE_PERSPECTIVE
@@ -290,6 +289,16 @@
 
 /mob/proc/show_inv(mob/user)
 	return
+
+/mob/verb/giveitem(atom/A as mob in range(1))
+	set name = "Give"
+	set category = "IC"
+	if(!iscarbon(src))
+		to_chat(src, "<span class='warning'>You can't give items!</span>")
+		return
+	if(A && A != src && get_dist(src, A) < 2)
+		var/mob/living/carbon/C = src
+		C.give()
 
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
@@ -390,17 +399,17 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
-	
+
 	if(memory_amt > 50)
 		return
 
 	if(memory_amt == 50)
 		log_game("[key_name(src)] might be trying to crash the server by spamming memories, rate-limiting them.")
 		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] might be trying to crash the server by spamming memories, rate-limiting them.</span>")
-		
+
 	memory_amt++
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
 
 	if(mind)

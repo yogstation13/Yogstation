@@ -66,7 +66,7 @@
 		var/obj/O = A
 		if(ObjBump(O))
 			return
-	if(ismovableatom(A))
+	if(ismovable(A))
 		var/atom/movable/AM = A
 		if(PushAM(AM, move_force))
 			return
@@ -848,7 +848,7 @@
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
-	var/loc_temp = environment ? environment.temperature : T0C
+	var/loc_temp = environment ? environment.return_temperature() : T0C
 	if(isobj(loc))
 		var/obj/oloc = loc
 		var/obj_temp = oloc.return_temperature()
@@ -1026,7 +1026,7 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
+	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 

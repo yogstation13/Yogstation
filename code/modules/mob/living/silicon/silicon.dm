@@ -272,7 +272,7 @@
 
 /mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
 
-	var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>"
+	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 
 	if (laws.devillaws && laws.devillaws.len)
 		for(var/index = 1, index <= laws.devillaws.len, index++)
@@ -322,7 +322,7 @@
 				lawcheck[number+1] = "Yes"
 			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> <font color='#990099'>[law]</font><BR>"}
 			number++
-	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A>"}
+	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
 
 	usr << browse(list, "window=laws")
 
