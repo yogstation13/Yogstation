@@ -130,7 +130,7 @@
 			. += "It has [pictures_left] photos left." 
 	if(photographer)
 		. += "The [src] lens is set for a [picture_size_x] by [picture_size_y] picture."
-		. += "The [src] is set on the [camera_mode] mode."
+		. += "The [src] is set to the [camera_mode] mode."
 
 //user can be atom or mob
 /obj/item/camera/proc/can_target(atom/target, mob/user, prox_flag)
