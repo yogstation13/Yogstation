@@ -100,7 +100,12 @@
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	. += "It has [pictures_left] photos left."
+	if(!user.canUseTopic(src, BE_CLOSE)) // so you're telling me you're able to see how many photo's are left inside the camera from a distance?
+		return
+		if(pictures_left == 0)
+			. += "The [src] is empty."
+	else
+		. += "It has [pictures_left] photos left."
 
 //user can be atom or mob
 /obj/item/camera/proc/can_target(atom/target, mob/user, prox_flag)
