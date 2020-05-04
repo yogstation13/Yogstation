@@ -60,6 +60,11 @@
 		if(ACTION_TARGETLLEG)
 			user.body_l_leg()
 			return
+		if(ACTION_GIVE)
+			var/mob/living/carbon/O = src
+			if(O)
+				O.give()
+			return
 
 	return ..()
 

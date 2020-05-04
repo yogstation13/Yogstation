@@ -78,6 +78,8 @@
 #define MASSIVE_OBJ_LAYER 11
 #define POINT_LAYER 12
 
+#define CHAT_LAYER 12.5
+
 #define LIGHTING_PLANE 15
 #define LIGHTING_LAYER 15
 

@@ -267,6 +267,12 @@
 	icon_state = "rndband"
 	item_color = "rndband"
 
+/obj/item/clothing/accessory/armband/service
+	name = "service guard armband"
+	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green."
+	icon_state = "serviceband"
+	item_color = "serviceband"
+
 /obj/item/clothing/accessory/armband/hydro
 	name = "hydroponics guard armband"
 	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green and blue."
