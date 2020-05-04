@@ -102,8 +102,8 @@
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE)) // so you're telling me you're able to see how many photo's are left inside the camera from a distance?
 		return
-		if(pictures_left == 0)
-			. += "The [src] is empty."
+	if(pictures_left == 0)
+		. += "The [src] is empty."
 	else
 		. += "It has [pictures_left] photos left."
 
