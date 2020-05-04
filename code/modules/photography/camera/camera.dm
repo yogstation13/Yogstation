@@ -16,6 +16,7 @@
 	slot_flags = ITEM_SLOT_NECK
 	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
 	var/obj/item/disk/holodisk/disk
+	var/pictures_left
 	var/default_picture_name
 	var/description_mode = FALSE
 	var/blending = FALSE		//lets not take pictures while the previous is still processing!
@@ -23,7 +24,6 @@
 	var/state_on = "camera"
 	var/state_off = "camera_off"
 	var/pictures_max = 10
-	var/pictures_left = 10
 	var/cooldown = 64
 	var/see_ghosts = CAMERA_NO_GHOSTS //for the spoop of it
 	var/sound/custom_sound
@@ -36,6 +36,14 @@
 	var/silent = FALSE
 	var/can_customise = TRUE
 	var/flash_enabled = TRUE
+	var/start_full = TRUE // does the camera spawn full of film?
+
+/obj/item/camera/Initialize()
+	. = ..()
+	if(start_full)
+		pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
+	else
+		pictures_left = 0
 
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
