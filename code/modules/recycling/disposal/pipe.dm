@@ -33,7 +33,7 @@
 		initialize_dirs = NONE
 
 	dpdir = NONE
-	if(initialize_dirs != DISP_DIR_NONE)
+	if(!(initialize_dirs & DISP_DIR_NONE))
 		dpdir |= dir
 
 	if(initialize_dirs & DISP_DIR_LEFT)

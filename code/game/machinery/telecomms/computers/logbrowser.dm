@@ -163,9 +163,10 @@
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 
 				else
-					for(var/obj/machinery/telecomms/server/T in urange(25, src))
-						if(T.network == network)
-							servers.Add(T)
+					for(var/sel_z in get_multiz_accessible_levels(z))
+						for(var/obj/machinery/telecomms/server/T in urange(25, locate(x, y, sel_z)))
+							if(T.network == network)
+								servers.Add(T)
 
 					if(!servers.len)
 						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font color>"

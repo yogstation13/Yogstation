@@ -77,7 +77,7 @@
 		return dir
 
 	dpdir = 0
-	if(initialize_dirs != DISP_DIR_NONE)
+	if(!(initialize_dirs & DISP_DIR_NONE))
 		dpdir |= dir
 
 	if(initialize_dirs & DISP_DIR_LEFT)
