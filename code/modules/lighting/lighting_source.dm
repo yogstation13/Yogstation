@@ -110,7 +110,7 @@
 // If you're wondering what's with the backslashes, the backslashes cause BYOND to not automatically end the line.
 // As such this all gets counted as a single line.
 // The braces and semicolons are there to be able to do this on a single line.
-#define LUM_FALLOFF(C, T) (1 - CLAMP01(sqrt((C.x - T.x) ** 2 + (C.y - T.y) ** 2 + LIGHTING_HEIGHT) / max(1, light_range)))
+#define LUM_FALLOFF(C, T) ((1 - CLAMP01(sqrt((C.x - T.x) ** 2 + (C.y - T.y) ** 2 + LIGHTING_HEIGHT) / max(1, light_range))) / (abs(C.z - T.z) + 1))
 
 #define APPLY_CORNER(C)                      \
 	. = LUM_FALLOFF(C, pixel_turf);          \
@@ -133,6 +133,12 @@
 		. * applied_lum_g,                   \
 		. * applied_lum_b                    \
 	);
+
+#define AFFECT_LIGHTING_TURF(T)\
+	for (thing in T.get_corners(source_turf)){\
+		C = thing;\
+		corners[C] = 0;};\
+	turfs += T;\
 
 // This is the define used to calculate falloff.
 
@@ -230,13 +236,19 @@
 	var/datum/lighting_corner/C
 	var/turf/T
 	if (source_turf)
+		var/ceil_range = CEILING(light_range, 1)
 		var/oldlum = source_turf.luminosity
-		source_turf.luminosity = CEILING(light_range, 1)
-		for(T in view(CEILING(light_range, 1), source_turf))
-			for (thing in T.get_corners(source_turf))
-				C = thing
-				corners[C] = 0
-			turfs += T
+		source_turf.luminosity = ceil_range
+		for(T in view(ceil_range, source_turf))
+			while(istype(T, /turf/open/openspace))
+				AFFECT_LIGHTING_TURF(T)
+				T = T.below()
+			AFFECT_LIGHTING_TURF(T)
+		var/turf/open/openspace/above_source = source_turf.above()
+		while(istype(above_source))
+			for(T in view(ceil_range, above_source))
+				AFFECT_LIGHTING_TURF(T)
+			above_source = above_source.above()
 		source_turf.luminosity = oldlum
 
 	LAZYINITLIST(affecting_turfs)
@@ -296,3 +308,4 @@
 #undef LUM_FALLOFF
 #undef REMOVE_CORNER
 #undef APPLY_CORNER
+#undef AFFECT_LIGHTING_TURF
