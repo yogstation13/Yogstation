@@ -18,7 +18,7 @@
 	var/obj/item/disk/holodisk/disk
 	var/pictures_left
 	var/default_picture_name
-	var/description_mode = FALSE
+	var/camera_mode = "standard"
 	var/blending = FALSE		//lets not take pictures while the previous is still processing!
 	var/on = TRUE // used to toggle the state during use.
 	var/state_on = "camera"
@@ -36,7 +36,7 @@
 	var/silent = FALSE
 	var/can_customise = TRUE
 	var/flash_enabled = TRUE
-	var/start_full = TRUE // does the camera spawn full of film?
+	var/start_full = TRUE // does the camera spawn full of film
 
 /obj/item/camera/Initialize()
 	. = ..()
@@ -68,16 +68,16 @@
 	adjust_zoom(user)
 
 /obj/item/camera/attack_self(mob/user)
-	if(!description_mode && can_customise)
+	if(camera_mode == "standard" && can_customise)
 		to_chat(user, "<span class='notice'>You set the [src] to description mode.</span>")
-		description_mode = TRUE
+		camera_mode = "description"
 		return
 	else
 		if(!can_customise)
 			to_chat(user, "<span class='notice'>This [src] does not have additional modes.</span>")
 		else
 			to_chat(user, "<span class='notice'>You set the [src] to standard mode.</span>")
-			description_mode = FALSE
+			camera_mode = "standard"
 	return
 
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
@@ -110,10 +110,27 @@
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE)) // so you're telling me you're able to see how many photo's are left inside the camera from a distance?
 		return
+	var/carbon = FALSE
+	var/photographer = FALSE
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		var/carbon = TRUE
+		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
+			photographer = TRUE
+
 	if(pictures_left == 0)
 		. += "The [src] is empty."
 	else
-		. += "It has [pictures_left] photos left."
+		if(carbon)
+			if (photographer)
+				. += "It has [pictures_left] photos left."
+			else
+				. += "It has photos left."
+		else
+			. += "It has [pictures_left] photos left." 
+	if(photographer)
+		. += "The [src] lens is set for a [picture_size_x] by [picture_size_y] picture."
+		. += "The [src] is set on the [camera_mode] mode."
 
 //user can be atom or mob
 /obj/item/camera/proc/can_target(atom/target, mob/user, prox_flag)
@@ -234,7 +251,7 @@
 		user.put_in_hands(p)
 		pictures_left--
 		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
-		if(can_customise && description_mode)
+		if(can_customise && camera_mode == "description")
 			var/customise = "No"
 			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
 			if(customise == "Yes")
