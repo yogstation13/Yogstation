@@ -35,6 +35,7 @@
 	var/picture_size_y_max = 4
 	var/can_customise = TRUE
 	var/default_picture_name
+	var/description_mode = FALSE
 
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
@@ -58,6 +59,16 @@
 		return
 	adjust_zoom(user)
 
+/obj/item/camera/attack_self(mob/user)
+	if(description_mode)
+		to_chat(user, "<span class='notice'>You set the [src] to standard mode.</span>")
+		description_mode = FALSE
+		return
+	else
+		to_chat(user, "<span class='notice'>You set the [src] to description mode.</span>")
+		description_mode = TRUE
+		return
+	
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
 
@@ -208,21 +219,21 @@
 		pictures_left--
 		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
 		var/customise = "No"
-		if(can_customise)
+		if(can_customise && description_mode)
 			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
-		if(customise == "Yes")
-			var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
-			var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
-			var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
-			if(name1)
-				picture.picture_name = name1
-			if(desc1)
-				picture.picture_desc = "[desc1] - [picture.picture_desc]"
-			if(caption)
-				picture.caption = caption
-		else
-			if(default_picture_name)
-				picture.picture_name = default_picture_name
+			if(customise == "Yes")
+				var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
+				var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
+				var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
+				if(name1)
+					picture.picture_name = name1
+				if(desc1)
+					picture.picture_desc = "[desc1] - [picture.picture_desc]"
+				if(caption)
+					picture.caption = caption
+			else
+				if(default_picture_name)
+					picture.picture_name = default_picture_name
 
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
