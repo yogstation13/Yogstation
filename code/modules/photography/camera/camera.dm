@@ -110,18 +110,18 @@
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE)) // so you're telling me you're able to see how many photo's are left inside the camera from a distance?
 		return
-	var/carbon = FALSE
+	var/iscarbon = FALSE
 	var/photographer = FALSE
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
-		var/carbon = TRUE
+		iscarbon = TRUE
 		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
 			photographer = TRUE
 
 	if(pictures_left == 0)
 		. += "The [src] is empty."
 	else
-		if(carbon)
+		if(iscarbon)
 			if (photographer)
 				. += "It has [pictures_left] photos left."
 			else
