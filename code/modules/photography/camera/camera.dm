@@ -23,7 +23,7 @@
 	var/state_on = "camera"
 	var/state_off = "camera_off"
 	var/pictures_max = 10
-	var/pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
+	var/pictures_left = 10
 	var/cooldown = 64
 	var/see_ghosts = CAMERA_NO_GHOSTS //for the spoop of it
 	var/sound/custom_sound
