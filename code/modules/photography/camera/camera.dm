@@ -221,8 +221,8 @@
 		user.put_in_hands(p)
 		pictures_left--
 		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
-		var/customise = "No"
 		if(can_customise && description_mode)
+			var/customise = "No"
 			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
 			if(customise == "Yes")
 				var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
