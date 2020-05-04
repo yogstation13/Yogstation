@@ -112,7 +112,7 @@
 		return
 	var/iscarbon = FALSE
 	var/photographer = FALSE
-	if(istype(user,/mob/living/carbon/human))
+	if(istype(user,/mob/living/carbon))
 		var/mob/living/carbon/human/H = user
 		iscarbon = TRUE
 		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
