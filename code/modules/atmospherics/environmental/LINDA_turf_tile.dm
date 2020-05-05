@@ -191,7 +191,7 @@
 
 /turf/proc/handle_decompression_floor_rip()
 /turf/open/floor/handle_decompression_floor_rip(sum)
-	if(sum > 20 && prob(CLAMP(sum / 10, 0, 30)))
+	if(sum > 20 && prob(clamp(sum / 10, 0, 30)))
 		remove_tile()
 
 /turf/open/process_cell(fire_count)
@@ -216,7 +216,7 @@
 		if (!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
 			M.experience_pressure_difference(pressure_difference * multiplier, pressure_direction, 0, pressure_specific_target)
 	if(pressure_difference > 100)
-		new /obj/effect/temp_visual/dir_setting/space_wind(src, pressure_direction, CLAMP(round(sqrt(pressure_difference) * 2), 10, 255))
+		new /obj/effect/temp_visual/dir_setting/space_wind(src, pressure_direction, clamp(round(sqrt(pressure_difference) * 2), 10, 255))
 
 /atom/movable/var/pressure_resistance = 10
 /atom/movable/var/last_high_pressure_movement_air_cycle = 0
@@ -231,13 +231,13 @@
 		move_prob = (pressure_difference/pressure_resistance*PROBABILITY_BASE_PRECENT)-PROBABILITY_OFFSET
 	move_prob += pressure_resistance_prob_delta
 	if (move_prob > PROBABILITY_OFFSET && prob(move_prob) && (move_resist != INFINITY) && (!anchored && (max_force >= (move_resist * MOVE_FORCE_PUSH_RATIO))) || (anchored && (max_force >= (move_resist * MOVE_FORCE_FORCEPUSH_RATIO))))
-		var/move_force = max_force * CLAMP(move_prob, 0, 100) / 100
+		var/move_force = max_force * clamp(move_prob, 0, 100) / 100
 		if(move_force > 4000)
 			// WALLSLAM HELL TIME OH BOY
 			var/turf/throw_turf = get_ranged_target_turf(get_turf(src), direction, round(move_force / 2000))
 			if(throw_target && (get_dir(src, throw_target) & direction))
 				throw_turf = get_turf(throw_target)
-			var/throw_speed = CLAMP(round(move_force / 2000), 1, 10)
+			var/throw_speed = clamp(round(move_force / 2000), 1, 10)
 			throw_at(throw_turf, move_force / 2000, throw_speed)
 		else
 			step(src, direction)

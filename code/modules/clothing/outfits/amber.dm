@@ -4,7 +4,7 @@
 
 /obj/item/clothing/head/beret/sec/amber_medic
 	name = "amber medic beret"
-	desc = "A white beret for the mundane life of a amber task force medic."
+	desc = "A white beret for the mundane life of an amber task force medic."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_ce"
@@ -12,7 +12,7 @@
 
 /obj/item/clothing/head/beret/corpsec/amber_commander
 	name = "amber commander beret"
-	desc = "A special black beret for the mundane life of a amber task force commander."
+	desc = "A special black beret for the mundane life of an amber task force commander."
 
 // amber task force vest loadouts
 // To note: each vest has 7 normal slots - Hopek

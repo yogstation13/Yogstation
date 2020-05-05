@@ -20,11 +20,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 
-	changed_maps = list("MinskyStation", "OmegaStation")
-
-/datum/job/virologist/proc/MinskyStationChanges()
-	total_positions = 2
-	spawn_positions = 2
+	changed_maps = list("OmegaStation")
 
 /datum/job/virologist/proc/OmegaStationChanges()
 	return TRUE
