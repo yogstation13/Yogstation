@@ -491,7 +491,7 @@
 	result += "<span class='header'>Security Officers:</span><br>"
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
-			result += "<b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "<span class='greentext'>survived</span> as a <b>[player.mind.assigned_role]</b>" : "<span class='redtext'>fell in the line of duty</span>"]<br>"
+			result += "<b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "<span class='greentext'>survived</span> as a <b>[player.mind.assigned_role]</b>" : "<span class='redtext'>fell in the line of duty</span> as a <b>[player.mind.assigned_role]</b>"]<br>"
 		else
 			continue
 
