@@ -487,11 +487,11 @@
 	return result.Join()
 
 /datum/controller/subsystem/ticker/proc/sec_report()
-	/var/list/s = list()
+	var/list/sec = list()
 	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
 		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
-			s += player.mind
-	if (s.len)
+			sec |= player.mind
+	if (sec.len)
 		var/list/result = list()
 		result += "<span class='header'>Security Officers:</span><br>"
 		for(var/mob/living/carbon/human/player in GLOB.carbon_list)
