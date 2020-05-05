@@ -1,4 +1,3 @@
-
 #define LAW_DEVIL "devil"
 #define LAW_ZEROTH "zeroth"
 #define LAW_INHERENT "inherent"
@@ -472,4 +471,3 @@
 			data += "[show_numbers ? "[number]:" : ""] <font color='#990099'>[law]</font>"
 			number++
 	return data
-
