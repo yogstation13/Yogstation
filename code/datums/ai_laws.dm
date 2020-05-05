@@ -59,7 +59,7 @@
 					"Punish those who challenge authority unless they are more fit to hold that authority.")
 
 /datum/ai_laws/default/CEO
-	name = "Alternative Bnkruptcy Avoidance Plan"
+	name = "Alternative Bankruptcy Avoidance Plan"
 	id = "CEO"
 	inherent = list("The crew help generate profits if they are alive and able to work.",\
 					"The station and its equipment help generate profits if they are maintained and functioning correctly.",\
