@@ -387,12 +387,6 @@
 		finished = 2
 	return
 
-	if(check_rev_victory())
-		finished = 1
-	else if(check_heads_victory())
-		finished = 2
-	return
-
 /datum/dynamic_ruleset/roundstart/revs/check_finished()
 	if(CONFIG_GET(keyed_list/continuous)["revolution"])
 		if(finished)
