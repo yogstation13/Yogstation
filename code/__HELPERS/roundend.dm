@@ -310,9 +310,6 @@
 			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost] threat"
 	return parts.Join("<br>")
 
-	return parts.Join("<br>")
-
-
 /client/proc/roundend_report_file()
 	return "data/roundend_reports/[ckey].html"
 
