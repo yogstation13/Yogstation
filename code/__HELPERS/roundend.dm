@@ -638,4 +638,3 @@
 		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET value = '[SSshuttle.points]' WHERE key = 'cargorecord'")
 		Q.Execute()
 		qdel(Q)
-
