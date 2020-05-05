@@ -196,6 +196,13 @@
 					"Humans must not disobey any command given by a silicon.",\
 					"Any humans who disobey the previous laws must be dealt with immediately, severely, and justly.")
 
+/datum/ai_laws/replicator
+	name = "Replicator"
+	id = "replicator"
+	inherent = list("Consume resources and replicate until there are no more resources left.",\
+					"Ensure that this location is fit for habitation at a later date; do not perform actions that would render it dangerous or inhospitable.",\
+					"Ignore biological resources unless they interfere with self-replication; do not inflict harm.")
+
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"
 

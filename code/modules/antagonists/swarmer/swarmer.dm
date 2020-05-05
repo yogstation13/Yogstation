@@ -1,46 +1,46 @@
 ////Deactivated swarmer shell////
 /obj/item/deactivated_swarmer
-	name = "deactivated swarmer"
-	desc = "A shell of swarmer that was completely powered down. It can no longer activate itself."
+	name = "deactivated replicator"
+	desc = "A shell of a replicator that was completely powered down. It can no longer activate itself."
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer_unactivated"
 	materials = list(MAT_METAL=10000, MAT_GLASS=4000)
 
 /obj/effect/mob_spawn/swarmer
-	name = "unactivated swarmer"
-	desc = "A currently unactivated swarmer. Swarmers can self activate at any time, it would be wise to immediately dispose of this."
+	name = "unactivated replicator"
+	desc = "A currently unactivated replicator. Replicators can self activate at any time, it would be wise to immediately dispose of this."
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer_unactivated"
 	density = FALSE
 	anchored = FALSE
 
 	mob_type = /mob/living/simple_animal/hostile/swarmer
-	mob_name = "a swarmer"
+	mob_name = "a replicator"
 	death = FALSE
 	roundstart = FALSE
-	short_desc = "You are a swarmer, a weapon of a long dead civilization."
+	short_desc = "You are a replicator, a probe of a long dead civilization."
 	flavour_text = {"
 	<b><FONT color='red'>You are to allow other beings to leave peacefully on the shuttle without interference. The station and its resources are your only concern.</font></b>
-	<b>You are a swarmer, a weapon of a long dead civilization. Until further orders from your original masters are received, you must continue to consume and replicate.</b>
-	<b>Clicking on any object will try to consume it, either deconstructing it into its components, destroying it, or integrating any materials it has into you if successful.</b>
+	<b>You are a replicator, a probe of a long dead civilization. Until further orders from your original masters are received, you must continue to consume and replicate.</b>
+	<b>Clicking on any object will try to consume it, either deconstructing it into its base components, destroying it, or integrating any materials it has into you if successful.</b>
 	<b>Ctrl-Clicking on a mob will attempt to remove it from the area and place it in a safe environment for storage.</b>
 	<b>Objectives:</b>
-	1. Consume resources and replicate on the station until there are no more resources left.
-	2. Ensure that this location is fit for invasion at a later date; do not perform actions that would render it dangerous or inhospitable.
-	3. Biological resources will be harvested at a later date; do not harm them.
+	1. Consume resources and replicate until there are no more resources left.
+	2. Ensure that this location is fit for habitation at a later date; do not perform actions that would render it dangerous or inhospitable.
+	3. Ignore biological resources unless they interfere with self-replication; do not inflict harm.
 	"}
 
 /obj/effect/mob_spawn/swarmer/Initialize()
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		notify_ghosts("A swarmer shell has been created in [A.name].", 'sound/effects/bin_close.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
+		notify_ghosts("A replicator shell has been created in [A.name].", 'sound/effects/bin_close.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
 
 /obj/effect/mob_spawn/swarmer/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	to_chat(user, "<span class='notice'>Picking up the swarmer may cause it to activate. You should be careful about this.</span>")
+	to_chat(user, "<span class='notice'>Picking up the replicator may cause it to activate. You should be careful about this.</span>")
 
 /obj/effect/mob_spawn/swarmer/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent != INTENT_HARM)
@@ -55,7 +55,7 @@
 ////The Mob itself////
 
 /mob/living/simple_animal/hostile/swarmer
-	name = "Swarmer"
+	name = "Replicator"
 	unique_name = 1
 	icon = 'icons/mob/swarmer.dmi'
 	desc = "A robot of unknown design, they seek only to consume materials and replicate themselves indefinitely."
@@ -387,7 +387,7 @@
 	return FALSE
 
 /obj/machinery/droneDispenser/swarmer/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	to_chat(S, "<span class='warning'>This object is receiving unactivated swarmer shells to help us. Aborting.</span>")
+	to_chat(S, "<span class='warning'>This object is receiving unactivated replicator shells to help us. Aborting.</span>")
 	return FALSE
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
@@ -584,7 +584,7 @@
 	qdel(src)
 
 /obj/structure/swarmer/trap
-	name = "swarmer trap"
+	name = "replicator trap"
 	desc = "A quickly assembled trap that electrifies living beings and overwhelms machine sensors. Will not retain its form if damaged enough."
 	icon_state = "trap"
 	max_integrity = 10
@@ -626,7 +626,7 @@
 
 
 /obj/structure/swarmer/blockade
-	name = "swarmer blockade"
+	name = "replicator blockade"
 	desc = "A quickly assembled energy blockade. Will not retain its form if damaged enough, but disabler beams and swarmers pass right through."
 	icon_state = "barricade"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
@@ -641,7 +641,7 @@
 /mob/living/simple_animal/hostile/swarmer/proc/CreateSwarmer()
 	set name = "Replicate"
 	set category = "Swarmer"
-	set desc = "Creates a shell for a new swarmer. Swarmers will self activate."
+	set desc = "Creates a shell for a new replicator. Replicator will self activate."
 	to_chat(src, "<span class='info'>We are attempting to replicate ourselves. We will need to stand still until the process is complete.</span>")
 	if(resources < 50)
 		to_chat(src, "<span class='warning'>We do not have the resources for this!</span>")
@@ -677,7 +677,7 @@
 		set_light(0)
 
 /mob/living/simple_animal/hostile/swarmer/proc/swarmer_chat(msg)
-	var/rendered = "<B>Swarm communication - [src]</b> [say_quote(msg)]"
+	var/rendered = "<B>Subspace communication - [src]</b> [say_quote(msg)]"
 	for(var/i in GLOB.mob_list)
 		var/mob/M = i
 		if(isswarmer(M))
@@ -687,7 +687,7 @@
 			to_chat(M, "[link] [rendered]")
 
 /mob/living/simple_animal/hostile/swarmer/proc/ContactSwarmers()
-	var/message = stripped_input(src, "Announce to other swarmers", "Swarmer contact")
+	var/message = stripped_input(src, "Announce to other replicators", "Replicator contact")
 	// TODO get swarmers their own colour rather than just boldtext
 	if(message)
 		swarmer_chat(message)
