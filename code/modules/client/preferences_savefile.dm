@@ -363,6 +363,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	S["preferred_ai_core_display"] >> preferred_ai_core_display
 	S["prefered_security_department"] >> prefered_security_department
+	S["prefered_engineering_department"] >> prefered_engineering_department
 
 	//Jobs
 	S["joblessrole"]		>> joblessrole
@@ -494,6 +495,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
 	WRITE_FILE(S["prefered_security_department"] , prefered_security_department)
+	WRITE_FILE(S["prefered_engineering_department"] , prefered_engineering_department)
 
 	//Jobs
 	WRITE_FILE(S["joblessrole"]		, joblessrole)
