@@ -3024,6 +3024,7 @@
 #include "yogstation\code\game\objects\items\sharpener.dm"
 #include "yogstation\code\game\objects\items\shields.dm"
 #include "yogstation\code\game\objects\items\tool_switcher.dm"
+#include "yogstation\code\game\objects\items\tools.dm"
 #include "yogstation\code\game\objects\items\toys.dm"
 #include "yogstation\code\game\objects\items\weaponry.dm"
 #include "yogstation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
