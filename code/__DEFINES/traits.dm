@@ -169,6 +169,7 @@
 #define TRAIT_LIGHT_DRINKER		"light_drinker"
 #define TRAIT_EMPATH			"empath"
 #define TRAIT_FRIENDLY			"friendly"
+#define TRAIT_ALLERGIC			"allergic"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
