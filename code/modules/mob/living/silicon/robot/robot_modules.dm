@@ -30,7 +30,7 @@
 
 	var/list/ride_offset_x = list("north" = 0, "south" = 0, "east" = -6, "west" = 6)
 	var/list/ride_offset_y = list("north" = 4, "south" = 4, "east" = 3, "west" = 3)
-	var/ride_allow_incapacitated = FALSE
+	var/ride_allow_incapacitated = TRUE
 	var/allow_riding = TRUE
 	var/canDispose = FALSE // Whether the borg can stuff itself into disposal
 
@@ -120,7 +120,7 @@
 	if(I.loc != src)
 		I.forceMove(src)
 	modules += I
-	I.item_flags |= NODROP
+	ADD_TRAIT(I, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 	I.mouse_opacity = MOUSE_OPACITY_OPAQUE
 	if(nonstandard)
 		added_modules += I
@@ -146,7 +146,7 @@
 		if(istype(I, /obj/item/assembly/flash))
 			var/obj/item/assembly/flash/F = I
 			F.times_used = 0
-			F.crit_fail = 0
+			F.burnt_out = FALSE
 			F.update_icon()
 		else if(istype(I, /obj/item/melee/baton))
 			var/obj/item/melee/baton/B = I
@@ -231,6 +231,19 @@
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 	SSblackbox.record_feedback("tally", "cyborg_modules", 1, R.module)
+
+   /*
+   check_menu: Checks if we are allowed to interact with a radial menu
+  
+   Arguments:
+   user The mob interacting with a menu
+  */
+/obj/item/robot_module/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
 
 /obj/item/robot_module/standard
 	name = "Standard"
@@ -331,7 +344,9 @@
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/disabler/cyborg,
-		/obj/item/clothing/mask/gas/sechailer/cyborg)
+		/obj/item/clothing/mask/gas/sechailer/cyborg,
+		/obj/item/wantedposterposter,
+		/obj/item/donutsynth)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear)
@@ -347,7 +362,7 @@
 
 /obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
-	var/obj/item/gun/energy/e_gun/advtaser/cyborg/T = locate(/obj/item/gun/energy/e_gun/advtaser/cyborg) in basic_modules
+	var/obj/item/gun/energy/disabler/cyborg/T = locate(/obj/item/gun/energy/disabler/cyborg) in basic_modules
 	if(T)
 		if(T.cell.charge < T.cell.maxcharge)
 			var/obj/item/ammo_casing/energy/S = T.ammo_type[T.select]
@@ -360,7 +375,7 @@
 	name = "Peacekeeper"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/cookiesynth,
+		/obj/item/rsf/cookiesynth,
 		/obj/item/harmalarm,
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
@@ -390,10 +405,13 @@
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/soap/infinite, //yogs - changed soap type
 		/obj/item/storage/bag/trash/cyborg,
+		/obj/item/melee/flyswatter,
 		/obj/item/extinguisher/mini,
 		/obj/item/mop/cyborg,
+		/obj/item/reagent_containers/glass/bucket,
+		/obj/item/paint/paint_remover,
 		/obj/item/lightreplacer/cyborg,
-		/obj/item/holosign_creator,
+		/obj/item/holosign_creator/janibarrier,
 		/obj/item/reagent_containers/spray/cyborg_drying)
 	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
 	ratvar_modules = list(
@@ -407,11 +425,11 @@
 /obj/item/reagent_containers/spray/cyborg_drying
 	name = "drying agent spray"
 	color = "#A000A0"
-	list_reagents = list("drying_agent" = 250)
+	list_reagents = list(/datum/reagent/drying_agent = 250)
 
 /obj/item/reagent_containers/spray/cyborg_lube
 	name = "lube spray"
-	list_reagents = list("lube" = 250)
+	list_reagents = list(/datum/reagent/lube = 250)
 
 /obj/item/robot_module/janitor/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
@@ -422,11 +440,11 @@
 
 	var/obj/item/reagent_containers/spray/cyborg_drying/CD = locate(/obj/item/reagent_containers/spray/cyborg_drying) in basic_modules
 	if(CD)
-		CD.reagents.add_reagent("drying_agent", 5 * coeff)
+		CD.reagents.add_reagent(/datum/reagent/drying_agent, 5 * coeff)
 
 	var/obj/item/reagent_containers/spray/cyborg_lube/CL = locate(/obj/item/reagent_containers/spray/cyborg_lube) in emag_modules
 	if(CL)
-		CL.reagents.add_reagent("lube", 2 * coeff)
+		CL.reagents.add_reagent(/datum/reagent/lube, 2 * coeff)
 
 /obj/item/robot_module/clown
 	name = "Clown"
@@ -471,13 +489,15 @@
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
 		/obj/item/rsf,
-		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,
+		/obj/item/instrument/piano_synth,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		/obj/item/reagent_containers/borghypo/borgshaker,
-		/obj/item/borg/lollipop)
+		/obj/item/borg/lollipop,
+		/obj/item/reagent_containers/glass/rag,
+		/obj/item/soap/infinite)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/service,
 		/obj/item/borg/sight/xray/truesight_lens)
@@ -489,14 +509,19 @@
 	..()
 	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
 	if(O)
-		O.reagents.add_reagent("enzyme", 2 * coeff)
+		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
 /obj/item/robot_module/butler/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Waitress", "Butler", "Tophat", "Kent", "Bro")
-	if(!borg_icon)
-		return FALSE
-	switch(borg_icon)
+	var/list/service_icons = sortList(list(
+		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
+		"Butler" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_m"),
+		"Bro" = image(icon = 'icons/mob/robots.dmi', icon_state = "brobot"),
+		"Kent" = image(icon = 'icons/mob/robots.dmi', icon_state = "kent"),
+		"Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat")
+		))
+	var/service_robot_icon = show_radial_menu(R, R , service_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+	switch(service_robot_icon)
 		if("Waitress")
 			cyborg_base_icon = "service_f"
 		if("Butler")
@@ -511,6 +536,8 @@
 			cyborg_base_icon = "tophat"
 			special_light_key = null
 			hat_offset = INFINITY //He is already wearing a hat
+		else
+			return FALSE
 	return ..()
 
 /obj/item/robot_module/miner
@@ -525,7 +552,6 @@
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,
 		/obj/item/storage/bag/sheetsnatcher/borg,
-		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/gun/energy/kinetic_accelerator/cyborg,
 		/obj/item/gps/cyborg,
 		/obj/item/stack/marker_beacon)
@@ -537,6 +563,16 @@
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
 	hat_offset = 0
+	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
+
+/obj/item/robot_module/miner/rebuild_modules()
+	. = ..()
+	if(!mining_scanner)
+		mining_scanner = new(src)
+
+/obj/item/robot_module/miner/Destroy()
+	QDEL_NULL(mining_scanner)
+	return ..()
 
 /obj/item/robot_module/syndicate
 	name = "Syndicate Assault"

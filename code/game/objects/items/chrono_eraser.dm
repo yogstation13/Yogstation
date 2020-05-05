@@ -48,9 +48,9 @@
 	icon_state = "chronogun"
 	item_state = "chronogun"
 	w_class = WEIGHT_CLASS_NORMAL
-	item_flags = NODROP | DROPDEL
+	item_flags = DROPDEL
 	ammo_type = list(/obj/item/ammo_casing/energy/chrono_beam)
-	can_charge = 0
+	can_charge = FALSE
 	fire_delay = 50
 	var/obj/item/chrono_eraser/TED = null
 	var/obj/structure/chrono_field/field = null
@@ -58,6 +58,7 @@
 
 /obj/item/gun/energy/chrono_gun/Initialize()
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CHRONO_GUN_TRAIT)
 	if(istype(loc, /obj/item/chrono_eraser))
 		TED = loc
 	else //admin must have spawned it
@@ -123,7 +124,7 @@
 	name = "eradication beam"
 	icon_state = "chronobolt"
 	range = CHRONO_BEAM_RANGE
-	nodamage = 1
+	nodamage = TRUE
 	var/obj/item/gun/energy/chrono_gun/gun = null
 
 /obj/item/projectile/energy/chrono_beam/Initialize()
@@ -198,7 +199,7 @@
 
 /obj/structure/chrono_field/update_icon()
 	var/ttk_frame = 1 - (tickstokill / initial(tickstokill))
-	ttk_frame = CLAMP(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
+	ttk_frame = clamp(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
 	if(ttk_frame != RPpos)
 		RPpos = ttk_frame
 		mob_underlay.icon_state = "frame[RPpos]"
@@ -244,17 +245,16 @@
 		if(Pgun && istype(Pgun))
 			Pgun.field_connect(src)
 	else
-		return 0
+		return BULLET_ACT_HIT
 
 /obj/structure/chrono_field/assume_air()
 	return 0
 
 /obj/structure/chrono_field/return_air() //we always have nominal air and temperature
 	var/datum/gas_mixture/GM = new
-	GM.add_gases(/datum/gas/oxygen, /datum/gas/nitrogen)
-	GM.gases[/datum/gas/oxygen][MOLES] = MOLES_O2STANDARD
-	GM.gases[/datum/gas/nitrogen][MOLES] = MOLES_N2STANDARD
-	GM.temperature = T20C
+	GM.set_moles(/datum/gas/oxygen, MOLES_O2STANDARD)
+	GM.set_moles(/datum/gas/nitrogen, MOLES_N2STANDARD)
+	GM.set_temperature(T20C)
 	return GM
 
 /obj/structure/chrono_field/singularity_act()

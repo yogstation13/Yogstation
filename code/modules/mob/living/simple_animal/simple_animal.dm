@@ -10,6 +10,7 @@
 	var/icon_living = ""
 	var/icon_dead = "" //icon when the animal is dead. Don't use animated icons for this.
 	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
+	var/flip_on_death = FALSE //Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 
 	var/list/speak = list()
 	var/list/speak_emote = list()//	Emotes while speaking IE: Ian [emote], [text] -- Ian barks, "WOOF!". Spoken text is generated from the speak variable.
@@ -79,9 +80,9 @@
 
 	var/dextrous = FALSE //If the creature has, and can use, hands
 	var/dextrous_hud_type = /datum/hud/dextrous
-	var/datum/personal_crafting/handcrafting
 
 	var/AIStatus = AI_ON //The Status of our AI, can be set to AI_ON (On, usual processing), AI_IDLE (Will not process, but will return to AI_ON if an enemy comes near), AI_OFF (Off, Not processing ever), AI_Z_OFF (Temporarily off due to nonpresence of players)
+	var/can_have_ai = TRUE //once we have become sentient, we can never go back
 
 	var/shouldwakeup = FALSE //convenience var for forcibly waking up an idling AI on next check.
 
@@ -95,7 +96,6 @@
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
-	handcrafting = new()
 	if(gender == PLURAL)
 		gender = pick(MALE,FEMALE)
 	if(!real_name)
@@ -103,6 +103,8 @@
 	if(!loc)
 		stack_trace("Simple animal being instantiated in nullspace")
 	update_simplemob_varspeed()
+	if(dextrous)
+		AddComponent(/datum/component/personal_crafting)
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src
@@ -119,13 +121,18 @@
 
 	return ..()
 
+/mob/living/simple_animal/examine(mob/user)
+	. = ..()
+	if(stat == DEAD)
+		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
+
 /mob/living/simple_animal/initialize_footstep()
 	if(do_footstep)
 		..()
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	health = CLAMP(health, 0, maxHealth)
+	health = clamp(health, 0, maxHealth)
 
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
@@ -137,11 +144,12 @@
 			stat = CONSCIOUS
 	med_hud_set_status()
 
-
 /mob/living/simple_animal/handle_status_effects()
 	..()
 	if(stuttering)
 		stuttering = 0
+	if(slurring)
+		slurring = max(slurring-1,0)
 
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
@@ -205,15 +213,11 @@
 	if(isturf(src.loc) && isopenturf(src.loc))
 		var/turf/open/ST = src.loc
 		if(ST.air)
-			var/ST_gases = ST.air.gases
-			ST.air.assert_gases(arglist(GLOB.hardcoded_gases))
 
-			var/tox = ST_gases[/datum/gas/plasma][MOLES]
-			var/oxy = ST_gases[/datum/gas/oxygen][MOLES]
-			var/n2  = ST_gases[/datum/gas/nitrogen][MOLES]
-			var/co2 = ST_gases[/datum/gas/carbon_dioxide][MOLES]
-
-			ST.air.garbage_collect()
+			var/tox = ST.air.get_moles(/datum/gas/plasma)
+			var/oxy = ST.air.get_moles(/datum/gas/oxygen)
+			var/n2  = ST.air.get_moles(/datum/gas/nitrogen)
+			var/co2 = ST.air.get_moles(/datum/gas/carbon_dioxide)
 
 			if(atmos_requirements["min_oxy"] && oxy < atmos_requirements["min_oxy"])
 				. = FALSE
@@ -279,10 +283,7 @@
 /mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE)
 	if(stat)
 		return
-	if(act == "scream")
-		message = "makes a loud and pained whimper." //ugly hack to stop animals screaming when crushed :P
-		act = "me"
-	..(act, m_type, message)
+	. = ..()
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)
 	speed = var_value
@@ -312,8 +313,8 @@
 	drop_loot()
 	if(dextrous)
 		drop_all_held_items()
-	if(!gibbed && !del_on_death)
-		if(deathsound || deathmessage)
+	if(!gibbed)
+		if(deathsound || deathmessage || !del_on_death)
 			emote("deathgasp")
 	if(del_on_death)
 		..()
@@ -324,6 +325,8 @@
 	else
 		health = 0
 		icon_state = icon_dead
+		if(flip_on_death)
+			transform = transform.Turn(180)
 		density = FALSE
 		..()
 
@@ -342,6 +345,12 @@
 		var/obj/mecha/M = the_target
 		if (M.occupant)
 			return FALSE
+	// yogs start
+	if(isspacepod(the_target))
+		var/obj/spacepod/SP = the_target
+		if(SP.pilot || SP.passengers.len)
+			return FALSE
+	// yogs end
 	return TRUE
 
 /mob/living/simple_animal/handle_fire()
@@ -425,15 +434,18 @@
 			mobility_flags = MOBILITY_FLAGS_DEFAULT
 		else
 			mobility_flags = NONE
+	if(!(mobility_flags & MOBILITY_MOVE))
+		walk(src, 0) //stop mid walk
+
 	update_transform()
 	update_action_buttons_icon()
 
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
-	var/changed = 0
+	var/changed = FALSE
 
 	if(resize != RESIZE_DEFAULT_SIZE)
-		changed++
+		changed = TRUE
 		ntransform.Scale(resize)
 		resize = RESIZE_DEFAULT_SIZE
 
@@ -442,6 +454,7 @@
 
 /mob/living/simple_animal/proc/sentience_act() //Called when a simple animal gains sentience via gold slime potion
 	toggle_ai(AI_OFF) // To prevent any weirdness.
+	can_have_ai = FALSE
 
 /mob/living/simple_animal/update_sight()
 	if(!client)
@@ -464,10 +477,6 @@
 
 /mob/living/simple_animal/get_idcard(hand_first)
 	return access_card
-
-/mob/living/simple_animal/OpenCraftingMenu()
-	if(dextrous)
-		handcrafting.ui_interact(src)
 
 /mob/living/simple_animal/can_hold_items()
 	return dextrous
@@ -501,7 +510,7 @@
 		if(istype(held_item, /obj/item/twohanded))
 			var/obj/item/twohanded/T = held_item
 			if(T.wielded == 1)
-				to_chat(usr, "<span class='warning'>Your other hand is too busy holding the [T.name].</span>")
+				to_chat(usr, "<span class='warning'>Your other hand is too busy holding [T].</span>")
 				return
 	var/oindex = active_hand_index
 	active_hand_index = hand_index
@@ -536,7 +545,7 @@
 //ANIMAL RIDING
 
 /mob/living/simple_animal/user_buckle_mob(mob/living/M, mob/user)
-	GET_COMPONENT(riding_datum, /datum/component/riding)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(riding_datum)
 		if(user.incapacitated())
 			return
@@ -547,7 +556,7 @@
 		return ..()
 
 /mob/living/simple_animal/relaymove(mob/user, direction)
-	GET_COMPONENT(riding_datum, /datum/component/riding)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(tame && riding_datum)
 		riding_datum.handle_ride(user, direction)
 
@@ -556,6 +565,8 @@
 	LoadComponent(/datum/component/riding)
 
 /mob/living/simple_animal/proc/toggle_ai(togglestatus)
+	if(!can_have_ai && (togglestatus != AI_OFF))
+		return
 	if (AIStatus != togglestatus)
 		if (togglestatus > 0 && togglestatus < 5)
 			if (togglestatus == AI_Z_OFF || AIStatus == AI_Z_OFF)

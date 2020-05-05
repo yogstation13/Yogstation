@@ -8,9 +8,9 @@
 
 
 
-/*
- * DATA CARDS - Used for the IC data card reader
- */
+
+//DATA CARDS - Used for the IC data card reader
+
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
@@ -88,6 +88,7 @@
 	var/atom/A = target
 	if(!proximity && prox_check)
 		return
+	log_combat(user, A, "attempted to emag")
 	A.emag_act(user)
 
 /obj/item/card/emagfake
@@ -124,6 +125,13 @@
 	. = ..()
 	if(mapload && access_txt)
 		access = text2access(access_txt)
+
+/obj/item/card/id/Destroy()
+	if (registered_account)
+		registered_account.bank_cards -= src
+	if (my_store && my_store.my_card == src)
+		my_store.my_card = null
+	return ..()
 
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
@@ -175,9 +183,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	if(user.get_active_held_item() != src)
-		to_chat(user, "<span class='warning'>You must hold the ID in your hand to do this.</span>")
-		return
+
 	return TRUE
 
 /obj/item/card/id/AltClick(mob/living/user)
@@ -188,7 +194,7 @@
 		if(!alt_click_can_use_id(user))
 			return
 		if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
-			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span")
+			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
 			return
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
@@ -199,8 +205,15 @@
 				return
 		to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
 		return
-	var/amount_to_remove = input(user, "How much do you want to withdraw?", "Account Reclamation", 5) as num
+
+	if (world.time < registered_account.withdrawDelay)
+		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
+		return
+
+	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
+
 	if(!amount_to_remove || amount_to_remove < 0)
+		to_chat(user, "<span class='warning'>You're pretty sure that's not how money works.</span>")
 		return
 	if(!alt_click_can_use_id(user))
 		return
@@ -210,24 +223,26 @@
 		to_chat(user, "<span class='notice'>You withdraw [amount_to_remove] credits into a holochip.</span>")
 		return
 	else
-		to_chat(user, "<span class='warning'>The linked account doesn't have the funds for that.</span>")
+		var/difference = amount_to_remove - registered_account.account_balance
+		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
 
 /obj/item/card/id/examine(mob/user)
-	..()
+	.=..()
 	if(mining_points)
-		to_chat(user, "There's [mining_points] mining equipment redemption point\s loaded onto this card.")
+		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
+
 	if(registered_account)
-		to_chat(user, "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of $[registered_account.account_balance].")
+		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of $[registered_account.account_balance]."
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				to_chat(user, "The [D.account_holder] reports a balance of $[D.account_balance].")
-		to_chat(user, "<span class='info'>Alt-Click the ID while holding it to pull money from the linked account in the form of holochips.</span>")
-		to_chat(user, "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>")
+				. += "The [D.account_holder] reports a balance of $[D.account_balance]."
+		. += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
+		. += "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>"
 		if(registered_account.account_holder == user.real_name)
-			to_chat(user, "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>")
+			. += "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>"
 	else
-		to_chat(user, "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>")
+		. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -239,7 +254,6 @@
 Usage:
 update_label()
 	Sets the id name to whatever registered_name and assignment is
-
 update_label("John Doe", "Clowny")
 	Properly formats the name and occupation and sets the id name to the arguments
 */
@@ -291,29 +305,40 @@ update_label("John Doe", "Clowny")
 		var/obj/item/card/id/I = O
 		src.access |= I.access
 		if(isliving(user) && user.mind)
-			if(user.mind.special_role)
+			if(user.mind.special_role || anyone)
 				to_chat(usr, "<span class='notice'>The card's microscanners activate as you pass it over the ID, copying its access.</span>")
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		if(user.mind.special_role || anyone)
-			if(alert(user, "Action", "Agent ID", "Show", "Forge") == "Forge")
-				var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name))as text | null),1,26)
-				if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/dead/new_player/prefrences.dm
-					if (t)
-						alert("Invalid name.")
-					return
-				registered_name = t
+		if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
+			if(!registered_name) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
+				anyone = TRUE
+			else
+				return ..()
 
-				var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")as text | null),1,MAX_MESSAGE_LEN)
-				if(!u)
-					registered_name = ""
-					return
-				assignment = u
-				update_label()
-				to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset")
+		if(user.incapacitated())
+			return
+		if(popup_input == "Forge/Reset" && !registered_name)
+			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+			input_name = reject_bad_name(input_name)
+			if(!input_name)
+				// Invalid/blank names give a randomly generated one.
+				if(user.gender == FEMALE)
+					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+				else
+					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+
+			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
+			if(!target_occupation)
 				return
-	..()
+
+			registered_name = input_name
+			assignment = target_occupation
+			update_label()
+			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+			return
+	return ..()
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE
@@ -350,9 +375,21 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
+	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
+
+/obj/item/card/id/centcom/silver
+	name = "\improper silver CentCom ID"
+	desc = "A silver ID straight from Central Command."
+	icon_state = "centcom_silver"
+
+/obj/item/card/id/centcom/gold
+	name = "\improper gold CentCom ID"
+	desc = "A gold ID straight from Central Command."
+	icon_state = "centcom_gold"
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh
 	. = ..()
 
 /obj/item/card/id/ert
@@ -361,9 +398,11 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
+	item_flags = ABSTRACT | DROPDEL //admemes arnt the smartest tools in the shed x2
 
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh x2
 	. = ..()
 
 /obj/item/card/id/ert/Security
@@ -396,6 +435,22 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/ert/chaplain/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
+	. = ..()
+
+/obj/item/card/id/ert/Janitor
+	registered_name = "Janitorial Response Officer"
+	assignment = "Janitorial Response Officer"
+
+/obj/item/card/id/ert/Janitor/Initialize()
+	access = get_all_accesses()
+	. = ..()
+
+/obj/item/card/id/ert/clown
+	registered_name = "Clown"
+	assignment = "Clown ERT"
+
+/obj/item/card/id/ert/clown/Initialize()
+	access = get_all_accesses()
 	. = ..()
 
 /obj/item/card/id/prisoner

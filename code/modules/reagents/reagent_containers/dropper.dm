@@ -6,7 +6,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1, 2, 3, 4, 5)
 	volume = 5
-	container_type = TRANSPARENT
+	reagent_flags = TRANSPARENT
 
 /obj/item/reagent_containers/dropper/afterattack(obj/target, mob/user , proximity)
 	. = ..()
@@ -59,8 +59,7 @@
 			var/viruslist = "" // yogs - adds viruslist variable
 			if(reagents)
 				for(var/datum/reagent/A in src.reagents.reagent_list)
-					R += A.id + " ("
-					R += num2text(A.volume) + "),"
+					R += "[A] ([num2text(A.volume)]),"
 // yogs start - checks blood for disease
 					if(istype(A, /datum/reagent/blood))
 						var/datum/reagent/blood/RR = A

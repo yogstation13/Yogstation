@@ -2,7 +2,7 @@
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
-/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3)
+/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
 	if(!segments)
 		return
 	var/segment = 360/segments
@@ -18,11 +18,41 @@
 
 	speed /= segments
 
-	animate(src, transform = matrices[1], time = speed, loops)
+	if(parallel)
+		animate(src, transform = matrices[1], time = speed, loops , flags = ANIMATION_PARALLEL)
+	else
+		animate(src, transform = matrices[1], time = speed, loops)
 	for(var/i in 2 to segments) //2 because 1 is covered above
 		animate(transform = matrices[i], time = speed)
 		//doesn't have an object argument because this is "Stacking" with the animate call above
 		//3 billion% intentional
+
+/atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1 , hold_seconds = 0  , angle = 1 , stay = FALSE) // Hopek 2019  
+	// By making this in atom/proc everything in the game can potentially dab. You have been warned.
+	if(hold_seconds > 9999) // if you need to hold a dab for more than 2 hours intentionally let me know.
+		return
+	if(hold_seconds > 0)
+		hold_seconds = hold_seconds * 10 // Converts seconds to deciseconds 
+	if(angle == 1) //if angle is 1: random angle. Else take angle
+		angle = rand(25,50)
+	if(direction == 1) // direciton:: 1 for random pick, 2 for clockwise , 3 for anti-clockwise
+		direction = pick(2,3)
+	if(direction == 3) // if 3 then counter clockwise
+		angle = angle * -1
+	if(speed == 1) // if speed is 1 choose random speed from list
+		speed = rand(3,5)
+
+	// dab matrix here
+	var/matrix/DAB_COMMENCE = matrix(transform)
+	var/matrix/DAB_RETURN = matrix(transform)
+	DAB_COMMENCE.Turn(angle) // dab angle to matrix
+
+	// Dab animation 
+	animate(src, transform = DAB_COMMENCE, time = speed, loops ) // dab to hold angle
+	if(hold_seconds > 0)
+		sleep(hold_seconds) // time to hold the dab before going back
+	if(!stay) // if stay param is true dab doesn't return
+		animate(src, transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
 
 //Dumps the matrix data in format a-f
 /matrix/proc/tolist()

@@ -2,7 +2,6 @@
 	name = "technology fabricator"
 	desc = "Produces researched prototypes with raw materials and energy."
 	icon_state = "protolathe"
-	container_type = OPENCONTAINER
 	circuit = /obj/item/circuitboard/machine/techfab
 	categories = list(
 								"Power Designs",
@@ -27,7 +26,8 @@
 								"Subspace Telecomms",
 								"Research Machinery",
 								"Misc. Machinery",
-								"Computer Parts"
+								"Computer Parts",
+								"Spacepod Designs" // yogs
 								)
 	console_link = FALSE
 	production_animation = "protolathe_n"

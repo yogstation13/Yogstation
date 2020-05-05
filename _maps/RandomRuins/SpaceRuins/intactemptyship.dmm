@@ -2,20 +2,8 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
-"b" = (
-/turf/closed/wall/mineral/plastitanium{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/ruin/space/has_grav/powered/authorship)
 "c" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/ruin/space/has_grav/powered/authorship)
-"d" = (
-/turf/closed/wall/mineral/plastitanium{
-	dir = 1;
-	icon_state = "diagonalWall3"
-	},
 /area/ruin/space/has_grav/powered/authorship)
 "e" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -134,12 +122,6 @@
 /obj/structure/chair,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/space/has_grav/powered/authorship)
-"B" = (
-/turf/closed/wall/mineral/plastitanium{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/ruin/space/has_grav/powered/authorship)
 "C" = (
 /obj/machinery/light,
 /obj/structure/bed,
@@ -150,11 +132,11 @@
 a
 a
 a
-b
+c
 c
 s
 c
-z
+c
 a
 a
 a
@@ -173,7 +155,7 @@ e
 a
 "}
 (3,1,1) = {"
-b
+c
 f
 f
 c
@@ -251,7 +233,7 @@ j
 c
 "}
 (9,1,1) = {"
-d
+c
 c
 c
 c
@@ -261,7 +243,7 @@ p
 c
 c
 c
-B
+c
 "}
 (10,1,1) = {"
 a
@@ -305,13 +287,13 @@ a
 (13,1,1) = {"
 a
 a
-d
 c
 c
 c
 c
 c
-B
+c
+c
 a
 a
 "}

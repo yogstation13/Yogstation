@@ -3,7 +3,7 @@
 
 	name = "air injector"
 	desc = "Has a valve and pump attached to it."
-	
+
 	use_power = IDLE_POWER_USE
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
@@ -54,8 +54,8 @@
 
 	var/datum/gas_mixture/air_contents = airs[1]
 
-	if(air_contents.temperature > 0)
-		var/transfer_moles = (air_contents.return_pressure())*volume_rate/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
+	if(air_contents.return_temperature() > 0)
+		var/transfer_moles = (air_contents.return_pressure())*volume_rate/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
@@ -73,8 +73,8 @@
 
 	injecting = 1
 
-	if(air_contents.temperature > 0)
-		var/transfer_moles = (air_contents.return_pressure())*volume_rate/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
+	if(air_contents.return_temperature() > 0)
+		var/transfer_moles = (air_contents.return_pressure())*volume_rate/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 		loc.assume_air(removed)
 		update_parents()
@@ -125,7 +125,7 @@
 	if("set_volume_rate" in signal.data)
 		var/number = text2num(signal.data["set_volume_rate"])
 		var/datum/gas_mixture/air_contents = airs[1]
-		volume_rate = CLAMP(number, 0, air_contents.volume)
+		volume_rate = clamp(number, 0, air_contents.return_volume())
 
 	if("status" in signal.data)
 		spawn(2)
@@ -174,7 +174,7 @@
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				volume_rate = CLAMP(rate, 0, MAX_TRANSFER_RATE)
+				volume_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
 				investigate_log("was set to [volume_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 	broadcast_status()
@@ -192,8 +192,8 @@
 	icon_state = "inje_map-1"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/layer3
-	piping_layer = 2
-	icon_state = "inje_map-2"
+	piping_layer = 3
+	icon_state = "inje_map-3"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/on
 	on = TRUE
@@ -203,8 +203,8 @@
 	icon_state = "inje_map-1"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3
-	piping_layer = 2
-	icon_state = "inje_map-2"
+	piping_layer = 3
+	icon_state = "inje_map-3"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos
 	frequency = FREQ_ATMOS_STORAGE

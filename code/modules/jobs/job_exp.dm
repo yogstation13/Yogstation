@@ -8,6 +8,8 @@ GLOBAL_PROTECT(exp_to_update)
 		return 0
 	if(!CONFIG_GET(flag/use_exp_tracking))
 		return 0
+	if(!SSdbcore.Connect())
+		return 0
 	if(!exp_requirements || !exp_type)
 		return 0
 	if(!job_is_xp_locked(src.title))
@@ -38,7 +40,7 @@ GLOBAL_PROTECT(exp_to_update)
 	return exp_type
 
 /proc/job_is_xp_locked(jobtitle)
-	if(!CONFIG_GET(flag/use_exp_restrictions_heads) && jobtitle in (GLOB.command_positions | list("AI")))
+	if(!CONFIG_GET(flag/use_exp_restrictions_heads) && (jobtitle in (GLOB.command_positions | list("AI"))))
 		return FALSE
 	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(jobtitle in (GLOB.command_positions | list("AI"))))
 		return FALSE

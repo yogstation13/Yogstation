@@ -8,7 +8,7 @@
 	var/vol = input(usr, "What volume would you like the sound to play at?",, 100) as null|num
 	if(!vol)
 		return
-	vol = CLAMP(vol, 1, 100)
+	vol = clamp(vol, 1, 100)
 
 	var/sound/admin_sound = new()
 	admin_sound.file = S
@@ -27,8 +27,9 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]")
+	//log_admin("[key_name(src)] played sound [S]") // Yogs comment-out
+	//message_admins("[key_name_admin(src)] played sound [S]") // Yogs comment-out
+	var/count = 0 //yogs
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
@@ -37,6 +38,12 @@
 				admin_sound.volume = vol * (user_vol / 100)
 			SEND_SOUND(M, admin_sound)
 			admin_sound.volume = vol
+			count++ //Yogs
+	//yogs start -- informs admins of how much of the server actually heard their sound
+	count = round(count / GLOB.player_list.len * 100,0.5)
+	log_admin("[key_name(src)] played sound [S] to [count]% of the server.")
+	message_admins("[key_name_admin(src)] played sound [S] to [count]% of the server.")
+	//yogs end
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Global Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -60,23 +67,23 @@
 
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(src, "<span class='boldwarning'>Youtube-dl was not configured, action unavailable</span>") //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(src, "<span class='boldwarning'>Youtube-dl was not configured, action unavailable</span>", confidential=TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 
 	var/web_sound_input = input("Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound via youtube-dl") as text|null
 	if(istext(web_sound_input))
 		var/web_sound_url = ""
 		var/stop_web_sounds = FALSE
-		var/pitch
+		var/list/music_extra_data = list()
 		if(length(web_sound_input))
 
 			web_sound_input = trim(web_sound_input)
 			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-				to_chat(src, "<span class='boldwarning'>Non-http(s) URIs are not allowed.</span>")
-				to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
+				to_chat(src, "<span class='boldwarning'>Non-http(s) URIs are not allowed.</span>", confidential=TRUE)
+				to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>", confidential=TRUE)
 				return
 			var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
-			var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+			var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
 			var/errorlevel = output[SHELLEO_ERRORLEVEL]
 			var/stdout = output[SHELLEO_STDOUT]
 			var/stderr = output[SHELLEO_STDERR]
@@ -85,8 +92,8 @@
 				try
 					data = json_decode(stdout)
 				catch(var/exception/e)
-					to_chat(src, "<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>")
-					to_chat(src, "<span class='warning'>[e]: [stdout]</span>")
+					to_chat(src, "<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>", confidential=TRUE)
+					to_chat(src, "<span class='warning'>[e]: [stdout]</span>", confidential=TRUE)
 					return
 
 				if (data["url"])
@@ -95,6 +102,8 @@
 					var/webpage_url = title
 					if (data["webpage_url"])
 						webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
+					music_extra_data["start"] = data["start_time"]
+					music_extra_data["end"] = data["end_time"]
 
 					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "No", "Yes", "Cancel")
 					switch(res)
@@ -107,8 +116,8 @@
 					log_admin("[key_name(src)] played web sound: [web_sound_input]")
 					message_admins("[key_name(src)] played web sound: [web_sound_input]")
 			else
-				to_chat(src, "<span class='boldwarning'>Youtube-dl URL retrieval FAILED:</span>")
-				to_chat(src, "<span class='warning'>[stderr]</span>")
+				to_chat(src, "<span class='boldwarning'>Youtube-dl URL retrieval FAILED:</span>", confidential=TRUE)
+				to_chat(src, "<span class='warning'>[stderr]</span>", confidential=TRUE)
 
 		else //pressed ok with blank
 			log_admin("[key_name(src)] stopped web sound")
@@ -117,8 +126,8 @@
 			stop_web_sounds = TRUE
 
 		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-			to_chat(src, "<span class='boldwarning'>BLOCKED: Content URL not using http(s) protocol</span>")
-			to_chat(src, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+			to_chat(src, "<span class='boldwarning'>BLOCKED: Content URL not using http(s) protocol</span>", confidential=TRUE)
+			to_chat(src, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>", confidential=TRUE)
 			return
 		if(web_sound_url || stop_web_sounds)
 			for(var/m in GLOB.player_list)
@@ -126,7 +135,7 @@
 				var/client/C = M.client
 				if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
 					if(!stop_web_sounds)
-						C.chatOutput.sendMusic(web_sound_url, pitch)
+						C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 					else
 						C.chatOutput.stopMusic()
 
@@ -138,7 +147,17 @@
 	if(!check_rights(R_SOUNDS))
 		return
 
+	//Yogs start -- Adds confirm for whenever an admin has already set the roundend sound.
+	var/static/lastadmin
+	var/static/lastsound
+	
+	if(lastadmin && src.ckey != lastadmin)
+		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?",,"Yes","Cancel") != "Yes")
+			return
 	SSticker.SetRoundEndSound(S)
+	lastadmin = src.ckey
+	lastsound = "[S]"
+	//Yogs end
 
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")

@@ -80,7 +80,6 @@
 		if(1000)
 			SpeakPeace(list("The ends exists somewhere beyond meaningful milestones.", "There will be no more messages until then.", "You disgust me."))
 		if(5643)
-			SSmedals.UnlockMedal(MEDAL_TIMEWASTE, user.client)
 			var/obj/item/reagent_containers/food/drinks/trophy/gold_cup/never_ends = new(get_turf(user))
 			never_ends.name = "Overextending The Joke: First Place"
 			never_ends.desc = "And so we are left alone with our regrets."
@@ -124,10 +123,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(MAT_GLASS = 500)
 
-/obj/item/rupee/New()
+/obj/item/rupee/Initialize()
+	. = ..()
 	var/newcolor = color2hex(pick(10;"green", 5;"blue", 3;"red", 1;"purple"))
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-	..()
 
 /obj/item/rupee/Crossed(mob/M)
 	if(!istype(M))

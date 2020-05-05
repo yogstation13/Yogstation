@@ -5,6 +5,7 @@
 	id = "pod"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
+	inherent_traits = list(TRAIT_ALWAYS_CLEAN)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -13,6 +14,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -43,9 +45,9 @@
 		H.take_overall_damage(2,0)
 
 /datum/species/pod/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.id == "plantbgone")
+	if(chem.type == /datum/reagent/toxin/plantbgone)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return 1
 
 /datum/species/pod/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
@@ -59,6 +61,7 @@
 					H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 				else
 					H.easy_randmut(POSITIVE)
+				H.randmuti()
 				H.domutcheck()
 			else
 				H.adjustFireLoss(rand(5,15))

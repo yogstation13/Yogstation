@@ -101,13 +101,10 @@
 
 	var/datum/riding/riding_datum
 
-	var/datum/language/selected_default_language
-
 	var/last_words	//used for database logging
 
 	var/list/obj/effect/proc_holder/abilities = list()
 
-	var/registered_z
 	var/can_be_held = FALSE	//whether this can be picked up and held.
 
 	var/radiation = 0 //If the mob is irradiated.
@@ -117,3 +114,6 @@
 	//List of active diseases
 	var/list/diseases = list() // list of all diseases in a mob
 	var/list/disease_resistances = list()
+
+	//Allergies
+	var/allergies

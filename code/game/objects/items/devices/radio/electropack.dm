@@ -38,7 +38,7 @@
 
 /obj/item/electropack/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/clothing/head/helmet))
-		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit( user )
+		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit(user)
 		A.icon = 'icons/obj/assemblies.dmi'
 
 		if(!user.transferItemToLoc(W, A))
@@ -53,8 +53,6 @@
 
 		user.put_in_hands(A)
 		A.add_fingerprint(user)
-		if(item_flags & NODROP)
-			A.item_flags |= NODROP
 	else
 		return ..()
 
@@ -106,8 +104,7 @@
 		if(shock_cooldown != 0)
 			return
 		shock_cooldown = 1
-		spawn(100)
-			shock_cooldown = 0
+		addtimer(VARSET_CALLBACK(src, shock_cooldown, 0), 100)
 		var/mob/living/L = loc
 		step(L, pick(GLOB.cardinals))
 
@@ -127,7 +124,7 @@
 	if(!ishuman(user))
 		return
 	user.set_machine(src)
-	var/dat = {"<TT>Turned [on ? "On" : "Off"] -
+	var/dat = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><TT>Turned [on ? "On" : "Off"] -
 <A href='?src=[REF(src)];power=1'>Toggle</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:
@@ -141,7 +138,7 @@ Code:
 <A href='byond://?src=[REF(src)];code=-1'>-</A> [code]
 <A href='byond://?src=[REF(src)];code=1'>+</A>
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
-</TT>"}
+</TT></BODY></HTML>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return

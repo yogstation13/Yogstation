@@ -31,7 +31,7 @@
 
 	var/remote_door_id = ""
 
-	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT
+	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	var/spam_enabled = 0 //Enables "Send to All" Option
 
 	var/obj/item/pda/host_pda = null
@@ -65,7 +65,7 @@
 	name = "\improper BreatheDeep cartridge"
 	icon_state = "cart-a"
 	access = CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT
+	bot_access_flags = FLOOR_BOT | FIRE_BOT
 
 /obj/item/cartridge/medical
 	name = "\improper Med-U cartridge"
@@ -111,8 +111,8 @@
 
 /obj/item/cartridge/roboticist
 	name = "\improper B.O.O.P. Remote Control cartridge"
-	desc = "Packed with heavy duty triple-bot interlink!"
-	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT
+	desc = "Packed with heavy duty quad-bot interlink!"
+	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	access = CART_DRONEPHONE
 
 /obj/item/cartridge/signal
@@ -160,7 +160,7 @@
 	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_ENGINE | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT
+	bot_access_flags = FLOOR_BOT | FIRE_BOT
 
 /obj/item/cartridge/cmo
 	name = "\improper Med-U DELUXE cartridge"
@@ -172,7 +172,7 @@
 	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_REAGENT_SCANNER | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT
+	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 
 /obj/item/cartridge/rd/Initialize()
 	. = ..()
@@ -183,11 +183,11 @@
 	desc = "Now with 350% more value!" //Give the Captain...EVERYTHING! (Except Mime, Clown, and Syndie)
 	icon_state = "cart-c"
 	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR)
-	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT
+	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	spam_enabled = 1
 
-/obj/item/cartridge/captain/New()
-	..()
+/obj/item/cartridge/captain/Initialize()
+	. = ..()
 	radio = new(src)
 
 /obj/item/cartridge/proc/post_status(command, data1, data2)
@@ -307,8 +307,8 @@ Code:
 					var/list/chg = list("N","C","F")
 
 					for(var/obj/machinery/power/apc/A in L)
-						menu += copytext(add_tspace(A.area.name, 30), 1, 30)
-						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_lspace(DisplayPower(A.lastused_total), 6)]  [A.cell ? "[add_lspace(round(A.cell.percent()), 3)]% [chg[A.charging+1]]" : "  N/C"]<BR>"
+						menu += copytext_char(add_trailing(A.area.name, 30, " "), 1, 30)
+						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(DisplayPower(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading(round(A.cell.percent()), 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 
 				menu += "</FONT></PRE>"
 
@@ -323,7 +323,7 @@ Code:
 
 			if(active1 in GLOB.data_core.general)
 				menu += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<br>"
-				menu += "Sex: [active1.fields["sex"]]<br>"
+				menu += "Gender: [active1.fields["gender"]]<br>"
 				menu += "Age: [active1.fields["age"]]<br>"
 				menu += "Rank: [active1.fields["rank"]]<br>"
 				menu += "Fingerprint: [active1.fields["fingerprint"]]<br>"
@@ -367,7 +367,7 @@ Code:
 
 			if(active1 in GLOB.data_core.general)
 				menu += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<br>"
-				menu += "Sex: [active1.fields["sex"]]<br>"
+				menu += "Gender: [active1.fields["gender"]]<br>"
 				menu += "Age: [active1.fields["age"]]<br>"
 				menu += "Rank: [active1.fields["rank"]]<br>"
 				menu += "Fingerprint: [active1.fields["fingerprint"]]<br>"
@@ -543,7 +543,7 @@ Code:
 					current = chan
 			if(!current)
 				menu += "<h5> ERROR : NO CHANNEL FOUND </h5>"
-				return
+				return menu
 			var/i = 1
 			for(var/datum/newscaster/feed_message/msg in current.messages)
 				menu +="-[msg.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[msg.returnAuthor(-1)]</FONT>\]</FONT><BR>"
@@ -606,6 +606,7 @@ Code:
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", message1, message2)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [message1] - [message2].")
 				if("alert")
 					post_status("alert", href_list["alert"])
 				if("setmsg1")
@@ -652,18 +653,19 @@ Code:
 		switch(href_list["op"])
 
 			if("control")
-				active_bot = locate(href_list["bot"])
+				active_bot = locate(href_list["bot"]) in GLOB.bots_list
 
 			if("botlist")
 				active_bot = null
 			if("summon") //Args are in the correct order, they are stated here just as an easy reminder.
-				active_bot.bot_control(command= "summon", user_turf= get_turf(usr), user_access= host_pda.GetAccess())
+				active_bot.bot_control("summon", usr, host_pda.GetAccess())
 			else //Forward all other bot commands to the bot itself!
-				active_bot.bot_control(command= href_list["op"], user= usr)
+				active_bot.bot_control(href_list["op"], usr)
 
 	if(href_list["mule"]) //MULEbots are special snowflakes, and need different args due to how they work.
-
-		active_bot.bot_control(command= href_list["mule"], user= usr, pda= 1)
+		var/mob/living/simple_animal/bot/mulebot/mule = active_bot
+		if (istype(mule))
+			mule.bot_control(href_list["mule"], usr, pda=TRUE)
 
 	if(!host_pda)
 		return
@@ -671,10 +673,6 @@ Code:
 
 
 /obj/item/cartridge/proc/bot_control()
-
-
-	var/mob/living/simple_animal/bot/Bot
-
 	if(active_bot)
 		menu += "<B>[active_bot]</B><BR> Status: (<A href='byond://?src=[REF(src)];op=control;bot=[REF(active_bot)]'>[PDAIMG(refresh)]<i>refresh</i></A>)<BR>"
 		menu += "Model: [active_bot.model]<BR>"
@@ -718,7 +716,8 @@ Code:
 		var/turf/current_turf = get_turf(src)
 		var/zlevel = current_turf.z
 		var/botcount = 0
-		for(Bot in GLOB.alive_mob_list) //Git da botz
+		for(var/B in GLOB.bots_list) //Git da botz
+			var/mob/living/simple_animal/bot/Bot = B
 			if(!Bot.on || Bot.z != zlevel || Bot.remote_disabled || !(bot_access_flags & Bot.bot_type)) //Only non-emagged bots on the same Z-level are detected!
 				continue //Also, the PDA must have access to the bot type.
 			menu += "<A href='byond://?src=[REF(src)];op=control;bot=[REF(Bot)]'><b>[Bot.name]</b> ([Bot.get_mode()])<BR>"
@@ -738,4 +737,4 @@ Code:
 	return ""
 
 //This is called for special abilities of cartridges
-/obj/item/cartridge/proc/special(mov/living/user, list/params)
+/obj/item/cartridge/proc/special(mob/living/user, list/params)

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes cameras being attacked with multitools when used to mess up their focus."

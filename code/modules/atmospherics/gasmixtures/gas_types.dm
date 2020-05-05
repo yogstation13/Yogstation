@@ -49,6 +49,9 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	var/fusion_power = 0 //How much the gas accelerates a fusion reaction
 	var/rarity = 0 // relative rarity compared to other gases, used when setting up the reactions list.
 
+// If you add or remove gases, update TOTAL_NUM_GASES in the extools code to match!
+// (dont forget to count shizz in the yogstation folder)
+
 /datum/gas/oxygen
 	id = "o2"
 	specific_heat = 20
@@ -65,7 +68,6 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	id = "co2"
 	specific_heat = 30
 	name = "Carbon Dioxide"
-	fusion_power = 3
 	rarity = 700
 
 /datum/gas/plasma
@@ -101,6 +103,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	name = "Nitrous Oxide"
 	gas_overlay = "nitrous_oxide"
 	moles_visible = MOLES_GAS_VISIBLE * 2
+	fusion_power = 10
 	dangerous = TRUE
 	rarity = 600
 
@@ -111,7 +114,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	gas_overlay = "nitryl"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
-	fusion_power = 15
+	fusion_power = 16
 	rarity = 100
 
 /datum/gas/tritium
@@ -143,7 +146,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	id = "pluox"
 	specific_heat = 80
 	name = "Pluoxium"
-	fusion_power = 10
+	fusion_power = -10
 	rarity = 200
 
 /datum/gas/miasma

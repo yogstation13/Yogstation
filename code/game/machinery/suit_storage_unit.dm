@@ -11,6 +11,7 @@
 	var/obj/item/clothing/head/helmet/space/helmet = null
 	var/obj/item/clothing/mask/mask = null
 	var/obj/item/storage = null
+								// if you add more storage slots, update cook() to clear their radiation too.
 
 	var/suit_type = null
 	var/helmet_type = null
@@ -41,20 +42,22 @@
 /obj/machinery/suit_storage_unit/engine
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine
 	mask_type = /obj/item/clothing/mask/breath
+	storage_type = /obj/item/clothing/shoes/magboots //yogs
 
 /obj/machinery/suit_storage_unit/ce
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/elite
 	mask_type = /obj/item/clothing/mask/breath
-	storage_type= /obj/item/clothing/shoes/magboots/advance
+	storage_type = /obj/item/clothing/shoes/magboots/advance
 
 /obj/machinery/suit_storage_unit/security
 	suit_type = /obj/item/clothing/suit/space/hardsuit/security
 	mask_type = /obj/item/clothing/mask/gas/sechailer
+	storage_type = /obj/item/clothing/shoes/magboots/security
 
 /obj/machinery/suit_storage_unit/hos
 	suit_type = /obj/item/clothing/suit/space/hardsuit/security/hos
 	mask_type = /obj/item/clothing/mask/gas/sechailer
-	storage_type = /obj/item/tank/internals/oxygen
+	storage_type = /obj/item/clothing/shoes/magboots/security
 
 /obj/machinery/suit_storage_unit/atmos
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/atmos
@@ -75,6 +78,11 @@
 
 /obj/machinery/suit_storage_unit/rd
 	suit_type = /obj/item/clothing/suit/space/hardsuit/rd
+	mask_type = /obj/item/clothing/mask/breath
+
+/obj/machinery/suit_storage_unit/command
+	suit_type = /obj/item/clothing/suit/space/heads
+	helmet_type = /obj/item/clothing/head/helmet/space/heads
 	mask_type = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/syndicate
@@ -248,9 +256,25 @@
 			else
 				visible_message("<span class='warning'>[src]'s door slides open, barraging you with the nauseating smell of charred flesh.</span>")
 			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
-			for(var/obj/item/I in src) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
-				SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRONG)
-				var/datum/component/radioactive/contamination = I.GetComponent(/datum/component/radioactive)
+			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+			if(suit)
+				things_to_clear += suit
+				things_to_clear += suit.GetAllContents()
+			if(helmet)
+				things_to_clear += helmet
+				things_to_clear += helmet.GetAllContents()
+			if(mask)
+				things_to_clear += mask
+				things_to_clear += mask.GetAllContents()
+			if(storage)
+				things_to_clear += storage
+				things_to_clear += storage.GetAllContents()
+			if(occupant)
+				things_to_clear += occupant
+				things_to_clear += occupant.GetAllContents()
+			for(var/atom/movable/AM in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
+				SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRONG)
+				var/datum/component/radioactive/contamination = AM.GetComponent(/datum/component/radioactive)
 				if(contamination)
 					qdel(contamination)
 		open_machine(FALSE)
@@ -338,7 +362,7 @@
 				return
 			storage = I
 
-		visible_message("<span class='notice'>[user] inserts [I] into [src]</span>", "<span class='notice'>You load [I] into [src].</span>")
+		visible_message("<span class='notice'>[user] inserts [I] into [src].</span>", "<span class='notice'>You load [I] into [src].</span>")
 		update_icon()
 		return
 
@@ -377,14 +401,24 @@
 	data["uv_super"] = uv_super
 	if(helmet)
 		data["helmet"] = helmet.name
+	else
+		data["helmet"] = null
 	if(suit)
 		data["suit"] = suit.name
+	else
+		data["suit"] = null
 	if(mask)
 		data["mask"] = mask.name
+	else
+		data["mask"] = null
 	if(storage)
 		data["storage"] = storage.name
+	else
+		data["storage"] = null
 	if(occupant)
-		data["occupied"] = 1
+		data["occupied"] = TRUE
+	else
+		data["occupied"] = FALSE
 	return data
 
 /obj/machinery/suit_storage_unit/ui_act(action, params)

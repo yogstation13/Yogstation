@@ -75,7 +75,7 @@
 
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_ANALYZER)
+	if(I.tool_behaviour == TOOL_ANALYZER || istype(I, /obj/item/multitool/tricorder))
 		to_chat(user, "<span class='notice'>Analyzing... [src]'s unstable field is fluctuating along frequency [format_frequency(aSignal.frequency)], code [aSignal.code].</span>")
 
 ///////////////////////
@@ -175,6 +175,8 @@
 
 /obj/effect/anomaly/flux/detonate()
 	if(explosive)
+		message_admins("An anomaly has detonated.") //yogs
+		log_game("An anomaly has detonated.") //yogs
 		explosion(src, 1, 4, 16, 18) //Low devastation, but hits a lot of stuff.
 	else
 		new /obj/effect/particle_effect/sparks(loc)
@@ -281,7 +283,12 @@
 	S.rabid = TRUE
 	S.amount_grown = SLIME_EVOLUTION_THRESHOLD
 	S.Evolve()
-	offer_control(S)
+
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a pyroclastic anomaly slime?", ROLE_PAI, null, null, 100, S, POLL_IGNORE_PYROSLIME)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/chosen = pick(candidates)
+		S.key = chosen.key
+		log_game("[key_name(S.key)] was made into a slime by pyroclastic anomaly at [AREACOORD(T)].")
 
 /////////////////////
 

@@ -79,6 +79,10 @@
 /mob/living/simple_animal/hostile/retaliate/spaceman,
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
+"p" = (
+/mob/living/simple_animal/pet/dog/gshepherd/roxie,
+/turf/open/floor/oldshuttle,
+/area/ruin/powered)
 "t" = (
 /obj/machinery/power/generator,
 /turf/open/floor/oldshuttle,
@@ -261,7 +265,7 @@ g
 k
 g
 g
-g
+p
 g
 g
 c

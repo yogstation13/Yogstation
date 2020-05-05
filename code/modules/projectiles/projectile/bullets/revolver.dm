@@ -16,7 +16,7 @@
 	name = ".38 bullet"
 	damage = 15 // yogs - Nerfed revolver damage
 	//knockdown = 60 //yogs - commented out
-	stamina = 60 // yogs - Buffed revolver 
+	stamina = 35 // yogs
 
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"

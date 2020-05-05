@@ -119,9 +119,9 @@
 
 
 /mob/living/simple_animal/parrot/examine(mob/user)
-	..()
+	. = ..()
 	if(stat)
-		to_chat(user, pick("This parrot is no more.", "This is a late parrot.", "This is an ex-parrot."))
+		. += pick("This parrot is no more.", "This is a late parrot.", "This is an ex-parrot.")
 
 /mob/living/simple_animal/parrot/death(gibbed)
 	if(held_item)
@@ -182,8 +182,8 @@
 /mob/living/simple_animal/parrot/show_inv(mob/user)
 	user.set_machine(src)
 
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
-	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A>"
+	var/dat = 	"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><b>Inventory of [name]</b></div><p>"
+	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A></BODY></HTML>"
 
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "window=mob[REF(src)]")
@@ -208,8 +208,8 @@
 				ears.forceMove(drop_location())
 				ears = null
 				for(var/possible_phrase in speak)
-					if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
-						possible_phrase = copytext(possible_phrase,3)
+					if(copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys)
+						possible_phrase = copytext_char(possible_phrase, 3)
 
 	//Adding things to inventory
 	else if(href_list["add_inv"])
@@ -337,7 +337,7 @@
 
 //Bullets
 /mob/living/simple_animal/parrot/bullet_act(obj/item/projectile/Proj)
-	..()
+	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
 			parrot_sleep_dur = parrot_sleep_max //Reset it's sleep timer if it was perched
@@ -347,8 +347,6 @@
 		//parrot_been_shot += 5
 		icon_state = icon_living
 		drop_held_item(0)
-	return
-
 
 /*
  * AI - Not really intelligent, but I'm calling it AI anyway.
@@ -420,8 +418,8 @@
 						if(prob(50))
 							useradio = 1
 
-						if((copytext(possible_phrase,1,2) in GLOB.department_radio_prefixes) && (copytext(possible_phrase,2,3) in GLOB.department_radio_keys))
-							possible_phrase = "[useradio?pick(available_channels):""][copytext(possible_phrase,3)]" //crop out the channel prefix
+						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
+							possible_phrase = "[useradio?pick(available_channels):""][copytext_char(possible_phrase, 3)]" //crop out the channel prefix
 						else
 							possible_phrase = "[useradio?pick(available_channels):""][possible_phrase]"
 
@@ -429,8 +427,8 @@
 
 				else //If we have no headset or channels to use, dont try to use any!
 					for(var/possible_phrase in speak)
-						if((copytext(possible_phrase,1,2) in GLOB.department_radio_prefixes) && (copytext(possible_phrase,2,3) in GLOB.department_radio_keys))
-							possible_phrase = copytext(possible_phrase,3) //crop out the channel prefix
+						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
+							possible_phrase = copytext_char(possible_phrase, 3) //crop out the channel prefix
 						newspeak.Add(possible_phrase)
 				speak = newspeak
 
@@ -468,11 +466,11 @@
 					return
 			return
 
-		if(parrot_interest && parrot_interest in view(src))
+		if(parrot_interest && (parrot_interest in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_STEAL
 			return
 
-		if(parrot_perch && parrot_perch in view(src))
+		if(parrot_perch && (parrot_perch in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_RETURN
 			return
 
@@ -972,6 +970,7 @@
 	butcher_results = list(/obj/item/ectoplasm = 1)
 
 /mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+	LoadComponent(/datum/component/walk/jaunt)
 	memory_saved = TRUE //At this point nothing is saved
 	. = ..()
 

@@ -12,7 +12,7 @@
 	var/syndicate = FALSE
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
-
+	greentext_achieve = /datum/achievement/greentext/internal
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -30,6 +30,16 @@
 
 /datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
+	
+	if(ishuman(owner.current))
+		//Gives Cyanide dental implant
+		var/obj/item/reagent_containers/pill/cyanide/cyan = new
+		owner.current.transferItemToLoc(cyan, owner, TRUE)
+		var/datum/action/item_action/hands_free/activate_pill/P = new(cyan)
+		P.button.name = "Activate [cyan.name]"
+		P.target = cyan
+		P.Grant(owner.current)//The pill never actually goes in an inventory slot, so the owner doesn't inherit actions from it
+	
 	.=..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
@@ -46,6 +56,8 @@
 	var/minimum_range = PINPOINTER_MINIMUM_RANGE
 	var/range_fuzz_factor = PINPOINTER_EXTRA_RANDOM_RANGE
 	var/mob/scan_target = null
+	var/range_mid = 8
+	var/range_far = 16
 
 /obj/screen/alert/status_effect/agent_pinpointer
 	name = "Internal Affairs Integrated Pinpointer"
@@ -66,13 +78,13 @@
 		linked_alert.icon_state = "pinondirect"
 	else
 		linked_alert.setDir(get_dir(here, there))
-		switch(get_dist(here, there))
-			if(1 to 8)
-				linked_alert.icon_state = "pinonclose"
-			if(9 to 16)
-				linked_alert.icon_state = "pinonmedium"
-			if(16 to INFINITY)
-				linked_alert.icon_state = "pinonfar"
+		var/dist = (get_dist(here, there))
+		if(dist >= 1 && dist <= range_mid)
+			linked_alert.icon_state = "pinonclose"
+		else if(dist > range_mid && dist <= range_far)
+			linked_alert.icon_state = "pinonmedium"
+		else if(dist > range_far)
+			linked_alert.icon_state = "pinonfar"
 
 /datum/status_effect/agent_pinpointer/proc/scan_for_target()
 	scan_target = null
@@ -222,9 +234,7 @@
 			special_role = TRAITOR_AGENT_ROLE
 			syndicate = TRUE
 			forge_single_objective()
-	else
-		..() // Give them standard objectives.
-	return
+			greentext_achieve = /datum/achievement/greentext/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()
 	forge_iaa_objectives()

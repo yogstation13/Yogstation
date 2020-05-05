@@ -24,6 +24,10 @@
 	var/list/dirswitch_buttons = list()
 
 /datum/buildmode/New(client/c)
+	if(IsAdminAdvancedProcCall())
+		to_chat(usr, "<span class='notice'>Do not attempt to circumvent the permissions system using proc calls or SDQL2</span>")
+		message_admins("[key_name_admin(usr)] attempted to circumvent the permissions system and activate buildmode using proc calls.")
+		return
 	mode = new /datum/buildmode_mode/basic(src)
 	holder = c
 	buttons = list()
@@ -146,6 +150,10 @@
 	set name = "Toggle Build Mode"
 	set category = "Event"
 
+	if(IsAdminAdvancedProcCall())
+		to_chat(usr, "<span class='notice'>Do not attempt to circumvent the permissions system using proc calls or SDQL2</span>")
+		message_admins("[key_name_admin(usr)] attempted to circumvent the permissions system and activate buildmode using proc calls.")
+		return
 	if(M.client)
 		if(istype(M.client.click_intercept,/datum/buildmode))
 			var/datum/buildmode/B = M.client.click_intercept

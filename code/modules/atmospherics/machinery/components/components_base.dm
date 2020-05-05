@@ -16,8 +16,7 @@
 	..()
 
 	for(var/i in 1 to device_type)
-		var/datum/gas_mixture/A = new
-		A.volume = 200
+		var/datum/gas_mixture/A = new(200)
 		airs[i] = A
 
 // Iconnery
@@ -31,7 +30,7 @@
 	underlays.Cut()
 
 	var/turf/T = loc
-	if(level == 2 || !T.intact)
+	if(level == 2 || (istype(T) && !T.intact))
 		showpipe = TRUE
 		plane = GAME_PLANE
 	else
@@ -59,13 +58,9 @@
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 2)
 	else
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir)
-
-	if(shift_underlay_only)
-		var/image/I = .
-		PIPING_LAYER_SHIFT(I, piping_layer)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 2)
 
 // Pipenet stuff; housekeeping
 
@@ -89,7 +84,6 @@
 /obj/machinery/atmospherics/components/proc/nullifyPipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullifyPipenet(null) called by [type] on [COORD(src)]")
-		return
 	var/i = parents.Find(reference)
 	reference.other_airs -= airs[i]
 	reference.other_atmosmch -= src
@@ -123,7 +117,7 @@
 		var/times_lost = 0
 		for(var/i in 1 to device_type)
 			var/datum/gas_mixture/air = airs[i]
-			lost += pressures*environment.volume/(air.temperature * R_IDEAL_GAS_EQUATION)
+			lost += pressures*environment.return_volume()/(air.return_temperature() * R_IDEAL_GAS_EQUATION)
 			times_lost++
 		var/shared_loss = lost/times_lost
 
@@ -149,7 +143,7 @@
 	for(var/i in 1 to device_type)
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
-			throw EXCEPTION("Component is missing a pipenet! Rebuilding...")
+			WARNING("Component is missing a pipenet! Rebuilding...")
 			build_network()
 		parent.update = 1
 

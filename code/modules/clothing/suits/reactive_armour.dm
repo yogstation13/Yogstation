@@ -71,6 +71,8 @@
 /obj/item/clothing/suit/armor/reactive/teleport/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
 		return 0
+	if(!damage)
+		return 0
 	if(prob(hit_reaction_chance))
 		var/mob/living/carbon/human/H = owner
 		if(world.time < reactivearmor_cooldown)
@@ -107,6 +109,8 @@
 /obj/item/clothing/suit/armor/reactive/fire/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
 		return 0
+	if(!damage)
+		return 0
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The reactive incendiary armor on [owner] activates, but fails to send out flames as it is still recharging its flame jets!</span>")
@@ -130,6 +134,8 @@
 
 /obj/item/clothing/suit/armor/reactive/stealth/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
+		return 0
+	if(!damage)
 		return 0
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
@@ -169,6 +175,8 @@
 /obj/item/clothing/suit/armor/reactive/tesla/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
 		return FALSE
+	if(!damage)
+		return 0
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
 			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
@@ -190,6 +198,8 @@
 
 /obj/item/clothing/suit/armor/reactive/repulse/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
+		return 0
+	if(!damage)
 		return 0
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
@@ -216,6 +226,8 @@
 
 /obj/item/clothing/suit/armor/reactive/table/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
+		return 0
+	if(!damage)
 		return 0
 	if(prob(hit_reaction_chance))
 		var/mob/living/carbon/human/H = owner

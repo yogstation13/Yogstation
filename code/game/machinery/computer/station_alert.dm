@@ -20,17 +20,19 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "station_alert", name, 300, 500, master_ui, state)
+		ui = new(user, src, ui_key, "station_alert", name, 325, 500, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/station_alert/ui_data(mob/user)
-	. = list()
+	var/list/data = list()
 
-	.["alarms"] = list()
+	data["alarms"] = list()
 	for(var/class in alarms)
-		.["alarms"][class] = list()
+		data["alarms"][class] = list()
 		for(var/area in alarms[class])
-			.["alarms"][class] += area
+			data["alarms"][class] += area
+	
+	return data
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(class, area/A, O, obj/source)
 	if(source.z != z)

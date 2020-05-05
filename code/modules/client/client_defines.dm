@@ -1,4 +1,3 @@
-
 /client
 		//////////////////////
 		//BLACK MAGIC THINGS//
@@ -15,6 +14,9 @@
 	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
 	var/ircreplyamount = 0
+
+	var/total_message_count = 0 //How many messages sent in the last 10 seconds
+	var/total_count_reset = 0 //Next tick to reset the total message counter
 
 		/////////
 		//OTHER//
@@ -74,4 +76,8 @@
 
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 
+	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
+
 	var/encoding = "1252" // yogs - LibVG
+
+	var/list/seen_messages // Messages currently seen by this client

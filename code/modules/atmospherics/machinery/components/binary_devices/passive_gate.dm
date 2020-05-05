@@ -53,11 +53,11 @@ Passive gate is similar to the regular pump except:
 		return
 
 	//Calculate necessary moles to transfer using PV = nRT
-	if((air1.total_moles() > 0) && (air1.temperature>0))
+	if((air1.total_moles() > 0) && (air1.return_temperature()>0))
 		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure)/2)
 		//Can not have a pressure delta that would cause output_pressure > input_pressure
 
-		var/transfer_moles = pressure_delta*air2.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
+		var/transfer_moles = pressure_delta*air2.return_volume()/(air1.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 		//Actually transfer the gas
 		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
@@ -123,7 +123,7 @@ Passive gate is similar to the regular pump except:
 				pressure = text2num(pressure)
 				. = TRUE
 			if(.)
-				target_pressure = CLAMP(pressure, 0, MAX_OUTPUT_PRESSURE)
+				target_pressure = clamp(pressure, 0, MAX_OUTPUT_PRESSURE)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
@@ -146,7 +146,7 @@ Passive gate is similar to the regular pump except:
 		on = !on
 
 	if("set_output_pressure" in signal.data)
-		target_pressure = CLAMP(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*50)
+		target_pressure = clamp(text2num(signal.data["set_output_pressure"]),0,ONE_ATMOSPHERE*50)
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)

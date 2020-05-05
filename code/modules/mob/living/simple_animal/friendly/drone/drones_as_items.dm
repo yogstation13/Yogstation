@@ -23,6 +23,7 @@
 	if(A)
 		notify_ghosts("A drone shell has been created in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_DRONE)
 	GLOB.poi_list |= src
+	LAZYADD(GLOB.mob_spawners[initial(name)], src)//Yogs -- Adds drone shells to Spawner Menu
 	if(isnull(possible_seasonal_hats))
 		build_seasonal_hats()
 
@@ -37,6 +38,7 @@
 
 /obj/item/drone_shell/Destroy()
 	GLOB.poi_list -= src
+	LAZYREMOVE(GLOB.mob_spawners[initial(name)], src)//Yogs -- Adds drone shells to Spawner Menu
 	. = ..()
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
@@ -61,5 +63,7 @@
 		var/obj/item/new_hat = new hat_type(D)
 		D.equip_to_slot_or_del(new_hat, SLOT_HEAD)
 	D.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
+	message_admins("[ADMIN_LOOKUPFLW(user)] has taken possession of \a [src] in [AREACOORD(src)].")
+	log_game("[key_name(user)] has taken possession of \a [src] in [AREACOORD(src)].")
 	D.key = user.key
 	qdel(src)

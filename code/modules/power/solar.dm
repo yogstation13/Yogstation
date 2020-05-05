@@ -273,6 +273,7 @@
 	var/nexttime = 0		// time for a panel to rotate of 1 degree in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
+	var/mob/living/carbon/human/last_user // The last guy to open up the console
 
 /obj/machinery/power/solar_control/Initialize()
 	. = ..()
@@ -342,8 +343,10 @@
 												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "solar_control", name, 500, 400, master_ui, state)
+		ui = new(user, src, ui_key, "solar_control", name, 380, 230, master_ui, state)
 		ui.open()
+	if(ishuman(user))
+		last_user = user
 
 /obj/machinery/power/solar_control/ui_data()
 	var/data = list()
@@ -363,39 +366,51 @@
 /obj/machinery/power/solar_control/ui_act(action, params)
 	if(..())
 		return
-	switch(action)
-		if("angle")
-			var/adjust = text2num(params["adjust"])
-			if(adjust)
-				currentdir = CLAMP((360 + adjust + currentdir) % 360, 0, 359)
-				targetdir = currentdir
-				set_panels(currentdir)
-				. = TRUE
-		if("rate")
-			var/adjust = text2num(params["adjust"])
-			if(adjust)
-				trackrate = CLAMP(trackrate + adjust, -7200, 7200)
-				if(trackrate)
-					nexttime = world.time + 36000 / abs(trackrate)
-				. = TRUE
-		if("tracking")
-			var/mode = text2num(params["mode"])
-			track = mode
-			if(mode == 2 && connected_tracker)
-				connected_tracker.set_angle(SSsun.angle)
-				set_panels(currentdir)
-			else if(mode == 1)
-				targetdir = currentdir
-				if(trackrate)
-					nexttime = world.time + 36000 / abs(trackrate)
-				set_panels(targetdir)
-			. = TRUE
-		if("refresh")
-			search_for_connected()
-			if(connected_tracker && track == 2)
-				connected_tracker.set_angle(SSsun.angle)
+	if(action == "angle")
+		var/adjust = text2num(params["adjust"])
+		var/value = text2num(params["value"])
+		if(adjust)
+			value = currentdir + adjust
+		if(value != null)
+			currentdir = clamp((360 + value) % 360, 0, 359)
+			targetdir = currentdir
 			set_panels(currentdir)
-			. = TRUE
+			return TRUE
+		return FALSE
+	if(action == "rate")
+		var/adjust = text2num(params["adjust"])
+		var/value = text2num(params["value"])
+		if(adjust)
+			value = trackrate + adjust
+		if(value != null)
+			trackrate = clamp(value, -7200, 7200)
+			if(trackrate)
+				nexttime = world.time + 36000 / abs(trackrate)
+			return TRUE
+		return FALSE
+	if(action == "tracking")
+		var/mode = text2num(params["mode"])
+		track = mode
+		if(mode == 2 && connected_tracker)
+			connected_tracker.set_angle(SSsun.angle)
+			set_panels(currentdir)
+		else if(mode == 1)
+			targetdir = currentdir
+			if(trackrate)
+				nexttime = world.time + 36000 / abs(trackrate)
+			set_panels(targetdir)
+		return TRUE
+	if(action == "refresh")
+		var/was_not_connected = !(connected_tracker && connected_panels.len)
+		search_for_connected()
+		if(last_user && last_user.client && was_not_connected && connected_tracker && connected_panels.len) // If this guy finished up the solars
+			if(last_user.stat != DEAD && (last_user.mind?.assigned_role in GLOB.engineering_positions)) // and he's an engineer who isn't long-dead or adminbussing
+				SSachievements.unlock_achievement(/datum/achievement/engineering/solar, last_user.client) // Give him the achievement
+		if(connected_tracker && track == 2)
+			connected_tracker.set_angle(SSsun.angle)
+		set_panels(currentdir)
+		return TRUE
+	return FALSE
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)

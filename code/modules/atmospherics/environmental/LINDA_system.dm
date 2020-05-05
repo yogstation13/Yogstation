@@ -24,7 +24,8 @@
 		R = TRUE
 	if(blocks_air || T.blocks_air)
 		R = TRUE
-
+	if (T == src)
+		return !R
 	for(var/obj/O in contents+T.contents)
 		var/turf/other = (O.loc == src ? T : src)
 		if(!(vertical? (CANVERTICALATMOSPASS(O, other)) : (CANATMOSPASS(O, other))))
@@ -42,25 +43,33 @@
 /atom/movable/proc/BlockSuperconductivity() // objects that block air and don't let superconductivity act. Only firelocks atm.
 	return FALSE
 
-/turf/proc/CalculateAdjacentTurfs()
-	var/list/atmos_adjacent_turfs = src.atmos_adjacent_turfs
+/turf/proc/ImmediateCalculateAdjacentTurfs()
+	var/canpass = CANATMOSPASS(src, src) 
+	var/canvpass = CANVERTICALATMOSPASS(src, src)
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
+		var/opp_dir = dir_inverse_multiz(direction)
 		if(!isopenturf(T))
 			continue
-		if(!(blocks_air || T.blocks_air) && ((direction & (UP|DOWN))? (CANVERTICALATMOSPASS(T, src)) : (CANATMOSPASS(T, src))) )
+		if(!(blocks_air || T.blocks_air) && ((direction & (UP|DOWN))? (canvpass && CANVERTICALATMOSPASS(T, src)) : (canpass && CANATMOSPASS(T, src))) )
 			LAZYINITLIST(atmos_adjacent_turfs)
 			LAZYINITLIST(T.atmos_adjacent_turfs)
-			atmos_adjacent_turfs[T] = TRUE
-			T.atmos_adjacent_turfs[src] = TRUE
+			atmos_adjacent_turfs[T] = direction
+			T.atmos_adjacent_turfs[src] = opp_dir
+			T.__update_extools_adjacent_turfs()
 		else
 			if (atmos_adjacent_turfs)
 				atmos_adjacent_turfs -= T
 			if (T.atmos_adjacent_turfs)
 				T.atmos_adjacent_turfs -= src
+				T.__update_extools_adjacent_turfs()
 			UNSETEMPTY(T.atmos_adjacent_turfs)
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
+	__update_extools_adjacent_turfs()
+
+/turf/proc/__update_extools_adjacent_turfs()
+
 
 //returns a list of adjacent turfs that can share air with this one.
 //alldir includes adjacent diagonal tiles that can share
@@ -105,7 +114,7 @@
 
 /turf/air_update_turf(command = 0)
 	if(command)
-		CalculateAdjacentTurfs()
+		ImmediateCalculateAdjacentTurfs()
 	SSair.add_to_active(src,command)
 
 /atom/movable/proc/move_update_air(turf/T)

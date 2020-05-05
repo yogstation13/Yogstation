@@ -94,7 +94,7 @@
 		return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(user.get_active_held_item() == src)
-		newtime = CLAMP(newtime, 10, 60000)
+		newtime = clamp(newtime, 10, 60000)
 		det_time = newtime
 		to_chat(user, "Timer set for [det_time] seconds.")
 
@@ -114,7 +114,9 @@
 		target = AM
 
 		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
-		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with [det_time] second fuse")
+		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
+
+		notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_ORBIT, header = "Bomb Planted" )
 
 		moveToNullspace()	//Yep
 
@@ -175,9 +177,9 @@
 	var/open_panel = 0
 	can_attach_mob = TRUE
 
-/obj/item/grenade/plastic/c4/New()
+/obj/item/grenade/plastic/c4/Initialize()
+	. = ..()
 	wires = new /datum/wires/explosive/c4(src)
-	..()
 
 /obj/item/grenade/plastic/c4/Destroy()
 	qdel(wires)
@@ -213,7 +215,7 @@
 			location = get_turf(target)
 			target.cut_overlay(plastic_overlay, TRUE)
 			if(!ismob(target) || full_damage_on_mobs)
-				target.ex_act(2, target)
+				target.ex_act(EXPLODE_HEAVY, target)
 	else
 		location = get_turf(src)
 	if(location)

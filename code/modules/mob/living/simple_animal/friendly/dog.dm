@@ -9,7 +9,7 @@
 	speak_emote = list("barks", "woofs")
 	emote_hear = list("barks!", "woofs!", "yaps.","pants.")
 	emote_see = list("shakes its head.", "chases its tail.","shivers.")
-	faction = list("dog")
+	faction = list("neutral")
 	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
@@ -102,10 +102,10 @@
 	user.set_machine(src)
 
 
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
+	var/dat = 	"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><b>Inventory of [name]</b></div><p>"
 	dat += "<br><B>Head:</B> <A href='?src=[REF(src)];[inventory_head ? "remove_inv=head'>[inventory_head]" : "add_inv=head'>Nothing"]</A>"
 	dat += "<br><B>Back:</B> <A href='?src=[REF(src)];[inventory_back ? "remove_inv=back'>[inventory_back]" : "add_inv=back'>Nothing"]</A>"
-	dat += "<br><B>Collar:</B> <A href='?src=[REF(src)];[pcollar ? "remove_inv=collar'>[pcollar]" : "add_inv=collar'>Nothing"]</A>"
+	dat += "<br><B>Collar:</B> <A href='?src=[REF(src)];[pcollar ? "remove_inv=collar'>[pcollar]" : "add_inv=collar'>Nothing"]</A></BODY></HTML>"
 
 	user << browse(dat, "window=mob[REF(src)];size=325x500")
 	onclose(user, "mob[REF(src)]")
@@ -201,7 +201,11 @@
 
 		switch(add_to)
 			if("collar")
-				add_collar(usr.get_active_held_item(), usr)
+				var/obj/item/clothing/neck/petcollar/P = usr.get_active_held_item()
+				if(!istype(P))
+					to_chat(usr,"<span class='warning'>That's not a collar.</span>")
+					return
+				add_collar(P, usr)
 				update_corgi_fluff()
 
 			if(BODY_ZONE_HEAD)
@@ -267,7 +271,9 @@
 		return
 	if(!item_to_add)
 		user.visible_message("[user] pets [src].","<span class='notice'>You rest your hand on [src]'s head for a moment.</span>")
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
+		if(flags_1 & HOLOGRAM_1)
+			return
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 		return
 
 	if(user && !user.temporarilyRemoveItemFromInventory(item_to_add))
@@ -442,13 +448,16 @@
 				step_to(src,movement_target,1)
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
+					var/turf/T = get_turf(movement_target)
+					if(!T)
+						return
+					if (T.x < src.x)
 						setDir(WEST)
-					else if (movement_target.loc.x > src.x)
+					else if (T.x > src.x)
 						setDir(EAST)
-					else if (movement_target.loc.y < src.y)
+					else if (T.y < src.y)
 						setDir(SOUTH)
-					else if (movement_target.loc.y > src.y)
+					else if (T.y > src.y)
 						setDir(NORTH)
 					else
 						setDir(SOUTH)
@@ -481,7 +490,7 @@
 	icon_state = "narsian"
 	icon_living = "narsian"
 	icon_dead = "narsian_dead"
-	faction = list("dog", "cult")
+	faction = list("neutral", "cult")
 	gold_core_spawnable = NO_SPAWN
 	nofur = TRUE
 	unique_pet = TRUE
@@ -650,7 +659,7 @@
 			if(M && stat != DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454
 				new /obj/effect/temp_visual/heart(loc)
 				emote("me", 1, "yaps happily!")
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 		else
 			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
 				emote("me", 1, "growls!")

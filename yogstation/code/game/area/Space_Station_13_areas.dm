@@ -59,3 +59,11 @@
 /area/ai_monitored/turret_protected/tcomeast
 	name = "Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
+
+/area/escapepodbay
+	name = "Escape Shuttle Hallway Podbay"
+	icon_state = "escape"
+
+/area/security/podbay
+	name = "Security Podbay"
+	icon_state = "security"

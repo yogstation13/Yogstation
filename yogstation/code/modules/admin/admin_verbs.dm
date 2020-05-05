@@ -52,18 +52,18 @@
 				mobs -= M
 
 	if(!mobs.len)
-		to_chat(src, "<span class='warning'>Error: no valid mobs found via selected options.</span>")
+		to_chat(src, "<span class='warning'>Error: no valid mobs found via selected options.</span>", confidential=TRUE)
 		return
 
 	var/mob/chosen_player = pick(mobs)
-	to_chat(src, "[chosen_player] has been chosen")
+	to_chat(src, "[chosen_player] has been chosen", confidential=TRUE)
 	holder.show_player_panel(chosen_player)
 
 /client/proc/get_law_history()
 	set name = "Get Law History"
 	set category = "Admin"
 	set desc = "View list of law changes for silicons."
-	var/data = ""
+	var/data = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
 		if(ispAI(S))
 			continue
@@ -76,4 +76,5 @@
 				laws += "<br>"
 			data += " <li>[laws]</li><br>\n"
 		data += "</ol>\n"
+	data += "</BODY></HTML>"
 	src << browse(data, "window=law_history")

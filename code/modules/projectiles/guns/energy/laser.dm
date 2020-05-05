@@ -47,9 +47,11 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/laser/cyborg
-	can_charge = 0
-	desc = "An energy-based laser gun that draws power from the cyborg's internal energy cell directly. So this is what freedom looks like?"
-	use_cyborg_cell = 1
+	can_charge = FALSE
+	desc = "An energy-based laser gun that self charges. So this is what freedom looks like?"
+	charge_delay = 5
+	selfcharge = TRUE
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/cyborg)
 
 /obj/item/gun/energy/laser/cyborg/emp_act()
 	return

@@ -9,7 +9,7 @@
 	if (notransform)
 		return
 
-	if(..())
+	if(..() && !IS_IN_STASIS(src))
 
 		if(!client)
 			if(stat == CONSCIOUS)
@@ -50,8 +50,8 @@
 	return ..()
 
 /mob/living/carbon/monkey/handle_breath_temperature(datum/gas_mixture/breath)
-	if(abs(BODYTEMP_NORMAL - breath.temperature) > 50)
-		switch(breath.temperature)
+	if(abs(BODYTEMP_NORMAL - breath.return_temperature()) > 50)
+		switch(breath.return_temperature())
 			if(-INFINITY to 120)
 				adjustFireLoss(3)
 			if(120 to 200)
@@ -81,7 +81,7 @@
 			adjust_bodytemperature(min((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
 
 
-	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !has_trait(TRAIT_RESISTHEAT))
+	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTHEAT))
 		switch(bodytemperature)
 			if(360 to 400)
 				throw_alert("temp", /obj/screen/alert/hot, 1)
@@ -96,7 +96,7 @@
 				else
 					apply_damage(HEAT_DAMAGE_LEVEL_2, BURN)
 
-	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !has_trait(TRAIT_RESISTCOLD))
+	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTCOLD))
 		if(!istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 			switch(bodytemperature)
 				if(200 to 260)
@@ -151,7 +151,7 @@
 	//the fire tries to damage the exposed clothes and items
 	var/list/burning_items = list()
 	//HEAD//
-	var/list/obscured = check_obscured_slots()
+	var/list/obscured = check_obscured_slots(TRUE)
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
 		burning_items += wear_mask
 	if(wear_neck && !(SLOT_NECK in obscured))

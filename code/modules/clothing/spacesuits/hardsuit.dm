@@ -135,7 +135,7 @@
 			to_chat(user, "<span class='warning'>You cannot remove the jetpack from [src] while wearing it.</span>")
 			return
 
-		jetpack.turn_off()
+		jetpack.turn_off(user)
 		jetpack.forceMove(drop_location())
 		jetpack = null
 		to_chat(user, "<span class='notice'>You successfully remove the jetpack from [src].</span>")
@@ -210,7 +210,7 @@
 	icon_state = "hardsuit0-white"
 	item_state = "ce_helm"
 	item_color = "white"
-	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 50, "bio" = 100, "rad" = 90, "fire" = 100, "acid" = 90)
+	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
@@ -404,7 +404,7 @@
 	item_state = "wiz_helm"
 	item_color = "wiz"
 	resistance_flags = FIRE_PROOF | ACID_PROOF //No longer shall our kind be foiled by lone chemists with spray bottles!
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 	heat_protection = HEAD												//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
@@ -415,15 +415,16 @@
 	item_state = "wiz_hardsuit"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 	allowed = list(/obj/item/teleportation_scroll, /obj/item/tank/internals)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS					//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/wizard
+	slowdown = 0
 
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize()
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, FALSE)
+	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
 
 
 	//Medical hardsuit
@@ -435,7 +436,7 @@
 	item_color = "medical"
 	flash_protect = 0
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
-	scan_reagents = TRUE
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SCAN_REAGENTS
 
 /obj/item/clothing/suit/space/hardsuit/medical
 	icon_state = "hardsuit-medical"
@@ -445,6 +446,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/storage/firstaid, /obj/item/healthanalyzer, /obj/item/stack/medical)
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical
+	slowdown = 0.5
 
 	//Research Director hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/rd
@@ -456,7 +458,7 @@
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 	var/obj/machinery/doppler_array/integrated/bomb_radar
-	scan_reagents = TRUE
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SCAN_REAGENTS
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_research_scanner)
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize()
@@ -607,7 +609,6 @@
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75)
 	item_color = "ancient"
 	resistance_flags = FIRE_PROOF
-	var/datum/component/mobhook
 
 /obj/item/clothing/suit/space/hardsuit/ancient
 	name = "prototype RIG hardsuit"
@@ -619,7 +620,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ancient
 	resistance_flags = FIRE_PROOF
 	var/footstep = 1
-	var/datum/component/mobhook
+	var/mob/listeningTo
 
 /obj/item/clothing/suit/space/hardsuit/ancient/proc/on_mob_move()
 	var/mob/living/carbon/human/H = loc
@@ -633,20 +634,24 @@
 
 /obj/item/clothing/suit/space/hardsuit/ancient/equipped(mob/user, slot)
 	. = ..()
-	if (slot == SLOT_WEAR_SUIT)
-		if (mobhook && mobhook.parent != user)
-			QDEL_NULL(mobhook)
-		if (!mobhook)
-			mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/on_mob_move)))
-	else
-		QDEL_NULL(mobhook)
+	if(slot != SLOT_WEAR_SUIT)
+		if(listeningTo)
+			UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+		return
+	if(listeningTo == user)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
+	listeningTo = user
 
 /obj/item/clothing/suit/space/hardsuit/ancient/dropped()
 	. = ..()
-	QDEL_NULL(mobhook)
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 
 /obj/item/clothing/suit/space/hardsuit/ancient/Destroy()
-	QDEL_NULL(mobhook) // mobhook is not our component
+	listeningTo = null
 	return ..()
 
 /////////////SHIELDED//////////////////////////////////
@@ -696,7 +701,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/shielded/process()
 	if(world.time > recharge_cooldown && current_charges < max_charges)
-		current_charges = CLAMP((current_charges + recharge_rate), 0, max_charges)
+		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
 		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
 		if(current_charges == max_charges)
 			playsound(loc, 'sound/machines/ding.ogg', 50, 1)
@@ -722,7 +727,7 @@
 	icon_state = "ert_medical"
 	item_state = "ert_medical"
 	item_color = "ert_medical"
-	item_flags = NODROP //Dont want people changing into the other teams gear
+	// Adding TRAIT_NODROP is done when the CTF spawner equips people
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf
 	armor = list("melee" = 0, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 95)
 	slowdown = 0
@@ -823,3 +828,40 @@
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
+
+//POWERARMORS
+//Currently are no different from normal hardsuits, except maybe for the higher armor ratings.
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
+	name = "Salvaged T-45b helmet"
+	desc = "It's some barely-functional power armor helmet from a by-gone age."
+	icon_state = "hardsuit0-t45b"
+	item_state = "t45b_helm"
+	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 25)
+	item_color = "t45b"
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor_t45b
+	name = "Salvaged T-45b power armor"
+	desc = "It's some barely-functional power armor, probably hundreds of years old."
+	icon_state = "hardsuit-t45b"
+	item_state = "t45b_hardsuit"
+	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
+	item_color = "t45b"
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
+	name = "Advanced power helmet"
+	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
+	icon_state = "hardsuit0-advpa1"
+	item_state = "advpa1_helm"
+	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
+	item_color = "advpa1"
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
+	name = "Advanced power armor"
+	desc = "An advanced suit of power armor. It looks pretty impressive and threatening."
+	icon_state = "hardsuit-advancedpa1"
+	item_state = "advpa1_hardsuit"
+	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
+	item_color = "advancedpa1"

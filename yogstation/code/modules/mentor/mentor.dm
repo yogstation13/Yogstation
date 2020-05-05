@@ -48,8 +48,8 @@ GLOBAL_PROTECT(mentor_href_token)
 	var/tok = GLOB.mentor_href_token
 	if(!forceGlobal && usr)
 		var/client/C = usr.client
-		to_chat(world, C)
-		to_chat(world, usr)
+		to_chat(world, C, confidential=TRUE)
+		to_chat(world, usr, confidential=TRUE)
 		if(!C)
 			CRASH("No client for HrefToken()!")
 
@@ -97,6 +97,12 @@ GLOBAL_PROTECT(mentor_href_token)
 			new /datum/mentors(ckey)
 
 		qdel(query_load_mentors)
+	
+/proc/send_mentor_sound(client/C)
+	var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+	pingsound.volume = 90
+	pingsound.pan = 80
+	SEND_SOUND(C,pingsound)
 
 // new client var: mentor_datum. Acts the same way holder does towards admin: it holds the mentor datum. if set, the guy's a mentor.
 /client

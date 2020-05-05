@@ -12,7 +12,6 @@
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
 	var/team_mode = FALSE //Should assign team objectives ?
-	var/competitive_objectives = FALSE //Should we assign objectives in competition with other lings?
 
 	//Changeling Stuff
 
@@ -33,16 +32,16 @@
 	var/islinking = 0
 	var/geneticpoints = 10
 	var/purchasedpowers = list()
+
 	var/mimicing = ""
-	var/canrespec = 0
+	var/canrespec = FALSE//set to TRUE in absorb.dm
 	var/changeling_speak = 0
 	var/datum/dna/chosen_dna
-	var/obj/effect/proc_holder/changeling/sting/chosen_sting
+	var/datum/action/changeling/sting/chosen_sting
 	var/datum/cellular_emporium/cellular_emporium
 	var/datum/action/innate/cellular_emporium/emporium_action
 
-	// wip stuff
-	var/static/list/all_powers = typecacheof(/obj/effect/proc_holder/changeling,TRUE)
+	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
 
 /datum/antagonist/changeling/New()
 	. = ..()
@@ -51,7 +50,6 @@
 			continue
 		if(C.was_absorbed) //make sure the other ling wasn't already killed by another one. only matters if the changeling that absorbed them was gibbed after.
 			continue
-		competitive_objectives = TRUE
 		break
 
 /datum/antagonist/changeling/Destroy()
@@ -63,8 +61,10 @@
 	var/honorific
 	if(owner.current.gender == FEMALE)
 		honorific = "Ms."
-	else
+	else if(owner.current.gender == MALE)
 		honorific = "Mr."
+	else
+		honorific = "Dear" // Yogs -- I refuse to use Mx, that sounds more like a pharmaceutical company than a person
 	if(GLOB.possible_changeling_IDs.len)
 		changelingID = pick(GLOB.possible_changeling_IDs)
 		GLOB.possible_changeling_IDs -= changelingID
@@ -75,6 +75,7 @@
 /datum/antagonist/changeling/proc/create_actions()
 	cellular_emporium = new(src)
 	emporium_action = new(cellular_emporium)
+	emporium_action.Grant(owner.current)
 
 /datum/antagonist/changeling/on_gain()
 	generate_name()
@@ -86,6 +87,7 @@
 			forge_team_objectives()
 		forge_objectives()
 	remove_clownmut()
+	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
 	. = ..()
 
 /datum/antagonist/changeling/on_removal()
@@ -94,7 +96,7 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B && (B.decoy_override != initial(B.decoy_override)))
-			B.vital = TRUE
+			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
 	remove_changeling_powers()
 	. = ..()
@@ -120,11 +122,9 @@
 /datum/antagonist/changeling/proc/remove_changeling_powers()
 	if(ishuman(owner.current) || ismonkey(owner.current))
 		reset_properties()
-		for(var/obj/effect/proc_holder/changeling/p in purchasedpowers)
-			if(p.always_keep)
-				continue
+		for(var/datum/action/changeling/p in purchasedpowers)
 			purchasedpowers -= p
-			p.on_refund(owner.current)
+			p.Remove(owner.current)
 
 	//MOVE THIS
 	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
@@ -136,26 +136,34 @@
 		remove_changeling_powers()
 	//Repurchase free powers.
 	for(var/path in all_powers)
-		var/obj/effect/proc_holder/changeling/S = new path()
+		var/datum/action/changeling/S = new path
 		if(!S.dna_cost)
 			if(!has_sting(S))
 				purchasedpowers += S
 				S.on_purchase(owner.current,TRUE)
 
-/datum/antagonist/changeling/proc/has_sting(obj/effect/proc_holder/changeling/power)
-	for(var/obj/effect/proc_holder/changeling/P in purchasedpowers)
-		if(initial(power.name) == P.name)
+/datum/antagonist/changeling/proc/regain_powers()//for when action buttons are lost and need to be regained, such as when the mind enters a new mob
+	emporium_action.Grant(owner.current)
+	for(var/power in purchasedpowers)
+		var/datum/action/changeling/S = power
+		if(istype(S) && S.needs_button)
+			S.Grant(owner.current)
+
+/datum/antagonist/changeling/proc/has_sting(datum/action/changeling/power)
+	for(var/P in purchasedpowers)
+		var/datum/action/changeling/otherpower = P
+		if(initial(power.name) == otherpower.name)
 			return TRUE
 	return FALSE
 
 
 /datum/antagonist/changeling/proc/purchase_power(sting_name)
-	var/obj/effect/proc_holder/changeling/thepower = null
+	var/datum/action/changeling/thepower
 
 	for(var/path in all_powers)
-		var/obj/effect/proc_holder/changeling/S = path
+		var/datum/action/changeling/S = path
 		if(initial(S.name) == sting_name)
-			thepower = new path()
+			thepower = new path
 			break
 
 	if(!thepower)
@@ -178,13 +186,13 @@
 		to_chat(owner.current, "We have reached our capacity for abilities.")
 		return
 
-	if(owner.current.has_trait(TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
+	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
 
 	geneticpoints -= thepower.dna_cost
 	purchasedpowers += thepower
-	thepower.on_purchase(owner.current)
+	thepower.on_purchase(owner.current)//Grant() is ran in this proc, see changeling_powers.dm
 
 /datum/antagonist/changeling/proc/readapt()
 	if(!ishuman(owner.current))
@@ -201,10 +209,9 @@
 		return 0
 
 //Called in life()
-/datum/antagonist/changeling/proc/regenerate()
+/datum/antagonist/changeling/proc/regenerate()//grants the HuD in life.dm
 	var/mob/living/carbon/the_ling = owner.current
 	if(istype(the_ling))
-		emporium_action.Grant(the_ling)
 		if(the_ling.stat == DEAD)
 			chem_charges = min(max(0, chem_charges + chem_recharge_rate - chem_recharge_slowdown), (chem_storage*0.5))
 			geneticdamage = max(LING_DEAD_GENETICDAMAGE_HEAL_CAP,geneticdamage-1)
@@ -240,9 +247,13 @@
 		if(verbose)
 			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
 		return
-	if((target.has_trait(TRAIT_NOCLONE)) || (target.has_trait(TRAIT_NOCLONE)))
+	if(HAS_TRAIT(target, TRAIT_BADDNA))
 		if(verbose)
 			to_chat(user, "<span class='warning'>DNA of [target] is ruined beyond usability!</span>")
+		return
+	if(HAS_TRAIT(target, TRAIT_HUSK))
+		if(verbose)
+			to_chat(user, "<span class='warning'>[target]'s body is ruined beyond usability!</span>")
 		return
 	if(!ishuman(target))//Absorbing monkeys is entirely possible, but it can cause issues with transforming. That's what lesser form is for anyway!
 		if(verbose)
@@ -272,6 +283,7 @@
 	prof.underwear = H.underwear
 	prof.undershirt = H.undershirt
 	prof.socks = H.socks
+	prof.accent = H.mind.accent_name
 
 	var/list/slots = list("head", "wear_mask", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
@@ -338,7 +350,7 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
-			B.vital = FALSE
+			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
 	update_changeling_icons_added()
 	return
@@ -382,7 +394,13 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	var/other_changelings_exist = FALSE
+	for(var/datum/antagonist/changeling/CL in GLOB.antagonists)
+		if(CL != src)
+			other_changelings_exist = TRUE
+			break
+
+	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
@@ -504,6 +522,7 @@
 	var/underwear
 	var/undershirt
 	var/socks
+	var/accent
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)
@@ -523,6 +542,7 @@
 	newprofile.underwear = underwear
 	newprofile.undershirt = undershirt
 	newprofile.socks = socks
+	newprofile.accent = accent
 
 
 /datum/antagonist/changeling/xenobio
@@ -556,6 +576,7 @@
 
 	if(changelingwin)
 		parts += "<span class='greentext'>The changeling was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext/changelingwin, owner.current.client) //changeling wins, give achivement
 	else
 		parts += "<span class='redtext'>The changeling has failed.</span>"
 

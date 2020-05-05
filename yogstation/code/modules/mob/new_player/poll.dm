@@ -1,4 +1,4 @@
-/client/verb/cmd_view_polls()
+/client/proc/cmd_view_polls()
 	set category = "Server"
 	set name = "View poll results"
 
@@ -9,11 +9,11 @@
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
 
-	var/datum/DBQuery/query_poll_get = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("poll_question")] WHERE Now() > starttime")
+	var/datum/DBQuery/query_poll_get = SSdbcore.NewQuery("SELECT id, question FROM [format_table_name("poll_question")] WHERE Now() > starttime ORDER BY starttime DESC")
 	if(!query_poll_get.warn_execute())
 		qdel(query_poll_get)
 		return
-	var/output = "<div align='center'><B>Player polls</B><hr><table>"
+	var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player polls</B><hr><table>"
 	var/i = 0
 	var/rs = REF(src)
 	while(query_poll_get.NextRow())
@@ -22,7 +22,7 @@
 		output += "<tr bgcolor='#[ (i % 2 == 1) ? "e2e2e2" : "e2e2e2" ]'><td><a href=\"byond://?src=[rs];pollidshow=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
 		i++
 	qdel(query_poll_get)
-	output += "</table>"
+	output += "</table></BODY></HTML>"
 	if(!QDELETED(src))
 		src << browse(output,"window=playerpolllist;size=500x300")
 
@@ -31,6 +31,9 @@
 	if(!check_rights(R_ADMIN))
 		return
 	if(pollid == -1)
+		return
+	pollid = text2num(pollid)
+	if(!pollid)
 		return
 	if(!SSdbcore.IsConnected())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
@@ -53,6 +56,7 @@
 		endtime = select_query.item[6]
 		found = 1
 		break
+	qdel(select_query)
 	if(!found)
 		to_chat(src, "<span class='warning'>Poll question details not found.</span>")
 		return
@@ -62,7 +66,7 @@
 	if(adminonly)
 		question = "(<font color='#997700'>Admin only poll</font>) " + question
 
-	var output = "<!DOCTYPE html><html><body>"
+	var output = "<!DOCTYPE html><html><HEAD><meta charset='UTF-8'></HEAD><body>"
 	if(polltype == POLLTYPE_MULTI || polltype == POLLTYPE_OPTION)
 		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
 		select_query.Execute()
@@ -78,6 +82,7 @@
 			if(votecount > max_votes)
 				max_votes = votecount
 			options[++options.len] = list(text, votecount)
+		qdel(select_query)
 		// fuck ie.
 		output += {"
 		<table width='900' align='center' bgcolor='#eeffee' cellspacing='0' cellpadding='4'>
@@ -131,6 +136,7 @@
 				var/votecount = 0
 				while(rating_query.NextRow())
 					votecount = text2num(rating_query.item[1])
+				qdel(rating_query)
 				votecounts["[I]"] = votecount
 				if(votecount > maxvote)
 					maxvote = votecount
@@ -146,6 +152,7 @@
 				</tr>"}
 			output += "</table></td></tr>"
 		output += "</table>"
+		qdel(select_query)
 	if(polltype == POLLTYPE_TEXT)
 		select_query = SSdbcore.NewQuery("SELECT replytext, COUNT(replytext) AS countresponse, GROUP_CONCAT(DISTINCT ckey SEPARATOR ', ') as ckeys FROM [format_table_name("poll_textreply")] WHERE pollid = [pollid] GROUP BY replytext ORDER BY countresponse DESC");
 		select_query.Execute()
@@ -163,6 +170,7 @@
 				<td>[check_rights(R_EVERYTHING) ? "[ckeys] " : ""]([countresponse] player\s) responded with:</td>
 				<td style='border:1px solid #888888'>[replytext]</td>
 			</tr>"}
+		qdel(select_query)
 		output += "</table>"
 	output += "</body></html>"
 

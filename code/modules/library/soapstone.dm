@@ -16,7 +16,7 @@
 /obj/item/soapstone/examine(mob/user)
 	. = ..()
 	if(remaining_uses != -1)
-		to_chat(user, "It has [remaining_uses] uses left.")
+		. += "It has [remaining_uses] uses left."
 
 /obj/item/soapstone/afterattack(atom/target, mob/user, proximity)
 	. = ..()
@@ -150,7 +150,7 @@
 /obj/structure/chisel_message/update_icon()
 	..()
 	var/hash = md5(hidden_message)
-	var/newcolor = copytext(hash, 1, 7)
+	var/newcolor = copytext_char(hash, 1, 7)
 	add_atom_colour("#[newcolor]", FIXED_COLOUR_PRIORITY)
 	light_color = "#[newcolor]"
 	set_light(1)
@@ -193,7 +193,7 @@
 	update_icon()
 
 /obj/structure/chisel_message/examine(mob/user)
-	..()
+	. = ..()
 	ui_interact(user)
 
 /obj/structure/chisel_message/Destroy()

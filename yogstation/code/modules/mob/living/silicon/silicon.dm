@@ -1,5 +1,5 @@
 /mob/living/silicon
-	var/list/law_history = list()
+	var/list/list/law_history = list() //its a list of lists
 
 /mob/living/silicon/proc/update_law_history(mob/uploader = null)
 	var/ai_law_sync = "UNKNOWN/Innate laws"

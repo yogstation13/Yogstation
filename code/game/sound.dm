@@ -1,9 +1,11 @@
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
 	if(isarea(source))
-		throw EXCEPTION("playsound(): source is an area")
-		return
+		CRASH("playsound(): source is an area")
 
 	var/turf/turf_source = get_turf(source)
+
+	if (!turf_source)
+		return
 
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || open_sound_channel()
@@ -11,20 +13,18 @@
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange)
-	var/list/listeners = GLOB.player_list
+	var/z = turf_source.z
+	var/list/listeners = SSmobs.clients_by_zlevel[z]
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/P in listeners)
 		var/mob/M = P
-		if(!M || !M.client)
-			continue
-		var/distance = get_dist(M, turf_source)
-
-		if(distance <= maxdistance)
-			var/turf/T = get_turf(M)
-
-			if(T && T.z == turf_source.z)
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
+		if(get_dist(M, turf_source) <= maxdistance)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
+	for(var/P in SSmobs.dead_players_by_zlevel[z])
+		var/mob/M = P
+		if(get_dist(M, turf_source) <= maxdistance)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
 
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S)
 	if(!client || !can_hear())
@@ -98,18 +98,17 @@
 		next_channel = 1
 
 /mob/proc/stop_sound_channel(chan)
-	if(chan == CHANNEL_LOBBYMUSIC && src.client && src.client.chatOutput) //yogs start
-		src.client.chatOutput.stopLobbyMusic()
-		return //yogs end
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
+	if(chan == CHANNEL_LOBBYMUSIC) //yogs start
+		if(client && client.chatOutput)
+			client.chatOutput.stopLobbyMusic() //yogs end
 
-/*/client/proc/playtitlemusic(vol = 85) //yogs start - moved to yogstation/code/game/sound.dm
+/* /client/proc/playtitlemusic(vol = 85) //yogs
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
-*/ //yogs end
+		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) */ //yogs
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
@@ -131,6 +130,8 @@
 				soundin = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 			if ("clownstep")
 				soundin = pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
+			if ("collarbell")
+				soundin = pick('sound/effects/collarbell1.ogg','sound/effects/collarbell2.ogg')
 			if ("suitstep")
 				soundin = pick('sound/effects/suitstep1.ogg','sound/effects/suitstep2.ogg')
 			if ("swing_hit")
@@ -139,8 +140,6 @@
 				soundin = pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 			if ("pageturn")
 				soundin = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
-			if ("gunshot")
-				soundin = pick('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.ogg','sound/weapons/gunshot3.ogg','sound/weapons/gunshot4.ogg')
 			if ("ricochet")
 				soundin = pick(	'sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg','sound/weapons/effects/ric3.ogg','sound/weapons/effects/ric4.ogg','sound/weapons/effects/ric5.ogg')
 			if ("terminal_type")
@@ -169,4 +168,8 @@
 				soundin = pick('sound/voice/beepsky/god.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/secureday.ogg', 'sound/voice/beepsky/radio.ogg', 'sound/voice/beepsky/insult.ogg', 'sound/voice/beepsky/creep.ogg')
 			if("honkbot_e")
 				soundin = pick('sound/items/bikehorn.ogg', 'sound/items/AirHorn2.ogg', 'sound/misc/sadtrombone.ogg', 'sound/items/AirHorn.ogg', 'sound/effects/reee.ogg',  'sound/items/WEEOO1.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/creep.ogg','sound/magic/Fireball.ogg' ,'sound/effects/pray.ogg', 'sound/voice/hiss1.ogg','sound/machines/buzz-sigh.ogg', 'sound/machines/ping.ogg', 'sound/weapons/flashbang.ogg', 'sound/weapons/bladeslice.ogg')
+			if("goose")
+				soundin = pick('sound/creatures/goose1.ogg', 'sound/creatures/goose2.ogg', 'sound/creatures/goose3.ogg', 'sound/creatures/goose4.ogg')
+			if ("crawling_shadows_walk")
+				soundin = pick('yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_01.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_02.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_03.ogg') //WELCOME TO PATH HELL
 	return soundin

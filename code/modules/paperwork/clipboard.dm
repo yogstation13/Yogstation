@@ -50,7 +50,7 @@
 
 
 /obj/item/clipboard/attack_self(mob/user)
-	var/dat = "<title>Clipboard</title>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'><title>Clipboard</title></HEAD><BODY>"
 	if(haspen)
 		dat += "<A href='?src=[REF(src)];pen=1'>Remove Pen</A><BR><HR>"
 	else
@@ -65,6 +65,7 @@
 			if(P == toppaper)
 				continue
 			dat += "<A href='?src=[REF(src)];write=[REF(P)]'>Write</A> <A href='?src=[REF(src)];remove=[REF(P)]'>Remove</A> <A href='?src=[REF(src)];top=[REF(P)]'>Move to top</A> - <A href='?src=[REF(src)];read=[REF(P)]'>[P.name]</A><BR>"
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=clipboard")
 	onclose(user, "clipboard")
 	add_fingerprint(usr)
@@ -94,14 +95,14 @@
 					to_chat(usr, "<span class='notice'>You slot [W] into [src].</span>")
 
 		if(href_list["write"])
-			var/obj/item/P = locate(href_list["write"])
-			if(istype(P) && P.loc == src)
+			var/obj/item/P = locate(href_list["write"]) in src
+			if(istype(P))
 				if(usr.get_active_held_item())
 					P.attackby(usr.get_active_held_item(), usr)
 
 		if(href_list["remove"])
-			var/obj/item/P = locate(href_list["remove"])
-			if(istype(P) && P.loc == src)
+			var/obj/item/P = locate(href_list["remove"]) in src
+			if(istype(P))
 				P.forceMove(usr.loc)
 				usr.put_in_hands(P)
 				if(P == toppaper)
@@ -113,13 +114,13 @@
 						toppaper = null
 
 		if(href_list["read"])
-			var/obj/item/paper/P = locate(href_list["read"])
-			if(istype(P) && P.loc == src)
+			var/obj/item/paper/P = locate(href_list["read"]) in src
+			if(istype(P))
 				usr.examinate(P)
 
 		if(href_list["top"])
-			var/obj/item/P = locate(href_list["top"])
-			if(istype(P) && P.loc == src)
+			var/obj/item/P = locate(href_list["top"]) in src
+			if(istype(P))
 				toppaper = P
 				to_chat(usr, "<span class='notice'>You move [P.name] to the top.</span>")
 

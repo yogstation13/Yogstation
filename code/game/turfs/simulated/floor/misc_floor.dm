@@ -260,3 +260,18 @@
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/tile/bronze
+
+/turf/open/floor/bronze/reebe
+	name = "bronze cogplate"
+	desc = "Bronze plating."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "reebe"
+
+/turf/open/floor/white
+	name = "white floor"
+	desc = "A tile in a pure white color."
+	icon_state = "pure_white"
+
+/turf/open/floor/black
+	name = "black floor"
+	icon_state = "black"

@@ -23,8 +23,8 @@
 // Returns special prefixes for the station name on certain days. You wind up with names like "Christmas Object Epsilon". See new_station_name()
 /datum/holiday/proc/getStationPrefix()
 	//get the first word of the Holiday and use that
-	var/i = findtext(name," ",1,0)
-	return copytext(name,1,i)
+	var/i = findtext(name, " ")
+	return copytext(name, 1, i)
 
 // Return 1 if this holidy should be celebrated today
 /datum/holiday/proc/shouldCelebrate(dd, mm, yy, ww, ddd)
@@ -73,7 +73,7 @@
 	drone_hat = /obj/item/clothing/head/festive
 
 /datum/holiday/new_year/getStationPrefix()
-	return pick("Party","New","Hangover","Resolution")
+	return pick("Party","New","Hangover","Resolution", "Auld")
 
 /datum/holiday/groundhog
 	name = "Groundhog Day"
@@ -87,7 +87,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 15
+	end_day = 17
 	begin_month = FEBRUARY
 
 /datum/holiday/valentines/getStationPrefix()
@@ -113,6 +113,8 @@
 			Fact = " SS13 can now rent a car!"
 		if(30)
 			Fact = " SS13 can now go home and be a family man!"
+		if(35)
+			Fact = " SS13 can now run for President of the United States!"
 		if(40)
 			Fact = " SS13 can now suffer a midlife crisis!"
 		if(50)
@@ -144,10 +146,14 @@
 	begin_day = 14
 	begin_month = MARCH
 
+/datum/holiday/pi/getStationPrefix()
+	return pick("Sine","Cosine","Tangent","Secant", "Cosecant", "Cotangent")
+
 /datum/holiday/no_this_is_patrick
 	name = "St. Patrick's Day"
 	begin_day = 17
 	begin_month = MARCH
+	drone_hat = /obj/item/clothing/head/soft/green
 
 /datum/holiday/no_this_is_patrick/getStationPrefix()
 	return pick("Blarney","Green","Leprechaun","Booze")
@@ -167,6 +173,15 @@
 	for(var/mob/dead/new_player/P in GLOB.mob_list)
 		if(P.client)
 			P.client.playtitlemusic()
+
+/datum/holiday/spess
+	name = "Cosmonautics Day"
+	begin_day = 12
+	begin_month = APRIL
+	drone_hat = /obj/item/clothing/head/syndicatefake
+
+/datum/holiday/spess/greet()
+	return "On this day over 600 years ago, Comrade Yuri Gagarin first ventured into space!"
 
 /datum/holiday/fourtwenty
 	name = "Four-Twenty"
@@ -208,6 +223,7 @@
 	name = "Bee Day"
 	begin_day = 20
 	begin_month = MAY
+	drone_hat = /obj/item/clothing/mask/rat/bee
 
 /datum/holiday/bee/getStationPrefix()
 	return pick("Bee","Honey","Hive","Africanized","Mead","Buzz")
@@ -236,14 +252,31 @@
 	name = "Independence Day"
 	begin_day = 4
 	begin_month = JULY
-
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=5uPoDNEn3I0", // america
+		"https://www.youtube.com/watch?v=ec0XKhAHR5I", // fortunate (how did i forget a slash)
+		"https://www.youtube.com/watch?v=9Cyokaj3BJU", // alabama
+		"https://www.youtube.com/watch?v=1vrEljMfXYo" // country roads
+	)
 /datum/holiday/USA/getStationPrefix()
-	return pick("Independant","American","Burger","Bald Eagle","Star-Spangled")
+	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
 
 /datum/holiday/writer
 	name = "Writer's Day"
 	begin_day = 8
 	begin_month = JULY
+
+/datum/holiday/france
+	name = "Bastille Day"
+	begin_day = 14
+	begin_month = JULY
+	drone_hat = /obj/item/clothing/head/beret
+
+/datum/holiday/france/getStationPrefix()
+	return pick("Francais","Fromage", "Zut", "Merde")
+
+/datum/holiday/france/greet()
+	return "Do you hear the people sing?"
 
 /datum/holiday/friendship
 	name = "Friendship Day"
@@ -257,9 +290,7 @@
 	name = "Beer Day"
 
 /datum/holiday/beer/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if(mm == 8 && ddd == FRIDAY && ww == 1) //First Friday in August
-		return TRUE
-	return FALSE
+	return (mm == 8 && ddd == FRIDAY && ww == 1) //First Friday in August
 
 /datum/holiday/beer/getStationPrefix()
 	return pick("Stout","Porter","Lager","Ale","Malt","Bock","Doppelbock","Hefeweizen","Pilsner","IPA","Lite") //I'm sorry for the last one
@@ -280,14 +311,7 @@
 	name = "Programmers' Day"
 
 /datum/holiday/programmers/shouldCelebrate(dd, mm, yy, ww, ddd) //Programmer's day falls on the 2^8th day of the year
-	if(mm == 9)
-		if(yy/4 == round(yy/4)) //Note: Won't work right on September 12th, 2200 (at least it's a Friday!)
-			if(dd == 12)
-				return 1
-		else
-			if(dd == 13)
-				return 1
-	return 0
+	return (mm==9 && ((yy/4 == round(yy/4) && dd==12) || dd==13))
 
 /datum/holiday/programmers/getStationPrefix()
 	return pick("span>","DEBUG: ","null","/list","EVENT PREFIX NOT FOUND") //Portability
@@ -322,7 +346,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 10 // yogs - Changed halloween start day
+	begin_day = 26
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
@@ -337,6 +361,18 @@
 	name = "Vegan Day"
 	begin_day = 1
 	begin_month = NOVEMBER
+
+/datum/holiday/vegan/getStationPrefix()
+	return pick("Tofu", "Tempeh", "Seitan", "Tofurkey")
+
+/datum/holiday/october_revolution
+	name = "October Revolution"
+	begin_day = 6
+	begin_month = NOVEMBER
+	end_day = 7
+
+/datum/holiday/october_revolution/getStationPrefix()
+	return pick("Communist", "Soviet", "Bolshevik", "Socialist", "Red", "Workers'")
 
 /datum/holiday/kindness
 	name = "Kindness Day"
@@ -427,9 +463,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 */
 
 /datum/holiday/ramadan/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if (round(((world.realtime - 285984000) / 864000) % 354.373435326843) == 0)
-		return TRUE
-	return FALSE
+	return (round(((world.realtime - 285984000) / 864000) % 354.373435326843) == 0)
 
 /datum/holiday/ramadan/getStationPrefix()
 	return pick("Harm","Halaal","Jihad","Muslim")
@@ -438,9 +472,15 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = "End of Ramadan"
 
 /datum/holiday/ramadan/end/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if (round(((world.realtime - 312768000) / 864000) % 354.373435326843) == 0)
-		return TRUE
-	return FALSE
+	return (round(((world.realtime - 312768000) / 864000) % 354.373435326843) == 0)
+
+/datum/holiday/lifeday
+	name = "Life Day"
+	begin_day = 17
+	begin_month = NOVEMBER
+
+/datum/holiday/lifeday/getStationPrefix()
+	return pick("Itchy", "Lumpy", "Malla", "Kazook") //he really pronounced it "Kazook", I wish I was making shit up
 
 /datum/holiday/doomsday
 	name = "Mayan Doomsday Anniversary"
@@ -454,6 +494,14 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	begin_month = DECEMBER
 	end_day = 27
 	drone_hat = /obj/item/clothing/head/santa
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
+		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bublé - Winter Wonderland
+		"https://www.youtube.com/watch?v=nytpYtLtHpE", // You’re a Mean One, Mr. Grinch
+		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
+		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael Bublé - Holly Jolly Christmas
+		)
 
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
@@ -468,7 +516,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/xmas/proc/roundstart_celebrate()
 	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor in GLOB.machines)
-		Monitor.icon_state = "entertainment_xmas"
+		Monitor.icon_state_on = "entertainment_xmas"
 
 	for(var/mob/living/simple_animal/pet/dog/corgi/Ian/Ian in GLOB.mob_living_list)
 		Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
@@ -493,9 +541,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = "Friday the 13th"
 
 /datum/holiday/friday_thirteenth/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if(dd == 13 && ddd == FRIDAY)
-		return TRUE
-	return FALSE
+	return (dd == 13 && ddd == FRIDAY)
 
 /datum/holiday/friday_thirteenth/getStationPrefix()
 	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")

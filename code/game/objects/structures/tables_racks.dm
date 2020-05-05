@@ -35,11 +35,11 @@
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
 /obj/structure/table/examine(mob/user)
-	..()
-	deconstruction_hints(user)
+	. = ..()
+	. += deconstruction_hints(user)
 
 /obj/structure/table/proc/deconstruction_hints(mob/user)
-	to_chat(user, "<span class='notice'>The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.</span>")
+	return "<span class='notice'>The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.</span>"
 
 /obj/structure/table/update_icon()
 	if(smooth)
@@ -70,7 +70,8 @@
 				if(user.grab_state < GRAB_AGGRESSIVE)
 					to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 					return
-				tablepush(user, pushed_mob)
+				if(do_after(user, 35, target = pushed_mob))
+					tablepush(user, pushed_mob)
 			if(user.a_intent == INTENT_HELP)
 				pushed_mob.visible_message("<span class='notice'>[user] begins to place [pushed_mob] onto [src]...</span>", \
 									"<span class='userdanger'>[user] begins to place [pushed_mob] onto [src]...</span>")
@@ -112,11 +113,12 @@
 
 /obj/structure/table/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSTABLE)
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
+	SEND_SIGNAL(user, COMSIG_MOB_TABLING)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
 	pushed_mob.visible_message("<span class='notice'>[user] places [pushed_mob] onto [src].</span>", \
@@ -128,6 +130,7 @@
 	if(!pushed_mob.pass_flags & PASSTABLE)
 		added_passtable = TRUE
 		pushed_mob.pass_flags |= PASSTABLE
+	SEND_SIGNAL(user, COMSIG_MOB_TABLING)
 	pushed_mob.Move(src.loc)
 	if(added_passtable)
 		pushed_mob.pass_flags &= ~PASSTABLE
@@ -172,8 +175,8 @@
 			if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 				return
 			//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-			I.pixel_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-			I.pixel_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return 1
 	else
 		return ..()
@@ -205,7 +208,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
 	var/list/debris = list()
 
-/obj/structure/table/glass/New()
+/obj/structure/table/glass/Initialize()
 	. = ..()
 	debris += new frame
 	debris += new /obj/item/shard
@@ -307,27 +310,70 @@
 	frame = /obj/structure/table_frame
 	framestack = /obj/item/stack/rods
 	buildstack = /obj/item/stack/tile/carpet
-	canSmoothWith = list(/obj/structure/table/wood/fancy, /obj/structure/table/wood/fancy/black)
+	canSmoothWith = list(/obj/structure/table/wood/fancy,
+		/obj/structure/table/wood/fancy/black,
+		/obj/structure/table/wood/fancy/exoticblue,
+		/obj/structure/table/wood/fancy/cyan,
+		/obj/structure/table/wood/fancy/exoticgreen,
+		/obj/structure/table/wood/fancy/orange,
+		/obj/structure/table/wood/fancy/exoticpurple,
+		/obj/structure/table/wood/fancy/red,
+		/obj/structure/table/wood/fancy/royalblack,
+		/obj/structure/table/wood/fancy/royalblue)
+	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
 
-/obj/structure/table/wood/fancy/New()
-	// New() is used so that the /black subtype can override `icon` easily and
-	// the correct value will be used by the smoothing subsystem.
+/obj/structure/table/wood/fancy/Initialize()
 	. = ..()
 	// Needs to be set dynamically because table smooth sprites are 32x34,
 	// which the editor treats as a two-tile-tall object. The sprites are that
 	// size so that the north/south corners look nice - examine the detail on
 	// the sprites in the editor to see why.
-	icon = 'icons/obj/smooth_structures/fancy_table.dmi'
+	icon = smooth_icon
 
 /obj/structure/table/wood/fancy/black
 	icon_state = "fancy_table_black"
 	buildstack = /obj/item/stack/tile/carpet/black
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
 
-/obj/structure/table/wood/fancy/black/New()
-	. = ..()
-	// Ditto above.
-	icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
+/obj/structure/table/wood/fancy/exoticblue
+	icon_state = "fancy_table_exoticblue"
+	buildstack = /obj/item/stack/tile/carpet/exoticblue
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticblue.dmi'
 
+/obj/structure/table/wood/fancy/cyan
+	icon_state = "fancy_table_cyan"
+	buildstack = /obj/item/stack/tile/carpet/cyan
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
+
+/obj/structure/table/wood/fancy/exoticgreen
+	icon_state = "fancy_table_exoticgreen"
+	buildstack = /obj/item/stack/tile/carpet/exoticgreen
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticgreen.dmi'
+
+/obj/structure/table/wood/fancy/orange
+	icon_state = "fancy_table_orange"
+	buildstack = /obj/item/stack/tile/carpet/orange
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
+
+/obj/structure/table/wood/fancy/exoticpurple
+	icon_state = "fancy_table_exoticpurple"
+	buildstack = /obj/item/stack/tile/carpet/exoticpurple
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticpurple.dmi'
+
+/obj/structure/table/wood/fancy/red
+	icon_state = "fancy_table_red"
+	buildstack = /obj/item/stack/tile/carpet/red
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
+
+/obj/structure/table/wood/fancy/royalblack
+	icon_state = "fancy_table_royalblack"
+	buildstack = /obj/item/stack/tile/carpet/royalblack
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
+
+/obj/structure/table/wood/fancy/royalblue
+	icon_state = "fancy_table_royalblue"
+	buildstack = /obj/item/stack/tile/carpet/royalblue
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
 /*
  * Reinforced tables
  */
@@ -345,9 +391,9 @@
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
 	if(deconstruction_ready)
-		to_chat(user, "<span class='notice'>The top cover has been <i>welded</i> loose and the main frame's <b>bolts</b> are exposed.</span>")
+		return "<span class='notice'>The top cover has been <i>welded</i> loose and the main frame's <b>bolts</b> are exposed.</span>"
 	else
-		to_chat(user, "<span class='notice'>The top cover is firmly <b>welded</b> on.</span>")
+		return "<span class='notice'>The top cover is firmly <b>welded</b> on.</span>"
 
 /obj/structure/table/reinforced/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WELDER)
@@ -380,9 +426,9 @@
 	buildstackamount = 1
 	canSmoothWith = list(/obj/structure/table/reinforced/brass, /obj/structure/table/bronze)
 
-/obj/structure/table/reinforced/brass/New()
+/obj/structure/table/reinforced/brass/Initialize()
+	. = ..()
 	change_construction_value(2)
-	..()
 
 /obj/structure/table/reinforced/brass/Destroy()
 	change_construction_value(-2)
@@ -428,13 +474,13 @@
 	buildstack = /obj/item/stack/sheet/mineral/silver
 	smooth = SMOOTH_FALSE
 	can_buckle = 1
-	buckle_lying = 1
+	buckle_lying = -1
 	buckle_requires_restraints = 1
 	var/mob/living/carbon/human/patient = null
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/structure/table/optable/New()
-	..()
+/obj/structure/table/optable/Initialize()
+	. = ..()
 	for(var/direction in GLOB.cardinals)
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
@@ -472,8 +518,8 @@
 	max_integrity = 20
 
 /obj/structure/rack/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>")
+	. = ..()
+	. += "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>"
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target)
 	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
@@ -485,7 +531,7 @@
 
 /obj/structure/rack/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSTABLE)
 

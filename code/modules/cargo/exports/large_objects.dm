@@ -112,17 +112,6 @@
 	export_types = list(/obj/machinery/the_singularitygen)
 	include_subtypes = FALSE
 
-/datum/export/large/am_control_unit
-	cost = 4000
-	unit_name = "antimatter control unit"
-	export_types = list(/obj/machinery/power/am_control_unit)
-
-/datum/export/large/am_shielding_container
-	cost = 150
-	unit_name = "packaged antimatter reactor section"
-	export_types = list(/obj/item/am_shielding_container)
-
-
 /datum/export/large/iv
 	cost = 50
 	unit_name = "iv drip"
@@ -133,3 +122,18 @@
 	unit_name = "security barrier"
 	export_types = list(/obj/item/grenade/barrier, /obj/structure/barricade/security)
 
+/datum/export/large/gas_canister
+	cost = 10 //Base cost of canister. You get more for nice gases inside.
+	unit_name = "Gas Canister"
+	export_types = list(/obj/machinery/portable_atmospherics/canister)
+/datum/export/large/gas_canister/get_cost(obj/O)
+	var/obj/machinery/portable_atmospherics/canister/C = O
+	var/worth = 10
+
+	worth += C.air_contents.get_moles(/datum/gas/bz)*4
+	worth += C.air_contents.get_moles(/datum/gas/stimulum)*100
+	worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*1000
+	worth += C.air_contents.get_moles(/datum/gas/miasma)*10
+	worth += C.air_contents.get_moles(/datum/gas/tritium)*5
+	worth += C.air_contents.get_moles(/datum/gas/pluoxium)*5
+	return worth

@@ -46,8 +46,8 @@
 		if(U.job in list("Curator")) // the curator is both faster, and more accurate than normal crew members at research
 			speed = 100
 			correctness = 100
-		correctness -= U.getBrainLoss() *0.5 //Brain damage makes researching hard.
-		speed += U.getBrainLoss() * 3
+		correctness -= U.getOrganLoss(ORGAN_SLOT_BRAIN) * 0.5 //Brain damage makes researching hard.
+		speed += U.getOrganLoss(ORGAN_SLOT_BRAIN) * 3
 	if(do_after(user, speed, 0, user))
 		var/usedName = devilName
 		if(!prob(correctness))
@@ -59,7 +59,7 @@
 	inUse = FALSE
 
 /obj/item/book/codex_gigas/proc/display_devil(datum/antagonist/devil/devil, mob/reader, devilName)
-	reader << browse("Information on [devilName]<br><br><br>[GLOB.lawlorify[LORE][devil.ban]]<br>[GLOB.lawlorify[LORE][devil.bane]]<br>[GLOB.lawlorify[LORE][devil.obligation]]<br>[GLOB.lawlorify[LORE][devil.banish]]<br>[devil.ascendable?"This devil may ascend given enough souls.":""]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+	reader << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>Information on [devilName]<br><br><br>[GLOB.lawlorify[LORE][devil.ban]]<br>[GLOB.lawlorify[LORE][devil.bane]]<br>[GLOB.lawlorify[LORE][devil.obligation]]<br>[GLOB.lawlorify[LORE][devil.banish]]<br>[devil.ascendable?"This devil may ascend given enough souls.":""]", "window=book[window_size != null ? ";size=[window_size]" : ""]</BODY></HTML>")
 
 /obj/item/book/codex_gigas/proc/ask_name(mob/reader)
 	ui_interact(reader)

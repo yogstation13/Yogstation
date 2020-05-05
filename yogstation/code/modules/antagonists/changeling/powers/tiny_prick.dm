@@ -1,5 +1,5 @@
-/obj/effect/proc_holder/changeling/sting/false_armblade
+/datum/action/changeling/sting/false_armblade
 	xenoling_available = FALSE
 
-/obj/effect/proc_holder/changeling/sting/cryo
+/datum/action/changeling/sting/cryo
 	xenoling_available = FALSE

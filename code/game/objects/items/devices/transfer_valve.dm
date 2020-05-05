@@ -99,7 +99,7 @@
 
 /obj/item/transfer_valve/Topic(href, href_list)
 	..()
-	if(!usr.canUseTopic(src))
+	if(!usr.canUseTopic(src, BE_CLOSE))
 		return
 	if(tank_one && href_list["tankone"])
 		split_gases()
@@ -168,8 +168,8 @@
 		target_self = TRUE
 	if(change_volume)
 		if(!target_self)
-			target.volume += tank_two.volume
-		target.volume += tank_one.air_contents.volume
+			target.set_volume(target.return_volume() + tank_two.air_contents.return_volume())
+		target.set_volume(target.return_volume() + tank_one.air_contents.return_volume())
 	var/datum/gas_mixture/temp
 	temp = tank_one.air_contents.remove_ratio(1)
 	target.merge(temp)
@@ -180,11 +180,11 @@
 /obj/item/transfer_valve/proc/split_gases()
 	if (!valve_open || !tank_one || !tank_two)
 		return
-	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
+	var/ratio1 = tank_one.air_contents.return_volume()/tank_two.air_contents.return_volume()
 	var/datum/gas_mixture/temp
 	temp = tank_two.air_contents.remove_ratio(ratio1)
 	tank_one.air_contents.merge(temp)
-	tank_two.air_contents.volume -=  tank_one.air_contents.volume
+	tank_two.air_contents.set_volume(tank_two.air_contents.return_volume() - tank_one.air_contents.return_volume())
 
 	/*
 	Exadv1: I know this isn't how it's going to work, but this was just to check
@@ -219,7 +219,8 @@
 
 		var/admin_bomb_message = "Bomb valve opened in [ADMIN_VERBOSEJMP(bombturf)][admin_attachment_message][admin_bomber_message]"
 		GLOB.bombers += admin_bomb_message
-		message_admins(admin_bomb_message)
+		if(SSticker.current_state != GAME_STATE_FINISHED) //don't bother alerting admins after the game has ended, but we still log it in the game log
+			message_admins(admin_bomb_message)
 		log_game("Bomb valve opened in [AREACOORD(bombturf)][attachment_message][bomber_message]")
 
 		merge_gases()

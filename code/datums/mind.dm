@@ -46,7 +46,7 @@
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
-	var/miming = 0 // Mime's vow of silence
+	var/miming = FALSE // Mime's vow of silence
 	var/list/antag_datums
 	var/antag_hud_icon_state = null //this mind's ANTAG_HUD should have this icon_state
 	var/datum/atom_hud/antag/antag_hud = null //this mind's antag HUD
@@ -60,9 +60,15 @@
 	var/unconvertable = FALSE
 	var/late_joiner = FALSE
 
+	var/last_death = 0
+
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 
-/datum/mind/New(var/key)
+	var/list/learned_recipes //List of learned recipe TYPES.
+
+	var/flavour_text = null
+
+/datum/mind/New(key)
 	src.key = key
 	soulOwner = src
 	martial_art = default_martial_art
@@ -70,28 +76,33 @@
 /datum/mind/Destroy()
 	SSticker.minds -= src
 	if(islist(antag_datums))
-		for(var/i in antag_datums)
-			var/datum/antagonist/antag_datum = i
-			if(antag_datum.delete_on_mind_deletion)
-				qdel(i)
-		antag_datums = null
+		QDEL_LIST(antag_datums)
 	return ..()
 
 /datum/mind/proc/get_language_holder()
 	if(!language_holder)
-		var/datum/language_holder/L = current.get_language_holder(shadow=FALSE)
-		language_holder = L.copy(src)
+		language_holder = new (src)
 
 	return language_holder
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
+	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
+		// Yogs start -- Mood preferences
+		if(current.client && current.client.prefs.yogtoggles & PREF_MOOD)
+			mood_was_enabled = TRUE
+		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood))
+			var/mob/living/carbon/human/H = current
+			if(H.mood_enabled)
+				mood_was_enabled = TRUE
+				var/datum/component/mood/c = H.GetComponent(/datum/component/mood)
+				if(c)
+					c.RemoveComponent()
+		// Yogs End
 		current.mind = null
+		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
-
-	if(!language_holder)
-		var/datum/language_holder/mob_holder = new_character.get_language_holder(shadow = FALSE)
-		language_holder = mob_holder.copy(src)
 
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
@@ -114,14 +125,28 @@
 	if(iscarbon(new_character))
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
+		// Yogs start -- Mood preferences
+		if(ishuman(new_character) && mood_was_enabled && !new_character.GetComponent(/datum/component/mood))
+			var/mob/living/carbon/human/H = C
+			H.AddComponent(/datum/component/mood)
+		// Yogs End
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
+	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	if(accent_name)
+		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
+	current.update_atom_languages()
+
+/datum/mind/proc/set_death_time()
+	last_death = world.time
 
 /datum/mind/proc/store_memory(new_text)
-	memory += "[new_text]<BR>"
+	var/newlength = length_char(memory) + length_char(new_text)
+	if (newlength > MAX_MESSAGE_LEN * 100)
+		memory = copytext_char(memory, -newlength-MAX_MESSAGE_LEN * 100)
 
 /datum/mind/proc/wipe_memory()
 	memory = null
@@ -152,6 +177,7 @@
 	if(antag_team)
 		antag_team.add_member(src)
 	A.on_gain()
+	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
 	return A
 
 /datum/mind/proc/remove_antag_datum(datum_type)
@@ -301,7 +327,7 @@
 			else if(uplink_loc == PDA)
 				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
 			else if(uplink_loc == P)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [U.unlock_code] from its starting position to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [english_list(U.unlock_code)] from its starting position to unlock its hidden features.")
 
 		if(uplink_owner)
 			uplink_owner.antag_memory += U.unlock_note + "<br>"
@@ -341,7 +367,8 @@
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
 		recipient = current
-	var/output = "<B>[current.real_name]'s Memories:</B><br>"
+	var/output = ""
+	output += "<B>[current.real_name]'s Memories:</B><br>"
 	output += memory
 
 
@@ -363,6 +390,7 @@
 				output += "</ul>"
 
 	if(window)
+		output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + output + "</BODY></HTML>"
 		recipient << browse(output,"window=memory")
 	else if(all_objectives.len || memory)
 		to_chat(recipient, "<i>[output]</i>")
@@ -383,13 +411,13 @@
 		A.admin_remove(usr)
 
 	if (href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in get_all_jobs()
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in sortList(get_all_jobs())
 		if (!new_role)
 			return
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
+		var/new_memo = stripped_multiline_input(usr, "Write new memory", "Memory", memory, MAX_MESSAGE_LEN)
 		if (isnull(new_memo))
 			return
 		memory = new_memo
@@ -423,7 +451,7 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in antag_datums + "(new custom antag)"
+						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in sortList(antag_datums) + "(new custom antag)"
 						if (QDELETED(target))
 							return
 						else if(target == "(new custom antag)")
@@ -702,6 +730,11 @@
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = 1		//indicates that the mind is currently synced with a client
+
+/datum/mind/proc/has_martialart(string)
+	if(martial_art && martial_art.id == string)
+		return martial_art
+	return FALSE
 
 /mob/dead/new_player/sync_mind()
 	return

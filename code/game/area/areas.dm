@@ -18,11 +18,17 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
+	var/tunnel_allowed = FALSE // if tunnels can be created on this area for mining generation
+	var/flora_allowed = FALSE // if plants may spawn in this area
+	var/mob_spawn_allowed = FALSE // if mobs can be spawned by natural generation
+	var/megafauna_spawn_allowed = FALSE // if megafauna can be spawned by natural generation in this area
+
 	var/fire = null
 	var/atmos = TRUE
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
+	var/vacuum = null //yogs- yellow vacuum lights
 
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
@@ -30,6 +36,11 @@
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
 	var/areasize = 0 //Size of the area in open turfs, only calculated for indoors areas.
+
+	//Bonus mood from being in this area
+	var/mood_bonus = 0
+	//Mood message for being here, only shows up if mood_bonus != 0
+	var/mood_message = "<span class='nicegreen'>This area is pretty nice!\n</span>"
 
 	var/power_equip = TRUE
 	var/power_light = TRUE
@@ -64,6 +75,8 @@
 	var/xenobiology_compatible = FALSE //Can the Xenobio management console transverse this area by default?
 	var/list/canSmoothWithAreas //typecache to limit the areas that atoms in this area can smooth with
 
+	var/minimap_color = null // if null, chooses random one
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 GLOBAL_LIST_EMPTY(teleportlocs)
@@ -75,7 +88,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			continue
 		if(GLOB.teleportlocs[AR.name])
 			continue
-		var/turf/picked = safepick(get_area_turfs(AR.type))
+		if (!AR.contents.len)
+			continue
+		var/turf/picked = AR.contents[1]
 		if (picked && is_station_level(picked.z))
 			GLOB.teleportlocs[AR.name] = AR
 
@@ -84,6 +99,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 // ===
 
 /area/New()
+	if(!minimap_color) // goes in New() because otherwise it doesn't fucking work
+		// generate one using the icon_state
+		if(icon_state && icon_state != "unknown")
+			var/icon/I = new(icon, icon_state, dir)
+			I.Scale(1,1)
+			minimap_color = I.GetPixel(1,1)
+		else // no icon state? use random.
+			minimap_color = rgb(rand(50,70),rand(50,70),rand(50,70))
+
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
 	if (unique)
@@ -327,7 +351,19 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	for(var/obj/machinery/light/L in src)
 		L.update()
 
-/area/proc/updateicon()
+/area/proc/set_vacuum_alarm_effect() //Just like fire alarm but blue
+	vacuum = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	for(var/obj/machinery/light/L in src)
+		L.update()
+
+/area/proc/unset_vacuum_alarm_effect()
+	vacuum = FALSE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	for(var/obj/machinery/light/L in src)
+		L.update()
+
+/area/proc/update_icon()
 	var/weather_icon
 	for(var/V in SSweather.processing)
 		var/datum/weather/W = V
@@ -337,7 +373,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(!weather_icon)
 		icon_state = null
 
-/area/space/updateicon()
+/area/space/update_icon()
 	icon_state = null
 
 /*
@@ -370,7 +406,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()				// reverify power status (to update icons etc.)
-	updateicon()
+	update_icon()
 
 /area/proc/usage(chan)
 	var/used = 0

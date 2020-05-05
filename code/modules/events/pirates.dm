@@ -132,7 +132,7 @@
 	if(!active)
 		if(alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", "Yes", "Cancel") == "Cancel")
 			return
-		if(active || !user.canUseTopic(src))
+		if(active || !user.canUseTopic(src, BE_CLOSE))
 			return
 		toggle_on(user)
 		update_icon()
@@ -198,27 +198,7 @@
 /obj/docking_port/mobile/pirate
 	name = "pirate shuttle"
 	id = "pirateship"
-	var/engines_cooling = FALSE
-	var/engine_cooldown = 3 MINUTES
-
-/obj/docking_port/mobile/pirate/getStatusText()
-	. = ..()
-	if(engines_cooling)
-		return "[.] - Engines cooling."
-
-/obj/docking_port/mobile/pirate/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
-	. = ..()
-	if(. == DOCKING_SUCCESS && !is_reserved_level(new_dock.z))
-		engines_cooling = TRUE
-		addtimer(CALLBACK(src,.proc/reset_cooldown),engine_cooldown,TIMER_UNIQUE)
-
-/obj/docking_port/mobile/pirate/proc/reset_cooldown()
-	engines_cooling = FALSE
-
-/obj/docking_port/mobile/pirate/canMove()
-	if(engines_cooling)
-		return FALSE
-	return ..()
+	rechargeTime = 3 MINUTES
 
 /obj/machinery/suit_storage_unit/pirate
 	suit_type = /obj/item/clothing/suit/space
@@ -416,7 +396,7 @@
 	return
 
 /datum/export/pirate/ransom
-	cost = 3000
+	cost = 8000
 	unit_name = "hostage"
 	export_types = list(/mob/living/carbon/human)
 
@@ -436,12 +416,12 @@
 		return 0
 	else
 		if(H.mind.assigned_role in GLOB.command_positions)
-			return 3000
+			return 8000
 		else
-			return 1000
+			return 3000
 
 /datum/export/pirate/parrot
-	cost = 2000
+	cost = 5000
 	unit_name = "alive parrot"
 	export_types = list(/mob/living/simple_animal/parrot)
 

@@ -320,6 +320,7 @@ CREATE TABLE `player` (
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
   `accountjoindate` DATE DEFAULT NULL,
   `flags` smallint(5) unsigned DEFAULT '0' NOT NULL,
+  `discord_id` BIGINT(20) NULL DEFAULT NULL,
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)
@@ -462,6 +463,86 @@ $$
 CREATE TRIGGER `role_timeTlogdelete` AFTER DELETE ON `role_time` FOR EACH ROW BEGIN INSERT into role_time_log (ckey, job, delta) VALUES (OLD.ckey, OLD.job, 0-OLD.minutes);
 END
 $$
+DELIMITER ;
+
+--
+-- Table structure for table `stickyban`
+--
+DROP TABLE IF EXISTS `stickyban`;
+CREATE TABLE `stickyban` (
+	`ckey` VARCHAR(32) NOT NULL,
+	`reason` VARCHAR(2048) NOT NULL,
+	`banning_admin` VARCHAR(32) NOT NULL,
+	`datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `stickyban_matched_ckey`
+--
+DROP TABLE IF EXISTS `stickyban_matched_ckey`;
+CREATE TABLE `stickyban_matched_ckey` (
+	`stickyban` VARCHAR(32) NOT NULL,
+	`matched_ckey` VARCHAR(32) NOT NULL,
+	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`exempt` TINYINT(1) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`stickyban`, `matched_ckey`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `stickyban_matched_ip`
+--
+DROP TABLE IF EXISTS `stickyban_matched_ip`;
+CREATE TABLE `stickyban_matched_ip` (
+	`stickyban` VARCHAR(32) NOT NULL,
+	`matched_ip` INT UNSIGNED NOT NULL,
+	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`stickyban`, `matched_ip`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `stickyban_matched_cid`
+--
+DROP TABLE IF EXISTS `stickyban_matched_cid`;
+CREATE TABLE `stickyban_matched_cid` (
+	`stickyban` VARCHAR(32) NOT NULL,
+	`matched_cid` VARCHAR(32) NOT NULL,
+	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`stickyban`, `matched_cid`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `achievements`
+--
+DROP TABLE IF EXISTS `achievements`;
+CREATE TABLE `achievements` (
+	`name` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL,
+	`descr` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `earned_achievements`
+--
+DROP TABLE IF EXISTS `earned_achievements`;
+CREATE TABLE `earned_achievements` (
+	`ckey` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `achievements`
+--
+DROP TABLE IF EXISTS `misc`;
+CREATE TABLE `misc` (
+	`key` VARCHAR(32) NOT NULL,
+	`value` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`key`)
+) ENGINE=InnoDB;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

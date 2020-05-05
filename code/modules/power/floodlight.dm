@@ -10,6 +10,7 @@
 
 /obj/structure/floodlight_frame/attackby(obj/item/O, mob/user, params)
 	if(O.tool_behaviour == TOOL_WRENCH && (state == FLOODLIGHT_NEEDS_WRENCHING))
+		O.play_tool_sound(src, 50)
 		to_chat(user, "<span class='notice'>You secure [src].</span>")
 		anchored = TRUE
 		state = FLOODLIGHT_NEEDS_WIRES
@@ -25,9 +26,11 @@
 	else if(istype(O, /obj/item/light/tube) && (state == FLOODLIGHT_NEEDS_LIGHTS))
 		if(user.transferItemToLoc(O))
 			to_chat(user, "<span class='notice'>You put lights in [src].</span>")
-			new /obj/machinery/power/floodlight(src.loc)
+			var/obj/machinery/power/floodlight/light = new(src.loc)
+			light.connect_to_network()
 			qdel(src)
 	else if(O.tool_behaviour == TOOL_SCREWDRIVER && (state == FLOODLIGHT_NEEDS_SECURING))
+		O.play_tool_sound(src, 50)
 		to_chat(user, "<span class='notice'>You fasten the wiring and electronics in [src].</span>")
 		name = "secured [name]"
 		desc = "A bare metal frame that looks like a floodlight. Requires light tubes."

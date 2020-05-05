@@ -30,7 +30,9 @@
 	if(node.recent_queen_death)
 		to_chat(user, "<span class='danger'>Your thoughts are still too scattered to take up the position of leadership.</span>")
 		return 0
-
+	if(user.movement_type & (VENTCRAWLING))
+		to_chat(user, "<span class='danger'>You cannot evolve in a pipe.</span>")
+		return 0
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='notice'>You can't evolve here!</span>")
 		return 0

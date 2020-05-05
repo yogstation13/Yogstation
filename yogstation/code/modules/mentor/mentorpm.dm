@@ -4,7 +4,7 @@
 	set name = "Mentor PM"
 
 	if(!is_mentor())
-		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>")
+		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>", confidential=TRUE)
 		return
 
 	var/list/client/targets[0]
@@ -16,24 +16,34 @@
 	cmd_mentor_pm(targets[target],null)
 	SSblackbox.record_feedback("tally", "Mentor_verb", 1, "APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_mentor_pm_context(mob/M in GLOB.mob_list)
+	set category = null
+	set name = "Mentor PM Mob"
+
+	if(!is_mentor())
+		return
+	if(!ismob(M))
+		return
+	if(M.client)
+		cmd_mentor_pm(M, null)
 
 //takes input from cmd_mentor_pm_context, cmd_Mentor_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
-/client/proc/cmd_mentor_pm(whom, msg)
+/client/proc/cmd_mentor_pm(whom, msg, discord_id)
 	var/client/C
 	if(ismob(whom))
 		var/mob/M = whom
 		C = M.client
 
-	else if(istext(whom))
+	else if(istext(whom) && !discord_id)
 		C = GLOB.directory[whom]
 
 	else if(istype(whom,/client))
 		C = whom
 
-	if(QDELETED(C))
+	if(QDELETED(C) && !discord_id)
 		if(is_mentor())
-			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
+			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>", confidential=TRUE)
 		else
 			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
 		return
@@ -46,29 +56,44 @@
 			return
 
 		// Neither party is a mentor, they shouldn't be PMing!
-		if (!C.is_mentor() && !is_mentor())
+		if (C && !C.is_mentor() && !is_mentor())
 			return
+
+	if(discord_id)
+		webhook_send_mhelp("[key_name_mentor(src)]-><@[discord_id]>", msg)
+	else
+		webhook_send_mhelp("[key_name_mentor(src)]->[key_name_mentor(C)]", msg)
 
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)
 		return
 
-	log_mentor("Mentor PM: [key_name(src)]->[key_name(C)]: [msg]")
+	log_mentor("Mentor PM: [key_name(src)]->[discord_id ? discord_id : key_name(C)]: [msg]")
 
+	if(mentor_datum && isnotpretty(msg)) // If this is, specifically, a mentor, and not an admin nor a normal player
+		to_chat(src,"<span class='danger'>You cannot send bigoted language as a mentor.</span>", confidential=TRUE)
+		message_admins("[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]")
+		return
 	msg = emoji_parse(msg)
-	SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+	if(C)
+		send_mentor_sound(C)
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
-	if(C.is_mentor())
-		to_chat(C, "<font color='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</font>")
-		to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>")
+	if(!C || C.is_mentor())
+		if(C)
+			to_chat(C, "<span class='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</span>", confidential=TRUE)
+		if(discord_id)
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>", confidential=TRUE)
+		else
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>", confidential=TRUE)
 		if(ckey in SSYogs.mentortickets)
 			var/datum/mentorticket/T = SSYogs.mentortickets[ckey]
 			T.log += "<b>[key]:</b> [msg]"
 
 	else
 		if(is_mentor())	//sender is an mentor but recipient is not.
-			to_chat(C, "<font color='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</font>")
-			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>")
+			if(C)
+				to_chat(C, "<span class='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</span>", confidential=TRUE)
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>", confidential=TRUE)
 			if(C.ckey in SSYogs.mentortickets)
 				var/datum/mentorticket/T = SSYogs.mentortickets[C.ckey]
 				T.log += "<b>[key]:</b> [msg]"
@@ -77,7 +102,10 @@
 
 	//we don't use message_Mentors here because the sender/receiver might get it too
 	var/show_char_sender = !is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
-	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
-	for(var/client/X in GLOB.mentors | GLOB.admins)
-		if(X.key != key && X.key != C.key)	//check client/X is an Mentor and isn't the sender or recipient
-			to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>") //inform X
+	var/show_char_recip = C && !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
+	for(var/client/X in GLOB.mentors | (GLOB.admins - GLOB.deadmins))
+		if(X.key != key && (!C || X.key != C.key))	//check client/X is an Mentor and isn't the sender or recipient
+			if(discord_id)
+				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[discord_mentor_link(whom, discord_id)]:</B> <span class='blueteamradio'> [msg]</span>", confidential=TRUE) //inform X
+			else
+				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <span class='blueteamradio'> [msg]</span>", confidential=TRUE) //inform X

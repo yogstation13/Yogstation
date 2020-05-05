@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		NEWSCASTER.update_icon()
 
 /datum/newscaster/feed_network/proc/save_photo(icon/photo)
-	var/photo_file = copytext(md5("\icon[photo]"), 1, 6)
+	var/photo_file = copytext_char(md5("\icon[photo]"), 1, 6)
 	if(!fexists("[GLOB.log_directory]/photos/[photo_file].png"))
 		//Clean up repeated frames
 		var/icon/clean = new /icon()
@@ -514,8 +514,6 @@ GLOBAL_LIST_EMPTY(allCasters)
 		scan_user(usr)
 		if(href_list["set_channel_name"])
 			channel_name = stripped_input(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", MAX_NAME_LEN)
-			while (findtext(channel_name," ") == 1)
-				channel_name = copytext(channel_name,2,lentext(channel_name)+1)
 			updateUsrDialog()
 		else if(href_list["set_channel_lock"])
 			c_locked = !c_locked
@@ -634,33 +632,33 @@ GLOBAL_LIST_EMPTY(allCasters)
 			screen=18
 			updateUsrDialog()
 		else if(href_list["censor_channel_author"])
-			var/datum/newscaster/feed_channel/FC = locate(href_list["censor_channel_author"])
+			var/datum/newscaster/feed_channel/FC = locate(href_list["censor_channel_author"]) in GLOB.news_network.network_channels
 			if(FC.is_admin_channel)
 				alert("This channel was created by a Nanotrasen Officer. You cannot censor it.","Ok")
 				return
 			FC.toggleCensorAuthor()
 			updateUsrDialog()
 		else if(href_list["censor_channel_story_author"])
-			var/datum/newscaster/feed_message/MSG = locate(href_list["censor_channel_story_author"])
+			var/datum/newscaster/feed_message/MSG = locate(href_list["censor_channel_story_author"]) in viewing_channel.messages
 			if(MSG.is_admin_message)
 				alert("This message was created by a Nanotrasen Officer. You cannot censor its author.","Ok")
 				return
 			MSG.toggleCensorAuthor()
 			updateUsrDialog()
 		else if(href_list["censor_channel_story_body"])
-			var/datum/newscaster/feed_message/MSG = locate(href_list["censor_channel_story_body"])
+			var/datum/newscaster/feed_message/MSG = locate(href_list["censor_channel_story_body"]) in viewing_channel.messages
 			if(MSG.is_admin_message)
 				alert("This channel was created by a Nanotrasen Officer. You cannot censor it.","Ok")
 				return
 			MSG.toggleCensorBody()
 			updateUsrDialog()
 		else if(href_list["pick_d_notice"])
-			var/datum/newscaster/feed_channel/FC = locate(href_list["pick_d_notice"])
+			var/datum/newscaster/feed_channel/FC = locate(href_list["pick_d_notice"]) in GLOB.news_network.network_channels
 			viewing_channel = FC
 			screen=13
 			updateUsrDialog()
 		else if(href_list["toggle_d_notice"])
-			var/datum/newscaster/feed_channel/FC = locate(href_list["toggle_d_notice"])
+			var/datum/newscaster/feed_channel/FC = locate(href_list["toggle_d_notice"]) in GLOB.news_network.network_channels
 			if(FC.is_admin_channel)
 				alert("This channel was created by a Nanotrasen Officer. You cannot place a D-Notice upon it.","Ok")
 				return
@@ -679,18 +677,18 @@ GLOBAL_LIST_EMPTY(allCasters)
 				viewing_channel = null
 			updateUsrDialog()
 		else if(href_list["show_channel"])
-			var/datum/newscaster/feed_channel/FC = locate(href_list["show_channel"])
+			var/datum/newscaster/feed_channel/FC = locate(href_list["show_channel"]) in GLOB.news_network.network_channels
 			viewing_channel = FC
 			screen = 9
 			updateUsrDialog()
 		else if(href_list["pick_censor_channel"])
-			var/datum/newscaster/feed_channel/FC = locate(href_list["pick_censor_channel"])
+			var/datum/newscaster/feed_channel/FC = locate(href_list["pick_censor_channel"]) in GLOB.news_network.network_channels
 			viewing_channel = FC
 			screen = 12
 			updateUsrDialog()
 		else if(href_list["new_comment"])
-			var/datum/newscaster/feed_message/FM = locate(href_list["new_comment"])
-			var/cominput = copytext(stripped_input(usr, "Write your message:", "New comment", null),1,141)
+			var/datum/newscaster/feed_message/FM = locate(href_list["new_comment"]) in viewing_channel.messages
+			var/cominput = stripped_input(usr, "Write your message:", "New comment", null, 140)
 			if(cominput)
 				scan_user(usr)
 				var/datum/newscaster/feed_comment/FC = new/datum/newscaster/feed_comment
@@ -701,14 +699,14 @@ GLOBAL_LIST_EMPTY(allCasters)
 				usr.log_message("(as [scanned_user]) commented on message [FM.returnBody(-1)] -- [FC.body]", LOG_COMMENT)
 			updateUsrDialog()
 		else if(href_list["del_comment"])
-			var/datum/newscaster/feed_comment/FC = locate(href_list["del_comment"])
-			var/datum/newscaster/feed_message/FM = locate(href_list["del_comment_msg"])
+			var/datum/newscaster/feed_message/FM = locate(href_list["del_comment_msg"]) in viewing_channel.messages
+			var/datum/newscaster/feed_comment/FC = locate(href_list["del_comment"]) in FM.comments
 			if(istype(FC) && istype(FM))
 				FM.comments -= FC
 				qdel(FC)
 				updateUsrDialog()
 		else if(href_list["lock_comment"])
-			var/datum/newscaster/feed_message/FM = locate(href_list["lock_comment"])
+			var/datum/newscaster/feed_message/FM = locate(href_list["lock_comment"]) in viewing_channel.messages
 			FM.locked ^= 1
 			updateUsrDialog()
 		else if(href_list["set_comment"])
@@ -791,6 +789,9 @@ GLOBAL_LIST_EMPTY(allCasters)
 		if(isAI(user))
 			var/mob/living/silicon/ai/R = user
 			targetcam = R.aicamera
+		else if(ispAI(user))
+			var/mob/living/silicon/pai/R = user
+			targetcam = R.aicamera
 		else if(iscyborg(user))
 			var/mob/living/silicon/robot/R = user
 			if(R.connected_ai)
@@ -827,8 +828,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		var/mob/living/silicon/ai_user = user
 		scanned_user = "[ai_user.name] ([ai_user.job])"
 	else
-		throw EXCEPTION("Invalid user for this proc")
-		return
+		CRASH("Invalid user for this proc")
 
 /obj/machinery/newscaster/proc/print_paper()
 	SSblackbox.record_feedback("amount", "newspapers_printed", 1)
@@ -856,7 +856,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		alert = TRUE
 		update_icon()
 		addtimer(CALLBACK(src,.proc/remove_alert),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
-		playsound(loc, 'sound/machines/twobeep.ogg', 75, 1)
+		playsound(loc, 'sound/machines/twobeep_high.ogg', 75, 1)
 	else
 		say("Attention! Wanted issue distributed!")
 		playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, 1)
@@ -898,6 +898,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
+		dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 		pages = 0
 		switch(screen)
 			if(0) //Cover
@@ -970,6 +971,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:left;'><A href='?src=[REF(src)];prev_page=1'>Previous Page</A></DIV>"
 		dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
+		dat += "</BODY></HTML>"
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else

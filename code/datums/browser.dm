@@ -28,6 +28,7 @@
 	if (nref)
 		ref = nref
 	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
+	add_script("common", 'html/browser/common.js')
 
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
@@ -39,8 +40,12 @@
 	//title_image = ntitle_image
 
 /datum/browser/proc/add_stylesheet(name, file)
-	stylesheets["[ckey(name)].css"] = file
-	register_asset("[ckey(name)].css", file)
+	if (istype(name, /datum/asset/spritesheet))
+		var/datum/asset/spritesheet/sheet = name
+		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
+	else
+		stylesheets["[ckey(name)].css"] = file
+		register_asset("[ckey(name)].css", file)
 
 /datum/browser/proc/add_script(name, file)
 	scripts["[ckey(name)].js"] = file
@@ -66,7 +71,7 @@
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<head>
 		[head_content]
@@ -194,7 +199,7 @@
 	.=..()
 	opentime = 0
 
-/datum/browser/modal/open()
+/datum/browser/modal/open(use_onclose)
 	set waitfor = 0
 	opentime = world.time
 
@@ -461,4 +466,3 @@
 	// so just reset the user mob's machine var
 	if(src && src.mob)
 		src.mob.unset_machine()
-	return

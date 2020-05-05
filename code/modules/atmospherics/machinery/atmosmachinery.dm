@@ -20,15 +20,14 @@
 	resistance_flags = FIRE_PROOF
 	max_integrity = 200
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	var/nodealert = 0
 	var/can_unwrench = 0
 	var/initialize_directions = 0
 	var/pipe_color
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/pipe_flags = NONE
 
-	var/global/list/iconsetids = list()
-	var/global/list/pipeimages = list()
+	GLOBAL_LIST_EMPTY(iconsetids)
+	GLOBAL_LIST_EMPTY(pipeimages)
 
 	var/image/pipe_vision_img = null
 
@@ -40,11 +39,11 @@
 	var/on = FALSE
 
 /obj/machinery/atmospherics/examine(mob/user)
-	..()
+	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
 		if(L.ventcrawler)
-			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
+			. += "<span class='notice'>Alt-click to crawl through it.</span>"
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	if(!isnull(setdir))
@@ -228,7 +227,7 @@
 		pressures = int_air.return_pressure() - env_air.return_pressure()
 
 	user.visible_message("<span class='danger'>[user] is sent flying by pressure!</span>","<span class='userdanger'>The pressure sends you flying!</span>")
-	
+
 	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
 	// otherwise, edge_target_turf uses a random cardinal direction
 	// range is pressures / 250
@@ -245,19 +244,20 @@
 			transfer_fingerprints_to(stored)
 	..()
 
-/obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255))
+/obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)
 
 	//Add identifiers for the iconset
-	if(iconsetids[iconset] == null)
-		iconsetids[iconset] = num2text(iconsetids.len + 1)
+	if(GLOB.iconsetids[iconset] == null)
+		GLOB.iconsetids[iconset] = num2text(GLOB.iconsetids.len + 1)
 
 	//Generate a unique identifier for this image combination
-	var/identifier = iconsetids[iconset] + "_[iconstate]_[direction]_[col]"
+	var/identifier = GLOB.iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
 
-	if((!(. = pipeimages[identifier])))
+	if((!(. = GLOB.pipeimages[identifier])))
 		var/image/pipe_overlay
-		pipe_overlay = . = pipeimages[identifier] = image(iconset, iconstate, dir = direction)
+		pipe_overlay = . = GLOB.pipeimages[identifier] = image(iconset, iconstate, dir = direction)
 		pipe_overlay.color = col
+		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
 
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)

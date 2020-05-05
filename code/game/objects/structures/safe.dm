@@ -24,8 +24,8 @@ FLOOR SAFES
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 	var/explosion_count = 0	//Tough, but breakable
 
-/obj/structure/safe/New()
-	..()
+/obj/structure/safe/Initialize()
+	. = ..()
 	tumbler_1_pos = rand(0, 71)
 	tumbler_1_open = rand(0, 71)
 
@@ -89,14 +89,14 @@ FLOOR SAFES
 			var/obj/item/P = contents[i]
 			dat += "<tr><td><a href='?src=[REF(src)];retrieve=[REF(P)]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
+	user << browse("<html><head><meta charset='UTF-8'><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
 
 /obj/structure/safe/Topic(href, href_list)
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr
 
-	if(!user.canUseTopic(src))
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 
 	var/canhear = FALSE
@@ -143,7 +143,7 @@ FLOOR SAFES
 		return
 
 	if(href_list["retrieve"])
-		user << browse("", "window=safe") // Close the menu
+		user << browse(null, "window=safe") // Close the menu
 
 		var/obj/item/P = locate(href_list["retrieve"]) in src
 		if(open)

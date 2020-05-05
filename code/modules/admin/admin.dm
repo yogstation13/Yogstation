@@ -2,11 +2,11 @@
 ////////////////////////////////
 /proc/message_admins(msg)
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
-	to_chat(GLOB.admins, msg)
+	to_chat(GLOB.admins, msg, confidential=TRUE)
 
 /proc/relay_msg_admins(msg)
 	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
-	to_chat(GLOB.admins, msg)
+	to_chat(GLOB.admins, msg, confidential=TRUE)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -22,17 +22,17 @@
 	log_admin("[key_name(usr)] checked the individual player panel for [key_name(M)][isobserver(usr)?"":" while in game"].")
 
 	if(!M)
-		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
+		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.", confidential=TRUE)
 		return
 
 	if(M.oobe_client) //yogs start
 		if(M.oobe_client.mob)
 			.(M.oobe_client.mob) //using . because show_player_panel(M.oobe_client.mob) caused "Runtime in admin.dm,30: undefined proc or verb /client/Show Player Panel()."
 		else
-			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>")
+			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>", confidential=TRUE)
 		return //yogs end
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
+	var/body = "<html><head><meta charset='UTF-8'><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
@@ -207,10 +207,10 @@
 	if (!istype(src, /datum/admins))
 		src = usr.client.holder
 	if (!istype(src, /datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
+		to_chat(usr, "Error: you are not an admin!", confidential=TRUE)
 		return
 	var/dat
-	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
+	dat = text("<HEAD><meta charset='UTF-8'><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
 
 	switch(admincaster_screen)
 		if(0)
@@ -412,6 +412,7 @@
 		return
 
 	var/dat = {"
+		<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
@@ -428,6 +429,8 @@
 
 	if(marked_datum && istype(marked_datum, /atom))
 		dat += "<A href='?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</A><br>"
+
+	dat += "</BODY></HTML>"
 
 	usr << browse(dat, "window=admin2;size=210x200")
 	return
@@ -559,7 +562,7 @@
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return 1
 	else
-		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
+		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>", confidential=TRUE)
 
 	return 0
 
@@ -650,15 +653,40 @@
 	var/chosen = pick_closest_path(object)
 	if(!chosen)
 		return
+	var/turf/T = get_turf(usr)
+
 	if(ispath(chosen, /turf))
-		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
-		var/atom/A = new chosen(usr.loc)
+		var/atom/A = new chosen(T)
 		A.flags_1 |= ADMIN_SPAWNED_1
 
 	log_admin("[key_name(usr)] spawned [chosen] at [AREACOORD(usr)]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/admins/proc/podspawn_atom(object as text)
+	set category = "Debug"
+	set desc = "(atom path) Spawn an atom via supply drop"
+	set name = "Podspawn"
+
+	if(!check_rights(R_SPAWN))
+		return
+
+	var/chosen = pick_closest_path(object)
+	if(!chosen)
+		return
+	var/turf/T = get_turf(usr)
+
+	if(ispath(chosen, /turf))
+		T.ChangeTurf(chosen)
+	else
+		var/obj/structure/closet/supplypod/centcompod/pod = new()
+		var/atom/A = new chosen(pod)
+		A.flags_1 |= ADMIN_SPAWNED_1
+		new /obj/effect/DPtarget(T, pod)
+
+	log_admin("[key_name(usr)] pod-spawned [chosen] at [AREACOORD(usr)]")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Podspawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/spawn_cargo(object as text)
 	set category = "Debug"
@@ -685,10 +713,10 @@
 	set name = "Show Traitor Panel"
 
 	if(!istype(M))
-		to_chat(usr, "This can only be used on instances of type /mob")
+		to_chat(usr, "This can only be used on instances of type /mob", confidential=TRUE)
 		return
 	if(!M.mind)
-		to_chat(usr, "This mob has no mind!")
+		to_chat(usr, "This mob has no mind!", confidential=TRUE)
 		return
 
 	M.mind.traitor_panel()
@@ -728,37 +756,37 @@
 		var/mob/living/silicon/S = i
 		ai_number++
 		if(isAI(S))
-			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
 		else if(iscyborg(S))
 			var/mob/living/silicon/robot/R = S
-			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>")
+			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>", confidential=TRUE)
 		else if (ispAI(S))
-			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
 		else
-			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
 
 		if (S.laws == null)
-			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
+			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.", confidential=TRUE)
 		else
 			S.laws.show_laws(usr)
 	if(!ai_number)
-		to_chat(usr, "<b>No AIs located</b>" )
+		to_chat(usr, "<b>No AIs located</b>" , confidential=TRUE)
 
 /datum/admins/proc/output_all_devil_info()
 	var/devil_number = 0
 	for(var/datum/mind/D in SSticker.mode.devils)
 		devil_number++
 		var/datum/antagonist/devil/devil = D.has_antag_datum(/datum/antagonist/devil)
-		to_chat(usr, "Devil #[devil_number]:<br><br>" + devil.printdevilinfo())
+		to_chat(usr, "Devil #[devil_number]:<br><br>" + devil.printdevilinfo(), confidential=TRUE)
 	if(!devil_number)
-		to_chat(usr, "<b>No Devils located</b>" )
+		to_chat(usr, "<b>No Devils located</b>" , confidential=TRUE)
 
 /datum/admins/proc/output_devil_info(mob/living/M)
 	if(is_devil(M))
 		var/datum/antagonist/devil/devil = M.mind.has_antag_datum(/datum/antagonist/devil)
-		to_chat(usr, devil.printdevilinfo())
+		to_chat(usr, devil.printdevilinfo(), confidential=TRUE)
 	else
-		to_chat(usr, "<b>[M] is not a devil.")
+		to_chat(usr, "<b>[M] is not a devil.", confidential=TRUE)
 
 /datum/admins/proc/manage_free_slots()
 	if(!check_rights())
@@ -823,7 +851,7 @@
 			if(kick_only_afk && !C.is_afk()) //Ignore clients who are not afk
 				continue
 			if(message)
-				to_chat(C, message)
+				to_chat(C, message, confidential=TRUE)
 			kicked_client_names.Add("[C.key]")
 			qdel(C)
 	return kicked_client_names

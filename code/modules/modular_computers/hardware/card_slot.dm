@@ -78,7 +78,7 @@
 
 	var/ejected = 0
 	if(stored_card && (!slot || slot == 1))
-		if(user)
+		if(user && Adjacent(user))
 			user.put_in_hands(stored_card)
 		else
 			stored_card.forceMove(drop_location())
@@ -86,7 +86,7 @@
 		ejected++
 
 	if(stored_card2 && (!slot || slot == 2))
-		if(user)
+		if(user && Adjacent(user))
 			user.put_in_hands(stored_card2)
 		else
 			stored_card2.forceMove(drop_location())
@@ -118,6 +118,6 @@
 		return
 
 /obj/item/computer_hardware/card_slot/examine(mob/user)
-	..()
+	. = ..()
 	if(stored_card || stored_card2)
-		to_chat(user, "There appears to be something loaded in the card slots.")
+		. += "There appears to be something loaded in the card slots."

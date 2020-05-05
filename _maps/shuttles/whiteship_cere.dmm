@@ -22,6 +22,10 @@
 	preferred_direction = 1;
 	width = 16
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
 "ad" = (
@@ -103,6 +107,10 @@
 /obj/machinery/door/airlock/titanium{
 	name = "mech bay"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
 "ar" = (
@@ -251,6 +259,12 @@
 /obj/machinery/door/poddoor{
 	id = "cerewhiteleft"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
 "aG" = (
@@ -261,6 +275,12 @@
 "aH" = (
 /obj/machinery/door/poddoor{
 	id = "cerewhiteright"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
@@ -316,6 +336,10 @@
 	name = "cockpit"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
 "aO" = (
@@ -411,6 +435,11 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"HL" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 
 (1,1,1) = {"
@@ -519,7 +548,7 @@ aQ
 aR
 aQ
 aZ
-ar
+HL
 "}
 (7,1,1) = {"
 ac
@@ -537,7 +566,7 @@ aR
 aQ
 aW
 ba
-ar
+HL
 "}
 (8,1,1) = {"
 ab
@@ -555,7 +584,7 @@ aS
 aS
 aR
 bb
-ar
+HL
 "}
 (9,1,1) = {"
 ab

@@ -1,5 +1,6 @@
 /datum/martial_art/krav_maga
 	name = "Krav Maga"
+	id = MARTIALART_KRAVMAGA
 	var/datum/action/neck_chop/neckchop = new/datum/action/neck_chop()
 	var/datum/action/leg_sweep/legsweep = new/datum/action/leg_sweep()
 	var/datum/action/lung_punch/lungpunch = new/datum/action/lung_punch()
@@ -101,7 +102,7 @@
 				  	"<span class='userdanger'>[A] slams your chest! You can't breathe!</span>")
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	if(D.losebreath <= 10)
-		D.losebreath = CLAMP(D.losebreath + 5, 0, 10)
+		D.losebreath = clamp(D.losebreath + 5, 0, 10)
 	D.adjustOxyLoss(10)
 	log_combat(A, D, "quickchoked")
 	return 1
@@ -112,7 +113,7 @@
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	D.apply_damage(5, A.dna.species.attack_type)
 	if(D.silent <= 10)
-		D.silent = CLAMP(D.silent + 10, 0, 10)
+		D.silent = clamp(D.silent + 10, 0, 10)
 	log_combat(A, D, "neck chopped")
 	return 1
 
@@ -191,3 +192,18 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
+
+/obj/item/clothing/gloves/krav_maga/combatglovesplus
+	name = "combat gloves plus"
+	desc = "These tactical gloves are fireproof and shock resistant, and using nanochip technology it teaches you the powers of krav maga."
+	icon_state = "black"
+	item_state = "blackglovesplus"
+	siemens_coefficient = 0
+	permeability_coefficient = 0.05
+	strip_delay = 80
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)

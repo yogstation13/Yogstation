@@ -133,6 +133,20 @@
 
 /datum/world_topic/adminwho/Run(list/input)
 	return ircadminwho()
+	
+/datum/world_topic/mentorwho
+	keyword = "mentorwho"
+	require_comms_key = TRUE
+
+/datum/world_topic/mentorwho/Run(list/input)
+	var/list/message = list("Mentors: ")
+	for(var/client/mentor in GLOB.mentors)
+		if(LAZYLEN(message) > 1)
+			message += ", [mentor.key]"
+		else
+			message += "[mentor.key]"
+
+	return jointext(message, "")
 
 /datum/world_topic/status
 	keyword = "status"
@@ -174,7 +188,13 @@
 	.["time_dilation_avg"] = SStime_track.time_dilation_avg
 	.["time_dilation_avg_slow"] = SStime_track.time_dilation_avg_slow
 	.["time_dilation_avg_fast"] = SStime_track.time_dilation_avg_fast
-
+	
+	//pop cap stats
+	.["soft_popcap"] = CONFIG_GET(number/soft_popcap) || 0
+	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
+	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
+	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
+	
 	if(SSshuttle && SSshuttle.emergency)
 		.["shuttle_mode"] = SSshuttle.emergency.mode
 		// Shuttle status, see /__DEFINES/stat.dm

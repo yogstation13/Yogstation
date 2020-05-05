@@ -249,7 +249,6 @@
 /turf/open/floor/plasteel{
 	icon_state = "damaged4"
 	},
-/turf/closed/wall/mineral/plastitanium,
 /area/awaymission/research/interior/engineering)
 "aT" = (
 /mob/living/simple_animal/hostile/syndicate/melee/sword,
@@ -258,9 +257,6 @@
 "aU" = (
 /turf/open/floor/plasteel{
 	icon_state = "damaged1"
-	},
-/turf/closed/wall/mineral/plastitanium{
-	dir = 4
 	},
 /area/awaymission/research/interior/engineering)
 "aV" = (
@@ -311,7 +307,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -344,7 +340,6 @@
 /turf/open/floor/plasteel{
 	icon_state = "damaged5"
 	},
-/turf/closed/wall/mineral/plastitanium,
 /area/awaymission/research/interior/engineering)
 "bd" = (
 /turf/open/floor/plasteel{
@@ -417,8 +412,7 @@
 	auto_name = 1;
 	dir = 4;
 	name = "Engineering APC";
-	pixel_x = 27;
-	pixel_y = 2
+	pixel_x = 24
 	},
 /turf/open/floor/plating,
 /area/awaymission/research/interior/engineering)
@@ -966,7 +960,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/gateway)
@@ -1082,7 +1076,7 @@
 	name = "panic lockdown button"
 	},
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -1961,7 +1955,7 @@
 /area/awaymission/research/interior)
 "ej" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -2099,7 +2093,7 @@
 /area/awaymission/research/interior/cryo)
 "ew" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -2321,7 +2315,7 @@
 "eT" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
@@ -2549,7 +2543,7 @@
 /area/awaymission/research/interior/security)
 "fu" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -2916,7 +2910,7 @@
 /area/awaymission/research/interior/security)
 "gb" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -4498,7 +4492,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -4617,7 +4611,7 @@
 /area/awaymission/research/interior/dorm)
 "iZ" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
@@ -5710,7 +5704,7 @@
 /area/awaymission/research/interior/medbay)
 "lx" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/box/fancy/cigarettes/dromedaryco,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -5837,7 +5831,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 4
@@ -5930,7 +5924,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Escape APC";
-	pixel_y = -24
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -6331,7 +6325,7 @@
 "mX" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1

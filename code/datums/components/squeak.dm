@@ -1,6 +1,7 @@
 /datum/component/squeak
 	var/static/list/default_squeak_sounds = list('sound/items/toysqueak1.ogg'=1, 'sound/items/toysqueak2.ogg'=1, 'sound/items/toysqueak3.ogg'=1)
 	var/list/override_squeak_sounds
+
 	var/squeak_chance = 100
 	var/volume = 30
 
@@ -16,7 +17,7 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_ATOM_HULK_ATTACK, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
-	if(ismovableatom(parent))
+	if(ismovable(parent))
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), .proc/play_squeak)
 		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, .proc/play_squeak_crossed)
 		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react)
@@ -27,6 +28,8 @@
 			RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 			if(istype(parent, /obj/item/clothing/shoes))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
+			if(istype(parent, /obj/item/clothing/neck))
+				RegisterSignal(parent, COMSIG_NECK_STEP_ACTION, .proc/step_squeak)
 
 	override_squeak_sounds = custom_sounds
 	if(chance_override)
@@ -52,7 +55,7 @@
 	else
 		steps++
 
-/datum/component/squeak/proc/play_squeak_crossed(atom/movable/AM)
+/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM)
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(I.item_flags & ABSTRACT)
@@ -61,6 +64,8 @@
 			var/obj/item/projectile/P = AM
 			if(P.original != parent)
 				return
+	if(istype(AM, /obj/effect/dummy/phased_mob)) //don't squeek if they're in a phased/jaunting container.
+		return
 	var/atom/current_parent = parent
 	if(isturf(current_parent.loc))
 		play_squeak()

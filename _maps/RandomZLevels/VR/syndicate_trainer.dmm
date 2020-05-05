@@ -35,7 +35,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "ap" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "aq" = (
@@ -244,7 +244,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "bu" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/closet/secure_closet/freezer/meat/open,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "bw" = (
@@ -448,7 +448,7 @@
 /area/awaymission/centcomAway/hangar)
 "cK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/centcomAway/hangar)
 "cL" = (
@@ -468,7 +468,6 @@
 /area/awaymission/centcomAway/hangar)
 "cO" = (
 /obj/machinery/sleep_console{
-	icon_state = "console";
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -618,7 +617,7 @@
 /area/awaymission/centcomAway/hangar)
 "dC" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "dE" = (
@@ -746,7 +745,6 @@
 /area/awaymission/centcomAway/general)
 "eI" = (
 /obj/machinery/sleep_console{
-	icon_state = "console";
 	dir = 8
 	},
 /turf/open/indestructible,

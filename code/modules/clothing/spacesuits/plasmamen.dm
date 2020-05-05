@@ -15,8 +15,8 @@
 
 
 /obj/item/clothing/suit/space/eva/plasmaman/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>There [extinguishes_left == 1 ? "is" : "are"] [extinguishes_left] extinguisher charge\s left in this suit.</span>")
+	. = ..()
+	. += "<span class='notice'>There [extinguishes_left == 1 ? "is" : "are"] [extinguishes_left] extinguisher charge\s left in this suit.</span>"
 
 
 /obj/item/clothing/suit/space/eva/plasmaman/proc/Extinguish(mob/living/carbon/human/H)
@@ -36,10 +36,10 @@
 
 //I just want the light feature of the hardsuit helmet
 /obj/item/clothing/head/helmet/space/plasmaman
-	name = "plasma envirosuit helmet"
-	desc = "A special containment helmet that allows plasma-based lifeforms to exist safely in an oxygenated environment. It is space-worthy, and may be worn in tandem with other EVA gear."
-	icon_state = "plasmaman-helm"
-	item_state = "plasmaman-helm"
+	name = "purple envirosuit helmet"
+	desc = "A generic purple envirohelm."
+	icon_state = "purple_envirohelm"
+	item_state = "purple_envirohelm"
 	strip_delay = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75)
 	resistance_flags = FIRE_PROOF
@@ -61,3 +61,47 @@
 	for(var/X in actions)
 		var/datum/action/A=X
 		A.UpdateButtonIcon()
+
+/obj/item/clothing/head/helmet/space/plasmaman/security
+	name = "security envirosuit helmet"
+	desc = "A plasma containment helmet designed for security, protecting them from being flashed and burning alive, along-side other undesirables."
+	icon_state = "deathcurity_envirohelm"
+	item_state = "deathcurity_envirohelm"
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75)
+
+/obj/item/clothing/head/helmet/space/plasmaman/blue
+	name = "blue envirosuit helmet"
+	desc = "A generic blue envirohelm."
+	icon_state = "blue_envirohelm"
+	item_state = "blue_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/viro
+	name = "virology envirosuit helmet"
+	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create."
+	icon_state = "virologist_envirohelm"
+	item_state = "virologist_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/engineering
+	name = "engineering envirosuit helmet"
+	desc = "A space-worthy helmet specially designed for engineer plasmamen, the usual purple stripes being replaced by engineering's orange."
+	icon_state = "engineer_envirohelm"
+	item_state = "engineer_envirohelm"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75)
+
+/obj/item/clothing/head/helmet/space/plasmaman/curator
+	name = "prototype envirosuit helmet"
+	desc = "A slight modification on a tradiational voidsuit helmet, this helmet was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historian and old-styled plasmamen alike."
+	icon_state = "curator_envirohelm"
+	item_state = "curator_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/mime
+	name = "mime envirosuit helmet"
+	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."
+	icon_state = "mime_envirohelm"
+	item_state = "mime_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/clown
+	name = "clown envirosuit helmet"
+	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
+	icon_state = "clown_envirohelm"
+	item_state = "clown_envirohelm"

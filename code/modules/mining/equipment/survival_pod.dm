@@ -23,7 +23,7 @@
 		return
 	template = SSmapping.shelter_templates[template_id]
 	if(!template)
-		throw EXCEPTION("Shelter template ([template_id]) not found!")
+		WARNING("Shelter template ([template_id]) not found!")
 		qdel(src)
 
 /obj/item/survivalcapsule/Destroy()
@@ -33,8 +33,8 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	. += "This capsule has the [template.name] stored."
+	. += template.description
 
 /obj/item/survivalcapsule/attack_self()
 	//Can't grab when capsule is New() because templates aren't loaded then
@@ -138,6 +138,19 @@
 	else
 		add_overlay("sleeper_cover")
 
+//Lifeform Stasis Unit
+/obj/machinery/stasis/survival_pod
+	icon = 'icons/obj/lavaland/survival_pod.dmi'
+	icon_state = "sleeper"
+	mattress_state = null
+	buckle_lying = 270
+
+/obj/machinery/stasis/survival_pod/play_power_sound()
+	return
+
+/obj/machinery/stasis/survival_pod/update_icon()
+	return
+
 //Computer
 /obj/item/gps/computer
 	name = "pod computer"
@@ -181,6 +194,10 @@
 	max_n_of_items = 10
 	pixel_y = -4
 	flags_1 = NODECONSTRUCT_1
+	supports_full_indicator_state = FALSE
+	supports_retrieval_state = FALSE
+	supports_capacity_indication = FALSE
+	pitches = FALSE
 	var/empty = FALSE
 
 /obj/machinery/smartfridge/survival_pod/update_icon()
@@ -293,7 +310,6 @@
 						/obj/item/gun/ballistic/automatic/l6_saw,
 						/obj/item/gun/magic/staff/chaos,
 						/obj/item/gun/magic/staff/spellblade,
-						/obj/item/gun/magic/wand/death,
 						/obj/item/gun/magic/wand/fireball,
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,

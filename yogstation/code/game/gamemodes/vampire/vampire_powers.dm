@@ -77,7 +77,7 @@
 
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
-	desc= "Flush your system with spare blood to remove any incapacitating effects."
+	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
 	action_icon_state = "rejuv"
 	charge_max = 200
 	stat_allowed = 1
@@ -93,13 +93,7 @@
 	if(!V) //sanity check
 		return
 	for(var/i = 1 to 5)
-		U.adjustStaminaLoss(-100)
-		U.SetStun(0)
-		U.SetKnockdown(0)
-		U.SetParalyzed(0)
-		U.SetImmobilized(0)
-		U.set_resting(FALSE)
-		U.update_mobility()
+		U.adjustStaminaLoss(-50)
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
@@ -109,25 +103,27 @@
 
 
 /obj/effect/proc_holder/spell/targeted/hypnotise
-	name = "Hypnotize (20)"
+	name = "Hypnotize"
 	desc= "A piercing stare that incapacitates your victim for a good length of time."
 	action_icon_state = "hypnotize"
-	blood_used = 20
+	blood_used = 0
+	charge_max = 1500
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
-	for(var/mob/living/target in targets)
+	for(var/mob/living/carbon/target in targets)
 		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 50))
+		if(do_mob(user, target, 30))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
-			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
+			to_chat(target, "<span class='warning'>You find yourself unable to move or speak.</span>")
 			target.Paralyze(150)
-			target.stuttering = 10
+			target.silent = 10 //finally makes this stupid spell USEFUL
 		else
 			revert_cast(usr)
 			to_chat(usr, "<span class='warning'>You broke your gaze.</span>")
+
 
 /obj/effect/proc_holder/spell/self/shapeshift
 	name = "Shapeshift (50)"
@@ -145,6 +141,7 @@
 		user.visible_message("<span class='warning'>[H] transforms!</span>")
 		randomize_human(H)
 	user.regenerate_icons()
+
 
 /obj/effect/proc_holder/spell/self/cloak
 	name = "Cloak of Darkness"
@@ -175,6 +172,49 @@
 	update_name()
 	to_chat(user, "<span class='notice'>You will now be [V.iscloaking ? "hidden" : "seen"] in darkness.</span>")
 
+
+/obj/effect/proc_holder/spell/self/revive
+	name = "Revive"
+	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
+	desc = "Revives you, provided you are not in the chapel!"
+	blood_used = 0
+	stat_allowed = TRUE
+	charge_max = 1000
+	action_icon = 'yogstation/icons/mob/vampire.dmi'
+	action_icon_state = "coffin"
+	action_background_icon_state = "bg_demon"
+	vamp_req = TRUE
+
+/obj/effect/proc_holder/spell/self/revive/cast(list/targets, mob/user = usr)
+	if(!is_vampire(user) || !isliving(user))
+		revert_cast()
+		return
+	if(user.stat != DEAD)
+		to_chat(user, "<span class='notice'>We aren't dead enough to do that yet!</span>")
+		revert_cast()
+		return
+	if(user.reagents.has_reagent("holywater"))
+		to_chat(user, "<span class='danger'>We cannot revive, holy water is in our system!</span>")
+		return
+	var/mob/living/L = user
+	if(istype(get_area(L.loc), /area/chapel))
+		L.visible_message("<span class='warning'>[L] disintergrates into dust!</span>", "<span class='userdanger'>Holy energy seeps into our very being, disintergrating us instantly!</span>", "You hear sizzling.")
+		new /obj/effect/decal/remains/human(L.loc)
+		L.dust()
+	to_chat(L, "<span class='notice'>We begin to reanimate... this will take 1 minute.</span>")
+	addtimer(CALLBACK(src, /obj/effect/proc_holder/spell/self/revive.proc/revive, L), 600)
+
+/obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
+	user.revive(full_heal = TRUE)
+	user.visible_message("<span class='warning'>[user] reanimates from death!</span>", "<span class='notice'>We get back up.</span>")
+	var/list/missing = user.get_missing_limbs()
+	if(missing.len)
+		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
+		user.visible_message("<span class='warning'>Shadowy matter takes the place of [user]'s missing limbs as they reform!</span>")
+		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
+		user.regenerate_organs()
+
+
 /obj/effect/proc_holder/spell/targeted/disease
 	name = "Diseased Touch (50)"
 	desc = "Touches your victim with infected blood giving them Grave Fever, which will, left untreated, causes toxic building and frequent collapsing."
@@ -194,6 +234,7 @@
 			continue
 		var/datum/disease/D = new /datum/disease/vampire
 		target.ForceContractDisease(D)
+
 
 /obj/effect/proc_holder/spell/self/screech
 	name = "Chiropteran Screech (20)"
@@ -219,6 +260,7 @@
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
+
 
 /obj/effect/proc_holder/spell/bats
 	name = "Summon Bats (30)"
@@ -264,30 +306,32 @@
 	range = -1
 	addtimer(VARSET_CALLBACK(src, range, -1), 10) //Avoid fuckery
 
+
 /obj/effect/proc_holder/spell/targeted/vampirize
-	name = "Lilith's Pact (400)"
+	name = "Lilith's Pact (300)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "oath"
-	blood_used = 400
+	blood_used = 300
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/vampirize/cast(list/targets, mob/user = usr)
+	var/datum/antagonist/vampire/vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	for(var/mob/living/carbon/target in targets)
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
 			continue
-		if(target.has_trait(TRAIT_MINDSHIELD))
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
 			continue
-		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
-		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim
+		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, pure dread eminating from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
+		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
 				if(1)
-					to_chat(target, "<span class='warning'>Visions of dread flood your vision...</span>")
+					to_chat(target, "<span class='danger'>Wicked shadows invade your sight, beckoning to you.</span>")
 					to_chat(user, "<span class='notice'>We begin to drain [target]'s blood in, so Lilith can bless it.</span>")
 				if(2)
 					to_chat(target, "<span class='danger'>Demonic whispers fill your mind, and they become irressistible...</span>")
@@ -307,50 +351,11 @@
 			to_chat(target, "<span class='italics'>Strike fear into their hearts...</span>")
 			to_chat(user, "<span class='notice italics bold'>They have signed the pact!</span>")
 			to_chat(target, "<span class='userdanger'>You sign Lilith's Pact.</span>")
-			target.mind.store_memory("<B>[user] showed you the glory of Lilith. <I>You are not required to respect or obey [user] in any way</I></B>")
-			add_vampire(target)
-
-
-/obj/effect/proc_holder/spell/self/revive
-	name = "Revive"
-	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
-	desc = "Revives you, provided you are not in the chapel!"
-	blood_used = 0
-	stat_allowed = TRUE
-	charge_max = 1000
-	action_icon = 'yogstation/icons/mob/vampire.dmi'
-	action_icon_state = "coffin"
-	action_background_icon_state = "bg_demon"
-	vamp_req = TRUE
-
-/obj/effect/proc_holder/spell/self/revive/cast(list/targets, mob/user = usr)
-	if(!is_vampire(user) || !isliving(user))
-		revert_cast()
-		return
-	if(user.stat != DEAD)
-		to_chat(user, "<span class='notice'>We aren't dead enough to do that yet!</span>")
-		revert_cast()
-		return
-	if(user.reagents.has_reagent("holywater"))
-		to_chat(user, "<span class='danger'>We cannot revive, holy water is in our system!</span>")
-		return
-	var/mob/living/L = user
-	if(istype(get_area(L.loc), /area/chapel))
-		L.visible_message("<span class='warning'>[L] disintergrates into dust!</span>", "<span class='userdanger'>Holy energy seeps into our very being, disintergrating us instantly!</span>", "You hear sizzling.")
-		new /obj/effect/decal/remains/human(L.loc)
-		L.dust()
-	to_chat(L, "<span class='notice'>We begin to reanimate... this will take a minute.</span>")
-	addtimer(CALLBACK(src, /obj/effect/proc_holder/spell/self/revive.proc/revive, L), 600)
-
-/obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
-	user.revive(full_heal = TRUE)
-	user.visible_message("<span class='warning'>[user] reanimates from death!</span>", "<span class='notice'>We get back up.</span>")
-	var/list/missing = user.get_missing_limbs()
-	if(missing.len)
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
-		user.visible_message("<span class='warning'>Shadowy matter takes the place of [user]'s missing limbs as they reform!</span>")
-		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
-		user.regenerate_organs()
+			target.mind.store_memory("<B>[user] showed you the glory of Lilith. <I>You are not required to obey [user], however, you have gained a respect for them.</I></B>")
+			target.Sleeping(600)
+			target.blood_volume = 560
+			add_vampire(target, FALSE)
+			vamp.converted ++
 
 /obj/effect/proc_holder/spell/self/summon_coat
 	name = "Summon Dracula Coat (100)"

@@ -40,6 +40,10 @@
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
 		add_overlay("decloner_spin")
 
+/obj/item/gun/energy/decloner/unrestricted
+	pin = /obj/item/firing_pin
+	ammo_type = list(/obj/item/ammo_casing/energy/declone/weak)
+
 /obj/item/gun/energy/floragun
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
@@ -58,8 +62,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
 	cell_type = "/obj/item/stock_parts/cell/potato"
-	clumsy_check = 0 //Admin spawn only, might as well let clowns use it.
-	selfcharge = 1
+	clumsy_check = 0 // Yogs Might as well let clowns use it.
+	/*selfcharge = 1*/ // Yogs Not admeme only anymore
 
 /obj/item/gun/energy/meteorgun/pen
 	name = "meteor pen"
@@ -124,7 +128,7 @@
 	attack_verb = list("attacked", "slashed", "cut", "sliced")
 	force = 12
 	sharpness = IS_SHARP
-	can_charge = 0
+	can_charge = FALSE
 
 	heat = 3800
 	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
@@ -139,9 +143,9 @@
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
 /obj/item/gun/energy/plasmacutter/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>")
+		. += "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>"
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
@@ -210,6 +214,13 @@
 	icon_state = "adv_plasmacutter"
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
+
+/obj/item/gun/energy/plasmacutter/adv/cyborg
+	name = "cyborg advanced plasma cutter"
+	icon_state = "adv_plasmacutter"
+	force = 15
+	selfcharge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/cyborg)
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"
@@ -283,12 +294,12 @@
 /obj/item/gun/energy/printer
 	name = "cyborg lmg"
 	desc = "An LMG that fires 3D-printed flechettes. They are slowly resupplied using the cyborg's internal power source."
-	icon_state = "l6closed0"
+	icon_state = "l6_cyborg"
 	icon = 'icons/obj/guns/projectile.dmi'
 	cell_type = "/obj/item/stock_parts/cell/secborg"
 	ammo_type = list(/obj/item/ammo_casing/energy/c3dbullet)
-	can_charge = 0
-	use_cyborg_cell = 1
+	can_charge = FALSE
+	use_cyborg_cell = TRUE
 
 /obj/item/gun/energy/printer/update_icon()
 	return

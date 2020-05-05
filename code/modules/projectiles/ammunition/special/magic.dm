@@ -22,6 +22,10 @@
 	projectile_type = /obj/item/projectile/magic/teleport
 	harmful = FALSE
 
+/obj/item/ammo_casing/magic/safety
+	projectile_type = /obj/item/projectile/magic/safety
+	harmful = FALSE
+
 /obj/item/ammo_casing/magic/door
 	projectile_type = /obj/item/projectile/magic/door
 	harmful = FALSE
@@ -43,3 +47,61 @@
 
 /obj/item/ammo_casing/magic/locker
 	projectile_type = /obj/item/projectile/magic/locker
+
+/obj/item/ammo_casing/magic/flying
+	projectile_type = /obj/item/projectile/magic/flying
+
+/obj/item/ammo_casing/magic/bounty
+	projectile_type = /obj/item/projectile/magic/bounty
+
+/obj/item/ammo_casing/magic/antimagic
+	projectile_type = /obj/item/projectile/magic/antimagic
+
+/obj/item/ammo_casing/magic/sapping
+	projectile_type = /obj/item/projectile/magic/sapping
+
+/obj/item/ammo_casing/magic/necropotence
+	projectile_type = /obj/item/projectile/magic/necropotence
+
+/obj/item/ammo_casing/magic/wipe
+	projectile_type = /obj/item/projectile/magic/wipe
+
+/obj/item/ammo_casing/magic/runic_icycle
+	projectile_type = /obj/item/projectile/temp/runic_icycle
+
+/obj/item/ammo_casing/magic/runic_tentacle
+	projectile_type = /obj/item/projectile/magic/runic_tentacle
+
+/obj/item/ammo_casing/magic/runic_heal
+	projectile_type = /obj/item/projectile/magic/runic_heal
+	harmful = FALSE
+
+/obj/item/ammo_casing/magic/runic_fire
+	projectile_type = /obj/item/projectile/magic/runic_fire
+
+/obj/item/ammo_casing/magic/runic_honk
+	projectile_type = /obj/item/projectile/magic/runic_honk
+	harmful = FALSE
+
+/obj/item/ammo_casing/magic/runic_chaos
+	projectile_type = /obj/item/projectile/magic
+
+/obj/item/ammo_casing/magic/runic_bomb
+	projectile_type = /obj/item/projectile/magic/runic_bomb
+
+/obj/item/ammo_casing/magic/runic_toxin
+	projectile_type = /obj/item/projectile/magic/runic_toxin
+
+/obj/item/ammo_casing/magic/runic_death
+	projectile_type = /obj/item/projectile/magic/runic_death
+
+/obj/item/ammo_casing/magic/runic_bullet
+	projectile_type = /obj/item/projectile/magic/shotgun_slug //is bullet but actually no
+	pellets = 3
+	variance = 35
+
+/obj/item/ammo_casing/magic/runic_mutation
+	projectile_type = /obj/item/projectile/magic/runic_mutation
+
+/obj/item/ammo_casing/magic/runic_resizement
+	projectile_type = /obj/item/projectile/magic/runic_resizement

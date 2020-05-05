@@ -33,7 +33,7 @@
 
 			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 			if(I.use_tool(src, user, 40, volume=40))
-				obj_integrity = CLAMP(obj_integrity + 20, 0, max_integrity)
+				obj_integrity = clamp(obj_integrity + 20, 0, max_integrity)
 	else
 		return ..()
 
@@ -148,8 +148,8 @@
 	var/mode = SINGLE
 
 /obj/item/grenade/barrier/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to toggle modes.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to toggle modes.</span>"
 
 /obj/item/grenade/barrier/AltClick(mob/living/carbon/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))

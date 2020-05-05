@@ -15,16 +15,8 @@
 /mob/proc/Dizzy(amount)
 	dizziness = max(dizziness,amount,0)
 
-/////////////////////////////////// EYE DAMAGE ////////////////////////////////////
-
-/mob/proc/damage_eyes(amount)
-	return
-
-/mob/proc/adjust_eye_damage(amount)
-	return
-
-/mob/proc/set_eye_damage(amount)
-	return
+/mob/proc/set_dizziness(amount)
+	dizziness = max(amount, 0)
 
 /////////////////////////////////// EYE_BLIND ////////////////////////////////////
 
@@ -51,7 +43,7 @@
 			blind_minimum = 1
 		if(isliving(src))
 			var/mob/living/L = src
-			if(L.has_trait(TRAIT_BLIND))
+			if(HAS_TRAIT(L, TRAIT_BLIND))
 				blind_minimum = 1
 		eye_blind = max(eye_blind+amount, blind_minimum)
 		if(!eye_blind)
@@ -72,7 +64,7 @@
 			blind_minimum = 1
 		if(isliving(src))
 			var/mob/living/L = src
-			if(L.has_trait(TRAIT_BLIND))
+			if(HAS_TRAIT(L, TRAIT_BLIND))
 				blind_minimum = 1
 		eye_blind = blind_minimum
 		if(!eye_blind)
@@ -122,4 +114,4 @@
 
 /mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
-		bodytemperature = CLAMP(bodytemperature + amount,min_temp,max_temp)
+		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)

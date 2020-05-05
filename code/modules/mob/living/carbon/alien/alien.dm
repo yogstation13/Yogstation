@@ -24,6 +24,7 @@
 	unique_name = 1
 
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
+	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
 
 /mob/living/carbon/alien/Initialize()
 	verbs += /mob/living/proc/mob_sleep
@@ -40,6 +41,7 @@
 	internal_organs += new /obj/item/organ/alien/hivenode
 	internal_organs += new /obj/item/organ/tongue/alien
 	internal_organs += new /obj/item/organ/eyes/night_vision/alien
+	internal_organs += new /obj/item/organ/liver/alien
 	internal_organs += new /obj/item/organ/ears
 	..()
 
@@ -105,7 +107,7 @@ Des: Gives the client of the alien an image on each infected mob.
 	if (client)
 		for (var/i in GLOB.mob_living_list)
 			var/mob/living/L = i
-			if(L.has_trait(TRAIT_XENO_HOST))
+			if(HAS_TRAIT(L, TRAIT_XENO_HOST))
 				var/obj/item/organ/body_egg/alien_embryo/A = L.getorgan(/obj/item/organ/body_egg/alien_embryo)
 				if(A)
 					var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[A.stage]")
@@ -120,7 +122,8 @@ Des: Removes all infected images from the alien.
 /mob/living/carbon/alien/proc/RemoveInfectionImages()
 	if (client)
 		for(var/image/I in client.images)
-			if(dd_hasprefix_case(I.icon_state, "infected"))
+			var/searchfor = "infected"
+			if(findtext(I.icon_state, searchfor, 1, length(searchfor) + 1))
 				qdel(I)
 	return
 

@@ -1,63 +1,63 @@
-// the light switch
-// can have multiple per area
-// can also operate on non-loc area through "otherarea" var
+/// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	desc = "Make dark."
-	var/on = TRUE
+	/// Set this to a string, path, or area instance to control that area
+	/// instead of the switch's location.
 	var/area/area = null
-	var/otherarea = null
 
 /obj/machinery/light_switch/Initialize()
 	. = ..()
-	area = get_area(src)
-
-	if(otherarea)
-		area = locate(text2path("/area/[otherarea]"))
+	if(istext(area))
+		area = text2path(area)
+	if(ispath(area))
+		area = GLOB.areas_by_type[area]
+	if(!area)
+		area = get_area(src)
 
 	if(!name)
 		name = "light switch ([area.name])"
 
-	on = area.lightswitch
-	updateicon()
+	update_icon()
 
-/obj/machinery/light_switch/proc/updateicon()
+/obj/machinery/light_switch/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "light-p"
 	else
-		if(on)
+		if(area.lightswitch)
 			icon_state = "light1"
 		else
 			icon_state = "light0"
 
 /obj/machinery/light_switch/examine(mob/user)
-	..()
-	to_chat(user, "It is [on? "on" : "off"].")
+	. = ..()
+	. += "It is [area.lightswitch ? "on" : "off"]."
+	if((obj_flags & EMAGGED) && user.can_hear())
+		. += "<span class='danger'>You hear a faint hum coming from the switch.</span>"
 
 /obj/machinery/light_switch/interact(mob/user)
+	if(obj_flags & EMAGGED)
+		shock(user)
 	. = ..()
-	on = !on
 
-	area.lightswitch = on
-	area.updateicon()
+	area.lightswitch = !area.lightswitch
+	area.update_icon()
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.on = on
-		L.updateicon()
+		L.update_icon()
 
 	area.power_change()
 
 /obj/machinery/light_switch/power_change()
-
-	if(!otherarea)
+	if(area == get_area(src))
 		if(powered(LIGHT))
 			stat &= ~NOPOWER
 		else
 			stat |= NOPOWER
 
-		updateicon()
+		update_icon()
 
 /obj/machinery/light_switch/emp_act(severity)
 	. = ..()
@@ -65,3 +65,21 @@
 		return
 	if(!(stat & (BROKEN|NOPOWER)))
 		power_change()
+
+/obj/machinery/light_switch/proc/shock(mob/user)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	electrocute_mob(user, get_area(src), src, 0.7, TRUE)
+
+
+/obj/machinery/light_switch/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
+		return
+	to_chat(user, "<span class='notice'>You swipe the emag on the light switch. </span>")
+	if(user.can_hear())
+		to_chat(user, "<span class='notice'>The light switch gives off a soft hum.</span>")
+	obj_flags |= EMAGGED

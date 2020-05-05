@@ -64,11 +64,10 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	var/t =	"<span class='notice'>Coordinates: [x],[y] \n</span>"
-	t +=	"<span class='danger'>Temperature: [environment.temperature] \n</span>"
-	for(var/id in environment.gases)
-		var/gas = environment.gases[id]
-		if(gas[MOLES])
-			t+="<span class='notice'>[gas[GAS_META][META_GAS_NAME]]: [gas[MOLES]] \n</span>"
+	t +=	"<span class='danger'>Temperature: [environment.return_temperature()] \n</span>"
+	for(var/id in environment.get_gases())
+		if(environment.get_moles(id))
+			t+="<span class='notice'>[GLOB.meta_gas_info[id][META_GAS_NAME]]: [environment.get_moles(id)] \n</span>"
 
 	to_chat(usr, t)
 
@@ -80,7 +79,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type & 1 && eye_blind )//Vision related
@@ -114,17 +113,19 @@
 // vision_distance (optional) define how many tiles away the message can be seen.
 // ignored_mob (optional) doesn't show any message to a given mob if TRUE.
 
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, list/ignored_mobs)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
+	if(!islist(ignored_mobs))
+		ignored_mobs = list(ignored_mobs)
 	var/range = 7
 	if(vision_distance)
 		range = vision_distance
 	for(var/mob/M in get_hearers_in_view(range, src))
 		if(!M.client)
 			continue
-		if(M == ignored_mob)
+		if(M in ignored_mobs)
 			continue
 		var/msg = message
 		if(M == src) //the src always see the main message or self message
@@ -175,9 +176,6 @@
 		range = hearing_distance
 	for(var/mob/M in get_hearers_in_view(range, src))
 		M.show_message( message, 2, deaf_message, 1)
-
-/mob/proc/Life()
-	set waitfor = FALSE
 
 /mob/proc/get_item_by_slot(slot_id)
 	return null
@@ -261,7 +259,7 @@
 /mob/proc/reset_perspective(atom/A)
 	if(client)
 		if(A)
-			if(ismovableatom(A))
+			if(ismovable(A))
 				//Set the the thing unless it's us
 				if(A != src)
 					client.perspective = EYE_PERSPECTIVE
@@ -292,6 +290,16 @@
 /mob/proc/show_inv(mob/user)
 	return
 
+/mob/verb/giveitem(atom/A as mob in range(1))
+	set name = "Give"
+	set category = "IC"
+	if(!iscarbon(src))
+		to_chat(src, "<span class='warning'>You can't give items!</span>")
+		return
+	if(A && A != src && get_dist(src, A) < 2)
+		var/mob/living/carbon/C = src
+		C.give()
+
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
@@ -306,7 +314,9 @@
 		return
 
 	face_atom(A)
-	A.examine(src)
+	var/list/result = A.examine(src)
+	to_chat(src, result.Join("\n"))
+	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 //same as above
 //note: ghosts can point, this is intended
@@ -390,7 +400,16 @@
 	set name = "Add Note"
 	set category = "IC"
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	if(memory_amt > 50)
+		return
+
+	if(memory_amt == 50)
+		log_game("[key_name(src)] might be trying to crash the server by spamming memories, rate-limiting them.")
+		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] might be trying to crash the server by spamming memories, rate-limiting them.</span>")
+
+	memory_amt++
+
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
 
 	if(mind)
@@ -557,6 +576,12 @@
 			GLOB.ahelp_tickets.stat_entry()
 		*/
 		// yogs end
+		if(length(GLOB.sdql2_queries))
+			if(statpanel("SDQL2"))
+				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+				for(var/i in GLOB.sdql2_queries)
+					var/datum/SDQL2_query/Q = i
+					Q.generate_stat()
 
 	if(listed_turf && client)
 		if(!TurfAdjacent(listed_turf))
@@ -581,9 +606,6 @@
 
 	if(mind)
 		add_spells_to_statpanel(mind.spell_list)
-		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-		if(changeling)
-			add_stings_to_statpanel(changeling.purchasedpowers)
 	add_spells_to_statpanel(mob_spell_list)
 
 /mob/proc/add_spells_to_statpanel(list/spells)
@@ -596,11 +618,6 @@
 					statpanel("[S.panel]","[S.charge_counter]/[S.charge_max]",S)
 				if("holdervar")
 					statpanel("[S.panel]","[S.holder_var_type] [S.holder_var_amount]",S)
-
-/mob/proc/add_stings_to_statpanel(list/stings)
-	for(var/obj/effect/proc_holder/changeling/S in stings)
-		if(S.chemical_cost >=0 && S.can_be_used_by(src))
-			statpanel("[S.panel]",((S.chemical_cost > 0) ? "[S.chemical_cost]" : ""),S)
 
 #define MOB_FACE_DIRECTION_DELAY 1
 
@@ -655,6 +672,34 @@
 	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
 	return TRUE
 
+/mob/verb/eastshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x <= 16)
+		pixel_x++
+
+/mob/verb/westshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x >= -16)
+		pixel_x--
+
+/mob/verb/northshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y <= 16)
+		pixel_y++
+
+/mob/verb/southshift()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y >= -16)
+		pixel_y--
+
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
 	return FALSE
 
@@ -683,7 +728,7 @@
 
 /mob/proc/AddSpell(obj/effect/proc_holder/spell/S)
 	mob_spell_list += S
-	S.action.Grant(src)
+	S.action?.Grant(src)
 
 /mob/proc/RemoveSpell(obj/effect/proc_holder/spell/spell)
 	if(!spell)
@@ -694,15 +739,17 @@
 			mob_spell_list -= S
 			qdel(S)
 
-/mob/proc/anti_magic_check(magic = TRUE, holy = FALSE)
-	if(!magic && !holy)
+/mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
+	if(!magic && !holy && !tinfoil)
 		return
 	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, magic, holy, protection_sources) & COMPONENT_BLOCK_MAGIC)
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
 		if(protection_sources.len)
 			return pick(protection_sources)
 		else
 			return src
+	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
+		return src
 
 //You can buckle on mobs if you're next to them since most are dense
 /mob/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
@@ -748,26 +795,6 @@
 //Can the mob interact() with an atom?
 /mob/proc/can_interact_with(atom/A)
 	return IsAdminGhost(src) || Adjacent(A)
-
-//Can the mob see reagents inside of containers?
-/mob/proc/can_see_reagents()
-	if(stat == DEAD) //Ghosts and such can always see reagents
-		return 1
-	if(has_unlimited_silicon_privilege) //Silicons can automatically view reagents
-		return 1
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.head && istype(H.head, /obj/item/clothing))
-			var/obj/item/clothing/CL = H.head
-			if(CL.scan_reagents)
-				return 1
-		if(H.wear_mask && H.wear_mask.scan_reagents)
-			return 1
-		if(H.glasses && istype(H.glasses, /obj/item/clothing))
-			var/obj/item/clothing/CL = H.glasses
-			if(CL.scan_reagents)
-				return 1
-	return 0
 
 //Can the mob use Topic to interact with machines
 /mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)

@@ -120,7 +120,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 
 /mob/living/simple_animal/bot/honkbot/attackby(obj/item/W, mob/user, params)
-	if(!W.tool_behaviour == TOOL_SCREWDRIVER && (W.force) && (!target) && (W.damtype != STAMINA) )
+	if(W.tool_behaviour != TOOL_SCREWDRIVER && (W.force) && (!target) && (W.damtype != STAMINA) )
 		retaliate(user)
 		addtimer(CALLBACK(src, .proc/react_buzz), 5)
 	..()
@@ -138,7 +138,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 /mob/living/simple_animal/bot/honkbot/bullet_act(obj/item/projectile/Proj)
 	if((istype(Proj,/obj/item/projectile/beam)) || (istype(Proj,/obj/item/projectile/bullet) && (Proj.damage_type == BURN))||(Proj.damage_type == BRUTE) && (!Proj.nodamage && Proj.damage < health && ishuman(Proj.firer)))
 		retaliate(Proj.firer)
-	..()
+	return ..()
 
 /mob/living/simple_animal/bot/honkbot/UnarmedAttack(atom/A)
 	if(!on)

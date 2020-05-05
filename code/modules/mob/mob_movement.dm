@@ -1,18 +1,6 @@
 /mob/CanPass(atom/movable/mover, turf/target)
 	return TRUE				//There's almost no cases where non /living mobs should be used in game as actual mobs, other than ghosts.
 
-/mob/living/CanPass(atom/movable/mover, turf/target)
-	if((mover.pass_flags & PASSMOB))
-		return TRUE
-	if(istype(mover, /obj/item/projectile) || mover.throwing)
-		return (!density || !(mobility_flags & MOBILITY_STAND))
-	if(buckled == mover)
-		return TRUE
-	if(ismob(mover))
-		if (mover in buckled_mobs)
-			return TRUE
-	return (!mover.density || !density || !(mobility_flags & MOBILITY_STAND))
-
 //DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
 //See mob_movespeed.dm
 /mob/proc/movement_delay()	//update /living/movement_delay() if you change this
@@ -94,6 +82,7 @@
 
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * (((direct & 3) && (direct & 12)) ? 2 : 1))) // set it now in case of pulled objects
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
 	else
@@ -115,6 +104,7 @@
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
 		add_delay *= 2
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 	move_delay += add_delay
 	if(.) // If mob is null here, we deserve the runtime
 		if(mob.throwing)
@@ -129,6 +119,8 @@
 ///Checks to see if you are being grabbed and if so attemps to break it
 /client/proc/Process_Grab()
 	if(mob.pulledby)
+		if((mob.pulledby == mob.pulling) && (mob.pulledby.grab_state == GRAB_PASSIVE))			//Don't autoresist passive grabs if we're grabbing them too.
+			return
 		if(mob.incapacitated(ignore_restraints = 1))
 			move_delay = world.time + 10
 			return TRUE
@@ -265,7 +257,7 @@
 	return FALSE
 
 
-/mob/proc/slip(knockdown, paralyze, forcedrop, w_amount, obj/O, lube)
+/mob/proc/slip(knockdown_amount, obj/O, lube, paralyze, force_drop)
 	return
 
 /mob/proc/update_gravity()

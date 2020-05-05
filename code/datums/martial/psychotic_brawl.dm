@@ -1,5 +1,6 @@
 /datum/martial_art/psychotic_brawling
 	name = "Psychotic Brawling"
+	id = MARTIALART_PSYCHOBRAWL
 
 /datum/martial_art/psychotic_brawling/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return psycho_attack(A,D)
@@ -45,7 +46,7 @@
 			D.apply_damage(rand(5,10), A.dna.species.attack_type, BODY_ZONE_HEAD)
 			A.apply_damage(rand(5,10), A.dna.species.attack_type, BODY_ZONE_HEAD)
 			if(!istype(D.head,/obj/item/clothing/head/helmet/) && !istype(D.head,/obj/item/clothing/head/hardhat))
-				D.adjustBrainLoss(5)
+				D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 			A.Stun(rand(10,45))
 			D.Stun(rand(5,30))
 		if(5,6)

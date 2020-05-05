@@ -70,7 +70,16 @@
 		/obj/item/stack/sheet/cloth	                = /datum/species/golem/cloth,
 		/obj/item/stack/sheet/mineral/adamantine	= /datum/species/golem/adamantine,
 		/obj/item/stack/sheet/plastic	            = /datum/species/golem/plastic,
-		/obj/item/stack/tile/brass					= /datum/species/golem/clockwork)
+		/obj/item/stack/tile/brass					= /datum/species/golem/clockwork,
+		/obj/item/stack/tile/bronze					= /datum/species/golem/bronze,
+		/obj/item/stack/sheet/cardboard				= /datum/species/golem/cardboard,
+		/obj/item/stack/sheet/leather				= /datum/species/golem/leather,
+		/obj/item/stack/sheet/bone					= /datum/species/golem/bone,
+		/obj/item/stack/sheet/cloth/durathread		= /datum/species/golem/durathread,
+		/obj/item/stack/sheet/cotton/durathread		= /datum/species/golem/durathread,
+		/obj/item/stack/sheet/mineral/snow			= /datum/species/golem/snow,
+		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
+		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I
@@ -98,12 +107,14 @@
 	death = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	flavour_text = "<span class='big bold'>You are a syndicate agent,</span><b> employed in a top secret research facility developing biological weapons. Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. <b>Continue your research as best you can, and try to keep a low profile. <font size=6>DON'T</font> abandon the base without good cause.</b> The base is rigged with explosives should the worst happen, do not let the base fall into enemy hands!</b>"
+	short_desc = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
+	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
+	important_info = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands!"
 	outfit = /datum/outfit/lavaland_syndicate
 	assignedrole = "Lavaland Syndicate"
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/special(mob/living/new_spawn)
-	new_spawn.grant_language(/datum/language/codespeak)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 
 /datum/outfit/lavaland_syndicate
 	name = "Lavaland Syndicate Agent"
@@ -123,8 +134,15 @@
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms
 	name = "Syndicate Comms Agent"
-	flavour_text = "<span class='big bold'>You are a syndicate agent,</span><b> employed in a top secret research facility developing biological weapons. Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. <b>Monitor enemy activity as best you can, and try to keep a low profile. <font size=6>DON'T</font> abandon the base without good cause.</b> Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!</b>"
+	short_desc = "You are a syndicate comms agent, employed in a top secret research facility developing biological weapons."
+	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
+	important_info = "DO NOT abandon the base."
 	outfit = /datum/outfit/lavaland_syndicate/comms
+
+/obj/effect/mob_spawn/human/lavaland_syndicate/comms/space
+	short_desc = "You are a syndicate agent, assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13."
+	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
+	important_info = "DO NOT abandon the base."
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/Initialize()
 	. = ..()

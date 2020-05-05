@@ -21,12 +21,14 @@
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	user.transferItemToLoc(src, user, TRUE)
 	suicider = user
-	return MANUAL_SUICIDE
+	return MANUAL_SUICIDE_NONLETHAL
 
 /obj/item/assembly/signaler/proc/manual_suicide(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user]'s \the [src] receives a signal, killing [user.p_them()] instantly!</span>")
+	user.visible_message("<span class='suicide'>[user]'s [src] receives a signal, killing [user.p_them()] instantly!</span>")
 	user.adjustOxyLoss(200)//it sends an electrical pulse to their heart, killing them. or something.
 	user.death(0)
+	user.set_suicide(TRUE)
+	user.suicide_log()
 
 /obj/item/assembly/signaler/Initialize()
 	. = ..()
@@ -53,6 +55,7 @@
 	if(is_secured(user))
 		var/t1 = "-------"
 		var/dat = {"
+<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 <TT>
 
 <A href='byond://?src=[REF(src)];send=1'>Send Signal</A><BR>
@@ -72,7 +75,9 @@ Code:
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
 Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black; color: [src.label_color]'>[src.label_color]</A><BR>
 [t1]
-</TT>"}
+</TT>
+</BODY></HTML>
+"}
 		user << browse(dat, "window=radio") // yogs - signaller colors
 		onclose(user, "radio")
 		return
@@ -185,8 +190,8 @@ Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black;
 	return TRUE
 
 /obj/item/assembly/signaler/receiver/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The radio receiver is [on?"on":"off"].</span>")
+	. = ..()
+	. += "<span class='notice'>The radio receiver is [on?"on":"off"].</span>"
 
 /obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)
 	if(!on)
@@ -210,9 +215,22 @@ Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black;
 		return FALSE
 	if(signal.data["code"] != code)
 		return FALSE
+	if(suicider)
+		manual_suicide(suicider)
 	for(var/obj/effect/anomaly/A in get_turf(src))
 		A.anomalyNeutralize()
 	return TRUE
+
+/obj/item/assembly/signaler/anomaly/manual_suicide(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user]'s [src] is reacting to the radio signal, warping [user.p_their()] body!</span>")
+	user.set_suicide(TRUE)
+	user.suicide_log()
+	user.gib()
+
+/obj/item/assembly/signaler/anomaly/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_ANALYZER)
+		to_chat(user, "<span class='notice'>Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code].</span>")
+	..()
 
 /obj/item/assembly/signaler/anomaly/attack_self()
 	return

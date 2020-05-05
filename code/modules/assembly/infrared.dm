@@ -10,7 +10,7 @@
 	var/maxlength = 8
 	var/list/obj/effect/beam/i_beam/beams
 	var/olddir = 0
-	var/datum/component/redirect/listener
+	var/turf/listeningTo
 	var/hearing_range = 3
 
 /obj/item/assembly/infra/Initialize()
@@ -33,13 +33,13 @@
 
 /obj/item/assembly/infra/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(listener)
+	listeningTo = null
 	QDEL_LIST(beams)
 	. = ..()
 
 /obj/item/assembly/infra/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The infrared trigger is [on?"on":"off"].</span>")
+	. = ..()
+	. += "<span class='notice'>The infrared trigger is [on?"on":"off"].</span>"
 
 /obj/item/assembly/infra/activate()
 	if(!..())
@@ -138,7 +138,7 @@
 	. = ..()
 	setDir(t)
 
-/obj/item/assembly/infra/throw_at()
+/obj/item/assembly/infra/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
 	. = ..()
 	olddir = dir
 
@@ -163,8 +163,12 @@
 	next_activate =  world.time + 30
 
 /obj/item/assembly/infra/proc/switchListener(turf/newloc)
-	QDEL_NULL(listener)
-	listener = newloc.AddComponent(/datum/component/redirect, list(COMSIG_ATOM_EXITED = CALLBACK(src, .proc/check_exit)))
+	if(listeningTo == newloc)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_ATOM_EXITED)
+	RegisterSignal(newloc, COMSIG_ATOM_EXITED, .proc/check_exit)
+	listeningTo = newloc
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender)
 	if(QDELETED(src))
@@ -181,11 +185,11 @@
 	. = ..()
 	if(is_secured(user))
 		user.set_machine(src)
-		var/dat = "<TT><B>Infrared Laser</B></TT>"
+		var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><TT><B>Infrared Laser</B></TT>"
 		dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
 		dat += "<BR><B>Visibility</B>: [visible ? "<A href='?src=[REF(src)];visible=0'>Visible</A>" : "<A href='?src=[REF(src)];visible=1'>Invisible</A>"]"
 		dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A>"
+		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A></BODY></HTML>"
 		user << browse(dat, "window=infra")
 		onclose(user, "infra")
 		return

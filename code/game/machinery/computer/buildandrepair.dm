@@ -141,3 +141,9 @@
 		return
 
 	setDir(turn(dir, -90))
+
+/obj/structure/frame/computer/MouseDrop_T(atom/dropping, mob/user)
+	if(istype(dropping, /obj/item/circuitboard))
+		attackby(dropping, user)
+	else
+		..()

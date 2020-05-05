@@ -283,12 +283,24 @@ def save_tgm(dmm, output):
 
     # thanks to YotaXP for finding out about this one
     max_x, max_y, max_z = dmm.size
+# yogs start - multi-column mode
+    columns_to_write = 1
+    total_tiles = max_x * max_y * max_z
+    while total_tiles > 65536:
+        columns_to_write += 1
+        total_tiles -= 65536
+# yogs end
     for z in range(1, max_z + 1):
         output.write("\n")
-        for x in range(1, max_x + 1):
+        for x in range(1, max_x + 1, columns_to_write): # yogs - make the step be columns_to_write
             output.write(f"({x},{1},{z}) = {{\"\n")
             for y in range(1, max_y + 1):
-                output.write(f"{num_to_key(dmm.grid[x, y, z], dmm.key_length)}\n")
+# yogs start - multi-column mode
+                for xo in range(0, columns_to_write):
+                    if (xo + x) <= max_x:
+                        output.write(f"{num_to_key(dmm.grid[x+xo, y, z], dmm.key_length)}")
+                output.write("\n")
+# yogs end
             output.write("\"}\n")
 
 # ----------
@@ -343,7 +355,7 @@ def _parse(map_raw_text):
     in_map_block = False
     in_coord_block = False
     in_map_string = False
-    iter_x = 0
+    base_x = 0
     adjust_y = True
 
     curr_num = ""
@@ -487,7 +499,7 @@ def _parse(map_raw_text):
                     curr_x = int(curr_num)
                     if curr_x > maxx:
                         maxx = curr_x
-                    iter_x = 0
+                    base_x = curr_x
                     curr_num = ""
                     reading_coord = "y"
                 elif reading_coord == "y":
@@ -521,21 +533,15 @@ def _parse(map_raw_text):
                     adjust_y = False
                 else:
                     curr_y += 1
-                if curr_x > maxx:
-                    maxx = curr_x
-                if iter_x > 1:
-                    curr_x = 1
-                iter_x = 0
-
+                curr_x = base_x
             else:
                 curr_key = BASE * curr_key + base52_r[char]
                 curr_key_len += 1
                 if curr_key_len == key_length:
-                    iter_x += 1
-                    if iter_x > 1:
-                        curr_x += 1
-
                     grid[curr_x, curr_y, curr_z] = duplicate_keys.get(curr_key, curr_key)
+                    if curr_x > maxx:
+                        maxx = curr_x
+                    curr_x += 1
                     curr_key = 0
                     curr_key_len = 0
 
