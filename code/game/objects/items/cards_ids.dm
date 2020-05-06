@@ -8,9 +8,9 @@
 
 
 
-/*
- * DATA CARDS - Used for the IC data card reader
- */
+
+//DATA CARDS - Used for the IC data card reader
+
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
@@ -315,19 +315,26 @@ update_label("John Doe", "Clowny")
 				anyone = TRUE
 			else
 				return ..()
-		if(alert(user, "Action", "Agent ID", "Show", "Forge") == "Forge")
-			var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name))as text | null),1,26)
-			if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/dead/new_player/prefrences.dm
-				if (t)
-					alert("Invalid name.")
-				return
-			registered_name = t
 
-			var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")as text | null),1,MAX_MESSAGE_LEN)
-			if(!u)
-				registered_name = ""
+		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset")
+		if(user.incapacitated())
+			return
+		if(popup_input == "Forge/Reset" && !registered_name)
+			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+			input_name = reject_bad_name(input_name)
+			if(!input_name)
+				// Invalid/blank names give a randomly generated one.
+				if(user.gender == FEMALE)
+					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+				else
+					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+
+			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
+			if(!target_occupation)
 				return
-			assignment = u
+
+			registered_name = input_name
+			assignment = target_occupation
 			update_label()
 			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
 			return
@@ -369,6 +376,16 @@ update_label("John Doe", "Clowny")
 	registered_name = "Central Command"
 	assignment = "General"
 	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
+
+/obj/item/card/id/centcom/silver
+	name = "\improper silver CentCom ID"
+	desc = "A silver ID straight from Central Command."
+	icon_state = "centcom_silver"
+
+/obj/item/card/id/centcom/gold
+	name = "\improper gold CentCom ID"
+	desc = "A gold ID straight from Central Command."
+	icon_state = "centcom_gold"
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()

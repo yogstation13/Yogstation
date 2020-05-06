@@ -213,7 +213,6 @@
 			continue
 		if(C.d1 == 0)
 			return C
-			break
 	return
 
 
