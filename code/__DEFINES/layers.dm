@@ -78,8 +78,6 @@
 #define MASSIVE_OBJ_LAYER 11
 #define POINT_LAYER 12
 
-#define CHAT_LAYER 12.5
-
 #define LIGHTING_PLANE 15
 #define LIGHTING_LAYER 15
 
@@ -102,6 +100,7 @@
 #define FULLSCREEN_LAYER 20.1
 #define UI_DAMAGE_LAYER 20.2
 #define BLIND_LAYER 20.3
+#define CHAT_LAYER 20.35
 #define CRIT_LAYER 20.4
 #define CURSE_LAYER 20.5
 
