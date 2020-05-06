@@ -14,7 +14,8 @@
 	weed_chance = 3
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
-	mutatelist = list(/obj/item/seeds/onion/red)
+	mutatelist = list(/obj/item/seeds/onion/red,
+					/obj/item/seeds/onion/oblivious)
 
 /obj/item/reagent_containers/food/snacks/grown/onion
 	seed = /obj/item/seeds/onion
@@ -72,3 +73,34 @@
 	icon_state = "onionslice_red"
 	filling_color = "#C29ACF"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/tearjuice = 2.5)
+
+
+/obj/item/seeds/onion/oblivious
+	name = "pack of oblivious onion seeds"
+	desc = "These seeds grow into oddly confused onions."
+	icon_state = "seed-onion"
+	species = "onion"
+	plantname = "Onion Sprouts"
+	product = /obj/item/reagent_containers/food/snacks/grown/onion/oblivious
+	lifespan = 20
+	maturation = 3
+	production = 4
+	yield = 6
+	endurance = 25
+	growthstages = 3
+	weed_chance = 3
+	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.4, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/impedrezene = 0.8)
+	mutatelist = list(/obj/item/seeds/onion/red)
+
+/obj/item/reagent_containers/food/snacks/grown/onion/oblivious
+	seed = /obj/item/seeds/onion
+	name = "oblivious onion"
+	desc = "Nothing to cry over."
+	icon_state = "oblivion"
+	filling_color = "#C0C9A0"
+	bitesize_mod = 2
+	tastes = list("onions" = 1)
+	slice_path = /obj/item/reagent_containers/food/snacks/onion_slice
+	slices_num = 2
+	wine_power = 30
