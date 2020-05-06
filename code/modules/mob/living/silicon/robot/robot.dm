@@ -316,7 +316,7 @@
 		for(var/datum/robot_energy_storage/st in module.storages)
 			. += "[st.name]: [st.energy]/[st.max_energy]"
 	if(connected_ai)
-		. += "Master AI: connected_ai.name"
+		. += "Master AI: [connected_ai.name]"
 
 /mob/living/silicon/robot/restrained(ignore_grab)
 	. = 0
