@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 
 /mob/get_status_tab_items()
 	. = ..()
-	if(isspacepod(loc) && statpanel("Status"))
+	if(isspacepod(loc))
 		var/obj/spacepod/S = loc
 		. += ""
 		. += "Spacepod Charge: [S.cell ? "[round(S.cell.charge,0.1)]/[S.cell.maxcharge] KJ" : "NONE"]"
