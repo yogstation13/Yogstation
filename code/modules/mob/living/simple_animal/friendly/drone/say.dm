@@ -3,7 +3,7 @@
 	if (dead_can_hear && source)
 		for (var/mob/M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, source)
-			to_chat(M, "[link] [msg]")
+			to_chat(M, "<span class='dronesay'>[link] [msg]</span>")
 	for(var/i in GLOB.drones_list)
 		var/mob/living/simple_animal/drone/D = i
 		if(istype(D) && D.stat != DEAD)
@@ -21,7 +21,7 @@
 
 
 /mob/living/simple_animal/drone/proc/drone_chat(msg)
-	alert_drones("<span class='dronesay'><i>Drone Chat: <span class='name'>[name]</span> <span class='message'>[say_quote(msg)]</span></i></span>", TRUE)
+	alert_drones("<i>Drone Chat: <span class='name'>[name]</span> <span class='message'>[say_quote(msg)]</span></i>", TRUE)
 
 /mob/living/simple_animal/drone/binarycheck()
 	return TRUE
