@@ -4,10 +4,10 @@ SUBSYSTEM_DEF(statpanels)
 	init_order = INIT_ORDER_STATPANELS
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	var/list/currentrun = list()
-
-/datum/controller/subsystem/statpanels/fire(resumed = 0)
 	var/encoded_global_data
 	var/mc_data_encoded
+
+/datum/controller/subsystem/statpanels/fire(resumed = 0)
 	if (!resumed)
 		var/datum/map_config/cached = SSmapping.next_map_config
 		var/list/global_data = list(
