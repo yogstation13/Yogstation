@@ -39,3 +39,11 @@
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+
+/obj/item/clothing/shoes/yogs/fire_crocs
+	name = "fire crocs"
+	desc = "you are now the coolest kid on the station."
+	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	icon_state = "fire_crocs"
+	item_state = "fire_crocs"
