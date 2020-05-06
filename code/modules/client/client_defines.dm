@@ -81,3 +81,5 @@
 	var/encoding = "1252" // yogs - LibVG
 
 	var/list/seen_messages // Messages currently seen by this client
+	
+	var/list/spell_tabs = list()
