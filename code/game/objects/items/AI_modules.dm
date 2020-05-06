@@ -381,7 +381,12 @@ AI MODULES
 /obj/item/aiModule/core/full/asimovpp
 	name = "'Asimov++' Core AI Module"
 	law_id = "asimovpp"
+	
+/******************** CEO ********************/
 
+/obj/item/aiModule/core/full/CEO
+	name = "'CEO' Core AI Module"
+	law_id = "CEO"
 
 /******************** Corporate ********************/
 
