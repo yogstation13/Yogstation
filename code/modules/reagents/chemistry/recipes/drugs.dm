@@ -30,15 +30,12 @@
 
 /datum/chemical_reaction/methamphetamine/on_reaction(datum/reagents/holder)
 	var/datum/reagents/R = new/datum/reagents(5)
-	R.my_atom = src
-	R.add_reagent(/datum/reagent/toxin/acid, 5)
-	var/smoke_radius = round(0.5, 0.5)
-	var/location = get_turf(holder.my_atom)
+	R.my_atom = holder.my_atom
+	R.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
 	var/datum/effect_system/smoke_spread/chem/S = new
-	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-	if(S)
-		S.set_up(R, smoke_radius, location, 0)
-		S.start()
+	S.set_up(R, 0.5, holder.my_atom, 0)
+	S.start()
+	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
 
 /datum/chemical_reaction/bath_salts
 	name = /datum/reagent/drug/bath_salts
