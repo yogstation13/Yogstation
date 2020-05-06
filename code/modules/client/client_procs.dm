@@ -335,6 +335,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(SSinput.initialized)
 		set_macros()
 
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+
 	chatOutput.start() // Starts the chat
 
 	if(alert_mob_dupe_login)
