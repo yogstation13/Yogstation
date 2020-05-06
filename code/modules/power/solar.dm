@@ -372,7 +372,7 @@
 		if(adjust)
 			value = currentdir + adjust
 		if(value != null)
-			currentdir = CLAMP((360 + value) % 360, 0, 359)
+			currentdir = clamp((360 + value) % 360, 0, 359)
 			targetdir = currentdir
 			set_panels(currentdir)
 			return TRUE
@@ -383,7 +383,7 @@
 		if(adjust)
 			value = trackrate + adjust
 		if(value != null)
-			trackrate = CLAMP(value, -7200, 7200)
+			trackrate = clamp(value, -7200, 7200)
 			if(trackrate)
 				nexttime = world.time + 36000 / abs(trackrate)
 			return TRUE

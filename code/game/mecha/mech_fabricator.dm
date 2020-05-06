@@ -289,6 +289,7 @@
 				left_part += "<hr><a href='?src=[REF(src)];screen=main'>Return</a>"
 	dat = {"<html>
 			  <head>
+			  <meta charset='UTF-8'>
 			  <title>[name]</title>
 				<style>
 				.res_name {font-weight: bold; text-transform: capitalize;}

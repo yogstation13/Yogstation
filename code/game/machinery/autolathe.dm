@@ -148,7 +148,7 @@
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])
-			multiplier = CLAMP(multiplier,1,50)
+			multiplier = clamp(multiplier,1,50)
 			if((autoqueue.len + 1) < queue_max_len)
 				add_to_queue(request, multiplier) // Add item to queue for processing
 			else
@@ -161,7 +161,7 @@
 			if(!request)
 				return
 			var/multiplier = text2num(params["multiplier"])
-			multiplier = CLAMP(multiplier,1,50)
+			multiplier = clamp(multiplier,1,50)
 			make_item(request, multiplier)
 			processing_queue = FALSE
 
