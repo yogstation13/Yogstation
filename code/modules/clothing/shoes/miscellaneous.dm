@@ -133,6 +133,12 @@
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
+/obj/item/clothing/shoes/jackboots/jackcrocs
+	name = "jackcrocs"
+	desc = "Nanotrasen-issue Security combat crocs for combat scenarios or combat situations. All crocbat,all the time."
+	icon_state = "jackcrocs"
+	item_state = "jackcrocs"
+
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
 
