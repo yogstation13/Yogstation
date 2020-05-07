@@ -46,9 +46,11 @@
 	name = "Synthetic Conversion"
 	desc = "Convert a human-esque individual into a (superior) Android."
 	ritual_length = 1 MINUTES
-	ritual_invocations = list("By the inner workings of our god...",
-						"... We call upon you, in the face of adversity...",
-						"... to complete us, removing that which is undesirable...")
+	ritual_invocations = list(
+	"By the inner workings of our god...",
+	"... We call upon you, in the face of adversity...",
+	"... to complete us, removing that which is undesirable..."
+	)
 	invoke_msg = "... Arise, our champion! Become that which your soul craves, live in the world as your true form!!"
 	favor_cost = 500
 
