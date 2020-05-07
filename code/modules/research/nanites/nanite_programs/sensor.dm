@@ -11,7 +11,7 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 
 /datum/nanite_program/sensor/get_extra_setting(setting)
 	if(setting == "Sent Code")
@@ -46,12 +46,12 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Delay")
 		var/new_delay = input(user, "Set the delay in seconds:", name, null) as null|num
 		if(isnull(new_delay))
 			return
-		delay = (CLAMP(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
+		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
 
 /datum/nanite_program/sensor/repeat/get_extra_setting(setting)
 	if(setting == "Sent Code")
@@ -84,17 +84,17 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Relay Channel")
 		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
 		if(isnull(new_channel))
 			return
-		relay_channel = CLAMP(round(new_channel, 1), 1, 9999)
+		relay_channel = clamp(round(new_channel, 1), 1, 9999)
 	if(setting == "Delay")
 		var/new_delay = input(user, "Set the delay in seconds:", name, null) as null|num
 		if(isnull(new_delay))
 			return
-		delay = (CLAMP(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
+		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
 
 /datum/nanite_program/sensor/relay_repeat/get_extra_setting(setting)
 	if(setting == "Sent Code")
@@ -133,12 +133,12 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Health Percent")
 		var/new_percent = input(user, "Set the health percentage:", name, null) as null|num
 		if(isnull(new_percent))
 			return
-		percent = CLAMP(round(new_percent, 1), -99, 100)
+		percent = clamp(round(new_percent, 1), -99, 100)
 	if(setting == "Direction")
 		if(direction == "Above")
 			direction = "Below"
@@ -213,12 +213,12 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Nanite Percent")
 		var/new_percent = input(user, "Set the nanite percentage:", name, null) as null|num
 		if(isnull(new_percent))
 			return
-		percent = CLAMP(round(new_percent, 1), 1, 100)
+		percent = clamp(round(new_percent, 1), 1, 100)
 	if(setting == "Direction")
 		if(direction == "Above")
 			direction = "Below"
@@ -272,12 +272,12 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Damage")
 		var/new_damage = input(user, "Set the damage threshold:", name, null) as null|num
 		if(isnull(new_damage))
 			return
-		damage = CLAMP(round(new_damage, 1), 0, 500)
+		damage = clamp(round(new_damage, 1), 0, 500)
 	if(setting == "Damage Type")
 		var/list/damage_types = list("Brute","Burn","Toxin","Oxygen","Cellular")
 		var/new_damage_type = input("Choose the damage type", name) as null|anything in damage_types
@@ -357,7 +357,7 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Sentence")
 		var/new_sentence = stripped_input(user, "Choose the sentence that triggers the sensor.", "Sentence", sentence, MAX_MESSAGE_LEN)
 		if(!new_sentence)
@@ -421,7 +421,7 @@
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
 		if(isnull(new_code))
 			return
-		sent_code = CLAMP(round(new_code, 1), 1, 9999)
+		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Race")
 		var/list/race_types = list()
 		for(var/name in allowed_species)

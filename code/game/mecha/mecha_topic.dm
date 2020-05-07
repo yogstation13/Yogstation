@@ -5,7 +5,7 @@
 
 /obj/mecha/proc/get_stats_html()
 	. = {"<html>
-						<head><title>[src.name] data</title>
+						<head><meta charset='UTF-8'><title>[src.name] data</title>
 						<style>
 						body {color: #00ff00; background: #000000; font-family:"Lucida Console",monospace; font-size: 12px;}
 						hr {border: 1px solid #0f0; color: #0f0; background-color: #0f0;}
@@ -157,7 +157,7 @@
 	if(!id_card || !user)
 		return
 	. = {"<html>
-						<head><style>
+						<head><meta charset='UTF-8'><style>
 						h1 {font-size:15px;margin-bottom:4px;}
 						body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
 						a {color:#0f0;}
@@ -187,6 +187,7 @@
 		return
 	. = {"<html>
 			<head>
+				<meta charset='UTF-8'>
 				<style>
 					body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
 					a {padding:2px 5px; background:#32CD32;color:#000;display:block;margin:2px;text-align:center;text-decoration:none;}
@@ -312,12 +313,10 @@
 		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
 
 	if (href_list["change_name"])
-		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
-		if(!isnull(userinput))
-			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			if(newname)
-				log_game("[key_name(usr)] renamed [name] to [newname]")
-				name = newname ? newname : initial(name)
+		var/userinput = stripped_input(occupant, "Choose new exosuit name", "Rename exosuit", "", MAX_NAME_LEN)
+		if(!userinput || usr != occupant || usr.incapacitated())
+			return
+		name = userinput
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access
