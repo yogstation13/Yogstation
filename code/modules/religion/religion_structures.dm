@@ -85,7 +85,7 @@
 			QDEL_NULL(performing_rite)
 		return
 
-	if(user.mind.holy_role != HOLY_ROLE_HIGHPRIEST)
+	if(user.mind?.holy_role != HOLY_ROLE_HIGHPRIEST)
 		to_chat(user, "<span class='warning'>You are not the high priest, and therefore cannot select a religious sect.")
 		return
 
