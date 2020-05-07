@@ -91,6 +91,7 @@
 
 	var/list/available_options = generate_available_sects(user)
 	if(!available_options)
+		to_chat(user, "<span class='warning'>There are currently no religious sects to chose from. </span>")
 		return
 
 	var/sect_select = input(user,"Select a sect (You CANNOT revert this decision!)","Select a Sect",null) in available_options
