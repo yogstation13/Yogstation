@@ -58,7 +58,11 @@
 		/obj/item/holosign_creator/engineering,
 		/obj/item/forcefield_projector,
 		/obj/item/assembly/signaler,
-		/obj/item/lightreplacer
+		/obj/item/lightreplacer,
+		/obj/item/holosign_creator/multi/CE,
+		/obj/item/airlock_painter,
+		/obj/item/grenade/chem_grenade/smart_metal_foam,
+		/obj/item/storage/bag/construction
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -74,6 +78,7 @@
 	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
 	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/full/PopulateContents()

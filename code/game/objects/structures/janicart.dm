@@ -11,6 +11,9 @@
 	var/obj/item/mop/mymop = null
 	var/obj/item/reagent_containers/spray/cleaner/myspray = null
 	var/obj/item/lightreplacer/myreplacer = null
+	var/obj/item/paint/paint_remover/myremover = null
+	var/obj/item/melee/flyswatter/myswatter = null
+	var/obj/item/flashlight/mylight = null
 	var/signs = 0
 	var/const/max_signs = 4
 
@@ -64,6 +67,27 @@
 			update_icon()
 		else
 			to_chat(user, fail_msg)
+	else if(istype(I, /obj/item/paint/paint_remover))
+		if(!myremover)
+			put_in_cart(I, user)
+			myremover=I
+			update_icon()
+		else
+			to_chat(user, fail_msg)
+	else if(istype(I, /obj/item/melee/flyswatter))
+		if(!myswatter)
+			put_in_cart(I, user)
+			myswatter=I
+			update_icon()
+		else
+			to_chat(user, fail_msg)
+	else if(istype(I, /obj/item/flashlight))
+		if(!mylight)
+			put_in_cart(I, user)
+			mylight=I
+			update_icon()
+		else
+			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/lightreplacer))
 		if(!myreplacer)
 			var/obj/item/lightreplacer/l=I
@@ -102,6 +126,12 @@
 		dat += "<a href='?src=[REF(src)];spray=1'>[myspray.name]</a><br>"
 	if(myreplacer)
 		dat += "<a href='?src=[REF(src)];replacer=1'>[myreplacer.name]</a><br>"
+	if(myremover)
+		dat += "<a href='?src=[REF(src)];remover=1'>[myremover.name]</a><br>"
+	if(myswatter)
+		dat += "<a href='?src=[REF(src)];swatter=1'>[myswatter.name]</a><br>"
+	if(mylight)
+		dat += "<a href='?src=[REF(src)];light=1'>[mylight.name]</a><br>"
 	if(signs)
 		dat += "<a href='?src=[REF(src)];sign=1'>[signs] sign\s</a><br>"
 	var/datum/browser/popup = new(user, "janicart", name, 240, 160)
@@ -135,6 +165,21 @@
 			user.put_in_hands(myreplacer)
 			to_chat(user, "<span class='notice'>You take [myreplacer] from [src].</span>")
 			myreplacer = null
+	if(href_list["remover"])
+		if(myremover)
+			user.put_in_hands(myremover)
+			to_chat(user, "<span class='notice'>You take [myremover] from [src].</span>")
+			myremover = null
+	if(href_list["swatter"])
+		if(myswatter)
+			user.put_in_hands(myswatter)
+			to_chat(user, "<span class='notice'>You take [myswatter] from [src].</span>")
+			myswatter = null
+	if(href_list["light"])
+		if(mylight)
+			user.put_in_hands(mylight)
+			to_chat(user, "<span class='notice'>You take [mylight] from [src].</span>")
+			mylight = null
 	if(href_list["sign"])
 		if(signs)
 			var/obj/item/clothing/suit/caution/Sign = locate() in src
@@ -160,6 +205,12 @@
 		add_overlay("cart_spray")
 	if(myreplacer)
 		add_overlay("cart_replacer")
+	if(myremover)
+		add_overlay("cart_remover")
+	if(myswatter)
+		add_overlay("cart_swatter")
+	if(mylight)
+		add_overlay("cart_light")
 	if(signs)
 		add_overlay("cart_sign[signs]")
 	if(reagents.total_volume > 0)

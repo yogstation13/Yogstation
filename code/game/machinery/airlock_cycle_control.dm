@@ -613,7 +613,8 @@
 		"vents" = list(),
 		"airlocks" = list(),
 		"skip_timer" = (world.time - skip_timer),
-		"skip_delay" = skip_delay
+		"skip_delay" = skip_delay,
+		"vis_target" = "\ref[vis_target]"
 	)
 
 	if((locked && !user.has_unlimited_silicon_privilege) || (user.has_unlimited_silicon_privilege && aidisabled))
@@ -719,13 +720,13 @@
 		if("scan")
 			scan()
 		if("interior_pressure")
-			interior_pressure = CLAMP(text2num(params["pressure"]), 0, ONE_ATMOSPHERE)
+			interior_pressure = clamp(text2num(params["pressure"]), 0, ONE_ATMOSPHERE)
 		if("exterior_pressure")
-			exterior_pressure = CLAMP(text2num(params["pressure"]), 0, ONE_ATMOSPHERE)
+			exterior_pressure = clamp(text2num(params["pressure"]), 0, ONE_ATMOSPHERE)
 		if("depressurization_margin")
-			depressurization_margin = CLAMP(text2num(params["pressure"]), 0.15, 40)
+			depressurization_margin = clamp(text2num(params["pressure"]), 0.15, 40)
 		if("skip_delay")
-			skip_delay = CLAMP(text2num(params["skip_delay"]), 0, 1200)
+			skip_delay = clamp(text2num(params["skip_delay"]), 0, 1200)
 	update_icon(TRUE)
 
 /obj/machinery/advanced_airlock_controller/proc/request_from_door(airlock)

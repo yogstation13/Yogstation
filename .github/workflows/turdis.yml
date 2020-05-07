@@ -141,7 +141,7 @@ jobs:
       - name: Prepare Artifacts
         run: |
           mkdir artifacts
-          cp yogstation.dme artifacts
+          cp yogstation.dmb artifacts
           cp yogstation.rsc artifacts
       
       - name: Upload Artifacts

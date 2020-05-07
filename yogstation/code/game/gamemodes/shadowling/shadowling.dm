@@ -76,7 +76,7 @@ Made by Xhuis
 		shadow.restricted_roles = restricted_jobs
 		shadowlings--
 	var/thrall_scaling = round(num_players() / 3)
-	required_thralls = CLAMP(thrall_scaling, 15, 30)
+	required_thralls = clamp(thrall_scaling, 15, 30)
 	thrall_ratio = required_thralls / 15
 	return TRUE
 
@@ -160,6 +160,7 @@ Made by Xhuis
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
 	C.draw_yogs_parts(FALSE)
+	C.remove_movespeed_modifier(id)
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
 		QDEL_NULL(eyes_overlay)

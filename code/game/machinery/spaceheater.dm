@@ -82,9 +82,9 @@
 		var/datum/gas_mixture/env = L.return_air()
 
 		var/newMode = HEATER_MODE_STANDBY
-		if(setMode != HEATER_MODE_COOL && env.temperature < targetTemperature - temperatureTolerance)
+		if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
 			newMode = HEATER_MODE_HEAT
-		else if(setMode != HEATER_MODE_HEAT && env.temperature > targetTemperature + temperatureTolerance)
+		else if(setMode != HEATER_MODE_HEAT && env.return_temperature() > targetTemperature + temperatureTolerance)
 			newMode = HEATER_MODE_COOL
 
 		if(mode != newMode)
@@ -95,7 +95,7 @@
 			return
 
 		var/heat_capacity = env.heat_capacity()
-		var/requiredPower = abs(env.temperature - targetTemperature) * heat_capacity
+		var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
 		requiredPower = min(requiredPower, heatingPower)
 
 		if(requiredPower < 1)
@@ -105,7 +105,7 @@
 		if(mode == HEATER_MODE_COOL)
 			deltaTemperature *= -1
 		if(deltaTemperature)
-			env.temperature += deltaTemperature
+			env.set_temperature(env.return_temperature() + deltaTemperature)
 			air_update_turf()
 		cell.use(requiredPower / efficiency)
 	else
@@ -126,7 +126,7 @@
 	settableTemperatureRange = cap * 30
 	efficiency = (cap + 1) * 10000
 
-	targetTemperature = CLAMP(targetTemperature,
+	targetTemperature = clamp(targetTemperature,
 		max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 		settableTemperatureMedian + settableTemperatureRange)
 
@@ -186,9 +186,9 @@
 	var/curTemp
 	if(istype(L))
 		var/datum/gas_mixture/env = L.return_air()
-		curTemp = env.temperature
+		curTemp = env.return_temperature()
 	else if(isturf(L))
-		curTemp = L.temperature
+		curTemp = L.return_temperature()
 	if(isnull(curTemp))
 		data["currentTemp"] = "N/A"
 	else
@@ -227,7 +227,7 @@
 				target= text2num(target) + T0C
 				. = TRUE
 			if(.)
-				targetTemperature = CLAMP(round(target),
+				targetTemperature = clamp(round(target),
 					max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 					settableTemperatureMedian + settableTemperatureRange)
 		if("eject")

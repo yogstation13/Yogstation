@@ -118,6 +118,21 @@
 	outfit = /datum/outfit/ert/clown
 	role = "Clown"
 
+/datum/antagonist/ert/amber
+	name = "Amber Soldier"
+	outfit = /datum/outfit/amber
+	role = "Soldier"
+
+/datum/antagonist/ert/amber/medic
+	name = "Amber Medic"
+	outfit = /datum/outfit/amber/medic
+	role = "Medic"
+
+/datum/antagonist/ert/amber/commander
+	name = "Amber Commander"
+	outfit = /datum/outfit/amber/commander
+	role = "Commander"
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
@@ -144,7 +159,7 @@
 	else
 		missiondesc += " Follow orders given to you by your squad leader."
 
-		missiondesc += "Avoid civilian casualites when possible."
+	missiondesc += "Avoid civilian casualties when possible."
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)

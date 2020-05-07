@@ -1,0 +1,4 @@
+author: "Hopekz"
+delete-after: true 
+changes: 
+  - bugfix: "clf3 no longer deletes reinforced walls"

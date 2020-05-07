@@ -935,7 +935,7 @@
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
 	M.AdjustAllImmobility(-60, FALSE)
-	M.adjustStaminaLoss(-5*REM, 0)
+	M.adjustStaminaLoss(-30*REM, 0)
 	..()
 	. = 1
 
