@@ -27,6 +27,7 @@
 	    "https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
 	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=NQPUMvP2fyM",						// Chris Remo - The Wizard
+		"https://www.youtube.com/watch?v=nRjLv1L0WF8",                      // Blue Oyster Cult - Sole Survivor
 		"https://www.youtube.com/watch?v=51Uw-9lNl08")                      // fIREHOSE - Brave Captain
 
 	selected_lobby_music = pick(songs)

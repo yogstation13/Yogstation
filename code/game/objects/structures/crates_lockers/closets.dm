@@ -380,7 +380,7 @@
 /obj/structure/closet/container_resist(mob/living/user)
 	if(opened)
 		return
-	if(ismovableatom(loc))
+	if(ismovable(loc))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		var/atom/movable/AM = loc
@@ -527,11 +527,11 @@
 		var/datum/gas_mixture/loc_air = loc?.return_air()
 		if(loc_air)
 			air_contents.copy_from(loc_air)
-			air_contents.remove_ratio((1 - (air_contents.volume / loc_air.volume))) // and thus we have just magically created new gases....
+			air_contents.remove_ratio((1 - (air_contents.return_volume() / loc_air.return_volume()))) // and thus we have just magically created new gases....
 	else if(!is_airtight && air_contents)
 		var/datum/gas_mixture/loc_air = loc?.return_air()
 		if(loc_air) // remember that air we created earlier? Now it's getting deleted! I mean it's still going on the turf....
-			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.volume / (loc_air.volume + air_contents.volume)
+			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.return_volume() / (loc_air.return_volume() + air_contents.return_volume())
 			loc.assume_air(air_contents)
 			loc.remove_air(remove_amount)
 			loc.air_update_turf()
@@ -554,5 +554,5 @@
 
 /obj/structure/closet/return_temperature()
 	if(air_contents)
-		return air_contents.temperature
+		return air_contents.return_temperature()
 	return ..()
