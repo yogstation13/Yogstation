@@ -160,12 +160,6 @@
 			user.put_in_hands(myspray)
 			to_chat(user, "<span class='notice'>You take [myspray] from [src].</span>")
 			myspray = null
-		if("Light replacer")
-			if(!myreplacer)
-				return
-			user.put_in_hands(myreplacer)
-			to_chat(user, "<span class='notice'>You take [myreplacer] from [src].</span>")
-			myreplacer = null
 		if("Paint remover")
 			if(!myremover)
 				return
@@ -184,6 +178,12 @@
 			user.put_in_hands(mylight)
 			to_chat(user, "<span class='notice'>You take [mylight] from [src].</span>")
 			mylight = null
+		if("Light replacer")
+			if(!myreplacer)
+				return
+			user.put_in_hands(myreplacer)
+			to_chat(user, "<span class='notice'>You take [myreplacer] from [src].</span>")
+			myreplacer = null
 		if("Sign")
 			if(signs <= 0)
 				return
