@@ -8360,6 +8360,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"aql" = (
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "aqm" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -8433,6 +8436,18 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"aqu" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	freq = 1400;
+	location = "Bar"
+	},
+/obj/structure/plasticflaps{
+	opacity = 1
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "aqx" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
@@ -16741,18 +16756,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"aIg" = (
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	freq = 1400;
-	location = "Bar"
-	},
-/obj/structure/plasticflaps{
-	opacity = 1
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
 /area/maintenance/starboard/fore)
 "aIh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -97921,7 +97924,7 @@ bkD
 aaa
 alP
 aLb
-alP
+aql
 qQV
 qQV
 qQV
@@ -98178,7 +98181,7 @@ bkD
 aaf
 alP
 aLb
-alP
+aql
 qQV
 qQV
 qQV
@@ -98692,7 +98695,7 @@ bkD
 aaf
 alP
 aFh
-alP
+aql
 qQV
 qQV
 qQV
@@ -98949,7 +98952,7 @@ bkD
 aaa
 alP
 aFh
-alP
+aql
 qQV
 qQV
 qQV
@@ -99206,7 +99209,7 @@ bOJ
 aaf
 alP
 aFh
-aIg
+aqu
 qQV
 qQV
 qQV
@@ -99463,7 +99466,7 @@ aaa
 aaa
 alP
 aFh
-alP
+aql
 qQV
 qQV
 qQV
