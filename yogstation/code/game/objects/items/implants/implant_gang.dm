@@ -39,11 +39,15 @@
 					target.mind.remove_antag_datum(/datum/antagonist/gang)
 			else
 				success = TRUE
+			
+			if(!HAS_TRAIT(target, TRAIT_MINDSHIELD))
+				success = TRUE
+			else
+				success = FALSE			
+			
 			if(!success)
 				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
 				return FALSE
-			if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-				return FALSE // implanted
 			else
 				target.mind.add_antag_datum(/datum/antagonist/gang, gang)
 				qdel(src)
