@@ -20,8 +20,7 @@
 	guardian.face_atom(hand_turf)
 	return ..()
 
-/datum/guardian_ability/major/hand/Stat()
+/datum/guardian_ability/major/hand/StatusTab()
 	. = ..()
-	if(statpanel("Status"))
-		if(next_hand > world.time)
-			stat(null, "THE HAND Cooldown Remaining: [DisplayTimeText(next_hand - world.time)]")
+	if(next_hand > world.time)
+		. += "THE HAND Cooldown Remaining: [DisplayTimeText(next_hand - world.time)]"

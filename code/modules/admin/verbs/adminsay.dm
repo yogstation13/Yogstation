@@ -7,7 +7,7 @@
 		return
 	msg = to_utf8(msg, src)
 
-	msg = emoji_parse(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return
 
