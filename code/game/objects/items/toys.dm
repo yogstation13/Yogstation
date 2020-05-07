@@ -699,7 +699,7 @@
 	H.parentdeck = src
 	var/O = src
 	H.apply_card_vars(H,O)
-	src.cards -= choice
+	src.cards.Cut(1,2)
 	H.pickup(user)
 	user.put_in_hands(H)
 	user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
@@ -722,7 +722,7 @@
 		user.visible_message("[user] shuffles the deck.", "<span class='notice'>You shuffle the deck.</span>")
 		cooldown = world.time
 
-/obj/item/toy/cards/deck/attackby(obj/item/I, mob/living/user, params)
+/obj/item/toy/cards/deck/attackby(obj/item/I, mob/living/user, params) 
 	if(istype(I, /obj/item/toy/cards/singlecard))
 		var/obj/item/toy/cards/singlecard/SC = I
 		if(SC.parentdeck == src)
@@ -778,9 +778,10 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/list/currenthand = list()
 	var/choice = null
-	var/list/handradial = list()
 
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
+	var/list/handradial = list()
+
 	interact(user)
 
 	for(var/t in currenthand)
@@ -792,13 +793,13 @@
 	if(!(cardUser.mobility_flags & MOBILITY_USE))
 		return
 	var/O = src
-	var/choice = show_radial_menu(usr,src, handradial, custom_check = FALSE, radius = 36, require_near = TRUE)
-	if(!choice) 
+	var/choice = show_radial_menu(usr,src, handradial, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 36, require_near = TRUE)
+	if(!choice)
 		return FALSE
 	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
-	src.currenthand -= choice
-	src.handradial -= choice
-	C.parentdeck = src.parentdeck
+	currenthand -= choice
+	handradial -= choice
+	C.parentdeck = parentdeck
 	C.cardname = choice
 	C.apply_card_vars(C,O)
 	C.pickup(cardUser)
@@ -807,16 +808,16 @@
 
 	interact(cardUser)
 	update_sprite()
-	if(src.currenthand.len == 1)
-		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(src.loc)
-		N.parentdeck = src.parentdeck
-		N.cardname = src.currenthand[1]
+	if(length(currenthand) == 1)
+		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
+		N.parentdeck = parentdeck
+		N.cardname = currenthand[1]
 		N.apply_card_vars(N,O)
 		qdel(src)
 		N.pickup(cardUser)
 		cardUser.put_in_hands(N)
 		to_chat(cardUser, "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")
-	return
+
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/singlecard/C, mob/living/user, params)
 	if(istype(C))
@@ -847,6 +848,19 @@
 	newobj.card_throw_range = sourceobj.card_throw_range
 	newobj.card_attack_verb = sourceobj.card_attack_verb
 	newobj.resistance_flags = sourceobj.resistance_flags
+
+
+///check_menu: Checks if we are allowed to interact with a radial menu
+  
+///Arguments:
+///user The mob interacting with a menu
+
+/obj/item/toy/cards/cardhand/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+	return TRUE
 
 /// This proc updates the sprite for when you create a hand of cards
 /obj/item/toy/cards/cardhand/proc/update_sprite()
