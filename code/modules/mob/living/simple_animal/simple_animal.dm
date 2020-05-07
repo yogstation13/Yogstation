@@ -294,11 +294,10 @@
 		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
 	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
 
-/mob/living/simple_animal/Stat()
-	..()
-	if(statpanel("Status"))
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
-		return 1
+/mob/living/simple_animal/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
 	if(loot.len)
