@@ -293,15 +293,15 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 				else //just delete the cabin gas, we're in space or some shit
 					qdel(removed)
 
-/mob/Stat()
+/mob/get_status_tab_items()
 	. = ..()
-	if(isspacepod(loc) && statpanel("Status"))
+	if(isspacepod(loc))
 		var/obj/spacepod/S = loc
-		stat(null)
-		stat(null, "Spacepod Charge: [S.cell ? "[round(S.cell.charge,0.1)]/[S.cell.maxcharge] KJ" : "NONE"]")
-		stat(null, "Spacepod Integrity: [round(S.obj_integrity,0.1)]/[S.max_integrity]")
-		stat(null, "Spacepod Velocity: [round(sqrt(S.velocity_x*S.velocity_x+S.velocity_y*S.velocity_y), 0.1)] m/s")
-		stat(null)
+		. += ""
+		. += "Spacepod Charge: [S.cell ? "[round(S.cell.charge,0.1)]/[S.cell.maxcharge] KJ" : "NONE"]"
+		. += "Spacepod Integrity: [round(S.obj_integrity,0.1)]/[S.max_integrity]"
+		. += "Spacepod Velocity: [round(sqrt(S.velocity_x*S.velocity_x+S.velocity_y*S.velocity_y), 0.1)] m/s"
+		. += ""
 
 /obj/spacepod/ex_act(severity)
 	switch(severity)
