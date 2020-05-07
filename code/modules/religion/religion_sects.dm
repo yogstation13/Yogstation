@@ -68,7 +68,7 @@
 
 /// Sets favor to a specific amount. Can provide optional features based on a user.
 /datum/religion_sect/proc/set_favor(amount = 0, mob/living/L)
-	favor = CLAMP(0,max_favor,amount)
+	favor = clamp(amount, 0, max_favor)
 	return favor
 
 /// Activates when an individual uses a rite. Can provide different/additional benefits depending on the user.
