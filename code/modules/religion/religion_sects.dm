@@ -97,7 +97,7 @@
 		to_chat(H, "<span class='boldnotice'>May the power of [GLOB.deity] compel you to be healed!</span>")
 		playsound(user, "punch", 25, TRUE, -1)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
-	return TRUE
+	return FALSE
 
 /datum/religion_sect/puritanism
 	name = "Puritanism (Default)"
