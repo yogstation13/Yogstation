@@ -11,15 +11,13 @@
 	var/currentcolor = "b"
 	var/can_modify_colour = TRUE
 	tiled_dirt = FALSE
-	var/list/lighttile_designs = list()
+	var/static/list/lighttile_designs
 
 /turf/open/floor/light/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
 
-/turf/open/floor/light/Initialize()
-	. = ..()
-	update_icon()
+/turf/open/floor/light/proc/populate_lighttile_designs()
 	lighttile_designs = list(
 		"r" = image(icon = src.icon, icon_state = "light_on-r"),
 		"o" = image(icon = src.icon, icon_state = "light_on-o"),
@@ -33,6 +31,12 @@
 		"s" = image(icon = src.icon, icon_state = "light_on-s"),
 		"z" = image(icon = src.icon, icon_state = "light_on-z")
 		)
+
+/turf/open/floor/light/Initialize()
+	. = ..()
+	update_icon()
+	if(!length(lighttile_designs))
+		populate_lighttile_designs()
 
 /turf/open/floor/light/break_tile()
 	..()
@@ -65,18 +69,17 @@
 	set_light(0)
 	return ..()
 
-/turf/open/floor/light/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		. = ..()
-		if(.)
-			return
-		if(!can_modify_colour)
-			return
-		var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
-		if(!choice)
-			return FALSE
-		currentcolor = choice
-		update_icon()
+/turf/open/floor/light/screwdriver_act(mob/living/user, obj/item/I, obj/item/screwdriver/screwdriver)
+	. = ..()
+	if(.)
+		return
+	if(!can_modify_colour)
+		return
+	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = CALLBACK(src, .proc/check_menu, user, screwdriver), radius = 36, require_near = TRUE)
+	if(!choice)
+		return FALSE
+	currentcolor = choice
+	update_icon()
 
 /turf/open/floor/light/attack_ai(mob/user)
 	if(!can_modify_colour)
@@ -103,7 +106,7 @@
 
 //Cycles through all of the colours
 /turf/open/floor/light/colour_cycle
-	coloredlights = list("cycle_all")
+	currentcolor = "cycle_all"
 	can_modify_colour = FALSE
 
 
@@ -113,9 +116,25 @@
 /turf/open/floor/light/colour_cycle/dancefloor_a
 	name = "dancefloor"
 	desc = "Funky floor."
-	coloredlights = list("dancefloor_A")
+	currentcolor = "dancefloor_A"
 
 /turf/open/floor/light/colour_cycle/dancefloor_b
 	name = "dancefloor"
 	desc = "Funky floor."
-	coloredlights = list("dancefloor_B")
+	currentcolor = "dancefloor_A"
+
+
+///check_menu: Checks if we are allowed to interact with a radial menu
+
+///Arguments:
+///user The mob interacting with a menu
+///screwdriver The screwdriver used to interact with a menu
+
+/turf/open/floor/light/proc/check_menu(mob/living/user, obj/item/screwdriver/screwdriver)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+	if(!user.is_holding(screwdriver))
+		return FALSE
+	return TRUE

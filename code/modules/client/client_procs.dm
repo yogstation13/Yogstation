@@ -335,6 +335,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(SSinput.initialized)
 		set_macros()
 
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+
 	chatOutput.start() // Starts the chat
 
 	if(alert_mob_dupe_login)
@@ -504,6 +506,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(movingmob != null)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
+	seen_messages = null
 	Master.UpdateTickRate()
 	sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
