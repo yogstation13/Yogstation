@@ -445,3 +445,9 @@
 	loot = list(
 		/obj/item/clothing/shoes/cowboy/lizard = 7,
 		/obj/item/clothing/shoes/cowboy/lizard/masterwork = 1)
+
+/obj/item/clothing/shoes/clown_shoes/clown_crocs
+	desc = "The prankster's standard-issue clowning crocs. Damn, they're cool! Ctrl-click to toggle waddle dampeners."
+	name = "clown crocs"
+	icon_state = "clown_crocs"
+	item_state = "clown_crocs"

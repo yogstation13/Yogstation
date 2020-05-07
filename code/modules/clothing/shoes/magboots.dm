@@ -69,5 +69,5 @@
     name = "Magcrocs"
     desc = "These are based off of the Magboot designs by Nanotransen, but adapted to look cooler."
     icon_state = "magcrocs0"
-    magboot_state = "magboots"
+    magboot_state = "magcrocs"
     slowdown_active = 1
