@@ -339,6 +339,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(SSinput.initialized)
 		set_macros()
 
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+
 	chatOutput.start() // Starts the chat
 
 	if(alert_mob_dupe_login)
@@ -365,11 +367,12 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			return 0
 	else if (byond_version < cwv)	//We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			var/msg = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Your version of byond may be getting out of date:</b><br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
 			msg += "Your version: [byond_version]<br>"
 			msg += "Required version to remove this message: [cwv] or later<br>"
 			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			msg += "</BODY></HTML>"
 			src << browse(msg, "window=warning_popup")
 		else
 			to_chat(src, "<span class='danger'><b>Your version of byond may be getting out of date:</b></span>")
@@ -460,7 +463,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			winset(src, "[child]", "[entries[child]]")
 			if (!ispath(child, /datum/verbs/menu))
 				var/procpath/verbpath = child
-				if (copytext(verbpath.name,1,2) != "@")
+				if (verbpath.name[1] != "@")
 					new child(src)
 
 	for (var/thing in prefs.menuoptions)
@@ -507,6 +510,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(movingmob != null)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
+	seen_messages = null
 	Master.UpdateTickRate()
 	sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
@@ -918,8 +922,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/viewscale = getviewsize(view)
 	var/x = viewscale[1]
 	var/y = viewscale[2]
-	x = CLAMP(x+change, min, max)
-	y = CLAMP(y+change, min,max)
+	x = clamp(x+change, min, max)
+	y = clamp(y+change, min,max)
 	change_view("[x]x[y]")
 
 /client/proc/change_view(new_size)
