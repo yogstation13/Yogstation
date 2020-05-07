@@ -14,6 +14,8 @@
 	to_chat(user, "<span class='notice'>You begin to perform the rite of [name]...</span>")
 	if(!ritual_invocations)
 		if(do_after(user, target = user, delay = ritual_length))
+			if(invoke_msg)
+				user.say(invoke_msg, forced = "ritual")
 			return TRUE
 		return FALSE
 	var/first_invoke = TRUE
@@ -26,11 +28,11 @@
 			return FALSE
 		if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len))
 			return FALSE
-		user.say(i)
+		user.say(i, forced = "ritual")
 	if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len)) //because we start at 0 and not the first fraction in invocations, we still have another fraction of ritual_length to complete
 		return FALSE
 	if(invoke_msg)
-		user.say(invoke_msg)
+		user.say(invoke_msg, forced = "ritual")
 	return TRUE
 
 

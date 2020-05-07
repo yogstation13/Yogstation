@@ -69,7 +69,7 @@
 		return
 	if(sect_to_altar)
 		if(!sect_to_altar.rites_list)
-			to_chat(user, "<span class='notice'>Your sect doesn't have any rites to perform!")
+			to_chat(user, "<span class='notice'>Your sect doesn't have any rites to perform!</span>")
 			return
 		var/rite_select = input(user,"Select a rite to perform!","Select a rite",null) in sect_to_altar.rites_list
 		if(!rite_select || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -86,7 +86,7 @@
 		return
 
 	if(user.mind?.holy_role != HOLY_ROLE_HIGHPRIEST)
-		to_chat(user, "<span class='warning'>You are not the high priest, and therefore cannot select a religious sect.")
+		to_chat(user, "<span class='warning'>You are not the high priest, and therefore cannot select a religious sect. </span>")
 		return
 
 	var/list/available_options = generate_available_sects(user)
