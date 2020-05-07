@@ -135,7 +135,13 @@
 	if(istype(eth_stomach))
 		eth_stomach.adjust_charge(3)
 		did_we_charge = TRUE
-
+	if(ispreternis(H))
+		var/datum/species/preternis/preternis = H.dna.species
+		preternis.charge += 3
+		if(preternis.charge > PRETERNIS_LEVEL_FULL)
+			preternis.charge = PRETERNIS_LEVEL_FULL
+		did_we_charge = TRUE
+	
 	//if we're not targetting a robot part we stop early
 	var/obj/item/bodypart/BP = H.get_bodypart(user.zone_selected)
 	if(BP.status != BODYPART_ROBOTIC)
