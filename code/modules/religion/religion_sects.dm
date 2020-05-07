@@ -62,12 +62,9 @@
 
 /// Adjust Favor by a certain amount. Can provide optional features based on a user. Returns actual amount added/removed
 /datum/religion_sect/proc/adjust_favor(amount = 0, mob/living/L)
-	. = amount
-	if(favor + amount < 0)
-		. = favor //if favor = 5 and we want to subtract 10, we'll only be able to subtract 5
-	if((favor + amount > max_favor))
-		. = (max_favor-favor) //if favor = 5 and we want to add 10 with a max of 10, we'll only be able to add 5
-	favor = CLAMP(0,max_favor, favor+amount)
+	var/old_favor = favor //store the current favor
+	favor = clamp(favor+amount, 0, max_favor) //ensure we arent going overboard
+	return favor - old_favor //return the difference 
 
 /// Sets favor to a specific amount. Can provide optional features based on a user.
 /datum/religion_sect/proc/set_favor(amount = 0, mob/living/L)
