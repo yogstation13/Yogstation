@@ -60,10 +60,7 @@
 		tool_behaviour = TOOL_CROWBAR
 		icon_state = "jaws_pry"
 		update_icon()
-	else
-		to_chat(user,"<span class='warning'>You shouldn't be able to see this! Please contact a coder!</span>")
-		playsound(get_turf(user), 'sound/effects/adminhelp.ogg', 50, 1)
-
+	
 /obj/item/jawsoflife/attack(mob/living/carbon/C, mob/user)
 	if (tool_behaviour == TOOL_WIRECUTTER)
 		if(istype(C) && C.handcuffed)
@@ -123,6 +120,3 @@
 		item_state = "drill"
 		tool_behaviour = TOOL_SCREWDRIVER
 		update_icon()
-	else
-		to_chat(user,"<span class='warning'>You shouldn't be able to see this! Please contact a coder!</span>")
-		playsound(get_turf(user), 'sound/effects/adminhelp.ogg', 50, 1)
