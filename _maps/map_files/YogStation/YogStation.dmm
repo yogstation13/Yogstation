@@ -51500,7 +51500,8 @@
 "fCm" = (
 /mob/living/simple_animal/crab/Coffee{
 	name = "Detective Coffee";
-	real_name = "Detective Coffee"
+	real_name = "Detective Coffee";
+	desc = "It's Detective Cofee, helping you crack the case!"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
