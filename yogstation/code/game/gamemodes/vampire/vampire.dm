@@ -1,12 +1,12 @@
 /datum/game_mode
 	var/list/datum/mind/vampires = list()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 	var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
-	if(vamp && statpanel("Status"))
-		stat("Total Blood", vamp.total_blood)
-		stat("Usable Blood", vamp.usable_blood)
+	if(vamp)
+		. += "Total Blood: [vamp.total_blood]"
+		. += "Usable Blood: [vamp.usable_blood]"
 
 /mob/living/carbon/human/Life()
 	. = ..()

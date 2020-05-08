@@ -1761,4 +1761,11 @@
 	color = "#9C5A19"
 	taste_description = "bananas"
 	can_synth = TRUE
-	
+
+/datum/reagent/gorilla_powder //modified monkey powder
+	name = "Gorilla Powder"
+	description = "Just add water!"
+	color = "#020202"
+	taste_description = "bananas"
+	can_synth = TRUE
+
