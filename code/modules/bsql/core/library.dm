@@ -6,7 +6,7 @@
 	BSQL_Debug("Result: [. == null ? "NULL" : "\"[.]\""]")
 	var/ms = (world.tick_usage - start_time) * world.tick_lag
 	if(ms > 500)
-		message_admins("_BSQL_Internal_Call of [args[1]]([call_args.Join(", ")]) just hung for [ms]ms")
+		strack_trace("_BSQL_Internal_Call of [args[1]]([call_args.Join(", ")]) just hung for [ms]ms")
 
 /world/proc/_BSQL_Library_Path()
 	return system_type == MS_WINDOWS ? "BSQL.dll" : "libBSQL.so"
