@@ -553,7 +553,7 @@
 	})
 "cG" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/crowbar/power,
+/obj/item/jawsoflife,
 /mob/living/simple_animal/hostile/bear/snow,
 /turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
@@ -683,7 +683,7 @@
 "nU" = (
 /obj/effect/mob_spawn/human/corpse/damaged,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/item/wrench/power,
+/obj/item/handdrill,
 /turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
