@@ -60,6 +60,8 @@
 		/obj/item/assembly/signaler,
 		/obj/item/lightreplacer,
 		/obj/item/holosign_creator/multi/CE,
+		/obj/item/airlock_painter,
+		/obj/item/grenade/chem_grenade/smart_metal_foam,
 		/obj/item/storage/bag/construction
 		))
 
