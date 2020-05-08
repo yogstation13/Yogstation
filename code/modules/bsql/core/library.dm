@@ -1,8 +1,12 @@
 /world/proc/_BSQL_Internal_Call(func, ...)
 	var/list/call_args = args.Copy(2)
+	var/start_time = world.tick_usage
 	BSQL_Debug("_BSQL_Internal_Call: [args[1]]([call_args.Join(", ")])")
 	. = call(_BSQL_Library_Path(), func)(arglist(call_args))
 	BSQL_Debug("Result: [. == null ? "NULL" : "\"[.]\""]")
+	var/ms = (world.tick_usage - start_time) * world.tick_lag
+	if(ms > 500)
+		message_admins("_BSQL_Internal_Call just hung for [ms]ms")
 
 /world/proc/_BSQL_Library_Path()
 	return system_type == MS_WINDOWS ? "BSQL.dll" : "libBSQL.so"
