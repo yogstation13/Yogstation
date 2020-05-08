@@ -51497,6 +51497,13 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/vacant_room)
+"fCm" = (
+/mob/living/simple_animal/crab/Coffee{
+	name = "Detective Coffee";
+	real_name = "Detective Coffee"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "fCx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -54990,6 +54997,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"niO" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = -30
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/mob/living/simple_animal/crab/Coffee,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/service)
 "njh" = (
 /obj/structure/sink{
 	dir = 4;
@@ -59758,21 +59781,6 @@
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"yie" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -30
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/service)
 "yjy" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -89172,7 +89180,7 @@ anz
 aov
 bON
 iRL
-bLE
+fCm
 ayZ
 bQG
 ivq
@@ -103843,7 +103851,7 @@ aQp
 aPd
 hoc
 naH
-yie
+niO
 pwk
 ilH
 reS
