@@ -508,7 +508,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	seen_messages = null
 	Master.UpdateTickRate()
-	sync_logout_with_db(connection_number) // yogs - logout logging
+	world.sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
 /client/Destroy()
