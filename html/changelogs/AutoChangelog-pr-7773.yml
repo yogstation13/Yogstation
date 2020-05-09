@@ -1,4 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - bugfix: "Renamed the typo'd \"spakespearean\" file to shakespearean as intended causing it to actually work! Whoops!"

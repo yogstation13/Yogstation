@@ -24,6 +24,13 @@
 	icon_state = "labcoat_emt"
 	item_state = "labcoat_cmo"
 
+/obj/item/clothing/suit/toggle/labcoat/emt/green
+	name = "\improper green EMT's jacket"
+	desc = "A green jacket with reflective strips for emergency medical technicians."
+	alternate_worn_icon = 'icons/mob/suit.dmi' //yogs - subtype of labcoat, retains worn sprite
+	icon_state = "labcoat_emtgr"
+	item_state = "labcoat_cmo"
+
 /obj/item/clothing/suit/toggle/labcoat/mad
 	name = "\proper The Mad's labcoat"
 	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."

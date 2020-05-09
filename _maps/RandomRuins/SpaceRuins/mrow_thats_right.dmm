@@ -264,7 +264,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	icon_state = "manifold-2";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -878,7 +877,6 @@
 /area/ruin/space/has_grav/powered/cat_man)
 "co" = (
 /obj/machinery/atmospherics/pipe/simple/dark/hidden{
-	icon_state = "pipe11-2";
 	dir = 9
 	},
 /turf/open/floor/plasteel/freezer,

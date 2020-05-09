@@ -203,7 +203,7 @@
 			M.Stun(2)
 			M.apply_damage(10, BURN)
 			if(M.bodytemperature)
-				M.bodytemperature -= 200 //Extreme amount of initial cold
+				M.adjust_bodytemperature(-200, 50)
 			if(M.reagents)
 				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
 			extinguishMob(M, TRUE)

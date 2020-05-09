@@ -1,0 +1,83 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 1
+	},
+/turf/template_noop,
+/area/medical/morgue)
+"A" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
+/turf/template_noop,
+/area/medical/morgue)
+"G" = (
+/turf/template_noop,
+/area/medical/morgue)
+"H" = (
+/obj/structure/table,
+/obj/item/paper/guides/jobs/medical/morgue{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/template_noop,
+/area/medical/morgue)
+"L" = (
+/obj/structure/table,
+/obj/item/storage/box/bodybags,
+/obj/item/pen,
+/turf/template_noop,
+/area/medical/morgue)
+"T" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 8
+	},
+/turf/template_noop,
+/area/medical/morgue)
+"W" = (
+/obj/structure/bodycontainer/morgue,
+/turf/template_noop,
+/area/medical/morgue)
+
+(1,1,1) = {"
+L
+W
+W
+W
+H
+"}
+(2,1,1) = {"
+G
+G
+G
+G
+G
+"}
+(3,1,1) = {"
+A
+G
+G
+G
+f
+"}
+(4,1,1) = {"
+G
+G
+G
+G
+f
+"}
+(5,1,1) = {"
+G
+G
+G
+G
+G
+"}
+(6,1,1) = {"
+G
+T
+T
+T
+G
+"}

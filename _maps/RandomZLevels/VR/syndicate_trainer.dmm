@@ -448,7 +448,7 @@
 /area/awaymission/centcomAway/hangar)
 "cK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/centcomAway/hangar)
 "cL" = (
@@ -617,7 +617,7 @@
 /area/awaymission/centcomAway/hangar)
 "dC" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "dE" = (

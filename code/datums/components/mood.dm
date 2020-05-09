@@ -205,7 +205,7 @@
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)
 	var/mob/living/owner = parent
 
-	amount = CLAMP(amount, minimum, maximum)
+	amount = clamp(amount, minimum, maximum)
 	if(amount == sanity)
 		return
 	// If we're out of the acceptable minimum-maximum range move back towards it in steps of 0.5
@@ -353,6 +353,10 @@
 			clear_event(null, "charge")
 		if(ETHEREAL_CHARGE_ALMOSTFULL to ETHEREAL_CHARGE_FULL)
 			add_event(null, "charge", /datum/mood_event/charged)
+
+/datum/component/mood/proc/check_area_mood(datum/source, area/A)
+	if(A.mood_bonus)
+		add_event(null, "area", /datum/mood_event/area, A.mood_bonus, A.mood_message)
 
 #undef MINOR_INSANITY_PEN
 #undef MAJOR_INSANITY_PEN

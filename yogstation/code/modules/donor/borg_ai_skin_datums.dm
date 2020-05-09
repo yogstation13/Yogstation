@@ -246,6 +246,17 @@
 	owner = null
 	module_locked = "Standard"
 
+/datum/borg_skin/atlas
+	name = "Atlas"
+	icon_state = "brainlas"
+	owner = "jierda"
+	module_locked = "Engineering"
+
+/datum/borg_skin/icarus
+	name = "Icarus"
+	icon_state = "icarus"
+	owner = "reddsnotdead"
+	module_locked = "Engineering"
 
 //Begin AI skins://
 /* These follow the same format as borg skins*/

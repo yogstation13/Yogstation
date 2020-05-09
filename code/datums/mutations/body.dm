@@ -93,14 +93,14 @@
 	if(..())
 		return
 	owner.transform = owner.transform.Scale(1, 0.8)
-	owner.pass_flags |= PASSTABLE
+	passtable_on(owner, GENETIC_MUTATION)
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
 
 /datum/mutation/human/dwarfism/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	owner.transform = owner.transform.Scale(1, 1.25)
-	owner.pass_flags &= ~PASSTABLE
+	passtable_on(owner, GENETIC_MUTATION)
 	owner.visible_message("<span class='danger'>[owner] suddenly grows!</span>", "<span class='notice'>Everything around you seems to shrink..</span>")
 
 
@@ -285,7 +285,7 @@
 	var/warpchance = 0
 
 /datum/mutation/human/badblink/on_life()
-	if(prob(warpchance))
+	if(prob(warpchance) && isturf(owner.loc))	//checks if the owner is inside something so they can't teleport out of the cloner
 		var/warpmessage = pick(
 		"<span class='warning'>With a sickening 720-degree twist of [owner.p_their()] back, [owner] vanishes into thin air.</span>",
 		"<span class='warning'>[owner] does some sort of strange backflip into another dimension. It looks pretty painful.</span>",

@@ -481,7 +481,7 @@
 /area/shuttle/caravan/pirate)
 "qC" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box{
+/obj/item/storage/box/fancy/donut_box{
 	pixel_y = 18
 	},
 /obj/item/storage/box/donkpockets{
@@ -787,7 +787,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Pirate Cutter APC";
-	pixel_x = -25;
+	pixel_x = -24;
 	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -931,7 +931,7 @@
 	dwidth = 14;
 	height = 13;
 	id = "caravanpirate";
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Pirate Cutter";
 	port_direction = 8;
 	preferred_direction = 4;
@@ -1073,7 +1073,7 @@
 /area/shuttle/caravan/pirate)
 "RK" = (
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"

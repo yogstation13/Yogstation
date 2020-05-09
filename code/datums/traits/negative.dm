@@ -519,6 +519,7 @@
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
 	value = -1
+	mood_quirk = TRUE
 	gain_text = "<span class='danger'>You could really go for a smoke right about now.</span>"
 	lose_text = "<span class='notice'>You feel like you should quit smoking.</span>"
 	medical_record_text = "Patient is a current smoker."
@@ -526,15 +527,15 @@
 	accessory_type = /obj/item/lighter/greyscale
 
 /datum/quirk/junkie/smoker/on_spawn()
-	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
-		/obj/item/storage/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/fancy/cigarettes/cigars,
-		/obj/item/storage/fancy/cigarettes/cigars/cohiba,
-		/obj/item/storage/fancy/cigarettes/cigars/havana)
+	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+		/obj/item/storage/box/fancy/cigarettes/cigars,
+		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
+		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -546,7 +547,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/fancy/cigarettes/C = drug_instance
+		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
 		if(istype(I, C.spawn_type))
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
@@ -578,18 +579,37 @@
 	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
 
-
-/datum/quirk/random_accent
-	name = "Randomized Accent"
-	desc = "You have developed a random accent."
+/datum/quirk/allergic
+	name = "Allergic Reaction"
+	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
 	value = -1
-	mob_trait = TRAIT_RANDOM_ACCENT
-	gain_text = "<span class='danger'>You have developed an accent.</span>"
-	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
-	medical_record_text = "Patient is difficult to understand."
+	mob_trait = TRAIT_ALLERGIC
+	gain_text = "<span class='danger'>You remember your allergic reaction to a common medicine.</span>"
+	lose_text = "<span class='notice'>You no longer are allergic to medicine.</span>"
+	medical_record_text = "Patient has a severe allergic reaction to a common medicine."
+	var/allergy_chem_list = list(	/datum/reagent/medicine/inacusiate,
+									/datum/reagent/medicine/silver_sulfadiazine,
+									/datum/reagent/medicine/styptic_powder,
+									/datum/reagent/medicine/omnizine,
+									/datum/reagent/medicine/oculine,
+									/datum/reagent/medicine/neurine,
+									/datum/reagent/medicine/bicaridine,
+									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
+	var/reagent_id
+	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
+	var/cooldown = FALSE
 
-/datum/quirk/random_accent/post_add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(!H.mind.accent_name)
-		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
-	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents))// Right now this pick just picks a straight random one from all implemented.
+/datum/quirk/allergic/on_spawn()
+	reagent_id = pick(allergy_chem_list)
+	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
+	to_chat(quirk_holder, "<span class='danger'>You remember you are allergic to [allergy.name].</span>")
+	quirk_holder.allergies += allergy
+
+/datum/quirk/allergic/on_process()
+	var/mob/living/carbon/H = quirk_holder
+	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
+	if(cooldown == FALSE && H.reagents.has_reagent(reagent_id))
+		to_chat(quirk_holder, "<span class='danger'>You forgot you were allergic to [allergy.name]!</span>")
+		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)

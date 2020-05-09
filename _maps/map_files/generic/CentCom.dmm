@@ -3253,7 +3253,7 @@
 	},
 /obj/item/radio,
 /obj/machinery/airalarm{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -3293,7 +3293,7 @@
 /area/centcom/control)
 "iz" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/centcom/control)
@@ -3726,7 +3726,7 @@
 "jz" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -4782,7 +4782,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/handcuffs,
 /obj/item/crowbar/red,
-/obj/item/crowbar/power,
+/obj/item/jawsoflife,
 /obj/item/storage/belt/security/full,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -6302,7 +6302,7 @@
 /area/centcom/ferry)
 "oD" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "oE" = (
@@ -6690,7 +6690,7 @@
 /area/centcom/control)
 "pn" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -6743,7 +6743,7 @@
 /obj/structure/bookcase/random,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6811,7 +6811,7 @@
 /area/centcom/control)
 "pu" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7129,7 +7129,7 @@
 /obj/item/assembly/flash/handheld,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7293,7 +7293,7 @@
 /obj/structure/filingcabinet/filingcabinet,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -7885,7 +7885,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Commander's Office APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/fifty,
@@ -7900,7 +7900,7 @@
 	},
 /obj/item/stack/rods/fifty,
 /obj/item/stack/cable_coil/white,
-/obj/item/screwdriver/power,
+/obj/item/handdrill,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -7936,7 +7936,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/handcuffs,
 /obj/item/crowbar/red,
-/obj/item/crowbar/power,
+/obj/item/jawsoflife,
 /obj/item/storage/belt/security/full,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 26
@@ -8169,7 +8169,7 @@
 "sa" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
-/obj/item/wirecutters/power,
+/obj/item/jawsoflife,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
 "sb" = (
@@ -8656,7 +8656,7 @@
 /area/centcom/supplypod)
 "tc" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigars/havana,
+/obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "te" = (
@@ -8832,7 +8832,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "tB" = (
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -8875,7 +8875,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -8945,7 +8945,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -9488,7 +9488,7 @@
 "uP" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/packageWrap,
-/obj/item/crowbar/power,
+/obj/item/jawsoflife,
 /obj/item/wrench,
 /obj/item/hand_labeler,
 /obj/effect/turf_decal/stripes/line{
@@ -9523,7 +9523,7 @@
 /obj/item/pen/fourcolor,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -9936,7 +9936,7 @@
 /area/centcom/control)
 "vK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -11395,7 +11395,7 @@
 /area/syndicate_mothership/control)
 "yY" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -12323,7 +12323,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Briefing Area APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12559,7 +12559,7 @@
 /area/centcom/ferry)
 "Bx" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -12788,7 +12788,7 @@
 "BN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	dir = 1;
@@ -13152,7 +13152,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Briefing Room APC";
-	pixel_y = -26
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13169,7 +13169,7 @@
 "Cx" = (
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13737,7 +13737,7 @@
 "Dt" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -14004,7 +14004,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -14079,7 +14079,7 @@
 /obj/item/pen/blue,
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16140,13 +16140,13 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "Ie" = (
-/obj/item/storage/fancy/cigarettes/cigars{
+/obj/item/storage/box/fancy/cigarettes/cigars{
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/cigarettes/cigars/havana,
+/obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -16196,7 +16196,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17264,7 +17264,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17376,7 +17376,7 @@
 /area/tdome/tdomeadmin)
 "Kx" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -17591,7 +17591,7 @@
 /area/centcom/evac)
 "Le" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
 "Lf" = (
@@ -18340,9 +18340,9 @@
 /obj/item/vending_refill/autodrobe,
 /obj/item/stack/sheet/paperframes/fifty,
 /obj/item/stack/sheet/paperframes/fifty,
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/fancy/candle_box,
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -18483,6 +18483,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"NH" = (
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "NI" = (
 /obj/structure/closet/lasertag/red,
 /turf/open/floor/wood,
@@ -19752,7 +19756,7 @@
 "Ro" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel/dark,
@@ -20595,7 +20599,7 @@
 /area/centcom/testchamber)
 "TT" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
 "TW" = (
@@ -20968,6 +20972,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Vl" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/landmark/ert_spawn,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Vm" = (
 /obj/machinery/gibber,
 /obj/machinery/light{
@@ -22465,7 +22483,7 @@
 /area/centcom/testchamber)
 "ZG" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "ZH" = (
@@ -60273,11 +60291,11 @@ ws
 wB
 yr
 sw
-sw
+Vl
 Ad
 AL
 Bx
-sw
+Vl
 Cv
 mD
 aa
@@ -61301,11 +61319,11 @@ ws
 ts
 mD
 uV
-sw
+Vl
 Ah
 AP
 Ah
-sw
+Vl
 Cz
 mD
 aa
@@ -61558,11 +61576,11 @@ ws
 ts
 qR
 pH
-zA
-sw
-zA
-sw
-zA
+NH
+Vl
+NH
+Vl
+NH
 CA
 mD
 aa

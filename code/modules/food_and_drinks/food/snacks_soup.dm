@@ -57,7 +57,7 @@
 	foodtype = GROSS
 
 /obj/item/reagent_containers/food/snacks/soup/wingfangchu
-	name = "wing fang chu"
+	name = "wingfangchu"
 	desc = "A savory dish of alien wing wang in soy."
 	icon_state = "wingfangchu"
 	trash = /obj/item/reagent_containers/glass/bowl
@@ -93,7 +93,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/mystery
 	name = "mystery soup"
-	desc = "The mystery is, why aren't you eating it?"
+	desc = "The mystery is why aren't you eating it?"
 	icon_state = "mysterysoup"
 	var/extra_reagent = null
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -108,7 +108,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/hotchili
 	name = "hot chili"
-	desc = "A five alarm Texan Chili!"
+	desc = "A five alarm Texan chili!"
 	icon_state = "hotchili"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -126,7 +126,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/monkeysdelight
 	name = "monkey's delight"
-	desc = "A delicious soup with dumplings and hunks of monkey meat simmered to perfection, in a broth that tastes faintly of bananas."
+	desc = "A delicious soup made with dumplings and hunks of monkey meat, simmered to perfection in a broth that tastes faintly of bananas."
 	icon_state = "monkeysdelight"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -151,7 +151,7 @@
 	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/soup/milo
-	name = "milosoup"
+	name = "milo soup"
 	desc = "The universe's best soup! Yum!!!"
 	icon_state = "milosoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
@@ -159,7 +159,7 @@
 	foodtype = GROSS
 
 /obj/item/reagent_containers/food/snacks/soup/mushroom
-	name = "chantrelle soup"
+	name = "mushroom soup"
 	desc = "A delicious and hearty mushroom soup."
 	icon_state = "mushroomsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -168,7 +168,7 @@
 	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/soup/beet
-	name = "beet soup"
+	name = "white beet soup"
 	desc = "Wait, how do you spell it again..?"
 	icon_state = "beetsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -178,7 +178,6 @@
 	. = ..()
 	name = pick("borsch","bortsch","borstch","borsh","borshch","borscht")
 	tastes = list(name = 1)
-
 
 /obj/item/reagent_containers/food/snacks/soup/spacylibertyduff
 	name = "spacy liberty duff"
@@ -229,7 +228,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/dolphinsoup
 	name = "dolphin soup"
-	desc = "Made with finest dolphin meat, blood and crushed dreams. It's animal rights activitsts and normal human being's worst nightmare!"
+	desc = "Made with finest dolphin meat, blood and crushed dreams. It's the animal rights activitsts and normal human being's worst nightmare!"
 	icon = 'yogstation/icons/obj/food/soupsalad.dmi'
 	icon_state = "dolphinsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)

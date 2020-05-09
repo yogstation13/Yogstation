@@ -168,7 +168,7 @@
 /area/shuttle/escape)
 "ap" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light{
 	dir = 4
 	},

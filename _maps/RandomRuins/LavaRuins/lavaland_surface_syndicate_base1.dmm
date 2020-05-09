@@ -3672,7 +3672,7 @@
 	pixel_x = 7;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate{
 	pixel_x = -3
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -5303,6 +5303,7 @@
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nh" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
+	generates_heat = 0;
 	use_power = 0
 	},
 /obj/machinery/light/small{

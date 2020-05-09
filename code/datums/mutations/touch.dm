@@ -18,6 +18,7 @@
 	hand_path = /obj/item/melee/touch_attack/shock
 	charge_max = 100
 	clothes_req = FALSE
+	icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "zap"
 
 /obj/item/melee/touch_attack/shock

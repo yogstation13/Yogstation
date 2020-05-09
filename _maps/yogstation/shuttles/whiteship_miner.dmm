@@ -444,7 +444,7 @@
 /area/shuttle/abandoned)
 "bG" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
@@ -827,7 +827,7 @@
 "mR" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/fancy/egg_box{
+/obj/item/storage/box/fancy/egg_box{
 	pixel_y = 5
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
@@ -896,7 +896,7 @@
 	height = 15;
 	id = "whiteship";
 	launch_status = 0;
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Free Miner Ship";
 	port_direction = 8;
 	preferred_direction = 4;

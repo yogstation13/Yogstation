@@ -1720,7 +1720,7 @@
 					/obj/item/reagent_containers/food/condiment/soymilk,
 					/obj/item/reagent_containers/food/condiment/saltshaker,
 					/obj/item/reagent_containers/food/condiment/peppermill,
-					/obj/item/storage/fancy/egg_box,
+					/obj/item/storage/box/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
 					/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
@@ -2070,8 +2070,8 @@
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
-					/obj/item/storage/fancy/cigarettes/cigpack_syndicate,
-					/obj/item/storage/fancy/cigarettes/cigpack_shadyjims,
+					/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate,
+					/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims,
 					/obj/item/clothing/mask/gas/syndicate,
 					/obj/item/clothing/neck/necklace/dope,
 					/obj/item/vending_refill/donksoft)
@@ -2365,7 +2365,7 @@
 
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"
-	desc = "Get your sad station movin' and groovin' with this fine collection! Contains nine different instruments!"
+	desc = "Get your sad station movin' and groovin' with this fine collection! Contains ten different instruments!"
 	cost = 5000
 	crate_name = "Big band musical instruments collection"
 	contains = list(/obj/item/instrument/violin,
@@ -2376,7 +2376,8 @@
 					/obj/item/instrument/trombone,
 					/obj/item/instrument/recorder,
 					/obj/item/instrument/harmonica,
-					/obj/structure/piano/unanchored)
+					/obj/structure/piano/unanchored,
+					/obj/item/instrument/banjo)
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/book_crate

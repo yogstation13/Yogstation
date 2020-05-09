@@ -11,12 +11,6 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/gravedigger
-	name = "Grave-Digger"
-	id = /datum/reagent/consumable/graveyard
-	results = list(/datum/reagent/consumable/gravedigger = 3)
-	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
-
 /datum/chemical_reaction/spraytan
 	name = "Spray Tan"
 	id = /datum/reagent/spraytan
@@ -542,6 +536,32 @@
 	for(var/i = rand(1, created_volume), i <= created_volume, i++) // More lulz.
 		new /mob/living/simple_animal/pet/dog/corgi(location)
 	..()
+
+//monkey powder heehoo
+/datum/chemical_reaction/monkey_powder
+	name = /datum/reagent/monkey_powder
+	id = /datum/reagent/monkey_powder
+	results = list(/datum/reagent/monkey_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+
+/datum/chemical_reaction/monkey
+	name = "monkey"
+	id = "monkey"
+	required_reagents = list(/datum/reagent/monkey_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/monkey/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/carbon/monkey(location)
+	
+/datum/chemical_reaction/gorilla
+	name = "gorilla"
+	id = "gorilla"
+	required_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/gorilla/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/gorilla(location)
+
 
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye

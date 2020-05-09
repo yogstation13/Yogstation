@@ -852,6 +852,10 @@
 	glass_icon_state = "red_queen"
 	glass_name = "Red Queen"
 	glass_desc = "DRINK ME."
+	
+/datum/reagent/consumable/red_queen/on_mob_life(mob/living/carbon/C)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -4*REM)
+	..()
 
 /datum/reagent/consumable/sprited_cranberry
 	name = "Sprited Cranberry"

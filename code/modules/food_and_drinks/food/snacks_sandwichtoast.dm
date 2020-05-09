@@ -23,7 +23,7 @@
 
 /obj/item/reagent_containers/food/snacks/grilledcheese
 	name = "grilled cheese sandwich"
-	desc = "Goes great with Tomato soup!"
+	desc = "Goes great with tomato soup!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "toastedsandwich"
 	trash = /obj/item/trash/plate
@@ -54,7 +54,7 @@
 
 /obj/item/reagent_containers/food/snacks/icecreamsandwich
 	name = "icecream sandwich"
-	desc = "Portable Ice-cream in its own packaging."
+	desc = "Portable ice cream in its own packaging."
 	icon = 'yogstation/icons/obj/food/food.dmi'
 	icon_state = "icecreamsandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/ice = 2)

@@ -124,7 +124,7 @@
 	if(!ishuman(user))
 		return
 	user.set_machine(src)
-	var/dat = {"<TT>Turned [on ? "On" : "Off"] -
+	var/dat = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><TT>Turned [on ? "On" : "Off"] -
 <A href='?src=[REF(src)];power=1'>Toggle</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:
@@ -138,7 +138,7 @@ Code:
 <A href='byond://?src=[REF(src)];code=-1'>-</A> [code]
 <A href='byond://?src=[REF(src)];code=1'>+</A>
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
-</TT>"}
+</TT></BODY></HTML>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
