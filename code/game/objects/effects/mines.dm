@@ -241,11 +241,6 @@
 /obj/effect/mine/sound/mineEffect(mob/victim)
 	playsound(loc, sound, volume, 1)
 
-/obj/effect/mine/sound/attackby(obj/item/soundsynth/J, mob/user, params)
-	if(istype(J, /obj/item/soundsynth))
-		to_chat(user, "<span class='notice'>You change the sound settings of the [src].</span>")
-		sound = J.selected_sound
-
 
 /obj/effect/mine/sound/bwoink
 	name = "bwoink mine"
