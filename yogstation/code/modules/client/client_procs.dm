@@ -1,4 +1,4 @@
-/client/proc/sync_logout_with_db(number)
+/world/proc/sync_logout_with_db(number)
 	if(!number)
 		return
 
