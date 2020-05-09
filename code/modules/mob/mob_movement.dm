@@ -75,7 +75,11 @@
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
-
+	if (!src.prefs.bindings.isheld_key("Ctrl"))
+		if (mob.pixel_x > 0 || mob.pixel_x < 0)
+			mob.pixel_x = 0
+		if (mob.pixel_y > 0 || mob.pixel_y < 0)
+			mob.pixel_y = 0
 	var/handled = SEND_SIGNAL(L, COMSIG_PROCESS_MOVE, direct) //yogs start - movement components
 	if(handled)
 		return FALSE//yogs end
