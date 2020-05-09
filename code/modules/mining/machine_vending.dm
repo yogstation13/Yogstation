@@ -351,22 +351,6 @@
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
 
-  /*
-   check_menu: Checks if we are allowed to interact with a radial menu
-  
-   Arguments:
-   redeemer The mob interacting with a menu
-   voucher The mining voucher item
-   */
-/obj/machinery/mineral/equipment_vendor/free_miner/check_menu(obj/item/mining_voucher/voucher, mob/living/redeemer)
-	if(!Adjacent(redeemer))
-		return FALSE
-	if(QDELETED(voucher))
-		return FALSE
-	if(voucher.loc != redeemer)
-		return FALSE
-	return TRUE
-
 /obj/item/circuitboard/machine/mining_equipment_vendor/free_miner
 	name = "circuit board (Free Miner Ship Equipment Vendor)"
 	build_path = /obj/machinery/mineral/equipment_vendor/free_miner
