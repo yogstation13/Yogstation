@@ -42,6 +42,7 @@
 	var/spam_flag = 0
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
+	var/next_write_time = 0 // prevent crash exploit
 
 
 /obj/item/paper/pickup(user)
@@ -222,16 +223,17 @@
 
 
 /obj/item/paper/Topic(href, href_list)
+	if(next_write_time > world.time) //Nsv13 possible paper exploit
+		return
 	..()
 	var/literate = usr.is_literate()
 	if(!usr.canUseTopic(src, BE_CLOSE, literate))
 		return
-
 	if(href_list["help"])
 		openhelp(usr)
 		return
 	if(href_list["write"])
-		
+		next_write_time = world.time + 1 SECONDS //possible paper exploit		
 		var/t =  stripped_multiline_input("Enter what you want to write:", "Write", no_trim=TRUE)
 		if(!t || !usr.canUseTopic(src, BE_CLOSE, literate))
 			return
