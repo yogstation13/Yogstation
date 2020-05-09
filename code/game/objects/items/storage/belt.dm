@@ -62,7 +62,9 @@
 		/obj/item/holosign_creator/multi/CE,
 		/obj/item/airlock_painter,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
-		/obj/item/storage/bag/construction
+		/obj/item/storage/bag/construction,
+		/obj/item/jawsoflife,
+		/obj/item/handdrill
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -245,6 +247,8 @@
 	STR.max_combined_w_class = 20
 	STR.set_holdable(list(
 		/obj/item/crowbar,
+		/obj/item/jawsoflife,
+		/obj/item/handdrill,
 		/obj/item/screwdriver,
 		/obj/item/weldingtool,
 		/obj/item/wirecutters,
