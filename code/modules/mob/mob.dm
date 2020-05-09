@@ -669,6 +669,8 @@
 
 /mob/verb/eastshift()
 	set hidden = TRUE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
 	if(!canface())
 		return FALSE
 	if(pixel_x <= 16)
@@ -676,6 +678,8 @@
 
 /mob/verb/westshift()
 	set hidden = TRUE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
 	if(!canface())
 		return FALSE
 	if(pixel_x >= -16)
@@ -683,6 +687,8 @@
 
 /mob/verb/northshift()
 	set hidden = TRUE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
 	if(!canface())
 		return FALSE
 	if(pixel_y <= 16)
@@ -690,6 +696,8 @@
 
 /mob/verb/southshift()
 	set hidden = TRUE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
 	if(!canface())
 		return FALSE
 	if(pixel_y >= -16)
