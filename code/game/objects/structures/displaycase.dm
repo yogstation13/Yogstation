@@ -227,8 +227,17 @@
 /obj/structure/displaycase/captain
 	alert = TRUE
 	start_showpiece_type = /obj/item/gun/energy/laser/captain
-	req_access = list(ACCESS_CAPTAIN)
+	req_access = list(ACCESS_CENT_SPECOPS)
 
+/obj/structure/displaycase/attackby(obj/item/W, mob/user, params)
+	if(seclevel2num(get_security_level()) >= SEC_LEVEL_RED)
+		req_access = list(ACCESS_CAPTAIN)
+	else
+		to_chat(user, "ID scanning with this display will not work until RED or DELTA security levels")
+		req_access = list(ACCESS_CENT_SPECOPS)
+		return
+	. = ..()
+	
 /obj/structure/displaycase/labcage
 	name = "lab cage"
 	desc = "A glass lab container for storing interesting creatures."
