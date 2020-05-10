@@ -272,8 +272,6 @@
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
 /obj/item/restraints/legcuffs/beartrap/Crossed(AM as mob|obj)
-	if(QDELETED(src))
-		return
 	if(armed && isturf(loc))
 		if(isliving(AM))
 			var/mob/living/L = AM
@@ -329,7 +327,6 @@
 
 /obj/item/restraints/legcuffs/beartrap/energy/attack_hand(mob/user)
 	Crossed(user) //honk
-	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
 	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
