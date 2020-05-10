@@ -132,7 +132,7 @@ function draw_status() {
 			document.body.appendChild(document.createElement("br"));
 		} else {
 			let div = document.createElement("div");
-			div.innerHTML = status_tab_parts[i]
+			div.innerHTML = status_tab_parts[i];
 			document.body.appendChild(div);
 		}
 	}
@@ -191,34 +191,34 @@ function set_light_theme() {
 	document.body.style.backgroundColor = "white";
 	document.body.style.color = "black";
 	document.body.className = ""; 
-	set_style_sheet("browserOutput_white")
+	set_style_sheet("browserOutput_white");
 }
 
 function set_dark_theme() {
 	document.body.style.backgroundColor = "#171717";
 	document.body.style.color = "#a4bad6";
 	document.body.className = "dark"; 
-	set_style_sheet("browserOutput")
+	set_style_sheet("browserOutput");
 	
 }
 function set_style_sheet(sheet) {
 	if(document.getElementById("goonStyle")) {
-		let currentSheet = document.getElementById("goonStyle")
-		currentSheet.parentElement.removeChild(currentSheet)
+		let currentSheet = document.getElementById("goonStyle");
+		currentSheet.parentElement.removeChild(currentSheet);
 	}
 	let head  = document.getElementsByTagName('head')[0];
-	let sheetElement = document.createElement("link")
+	let sheetElement = document.createElement("link");
 	sheetElement.id = "goonStyle";
 	sheetElement.rel = "stylesheet";
-	sheetElement.type = "text/css"
-	sheetElement.href = sheet + ".css"
+	sheetElement.type = "text/css";
+	sheetElement.href = sheet + ".css";
 	sheetElement.media = 'all';
-	head.appendChild(sheetElement)
+	head.appendChild(sheetElement);
 }
 
 
 window.addEventListener("load", function() {
-	set_light_theme()
+	set_light_theme();
 	if(!current_tab) {
 		tab_change("Status");
 	}
