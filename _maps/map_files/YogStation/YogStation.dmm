@@ -9706,11 +9706,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/department/electrical)
-"atD" = (
-/obj/machinery/recharge_station,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/department/electrical)
 "atE" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
@@ -16248,12 +16243,6 @@
 "aHj" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
-"aHk" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "aHl" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
@@ -27756,18 +27745,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"bgr" = (
-/obj/machinery/door/airlock{
-	name = "Unit 4"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/toilet/locker)
 "bgs" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -31197,10 +31174,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"bnb" = (
-/obj/machinery/recharge_station,
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "bnc" = (
 /turf/closed/wall/r_wall,
 /area/science/robotics/mechbay)
@@ -36219,25 +36192,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bwn" = (
-/obj/machinery/recharge_station,
-/obj/machinery/camera{
-	c_tag = "AI Upload Access";
-	dir = 1;
-	network = list("ss13","RD")
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/ai_upload_foyer)
 "bwo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -43693,17 +43647,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"bNm" = (
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "bNn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -47861,6 +47804,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+"ciy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
+	},
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "ciF" = (
 /obj/structure/table,
 /obj/item/cartridge/medical,
@@ -48911,18 +48861,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cpT" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -35
-	},
-/obj/item/stock_parts/cell/high/plus,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "cpX" = (
 /obj/structure/table,
 /obj/item/stack/rods/fifty,
@@ -50003,6 +49941,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"cNe" = (
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet)
 "cNh" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -52250,6 +52194,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hfy" = (
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/locker)
 "hfM" = (
 /obj/machinery/light{
 	dir = 1
@@ -52719,6 +52669,28 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
+"ini" = (
+/obj/machinery/recharge_station,
+/obj/machinery/camera{
+	c_tag = "AI Upload Access";
+	dir = 1;
+	network = list("ss13","RD")
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload_foyer)
 "iqx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -53870,6 +53842,16 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"kLv" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/structure/table,
+/obj/item/stock_parts/cell/high/plus,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "kNE" = (
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/preopen{
@@ -54031,6 +54013,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"ldM" = (
+/obj/machinery/recharge_station,
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "leB" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
@@ -54220,6 +54209,14 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
 /area/science/nanite)
+"lAR" = (
+/obj/machinery/recharge_station,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/department/electrical)
 "lGE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57359,6 +57356,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"sLs" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock{
+	name = "Unit B"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/locker)
 "sNe" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -58112,6 +58121,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"unC" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/recharge_station,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/locker)
 "unF" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -58575,6 +58591,20 @@
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"vrl" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -35
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = 32
+	},
+/obj/machinery/recharge_station,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "vrz" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -78154,7 +78184,7 @@ aZt
 aXQ
 aZt
 aXQ
-aZt
+unC
 aXQ
 bek
 bkF
@@ -78411,7 +78441,7 @@ bbL
 aXQ
 bdJ
 aXQ
-bgr
+sLs
 aXQ
 bek
 bkF
@@ -78668,7 +78698,7 @@ aZw
 bdF
 aLS
 bfa
-bfa
+hfy
 aXQ
 bgT
 bkE
@@ -84119,8 +84149,8 @@ aGx
 clE
 cnN
 bBF
-aHk
-bNm
+ciy
+kLv
 cjJ
 aaf
 bPs
@@ -84377,7 +84407,7 @@ cnn
 cnM
 bEG
 cpk
-cpT
+vrl
 cjJ
 aaa
 bPs
@@ -90244,7 +90274,7 @@ bkR
 aHj
 bfv
 aNM
-bwn
+ini
 buP
 bpC
 aXM
@@ -95355,7 +95385,7 @@ ayq
 aAh
 aGp
 aHX
-aBy
+cNe
 aAh
 qQV
 qQV
@@ -103858,7 +103888,7 @@ bfI
 biG
 blw
 blu
-bnb
+ldM
 bfT
 bor
 bpS
@@ -104886,7 +104916,7 @@ bfQ
 cHL
 blw
 bjP
-bnb
+ldM
 bfT
 boG
 bqa
@@ -107678,7 +107708,7 @@ alP
 aqD
 arz
 asB
-atD
+lAR
 auJ
 asB
 awP
