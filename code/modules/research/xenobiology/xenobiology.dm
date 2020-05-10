@@ -746,7 +746,7 @@
 
 	to_chat(user, "<span class='notice'>You drink the potion then place your hands on [SM]...</span>")
 
-	SM.faction = user.faction.Copy
+	SM.faction = user.faction.Copy()
 	user.mind.transfer_to(SM)
 	SM.faction = user.faction.Copy()
 	SM.sentience_act() //Same deal here as with sentience
