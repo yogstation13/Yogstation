@@ -221,9 +221,10 @@ function set_style_sheet(sheet) {
 window.addEventListener("load", function() {
 	let darkmodeCookie = getCookie('darkmode');
 	if(darkmodeCookie === 'true') {
-		set_light_theme();
-	} else {
 		set_dark_theme();
+		
+	} else {
+		set_light_theme();
 	}
 	
 	if(!current_tab) {
