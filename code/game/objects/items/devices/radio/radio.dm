@@ -42,10 +42,8 @@
 	//FREQ_BROADCASTING = 2
 
 /obj/item/radio/suicide_act(mob/living/user)
-	use_command = TRUE
-	talk_into(user, pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
-	use_command = FALSE
-	return OXYLOSS // your die from oxygen loss by yelling the brain damage line at full volume
+	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return BRUTELOSS
 
 /obj/item/radio/proc/set_frequency(new_frequency)
 	SEND_SIGNAL(src, COMSIG_RADIO_NEW_FREQUENCY, args)
