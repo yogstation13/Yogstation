@@ -17,6 +17,35 @@
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
 
+/obj/item/jawsoflife/proc/transform_crowbar(mob/user)
+	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
+	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
+	usesound = 'sound/items/jaws_pry.ogg'
+	hitsound = 'sound/items/jaws_pry.ogg'
+	tool_behaviour = TOOL_CROWBAR
+	icon_state = "jaws_pry"
+	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
+	if (iscyborg(user))
+		to_chat(user,"<span class='notice'>Your servos whirr as the cutting head reconfigures into a prying head.</span>")
+	else
+		to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
+	update_icon()
+
+
+/obj/item/jawsoflife/proc/transform_cutters(mob/user)
+	attack_verb = list("pinched", "nipped")
+	icon_state = "jaws_cutter"
+	hitsound = 'sound/items/jaws_cut.ogg'
+	usesound = 'sound/items/jaws_cut.ogg'
+	tool_behaviour = TOOL_WIRECUTTER
+	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
+	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
+	if (iscyborg(user))
+		to_chat(user,"<span class='notice'>Your servos whirr as the prying head reconfigures into a cutting head.</span>")
+	else
+		to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
+	update_icon()
+
 //jaws of life suicide code
 /obj/item/jawsoflife/suicide_act(mob/user)
 	if(TOOL_CROWBAR)
@@ -51,36 +80,6 @@
 	else
 		..()
 
-/obj/item/jawsoflife/proc/transform_crowbar(mob/user)
-	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
-	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
-	usesound = 'sound/items/jaws_pry.ogg'
-	hitsound = 'sound/items/jaws_pry.ogg'
-	tool_behaviour = TOOL_CROWBAR
-	icon_state = "jaws_pry"
-	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
-	if (iscyborg(user))
-		to_chat(user,"<span class='notice'>Your servos whirr as the cutting head reconfigures into a prying head.</span>")
-	else
-		to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
-	update_icon()
-
-
-/obj/item/jawsoflife/proc/transform_cutters(mob/user)
-	attack_verb = list("pinched", "nipped")
-	icon_state = "jaws_cutter"
-	hitsound = 'sound/items/jaws_cut.ogg'
-	usesound = 'sound/items/jaws_cut.ogg'
-	tool_behaviour = TOOL_WIRECUTTER
-	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
-	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
-	if (iscyborg(user))
-		to_chat(user,"<span class='notice'>Your servos whirr as the prying head reconfigures into a cutting head.</span>")
-	else
-		to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
-	update_icon()
-
-
 //better handdrill
 /obj/item/handdrill
 	name = "hand drill"
@@ -102,15 +101,6 @@
 	toolspeed = 0.7
 	tool_behaviour = TOOL_SCREWDRIVER
 
-/obj/item/handdrill/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	return(BRUTELOSS)
-
-/obj/item/handdrill/attack_self(mob/user)
-	if (tool_behaviour == TOOL_SCREWDRIVER)
-		transform_wrench(user)
-	else
-		transform_screwdriver(user)
 
 /obj/item/handdrill/proc/transform_wrench(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
@@ -133,3 +123,13 @@
 	else
 		to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	update_icon()
+
+/obj/item/handdrill/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return(BRUTELOSS)
+
+/obj/item/handdrill/attack_self(mob/user)
+	if (tool_behaviour == TOOL_SCREWDRIVER)
+		transform_wrench(user)
+	else
+		transform_screwdriver(user)
