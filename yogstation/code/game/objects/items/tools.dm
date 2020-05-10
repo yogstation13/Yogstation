@@ -45,18 +45,19 @@
 
 //jaws of life suicide code
 /obj/item/jawsoflife/suicide_act(mob/user)
-	if(TOOL_CROWBAR)
-		user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
-		playsound(loc, 'sound/items/jaws_pry.ogg', 50, 1, -1)
-	if(TOOL_WIRECUTTER)
-		user.visible_message("<span class='suicide'>[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!</span>")
-		playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
-			if(BP)
-				BP.drop_limb()
-				playsound(loc,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
+	switch(tool_behaviour)
+		if(TOOL_CROWBAR)
+			user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
+			playsound(loc, 'sound/items/jaws_pry.ogg', 50, 1, -1)
+		if(TOOL_WIRECUTTER)
+			user.visible_message("<span class='suicide'>[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!</span>")
+			playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
+			if(iscarbon(user))
+				var/mob/living/carbon/C = user
+				var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
+				if(BP)
+					BP.drop_limb()
+					playsound(loc,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 	return (BRUTELOSS)
 
 //jaws of life changing jaw code
