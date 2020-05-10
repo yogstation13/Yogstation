@@ -1,8 +1,11 @@
- /**
-  * tgui
-  *
-  * /tg/station user interface library
- **/
+/**
+ * tgui
+ *
+ * /tg/station user interface library
+ *
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
 
  /**
   * tgui datum (represents a UI).
