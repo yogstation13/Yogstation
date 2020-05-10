@@ -217,12 +217,33 @@ function set_style_sheet(sheet) {
 }
 
 
+
 window.addEventListener("load", function() {
-	set_light_theme();
+	let darkmodeCookie = getCookie('darkmode');
+	if(darkmodeCookie === 'true') {
+		set_light_theme();
+	} else {
+		set_dark_theme();
+	}
+	
 	if(!current_tab) {
 		tab_change("Status");
 	}
 });
+
+function getCookie(cname) {
+	var name = cname + '=';
+	var ca = document.cookie.split(';');
+	for(var i=0; i < ca.length; i++) {
+	var c = ca[i];
+	while (c.charAt(0)==' ') c = c.substring(1);
+		if (c.indexOf(name) === 0) {
+			return decoder(c.substring(name.length,c.length));
+		}
+	}
+	return '';
+}
+
 
 </script>
 </head>
