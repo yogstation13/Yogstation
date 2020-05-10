@@ -564,7 +564,7 @@
 	stop_sound_channel(CHANNEL_HEARTBEAT)
 
 	if(admin_revive)
-		cure_fakedeath("changeling")
+		cure_fakedeath()
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
