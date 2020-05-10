@@ -688,7 +688,7 @@
 			to_chat(SM, "<span class='userdanger'>You also become depressingly aware that you are not a real creature, but instead a holoform. Your existence is limited to the parameters of the holodeck.</span>")
 		to_chat(user, "<span class='notice'>[SM] accepts [src] and suddenly becomes attentive and aware. It worked!</span>")
 		SM.copy_languages(user)
-		SM.faction = user.faction
+		SM.faction = user.faction.Copy()
 		after_success(user, SM)
 		qdel(src)
 	else
@@ -746,7 +746,7 @@
 
 	to_chat(user, "<span class='notice'>You drink the potion then place your hands on [SM]...</span>")
 
-	SM.faction = user.faction
+	SM.faction = user.faction.Copy
 	user.mind.transfer_to(SM)
 	SM.faction = user.faction.Copy()
 	SM.sentience_act() //Same deal here as with sentience
