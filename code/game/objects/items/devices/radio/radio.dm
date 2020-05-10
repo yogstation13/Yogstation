@@ -45,7 +45,7 @@
 	use_command = TRUE
 	talk_into(user, pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
 	use_command = FALSE
-	return OXYLOSS // you die from oxygen loss from yelling the brain damage line at full volume
+	return OXYLOSS // you die from oxygen loss by yelling the brain damage line at full volume
 
 /obj/item/radio/proc/set_frequency(new_frequency)
 	SEND_SIGNAL(src, COMSIG_RADIO_NEW_FREQUENCY, args)
