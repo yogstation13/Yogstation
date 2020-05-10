@@ -1,0 +1,11 @@
+{
+	"Plushie": {
+		"r": "w",
+		"l": "w",
+		"\bthe\b": "teh",
+		"\bthis\b": "dis",
+		"\bwith\b": "wif",
+		"\byou\b": "chu",
+		"\byour\b": "ur"
+	}
+}
