@@ -205,11 +205,8 @@
 	if(!density)
 		return FALSE
 	// alrighty now we check for how much pressure we're holding back
-	var/min_moles
-	var/max_moles
-	var/list/our_gases = T.air.gases
-	TOTAL_MOLES(our_gases, min_moles)
-	max_moles = min_moles
+	var/min_moles = T.air.total_moles()
+	var/max_moles = min_moles
 	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
 	density = FALSE
 	T.ImmediateCalculateAdjacentTurfs()
@@ -217,9 +214,7 @@
 	for(var/turf/open/T2 in T.atmos_adjacent_turfs)
 		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
 			continue
-		var/list/cached_gases = T2.air.gases
-		var/moles = cached_gases
-		TOTAL_MOLES(cached_gases, moles)
+		var/moles = T2.air.total_moles()
 		if(moles < min_moles)
 			min_moles = moles
 		if(moles > max_moles)

@@ -361,7 +361,8 @@
 
 	var/mob/living/target_mob
 
-	action_icon_state = "summons"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "summon_servant"
 
 /obj/effect/proc_holder/spell/targeted/summonmob/cast(list/targets,mob/user = usr)
 	if(!target_mob)

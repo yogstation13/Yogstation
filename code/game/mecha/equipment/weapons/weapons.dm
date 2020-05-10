@@ -1,6 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
+	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	var/projectile
 	var/fire_sound
 	var/projectiles_per_shot = 1
@@ -486,7 +487,7 @@
 
 /obj/item/punching_glove/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..())
-		if(ismovableatom(hit_atom))
+		if(ismovable(hit_atom))
 			var/atom/movable/AM = hit_atom
 			AM.safe_throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 7, 2)
 		qdel(src)

@@ -53,7 +53,7 @@ jobs:
           tools/travis/build_tgui.sh
           tools/travis/check_grep.sh
 
-      - name: Run linter
+      - name: Run Linter
         run: ~/dreamchecker
   compile:
     name: Compile All Maps
@@ -61,9 +61,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          curl https://repogen.simplylinux.ch/txt/bionic/sources_3a64d21a7855de8236118d7d04a3c5fef63083fb.txt | sudo tee /etc/apt/sources.list
+          curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386
@@ -103,13 +103,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          curl https://repogen.simplylinux.ch/txt/bionic/sources_3a64d21a7855de8236118d7d04a3c5fef63083fb.txt | sudo tee /etc/apt/sources.list
+          curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
+          
       - name: Cache BYOND
         uses: actions/cache@v1
         with:
@@ -117,7 +118,7 @@ jobs:
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
           
-      - name: Setup environment
+      - name: Setup Environment
         run: |
           tools/travis/install_byond.sh
           echo "::set-env name=BYOND_SYSTEM::/home/runner/BYOND/byond"
@@ -127,29 +128,29 @@ jobs:
           cd $GITHUB_WORKSPACE
           tools/travis/install_libmariadb.sh
           tools/travis/install_rust_g.sh
-          
-      - name: Setup Database
-        run: |
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
           tools/travis/build_bsql.sh
           
-      - name: Compile and run tests
+      - name: Compile
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
-          tools/travis/run_server.sh
-      
-      - name: Upload DMB
-        uses: actions/upload-artifact@v1
-        with: 
-          name: DMB
-          path: ${{ github.workspace }}/yogstation.dmb
           
-      - name: Upload RSC
+      - name: Prepare Artifacts
+        run: |
+          mkdir artifacts
+          cp yogstation.dmb artifacts
+          cp yogstation.rsc artifacts
+      
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v1
         with: 
-          name: RSC
-          path: ${{ github.workspace }}/yogstation.rsc
+          name: DMB + RSC
+          path: ${{github.workspace}}/artifacts
+          
+      - name: Run Tests
+        run: |
+          tools/travis/run_server.sh
 

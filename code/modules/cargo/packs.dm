@@ -2365,7 +2365,7 @@
 
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"
-	desc = "Get your sad station movin' and groovin' with this fine collection! Contains nine different instruments!"
+	desc = "Get your sad station movin' and groovin' with this fine collection! Contains ten different instruments!"
 	cost = 5000
 	crate_name = "Big band musical instruments collection"
 	contains = list(/obj/item/instrument/violin,
@@ -2376,7 +2376,8 @@
 					/obj/item/instrument/trombone,
 					/obj/item/instrument/recorder,
 					/obj/item/instrument/harmonica,
-					/obj/structure/piano/unanchored)
+					/obj/structure/piano/unanchored,
+					/obj/item/instrument/banjo)
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/book_crate

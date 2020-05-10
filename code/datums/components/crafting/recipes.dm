@@ -510,6 +510,11 @@
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
 	result = /obj/structure/cloth_curtain
 	category = CAT_MISC
+/datum/crafting_recipe/personal_closet
+	name = "Personal Closet"
+	reqs = list(/obj/item/stack/sheet/metal = 5, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
+	result = /obj/structure/closet/secure_closet/personal
+	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
 	name = "Chemical Payload (C4)"

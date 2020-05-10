@@ -27,7 +27,7 @@
 //Captain
 /obj/item/clothing/head/caphat
 	name = "captain's hat"
-	desc = "It's good being the king."
+	desc = "It's good to be the king."
 	icon_state = "captain"
 	item_state = "that"
 	flags_inv = 0
@@ -257,6 +257,11 @@
 /obj/item/clothing/head/beret/sec/navyofficer
 	desc = "A special beret with the security insignia emblazoned on it. For officers with class."
 	icon_state = "officerberet"
+
+/obj/item/clothing/head/beret/sec/centcom
+	name = "\improper CentCom beret"
+	desc = "A special beret with the NanoTrasen logo emblazoned on it. For where no man has gone before."
+	icon_state = "official"
 
 //Curator
 /obj/item/clothing/head/fedora/curator
