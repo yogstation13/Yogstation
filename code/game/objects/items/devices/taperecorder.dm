@@ -64,6 +64,10 @@
 	else
 		return ..()
 
+/obj/item/taperecorder/AltClick(mob/user)
+	. = ..()
+	play()
+
 /obj/item/taperecorder/proc/can_use(mob/user)
 	if(user && ismob(user))
 		if(!user.incapacitated())
