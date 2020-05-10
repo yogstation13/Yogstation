@@ -285,6 +285,16 @@
 
 // handle machine interaction
 
+/obj/machinery/disposal/bin/AltClick(mob/user)
+	. = ..()
+	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
+		return
+	if(flush)
+		flush = FALSE
+	else
+		flush = TRUE
+	update_icon()
+
 /obj/machinery/disposal/bin/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	if(stat & BROKEN)
