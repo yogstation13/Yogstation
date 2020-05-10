@@ -15,7 +15,6 @@
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
 
-
 //jaws of life changing jaw code
 /obj/item/jawsoflife/attack_self(mob/user)
 	if (tool_behaviour == TOOL_CROWBAR)
