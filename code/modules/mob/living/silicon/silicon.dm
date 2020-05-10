@@ -417,3 +417,41 @@
 
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
+
+/mob/living/silicon/get_status_tab_items()
+	.=..()
+	.+= ""
+	.+= "Current Silicon Laws:"
+	if (laws.devillaws && laws.devillaws.len)
+		for(var/index = 1, index <= laws.devillaws.len, index++)
+			.+= "[laws.devillaws[index]]"
+
+	if (laws.zeroth)
+		.+= "0:[laws.zeroth]"
+
+	for (var/index = 1, index <= laws.hacked.len, index++)
+		var/law = laws.hacked[index]
+		if (length(law) > 0)
+			.+= "[ionnum()]: [law]"
+			hackedcheck.len += 1
+
+	for (var/index = 1, index <= laws.ion.len, index++)
+		var/law = laws.ion[index]
+		if (length(law) > 0)
+			.+= "[ionnum()]: [law]"
+
+	var/number = 1
+	for (var/index = 1, index <= laws.inherent.len, index++)
+		var/law = laws.inherent[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "[number]: [law]"
+			number++
+
+	for (var/index = 1, index <= laws.supplied.len, index++)
+		var/law = laws.supplied[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "[number]: [law]"
+			number++
+	.+= ""
