@@ -562,7 +562,6 @@
 		mood.remove_temp_moods(admin_revive)
 	update_mobility()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
-
 	if(admin_revive)
 		cure_fakedeath()
 
