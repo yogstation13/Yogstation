@@ -2,16 +2,14 @@
 //the new and improved jaws
 /obj/item/jawsoflife
 	name = "jaws of life"
-	
-	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
+	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.7
@@ -30,7 +28,6 @@
 	else
 		to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
 	update_icon()
-
 
 /obj/item/jawsoflife/proc/transform_cutters(mob/user)
 	attack_verb = list("pinched", "nipped")
@@ -100,7 +97,6 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.7
 	tool_behaviour = TOOL_SCREWDRIVER
-
 
 /obj/item/handdrill/proc/transform_wrench(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
