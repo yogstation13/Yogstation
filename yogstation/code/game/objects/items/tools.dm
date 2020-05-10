@@ -15,6 +15,42 @@
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
 
+
+//jaws of life changing jaw code
+/obj/item/jawsoflife/attack_self(mob/user)
+	if (tool_behaviour == TOOL_CROWBAR)
+		transform_cutters(user)
+	else
+		transform_crowbar(user)
+
+//jaws of life suicide code
+/obj/item/jawsoflife/suicide_act(mob/user)
+	switch(tool_behaviour)
+		if(TOOL_CROWBAR)
+			user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
+			playsound(loc, 'sound/items/jaws_pry.ogg', 50, 1, -1)
+		if(TOOL_WIRECUTTER)
+			user.visible_message("<span class='suicide'>[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!</span>")
+			playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
+			if(iscarbon(user))
+				var/mob/living/carbon/C = user
+				var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
+				if(BP)
+					BP.drop_limb()
+					playsound(loc,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
+	return (BRUTELOSS)
+
+/obj/item/jawsoflife/attack(mob/living/carbon/C, mob/user)
+	if (tool_behaviour == TOOL_WIRECUTTER)
+		if(istype(C) && C.handcuffed)
+			user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
+			qdel(C.handcuffed)
+			return
+		else
+			..()
+	else
+		..()
+		
 /obj/item/jawsoflife/proc/transform_crowbar(mob/user)
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -43,41 +79,6 @@
 		to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
 	update_icon()
 
-//jaws of life suicide code
-/obj/item/jawsoflife/suicide_act(mob/user)
-	switch(tool_behaviour)
-		if(TOOL_CROWBAR)
-			user.visible_message("<span class='suicide'>[user] is putting [user.p_their()] head in [src], it looks like [user.p_theyre()] trying to commit suicide!</span>")
-			playsound(loc, 'sound/items/jaws_pry.ogg', 50, 1, -1)
-		if(TOOL_WIRECUTTER)
-			user.visible_message("<span class='suicide'>[user] is wrapping \the [src] around [user.p_their()] neck. It looks like [user.p_theyre()] trying to rip [user.p_their()] head off!</span>")
-			playsound(loc, 'sound/items/jaws_cut.ogg', 50, 1, -1)
-			if(iscarbon(user))
-				var/mob/living/carbon/C = user
-				var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
-				if(BP)
-					BP.drop_limb()
-					playsound(loc,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
-	return (BRUTELOSS)
-
-//jaws of life changing jaw code
-/obj/item/jawsoflife/attack_self(mob/user)
-	if (tool_behaviour == TOOL_CROWBAR)
-		transform_cutters(user)
-	else
-		transform_crowbar(user)
-		
-/obj/item/jawsoflife/attack(mob/living/carbon/C, mob/user)
-	if (tool_behaviour == TOOL_WIRECUTTER)
-		if(istype(C) && C.handcuffed)
-			user.visible_message("<span class='notice'>[user] cuts [C]'s restraints with [src]!</span>")
-			qdel(C.handcuffed)
-			return
-		else
-			..()
-	else
-		..()
-
 //better handdrill
 /obj/item/handdrill
 	name = "hand drill"
@@ -98,6 +99,16 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.7
 	tool_behaviour = TOOL_SCREWDRIVER
+
+/obj/item/handdrill/attack_self(mob/user)
+	if (tool_behaviour == TOOL_SCREWDRIVER)
+		transform_wrench(user)
+	else
+		transform_screwdriver(user)
+
+/obj/item/handdrill/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return(BRUTELOSS)
 
 /obj/item/handdrill/proc/transform_wrench(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
@@ -121,12 +132,3 @@
 		to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
 	update_icon()
 
-/obj/item/handdrill/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting [src] to [user.p_their()] temple. It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	return(BRUTELOSS)
-
-/obj/item/handdrill/attack_self(mob/user)
-	if (tool_behaviour == TOOL_SCREWDRIVER)
-		transform_wrench(user)
-	else
-		transform_screwdriver(user)
