@@ -137,9 +137,7 @@
 		did_we_charge = TRUE
 	if(ispreternis(H))
 		var/datum/species/preternis/preternis = H.dna.species
-		preternis.charge += 3
-		if(preternis.charge > PRETERNIS_LEVEL_FULL)
-			preternis.charge = PRETERNIS_LEVEL_FULL
+		preternis.charge = clamp(preternis.charge + 3, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
 		did_we_charge = TRUE
 	
 	//if we're not targetting a robot part we stop early
