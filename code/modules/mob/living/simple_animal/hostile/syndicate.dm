@@ -51,6 +51,8 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/syndicate/sentience_act()
+	faction -= ROLE_SYNDICATE
 ///////////////Melee////////////
 
 /mob/living/simple_animal/hostile/syndicate/space
