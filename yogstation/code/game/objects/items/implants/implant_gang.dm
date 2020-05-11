@@ -40,10 +40,8 @@
 			else
 				success = TRUE
 			
-			if(!HAS_TRAIT(target, TRAIT_MINDSHIELD))
-				success = TRUE
-			else
-				success = FALSE			
+			if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+				success = FALSE
 			
 			if(!success)
 				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
