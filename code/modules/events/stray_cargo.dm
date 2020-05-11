@@ -79,20 +79,3 @@
 	var/list/possible_areas = typecache_filter_list(GLOB.sortedAreas,allowed_areas)
 	if (length(possible_areas))
 		return pick(possible_areas)
-
-///A rare variant that drops a crate containing syndicate uplink items
-/datum/round_event_control/stray_cargo/syndicate
-	name = "Stray Syndicate Cargo Pod"
-	typepath = /datum/round_event/stray_cargo/syndicate
-	weight = 6
-	max_occurrences = 1
-	earliest_start = 30 MINUTES
-
-/datum/round_event/stray_cargo/syndicate
-	possible_pack_types = list(/datum/supply_pack/misc/syndicate)
-
-///Apply the syndicate pod skin
-/datum/round_event/stray_cargo/syndicate/make_pod()
-	var/obj/structure/closet/supplypod/S = new
-	S.setStyle(STYLE_SYNDICATE)
-	return S
