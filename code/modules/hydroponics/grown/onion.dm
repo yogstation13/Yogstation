@@ -74,7 +74,6 @@
 	filling_color = "#C29ACF"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/tearjuice = 2.5)
 
-
 /obj/item/seeds/onion/oblivious
 	name = "pack of oblivious onion seeds"
 	desc = "These seeds grow into oddly confused onions."
