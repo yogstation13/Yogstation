@@ -43,7 +43,7 @@
 	var/msgTitle = input["announce"]
 	var/author = input["author"]
 	var/id = input["id"]
-	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
+	var/link = "https://github.com/yogstation13/Yogstation/pull/[id]"
 
 	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
 	for(var/client/C in GLOB.clients)
