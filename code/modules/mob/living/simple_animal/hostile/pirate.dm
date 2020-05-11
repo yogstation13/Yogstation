@@ -28,6 +28,8 @@
 	del_on_death = 1
 	faction = list("pirate")
 
+/mob/living/simple_animal/hostile/pirate/sentience_act()
+	faction -= "pirate"
 
 /mob/living/simple_animal/hostile/pirate/melee
 	name = "Pirate Swashbuckler"

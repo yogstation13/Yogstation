@@ -148,6 +148,13 @@
 	new /obj/item/clothing/accessory/armband/medblue(src)
 	new /obj/item/encryptionkey/headset_med(src)
 
+/obj/structure/closet/secure_closet/security/srv
+
+/obj/structure/closet/secure_closet/security/srv/PopulateContents()
+	..()
+	new /obj/item/clothing/accessory/armband/service(src)
+	new /obj/item/encryptionkey/headset_service(src)
+
 /obj/structure/closet/secure_closet/detective
 	name = "\improper detective's cabinet"
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
