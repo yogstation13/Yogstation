@@ -236,7 +236,7 @@
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
 	name = "neutral AI module spawner"
 	loot = list(
-				/obj/item/aiModule/core/full/CEO,
+				/obj/item/aiModule/core/full/ceo,
 				/obj/item/aiModule/core/full/corp,
 				/obj/item/aiModule/core/full/maintain,
 				/obj/item/aiModule/core/full/drone,
