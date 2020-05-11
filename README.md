@@ -100,7 +100,6 @@ Yogstation currently comes equipped with five maps.
 * [MetaStation](https://wiki.yogstation.net/wiki/Maps#MetaStation_.28YogsMeta.29)
 * [DeltaStation](https://wiki.yogstation.net/wiki/Maps#DeltaStation_.28YogsDelta.29)
 * [PubbyStation](https://wiki.yogstation.net/wiki/Maps#PubbyStation_.28YogsPubby.29)
-* [MinskyStation](https://wiki.yogstation.net/wiki/Maps#MinskyStation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
