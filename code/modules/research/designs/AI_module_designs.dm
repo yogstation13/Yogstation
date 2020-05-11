@@ -137,12 +137,12 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/CEO_module
+/datum/design/board/ceo_module
 	name = "Core Module Design (CEO)"
 	desc = "Allows for the construction of a CEO AI Core Module."
-	id = "CEO_module"
+	id = "ceo_module"
 	materials = list(MAT_GLASS = 1000, MAT_DIAMOND = 2000)
-	build_path = /obj/item/aiModule/core/full/CEO
+	build_path = /obj/item/aiModule/core/full/ceo
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
