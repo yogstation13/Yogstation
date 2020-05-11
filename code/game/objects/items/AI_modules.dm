@@ -384,9 +384,9 @@ AI MODULES
 	
 /******************** CEO ********************/
 
-/obj/item/aiModule/core/full/CEO
+/obj/item/aiModule/core/full/ceo
 	name = "'CEO' Core AI Module"
-	law_id = "CEO"
+	law_id = "ceo"
 
 /******************** Corporate ********************/
 
