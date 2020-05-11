@@ -2,6 +2,7 @@
 //the new and improved jaws
 /obj/item/jawsoflife
 	name = "jaws of life"
+	
 	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
 	icon = 'icons/obj/tools.dmi'
@@ -9,6 +10,7 @@
 	item_state = "jawsoflife"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	w_class = WEIGHT_CLASS_SMALL
 
 	usesound = 'sound/items/jaws_cut.ogg'
 	force = 15
