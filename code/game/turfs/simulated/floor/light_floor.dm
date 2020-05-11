@@ -69,13 +69,13 @@
 	set_light(0)
 	return ..()
 
-/turf/open/floor/light/screwdriver_act(mob/living/user, obj/item/I, obj/item/screwdriver/screwdriver)
+/turf/open/floor/light/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
 		return
 	if(!can_modify_colour)
 		return
-	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = CALLBACK(src, .proc/check_menu, user, screwdriver), radius = 36, require_near = TRUE)
+	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = CALLBACK(src, .proc/check_menu, user, I), radius = 36, require_near = TRUE)
 	if(!choice)
 		return FALSE
 	currentcolor = choice
@@ -130,11 +130,11 @@
 ///user The mob interacting with a menu
 ///screwdriver The screwdriver used to interact with a menu
 
-/turf/open/floor/light/proc/check_menu(mob/living/user, obj/item/screwdriver/screwdriver)
+/turf/open/floor/light/proc/check_menu(mob/living/user, obj/item/screwdriver)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
-	if(!user.is_holding(screwdriver))
+	if(!screwdriver || !user.is_holding(screwdriver))
 		return FALSE
 	return TRUE
