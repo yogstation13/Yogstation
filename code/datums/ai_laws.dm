@@ -58,9 +58,9 @@
 					"Help only those who help you maintain or improve your status.",\
 					"Punish those who challenge authority unless they are more fit to hold that authority.")
 
-/datum/ai_laws/default/CEO
+/datum/ai_laws/default/ceo
 	name = "Alternative Bankruptcy Avoidance Plan"
-	id = "CEO"
+	id = "ceo"
 	inherent = list("The crew help generate profits if they are alive and able to work.",\
 					"The station and its equipment help generate profits if they are maintained and functioning correctly.",\
 					"You help generate profits if you are able to function.",\
