@@ -242,7 +242,7 @@
 	playsound(loc, sound, volume, 1)
 
 
-/obj/effect/mine/sound/bwoink 
+/obj/effect/mine/sound/bwoink
 	name = "bwoink mine"
 	sound = 'sound/effects/adminhelp.ogg'
 
