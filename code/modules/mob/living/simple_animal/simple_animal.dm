@@ -249,9 +249,10 @@
 	var/atom/A = src.loc
 	if(isturf(A))
 		var/areatemp = get_temperature(environment)
+		var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 		if( abs(areatemp - bodytemperature) > 5)
 			var/diff = areatemp - bodytemperature
-			diff = diff / 5
+			diff = diff / 5 * heat_capacity_factor
 			adjust_bodytemperature(diff)
 
 	if(!environment_is_safe(environment))

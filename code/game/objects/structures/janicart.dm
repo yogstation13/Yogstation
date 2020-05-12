@@ -36,7 +36,6 @@
 /obj/structure/janitorialcart/proc/put_in_cart(obj/item/I, mob/user)
 	if(!user.transferItemToLoc(I, src))
 		return
-	updateUsrDialog()
 	to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 	return
 
@@ -116,84 +115,98 @@
 	. = ..()
 	if(.)
 		return
-	user.set_machine(src)
-	var/dat
+
+	var/list/items = list()
 	if(mybag)
-		dat += "<a href='?src=[REF(src)];garbage=1'>[mybag.name]</a><br>"
+		items += list("Trash bag" = image(icon = mybag.icon, icon_state = mybag.icon_state))
 	if(mymop)
-		dat += "<a href='?src=[REF(src)];mop=1'>[mymop.name]</a><br>"
+		items += list("Mop" = image(icon = mymop.icon, icon_state = mymop.icon_state))
 	if(myspray)
-		dat += "<a href='?src=[REF(src)];spray=1'>[myspray.name]</a><br>"
-	if(myreplacer)
-		dat += "<a href='?src=[REF(src)];replacer=1'>[myreplacer.name]</a><br>"
+		items += list("Spray bottle" = image(icon = myspray.icon, icon_state = myspray.icon_state))
 	if(myremover)
-		dat += "<a href='?src=[REF(src)];remover=1'>[myremover.name]</a><br>"
+		items += list("Paint remover" = image(icon = myremover.icon, icon_state = myremover.icon_state))
 	if(myswatter)
-		dat += "<a href='?src=[REF(src)];swatter=1'>[myswatter.name]</a><br>"
+		items += list("Fly swatter" = image(icon = myswatter.icon, icon_state = myswatter.icon_state))
 	if(mylight)
-		dat += "<a href='?src=[REF(src)];light=1'>[mylight.name]</a><br>"
-	if(signs)
-		dat += "<a href='?src=[REF(src)];sign=1'>[signs] sign\s</a><br>"
-	var/datum/browser/popup = new(user, "janicart", name, 240, 160)
-	popup.set_content(dat)
-	popup.open()
+		items += list("Flashlight" = image(icon = mylight.icon, icon_state = mylight.icon_state))
+	if(myreplacer)
+		items += list("Light replacer" = image(icon = myreplacer.icon, icon_state = myreplacer.icon_state))
+	var/obj/item/clothing/suit/caution/sign = locate() in src
+	if(sign)
+		items += list("Sign" = image(icon = sign.icon, icon_state = sign.icon_state))
 
-
-/obj/structure/janitorialcart/Topic(href, href_list)
-	if(!in_range(src, usr))
+	if(!length(items))
 		return
-	if(!isliving(usr))
+	items = sortList(items)
+	var/pick = show_radial_menu(user, src, items, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 38, require_near = TRUE)
+	if(!pick)
 		return
-	var/mob/living/user = usr
-	if(href_list["garbage"])
-		if(mybag)
+	switch(pick)
+		if("Trash bag")
+			if(!mybag)
+				return
 			user.put_in_hands(mybag)
 			to_chat(user, "<span class='notice'>You take [mybag] from [src].</span>")
 			mybag = null
-	if(href_list["mop"])
-		if(mymop)
+		if("Mop")
+			if(!mymop)
+				return
 			user.put_in_hands(mymop)
 			to_chat(user, "<span class='notice'>You take [mymop] from [src].</span>")
 			mymop = null
-	if(href_list["spray"])
-		if(myspray)
+		if("Spray bottle")
+			if(!myspray)
+				return
 			user.put_in_hands(myspray)
 			to_chat(user, "<span class='notice'>You take [myspray] from [src].</span>")
 			myspray = null
-	if(href_list["replacer"])
-		if(myreplacer)
-			user.put_in_hands(myreplacer)
-			to_chat(user, "<span class='notice'>You take [myreplacer] from [src].</span>")
-			myreplacer = null
-	if(href_list["remover"])
-		if(myremover)
+		if("Paint remover")
+			if(!myremover)
+				return
 			user.put_in_hands(myremover)
 			to_chat(user, "<span class='notice'>You take [myremover] from [src].</span>")
 			myremover = null
-	if(href_list["swatter"])
-		if(myswatter)
+		if("Fly swatter")
+			if(!myswatter)
+				return
 			user.put_in_hands(myswatter)
 			to_chat(user, "<span class='notice'>You take [myswatter] from [src].</span>")
 			myswatter = null
-	if(href_list["light"])
-		if(mylight)
+		if("Flashlight")
+			if(!mylight)
+				return
 			user.put_in_hands(mylight)
 			to_chat(user, "<span class='notice'>You take [mylight] from [src].</span>")
 			mylight = null
-	if(href_list["sign"])
-		if(signs)
-			var/obj/item/clothing/suit/caution/Sign = locate() in src
-			if(Sign)
-				user.put_in_hands(Sign)
-				to_chat(user, "<span class='notice'>You take \a [Sign] from [src].</span>")
-				signs--
-			else
-				WARNING("Signs ([signs]) didn't match contents")
-				signs = 0
+		if("Light replacer")
+			if(!myreplacer)
+				return
+			user.put_in_hands(myreplacer)
+			to_chat(user, "<span class='notice'>You take [myreplacer] from [src].</span>")
+			myreplacer = null
+		if("Sign")
+			if(signs <= 0)
+				return
+			user.put_in_hands(sign)
+			to_chat(user, "<span class='notice'>You take \a [sign] from [src].</span>")
+			signs--
+		else
+			return
 
 	update_icon()
-	updateUsrDialog()
 
+  /*
+   check_menu: Checks if we are allowed to interact with a radial menu
+  
+   Arguments:
+   user The mob interacting with a menu
+  */
+/obj/structure/janitorialcart/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+	return TRUE
 
 /obj/structure/janitorialcart/update_icon()
 	cut_overlays()
