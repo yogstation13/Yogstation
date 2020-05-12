@@ -55,6 +55,9 @@
 			return
 	..()
 
+/mob/living/simple_animal/hostile/asteroid/sentience_act()
+	faction -= "mining"
+
 /mob/living/simple_animal/hostile/asteroid/death(gibbed)
 	SSblackbox.record_feedback("tally", "mobs_killed_mining", 1, type)
 	var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
