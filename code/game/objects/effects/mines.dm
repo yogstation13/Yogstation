@@ -94,7 +94,7 @@
 	icon_state = "uglymine"
 	var/triggered = 0
 	var/smartmine = 0
-	var/disarm_time = 200
+	var/disarm_time = 120
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
@@ -153,7 +153,7 @@
 	range_heavy = 2
 	range_light = 3
 	range_flash = 4
-	disarm_time = 400
+	disarm_time = 250
 	disarm_product = /obj/item/deployablemine/traitor
 
 /obj/effect/mine/explosive/traitor/bigboom
@@ -172,7 +172,7 @@
 
 /obj/effect/mine/stun
 	name = "stun mine"
-	var/stun_time = 150
+	var/stun_time = 80
 	var/damage = 0
 	disarm_product = /obj/item/deployablemine/stun
 
@@ -180,17 +180,17 @@
 	name = "smart stun mine"
 	desc = "An advanced mine with IFF features, capable of ignoring people with mindshield implants."
 	smartmine = 1
-	disarm_time = 250
+	disarm_time = 150
 	disarm_product = /obj/item/deployablemine/smartstun
 
 /obj/effect/mine/stun/smart/adv
 	name = "rapid smart mine"
-	disarm_time = 120
+	disarm_time = 80
 	disarm_product = /obj/item/deployablemine/rapid
 
 /obj/effect/mine/stun/smart/heavy
 	name = "sledgehammer smart mine"
-	disarm_time = 350
+	disarm_time = 170
 	stun_time = 230
 	damage = 40
 	disarm_product = /obj/item/deployablemine/heavy
@@ -235,7 +235,7 @@
 	name = "honkblaster 1000"
 	var/sound = 'sound/items/bikehorn.ogg'
 	var/volume = 100
-	disarm_time = 1200 // very long disarm time to expand the annoying factor
+	disarm_time = 600 // very long disarm time to expand the annoying factor
 	disarm_product = /obj/item/deployablemine/honk
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
