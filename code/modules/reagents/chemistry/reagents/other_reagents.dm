@@ -1768,4 +1768,3 @@
 	color = "#020202"
 	taste_description = "bananas"
 	can_synth = TRUE
-
