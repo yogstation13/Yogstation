@@ -4,10 +4,10 @@
 |	  Tgstation port by Miauw	|
 \*******************************/
 
-#define SPIN_PRICE 5
-#define SMALL_PRIZE 400
-#define BIG_PRIZE 1000
-#define JACKPOT 10000
+#define SPIN_PRICE 10
+#define SMALL_PRIZE 800
+#define BIG_PRIZE 2000
+#define JACKPOT 20000
 #define SPIN_TIME 65 //As always, deciseconds.
 #define REEL_DEACTIVATE_DELAY 7
 #define SEVEN "<font color='red'>7</font>"
