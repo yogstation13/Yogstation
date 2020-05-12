@@ -31,6 +31,8 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/russian/sentience_act()
+	faction -= "russian"
 
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
