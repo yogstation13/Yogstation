@@ -3,7 +3,7 @@
 
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">We are constantly seeking dedicated new <span style="font-weight: bold; color: #dd4400;">admins</span>, <span style="font-weight: bold; color: #dd4400;">coders</span>, <span style="font-weight: bold; color: #dd4400;">spriters</span>, <span style="font-weight: bold; color: #dd4400;">mappers</span>, and <span style="font-weight: bold; color: #dd4400;">mentors</span> to improve our server. Without them, you wouldn't have a server to play on. If you feel you may be a good addition to our team, please apply:</span>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">
- ¤ <a href="https://forums.yogstation.net/index.php?form/1/select">Admin Application</a>
+ ¤ <a href="https://forums.yogstation.net/index.php?form/18/select">Admin Application</a>
  ¤ <a href="https://forums.yogstation.net/index.php?form/8/select">Mentor Application</a>
  ¤ <a href="https://github.com/yogstation13/Yogstation">GitHub Repo</a>.
 </span>
