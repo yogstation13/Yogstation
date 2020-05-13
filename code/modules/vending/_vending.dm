@@ -463,8 +463,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 				vend_ready = TRUE
 				return
 			var/mob/living/L
-			if(isliving(user))
-				L = user
+			if(isliving(usr))
+				L = usr
 				
 			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
 				var/mob/living/carbon/human/H = usr
