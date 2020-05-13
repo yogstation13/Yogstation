@@ -462,7 +462,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_deny,src)
 				vend_ready = TRUE
 				return
-			if(onstation && ishuman(usr))
+			var/mob/living/L
+			if(isliving(user))
+				L = user
+				
+			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/C = H.get_idcard(TRUE)
 
