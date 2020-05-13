@@ -258,4 +258,4 @@
 
 	default_price = 50
 	extra_price = 75
-	payment_department = ACCOUNT_SRV
+	payment_department = ACCOUNT_SEC
