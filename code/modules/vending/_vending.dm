@@ -401,11 +401,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = list()
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
-
+	
+	var/mob/living/L
+	if(isliving(user))
+		L = user
+	.["ignores_capitalism"] = L.ignores_capitalism
+	
 	if(ishuman(user))
 		H = user
 		C = H.get_idcard(TRUE)
-
+		
 		if(C?.registered_account)
 			.["user"] = list()
 			.["user"]["name"] = C.registered_account.account_holder
