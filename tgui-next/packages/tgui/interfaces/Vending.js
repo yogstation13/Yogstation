@@ -48,7 +48,7 @@ export const Vending = props => {
             const free = (
               !data.onstation
               || product.price === 0
-              || data.user.ignores_capitalism
+              || data.ignores_capitalism
               || (
                 !product.premium
                 && data.department
