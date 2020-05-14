@@ -829,6 +829,30 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
 
+//Paramedic Hardsuit
+//For the yogstation specific paramedic role
+//Let the record state that hardsuit code is actual shitcode
+
+obj/item/clothing/head/helmet/space/hardsuit/paramedic
+    name = "paramedic hardsuit helmet"
+    desc = "A special helmet designed for work in a hazardous, low pressure environment. Built with lightweight materials for extra comfort, but does not protect the eyes from intense light."
+    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+    icon = 'yogstation/icons/mob/head.dmi'
+    icon_state = "hardsuit0-para"
+    item_state = "para"
+    item_color = "para"
+    armor = list("melee" = 35, "bullet" = 10, "laser" = 15, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 30, "fire" = 30, "acid" = 50)
+
+/obj/item/clothing/suit/space/hardsuit/paramedic
+    name = "Paramedic Hardsuit"
+    desc = "An advanced response and rescue suit for elite paramedics. Packs some extra padding instead of biological protection for high-risk areas."
+    alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+    icon = 'yogstation/icons/mob/suit.dmi'
+    icon_state = "hardsuit-para"
+    item_state = "hardsuit-para"
+    helmettype = /obj/item/clothing/head/helmet/space/hardsuit/paramedic
+    armor = list("melee" = 35, "bullet" = 10, "laser" = 15, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 30, "fire" = 30, "acid" = 50)
+
 //POWERARMORS
 //Currently are no different from normal hardsuits, except maybe for the higher armor ratings.
 
