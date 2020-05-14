@@ -62,7 +62,9 @@
 		/obj/item/holosign_creator/multi/CE,
 		/obj/item/airlock_painter,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
-		/obj/item/storage/bag/construction
+		/obj/item/storage/bag/construction,
+		/obj/item/handdrill,
+		/obj/item/jawsoflife
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -72,8 +74,8 @@
 	item_state = "utility_ce"
 
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
-	new /obj/item/screwdriver/power(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
 	new /obj/item/weldingtool/experimental(src)//This can be changed if this is too much
 	new /obj/item/multitool/tricorder(src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
@@ -280,7 +282,9 @@
 		/obj/item/organ/regenerative_core,
 		/obj/item/wormhole_jaunter,
 		/obj/item/storage/bag/plants,
-		/obj/item/stack/marker_beacon
+		/obj/item/stack/marker_beacon,
+		/obj/item/handdrill,
+		/obj/item/jawsoflife
 		))
 
 
