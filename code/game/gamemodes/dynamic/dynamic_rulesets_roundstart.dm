@@ -723,3 +723,26 @@
 	var/ramp_up_final = clamp(round(meteorminutes/rampupdelta), 1, 10)
 
 	spawn_meteors(ramp_up_final, wavetype)
+
+//////////////////////////////////////////////
+//                                          //
+//               SHADOWLINGS                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/shadowling
+	name = "Shadowling"
+	antag_flag = ROLE_SHADOWLING
+	antag_datum = datum/antagonist/shadowling
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_roles = list("Cyborg", "AI")
+	required_candidates = 2
+	weight = 3
+	cost = 30
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	high_population_requirement = 10
+	flags = HIGHLANDER_RULESET
+	minimum_players = 30
+	
+//Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made
+//feel free to make changes, if it crashes, or just doesn't give anyone roles.
