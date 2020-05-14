@@ -323,6 +323,38 @@
 	burn_reduction = 0
 	max_damage = 20
 
+/obj/item/bodypart/r_leg/robot/surplus/disguised
+	name = "disguised surplus prosthetic right leg"
+	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	icon_state = "default_human_l_leg"
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
+
+/obj/item/bodypart/l_leg/robot/surplus/disguised
+	name = "surplus prosthetic left leg"
+	desc = "A disguised skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	icon_state = "default_human_l_leg"
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
+	
+/obj/item/bodypart/r_arm/robot/surplus
+	name = "surplus prosthetic right arm"
+	desc = "A disguised skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	icon_state = "default_human_r_arm"
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
+	
+/obj/item/bodypart/l_arm/robot/surplus
+	name = "surplus prosthetic left arm"
+	desc = "A disguised skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
+	icon_state = "default_human_l_arm"
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
+	
 
 #undef ROBOTIC_LIGHT_BRUTE_MSG
 #undef ROBOTIC_MEDIUM_BRUTE_MSG
