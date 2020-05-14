@@ -82,6 +82,7 @@
 
 /obj/structure/closet/secure_closet/paramedic/PopulateContents()
 	..()
+	new /obj/item/clothing/suit/space/hardsuit/paramedic
 	if(prob(50))
 		new /obj/item/storage/backpack/medic(src)
 	else
