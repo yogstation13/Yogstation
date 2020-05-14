@@ -339,7 +339,7 @@
 	burn_reduction = 0
 	max_damage = 20
 	
-/obj/item/bodypart/r_arm/robot/surplus
+/obj/item/bodypart/r_arm/robot/surplus/disguised
 	name = "surplus prosthetic right arm"
 	desc = "A disguised skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
 	icon_state = "default_human_r_arm"
@@ -347,7 +347,7 @@
 	burn_reduction = 0
 	max_damage = 20
 	
-/obj/item/bodypart/l_arm/robot/surplus
+/obj/item/bodypart/l_arm/robot/surplus/disguised
 	name = "surplus prosthetic left arm"
 	desc = "A disguised skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
 	icon_state = "default_human_l_arm"
