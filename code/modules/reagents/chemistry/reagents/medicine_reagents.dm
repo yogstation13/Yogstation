@@ -400,6 +400,31 @@
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 
+/datum/reagent/medicine/synthflesh/reaction_obj(obj/O, reac_volume)
+	if(O.type == /obj/item/bodypart/l_arm/robot/surplus)
+		var/t_loc = get_turf(O)
+		qdel(O)
+		new /obj/item/bodypart/l_arm/robot/surplus/disguised(t_loc)
+		
+/datum/reagent/medicine/synthflesh/reaction_obj(obj/O, reac_volume)
+	if(O.type == /obj/item/bodypart/r_arm/robot/surplus)
+		var/t_loc = get_turf(O)
+		qdel(O)
+		new /obj/item/bodypart/r_arm/robot/surplus/disguised(t_loc)
+
+/datum/reagent/medicine/synthflesh/reaction_obj(obj/O, reac_volume)
+	if(O.type == /obj/item/bodypart/r_leg/robot/surplus)
+		var/t_loc = get_turf(O)
+		qdel(O)
+		new /obj/item/bodypart/r_leg/robot/surplus/disguised(t_loc)
+
+/datum/reagent/medicine/synthflesh/reaction_obj(obj/O, reac_volume)
+	if(O.type == /obj/item/bodypart/l_leg/robot/surplus)
+		var/t_loc = get_turf(O)
+		qdel(O)
+		new //obj/item/bodypart/l_leg/robot/surplus/disguised(t_loc)
+
+
 /datum/reagent/medicine/charcoal
 	name = "Charcoal"
 	description = "Heals toxin damage as well as slowly removing any other chemicals the patient has in their bloodstream."
