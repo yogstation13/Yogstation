@@ -197,39 +197,29 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			update_playercounts()
 			if(!current_players[CURRENT_LIVING_ANTAGS].len)
 				title = "Peaceful Waypoint"
-				. += "<b>[title]</b></center><BR>"
 				desc = "Your station orbits deep within controlled, core-sector systems and serves as a waypoint for routine traffic through Nanotrasen's trade empire. Due to the combination of high security, interstellar traffic, and low strategic value, it makes any direct threat of violence unlikely. Your primary enemies will be incompetence and bored crewmen: try to organize team-building events to keep staffers interested and productive."
-				. += desc
 			else
 				title = "Core Territory"
-				. += "<b>[title]</b></center><BR>"
 				desc = "Your station orbits within reliably mundane, secure space. Although Nanotrasen has a firm grip on security in your region, the valuable resources and strategic position aboard your station make it a potential target for infiltrations. Monitor crew for non-loyal behavior, but expect a relatively tame shift free of large-scale destruction. We expect great things from your station."
-				. += desc
 		if(20 to 39)
 			title = "Anomalous Exogeology"
-			. += "<b>[title]</b></center><BR>"
 			desc = "Although your station lies within what is generally considered Nanotrasen-controlled space, the course of its orbit has caused it to cross unusually close to exogeological features with anomalous readings. Although these features offer opportunities for our research department, it is known that these little understood readings are often correlated with increased activity from competing interstellar organizations and individuals, among them the Wizard Federation and Cult of the Geometer of Blood - all known competitors for Anomaly Type B sites. Exercise elevated caution."
-			. += desc
 		if(40 to 65)
 			title = "Contested System"
-			. += "<b>[title]</b></center><BR>"
 			desc = "Your station's orbit passes along the edge of Nanotrasen's sphere of influence. While subversive elements remain the most likely threat against your station, hostile organizations are bolder here, where our grip is weaker. Exercise increased caution against elite Syndicate strike forces, or Executives forbid, some kind of ill-conceived unionizing attempt."
-			. += desc
 		if(66 to 79)
 			title = "Uncharted Space"
-			. += "<b>[title]</b></center><BR>"
 			desc = "Congratulations and thank you for participating in the NT 'Frontier' space program! Your station is actively orbiting a high value system far from the nearest support stations. Little is known about your region of space, and the opportunity to encounter the unknown invites greater glory. You are encouraged to elevate security as necessary to protect Nanotrasen assets."
-			. += desc
 		if(80 to 99)
 			title = "Black Orbit"
-			. += "<b>[title]</b></center><BR>"
 			desc = "As part of a mandatory security protocol, we are required to inform you that as a result of your orbital pattern directly behind an astrological body (oriented from our nearest observatory), your station will be under decreased monitoring and support. It is anticipated that your extreme location and decreased surveillance could pose security risks. Avoid unnecessary risks and attempt to keep your station in one piece."
-			. += desc
 		if(100)
 			title = "Impending Doom"
-			. += "<b>[title]</b></center><BR>"
 			desc = "Your station is somehow in the middle of hostile territory, in clear view of any enemy of the corporation. Your likelihood to survive is low, and station destruction is expected and almost inevitable. Secure any sensitive material and neutralize any enemy you will come across. It is important that you at least try to maintain the station. Good luck."
-			. += desc
+		
+			
+	. += "<b>[title]</b></center><BR>"
+	. += desc
 
 	if(station_goals.len)
 		. += "<hr><b>Special Orders for [station_name()]:</b>"
