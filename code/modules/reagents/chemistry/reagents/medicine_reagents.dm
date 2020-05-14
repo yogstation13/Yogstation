@@ -422,7 +422,7 @@
 	if(O.type == /obj/item/bodypart/l_leg/robot/surplus)
 		var/t_loc = get_turf(O)
 		qdel(O)
-		new //obj/item/bodypart/l_leg/robot/surplus/disguised(t_loc)
+		new /obj/item/bodypart/l_leg/robot/surplus/disguised(t_loc)
 
 
 /datum/reagent/medicine/charcoal
