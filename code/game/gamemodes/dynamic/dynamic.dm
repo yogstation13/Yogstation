@@ -142,15 +142,19 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		log_admin("[key_name(usr)] tried to use the game mode panel without authorization.")
 		return
 	if (href_list["forced_extended"])
+		log_admin("[key_name(usr)] has toggled forced extended.")
 		GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
 	else if (href_list["no_stacking"])
+		log_admin("[key_name(usr)] has toggled stacking.")
 		GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
 	else if (href_list["classic_secret"])
+		log_admin("[key_name(usr)] has toggled classic secret.")
 		GLOB.dynamic_classic_secret = !GLOB.dynamic_classic_secret
 	else if (href_list["adjustthreat"])
 		var/threatadd = input("Specify how much threat to add (negative to subtract). This can inflate the threat level.", "Adjust Threat", 0) as null|num
 		if(!threatadd)
 			return
+		log_admin("[key_name(usr)] has changed the threat by [threatadd].")
 		if(threatadd > 0)
 			create_threat(threatadd)
 		else
