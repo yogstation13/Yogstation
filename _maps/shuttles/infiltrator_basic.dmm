@@ -376,15 +376,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
-"aQ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/crowbar/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/syndicate/airlock)
 "aR" = (
 /obj/machinery/suit_storage_unit/syndicate,
 /obj/effect/turf_decal/stripes/line{
@@ -1223,23 +1214,111 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/armory)
+"dg" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/mass_driver{
+	dir = 4;
+	id = "syndiedriver"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "dp" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 10
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/armory)
+"nG" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/airlock)
+"nK" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/airlock)
 "pd" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/bridge)
+"tv" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor{
+	dir = 1;
+	name = "Mass Driver";
+	req_access_txt = "150"
+	},
+/obj/machinery/computer/pod/old{
+	density = 0;
+	icon = 'icons/obj/airlock_machines.dmi';
+	icon_state = "airlock_control_standby";
+	id = "chapelgun";
+	name = "Mass Driver Controller";
+	pixel_x = -25;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"up" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "vv" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
+"BP" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "smindicate";
+	name = "outer blast door"
+	},
+/turf/open/floor/plating,
+/area/shuttle/syndicate/airlock)
 "CN" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1250,6 +1329,10 @@
 /obj/item/pen/red,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
+"HJ" = (
+/obj/effect/turf_decal/bot_white,
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/syndicate/airlock)
 "In" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
@@ -1270,6 +1353,31 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
+"Tc" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/syndicate/airlock)
 
 (1,1,1) = {"
 aa
@@ -1555,8 +1663,8 @@ ac
 In
 aa
 aB
-aO
-aO
+HJ
+HJ
 aX
 bc
 aO
@@ -1580,8 +1688,8 @@ ac
 aa
 aa
 aB
-aP
-aP
+dg
+tv
 aP
 aP
 aP
@@ -1605,11 +1713,11 @@ aa
 aa
 aa
 aB
+nK
+up
 aP
 aP
-aP
-aP
-aP
+Tc
 bn
 bz
 bG
@@ -1630,8 +1738,8 @@ aa
 aa
 aa
 aB
-aQ
-aT
+nK
+nG
 aT
 aT
 bi
@@ -1655,7 +1763,7 @@ aa
 aa
 aa
 aF
-aB
+BP
 aB
 aY
 bd
