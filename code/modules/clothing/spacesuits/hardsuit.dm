@@ -837,7 +837,7 @@ obj/item/clothing/head/helmet/space/hardsuit/paramedic
     name = "paramedic hardsuit helmet"
     desc = "A special helmet designed for work in a hazardous, low pressure environment. Built with lightweight materials for extra comfort, but does not protect the eyes from intense light."
     alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
-    icon = 'yogstation/icons/mob/head.dmi'
+    icon = 'icons/mob/head.dmi'
     icon_state = "hardsuit0-para"
     item_state = "para"
     item_color = "para"
@@ -847,7 +847,7 @@ obj/item/clothing/head/helmet/space/hardsuit/paramedic
     name = "Paramedic Hardsuit"
     desc = "An advanced response and rescue suit for elite paramedics. Packs some extra padding instead of biological protection for high-risk areas."
     alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-    icon = 'yogstation/icons/mob/suit.dmi'
+    icon = 'icons/mob/suit.dmi'
     icon_state = "hardsuit-para"
     item_state = "hardsuit-para"
     helmettype = /obj/item/clothing/head/helmet/space/hardsuit/paramedic
