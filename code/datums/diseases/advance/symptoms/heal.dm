@@ -493,10 +493,11 @@
 	passive_message = "<span class='notice'>Your skin tingles.</span>"
 	var/threshhold = 15
 	var/scarcounter = 0
-
-	threshold_desc = "<b>Stage Speed 8:</b> Doubles healing speed.<br>\
-					  <b>Resistance 10:</b> Improves healing threshhold."
-
+	
+	threshold_descs = list(
+		"Stage Speed " = "Doubles healing speed.",
+		"Resistance 10" = "Improves healing threshhold.",
+	)
 /datum/symptom/heal/surface/Start(datum/disease/advance/A)
 	if(!..())
 		return
