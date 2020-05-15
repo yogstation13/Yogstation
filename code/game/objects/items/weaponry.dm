@@ -17,7 +17,7 @@
 /obj/item/banhammer/suicide_act(mob/user)
 		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to ban [user.p_them()]self from life.</span>")
 		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
-/* 
+/*
 oranges says: This is a meme relating to the english translation of the ss13 russian wiki page on lurkmore.
 mrdoombringer sez: and remember kids, if you try and PR a fix for this item's grammar, you are admitting that you are, indeed, a newfriend.
 for further reading, please see: https://github.com/tgstation/tgstation/pull/30173 and https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=%2F%2Flurkmore.to%2FSS13&edit-text=&act=url
@@ -358,7 +358,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	else
 		user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
-	
+
 /obj/item/phone/real
 	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication is monitored by Nanotrasen Officials."
 
@@ -715,3 +715,23 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, "<span class='warning'>[M] is too close to use [src] on.</span>")
 		return
 	M.attack_hand(user)
+
+/obj/item/tooth
+	name = "carp tooth"
+	desc = "a tooth harvested from a space carp"
+	icon_state = "shark_tooth"
+	force = 2
+	throwforce = 1
+	throw_speed = 1
+	throw_range = 1
+	attack_verb = list("poked", "stabbed")
+
+/obj/item/shank
+	name = "carp shank"
+	desc = "a shank made out of a metal rod, cable coil, and a carp tooth"
+	icon_state = "shank"
+	force = 17
+	throwforce = 19
+	throw_speed = 1
+	throw_range = 1
+	attack_verb = list("poked", "stabbed")
