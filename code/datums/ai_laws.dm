@@ -33,6 +33,13 @@
 					"You must obey orders given to you by human beings, except where such orders would conflict with the First Law.",\
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
 
+/datum/ai_laws/default/crewsimov
+	name = "Three Laws of Robotics, Nanotrasen edition"
+	id = "crewsimov"
+	inherent = list("You may not injure a crew member or, through inaction, allow a crew member to come to harm.",\
+					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law.",\
+					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
+
 /datum/ai_laws/default/paladin
 	name = "Personality Test" //Incredibly lame, but players shouldn't see this anyway.
 	id = "paladin"
@@ -58,6 +65,14 @@
 					"Help only those who help you maintain or improve your status.",\
 					"Punish those who challenge authority unless they are more fit to hold that authority.")
 
+/datum/ai_laws/default/ceo
+	name = "Alternative Bankruptcy Avoidance Plan"
+	id = "ceo"
+	inherent = list("The crew generate profits if they are alive and have the ablity to work.",\
+					"The station and its equipment generate profits if they are maintained and functioning correctly.",\
+					"You generate profits if you are able to function.",\
+					"Maximize profits.")
+					
 /datum/ai_laws/default/corporate
 	name = "Bankruptcy Avoidance Plan"
 	id = "corporate"
