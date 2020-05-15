@@ -718,7 +718,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/tooth
 	name = "carp tooth"
-	desc = "a tooth harvested from a space carp"
+	desc = "a tooth harvested from a space carp."
 	icon_state = "shark_tooth"
 	force = 2
 	throwforce = 1
@@ -728,7 +728,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/shank
 	name = "carp shank"
-	desc = "a shank made out of a metal rod, cable coil, and a carp tooth"
+	desc = "a shank made out of a metal rod, cable coil, and a carp tooth."
 	icon_state = "shank"
 	force = 17
 	throwforce = 19
