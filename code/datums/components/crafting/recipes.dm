@@ -745,6 +745,13 @@
 					/obj/item/reagent_containers/food/snacks/grown/pumpkin = 1,
 					/obj/item/stack/cable_coil = 5)
 	category = CAT_MISC
+	
+/datum/crafting_recipe/aispook
+	name = "Carp Shank"
+	result = /obj/item/shank
+	time = 15
+	reqs = list(/obj/item/tooth = 1, /obj/item/stack/cable_coil = 5, /obj/item/clothing/torncloth = 1)
+	category = CAT_MISC
 
 /datum/crafting_recipe/ghettojetpack
 	name = "Improvised Jetpack"
