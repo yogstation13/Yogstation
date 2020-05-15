@@ -730,8 +730,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "carp shank"
 	desc = "a shank made out of a metal rod, cable coil, and a carp tooth."
 	icon_state = "shank"
-	force = 15
-	throwforce = 19
+	force = 11
+	throwforce = 14
 	throw_speed = 1
 	throw_range = 1
 	attack_verb = list("poked", "stabbed")
