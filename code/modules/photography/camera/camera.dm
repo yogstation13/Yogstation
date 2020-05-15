@@ -1,4 +1,5 @@
 
+
 #define CAMERA_PICTURE_SIZE_HARD_LIMIT 21
 
 /obj/item/camera
@@ -16,9 +17,9 @@
 	slot_flags = ITEM_SLOT_NECK
 	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
 	var/obj/item/disk/holodisk/disk
-	var/pictures_left
+	var/pictures_left = 0
 	var/default_picture_name
-	var/camera_mode = "standard"
+	var/camera_mode = CAMERA_STANDARD
 	var/blending = FALSE		//lets not take pictures while the previous is still processing!
 	var/on = TRUE // used to toggle the state during use.
 	var/state_on = "camera"
@@ -34,7 +35,8 @@
 	var/picture_size_x_max = 4
 	var/picture_size_y_max = 4
 	var/silent = FALSE
-	var/can_customise = TRUE
+	var/can_customise = TRUE // can this camera use description mode?
+	var/can_switch_modes = TRUE // are you able to change the mode of this camera or is it stuck in default mode?
 	var/flash_enabled = TRUE
 	var/start_full = TRUE // does the camera spawn full of film
 
@@ -42,8 +44,6 @@
 	. = ..()
 	if(start_full)
 		pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
-	else
-		pictures_left = 0
 
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
@@ -59,8 +59,10 @@
 /obj/item/camera/proc/adjust_zoom(mob/user)
 	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num
 	var/desired_y = input(user, "How wide do you want the camera to shoot, between [picture_size_y_min] and [picture_size_y_max]?", "Zoom", picture_size_y) as num
-	picture_size_x = min(clamp(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
-	picture_size_y = min(clamp(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
+	if(desired_x)
+		picture_size_x = min(clamp(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
+	if(desired_y)
+		picture_size_y = min(clamp(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
 /obj/item/camera/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
@@ -68,16 +70,17 @@
 	adjust_zoom(user)
 
 /obj/item/camera/attack_self(mob/user)
-	if(camera_mode == "standard" && can_customise)
-		to_chat(user, "<span class='notice'>You set the [src] to description mode.</span>")
-		camera_mode = "description"
-		return
+	if(can_switch_modes)
+		if(camera_mode == CAMERA_STANDARD && can_customise)
+			camera_mode = CAMERA_DESCRIPTION
+			to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
+			return
+		if(camera_mode == CAMERA_DESCRIPTION)
+			camera_mode = CAMERA_STANDARD
+			to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
+			return
 	else
-		if(!can_customise)
-			to_chat(user, "<span class='notice'>This [src] does not have additional modes.</span>")
-		else
-			to_chat(user, "<span class='notice'>You set the [src] to standard mode.</span>")
-			camera_mode = "standard"
+		to_chat(user, "<span class='notice'>This [src] can only be used in the [camera_mode] mode.</span>") // just in-case somone makes a camera that can only be descriptive
 	return
 
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
@@ -251,7 +254,7 @@
 		user.put_in_hands(p)
 		pictures_left--
 		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
-		if(can_customise && camera_mode == "description")
+		if(can_customise && camera_mode == CAMERA_DESCRIPTION)
 			var/customise = "No"
 			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
 			if(customise == "Yes")
