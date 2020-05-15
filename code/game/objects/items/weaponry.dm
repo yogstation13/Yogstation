@@ -730,8 +730,15 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "carp shank"
 	desc = "a shank made out of a metal rod, cable coil, and a carp tooth."
 	icon_state = "shank"
-	force = 17
+	force = 15
 	throwforce = 19
 	throw_speed = 1
 	throw_range = 1
 	attack_verb = list("poked", "stabbed")
+	
+/obj/item/shank/afterattack(atom/target, mob/user, proximity = TRUE)
+	. = ..()
+	user.changeNext_move(CLICK_CD_RAPID)
+	if(iscarbon(target))
+		var/mob/living/carbon/H = target
+		H.reagents.add_reagent(/datum/reagent/toxin/carpotoxin, 1)
