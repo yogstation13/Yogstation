@@ -750,7 +750,7 @@
 	name = "Carp Shank"
 	result = /obj/item/shank
 	time = 15
-	reqs = list(/obj/item/tooth = 1, /obj/item/stack/cable_coil = 5, /obj/item/clothing/torncloth = 1)
+	reqs = list(/obj/item/tooth = 1, /obj/item/stack/cable_coil = 5, /obj/item/clothing/torncloth = 1, /obj/item/stack/rods = 1)
 	category = CAT_MISC
 
 /datum/crafting_recipe/ghettojetpack
