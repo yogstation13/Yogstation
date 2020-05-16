@@ -528,7 +528,7 @@
 			to_chat(M, "<span class='notice'>Your wounds heal, granting you a new scar</span>")
 		if(scarcounter >= 200 && 
 			M.adjustCloneLoss(100)
-			M.visible_message("<span class='warning'>[M]'s face becomes unrecognizeable </span>", "<span class='userdanger'>Your scars have made your face unrecognizeable.</span>")
+			M.visible_message("<span class='warning'>[M]'s your body starts to break down </span>", "<span class='userdanger'>Your scars have made you genetically unstable.</span>")
 	return healed
 
 
