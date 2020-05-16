@@ -150,7 +150,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftlasrifle, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak)
-	icon = '/icons/obj/guns/energy.dmi'
+	icon = 'icons/obj/guns/energy.dmi'
 	can_charge = TRUE
 	charge_sections = 1
 	ammo_x_offset = 2
