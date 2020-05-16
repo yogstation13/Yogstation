@@ -1214,27 +1214,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/armory)
-"dg" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/mass_driver{
-	dir = 4;
-	id = "syndiedriver"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/airlock)
 "dp" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 10
@@ -1250,19 +1229,41 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/airlock)
-"nK" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/syndicate/airlock)
 "pd" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/bridge)
+"rB" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"tZ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/syndicate/airlock)
 "up" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1284,6 +1285,19 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
+"yG" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "CN" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1302,23 +1316,13 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/syndicate/airlock)
-"HJ" = (
-/obj/effect/turf_decal/bot_white,
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/airlock)
 "In" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/hallway)
-"MJ" = (
-/obj/machinery/porta_turret/syndicate/shuttle{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/shuttle/syndicate/medical)
-"Nh" = (
+"Mw" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -1340,11 +1344,17 @@
 	icon_state = "airlock_control_standby";
 	id = "syndiedriver";
 	name = "Mass Driver Controller";
-	pixel_x = -36;
-	pixel_y = 4
+	pixel_x = -41;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"MJ" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 6
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/syndicate/medical)
 "No" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1353,7 +1363,7 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
-"Tc" = (
+"Uz" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -1364,19 +1374,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/crowbar/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
+/obj/machinery/mass_driver{
+	dir = 4;
+	id = "syndiedriver"
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/crowbar/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 
 (1,1,1) = {"
@@ -1663,8 +1665,8 @@ ac
 In
 aa
 aB
-HJ
-HJ
+aB
+tZ
 aX
 bc
 aO
@@ -1688,8 +1690,8 @@ ac
 aa
 aa
 aB
-dg
-Nh
+Uz
+Mw
 aP
 aP
 aP
@@ -1713,11 +1715,11 @@ aa
 aa
 aa
 aB
-nK
+yG
 up
 aP
 aP
-Tc
+rB
 bn
 bz
 bG
@@ -1738,7 +1740,7 @@ aa
 aa
 aa
 aB
-nK
+yG
 nG
 aT
 aT
