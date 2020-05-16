@@ -509,7 +509,7 @@
 /area/ruin/powered/spacebar)
 "bC" = (
 /obj/effect/mob_spawn/human/bartender/alive{
-	flavour_text = "<span class='big bold'>You are a space bartender!</span><b> Time to mix drinks and change lives. Do not leave your post under any circumstances!! </b>";
+	flavour_text = "You are a space bartender!</span><b> Time to mix drinks and change lives. Do not leave your post under any circumstances!!;
 	name = "space bartender sleeper"
 	},
 /turf/open/floor/wood,
