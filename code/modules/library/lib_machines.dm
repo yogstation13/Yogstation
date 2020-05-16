@@ -49,7 +49,6 @@
 				dat += "<table>"
 				dat += "<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"
 
-				search_page = text2num(search_page)
 				var/datum/DBQuery/query_library_list_books = SSdbcore.NewQuery({"
 				SELECT author, title, category, id
 					FROM [format_table_name("library")]
