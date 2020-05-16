@@ -20,7 +20,6 @@
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message("<span class='warning'>[A] has attempted to [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] has attempted to [atk_verb] [D]!</span>", null, COMBAT_MESSAGE_RANGE)
-		add_logs(A, D, "attempted to hit", atk_verb)
 		return FALSE
 
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
@@ -32,7 +31,6 @@
 			"<span class='userdanger'>[A] has [atk_verb]ed [D]!</span>", null, COMBAT_MESSAGE_RANGE)
 
 	D.apply_damage(damage, BRUTE, affecting, armor_block)
-	add_logs(A, D, "punched (knifeboxing) ")
 	return TRUE
 
 /obj/item/clothing/gloves/knifeboxing
