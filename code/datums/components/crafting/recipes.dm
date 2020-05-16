@@ -47,7 +47,7 @@
 	category = CAT_WEAPONRY
 	always_availible = FALSE
 
-/datum/crafting_recipe/learned/fakespellbook
+/datum/crafting_recipe/fakespellbook
 	name = "fake spellbook"
 	result = /obj/item/storage/book/fake_spellbook
 	reqs = list(/obj/item/paper = 8)
