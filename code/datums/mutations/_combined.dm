@@ -32,3 +32,11 @@
 /datum/generecipe/antiglow
 	required = "/datum/mutation/human/glow; /datum/mutation/human/void"
 	result = ANTIGLOWY
+
+/datum/generecipe/tonguechem
+	required = "/datum/mutation/human/tongue_spike; /datum/mutation/human/stimmed"
+	result = TONGUESPIKECHEM
+
+/datum/generecipe/martyrdom
+	required = "/datum/mutation/human/strong; /datum/mutation/human/stimmed"
+	result = MARTYRDOM
