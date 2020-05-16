@@ -422,7 +422,7 @@
 	name = "robert lang's origami unveiled vol. 1"
 	desc = "The first book in a series that aims to thoroughly explain and teach origami to almost any individual who isn't braindead. Created by a genius from old Earth, it has been documented by Nanotrasen, who sometimes lends copies of the books to the crews of their space stations. "
 	crafting_recipe_types = list(/datum/crafting_recipe/paperhouse, /datum/crafting_recipe/fakespellbook, /datum/crafting_recipe/papersword, /datum/crafting_recipe//paperstar, /datum/crafting_recipe/papercuffs, /datum/crafting_recipe/paperid)
-	icon = 'hippiestation/icons/obj/library.dmi'
+	icon = 'icons/obj/library.dmi'
 	icon_state = "origamiv1"
 	oneuse = true
 	remarks = list("Orogami? Orgami? Oragami? Who spell-checked this book?","...and then what? Paper wizards?","Origami came from old Earth? Well I guess a lot of things did...","How did he get that from step 6?","...include paper cults? Am I reading the right book?","Inside reverse folds and outside reverse folds sure are complicated.","...Chinese culture...")
