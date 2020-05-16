@@ -280,7 +280,7 @@
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
   
- /obj/item/reagent_containers/food/snacks/meatclown
+/obj/item/reagent_containers/food/snacks/meatclown
 	name = "meat clown"
 	desc = "A delicious, round piece of meat clown. How horrifying."
 	icon_state = "meatclown"
