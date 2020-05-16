@@ -146,8 +146,8 @@
 	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
 	icon_state = "lasrifle"
 	item_state = "makeshiftlas"
-	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftlasrifle, /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak)
 	icon = 'hippiestation/icons/obj/guns/energy.dmi'
