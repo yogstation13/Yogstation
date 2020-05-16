@@ -526,8 +526,8 @@
 	if(healed)
 		if(prob(10))
 			to_chat(M, "<span class='notice'>Your wounds heal, granting you a new scar</span>")
-		if(scarcounter >= 200 && !HAS_TRAIT(M, TRAIT_DISFIGURED))
-			ADD_TRAIT(M, TRAIT_DISFIGURED, DISEASE_TRAIT)
+		if(scarcounter >= 200 && 
+			M.adjustCloneLoss(100)
 			M.visible_message("<span class='warning'>[M]'s face becomes unrecognizeable </span>", "<span class='userdanger'>Your scars have made your face unrecognizeable.</span>")
 	return healed
 
