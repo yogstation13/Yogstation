@@ -92,11 +92,11 @@
 		return 1
 	return 0
 
-/obj/item/implanter/mindshield/
+/obj/item/implanter/mindshield/tot/
 	name = "implanter (mindshield)"
 	imp_type = /obj/item/implant/mindshield/tot
 
-/obj/item/implantcase/mindshield/
+/obj/item/implantcase/mindshield/tot/
 	name = "implant case - 'Mindshield'"
 	desc = "A glass case containing a mindshield implant."
 	imp_type = /obj/item/implant/mindshield/tot
