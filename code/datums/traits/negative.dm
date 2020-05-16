@@ -625,12 +625,14 @@
 
 /datum/quirk/kleptomaniac/on_process()
 	var/mob/living/carbon/H = quirk_holder
-	if(prob(15))
+	if(prob(10))
 		var/obj/item/I = locate(/obj/item/) in oview(1, H)
-		if(I.anchored)
+		if(I.anchored || H.incapacitated() || !I.Adjacent(H))
 			return
-		if(H.incapacitated() || !Adjacent(H))
-			return
-		if(!I.anchored && H.get_active_held_item() == null)
-		to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
-		H.UnarmedAttack(I)
+		if(isliving(quirk_holder))
+			var/mob/living/L = quirk_holder
+			if(!(L.mobility_flags & MOBILITY_PICKUP))
+				return
+		if(H.get_active_held_item() == null)
+			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
+			H.UnarmedAttack(I)
