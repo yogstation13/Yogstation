@@ -38,36 +38,40 @@
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
 	
-/datum/crafting_recipe/learned/papersword
+/datum/crafting_recipe/papersword
 	name = "paper sword"
 	result = /obj/item/melee/paper_sword
 	reqs = list(/obj/item/paper = 3)
 	tools = list()
 	time = 40
+	category = CAT_WEAPONRY
 	always_availible = FALSE
 	
-/datum/crafting_recipe/learned/paperstar
+/datum/crafting_recipe/paperstar
 	name = "paper throwing star"
 	result = /obj/item/throwing_star/paper
 	reqs = list(/obj/item/paper = 1)
 	tools = list()
 	time = 10
+	category = CAT_WEAPONRY
 	always_availible = FALSE
 
-/datum/crafting_recipe/learned/papercuffs
+/datum/crafting_recipe/papercuffs
 	name = "paper handcuffs"
 	result = /obj/item/restraints/handcuffs/paper
 	reqs = list(/obj/item/paper = 2)
 	tools = list()
 	time = 15
+	category = CAT_MISC
 	always_availible = FALSE
 
-/datum/crafting_recipe/learned/paperid
+/datum/crafting_recipe/paperid
 	name = "paper identification card"
 	result = /obj/item/card/id/paper
 	reqs = list(/obj/item/paper = 3)
 	tools = list()
 	time = 100
+	category = CAT_MISC
 	always_availible = FALSE
 
 //Normal recipes
