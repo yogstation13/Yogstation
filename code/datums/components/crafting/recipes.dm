@@ -23,7 +23,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
-
+	
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
 	result = /obj/item/twohanded/spear
@@ -36,6 +36,38 @@
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	always_availible = FALSE
+	
+/datum/crafting_recipe/learned/papersword
+	name = "paper sword"
+	result = /obj/item/melee/paper_sword
+	reqs = list(/obj/item/paper = 3)
+	tools = list()
+	time = 40
+	always_availible = FALSE
+	
+/datum/crafting_recipe/learned/paperstar
+	name = "paper throwing star"
+	result = /obj/item/throwing_star/paper
+	reqs = list(/obj/item/paper = 1)
+	tools = list()
+	time = 10
+	always_availible = FALSE
+
+/datum/crafting_recipe/learned/papercuffs
+	name = "paper handcuffs"
+	result = /obj/item/restraints/handcuffs/paper
+	reqs = list(/obj/item/paper = 2)
+	tools = list()
+	time = 15
+	always_availible = FALSE
+
+/datum/crafting_recipe/learned/paperid
+	name = "paper identification card"
+	result = /obj/item/card/id/paper
+	reqs = list(/obj/item/paper = 3)
+	tools = list()
+	time = 100
 	always_availible = FALSE
 
 //Normal recipes
