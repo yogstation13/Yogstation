@@ -46,6 +46,14 @@
 	time = 40
 	category = CAT_WEAPONRY
 	always_availible = FALSE
+
+/datum/crafting_recipe/paperhouse
+	name = "paper house"
+	result = /obj/item/storage/paperhouse
+	reqs = list(/obj/item/paper = 5)
+	tools = list() //don't need tools in origami
+	time = 60
+	always_availible = FALSE
 	
 /datum/crafting_recipe/paperstar
 	name = "paper throwing star"
