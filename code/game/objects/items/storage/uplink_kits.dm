@@ -421,10 +421,10 @@
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
 	
-/obj/item/storage/box/syndie_kit/imp_mindshield
+/obj/item/storage/box/syndie_kit/mindshield/tot
 	name = "mindshield implant box"
 
-/obj/item/storage/box/syndie_kit/mindshield/totPopulateContents()
+/obj/item/storage/box/syndie_kit/mindshield/tot/PopulateContents()
 	new /obj/item/implanter/mindshield/tot(src)
 
 /obj/item/storage/box/syndie_kit/space
