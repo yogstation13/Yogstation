@@ -363,6 +363,7 @@
 
 /obj/item/storage/box/syndie_kit/origami_bundle/PopulateContents()
 	new /obj/item/book/granter/action/origami(src)
+	new /obj/item/book/granter/crafting_recipe/origami1(src)
 	for(var/i in 1 to 5)
 		new /obj/item/paper(src)
 
