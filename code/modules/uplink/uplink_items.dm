@@ -1589,7 +1589,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/mindshield
 	name = "Syndicate Brainwash Denial Implant"
 	desc = "An implant injected into the body, to deny brainwashing attempts."
-	item = /obj/item/storage/box/syndie_kit/mindshield/tot
+	item = /obj/item/storage/box/syndie_kit/imp_mindshield
 	cost = 2
 
 /datum/uplink_item/implants/xray
