@@ -619,8 +619,8 @@
 	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
 	value = -1
 	mob_trait = TRAIT_KLEPTOMANIAC
-	gain_text = "<span class='danger'>Bottomtext.</span>"
-	lose_text = "<span class='notice'>You no longer are allergic to medicine.</span>"
+	gain_text = "<span class='danger'>You have an unmistakeable urge to grab nearby objects.</span>"
+	lose_text = "<span class='notice'>You no feel the urge to steal.</span>"
 	medical_record_text = "Patient has an uncontrollable urge to steal."
 
 /datum/quirk/kleptomaniac/on_process()
