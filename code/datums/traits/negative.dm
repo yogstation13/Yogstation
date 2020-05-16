@@ -625,5 +625,12 @@
 
 /datum/quirk/kleptomaniac/on_process()
 	var/mob/living/carbon/H = quirk_holder
-	for(var/obj/item/I in oview(2, quirk_holder))
+	if(prob(15))
+		var/obj/item/I = locate(/obj/item/) in oview(1, H)
+		if(I.anchored)
+			return
+		if(H.incapacitated() || !Adjacent(H))
+			return
+		if(!I.anchored && H.get_active_held_item() == null)
 		to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
+		H.UnarmedAttack(I)
