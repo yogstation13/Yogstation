@@ -613,3 +613,17 @@
 		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
+
+/datum/quirk/kleptomaniac
+	name = "Kleptomaniac"
+	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
+	value = -1
+	mob_trait = TRAIT_KLEPTOMANIAC
+	gain_text = "<span class='danger'>Bottomtext.</span>"
+	lose_text = "<span class='notice'>You no longer are allergic to medicine.</span>"
+	medical_record_text = "Patient has an uncontrollable urge to steal."
+
+/datum/quirk/kleptomaniac/on_process()
+	var/mob/living/carbon/H = quirk_holder
+	for(var/obj/item/I in oview(2, quirk_holder))
+		to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
