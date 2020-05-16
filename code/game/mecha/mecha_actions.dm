@@ -191,7 +191,7 @@
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
-	if(equipment_disabled)
+	if(chassis.equipment_disabled)
 		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
