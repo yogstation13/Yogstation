@@ -47,7 +47,7 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/carp/ranged/wizard
-	faction = ("wizard")
+	faction = list("wizard")
 
 /mob/living/simple_animal/hostile/carp/ranged/wizard/sentience_act()
 	faction -= "wizard"

@@ -49891,6 +49891,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"cLH" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "cLZ" = (
 /obj/item/stack/ore/iron,
 /obj/effect/turf_decal/stripes/line{
@@ -52948,10 +52952,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"iRL" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "iSS" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -89231,7 +89231,7 @@ anw
 anz
 aov
 bON
-iRL
+cLH
 bLE
 ayZ
 bQG
