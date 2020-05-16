@@ -53,6 +53,7 @@
 	reqs = list(/obj/item/paper = 5)
 	tools = list() //don't need tools in origami
 	time = 60
+	category = CAT_MISC
 	always_availible = FALSE
 	
 /datum/crafting_recipe/paperstar
