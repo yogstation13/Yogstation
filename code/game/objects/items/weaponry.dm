@@ -721,8 +721,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "hippie_bbat_metal"
 	item_state = "hippie_bbat_metal"
-	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 
 /obj/item/melee/baseball_bat/spiked
 	name = "spiked baseball bat"
@@ -730,8 +730,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "hippie_bbat_spiked"
 	item_state = "hippie_bbat_spiked"
-	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 15 //for reference, normal bat has 10
 	throwforce = 15 // its got spikes sticking out of it - pre rebase comment :D
 	armour_penetration = 10
