@@ -625,7 +625,7 @@
 
 /datum/quirk/kleptomaniac/on_process()
 	var/mob/living/carbon/H = quirk_holder
-	if(prob(10))
+	if(prob(1))
 		var/obj/item/I = locate(/obj/item/) in oview(1, H)
 		if(I.anchored || H.incapacitated() || !I.Adjacent(H))
 			return
