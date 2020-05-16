@@ -76,9 +76,9 @@
 /obj/item/card/id/paper
 	name = "paper identification card"
 	desc = "An ID card made entirely out of a single sheet of paper! It is so masterfully and carefully folded that it seems to have maintenance access!"
-	icon = '/icons/obj/card.dmi'
+	icon = 'icons/obj/card.dmi'
 	icon_state = "paperid"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	resistance_flags = FLAMMABLE
 	access = list(ACCESS_MAINT_TUNNELS)
-  throw_speed = 0.5 
+	throw_speed = 0.5 
