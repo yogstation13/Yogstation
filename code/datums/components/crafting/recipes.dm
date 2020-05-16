@@ -759,3 +759,12 @@
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
 	category = CAT_MISC
+	
+/datum/crafting_recipe/knifeboxing
+	name = "Knife-boxing Gloves"
+	result = /obj/item/clothing/gloves/knifeboxing
+	reqs = list(/obj/item/clothing/gloves/boxing = 1,
+				/obj/item/kitchen/knife = 2)
+	time = 100
+	category = CAT_WEAPONRY
+
