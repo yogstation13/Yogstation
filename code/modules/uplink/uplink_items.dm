@@ -1586,6 +1586,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	restricted = TRUE
 
+/datum/uplink_item/implants/mindshield
+	name = "Syndicate Brainwash Denial Implant"
+	desc = "An implant injected into the body, to deny brainwashing attempts."
+	item = /obj/item/storage/box/syndie_kit/mindshield/tot
+	cost = 2
+
 /datum/uplink_item/implants/xray
 	name = "X-ray Vision Implant"
 	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
