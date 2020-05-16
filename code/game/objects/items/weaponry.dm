@@ -718,7 +718,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	
 /obj/item/melee/baseball_bat/ablative
 	desc = "A smooth metal club used in baseball to hit the ball. Or to purify your adversaries."
-	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "hippie_bbat_metal"
 	item_state = "hippie_bbat_metal"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -727,7 +727,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/melee/baseball_bat/spiked
 	name = "spiked baseball bat"
 	desc = "A wooden baseball bat with metal spikes crudely attached."
-	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "hippie_bbat_spiked"
 	item_state = "hippie_bbat_spiked"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
