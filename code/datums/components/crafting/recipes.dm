@@ -47,6 +47,15 @@
 	category = CAT_WEAPONRY
 	always_availible = FALSE
 
+/datum/crafting_recipe/learned/fakespellbook
+	name = "fake spellbook"
+	result = /obj/item/storage/book/fake_spellbook
+	reqs = list(/obj/item/paper = 8)
+	tools = list()
+	time = 70
+	category = CAT_MISC
+	always_availible = FALSE
+	
 /datum/crafting_recipe/paperhouse
 	name = "paper house"
 	result = /obj/item/storage/paperhouse
