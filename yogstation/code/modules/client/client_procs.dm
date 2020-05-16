@@ -9,6 +9,24 @@
 	query_logout.Execute(async = TRUE)
 	qdel(query_logout)
 
+/client/proc/sync_login_with_db()
+	if(!SSdbcore.Connect())
+		return
+
+	var/sql_ckey = sanitizeSQL(ckey)
+	var/sql_ip = sanitizeSQL(address)
+	var/sql_computerid = sanitizeSQL(computer_id)
+	var/serverip = "[world.internet_address]"
+
+	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
+	if(query_log_connection.Execute(async = TRUE))
+		qdel(query_log_connection)
+		var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
+		query_getid.Execute(async = TRUE)
+		if(query_getid.NextRow())
+			connection_number = query_getid.item[1]
+		qdel(query_getid)
+
 /client/proc/yogs_client_procs(href_list)
 	if(href_list["mentor_msg"])
 		if(href_list["mentor_discord_id"])
