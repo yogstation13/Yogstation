@@ -248,7 +248,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", INVESTIGATE_GRAVITY)
 			set_power()
 			. = TRUE
-			
+
 // Power and Icon States
 
 /obj/machinery/gravity_generator/main/power_change()
@@ -386,6 +386,11 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 		setting = value
 		shake_everyone()
 
+/obj/machinery/gravity_generator/main/CtrlClick(mob/user)
+	breaker = !breaker
+	investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", INVESTIGATE_GRAVITY)
+	set_power()
+
 // Misc
 
 /obj/item/paper/guides/jobs/engi/gravity_gen
@@ -402,3 +407,4 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	<li>Mend the damaged framework with a welding tool.</li>
 	<li>Add additional plasteel plating.</li>
 	<li>Secure the additional plating with a wrench.</li></ol>"}
+
