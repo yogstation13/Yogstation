@@ -438,7 +438,7 @@
 
 /obj/machinery/power/smes/CtrlClick(mob/user)
 	output_attempt = !output_attempt
-	log_smes(usr)
+	log_smes(user)
 	update_icon()
 
 #undef SMESRATE
