@@ -236,7 +236,7 @@
 				cell = null
 				. = TRUE
 
-/obj/machinery/space_heater/CtrlClick(mob/user)
+/obj/machinery/space_heater/AltClick(mob/user)
 	on = !on
 	mode = HEATER_MODE_STANDBY
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")

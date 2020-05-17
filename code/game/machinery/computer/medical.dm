@@ -601,7 +601,7 @@
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
 
-/obj/machinery/computer/med_data/CtrlClick(mob/user)
+/obj/machinery/computer/med_data/AltClick(mob/user)
 	if(src.scan)
 		user.put_in_hands(scan)
 		scan = null

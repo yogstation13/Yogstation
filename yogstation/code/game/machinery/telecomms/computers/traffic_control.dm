@@ -301,7 +301,7 @@
 		return 1
 	return 0
 
-/obj/machinery/computer/telecomms/traffic/CtrlClick(mob/user)
+/obj/machinery/computer/telecomms/traffic/AltClick(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(!auth)

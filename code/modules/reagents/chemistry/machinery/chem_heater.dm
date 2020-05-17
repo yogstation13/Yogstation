@@ -30,6 +30,7 @@
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)
 	on = !on
+	update_icon()
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))

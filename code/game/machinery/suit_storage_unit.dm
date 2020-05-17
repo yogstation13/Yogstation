@@ -470,4 +470,3 @@
 		open_machine(0)
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
-	. = TRUE

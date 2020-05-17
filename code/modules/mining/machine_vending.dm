@@ -245,7 +245,7 @@
 		qdel(src)
 
 
-/obj/machinery/mineral/equipment_vendor/CtrlClick(mob/user)
+/obj/machinery/mineral/equipment_vendor/AltClick(mob/user)
 	inserted_id.forceMove(loc)
 	inserted_id.verb_pickup()
 	inserted_id = null
