@@ -402,7 +402,7 @@
 				var/job = new_target.current.job
 				if (job == null)
 					job = "disgusting NEET"
-				to_chat(M.current, "<span class='cultlarge'>You will be given one more chance to serve by sacrificing the [new_target.current.job], [new_target].")
+				to_chat(M.current, "<span class='cultlarge'>You will be given one more chance to serve by sacrificing the [job], [new_target].")
 				to_chat(M.current, "<span class='narsiesmall'>Do not fail me again.</span>")
 
 			return TRUE
