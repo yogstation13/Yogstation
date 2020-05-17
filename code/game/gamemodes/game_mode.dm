@@ -292,10 +292,8 @@
 			intercepttext += G.get_report()
 
 	print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
-	priority_announce("A summary has been copied and printed to all communications consoles.", "Enemy communication intercepted. Security level elevated.", 'sound/ai/intercept.ogg')
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
-
+	priority_announce("A summary has been copied and printed to all communications consoles.", "Enemy communication intercepted.", 'sound/ai/intercept.ogg')
+	
 
 // This is a frequency selection system. You may imagine it like a raffle where each player can have some number of tickets. The more tickets you have the more likely you are to
 // "win". The default is 100 tickets. If no players use any extra tickets (earned with the antagonist rep system) calling this function should be equivalent to calling the normal
