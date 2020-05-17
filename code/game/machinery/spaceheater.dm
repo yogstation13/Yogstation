@@ -239,7 +239,7 @@
 /obj/machinery/space_heater/AltClick(mob/user)
 	on = !on
 	mode = HEATER_MODE_STANDBY
-	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
+	user.visible_message("[user] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
 	update_icon()
 	if (on)
 		START_PROCESSING(SSmachines, src)
