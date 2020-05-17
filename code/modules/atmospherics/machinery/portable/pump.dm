@@ -155,3 +155,9 @@
 				replace_tank(usr, FALSE)
 				. = TRUE
 	update_icon()
+
+/obj/machinery/portable_atmospherics/pump/CtrlClick(mob/user)
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		on = !on
+		update_icon()
+	return ..()

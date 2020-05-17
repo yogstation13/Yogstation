@@ -95,12 +95,6 @@
 		to_chat(user, "<span class='notice'>You remove [holding] from [src].</span>")
 		replace_tank(user, TRUE)
 
-/obj/machinery/portable_atmospherics/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		on = !on
-		update_icon()
-	return ..()
-
 /obj/machinery/portable_atmospherics/examine(mob/user)
 	. = ..()
 	if(holding)
