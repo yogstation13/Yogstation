@@ -21,7 +21,7 @@
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
 	req_access = list(ACCESS_TCOM_ADMIN)
-	
+
 /obj/machinery/computer/telecomms/traffic/Initialize(mapload)
 	. = ..()
 	GLOB.traffic_comps += src
@@ -300,3 +300,22 @@
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
+
+/obj/machinery/computer/telecomms/traffic/CtrlClick(mob/user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(!auth)
+			var/obj/item/card/id/I = C.get_active_held_item()
+			if(istype(I))
+				if(check_access(I))
+					if(!C.transferItemToLoc(I, src))
+						return
+					auth = I
+					create_log("has logged in.", user)
+		else
+			create_log("has logged out.", user)
+			auth.loc = src.loc
+			C.put_in_hands(auth)
+			auth = null
+		updateUsrDialog()
+		return
