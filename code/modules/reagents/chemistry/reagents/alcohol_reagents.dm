@@ -237,7 +237,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		. = 1
 	return ..() || .
 	
-/datum/reagent/consumable/ethanol/soybilk
+/datum/reagent/consumable/ethanol/bilk/soy
 	name = "Soy Bilk"
 	description = "This appears to be beer mixed with soy milk. Disgusting."
 	color = "#895C4C" // rgb: 137, 92, 76
@@ -247,12 +247,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "glass_brown"
 	glass_name = "glass of soy bilk"
 	glass_desc = "A brew of soy milk and beer. For those alcoholics who fear soy osteoporosis."
-
-/datum/reagent/consumable/ethanol/bilk/on_mob_life(mob/living/carbon/M)
-	if(M.getBruteLoss() && prob(10))
-		M.heal_bodypart_damage(1)
-		. = 1
-	return ..() || .
 
 /datum/reagent/consumable/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
