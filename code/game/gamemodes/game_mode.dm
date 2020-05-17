@@ -263,7 +263,7 @@
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
 
-/datum/game_mode/send_intercept()
+/datum/game_mode/proc/send_intercept()
 	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
 	if(station_goals.len)
 		intercepttext += "<b>Special Orders for [station_name()]:</b><br>"
