@@ -249,6 +249,7 @@
 	inserted_id.forceMove(loc)
 	inserted_id.verb_pickup()
 	inserted_id = null
+
 /****************Golem Point Vendor**************************/
 
 /obj/machinery/mineral/equipment_vendor/golem
