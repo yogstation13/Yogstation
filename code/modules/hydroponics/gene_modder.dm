@@ -443,3 +443,12 @@
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
 		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
 	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
+
+/obj/machinery/plantgenes/CtrlClick(mob/user)
+	var/obj/item/I = user.get_active_held_item()
+	eject_disk()
+	if(istype(I, /obj/item/disk/plantgene))
+		if(!user.transferItemToLoc(I, src))
+			return
+		disk = I
+		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
