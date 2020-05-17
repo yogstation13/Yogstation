@@ -15,8 +15,8 @@
 
 /datum/chemical_reaction/bilk
 	name = "Bilk"
-	id = /datum/reagent/consumable/ethanol/bilk
-	results = list(/datum/reagent/consumable/ethanol/bilk = 2)
+	id = /datum/reagent/consumable/ethanol/bilk/soy
+	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
 	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/ethanol/beer = 1)
 	
 /datum/chemical_reaction/bilk
