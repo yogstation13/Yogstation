@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Helios",
 	"House",
 	"Inverted",
+	"Malicious",
 	"Matrix",
 	"Monochrome",
 	"Murica",
