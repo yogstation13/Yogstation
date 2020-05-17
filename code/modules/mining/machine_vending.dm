@@ -225,7 +225,7 @@
 
   /*
    check_menu: Checks if we are allowed to interact with a radial menu
-  
+
    Arguments:
    redeemer The mob interacting with a menu
    voucher The mining voucher item
@@ -245,6 +245,10 @@
 		qdel(src)
 
 
+/obj/machinery/mineral/equipment_vendor/CtrlClick(mob/user)
+	inserted_id.forceMove(loc)
+	inserted_id.verb_pickup()
+	inserted_id = null
 /****************Golem Point Vendor**************************/
 
 /obj/machinery/mineral/equipment_vendor/golem
