@@ -192,7 +192,7 @@
 	desc = "A cactus fruit covered in a thick, reddish skin. And some ash."
 	icon_state = "cactus_fruit"
 	seed = /obj/item/seeds/lavaland/cactus
-	wine_power = 50
+	distill_reagent = /datum/reagent/consumable/ethanol/cactuscooler
 
 //SEEDS
 
