@@ -15,9 +15,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"ac" = (
-/turf/closed/wall,
-/area/crew_quarters/theatre)
 "ad" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -412,8 +409,7 @@
 	},
 /obj/item/kitchen/fork{
 	dir = 1;
-	icon_state = "fork";
-	pixel_x = 0
+	icon_state = "fork"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -527,8 +523,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -848,8 +843,7 @@
 /obj/machinery/reagentgrinder,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1115,7 +1109,7 @@ aB
 ag
 "}
 (4,1,1) = {"
-ac
+ag
 aj
 aB
 aT
@@ -1147,7 +1141,7 @@ aB
 bT
 "}
 (6,1,1) = {"
-ac
+ag
 aB
 aG
 aU
@@ -1163,7 +1157,7 @@ aB
 ag
 "}
 (7,1,1) = {"
-ac
+ag
 ap
 aH
 an

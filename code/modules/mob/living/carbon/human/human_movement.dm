@@ -31,9 +31,9 @@
 
 /mob/living/carbon/human/experience_pressure_difference(pressure_difference)
 	if(pressure_difference > 100)
-		playsound_local(null, 'sound/effects/space_wind_big.ogg', CLAMP(pressure_difference / 50, 10, 100), 1)
+		playsound_local(null, 'sound/effects/space_wind_big.ogg', clamp(pressure_difference / 50, 10, 100), 1)
 	else
-		playsound_local(null, 'sound/effects/space_wind.ogg', CLAMP(pressure_difference, 10, 100), 1)
+		playsound_local(null, 'sound/effects/space_wind.ogg', clamp(pressure_difference, 10, 100), 1)
 	if(shoes && istype(shoes, /obj/item/clothing))
 		var/obj/item/clothing/S = shoes
 		if((S.clothing_flags & NOSLIP))
@@ -77,6 +77,13 @@
 					update_inv_shoes()
 				//End bloody footprints
 				S.step_action()
+	if(wear_neck)
+		if(mobility_flags & MOBILITY_STAND)
+			if(loc == NewLoc)
+				if(!has_gravity(loc))
+					return
+				var/obj/item/clothing/neck/N = wear_neck
+				SEND_SIGNAL(N, COMSIG_NECK_STEP_ACTION)
 
 /mob/living/carbon/human/Process_Spacemove(movement_dir = 0) //Temporary laziness thing. Will change to handles by species reee.
 	if(dna.species.space_move(src))

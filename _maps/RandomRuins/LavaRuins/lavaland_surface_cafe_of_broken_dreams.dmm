@@ -461,7 +461,7 @@
 /area/ruin/powered)
 "bO" = (
 /obj/structure/table/wood/bar,
-/obj/item/cookiesynth,
+/obj/item/rsf/cookiesynth,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bP" = (
