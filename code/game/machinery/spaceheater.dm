@@ -236,6 +236,14 @@
 				cell = null
 				. = TRUE
 
+/obj/machinery/space_heater/CtrlClick(mob/user)
+	on = !on
+	mode = HEATER_MODE_STANDBY
+	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
+	update_icon()
+	if (on)
+		START_PROCESSING(SSmachines, src)
+
 #undef HEATER_MODE_STANDBY
 #undef HEATER_MODE_HEAT
 #undef HEATER_MODE_COOL
