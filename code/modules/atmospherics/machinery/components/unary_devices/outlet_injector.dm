@@ -185,6 +185,10 @@
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
 		return FALSE
 
+/obj/machinery/atmospherics/components/unary/outlet_injector/CtrlClick(mob/user)
+	on = !on
+	investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+
 // mapping
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/layer1
