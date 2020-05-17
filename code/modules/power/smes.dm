@@ -436,6 +436,10 @@
 	charge = INFINITY
 	..()
 
+/obj/machinery/power/smes/CtrlClick(mob/user)
+	output_attempt = !output_attempt
+	log_smes(usr)
+	update_icon()
 
 #undef SMESRATE
 
