@@ -154,8 +154,7 @@
 	else
 		return ..()
 
-/obj/machinery/portable_atmospherics/scrubber/CtrlClick(mob/user)
+/obj/machinery/portable_atmospherics/scrubber/CtrlShiftClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		on = !on
 		update_icon()
-	return ..()
