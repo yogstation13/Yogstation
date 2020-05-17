@@ -234,8 +234,8 @@
 	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
 	bloodstone_cooldown = TRUE
 	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 4200) //7 minutes
-	for(var/obj/structure/S in bloodstone_list)
-		qdel(S)
+	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+		qdel(B)
 		for(var/datum/mind/M in cult)
 			var/mob/living/cultist = M.current
 			if(!cultist)
