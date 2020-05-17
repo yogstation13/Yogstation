@@ -741,4 +741,4 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	user.changeNext_move(CLICK_CD_RAPID)
 	if(iscarbon(target))
 		var/mob/living/carbon/H = target
-		H.reagents.add_reagent(/datum/reagent/toxin/carpotoxin, 1)
+		H.reagents.add_reagent(/datum/reagent/toxin/carpotoxin, 1) // did this fix it?
