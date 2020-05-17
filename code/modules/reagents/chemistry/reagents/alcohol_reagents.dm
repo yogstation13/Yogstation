@@ -239,7 +239,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	
 /datum/reagent/consumable/ethanol/soybilk
 	name = "Soy Bilk"
-	description = "This appears to be beer mixed with milk. Disgusting."
+	description = "This appears to be beer mixed with soy milk. Disgusting."
 	color = "#895C4C" // rgb: 137, 92, 76
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	boozepwr = 15
