@@ -14,7 +14,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
-	weight = 5
+	weight = 1
 	cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	high_population_requirement = 10
@@ -52,7 +52,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 2
-	weight = 4
+	weight = 1
 	cost = 10
 	requirements = list(40,30,30,20,20,15,15,15,10,10)
 	high_population_requirement = 15
@@ -103,7 +103,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
-	weight = 3
+	weight = 1
 	cost = 30
 	requirements = list(80,70,60,50,40,20,20,10,10,10)
 	high_population_requirement = 10
@@ -151,7 +151,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
-	weight = 2
+	weight = 1
 	cost = 30
 	requirements = list(90,90,70,40,30,20,10,10,10,10)
 	high_population_requirement = 10
@@ -195,7 +195,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel")
 	required_candidates = 2
-	weight = 3
+	weight = 1
 	cost = 30
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	high_population_requirement = 10
@@ -253,7 +253,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a nukie getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 5
-	weight = 3
+	weight = 1
 	cost = 40
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	high_population_requirement = 10
@@ -341,7 +341,7 @@
 	minimum_required_age = 14
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	required_candidates = 3
-	weight = 2
+	weight = 1
 	delay = 7 MINUTES
 	cost = 35
 	requirements = list(101,101,70,40,30,20,10,10,10,10)
@@ -433,7 +433,7 @@
 	antag_datum = null
 	restricted_roles = list()
 	required_candidates = 0
-	weight = 3
+	weight = 1
 	cost = 0
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	high_population_requirement = 101
@@ -456,9 +456,9 @@
 	antag_datum = /datum/antagonist/clockcult
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel")
 	required_candidates = 4
-	weight = 3
+	weight = 1
 	cost = 0
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	requirements = list(100,90,80,60,60,30,10,10,10,10)
 	high_population_requirement = 101
 	flags = HIGHLANDER_RULESET
 	var/ark_time
@@ -583,7 +583,7 @@
 	antag_datum = /datum/antagonist/devil
 	restricted_roles = list("Lawyer", "Curator", "Chaplain", "Head of Security", "Captain", "AI")
 	required_candidates = 1
-	weight = 3
+	weight = 1
 	cost = 0
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	high_population_requirement = 101
@@ -640,7 +640,7 @@
 	antag_datum = /datum/antagonist/monkey/leader
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
-	weight = 3
+	weight = 1
 	cost = 0
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	high_population_requirement = 101
@@ -737,7 +737,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 2
-	weight = 3
+	weight = 1
 	cost = 30
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	high_population_requirement = 10
