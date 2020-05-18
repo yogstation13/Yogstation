@@ -8,7 +8,7 @@
 	give_equipment()
 	give_objective()
 
-	ADD_TRAIT(owner, TRAIT_CANNOT_OPEN_PRESENTS)
+	ADD_TRAIT(owner, TRAIT_CANNOT_OPEN_PRESENTS, TRAIT_GRINCH)
 	ADD_TRAIT(owner, TRAIT_PRESENT_VISION, TRAIT_GRINCH)
   
 /datum/antagonist/grinch/on_gain()(mob/living/carbon/C, datum/species/old_species)
