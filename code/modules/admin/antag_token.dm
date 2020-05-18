@@ -38,7 +38,7 @@
 			var/round_id = query_antag_token.item[7]
 			var/id = query_antag_token.item[8]
 
-			data += {"<div class='banbox'><div class='header [redeemed ? "banned" : "unbanned"]'>Antag Token for:<b>[ckey]</b> granted by <b>[applying_admin]</b> on
+			data += {"<div class='banbox'><div class='header [redeemed ? "banned" : "unbanned"]'>Antag Token for:<b> [ckey]</b> granted by <b>[applying_admin]</b> on
 			<b>[time]</b> during round<b> #[round_id]</b>
 			</div>"}
 			data += "<br>Token Reason: <br>[reason]"
