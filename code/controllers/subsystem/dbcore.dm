@@ -258,7 +258,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 		if (length(row) != len)
 			row.len = len
 		for (var/value in row)
-			if (value == null)
+			if (!value)
 				value = "NULL"
 		sqlrowlist += "([row.Join(", ")])"
 

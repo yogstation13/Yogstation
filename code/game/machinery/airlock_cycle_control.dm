@@ -695,7 +695,7 @@
 				vis_target = null
 		if("toggle_role")
 			var/vent = locate(params["vent_id"])
-			if(vent == null || vents[vent] == null)
+			if(!vent || !vents[vent])
 				return
 			var/curr_role = vents[vent]
 			var/role_to_toggle = text2num(params["val"]) & 15
@@ -705,19 +705,19 @@
 				vents[vent] = curr_role | role_to_toggle
 		if("set_airlock_role")
 			var/airlock = locate(params["airlock_id"])
-			if(airlock == null || airlocks[airlock] == null)
+			if(!airlock || !airlocks[airlock])
 				return
 			airlocks[airlock] = !!text2num(params["val"])
 		if("clear_vis")
 			vis_target = null
 		if("set_vis_vent")
 			var/vent = locate(params["vent_id"])
-			if(vent == null || vents[vent] == null)
+			if(!vent || !vents[vent])
 				return
 			vis_target = vent
 		if("set_vis_airlock")
 			var/airlock = locate(params["airlock_id"])
-			if(airlock == null || airlocks[airlock] == null)
+			if(!airlock || !airlocks[airlock])
 				return
 			vis_target = airlock
 		if("scan")
@@ -738,7 +738,7 @@
 
 /obj/machinery/advanced_airlock_controller/proc/request_from_door(airlock)
 	var/role = airlocks[airlock]
-	if(role == null)
+	if(!role)
 		return
 	cycle_to(role)
 

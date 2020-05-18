@@ -5,11 +5,11 @@
 BSQL_PROTECT_DATUM(/datum/BSQL_Connection)
 
 /datum/BSQL_Connection/New(connection_type, asyncTimeout, blockingTimeout, threadLimit)
-	if(asyncTimeout == null)
+	if(!asyncTimeout)
 		asyncTimeout = BSQL_DEFAULT_TIMEOUT
-	if(blockingTimeout == null)
+	if(!blockingTimeout)
 		blockingTimeout = asyncTimeout
-	if(threadLimit == null)
+	if(!threadLimit)
 		threadLimit = BSQL_DEFAULT_THREAD_LIMIT
 
 	src.connection_type = connection_type

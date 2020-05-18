@@ -58,7 +58,7 @@
 	if (!mat_container)
 		return
 
-	if(!O || O.refined_type == null)
+	if(!O || !O.refined_type)
 		return
 
 	ore_buffer -= O
@@ -187,7 +187,7 @@
 
 	var/obj/item/stack/ore/O = W
 	if(istype(O))
-		if(O.refined_type == null)
+		if(!O.refined_type)
 			to_chat(user, "<span class='notice'>[O] has already been refined!</span>")
 			return
 

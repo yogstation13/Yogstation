@@ -66,18 +66,18 @@ Nothing else in the console has ID requirements.
 		if(D.linked_console != null || D.disabled || D.panel_open)
 			continue
 		if(istype(D, /obj/machinery/rnd/destructive_analyzer))
-			if(linked_destroy == null)
+			if(!linked_destroy)
 				linked_destroy = D
 				D.linked_console = src
 		else if(istype(D, /obj/machinery/rnd/production/protolathe))
-			if(linked_lathe == null)
+			if(!linked_lathe)
 				var/obj/machinery/rnd/production/protolathe/P = D
 				if(!P.console_link)
 					continue
 				linked_lathe = D
 				D.linked_console = src
 		else if(istype(D, /obj/machinery/rnd/production/circuit_imprinter))
-			if(linked_imprinter == null)
+			if(!linked_imprinter)
 				var/obj/machinery/rnd/production/circuit_imprinter/C = D
 				if(!C.console_link)
 					continue

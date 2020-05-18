@@ -314,7 +314,7 @@
 
 /obj/item/spacepod_equipment/lock/keyed/Initialize()
 	. = ..()
-	if(id == null)
+	if(!id)
 		id = ++id_source
 
 
@@ -332,7 +332,7 @@
 /obj/item/spacepod_equipment/lock/keyed/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/spacepod_key))
 		var/obj/item/spacepod_key/key = I
-		if(key.id == null)
+		if(!key.id)
 			key.id = id
 			to_chat(user, "<span class='notice'>You grind the blank key to fit the lock.</span>")
 		else

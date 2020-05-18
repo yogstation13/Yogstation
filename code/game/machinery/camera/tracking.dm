@@ -89,7 +89,7 @@
 	var/cameraticks = 0
 	spawn(0)
 		while(U.cameraFollow == target)
-			if(U.cameraFollow == null)
+			if(!U.cameraFollow)
 				return
 
 			if(!target.can_track(usr))

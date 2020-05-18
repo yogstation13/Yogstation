@@ -177,7 +177,7 @@
 		mode = BOT_IDLE
 		return
 
-	if(prob(1) && target_fire == null)
+	if(prob(1) && !target_fire)
 		var/list/messagevoice = list("No fires detected." = 'sound/voice/firebot/nofires.ogg',
 		"Only you can prevent station fires." = 'sound/voice/firebot/onlyyou.ogg',
 		"Temperature nominal." = 'sound/voice/firebot/tempnominal.ogg',
@@ -199,7 +199,7 @@
 		if(extinguish_people)
 			target_fire = scan(/mob/living, old_target_fire, scan_range) // Scan for burning humans first
 
-		if(target_fire == null && extinguish_fires)
+		if(!target_fire && extinguish_fires)
 			target_fire = scan(/turf/open, old_target_fire, scan_range) // Scan for burning turfs second
 
 		old_target_fire = target_fire

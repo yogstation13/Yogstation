@@ -212,7 +212,7 @@
 			amount = text2num(input(
 				"Enter the amount you want to transfer:",
 				name, ""))
-		if (amount == null || amount <= 0)
+		if (!amount || amount <= 0)
 			return FALSE
 		if (to_container == "buffer")
 			beaker.reagents.trans_id_to(src, reagent, amount)
@@ -240,7 +240,7 @@
 		var/item_type = params["type"]
 		// Get amount of items
 		var/amount = text2num(params["amount"])
-		if(amount == null)
+		if(!amount)
 			amount = text2num(input(usr,
 				"Max 10. Buffer content will be split evenly.",
 				"How many to make?", 1))
@@ -265,7 +265,7 @@
 			return FALSE
 		if(vol_each_text == "auto")
 			vol_each = vol_each_max
-		if(vol_each == null)
+		if(!vol_each)
 			vol_each = text2num(input(usr,
 				"Maximum [vol_each_max] units per item.",
 				"How many units to fill?",

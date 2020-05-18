@@ -643,19 +643,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
-	if(devastation == null)
+	if(!devastation)
 		return
 	var/heavy = input("Range of heavy impact. -1 to none", text("Input"))  as num|null
-	if(heavy == null)
+	if(!heavy)
 		return
 	var/light = input("Range of light impact. -1 to none", text("Input"))  as num|null
-	if(light == null)
+	if(!light)
 		return
 	var/flash = input("Range of flash. -1 to none", text("Input"))  as num|null
-	if(flash == null)
+	if(!flash)
 		return
 	var/flames = input("Range of flames. -1 to none", text("Input"))  as num|null
-	if(flames == null)
+	if(!flames)
 		return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1) || (flames != -1))
@@ -679,10 +679,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
-	if(heavy == null)
+	if(!heavy)
 		return
 	var/light = input("Range of light pulse.", text("Input"))  as num|null
-	if(light == null)
+	if(!light)
 		return
 
 	if (heavy || light)

@@ -178,7 +178,7 @@ GLOBAL_PROTECT(protected_ranks)
 	//load ranks from backup file
 	if(dbfail)
 		var/backup_file = file2text("data/admins_backup.json")
-		if(backup_file == null)
+		if(!backup_file)
 			log_world("Unable to locate admins backup file.")
 			return FALSE
 		var/list/json = json_decode(backup_file)
@@ -250,7 +250,7 @@ GLOBAL_PROTECT(protected_ranks)
 				var/admin_ckey = ckey(query_load_admins.item[1])
 				var/admin_rank = ckeyEx(query_load_admins.item[2])
 				var/skip
-				if(rank_names[admin_rank] == null)
+				if(!rank_names[admin_rank])
 					message_admins("[admin_ckey] loaded with invalid admin rank [admin_rank].")
 					skip = 1
 				if(GLOB.admin_datums[admin_ckey] || GLOB.deadmins[admin_ckey])
@@ -265,7 +265,7 @@ GLOBAL_PROTECT(protected_ranks)
 				//already tried
 				return
 			var/backup_file = file2text("data/admins_backup.json")
-			if(backup_file == null)
+			if(!backup_file)
 				log_world("Unable to locate admins backup file.")
 				return
 			backup_file_json = json_decode(backup_file)

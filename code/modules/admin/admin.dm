@@ -512,7 +512,7 @@
 		return
 
 	var/new_admin_notice = input(src,"Set a public notice for this round. Everyone who joins the server will see it.\n(Leaving it blank will delete the current notice):","Set Notice",GLOB.admin_notice) as message|null
-	if(new_admin_notice == null)
+	if(!new_admin_notice)
 		return
 	if(new_admin_notice == GLOB.admin_notice)
 		return
@@ -765,7 +765,7 @@
 		else
 			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
 
-		if (S.laws == null)
+		if (!S.laws)
 			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.", confidential=TRUE)
 		else
 			S.laws.show_laws(usr)

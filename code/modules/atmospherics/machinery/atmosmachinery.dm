@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)
 
 	//Add identifiers for the iconset
-	if(GLOB.iconsetids[iconset] == null)
+	if(!GLOB.iconsetids[iconset])
 		GLOB.iconsetids[iconset] = num2text(GLOB.iconsetids.len + 1)
 
 	//Generate a unique identifier for this image combination

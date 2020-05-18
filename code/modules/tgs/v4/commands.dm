@@ -35,7 +35,7 @@
 	var/datum/tgs_chat_command/sc = custom_commands[command]
 	if(sc)
 		var/result = sc.Run(u, params)
-		if(result == null)
+		if(!result)
 			result = ""
 		return result
 	return "Unknown command: [command]!"

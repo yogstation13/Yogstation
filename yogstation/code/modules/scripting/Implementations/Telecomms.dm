@@ -286,7 +286,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 		if(params.len == 1) // Getting the value
 			return S.memory[address]
-		else if(value == null) // setting it to null? You must be trying to remove it! Since altoids added this fancy ass memory thing might as well
+		else if(!value) // setting it to null? You must be trying to remove it! Since altoids added this fancy ass memory thing might as well
 			S.memory -= address
 			return TRUE
 		else // Setting the value
@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		//hradio = new // sets the hradio as a radio intercom
 	if(!job)
 		job = "Unknown"
-	if(!freq || (!isnum(freq) && text2num(freq) == null))
+	if(!freq || (!isnum(freq) && !text2num(freq)))
 		freq = 1459
 	if(!isnum(freq))
 		freq = text2num(freq)

@@ -52,7 +52,7 @@
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
-	if(obj_integrity == null)
+	if(!obj_integrity)
 		obj_integrity = max_integrity
 	if (set_obj_flags)
 		var/flagslist = splittext(set_obj_flags,";")

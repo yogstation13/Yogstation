@@ -350,7 +350,7 @@
 
 /obj/machinery/porta_turret/process()
 	//the main machinery process
-	if(cover == null && anchored)	//if it has no cover and is anchored
+	if(!cover && anchored)	//if it has no cover and is anchored
 		if(stat & BROKEN)	//if the turret is borked
 			qdel(cover)	//delete its cover, assuming it has one. Workaround for a pesky little bug
 		else
@@ -831,7 +831,7 @@
 
 	if(control_area)
 		control_area = get_area_instance_from_text(control_area)
-		if(control_area == null)
+		if(!control_area)
 			control_area = get_area(src)
 			stack_trace("Bad control_area path for [src], [src.control_area]")
 	else if(!control_area)

@@ -233,11 +233,11 @@
 	data["stack_percent"] = round(sheet_left * 100, 0.1)
 
 	data["anchored"] = anchored
-	data["connected"] = (powernet == null ? 0 : 1)
+	data["connected"] = (!powernet ? 0 : 1)
 	data["ready_to_boot"] = anchored && HasFuel()
 	data["power_generated"] = DisplayPower(power_gen)
 	data["power_output"] = DisplayPower(power_gen * power_output)
-	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
+	data["power_available"] = (!powernet ? 0 : DisplayPower(avail()))
 	data["current_heat"] = current_heat
 	. =  data
 

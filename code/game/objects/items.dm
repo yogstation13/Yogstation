@@ -427,7 +427,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 
-	if(usr.get_active_held_item() == null) // Let me know if this has any problems -Yota
+	if(!usr.get_active_held_item()) // Let me know if this has any problems -Yota
 		usr.UnarmedAttack(src)
 
 //This proc is executed when someone clicks the on-screen UI button.

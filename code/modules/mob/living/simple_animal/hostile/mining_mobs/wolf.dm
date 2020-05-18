@@ -49,6 +49,6 @@
 
 /mob/living/simple_animal/hostile/asteroid/wolf/Life()
 	. = ..()
-	if(target == null)
+	if(!target)
 		adjustHealth(-maxHealth*0.025)
 		retreat_message_said = FALSE

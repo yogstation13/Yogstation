@@ -106,25 +106,25 @@
 		var/id = text2path(href_list["change_moles"])
 		if(GLOB.meta_gas_info[id])
 			var/new_moles = input(usr, "Enter a new mole count for [GLOB.meta_gas_info[id][META_GAS_NAME]]", name) as null|num
-			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_moles == null)
+			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || !new_moles)
 				return
 			mix.set_moles(id, new_moles)
 	if(href_list["change_pressure"])
 		var/id = text2path(href_list["change_pressure"])
 		if(GLOB.meta_gas_info[id])
 			var/new_pressure = input(usr, "Enter a new pressure for [GLOB.meta_gas_info[id][META_GAS_NAME]]", name) as null|num
-			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_pressure == null)
+			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || !new_pressure)
 				return
 			mix.set_moles(id, new_pressure / R_IDEAL_GAS_EQUATION / mix.return_temperature() * mix.return_volume())
 	if(href_list["change_volume"])
 		var/volume_type = input(usr, "Select a container type", name) as null|anything in list("Custom", "Floor Tile", "Canister", "Portable Tank")
-		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || volume_type == null)
+		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || !volume_type)
 			return
 		var/desired_volume
 		switch(volume_type)
 			if("Custom")
 				desired_volume = input(usr, "Enter a new volume", name) as null|num
-				if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || desired_volume == null)
+				if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || !desired_volume)
 					return
 			if("Floor Tile")
 				desired_volume = CELL_VOLUME
@@ -135,7 +135,7 @@
 		mix.set_volume(desired_volume)
 	if(href_list["change_temperature"])
 		var/new_temp = input(usr, "Enter a new temperature (0 degrees C = [T0C] K)", name) as null|num
-		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_temp == null)
+		if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || !new_temp)
 			return
 		new_temp = max(TCMB, new_temp)
 		var/temp_ratio = mix.return_temperature() / new_temp

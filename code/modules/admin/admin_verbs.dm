@@ -505,16 +505,16 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			explosion(epicenter, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 		if("Custom Bomb")
 			var/devastation_range = input("Devastation range (in tiles):") as null|num
-			if(devastation_range == null)
+			if(!devastation_range)
 				return
 			var/heavy_impact_range = input("Heavy impact range (in tiles):") as null|num
-			if(heavy_impact_range == null)
+			if(!heavy_impact_range)
 				return
 			var/light_impact_range = input("Light impact range (in tiles):") as null|num
-			if(light_impact_range == null)
+			if(!light_impact_range)
 				return
 			var/flash_range = input("Flash range (in tiles):") as null|num
-			if(flash_range == null)
+			if(!flash_range)
 				return
 			if(devastation_range > GLOB.MAX_EX_DEVESTATION_RANGE || heavy_impact_range > GLOB.MAX_EX_HEAVY_RANGE || light_impact_range > GLOB.MAX_EX_LIGHT_RANGE || flash_range > GLOB.MAX_EX_FLASH_RANGE)
 				if(alert("Bomb is bigger than the maxcap. Continue?",,"Yes","No") != "Yes")

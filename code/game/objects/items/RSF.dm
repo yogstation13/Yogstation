@@ -68,7 +68,7 @@ RSF
 	//Warning, prepare for bodgecode
 	while(islist(target))//While target is a list we continue the loop
 		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
-		if(!check_menu(user) || picked == null)
+		if(!check_menu(user) || !picked)
 			return
 		for(var/emem in target)//Back through target agian
 			var/atom/test = OBJECT_OR_LIST_ELEMENT(target, emem)

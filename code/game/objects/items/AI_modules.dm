@@ -232,7 +232,7 @@ AI MODULES
 
 /obj/item/aiModule/supplied/freeform/attack_self(mob/user)
 	var/newpos = input("Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority (15+)", lawpos) as num|null
-	if(newpos == null)
+	if(!newpos)
 		return
 	if(newpos < 15)
 		var/response = alert("Error: The law priority of [newpos] is invalid,  Law priorities below 14 are reserved for core laws,  Would you like to change that that to 15?", "Invalid law priority", "Change to 15", "Cancel")
@@ -267,7 +267,7 @@ AI MODULES
 
 /obj/item/aiModule/remove/attack_self(mob/user)
 	lawpos = input("Please enter the law you want to delete.", "Law Number", lawpos) as num|null
-	if(lawpos == null)
+	if(!lawpos)
 		return
 	if(lawpos <= 0)
 		to_chat(user, "<span class='warning'>Error: The law number of [lawpos] is invalid.</span>")

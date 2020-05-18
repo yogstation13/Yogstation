@@ -185,7 +185,7 @@
 		for(var/obj/item/I in src)
 			tools_map[initial(I.name)] = I.type
 		var/tool_type = input(usr, "Select a tool", name) as null|anything in tools_map
-		if(!src || !usr || !usr.canUseTopic(src) || QDELETED(src) || tool_type == null || !current_program || !current_program.can_edit)
+		if(!src || !usr || !usr.canUseTopic(src) || QDELETED(src) || !tool_type || !current_program || !current_program.can_edit)
 			return
 		current_program.tools_list += tools_map[tool_type]
 	if(href_list["remove_tool"])

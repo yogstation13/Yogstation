@@ -249,7 +249,7 @@ RLD
 	else
 		var/req = text2num(acc)
 
-		if (conf_access == null)
+		if (!conf_access)
 			conf_access = list()
 
 		if (!(req in conf_access))

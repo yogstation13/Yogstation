@@ -96,37 +96,37 @@ GLOBAL_PROTECT(VVpixelmovement)
 	switch(.["class"])
 		if (VV_TEXT)
 			.["value"] = input("Enter new text:", "Text", current_value) as null|text
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 		if (VV_MESSAGE)
 			.["value"] = input("Enter new text:", "Text", current_value) as null|message
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 
 		if (VV_NUM)
 			.["value"] = input("Enter new number:", "Num", current_value) as null|num
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 		if (VV_BITFIELD)
 			.["value"] = input_bitfield(usr, "Editing bitfield: [var_name]", var_name, current_value)
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 		if (VV_ATOM_TYPE)
 			.["value"] = pick_closest_path(FALSE)
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 		if (VV_DATUM_TYPE)
 			.["value"] = pick_closest_path(FALSE, get_fancy_list_of_datum_types())
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
@@ -149,7 +149,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if (VV_ATOM_REFERENCE)
 			var/type = pick_closest_path(FALSE)
 			var/subtypes = vv_subtype_prompt(type)
-			if (subtypes == null)
+			if (!subtypes)
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
@@ -162,7 +162,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if (VV_DATUM_REFERENCE)
 			var/type = pick_closest_path(FALSE, get_fancy_list_of_datum_types())
 			var/subtypes = vv_subtype_prompt(type)
-			if (subtypes == null)
+			if (!subtypes)
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
@@ -175,7 +175,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if (VV_MOB_REFERENCE)
 			var/type = pick_closest_path(FALSE, make_types_fancy(typesof(/mob)))
 			var/subtypes = vv_subtype_prompt(type)
-			if (subtypes == null)
+			if (!subtypes)
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
@@ -189,28 +189,28 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		if (VV_CLIENT)
 			.["value"] = input("Select reference:", "Reference", current_value) as null|anything in GLOB.clients
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 
 		if (VV_FILE)
 			.["value"] = input("Pick file:", "File") as null|file
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 
 		if (VV_ICON)
 			.["value"] = input("Pick icon:", "Icon") as null|icon
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
 
 		if (VV_MARKED_DATUM)
 			.["value"] = holder.marked_datum
-			if (.["value"] == null)
+			if (!.["value"])
 				.["class"] = null
 				return
 
@@ -380,13 +380,13 @@ GLOBAL_PROTECT(VVpixelmovement)
 		var/value
 		if (IS_NORMAL_LIST(L) && !isnum(key))
 			value = L[key]
-		if (value == null)
+		if (!value)
 			value = "null"
 		names["#[i] [key] = [value]"] = i
 	if (!index)
 		var/variable = input("Which var?","Var") as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)"
 
-		if(variable == null)
+		if(!variable)
 			return
 
 		if(variable == "(ADD VAR)")
@@ -428,7 +428,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 	var/assoc_key
-	if (index == null)
+	if (!index)
 		return
 	var/assoc = 0
 	var/prompt = alert(src, "Do you want to edit the key or its assigned value?", "Associated List", "Key", "Assigned Value", "Cancel")

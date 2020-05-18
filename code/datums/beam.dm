@@ -66,7 +66,7 @@
 	timing_id = addtimer(CALLBACK(src, .proc/recalculate), time, TIMER_STOPPABLE)
 
 /datum/beam/proc/after_calculate()
-	if((sleep_time == null) || finished)	//Does not automatically recalculate.
+	if((!sleep_time) || finished)	//Does not automatically recalculate.
 		return
 	if(isnull(timing_id))
 		timing_id = addtimer(CALLBACK(src, .proc/recalculate), sleep_time, TIMER_STOPPABLE)

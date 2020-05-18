@@ -504,7 +504,7 @@
 		if(iscarbon(owner))
 			var/mob/living/carbon/itemUser = owner
 			var/obj/item/heldItem = itemUser.get_item_for_held_index(hand)
-			if(heldItem == null || heldItem.type != /obj/item/rod_of_asclepius) //Checks to make sure the rod is still in their hand
+			if(!heldItem || heldItem.type != /obj/item/rod_of_asclepius) //Checks to make sure the rod is still in their hand
 				var/obj/item/rod_of_asclepius/newRod = new(itemUser.loc)
 				newRod.activated()
 				if(!itemUser.has_hand_for_held_index(hand))

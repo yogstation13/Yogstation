@@ -48,11 +48,11 @@
 
 //returns a list(x0,y0, x1,y1) where points 0 and 1 are bounding corners of the projected rectangle
 /obj/docking_port/proc/return_coords(_x, _y, _dir)
-	if(_dir == null)
+	if(!_dir)
 		_dir = dir
-	if(_x == null)
+	if(!_x)
 		_x = x
-	if(_y == null)
+	if(!_y)
 		_y = y
 
 	//byond's sin and cos functions are inaccurate. This is faster and perfectly accurate

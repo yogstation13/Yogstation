@@ -442,7 +442,7 @@
 	..()
 
 /datum/action/innate/seek_prey/Activate()
-	if(GLOB.cult_narsie == null)
+	if(!GLOB.cult_narsie)
 		return
 	if(the_construct.seeking)
 		desc = "None can hide from Nar'Sie, activate to track a survivor attempting to flee the red harvest!"

@@ -63,7 +63,7 @@
 	disguise = entry
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/ActivateStealth()
-	if(disguise == null)
+	if(!disguise)
 		return
 	stealth_active = 1
 	if(ishuman(loc))

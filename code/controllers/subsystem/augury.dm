@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(augury)
 			doombringers -= d
 			continue
 		var/threat = doombringers[d]
-		if((biggest_threat == null) || (biggest_threat < threat))
+		if((!biggest_threat) || (biggest_threat < threat))
 			biggest_doom = d
 			biggest_threat = threat
 

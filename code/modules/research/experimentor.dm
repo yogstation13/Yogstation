@@ -412,7 +412,7 @@
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 			if(removed)
 				var/heat_capacity = removed.heat_capacity()
-				if(heat_capacity == 0 || heat_capacity == null)
+				if(heat_capacity == 0 || !heat_capacity)
 					heat_capacity = 1
 				removed.set_temperature(min((removed.return_temperature()*heat_capacity + 100000)/heat_capacity, 1000))
 			env.merge(removed)
@@ -462,7 +462,7 @@
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 			if(removed)
 				var/heat_capacity = removed.heat_capacity()
-				if(heat_capacity == 0 || heat_capacity == null)
+				if(heat_capacity == 0 || !heat_capacity)
 					heat_capacity = 1
 				removed.set_temperature((removed.return_temperature()*heat_capacity - 75000)/heat_capacity)
 			env.merge(removed)

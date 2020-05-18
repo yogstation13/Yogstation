@@ -251,7 +251,7 @@
 		if(!src.area)
 			src.area = A
 			stack_trace("Bad areastring path for [src], [src.areastring]")
-	else if(isarea(A) && src.areastring == null)
+	else if(isarea(A) && !src.areastring)
 		src.area = A
 	update_icon()
 

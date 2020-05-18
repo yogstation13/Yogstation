@@ -94,7 +94,7 @@
 				minval = input("Set minimum rating value.","Minimum rating") as num|null
 				if(minval)
 					minval = sanitizeSQL(minval)
-				else if(minval == null)
+				else if(!minval)
 					return
 				maxval = input("Set maximum rating value.","Maximum rating") as num|null
 				if(maxval)
@@ -102,22 +102,22 @@
 				if(minval >= maxval)
 					to_chat(src, "Maximum rating value can't be less than or equal to minimum rating value", confidential=TRUE)
 					continue
-				else if(maxval == null)
+				else if(!maxval)
 					return
 				descmin = input("Optional: Set description for minimum rating","Minimum rating description") as message|null
 				if(descmin)
 					descmin = sanitizeSQL(descmin)
-				else if(descmin == null)
+				else if(!descmin)
 					return
 				descmid = input("Optional: Set description for median rating","Median rating description") as message|null
 				if(descmid)
 					descmid = sanitizeSQL(descmid)
-				else if(descmid == null)
+				else if(!descmid)
 					return
 				descmax = input("Optional: Set description for maximum rating","Maximum rating description") as message|null
 				if(descmax)
 					descmax = sanitizeSQL(descmax)
-				else if(descmax == null)
+				else if(!descmax)
 					return
 			sql_option_list += list(list("text" = "'[option]'", "minval" = "'[minval]'", "maxval" = "'[maxval]'", "descmin" = "'[descmin]'", "descmid" = "'[descmid]'", "descmax" = "'[descmax]'", "default_percentage_calc" = "'[default_percentage_calc]'"))
 			switch(alert(" ",,"Add option","Finish", "Cancel"))

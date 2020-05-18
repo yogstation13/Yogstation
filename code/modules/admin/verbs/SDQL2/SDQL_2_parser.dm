@@ -381,7 +381,7 @@
 		return parse_error("Expected type, but it didn't begin with /")
 
 	var/path = text2path(token(i))
-	if (path == null)
+	if (!path)
 		return parse_error("Nonexistant type path: [token(i)]")
 
 	node += path
@@ -442,7 +442,7 @@
 		do
 			tok = token(i)
 			if (tok == "," || tok == ":")
-				if (temp_expression_list == null)
+				if (!temp_expression_list)
 					parse_error("Found ',' or ':' without expression in an array.")
 					return i + 1
 

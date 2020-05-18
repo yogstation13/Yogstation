@@ -174,7 +174,7 @@
 				to_chat(user, "<span class='userdanger'>Capture failed!</span>: The soulstone is full! Free an existing soul to make room.")
 			else
 				if((!old_shard && T.stat != CONSCIOUS) || (old_shard && T.stat == DEAD))
-					if(T.client == null)
+					if(!T.client)
 						to_chat(user, "<span class='userdanger'>Capture failed!</span>: The soul has already fled its mortal frame. You attempt to bring it back...")
 						getCultGhost(T,user)
 					else

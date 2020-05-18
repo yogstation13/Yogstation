@@ -251,7 +251,7 @@ obj/structure/elite_tumor/proc/return_elite()
 
 /obj/structure/elite_tumor/proc/arena_trap()
 	var/turf/T = get_turf(src)
-	if(loc == null)
+	if(!loc)
 		return
 	for(var/t in RANGE_TURFS(12, T))
 		if(get_dist(t, T) == 12)

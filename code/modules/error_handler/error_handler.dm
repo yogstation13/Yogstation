@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	var/last_seen = error_last_seen[erroruid]
 	var/cooldown = error_cooldown[erroruid] || 0
 
-	if(last_seen == null)
+	if(!last_seen)
 		error_last_seen[erroruid] = world.time
 		last_seen = world.time
 

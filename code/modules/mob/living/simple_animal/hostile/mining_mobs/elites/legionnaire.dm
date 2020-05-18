@@ -173,7 +173,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/bonfire_teleport()
 	ranged_cooldown = world.time + 5
-	if(mypile == null)
+	if(!mypile)
 		var/obj/structure/legionnaire_bonfire/newpile = new /obj/structure/legionnaire_bonfire(loc)
 		mypile = newpile
 		mypile.myowner = src

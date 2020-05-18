@@ -43,7 +43,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/polarbear/Life()
 	. = ..()
-	if(target == null)
+	if(!target)
 		adjustHealth(-maxHealth*0.025)
 		aggressive_message_said = FALSE
 

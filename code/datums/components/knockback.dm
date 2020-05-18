@@ -32,7 +32,7 @@
 	do_knockback(target, null, angle2dir(Angle))
 
 /datum/component/knockback/proc/do_knockback(atom/target, mob/thrower, throw_dir)
-	if(!ismovable(target) || throw_dir == null)
+	if(!ismovable(target) || !throw_dir)
 		return
 	var/atom/movable/throwee = target
 	if(throwee.anchored && !throw_anchored)

@@ -174,7 +174,7 @@
 	if(forced || can_put_in_hand(I, hand_index))
 		if(isturf(I.loc) && !ignore_anim)
 			I.do_pickup_animation(src)
-		if(hand_index == null)
+		if(!hand_index)
 			return FALSE
 		if(get_item_for_held_index(hand_index) != null)
 			dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)

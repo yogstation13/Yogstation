@@ -736,7 +736,7 @@
 	if(hud_used.healths)
 		if(stat != DEAD)
 			. = 1
-			if(shown_health_amount == null)
+			if(!shown_health_amount)
 				shown_health_amount = health
 			if(shown_health_amount >= maxHealth)
 				hud_used.healths.icon_state = "health0"

@@ -259,7 +259,7 @@ SUBSYSTEM_DEF(demo)
 
 // please make sure the order you call this function in is the same as the order you write
 /datum/controller/subsystem/demo/proc/encode_appearance(image/appearance, image/diff_appearance, diff_remove_overlays = FALSE)
-	if(appearance == null)
+	if(!appearance)
 		return "n"
 	if(appearance == diff_appearance)
 		return "="

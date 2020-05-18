@@ -126,7 +126,7 @@
 				current_tube = tube
 				break
 
-		if(current_tube == null)
+		if(!current_tube)
 			setDir(next_dir)
 			Move(get_step(loc, dir), dir, DELAY_TO_GLIDE_SIZE(exit_delay)) // Allow collisions when leaving the tubes.
 			break
