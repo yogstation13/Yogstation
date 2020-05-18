@@ -47,18 +47,6 @@ BONUS
 	transmittable = 3
 	level = 3
 
-//////////////////////////////////////
-Viral aggressive metabolism
-	Reduced stealth.
-	Small resistance boost.
-	Increased stage speed.
-	Small transmittablity boost.
-	Medium Level.
-Bonus
-	The virus starts at stage 5, but after a certain time will start curing itself.
-	Stages still increase naturally with stage speed.
-//////////////////////////////////////
-
 /datum/symptom/viralreverse		//Hippie change, brought back cause tg is dumb
 	name = "Viral aggressive metabolism"
 	desc = "The virus sacrifices its long term survivability to nearly instantly fully spread inside a host. \
