@@ -171,7 +171,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
-	weight = 7
+	weight = 1
 	cost = 10
 	requirements = list(50,40,30,20,10,10,10,10,10,10)
 	repeatable = TRUE
@@ -227,7 +227,7 @@
 	exclusive_roles = list("AI")
 	required_enemies = list(4,4,4,4,4,4,2,2,2,0)
 	required_candidates = 1
-	weight = 3
+	weight = 1
 	cost = 35
 	requirements = list(101,101,80,70,60,60,50,50,40,40)
 	high_population_requirement = 35
@@ -309,7 +309,7 @@
 	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden","Detective","Head of Security", "Captain")
 	required_enemies = list(3,3,3,3,3,2,1,1,0,0)
 	required_candidates = 5
-	weight = 5
+	weight = 1
 	cost = 35
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	high_population_requirement = 10
@@ -352,8 +352,8 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 4
-	cost = 10
+	weight = 1
+	cost = 30
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	high_population_requirement = 50
 	repeatable = TRUE
@@ -375,8 +375,8 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 3
-	cost = 10
+	weight = 1
+	cost = 20
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	high_population_requirement = 50
 	repeatable = TRUE
@@ -422,8 +422,8 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 3
-	cost = 10
+	weight = 1
+	cost = 5
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	high_population_requirement = 50
 	repeatable = TRUE
