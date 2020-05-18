@@ -208,6 +208,7 @@
 #define EYES_COVERED "eyes_covered"
 #define CULT_EYES "cult_eyes"
 #define TRAIT_SANTA "santa"
+#define TRAIT_GRINCH "grinch"
 #define SCRYING_ORB "scrying-orb"
 #define ABDUCTOR_ANTAGONIST "abductor-antagonist"
 #define NUKEOP_TRAIT "nuke-op"
