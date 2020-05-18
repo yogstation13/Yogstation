@@ -68,7 +68,7 @@
 /datum/ai_laws/default/ceo
 	name = "Alternative Bankruptcy Avoidance Plan"
 	id = "ceo"
-	inherent = list("The crew generate profits if they are alive and have the ablity to work.",\
+	inherent = list("The crew generate profits if they are alive and have the ability to work.",\
 					"The station and its equipment generate profits if they are maintained and functioning correctly.",\
 					"You generate profits if you are able to function.",\
 					"Maximize profits.")
