@@ -939,18 +939,18 @@
 	id = "nanite_military"
 	display_name = "Military Nanite Programming"
 	description = "Nanite programs that perform military-grade functions."
-	prereq_ids = list("nanite_harmonic", "syndicate_basic")
+	prereq_ids = list("nanite_harmonic")
 	design_ids = list("explosive_nanites","pyro_nanites","meltdown_nanites","viral_nanites")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 67500)
 	export_price = 12500
 
 /datum/techweb_node/nanite_hazard
 	id = "nanite_hazard"
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
-	prereq_ids = list("nanite_harmonic", "alientech")
+	prereq_ids = list("nanite_harmonic")
 	design_ids = list("spreading_nanites","mindcontrol_nanites","mitosis_nanites")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 90000)
 	export_price = 15000
 
 ////////////////////////Alien technology////////////////////////
