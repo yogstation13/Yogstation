@@ -248,24 +248,12 @@
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
 	name = "Strength"
-	desc = "The user's muscles slightly expand, allowing them to move heavy objects easily."
+	desc = "The user's muscles slightly expand"
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>You feel strong!</span>"
 	text_lose_indication = "<span class='notice'>You feel fairly weak.</span>"
 	difficulty = 12
 	instability = 10
-
-/datum/mutation/human/strong/on_acquiring(mob/living/carbon/human/owner)
-	. = ..()
-	ADD_TRAIT(owner, TRAIT_NOT_SLOWEDBYDRAG, "genetics") // Don't get slowed by dragging lockers or mobs
-
-/datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
-	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_NOT_SLOWEDBYDRAG, "genetics")
-
-//Stimmed make you do the toxing purge dance
- #define STIMMED_PURGE_AMOUNT 0.25
-
 
 /datum/mutation/human/insulated
 	name = "Insulated"
