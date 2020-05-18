@@ -375,3 +375,23 @@
 			owner.SetStun(owner.AmountStun()*2)
 			owner.visible_message("<span class='danger'>[owner] tries to stand up, but trips!</span>", "<span class='userdanger'>You trip over your own feet!</span>")
 			stun_cooldown = world.time + 300
+
+/datum/mutation/human/calcification
+	name = "Calcification" //thanks gamer for the name
+	desc = "The affected person seems to be effected much more by calcium products"
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>Your start to thirst for calcium.</span>"
+	text_lose_indication = "<span class='notice'>You are no longer thirsting for calcium</span>"
+	locked = TRUE
+	difficulty = 16
+	instability = 25
+	
+/datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	ADD_TRAIT(owner, TRAIT_CALCIUM_HEALER, "genetics")
+
+/datum/mutation/human/insulated/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	REMOVE_TRAIT(owner, TRAIT_CALCIUM_HEALER, "genetics")
