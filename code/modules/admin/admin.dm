@@ -115,6 +115,11 @@
 	body += "<A href='?_src_=holder;[HrefToken()];subtlemessage=[REF(M)]'>Subtle message</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];languagemenu=[REF(M)]'>Language Menu</A>"
 
+	body += "<br><br>"
+	body += "<A href='?_src_=holder;[HrefToken()];antag_token_give=[M.ckey]'>Give Antag Token</A> | "
+	body += "<A href='?_src_=holder;[HrefToken()];antag_token_redeem=[M.ckey]'>Redeem Antag Token</A> | "
+	body += "<A href='?_src_=holder;[HrefToken()];searchAntagTokenByKey=[M.ckey]'>See Antag Tokens</A>"
+
 	if (M.client)
 		if(!isnewplayer(M))
 			body += "<br><br>"
