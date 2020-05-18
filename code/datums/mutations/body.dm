@@ -386,12 +386,12 @@
 	difficulty = 16
 	instability = 25
 	
-/datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
+/datum/mutation/human/calcification/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
 	ADD_TRAIT(owner, TRAIT_CALCIUM_HEALER, "genetics")
 
-/datum/mutation/human/insulated/on_losing(mob/living/carbon/human/owner)
+/datum/mutation/human/calcification/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	REMOVE_TRAIT(owner, TRAIT_CALCIUM_HEALER, "genetics")
