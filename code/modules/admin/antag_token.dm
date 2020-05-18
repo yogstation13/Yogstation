@@ -41,7 +41,7 @@
 			data += {"<div class='banbox'><div class='header [redeemed ? "banned" : "unbanned"]'>Antag Token for:<b> [ckey]</b> granted by <b>[applying_admin]</b> on
 			<b>[time]</b> during round<b> #[round_id]</b>
 			</div>"}
-			data += "<br>Token Reason: <br>[reason]"
+			data += "<br><b>Token Reason:</b> <br>[reason]"
 
 			if(denial_reason)
 				data += "<br>Denied by <b>[denying_admin]</b> for '[denial_reason]'"
