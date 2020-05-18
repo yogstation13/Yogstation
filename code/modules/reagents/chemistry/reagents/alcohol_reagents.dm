@@ -2104,7 +2104,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of cactus cooler"
 	glass_desc = "The byproduct of fermenting a cactus. For those wanting a refreshing drink in a barren wasteland"
 
-/datum/reagent/consumable/ethanol/bilk/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/ethanol/cactuscooler/on_mob_life(mob/living/carbon/M)
 	if((M.getFireLoss() && prob(10))
 		M.heal_bodypart_damage(1)
 		. = 1
