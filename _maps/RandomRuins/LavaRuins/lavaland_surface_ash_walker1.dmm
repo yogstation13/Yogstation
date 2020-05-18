@@ -188,18 +188,6 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
-"aE" = (
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/lizard,
-/obj/item/reagent_containers/blood/lizard,
-/obj/item/stack/sheet/cloth/ten,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "aF" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -270,8 +258,8 @@
 /area/ruin/unpowered/ash_walkers)
 "aO" = (
 /obj/structure/stone_tile/surrounding/cracked{
-	icon_state = "cracked_surrounding1";
-	dir = 1
+	dir = 1;
+	icon_state = "cracked_surrounding1"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -991,8 +979,8 @@
 /area/ruin/unpowered/ash_walkers)
 "cA" = (
 /obj/structure/stone_tile/slab/cracked{
-	icon_state = "cracked_slab1";
-	dir = 4
+	dir = 4;
+	icon_state = "cracked_slab1"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -1320,7 +1308,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dw" = (
-/obj/item/reagent_containers/glass/bucket/wooden, 
+/obj/item/reagent_containers/glass/bucket/wooden,
 /obj/item/cultivator/rake,
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
@@ -1392,6 +1380,19 @@
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Af" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/regular,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/lizard,
+/obj/item/reagent_containers/blood/lizard,
+/obj/item/stack/sheet/cloth/ten,
+/obj/item/storage/box/syringes,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 
 (1,1,1) = {"
 aa
@@ -1552,7 +1553,7 @@ aa
 aa
 ae
 as
-aE
+Af
 aQ
 am
 bn
