@@ -11108,25 +11108,6 @@
 "aqw" = (
 /turf/closed/wall/rust,
 /area/medical)
-"aqx" = (
-/obj/structure/table,
-/obj/item/storage/box/gloves{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/beakers,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -26
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay West";
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical)
 "aqy" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -13361,25 +13342,6 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/effect/turf_decal/stripes/line,
 /obj/item/wrench/medical,
-/turf/open/floor/plasteel,
-/area/medical)
-"atu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/storage/pill_bottle/mannitol,
 /turf/open/floor/plasteel,
 /area/medical)
 "atv" = (
@@ -42274,6 +42236,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"rar" = (
+/obj/structure/table,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/beakers,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay West";
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/plasteel,
+/area/medical)
 "rjQ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plasteel,
@@ -44840,6 +44822,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"yml" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/storage/pill_bottle/mannitol,
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/medical)
 
 (1,1,1) = {"
 aaa
@@ -83007,7 +83008,7 @@ apt
 arn
 asy
 aRt
-aqx
+rar
 aru
 atk
 avB
@@ -84294,7 +84295,7 @@ aJe
 aRf
 ari
 asq
-atu
+yml
 awn
 atH
 awz
