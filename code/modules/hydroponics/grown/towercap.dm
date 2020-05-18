@@ -18,7 +18,6 @@
 	mutatelist = list(/obj/item/seeds/tower/steel)
 	reagents_add = list(/datum/reagent/oxygen = 0.1)
 
-
 /obj/item/seeds/tower/steel
 	name = "pack of steel-cap mycelium"
 	desc = "This mycelium grows into steel logs."
