@@ -624,10 +624,10 @@
 	medical_record_text = "Patient has an uncontrollable urge to steal."
 
 /datum/quirk/kleptomaniac/on_process()
-	if(prob(1))
+	if(prob(3))
 		var/mob/living/carbon/H = quirk_holder
 		var/obj/item/I = locate(/obj/item/) in oview(1, H)
-		if(I.anchored || H.incapacitated() || !I.Adjacent(H))
+		if(!I || I.anchored || H.incapacitated() || !I.Adjacent(H))
 			return
 		if(isliving(quirk_holder))
 			var/mob/living/L = quirk_holder
