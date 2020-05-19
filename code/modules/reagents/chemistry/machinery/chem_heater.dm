@@ -29,6 +29,8 @@
 		icon_state = "mixer0b"
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	on = !on
 	update_icon()
 
