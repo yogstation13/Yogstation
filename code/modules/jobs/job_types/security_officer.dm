@@ -23,7 +23,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
-	changed_maps = list("YogsPubby", "OmegaStation")
+	changed_maps = list("YogsPubby", "OmegaStation", "RebuildStation")
 
 /datum/job/officer/proc/YogsPubbyChanges()
 	access += ACCESS_CREMATORIUM

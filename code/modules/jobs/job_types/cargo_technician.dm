@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/cargo_tech/proc/OmegaStationChanges()
 	total_positions = 2
@@ -28,7 +28,7 @@
 	supervisors = "the head of personnel"
 
 /datum/job/cargo_tech/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/cargo_tech
 	name = "Cargo Technician"

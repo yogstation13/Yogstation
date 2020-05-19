@@ -18,6 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 
+	changed_maps = list("RebuildStation")
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -51,7 +52,7 @@
 	chameleon_extras = /obj/item/stamp/clown
 
 /datum/job/clown/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

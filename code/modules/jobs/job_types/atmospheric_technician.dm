@@ -20,10 +20,10 @@
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/atmos/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3

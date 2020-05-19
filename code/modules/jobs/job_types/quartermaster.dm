@@ -18,13 +18,13 @@
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/qm/proc/OmegaStationChanges()
 	return TRUE
 
 /datum/job/qm/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"

@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2
@@ -28,7 +28,7 @@
 	supervisors = "the head of personnel"
 
 /datum/job/mining/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"

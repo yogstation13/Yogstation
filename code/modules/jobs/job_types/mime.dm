@@ -18,6 +18,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_MIME
 
+	changed_maps = list("RebuildStation")
+
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	H.apply_pref_name("mime", M.client)
 
@@ -49,7 +51,7 @@
 		H.mind.miming = 1
 
 /datum/job/mime/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /obj/item/book/mimery
 	name = "Guide to Dank Mimery"

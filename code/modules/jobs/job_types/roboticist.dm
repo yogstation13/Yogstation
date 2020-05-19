@@ -20,13 +20,13 @@
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"
 
 /datum/job/roboticist/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/roboticist
 	name = "Roboticist"

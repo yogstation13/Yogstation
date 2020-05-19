@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_JANITOR
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/janitor/proc/OmegaStationChanges()
 	access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
@@ -26,7 +26,7 @@
 	supervisors = "the captain and the head of personnel"
 
 /datum/job/janitor/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/janitor
 	name = "Janitor"

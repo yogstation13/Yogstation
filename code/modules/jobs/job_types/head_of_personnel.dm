@@ -37,14 +37,14 @@
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/hop/proc/OmegaStationChanges()
 	access = get_all_accesses()
 	minimal_access = get_all_accesses()
 
 /datum/job/hop/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/hop
 	name = "Head of Personnel"

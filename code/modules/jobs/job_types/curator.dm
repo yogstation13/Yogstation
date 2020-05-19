@@ -18,6 +18,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
 
+	changed_maps = list("RebuildStation")
+
 /datum/outfit/job/curator
 	name = "Curator"
 	jobtype = /datum/job/curator
@@ -44,4 +46,4 @@
 	H.grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_CURATOR)
 
 /datum/job/curator/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE

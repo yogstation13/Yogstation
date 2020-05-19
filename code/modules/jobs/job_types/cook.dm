@@ -19,14 +19,14 @@
 
 	display_order = JOB_DISPLAY_ORDER_COOK
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/cook/proc/OmegaStationChanges()
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 
 /datum/job/cook/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/cook
 	name = "Cook"

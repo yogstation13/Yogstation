@@ -20,13 +20,13 @@
 
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/virologist/proc/OmegaStationChanges()
 	return TRUE
 
 /datum/job/virologist/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/virologist
 	name = "Virologist"

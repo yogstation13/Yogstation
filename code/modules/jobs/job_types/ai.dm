@@ -15,6 +15,7 @@
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
 	var/do_special_check = TRUE
+	changed_maps = list("RebuildStation")
 
 /datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
 	if(visualsOnly)
@@ -22,7 +23,7 @@
 	. = H.AIize(latejoin,preference_source)
 
 /datum/job/ai/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
 	. = ..()

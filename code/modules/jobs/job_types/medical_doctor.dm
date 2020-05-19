@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/doctor/proc/OmegaStationChanges()
 	selection_color = "#ffffff"

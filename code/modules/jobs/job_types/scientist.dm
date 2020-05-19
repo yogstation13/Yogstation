@@ -21,7 +21,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RebuildStation")
 
 /datum/job/scientist/proc/OmegaStationChanges()
 	total_positions = 3
@@ -31,7 +31,7 @@
 	supervisors = "the captain and the head of personnel"
 
 /datum/job/scientist/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/outfit/job/scientist
 	name = "Scientist"

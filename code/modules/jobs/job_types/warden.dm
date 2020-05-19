@@ -23,7 +23,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 
-	changed_maps = list("YogsPubby", "OmegaStation")
+	changed_maps = list("YogsPubby", "OmegaStation", "RebuildStation")
 
 /datum/job/warden/proc/YogsPubbyChanges()
 	access += ACCESS_CREMATORIUM
@@ -33,7 +33,7 @@
 	return TRUE
 
 /datum/job/warden/proc/RebuildStationChanges()
-    return TRUE
+	return TRUE
 
 /datum/job/warden/get_access()
 	var/list/L = list()
