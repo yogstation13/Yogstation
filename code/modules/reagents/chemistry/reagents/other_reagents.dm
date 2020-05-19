@@ -947,6 +947,7 @@
 	name = "Space cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	color = "#A5F0EE" // rgb: 165, 240, 238
+	toxpwr = 1
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
 
@@ -999,6 +1000,12 @@
 						H.update_inv_shoes()
 				H.wash_cream()
 			SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/space_cleaner/ez_clean
 	name = "EZ Clean"
