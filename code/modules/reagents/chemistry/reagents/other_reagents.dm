@@ -1521,7 +1521,7 @@
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
-	toxpwr = 0.5
+	var/toxpwr = 0.5
 	taste_description = "sweetness"
 	
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
@@ -1533,7 +1533,7 @@
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
-	toxpwr = 0.25
+	var/toxpwr = 0.25
 	taste_description = "bitterness"
 	
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
@@ -1545,7 +1545,7 @@
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
 	color = "#A69DA9" // rgb: 166,157,169
-	toxpwr = 1
+	var/toxpwr = 1
 	taste_description = "bitterness"
 	taste_mult = 1.5
 	
@@ -1558,7 +1558,7 @@
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
 	color = "#CEC3C6" // rgb: 206,195,198
-	toxpwr = 0.5
+	var/toxpwr = 0.5
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
@@ -1571,7 +1571,7 @@
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
 	color = "#67ADBA" // rgb: 103,173,186
-	toxpwr = 2.5
+	var/toxpwr = 2.5
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
@@ -1582,7 +1582,7 @@
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
-	toxpwr = 2
+	var/toxpwr = 2
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
 
@@ -1595,7 +1595,7 @@
 /datum/reagent/uranium/uraniumvirusfood/stable
 	name = "stable uranium gel"
 	color = "#04506C" // rgb: 4,80,108
-	toxpwr = 1.5
+	var/toxpwr = 1.5
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
