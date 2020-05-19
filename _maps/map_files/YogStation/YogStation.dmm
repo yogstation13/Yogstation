@@ -1087,27 +1087,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"ack" = (
-/obj/machinery/power/apc{
-	areastring = "/area/security/brig";
-	dir = 1;
-	name = "Brig APC";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "acl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -4708,24 +4687,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"aiZ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "aja" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -6306,14 +6267,6 @@
 /obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"amg" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 1";
-	name = "Cell 1 Locker"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "amh" = (
 /obj/structure/bed,
 /obj/machinery/flasher{
@@ -6324,14 +6277,6 @@
 /obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"ami" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 2";
-	name = "Cell 2 Locker"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "amj" = (
 /obj/structure/bed,
 /obj/machinery/flasher{
@@ -6340,14 +6285,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/brig)
-"amk" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 3";
-	name = "Cell 3 Locker"
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aml" = (
@@ -50398,6 +50335,28 @@
 /obj/structure/sign/departments/minsky/security/security,
 /turf/closed/wall,
 /area/security/detectives_office)
+"cUw" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/brig";
+	dir = 1;
+	name = "Brig APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/brig,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "cVb" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
@@ -52545,6 +52504,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"hUm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/structure/closet/secure_closet/brig,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "hUX" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/tile/neutral{
@@ -55058,6 +55036,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"nmP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "nqo" = (
 /obj/machinery/telecomms/receiver/preset_left,
 /obj/effect/turf_decal/tile/neutral{
@@ -86908,7 +86891,7 @@ ags
 apa
 agK
 acd
-aiZ
+hUm
 aka
 agj
 afL
@@ -87165,7 +87148,7 @@ ahq
 akr
 agH
 acd
-ack
+cUw
 akh
 afK
 ajc
@@ -88454,7 +88437,7 @@ ajz
 akk
 akN
 aqn
-amg
+nmP
 amR
 anw
 anc
@@ -89482,7 +89465,7 @@ ajH
 akk
 akN
 aqn
-ami
+nmP
 amR
 anw
 anz
@@ -90510,7 +90493,7 @@ ajH
 akk
 akV
 aqn
-amk
+nmP
 amR
 anw
 anr
