@@ -2095,14 +2095,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	
 /datum/reagent/consumable/ethanol/cactuscooler
 	name = "Cactus Cooler"
-	description = "an alcoholic drink created by fermenting cactus, its color is odd looking"
+	description = "An alcoholic drink created by fermenting cactus, its color is odd looking."
 	color = "#78b477" // rgb: 120, 180, 119
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	boozepwr = 25
 	taste_description = "refreshing and cooling"
 	glass_icon_state = "glass_green"
 	glass_name = "glass of cactus cooler"
-	glass_desc = "The byproduct of fermenting a cactus. For those wanting a refreshing drink in a barren wasteland"
+	glass_desc = "The byproduct of fermenting a cactus. For those wanting a refreshing drink in a barren wasteland."
 
 /datum/reagent/consumable/ethanol/cactuscooler/on_mob_life(mob/living/carbon/M)
 	if(M.getFireLoss() && prob(10))
