@@ -1512,7 +1512,7 @@
 	var/toxpwr = 2
 	taste_description = "sourness"
 
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/mutagen/mutagenvirusfood/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
@@ -1524,7 +1524,7 @@
 	var/toxpwr = 0.5
 	taste_description = "sweetness"
 	
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
@@ -1536,7 +1536,7 @@
 	var/toxpwr = 0.25
 	taste_description = "bitterness"
 	
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
@@ -1549,7 +1549,7 @@
 	taste_description = "bitterness"
 	taste_mult = 1.5
 	
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
@@ -1562,7 +1562,7 @@
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/plasma/plasmavirusfood/weak/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
@@ -1574,12 +1574,11 @@
 	var/toxpwr = 2.5
 	taste_description = "the inside of a reactor"
 
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
 	..()
-
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
@@ -1587,7 +1586,7 @@
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
 
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/uranium/uraniumvirusfood/unstable/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
@@ -1599,7 +1598,7 @@
 	var/toxpwr = 1.5
 	taste_description = "the inside of a reactor"
 
-/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+/datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM, 0)
 		. = TRUE
