@@ -119,6 +119,8 @@
 		return ..()
 
 /obj/machinery/power/rad_collector/proc/togglelock(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	if(allowed(user))
 		if(active)
 			locked = !locked
@@ -127,7 +129,6 @@
 			to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is active!</span>")
 	else
 		to_chat(user, "<span class='danger'>Access denied.</span>")
-
 
 /obj/machinery/power/rad_collector/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
