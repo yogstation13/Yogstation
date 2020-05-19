@@ -344,7 +344,7 @@
 	weight = 1
 	delay = 7 MINUTES
 	cost = 35
-	requirements = list(101,101,70,40,30,20,10,10,10,10)
+	requirements = list(70,70,60,40,30,20,10,10,10,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
 	// I give up, just there should be enough heads with 35 players...
