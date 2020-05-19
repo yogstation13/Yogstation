@@ -1509,44 +1509,101 @@
 /datum/reagent/toxin/mutagen/mutagenvirusfood
 	name = "mutagenic agar"
 	color = "#A3C00F" // rgb: 163,192,15
+	var/toxpwr = 2
 	taste_description = "sourness"
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
+	var/toxpwr = 0.5
 	taste_description = "sweetness"
+	
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
+	var/toxpwr = 0.25
 	taste_description = "bitterness"
+	
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
 	color = "#A69DA9" // rgb: 166,157,169
+	var/toxpwr = 1
 	taste_description = "bitterness"
 	taste_mult = 1.5
+	
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
 	color = "#CEC3C6" // rgb: 206,195,198
+	var/toxpwr = 0.5
 	taste_description = "bitterness"
 	taste_mult = 1.5
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
 	color = "#67ADBA" // rgb: 103,173,186
+	var/toxpwr = 2.5
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
+
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
+	var/toxpwr = 2
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 /datum/reagent/uranium/uraniumvirusfood/stable
 	name = "stable uranium gel"
 	color = "#04506C" // rgb: 4,80,108
+	var/toxpwr = 1.5
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
+	if(toxpwr)
+		M.adjustToxLoss(toxpwr*REM, 0)
+		. = TRUE
+	..()
 
 // Bee chemicals
 
