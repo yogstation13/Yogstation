@@ -1509,7 +1509,7 @@
 /datum/reagent/toxin/mutagen/mutagenvirusfood
 	name = "mutagenic agar"
 	color = "#A3C00F" // rgb: 163,192,15
-	var/toxpwr = 2
+	toxpwr = 2
 	taste_description = "sourness"
 
 /datum/reagent/toxin/mutagen/mutagenvirusfood/on_mob_life(mob/living/carbon/M)
