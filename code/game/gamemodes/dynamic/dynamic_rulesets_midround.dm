@@ -229,7 +229,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 35
-	requirements = list(101,101,80,70,60,60,50,50,40,40)
+	requirements = list(100,100,80,70,60,60,50,50,45,40)
 	high_population_requirement = 35
 	required_type = /mob/living/silicon/ai
 	var/ion_announce = 33
@@ -307,7 +307,7 @@
 	antag_flag = ROLE_OPERATIVE
 	antag_datum = /datum/antagonist/nukeop
 	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden","Detective","Head of Security", "Captain")
-	required_enemies = list(3,3,3,3,3,2,1,1,0,0)
+	required_enemies = list(3,3,3,3,2,2,1,1,0,0)
 	required_candidates = 5
 	weight = 1
 	cost = 35
@@ -354,7 +354,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 30
-	requirements = list(101,101,101,80,60,50,30,20,10,10)
+	requirements = list(100,100,100,80,60,50,45,30,20,20)
 	high_population_requirement = 50
 	repeatable = TRUE
 
@@ -377,7 +377,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 20
-	requirements = list(101,101,101,70,50,40,20,15,10,10)
+	requirements = list(100,100,100,70,50,40,30,25,20,10)
 	high_population_requirement = 50
 	repeatable = TRUE
 	var/list/vents = list()
@@ -420,11 +420,11 @@
 	antag_flag = "Nightmare"
 	antag_flag_override = ROLE_ALIEN
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
 	weight = 1
 	cost = 5
-	requirements = list(101,101,101,70,50,40,20,15,10,10)
+	requirements = list(90,85,80,70,50,40,30,25,20,10)
 	high_population_requirement = 50
 	repeatable = TRUE
 	var/list/spawn_locs = list()
