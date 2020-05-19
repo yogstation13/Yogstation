@@ -42,3 +42,6 @@
 		return
 
 	H.grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_CURATOR)
+
+/datum/job/curator/proc/RebuildStationChanges()
+    return TRUE

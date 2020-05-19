@@ -38,6 +38,9 @@
 /datum/job/rd/proc/OmegaStationChanges()
 	return TRUE
 
+/datum/job/rd/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/rd
 	name = "Research Director"
 	jobtype = /datum/job/rd

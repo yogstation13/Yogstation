@@ -23,6 +23,9 @@
 /datum/job/qm/proc/OmegaStationChanges()
 	return TRUE
 
+/datum/job/qm/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"
 	jobtype = /datum/job/qm

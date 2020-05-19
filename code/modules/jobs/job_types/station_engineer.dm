@@ -31,6 +31,10 @@
 	minimal_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS )
 	supervisors = "the captain and the head of personnel"
 
+/datum/job/engineer/proc/RebuildStationChanges()
+	total_positions = 30
+	spawn_positions = 30
+
 GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 
 /datum/job/engineer/after_spawn(mob/living/carbon/human/H, mob/M)

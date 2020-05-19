@@ -30,6 +30,9 @@
 	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
 	supervisors = "the captain and the head of personnel"
 
+/datum/job/scientist/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/scientist
 	name = "Scientist"
 	jobtype = /datum/job/scientist

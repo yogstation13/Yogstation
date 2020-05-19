@@ -25,6 +25,9 @@
 /datum/job/virologist/proc/OmegaStationChanges()
 	return TRUE
 
+/datum/job/virologist/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/virologist
 	name = "Virologist"
 	jobtype = /datum/job/virologist

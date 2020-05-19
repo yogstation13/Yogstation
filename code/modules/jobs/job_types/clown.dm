@@ -50,6 +50,9 @@
 
 	chameleon_extras = /obj/item/stamp/clown
 
+/datum/job/clown/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 	if(visualsOnly)

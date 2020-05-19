@@ -25,6 +25,9 @@
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"
 
+/datum/job/roboticist/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/roboticist
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist

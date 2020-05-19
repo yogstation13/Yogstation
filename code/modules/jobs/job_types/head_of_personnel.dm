@@ -43,6 +43,9 @@
 	access = get_all_accesses()
 	minimal_access = get_all_accesses()
 
+/datum/job/hop/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/hop
 	name = "Head of Personnel"
 	jobtype = /datum/job/hop

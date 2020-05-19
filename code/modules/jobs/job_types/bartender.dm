@@ -24,6 +24,9 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
 
+/datum/job/bartender/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/bartender
 	name = "Bartender"
 	jobtype = /datum/job/bartender

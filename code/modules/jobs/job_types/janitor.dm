@@ -25,6 +25,9 @@
 	minimal_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 	supervisors = "the captain and the head of personnel"
 
+/datum/job/janitor/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/janitor
 	name = "Janitor"
 	jobtype = /datum/job/janitor

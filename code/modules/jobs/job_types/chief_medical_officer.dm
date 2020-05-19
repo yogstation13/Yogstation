@@ -34,6 +34,9 @@
 /datum/job/cmo/proc/OmegaStationChanges()
 	return TRUE
 
+/datum/job/cmo/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"
 	jobtype = /datum/job/cmo

@@ -28,6 +28,10 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
 	supervisors = "the captain and the head of personnel"
 
+/datum/job/doctor/proc/RebuildStationChanges()
+	total_positions = 20
+	spawn_positions = 20
+
 /datum/outfit/job/doctor
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor

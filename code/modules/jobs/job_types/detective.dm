@@ -30,6 +30,9 @@
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
 	supervisors = "the captain"
 
+/datum/job/detective/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/outfit/job/detective
 	name = "Detective"
 	jobtype = /datum/job/detective

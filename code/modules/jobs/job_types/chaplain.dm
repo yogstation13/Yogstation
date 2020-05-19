@@ -18,6 +18,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 
+/datum/job/chaplain/proc/RebuildStationChanges()
+    return TRUE
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)
 	. = ..()

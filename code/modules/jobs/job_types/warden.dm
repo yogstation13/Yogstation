@@ -32,6 +32,9 @@
 /datum/job/warden/proc/OmegaStationChanges()
 	return TRUE
 
+/datum/job/warden/proc/RebuildStationChanges()
+    return TRUE
+
 /datum/job/warden/get_access()
 	var/list/L = list()
 	L = ..() | check_config_for_sec_maint()
