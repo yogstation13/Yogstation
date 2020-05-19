@@ -624,8 +624,8 @@
 	medical_record_text = "Patient has an uncontrollable urge to steal."
 
 /datum/quirk/kleptomaniac/on_process()
-	var/mob/living/carbon/H = quirk_holder
 	if(prob(1))
+		var/mob/living/carbon/H = quirk_holder
 		var/obj/item/I = locate(/obj/item/) in oview(1, H)
 		if(I.anchored || H.incapacitated() || !I.Adjacent(H))
 			return
@@ -633,6 +633,6 @@
 			var/mob/living/L = quirk_holder
 			if(!(L.mobility_flags & MOBILITY_PICKUP))
 				return
-		if(H.get_active_held_item() == null)
+		if(!H.get_active_held_item())
 			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
 			H.UnarmedAttack(I)
