@@ -458,8 +458,8 @@
 	required_candidates = 4
 	weight = 1
 	cost = 40
-	requirements = list(100,90,80,70,60,50,30,20,10,10)
-	high_population_requirement = 101
+	requirements = list(100,90,80,70,60,50,30,30,30,30)
+	high_population_requirement = 50
 	flags = HIGHLANDER_RULESET
 	var/ark_time
 
