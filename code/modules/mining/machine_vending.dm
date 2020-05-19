@@ -246,6 +246,8 @@
 
 
 /obj/machinery/mineral/equipment_vendor/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	inserted_id.forceMove(loc)
 	inserted_id.verb_pickup()
 	inserted_id = null

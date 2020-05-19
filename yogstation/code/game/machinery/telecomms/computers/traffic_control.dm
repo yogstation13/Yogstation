@@ -302,6 +302,8 @@
 	return 0
 
 /obj/machinery/computer/telecomms/traffic/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(!auth)

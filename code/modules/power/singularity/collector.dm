@@ -130,6 +130,8 @@
 
 
 /obj/machinery/power/rad_collector/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	togglelock(user)
 
 /obj/machinery/power/rad_collector/wrench_act(mob/living/user, obj/item/I)

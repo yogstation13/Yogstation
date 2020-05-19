@@ -464,6 +464,8 @@
 	update_icon()
 
 /obj/machinery/suit_storage_unit/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	if(state_open)
 		close_machine()
 	else

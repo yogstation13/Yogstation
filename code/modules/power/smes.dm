@@ -437,6 +437,8 @@
 	..()
 
 /obj/machinery/power/smes/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	output_attempt = !output_attempt
 	log_smes(user)
 	update_icon()

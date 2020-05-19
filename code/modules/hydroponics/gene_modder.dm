@@ -445,10 +445,12 @@
 	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
 
 /obj/machinery/plantgenes/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	var/obj/item/I = user.get_active_held_item()
 	eject_disk()
 	if(istype(I, /obj/item/disk/plantgene))
 		if(!user.transferItemToLoc(I, src))
 			return
 		disk = I
-		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+		to_chat(user, "<span class='notice'>You add [disk] to the machine.</span>")

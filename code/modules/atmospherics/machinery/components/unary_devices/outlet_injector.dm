@@ -186,6 +186,8 @@
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	on = !on
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()

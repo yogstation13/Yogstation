@@ -42,7 +42,6 @@
 			icon_state = icon_locked
 			to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
 			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
-			return
 		else
 			icon_state = icon_closed
 			to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
@@ -77,9 +76,7 @@
 		return
 	if(open)
 		return
-	else
-		togglelock(user)
-
+	togglelock(user)
 
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"

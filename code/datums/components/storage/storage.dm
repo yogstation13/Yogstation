@@ -122,10 +122,10 @@
 /datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
 	can_hold_description = generate_hold_desc(can_hold_list)
 
-	if (can_hold_list != null)
+	if (can_hold_list)
 		can_hold = typecacheof(can_hold_list)
 
-	if (cant_hold_list != null)
+	if (cant_hold_list)
 		cant_hold = typecacheof(cant_hold_list)
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)

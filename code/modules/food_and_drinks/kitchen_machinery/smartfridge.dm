@@ -519,6 +519,8 @@
 	atmos_spawn_air("TEMP=1000")
 
 /obj/machinery/smartfridge/drying_rack/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	toggle_drying(FALSE)
 
 // ----------------------------
