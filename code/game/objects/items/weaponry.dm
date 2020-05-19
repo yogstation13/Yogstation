@@ -738,7 +738,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	
 /obj/item/shank/afterattack(atom/target, mob/user, proximity = TRUE)
 	. = ..()
-	user.changeNext_move(CLICK_CD_RAPID)
 	if(iscarbon(target))
 		var/mob/living/carbon/H = target
 		H.reagents.add_reagent(/datum/reagent/toxin/carpotoxin, 1) // did this fix it?
