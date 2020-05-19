@@ -105,8 +105,8 @@
 		return
 	if(ismob(AM) && !can_attach_mob)
 		return
-	if(istype(AM, /obj/item/storage/backpack) || istype(AM, /obj/item/storage/box))
-		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name]. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
+	if(AM.GetComponent(/datum/component/storage))
+		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
 		if(fuckup_safety != "Yes")
 			return
 
