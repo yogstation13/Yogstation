@@ -37,6 +37,7 @@
 	cell = null
 	panel_open = TRUE
 	update_icon()
+	anchored = FALSE
 	return ..()
 
 /obj/machinery/space_heater/on_deconstruction()
