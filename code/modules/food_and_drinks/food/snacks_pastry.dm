@@ -195,7 +195,7 @@
 
 /obj/item/reagent_containers/food/snacks/weedcookie
 	name = "weed cookie"
-	desc = "a cookie mixed with weed often called a edible"
+	desc = "A cookie mixed with weed, often called a edible."
 	icon_state = "COOKIE!!!"
 	bitesize = 2
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.35)
