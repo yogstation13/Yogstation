@@ -1377,6 +1377,10 @@
 	color = "#C8A5DC"
 	taste_description = "chemicals"
 
+/datum/reagent/bromine/on_mob_life(mob/living/carbon/C)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
+	..()
+
 /datum/reagent/phenol
 	name = "Phenol"
 	description = "An aromatic ring of carbon with a hydroxyl group. A useful precursor to some medicines, but has no healing properties on its own."
