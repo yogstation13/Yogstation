@@ -457,8 +457,8 @@
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel")
 	required_candidates = 4
 	weight = 1
-	cost = 0
-	requirements = list(100,90,80,60,60,30,10,10,10,10)
+	cost = 40
+	requirements = list(100,90,80,70,60,50,30,20,10,10)
 	high_population_requirement = 101
 	flags = HIGHLANDER_RULESET
 	var/ark_time
@@ -581,10 +581,10 @@
 	name = "Devil"
 	antag_flag = ROLE_DEVIL
 	antag_datum = /datum/antagonist/devil
-	restricted_roles = list("Lawyer", "Curator", "Chaplain", "Head of Security", "Captain", "AI")
+	restricted_roles = list("Lawyer", "Curator", "Chaplain", "Head of Security", "Captain", "AI", "Cyborg")
 	required_candidates = 1
 	weight = 1
-	cost = 0
+	cost = 60
 	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	high_population_requirement = 101
 	var/devil_limit = 4 // Hard limit on devils if scaling is turned off
@@ -699,10 +699,10 @@
 	name = "Meteor"
 	persistent = TRUE
 	required_candidates = 0
-	weight = 3
-	cost = 0
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
-	high_population_requirement = 101
+	weight = 1
+	cost = 90
+	requirements = list(100,100,100,100,100,100,100,100,100,100)
+	high_population_requirement = 100
 	var/meteordelay = 2000
 	var/nometeors = 0
 	var/rampupdelta = 5
@@ -739,7 +739,7 @@
 	required_candidates = 2
 	weight = 1
 	cost = 30
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
