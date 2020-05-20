@@ -732,6 +732,7 @@
 	name = "unholy pitchfork"
 	w_class = WEIGHT_CLASS_NORMAL
 	desc = "Holding this makes you look absolutely devilish."
+	slot_flags = ITEM_SLOT_BACK
 	attack_verb = list("poked", "impaled", "pierced", "jabbed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP
