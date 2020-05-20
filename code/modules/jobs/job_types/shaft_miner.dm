@@ -28,7 +28,8 @@
 	supervisors = "the head of personnel"
 
 /datum/job/mining/proc/RebuildStationChanges()
-	return TRUE
+	total_positions = 3
+	spawn_positions = 3
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"
