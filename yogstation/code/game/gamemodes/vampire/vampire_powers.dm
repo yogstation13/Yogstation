@@ -416,3 +416,29 @@
 		bat.mind.transfer_to(bat.controller)
 		bat.controller = null //just so we don't accidently trigger the death() thing
 		qdel(bat)
+
+/obj/effect/proc_holder/spell/self/nosferatu
+	name = "Nosferatu transformation"
+	desc = "Transform yourself into a hideous form in exchange for instantly unlocking all of your abilities. Be warned, you can no longer hide among the humans in this form."
+	blood_used = 0
+	vamp_req = TRUE
+
+/obj/effect/proc_holder/spell/self/nosferatu/cast(list/targets, mob/user = usr)
+	if(!is_vampire(user) || !isliving(user))
+		revert_cast()
+		return
+	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	if(V)
+		V.total_blood = 450
+		V.usable_blood = 450
+		V.check_vampire_upgrade()
+		V.transformed = TRUE
+		V.give_transform_objectives()
+		V.remove_ability(/obj/effect/proc_holder/spell/self/nosferatu = 0)
+		if(usr.wear_suit)
+			var/obj/item/clothing/suit/W = usr.wear_suit
+			usr.doUnEquip(W)
+			var/obj/item/clothing/suit/draculacoat/N = new
+			usr.equip_to_slot_if_possible(N, SLOT_WEAR_SUIT, 1)
+		var/obj/item/clothing/suit/draculacoat/N = new
+		usr.equip_to_slot_if_possible(N, SLOT_WEAR_SUIT)

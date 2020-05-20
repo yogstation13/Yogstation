@@ -12,6 +12,7 @@
 	var/converted = 0
 	var/fullpower = FALSE
 	var/full_vampire = TRUE
+	var/transformed = FALSE
 	var/draining
 	var/list/objectives_given = list()
 
@@ -24,6 +25,7 @@
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
+		/obj/effect/proc_holder/spell/self/nosferatu = 0,
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
@@ -142,6 +144,10 @@
 	objectives += O
 	objectives_given += O
 
+/datum/antagonist/vampire/proc/remove_objective(var/datum/objective/O)
+	objectives -= O
+	objectives_given -= O
+
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
 	.=1
 	if(prob(50))
@@ -166,6 +172,20 @@
 		steal_objective.owner = owner
 		steal_objective.find_target()
 		add_objective(steal_objective)
+
+/datum/antagonist/vampire/proc/give_transform_objectives()
+	if(locate(/datum/objective/blood) in objectives)
+		var/datum/objective/blood/nosferatu/more_blood_objective = new
+		more_blood_objective.owner = owner
+		more_blood_objective.gen_amount_goal()
+		remove_objective(/datum/objective/blood)
+		add_objective(more_blood_objective)
+		to_chat(owner, "<span class='notice bold'>Due to your increased strength, your blood goal has been increased.</span>")
+	else 
+		var/datum/objective/blood/nosferatu/more_blood_objective = new
+		more_blood_objective.owner = owner
+		more_blood_objective.gen_amount_goal()
+		add_objective(more_blood_objective)
 
 /datum/antagonist/vampire/proc/vamp_burn(var/severe_burn = FALSE)
 	var/mob/living/L = owner.current
