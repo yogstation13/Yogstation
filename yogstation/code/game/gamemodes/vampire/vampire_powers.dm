@@ -421,6 +421,9 @@
 	name = "Nosferatu transformation"
 	desc = "Transform yourself into a hideous form in exchange for instantly unlocking all of your abilities. Be warned, you can no longer hide among the humans in this form."
 	blood_used = 0
+	action_icon = 'yogstation/icons/mob/vampire.dmi'
+	action_icon_state = "coat"
+	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/self/nosferatu/cast(list/targets, mob/user = usr)
@@ -428,6 +431,9 @@
 		revert_cast()
 		return
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+	if(!V || V.transformed)
+		revert_cast()
+		return
 	if(V)
 		V.total_blood = 450
 		V.usable_blood = 450
@@ -435,10 +441,9 @@
 		V.transformed = TRUE
 		V.give_transform_objectives()
 		V.remove_ability(/obj/effect/proc_holder/spell/self/nosferatu = 0)
-		if(usr.wear_suit)
-			var/obj/item/clothing/suit/W = usr.wear_suit
-			usr.doUnEquip(W)
-			var/obj/item/clothing/suit/draculacoat/N = new
-			usr.equip_to_slot_if_possible(N, SLOT_WEAR_SUIT, 1)
-		var/obj/item/clothing/suit/draculacoat/N = new
-		usr.equip_to_slot_if_possible(N, SLOT_WEAR_SUIT)
+		var/mob/living/carbon/human/H = usr
+		if(H.wear_suit)
+			var/obj/item/clothing/suit/W = H.wear_suit
+			H.doUnEquip(W)
+		var/obj/item/clothing/suit/draculacoat/nosferatu/N = new
+		H.equip_to_slot_if_possible(N, SLOT_WEAR_SUIT)

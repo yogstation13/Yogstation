@@ -29,8 +29,8 @@
 	else
 		return FALSE
 
-/datum/objective/blood/nosferatu/proc/gen_higher_amount_goal(lowbound = 1000, highbound = 1500)
-	target_amount = rand (lowbound,highbound)
+/datum/objective/blood/nosferatu/proc/gen_higher_amount_goal(notsolowbound = 1000, morehighbound = 1500)
+	target_amount = rand (notsolowbound,morehighbound)
 	explanation_text = "Extract [target_amount] units of blood."
 	return target_amount
 

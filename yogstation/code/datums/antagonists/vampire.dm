@@ -175,17 +175,13 @@
 
 /datum/antagonist/vampire/proc/give_transform_objectives()
 	if(locate(/datum/objective/blood) in objectives)
-		var/datum/objective/blood/nosferatu/more_blood_objective = new
-		more_blood_objective.owner = owner
-		more_blood_objective.gen_amount_goal()
 		remove_objective(/datum/objective/blood)
-		add_objective(more_blood_objective)
-		to_chat(owner, "<span class='notice bold'>Due to your increased strength, your blood goal has been increased.</span>")
-	else 
-		var/datum/objective/blood/nosferatu/more_blood_objective = new
-		more_blood_objective.owner = owner
-		more_blood_objective.gen_amount_goal()
-		add_objective(more_blood_objective)
+	var/datum/objective/blood/nosferatu/more_blood_objective = new
+	more_blood_objective.owner = owner
+	more_blood_objective.gen_amount_goal()
+	add_objective(more_blood_objective)
+	to_chat(owner, "<span class='notice bold'>Due to your increased strength, your blood goal has been increased.</span>")
+
 
 /datum/antagonist/vampire/proc/vamp_burn(var/severe_burn = FALSE)
 	var/mob/living/L = owner.current

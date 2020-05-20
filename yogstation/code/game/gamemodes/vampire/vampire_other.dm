@@ -37,6 +37,13 @@
 			if (vampire.total_blood >= 5 && vampire.usable_blood <= vampire.total_blood * 0.25)
 				vampire.usable_blood = min(vampire.usable_blood + 5, vampire.total_blood * 0.25) // 5 units every 20 seconds
 
+/obj/item/clothing/suit/draculacoat/nosferatu
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/clothing/suit/draculacoat/nosferatu/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+
 /mob/living/carbon/human/handle_fire()
 	. = ..()
 	if(mind)
