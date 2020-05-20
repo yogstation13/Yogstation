@@ -88,11 +88,11 @@
 	prompt_name = "a free miner engineer"
 
 /datum/outfit/freeminer/engi
+	uniform = /obj/item/clothing/under/overalls
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/full
-
 
 /obj/effect/mob_spawn/human/free_miner/captain
 	name = "Free Miner Captain"
