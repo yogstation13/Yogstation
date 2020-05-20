@@ -159,8 +159,8 @@
 /obj/item/clothing/under/roman,
 /obj/item/clothing/head/helmet/roman,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -402,8 +402,8 @@
 /obj/structure/table/wood,
 /obj/item/toy/nuke,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -466,8 +466,8 @@
 	},
 /obj/item/toy/figure/cmo,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -793,8 +793,8 @@
 /area/ruin/powered)
 "bM" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -807,13 +807,13 @@
 /obj/item/kitchen/fork,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bO" = (
+"mz" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/item/gun/ballistic/automatic/pistol,
 /obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/blood/old,
+/obj/item/pneumatic_cannon/pie/selfcharge,
 /turf/open/floor/wood,
 /area/ruin/powered)
 
@@ -1129,7 +1129,7 @@ aS
 aX
 aa
 bJ
-bO
+mz
 aa
 "}
 (16,1,1) = {"
