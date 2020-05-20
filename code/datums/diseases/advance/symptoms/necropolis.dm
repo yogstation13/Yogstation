@@ -13,8 +13,10 @@
 	var/tendrils = FALSE
 	var/chest = FALSE
 	var/fireproof = FALSE
-	threshold_descs = "<b>Resistance 15:</b> The area near the host roils with paralyzing tendrils.<br>\
-					  <b>Resistance 20:</b>	Host becomes immune to heat, ash, and lava"
+	threshold_descs = list(
+	"Resistance 15" = "The area near the host roils with paralyzing tendrils.",
+	"Resistance 20" = "Host becomes immune to heat, ash, and lava",
+	)
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
