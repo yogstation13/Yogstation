@@ -20385,10 +20385,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"aQw" = (
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "aQx" = (
 /obj/effect/landmark/blobstart,
 /obj/structure/sign/warning/biohazard{
@@ -57530,6 +57526,10 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"sZG" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "tbz" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -108526,8 +108526,8 @@ aKu
 aTe
 aFz
 aFz
+sZG
 jUt
-aQw
 cdl
 aXB
 oef
