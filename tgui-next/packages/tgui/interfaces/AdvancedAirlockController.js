@@ -198,6 +198,19 @@ const AACControl = props => {
               pressure: value,
             })} />
         </LabeledList.Item>
+        <LabeledList.Item label="Depressurization Target">
+          <NumberInput
+            animated
+            value={parseFloat(data.depressurization_target)}
+            unit="kPa"
+            width="125px"
+            minValue={0}
+            maxValue={data.depressurization_margin - 0.15}
+            step={1}
+            onChange={(e, value) => act('depressurization_target', {
+              pressure: value,
+            })} />
+        </LabeledList.Item>
         <LabeledList.Item label="Time before Skip Allowed">
           <NumberInput
             animated
