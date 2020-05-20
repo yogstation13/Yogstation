@@ -23,7 +23,6 @@
 		return
 	M.show_message("<span class='userdanger'>BANG</span>", 2)
 	var/distance = max(0,get_dist(get_turf(src),T))
-	message_admins(distance)
 	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
 		M.Paralyze(200)
 		M.soundbang_act(1, 20, 10, 15)
