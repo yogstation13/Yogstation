@@ -62,7 +62,9 @@
 		/obj/item/holosign_creator/multi/CE,
 		/obj/item/airlock_painter,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
-		/obj/item/storage/bag/construction
+		/obj/item/storage/bag/construction,
+		/obj/item/handdrill,
+		/obj/item/jawsoflife
 		))
 
 /obj/item/storage/belt/utility/chief
@@ -280,7 +282,9 @@
 		/obj/item/organ/regenerative_core,
 		/obj/item/wormhole_jaunter,
 		/obj/item/storage/bag/plants,
-		/obj/item/stack/marker_beacon
+		/obj/item/stack/marker_beacon,
+		/obj/item/handdrill,
+		/obj/item/jawsoflife
 		))
 
 

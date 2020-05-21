@@ -1533,6 +1533,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return
 
 	var/loc_temp = H.get_temperature(environment)
+	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 
 	//Body temperature is adjusted in two parts: first there your body tries to naturally preserve homeostasis (shivering/sweating), then it reacts to the surrounding environment
 	//Thermal protection (insulation) has mixed benefits in two situations (hot in hot places, cold in hot places)
@@ -1543,6 +1544,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/thermal_protection = 1
 		if(loc_temp < H.bodytemperature) //Place is colder than we are
 			thermal_protection -= H.get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			thermal_protection *= heat_capacity_factor
 			if(H.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
 				H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
 			else //we're sweating, insulation hinders our ability to reduce heat - and it will reduce the amount of cooling you get from the environment
@@ -1553,6 +1555,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			natural = H.natural_bodytemperature_stabilization()
 		var/thermal_protection = 1
 		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		thermal_protection *= heat_capacity_factor
 		if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
 			H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
 		else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment

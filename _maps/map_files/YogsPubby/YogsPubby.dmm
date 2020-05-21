@@ -26646,6 +26646,9 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aYi" = (
@@ -29512,6 +29515,9 @@
 	name = "Quartermaster APC";
 	pixel_x = -24
 	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bdI" = (
@@ -29574,6 +29580,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1;
 	icon_state = "vent_map_on-1"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -57390,6 +57399,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"fhX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "fjs" = (
 /obj/machinery/light{
 	dir = 8
@@ -102190,7 +102206,7 @@ bGZ
 bAO
 bGZ
 bFG
-aAF
+fhX
 bbE
 bcC
 beK
