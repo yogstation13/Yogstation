@@ -277,6 +277,37 @@
 	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
 	foodtype = GRAIN | MEAT
 
+/obj/item/reagent_containers/food/snacks/yakiimo
+	name = "yaki imo"
+	desc = "Made with roasted sweet potatoes!"
+	icon_state = "yakiimo"
+	trash = /obj/item/trash/plate
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
+	filling_color = "#8B1105"
+	tastes = list("sweet potato" = 1)
+	foodtype = GRAIN | VEGETABLES | SUGAR
+
+/obj/item/reagent_containers/food/snacks/roastparsnip
+	name = "roast parsnip"
+	desc = "Sweet and crunchy."
+	icon_state = "roastparsnip"
+	trash = /obj/item/trash/plate
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
+	filling_color = "#FF5500"
+	tastes = list("parsnip" = 1)
+	foodtype = VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/melonfruitbowl
+	name = "melon fruit bowl"
+	desc = "For people who want edible fruit bowls."
+	icon_state = "melonfruitbowl"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
+	filling_color = "#FF5500"
+	w_class = WEIGHT_CLASS_NORMAL
+	tastes = list("melon" = 1)
+	foodtype = FRUIT
+
 /obj/item/reagent_containers/food/snacks/nachos
 	name = "nachos"
 	desc = "Chips from Space Mexico."
