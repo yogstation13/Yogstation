@@ -1148,10 +1148,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(usr,"<span class='warning'>Imprisonment failed!</span>", confidential=TRUE)
 				return
 		if(ADMIN_PUNISHMENT_PIE)
-			var/mob/living/carbon/C = target
 			var/confirm = alert(usr, "Send honk message?", "Honk Message", "Yes", "No")
 			if(confirm == "Yes")
 				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
+			var/mob/living/carbon/C = target
 			C.adminpie(target)
 	punish_log(target, punishment)
 
