@@ -3748,7 +3748,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/paper/fluff/stations/centcom/nuke_code_paper,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "jB" = (
