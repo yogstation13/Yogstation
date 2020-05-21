@@ -32,13 +32,8 @@ Thresholds
 	var/done = FALSE
 	var/mob/living/C = null
 	var/mob/living/carbon/affected_mob = null
-	threshold_desc = "<b>Transmission 6:</b> Gives the host some armor against brute damage.<br>\
-					  <b>Resistance 6: Spikes grow faster and hurt you more often</b> ."
-
-/datum/symptom/spiked/severityset(datum/disease/advance/A)
-	. = ..()
-	if(A.properties["resistance"] >= 6)
-		severity -= 1
+	threshold_descs = "<b>Transmission 6:</b> Gives the host some armor against brute damage.<br>\
+					  <b>Resistance 6: Spikes grow faster and hurt you more often</b> ." //i didnt just delete code in the hopes it maybe fixed it
 
 /datum/symptom/spiked/Start(datum/disease/advance/A)
 	if(!..())
