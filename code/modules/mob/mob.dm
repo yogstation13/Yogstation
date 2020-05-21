@@ -668,6 +668,7 @@
 	return TRUE
 
 /mob/verb/eastshift()
+<<<<<<< Updated upstream
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
@@ -694,6 +695,46 @@
 		return FALSE
 	if(pixel_y >= -16)
 		pixel_y--
+=======
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
+    if(pixel_x <= 16)
+        pixel_x++
+        is_shifted = TRUE
+
+/mob/verb/westshift()
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
+    if(pixel_x >= -16)
+        pixel_x--
+        is_shifted = TRUE
+
+/mob/verb/northshift()
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
+    if(pixel_y <= 16)
+        pixel_y++
+        is_shifted = TRUE
+
+/mob/verb/southshift()
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+	if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+		return FALSE
+    if(pixel_y >= -16)
+        pixel_y--
+        is_shifted = TRUE
+>>>>>>> Stashed changes
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
 	return FALSE
