@@ -6,7 +6,7 @@
 	resistance = 3
 	stage_speed = 3
 	transmittable = 1
-	level = 0
+	level = 1
 	severity = 0 //rip funy
 	symptom_delay_min = 10
 	symptom_delay_max = 30
