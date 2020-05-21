@@ -3736,6 +3736,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"jA" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/paper/fluff/stations/centcom/nuke_code_paper,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "jB" = (
 /obj/structure/noticeboard{
 	dir = 8;
@@ -12244,21 +12259,6 @@
 /obj/item/stamp,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/grimy,
-/area/centcom/ferry)
-"AL" = (
-/obj/structure/table/reinforced,
-/obj/item/flashlight/seclite,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "AM" = (
 /obj/machinery/shuttle_manipulator,
@@ -60293,7 +60293,7 @@ yr
 sw
 Vl
 Ad
-AL
+jA
 Bx
 Vl
 Cv

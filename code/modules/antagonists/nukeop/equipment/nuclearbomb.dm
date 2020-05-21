@@ -723,9 +723,10 @@ This is here to make the tiles around the station mininuke change when it's arme
 //==========CENTCOM NUKE CODE BACKUP==========
 
 /obj/item/paper/fluff/stations/centcom/nuke_code_paper
-	name = "paper- 'Backup Nuclear Code'"
+	name = "paper- 'NUCLEAR CODE: DO NOT LOSE'"
+	icon_state = "docs_blue"
 	info = null
-	infolang = /datum/language/common
+	infolang = null
 	New()
 		..()
-		info = "The Nuke Code is [nuke_code]"
+		info = "#The Nuke Code is [nuke_code]"
