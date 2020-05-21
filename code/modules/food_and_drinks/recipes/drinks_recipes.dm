@@ -18,7 +18,13 @@
 	id = /datum/reagent/consumable/ethanol/bilk
 	results = list(/datum/reagent/consumable/ethanol/bilk = 2)
 	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/ethanol/beer = 1)
-
+	
+/datum/chemical_reaction/bilk
+	name = "Soy Bilk"
+	id = /datum/reagent/consumable/ethanol/bilk/soy
+	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
+	required_reagents = list(/datum/reagent/consumable/soymilk, /datum/reagent/consumable/ethanol/beer = 1)
+	
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
 	id = /datum/reagent/consumable/icetea
@@ -789,3 +795,4 @@
 	name = "Catsip"
 	results = list(/datum/reagent/consumable/ethanol/catsip = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/corn_syrup = 1, /datum/reagent/consumable/grenadine = 1)
+ 
