@@ -99,6 +99,7 @@
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	mutatelist = list(/obj/item/seeds/glowshroom)
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.25, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
