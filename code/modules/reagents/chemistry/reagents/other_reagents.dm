@@ -1002,9 +1002,7 @@
 			SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 
 /datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
-	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM, 0)
-		. = TRUE
+	M.adjustToxLoss(toxpwr*REM, 0)
 	..()
 
 /datum/reagent/space_cleaner/ez_clean
