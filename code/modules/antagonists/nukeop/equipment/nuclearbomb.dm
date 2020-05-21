@@ -1,3 +1,5 @@
+var/nuke_code = random_nukecode()
+
 /obj/machinery/nuclearbomb
 	name = "nuclear fission explosive"
 	desc = "You probably shouldn't stick around to see if this is armed."
@@ -33,6 +35,8 @@
 	var/proper_bomb = TRUE //Please
 	var/obj/effect/countdown/nuclearbomb/countdown
 
+
+
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
 	countdown = new(src)
@@ -43,7 +47,7 @@
 	GLOB.poi_list |= src
 	previous_level = get_security_level()
 	if(r_code == null)
-		r_code = random_nukecode()
+		r_code = nuke_code
 
 /obj/machinery/nuclearbomb/Destroy()
 	safety = FALSE
@@ -714,3 +718,14 @@ This is here to make the tiles around the station mininuke change when it's arme
 /obj/item/disk/nuclear/fake/obvious
 	name = "cheap plastic imitation of the nuclear authentication disk"
 	desc = "How anyone could mistake this for the real thing is beyond you."
+
+
+//==========CENTCOM NUKE CODE BACKUP==========
+
+/obj/item/paper/fluff/stations/centcom/nuke_code_paper
+	name = "paper- 'Backup Nuclear Code'"
+	info = null
+	infolang = /datum/language/common
+	New()
+		..()
+		info = "The Nuke Code is [nuke_code]"

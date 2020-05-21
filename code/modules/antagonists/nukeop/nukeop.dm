@@ -70,10 +70,7 @@
 		var/obj/machinery/nuclearbomb/syndicate/nuke = find_nuke() //Yogs -- Puts find_nuke() here to fix bananium nukes fucking up normal nuke ops
 		if(nuke)
 			nuke_team.tracked_nuke = nuke
-			if(nuke.r_code == "ADMIN")
-				nuke.r_code = nuke_team.memorized_code
-			else //Already set by admins/something else?
-				nuke_team.memorized_code = nuke.r_code
+			nuke_team.memorized_code = nuke.r_code
 			for(var/obj/machinery/nuclearbomb/beer/beernuke in GLOB.nuke_list)
 				beernuke.r_code = nuke_team.memorized_code
 		else
