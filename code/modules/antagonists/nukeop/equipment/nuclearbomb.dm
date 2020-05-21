@@ -20,7 +20,7 @@
 	var/exploding = FALSE
 	var/exploded = FALSE
 	var/detonation_timer = null
-	var/r_code = "ADMIN"
+	var/r_code = null
 	var/yes_code = FALSE
 	var/safety = TRUE
 	var/obj/item/disk/nuclear/auth = null
@@ -42,6 +42,8 @@
 	update_icon()
 	GLOB.poi_list |= src
 	previous_level = get_security_level()
+	if(r_code == null)
+		r_code = random_nukecode()
 
 /obj/machinery/nuclearbomb/Destroy()
 	safety = FALSE

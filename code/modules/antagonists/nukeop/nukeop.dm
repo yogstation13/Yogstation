@@ -231,10 +231,8 @@
 		var/obj/machinery/nuclearbomb/selfdestruct/nuke = locate() in GLOB.nuke_list
 		if(nuke)
 			nuke_team.tracked_nuke = nuke
-			if(nuke.r_code == "ADMIN")
-				nuke.r_code = nuke_team.memorized_code
-			else //Already set by admins/something else?
-				nuke_team.memorized_code = nuke.r_code
+			nuke.r_code = nuke_team.memorized_code
+
 		else
 			stack_trace("Station self destruct not found during lone op team creation.")
 			nuke_team.memorized_code = null
