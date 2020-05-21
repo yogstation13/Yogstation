@@ -3,7 +3,7 @@
 	desc = "An unarmed landmine. It can be planted to arm it."
 	icon_state = "uglymine"
 	var/mine_type = /obj/effect/mine
-	var/arming_time = 30
+	var/arming_time = 3 SECONDS
 
 /obj/item/deployablemine/stun
 	desc = "An unarmed stun mine. It can be planted to arm it."
@@ -18,14 +18,14 @@
 	name = "deployable rapid smart mine"
 	desc = "An unarmed smart stun mine designed to be rapidly placeable."
 	mine_type = /obj/effect/mine/stun/smart/adv
-	arming_time = 10
+	arming_time = 1 SECONDS
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/deployablemine/heavy
 	name = "deployable sledgehammer smart mine"
 	desc = "An unarmed smart heavy stun mine designed to be hard to disarm."
 	mine_type = /obj/effect/mine/stun/smart/heavy
-	arming_time = 50
+	arming_time = 10 SECONDS
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/deployablemine/explosive
@@ -67,14 +67,7 @@
 	if(!proximity)
 		return
 
-	if(!istype(plantspot,/turf/open)) // you can't plant a mine inside a wall or on a mob
-		return
-
-	if(isspaceturf(plantspot))
-		to_chat(user, "<span class='warning'>you cannot plant a mine in space!</span>")
-		return
-
-	if((istype(plantspot,/turf/open/lava)) || (istype(plantspot,/turf/open/chasm)))
+	if(!istype(plantspot,/turf/open/floor))
 		to_chat(user, "<span class='warning'>You can't plant the mine here!</span>")
 		return
 
@@ -93,8 +86,8 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "uglymine"
 	var/triggered = 0
-	var/smartmine = 0
-	var/disarm_time = 120
+	var/smartmine = FALSE
+	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
@@ -104,6 +97,8 @@
 			to_chat(user, "<span class='notice'>You disarm the [src].</span>")
 			new disarm_product(src.loc)
 			qdel(src)
+		return
+	return ..()
 
 /obj/effect/mine/proc/mineEffect(mob/victim)
 	to_chat(victim, "<span class='danger'>*click*</span>")
@@ -118,11 +113,10 @@
 			triggermine(AM)
 
 /obj/effect/mine/proc/checksmartmine(mob/target)
-	if(target)
-		if(!(target && HAS_TRAIT(target, TRAIT_MINDSHIELD)))
-			triggermine(target)
-		if(smartmine == 0)
-			triggermine(target)
+	if(smartmine && target && HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		triggermine(target)
+	else if(!smartmine)
+		triggermine(target)
 
 /obj/effect/mine/proc/triggermine(mob/victim)
 	if(triggered)
@@ -153,7 +147,7 @@
 	range_heavy = 2
 	range_light = 3
 	range_flash = 4
-	disarm_time = 250
+	disarm_time = 25 SECONDS
 	disarm_product = /obj/item/deployablemine/traitor
 
 /obj/effect/mine/explosive/traitor/bigboom
@@ -179,26 +173,26 @@
 /obj/effect/mine/stun/smart
 	name = "smart stun mine"
 	desc = "An advanced mine with IFF features, capable of ignoring people with mindshield implants."
-	smartmine = 1
-	disarm_time = 150
+	smartmine = TRUE
+	disarm_time = 15 SECONDS
 	disarm_product = /obj/item/deployablemine/smartstun
 
 /obj/effect/mine/stun/smart/adv
 	name = "rapid smart mine"
-	disarm_time = 80
+	disarm_time = 8 SECONDS
 	disarm_product = /obj/item/deployablemine/rapid
 
 /obj/effect/mine/stun/smart/heavy
 	name = "sledgehammer smart mine"
-	disarm_time = 170
-	stun_time = 230
+	disarm_time = 17 SECONDS
+	stun_time = 23 SECONDS
 	damage = 40
 	disarm_product = /obj/item/deployablemine/heavy
 
 
 /obj/effect/mine/stun/mineEffect(mob/living/victim)
 	if(isliving(victim))
-		victim.adjustStaminaLoss(stun_time)
+		victim.adjustStaminaLoss(damage)
 		victim.adjustBruteLoss(damage)
 
 /obj/effect/mine/kickmine
@@ -234,12 +228,11 @@
 /obj/effect/mine/sound
 	name = "honkblaster 1000"
 	var/sound = 'sound/items/bikehorn.ogg'
-	var/volume = 100
-	disarm_time = 600 // very long disarm time to expand the annoying factor
+	disarm_time = 60 SECONDS // very long disarm time to expand the annoying factor
 	disarm_product = /obj/item/deployablemine/honk
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
-	playsound(loc, sound, volume, 1)
+	playsound(loc, sound, 1)
 
 
 /obj/effect/mine/sound/bwoink

@@ -104,7 +104,7 @@
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/stunmine/sec/ //mines ported from BeeStation
+/datum/design/stunmine/sec //mines ported from BeeStation
 	name = "Stun Mine"
 	desc = "A basic nonlethal stunning mine. Does very heavy stamina damage to anyone who walks over it."
 	id = "stunmine"
