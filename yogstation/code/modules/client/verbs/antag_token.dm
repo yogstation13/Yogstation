@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	if(world.time < C.last_antag_token_check)
 		to_chat(usr, "<span class='userdanger'>You cannot use this verb yet! Please wait.</span>")
 		return
+		
 	var/datum/DBQuery/query_antag_token_existing = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE ckey = '[sanitizeSQL(ckey(ckey))]' AND redeemed = 0"})
 
 	if(!query_antag_token_existing.warn_execute())
@@ -35,7 +36,6 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		for(var/client/A in GLOB.admins)
 			if(check_rights_for(A, R_ADMIN) && (A.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 				SEND_SOUND(A, sound('sound/effects/adminhelp.ogg'))
-
 	else
 		alert("You do not have an antag token.")
 	qdel(query_antag_token_existing)
@@ -45,12 +45,16 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		return
 	to_chat(usr, "<span class='userdanger'>Your request has been denied! Your antag token has NOT been used.</span>")
 
-
 /datum/admins/proc/accept_antag_token_usage(client/C)
 	if(SSticker.current_state > GAME_STATE_PREGAME)
 		return
+
+	if(!check_rights(R_ADMIN))
+			return
+			
 	if(!istype(C))
 		return
+
 	GLOB.antag_token_users += C
 	to_chat(C.mob, "<span class='userdanger'>An admin has approved your antag token request! Ready up!</span>")
 	message_admins("[C.ckey]'s antag token request has been approved by [usr.ckey]")
@@ -72,7 +76,6 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		qdel(query_antag_token)
 		return
 
-
 	while(query_antag_token.NextRow())
 		var/id = query_antag_token.item[1]
 		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET redeemed = 1, denying_admin = 'AUTOMATICALLY REDEEMED'
@@ -81,11 +84,8 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 			message_admins("Failed to detract antag token from player '[ckey]', please do this manually!")
 			qdel(query_antag_token_redeem)
 			return
-
 		qdel(query_antag_token_redeem)
-
 		log_admin_private("Antag token automatically redeemed for [ckey]")
 		message_admins("Antag token automatically redeemed for [ckey]")
 		break
-
 	qdel(query_antag_token)
