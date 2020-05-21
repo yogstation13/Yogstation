@@ -1921,8 +1921,6 @@
 		deny_antag_token(href_list["deny_token_id"])
 
 	else if(href_list["approve_antag_token"])
-		if(!check_rights(R_ADMIN))
-			return
 		var/client/user_client = locate(href_list["approve_antag_token"])
 		accept_antag_token_usage(user_client)
 
