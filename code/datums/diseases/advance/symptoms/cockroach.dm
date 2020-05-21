@@ -47,7 +47,7 @@
 			if(prob(50))
 				to_chat(M, "<span class='notice'>You feel something crawling in your pipes!</span>")
 	
-/datum/symptom/cockroach/proc/OnDeath(datum/disease/advance/A) //test?
+/datum/symptom/cockroach/OnDeath(datum/disease/advance/A) //someone help
 	if(!..())
 		return
 	if(death_roaches)
