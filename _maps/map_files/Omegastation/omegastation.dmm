@@ -6908,18 +6908,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"ako" = (
-/obj/machinery/autolathe,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -26
-	},
-/obj/machinery/camera{
-	c_tag = "Fore Primary Hallway East";
-	dir = 1
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "akp" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -8730,21 +8718,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
-"anj" = (
-/obj/machinery/light,
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "ank" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "secinterior";
@@ -44249,6 +44222,19 @@
 "tWh" = (
 /turf/closed/wall,
 /area/crew_quarters/lounge)
+"tYE" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ueC" = (
 /obj/effect/decal/cleanable/oil,
 /obj/effect/turf_decal/stripes/line{
@@ -44628,6 +44614,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"wOJ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -26
+	},
+/obj/machinery/camera{
+	c_tag = "Fore Primary Hallway East";
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-21"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "wPH" = (
 /obj/item/grenade/barrier{
 	pixel_x = -3;
@@ -91760,7 +91760,7 @@ aiL
 ajA
 akM
 ajF
-anj
+tYE
 adn
 ake
 amz
@@ -92535,7 +92535,7 @@ amB
 anm
 acv
 ano
-ako
+wOJ
 sqz
 voU
 sDq
