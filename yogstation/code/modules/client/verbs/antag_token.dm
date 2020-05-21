@@ -4,7 +4,6 @@
 //List of all people using antag tokens this round
 GLOBAL_LIST_EMPTY(antag_token_users)
 
-
 /client/verb/antag_token_check()
 	set name = "Check/Use Antag Token"
 	set category = "OOC"
