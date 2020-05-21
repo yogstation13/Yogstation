@@ -475,6 +475,7 @@
 #include "code\datums\diseases\advance\symptoms\beard.dm"
 #include "code\datums\diseases\advance\symptoms\choking.dm"
 #include "code\datums\diseases\advance\symptoms\confusion.dm"
+#include "code/datums/diseases/advance/symptoms/cockroach.dm"
 #include "code\datums\diseases\advance\symptoms\cough.dm"
 #include "code\datums\diseases\advance\symptoms\deafness.dm"
 #include "code\datums\diseases\advance\symptoms\dizzy.dm"
