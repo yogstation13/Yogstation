@@ -811,6 +811,7 @@
 /obj/item/melee/ghost_sword/Destroy()
 	for(var/mob/dead/observer/G in spirits)
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 	spirits.Cut()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list -= src
@@ -853,10 +854,12 @@
 	for(var/i in spirits - current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 
 	for(var/i in current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = 0
+		G.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	spirits = current_spirits
 	return length(spirits)
