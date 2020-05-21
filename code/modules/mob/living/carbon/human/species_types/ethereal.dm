@@ -18,6 +18,7 @@
 	inherent_traits = list(TRAIT_NOHUNGER)
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
+	inert_mutation = SHOCKTOUCH
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
