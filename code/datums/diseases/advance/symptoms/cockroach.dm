@@ -11,7 +11,7 @@
 	symptom_delay_min = 10
 	symptom_delay_max = 30
 	var/death_roaches = FALSE
-	threshold_desc = "<b>Stage Speed 8:</b>Increases roach speed<br>\
+	threshold_descs = "<b>Stage Speed 8:</b>Increases roach speed<br>\
 	<b>Transmission 8:</b>When the host dies, more roaches spawn<br>" 
             
 /datum/symptom/cockroach/Start(datum/disease/advance/A)
