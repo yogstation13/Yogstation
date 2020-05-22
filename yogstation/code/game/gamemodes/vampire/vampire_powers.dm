@@ -431,17 +431,13 @@
 		revert_cast()
 		return
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
-	if(!V || V.transformed)
-		revert_cast()
-		to_chat(user, "<span class='notice bold'>DEBUG : Tried to use transform while already transformed or not vampire.</span>")
-		return
 	if(V)
 		V.total_blood = 450
 		V.usable_blood = 450
 		V.check_vampire_upgrade()
 		V.transformed = TRUE
 		V.give_transform_objectives()
-		V.remove_ability(/obj/effect/proc_holder/spell/self/nosferatu)
+		V.remove_ability(V.get_ability(/obj/effect/proc_holder/spell/self/nosferatu))
 		var/mob/living/carbon/human/H = usr
 		if(H.wear_suit)
 			var/obj/item/clothing/suit/W = H.wear_suit

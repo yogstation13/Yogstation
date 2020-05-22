@@ -68,7 +68,6 @@
 	give_objectives()
 	add_ability(/obj/effect/proc_holder/spell/self/nosferatu)
 	check_vampire_upgrade()
-	to_chat(owner, "<span class='notice bold'>DEBUG : Adding nosferatu on gain.</span>")
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
 	SSticker.mode.update_vampire_icons_added(owner)
@@ -148,7 +147,6 @@
 /datum/antagonist/vampire/proc/remove_objective(var/datum/objective/O)
 	objectives -= O
 	objectives_given -= O
-	to_chat(owner, "<span class='notice bold'>DEBUG : Tried to remove objective.</span>")
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
 	.=1
@@ -178,12 +176,17 @@
 /datum/antagonist/vampire/proc/give_transform_objectives()
 	for(var/objective_ in objectives)
 		if(istype(objective_, /datum/objective/blood))
-			to_chat(owner, "<span class='notice bold'>DEBUG : Found blood objective.</span>")
-			remove_objective(/datum/objective/blood)
+			remove_objective(objective_)
+		if(istype(objective_, /datum/objective/escape))
+			remove_objective(objective_)
 	var/datum/objective/more_blood/more_blood_objective = new
 	more_blood_objective.owner = owner
 	more_blood_objective.gen_higher_amount_goal()
 	add_objective(more_blood_objective)
+	var/datum/objective/escape/new_escape = new
+	new_escape.owner = owner
+	add_objective(new_escape)
+	owner.announce_objectives()
 	to_chat(owner, "<span class='notice bold'>Due to your increased strength, your blood goal has been increased.</span>")
 
 /datum/antagonist/vampire/proc/vamp_burn(var/severe_burn = FALSE)
@@ -325,6 +328,8 @@
 		var/level = upgrade_tiers[ptype]
 		if(total_blood >= level)
 			add_ability(ptype)
+		if(total_blood >= 75)
+			remove_ability(get_ability(/obj/effect/proc_holder/spell/self/nosferatu))
 	if(announce)
 		announce_new_power(old_powers)
 	owner.current.update_sight() //deal with sight abilities
