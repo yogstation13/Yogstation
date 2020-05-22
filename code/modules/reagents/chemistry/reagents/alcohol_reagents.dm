@@ -2106,6 +2106,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/cactuscooler/on_mob_life(mob/living/carbon/M)
 	if(M.getFireLoss() && prob(10))
-		M.heal_bodypart_damage(1)
+		M.heal_bodypart_damage(0, 1)
 		. = 1
 	return ..() || .
