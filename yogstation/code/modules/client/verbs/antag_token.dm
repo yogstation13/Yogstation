@@ -11,7 +11,8 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	var/client/C = usr.client
 
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		return to_chat(usr, "<span class='userdanger'>You must use this in the lobby!</span>")
+		to_chat(usr, "<span class='userdanger'>You must use this in the lobby!</span>")
+		return
 
 	if(world.time < C.last_antag_token_check)
 		to_chat(usr, "<span class='userdanger'>You cannot use this verb yet! Please wait.</span>")
