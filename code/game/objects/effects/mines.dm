@@ -33,7 +33,7 @@
 
 /obj/item/deployablemine/honk
 	name = "deployable honkblaster 1000"
-	desc = "An advanced pranking landmine for clowns, honk! Delivers an extra loud HONK to the head when triggered. It can be planted to arm it, or have its sound customised with a sound synthesiser."	
+	desc = "An advanced pranking landmine for clowns, honk! Delivers an extra loud HONK to the head when triggered. It can be planted to arm it, or have its sound customised with a sound synthesiser."
 	mine_type = /obj/effect/mine/sound
 
 /obj/item/deployablemine/traitor
