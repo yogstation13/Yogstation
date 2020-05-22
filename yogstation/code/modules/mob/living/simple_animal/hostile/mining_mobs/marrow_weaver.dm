@@ -92,16 +92,16 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/clown
 	name = "Clown Spider"
 	desc = "A big, angry, poisonous clown spider. It likes to snack on noses. Its preferred food source is you."
-	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
-	icon_state = "weaver"
-	icon_living = "weaver"
-	icon_aggro = "weaver"
-	icon_dead = "weaver_dead"
+	icon = 'goon/icons/mob/clownspider.dmi'
+	icon_state = "cluwnespider_"
+	icon_living = "cluwnespider_"
+	icon_aggro = "cluwnespider_"
+	icon_dead = "cluwnespider_"
 	throw_message = "bounces harmlessly off the"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat)
 	attacktext = "bites"
 	gold_core_spawnable = HOSTILE_SPAWN
-	health = 220
+	health = 250
 	maxHealth = 220
 	var/poison_type = /datum/reagent/consumable/ethanol/bananahonk
 	
