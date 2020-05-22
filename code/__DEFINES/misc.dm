@@ -458,3 +458,12 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+//Religion
+
+#define HOLY_ROLE_PRIEST 1 //default priestly role
+#define HOLY_ROLE_HIGHPRIEST 2 //the one who designates the religion
+
+#define ALIGNMENT_GOOD "good"
+#define ALIGNMENT_NEUT "neutral"
+#define ALIGNMENT_EVIL "evil"

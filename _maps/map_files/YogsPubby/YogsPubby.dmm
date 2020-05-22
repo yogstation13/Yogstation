@@ -57399,6 +57399,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"fhX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "fjs" = (
 /obj/machinery/light{
 	dir = 8
@@ -102199,7 +102206,7 @@ bGZ
 bAO
 bGZ
 bFG
-aAF
+fhX
 bbE
 bcC
 beK
