@@ -1523,10 +1523,9 @@
 	taste_description = "sweetness"
 	
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
-	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM, 0)
-		. = TRUE
+	M.adjustToxLoss(toxpwr*REM, 0)
 	..()
+
 
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
