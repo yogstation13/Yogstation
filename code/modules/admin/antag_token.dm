@@ -134,7 +134,8 @@
 
 	while(query_antag_token.NextRow())
 		var/id = query_antag_token.item[1]
-		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET redeemed = 1, denying_admin = '[sanitizeSQL(ckey(owner.ckey))]'
+		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] 
+		SET redeemed = 1, denying_admin = '[sanitizeSQL(ckey(owner.ckey))]'
 		WHERE id = [id]"})
 		if(!query_antag_token_redeem.warn_execute())
 			alert("Failed to redeem token!")
