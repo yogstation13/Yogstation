@@ -106,7 +106,6 @@
 	log_admin_private("[admin_key] has applied an antag token for [ckey] with the reason '[reason]' for round #[roundid]")
 	message_admins("[admin_key] has applied an antag token for [ckey] with the reason '[reason]' for round #[roundid]")
 
-
 /datum/admins/proc/redeem_antag_token(ckey)
 	if(!check_rights(R_ADMIN))
 		return
@@ -131,8 +130,7 @@
 		qdel(query_antag_token)
 		return
 
-
-	while(query_antag_token.NextRow())
+	if(query_antag_token.NextRow())
 		var/id = query_antag_token.item[1]
 		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] 
 		SET redeemed = 1, denying_admin = '[sanitizeSQL(ckey(owner.ckey))]'
@@ -148,8 +146,8 @@
 		var/admin_key = key_name_admin(usr)
 		log_admin_private("[admin_key] has redeemed an antag token for [ckey]")
 		message_admins("[admin_key] has redeemed an antag token for [ckey]")
-		break
-
+	else
+		alert("Failed to redeem token!")
 	qdel(query_antag_token)
 
 
@@ -229,7 +227,6 @@
 	var/number_id = text2num(id)
 
 	var/ckey
-
 	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = [number_id]"})
 	if(!query_antag_token_exists.warn_execute())
 		qdel(query_antag_token_exists)
@@ -245,14 +242,12 @@
 
 	qdel(query_antag_token_exists)
 
-
 	var/datum/DBQuery/query_antag_token_deny = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET denying_admin = '[sanitizeSQL(ckey(owner.ckey))]',
 	denial_reason = '[sanitizeSQL(reason)]', redeemed = 1 WHERE id = [number_id]"})
 	if(!query_antag_token_deny.warn_execute())
 		qdel(query_antag_token_deny)
 		return
 	qdel(query_antag_token_deny)
-
 	antag_token_panel(ckey)
 
 	var/admin_key = key_name_admin(usr)
@@ -270,21 +265,20 @@
 
 	var/datum/browser/token_panel = new(usr, "redeemabletokenpanel", "Antag Token Panel", 850, 600)
 
-	var/list/data = list()
-
+	
 
 	var/datum/DBQuery/query_antag_token = SSdbcore.NewQuery({"SELECT DISTINCT ckey FROM [format_table_name("antag_tokens")] WHERE redeemed = 0"})
 
 	if(!query_antag_token.warn_execute())
 		qdel(query_antag_token)
 		return
-
+		
+	var/list/data = list()
 	while(query_antag_token.NextRow())
 		var/ckey = query_antag_token.item[1]
 		data += "<a href='?_src_=holder;[HrefToken()];searchAntagTokenByKey=[ckey]'>[ckey]</a>"
 		data += "<br>"
 	qdel(query_antag_token)
-
 
 	token_panel.set_content(jointext(data, ""))
 	token_panel.open()
