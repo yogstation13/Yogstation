@@ -1560,11 +1560,10 @@
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
 	color = "#67ADBA" // rgb: 103,173,186
-	var/toxpwr = 2.5
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(toxpwr*REM, 0)
+	M.adjustToxLoss(2.5*REM, 0)
 	..()
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
