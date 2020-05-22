@@ -33,6 +33,7 @@ God bless America.
 	var/cook_time = 0
 	var/oil_use = 0.05 //How much cooking oil is used per tick
 	var/fry_speed = 1 //How quickly we fry food
+	var/superfry = 0
 	var/frying_fried //If the object has been fried; used for messages
 	var/frying_burnt //If the object has been burnt
 	var/static/list/deepfry_blacklisted_items = typecacheof(list(
@@ -47,7 +48,9 @@ God bless America.
 		/obj/item/reagent_containers/food/condiment,
 		/obj/item/storage,
 		/obj/item/smallDelivery,
-		/obj/item/his_grace))
+		/obj/item/his_grace,
+		/obj/item/fry_overcharger
+		))
 	var/datum/looping_sound/deep_fryer/fry_loop
 
 /obj/machinery/deepfryer/Initialize()
@@ -82,6 +85,11 @@ God bless America.
 		user.visible_message("<span class='notice'>[user] drops [I] into [src].</span>", "<span class='notice'>You dissolve [I] in [src].</span>")
 		I.reagents.trans_to(src, I.reagents.total_volume, transfered_by = user)
 		qdel(I)
+		return
+	if(istype(I, /obj/item/fry_overcharger))
+		to_chat(user, "<span class='warning'>You attach the overcharger to the deep fryer. </span>")
+		qdel(I)
+		superfry = 1
 		return
 	if(!reagents.has_reagent(/datum/reagent/consumable/cooking_oil))
 		to_chat(user, "<span class='warning'>[src] has no cooking oil to fry with!</span>")
@@ -141,16 +149,38 @@ God bless America.
 			frying_burnt = FALSE
 			fry_loop.stop()
 			return
-	else if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume)
-		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-			return
+	else if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling
-		user.visible_message("<span class = 'danger'>[user] dunks [C]'s face in [src]!</span>")
-		reagents.reaction(C, TOUCH)
-		var/permeability = 1 - C.get_permeability_protection(list(HEAD))
-		C.apply_damage(min(30 * permeability, reagents.total_volume), BURN, BODY_ZONE_HEAD)
-		reagents.remove_any((reagents.total_volume/2))
-		C.Paralyze(60)
-		user.changeNext_move(CLICK_CD_MELEE)
+		if(!C.stat == DEAD)	
+			if(user.grab_state < GRAB_AGGRESSIVE)
+				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+				return
+			user.visible_message("<span class = 'danger'>[user] dunks [C]'s face in [src]!</span>")
+			reagents.reaction(C, TOUCH)
+			var/permeability = 1 - C.get_permeability_protection(list(HEAD))
+			C.apply_damage(min(30 * permeability, reagents.total_volume), BURN, BODY_ZONE_HEAD)
+			reagents.remove_any((reagents.total_volume/2))
+			C.Paralyze(60)
+			user.changeNext_move(CLICK_CD_MELEE)
+		
+	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+		if(superfry)
+			var/mob/living/H = user.pulling
+			if(H.stat == DEAD)
+				to_chat(user, "<span class ='notice'>You dunk [H] into [src],</span>")
+				frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, H)
+				icon_state = "fryer_on"
+				for(var/obj/item/W in H)
+					if(!H.dropItemToGround(W))
+						qdel(W)
+						H.regenerate_icons()
+				qdel(H)
+				fry_loop.start()
 	return ..()
+
+/obj/item/syndicate_basket
+	name = "syndicate frying basket"
+	icon = 'icons/obj/lavaland/artefacts.dmi' 
+	icon_state = "hierophant_antenna"
+	item_state = "hierophant_antenna"
+	desc = "It looks like it could be attached to a deep fryer."
