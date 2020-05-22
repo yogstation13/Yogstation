@@ -20385,10 +20385,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"aQw" = (
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "aQx" = (
 /obj/effect/landmark/blobstart,
 /obj/structure/sign/warning/biohazard{
@@ -53447,6 +53443,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"jUt" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "jWz" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -57526,6 +57526,10 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"sZG" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "tbz" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -57842,10 +57846,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"tDK" = (
-/obj/structure/chair/wood/wings,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "tFJ" = (
 /obj/effect/landmark/stationroom/box/dorm_edoor,
 /turf/template_noop,
@@ -108526,8 +108526,8 @@ aKu
 aTe
 aFz
 aFz
-tDK
-aQw
+sZG
+jUt
 cdl
 aXB
 oef

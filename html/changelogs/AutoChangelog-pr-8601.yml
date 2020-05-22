@@ -1,0 +1,4 @@
+author: "FLME"
+delete-after: true 
+changes: 
+  - tweak: "moves the autolathe on omega"
