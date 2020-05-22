@@ -78,7 +78,7 @@
 			add_fingerprint(user)
 			open()
 			return TRUE
-	if(istype(AM, /obj/mecha))
+	if(ismecha(AM))
 		var/obj/mecha/M = AM
 		if(M.occupant && allow_hand_open(M.occupant))
 			open()
