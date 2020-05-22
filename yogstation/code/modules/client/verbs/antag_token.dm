@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		return
 
 	if(!check_rights(R_ADMIN))
-			return
+		return
 			
 	if(!istype(C))
 		return
@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 /proc/antag_token_used(ckey, client/C)
 	var/mob/player = C.mob
 	if(!is_special_character(player))
-		message_admins("Failed to detract make player [ckey] an antag. Their token has NOT been used!")
+		message_admins("Failed to make player [ckey] an antag. Their token has NOT been used!")
 		return
 
 	to_chat(C, "<span class='userdanger'>Your antag token has been used!</span>")
@@ -76,16 +76,17 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		qdel(query_antag_token)
 		return
 
-	while(query_antag_token.NextRow())
+	if(query_antag_token.NextRow())
 		var/id = query_antag_token.item[1]
 		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET redeemed = 1, denying_admin = 'AUTOMATICALLY REDEEMED'
 		WHERE id = [id]"})
 		if(!query_antag_token_redeem.warn_execute())
-			message_admins("Failed to detract antag token from player '[ckey]', please do this manually!")
+			message_admins("Failed to use antag token for player '[ckey]'! Please do this manually!")
 			qdel(query_antag_token_redeem)
 			return
 		qdel(query_antag_token_redeem)
 		log_admin_private("Antag token automatically redeemed for [ckey]")
 		message_admins("Antag token automatically redeemed for [ckey]")
-		break
+	else
+		message_admins("Failed to use antag token for player '[ckey]'! Please do this manually!")
 	qdel(query_antag_token)
