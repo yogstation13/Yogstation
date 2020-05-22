@@ -1539,12 +1539,11 @@
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
 	color = "#A69DA9" // rgb: 166,157,169
-	var/toxpwr = 1
 	taste_description = "bitterness"
 	taste_mult = 1.5
 	
 /datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(toxpwr*REM, 0)
+	M.adjustToxLoss(REM, 0)
 	..()
 
 
