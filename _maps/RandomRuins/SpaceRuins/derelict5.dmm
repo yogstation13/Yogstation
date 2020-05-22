@@ -72,6 +72,10 @@
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
+"T" = (
+/obj/item/wormhole_jaunter,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -644,7 +648,7 @@ b
 b
 b
 d
-g
+T
 i
 i
 m
@@ -724,7 +728,7 @@ b
 b
 b
 e
-g
+T
 g
 k
 n
