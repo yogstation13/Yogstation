@@ -1591,9 +1591,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
-	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM, 0)
-		. = TRUE
+	M.adjustToxLoss(toxpwr*REM, 0)
 	..()
 
 // Bee chemicals
