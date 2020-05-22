@@ -114,17 +114,17 @@
 		update_icon()
 	else if(W.GetID())
 		togglelock(user)
-		return TRUE
 	else
 		return ..()
 
 /obj/machinery/power/rad_collector/proc/togglelock(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)))
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(allowed(user))
 		if(active)
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the controls.</span>")
+			return TRUE
 		else
 			to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is active!</span>")
 	else

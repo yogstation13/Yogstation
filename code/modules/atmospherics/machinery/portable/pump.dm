@@ -157,7 +157,7 @@
 	update_icon()
 
 /obj/machinery/portable_atmospherics/pump/CtrlShiftClick(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)))
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	on = !on
 	update_icon()

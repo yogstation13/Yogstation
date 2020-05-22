@@ -218,6 +218,8 @@
 	interact(user)
 
 /obj/machinery/power/port_gen/pacman/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
 	if(anchored)
 		TogglePower()
 

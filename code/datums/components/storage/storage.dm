@@ -772,9 +772,10 @@
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
 	if(!isliving(user) || !user.CanReach(parent))
 		return
-	if(istype(parent, /obj/item/storage/lockbox))
-		return
+
 	if(locked)
+		if(istype(parent, /obj/item/storage/lockbox))
+			return
 		to_chat(user, "<span class='warning'>[parent] seems to be locked!</span>")
 		return
 

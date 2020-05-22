@@ -37,7 +37,6 @@
 	cell = null
 	panel_open = TRUE
 	update_icon()
-	anchored = FALSE
 	return ..()
 
 /obj/machinery/space_heater/on_deconstruction()
@@ -149,7 +148,6 @@
 				return
 			cell = I
 			I.add_fingerprint(usr)
-
 			user.visible_message("\The [user] inserts a power cell into \the [src].", "<span class='notice'>You insert the power cell into \the [src].</span>")
 			SStgui.update_uis(src)
 		else
@@ -201,12 +199,7 @@
 		return
 	switch(action)
 		if("power")
-			on = !on
-			mode = HEATER_MODE_STANDBY
-			usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
-			update_icon()
-			if (on)
-				START_PROCESSING(SSmachines, src)
+			togglepower()
 			. = TRUE
 		if("mode")
 			setMode = params["mode"]
@@ -237,15 +230,18 @@
 				cell = null
 				. = TRUE
 
-/obj/machinery/space_heater/AltClick(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)))
-		return
+/obj/machinery/space_heater/proc/togglepower()
 	on = !on
 	mode = HEATER_MODE_STANDBY
-	user.visible_message("[user] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
+	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
 	update_icon()
 	if (on)
 		START_PROCESSING(SSmachines, src)
+
+/obj/machinery/space_heater/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	togglepower()
 
 #undef HEATER_MODE_STANDBY
 #undef HEATER_MODE_HEAT

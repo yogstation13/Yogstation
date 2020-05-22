@@ -472,3 +472,8 @@
 		open_machine(0)
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
+
+/obj/machinery/suit_storage_unit/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
+		return
+	locked = !locked

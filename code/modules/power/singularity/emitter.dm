@@ -300,6 +300,7 @@
 /obj/machinery/power/emitter/attackby(obj/item/I, mob/user, params)
 	if(I.GetID())
 		togglelock(user)
+		return
 	else if(is_wire_tool(I) && panel_open)
 		wires.interact(user)
 		return

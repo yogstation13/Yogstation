@@ -602,12 +602,12 @@
 	pass_flags = PASSTABLE
 
 /obj/machinery/computer/med_data/AltClick(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)))
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
-	if(src.scan)
+	if(scan)
 		user.put_in_hands(scan)
 		scan = null
 	else
 		var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id)
 		if(I && user.transferItemToLoc(I, src))
-			src.scan = I
+			scan = I

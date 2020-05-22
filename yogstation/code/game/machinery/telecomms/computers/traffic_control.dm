@@ -302,7 +302,7 @@
 	return 0
 
 /obj/machinery/computer/telecomms/traffic/AltClick(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)))
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -316,7 +316,7 @@
 					create_log("has logged in.", user)
 		else
 			create_log("has logged out.", user)
-			auth.loc = src.loc
+			auth.forceMove(drop_location())
 			C.put_in_hands(auth)
 			auth = null
 		updateUsrDialog()
