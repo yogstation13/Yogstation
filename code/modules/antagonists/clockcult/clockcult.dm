@@ -1,5 +1,5 @@
 //CLOCKCULT PROOF OF CONCEPT
-/datum/antagonist/clockcult
+/datum/antagonist/clockcult //where did it go
 	name = "Clock Cultist"
 	roundend_category = "clock cultists"
 	antagpanel_category = "Clockcult"
