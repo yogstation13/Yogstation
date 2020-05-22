@@ -163,7 +163,7 @@
 	variance = 2
 
 /obj/item/projectile/beam/laser/makeshiftlasrifle
-	damage = 25
+	damage = 17
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
 	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
