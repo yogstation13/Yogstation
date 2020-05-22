@@ -435,7 +435,6 @@
 		V.total_blood = 450
 		V.usable_blood = 450
 		V.check_vampire_upgrade()
-		V.transformed = TRUE
 		V.give_transform_objectives()
 		V.remove_ability(V.get_ability(/obj/effect/proc_holder/spell/self/nosferatu))
 		var/mob/living/carbon/human/H = usr

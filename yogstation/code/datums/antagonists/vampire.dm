@@ -12,7 +12,6 @@
 	var/converted = 0
 	var/fullpower = FALSE
 	var/full_vampire = TRUE
-	var/transformed = FALSE
 	var/draining
 	var/list/objectives_given = list()
 
@@ -314,7 +313,6 @@
 		powers -= ability
 		owner.spell_list.Remove(ability)
 		qdel(ability)
-		to_chat(owner, "<span class='notice bold'>DEBUG : Tried to remove an ability.</span>")
 
 
 /datum/antagonist/vampire/proc/remove_vampire_powers()
