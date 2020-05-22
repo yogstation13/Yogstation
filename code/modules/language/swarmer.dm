@@ -15,7 +15,6 @@
 
 	// since various flats and sharps are the same,
 	// all non-accidental notes are doubled in the list
-	/* The list with unicode symbols for the accents.
 	syllables = list(
 					"C", "C",
 					"C♯", "D♭",
@@ -28,18 +27,4 @@
 					"G♯", "A♭",
 					"A", "A",
 					"A♯", "B♭",
-					"B", "B")
-	*/
-	syllables = list(
-					"C", "C",
-					"C#", "Db",
-					"D", "D",
-					"D#", "Eb",
-					"E", "E",
-					"F", "F",
-					"F#", "Gb",
-					"G", "G",
-					"G#", "Ab",
-					"A", "A",
-					"A#", "Bb",
 					"B", "B")

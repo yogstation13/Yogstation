@@ -613,3 +613,26 @@
 		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
+
+/datum/quirk/kleptomaniac
+	name = "Kleptomaniac"
+	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
+	value = -1
+	mob_trait = TRAIT_KLEPTOMANIAC
+	gain_text = "<span class='danger'>You have an unmistakeable urge to grab nearby objects.</span>"
+	lose_text = "<span class='notice'>You no feel the urge to steal.</span>"
+	medical_record_text = "Patient has an uncontrollable urge to steal."
+
+/datum/quirk/kleptomaniac/on_process()
+	if(prob(3))
+		var/mob/living/carbon/H = quirk_holder
+		var/obj/item/I = locate(/obj/item/) in oview(1, H)
+		if(!I || I.anchored || H.incapacitated() || !I.Adjacent(H))
+			return
+		if(isliving(quirk_holder))
+			var/mob/living/L = quirk_holder
+			if(!(L.mobility_flags & MOBILITY_PICKUP))
+				return
+		if(!H.get_active_held_item())
+			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
+			H.UnarmedAttack(I)
