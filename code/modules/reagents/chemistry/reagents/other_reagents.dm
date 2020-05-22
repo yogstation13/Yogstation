@@ -1534,10 +1534,9 @@
 	taste_description = "bitterness"
 	
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
-	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM, 0)
-		. = TRUE
+	M.adjustToxLoss(toxpwr*REM, 0)
 	..()
+
 
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
