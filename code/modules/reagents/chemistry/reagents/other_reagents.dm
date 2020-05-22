@@ -1550,12 +1550,11 @@
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
 	color = "#CEC3C6" // rgb: 206,195,198
-	var/toxpwr = 0.5
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
 /datum/reagent/toxin/plasma/plasmavirusfood/weak/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(toxpwr*REM, 0)
+	M.adjustToxLoss(0.5*REM, 0)
 	..()
 
 /datum/reagent/uranium/uraniumvirusfood
