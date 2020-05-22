@@ -1363,7 +1363,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/toolbox
 	name = "Full Syndicate Toolbox"
 	desc = "The Syndicate toolbox is a suspicious black and red. It comes loaded with a full tool set including a \
-			multitool and combat gloves that are resistant to shocks and heat."
+			multitool and combat gloves that are resistant to shocks and heat. It is very compact and will fit in \
+			a standard nanotrasen backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
 

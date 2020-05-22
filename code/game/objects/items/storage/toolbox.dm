@@ -142,6 +142,7 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 15
 	throwforce = 18
 
