@@ -1518,11 +1518,10 @@
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
-	var/toxpwr = 0.5
 	taste_description = "sweetness"
 	
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(toxpwr*REM, 0)
+	M.adjustToxLoss(0.5*REM, 0)
 	..()
 
 
