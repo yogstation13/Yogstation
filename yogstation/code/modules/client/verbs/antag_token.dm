@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		ORDER BY granted_time DESC"})
 
 	if(!query_antag_token.warn_execute())
-		message_admins("Failed to detract antag token from player '[ckey]', please do this manually!")
+		message_admins("Failed to use antag token for player '[ckey]'! Please do this manually!")
 		qdel(query_antag_token)
 		return
 
