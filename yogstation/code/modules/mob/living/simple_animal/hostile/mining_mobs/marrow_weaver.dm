@@ -103,5 +103,5 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	health = 250
 	maxHealth = 220
-	var/poison_type = /datum/reagent/consumable/ethanol/bananahonk
+	poison_type = /datum/reagent/consumable/ethanol/bananahonk
 	
