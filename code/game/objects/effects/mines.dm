@@ -192,8 +192,7 @@
 
 /obj/effect/mine/stun/mineEffect(mob/living/victim)
 	if(isliving(victim))
-		victim.adjustStaminaLoss(damage)
-		victim.adjustBruteLoss(damage)
+		victim.Paralyze(stun_time)
 
 /obj/effect/mine/kickmine
 	name = "kick mine"
@@ -232,7 +231,7 @@
 	disarm_product = /obj/item/deployablemine/honk
 
 /obj/effect/mine/sound/mineEffect(mob/victim)
-	playsound(loc, sound, 1)
+	playsound(loc, sound, 100, 1)
 
 
 /obj/effect/mine/sound/bwoink
