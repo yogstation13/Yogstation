@@ -99,6 +99,7 @@
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	mutatelist = list(/obj/item/seeds/glowshroom)
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.25, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
@@ -305,3 +306,35 @@
 	. = ..()
 	if(.)
 		investigate_log("was planted by [key_name(user)] at [AREACOORD(user)]", INVESTIGATE_BOTANY)
+		
+/obj/item/seeds/fungus
+	name = "pack of cave fungus mycelium"
+	desc = "This mycelium grows into cave fungi, an edible variety of mushroom with anti-toxic properties."
+	icon_state = "seed-fungus"
+	species = "cave fungus"
+	plantname = "cave fungi"
+	product = /obj/item/reagent_containers/food/snacks/grown/fungus
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	icon_grow = "shroom-grow"
+	icon_dead = "shroom-dead"
+	icon_harvest = "shroom-harvest"
+	lifespan = 50
+	endurance = 10
+	maturation = 8
+	production = 3
+	yield = 6
+	potency = 20
+	growthstages = 2
+
+/obj/item/reagent_containers/food/snacks/grown/fungus
+	seed = /obj/item/seeds/fungus
+	name = "cave fungus"
+	desc = "Cave fungus is an edible mushroom which has the ability to purge bodily toxins."
+	icon_state = "fungus"
+	filling_color = "#FF6347"
+
+/obj/item/reagent_containers/food/snacks/grown/fungus/add_juice()
+	if(..())
+		reagents.add_reagent("charcoal", 1 + round((seed.potency / 20), 1))
+		reagents.add_reagent("mutadone", 1 + round((seed.potency / 20), 1))
+		bitesize = 1 + round(reagents.total_volume / 3, 1)

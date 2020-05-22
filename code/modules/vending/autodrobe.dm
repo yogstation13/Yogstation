@@ -123,6 +123,7 @@
 					/obj/item/clothing/mask/yogs/scaryclown = 1,
 					/obj/item/clothing/under/yogs/scaryclown = 1,
 					/obj/item/clothing/shoes/clown_shoes/scaryclown = 1,
+					/obj/item/clothing/shoes/clown_shoes/clowncrocs = 1,
 					/obj/item/clothing/under/yogs/barber = 4,
 					/obj/item/clothing/head/yogs/boater = 4,
 					/obj/item/clothing/under/yogs/bluecoatuniform = 5,

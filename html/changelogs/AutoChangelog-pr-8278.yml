@@ -1,0 +1,6 @@
+author: "MenacingManatee"
+delete-after: true 
+changes: 
+  - tweak: "Meth speed lowered from 2 to 1.6 (previously version of PR had 1.3)"
+  - tweak: "Meth now requires 1 part facid to increase complexity a bit"
+  - rscadd: "Meth now creates a small caustic smoke cloud on reaction"
