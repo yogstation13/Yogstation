@@ -426,7 +426,12 @@
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
-
+	
+/obj/item/reagent_containers/food/drinks/bottle/nukacola
+	name = "Nuka Cola"
+	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."
+	icon_state = "nuka_colaglass"
+	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/food/drinks/bottle/molotov
