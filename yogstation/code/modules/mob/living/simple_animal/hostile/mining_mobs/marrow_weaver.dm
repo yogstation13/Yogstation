@@ -88,3 +88,20 @@
 			if(O.zone == "chest")
 				return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/clown
+	name = "Clown Spider"
+	desc = "A big, angry, poisonous clown spider. It likes to snack on noses. Its preferred food source is you."
+	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "weaver"
+	icon_living = "weaver"
+	icon_aggro = "weaver"
+	icon_dead = "weaver_dead"
+	throw_message = "bounces harmlessly off the"
+	loot = list(/obj/item/clothing/mask/gas/clown_hat)
+	attacktext = "bites"
+	gold_core_spawnable = HOSTILE_SPAWN
+	health = 220
+	maxHealth = 220
+	var/poison_type = /datum/reagent/consumable/ethanol/bananahonk
+	
