@@ -1529,11 +1529,10 @@
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
-	var/toxpwr = 0.25
 	taste_description = "bitterness"
 	
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(toxpwr*REM, 0)
+	M.adjustToxLoss(0.25*REM, 0)
 	..()
 
 
