@@ -29,12 +29,12 @@
 	else
 		return FALSE
 
-/datum/objective/blood/nosferatu/proc/gen_higher_amount_goal(notsolowbound = 1000, morehighbound = 1500)
-	target_amount = rand (notsolowbound,morehighbound)
+/datum/objective/more_blood/proc/gen_higher_amount_goal(lowbound = 1000, highbound = 1500)
+	target_amount = rand (lowbound,highbound)
 	explanation_text = "Extract [target_amount] units of blood."
 	return target_amount
 
-/datum/objective/blood/nosferatu/check_completion()
+/datum/objective/more_blood/check_completion()
 	if(!owner)
 		return FALSE
 	var/datum/antagonist/vampire/vamp = owner.has_antag_datum(/datum/antagonist/vampire)

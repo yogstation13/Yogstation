@@ -25,7 +25,6 @@
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
-		/obj/effect/proc_holder/spell/self/nosferatu = 0,
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
@@ -67,7 +66,9 @@
 /datum/antagonist/vampire/on_gain()
 	SSticker.mode.vampires += owner
 	give_objectives()
+	add_ability(/obj/effect/proc_holder/spell/self/nosferatu)
 	check_vampire_upgrade()
+	to_chat(owner, "<span class='notice bold'>DEBUG : Adding nosferatu on gain.</span>")
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
 	SSticker.mode.update_vampire_icons_added(owner)
@@ -147,6 +148,7 @@
 /datum/antagonist/vampire/proc/remove_objective(var/datum/objective/O)
 	objectives -= O
 	objectives_given -= O
+	to_chat(owner, "<span class='notice bold'>DEBUG : Tried to remove objective.</span>")
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
 	.=1
@@ -174,14 +176,15 @@
 		add_objective(steal_objective)
 
 /datum/antagonist/vampire/proc/give_transform_objectives()
-	if(locate(/datum/objective/blood) in objectives)
-		remove_objective(/datum/objective/blood)
-	var/datum/objective/blood/nosferatu/more_blood_objective = new
+	for(var/objective_ in objectives)
+		if(istype(objective_, /datum/objective/blood))
+			to_chat(owner, "<span class='notice bold'>DEBUG : Found blood objective.</span>")
+			remove_objective(/datum/objective/blood)
+	var/datum/objective/more_blood/more_blood_objective = new
 	more_blood_objective.owner = owner
-	more_blood_objective.gen_amount_goal()
+	more_blood_objective.gen_higher_amount_goal()
 	add_objective(more_blood_objective)
 	to_chat(owner, "<span class='notice bold'>Due to your increased strength, your blood goal has been increased.</span>")
-
 
 /datum/antagonist/vampire/proc/vamp_burn(var/severe_burn = FALSE)
 	var/mob/living/L = owner.current
@@ -308,6 +311,7 @@
 		powers -= ability
 		owner.spell_list.Remove(ability)
 		qdel(ability)
+		to_chat(owner, "<span class='notice bold'>DEBUG : Tried to remove an ability.</span>")
 
 
 /datum/antagonist/vampire/proc/remove_vampire_powers()
