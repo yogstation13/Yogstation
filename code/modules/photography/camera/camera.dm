@@ -1,5 +1,3 @@
-
-
 #define CAMERA_PICTURE_SIZE_HARD_LIMIT 21
 
 /obj/item/camera
