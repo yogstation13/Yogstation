@@ -25,9 +25,9 @@ Thresholds
 	symptom_delay_max = 1
 	severity = 1
 	base_message_chance = 5
-	var/Power = 1
+	var/power = 1
 	var/get_damage = 0
-	var/ closrf = 0
+	var/closrf = 0
 	var/armour = FALSE
 	var/done = FALSE
 	var/mob/living/C = null
