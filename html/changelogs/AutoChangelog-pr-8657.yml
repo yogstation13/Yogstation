@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "godblood fountain on lavaland no longer fakes you out into thinking it's empty by spawning with the empty look but being full"

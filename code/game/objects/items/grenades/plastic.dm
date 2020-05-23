@@ -105,6 +105,10 @@
 		return
 	if(ismob(AM) && !can_attach_mob)
 		return
+	if(AM.GetComponent(/datum/component/storage))
+		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
+		if(fuckup_safety != "Yes")
+			return
 
 	to_chat(user, "<span class='notice'>You start planting [src]. The timer is set to [det_time]...</span>")
 
