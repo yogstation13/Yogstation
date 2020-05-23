@@ -579,12 +579,12 @@
 	for(var/i in 1 to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)
 	
-/obj/item/weapon/storage/box/syndie_kit/imp_zombie
+/obj/item/storage/box/syndie_kit/imp_zombie
 	name = "boxed zombie implant (with injector)"
 
-/obj/item/weapon/storage/box/syndie_kit/imp_zombie/New()
+/obj/item/storage/box/syndie_kit/imp_zombie/New()
 	..()
 	var/obj/item/weapon/implanter/O = new(src)
-	O.imp = new /obj/item/weapon/implant/zombie(O)
+	O.imp = new /obj/item/implant/zombie(O)
 	O.update_icon()
 	return
