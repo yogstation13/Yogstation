@@ -56861,6 +56861,12 @@
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
 /area/space)
+"cJE" = (
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "cOp" = (
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas,
@@ -59591,13 +59597,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"nOF" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "nPA" = (
 /obj/item/chair,
 /turf/open/floor/plating,
@@ -61384,12 +61383,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/department/science)
-"uux" = (
-/obj/structure/table,
-/obj/item/instrument/harmonica,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "uvo" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -61602,6 +61595,13 @@
 /obj/item/assembly/mousetrap,
 /turf/open/floor/engine,
 /area/science/explab)
+"vyy" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "vzn" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -82878,7 +82878,7 @@ aen
 aer
 aeF
 aeV
-uux
+cJE
 ahY
 aeU
 aeU
@@ -84169,7 +84169,7 @@ agd
 agp
 agC
 agO
-nOF
+vyy
 agy
 ahK
 aih

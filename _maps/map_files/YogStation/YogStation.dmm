@@ -55410,6 +55410,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"onm" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "ooX" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -56539,12 +56547,6 @@
 "qQV" = (
 /turf/template_noop,
 /area/template_noop)
-"qUI" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "qVL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -58186,6 +58188,12 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"utu" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uum" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -59319,14 +59327,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"wPn" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "wPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -86378,7 +86378,7 @@ aat
 aat
 aat
 aat
-qUI
+utu
 aSV
 aat
 abj
@@ -89469,7 +89469,7 @@ bak
 bbs
 bbx
 bbQ
-wPn
+onm
 acd
 abb
 afB
