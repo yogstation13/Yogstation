@@ -661,6 +661,14 @@
 	. = 1
 	..()
 
+/datum/reagent/toxin/capilletum
+	name = "Capilletum"
+	description = "A powerful toxin that exemplifies the patterns of punctured skin, matching their pigments and shapes, and then expands them across the body. Unlike other toxins, it does not have any negative effects."
+	color = "#FFB9D2"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	toxpwr = 0 // no side effects
+
+
 /datum/reagent/toxin/heparin //Based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
 	name = "Heparin"
 	description = "A powerful anticoagulant. Victims will bleed uncontrollably and suffer scaling bruising."
