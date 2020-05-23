@@ -2,7 +2,6 @@
 	name = "zombie implant"
 	desc = "Fake your death and trick those NT shills"
 	icon_state = "zombie"
-	origin_tech = "biotech=5;syndicate=4"
 	uses = 2
 	//allow_reagents = 1
 
