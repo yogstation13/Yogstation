@@ -132,6 +132,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/startnow,
 	/*/datum/admins/proc/restart, YOGS - moved to +admin*/
 	/datum/admins/proc/end_round,
+	/datum/admins/proc/delay_end_round,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/client/proc/everyone_random,
