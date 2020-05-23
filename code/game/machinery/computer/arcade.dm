@@ -172,7 +172,7 @@ if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		name_part2 = pick_list(ARCADE_FILE, "rpg_enemy")
 		weapons = strings(ARCADE_FILE, "rpg_weapon")
 		
-enemy_name = ("The " + name_part1 + " " + name_part2)
+	enemy_name = ("The " + name_part1 + " " + name_part2)
 	name = (name_action + " " + enemy_name)
 
 /obj/machinery/computer/arcade/battle/ui_interact(mob/user)
