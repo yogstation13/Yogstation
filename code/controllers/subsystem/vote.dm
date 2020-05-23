@@ -192,6 +192,10 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[map]
 					if(!VM.votable)
 						continue
+					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
+						continue
+					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
+						continue
 					choices.Add(VM.map_name)
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
@@ -297,7 +301,7 @@ SUBSYSTEM_DEF(vote)
 	if(usr.client.holder)
 		if(check_rights_for(usr.client, R_ADMIN))
 			trialmin = 1
-	
+
 	switch(href_list["vote"])
 		if("close")
 			voting -= usr.client
