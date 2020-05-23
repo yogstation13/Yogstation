@@ -107,7 +107,7 @@
 			. += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>"
 
 	var/appears_dead = 0
-	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH) || (reagents.has_reagent(/datum/reagent/toxin/capilletum) && lying))
+	if(stat == DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || reagents.has_reagent(/datum/reagent/toxin/capilletum) && lying)
 		appears_dead = 1
 		if(suiciding)
 			. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
