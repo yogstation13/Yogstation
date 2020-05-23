@@ -17,7 +17,7 @@
 
 	var/list/stored_profiles = list() //list of datum/changelingprofile
 	var/datum/changelingprofile/first_prof = null
-	var/dna_max = 6 //How many extra DNA strands the changeling can store for transformation.
+	var/dna_max = 12 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 0
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
 	var/chem_charges = 20
