@@ -523,7 +523,7 @@
 	var/underwear
 	var/undershirt
 	var/socks
-	var/accent
+	var/accent = null
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)
