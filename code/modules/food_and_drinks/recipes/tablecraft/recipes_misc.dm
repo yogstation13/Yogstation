@@ -361,3 +361,13 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sundae
 	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/lean
+	name = "lean"
+	result = /obj/item/reagent_containers/food/drinks/colocup/lean
+	time = 30
+	reqs = list(/obj/item/reagent_containers/food/drinks/colocup = 1,
+				/obj/item/reagent_containers/food/snacks/gumball = 2,
+				/datum/reagent/medicine/morphine = 5,
+				/datum/reagent/consumable/space_up = 15)
+	subcategory = CAT_MISCFOOD
