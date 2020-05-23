@@ -53031,6 +53031,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"jaQ" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "jbI" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -53301,6 +53309,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jEi" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "jFV" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -55410,14 +55424,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"onm" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "ooX" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -58188,12 +58194,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"utu" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "uum" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -86378,7 +86378,7 @@ aat
 aat
 aat
 aat
-utu
+jEi
 aSV
 aat
 abj
@@ -89469,7 +89469,7 @@ bak
 bbs
 bbx
 bbQ
-onm
+jaQ
 acd
 abb
 afB

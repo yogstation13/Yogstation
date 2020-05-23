@@ -126988,31 +126988,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"nuH" = (
-/obj/structure/table,
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/item/paper,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "nvD" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/holopad,
@@ -127152,6 +127127,22 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
+"oZe" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/security/prison)
 "pfG" = (
 /obj/effect/turf_decal/bot,
 /obj/item/twohanded/required/kirbyplants/random,
@@ -127441,6 +127432,31 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"tMc" = (
+/obj/structure/table,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/item/paper,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tNc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -127689,22 +127705,6 @@
 "xdD" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
-"xtE" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/security/prison)
 "xDZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -179292,7 +179292,7 @@ aaa
 aad
 aFm
 aCO
-xtE
+oZe
 aFm
 aQY
 aSE
@@ -181091,7 +181091,7 @@ awC
 aSU
 dnz
 dol
-nuH
+tMc
 aPm
 aJA
 aSG

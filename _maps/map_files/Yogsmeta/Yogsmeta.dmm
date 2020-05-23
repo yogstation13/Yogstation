@@ -83761,6 +83761,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"kTk" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "lal" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -84130,20 +84140,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"rdg" = (
-/obj/structure/table,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "rfb" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -84371,6 +84367,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"uRp" = (
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/item/toy/cards/deck,
+/obj/item/toy/cards/deck,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uRM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -84471,16 +84481,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"wzf" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "wEj" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -106063,7 +106063,7 @@ aay
 abh
 abA
 abY
-wzf
+kTk
 aax
 acB
 adp
@@ -107861,7 +107861,7 @@ abp
 aaM
 abb
 abH
-rdg
+uRp
 acC
 acK
 acY
