@@ -32,6 +32,15 @@
 	result = /obj/item/reagent_containers/food/snacks/butterdog
 	subcategory = CAT_BREAD
 
+/datum/crafting_recipe/food/moldybread // why would you make this?
+	name = "Moldy Bread"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1,
+		/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita = 1
+		)
+	result = /obj/item/reagent_containers/food/snacks/breadslice/moldy
+	subcategory = CAT_BREAD
+
 /datum/crafting_recipe/food/creamcheesebread
 	name = "Cream Cheese Bread"
 	reqs = list(
