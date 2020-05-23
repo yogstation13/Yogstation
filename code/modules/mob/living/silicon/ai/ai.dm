@@ -1120,6 +1120,8 @@
 
 //This is a global proc for ease of use
 /proc/ai_can_use(flag, ai)
+	if(!isAI(ai))
+		return TRUE
 	var/mob/living/silicon/ai/A = ai
 	if(!istype(A))
 		return TRUE

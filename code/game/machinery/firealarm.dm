@@ -149,7 +149,7 @@
 
 /obj/machinery/firealarm/attack_ai(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with fire alarm.</span>")
 		return
 	return attack_hand(user)
 

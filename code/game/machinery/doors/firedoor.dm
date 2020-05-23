@@ -178,7 +178,7 @@
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with firelock.</span>")
 		return
 	add_fingerprint(user)
 	if(welded || operating || stat & NOPOWER)

@@ -349,7 +349,7 @@
 	if(..())
 		return
 	if(!ai_can_use(POWER_MANIPULATION, usr))
-		to_chat(usr, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with SMES.</span>")
 		return
 	switch(action)
 		if("tryinput")

@@ -126,7 +126,7 @@
 
 /obj/machinery/power/emitter/interact(mob/user)
 	if(!ai_can_use(POWER_MANIPULATION, user))
-		to_chat(user, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with emitter.</span>")
 		return
 	add_fingerprint(user)
 	if(state == EMITTER_WELDED)

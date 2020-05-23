@@ -380,7 +380,7 @@
 	if((locked && !usr.has_unlimited_silicon_privilege) || (usr.has_unlimited_silicon_privilege && aidisabled))
 		return
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr))
-		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with air alarm.</span>")
 		return
 
 	var/device_id = params["id_tag"]

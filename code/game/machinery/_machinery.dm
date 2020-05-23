@@ -323,7 +323,7 @@ Class Procs:
 		return attack_robot(user)
 	else
 		if(!ai_can_use(MACHINE_INTERACTION, user))
-			to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+			to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with machine.</span>")
 			return
 		return _try_interact(user)
 

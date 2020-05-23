@@ -631,7 +631,7 @@
 
 /obj/machinery/light/attack_ai(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with light.</span>")
 		return
 	no_emergency = !no_emergency
 	to_chat(user, "<span class='notice'>Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"].</span>")

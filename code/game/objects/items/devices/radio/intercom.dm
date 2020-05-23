@@ -84,7 +84,7 @@
 
 /obj/item/radio/intercom/attack_ai(mob/user)
 	if(!ai_can_use(TELECOMMS_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with intercom.</span>")
 		return
 	interact(user)
 

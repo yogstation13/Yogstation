@@ -177,7 +177,7 @@
 /* APC */
 /obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
 	if(!ai_can_use(POWER_MANIPULATION, usr))
-		to_chat(usr, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with APC.</span>")
 		return
 
 	if(can_use(usr, 1))
@@ -186,7 +186,7 @@
 /* AI Turrets */
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
 	if(!ai_can_use(MACHINE_INTERACTION, usr))
-		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with turret.</span>")
 		return
 	if(ailock)
 		return
@@ -194,7 +194,7 @@
 
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
 	if(!ai_can_use(MACHINE_INTERACTION, usr))
-		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with turret.</span>")
 		return
 	if(ailock)
 		return
@@ -203,7 +203,7 @@
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	if(!ai_can_use(MACHINE_INTERACTION, user))
-		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with holopad.</span>")
 		return
 	hangup_all_calls()
 	add_hiddenprint(usr)

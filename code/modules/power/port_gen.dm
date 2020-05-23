@@ -213,7 +213,7 @@
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user)
 	if(!ai_can_use(POWER_MANIPULATION, user))
-		to_chat(user, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with generator.</span>")
 		return
 	interact(user)
 

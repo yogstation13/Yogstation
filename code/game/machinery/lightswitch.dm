@@ -38,6 +38,10 @@
 		. += "<span class='danger'>You hear a faint hum coming from the switch.</span>"
 
 /obj/machinery/light_switch/interact(mob/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with light switch.</span>")
+		return
+
 	if(obj_flags & EMAGGED)
 		shock(user)
 	. = ..()

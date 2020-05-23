@@ -737,7 +737,7 @@
 
 /obj/mecha/attack_ai(mob/living/silicon/ai/user)
 	if(!ai_can_use(MACHINE_INTERACTION, user))
-		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with mech.</span>")
 		return
 	if(!isAI(user))
 		return
