@@ -194,8 +194,7 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-			else
-				if(reagents.has_reagent("/datum/reagent/toxin/capilletum") && lying)
+			if(reagents.has_reagent("/datum/reagent/toxin/capilletum") && lying)
 				msg += "<B>[t_He] [t_surface] [t_is2] of a deep blue colour, mouth open in an desperate gasp for air!</B>\n"
 			else
 				msg += "[t_He] [t_surface] and lips are bluish in colour.\n"
