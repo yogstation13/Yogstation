@@ -46943,12 +46943,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cdr" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "cds" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/starboard/aft";
@@ -52632,6 +52626,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ilt" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "ilH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -54374,14 +54376,6 @@
 /obj/structure/spirit_board,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"meO" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "mfN" = (
 /obj/machinery/door/window/brigdoor/westleft{
 	req_access_txt = "61"
@@ -55587,6 +55581,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"oOG" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oQp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -86378,7 +86378,7 @@ aat
 aat
 aat
 aat
-cdr
+oOG
 aSV
 aat
 abj
@@ -89469,7 +89469,7 @@ bak
 bbs
 bbx
 bbQ
-meO
+ilt
 acd
 abb
 afB
