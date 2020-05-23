@@ -102,3 +102,11 @@
 	filling_color = "#97ee63"
 	tastes = list("pure electricity" = 3, "fitness" = 2)
 	foodtype = TOXIC
+
+/obj/item/weapon/reagent_containers/food/snacks/borer
+	name = "borer yummies"
+	desc = "So good they'll squeeze your brains out!"
+	icon_state = "chips"
+	bitesize = 2
+	list_reagents = list("nutriment" = 1, "sugar" = 2)
+	junkiness = 12
