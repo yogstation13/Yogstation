@@ -584,7 +584,7 @@
 
 /obj/item/storage/box/syndie_kit/imp_zombie/New()
 	..()
-	var/obj/item/weapon/implanter/O = new(src)
+	var/obj/item/implanter/O = new(src)
 	O.imp = new /obj/item/implant/zombie(O)
 	O.update_icon()
 	return
