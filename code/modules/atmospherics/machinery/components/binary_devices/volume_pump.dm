@@ -36,7 +36,7 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump/AltClick(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with pump.</span>")
 		return
 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		transfer_rate = MAX_TRANSFER_RATE
@@ -132,7 +132,7 @@
 	if(..())
 		return
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr))
-		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with pump.</span>")
 		return
 	switch(action)
 		if("power")

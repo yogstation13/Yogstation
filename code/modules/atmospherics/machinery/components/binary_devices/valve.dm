@@ -47,7 +47,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 /obj/machinery/atmospherics/components/binary/valve/interact(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with valve.</span>")
 		return
 	add_fingerprint(usr)
 	if(switching)

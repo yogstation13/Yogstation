@@ -17,7 +17,7 @@
 
 /obj/machinery/computer/shuttle/ferry/attack_ai()
 	if(!ai_can_use(MACHINE_INTERACTION, usr))
-		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with machine.</span>")
 		return
 	return allow_silicons ? ..() : FALSE
 
