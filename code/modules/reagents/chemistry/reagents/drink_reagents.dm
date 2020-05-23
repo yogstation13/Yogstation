@@ -899,3 +899,12 @@
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
+
+/datum/reagent/consumable/prunomix
+	name = "pruno mixture"
+	color = "#E78108"
+	description = "Fruit, sugar, yeast, and water pulped together into a pungent slurry."
+	taste_description = "garbage"
+	glass_icon_state = "glass_orange"
+	glass_name = "glass of pruno mixture"
+	glass_desc = "Fruit, sugar, yeast, and water pulped together into a pungent slurry."
