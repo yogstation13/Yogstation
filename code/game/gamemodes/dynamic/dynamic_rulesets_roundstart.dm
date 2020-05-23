@@ -758,8 +758,8 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_jobs = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
-	restricted_jobs = list("AI", "Cyborg")
+	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 3
 	weight = 1
 	cost = 25
