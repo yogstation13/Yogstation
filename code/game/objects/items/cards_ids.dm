@@ -436,7 +436,6 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
 
 /obj/item/card/id/centcom/silver
 	name = "\improper silver CentCom ID"
@@ -450,7 +449,6 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh
 	. = ..()
 
 /obj/item/card/id/ert
@@ -459,11 +457,9 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
-	item_flags = ABSTRACT | DROPDEL //admemes arnt the smartest tools in the shed x2
 
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh x2
 	. = ..()
 
 /obj/item/card/id/ert/Security
