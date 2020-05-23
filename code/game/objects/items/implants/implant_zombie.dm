@@ -2,7 +2,7 @@
 	name = "zombie implant"
 	desc = "Fake your death and trick those NT shills"
 	icon_state = "zombie"
-	uses = 2
+	uses = 1
 	//allow_reagents = 1
 
 /obj/item/implant/zombie/New()
