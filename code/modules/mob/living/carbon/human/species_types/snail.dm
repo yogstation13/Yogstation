@@ -58,5 +58,5 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/storage/backpack/snail/Initialize()
-	. = .()
+	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP)
