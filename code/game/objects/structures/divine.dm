@@ -24,7 +24,7 @@
 	name = "healing fountain"
 	desc = "A fountain containing the waters of life."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
-	icon_state = "fountain"
+	icon_state = "fountain-red"
 	anchored = TRUE
 	density = TRUE
 	var/time_between_uses = 1800
