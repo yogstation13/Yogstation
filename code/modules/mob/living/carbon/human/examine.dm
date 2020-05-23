@@ -107,7 +107,7 @@
 			. += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>"
 
 	var/appears_dead = 0
-	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH) || (reagents.has_reagent(/datum/reagent/toxin/capilletum) && lying))
 		appears_dead = 1
 		if(suiciding)
 			. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
@@ -194,7 +194,11 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-
+			else
+				if(reagents.has_reagent("/datum/reagent/toxin/capilletum") && lying)
+				msg += "<B>[t_He] [t_surface] [t_is2] of a deep blue colour, mouth open in an desperate gasp for air!</B>\n"
+			else
+				msg += "[t_He] [t_surface] and lips are bluish in colour.\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
