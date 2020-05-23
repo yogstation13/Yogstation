@@ -52626,14 +52626,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ilt" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "ilH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -55581,12 +55573,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"oOG" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "oQp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -56553,6 +56539,12 @@
 "qQV" = (
 /turf/template_noop,
 /area/template_noop)
+"qUI" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "qVL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -59327,6 +59319,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"wPn" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "wPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -86378,7 +86378,7 @@ aat
 aat
 aat
 aat
-oOG
+qUI
 aSV
 aat
 abj
@@ -89469,7 +89469,7 @@ bak
 bbs
 bbx
 bbQ
-ilt
+wPn
 acd
 abb
 afB

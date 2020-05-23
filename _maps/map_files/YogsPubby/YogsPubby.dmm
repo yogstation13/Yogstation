@@ -2686,11 +2686,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
-"afq" = (
-/obj/structure/table,
-/obj/item/instrument/harmonica,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "afr" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/tile/blue{
@@ -3536,12 +3531,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
-"ahb" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "ahc" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
@@ -59602,6 +59591,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"nOF" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "nPA" = (
 /obj/item/chair,
 /turf/open/floor/plating,
@@ -61388,6 +61384,12 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/department/science)
+"uux" = (
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "uvo" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -82876,7 +82878,7 @@ aen
 aer
 aeF
 aeV
-afq
+uux
 ahY
 aeU
 aeU
@@ -84167,7 +84169,7 @@ agd
 agp
 agC
 agO
-ahb
+nOF
 agy
 ahK
 aih
