@@ -582,9 +582,5 @@
 /obj/item/storage/box/syndie_kit/imp_zombie
 	name = "boxed zombie implant (with injector)"
 
-/obj/item/storage/box/syndie_kit/imp_zombie/New()
-	..()
-	var/obj/item/implanter/O = new(src)
-	O.imp = new /obj/item/implant/zombie(O)
-	O.update_icon()
-	return
+/obj/item/storage/box/syndie_kit/imp_zombie/PopulateContents()
+	// new /obj/item/implanter/zombie(src)
