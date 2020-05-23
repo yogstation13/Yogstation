@@ -108,5 +108,5 @@
 	desc = "So good they'll squeeze your brains out!"
 	icon_state = "chips"
 	bitesize = 2
-	list_reagents = list("nutriment" = 1, "sugar" = 2)
+	list_reagents = list((/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 2)
 	junkiness = 12
