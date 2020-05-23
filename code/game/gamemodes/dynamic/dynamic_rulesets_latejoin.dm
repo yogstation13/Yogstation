@@ -16,7 +16,7 @@
 			if(!(antag_flag_override in P.client.prefs.be_special) || is_banned_from(P.ckey, list(antag_flag_override, ROLE_SYNDICATE)))
 				candidates.Remove(P)
 				continue
-		else 
+		else
 			if(!(antag_flag in P.client.prefs.be_special) || is_banned_from(P.ckey, list(antag_flag, ROLE_SYNDICATE)))
 				candidates.Remove(P)
 				continue
@@ -86,7 +86,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 20
-	requirements = list(101,101,70,40,30,20,20,20,20,20)
+	requirements = list(80,75,60,60,55,50,40,30,20,20)
 	high_population_requirement = 50
 	flags = HIGHLANDER_RULESET
 	var/required_heads = 3
@@ -113,3 +113,23 @@
 	new_head = M.mind.add_antag_datum(new_head)
 	new_head.rev_team.max_headrevs = 1 // Only one revhead if it is latejoin.
 	return TRUE
+
+
+//////////////////////////////////////////////
+//                                          //
+//                VAMPIRE                   //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/latejoin/vampire
+	name = "Vampiric Infiltrator"
+	antag_flag = ROLE_VAMPIRE
+	antag_datum = /datum/antagonist/vampire
+	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 3
+	weight = 1
+	cost = 15
+	requirements = list(80,70,60,50,50,45,30,30,20,25)
+	minimum_players = 30
+	repeatable = TRUE
