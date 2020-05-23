@@ -197,7 +197,7 @@
 	required_candidates = 2
 	weight = 1
 	cost = 30
-	requirements = list(100,90,80,60,40,30,10,10,10,10)
+	requirements = list(100,80,70,60,40,30,30,20,10,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
 	var/cultist_cap = list(2,2,2,3,3,4,4,4,4,4)
@@ -461,6 +461,7 @@
 	requirements = list(100,90,80,70,60,50,30,30,30,30)
 	high_population_requirement = 50
 	flags = HIGHLANDER_RULESET
+	minimum_players = 38
 	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
@@ -736,9 +737,9 @@
 	antag_datum = /datum/antagonist/shadowling
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI")
-	required_candidates = 2
+	required_candidates = 3
 	weight = 1
-	cost = 30
+	cost = 35
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
@@ -746,3 +747,22 @@
 	
 //Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made
 //feel free to make changes, if it crashes, or just doesn't give anyone roles.
+
+//////////////////////////////////////////////
+//                                          //
+//                VAMPIRE                   //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/vampire
+	name = "Vampire"
+	antag_flag = ROLE_VAMPIRE
+	antag_datum = /datum/antagonist/vampire
+	protected_jobs = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	restricted_jobs = list("AI", "Cyborg")
+	required_candidates = 3
+	weight = 1
+	cost = 25
+	requirements = list(80,70,60,50,50,45,30,30,20,25)
+	minimum_players = 30
+	
