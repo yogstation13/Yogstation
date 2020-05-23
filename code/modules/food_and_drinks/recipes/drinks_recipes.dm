@@ -807,4 +807,15 @@
 	name = "Catsip"
 	results = list(/datum/reagent/consumable/ethanol/catsip = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/corn_syrup = 1, /datum/reagent/consumable/grenadine = 1)
+
+/datum/crafting_recipe/pruno
+	name = "pruno mix"
+	result = /obj/item/reagent_containers/food/drinks/bottle/pruno
+	time = 30
+	reqs = list(/obj/item/storage/bag/trash = 1,
+	            /obj/item/reagent_containers/food/snacks/breadslice/moldy = 1,
+	            /obj/item/reagent_containers/food/snacks/grown = 4,
+	            /obj/item/reagent_containers/food/snacks/candy_corn = 2,
+	            /datum/reagent/water = 15)
+	category = CAT_DRINK
  
