@@ -115,7 +115,7 @@
 
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
 	for(var/mob/living/carbon/target in targets)
-		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
+		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as [user.p_they()] stares into [target]'s eyes</span>")
 		target.silent = 2 //this is actually roughly 4 seconds due to how silent works
 		if(target.flash_act(1)
 			target.adjustStaminaLoss(40) //minor slowdown if they aren't protected
