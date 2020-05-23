@@ -1,4 +1,4 @@
-/obj/item/weapon/implant/zombie
+/obj/item/implant/zombie
 	name = "zombie implant"
 	desc = "Fake your death and trick those NT shills"
 	icon_state = "zombie"
@@ -6,12 +6,12 @@
 	uses = 2
 	//allow_reagents = 1
 
-/obj/item/weapon/implant/zombie/New()
+/obj/item/implant/zombie/New()
 	..()
 	create_reagents(50)
 	src.reagents.add_reagent(/datum/reagent/toxin/capilletum, 35)
 
-/obj/item/weapon/implant/zombie/activate()
+/obj/item/implant/zombie/activate()
 	var/mob/living/carbon/H = imp_in
 	H << "You hear a soft whirr as your implant discharges it's toxins into you."
 	reagents.trans_to(H, reagents.total_volume)
@@ -21,7 +21,7 @@
 		H << "You feel something slip away from you."
 		qdel(src)
 
-/obj/item/weapon/implant/zombie/get_data()
+/obj/item/implant/zombie/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Syndicate Zombie Simulator<BR>
