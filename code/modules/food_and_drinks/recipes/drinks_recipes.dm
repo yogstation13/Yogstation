@@ -817,5 +817,5 @@
 	            /obj/item/reagent_containers/food/snacks/grown = 4,
 	            /obj/item/reagent_containers/food/snacks/candy_corn = 2,
 	            /datum/reagent/water = 15)
-	category = CAT_DRINK
- 
+	subcategory = CAT_MISCFOOD
+	
