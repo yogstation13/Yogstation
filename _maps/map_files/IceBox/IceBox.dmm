@@ -57384,6 +57384,14 @@
 /obj/machinery/atmospherics/pipe/manifold4w/yellow/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"cRr" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "cSf" = (
 /obj/structure/sign/warning/vacuum{
 	name = "EXTERNAL AIRLOCK";
@@ -58494,12 +58502,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/lawoffice)
-"fLB" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "fOD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -60134,14 +60136,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"lzb" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "lzl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -61716,6 +61710,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"rqV" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rrF" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	layer = 2.35;
@@ -90474,7 +90474,7 @@ aat
 aat
 aat
 aat
-fLB
+rqV
 aSV
 aat
 abj
@@ -93565,7 +93565,7 @@ bak
 bbs
 bbx
 bbQ
-lzb
+cRr
 acd
 abb
 afB

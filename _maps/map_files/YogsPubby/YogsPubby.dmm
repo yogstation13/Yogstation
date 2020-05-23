@@ -57428,6 +57428,12 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"fpS" = (
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "fsM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -58466,6 +58472,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"jpU" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "jqN" = (
 /obj/structure/sign/departments/minsky/supply/mining,
 /turf/closed/wall,
@@ -59329,13 +59342,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"mPt" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "mQm" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -60314,12 +60320,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
-"qtx" = (
-/obj/structure/table,
-/obj/item/instrument/harmonica,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "qzp" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -82878,7 +82878,7 @@ aen
 aer
 aeF
 aeV
-qtx
+fpS
 ahY
 aeU
 aeU
@@ -84169,7 +84169,7 @@ agd
 agp
 agC
 agO
-mPt
+jpU
 agy
 ahK
 aih

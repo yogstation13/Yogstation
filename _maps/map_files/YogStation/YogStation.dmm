@@ -53031,14 +53031,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jaQ" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "jbI" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -53309,12 +53301,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"jEi" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/item/storage/bag/trash,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "jFV" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -54004,6 +53990,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"lcD" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "lcI" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -54493,6 +54485,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"mvr" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "mxJ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -86378,7 +86378,7 @@ aat
 aat
 aat
 aat
-jEi
+lcD
 aSV
 aat
 abj
@@ -89469,7 +89469,7 @@ bak
 bbs
 bbx
 bbQ
-jaQ
+mvr
 acd
 abb
 afB

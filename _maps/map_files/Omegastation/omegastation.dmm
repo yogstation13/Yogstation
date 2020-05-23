@@ -2713,20 +2713,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aep" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "2-8"
-	},
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 8;
-	icon_state = "right";
-	name = "Unisex Shower"
-	},
-/obj/structure/window/reinforced/tinted,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aeq" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters";
@@ -17809,16 +17795,6 @@
 "aAc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/security/prison)
-"aAd" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/instrument/harmonica,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/toy/cards/deck,
-/obj/machinery/light,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -41027,6 +41003,23 @@
 /obj/machinery/air_sensor/atmos/nitrous_tank,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
+"fob" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 8;
+	icon_state = "right";
+	name = "Unisex Shower"
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/structure/toilet{
+	cistern = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "fom" = (
 /obj/structure/lattice/catwalk,
 /obj/item/wrench,
@@ -41289,6 +41282,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hzl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/toy/cards/deck,
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line,
+/obj/item/storage/bag/trash,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hNO" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 5
@@ -79926,7 +79930,7 @@ acE
 aeo
 ajb
 aeo
-aAd
+hzl
 arD
 arD
 arD
@@ -80437,7 +80441,7 @@ aac
 aac
 aad
 abO
-aep
+fob
 aFo
 air
 akb
