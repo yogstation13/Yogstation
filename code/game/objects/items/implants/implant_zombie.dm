@@ -9,7 +9,7 @@
 /obj/item/weapon/implant/zombie/New()
 	..()
 	create_reagents(50)
-	src.reagents.add_reagent("capilletum", 35)
+	src.reagents.add_reagent(/datum/reagent/toxin/capilletum, 35)
 
 /obj/item/weapon/implant/zombie/activate()
 	var/mob/living/carbon/H = imp_in
