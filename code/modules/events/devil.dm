@@ -1,7 +1,7 @@
 /datum/round_event_control/devil
 	name = "Create Devil"
 	typepath = /datum/round_event/ghost_role/devil
-	max_occurrences = 0
+	max_occurrences = 1
 	weight = 3
 
 /datum/round_event/ghost_role/devil
