@@ -123,7 +123,7 @@
 
 
 			dat += "</ol>"
-			
+
 	dat += "</BODY></HTML>"
 
 	user << browse(dat, "window=comm_monitor;size=575x400")
@@ -136,7 +136,9 @@
 /obj/machinery/computer/telecomms/server/Topic(href, href_list)
 	if(..())
 		return
-
+	if(!ai_can_use(TELECOMMS_CONTROL, usr))
+		to_chat(usr, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with airlock.</span>")
+		return
 
 	add_fingerprint(usr)
 	usr.set_machine(src)

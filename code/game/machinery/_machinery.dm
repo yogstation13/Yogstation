@@ -322,6 +322,9 @@ Class Procs:
 	if(iscyborg(user))// For some reason attack_robot doesn't work
 		return attack_robot(user)
 	else
+		if(!ai_can_use(MACHINE_INTERACTION, user))
+			to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+			return
 		return _try_interact(user)
 
 /obj/machinery/_try_interact(mob/user)

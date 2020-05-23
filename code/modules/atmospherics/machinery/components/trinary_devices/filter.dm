@@ -21,6 +21,9 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		transfer_rate = MAX_TRANSFER_RATE
 		update_icon()
@@ -143,6 +146,9 @@
 
 /obj/machinery/atmospherics/components/trinary/filter/ui_act(action, params)
 	if(..())
+		return
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr))
+		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
 		return
 	switch(action)
 		if("power")

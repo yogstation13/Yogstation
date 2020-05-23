@@ -83,6 +83,9 @@
 	return ..()
 
 /obj/item/radio/intercom/attack_ai(mob/user)
+	if(!ai_can_use(TELECOMMS_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with airlock.</span>")
+		return
 	interact(user)
 
 /obj/item/radio/intercom/attack_hand(mob/user)
@@ -137,7 +140,7 @@
 
 /obj/item/radio/intercom/add_blood_DNA(list/blood_dna)
 	return FALSE
-	
+
 /obj/item/radio/intercom/end_emp_effect(curremp)
 	. = ..()
 	if(!.)

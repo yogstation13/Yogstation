@@ -153,6 +153,9 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	. = attack_ai(user)
 
 /obj/machinery/announcement_system/attack_ai(mob/user)
+	if(!ai_can_use(MACHINE_INTERACTION, user))
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		return
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(stat & BROKEN)

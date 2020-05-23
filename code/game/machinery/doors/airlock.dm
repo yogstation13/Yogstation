@@ -732,6 +732,10 @@
 		. += "<span class='notice'>Ctrl-Shift-click [src] to [ emergency ? "disable" : "enable"] emergency access.</span>"
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
+	if(!ai_can_use(DOOR_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Door Control relay detected. Unable to interface with airlock.</span>")
+		return
+
 	if(!canAIControl(user))
 		if(canAIHack())
 			hack(user)

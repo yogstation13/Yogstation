@@ -25,6 +25,8 @@
 		if(machine)
 			machine.check_eye(src)
 
+		check_relays()
+
 		// Handle power damage (oxy)
 		if(aiRestorePowerRoutine)
 			// Lost power

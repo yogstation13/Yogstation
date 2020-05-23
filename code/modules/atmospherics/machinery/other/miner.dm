@@ -137,6 +137,9 @@
 	O.air_update_turf(TRUE)
 
 /obj/machinery/atmospherics/miner/attack_ai(mob/living/silicon/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
 	if(broken)
 		to_chat(user, "[src] seems to be broken. Its debug interface outputs: [broken_message]")
 	..()

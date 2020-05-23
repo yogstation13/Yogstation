@@ -329,6 +329,9 @@ Possible to do for anyone motivated enough:
 
 //do not allow AIs to answer calls or people will use it to meta the AI sattelite
 /obj/machinery/holopad/attack_ai(mob/living/silicon/ai/user)
+	if(!ai_can_use(MACHINE_INTERACTION, user))
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		return
 	if (!istype(user))
 		return
 	if (!on_network)

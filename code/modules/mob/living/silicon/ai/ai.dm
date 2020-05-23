@@ -97,6 +97,11 @@
 	var/list/cam_hotkeys = new/list(9)
 	var/cam_prev
 
+	//List of connected relays
+	var/list/relays = list()
+	var/relay_hack = FALSE
+	var/hacked_relays = list()
+
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
@@ -159,7 +164,7 @@
 		verbs.Add(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
-		/mob/living/silicon/ai/proc/set_automatic_say_channel)
+		/mob/living/silicon/ai/proc/set_automatic_say_channel, /mob/living/silicon/ai/proc/refresh_relays)
 
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
@@ -167,6 +172,8 @@
 	builtInCamera = new (src)
 	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
+
+	refresh_relays()
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -248,6 +255,14 @@
 		if(isturf(loc)) //only show if we're "in" a core
 			. += text("Backup Power: [battery/2]%")
 		. += text("Connected cyborgs: [connected_robots.len]")
+		. += "<h4>Connected Relays:</h4>"
+		for(var/I in relays)
+			. += "<b>[I]</b>"
+
+		for(var/H in hacked_relays)
+			. += "<b>[H] (HACKED)</b>"
+
+		. += ""
 		for(var/mob/living/silicon/robot/R in connected_robots)
 			var/robot_status = "Nominal"
 			if(R.shell)
@@ -878,7 +893,7 @@
 
 	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
-	
+
 	show_message(rendered, 2)
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname,newname)
@@ -1047,3 +1062,66 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+
+/mob/living/silicon/ai/proc/refresh_relays()
+	set category = "AI Commands"
+	set name = "Refresh Relays"
+	set desc = "Reconnect to all processing relays in range."
+
+	for(var/L in relays)
+		var/obj/machinery/ai_relay/relay = L
+		relay.linked_ais -= src
+
+	relays = list()
+	for(var/obj/O in GLOB.ai_relays)
+		if(get_area(O) == get_area(src))
+			var/obj/machinery/ai_relay/R = O
+			relays += R
+			R.linked_ais += src
+			to_chat(src, "<span class='notice'>Connected to [R]</span>")
+
+
+/mob/living/silicon/ai/proc/has_relay(bitflag)
+	for(var/O in relays + hacked_relays)
+		var/obj/machinery/ai_relay/R = O
+		if(!istype(R))
+			continue
+		if(!R.inserted_module)
+			continue
+		var/enabled_tasks = R.return_module_type()
+		if(enabled_tasks && enabled_tasks & bitflag)
+			return TRUE
+	return FALSE
+
+/mob/living/silicon/ai/proc/relay_hacked(obj/machinery/ai_relay/relay)
+	relay.hacked_ais += src
+	hacked_relays += relay
+	relay_hack = FALSE
+	to_chat(src, "<span class='userdanger'>[relay] has been succesfully hacked!</span>")
+	clear_alert("hacking_relay")
+
+/mob/living/silicon/ai/proc/check_relays()
+	var/list/passthrough = list()
+	for(var/O in relays)
+		var/obj/machinery/ai_relay/R = O
+		if(!istype(R))
+			continue
+		if(get_area(R) == get_area(src))
+			passthrough += R
+
+	var/list/difference = difflist(relays, passthrough, TRUE)
+	if(difference.len > 0)
+		for(var/I in difference)
+			var/obj/machinery/ai_relay/R = I
+			R.linked_ais -= src
+			to_chat(src, "<span class='userdanger'>Disconnected from [R]!</span>")
+		relays = passthrough
+
+//This is a global proc for ease of use
+/proc/ai_can_use(flag, ai)
+	var/mob/living/silicon/ai/A = ai
+	if(!istype(A))
+		return TRUE
+
+	return A.has_relay(flag)

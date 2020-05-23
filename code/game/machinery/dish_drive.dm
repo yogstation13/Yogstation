@@ -96,6 +96,9 @@
 				step_towards(I, src)
 
 /obj/machinery/dish_drive/attack_ai(mob/living/user)
+	if(!ai_can_use(MACHINE_INTERACTION, user))
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		return
 	if(stat)
 		return
 	to_chat(user, "<span class='notice'>You send a disposal transmission signal to [src].</span>")

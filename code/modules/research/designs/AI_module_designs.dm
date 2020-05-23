@@ -172,3 +172,61 @@
 	build_path = /obj/item/aiModule/core/full/custom
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+
+//AI relays
+
+/datum/design/board/ai_relay
+	name = "Processing Relay (AI Relay)"
+	desc = "Allows for the construction of circuit boards used to build new AI processing relays."
+	id = "ai_relay"
+	build_path = /obj/machinery/ai_relay
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	materials = list(MAT_GLASS = 2000, MAT_GOLD = 2000)
+
+// AI relay boards
+/datum/design/board/ai_relay_boards
+	materials = list(MAT_GLASS = 2000, MAT_GOLD = 2000, MAT_DIAMOND = 1000)
+
+
+/datum/design/board/ai_relay_boards/ai_relay_power
+	name = "AI Relay Module (Power Manipulation)"
+	desc = "Allows for the construction of an AI relay Power Manipulation board."
+	id = "ai_relay_power"
+	build_path = /obj/item/ai_relay_module/power_manip
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_relay_boards/ai_relay_enviromental
+	name = "AI Relay Module (Enviromental Control)"
+	desc = "Allows for the construction of an AI relay Enviromental Control board."
+	id = "ai_relay_enviromental"
+	build_path = /obj/item/ai_relay_module/enviromental
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_relay_boards/ai_relay_doors
+	name = "AI Relay Module (Door Control)"
+	desc = "Allows for the construction of an AI relay Door Control board."
+	id = "ai_relay_doors"
+	build_path = /obj/item/ai_relay_module/doors
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_relay_boards/ai_relay_telecomms
+	name = "AI Relay Module (Telecommunications Control)"
+	desc = "Allows for the construction of an AI relay Telecommunications Control board."
+	id = "ai_relay_telecomms"
+	build_path = /obj/item/ai_relay_module/telecomms
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/ai_relay_boards/ai_relay_machine
+	name = "AI Relay Module (Machine Interaction)"
+	desc = "Allows for the construction of an AI relay Machine Interaction board."
+	id = "ai_relay_machine"
+	build_path = /obj/item/ai_relay_module/machine_interaction
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+

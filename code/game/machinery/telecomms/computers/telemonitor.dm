@@ -67,6 +67,9 @@
 	if(..())
 		return
 
+	if(!ai_can_use(TELECOMMS_CONTROL, usr))
+		to_chat(usr, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with airlock.</span>")
+		return
 
 	add_fingerprint(usr)
 	usr.set_machine(src)

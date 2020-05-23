@@ -264,6 +264,10 @@
 	if(..())
 		return
 
+	if(!ai_can_use(TELECOMMS_CONTROL, usr))
+		to_chat(usr, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with airlock.</span>")
+		return
+
 	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)) || issilicon(usr))
 		//Authenticate
 		if (href_list["auth"])

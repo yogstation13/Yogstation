@@ -1165,3 +1165,13 @@
 		/obj/item/stock_parts/manipulator = /obj/item/stock_parts/manipulator/femto,
 		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra,
 		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/triphasic)
+
+/obj/item/circuitboard/machine/ai_relay
+	name = "Processing Relay (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/ai_relay
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 3,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stock_parts/capacitor = 2)

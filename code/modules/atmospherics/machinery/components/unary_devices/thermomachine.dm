@@ -141,6 +141,10 @@
 	if(..())
 		return
 
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr))
+		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
+
 	switch(action)
 		if("power")
 			on = !on
@@ -167,6 +171,9 @@
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/CtrlClick(mob/living/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	on = !on
@@ -206,6 +213,9 @@
 	min_temperature = max(T0C - (initial(min_temperature) + L * 15), TCMB) //73.15K with T1 stock parts
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/AltClick(mob/living/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	target_temperature = min_temperature
@@ -232,6 +242,9 @@
 	max_temperature = T20C + (initial(max_temperature) * L) //573.15K with T1 stock parts
 
 /obj/machinery/atmospherics/components/unary/thermomachine/heater/AltClick(mob/living/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	target_temperature = max_temperature

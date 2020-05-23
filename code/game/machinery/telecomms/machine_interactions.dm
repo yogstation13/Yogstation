@@ -30,7 +30,7 @@
 /obj/machinery/telecomms/analyzer_act(mob/living/user, obj/item/T)
 	//Prevent the tricorder's air analysis when trying to configure tcomms
 	if (istype(T, /obj/item/multitool/tricorder))
-		return 
+		return
 	else
 		return ..()
 
@@ -192,6 +192,10 @@
 
 /obj/machinery/telecomms/Topic(href, href_list)
 	if(..())
+		return
+
+	if(!ai_can_use(TELECOMMS_CONTROL, usr))
+		to_chat(usr, "<span class='warning'>No Telecommunications Control relay detected. Unable to interface with airlock.</span>")
 		return
 
 	if(!issilicon(usr))

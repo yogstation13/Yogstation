@@ -59,6 +59,9 @@
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
 /obj/structure/sign/barsign/attack_ai(mob/user)
+	if(!ai_can_use(MACHINE_INTERACTION, user))
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		return
 	return attack_hand(user)
 
 /obj/structure/sign/barsign/attack_hand(mob/user)

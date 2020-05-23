@@ -82,6 +82,9 @@
 	update_icon()
 
 /turf/open/floor/light/attack_ai(mob/user)
+	if(!ai_can_use(MACHINE_INTERACTION, user))
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		return
 	if(!can_modify_colour)
 		return
 	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = FALSE, radius = 36, require_near = FALSE)

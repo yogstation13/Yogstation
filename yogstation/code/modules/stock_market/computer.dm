@@ -22,6 +22,9 @@
 	return D.account_balance
 
 /obj/machinery/computer/stockexchange/attack_ai(mob/user)
+	if(!ai_can_use(MACHINE_INTERACTION, user))
+		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+		return
 	return attack_hand(user)
 
 /obj/machinery/computer/stockexchange/attack_robot(mob/user)

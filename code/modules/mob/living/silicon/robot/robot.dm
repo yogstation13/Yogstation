@@ -388,7 +388,7 @@
 				return
 			if(health > 0)
 				return //safety check to prevent spam clciking and queing
-		
+
 		adjustBruteLoss(-30)
 		updatehealth()
 		add_fingerprint(user)
@@ -1149,6 +1149,9 @@
 
 /mob/living/silicon/robot/attack_ai(mob/user)
 	if(shell && (!connected_ai || connected_ai == user))
+		if(!ai_can_use(MACHINE_INTERACTION, user))
+			to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with airlock.</span>")
+			return
 		var/mob/living/silicon/ai/AI = user
 		AI.deploy_to_shell(src)
 

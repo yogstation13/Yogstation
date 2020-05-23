@@ -177,6 +177,9 @@
 	return !is_holding_pressure()
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
+		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with airlock.</span>")
+		return
 	add_fingerprint(user)
 	if(welded || operating || stat & NOPOWER)
 		return TRUE
@@ -325,7 +328,7 @@
 				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 				M.pulling.forceMove(T1)
 				M.start_pulling(M2)
-				
+
 	for(var/mob/living/M in T2)
 		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
 			var/mob/living/M2 = M.pulling
