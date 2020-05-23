@@ -1593,6 +1593,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/zombie
+	name = "Zombie Implant"
+	desc = "An implant injected into the body, and later activated using a bodily gesture to inject a specially formulated sedative. \
+	When lying on the ground you will appear dead and minor damage done to your body will appear more drastic than it actually is. Medical scanners will pick up on that."
+	item = /obj/item/weapon/storage/box/syndie_kit/imp_zombie
+	cost = 7
+
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
