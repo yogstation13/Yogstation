@@ -181,6 +181,7 @@ God bless America.
 				qdel(H)
 				fry_loop.start()
 				return
+				
 	if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling
 		if(user.grab_state < GRAB_AGGRESSIVE)
