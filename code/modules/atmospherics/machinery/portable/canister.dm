@@ -500,3 +500,8 @@
 				replace_tank(usr, FALSE)
 				. = TRUE
 	update_icon()
+
+/obj/machinery/portable_atmospherics/canister/attack_ghost(mob/user)
+	if(user.client.prefs.inquisitive_ghost)
+		analyzer_act(user, src)
+	return ..()
