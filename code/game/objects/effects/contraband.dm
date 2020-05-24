@@ -650,6 +650,10 @@
 	desc = "I told you to shake it, no stirring."
 	icon_state = "poster32_legit"
 
+/obj/structure/sign/poster/official/marvin
+	name = "Marvin"
+	desc = "WANTED: Marvin is a escaped martian from space station 8 please report any sighting of him to centcom officials
+	icon_state = bsposter5
 /obj/structure/sign/poster/official/the_owl
 	name = "The Owl"
 	desc = "The Owl would do his best to protect the station. Will you?"
