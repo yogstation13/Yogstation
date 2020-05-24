@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	#define FONT_VT "font-family:\"VT323\", monospace;letter-spacing:1px;"
 	#define MODE_MONO 0
 	#define MODE_SHARE 1
-	#define MODE_ORBITRON 2
+	#define MODe_ORBITRON 2
 	#define MODE_VT 3
 
 	//Secondary variables
@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				dat += "<br><br>"
 
-				dat += "<h4>General Functions</h4>"
+				dat += "<h#$F>General Functions</h4>"
 				dat += "<ul>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=1'>[PDAIMG(notes)]Notekeeper</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=2'>[PDAIMG(mail)]Messenger</a></li>"
@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					if (cartridge.access & CART_DRONEPHONE)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'>[PDAIMG(dronephone)]Drone Phone</a></li>"
 					if (cartridge.access & CART_STATUS_DISPLAY)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=666'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=5'>[PDAIMG(blank)]Bluespace Paperwork Printer</a></li>"
 					else if (cartridge.access & CART_SECURITY)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_SECURITY_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Security Incident Report Form</a></li>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_INCIDENT_REPORT]'>[PDAIMG(notes)]Print Incident Report Form</a></li>"
@@ -391,7 +391,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					dat += "Temperature: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 				dat += "<br>"
 
-			if (666)
+			if (5)
 				dat += "<h4>Bluespace Paperwork Printing</h4><i>Putting the paper in paperwork!</i><ul>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_GENERAL_REQUEST]'>General Request Form</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=print;paper=[PDA_PRINTING_COMPLAINT]'>Complaint Form</a></li>"
@@ -455,14 +455,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 				underline_flag = !underline_flag
 
 			if("Return")//Return
-				if(mode<=9)
+				if(mode<=9)  //this is really shitcode. If there are ever more than 9 regular PDA modes this whole thing has to be rewritten. Note to self
 					mode = 0
-				else
-					if(mode == 666)
-						mode = 0
 					else
 						mode = round(mode/10)
-						if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub.
+						if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub. 
 							mode = 0
 			if ("Authenticate")//Checks for ID
 				id_check(U)
@@ -494,8 +491,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 				mode = 3
 			if("4")//Redirects to hub
 				mode = 0
-			if("666")
-				mode = 666
+			if("5") //Paperwork Printer
+				mode = 5
 
 
 //MAIN FUNCTIONS===================================
