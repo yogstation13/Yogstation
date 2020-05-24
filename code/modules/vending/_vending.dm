@@ -79,7 +79,6 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/age_restrictions = TRUE
 	var/onstation = TRUE //if it doesn't originate from off-station during mapload, everything is free
 	var/list/canload_access_list
-	var/list/display_records
 
 	var/list/vending_machine_input = list()
 	var/input_display_header = "Custom Compartment"
@@ -198,9 +197,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
 		R.age_restricted = FALSE
-		if (istype(temp, /obj/item))
-			var/obj/item/O = temp
-			R.age_restricted = initial(O.age_restricted)
+		R.age_restricted = initial(temp.age_restricted)
 		recordlist += R
 
 /obj/machinery/vending/proc/restock(obj/item/vending_refill/canister)
@@ -400,7 +397,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!product_records.len)
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
-		display_records = product_records + coin_records
+		var/list/display_records = product_records + coin_records
 		if(extended_inventory)
 			display_records = product_records + coin_records + hidden_records
 		dat += "<table>"
@@ -426,6 +423,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
+		
 	var/datum/browser/popup = new(user, "vending", (name))
 	popup.add_stylesheet(get_asset_datum(/datum/asset/spritesheet/vending))
 	popup.set_content(dat.Join(""))
@@ -446,6 +444,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(ishuman(usr) && onstation)
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/card/id/C = H.get_idcard(TRUE)
+			var/datum/data/vending_product/R = locate(href_list["ref"])
 			if(!C)
 				say("No card found.")
 				flick(icon_deny,src)
@@ -456,22 +455,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_deny,src)
 				vend_ready = 1
 				return
-			else if(age_restrictions && (!C.registered_age || C.registered_age < AGE_MINOR))
-				var/product_is_age_restricted = FALSE
-				var/datum/data/vending_product/R
-				for(R in display_records)
-					if (R.name == N && R.age_restricted)
-						product_is_age_restricted = TRUE
-						break
-				if (product_is_age_restricted)
-					say("You are not of legal age to purchase [R.name].")
-					if(!(usr in GLOB.narcd_underages))
-						Radio.set_frequency(FREQ_SECURITY)
-						Radio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
-						GLOB.narcd_underages += H
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
+			else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
+				say("You are not of legal age to purchase [R.name].")
+				if(!(usr in GLOB.narcd_underages))
+					Radio.set_frequency(FREQ_SECURITY)
+					Radio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
+					GLOB.narcd_underages += H
+				flick(icon_deny,src)
+				vend_ready = TRUE
+				return
 
 			var/datum/bank_account/account = C.registered_account
 			if(!account.adjust_money(-chef_price))
