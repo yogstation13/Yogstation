@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	#define FONT_VT "font-family:\"VT323\", monospace;letter-spacing:1px;"
 	#define MODE_MONO 0
 	#define MODE_SHARE 1
-	#define MODe_ORBITRON 2
+	#define MODE_ORBITRON 2
 	#define MODE_VT 3
 
 	//Secondary variables
