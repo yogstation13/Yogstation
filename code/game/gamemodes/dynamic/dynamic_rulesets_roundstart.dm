@@ -765,4 +765,23 @@
 	cost = 25
 	requirements = list(80,70,60,50,50,45,30,30,20,25)
 	minimum_players = 30
+	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 	
+/datum/dynamic_ruleset/roundstart/vampire/pre_execute()
+	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
+	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
+	for (var/i = 1 to num_traitors)
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.special_role = ROLE_VAMPIRE
+		M.mind.restricted_roles = restricted_roles
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/vampire/rule_process()
+	if (autovamp_cooldown > 0)
+		autovamp_cooldown--
+	else
+		autovamp_cooldown = 450 // 15 minutes
+		message_admins("Checking if we can turn someone into a vampire.")
+		log_game("DYNAMIC: Checking if we can turn someone into a vampire.")
+		mode.picking_specific_rule(/datum/dynamic_ruleset/midround/autovamp)
