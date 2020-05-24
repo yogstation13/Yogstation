@@ -317,3 +317,8 @@
 	name = "War Doge"
 	icon_state = "wardoge"
 	owner = "fluffe9911"
+
+datum/ai_skin/carrion
+	name = "Carrion"
+	icon_state = "carrion"
+	owner = "xoxeyos"
