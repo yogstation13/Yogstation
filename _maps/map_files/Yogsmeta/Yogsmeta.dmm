@@ -83309,7 +83309,7 @@
 /obj/machinery/door/poddoor{
 	density = 1;
 	id = "QMLoaddoor2";
-	name = "Supply Dock Loading Door"
+	name = "Supply Dock Loading Door "
 	},
 /obj/machinery/conveyor{
 	dir = 4;
