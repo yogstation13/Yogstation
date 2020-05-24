@@ -13,6 +13,5 @@ pip3 install --user beautifulsoup4
 
 if ! hash php 2>/dev/null 
 then
-	phpenv install $PHP_VERSION
-phpenv global $PHP_VERSION
+	phpenv global $PHP_VERSION
 fi
