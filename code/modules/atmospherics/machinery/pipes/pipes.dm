@@ -71,7 +71,8 @@
 	atmosanalyzer_scan(parent.air, user, src)
 
 /obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
-	analyzer_act(user, src)
+	if(istype(user))
+		analyzer_act(user, src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
