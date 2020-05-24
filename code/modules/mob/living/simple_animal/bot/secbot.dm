@@ -35,7 +35,7 @@
 	var/russian = FALSE // If true, it uses russian voice lines
 
 /mob/living/simple_animal/bot/secbot/beepsky
-	name = "Commander Beepsky"
+	name = "Commander Beespsky"
 	desc = "It's Commander Beepsky! Officially the superior officer of all bots on station, Beepsky remains as humble and dedicated to the law as the day he was first fabricated."
 	idcheck = FALSE
 	weaponscheck = FALSE
