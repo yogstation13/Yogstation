@@ -27,7 +27,7 @@
 	owner = "kmc2000"
 	module_locked = "Security"
 
-/*							PENDING SPRITE!
+/*						PENDING SPRITE!
 /datum/borg_skin/snail
 	name = "Snailborg"
 	icon_state = "snail"
