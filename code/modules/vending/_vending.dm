@@ -79,6 +79,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/age_restrictions = TRUE
 	var/onstation = TRUE //if it doesn't originate from off-station during mapload, everything is free
 	var/list/canload_access_list
+	var/list/display_records
 
 	var/list/vending_machine_input = list()
 	var/input_display_header = "Custom Compartment"
@@ -196,11 +197,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 		R.max_amount = amount
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
+		R.age_restricted = FALSE
 		if (istype(temp, /obj/item))
 			var/obj/item/O = temp
 			R.age_restricted = initial(O.age_restricted)
-		else
-			R.age_restricted = FALSE
 		recordlist += R
 
 /obj/machinery/vending/proc/restock(obj/item/vending_refill/canister)
@@ -370,7 +370,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
 	//yogs start -- ignores_capitalism stuff
-	var/list/display_records
 	var/mob/living/L
 	if(isliving(user))
 		L = user
@@ -401,7 +400,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!product_records.len)
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
-		display_records = products_records + coin_records
+		display_records = product_records + coin_records
 		if(extended_inventory)
 			display_records = product_records + coin_records + hidden_records
 		dat += "<table>"
@@ -427,7 +426,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
-
 	var/datum/browser/popup = new(user, "vending", (name))
 	popup.add_stylesheet(get_asset_datum(/datum/asset/spritesheet/vending))
 	popup.set_content(dat.Join(""))
@@ -439,7 +437,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 
 	usr.set_machine(src)
-	
+
 	if((href_list["dispense"]) && (vend_ready))
 		var/N = href_list["dispense"]
 		if(vending_machine_input[N] <= 0) // Sanity check, there are probably ways to press the button when it shouldn't be possible.
@@ -448,7 +446,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(ishuman(usr) && onstation)
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/card/id/C = H.get_idcard(TRUE)
-
 			if(!C)
 				say("No card found.")
 				flick(icon_deny,src)
@@ -462,11 +459,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 			else if(age_restrictions && (!C.registered_age || C.registered_age < AGE_MINOR))
 				var/product_is_age_restricted = FALSE
 				var/datum/data/vending_product/R
-					for (R in display_records)
-						if (R.name == N && R.age_restricted)
+				for(R in display_records)
+					if (R.name == N && R.age_restricted)
 						product_is_age_restricted = TRUE
 						break
-						
 				if (product_is_age_restricted)
 					say("You are not of legal age to purchase [R.name].")
 					if(!(usr in GLOB.narcd_underages))
