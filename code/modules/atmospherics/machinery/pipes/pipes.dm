@@ -70,9 +70,8 @@
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
 
-/obj/machinery/atmospherics/pipe/attack_ghost(mob/user)
-	if(user.client.prefs.inquisitive_ghost)
-		analyzer_act(user, src)
+/obj/machinery/atmospherics/pipe/examine(mob/user)
+	analyzer_act(user, src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
