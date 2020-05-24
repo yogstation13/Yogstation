@@ -454,3 +454,55 @@
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Nightmare by the midround ruleset.")
 	log_game("DYNAMIC: [key_name(S)] was spawned as a Nightmare by the midround ruleset.")
 	return S
+
+//////////////////////////////////////////////
+//                                          //
+//                VAMPIRE                   //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/autovamp
+	name = "Vampire"
+	antag_flag = ROLE_VAMPIRE
+	antag_datum = /datum/antagonist/vampire
+	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	restricted_roles = list("Cyborg", "AI")
+	required_candidates = 3
+	weight = 1
+	cost = 25
+	requirements = list(80,70,60,50,50,45,30,30,20,25)
+	minimum_players = 30
+	
+/datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
+	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
+	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
+	var/max_vamp = round(player_count / 10) + 1
+	if ((antag_count < max_vamp) && prob(mode.threat_level))//adding vampire if the antag population is getting low
+		return ..()
+	else
+		return FALSE
+
+/datum/dynamic_ruleset/midround/autovamp/trim_candidates()
+	..()
+	for(var/mob/living/player in living_players)
+		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
+			living_players -= player 
+			continue
+		if(is_centcom_level(player.z))
+			living_players -= player // We don't autotator people in CentCom
+			continue
+		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
+			living_players -= player // We don't autovamp people with roles already
+
+/datum/dynamic_ruleset/midround/autovamp/ready(forced = FALSE)
+	if (required_candidates > living_players.len)
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/midround/autovamp/execute()
+	var/mob/M = pick(living_players)
+	assigned += M
+	living_players -= M
+	var/datum/antagonist/vampire/newVampire = new
+	M.mind.add_antag_datum(newVampire)
+	return TRUE
