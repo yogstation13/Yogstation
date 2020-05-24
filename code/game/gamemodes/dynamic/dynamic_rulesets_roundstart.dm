@@ -1,5 +1,5 @@
 
-////////////////////////////////////////////// 
+//////////////////////////////////////////////
 //                                          //
 //           SYNDICATE TRAITORS             //
 //                                          //
@@ -120,7 +120,7 @@
 
 /datum/dynamic_ruleset/roundstart/changeling/execute()
 	var/team_mode = FALSE
-	if(prob(team_mode_probability)) 
+	if(prob(team_mode_probability))
 		team_mode = TRUE
 		var/list/team_objectives = subtypesof(/datum/objective/changeling_team_objective)
 		var/list/possible_team_objectives = list()
@@ -167,13 +167,13 @@
 /datum/dynamic_ruleset/roundstart/wizard/pre_execute()
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
-	
+
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
 		M.mind.assigned_role = ROLE_WIZARD
 		M.mind.special_role = ROLE_WIZARD
-	
+
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/wizard/execute()
@@ -181,7 +181,7 @@
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //                BLOOD CULT                //
@@ -226,7 +226,7 @@
 		var/datum/antagonist/cult/new_cultist = new antag_datum()
 		new_cultist.cult_team = main_cult
 		new_cultist.give_equipment = TRUE
-		M.add_antag_datum(new_cultist)	
+		M.add_antag_datum(new_cultist)
 	main_cult.setup_objectives()
 	return TRUE
 
@@ -375,7 +375,7 @@
 	revolution.update_heads()
 	SSshuttle.registerHostileEnvironment(src)
 	return TRUE
-	
+
 /datum/dynamic_ruleset/roundstart/revs/rule_process()
 /datum/dynamic_ruleset/roundstart/revs/rule_process()
 	if(!revolution)
@@ -590,7 +590,7 @@
 	high_population_requirement = 101
 	var/devil_limit = 4 // Hard limit on devils if scaling is turned off
 
-/datum/dynamic_ruleset/roundstart/devil/pre_execute()	
+/datum/dynamic_ruleset/roundstart/devil/pre_execute()
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
 	var/num_devils = 1
 
@@ -701,7 +701,7 @@
 	persistent = TRUE
 	required_candidates = 0
 	weight = 1
-	cost = 90
+	cost = 75
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	high_population_requirement = 100
 	var/meteordelay = 2000
@@ -744,7 +744,30 @@
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
+	var/shadowling_cap = list(3,3,3,3,3,3,3,3,3,4)
+	var/datum/team/shadowling/shadowling
+
+/datum/dynamic_ruleset/roundstart/shadowling/pre_execute()
+	var/indice_pop = min(60,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
+	var/shadowlings = shadowling_cap[indice_pop]
+	for(var/shadowling_number = 1 to shadowlings)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.special_role = ROLE_SHADOWLING
+		M.mind.restricted_roles = restricted_roles
+	return TRUE
 	
+/datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
+	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
+		var/datum/mind/shadow_mind = SM
+		if(istype(shadow_mind))
+			var/turf/T = get_turf(shadow_mind.current)
+			if((shadow_mind) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
+				return FALSE
+	return FALSE
+
 //Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made
 //feel free to make changes, if it crashes, or just doesn't give anyone roles.
 
@@ -759,7 +782,7 @@
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
-	restricted_roles = list("AI", "Cyborg")
+	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 1
 	cost = 25
