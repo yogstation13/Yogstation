@@ -501,6 +501,6 @@
 				. = TRUE
 	update_icon()
 
-/obj/machinery/portable_atmospherics/canister/examine(mob/user)
+/obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
 	analyzer_act(user, src)
 	return ..()

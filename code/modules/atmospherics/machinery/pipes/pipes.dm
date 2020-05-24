@@ -70,7 +70,7 @@
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
 
-/obj/machinery/atmospherics/pipe/examine(mob/user)
+/obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
 	analyzer_act(user, src)
 	return ..()
 
