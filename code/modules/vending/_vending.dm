@@ -369,7 +369,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/datum/bank_account/account
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
-	//yogs start -- ignores_capitalism stuff
+	//yogs start -- ignores_capitalism stuff\
+	var/list/display_records = list()
 	var/mob/living/L
 	if(isliving(user))
 		L = user
@@ -400,7 +401,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!product_records.len)
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
-		var/list/display_records = product_records + coin_records
+		display_records = products_records + coin_records
 		if(extended_inventory)
 			display_records = product_records + coin_records + hidden_records
 		dat += "<table>"
@@ -460,8 +461,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 			else if(age_restrictions && (!C.registered_age || C.registered_age < AGE_MINOR))
 				var/product_is_age_restricted = FALSE
-				for (var/datum/data/vending_product/R in display_records)
-					if (R.name == N && R.age_restricted)
+				var/datum/data/vending_product/R
+					for (R in display_records)
+						if (R.name == N && R.age_restricted)
 						product_is_age_restricted = TRUE
 						break
 						
