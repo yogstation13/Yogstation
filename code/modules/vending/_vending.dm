@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
 	//yogs start -- ignores_capitalism stuff\
-	var/list/display_records = list()
+	var/list/display_records
 	var/mob/living/L
 	if(isliving(user))
 		L = user
