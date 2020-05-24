@@ -17,7 +17,7 @@
 
 /mob/living/carbon/monkey/handle_blood()
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
-		//Blood regeneration if there is some spac
+		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL(src))
 			blood_volume += 0.1 // regenerate blood VERY slowly
 			if(blood_volume < BLOOD_VOLUME_OKAY(src))
