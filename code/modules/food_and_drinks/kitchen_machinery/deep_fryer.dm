@@ -94,7 +94,7 @@ God bless America.
 			superfry = 1
 			return
 		else
-			to_chat(user, "<span class='warning'>There is already a syndicate frying basket in [src]</span>")
+			to_chat(user, "<span class='warning'>There is already a syndicate frying basket in [src].</span>")
 			return
 	if(!reagents.has_reagent(/datum/reagent/consumable/cooking_oil))
 		to_chat(user, "<span class='warning'>[src] has no cooking oil to fry with!</span>")
@@ -107,7 +107,7 @@ God bless America.
 		return
 	if(istype(I, /obj/item/crowbar))
 		if(superfry)
-			to_chat(user, "<span class ='warning'>You pry the syndicate frying basket out of [src]</span>")
+			to_chat(user, "<span class ='warning'>You pry the syndicate frying basket out of [src].</span>")
 			icon_state = "fryer_off"
 			superfry = 0
 			var/turf/T = get_turf(src)
@@ -123,9 +123,8 @@ God bless America.
 		else if(!frying && user.transferItemToLoc(I, src))
 			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 			frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, I)
-			if(!superfry)
-				icon_state = "fryer_on"
-			else
+			icon_state = "fryer_on"
+			if(superfry)
 				icon_state = "syndie_fryer_on"
 			fry_loop.start()
 
@@ -146,7 +145,6 @@ God bless America.
 			frying_burnt = TRUE
 			visible_message("<span class='warning'>[src] emits an acrid smell!</span>")
 
-
 /obj/machinery/deepfryer/attack_ai(mob/user)
 	return
 
@@ -155,9 +153,8 @@ God bless America.
 		if(frying.loc == src)
 			to_chat(user, "<span class='notice'>You eject [frying] from [src].</span>")
 			frying.fry(cook_time)
-			if(!superfry)
-				icon_state = "fryer_off"
-			else
+			icon_state = "fryer_off"
+			if(superfry)
 				icon_state = "syndie_fryer_off"
 			frying.forceMove(drop_location())
 			if(Adjacent(user) && !issilicon(user))
@@ -168,17 +165,14 @@ God bless America.
 			frying_burnt = FALSE
 			fry_loop.stop()
 			return
-
-		
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
 		if(superfry)
 			var/mob/living/H = user.pulling
 			if(H.stat == DEAD)
 				to_chat(user, "<span class ='notice'>You dunk [H] into [src],</span>")
 				frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, H)
-				if(!superfry)
-					icon_state = "fryer_on"
-				else
+				icon_state = "fryer_on"
+				if(superfry)	
 					icon_state = "syndie_fryer_on"
 				for(var/obj/item/W in H)
 					if(!H.dropItemToGround(W))
