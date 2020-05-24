@@ -59,6 +59,9 @@
 	if(issilicon(M))
 		return FALSE
 
+	if(ismegafauna(M))
+		return FALSE
+
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(S.damage_coeff[TOX] <= 0 && S.damage_coeff[CLONE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
@@ -190,7 +193,7 @@
 					step_away(M,src)
 				M.Friends = Friends.Copy()
 				babies += M
-				M.mutation_chance = CLAMP(mutation_chance+(rand(5,-5)),0,100)
+				M.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
 				SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
 
 			var/mob/living/simple_animal/slime/new_slime = pick(babies)

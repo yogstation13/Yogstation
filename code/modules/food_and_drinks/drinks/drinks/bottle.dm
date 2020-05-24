@@ -376,6 +376,18 @@
 	list_reagents = list(/datum/reagent/consumable/limejuice = 100)
 	foodtype = FRUIT
 
+/obj/item/reagent_containers/food/drinks/bottle/pineapplejuice
+	name = "pineapple juice"
+	desc = "Extremely tart, yellow juice."
+	custom_price = 100
+	icon_state = "pineapplejuice"
+	item_state = "carton"
+	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
+	isGlass = FALSE
+	list_reagents = list(/datum/reagent/consumable/pineapplejuice = 100)
+	foodtype = FRUIT | PINEAPPLE
+
 /obj/item/reagent_containers/food/drinks/bottle/menthol
 	name = "menthol"
 	desc = "Tastes naturally minty, and imparts a very mild numbing sensation."
@@ -426,7 +438,12 @@
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
-
+	
+/obj/item/reagent_containers/food/drinks/bottle/nukacola
+	name = "Nuka Cola"
+	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."
+	icon_state = "nuka_colaglass"
+	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/food/drinks/bottle/molotov

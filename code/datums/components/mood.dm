@@ -170,6 +170,9 @@
 
 /datum/component/mood/process() //Called on SSmood process
 	var/mob/living/owner = parent
+	if(!owner)
+		qdel(src)
+		return
 
 	switch(mood_level)
 		if(1)
@@ -205,7 +208,7 @@
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)
 	var/mob/living/owner = parent
 
-	amount = CLAMP(amount, minimum, maximum)
+	amount = clamp(amount, minimum, maximum)
 	if(amount == sanity)
 		return
 	// If we're out of the acceptable minimum-maximum range move back towards it in steps of 0.5

@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/yogs/fuzzy_slippers
 	name = "fuzzy bunny slippers"
-	desc = "No animals were harmed in the making of these fuzzy slippers"
+	desc = "No animals were harmed in the making of these fuzzy slippers."
 	icon_state = "fuzzyslippers"
 	item_state = "fuzzyslippers"
 
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/beeshoes
 	name = "bee shoes"
-	desc = "Its hip to wear bees."
+	desc = "It's hip to wear bees."
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
 	icon_state = "bee_shoes"
@@ -39,3 +39,11 @@
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+
+/obj/item/clothing/shoes/yogs/fire_crocs
+	name = "fire crocs"
+	desc = "You are now the coolest kid on the station."
+	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
+	icon_state = "fire_crocs"
+	item_state = "fire_crocs"

@@ -53,6 +53,10 @@
 /obj/item/clothing/head/helmet/sec
 	can_flashlight = TRUE
 
+/obj/item/clothing/head/helmet/sec/attack_self(mob/user)
+	. = ..()
+	toggle_helmlight()
+
 /obj/item/clothing/head/helmet/sec/attackby(obj/item/I, mob/user, params)
 	if(issignaler(I))
 		var/obj/item/assembly/signaler/S = I
@@ -107,6 +111,14 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	dog_fashion = null
+
+/obj/item/clothing/head/helmet/riot/raised/Initialize()
+	. = ..()
+	up = !up
+	flags_1 ^= visor_flags
+	flags_inv ^= visor_flags_inv
+	flags_cover ^= visor_flags_cover
+	icon_state = "[initial(icon_state)][up ? "up" : ""]"
 
 /obj/item/clothing/head/helmet/attack_self(mob/user)
 	if(can_toggle && !user.incapacitated())

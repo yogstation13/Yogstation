@@ -8,8 +8,8 @@ You can type "Fixes issue #6" and issue 6 will be automatically closed when your
 
 Edit the changelog at the bottom for changes that are noticeable by the players. Remove it if this isn't the case.
 If you add a name after the ':cl', that name will be used in the changelog. Leave it empty to use your GitHub name.
-Include [admin] in the title if it's something admin related.
-Include [s] in the title if you don't want it to be announced on discord and the server.
+Prefix the PR title with [admin] if it's something admin related.
+Prefix the PR title with [s] if you are fixing an exploit so it is not announced on discord and the server.
 
 #### Changelog
 

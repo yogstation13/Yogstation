@@ -19,6 +19,10 @@
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
+/obj/item/clothing/shoes/combat/combat_knife/ComponentInitialize()
+	. = ..()
+	new /obj/item/kitchen/knife/combat(src)
+
 /obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
@@ -78,6 +82,12 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 	var/datum/component/waddle
 	var/enabled_waddle = TRUE
+
+/obj/item/clothing/shoes/clown_shoes/clowncrocs
+	desc = "The prankster's standard-issue clowning crocs. Damn, they're cool! These crocs seems smaller than the clown's standard shoes. Ctrl-click to toggle waddle dampeners."
+	name = "clown crocs"
+	icon_state = "clowncrocs"
+	item_state = "clowncrocs"
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()

@@ -258,18 +258,27 @@
 		return
 
 	cut_overlays()
+	set_light(FALSE)
 	if(update & CANISTER_UPDATE_HOLDING)
 		add_overlay("can-open")
 	if(update & CANISTER_UPDATE_CONNECTED)
 		add_overlay("can-connector")
 	if(update & CANISTER_UPDATE_LOW)
-		add_overlay("can-o0")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o0", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_MEDIUM)
-		add_overlay("can-o1")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o1", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_FULL)
-		add_overlay("can-o2")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o2", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_YELLOW)
 	else if(update & CANISTER_UPDATE_DANGER)
-		add_overlay("can-o3")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o3", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_LIME)
 #undef CANISTER_UPDATE_HOLDING
 #undef CANISTER_UPDATE_CONNECTED
 #undef CANISTER_UPDATE_EMPTY
@@ -327,7 +336,7 @@
 	investigate_log("was destroyed.", INVESTIGATE_ATMOS)
 
 	if(holding)
-		holding.forceMove(T)
+		usr.put_in_hands(holding)
 		holding = null
 
 /obj/machinery/portable_atmospherics/canister/replace_tank(mob/living/user, close_valve)
@@ -435,7 +444,7 @@
 				pressure = text2num(pressure)
 				. = TRUE
 			if(.)
-				release_pressure = CLAMP(round(pressure), can_min_release_pressure, can_max_release_pressure)
+				release_pressure = clamp(round(pressure), can_min_release_pressure, can_max_release_pressure)
 				investigate_log("was set to [release_pressure] kPa by [key_name(usr)].", INVESTIGATE_ATMOS)
 		if("valve")
 			var/logmsg
@@ -478,7 +487,7 @@
 					var/N = text2num(user_input)
 					if(!N)
 						return
-					timer_set = CLAMP(N,minimum_timer_set,maximum_timer_set)
+					timer_set = clamp(N,minimum_timer_set,maximum_timer_set)
 					log_admin("[key_name(usr)] has activated a prototype valve timer")
 					. = TRUE
 				if("toggle_timer")

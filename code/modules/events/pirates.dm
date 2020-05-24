@@ -396,7 +396,7 @@
 	return
 
 /datum/export/pirate/ransom
-	cost = 3000
+	cost = 8000
 	unit_name = "hostage"
 	export_types = list(/mob/living/carbon/human)
 
@@ -416,12 +416,12 @@
 		return 0
 	else
 		if(H.mind.assigned_role in GLOB.command_positions)
-			return 3000
+			return 8000
 		else
-			return 1000
+			return 3000
 
 /datum/export/pirate/parrot
-	cost = 2000
+	cost = 5000
 	unit_name = "alive parrot"
 	export_types = list(/mob/living/simple_animal/parrot)
 

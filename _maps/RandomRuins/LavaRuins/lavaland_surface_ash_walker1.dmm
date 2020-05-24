@@ -1320,7 +1320,8 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dw" = (
-/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket/wooden, 
+/obj/item/cultivator/rake,
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
 	},

@@ -33,6 +33,11 @@
 	icon_state = "oxygen_fr"
 	dog_fashion = null
 
+/obj/item/tank/internals/oxygen/tactical
+	name = "tactical oxygen tank"
+	desc = "A tactically colored tank of oxygen."
+	color = "#aeb08c"
+
 /obj/item/tank/internals/oxygen/empty/populate_gas()
 	return
 
