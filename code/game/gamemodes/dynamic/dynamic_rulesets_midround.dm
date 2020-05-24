@@ -455,7 +455,7 @@
 	log_game("DYNAMIC: [key_name(S)] was spawned as a Nightmare by the midround ruleset.")
 	return S
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////	
 //                                          //
 //                VAMPIRE                   //
 //                                          //
