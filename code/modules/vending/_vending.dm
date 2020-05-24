@@ -434,7 +434,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 
 	usr.set_machine(src)
-
+			var/datum/data/vending_product/R = locate(params["ref"])
 	if((href_list["dispense"]) && (vend_ready))
 		var/N = href_list["dispense"]
 		if(vending_machine_input[N] <= 0) // Sanity check, there are probably ways to press the button when it shouldn't be possible.
