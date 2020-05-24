@@ -225,7 +225,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		var/target_name = modify ? html_encode(modify.name) : "--------"
 		var/target_owner = (modify && modify.registered_name) ? html_encode(modify.registered_name) : "--------"
 		var/target_rank = (modify && modify.assignment) ? html_encode(modify.assignment) : "Unassigned"
-		var/target_age = (inserted_modify_id && inserted_modify_id.registered_age) ? html_encode(inserted_modify_id.registered_age) : "--------"
+		var/target_age = (modify && modify.registered_age) ? html_encode(inserted_modify_id.registered_age) : "--------"
 
 
 		if(!authenticated)
@@ -436,7 +436,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				if ((authenticated && modify == t2 && (in_range(src, usr) || issilicon(usr)) && isturf(loc)))
 					var/newAge = text2num(href_list["setage"])|null
 					if(newAge && isnum(newAge))
-						inserted_modify_id.registered_age = newAge
+						modify.registered_age = newAge
 						playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 					else if(!isnull(newAge))
 						to_chat(usr, "<span class='alert'>Invalid age entered- age not updated.</span>")
