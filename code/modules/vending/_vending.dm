@@ -23,6 +23,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/max_amount = 0
 	var/custom_price
 	var/custom_premium_price
+	///Whether spessmen with an ID with an age below AGE_MINOR (21 by default) can buy this item
 	var/age_restricted = FALSE
 
 /obj/machinery/vending
