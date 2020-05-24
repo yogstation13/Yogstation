@@ -454,15 +454,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_deny,src)
 				vend_ready = 1
 				return
-			else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
-				say("You are not of legal age to purchase [R.name].")
-				if(!(usr in GLOB.narcd_underages))
-					Radio.set_frequency(FREQ_SECURITY)
-					Radio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
-					GLOB.narcd_underages += H
-				flick(icon_deny,src)
-				vend_ready = TRUE
-				return
+				else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
+					say("You are not of legal age to purchase [R.name].")
+					if(!(usr in GLOB.narcd_underages))
+						Radio.set_frequency(FREQ_SECURITY)
+						Radio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
+						GLOB.narcd_underages += H
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
 			var/datum/bank_account/account = C.registered_account
 			if(!account.adjust_money(-chef_price))
 				say("You do not possess the funds to purchase this meal.")
