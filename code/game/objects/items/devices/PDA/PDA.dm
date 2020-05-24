@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				dat += "<br><br>"
 
-				dat += "<h#$F>General Functions</h4>"
+				dat += "<h4>General Functions</h4>"
 				dat += "<ul>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=1'>[PDAIMG(notes)]Notekeeper</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=2'>[PDAIMG(mail)]Messenger</a></li>"
