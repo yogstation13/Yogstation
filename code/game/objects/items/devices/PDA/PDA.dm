@@ -457,10 +457,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if("Return")//Return
 				if(mode<=9)  //this is really shitcode. If there are ever more than 9 regular PDA modes this whole thing has to be rewritten. Note to self
 					mode = 0
-					else
-						mode = round(mode/10)
-						if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub. 
-							mode = 0
+				else
+					mode = round(mode/10)
+					if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub. 
+						mode = 0
 			if ("Authenticate")//Checks for ID
 				id_check(U)
 			if("UpdateInfo")
