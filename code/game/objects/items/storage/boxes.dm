@@ -128,6 +128,8 @@
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
+	new /obj/item/clothing/head/helmet/space/skinsuit(src)
+	new /obj/item/clothing/suit/space/skinsuit(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -140,6 +142,8 @@
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
+	new /obj/item/clothing/head/helmet/space/skinsuit(src)
+	new /obj/item/clothing/suit/space/skinsuit(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
@@ -148,6 +152,8 @@
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
+	new /obj/item/clothing/head/helmet/space/skinsuit(src)
+	new /obj/item/clothing/suit/space/skinsuit(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -165,6 +171,8 @@
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
+	new /obj/item/clothing/head/helmet/space/skinsuit(src)
+	new /obj/item/clothing/suit/space/skinsuit(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
