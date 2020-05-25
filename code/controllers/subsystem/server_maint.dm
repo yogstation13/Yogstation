@@ -70,13 +70,6 @@ SUBSYSTEM_DEF(server_maint)
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
 
-		if(can_tracking)
-			if(C.holder?.rank.name == "RetiredAdmin" && C.is_afk() && C.connection_number)
-				world.sync_logout_with_db(C.connection_number)
-				C.connection_number = null
-			if(!C.is_afk() && !C.connection_number) //no connection number but not inactive
-				C.sync_login_with_db() 
-
 		if (!(!C || world.time - C.connection_time < PING_BUFFER_TIME || C.inactivity >= (wait-1)))
 			winset(C, null, "command=.update_ping+[world.time+world.tick_lag*TICK_USAGE_REAL/100]")
 
