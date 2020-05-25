@@ -72,10 +72,7 @@ SUBSYSTEM_DEF(server_maint)
 
 		if(can_tracking)
 			var/list/adm = get_admin_counts()
-			var/list/afkmins = adm["afk"]
-			var/list/stealthmins = adm["stealth"]
-			var/list/presentmins = adm["afk"]
-			var/nr_admins = presentmins.len + stealthmins.len + afkmins.len
+			var/nr_admins = length(adm["present"]) + length(adm["stealth"]) + length(adm["afk"])
 			if(C.is_afk() && C.connection_number && nr_admins >= 3)
 				world.sync_logout_with_db(C.connection_number)
 				C.connection_number = null
