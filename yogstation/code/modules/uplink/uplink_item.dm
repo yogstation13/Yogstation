@@ -99,7 +99,7 @@
 	name = "Syndicate Frying Basket"
 	desc = "A syndicate basket which allows the deep frying of dead corpses, ejects anything which the corpse is wearing."
 	item = /obj/item/syndicate_basket
-	cost = 10
+	cost = 7
 	restricted_roles = list("Cook")
 
 /datum/uplink_item/implants/mindslave
