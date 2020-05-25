@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(ai_relays)
 	idle_power_usage = 500
 	active_power_usage = 5000 //10x
 
-	var/on = FALSE
+	var/on = TRUE
 
 	var/list/linked_ais = list()
 
@@ -27,6 +27,9 @@ GLOBAL_LIST_EMPTY(ai_relays)
 	var/obj/item/ai_relay_module/inserted_module
 
 	var/last_flipped
+
+	var/generates_heat = TRUE
+	var/heat_output = 5000
 
 	circuit = /obj/item/circuitboard/machine/ai_relay
 
@@ -85,6 +88,11 @@ GLOBAL_LIST_EMPTY(ai_relays)
 		on = FALSE
 		use_power = IDLE_POWER_USE
 		return FALSE
+	if(on && generates_heat)
+		var/turf/T = get_turf(src)
+		var/datum/gas_mixture/env = T.return_air()
+		if(env.heat_capacity())
+			env.set_temperature(env.return_temperature() + heatoutput / env.heat_capacity())
 	return TRUE
 
 /obj/machinery/ai_relay/attack_ai(mob/user)
@@ -173,4 +181,17 @@ GLOBAL_LIST_EMPTY(ai_relays)
 
 /obj/machinery/ai_relay/update_icon()
 
+/obj/machinery/ai_relay/allinone
+	name = "suspcious processing relay"
 
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 25
+	active_power_usage = 250 //10x
+
+
+	var/generates_heat = FALSE
+
+/obj/machinery/ai_relay/allinone/Initialize()
+	var/obj/item/ai_relay_module/board = new(src)
+	board.enabling_tasks = MACHINE_INTERACTION | TELECOMMS_CONTROL | DOOR_CONTROL | ENVIROMENTAL_CONTROL | POWER_MANIPULATION
+	inserted_module = board

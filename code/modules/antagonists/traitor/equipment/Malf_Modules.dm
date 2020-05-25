@@ -859,5 +859,81 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	if(AI.eyeobj)
 		AI.eyeobj.relay_speech = TRUE
 
+
+//All-in-one relay.
+/datum/AI_Module/large/place_relay
+	module_name = "All-in-one Relay"
+	mod_pick_name = "allinone_relay"
+	description = "Build a relay anywhere, using expensive nanomachines. Automatically connected upon construction."
+	cost = 50
+	one_purchase = TRUE
+	power_type = /datum/action/innate/ai/place_relay
+	unlock_text = "<span class='notice'>You make contact with Space Amazon and request an all-in-one relay for delivery.</span>"
+	unlock_sound = 'sound/machines/ping.ogg'
+
+/datum/action/innate/ai/place_relay
+	name = "Place All-in-one Relay"
+	desc = "Places a relay anywhere. Automatically connected upon construction."
+	button_icon_state = "robotic_factory"
+	uses = 1
+	auto_use_uses = FALSE //So we can attempt multiple times
+	var/list/turfOverlays
+
+/datum/action/innate/ai/place_relay/New()
+	..()
+	var/image/I = image("icon"='icons/turf/overlays.dmi')
+		LAZYADD(turfOverlays, I)
+
+/datum/action/innate/ai/place_relay/Activate()
+	if(!owner_AI.can_place_transformer(src))
+		return
+	active = TRUE
+	if(alert(owner, "Are you sure you want to place the machine here?", "Are you sure?", "Yes", "No") == "No")
+		active = FALSE
+		return
+	if(!owner_AI.can_place_relay(src))
+		active = FALSE
+		return
+
+	var/turf/T = get_turf(owner_AI.eyeobj)
+	var/obj/machinery/ai_relay/allinone/relay = new(T)
+	relay.linked_ais += owner_AI
+	owner_AI.relays += relay
+	to_chat(src, "<span class='notice'>Connected to [relay]</span>")
+
+	playsound(T, 'sound/effects/phasein.ogg', 100, 1)
+	adjust_uses(-1)
+
+/mob/living/silicon/ai/proc/remove_relay_image(client/C, image/I, turf/T)
+	if(C && I.loc == T)
+		C.images -= I
+
+/mob/living/silicon/ai/proc/can_place_relay(datum/action/innate/ai/place_transformer/action)
+	if(!eyeobj || !isturf(loc) || incapacitated() || !action)
+		return
+	var/turf/middle = get_turf(eyeobj)
+	var/alert_msg = "There isn't enough room! Make sure you are placing the machine in a clear area and on a floor."
+	var/success = TRUE
+	if(!isfloorturf(middle))
+		success = FALSE
+	var/datum/camerachunk/C = GLOB.cameranet.getCameraChunk(middle.x, middle.y, middle.z)
+	if(!C.visibleTurfs[middle])
+		alert_msg = "You don't have camera vision of this location!"
+		success = FALSE
+	for(var/atom/movable/AM in middle.contents)
+		if(AM.density)
+			alert_msg = "That area must be clear of objects!"
+			success = FALSE
+	var/image/I = action.turfOverlays[1]
+	I.loc = T
+	client.images += I
+	I.icon_state = "[success ? "green" : "red"]Overlay" //greenOverlay and redOverlay for success and failure respectively
+	addtimer(CALLBACK(src, .proc/remove_relay_image, client, I, middle), 30)
+
+	if(!success)
+		to_chat(src, "<span class='warning'>[alert_msg]</span>")
+	return success
+
+
 #undef DEFAULT_DOOMSDAY_TIMER
 #undef DOOMSDAY_ANNOUNCE_INTERVAL
