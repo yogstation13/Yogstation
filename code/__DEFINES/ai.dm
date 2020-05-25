@@ -7,9 +7,9 @@
 
 //String names for the above bitflags
 GLOBAL_LIST_INIT(ai_relay_names, list(
-	POWER_MANIPULATION = "Power Manipulation",
-	ENVIROMENTAL_CONTROL = "Enviromental Control",
-	DOOR_CONTROL = "Door Control",
-	TELECOMMS_CONTROL = "Telecommunications Control",
-	MACHINE_INTERACTION = "Machine Interaction",
+	"[POWER_MANIPULATION]" = "Power Manipulation",
+	"[ENVIROMENTAL_CONTROL]" = "Enviromental Control",
+	"[DOOR_CONTROL]" = "Door Control",
+	"[TELECOMMS_CONTROL]" = "Telecommunications Control",
+	"[MACHINE_INTERACTION]" = "Machine Interaction",
 ))
