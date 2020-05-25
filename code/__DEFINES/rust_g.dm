@@ -38,6 +38,10 @@
 #define RUST_G __detect_rust_g()
 #endif
 
+#define RUSTG_JOB_NO_RESULTS_YET "NO RESULTS YET"
+#define RUSTG_JOB_NO_SUCH_JOB "NO SUCH JOB"
+#define RUSTG_JOB_ERROR "JOB PANICKED"
+
 #define rustg_dmi_strip_metadata(fname) call(RUST_G, "dmi_strip_metadata")(fname)
 #define rustg_dmi_create_png(path, width, height, data) call(RUST_G, "dmi_create_png")(path, width, height, data)
 
