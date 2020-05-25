@@ -346,7 +346,7 @@
 	cost = 35
 	requirements = list(70,70,60,40,30,20,10,10,10,10)
 	high_population_requirement = 10
-	flags = HIGHLANDER_RULESET
+	flags = TRAITOR_RULESET
 	// I give up, just there should be enough heads with 35 players...
 	minimum_players = 35
 	var/datum/team/revolution/revolution
@@ -760,12 +760,6 @@
 	return TRUE
 	
 /datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
-	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
-		var/datum/mind/shadow_mind = SM
-		if(istype(shadow_mind))
-			var/turf/T = get_turf(shadow_mind.current)
-			if((shadow_mind) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
-				return FALSE
 	return FALSE
 
 //Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made
