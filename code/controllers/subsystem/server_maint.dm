@@ -71,7 +71,9 @@ SUBSYSTEM_DEF(server_maint)
 				continue
 
 		if(can_tracking)
-			if(C.holder?.rank.name == "RetiredAdmin" && C.is_afk() && C.connection_number)
+			var/list/adm = get_admin_counts()
+			var/nr_admins = adm["present"].len + adm["stealth"].len
+			if(C.is_afk() && C.connection_number && nr_admins >= 3)
 				world.sync_logout_with_db(C.connection_number)
 				C.connection_number = null
 			if(!C.is_afk() && !C.connection_number) //no connection number but not inactive
