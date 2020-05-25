@@ -98,7 +98,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"PASSMOB" = PASSMOB,
 		"PASSCLOSEDTURF" = PASSCLOSEDTURF,
 		"LETPASSTHROW" = LETPASSTHROW,
-		"PASSDOOR" = PASSDOOR //yogs
+		"PASSDOOR" = PASSDOOR, //yogs
+		"PASSCOMP" = PASSCOMP
 		),
 	"movement_type" = list(
 		"GROUND" = GROUND,

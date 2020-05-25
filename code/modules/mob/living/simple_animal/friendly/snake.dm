@@ -28,7 +28,7 @@
         faction = list("hostile")
         ventcrawler = VENTCRAWLER_ALWAYS
         density = FALSE
-        pass_flags = PASSTABLE | PASSMOB
+        pass_flags = PASSTABLE | PASSMOB | PASSCOMP
         mob_size = MOB_SIZE_SMALL
         mob_biotypes = list(MOB_ORGANIC, MOB_BEAST, MOB_REPTILE)
         gold_core_spawnable = FRIENDLY_SPAWN
