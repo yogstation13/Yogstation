@@ -882,7 +882,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 /datum/action/innate/ai/place_relay/New()
 	..()
 	var/image/I = image("icon"='icons/turf/overlays.dmi')
-		LAZYADD(turfOverlays, I)
+	LAZYADD(turfOverlays, I)
 
 /datum/action/innate/ai/place_relay/Activate()
 	if(!owner_AI.can_place_transformer(src))
@@ -925,7 +925,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 			alert_msg = "That area must be clear of objects!"
 			success = FALSE
 	var/image/I = action.turfOverlays[1]
-	I.loc = T
+	I.loc = middle
 	client.images += I
 	I.icon_state = "[success ? "green" : "red"]Overlay" //greenOverlay and redOverlay for success and failure respectively
 	addtimer(CALLBACK(src, .proc/remove_relay_image, client, I, middle), 30)
