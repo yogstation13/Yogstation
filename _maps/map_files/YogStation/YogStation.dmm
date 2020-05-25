@@ -20385,10 +20385,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"aQw" = (
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "aQx" = (
 /obj/effect/landmark/blobstart,
 /obj/structure/sign/warning/biohazard{
@@ -49891,6 +49887,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"cLH" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "cLZ" = (
 /obj/item/stack/ore/iron,
 /obj/effect/turf_decal/stripes/line{
@@ -52948,10 +52948,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"iRL" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "iSS" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -53447,6 +53443,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"jUt" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "jWz" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -57526,6 +57526,10 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"sZG" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "tbz" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -57842,10 +57846,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"tDK" = (
-/obj/structure/chair/wood/wings,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "tFJ" = (
 /obj/effect/landmark/stationroom/box/dorm_edoor,
 /turf/template_noop,
@@ -89231,7 +89231,7 @@ anw
 anz
 aov
 bON
-iRL
+cLH
 bLE
 ayZ
 bQG
@@ -108526,8 +108526,8 @@ aKu
 aTe
 aFz
 aFz
-tDK
-aQw
+sZG
+jUt
 cdl
 aXB
 oef
