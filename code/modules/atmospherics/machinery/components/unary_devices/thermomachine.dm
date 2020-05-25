@@ -142,7 +142,6 @@
 		return
 
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr))
-		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with machine.</span>")
 		return
 
 	switch(action)
@@ -172,7 +171,6 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/CtrlClick(mob/living/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with machine.</span>")
 		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
@@ -214,7 +212,6 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/AltClick(mob/living/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with machine.</span>")
 		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
@@ -243,7 +240,6 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/heater/AltClick(mob/living/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with machine.</span>")
 		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return

@@ -891,8 +891,7 @@
 		attack_hand(user)
 
 /obj/machinery/turretid/attack_ai(mob/user)
-	if(!ai_can_use(MACHINE_INTERACTION, user))
-		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with turret controls.</span>")
+	if(!ai_can_use(MACHINE_INTERACTION, user, "turret controls"))
 		return
 	if(!ailock || IsAdminGhost(user))
 		return attack_hand(user)

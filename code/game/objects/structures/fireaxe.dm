@@ -154,7 +154,6 @@
 
 /obj/structure/fireaxecabinet/attack_ai(mob/user)
 	if(!ai_can_use(MACHINE_INTERACTION, user))
-		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with machine.</span>")
 		return
 	toggle_lock(user)
 	return

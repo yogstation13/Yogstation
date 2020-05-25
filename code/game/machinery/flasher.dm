@@ -85,7 +85,6 @@
 //Let the AI trigger them directly.
 /obj/machinery/flasher/attack_ai()
 	if(!ai_can_use(MACHINE_INTERACTION, usr))
-		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with machine.</span>")
 		return
 	if (anchored)
 		return flash()

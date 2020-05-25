@@ -108,7 +108,6 @@
 
 /obj/machinery/sparker/attack_ai()
 	if(!ai_can_use(MACHINE_INTERACTION, usr))
-		to_chat(usr, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with machine.</span>")
 		return
 	if (anchored)
 		return src.ignite()

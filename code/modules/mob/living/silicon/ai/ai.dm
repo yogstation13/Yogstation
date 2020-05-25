@@ -1022,6 +1022,8 @@
 	var/mob/living/silicon/ai/AI = owner
 	if(!AI)
 		return
+	if(!ai_can_use(MACHINE_INTERACTION, AI,"shell"))
+		return
 	AI.deploy_to_shell()
 
 /datum/action/innate/deploy_last_shell
@@ -1034,8 +1036,11 @@
 /datum/action/innate/deploy_last_shell/Trigger()
 	if(!owner)
 		return
+
 	if(last_used_shell)
 		var/mob/living/silicon/ai/AI = owner
+		if(!ai_can_use(MACHINE_INTERACTION, AI,"shell"))
+			return
 		AI.deploy_to_shell(last_used_shell)
 	else
 		Remove(owner) //If the last shell is blown, destroy it.
@@ -1119,11 +1124,15 @@
 		relays = passthrough
 
 //This is a global proc for ease of use
-/proc/ai_can_use(flag, ai)
+/proc/ai_can_use(flag, ai, machine_name = "machine")
 	if(!isAI(ai))
 		return TRUE
 	var/mob/living/silicon/ai/A = ai
 	if(!istype(A))
 		return TRUE
 
-	return A.has_relay(flag)
+	if(A.has_relay(flag))
+		return TRUE
+	else
+		to_chat(usr, "<span class='warning'>No [GLOB.ai_relay_names[flag]] relay detected. Unable to interface with [machine_name].</span>")
+		return FALSE

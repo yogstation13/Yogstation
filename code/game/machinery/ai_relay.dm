@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(ai_relays)
 
 /obj/machinery/ai_relay/Initialize()
 	GLOB.ai_relays += src
-	name += " ([num2hex(rand(1,65535), -1)])"
+	name = "[name] ([num2hex(rand(1,65535), -1)])"
 	. = ..()
 
 /obj/machinery/ai_relay/Destroy()

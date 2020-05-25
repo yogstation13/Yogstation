@@ -97,7 +97,6 @@
 
 /obj/machinery/dish_drive/attack_ai(mob/living/user)
 	if(!ai_can_use(MACHINE_INTERACTION, user))
-		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with machine.</span>")
 		return
 	if(stat)
 		return

@@ -34,8 +34,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
-	if(!ai_can_use(ENVIROMENTAL_CONTROL, user))
-		to_chat(user, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with pump.</span>")
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, user, "pump"))
 		return
 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		target_pressure = MAX_OUTPUT_PRESSURE
@@ -113,8 +112,7 @@
 /obj/machinery/atmospherics/components/binary/pump/ui_act(action, params)
 	if(..())
 		return
-	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr))
-		to_chat(usr, "<span class='warning'>No Enviromental Control relay detected. Unable to interface with pump.</span>")
+	if(!ai_can_use(ENVIROMENTAL_CONTROL, usr, "pump"))
 		return
 	switch(action)
 		if("power")

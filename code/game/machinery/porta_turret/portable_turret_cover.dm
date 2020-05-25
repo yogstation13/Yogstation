@@ -27,8 +27,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ai_can_use(MACHINE_INTERACTION, user))
-		to_chat(user, "<span class='warning'>No Machine Interaction relay detected. Unable to interface with turret.</span>")
+	if(!ai_can_use(MACHINE_INTERACTION, user, "turret"))
 		return
 
 	return parent_turret.attack_ai(user)

@@ -354,8 +354,7 @@
 /obj/machinery/computer/turbine_computer/ui_act(action, params)
 	if(..())
 		return
-	if(!ai_can_use(POWER_MANIPULATION, usr))
-		to_chat(usr, "<span class='warning'>No Power Manipulation relay detected. Unable to interface with turbine.</span>")
+	if(!ai_can_use(POWER_MANIPULATION, usr, "turbine"))
 		return
 	switch(action)
 		if("toggle_power")

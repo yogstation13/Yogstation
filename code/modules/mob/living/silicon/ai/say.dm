@@ -24,8 +24,7 @@
 	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
 		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
 		return FALSE
-	if(!ai_can_use(TELECOMMS_CONTROL, usr))
-		to_chat(usr, "<span class='warning'>No Telecommunications Control relay detected. Unable to use radio.</span>")
+	if(!ai_can_use(TELECOMMS_CONTROL, usr, "local radio"))
 		return
 	..()
 
