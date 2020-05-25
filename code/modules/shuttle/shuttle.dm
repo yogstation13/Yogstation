@@ -569,6 +569,11 @@
 				setTimer(20)
 				return
 		if(SHUTTLE_IGNITING)
+			if(checknearmobs())
+				var/obj/machinery/computer/shuttle/S = getControlConsole()
+				S.say("Hostile environment detected, please clear out shuttle before launch")
+				mode = SHUTTLE_IDLE
+				return
 			if(check_transit_zone() != TRANSIT_READY)
 				setTimer(20)
 				return
@@ -723,6 +728,13 @@
 	else
 		. = "unknown"
 
+/obj/docking_port/mobile/proc/checknearmobs()
+	for(var/place in shuttle_areas)
+		var/area/shuttle/shuttle_area = place
+		for(var/mob/living/simple_animal/hostile/h in shuttle_area)
+			if(h && !h.mind)
+				return TRUE
+	return FALSE
 
 // attempts to locate /obj/machinery/computer/shuttle with matching ID inside the shuttle
 /obj/docking_port/mobile/proc/getControlConsole()
