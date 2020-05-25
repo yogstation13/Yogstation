@@ -11,5 +11,5 @@ GLOBAL_LIST_INIT(ai_relay_names, list(
 	ENVIROMENTAL_CONTROL = "Enviromental Control",
 	DOOR_CONTROL = "Door Control",
 	TELECOMMS_CONTROL = "Telecommunications Control",
-	MACHINE_INTERACTION = "Machine Interaction"
+	MACHINE_INTERACTION = "Machine Interaction",
 ))
