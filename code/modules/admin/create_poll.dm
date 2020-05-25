@@ -34,7 +34,7 @@
 	var/endtime = input("Set end time for poll as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than starting time for obvious reasons.", "Set end time", SQLtime()) as text
 	if(!endtime)
 		return
-	var/datum/DBQuery/query_validate_time = SSdbcore.NewQuery("SELECT IF(STR_TO_DATE(':endtime','%Y-%c-%d %T') > NOW(), STR_TO_DATE(':endtime','%Y-%c-%d %T'), 0)", "endtime" = endtime)
+	var/datum/DBQuery/query_validate_time = SSdbcore.NewQuery("SELECT IF(STR_TO_DATE(':endtime','%Y-%c-%d %T') > NOW(), STR_TO_DATE(':endtime','%Y-%c-%d %T'), 0)", list("endtime" = endtime))
 	if(!query_validate_time.warn_execute() || QDELETED(usr) || !src)
 		qdel(query_validate_time)
 		return
