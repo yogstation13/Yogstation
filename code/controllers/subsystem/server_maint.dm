@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(server_maint)
 				continue
 
 		if(can_tracking)
-			if(C.holder?.rank.name == "RetiredAdmin" && C.is_afk() && C.connection_number)
+			if(C.holder && C.is_afk() && C.connection_number)
 				world.sync_logout_with_db(C.connection_number)
 				C.connection_number = null
 			if(!C.is_afk() && !C.connection_number) //no connection number but not inactive
