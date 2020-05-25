@@ -1134,5 +1134,6 @@
 	if(A.has_relay(flag))
 		return TRUE
 	else
-		to_chat(usr, "<span class='warning'>No [GLOB.ai_relay_names[flag]] relay detected. Unable to interface with [machine_name].</span>")
+
+		to_chat(usr, "<span class='warning'>No [GLOB.ai_relay_names["flag"]] relay detected. Unable to interface with [machine_name].</span>")
 		return FALSE
