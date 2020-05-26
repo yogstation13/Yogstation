@@ -102,7 +102,8 @@
 			arguments ["commit_hash"] = GLOB.revdata.originmastercommit
 		if(to_set.len)
 			arguments ["round_id"] = GLOB.round_id
-			var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql.Join(", ")] WHERE id = :round_id",
+			var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery(
+				"UPDATE [format_table_name("round")] SET [to_set.Join(", ")] WHERE id = :round_id",
 				arguments
 			)
 			query_round_game_mode.Execute()
