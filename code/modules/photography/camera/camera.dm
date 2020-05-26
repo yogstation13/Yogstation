@@ -107,6 +107,14 @@
 			return FALSE
 	return TRUE
 
+/obj/item/camera/emp_act(severity)
+	if(on) // EMP will only work on cameras that are on as it has power going through it
+		icon_state = state_off
+		on = FALSE
+		sleep(600/severity)
+		on = TRUE
+		icon_state = state_on
+
 /obj/item/camera/afterattack(atom/target, mob/user, flag)
 	if (disk)
 		if(ismob(target))
