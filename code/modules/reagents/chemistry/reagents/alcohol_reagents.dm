@@ -2145,7 +2145,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "tequila, creme de menthe, and a hint of medicine?"
 	glass_icon_state = "Flaming_moe2"
 	glass_name = "Flaming Moe"
-	glass_desc = "a amazing concotion of various different bar drinks and a secret ingredient"
+	glass_desc = "an amazing concotion of various different bar drinks and a secret ingredient"
 	
 /datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(M.drowsyness-5, 0)
