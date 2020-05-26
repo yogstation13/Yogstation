@@ -428,6 +428,24 @@
 	can_adjust = FALSE
 	custom_price = 20
 
+/obj/item/clothing/under/scratch
+	name = "white suit"
+	desc = "A white suit, suitable for an excellent host."
+	icon_state = "scratch"
+	item_state = "scratch"
+	item_color = "scratch"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/scratch/skirt
+	name = "white suitskirt"
+	desc = "A white suitskirt, suitable for an excellent host."
+	icon_state = "white_suit_skirt"
+	item_state = "scratch"
+	item_color = "white_suit_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP
+
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
 	desc = "Yarr."
