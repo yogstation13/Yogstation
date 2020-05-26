@@ -289,10 +289,7 @@
 	. = ..()
 	if(!user.canUseTopic(src, !issilicon(user)) || !isturf(loc))
 		return
-	if(flush)
-		flush = FALSE
-	else
-		flush = TRUE
+	flush = !flush
 	update_icon()
 
 /obj/machinery/disposal/bin/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
