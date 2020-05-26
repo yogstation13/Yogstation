@@ -35,8 +35,12 @@
 
 /obj/item/tank/internals/oxygen/tactical
 	name = "tactical oxygen tank"
-	desc = "A tactically colored tank of oxygen."
+	desc = "A tactically colored tank of oxygen. The straps are on tight to prevent the [src] from being taken off on the field."
 	color = "#aeb08c"
+
+/obj/item/tank/internals/oxygen/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/tank/internals/oxygen/empty/populate_gas()
 	return
