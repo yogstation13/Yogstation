@@ -116,3 +116,10 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/stealthy_weapons/camera_flash
+	name = "Camera flash"
+	desc = "A camera with an upgraded flash. Can be used much like a flash except with a much longer cooldown between uses."
+	item = /obj/item/camera/syndicate
+	cost = 4
+	surplus = 20
