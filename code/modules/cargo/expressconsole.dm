@@ -190,7 +190,8 @@
 						D.adjust_money(-SO.pack.cost)
 						new /obj/effect/DPtarget(LZ, podType, SO)
 						. = TRUE
-						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a pod at location [ADMIN_VERBOSEJMP(LZ)]")
+						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
+						investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 						update_icon()
 			else
 				if(SO.pack.cost * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
@@ -209,6 +210,7 @@
 							LAZYREMOVE(empty_turfs, LZ)
 							new /obj/effect/DPtarget(LZ, podType, SO)
 							. = TRUE
-							message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a pod at location [ADMIN_VERBOSEJMP(LZ)]")
+							message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
+							investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 							update_icon()
 							CHECK_TICK
