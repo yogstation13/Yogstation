@@ -172,7 +172,7 @@
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
 
-/datum/antagonist/ert/greet()
+/datum/antagonist/ert/amber/greet()
 	. = ..()
 	to_chat(owner,"<BR><B>Your Mission</B> : You also have a combat knife inside your boots.")
 
