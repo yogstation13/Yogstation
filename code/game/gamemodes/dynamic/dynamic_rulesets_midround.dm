@@ -507,7 +507,7 @@
 	M.mind.add_antag_datum(newVampire)
 	return TRUE
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////	
 //                                          //
 //              ZOMBIE (GHOST)              //
 //                                          //
@@ -555,3 +555,4 @@
 	log_game("[key_name(S)] was spawned as a Zombie by an event.")
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
+	
