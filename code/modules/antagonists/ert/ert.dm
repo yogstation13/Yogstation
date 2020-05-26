@@ -174,7 +174,7 @@
 
 /datum/antagonist/ert/amber/greet()
 	. = ..()
-	to_chat(owner,"<BR><B>Your Mission</B> : You also have a combat knife inside your boots.")
+	to_chat(owner,"You also have a combat knife inside your boots.")
 
 /datum/antagonist/ert/deathsquad/greet()
 	if(!ert_team)
