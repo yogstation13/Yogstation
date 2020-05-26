@@ -627,3 +627,9 @@
 	id = /datum/reagent/pax
 	results = list(/datum/reagent/pax = 3)
 	required_reagents  = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/adhesive
+	name = /datum/reagent/adhesive
+	id = /datum/reagent/adhesive
+	results = list(/datum/reagent/adhesive = 3)
+	required_reagents  = list(/datum/reagent/hydrogen = 1, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/carbon = 1)
