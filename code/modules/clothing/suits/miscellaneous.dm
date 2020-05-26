@@ -50,7 +50,7 @@
 	name = "skubman costume"
 	desc = "Skubman, simultaneously the world's favourite and least favourite superhero."
 	icon_state = "skubsuit"
-	inhand_icon_state = "armor"
+	item_state = "armor"
 	body_parts_covered = CHEST|GROIN
 	hoodtype = /obj/item/clothing/head/hooded/skubsuit
 
