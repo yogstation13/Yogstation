@@ -110,7 +110,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// CRATE DISCOUNT
 	var/discountedcrates = list(	/datum/supply_pack/security/laser,
 									/datum/supply_pack/security/helmets,
-									/datum/supply_pack/security/vending/security)
+									/datum/supply_pack/security/vending/security,
+									/datum/supply_pack/service/party)
 									
 /datum/game_mode/dynamic/admin_panel()
 	var/list/dat = list("<html><head><title>Game Mode Panel</title></head><body><h1><B>Game Mode Panel</B></h1>")
