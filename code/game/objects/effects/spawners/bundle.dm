@@ -180,7 +180,7 @@
 	name = "white mafia outfit spawner"
 	items = list(
 		/obj/item/clothing/head/fedora/white,
-		/obj/item/clothing/under/suit/white,
+		/obj/item/clothing/under/scratch,
 		/obj/item/clothing/shoes/laceup)
 
 /obj/effect/spawner/bundle/costume/mafia/checkered
