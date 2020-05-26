@@ -108,14 +108,18 @@
 	action_icon_state = "hypnotize"
 	blood_used = 0
 	charge_max = 1500
+	range = 2
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
 	for(var/mob/living/carbon/target in targets)
-		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 30))
+		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as [user.p_they()] stares into [target]'s eyes</span>")
+		target.silent = 2 //this is actually roughly 4 seconds due to how silent works
+		if(target.flash_act(1))
+			target.adjustStaminaLoss(40) //minor slowdown if they aren't protected
+		if(do_mob(user, target, 30, TRUE) && (target in view(user))) //effect stops working if the target escapes line of sight
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move or speak.</span>")
 			target.Paralyze(150)
