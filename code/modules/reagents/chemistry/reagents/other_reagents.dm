@@ -1511,21 +1511,40 @@
 	color = "#A3C00F" // rgb: 163,192,15
 	taste_description = "sourness"
 
+/datum/reagent/toxin/mutagen/mutagenvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
+
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
 	taste_description = "sweetness"
+	
+/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
 
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
 	taste_description = "bitterness"
+	
+/datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.25*REM, 0)
+	..()
+
 
 /datum/reagent/toxin/plasma/plasmavirusfood
 	name = "virus plasma"
 	color = "#A69DA9" // rgb: 166,157,169
 	taste_description = "bitterness"
 	taste_mult = 1.5
+	
+/datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(REM, 0)
+	..()
+
 
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	name = "weakened virus plasma"
@@ -1533,20 +1552,36 @@
 	taste_description = "bitterness"
 	taste_mult = 1.5
 
+/datum/reagent/toxin/plasma/plasmavirusfood/weak/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(0.5*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood
 	name = "decaying uranium gel"
 	color = "#67ADBA" // rgb: 103,173,186
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2.5*REM, 0)
+	..()
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
 	name = "unstable uranium gel"
 	color = "#2FF2CB" // rgb: 47,242,203
 	taste_description = "the inside of a reactor"
 
+/datum/reagent/uranium/uraniumvirusfood/unstable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(2*REM, 0)
+	..()
+
 /datum/reagent/uranium/uraniumvirusfood/stable
 	name = "stable uranium gel"
 	color = "#04506C" // rgb: 4,80,108
 	taste_description = "the inside of a reactor"
+
+/datum/reagent/uranium/uraniumvirusfood/stable/on_mob_life(mob/living/carbon/M)
+	M.adjustToxLoss(1.5*REM, 0)
+	..()
 
 // Bee chemicals
 
