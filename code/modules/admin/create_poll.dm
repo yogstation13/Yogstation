@@ -119,7 +119,7 @@
 	var/m2 = "[key_name_admin(usr)] has created a new server poll. Poll type: [polltype] - Admin Only: [adminonly ? "Yes" : "No"]<br>Question: [question]"
 	var/datum/DBQuery/query_polladd_question = SSdbcore.NewQuery({"INSERT INTO [format_table_name("poll_question")] (polltype, starttime, endtime, question, adminonly, multiplechoiceoptions, createdby_ckey, createdby_ip, dontshow)
 	VALUES (:polltype, :starttime, :endtime, :question, :adminonly, :choice_amount, :sql_ckey, INET_ATON(:address), :dontshow)"},
-	"polltype" = polltype, "starttime" = starttime, "endtime" = endtime, "question" = question, "adminonly" = adminonly, "choice_amount" = choice_amount, "sql_ckey" = ckey, "address" = address, "dontshow" = dontshow))
+	list("polltype" = polltype, "starttime" = starttime, "endtime" = endtime, "question" = question, "adminonly" = adminonly, "choice_amount" = choice_amount, "sql_ckey" = ckey, "address" = address, "dontshow" = dontshow))
 	if(!query_polladd_question.warn_execute())
 		qdel(query_polladd_question)
 		return
