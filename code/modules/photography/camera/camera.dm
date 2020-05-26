@@ -229,7 +229,6 @@
 			picture.log_to_file()
 
 
-
 /obj/item/camera/syndicate/attack(mob/living/carbon/human/M, mob/user) // syndicate camera flash
 	if(!on)
 		return
