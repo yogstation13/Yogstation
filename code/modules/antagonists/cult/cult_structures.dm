@@ -422,6 +422,11 @@
 		M.playsound_local(M, 'sound/creatures/legion_death.ogg', 75, FALSE) //make it suitably loud
 	SSticker.mode.bloodstone_list.Remove(src)
 	SSshuttle.clearHostileEnvironment(src)
+	for(var/datum/mind/B in SSticker.mode.cult)
+		if(B.current)
+			SEND_SOUND(B.current, 'sound/magic/demon_dies.ogg')
+			if(SSticker.mode.bloodstone_list.len)
+				to_chat(B.current, "<span class='cultlarge'>The Bloodstone in [get_area(src)] has been destroyed! There are [SSticker.mode.bloodstone_list.len] Bloodstones remaining!.</span>")
 	new /obj/effect/decal/cleanable/ash(loc)
 	new /obj/item/ectoplasm(loc)
 	new /obj/structure/destructible/dead_bloodstone(loc)
