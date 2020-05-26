@@ -402,6 +402,9 @@
 			P.update_icon()
 
 /obj/structure/destructible/cult/bloodstone/proc/summon()
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //should stop the stone from being destroyed by damage
+	sound_to_playing_players('sound/effects/dimensional_rend.ogg')
+	sleep(40)
 	new /obj/singularity/narsie/large/cult(loc)
 
 /obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
