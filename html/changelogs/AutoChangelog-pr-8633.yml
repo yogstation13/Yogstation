@@ -1,0 +1,5 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "Added clown spider"
+  - imageadd: "ported a goon sprite"
