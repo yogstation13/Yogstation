@@ -165,6 +165,7 @@
 	GLOB.shuttle_caller_list += src
 
 	builtInCamera = new (src)
+	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
 
 /mob/living/silicon/ai/key_down(_key, client/user)

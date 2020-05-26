@@ -1,3 +1,9 @@
+########################################
+########################################
+# If this is your first PR, or not, take the time to read our CONTRIBUTING.md file! This will ensure your PR is up to standards and get it merged more quickly! You can see it here: https://github.com/yogstation13/Yogstation/blob/master/.github/CONTRIBUTING.md
+########################################
+########################################
+
 ### Intent of your Pull Request
 
 Explain what the purpose of your PR is.
