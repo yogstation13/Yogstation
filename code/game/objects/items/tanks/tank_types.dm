@@ -38,7 +38,7 @@
 	desc = "A tactically colored tank of oxygen. The straps are on tight to prevent the tank from being stolen on the field."
 	color = "#aeb08c"
 
-/obj/item/tank/internals/oxygen/Initialize()
+/obj/item/tank/internals/oxygen/tactical/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
