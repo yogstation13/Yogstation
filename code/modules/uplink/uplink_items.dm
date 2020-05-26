@@ -1590,7 +1590,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Syndicate Brainwash Denial Implant"
 	desc = "An implant injected into the body, to deny brainwashing attempts."
 	item = /obj/item/storage/box/syndie_kit/imp_mindshield
-	cost = 2
+	limited_stock = 3
+	player_minimum = 30
+	illegal_tech = FALSE // This is a cheap knockoff of NT tech.
+	surplus = 5
+	cost = 1
 
 /datum/uplink_item/implants/xray
 	name = "X-ray Vision Implant"
