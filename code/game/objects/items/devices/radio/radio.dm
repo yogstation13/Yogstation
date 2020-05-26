@@ -42,9 +42,7 @@
 	//FREQ_BROADCASTING = 2
 
 /obj/item/radio/suicide_act(mob/living/user)
-	use_command = TRUE
-	talk_into(user, pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
-	use_command = FALSE
+	talk_into(user, pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"), null, SPAN_COMMAND)
 	return OXYLOSS // you die from oxygen loss by yelling the brain damage line at full volume
 
 /obj/item/radio/proc/set_frequency(new_frequency)
