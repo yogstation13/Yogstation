@@ -388,7 +388,7 @@
 				return
 			if(health > 0)
 				return //safety check to prevent spam clciking and queing
-		
+
 		adjustBruteLoss(-30)
 		updatehealth()
 		add_fingerprint(user)
@@ -506,6 +506,7 @@
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+				to_chat(src, "<span class='notice'>[usr] [locked ? "locks" : "unlocks"] your cover.</span>")
 				update_icons()
 				if(emagged)
 					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")

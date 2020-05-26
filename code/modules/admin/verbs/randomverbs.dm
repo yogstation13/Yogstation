@@ -163,7 +163,7 @@
 
 	if( !msg )
 		return
-	
+
 	msg = to_utf8(msg, src)
 
 	to_chat(M, msg)
@@ -1082,7 +1082,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1147,6 +1147,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(!puzzle_imprison(target))
 				to_chat(usr,"<span class='warning'>Imprisonment failed!</span>", confidential=TRUE)
 				return
+		if(ADMIN_PUNISHMENT_PIE)
+			var/confirm = alert(usr, "Send honk message?", "Honk Message", "Yes", "No")
+			if(confirm == "Yes")
+				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
+			var/mob/living/carbon/C = target
+			C.adminpie(target)
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)
@@ -1223,3 +1229,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		message_admins("[key_name_admin(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name_admin(C)]")
 		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
+
+/mob/living/carbon/proc/adminpie(mob/user)
+	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
+	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW
+	p.throw_at(user, 10, 0.5, usr)
