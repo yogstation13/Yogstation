@@ -236,7 +236,7 @@
 		flash_carbon(M, user, 5, 1)
 		playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 		flash_lighting_fx(8, light_power, light_color)
-		flash_cooldown(user)
+		flash_cooldown()
 		return TRUE
 	else if(issilicon(M))
 		var/mob/living/silicon/robot/R = M
@@ -246,7 +246,7 @@
 		R.confused += min(5, diff)
 		R.flash_act(affect_silicon = 1)
 		playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
-		flash_cooldown(user)
+		flash_cooldown()
 		flash_lighting_fx(8, light_power, light_color)
 		user.visible_message("<span class='disarm'>[user] overloads [R]'s sensors with the camera flash!</span>", "<span class='danger'>You overload [R]'s sensors with the flash!</span>") // second message generic
 		return TRUE
@@ -279,7 +279,7 @@
 			M.confused += min(power, diff)
 
 
-/obj/item/camera/syndicate/proc/flash_cooldown(mob/user)
+/obj/item/camera/syndicate/proc/flash_cooldown()
 	var/realcooldown = cooldown + 30 // longer delay to recharge than normal usage
 	icon_state = state_off
 	on = FALSE
