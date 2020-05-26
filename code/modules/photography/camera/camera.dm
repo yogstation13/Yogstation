@@ -227,3 +227,67 @@
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()
+
+
+
+/obj/item/camera/syndicate/attack(mob/living/carbon/human/M, mob/user) // syndicate camera flash
+	if(!on)
+		return
+	if(iscarbon(M))
+		flash_carbon(M, user, 5, 1)
+		playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
+		flash_lighting_fx(8, light_power, light_color)
+		flash_cooldown(user)
+		return TRUE
+	else if(issilicon(M))
+		var/mob/living/silicon/robot/R = M
+		log_combat(user, R, "flashed", src)
+		R.Paralyze(rand(80,120))
+		var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+		R.confused += min(5, diff)
+		R.flash_act(affect_silicon = 1)
+		playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
+		flash_cooldown(user)
+		flash_lighting_fx(8, light_power, light_color)
+		user.visible_message("<span class='disarm'>[user] overloads [R]'s sensors with the camera flash!</span>", "<span class='danger'>You overload [R]'s sensors with the flash!</span>") // second message generic
+		return TRUE
+
+
+/obj/item/camera/syndicate/proc/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = TRUE)
+	if(!istype(M) || !on)
+		return
+	if(user)
+		log_combat(user, M, "[targeted? "flashed(targeted)" : "flashed(AOE)"]", src)
+	if(generic_message && M != user)
+		to_chat(M, "<span class='disarm'>[src] emits a blinding light!</span>")
+	if(targeted)
+		if(M.flash_act(1, 1))
+			if(M.confused < power)
+				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+				M.confused += min(power, diff)
+			if(user)
+				to_chat(M, "<span class='userdanger'>You are blinded by [src]!</span>")
+			M.Paralyze(rand(80,120))
+		else if(user)
+			visible_message("<span class='disarm'>[user] fails to blind [M] with the flash!</span>") // generic flash message on purpose
+			to_chat(user, "<span class='warning'>You fail to blind [M] with the camera flash!</span>")
+			to_chat(M, "<span class='danger'>[user] fails to blind you with the flash!</span>") // generic flash message on purpose
+		else
+			to_chat(M, "<span class='danger'>[src] fails to blind you!</span>")
+	else
+		if(M.flash_act())
+			var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+			M.confused += min(power, diff)
+
+
+/obj/item/camera/syndicate/proc/flash_cooldown(mob/user)
+	var/realcooldown = cooldown
+	if(user)
+		var/mob/living/carbon/human/H = user
+		if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER)) // yes; knowing how to use a camera will help you out here as well
+			realcooldown *= 0.5
+	icon_state = state_off
+	on = FALSE
+	sleep(realcooldown + 30) // longer delay to recharge than normal usage
+	icon_state = state_on
+	on = TRUE
