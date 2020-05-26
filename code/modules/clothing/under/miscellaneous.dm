@@ -328,6 +328,18 @@
 	icon_state = "beige_suit"
 	item_state = "beige_suit"
 
+/obj/item/clothing/under/suit/blacktwopiece
+	name = "black two piece suit"
+	desc = "A black suit and red tie. Very formal."
+	icon_state = "black_suit"
+	item_state = "black_suit"
+
+/obj/item/clothing/under/suit/checkered
+	name = "checkered suit"
+	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
+	icon_state = "checkered_suit"
+	item_state = "checkered_suit"
+
 /obj/item/clothing/under/burial
 	name = "burial garments"
 	desc = "Traditional burial garments from the early 22nd century."
