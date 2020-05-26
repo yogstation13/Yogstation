@@ -62,12 +62,10 @@
 				AND id NOT IN (
 					SELECT pollid FROM [format_table_name("poll_vote")]
 					WHERE ckey = :ckey
-					AND deleted = 0
 				)
 				AND id NOT IN (
 					SELECT pollid FROM [format_table_name("poll_textreply")]
 					WHERE ckey = :ckey
-					AND deleted = 0
 				)
 			"}, list("isadmin" = isadmin, "ckey" = ckey))
 			var/rs = REF(src)
@@ -417,7 +415,7 @@
 		if(GLOB.highlander)
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
-	
+
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
