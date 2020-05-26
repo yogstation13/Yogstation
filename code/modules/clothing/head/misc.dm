@@ -227,6 +227,16 @@
 	H.facial_hair_style = "Neckbeard"
 	return(BRUTELOSS)
 
+/obj/item/clothing/head/fedora/white
+	name = "white fedora"
+	icon_state = "fedora_white"
+	item_state = "fedora_white"
+
+/obj/item/clothing/head/fedora/beige
+	name = "beige fedora"
+	icon_state = "fedora_beige"
+	item_state = "fedora_beige"
+
 /obj/item/clothing/head/sombrero
 	name = "sombrero"
 	icon_state = "sombrero"
