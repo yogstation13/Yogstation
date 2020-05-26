@@ -39,7 +39,7 @@
 				SELECT date, intel, TIMESTAMPDIFF(MINUTE,date,NOW())
 				FROM [format_table_name("ipintel")]
 				WHERE
-					ip = INET_ATON(':ip')
+					ip = INET_ATON(:ip)
 					AND ((
 							intel < :rating_bad
 							AND

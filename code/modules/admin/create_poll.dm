@@ -34,7 +34,7 @@
 	var/endtime = input("Set end time for poll as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than starting time for obvious reasons.", "Set end time", SQLtime()) as text
 	if(!endtime)
 		return
-	var/datum/DBQuery/query_validate_time = SSdbcore.NewQuery("SELECT IF(STR_TO_DATE(':endtime','%Y-%c-%d %T') > NOW(), STR_TO_DATE(':endtime','%Y-%c-%d %T'), 0)", list("endtime" = endtime))
+	var/datum/DBQuery/query_validate_time = SSdbcore.NewQuery("SELECT IF(STR_TO_DATE(:endtime,'%Y-%c-%d %T') > NOW(), STR_TO_DATE(:endtime,'%Y-%c-%d %T'), 0)", list("endtime" = endtime))
 	if(!query_validate_time.warn_execute() || QDELETED(usr) || !src)
 		qdel(query_validate_time)
 		return
@@ -118,7 +118,7 @@
 	var/m1 = "[key_name(usr)] has created a new server poll. Poll type: [polltype] - Admin Only: [adminonly ? "Yes" : "No"] - Question: [question]"
 	var/m2 = "[key_name_admin(usr)] has created a new server poll. Poll type: [polltype] - Admin Only: [adminonly ? "Yes" : "No"]<br>Question: [question]"
 	var/datum/DBQuery/query_polladd_question = SSdbcore.NewQuery({"INSERT INTO [format_table_name("poll_question")] (polltype, starttime, endtime, question, adminonly, multiplechoiceoptions, createdby_ckey, createdby_ip, dontshow)
-	VALUES (':polltype', ':starttime', ':endtime', ':question', ':adminonly', ':choice_amount', ':sql_ckey', INET_ATON(':address'), ':dontshow')"},
+	VALUES (:polltype, :starttime, :endtime, :question, :adminonly, :choice_amount, :sql_ckey, INET_ATON(:address), :dontshow)"},
 	"polltype" = polltype, "starttime" = starttime, "endtime" = endtime, "question" = question, "adminonly" = adminonly, "choice_amount" = choice_amount, "sql_ckey" = ckey, "address" = address, "dontshow" = dontshow)
 	if(!query_polladd_question.warn_execute())
 		qdel(query_polladd_question)

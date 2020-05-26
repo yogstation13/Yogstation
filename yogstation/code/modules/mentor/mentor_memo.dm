@@ -38,7 +38,7 @@
 
 	switch(task)
 		if("Write")
-			var/datum/DBQuery/query_memocheck = SSdbcore.NewQuery("SELECT ckey FROM `[format_table_name("mentor_memo")]` WHERE `ckey` = ':ckey'", list("ckey" = ckey))
+			var/datum/DBQuery/query_memocheck = SSdbcore.NewQuery("SELECT ckey FROM `[format_table_name("mentor_memo")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 			if(!query_memocheck.warn_execute())
 				qdel(query_memocheck)
 				return
@@ -54,7 +54,7 @@
 				return
 
 			var/timestamp = SQLtime()
-			var/datum/DBQuery/query_memoadd = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor_memo")]` (ckey, memotext, timestamp) VALUES (':ckey', ':memotext', ':timestamp')", list("ckey" = ckey, "memotext" = memotext, "timestamp" = timestamp))
+			var/datum/DBQuery/query_memoadd = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor_memo")]` (ckey, memotext, timestamp) VALUES (:ckey, :memotext, :timestamp)", list("ckey" = ckey, "memotext" = memotext, "timestamp" = timestamp))
 			if(!query_memoadd.warn_execute())
 				qdel(query_memoadd)
 				return
@@ -83,7 +83,7 @@
 			if(!target_ckey)
 				return
 
-			var/datum/DBQuery/query_memofind = SSdbcore.NewQuery("SELECT `memotext` FROM `[format_table_name("mentor_memo")]` WHERE `ckey` = ':target_ckey'", list("target_ckey" = target_ckey))
+			var/datum/DBQuery/query_memofind = SSdbcore.NewQuery("SELECT `memotext` FROM `[format_table_name("mentor_memo")]` WHERE `ckey` = :target_ckey", list("target_ckey" = target_ckey))
 			if(!query_memofind.warn_execute())
 				qdel(query_memofind)
 				return
@@ -97,7 +97,7 @@
 
 				var/edit_text = "Edited by [ckey] on [SQLtime()] from<br>[old_memo]<br>to<br>[new_memo]<hr>"
 
-				var/datum/DBQuery/update_query = SSdbcore.NewQuery("UPDATE `[format_table_name("mentor_memo")]` SET `memotext` = ':new_memo', `last_editor` = ':sql_ckey', `edits` = CONCAT(IFNULL(edits,''),':edit_text') WHERE `ckey` = ':target_ckey'",
+				var/datum/DBQuery/update_query = SSdbcore.NewQuery("UPDATE `[format_table_name("mentor_memo")]` SET `memotext` = :new_memo, `last_editor` = :sql_ckey, `edits` = CONCAT(IFNULL(edits,''), :edit_text) WHERE `ckey` = :target_ckey",
 				list("new_memo" = new_memo, "sql_ckey" = ckey, "edit_text" = edit_text, "target_ckey" = target_ckey))
 				if(!update_query.warn_execute())
 					qdel(query_memofind)
@@ -159,7 +159,7 @@
 			if(!target_ckey)
 				return
 
-			var/datum/DBQuery/query_memodel = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor_memo")]` WHERE `ckey` = ':target_ckey'", list("target_ckey" = target_ckey))
+			var/datum/DBQuery/query_memodel = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor_memo")]` WHERE `ckey` = :target_ckey", list("target_ckey" = target_ckey))
 			if(!query_memodel.warn_execute())
 				qdel(query_memodel)
 				return
