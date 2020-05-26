@@ -35,7 +35,7 @@
 
 /obj/item/tank/internals/oxygen/tactical
 	name = "tactical oxygen tank"
-	desc = "A tactically colored tank of oxygen. The straps are on tight to prevent the tank from being taken off on the field."
+	desc = "A tactically colored tank of oxygen. The straps are on tight to prevent the tank from being stolen on the field."
 	color = "#aeb08c"
 
 /obj/item/tank/internals/oxygen/Initialize()
