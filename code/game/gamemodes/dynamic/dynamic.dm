@@ -107,7 +107,11 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/highlander_executed = FALSE
 	/// If a only ruleset has been executed.
 	var/only_ruleset_executed = FALSE
-
+	/// CRATE DISCOUNT
+	var/discountedcrates = list(	/datum/supply_pack/security/laser,
+									/datum/supply_pack/security/helmets,
+									/datum/supply_pack/security/vending/security)
+									
 /datum/game_mode/dynamic/admin_panel()
 	var/list/dat = list("<html><head><title>Game Mode Panel</title></head><body><h1><B>Game Mode Panel</B></h1>")
 	dat += "Dynamic Mode <a href='?_src_=vars;[HrefToken()];Vars=[REF(src)]'>\[VV\]</A><a href='?src=\ref[src];[HrefToken()]'>\[Refresh\]</A><BR>"
@@ -231,6 +235,12 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	priority_announce(desc, title, 'sound/ai/intercept.ogg')
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
+
+	if(ISINRANGE(threat_level, 50, 80))
+		for(var/pack in SSshuttle.supply_packs)
+			var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
+			for(P in discountedcrates)
+				P.cost = P.cost /= 2
 
 // Yes, this is copy pasted from game_mode
 /datum/game_mode/dynamic/check_finished(force_ending)
