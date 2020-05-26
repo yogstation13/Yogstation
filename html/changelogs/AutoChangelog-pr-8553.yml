@@ -1,0 +1,4 @@
+author: "MacHac"
+delete-after: true 
+changes: 
+  - bugfix: "Mechs can open atmospheric firelocks."
