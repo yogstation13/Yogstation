@@ -101,7 +101,7 @@
 
 	last_announcement = message
 
-	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)", "Cassie (laboratory)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military, Cassie is vox_sounds_laboratory
 
 	if(!message || announcing_vox > world.time)
 		return
@@ -130,6 +130,8 @@
 			incorrect_words += word  //yogs end- male vox
 		if(!GLOB.vox_sounds_military[word] && voxType == "Oscar (military)")
 			incorrect_words += word
+		if(!GLOB.vox_sounds_laboratory[word] && voxType == "Cassie (laboratory)")
+			incorrect_words += word
 
 	if(incorrect_words.len)
 		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
@@ -147,7 +149,7 @@
 
 	word = lowertext(word)
 
-	if( (GLOB.vox_sounds[word] && voxType == "Verity (female)") || (GLOB.vox_sounds_male[word] &&voxType == "Victor (male)") || (GLOB.vox_sounds_military[word] &&voxType == "Oscar (military)") ) //yogs - male vox
+	if( (GLOB.vox_sounds[word] && voxType == "Verity (female)") || (GLOB.vox_sounds_male[word] &&voxType == "Victor (male)") || (GLOB.vox_sounds_military[word] &&voxType == "Oscar (military)") || (GLOB.vox_sounds_laboratory[word] &&voxType == "Cassie (laboratory)") ) //yogs - male vox
 
 		var/sound_file //yogs start - male vox
 
@@ -157,6 +159,8 @@
 			sound_file = GLOB.vox_sounds_male[word] //yogs end - male vox
 		else
 			sound_file = GLOB.vox_sounds_military[word]
+		else
+			sound_file = GLOB.vox_sounds_laboratory[word]
 
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
 		voice.status = SOUND_STREAM

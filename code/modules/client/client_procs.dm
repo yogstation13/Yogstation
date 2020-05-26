@@ -879,6 +879,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			var/file = GLOB.vox_sounds_military[name]
 			Export("##action=load_rsc", file)
 			stoplag()
+		for (var/name in GLOB.vox_sounds_laboratory)
+			var/file = GLOB.vox_sounds_laboratory[name]
+			Export("##action=load_rsc", file)
+			stoplag()
 		#endif
 
 

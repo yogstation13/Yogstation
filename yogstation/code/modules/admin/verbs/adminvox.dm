@@ -14,7 +14,7 @@
 	if(!message)
 		return
 
-	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)")
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)", "Cassie (laboratory)")
 
 
 	var/list/words = splittext(trim(message), " ")//Turns the received text into an array of words
@@ -34,6 +34,8 @@
 		voxlist = GLOB.vox_sounds_male
 	else if(voxType == "Oscar (military)") // If we're doing the also yog-ly male AI vox voice but from Black Mesa
 		voxlist = GLOB.vox_sounds_military
+	else if(voxType == "Cassie (laboratory)") // If we're doing the SCP AI announcement shit
+		voxlist = GLOB.vox_sounds_laboratory
 	else
 		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>", confidential=TRUE)
 		return
