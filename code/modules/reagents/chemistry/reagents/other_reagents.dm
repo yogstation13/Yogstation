@@ -1768,3 +1768,10 @@
 	color = "#020202"
 	taste_description = "bananas"
 	can_synth = TRUE
+
+/datum/reagent/adhesive
+	name = "Adhesive"
+	description = "A Sticky substance that used to be made out of horses but is now creatable with chemicals"
+	reagent_state = SOLID
+	color = "#ffffff" // rgb: 255, 255, 255
+	can_synth = TRUE
