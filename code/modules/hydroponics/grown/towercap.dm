@@ -14,7 +14,7 @@
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	icon_dead = "towercap-dead"
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	mutatelist = list(/obj/item/seeds/tower/steel)
 
 /obj/item/seeds/tower/steel
@@ -59,7 +59,7 @@ name = "pack of ash-cap mycelium"
 /obj/item/grown/log/ash
 	seed = /obj/items/seeds/tower/ash
 	name = "ash-cap log"
-	desc = "A log from a thick mushroom, native to Lavaland."
+	desc = "A log from a grey mushroom, native to Lavaland."
 	icon_state = "Ash logs" //TODO
 	var/plank_type = /obj/item/stack/sheet/mineral/wood/ash //TODO
 	var/plank_name = "ash planks"
