@@ -66,11 +66,9 @@
 /obj/item/deployablemine/afterattack(atom/plantspot, mob/user, proximity)
 	if(!proximity)
 		return
-
 	if(!istype(plantspot,/turf/open/floor))
 		to_chat(user, "<span class='warning'>You can't plant the mine here!</span>")
 		return
-
 	to_chat(user, "<span class='notice'>You start arming the [src]...</span>")
 	if(do_after(user, arming_time, target = src))
 		new mine_type(plantspot)
