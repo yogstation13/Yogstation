@@ -157,7 +157,7 @@
 			sound_file = GLOB.vox_sounds[word]
 		else if(voxType == "Victor (male)")
 			sound_file = GLOB.vox_sounds_male[word] //yogs end - male vox
-		else
+		else if(voxType == "Oscar (military)")
 			sound_file = GLOB.vox_sounds_military[word]
 		else
 			sound_file = GLOB.vox_sounds_laboratory[word]
