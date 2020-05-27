@@ -149,7 +149,7 @@
 
 	word = lowertext(word)
 
-	if( (GLOB.vox_sounds[word] && voxType == "Verity (female)") || (GLOB.vox_sounds_male[word] &&voxType == "Victor (male)") || (GLOB.vox_sounds_military[word] &&voxType == "Oscar (military)") || (GLOB.vox_sounds_laboratory[word] &&voxType == "Cassie (laboratory)") ) //yogs - male vox
+	if( (GLOB.vox_sounds[word] && voxType == "Verity (female)") || (GLOB.vox_sounds_male[word] &&voxType == "Victor (male)") || (GLOB.vox_sounds_military[word] &&voxType == "Oscar (military)") || (GLOB.vox_sounds_laboratory[word] &&voxType == "Cass (laboratory)") ) //yogs - male vox
 
 		var/sound_file //yogs start - male vox
 
