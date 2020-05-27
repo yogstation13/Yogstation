@@ -101,7 +101,7 @@
 
 	last_announcement = message
 
-	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)", "Cassie (laboratory)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military, Cassie is vox_sounds_laboratory
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)", "Cass (laboratory)") //Victor is vox_sounds_male, Verity is vox_sounds, Oscar is vox_sounds_military, Cassie is vox_sounds_laboratory
 
 	if(!message || announcing_vox > world.time)
 		return
@@ -130,7 +130,7 @@
 			incorrect_words += word  //yogs end- male vox
 		if(!GLOB.vox_sounds_military[word] && voxType == "Oscar (military)")
 			incorrect_words += word
-		if(!GLOB.vox_sounds_laboratory[word] && voxType == "Cassie (laboratory)")
+		if(!GLOB.vox_sounds_laboratory[word] && voxType == "Cass (laboratory)")
 			incorrect_words += word
 
 	if(incorrect_words.len)
