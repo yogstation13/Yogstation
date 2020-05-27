@@ -40216,20 +40216,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/research)
-"cBQ" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "cBS" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
@@ -40253,6 +40239,18 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"cPa" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/computer/nanite_chamber_control{
+	icon_state = "computer"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "cPj" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
@@ -40270,31 +40268,6 @@
 	},
 /obj/structure/cable/white{
 	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
-"cXK" = (
-/obj/machinery/door/airlock/research{
-	name = "Nanite Laboratory";
-	req_one_access_txt = "7;47;29"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -40327,6 +40300,20 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/aft)
+"dwU" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/nanite_program_hub,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "dyo" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/fifty,
@@ -40386,17 +40373,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"dLi" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
+"dKF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/purple,
-/obj/machinery/nanite_chamber,
-/turf/open/floor/plasteel/dark,
-/area/science/research)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "dMl" = (
 /obj/structure/sign/warning/fire,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -40610,6 +40598,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"fEl" = (
+/obj/machinery/camera{
+	c_tag = "Research Division - Nanite Lab";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/obj/machinery/computer/nanite_cloud_controller,
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "fEt" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/machinery/meter,
@@ -40629,6 +40627,16 @@
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"fGs" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 3;
+	name = "3maintenance loot spawner"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/starboard/aft)
 "fIN" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -40723,6 +40731,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"giJ" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/nanite_chamber,
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "glM" = (
 /obj/item/storage/box/teargas{
 	pixel_x = 3;
@@ -40764,19 +40779,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/starboard)
-"gyk" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "gDQ" = (
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -41066,15 +41068,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jlf" = (
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
-	name = "2maintenance loot spawner"
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/maintenance/starboard/aft)
 "jnD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -41162,23 +41155,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/research)
-"jAO" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/structure/table,
-/obj/item/nanite_scanner,
-/obj/item/nanite_remote{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/storage/box/disks_nanite{
-	pixel_x = 8;
-	pixel_y = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "jDd" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 8
@@ -41196,6 +41172,18 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/engine/atmos)
+"kgh" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/machinery/nanite_programmer,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "kit" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/light/small{
@@ -41312,13 +41300,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"lrn" = (
-/obj/machinery/nanite_programmer,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "luP" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -41632,6 +41613,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"nMo" = (
+/obj/machinery/light_switch{
+	pixel_x = -26;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "nTi" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall,
@@ -41711,15 +41702,6 @@
 "ovS" = (
 /turf/open/floor/plating/airless,
 /area/maintenance/port)
-"owD" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/machinery/computer/nanite_chamber_control{
-	icon_state = "computer"
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "oxn" = (
 /obj/machinery/power/compressor{
 	comp_id = "incineratorturbine";
@@ -41810,6 +41792,22 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
+"phj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/science/research)
 "pjU" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -42025,12 +42023,6 @@
 /obj/effect/landmark/start/geneticist,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
-"qlW" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "qmB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -42284,6 +42276,25 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"shm" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/airlock/research{
+	name = "Nanite Laboratory";
+	req_one_access_txt = "7;47;29"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "sjY" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/line,
@@ -44196,16 +44207,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"tpX" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/science/research)
 "ttA" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/turf_decal/bot,
@@ -44267,16 +44268,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"udu" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -26;
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "ueC" = (
 /obj/effect/decal/cleanable/oil,
 /obj/effect/turf_decal/stripes/line{
@@ -44585,6 +44576,29 @@
 /obj/effect/landmark/start/virologist,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
+"vFi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/obj/structure/table,
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/nanite_scanner,
+/obj/item/nanite_remote{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "vJk" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -44649,9 +44663,6 @@
 	},
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
-"vVZ" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/starboard/aft)
 "wbV" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/hydroponics/soil,
@@ -44663,23 +44674,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/aft)
-"wgY" = (
-/obj/machinery/nanite_program_hub,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Research Division - Nanite Lab";
-	network = list("ss13","rd")
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "wkG" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/airless,
@@ -44713,17 +44707,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"wna" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/machinery/computer/nanite_cloud_controller,
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "wqL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -44811,22 +44794,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"xkY" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "xrf" = (
 /obj/machinery/light{
 	dir = 8
@@ -90428,8 +90395,8 @@ sJL
 cxv
 sJL
 aVA
-tpX
-cXK
+shm
+phj
 aVA
 oYM
 tvN
@@ -90684,9 +90651,9 @@ qLG
 pEN
 wHK
 aMw
-wgY
-udu
-xkY
+cPa
+nMo
+dwU
 aVA
 cXF
 nlL
@@ -90941,9 +90908,9 @@ aQA
 sqz
 jnD
 sJL
-lrn
-qlW
-cBQ
+giJ
+oaZ
+kgh
 aVA
 dKg
 gtz
@@ -91197,10 +91164,10 @@ aLi
 aLi
 axf
 jnD
-aMw
-owD
-oaZ
-jAO
+sJL
+sJL
+vFi
+fEl
 sKf
 nll
 frV
@@ -91454,10 +91421,10 @@ aae
 aae
 aLj
 lfG
+oRU
 sJL
-dLi
-gyk
-wna
+aMw
+sJL
 aVA
 nCx
 lRD
@@ -91710,11 +91677,11 @@ aKd
 aKd
 aKd
 sOM
-jnD
-sJL
-sJL
-sJL
-aMw
+tzj
+dvM
+vKq
+dvM
+djz
 sJL
 cBV
 gES
@@ -91967,12 +91934,12 @@ aKd
 aPA
 aQB
 sOM
-tzj
-dvM
-vKq
-dvM
-djz
-vVZ
+oRU
+sON
+sOM
+sOM
+dKF
+sJL
 enN
 qqK
 aZi
@@ -92225,9 +92192,9 @@ aPB
 aQC
 sOM
 sPY
+sPY
+dQu
 sON
-sOM
-sOM
 tzj
 gYd
 uEx
@@ -92483,7 +92450,7 @@ aBm
 aCg
 oRU
 sPY
-jlf
+qeF
 sJL
 aMw
 sJL
@@ -92739,7 +92706,7 @@ aKd
 aKd
 sOM
 sPY
-dQu
+sPY
 iAx
 sJL
 aVB
@@ -92995,7 +92962,7 @@ aae
 aae
 aae
 sON
-qeF
+fGs
 sOM
 sON
 aMw
