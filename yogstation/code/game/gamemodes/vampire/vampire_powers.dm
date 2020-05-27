@@ -327,9 +327,6 @@
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
 			continue
-		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
-			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, pure dread eminating from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
