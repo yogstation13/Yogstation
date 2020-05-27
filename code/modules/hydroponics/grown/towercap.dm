@@ -14,7 +14,7 @@
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	icon_dead = "towercap-dead"
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	mutatelist = list(/obj/item/seeds/tower/steel)
 
 /obj/item/seeds/tower/steel
@@ -28,8 +28,14 @@
 	rarity = 20
 
 /obj/item/seeds/tower/ash
-
-
+name = "pack of ash-cap mycelium"
+	desc = "This mycelium grows into ashy logs."
+	icon_state = "mycelium-ashcap" //todo
+	species = "ashcap"
+	plantname = "Ash Caps"
+	product = /obj/item/grown/log/ash
+	mutatelist = list()
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 
 /obj/item/grown/log
 	seed = /obj/item/seeds/tower
@@ -51,6 +57,12 @@
 	/obj/item/reagent_containers/food/snacks/grown/wheat))
 
 /obj/item/grown/log/ash
+	seed = /obj/items/seeds/tower/ash
+	name = "ash-cap log"
+	desc = "A log from a thick mushroom, native to Lavaland."
+	icon_state = "Ash logs" //TODO
+	var/plank_type = /obj/item/stack/sheet/mineral/wood/ash //TODO
+	var/plank_name = "ash planks"
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
