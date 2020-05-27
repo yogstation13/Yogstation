@@ -27,6 +27,7 @@
 	mutatelist = list()
 	rarity = 20
 
+/obj/item/seeds/tower/ash
 
 
 
@@ -48,6 +49,8 @@
 	/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
 	/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,
 	/obj/item/reagent_containers/food/snacks/grown/wheat))
+
+/obj/item/grown/log/ash
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
