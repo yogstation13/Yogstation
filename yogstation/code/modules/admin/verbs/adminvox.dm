@@ -14,7 +14,7 @@
 	if(!message)
 		return
 
-	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)", "Cassie (laboratory)")
+	var/voxType = input(src, "Which voice?", "VOX") in list("Victor (male)", "Verity (female)", "Oscar (military)", "Cass (laboratory)")
 
 
 	var/list/words = splittext(trim(message), " ")//Turns the received text into an array of words
