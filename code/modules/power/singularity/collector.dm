@@ -113,7 +113,8 @@
 		loaded_tank = W
 		update_icon()
 	else if(W.GetID())
-		togglelock(user)
+		if(togglelock(user))
+			return TRUE
 	else
 		return ..()
 
@@ -131,7 +132,7 @@
 		to_chat(user, "<span class='danger'>Access denied.</span>")
 
 /obj/machinery/power/rad_collector/AltClick(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)))
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	togglelock(user)
 
