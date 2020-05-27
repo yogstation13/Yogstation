@@ -67,7 +67,7 @@
 	throw_speed = 2
 	throw_range = 3
 	materials = list(/obj/item/paper)
-	breakouttime = 50 //Deciseconds = 60s = 1 minute
+	breakouttime = 5 SECONDS
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	sharpness = IS_SHARP
 	resistance_flags = FLAMMABLE
