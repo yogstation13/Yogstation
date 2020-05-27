@@ -649,7 +649,7 @@ Difficulty: Very Hard
 	friendly = "mends"
 	density = FALSE
 	movement_type = FLYING
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMP
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSMACH
 	ventcrawler = VENTCRAWLER_ALWAYS
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = HOSTILE_SPAWN

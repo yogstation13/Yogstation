@@ -228,7 +228,7 @@
 	var/obj/item/assembly/infra/master
 	anchored = TRUE
 	density = FALSE
-	pass_flags = PASSTABLE|PASSGLASS|PASSGRILLE|LETPASSTHROW|PASSCOMP
+	pass_flags = PASSTABLE|PASSGLASS|PASSGRILLE|LETPASSTHROW|PASSMACH
 
 /obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
 	if(istype(AM, /obj/effect/beam))

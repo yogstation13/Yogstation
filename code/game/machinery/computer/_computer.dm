@@ -137,10 +137,4 @@
 			circuit = null
 		for(var/obj/C in src)
 			C.forceMove(loc)
-
 	qdel(src)
-
-/obj/machinery/computer/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && (mover.pass_flags & PASSCOMP))
-		return TRUE
-	return FALSE

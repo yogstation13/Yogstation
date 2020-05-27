@@ -2,7 +2,7 @@
 /obj/item/projectile/energy/nuclear_particle
 	name = "nuclear particle"
 	icon_state = "nuclear_particle"
-	pass_flags = PASSTABLE | PASSGRILLE | PASSCOMP
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMACH
 	damage = 3
 	damage_type = BURN
 	speed = 0.4

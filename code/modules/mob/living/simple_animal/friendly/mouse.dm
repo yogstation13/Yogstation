@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	response_harm   = "splats"
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMP
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSMACH
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
