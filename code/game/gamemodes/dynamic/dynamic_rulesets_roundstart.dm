@@ -642,10 +642,9 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
 	weight = 1
-	cost = 0
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
-	high_population_requirement = 101
-	var/players_per_carrier = 30
+	cost = 70
+	requirements = list(100,100,95,90,85,80,80,80,80,70)
+	var/players_per_carrier = 25
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
 	var/datum/team/monkey/monkey_team
