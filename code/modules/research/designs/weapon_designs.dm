@@ -106,7 +106,7 @@
 
 /datum/design/stunmine/sec //mines ported from BeeStation
 	name = "Stun Mine"
-	desc = "A basic nonlethal stunning mine. Does very heavy stamina damage to anyone who walks over it."
+	desc = "A basic nonlethal stunning mine. Stuns anyone who walks over it."
 	id = "stunmine"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 4000, MAT_GLASS = 1000)
