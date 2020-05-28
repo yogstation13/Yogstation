@@ -103,7 +103,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
-	equip_cooldown = 15
+	equip_cooldown = 10
 	name = "\improper CH-XC \"Transitum\" x-ray laser"
 	desc = "A weapon for combat exosuits. Shoots concentrated X-ray blasts."
 	icon_state = "mecha_xray"
