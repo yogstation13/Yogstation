@@ -15,7 +15,9 @@
 	while(processing_list.len)
 		var/atom/thing = processing_list[1]
 		processing_list -= thing
-		if(ignored_things[thing?.type])
+		if(!thing)
+			continue
+		if(ignored_things[thing.type])
 			continue
 		. += thing
 		if((thing.rad_flags & RAD_PROTECT_CONTENTS) || (SEND_SIGNAL(thing, COMSIG_ATOM_RAD_PROBE) & COMPONENT_BLOCK_RADIATION))
