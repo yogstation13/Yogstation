@@ -34,7 +34,7 @@ name = "pack of ash-cap mycelium"
 	species = "ashcap"
 	plantname = "Ash Caps"
 	product = /obj/item/grown/log/ash
-	mutatelist = list()
+	mutatelist = list(/obj/item/seeds/tower) //Deep lore: NT domesticated ash-caps into tower-caps
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 
 /obj/item/grown/log
