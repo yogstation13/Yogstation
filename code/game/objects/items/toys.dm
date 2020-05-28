@@ -990,6 +990,64 @@
 	resistance_flags = NONE
 
 /*
+ * YOU HAVE UNO IT CAME FREE WITH YOUR FUCKING PDA
+ */
+ 
+/obj/item/toy/cards/deck/uno
+	name = "deck of UNO cards"
+	desc = "A deck of space-grade UNO cards."
+	icon = 'icons/obj/toy.dmi'
+	deckstyle = "uno"
+	icon_state = "deck_uno_full"
+	w_class = WEIGHT_CLASS_SMALL
+	var/cooldown = 0
+	var/list/cards = list()
+
+/obj/item/toy/cards/deck/uno/Initialize()
+	. = ..()
+	populate_uno_deck()
+
+/obj/item/toy/cards/deck/uno/proc/populate_uno_deck() //RED GREEN YELLOW BLUE
+	icon_state = "deck_[deckstyle]_full"
+		for(var/i in 0 to 9)
+			cards += "Red [i]"
+			cards += "Green [i]"
+			cards += "Yellow [i]"
+			cards += "Blue [i]"
+		for(var/i in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+			cards += "Red [i]"
+			cards += "Green [i]"
+			cards += "Yellow [i]"
+			cards += "Blue [i]"
+		for(i=1; i<=2; i++)
+			cards += "Red Draw Two"
+			cards += "Green Draw Two"
+			cards += "Yellow Draw Two"
+			cards += "Blue Draw Two"
+			cards += "Red Skip"
+			cards += "Green Skip"
+			cards += "Yellow Skip"
+			cards += "Blue Skip"
+			cards += "Red Reverse"
+			cards += "Green Reverse"
+			cards += "Yellow Reverse"
+			cards += "Blue Reverse"
+		for(i=1; i<=4; i++)
+			cards += "Wildcard"
+			cards += "Wild Draw 4"
+	
+
+/obj/item/toy/cards/deck/uno/update_icon()
+	if(cards.len > 54)
+		icon_state = "deck_[deckstyle]_full"
+	else if(cards.len > 25)
+		icon_state = "deck_[deckstyle]_half"
+	else if(cards.len > 0)
+		icon_state = "deck_[deckstyle]_low"
+	else if(cards.len == 0)
+		icon_state = "deck_[deckstyle]_empty"
+
+/*
  * Fake nuke
  */
 
