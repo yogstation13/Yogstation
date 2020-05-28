@@ -871,7 +871,7 @@
 obj/item/clothing/head/helmet/space/hardsuit/paramedic
     name = "paramedic hardsuit helmet"
     desc = "A special helmet designed for work in a hazardous, low pressure environment. Built with lightweight materials for extra comfort, but does not protect the eyes from intense light."
-    alternate_worn_icon = 'icons/mob/head.dmi'
+    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
     icon = 'icons/mob/head.dmi'
     icon_state = "hardsuit0-para"
     item_state = "para"
