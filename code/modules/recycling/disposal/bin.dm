@@ -287,7 +287,7 @@
 
 /obj/machinery/disposal/bin/AltClick(mob/user)
 	. = ..()
-	if(!user.canUseTopic(src, TRUE)
+	if(!user.canUseTopic(src, TRUE))
 		return
 	flush = !flush
 	update_icon()
