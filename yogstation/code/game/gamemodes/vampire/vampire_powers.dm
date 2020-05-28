@@ -76,7 +76,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/self/vampire_help
-	name = "How to suck blood 101
+	name = "How to suck blood 101"
 	desc = "Explains how the vampire blood sucking system works."
 	action_icon_state = "bloodymaryglass"
 	icon = 'icons/obj/drinks.dmi'
