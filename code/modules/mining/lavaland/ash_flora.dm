@@ -31,7 +31,7 @@
 /obj/structure/flora/ash/proc/harvest(user)
 	if(harvested)
 		return 0
-
+		
 	var/rand_harvested = rand(harvest_amount_low, harvest_amount_high)
 	if(rand_harvested)
 		if(user)
@@ -50,6 +50,9 @@
 	harvested = TRUE
 	addtimer(CALLBACK(src, .proc/regrow), rand(regrowth_time_low, regrowth_time_high))
 	return 1
+	
+/obj/structure/flora/ash/isHarvested() 
+	return (harvested)
 
 /obj/structure/flora/ash/proc/regrow()
 	icon_state = base_icon
@@ -150,12 +153,12 @@
 	harvest = /obj/item/grown/log/ash
 	needs_sharp_harvest = TRUE
 	harvest_amount_high = 5
-	harvest_time = 20
+	harvest_time = 40 //Harvesting them takes a bit longer than normal
 	harvest_message_low = "You gather a log from the mushroom's stem."
 	harvest_message_med = "You gather a few logs from the mushroom."
 	harvest_message_high = "You remove the mushroom's entire stem."
-	regrowth_time_low = 240000 //TODO: ONLY REGROW IN STORMS
-	regrowth_time_high = 600000
+	regrowth_time_low = 1200 //TODO: ONLY REGROW IN STORMS
+	regrowth_time_high = 6000
 
 
 /obj/structure/flora/ash/cacti/Initialize(mapload)
