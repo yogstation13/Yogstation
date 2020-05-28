@@ -1234,3 +1234,21 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
 	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW
 	p.throw_at(user, 10, 0.5, usr)
+
+/client/proc/admincryo(mob/living/carbon/human/target as mob)
+	set category = "Admin"
+	set name = "Admin Cryo"
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/obj/machinery/cryopod/cryopod in world)
+		if(cryopod.occupant)
+			continue
+		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
+		target.forceMove(cryopod.loc)
+		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
+		cryopod.close_machine(target)
+		return
+	var/msg = "[key_name_admin(usr)] has put [target.real_name]/[key_name(target)] into cryostorage."
+	message_admins(msg)
+	log_admin(msg)

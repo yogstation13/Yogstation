@@ -333,7 +333,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		announcer.announce("CRYOSTORAGE", mob_occupant.real_name, announce_rank, list())
 		visible_message("<span class='notice'>\The [src] hums and hisses as it moves [mob_occupant.real_name] into storage.</span>")
 
-
 	for(var/obj/item/W in mob_occupant.GetAllContents())
 		if(W.loc.loc && (( W.loc.loc == loc ) || (W.loc.loc == control_computer)))
 			continue//means we already moved whatever this thing was in
@@ -347,13 +346,13 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 					mob_occupant.transferItemToLoc(W, loc, TRUE)
 
 	for(var/obj/item/W in mob_occupant.GetAllContents())
-		qdel(W)//because we moved all items to preserve away
-		//and yes, this totally deletes their bodyparts one by one, I just couldn't bother
+		qdel(W)	//because we moved all items to preserve away
+				//and yes, this totally deletes their bodyparts one by one, I just couldn't bother
 
 	if(iscyborg(mob_occupant))
 		var/mob/living/silicon/robot/R = occupant
-		if(!istype(R)) return
-
+		if(!istype(R))
+			return
 		R.contents -= R.mmi
 		qdel(R.mmi)
 
@@ -365,6 +364,10 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			mob_occupant.ghostize(1)
 	handle_objectives()
 	QDEL_NULL(occupant)
+	for(var/obj/item/I in get_turf(src))
+		if(I in preserve_items)
+			return //Double safety check
+		qdel(I) //Cleanup anything left
 	open_machine()
 	name = initial(name)
 

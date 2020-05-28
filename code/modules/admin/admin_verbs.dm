@@ -88,7 +88,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
 	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
 	/client/proc/queue_check, // Yogs -- Some queue manipulation/debuggin kinda verbs
-	/client/proc/cmd_view_polls
+	/client/proc/cmd_view_polls,
+	/client/proc/admincryo
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -258,7 +259,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	/client/proc/debug_huds,
+	/client/proc/admincryo
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
@@ -677,7 +679,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(!holder)
 		return
-	
+
 	holder.legacy_mc = !holder.legacy_mc
 
 /client/proc/readmin()
