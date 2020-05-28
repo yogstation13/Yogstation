@@ -141,6 +141,23 @@
 	regrowth_time_low = 4800
 	regrowth_time_high = 7200
 
+/obj/structure/flora/ash/ash_cap //NOTE: seed info is in code/modules/hydroponics/grown/towercap.dm
+	icon_state = "ashcap" //TODO
+	name = "Thick mushrooms"
+	desc = "A number of mushrooms, thick and wood-like. You could probably make a cabin with these, given the proper tools."
+	harvested_name = "Plucked Mushrooms"
+	harvested_desc = "These mushrooms once had thick woody stems. Perhaps they will be revitalized by the next ash storm!"
+	harvest = /obj/item/grown/log/ash
+	needs_sharp_harvest = TRUE
+	harvest_amount_high = 5
+	harvest_time = 20
+	harvest_message_low = "You gather a log from the mushroom's stem."
+	harvest_message_med = "You gather a few logs from the mushroom."
+	harvest_message_high = "You remove the mushroom's entire stem."
+	regrowth_time_low = 240000 //TODO: ONLY REGROW IN STORMS
+	regrowth_time_high = 600000
+
+
 /obj/structure/flora/ash/cacti/Initialize(mapload)
 	. = ..()
 	// min dmg 3, max dmg 6, prob(70)
