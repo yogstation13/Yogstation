@@ -75,6 +75,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/obj/effect/proc_holder/spell/self/vampire_help
+	name = "How to suck blood 101
+	desc = "Explains how the vampire blood sucking system works."
+	action_icon_state = "bloodymaryglass"
+	icon = 'icons/obj/drinks.dmi'
+	action_background_icon_state = "bg_demon"
+	charge_max = 0
+	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
+
+/obj/effect/proc_holder/spell/self/vampire_help(list/targets, mob/user = usr)
+	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>.
+
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
 	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
