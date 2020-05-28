@@ -85,7 +85,7 @@
 	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
 
 /obj/effect/proc_holder/spell/self/vampire_help(list/targets, mob/user = usr)
-	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>.
+	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you cannot draw blood from <b>catatonics or corpses</b>.")
 
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
