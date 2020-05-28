@@ -97,7 +97,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			as paranoia may spread and inhibit workplace efficiency."
 
 /proc/is_changeling(mob/M) //Usefull check changeling
-	return M.mind?.has_antag_datum(/datum/antagonist/changeling)
+	return M?.mind?.has_antag_datum(/datum/antagonist/changeling)
 
 /proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
 	var/datum/dna/chosen_dna = chosen_prof.dna
