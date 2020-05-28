@@ -36,6 +36,7 @@ name = "pack of ash-cap mycelium"
 	product = /obj/item/grown/log/ash
 	mutatelist = list(/obj/item/seeds/tower) //Deep lore: NT domesticated ash-caps into tower-caps
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	resistance_flags = FIRE_PROOF
 
 /obj/item/grown/log
 	seed = /obj/item/seeds/tower
@@ -63,6 +64,7 @@ name = "pack of ash-cap mycelium"
 	icon_state = "Ash logs" //TODO
 	var/plank_type = /obj/item/stack/sheet/mineral/wood/ash //TODO
 	var/plank_name = "ash planks"
+	resistance_flags = FIRE_PROOF
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
