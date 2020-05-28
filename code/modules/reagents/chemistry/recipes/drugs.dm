@@ -24,9 +24,18 @@
 /datum/chemical_reaction/methamphetamine
 	name = /datum/reagent/drug/methamphetamine
 	id = /datum/reagent/drug/methamphetamine
-	results = list(/datum/reagent/drug/methamphetamine = 4)
-	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1)
+	results = list(/datum/reagent/drug/methamphetamine = 5)
+	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1, /datum/reagent/toxin/acid/fluacid = 1)
 	required_temp = 374
+
+/datum/chemical_reaction/methamphetamine/on_reaction(datum/reagents/holder)
+	var/datum/reagents/R = new/datum/reagents(5)
+	R.my_atom = holder.my_atom
+	R.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
+	var/datum/effect_system/smoke_spread/chem/S = new
+	S.set_up(R, 0.5, holder.my_atom, 0)
+	S.start()
+	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
 
 /datum/chemical_reaction/bath_salts
 	name = /datum/reagent/drug/bath_salts

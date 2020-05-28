@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "The disabler and security helms now toggle the light on and off when used in your hands."

@@ -1,0 +1,5 @@
+author: "  Geevies"
+delete-after: true 
+changes: 
+  - rscadd: "Canisters emit a faint light depending on the display light's color"
+  - tweak: "Tank ejection tweak"

@@ -1362,8 +1362,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/toolbox
 	name = "Full Syndicate Toolbox"
-	desc = "The Syndicate toolbox is a suspicious black and red. It comes loaded with a full tool set including a \
-			multitool and combat gloves that are resistant to shocks and heat."
+	desc = "A suspicious black and red syndicate toolbox. It comes loaded with a full tool set including a \
+			multitool and combat gloves that are resistant to shocks and heat. It is very compact and will \
+			fit in any standard Nanotrasen backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
 
@@ -1483,7 +1484,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
-
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "Protocol CRAB-17 Phone"
 	desc = "The Protocol CRAB-17 Phone, a phone borrowed from an unknown third party, it can be used to crash the space market, funneling the losses of the crew to your bank account.\
@@ -1594,7 +1594,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
@@ -1608,7 +1607,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
-
 
 /datum/uplink_item/race_restricted/syndigenetics
 	name = "Fire Breath implanter"
@@ -1711,7 +1709,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/sbeacondrop/clownbomb
 	cost = 15
 	restricted_roles = list("Clown")
-
 
 /datum/uplink_item/role_restricted/spider_injector
 	name = "Australicus Slime Mutator"

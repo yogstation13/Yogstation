@@ -138,8 +138,8 @@
 		if(!QDELETED(src))
 			var/mob/living/simple_animal/hostile/killertomato/K = new /mob/living/simple_animal/hostile/killertomato(get_turf(src.loc))
 			K.maxHealth += round(seed.endurance / 3)
-			K.melee_damage_lower += round(seed.potency / 10)
-			K.melee_damage_upper += round(seed.potency / 10)
+			K.melee_damage_lower += round(seed.potency / 15)
+			K.melee_damage_upper += round(seed.potency / 15)
 			K.move_to_delay -= round(seed.production / 50)
 			K.health = K.maxHealth
 			K.visible_message("<span class='notice'>The Killer Tomato growls as it suddenly awakens.</span>")

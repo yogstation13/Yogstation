@@ -290,6 +290,7 @@ update_label("John Doe", "Clowny")
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
+	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
 /obj/item/card/id/syndicate/Initialize()
 	. = ..()
@@ -310,24 +311,25 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
 	if(isliving(user) && user.mind)
+		var/first_use = registered_name ? FALSE : TRUE
 		if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
-			if(!registered_name) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
+			if(first_use) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
 				anyone = TRUE
 			else
 				return ..()
 
-		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset")
+		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset", "Change Account ID")
 		if(user.incapacitated())
 			return
-		if(popup_input == "Forge/Reset" && !registered_name)
+		if(popup_input == "Forge/Reset" && !forged)
 			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
 			input_name = reject_bad_name(input_name)
 			if(!input_name)
 				// Invalid/blank names give a randomly generated one.
 				if(user.gender == FEMALE)
-					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
-				else
 					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+				else
+					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
 
 			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
 			if(!target_occupation)
@@ -336,9 +338,68 @@ update_label("John Doe", "Clowny")
 			registered_name = input_name
 			assignment = target_occupation
 			update_label()
+			forged = TRUE
 			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\".")
+
+			// First time use automatically sets the account id to the user.
+			if (first_use && !registered_account)
+				if(ishuman(user))
+					var/mob/living/carbon/human/accountowner = user
+
+					for(var/bank_account in SSeconomy.bank_accounts)
+						var/datum/bank_account/account = bank_account
+						if(account.account_id == accountowner.account_id)
+							account.bank_cards += src
+							registered_account = account
+							to_chat(user, "<span class='notice'>Your account number has been automatically assigned.</span>")
+			return
+		else if (popup_input == "Forge/Reset" && forged)
+			registered_name = initial(registered_name)
+			assignment = initial(assignment)
+			log_game("[key_name(user)] has reset \the [initial(name)] named \"[src]\" to default.")
+			update_label()
+			forged = FALSE
+			to_chat(user, "<span class='notice'>You successfully reset the ID card.</span>")
+			return
+		else if (popup_input == "Change Account ID")
+			set_new_account(user)
 			return
 	return ..()
+
+// Returns true if new account was set.
+/obj/item/card/id/proc/set_new_account(mob/living/user)
+	. = FALSE
+	var/datum/bank_account/old_account = registered_account
+
+	var/new_bank_id = input(user, "Enter your account ID number.", "Account Reclamation", 111111) as num | null
+
+	if (isnull(new_bank_id))
+		return
+
+	if(!alt_click_can_use_id(user))
+		return
+	if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
+		to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
+		return
+	if (registered_account && registered_account.account_id == new_bank_id)
+		to_chat(user, "<span class='warning'>The account ID was already assigned to this card.</span>")
+		return
+
+	for(var/A in SSeconomy.bank_accounts)
+		var/datum/bank_account/B = A
+		if(B.account_id == new_bank_id)
+			if (old_account)
+				old_account.bank_cards -= src
+
+			B.bank_cards += src
+			registered_account = B
+			to_chat(user, "<span class='notice'>The provided account has been linked to this ID card.</span>")
+
+			return TRUE
+
+	to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
+	return
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE
@@ -375,7 +436,6 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-	item_flags = DROPDEL //admemes arnt the smartest tools in the shed
 
 /obj/item/card/id/centcom/silver
 	name = "\improper silver CentCom ID"
@@ -389,7 +449,6 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh
 	. = ..()
 
 /obj/item/card/id/ert
@@ -398,11 +457,9 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
-	item_flags = ABSTRACT | DROPDEL //admemes arnt the smartest tools in the shed x2
 
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT) //I dont gotta modularize things anymore but eh x2
 	. = ..()
 
 /obj/item/card/id/ert/Security

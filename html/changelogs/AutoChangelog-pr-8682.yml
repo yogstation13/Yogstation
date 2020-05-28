@@ -1,0 +1,4 @@
+author: "Jumps0"
+delete-after: true 
+changes: 
+  - rscadd: "Added xenobio console back to Deltastation and Metastation"
