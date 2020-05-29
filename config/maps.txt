@@ -18,8 +18,9 @@ map yogstation
 	votable
 endmap
 
-map minskystation
-	minplayers 80
+map eclipsestation
+	voteweight 0.5
+	minplayers 50
 endmap
 
 map omegastation
