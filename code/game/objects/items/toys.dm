@@ -1000,24 +1000,25 @@
 	deckstyle = "uno"
 	icon_state = "deck_uno_full"
 	w_class = WEIGHT_CLASS_SMALL
+	//list/cards = list()
 
 /obj/item/toy/cards/deck/uno/Initialize()
 	. = ..()
-	list/cards = list()
 	populate_uno_deck()
 
 /obj/item/toy/cards/deck/uno/proc/populate_uno_deck() //RED GREEN YELLOW BLUE
 	icon_state = "deck_[deckstyle]_full"
+	cards = list()
 	for(var/i in 0 to 9)
 		cards += "Red [i]"
 		cards += "Green [i]"
 		cards += "Yellow [i]"
 		cards += "Blue [i]"
-	for(var/i in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
-		cards += "Red [i]"
-		cards += "Green [i]"
-		cards += "Yellow [i]"
-		cards += "Blue [i]"
+	for(var/k in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+		cards += "Red [k]"
+		cards += "Green [k]"
+		cards += "Yellow [k]"
+		cards += "Blue [k]"
 	var/j=1
 	for(j=1; j<=2; j++)
 		cards += "Red Draw Two"
