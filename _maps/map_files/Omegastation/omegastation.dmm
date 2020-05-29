@@ -39722,12 +39722,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
-"bxd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/mineral/random/labormineral,
-/area/asteroid/nearstation)
 "bxu" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
@@ -70986,7 +70980,7 @@ aad
 aad
 aad
 aad
-bxd
+aad
 aaa
 aaa
 aaa
@@ -71243,7 +71237,7 @@ aad
 aad
 aad
 aad
-bxd
+aad
 aad
 aac
 aac
@@ -71500,7 +71494,7 @@ aad
 aad
 aad
 aad
-bxd
+aad
 aad
 aad
 aad
