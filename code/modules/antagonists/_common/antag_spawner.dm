@@ -21,7 +21,7 @@
 
 /obj/item/antag_spawner/contract/attack_self(mob/user)
 	user.set_machine(src)
-	var/dat
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	if(used)
 		dat = "<B>You have already summoned your apprentice.</B><BR>"
 	else
@@ -37,6 +37,8 @@
 		dat += "<I>Your apprentice is training to cast spells that will aid your survival. They know Forcewall and Charge and come with a Staff of Healing.</I><BR>"
 		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_ROBELESS]'>Robeless</A><BR>"
 		dat += "<I>Your apprentice is training to cast spells without their robes. They know Knock and Mindswap.</I><BR>"
+	
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return

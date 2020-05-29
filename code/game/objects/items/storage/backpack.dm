@@ -607,3 +607,139 @@
 	new /obj/item/clothing/mask/gas/clown_hat(src)
 	new /obj/item/bikehorn(src)
 	new /obj/item/implanter/sad_trombone(src)
+
+
+// Captain gets Capdrobe, other heads need some storage
+
+/obj/item/storage/backpack/duffelbag/hop/clothing
+	name = "Head of Personnels clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/hop/clothing/PopulateContents()
+	new /obj/item/clothing/under/rank/head_of_personnel(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
+	new /obj/item/clothing/head/hopcap(src)
+	new /obj/item/clothing/neck/cloak/hop(src)
+	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
+	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
+	new /obj/item/clothing/under/yogs/hopcasual(src)
+
+/obj/item/storage/backpack/duffelbag/rd/clothing
+	name = "Research Directors clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/rd/clothing/PopulateContents()
+	new /obj/item/clothing/neck/cloak/rd(src)
+	new /obj/item/clothing/suit/bio_suit/scientist(src)
+	new /obj/item/clothing/head/bio_hood/scientist(src)
+	new /obj/item/clothing/suit/toggle/labcoat(src)
+	new /obj/item/clothing/under/rank/research_director(src)
+	new /obj/item/clothing/under/rank/research_director/skirt(src)
+	new /obj/item/clothing/under/rank/research_director/alt(src)
+	new /obj/item/clothing/under/rank/research_director/alt/skirt(src)
+	new /obj/item/clothing/under/rank/research_director/turtleneck(src)
+	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
+	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/under/yogs/rdema(src)
+
+/obj/item/storage/backpack/duffelbag/engineering/chief/clothing
+	name = "Chief Engineers clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/engineering/chief/clothing/PopulateContents()
+	new /obj/item/clothing/neck/cloak/ce(src)
+	new /obj/item/clothing/under/rank/chief_engineer(src)
+	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
+	new /obj/item/clothing/head/hardhat/white(src)
+	new /obj/item/clothing/head/hardhat/weldhat/white(src)
+	new /obj/item/clothing/head/welding(src)
+	new /obj/item/clothing/gloves/color/yellow(src)
+	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/under/yogs/ceturtleneck(src)
+	new /obj/item/clothing/under/yogs/cecasual(src)
+	new /obj/item/clothing/head/beret/ce(src)
+	new /obj/item/clothing/suit/hazardvest(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/glasses/meson/engine(src)
+
+/obj/item/storage/backpack/duffelbag/sec/detective/clothing
+	name = "Detective's clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/sec/detective/clothing/PopulateContents()
+	new /obj/item/clothing/under/rank/det(src)
+	new /obj/item/clothing/under/rank/det/skirt(src)
+	new /obj/item/clothing/suit/det_suit(src)
+	new /obj/item/clothing/head/fedora/det_hat(src)
+	new /obj/item/clothing/gloves/color/black(src)
+	new /obj/item/clothing/under/rank/det/grey(src)
+	new /obj/item/clothing/under/rank/det/grey/skirt(src)
+	new /obj/item/clothing/accessory/waistcoat(src)
+	new /obj/item/clothing/suit/det_suit/grey(src)
+	new /obj/item/clothing/suit/det_suit/noir(src)
+	new /obj/item/clothing/head/fedora(src)
+	new /obj/item/clothing/shoes/laceup(src)
+	new /obj/item/clothing/under/yogs/forensictech(src)
+	new /obj/item/clothing/under/yogs/bluedetective(src)
+	new /obj/item/clothing/under/yogs/golddetective(src)
+	new /obj/item/clothing/under/yogs/greydetective(src)
+	new /obj/item/clothing/under/yogs/blackdetective(src)
+	new /obj/item/clothing/suit/yogs/golddetective(src)
+	new /obj/item/clothing/suit/yogs/detectivecoat(src)
+	new /obj/item/clothing/suit/yogs/bluedetective(src)
+
+/obj/item/storage/backpack/duffelbag/sec/warden/clothing
+	name = "Warden's clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/sec/warden/clothing/PopulateContents()
+	new /obj/item/clothing/under/yogs/ocelot(src)
+	new /obj/item/clothing/under/yogs/krofficer(src)
+	new /obj/item/clothing/head/beret/corpwarden(src)
+	new /obj/item/clothing/suit/armor/vest/wardenjacket(src)
+	new /obj/item/clothing/head/warden(src)
+	new /obj/item/clothing/head/warden/drill(src)
+	new /obj/item/clothing/head/beret/sec/navywarden(src)
+	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
+	new /obj/item/clothing/under/rank/warden/navyblue(src)
+	new /obj/item/clothing/under/rank/warden/skirt(src)
+	new /obj/item/clothing/shoes/jackboots/warden(src)
+
+/obj/item/storage/backpack/duffelbag/sec/head/clothing
+	name = "Head of Security's clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/sec/head/clothing/PopulateContents()
+	new /obj/item/clothing/under/hosparadefem(src)
+	new /obj/item/clothing/under/hosparademale(src)
+	new /obj/item/clothing/suit/armor/vest/leather(src)
+	new /obj/item/clothing/suit/armor/hos(src)
+	new /obj/item/clothing/under/rank/head_of_security/skirt(src)
+	new /obj/item/clothing/under/rank/head_of_security/alt(src)
+	new /obj/item/clothing/under/rank/head_of_security/alt/skirt(src)
+	new /obj/item/clothing/head/HoS(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
+	new /obj/item/clothing/under/rank/head_of_security/grey(src)
+	new /obj/item/clothing/neck/cloak/hos(src)
+	new /obj/item/clothing/under/yogs/lieutgeneral(src)
+	new /obj/item/clothing/under/yogs/dictatorhos(src)
+	new /obj/item/clothing/suit/armor/hos/germancoat(src)
+	new /obj/item/clothing/under/yogs/hoslatenight(src)
+	new /obj/item/clothing/under/yogs/hoscasual(src)
+	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
+
+/obj/item/storage/backpack/duffelbag/med/chief/clothing
+	name = "Chief Medical Officer's clothing duffelbag"
+	desc = "A large duffel bag filled with clothing."
+
+/obj/item/storage/backpack/duffelbag/med/chief/clothing/PopulateContents()
+	new /obj/item/clothing/suit/bio_suit/cmo(src)
+	new /obj/item/clothing/head/bio_hood/cmo(src)
+	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
+	new /obj/item/clothing/under/rank/chief_medical_officer(src)
+	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
+	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/neck/cloak/cmo(src)
+	new /obj/item/clothing/head/beret/cmo(src)

@@ -1123,7 +1123,7 @@
 /datum/supply_pack/materials/watertank
 	name = "Water Tank Crate"
 	desc = "Contains a tank of dihydrogen monoxide... sounds dangerous."
-	cost = 600
+	cost = 700
 	contains = list(/obj/structure/reagent_dispensers/watertank)
 	crate_name = "water tank crate"
 	crate_type = /obj/structure/closet/crate/large
@@ -1164,14 +1164,14 @@
 /datum/supply_pack/medical/firstaidbruises_single
 	name = "Bruise Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing bruises and broken bones."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/brute)
 
 /datum/supply_pack/medical/firstaidburns_single
 	name = "Burn Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing severe burns."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/fire)
 
@@ -1209,7 +1209,7 @@
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
 	desc = "Contains one first aid kit for healing most types of wounds."
-	cost = 250
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/regular)
 
@@ -1255,7 +1255,7 @@
 /datum/supply_pack/medical/firstaidoxygen_single
 	name = "Oxygen Deprivation Kit Single-Pack"
 	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
 
@@ -1271,7 +1271,7 @@
 /datum/supply_pack/medical/firstaidtoxins_single
 	name = "Toxin Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/toxin)
 
@@ -2437,7 +2437,7 @@
 /datum/supply_pack/misc/funeral
 	name = "Funeral Supply crate"
 	desc = "At the end of the day, someone's gonna want someone dead. Give them a proper send-off with these funeral supplies! Contains a coffin with burial garmets and flowers."
-	cost = 600
+	cost = 600 //doesn't sell for 500 credits like a normal crate so its fine
 	contains = list(/obj/item/clothing/under/burial,
 					/obj/item/reagent_containers/food/snacks/grown/harebell,
 					/obj/item/reagent_containers/food/snacks/grown/poppy/geranium)

@@ -184,11 +184,20 @@
 	return ..()
 
 /obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	var/items = list("Survival Capsule and Explorer's Webbing", "Resonator Kit", "Minebot Kit", "Extraction and Rescue Kit", "Crusher Kit", "Mining Conscription Kit")
+	var/items = list(
+		"Survival Capsule and Explorer's Webbing" = image(icon = 'icons/obj/clothing/belts.dmi', icon_state = "explorer1"),
+		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
+		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
+		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
+		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
+		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel")
+		)
 
-	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in items
-	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
+	items = sortList(items)
+	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, .proc/check_menu, voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
+	if(!selection)
 		return
+
 	var/drop_location = drop_location()
 	switch(selection)
 		if("Survival Capsule and Explorer's Webbing")
@@ -213,6 +222,22 @@
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
+
+  /*
+   check_menu: Checks if we are allowed to interact with a radial menu
+  
+   Arguments:
+   redeemer The mob interacting with a menu
+   voucher The mining voucher item
+   */
+/obj/machinery/mineral/equipment_vendor/proc/check_menu(obj/item/mining_voucher/voucher, mob/living/redeemer)
+	if(!Adjacent(redeemer))
+		return FALSE
+	if(QDELETED(voucher))
+		return FALSE
+	if(voucher.loc != redeemer)
+		return FALSE
+	return TRUE
 
 /obj/machinery/mineral/equipment_vendor/ex_act(severity, target)
 	do_sparks(5, TRUE, src)
@@ -292,11 +317,19 @@
 	B.apply_default_parts(src)
 
 /obj/machinery/mineral/equipment_vendor/free_miner/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	var/list/items = list("Kinetic Accelerator", "Resonator Kit", "Minebot Kit", "Crusher Kit", "Advanced Scanner")
+	var/items = list(
+		"Kinetic Accelerator" = image(icon = 'icons/obj/guns/energy.dmi', icon_state = "kineticgun"),
+		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
+		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
+		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
+		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0")
+		)
 
-	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in items
-	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
+	items = sortList(items)
+	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, .proc/check_menu, voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
+	if(!selection)
 		return
+
 	var/drop_location = drop_location()
 	switch(selection)
 		if("Kinetic Accelerator")

@@ -14,6 +14,16 @@
 	visor_flags_cover = MASKCOVERSMOUTH
 	resistance_flags = NONE
 
+/obj/item/clothing/mask/breath/tactical
+	name = "tactical breath mask"
+	desc = "A close-fitting 'tactical' mask that can be connected to an air supply. This model is not translucent for anonymity."
+	color = "#736e35"
+	visor_flags_inv = HIDEFACE
+
+/obj/item/clothing/mask/breath/tactical/Initialize()
+	. = ..()
+	adjustmask() // this mask starts lowered
+
 /obj/item/clothing/mask/breath/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is wrapping \the [src]'s tube around [user.p_their()] neck! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return OXYLOSS

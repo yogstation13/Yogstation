@@ -9,6 +9,7 @@
 	charge_max = 750
 	clothes_req = TRUE
 	cooldown_min = 10 //Gun wizard
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "bolt_action"
 	var/summon_path = /obj/item/gun/ballistic/rifle/boltaction/enchanted
 
@@ -23,5 +24,6 @@
 /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
 	name = "Arcane Barrage"
 	desc = "Fire a torrent of arcane energy at your foes with this (powerful) spell. Deals much more damage than Lesser Summon Guns, but won't knock targets down. Requires both hands free to use. Learning this spell makes you unable to learn Lesser Summon Gun."
+	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "arcane_barrage"
 	summon_path = /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage

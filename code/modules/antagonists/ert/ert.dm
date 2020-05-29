@@ -74,8 +74,16 @@
 /datum/antagonist/ert/medic/inquisitor
 	outfit = /datum/outfit/ert/medic/inquisitor
 
+/datum/antagonist/ert/medic/inquisitor/on_gain()
+	. = ..()
+	owner.holy_role = HOLY_ROLE_PRIEST
+
 /datum/antagonist/ert/security/inquisitor
 	outfit = /datum/outfit/ert/security/inquisitor
+
+/datum/antagonist/ert/security/inquisitor/on_gain()
+	. = ..()
+	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/chaplain
 	role = "Chaplain"
@@ -86,14 +94,14 @@
 
 /datum/antagonist/ert/chaplain/on_gain()
 	. = ..()
-	owner.isholy = TRUE
+	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/commander/inquisitor
 	outfit = /datum/outfit/ert/commander/inquisitor
 
 /datum/antagonist/ert/commander/inquisitor/on_gain()
 	. = ..()
-	owner.isholy = TRUE
+	owner.holy_role = HOLY_ROLE_PRIEST
 
 /datum/antagonist/ert/janitor
 	role = "Janitor"
@@ -117,6 +125,21 @@
 	name = "Clown"
 	outfit = /datum/outfit/ert/clown
 	role = "Clown"
+
+/datum/antagonist/ert/amber
+	name = "Amber Soldier"
+	outfit = /datum/outfit/amber
+	role = "Soldier"
+
+/datum/antagonist/ert/amber/medic
+	name = "Amber Medic"
+	outfit = /datum/outfit/amber/medic
+	role = "Medic"
+
+/datum/antagonist/ert/amber/commander
+	name = "Amber Commander"
+	outfit = /datum/outfit/amber/commander
+	role = "Commander"
 
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
@@ -144,10 +167,14 @@
 	else
 		missiondesc += " Follow orders given to you by your squad leader."
 
-		missiondesc += "Avoid civilian casualites when possible."
+	missiondesc += "Avoid civilian casualties when possible."
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
+
+/datum/antagonist/ert/amber/greet()
+	. = ..()
+	to_chat(owner,"You also have a combat knife inside your boots.")
 
 /datum/antagonist/ert/deathsquad/greet()
 	if(!ert_team)

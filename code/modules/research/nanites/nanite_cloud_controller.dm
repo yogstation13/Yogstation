@@ -25,6 +25,12 @@
 	else
 		..()
 
+/obj/machinery/computer/nanite_cloud_controller/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
+
 /obj/machinery/computer/nanite_cloud_controller/proc/eject(mob/living/user)
 	if(!disk)
 		return
@@ -151,7 +157,7 @@
 			var/cloud_id = input("Choose a cloud ID (1-100):", name, null) as null|num
 			if(!isnull(cloud_id))
 				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
-				cloud_id = CLAMP(round(cloud_id, 1),1,100)
+				cloud_id = clamp(round(cloud_id, 1),1,100)
 				generate_backup(cloud_id, usr)
 			. = TRUE
 		if("delete_backup")

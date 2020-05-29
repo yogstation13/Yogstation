@@ -22,30 +22,26 @@
 	var/hack_wire
 	var/disable_wire
 	var/shock_wire
-
-	var/busy = FALSE
 	var/prod_coeff = 1
-
-	var/datum/design/being_built
 	var/datum/techweb/stored_research
-	var/list/datum/design/matching_designs
-	var/selected_category
 	var/screen = 1
 	var/base_price = 25
 	var/hacked_price = 50
+	var/datum/research/files
+	var/search
+	var/datum/material_container/materials
+	var/queue_max_len = 12
+	var/processing_queue = FALSE
+	var/datum/design/item_beingbuilt
+	var/datum/design/request
+	var/list/being_built = list()
+	var/list/autoqueue = list()
+	var/processing_line
+	var/printdirection = 0
+	var/queuelength = 0
+	var/selected_category = "Tools"
 
-	var/list/categories = list(
-							"Tools",
-							"Electronics",
-							"Construction",
-							"T-Comm",
-							"Security",
-							"Machinery",
-							"Medical",
-							"Misc",
-							"Dinnerware",
-							"Imported"
-							)
+	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Misc","Dinnerware","Imported")
 
 /obj/machinery/autolathe/Initialize()
 	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
@@ -53,43 +49,159 @@
 
 	wires = new /datum/wires/autolathe(src)
 	stored_research = new /datum/techweb/specialized/autounlocking/autolathe
-	matching_designs = list()
+	request = list()
 
 /obj/machinery/autolathe/Destroy()
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!is_operational())
 		return
-
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
+	if(!ui)
+		ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)  //Create the TGUI from autolathe.js
+		ui.open()
 
-	var/dat
+/obj/machinery/autolathe/proc/wallcheck(direction) //Check for nasty walls and update ui
+	if(iswallturf(get_step(src,(direction))))
+		return TRUE
+	else
+		return FALSE
 
-	switch(screen)
-		if(AUTOLATHE_MAIN_MENU)
-			dat = main_win(user)
-		if(AUTOLATHE_CATEGORY_MENU)
-			dat = category_win(user,selected_category)
-		if(AUTOLATHE_SEARCH_MENU)
-			dat = search_win(user)
+/obj/machinery/autolathe/ui_data(mob/user) // All the data the ui will need
+	var/list/data = list()
+	var/list/designs = list()
 
-	var/datum/browser/popup = new(user, "autolathe", name, 400, 500)
-	popup.set_content(dat)
-	popup.open()
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	data["screen"] = screen
+	data["total_amount"] = materials.total_amount
+	data["max_amount"] = materials.max_amount
+	data["metal_amount"] = materials.amount(MAT_METAL)
+	data["glass_amount"] = materials.amount(MAT_GLASS)
+	data["categories"] = categories
+	data["selected_category"] = selected_category
+
+	data["rightwall"] = wallcheck(4) // Wall data for ui
+	data["leftwall"] = wallcheck(8)
+	data["abovewall"] = wallcheck(1)
+	data["belowwall"] = wallcheck(2)
+
+	for(var/v in stored_research.researched_designs)
+		var/datum/design/D = SSresearch.techweb_design_by_id(v)
+		var/list/design = list()
+		design["name"] = D.name
+		design["id"] = D.id
+		design["disabled"] = disabled || !can_build(D)
+		design["category"] = D.category
+		var/max_multiplier_list = list()
+		if(ispath(D.build_path, /obj/item/stack))
+			var/max_multiplier = min(D.maxstack, D.materials[MAT_METAL] ? round(materials.amount(MAT_METAL)/D.materials[MAT_METAL]):INFINITY,D.materials[MAT_GLASS]?round(materials.amount(MAT_GLASS)/D.materials[MAT_GLASS]):INFINITY)
+			if (max_multiplier > 10 && !disabled)
+				max_multiplier_list += "10"
+			if (max_multiplier > 25 && !disabled)
+				max_multiplier_list += "25"
+			if(max_multiplier > 0 && !disabled)
+				max_multiplier_list += max_multiplier
+		else
+			if(can_build(D))
+				max_multiplier_list += "5"
+				max_multiplier_list += "10"
+		design["max_multiplier"] = max_multiplier_list
+		design["materials_metal"] = get_design_cost_metal(D)
+		design["materials_glass"] = get_design_cost_glass(D)
+		designs += list(design)
+
+	data["designs"] = designs
+	processing_line = being_built.len ? get_processing_line() : null
+	data["processing"] = processing_line
+
+	data["printdir"] = printdirection
+
+	data["isprocessing"] = processing_queue
+	data["queuelength"] = queuelength
+	if(istype(autoqueue) && autoqueue.len)
+		var/list/uidata = list()
+		var/index = 1
+		for(var/list/L in autoqueue)
+			var/datum/design/D = L[1]
+			uidata[++uidata.len] = list("name" = initial(D.name), "multiplier" = L[2], "index" = index)
+			index++
+		data["queue"] = uidata
+	else
+		data["queue"] = list()
+
+	return data
+
+/obj/machinery/autolathe/ui_act(action, params)
+	if(..())
+		return
+
+	switch(action)
+		if("set_category")
+			selected_category = params["category"]
+
+		if("make") // Lets try make the item supplied via the UI
+			request = stored_research.isDesignResearchedID(params["item_id"])
+			if(!request)
+				return
+			var/multiplier = text2num(params["multiplier"])
+			multiplier = clamp(multiplier,1,50)
+			if((autoqueue.len + 1) < queue_max_len)
+				add_to_queue(request, multiplier) // Add item to queue for processing
+			else
+				to_chat(usr, "<span class='warning'>The autolathe queue is full!</span>")
+
+		if("eject")
+			request = stored_research.isDesignResearchedID(params["item_id"])
+			if(processing_queue)
+				to_chat(usr, "<span class='warning'>The autolathe queue is processing, please stop before ejecting material</span>")
+			if(!request)
+				return
+			var/multiplier = text2num(params["multiplier"])
+			multiplier = clamp(multiplier,1,50)
+			make_item(request, multiplier)
+			processing_queue = FALSE
+
+		if("process_queue")   // Processing queue flag triggers the queue
+			if(processing_queue)
+				processing_queue = FALSE
+				return
+			processing_queue = TRUE
+			process_queue()
+
+		if("remove_from_queue")
+			var/index = text2num(params["index"])
+			if(isnum(index) && ISINRANGE(index, 1, autoqueue.len))
+				remove_from_queue(index)
+
+		if("queue_move")  // Moves items up and down the list
+			var/index = text2num(params["index"])
+			var/new_index = index + text2num(params["queue_move"])
+			if(isnum(index) && isnum(new_index))
+				if(ISINRANGE(new_index, 1, autoqueue.len))
+					autoqueue.Swap(index,new_index)
+
+		if("clear_queue")
+			queuelength = 0
+			processing_queue = FALSE
+			autoqueue = list()
+			processing_line = null
+
+		if("printdir")
+			printdirection = text2num(params["direction"])
+			if(printdirection > 8)  // Simple Sanity Check
+				printdirection = 0
+
+	update_icon()
 
 /obj/machinery/autolathe/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
-	if (busy)
-		to_chat(user, "<span class=\"alert\">The autolathe is busy. Please wait for completion of previous operation.</span>")
-		return TRUE
-
 	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
 		updateUsrDialog()
 		return TRUE
@@ -111,13 +223,11 @@
 		user.visible_message("[user] begins to load \the [O] in \the [src]...",
 			"You begin to load a design from \the [O]...",
 			"You hear the chatter of a floppy drive.")
-		busy = TRUE
 		var/obj/item/disk/design_disk/D = O
 		if(do_after(user, 14.4, target = src))
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)
-		busy = FALSE
 		return TRUE
 
 	return ..()
@@ -134,87 +244,10 @@
 		use_power(min(1000, amount_inserted / 100))
 	updateUsrDialog()
 
-/obj/machinery/autolathe/Topic(href, href_list)
-	if(..())
-		return
-	if (!busy)
-		if(href_list["menu"])
-			screen = text2num(href_list["menu"])
-			updateUsrDialog()
-
-		if(href_list["category"])
-			selected_category = href_list["category"]
-			updateUsrDialog()
-
-		if(href_list["make"])
-
-			/////////////////
-			//href protection
-			being_built = stored_research.isDesignResearchedID(href_list["make"])
-			if(!being_built)
-				return
-
-			var/multiplier = text2num(href_list["multiplier"])
-			var/is_stack = ispath(being_built.build_path, /obj/item/stack)
-			multiplier = CLAMP(multiplier,1,50)
-
-			/////////////////
-
-			var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
-			var/metal_cost = being_built.materials[MAT_METAL]
-			var/glass_cost = being_built.materials[MAT_GLASS]
-
-			var/power = max(2000, (metal_cost+glass_cost)*multiplier/5)
-
-			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-			if((materials.amount(MAT_METAL) >= metal_cost*multiplier*coeff) && (materials.amount(MAT_GLASS) >= glass_cost*multiplier*coeff))
-				busy = TRUE
-				use_power(power)
-				icon_state = "autolathe_n"
-				var/time = is_stack ? 32 : 32*coeff*multiplier
-				addtimer(CALLBACK(src, .proc/make_item, power, metal_cost, glass_cost, multiplier, coeff, is_stack), time)
-
-		if(href_list["search"])
-			matching_designs.Cut()
-
-			for(var/v in stored_research.researched_designs)
-				var/datum/design/D = SSresearch.techweb_design_by_id(v)
-				if(findtext(D.name,href_list["to_search"]))
-					matching_designs.Add(D)
-			updateUsrDialog()
-	else
-		to_chat(usr, "<span class=\"alert\">The autolathe is busy. Please wait for completion of previous operation.</span>")
-
-	updateUsrDialog()
-
-	return
-
-/obj/machinery/autolathe/proc/make_item(power, metal_cost, glass_cost, multiplier, coeff, is_stack)
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	var/atom/A = drop_location()
-	use_power(power)
-	var/list/materials_used = list(MAT_METAL=metal_cost*coeff*multiplier, MAT_GLASS=glass_cost*coeff*multiplier)
-	materials.use_amount(materials_used)
-
-	if(is_stack)
-		var/obj/item/stack/N = new being_built.build_path(A, multiplier)
-		N.update_icon()
-		N.autolathe_crafted(src)
-	else
-		for(var/i=1, i<=multiplier, i++)
-			var/obj/item/new_item = new being_built.build_path(A)
-			new_item.materials = new_item.materials.Copy()
-			for(var/mat in materials_used)
-				new_item.materials[mat] = materials_used[mat] / multiplier
-			new_item.autolathe_crafted(src)
-	icon_state = "autolathe"
-	busy = FALSE
-	updateDialog()
-
 /obj/machinery/autolathe/RefreshParts()
 	var/T = 0
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
-		T += MB.rating*75000
+		T += MB.rating * 75000
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.max_amount = T
 	T=1.2
@@ -228,94 +261,6 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[prod_coeff*100]%</b>.<span>"
 
-/obj/machinery/autolathe/proc/main_win(mob/user)
-	var/dat = "<div class='statusDisplay'><h3>Autolathe Menu:</h3><br>"
-	dat += materials_printout()
-
-	dat += "<form name='search' action='?src=[REF(src)]'>\
-	<input type='hidden' name='src' value='[REF(src)]'>\
-	<input type='hidden' name='search' value='to_search'>\
-	<input type='hidden' name='menu' value='[AUTOLATHE_SEARCH_MENU]'>\
-	<input type='text' name='to_search'>\
-	<input type='submit' value='Search'>\
-	</form><hr>"
-
-	var/line_length = 1
-	dat += "<table style='width:100%' align='center'><tr>"
-
-	for(var/C in categories)
-		if(line_length > 2)
-			dat += "</tr><tr>"
-			line_length = 1
-
-		dat += "<td><A href='?src=[REF(src)];category=[C];menu=[AUTOLATHE_CATEGORY_MENU]'>[C]</A></td>"
-		line_length++
-
-	dat += "</tr></table></div>"
-	return dat
-
-/obj/machinery/autolathe/proc/category_win(mob/user,selected_category)
-	var/dat = "<A href='?src=[REF(src)];menu=[AUTOLATHE_MAIN_MENU]'>Return to main menu</A>"
-	dat += "<div class='statusDisplay'><h3>Browsing [selected_category]:</h3><br>"
-	dat += materials_printout()
-
-	for(var/v in stored_research.researched_designs)
-		var/datum/design/D = SSresearch.techweb_design_by_id(v)
-		if(!(selected_category in D.category))
-			continue
-
-		if(disabled || !can_build(D))
-			dat += "<span class='linkOff'>[D.name]</span>"
-		else
-			dat += "<a href='?src=[REF(src)];make=[D.id];multiplier=1'>[D.name]</a>"
-
-		if(ispath(D.build_path, /obj/item/stack))
-			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-			var/max_multiplier = min(D.maxstack, D.materials[MAT_METAL] ?round(materials.amount(MAT_METAL)/D.materials[MAT_METAL]):INFINITY,D.materials[MAT_GLASS]?round(materials.amount(MAT_GLASS)/D.materials[MAT_GLASS]):INFINITY)
-			if (max_multiplier>10 && !disabled)
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=10'>x10</a>"
-			if (max_multiplier>25 && !disabled)
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=25'>x25</a>"
-			if(max_multiplier > 0 && !disabled)
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=[max_multiplier]'>x[max_multiplier]</a>"
-		else
-			if(!disabled && can_build(D, 5))
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=5'>x5</a>"
-			if(!disabled && can_build(D, 10))
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=10'>x10</a>"
-
-		dat += "[get_design_cost(D)]<br>"
-
-	dat += "</div>"
-	return dat
-
-/obj/machinery/autolathe/proc/search_win(mob/user)
-	var/dat = "<A href='?src=[REF(src)];menu=[AUTOLATHE_MAIN_MENU]'>Return to main menu</A>"
-	dat += "<div class='statusDisplay'><h3>Search results:</h3><br>"
-	dat += materials_printout()
-
-	for(var/v in matching_designs)
-		var/datum/design/D = v
-		if(disabled || !can_build(D))
-			dat += "<span class='linkOff'>[D.name]</span>"
-		else
-			dat += "<a href='?src=[REF(src)];make=[D.id];multiplier=1'>[D.name]</a>"
-
-		if(ispath(D.build_path, /obj/item/stack))
-			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-			var/max_multiplier = min(D.maxstack, D.materials[MAT_METAL] ?round(materials.amount(MAT_METAL)/D.materials[MAT_METAL]):INFINITY,D.materials[MAT_GLASS]?round(materials.amount(MAT_GLASS)/D.materials[MAT_GLASS]):INFINITY)
-			if (max_multiplier>10 && !disabled)
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=10'>x10</a>"
-			if (max_multiplier>25 && !disabled)
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=25'>x25</a>"
-			if(max_multiplier > 0 && !disabled)
-				dat += " <a href='?src=[REF(src)];make=[D.id];multiplier=[max_multiplier]'>x[max_multiplier]</a>"
-
-		dat += "[get_design_cost(D)]<br>"
-
-	dat += "</div>"
-	return dat
-
 /obj/machinery/autolathe/proc/materials_printout()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	var/dat = "<b>Total amount:</b> [materials.total_amount] / [materials.max_amount] cm<sup>3</sup><br>"
@@ -327,23 +272,33 @@
 /obj/machinery/autolathe/proc/can_build(datum/design/D, amount = 1)
 	if(D.make_reagents.len)
 		return FALSE
-
 	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
-
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(D.materials[MAT_METAL] && (materials.amount(MAT_METAL) < (D.materials[MAT_METAL] * coeff * amount)))
 		return FALSE
 	if(D.materials[MAT_GLASS] && (materials.amount(MAT_GLASS) < (D.materials[MAT_GLASS] * coeff * amount)))
 		return FALSE
+	if(wallcheck(printdirection))
+		say("Output blocked, please remove obstruction.")
+		return FALSE
 	return TRUE
 
-/obj/machinery/autolathe/proc/get_design_cost(datum/design/D)
+/obj/machinery/autolathe/proc/get_design_cost_metal(datum/design/D)
 	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
 	var/dat
 	if(D.materials[MAT_METAL])
-		dat += "[D.materials[MAT_METAL] * coeff] metal "
+		dat = D.materials[MAT_METAL] * coeff
+	else
+		dat = 0
+	return dat
+
+/obj/machinery/autolathe/proc/get_design_cost_glass(datum/design/D)
+	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
+	var/dat
 	if(D.materials[MAT_GLASS])
-		dat += "[D.materials[MAT_GLASS] * coeff] glass"
+		dat = D.materials[MAT_GLASS] * coeff
+	else
+		dat = 0
 	return dat
 
 /obj/machinery/autolathe/proc/reset(wire)
@@ -389,3 +344,101 @@
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes
 /obj/item/proc/autolathe_crafted(obj/machinery/autolathe/A)
 	return
+
+/obj/machinery/autolathe/proc/make_item(datum/design/D, multiplier)
+	var/is_stack = ispath(request.build_path, /obj/item/stack)
+	var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
+	var/metal_cost = request.materials[MAT_METAL]
+	var/glass_cost = request.materials[MAT_GLASS]
+	var/power = max(2000, (metal_cost + glass_cost) * multiplier / 5)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	if (!materials)
+		say("No access to material storage, please contact the quartermaster.")
+		return FALSE
+	if(can_build(D, multiplier))  // Check if we can build if not, return
+		if((materials.amount(MAT_METAL) >= metal_cost * multiplier * coeff) && (materials.amount(MAT_GLASS) >= glass_cost * multiplier * coeff))
+			use_power(power)
+			var/list/materials_used = list(MAT_METAL=metal_cost * coeff * multiplier, MAT_GLASS=glass_cost * coeff*multiplier)
+			materials.use_amount(materials_used)
+			being_built = list(D, multiplier)
+			desc = "It's building \a [initial(D.name)]."
+			icon_state = "autolathe_n"
+			var/time = is_stack ? 32 : 32 * coeff * multiplier
+			sleep(time)
+			if(wallcheck(printdirection))
+				printdirection = 0
+			var/atom/A = drop_location()
+			var/location = get_step(src,(printdirection))
+			if(printdirection)
+				A = location
+			if(is_stack) // If its a stack we need to define it as so
+				var/obj/item/stack/N = new D.build_path(A, multiplier)
+				N.update_icon()
+				N.autolathe_crafted(src)
+			else
+				for(var/i=1, i<=multiplier, i++)
+					var/obj/item/new_item = new D.build_path(A)
+					new_item.materials = new_item.materials.Copy()
+					for(var/mat in materials_used)
+						new_item.materials[mat] = materials_used[mat] / multiplier
+					new_item.autolathe_crafted(src)
+			item_beingbuilt = null
+			icon_state = "autolathe"
+			updateUsrDialog()
+			desc = initial(desc)
+			updateUsrDialog()
+			return TRUE
+	else
+		say("Not enough resources. Queue processing stopped.")
+		return FALSE
+
+/obj/machinery/autolathe/proc/add_to_queue(D, multiplier)
+	queuelength++
+	if(!istype(autoqueue))
+		autoqueue = list()
+	if(D)
+		autoqueue.Add(list(list(D,multiplier)))
+	return autoqueue.len
+
+/obj/machinery/autolathe/proc/remove_from_queue(index)
+	queuelength--
+	if(!isnum(index) || !istype(autoqueue) || (index<1 || index>autoqueue.len))
+		return FALSE
+	autoqueue.Cut(index,++index)
+	return TRUE
+
+/obj/machinery/autolathe/proc/process_queue() //Process the queue from the autoqueue list. Will add temp metal and glass later.
+	var/datum/design/D = autoqueue[1][1]
+	var/multiplier = autoqueue[1][2]
+	if(!D)
+		remove_from_queue(1)
+		if(autoqueue.len)
+			return process_queue()
+		else
+			return
+	while(D)
+		if(!processing_queue)
+			say("Queue processing halted.")
+			processing_queue = FALSE
+			return
+		if(stat&(NOPOWER|BROKEN))
+			processing_queue = FALSE
+			return
+		if(!can_build(D,multiplier))
+			say("Not enough resources. Queue processing terminated.")
+			processing_queue = FALSE
+			return
+		remove_from_queue(1)
+		make_item(D,multiplier)
+		D = listgetindex(listgetindex(autoqueue, 1),1)
+		multiplier = listgetindex(listgetindex(autoqueue,1),2)
+	being_built = new /list()
+	say("Queue processing finished successfully.")
+	processing_queue = FALSE
+
+/obj/machinery/autolathe/proc/get_processing_line()  //Gets processing line for whats building for UI
+	var/datum/design/D = being_built[1]
+	var/multiplier = being_built[2]
+	var/is_stack = (multiplier>1)
+	var/output = "[initial(D.name)][is_stack?" (x[multiplier])":null]"
+	return output

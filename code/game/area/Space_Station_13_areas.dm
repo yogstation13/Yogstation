@@ -551,8 +551,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Supermatter Engine"
 	icon_state = "engine_sm"
 
-/area/engine/break_room
+/area/engine/foyer
 	name = "Engineering Foyer"
+	icon_state = "engine_foyer"
+
+/area/engine/break_room
+	name = "Engineering Break Room"
 	icon_state = "engine_foyer"
 
 /area/engine/gravity_generator
@@ -899,6 +903,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/checkpoint/science/research
 	name = "Security Post - Research Division"
 	icon_state = "checkpoint_res"
+
+/area/security/checkpoint/service
+	name = "Security Post - Service"
+	icon_state = "checkpoint_srv"
 
 /area/security/checkpoint/customs
 	name = "Customs"
