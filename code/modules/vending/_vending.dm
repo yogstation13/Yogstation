@@ -405,7 +405,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/mob/living/L
 	if(isliving(user))
 		L = user
-	.["ignores_capitalism"] = L.ignores_capitalism
+	.["ignores_capitalism"] = L?.ignores_capitalism
 	
 	if(ishuman(user))
 		H = user
