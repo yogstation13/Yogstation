@@ -1007,34 +1007,34 @@
 
 /obj/item/toy/cards/deck/uno/proc/populate_uno_deck() //RED GREEN YELLOW BLUE
 	icon_state = "deck_[deckstyle]_full"
-		for(var/k in 0 to 9)
-			cards += "Red [i]"
-			cards += "Green [i]"
-			cards += "Yellow [i]"
-			cards += "Blue [i]"
-		for(var/p in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
-			cards += "Red [i]"
-			cards += "Green [i]"
-			cards += "Yellow [i]"
-			cards += "Blue [i]"
-		var/j=1
-		for(j=1; j<=2; j++)
-			cards += "Red Draw Two"
-			cards += "Green Draw Two"
-			cards += "Yellow Draw Two"
-			cards += "Blue Draw Two"
-			cards += "Red Skip"
-			cards += "Green Skip"
-			cards += "Yellow Skip"
-			cards += "Blue Skip"
-			cards += "Red Reverse"
-			cards += "Green Reverse"
-			cards += "Yellow Reverse"
-			cards += "Blue Reverse"
-		j=1
-		for(j=1; j<=4; j++)
-			cards += "Wildcard"
-			cards += "Wild Draw Four"
+	for(var/k in 0 to 9)
+		cards += "Red [i]"
+		cards += "Green [i]"
+		cards += "Yellow [i]"
+		cards += "Blue [i]"
+	for(var/p in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+		cards += "Red [i]"
+		cards += "Green [i]"
+		cards += "Yellow [i]"
+		cards += "Blue [i]"
+	var/j=1
+	for(j=1; j<=2; j++)
+		cards += "Red Draw Two"
+		cards += "Green Draw Two"
+		cards += "Yellow Draw Two"
+		cards += "Blue Draw Two"
+		cards += "Red Skip"
+		cards += "Green Skip"
+		cards += "Yellow Skip"
+		cards += "Blue Skip"
+		cards += "Red Reverse"
+		cards += "Green Reverse"
+		cards += "Yellow Reverse"
+		cards += "Blue Reverse"
+	j=1
+	for(j=1; j<=4; j++)
+		cards += "Wildcard"
+		cards += "Wild Draw Four"
 	
 
 /obj/item/toy/cards/deck/uno/update_icon()
