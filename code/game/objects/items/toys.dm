@@ -1000,10 +1000,10 @@
 	deckstyle = "uno"
 	icon_state = "deck_uno_full"
 	w_class = WEIGHT_CLASS_SMALL
-	list/cards = list()
 
 /obj/item/toy/cards/deck/uno/Initialize()
 	. = ..()
+	list/cards = list()
 	populate_uno_deck()
 
 /obj/item/toy/cards/deck/uno/proc/populate_uno_deck() //RED GREEN YELLOW BLUE
