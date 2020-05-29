@@ -320,8 +320,6 @@
 					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 30 SECONDS)
 					return player.mind
 
-		GLOB.antag_token_users += C
-
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
 		return pick(candidates)
 
