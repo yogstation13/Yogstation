@@ -4,7 +4,7 @@
 
 /obj/item/clothing/head/beret/sec/amber_medic
 	name = "amber medic beret"
-	desc = "A white beret for the mundane life of a amber task force medic."
+	desc = "A white beret for the mundane life of an amber task force medic."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_ce"
@@ -12,7 +12,7 @@
 
 /obj/item/clothing/head/beret/corpsec/amber_commander
 	name = "amber commander beret"
-	desc = "A special black beret for the mundane life of a amber task force commander."
+	desc = "A special black beret for the mundane life of an amber task force commander."
 
 // amber task force vest loadouts
 // To note: each vest has 7 normal slots - Hopek
@@ -24,7 +24,7 @@
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/jawsoflife(src)
 
 
 /obj/item/storage/belt/military/amber_commander/ComponentInitialize() // Amber Commander
@@ -35,7 +35,7 @@
 	new /obj/item/melee/classic_baton/telescopic(src)
 	new /obj/item/megaphone(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/jawsoflife(src)
 
 /obj/item/storage/belt/military/amber_medic/ComponentInitialize() // Amber Medic
 	. = ..()
@@ -45,7 +45,7 @@
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/reagent_containers/hypospray/combat(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/jawsoflife(src)
 
 
 /datum/outfit/amber

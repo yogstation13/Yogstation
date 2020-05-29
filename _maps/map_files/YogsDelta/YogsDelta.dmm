@@ -60612,6 +60612,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bOi" = (
@@ -61889,12 +61892,21 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bQe" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -61905,6 +61917,10 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -63278,6 +63294,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -66796,6 +66815,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/port)
+"bXk" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -26;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/engineering)
 "bXl" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -90599,29 +90637,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cHT" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/light_switch{
-	pixel_x = -26;
-	pixel_y = -26
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/engineering)
 "cHU" = (
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
@@ -101593,14 +101608,6 @@
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
-/area/science/xenobiology)
-"cXm" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/extinguisher,
-/turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "cXn" = (
 /obj/structure/cable/white{
@@ -126661,19 +126668,6 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/space,
 /area/space/nearstation)
-"hFQ" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/extinguisher,
-/obj/item/extinguisher,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/turf/open/floor/circuit/green,
-/area/science/xenobiology)
 "hLm" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -126710,6 +126704,15 @@
 /mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"iMT" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 8
+	},
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "iQh" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 1
@@ -127034,6 +127037,19 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space)
+"nWW" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "olS" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -127520,7 +127536,7 @@
 	dir = 1
 	},
 /obj/item/stack/sheet/plasteel/fifty,
-/obj/item/crowbar/power,
+/obj/item/jawsoflife,
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
 	},
@@ -127635,7 +127651,7 @@
 "wEB" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/electrical,
-/obj/item/wrench/power,
+/obj/item/handdrill,
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -154383,7 +154399,7 @@ bTR
 bOf
 bha
 djM
-cHT
+bXk
 dlx
 dlK
 dmc
@@ -160326,9 +160342,9 @@ cMY
 cMY
 cTV
 cVT
-cXm
+nWW
 cZb
-hFQ
+iMT
 dcu
 ddV
 cMY

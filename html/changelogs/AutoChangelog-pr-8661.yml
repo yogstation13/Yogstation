@@ -1,0 +1,4 @@
+author: "MacHac"
+delete-after: true 
+changes: 
+  - tweak: "Added a message when guardians fail to place a telebeacon."

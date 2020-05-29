@@ -1,0 +1,4 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds stray cargo event"

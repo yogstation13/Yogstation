@@ -21,7 +21,7 @@
 
 /obj/machinery/computer/telecomms/monitor/ui_interact(mob/user)
 	. = ..()
-	var/dat = "<TITLE>Telecommunications Monitor</TITLE><center><b>Telecommunications Monitor</b></center>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'><TITLE>Telecommunications Monitor</TITLE></HEAD><BODY><center><b>Telecommunications Monitor</b></center>"
 
 	switch(screen)
 
@@ -54,7 +54,7 @@
 					dat += "<li><a href='?src=[REF(src)];viewmachine=[T.id]'>[REF(T.id)] [T.name]</a> ([T.id])</li>"
 			dat += "</ol>"
 
-
+	dat += "</BODY></HTML>"
 
 	user << browse(dat, "window=comm_monitor;size=575x400")
 	onclose(user, "server_control")

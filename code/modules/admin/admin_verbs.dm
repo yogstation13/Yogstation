@@ -18,6 +18,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
+	/client/proc/toggle_legacy_mc_tab,
 	/client/proc/fix_air // yogs - fix air verb
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
@@ -87,7 +88,10 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
 	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
 	/client/proc/queue_check, // Yogs -- Some queue manipulation/debuggin kinda verbs
-	/client/proc/cmd_view_polls
+	/client/proc/cmd_view_polls,
+	/client/proc/antag_token_panel, //Yogs -- Access Antag Token Panel
+	/client/proc/give_antag_token,
+	/client/proc/show_redeemable_antag_tokens
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -131,6 +135,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/startnow,
 	/*/datum/admins/proc/restart, YOGS - moved to +admin*/
 	/datum/admins/proc/end_round,
+	/datum/admins/proc/delay_end_round,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/client/proc/everyone_random,
@@ -422,6 +427,31 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	holder.unban_panel()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unbanning Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/antag_token_panel()
+	set name = "Antag Token Panel"
+	set category = "Admin"
+	if(!check_rights(R_ADMIN))
+		return
+	holder.antag_token_panel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Antag Token Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/show_redeemable_antag_tokens()
+	set name = "Redeemable Antag Tokens"
+	set category = "Admin"
+	if(!check_rights(R_ADMIN))
+		return
+	holder.show_redeemable_antag_tokens()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Antag Token Redeemable Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/give_antag_token()
+	set name = "Give Antag Token"
+	set category = "Admin"
+	if(!check_rights(R_ADMIN))
+		return
+	holder.give_antag_token()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Antag Token") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
 /client/proc/game_panel()
 	set name = "Game Panel"
 	set category = "Admin"
@@ -468,11 +498,9 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 				mob.name = initial(mob.name)
 				mob.mouse_opacity = initial(mob.mouse_opacity)
 		else
-			var/new_key = ckeyEx(input("Enter your desired display name.", "Fake Key", key) as text|null)
+			var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Fake Key", key, 26))
 			if(!new_key)
 				return
-			if(length(new_key) >= 26)
-				new_key = copytext(new_key, 1, 26)
 			holder.fakekey = new_key
 			createStealthKey()
 			if(isobserver(mob))
@@ -579,9 +607,9 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Gives a spell to a mob."
 
 	var/list/spell_list = list()
-	var/type_length = length("/obj/effect/proc_holder/spell") + 2
+	var/type_length = length_char("/obj/effect/proc_holder/spell") + 2
 	for(var/A in GLOB.spells)
-		spell_list[copytext("[A]", type_length)] = A
+		spell_list[copytext_char("[A]", type_length)] = A
 	var/obj/effect/proc_holder/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spell_list
 	if(!S)
 		return
@@ -668,6 +696,17 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[src] deadmined themself.")
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")
+
+
+/client/proc/toggle_legacy_mc_tab()
+	set name = "Toggle Legacy MC Tab"
+	set category = "Debug"
+	set desc = "For if the normal one breaks"
+
+	if(!holder)
+		return
+
+	holder.legacy_mc = !holder.legacy_mc
 
 /client/proc/readmin()
 	set name = "Readmin"

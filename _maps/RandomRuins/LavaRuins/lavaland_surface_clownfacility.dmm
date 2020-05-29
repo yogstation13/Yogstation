@@ -26,23 +26,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mineral/bananium,
 /area/ruin/unpowered)
-"ah" = (
-/obj/item/ship_in_a_bottle,
-/obj/item/coin/bananium{
-	pixel_x = 27;
-	pixel_y = 6
-	},
-/obj/item/coin/bananium{
-	pixel_x = 24;
-	pixel_y = 5
-	},
-/obj/item/flashlight/lamp/bananalamp{
-	pixel_x = 1;
-	pixel_y = 15
-	},
-/obj/structure/table/bananium,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
 "ai" = (
 /obj/item/reagent_containers/food/snacks/soup/clownstears,
 /obj/item/toy/figure/clown{
@@ -66,8 +49,8 @@
 /area/ruin/unpowered)
 "al" = (
 /obj/structure/chair/bananium{
-	icon_state = "bananium_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "bananium_chair"
 	},
 /turf/open/floor/mineral/bananium,
 /area/ruin/unpowered)
@@ -100,10 +83,6 @@
 /obj/structure/window/reinforced,
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/burger/mime,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"ar" = (
-/obj/structure/table,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "as" = (
@@ -371,16 +350,16 @@
 "bl" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -412,24 +391,24 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "br" = (
 /obj/item/grown/bananapeel,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel/dark{
 	dir = 8
@@ -439,16 +418,16 @@
 /obj/effect/decal/cleanable/oil/streak,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -469,16 +448,16 @@
 /obj/item/paperplane,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -486,23 +465,23 @@
 /obj/item/coin/bananium,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "bx" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel/dark{
 	dir = 8
@@ -514,16 +493,16 @@
 /obj/item/pickaxe/drill,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -544,16 +523,16 @@
 /obj/structure/mecha_wreckage/honker,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -561,16 +540,16 @@
 /obj/effect/decal/cleanable/robot_debris,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -578,16 +557,16 @@
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -599,11 +578,34 @@
 /obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
+"cZ" = (
+/obj/item/ship_in_a_bottle,
+/obj/item/coin/bananium{
+	pixel_x = 27;
+	pixel_y = 6
+	},
+/obj/item/coin/bananium{
+	pixel_x = 24;
+	pixel_y = 5
+	},
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_x = 1;
+	pixel_y = 15
+	},
+/obj/structure/table/bananium,
+/obj/item/reagent_containers/food/drinks/soda_cans/canned_laughter,
+/turf/open/floor/mineral/bananium,
+/area/ruin/unpowered)
 "lb" = (
 /mob/living/simple_animal/crab/clown{
 	name = "Mr Krebs"
 	},
 /turf/open/floor/mineral/bananium,
+/area/ruin/unpowered)
+"Qw" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing,
+/turf/open/floor/wood,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -654,7 +656,7 @@ ac
 aa
 ad
 ae
-ah
+cZ
 am
 ad
 aw
@@ -941,7 +943,7 @@ ac
 ac
 ac
 aa
-ar
+Qw
 au
 at
 ay
