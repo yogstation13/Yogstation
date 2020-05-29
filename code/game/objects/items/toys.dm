@@ -1000,8 +1000,6 @@
 	deckstyle = "uno"
 	icon_state = "deck_uno_full"
 	w_class = WEIGHT_CLASS_SMALL
-	var/cooldown = 0
-	var/list/cards = list()
 
 /obj/item/toy/cards/deck/uno/Initialize()
 	. = ..()
@@ -1019,7 +1017,7 @@
 			cards += "Green [i]"
 			cards += "Yellow [i]"
 			cards += "Blue [i]"
-		for(i=1; i<=2; i++)
+		for(var/i=1; i<=2; i++)
 			cards += "Red Draw Two"
 			cards += "Green Draw Two"
 			cards += "Yellow Draw Two"
@@ -1032,7 +1030,7 @@
 			cards += "Green Reverse"
 			cards += "Yellow Reverse"
 			cards += "Blue Reverse"
-		for(i=1; i<=4; i++)
+		for(var/i=1; i<=4; i++)
 			cards += "Wildcard"
 			cards += "Wild Draw Four"
 	
