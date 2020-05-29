@@ -53987,12 +53987,6 @@
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"lfZ" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "lgx" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -54351,6 +54345,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
+"lZc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/cryopod{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "lZq" = (
 /obj/machinery/smartfridge/disks,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
@@ -56649,13 +56654,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"qZr" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "rcY" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
@@ -56726,6 +56724,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"rkn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rkQ" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
@@ -56787,6 +56792,13 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"roV" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/cryopod,
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "rqq" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Corridor West";
@@ -56904,16 +56916,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"rEC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/obj/machinery/computer/cryopod{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "rEH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -57079,6 +57081,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"rWU" = (
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "rXN" = (
 /obj/effect/landmark/start/yogs/mining_medic,
 /turf/open/floor/plasteel,
@@ -57948,6 +57956,15 @@
 /obj/effect/landmark/stationroom/box/dorm_edoor,
 /turf/template_noop,
 /area/space)
+"tHR" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "tIs" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -58504,6 +58521,15 @@
 /obj/item/wirecutters,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"uTt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
+	},
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "uVy" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -58726,12 +58752,6 @@
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"vrb" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "vrz" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -58931,12 +58951,6 @@
 	},
 /turf/open/space,
 /area/space)
-"vPL" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "vRI" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -59858,15 +59872,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"xZR" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "yan" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -85475,8 +85480,8 @@ aWi
 aXO
 abi
 aYN
-qZr
-rEC
+rkn
+lZc
 aat
 aUg
 afA
@@ -91940,10 +91945,10 @@ tfA
 tfA
 tfA
 tfA
-xZR
-vrb
-vrb
-vrb
+tHR
+rWU
+rWU
+rWU
 aJw
 aaa
 bOS
@@ -92454,10 +92459,10 @@ pxG
 sGC
 pxG
 pxG
-lfZ
+roV
 mxS
 qHm
-vPL
+uTt
 aJw
 aJw
 aJw
