@@ -265,6 +265,18 @@
 	cost = 18
 	item_path = /obj/item/grenade/syndieminibomb/concussion/frag
 
+/datum/gang_item/equipment/force_converter
+	name = "Force Converter"
+	id = "force_converter"
+	cost = 20
+	item_path = /obj/item/implanter/gang
+	spawn_msg = "<span class='notice'>The <b>force converter</b> is a single-use device that converts enemy gangsters.</span>"
+
+/datum/gang_item/equipment/force_converter/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	var/obj/item/O = new item_path(user.loc, gang)
+	user.put_in_hands(O)
+
+
 /datum/gang_item/equipment/wetwork_boots
 	name = "Wetwork boots"
 	id = "wetwork"

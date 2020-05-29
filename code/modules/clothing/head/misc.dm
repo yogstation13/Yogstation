@@ -7,6 +7,18 @@
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	strip_delay = 80
 
+/obj/item/clothing/head/centhat/admiral
+	name = "\improper CentCom admiral hat"
+	icon_state = "admiral"
+	desc = "It's good to be a god."
+	item_state = "admiral"
+
+/obj/item/clothing/head/centhat/admiral/grand
+	name = "\improper CentCom grand admiral hat"
+	icon_state = "grand_admiral"
+	desc = "It's good to be a Q."
+	item_state = "grand_admiral"
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."

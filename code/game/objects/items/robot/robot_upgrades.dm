@@ -321,7 +321,7 @@
 /obj/item/borg/upgrade/selfrepair/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/borg/upgrade/selfrepair/U = locate() in R.module.modules
+		var/obj/item/borg/upgrade/selfrepair/U = locate() in R
 		if(U)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a self-repair module.</span>")
 			return FALSE
@@ -622,7 +622,7 @@
 
 /obj/item/borg/upgrade/plasmacutter
 	name = "mining cyborg plasma cutter"
-	desc = "plasma cutter module for the mining cybord."
+	desc = "A plasma cutter module for the mining cyborg."
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "adv_plasmacutter"
 	require_module = TRUE

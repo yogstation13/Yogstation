@@ -54,14 +54,14 @@
 			"id_tag" = id_tag,
 			"timestamp" = world.time,
 			"pressure" = air_sample.return_pressure(),
-			"temperature" = air_sample.temperature,
+			"temperature" = air_sample.return_temperature(),
 			"gases" = list()
 		))
 		var/total_moles = air_sample.total_moles()
 		if(total_moles)
-			for(var/gas_id in air_sample.gases)
-				var/gas_name = air_sample.gases[gas_id][GAS_META][META_GAS_NAME]
-				signal.data["gases"][gas_name] = air_sample.gases[gas_id][MOLES] / total_moles * 100
+			for(var/gas_id in air_sample.get_gases())
+				var/gas_name = GLOB.meta_gas_info[gas_id][META_GAS_NAME]
+				signal.data["gases"][gas_name] = air_sample.get_moles(gas_id) / total_moles * 100
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
@@ -293,7 +293,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 		if("rate")
 			var/target = text2num(params["rate"])
 			if(!isnull(target))
-				target = CLAMP(target, 0, MAX_TRANSFER_RATE)
+				target = clamp(target, 0, MAX_TRANSFER_RATE)
 				signal.data += list("tag" = input_tag, "set_volume_rate" = target)
 				. = TRUE
 		if("output")
@@ -302,7 +302,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 		if("pressure")
 			var/target = text2num(params["pressure"])
 			if(!isnull(target))
-				target = CLAMP(target, 0, 4500)
+				target = clamp(target, 0, 4500)
 				signal.data += list("tag" = output_tag, "set_internal_pressure" = target)
 				. = TRUE
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)

@@ -156,6 +156,18 @@
 	strip_delay = 60
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 50)
 
+/obj/item/clothing/gloves/color/captain/centcom
+	desc = "Regal green gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
+	name = "\improper CentCom gloves"
+	icon_state = "centcom"
+	item_state = "centcom"
+
+/obj/item/clothing/gloves/color/captain/centcom/admiral
+	desc = "Regal black gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
+	name = "\improper CentCom grand admiral gloves"
+	icon_state = "grand_admiral"
+	item_state = "grand_admiral"
+
 /obj/item/clothing/gloves/color/latex
 	name = "latex gloves"
 	desc = "Cheap sterile gloves made from latex."

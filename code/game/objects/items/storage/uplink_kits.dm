@@ -194,7 +194,7 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/security(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
-			
+
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
@@ -209,7 +209,7 @@
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
-			
+
 
 		if("gang_boss")
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
@@ -547,6 +547,7 @@
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom_officer(src)
+	new /obj/item/clothing/head/beret/sec/centcom(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/radio/headset/headset_cent/empty(src)
@@ -554,6 +555,7 @@
 	new /obj/item/storage/backpack/satchel(src)
 	new /obj/item/pda/heads(src)
 	new /obj/item/clipboard(src)
+	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/broken/PopulateContents()
 	new /obj/item/clothing/under/chameleon/broken(src)

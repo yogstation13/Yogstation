@@ -15,7 +15,7 @@
 		return
 
 	if(query_memoedits.NextRow())
-		var/edit_log = query_memoedits.item[1]
+		var/edit_log = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + query_memoedits.item[1] + "</BODY></HTML>"
 		usr << browse(edit_log,"window=mentormemoeditlist")
 	qdel(query_memoedits)
 
