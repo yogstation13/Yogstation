@@ -1034,7 +1034,7 @@
 			cards += "Blue Reverse"
 		for(i=1; i<=4; i++)
 			cards += "Wildcard"
-			cards += "Wild Draw 4"
+			cards += "Wild Draw Four"
 	
 
 /obj/item/toy/cards/deck/uno/update_icon()
