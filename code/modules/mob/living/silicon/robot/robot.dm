@@ -317,6 +317,14 @@
 			. += "[st.name]: [st.energy]/[st.max_energy]"
 	if(connected_ai)
 		. += "Master AI: [connected_ai.name]"
+		if (connected_ai.mind)
+			var/datum/antagonist/traitor/A = connected_ai.mind.has_antag_datum(/datum/antagonist/traitor)
+			if (A && A.objectives && A.objectives.len)
+				. += ""
+				. += "<b><font color='#ff0000'>Accomplish the following:</font></b>"
+				var/counter = 1
+				for (var/datum/objective/O in A.objectives)
+					. += "[counter++]. [O.explanation_text]"
 
 /mob/living/silicon/robot/restrained(ignore_grab)
 	. = 0
