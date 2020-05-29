@@ -178,7 +178,7 @@
 			if(!current_pad.teleporting)
 				var/new_x = input("Set the X offset (Horizontal)","X Offset", current_pad.x_offset) as null|num
 				if(!isnull(new_x))
-					new_x = CLAMP(new_x, current_pad.range * -1, current_pad.range)
+					new_x = clamp(new_x, current_pad.range * -1, current_pad.range)
 				. = TRUE
 				current_pad.x_offset = new_x
 				current_pad.update_indicator()
@@ -188,7 +188,7 @@
 			if(!current_pad.teleporting)
 				var/new_y = input("Set the Y offset (Vertical)","Y Offset", current_pad.y_offset) as null|num
 				if(!isnull(new_y))
-					new_y = CLAMP(new_y, current_pad.range * -1, current_pad.range)
+					new_y = clamp(new_y, current_pad.range * -1, current_pad.range)
 				. = TRUE
 				current_pad.y_offset = new_y
 				current_pad.update_indicator()

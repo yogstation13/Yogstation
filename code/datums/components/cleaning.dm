@@ -2,7 +2,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
 /datum/component/cleaning/Initialize()
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), .proc/Clean)
 
