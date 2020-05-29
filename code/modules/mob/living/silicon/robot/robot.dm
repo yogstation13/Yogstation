@@ -317,7 +317,7 @@
 			. += "[st.name]: [st.energy]/[st.max_energy]"
 	if(connected_ai)
 		. += "Master AI: [connected_ai.name]"
-		if (connected_ai.mind)
+		if (connected_ai.mind && lawupdate)
 			var/datum/antagonist/traitor/A = connected_ai.mind.has_antag_datum(/datum/antagonist/traitor)
 			if (A && A.objectives && A.objectives.len)
 				. += ""
