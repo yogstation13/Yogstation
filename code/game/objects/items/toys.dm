@@ -722,7 +722,7 @@
 		user.visible_message("[user] shuffles the deck.", "<span class='notice'>You shuffle the deck.</span>")
 		cooldown = world.time
 
-/obj/item/toy/cards/deck/attackby(obj/item/I, mob/living/user, params) 
+/obj/item/toy/cards/deck/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/toy/cards/singlecard))
 		var/obj/item/toy/cards/singlecard/SC = I
 		if(SC.parentdeck == src)
@@ -851,7 +851,7 @@
 
 
 ///check_menu: Checks if we are allowed to interact with a radial menu
-  
+
 ///Arguments:
 ///user The mob interacting with a menu
 
@@ -992,7 +992,7 @@
 /*
  * YOU HAVE UNO IT CAME FREE WITH YOUR FUCKING PDA
  */
- 
+
 /obj/item/toy/cards/deck/uno
 	name = "deck of UNO cards"
 	desc = "A deck of space-grade UNO cards."
@@ -1035,7 +1035,7 @@
 	for(j=1; j<=4; j++)
 		cards += "Wildcard"
 		cards += "Wild Draw Four"
-	
+
 
 /obj/item/toy/cards/deck/uno/update_icon()
 	if(cards.len > 54)
