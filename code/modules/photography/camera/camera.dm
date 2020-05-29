@@ -111,9 +111,11 @@
 	if(on) // EMP will only work on cameras that are on as it has power going through it
 		icon_state = state_off
 		on = FALSE
-		sleep(600/severity)
-		on = TRUE
-		icon_state = state_on
+		addtimer(CALLBACK(src, .proc/emp_after), (600/severity))
+
+/obj/item/camera/proc/emp_after()
+	on = TRUE
+	icon_state = state_on
 
 /obj/item/camera/afterattack(atom/target, mob/user, flag)
 	if (disk)
