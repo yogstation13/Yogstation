@@ -1007,12 +1007,12 @@
 
 /obj/item/toy/cards/deck/uno/proc/populate_uno_deck() //RED GREEN YELLOW BLUE
 	icon_state = "deck_[deckstyle]_full"
-	for(var/k in 0 to 9)
+	for(var/i in 0 to 9)
 		cards += "Red [i]"
 		cards += "Green [i]"
 		cards += "Yellow [i]"
 		cards += "Blue [i]"
-	for(var/p in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+	for(var/i in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
 		cards += "Red [i]"
 		cards += "Green [i]"
 		cards += "Yellow [i]"
