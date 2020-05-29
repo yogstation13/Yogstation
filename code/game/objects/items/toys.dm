@@ -1000,6 +1000,7 @@
 	deckstyle = "uno"
 	icon_state = "deck_uno_full"
 	w_class = WEIGHT_CLASS_SMALL
+	list/cards = list()
 
 /obj/item/toy/cards/deck/uno/Initialize()
 	. = ..()
