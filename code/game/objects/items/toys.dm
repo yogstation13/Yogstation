@@ -1017,7 +1017,8 @@
 			cards += "Green [i]"
 			cards += "Yellow [i]"
 			cards += "Blue [i]"
-		for(var/i=1; i<=2; i++)
+		var/j=1
+		for(j=1; j<=2; j++)
 			cards += "Red Draw Two"
 			cards += "Green Draw Two"
 			cards += "Yellow Draw Two"
@@ -1030,7 +1031,8 @@
 			cards += "Green Reverse"
 			cards += "Yellow Reverse"
 			cards += "Blue Reverse"
-		for(var/i=1; i<=4; i++)
+		j=1
+		for(j=1; j<=4; j++)
 			cards += "Wildcard"
 			cards += "Wild Draw Four"
 	
