@@ -323,27 +323,25 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	SSticker.force_ending = 1
 
 
-//AI Turret Upgrade: Increases the health and damage of all turrets.
-/datum/AI_Module/large/upgrade_turrets
-	module_name = "AI Turret Upgrade"
-	mod_pick_name = "turret"
-	description = "Improves the power and health of all AI turrets. This effect is permanent."
+/// AI Turret Upgrade: Increases the health and damage of all turrets.
+/datum/AI_Module/upgrade/upgrade_turrets
+	name = "AI Turret Upgrade"
+	description = "Improves the power and health of all AI turrets. This effect is permanent. Upgrade is done immediately upon purchase."
 	cost = 30
 	upgrade = TRUE
 	unlock_text = "<span class='notice'>You establish a power diversion to your turrets, upgrading their health and damage.</span>"
 	unlock_sound = 'sound/items/rped.ogg'
 
-/datum/AI_Module/large/upgrade_turrets/upgrade(mob/living/silicon/ai/AI)
+/datum/AI_Module/upgrade/upgrade_turrets/upgrade(mob/living/silicon/ai/AI)
 	for(var/obj/machinery/porta_turret/ai/turret in GLOB.machines)
 		turret.obj_integrity += 30
 		turret.lethal_projectile = /obj/item/projectile/beam/laser/heavylaser //Once you see it, you will know what it means to FEAR.
 		turret.lethal_projectile_sound = 'sound/weapons/lasercannonfire.ogg'
 
 
-//Hostile Station Lockdown: Locks, bolts, and electrifies every airlock on the station. After 90 seconds, the doors reset.
-/datum/AI_Module/large/lockdown
-	module_name = "Hostile Station Lockdown"
-	mod_pick_name = "lockdown"
+/// Hostile Station Lockdown: Locks, bolts, and electrifies every airlock on the station. After 90 seconds, the doors reset.
+/datum/AI_Module/destructive/lockdown
+	name = "Hostile Station Lockdown"
 	description = "Overload the airlock, blast door and fire control networks, locking them down. Caution! This command also electrifies all airlocks. The networks will automatically reset after 90 seconds, briefly \
 	opening all doors on the station."
 	cost = 30

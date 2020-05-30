@@ -246,7 +246,6 @@
 	network = list("thunder")
 	density = FALSE
 	circuit = null
-	long_ranged = TRUE
 	interaction_flags_atom = NONE  // interact() is called by BigClick()
 	var/icon_state_off = "entertainment_blank"
 	var/icon_state_on = "entertainment"
