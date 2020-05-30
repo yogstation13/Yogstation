@@ -611,9 +611,9 @@
 					O.forceMove(drop_location())
 					if(prob(20))
 						O.animate_atom_living()
-			/* YOGSif(9 to 10)
+			if(9 to 10)
 				ForceContractDisease(new/datum/disease/gastrolosis())
-				to_chat(src, "<span class='notice'>Oh, I actually feel quite alright!</span>") YOGS*/
+				to_chat(src, "<span class='notice'>Oh, I actually feel quite alright!</span>") 
 	else
 		switch(rand(0,5))
 			if(0)
