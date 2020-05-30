@@ -175,6 +175,10 @@
 	random_sensor = FALSE
 	can_adjust = TRUE
 
+/obj/item/clothing/under/yogs/namjumpsuit/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0)
+
 /obj/item/clothing/under/yogs/ocelot
 	name = "gulag officer uniform"
 	desc = "For wardens particular to the use of the gulag."
@@ -200,6 +204,10 @@
 	sensor_mode = 3
 	random_sensor = FALSE
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/lieutgeneral/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
 
 /obj/item/clothing/under/yogs/captainartillery
 	name = "captain artillery uniform"
@@ -231,6 +239,10 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/redcoatuniform/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0)
 
 /obj/item/clothing/under/yogs/hamiltonuniform
 	name = "hamilton uniform"
@@ -342,6 +354,10 @@
 	random_sensor = FALSE
 	can_adjust = FALSE
 
+/obj/item/clothing/under/yogs/dictatorhos/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
+
 /obj/item/clothing/under/yogs/botanyuniform
 	name = "botany yellow uniform"
 	desc = "Are we making meth or growing plants?"
@@ -391,6 +407,10 @@
 	item_color = "army_uniform"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/yogs/armyuniform/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
+
 /obj/item/clothing/under/yogs/work_suit
 	name = "workout suit"
 	desc = "Perfect for that 24/7 workout with all the running you do around the station."
@@ -419,6 +439,10 @@
 	random_sensor = FALSE
 	can_adjust = FALSE
 
+/obj/item/clothing/under/yogs/hoslatenight/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
+
 /obj/item/clothing/under/yogs/cecasual
 	name = "casual chief engineer uniform"
 	desc = "Even the CE has to take a break from setting up the engine somet- and the singlo is loose."
@@ -441,6 +465,10 @@
 	sensor_mode = 3
 	random_sensor = FALSE
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/hoscasual/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
 
 /obj/item/clothing/under/yogs/hopcasual
 	name = "casual head of personnel uniform"
@@ -633,6 +661,10 @@
 	icon_state = "altsecurity"
 	item_state = "altsecurity"
 	item_color = "altsecurity"
+
+/obj/item/clothing/under/yogs/shitcurity/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0)
 
 /obj/item/clothing/under/yogs/victoriouscaptainuniform
 	name = "very fancy captain uniform"
