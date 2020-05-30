@@ -235,14 +235,14 @@
 	draining = H
 	var/mob/living/carbon/human/O = owner.current
 	var/blood = 0
-	var/blood_coeff = 1
+	var/blood_coeff = 1 //how much blood is gained as a % from the amount drained, currently changed by how dead the victim is
 	var/old_bloodtotal = 0 //used to see if we increased our blood total
 	var/old_bloodusable = 0 //used to see if we increased our blood usable
-	var/silent = FALSE //if the succ gives a message
+	var/silent = FALSE //if the succ gives a message/sounds
 	var/warned = FALSE //has the vampire been warned they're about to alert a target while stealth sucking?
-	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ?
+	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ? changes depending on grab state
 	log_attack("[O] ([O.ckey]) bit [H] ([H.ckey]) in the neck")
-	if(!O.pulling == H)
+	if(!(O.pulling == H))
 		silent = TRUE
 		blood_to_take *= 0.5 //half blood from targets that aren't being pulled, but they also don't get warned until it starts to cause damage
 	else if(O.grab_state >= GRAB_NECK)
@@ -261,7 +261,7 @@
 		if(!is_vampire(O))
 			to_chat(O, "<span class='warning'>Your fangs have disappeared!</span>")
 			return
-		if(blood_to_take > BLOOD_SUCK_BASE && (!O.pulling == H || O.grab_state < GRAB_NECK))//smooth movement from aggressive suck to normal suck
+		if(blood_to_take > BLOOD_SUCK_BASE && (!(O.pulling == H) || O.grab_state < GRAB_NECK))//smooth movement from aggressive suck to normal suck
 			blood_to_take = BLOOD_SUCK_BASE
 			to_chat(O, "<span class='warning'>You lose your grip on [H], reducing your bloodsucking speed.</span>")
 		if(blood_to_take == BLOOD_SUCK_BASE && (O.pulling == H && O.grab_state >= GRAB_NECK))//smooth movement from normal suck to aggressive suck
@@ -288,8 +288,8 @@
 		if(old_bloodtotal != total_blood)
 			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
 		H.blood_volume = max(H.blood_volume - blood_to_take, 0)
-		if(silent && !warned && (H.blood_volume <= BLOOD_VOLUME_OKAY(H) + 20))
-			to_chat(O, "<span class='blodwarning'>Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue...</span>")
+		if(silent && !warned && (H.blood_volume <= (BLOOD_VOLUME_SAFE(H) + 20)))
+			to_chat(O, "<span class='boldwarning'>Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue...</span>")
 			warned = TRUE
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood * 0.5), NUTRITION_LEVEL_WELL_FED)
