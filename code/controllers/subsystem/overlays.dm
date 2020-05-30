@@ -155,26 +155,8 @@ SUBSYSTEM_DEF(overlays)
 		QUEUE_FOR_COMPILE
 
 /atom/proc/add_overlay(list/overlays, priority = FALSE)
-	if(!overlays)
-		return
-
-	overlays = build_appearance_list(overlays)
-
-	LAZYINITLIST(add_overlays) //always initialized after this point
-	LAZYINITLIST(priority_overlays)
-	var/a_len = add_overlays.len
-	var/p_len = priority_overlays.len
-
-	if(priority)
-		priority_overlays += overlays  //or in the image. Can we use [image] = image?
-		var/fp_len = priority_overlays.len
-		if(NOT_QUEUED_ALREADY && fp_len != p_len)
-			QUEUE_FOR_COMPILE
-	else
-		add_overlays += overlays
-		var/fa_len = add_overlays.len
-		if(NOT_QUEUED_ALREADY && fa_len != a_len)
-			QUEUE_FOR_COMPILE
+	to_chat(usr, "<span class='reallybig phobia'>ATTENTION!</span>\n You are trying to create an overlay, for beauty reasons, overlays are now banned. Please refrain from doing actions which may cause the creation of overlays.")
+	CRASH("Attempted to add overlay")
 
 /atom/proc/copy_overlays(atom/other, cut_old)	//copys our_overlays from another atom
 	if(!other)
