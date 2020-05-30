@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "Added an admin spawned version of skub!"
