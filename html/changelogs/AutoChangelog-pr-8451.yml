@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "Disposal bins can now be alt clicked to toggle handle"
