@@ -801,3 +801,95 @@
 		message_admins("Checking if we can turn someone into a vampire.")
 		log_game("DYNAMIC: Checking if we can turn someone into a vampire.")
 		mode.picking_specific_rule(/datum/dynamic_ruleset/midround/autovamp)
+
+//////////////////////////////////////////////
+//                                          //
+//                RAGIN' MAGES				//
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/wizard/raging
+	name = "Ragin' Mages"
+	antag_flag = ROLE_WIZARD
+	antag_datum = /datum/antagonist/wizard
+	minimum_required_age = 14
+	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
+	required_candidates = 4
+	weight = 1
+	cost = 70
+	requirements = list(100,95,90,80,75,75,70,60,60,55)
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/acceptable(population=0, threat=0)
+	if(GLOB.wizardstart.len == 0)
+		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
+		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/pre_execute()
+	if(GLOB.wizardstart.len == 0)
+		return FALSE
+
+	var/mob/M = pick_n_take(candidates)
+	if (M)
+		assigned += M.mind
+		M.mind.assigned_role = ROLE_WIZARD
+		M.mind.special_role = ROLE_WIZARD
+
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/execute()
+	for(var/datum/mind/M in assigned)
+		M.current.forceMove(pick(GLOB.wizardstart))
+		M.add_antag_datum(new antag_datum())
+	return TRUE
+	
+//////////////////////////////////////////////
+//                                          //
+//              BULLSHIT MAGES				//
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit
+	name = "Bullshit Mages"
+	antag_flag = ROLE_WIZARD
+	antag_datum = /datum/antagonist/wizard
+	minimum_required_age = 14
+	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
+	required_candidates = 4
+	weight = 1
+	cost = 80
+	minimum_players = 40
+	requirements = list(100,100,100,100,95,95,90,80,85,75)
+	var/mage_cap = 999
+	var/bullshit_mode = 1
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/acceptable(population=0, threat=0)
+	if(GLOB.wizardstart.len == 0)
+		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
+		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/pre_execute()
+	var/indice_pop = min(45,round(mode.roundstart_pop_ready/2)+1)
+	var/mages = mage_cap[indice_pop]
+	for(var/mages_number = 1 to mages)
+	if(GLOB.wizardstart.len == 0)
+		return FALSE
+
+	var/mob/M = pick_n_take(candidates)
+	if (M)
+		assigned += M.mind
+		M.mind.assigned_role = ROLE_WIZARD
+		M.mind.special_role = ROLE_WIZARD
+		log_admin("Shit is about to get wild. -Bullshit Wizards")
+
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/execute()
+	for(var/datum/mind/M in assigned)
+		M.current.forceMove(pick(GLOB.wizardstart))
+		M.add_antag_datum(new antag_datum())
+	return TRUE
+	
