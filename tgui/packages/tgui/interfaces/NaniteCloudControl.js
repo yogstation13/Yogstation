@@ -312,7 +312,7 @@ export const NaniteCloudControl = (props, context) => {
                   maxValue={100}
                   stepPixelSize={4}
                   width="39px"
-                   />
+                />
                 <Button
                   icon="plus"
                   onClick={() => act('create_backup')} />
