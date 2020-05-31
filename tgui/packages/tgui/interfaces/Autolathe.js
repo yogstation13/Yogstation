@@ -55,7 +55,7 @@ export class Autolathe extends Component {
               <font color={(data.total_amount > 0 ? '#c9b971' : 'red')}>
                 <Box inline mr={1} mb={1} ml={1} mt={1}>
                   <b>Total amount: </b>
-                </Box> 
+                </Box>
                 {data.total_amount} / {data.max_amount} cm³
               </font>
               <br />
@@ -78,32 +78,32 @@ export class Autolathe extends Component {
             <div align="right">
               Print Location:
               <Button
-                mr={10}  
+                mr={10}
                 ml={2}
                 mb={1}
                 disabled={data.abovewall}
-                color={data.printdir === 1 ? ("green"):("yellow")}    
+                color={data.printdir === 1 ? ("green"):("yellow")}
                 icon={"chevron-up"}
                 onClick={() => act(ref, 'printdir', { direction: '1' })}
               />
               <br /><Button
                 ml={1}
                 disabled={data.leftwall}
-                color={data.printdir === 8 ? ("green"):("yellow")}    
+                color={data.printdir === 8 ? ("green"):("yellow")}
                 icon={"chevron-left"}
                 onClick={() => act(ref, 'printdir', { direction: '8' })}
               />
               <Button
                 ml={1}
-                icon="print"       
-                color={data.printdir === 0 ? ("green"):("yellow")}    
+                icon="print"
+                color={data.printdir === 0 ? ("green"):("yellow")}
                 onClick={() => act(ref, 'printdir', { direction: '0' })}
               />
               <Button
                 ml={1}
                 mr={5}
                 disabled={data.rightwall}
-                color={data.printdir === 4 ? ("green"):("yellow")}     
+                color={data.printdir === 4 ? ("green"):("yellow")}
                 icon={"chevron-right"}
                 onClick={() => act(ref, 'printdir', { direction: '4' })}
               />
@@ -113,7 +113,7 @@ export class Autolathe extends Component {
                 mt={0.8}
                 mr={10}
                 disabled={data.belowwall}
-                color={data.printdir === 2 ? ("green"):("yellow")}   
+                color={data.printdir === 2 ? ("green"):("yellow")}
                 icon={"chevron-down"}
                 onClick={() => act(ref, 'printdir', { direction: '2' })}
               />
@@ -136,7 +136,7 @@ export class Autolathe extends Component {
               minValue={0}
               maxValue={Math.round((data.metal_amount / 2000) - 0.5)}
               onChange={(e, value) => this.setMetalSheetCount(value)} />
-                
+
             <Button
               inline
               content={"Eject"}
@@ -170,7 +170,7 @@ export class Autolathe extends Component {
                 multiplier: sheetnumberglass,
               })}
             />
-            <div><br /></div>               
+            <div><br /></div>
           </Grid.Column>
         </Grid>
         <Flex>
@@ -259,14 +259,14 @@ export class Autolathe extends Component {
                                   <b>Glass: {design.materials_metal}</b>
                                 )}
                               </Box>
-        
+
                             )}
-        
+
                           </Grid.Column>
                         </Grid>
                       </div>
                     ))}
-      
+
                   </Flex.Item>
                 </div>
               </Section>
@@ -292,7 +292,7 @@ export class Autolathe extends Component {
                                 item_id: design.id,
                                 multiplier: 1,
                               })} />
-              
+
                             {design.max_multiplier.map(max => (
                               <Button
                                 inline
@@ -322,7 +322,7 @@ export class Autolathe extends Component {
                               </Box>
 
                             )}
-            
+
                           </Grid.Column>
                           <Grid.Column size={1}>
                             {!design.materials_glass > 0 ? (
@@ -338,7 +338,7 @@ export class Autolathe extends Component {
                                   <b>Glass: {design.materials_glass}</b>
                                 )}
                               </Box>
-        
+
                             )}
                           </Grid.Column>
                         </Grid>
@@ -346,7 +346,7 @@ export class Autolathe extends Component {
                     ))}
                   </Flex.Item>
                 </div>
-          
+
               </Section>
 
             )}
@@ -367,8 +367,7 @@ export class Autolathe extends Component {
                 {data.queue.map(build => (
                   <div key={data.queue.len}>
                     <Grid>
-                      <Grid.Column size={0.1}>
-                      </Grid.Column>
+                      <Grid.Column size={0.1} />
                       <Grid.Column size={1.5}>
                         {build.name}
                         {"  x  " + build.multiplier + "   "}
@@ -377,13 +376,13 @@ export class Autolathe extends Component {
                         <Button
                           disabled={(build.index === 1)}
                           icon="chevron-up"
-                          onClick={() => act(ref, 'queue_move', 
+                          onClick={() => act(ref, 'queue_move',
                             { queue_move: -1, index: build.index })}
                         />
                         <Button
                           disabled={(build.index === data.queuelength)}
                           icon="chevron-down"
-                          onClick={() => act(ref, 'queue_move', 
+                          onClick={() => act(ref, 'queue_move',
                             { queue_move: +1, index: build.index })}
                         />
                         <Button
@@ -391,8 +390,7 @@ export class Autolathe extends Component {
                           onClick={() => act(ref, 'remove_from_queue', { index: build.index })}
                         />
                       </Grid.Column>
-                      <Grid.Column size={5}>
-                      </Grid.Column>
+                      <Grid.Column size={5} />
                     </Grid><br />
                   </div>
                 ))}
