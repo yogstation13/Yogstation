@@ -9,7 +9,9 @@ export class Autolathe extends Component {
 
   constructor() {
     super();
-    this.state = { searchterms: '', sheetnumberglass: 0, sheetnumbermetal: 0 };
+    this.state = { 
+      searchterms: '', sheetnumberglass: 0, sheetnumbermetal: 0, setcategory: 'Tools',
+    };
   }
 
   setSearchText(searchterms) {
@@ -29,12 +31,18 @@ export class Autolathe extends Component {
       sheetnumberglass,
     });
   }
+  
+  setCategory(setcategory) {
+    this.setState({
+      setcategory,
+    });
+  }
 
   render() {
     const { state } = this.props;
     const { config, data } = state;
     const { ref } = config;
-    const { searchterms, sheetnumberglass, sheetnumbermetal } = this.state;
+    const { searchterms, sheetnumberglass, sheetnumbermetal, setcategory } = this.state;
     return (
       <Section
         title={("Autolathe")}
@@ -181,11 +189,17 @@ export class Autolathe extends Component {
                   key={categoryName}
                   fluid
                   mr={2}
-                  selected={data.selected_category === categoryName}
+                  selected={         
+                    (searchterms.length > 1 ? (
+                      (categoryName === 'Search' ? 1 : 0)
+                    ):(
+                      setcategory === categoryName
+                    ))
+                  }
                   color="transparent"
                   content={categoryName}
                   onClick={(!searchterms ? (
-                    () => act(ref, 'set_category', { category: categoryName })
+                    () => this.setCategory(categoryName)
                   ):(
                     () => this.setSearchText("")))}
                 />
@@ -193,14 +207,19 @@ export class Autolathe extends Component {
             </Section>
           </Flex.Item>
           <Flex.Item>
-            {searchterms.length > 0 ? (
+            {searchterms.length > 1 ? (
               <Section fluid title="Search Results" width={100}>
                 <div>
                   <Flex.Item>
                     {data.designs.filter(design => {
                       const searchTerm = searchterms.toLowerCase();
                       const searchableString = String(design.name).toLowerCase();
-                      return (searchableString.startsWith(searchterms));
+                      // this.setCategory('Search');
+                      return (searchterms.length < 2 ? (
+                        null
+                      ) : (
+                        (searchableString.match(new RegExp(searchterms, "i")))
+                      ));
                     }).map(design => (
                       <div key={data.designs}>
                         <Grid>
@@ -275,7 +294,7 @@ export class Autolathe extends Component {
                 <div>
                   <Flex.Item>
                     {data.designs.filter(design => {
-                      return (design.category.includes(data.selected_category));
+                      return (design.category.includes(setcategory));
                     }).map(design => (
                       <div key={data.designs}>
                         <Grid>
