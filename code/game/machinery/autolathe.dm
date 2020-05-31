@@ -62,7 +62,7 @@
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(!ui)
-		ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)  //Create the TGUI from autolathe.js
+		ui = new(user, src, ui_key, "Autolathe", name, 1116, 703, master_ui, state)  //Create the TGUI from autolathe.js
 		ui.open()
 
 /obj/machinery/autolathe/proc/wallcheck(direction) //Check for nasty walls and update ui
