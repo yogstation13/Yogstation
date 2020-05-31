@@ -470,7 +470,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 25
-	requirements = list(80,70,60,50,50,45,30,30,20,25)
+	requirements = list(80,70,60,50,50,45,30,30,25,25)
 	minimum_players = 30
 	
 /datum/dynamic_ruleset/midround/autovamp/acceptable(population = 0, threat = 0)
