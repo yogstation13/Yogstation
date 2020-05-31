@@ -6,8 +6,8 @@
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = LIGHT_COLOR_RED
 
-	var/ui_x = 870
-	var/ui_y = 708
+	ui_x = 870
+	ui_y = 708
 
 	var/list/network = list("ss13")
 	var/list/concurrent_users = list()

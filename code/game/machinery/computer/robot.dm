@@ -7,8 +7,8 @@
 	circuit = /obj/item/circuitboard/computer/robotics
 	light_color = LIGHT_COLOR_PINK
 	var/temp = null
-	var/ui_x = 500
-	var/ui_y = 460
+	ui_x = 500
+	ui_y = 460
 
 
 /obj/machinery/computer/robotics/proc/can_control(mob/user, mob/living/silicon/robot/R)

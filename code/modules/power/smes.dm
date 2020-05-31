@@ -22,8 +22,8 @@
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/machine/smes
 
-	var/ui_x = 340
-	var/ui_y = 350
+	ui_x = 340
+	ui_y = 350
 
 	var/capacity = 5e6 // maximum charge
 	var/charge = 0 // actual charge

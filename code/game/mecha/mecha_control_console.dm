@@ -6,8 +6,8 @@
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/computer/mecha_control
 	var/list/located = list()
-	var/ui_x = 500
-	var/ui_y = 500
+	ui_x = 500
+	ui_y = 500
 
 /obj/machinery/computer/mecha/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
