@@ -50,7 +50,7 @@
 	if(prob(25))
 		category = null
 	var/datum/DBQuery/query_get_random_books = SSdbcore.NewQuery(	
-	"SELECT * FROM [format_table_name("library")] WHERE isnull(deleted) AND :category IS NULL OR category = :category GROUP BY title ORDER BY rand() LIMIT :limit",
+	"SELECT * FROM [format_table_name("library")] WHERE isnull(deleted) AND :category IS NULL OR category = :category ORDER BY rand() LIMIT :limit",
 		list("category" = category, "limit" = amount)
 	)
 	if(query_get_random_books.Execute())
