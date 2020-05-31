@@ -16,8 +16,8 @@
 	icon_state = "mining"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor
-	var/ui_x = 425
-	var/ui_y = 600
+	ui_x = 425
+	ui_y = 600
 	var/icon_deny = "mining-deny"
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
@@ -222,7 +222,7 @@
 
   /*
    check_menu: Checks if we are allowed to interact with a radial menu
-  
+
    Arguments:
    redeemer The mob interacting with a menu
    voucher The mining voucher item

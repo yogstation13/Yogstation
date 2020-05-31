@@ -135,7 +135,7 @@
   * * O - seed to generate the string from
   */
 /obj/machinery/seed_extractor/proc/generate_seed_string(obj/item/seeds/O)
-	return "name=[O.name];lifespan=[O.lifespan];endurance=[O.endurance];maturation=[O.maturation];production=[O.production];yield=[O.yield];potency=[O.potency];instability=[O.instability]"
+	return "name=[O.name];lifespan=[O.lifespan];endurance=[O.endurance];maturation=[O.maturation];production=[O.production];yield=[O.yield];potency=[O.potency]"
 
 
 /** Add Seeds Proc.

@@ -307,14 +307,12 @@ export const NaniteCloudControl = (props, context) => {
               <Fragment>
                 {"New Backup: "}
                 <NumberInput
-                  value={new_backup_id}
+                  value="Name"
                   minValue={1}
                   maxValue={100}
                   stepPixelSize={4}
                   width="39px"
-                  onChange={(e, value) => act('update_new_backup_value', {
-                    value: value,
-                  })} />
+                   />
                 <Button
                   icon="plus"
                   onClick={() => act('create_backup')} />

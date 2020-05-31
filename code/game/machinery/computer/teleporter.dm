@@ -5,8 +5,8 @@
 	icon_keyboard = "teleport_key"
 	light_color = LIGHT_COLOR_BLUE
 	circuit = /obj/item/circuitboard/computer/teleporter
-	var/ui_x = 470
-	var/ui_y = 140
+	ui_x = 470
+	ui_y = 140
 	var/regime_set = "Teleporter"
 	var/id
 	var/obj/machinery/teleport/station/power_station

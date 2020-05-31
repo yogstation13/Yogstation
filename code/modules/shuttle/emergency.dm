@@ -8,8 +8,8 @@
 	desc = "For shuttle control."
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
-	var/ui_x = 400
-	var/ui_y = 350
+	ui_x = 400
+	ui_y = 350
 	var/auth_need = 3
 	var/list/authorized = list()
 

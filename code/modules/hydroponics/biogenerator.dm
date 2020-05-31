@@ -29,17 +29,6 @@
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/biogenerator/contents_explosion(severity, target)
-	..()
-	if(beaker)
-		switch(severity)
-			if(EXPLODE_DEVASTATE)
-				SSexplosions.highobj += beaker
-			if(EXPLODE_HEAVY)
-				SSexplosions.medobj += beaker
-			if(EXPLODE_LIGHT)
-				SSexplosions.lowobj += beaker
-
 /obj/machinery/biogenerator/handle_atom_del(atom/A)
 	..()
 	if(A == beaker)
@@ -67,7 +56,7 @@
 /obj/machinery/biogenerator/on_reagent_change(changetype)			//When the reagents change, change the icon as well.
 	update_icon()
 
-/obj/machinery/biogenerator/update_icon_state()
+/obj/machinery/biogenerator/update_icon()
 	if(panel_open)
 		icon_state = "biogen-empty-o"
 	else if(!src.beaker)
@@ -194,13 +183,13 @@
 		update_icon()
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
-	if(materials.len != 1 || materials[1] != SSmaterials.GetMaterialRef(/datum/material/biomass))
+	if(materials.len != 1 || materials[1] != MAT_BIOMASS)
 		return FALSE
-	if (materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency > points)
+	if (materials[MAT_BIOMASS]*multiplier/efficiency > points)
 		return FALSE
 	else
 		if(remove_points)
-			points -= materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency
+			points -= materials[MAT_BIOMASS]*multiplier/efficiency
 		update_icon()
 		return TRUE
 
@@ -305,7 +294,7 @@
 			cat["items"] += list(list(
 				"id" = D.id,
 				"name" = D.name,
-				"cost" = D.materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]/efficiency,
+				"cost" = D.materials[MAT_BIOMASS]/efficiency,
 			))
 		data["categories"] += list(cat)
 
