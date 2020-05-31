@@ -72,7 +72,7 @@
 
 /obj/item/storage/lockbox/AltClick(mob/user)
 	..()
-	if(!user.canUseTopic(src, BE_CLOSE) || !isturf(loc) || open)
+	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	togglelock(user)
 
