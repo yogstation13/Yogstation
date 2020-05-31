@@ -14,6 +14,6 @@ if [[ -e ~/.nvm/nvm.sh ]]; then
 	nvm use "${NODE_VERSION}"
 fi
 
-echo "Building 'tgui-next'"
+echo "Building 'tgui'"
 cd "${base_dir}/tgui"
 bin/tgui --ci
