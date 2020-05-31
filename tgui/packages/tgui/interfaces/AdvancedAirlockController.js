@@ -5,6 +5,7 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NumberInput, Section, ProgressBar } from '../components';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 import { classes } from 'common/react';
+import { Window } from '../layouts';
 
 const STATE_INOPEN = 0;
 const STATE_INOPENING = 1;
@@ -26,16 +27,18 @@ export const AdvancedAirlockController = props => {
   const { act, data } = useBackend(props);
   const locked = data.locked && !data.siliconUser;
   return (
-    <Fragment>
-      <InterfaceLockNoticeBox
-        siliconUser={data.siliconUser}
-        locked={data.locked}
-        onLockStatusChange={() => act('lock')} />
-      <AACStatus state={state} />
-      {!locked && (
-        <AACControl state={state} />
-      )}
-    </Fragment>
+    <Window>
+      <Window.Content>
+        <InterfaceLockNoticeBox
+          siliconUser={data.siliconUser}
+          locked={data.locked}
+          onLockStatusChange={() => act('lock')} />
+        <AACStatus state={state} />
+        {!locked && (
+          <AACControl state={state} />
+        )}
+      </Window.Content>
+    </Window>
   );
 };
 
@@ -253,7 +256,7 @@ const Vent = props => {
     <Section
       level={2}
       title={decodeHtmlEntities(name)}
-      buttons={(<Button 
+      buttons={(<Button
         content="Show Hologram"
         selected={data.vis_target === vent_id}
         onClick={() => act(data.vis_target === vent_id ? 'clear_vis' : 'set_vis_vent', {
@@ -311,7 +314,7 @@ const Airlock = props => {
     <Section
       level={2}
       title={decodeHtmlEntities(name)}
-      buttons={(<Button 
+      buttons={(<Button
         content="Show Hologram"
         selected={data.vis_target === airlock_id}
         onClick={() => act(data.vis_target === airlock_id ? 'clear_vis' : 'set_vis_airlock', {

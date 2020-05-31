@@ -74,18 +74,18 @@ export const Signaler = (props, context) => {
             </Grid.Column>
           </Grid>
           <Grid mt={0.6}>
-        <Grid.Column size={1.4} color="label">
-          Color:
-        </Grid.Column>
-        <Grid.Column>
-          <Button
-            icon="sync"
-            width={25.75}
-            color={color}
-            content={color}
-            onClick={() => act('color')} />
-          </Grid.Column>
-      </Grid>
+            <Grid.Column size={1.4} color="label">
+              Color:
+            </Grid.Column>
+            <Grid.Column>
+              <Button
+                icon="sync"
+                width={25.75}
+                color={color}
+                content={color}
+                onClick={() => act('color')} />
+            </Grid.Column>
+          </Grid>
           <Grid mt={0.8}>
             <Grid.Column>
               <Button

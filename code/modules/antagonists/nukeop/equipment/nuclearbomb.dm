@@ -32,7 +32,6 @@
 	var/proper_bomb = TRUE //Please
 	var/obj/effect/countdown/nuclearbomb/countdown
 
-	var/ui_style = "nanotrasen"
 
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
@@ -265,7 +264,6 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "NuclearBomb", name, 350, 442, master_ui, state)
-		ui.set_style(ui_style)
 		ui.open()
 
 /obj/machinery/nuclearbomb/ui_data(mob/user)

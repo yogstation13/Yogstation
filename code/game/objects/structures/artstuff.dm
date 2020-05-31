@@ -108,15 +108,18 @@
 			update_icon()
 			. = TRUE
 
-/obj/item/canvas/update_overlays()
-	. = ..()
+/obj/item/canvas/update_icon()
+	..()
+	if(top_colors.len)
+		color = top_colors[1]
+	cut_overlays()
 	for(var/i in 2 to top_colors.len) //first is used as base color
 		var/mutable_appearance/detail = mutable_appearance(icon, "[icon_state]_detail_[i-1]")
 		detail.appearance_flags |= RESET_COLOR
 		detail.color = top_colors[i]
-		. += detail
+		add_overlay(detail)
 
-/obj/item/canvas/update_icon_state()
+/obj/item/canvas/update_icon()
 	. = ..()
 	if(top_colors.len)
 		color = top_colors[1]
@@ -179,7 +182,6 @@
 	name = "painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories."
 	icon = 'icons/obj/decals.dmi'
-	custom_materials = null
 	flags_1 = 0
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting
@@ -237,10 +239,11 @@
 		C.painting_name = new_name
 		SStgui.update_uis(C)
 
-/obj/structure/sign/painting/update_overlays()
-	. = ..()
+/obj/structure/sign/painting/update_icon()
+	..()
+	cut_overlays()
 	if(C && C.top_colors.len)
 		var/mutable_appearance/MA = mutable_appearance(icon, "frame-content-overlay")
 		MA.appearance_flags |= RESET_COLOR
 		MA.color = C.top_colors[1]
-		. += MA
+		add_overlay(MA)

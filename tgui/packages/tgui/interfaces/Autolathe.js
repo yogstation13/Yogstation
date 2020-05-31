@@ -40,7 +40,7 @@ export class Autolathe extends Component {
         title={("Autolathe")}
         buttons={(
           <Box inline ml={80}>
-      Search:
+            Search:
             <Input
               value={searchterms}
               width="250px"
@@ -76,7 +76,7 @@ export class Autolathe extends Component {
           </Grid.Column>
           <Grid.Column size={1.7}>
             <div align="right">
-            Print Location:
+              Print Location:
               <Button
                 mr={10}  
                 ml={2}
