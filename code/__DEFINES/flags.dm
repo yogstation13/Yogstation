@@ -53,7 +53,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSMOB			(1<<4)
 #define PASSCLOSEDTURF	(1<<5)
 #define LETPASSTHROW	(1<<6)
-#define PASSMACH		(1<<7)
+#define PASSMACHINES	(1<<7)
+#define PASSCOMPUTER	(1<<8)
 
 //Movement Types
 #define GROUND			(1<<0)

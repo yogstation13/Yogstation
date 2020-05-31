@@ -16,7 +16,7 @@
 	response_harm   = "stomps on"
 	ventcrawler = VENTCRAWLER_ALWAYS
 	density = FALSE
-	pass_flags = PASSTABLE | PASSMOB | PASSMACH
+	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST, MOB_REPTILE)
 	gold_core_spawnable = FRIENDLY_SPAWN
