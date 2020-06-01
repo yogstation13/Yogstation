@@ -773,7 +773,7 @@
 
 /obj/item/toy/cards/cardhand
 	name = "hand of cards"
-	desc = "A number of cards not in a deck, customarily held in ones hand. This hand contains [currenthand.len] cards."
+	desc = "A number of cards not in a deck, customarily held in ones hand. \nThis hand contains [currenthand.len] cards."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nanotrasen_hand2"
 	w_class = WEIGHT_CLASS_TINY
