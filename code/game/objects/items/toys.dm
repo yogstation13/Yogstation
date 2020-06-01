@@ -777,9 +777,9 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nanotrasen_hand2"
 	w_class = WEIGHT_CLASS_TINY
-	var/choice = null
 	var/list/currenthand = list()
-	desc = desc + "\nThis hand contains [currenthand.len] cards."
+	var/choice = null
+	
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
 	var/list/handradial = list()
 
