@@ -189,7 +189,7 @@
 		else
 			B.current_fullness++
 		B.update_icon()
-	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 300)
+	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
 
 /datum/game_mode/proc/create_anchor_bloodstone()
 	if(SSticker.mode.anchor_bloodstone)
