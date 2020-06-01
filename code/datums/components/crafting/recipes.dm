@@ -37,28 +37,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_availible = FALSE
-	
-/datum/crafting_recipe/makeshiftlasrifle
-	name = "makeshift laser rifle"
-	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 15,
-				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 1,
-				/obj/item/light/bulb = 1,
-				/obj/item/stock_parts/cell = 1)
-	tools = list(/obj/item/screwdriver)
-	time = 120
-	category = CAT_WEAPONRY
-	always_availible = FALSE
-
-/datum/crafting_recipe/knifeboxing
-	name = "Knife-boxing Gloves"
-	result = /obj/item/clothing/gloves/knifeboxing
-	reqs = list(/obj/item/clothing/gloves/boxing = 1,
-				/obj/item/kitchen/knife = 2)
-	time = 100
-	category = CAT_WEAPONRY
-	always_availible = FALSE
 
 //Normal recipes
 /datum/crafting_recipe/pin_removal
@@ -781,7 +759,7 @@
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
 	category = CAT_MISC
-	
 
 
-	
+
+
