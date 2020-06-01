@@ -32352,27 +32352,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"aXI" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/item/wrench,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/item/clothing/suit/armor/reactive/teleport,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/research)
 "aXJ" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -40298,6 +40277,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hud" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/wrench,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/item/clothing/suit/armor/reactive/teleport,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/holotool,
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "hvc" = (
 /obj/machinery/camera{
 	c_tag = "Research Division South";
@@ -93225,7 +93226,7 @@ sJL
 aVD
 aWu
 aVh
-aXI
+hud
 wur
 sJL
 aad
