@@ -653,7 +653,7 @@
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
 	populate_deck()
-	desc = desc +"\nThe deck contains [cards.len] cards."
+	desc = desc +"\nThe deck originally contained [cards.len] cards."
 
 /obj/item/toy/cards/deck/proc/populate_deck()
 	icon_state = "deck_[deckstyle]_full"
