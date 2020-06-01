@@ -149,7 +149,7 @@
 
 obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	. = ..()
-	message_admins("[ADMIN_LOOKUPFLW(user)] has shot firebreathe at [ADMIN_VERBOSEJMP(user)]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has shot firebreath at [ADMIN_VERBOSEJMP(user)]")
 
 /obj/item/projectile/magic/aoe/fireball/firebreath
 	name = "fire breath"
