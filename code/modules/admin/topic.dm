@@ -1901,6 +1901,31 @@
 		removeMentor(href_list["removementor"])
 	// yogs end
 
+	//antag tokens
+	else if(href_list["searchAntagTokenByKey"])
+		var/player_ckey = href_list["searchAntagTokenByKey"]
+		antag_token_panel(player_ckey)
+
+	else if(href_list["antag_token_give"])
+		var/player_ckey = href_list["antag_token_give"]
+		give_antag_token(player_ckey)
+
+	else if(href_list["antag_token_redeem"])
+		var/player_ckey = href_list["antag_token_redeem"]
+		redeem_antag_token(player_ckey)
+
+	else if(href_list["redeem_token_id"])
+		redeem_specific_antag_token(href_list["redeem_token_id"])
+
+	else if(href_list["deny_token_id"])
+		deny_antag_token(href_list["deny_token_id"])
+
+	else if(href_list["approve_antag_token"])
+		var/client/user_client = locate(href_list["approve_antag_token"])
+		accept_antag_token_usage(user_client)
+
+	//antag tokens end
+
 	else if(href_list["newbankey"])
 		var/player_key = href_list["newbankey"]
 		var/player_ip = href_list["newbanip"]
