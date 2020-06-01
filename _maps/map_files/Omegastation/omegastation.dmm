@@ -32954,6 +32954,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/holotool,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "aXJ" = (
