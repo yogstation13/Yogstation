@@ -638,6 +638,7 @@
 	if(!istype(sourceobj))
 		return
 
+
 /obj/item/toy/cards/deck
 	name = "deck of cards"
 	desc = "A deck of space-grade playing cards."
@@ -652,7 +653,7 @@
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
 	populate_deck()
-	desc = desc +"\nThe deck contains [cards.len] cards."
+	desc = desc +"\nThe deck originally contained [cards.len] cards."
 
 /obj/item/toy/cards/deck/proc/populate_deck()
 	icon_state = "deck_[deckstyle]_full"
@@ -779,6 +780,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/list/currenthand = list()
 	var/choice = null
+	
 
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
 	var/list/handradial = list()
@@ -838,8 +840,6 @@
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
 		return ..()
-
-/obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/cardhand/C, mob/living/user, params)//todo
 
 /obj/item/toy/cards/cardhand/apply_card_vars(obj/item/toy/cards/newobj,obj/item/toy/cards/sourceobj)
 	..()
