@@ -773,11 +773,11 @@
 
 /obj/item/toy/cards/cardhand
 	name = "hand of cards"
+	var/list/currenthand = list()
 	desc = "A number of cards not in a deck, customarily held in ones hand. \nThis hand contains [currenthand.len] cards."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nanotrasen_hand2"
 	w_class = WEIGHT_CLASS_TINY
-	var/list/currenthand = list()
 	var/choice = null
 
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
