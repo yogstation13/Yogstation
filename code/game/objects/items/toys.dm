@@ -639,6 +639,7 @@
 		return
 
 /obj/item/toy/cards/deck 
+/obj/item/toy/cards/deck
 	name = "deck of cards"
 	desc = "A deck of space-grade playing cards."
 	icon = 'icons/obj/toy.dmi'
@@ -780,6 +781,7 @@
 	var/list/currenthand = list()
 	var/choice = null
 	
+
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
 	var/list/handradial = list()
 
@@ -809,6 +811,7 @@
 
 	interact(cardUser)
 	update_sprite()
+	update_desc()
 	if(length(currenthand) == 1)
 		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
 		N.parentdeck = parentdeck
@@ -832,6 +835,7 @@
 				src.icon_state = "[deckstyle]_hand4"
 			else if(currenthand.len > 2)
 				src.icon_state = "[deckstyle]_hand3"
+			update_desc()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -871,6 +875,9 @@
 	for(var/i = k; i <= overlay_cards; i++)
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
 		add_overlay(card_overlay)
+
+/obj/item/toy/cards/cardhand/proc/update_desc()
+	desc = "A number of cards not in a deck, customarily held in ones hand. \nThis hand has [currenthand.len] cards in it."
 
 /obj/item/toy/cards/singlecard
 	name = "card"
