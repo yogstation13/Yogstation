@@ -391,7 +391,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		var/list/data = list(
 			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
 			name = R.name,
-			price = R.custom_price || default_price,
+			price = R.custom_price || extra_price,
 			max_amount = R.max_amount,
 			ref = REF(R),
 			extended = TRUE
@@ -402,16 +402,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = list()
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
-	
+
 	var/mob/living/L
 	if(isliving(user))
 		L = user
 	.["ignores_capitalism"] = L?.ignores_capitalism
-	
+
 	if(ishuman(user))
 		H = user
 		C = H.get_idcard(TRUE)
-		
+
 		if(C?.registered_account)
 			.["user"] = list()
 			.["user"]["name"] = C.registered_account.account_holder
@@ -466,7 +466,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/mob/living/L
 			if(isliving(usr))
 				L = usr
-				
+
 			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/C = H.get_idcard(TRUE)
