@@ -31,14 +31,16 @@ export const ClockworkSlab = (props, context) => {
           <Fragment>
             <Section title="Power">
               <LabeledList>
-                <LabeledList.Item label="power">
-                  {data.power}
+                <LabeledList.Item>
+                  <Fragment dangerouslySetInnerHTML={"<b><font color=#B18B25>403.22 kJ</b> power is available for scripture and other consumers.</font>"}>
+                    {data.power}
+                  </Fragment>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
             <Section>
               <LabeledList>
-                <LabeledList.Item label="buttons">
+                <LabeledList.Item>
                   <Button
                     content="Driver"
                     selected={data.selected === "Driver"}
@@ -48,8 +50,8 @@ export const ClockworkSlab = (props, context) => {
                   <Button
                     content="Script"
                     selected={data.selected === "Script"}
-                    onClick={() => act('Script', {
-                      category: "Driver",
+                    onClick={() => act('select', {
+                      category: "Script",
                     })} />
                   <Button
                     content="Application"
@@ -59,10 +61,10 @@ export const ClockworkSlab = (props, context) => {
                     })} />
                   {data.tier_info}
                 </LabeledList.Item>
-                <LabeledList.Item label="colors">
+                <LabeledList.Item>
                   {data.scripturecolors}
                 </LabeledList.Item>
-                <LabeledList.Item label="scriptures">
+                <LabeledList.Item>
                   {data.scripture.map(script => (
                     <Fragment key={script.type}>
                       <Button
