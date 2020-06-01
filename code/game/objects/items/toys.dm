@@ -998,11 +998,7 @@
 	deckstyle = "uno"
 	icon_state = "deck_uno_full"
 
-/obj/item/toy/cards/deck/uno/Initialize()
-	. = ..()
-	populate_uno_deck()
-
-/obj/item/toy/cards/deck/uno/proc/populate_uno_deck() //RED GREEN YELLOW BLUE
+/obj/item/toy/cards/deck/uno/populate_deck() //RED GREEN YELLOW BLUE
 	icon_state = "deck_[deckstyle]_full"
 	cards = list()
 	for(var/i in 0 to 9)
