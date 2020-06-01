@@ -638,7 +638,7 @@
 	if(!istype(sourceobj))
 		return
 
-/obj/item/toy/cards/deck 
+
 /obj/item/toy/cards/deck
 	name = "deck of cards"
 	desc = "A deck of space-grade playing cards."
