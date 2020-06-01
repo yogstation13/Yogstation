@@ -286,6 +286,10 @@
 	var/alt = 0
 	is_endgame = TRUE
 
+/obj/structure/destructible/cult/pillar/alt
+	icon_state = "pillaralt-enter"
+	alt = 1
+
 /obj/structure/destructible/cult/pillar/Initialize()
 	..()
 	var/turf/T = loc
@@ -295,7 +299,7 @@
 	for (var/obj/O in loc)
 		if(O == src)
 			continue
-		O.ex_act(2)
+		O.ex_act(EXPLODE_HEAVY)
 		if(!QDELETED(O) && (istype(O, /obj/structure) || istype(O, /obj/machinery)))
 			qdel(O)
 	T.narsie_act()
@@ -308,13 +312,8 @@
 	new /obj/effect/decal/cleanable/ash(loc)
 	..()
 
-/obj/structure/destructible/cult/pillar/alt
-	icon_state = "pillaralt-enter"
-	alt = 1
-
 /obj/structure/destructible/cult/pillar/update_icon()
 	icon_state = "pillar[alt ? "alt": ""]2"
-	overlays.len = 0
 	if (obj_integrity < max_integrity/3)
 		icon_state = "pillar[alt ? "alt": ""]0"
 	else if (obj_integrity < 2*max_integrity/3)
@@ -348,7 +347,7 @@
 	var/anchor = FALSE //are we the bloodstone used to summon nar-sie? used in the final part of the summoning
 	is_endgame = TRUE
 
-/obj/structure/destructible/cult/bloodstone/New()
+/obj/structure/destructible/cult/bloodstone/Initialize()
 	..()
 	if (!src.loc)
 		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
@@ -413,11 +412,11 @@
 
 /obj/structure/destructible/cult/bloodstone/ex_act(var/severity)
 	switch(severity)
-		if (1)
+		if (EXPLODE_DEVASTATE)
 			take_damage(200)
-		if (2)
+		if (EXPLODE_HEAVY)
 			take_damage(100)
-		if (3)
+		if (EXPLODE_LIGHT)
 			take_damage(20)
 
 /obj/structure/destructible/cult/bloodstone/Destroy()
@@ -457,7 +456,7 @@
 			T.ChangeTurf(/turf/open/floor/engine/cult)
 			for (var/obj/structure/S in T)
 				if(!istype(S,/obj/structure/destructible/cult))
-					S.ex_act(1)
+					S.ex_act(EXPLODE_DEVASTATE)
 			for (var/obj/machinery/M in T)
 				qdel(M)
 		else if (dist <= 4)
@@ -473,14 +472,14 @@
 
 /obj/structure/destructible/cult/bloodstone/update_icon()
 	icon_state = "bloodstone-[current_fullness]"
-	overlays.len = 0
+	cut_overlays()
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
 	I_base.appearance_flags |= RESET_COLOR//we don't want the stone to pulse
 	overlays += I_base
 	if (obj_integrity <= max_integrity/3)
-		overlays.Add("bloodstone_damage2")
+		add_overlay("bloodstone_damage2")
 	else if (obj_integrity <= 2*max_integrity/3)
-		overlays.Add("bloodstone_damage1")
+		add_overlay("bloodstone_damage1")
 	set_light(3+current_fullness, 2+current_fullness)
 
 /obj/structure/destructible/cult/bloodstone/proc/set_animate()
