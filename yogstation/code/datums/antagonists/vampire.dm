@@ -277,12 +277,9 @@
 		if(!H.blood_volume)
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
 			break
+		blood_coeff = 0.8 //20 blood gain at base for living, 30 with aggressive grab, 10 with stealth
 		if(H.stat == DEAD)
 			blood_coeff = 0.2 //5 blood gain at base for dead, 7 with aggressive grab, 2 with stealth
-		else
-			blood_coeff = 0.8 //20 blood gain at base for living, 30 with aggressive grab, 10 with stealth
-			if(H.stat == DEAD)
-			    blood_coeff = 0.2 //5 blood gain at base for dead, 7 with aggressive grab, 2 with stealth
 		blood = round(min(blood_to_take * blood_coeff, H.blood_volume))	//if the victim has less than the amount of blood left to take, just take all of it.
 		total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
 		usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
