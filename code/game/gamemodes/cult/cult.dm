@@ -177,7 +177,7 @@
 		var/area/A = get_area(B)
 		bloodstone_areas.Add(A.map_name)
 	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
-	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 300)
+	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
 
 /datum/game_mode/proc/increase_bloodstone_power()
 	if(!bloodstone_list.len) //check if we somehow ran out of bloodstones
@@ -215,7 +215,7 @@
 /datum/game_mode/proc/cult_loss_bloodstones()
 	priority_announce("The veil anomaly appears to have been destroyed, shuttle locks have been lifted.","Central Command Higher Dimensional Affairs")
 	bloodstone_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 3000) //5 minutes
+	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 5 MINUTES) //5 minutes
 	for(var/datum/mind/M in cult)
 		var/mob/living/cultist = M.current
 		if(!cultist)
@@ -233,7 +233,7 @@
 /datum/game_mode/proc/cult_loss_anchor()
 	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
 	bloodstone_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 4200) //7 minutes
+	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 7 MINUTES) //7 minutes
 	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
 		qdel(B)
 		for(var/datum/mind/M in cult)
