@@ -27605,15 +27605,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"bgi" = (
-/obj/machinery/camera{
-	c_tag = "Arrivals Bay 3 & 4";
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "bgj" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -50343,6 +50334,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"dam" = (
+/obj/machinery/door/airlock/external{
+	name = "Port Docking Bay 4"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "daW" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -51414,6 +51414,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"fFS" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "fHT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -51996,6 +52000,11 @@
 /obj/machinery/suit_storage_unit/atmos,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"gVv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "gWd" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -52786,6 +52795,13 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"iFM" = (
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "iGw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -53554,6 +53570,13 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
+"kjJ" = (
+/obj/machinery/door/airlock/external{
+	name = "Port Docking Bay 4"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "kkd" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -56590,6 +56613,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"reP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/entry)
 "reS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -58814,6 +58849,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"vOm" = (
+/obj/machinery/camera{
+	c_tag = "Arrivals Bay 3 & 4";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "vOD" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/solars/solar_96,
@@ -59830,15 +59874,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel/white,
 /area/tcommsat/computer)
-"ygp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/advanced_airlock_controller{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "yie" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -71036,7 +71071,7 @@ aaa
 aaa
 aaa
 arB
-awY
+reP
 ayk
 awW
 aEa
@@ -71296,7 +71331,7 @@ aSm
 jXK
 tQA
 eWa
-ygp
+gVv
 cKh
 cyd
 aaa
@@ -71552,9 +71587,9 @@ aaa
 aSm
 vDC
 ayk
-awW
-asE
-aSm
+kjJ
+iFM
+dam
 aaa
 aaa
 aaa
@@ -71808,9 +71843,9 @@ aaa
 aaa
 aSm
 vDC
-aym
-azz
-aAF
+ayk
+fFS
+asE
 aSm
 aaa
 aaa
@@ -72065,9 +72100,9 @@ aaa
 aaa
 aSm
 vDC
-ayl
-ayl
-aAE
+aym
+azz
+aAF
 aSm
 aaa
 aaa
@@ -72324,7 +72359,7 @@ aSm
 vDC
 ayl
 ayl
-bgi
+vOm
 aSm
 aaa
 aaa
