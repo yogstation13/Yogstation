@@ -638,7 +638,7 @@
 	if(!istype(sourceobj))
 		return
 
-/obj/item/toy/cards/deck
+/obj/item/toy/cards/deck 
 	name = "deck of cards"
 	desc = "A deck of space-grade playing cards."
 	icon = 'icons/obj/toy.dmi'
@@ -652,6 +652,7 @@
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
 	populate_deck()
+	desc = desc +"\nThe deck contains [cards.len] cards."
 
 /obj/item/toy/cards/deck/proc/populate_deck()
 	icon_state = "deck_[deckstyle]_full"
