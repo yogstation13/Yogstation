@@ -96,6 +96,13 @@ export const Sleeper = (props, context) => {
             </Fragment>
           )}
         </Section>
+        <Section title="Reagents" minHeight="50px">
+          {occupant.reagents.map(reagent => (
+            <Fragment key={reagent.name}>
+              {reagent.name} - {reagent.volume} units
+            </Fragment>
+          ))}
+        </Section>
         <Section
           title="Medicines"
           minHeight="205px"
