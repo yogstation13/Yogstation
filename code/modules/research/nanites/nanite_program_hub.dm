@@ -70,23 +70,26 @@
 		data["disk"] = disk_data
 
 	data["detail_view"] = detail_view
-	data["category"] = current_category
+	return data
 
-	if(current_category != "Main")
-		var/list/program_list = list()
-		for(var/i in linked_techweb.researched_designs)
-			var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
-			if(!istype(D))
-				continue
-			if(current_category in D.category)
-				var/list/program_design = list()
-				program_design["id"] = D.id
-				program_design["name"] = D.name
-				program_design["desc"] = D.desc
-				program_list += list(program_design)
-		data["program_list"] = program_list
-	else
-		data["categories"] = categories
+/obj/machinery/nanite_program_hub/ui_static_data(mob/user)
+	var/list/data = list()
+	data["programs"] = list()
+	for(var/i in linked_techweb.researched_designs)
+		var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
+		if(!istype(D))
+			continue
+		var/cat_name = D.category[1] //just put them in the first category fuck it
+		if(isnull(data["programs"][cat_name]))
+			data["programs"][cat_name] = list()
+		var/list/program_design = list()
+		program_design["id"] = D.id
+		program_design["name"] = D.name
+		program_design["desc"] = D.desc
+		data["programs"][cat_name] += list(program_design)
+
+	if(!length(data["programs"]))
+		data["programs"] = null
 
 	return data
 
@@ -109,10 +112,6 @@
 			disk.name = "[initial(disk.name)] \[[disk.program.name]\]"
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
 			. = TRUE
-		if("set_category")
-			var/new_category = params["category"]
-			current_category = new_category
-			. = TRUE
 		if("toggle_details")
 			detail_view = !detail_view
 			. = TRUE
@@ -121,4 +120,7 @@
 				qdel(disk.program)
 				disk.program = null
 				disk.name = initial(disk.name)
+			. = TRUE
+		if("refresh")
+			update_static_data(usr)
 			. = TRUE

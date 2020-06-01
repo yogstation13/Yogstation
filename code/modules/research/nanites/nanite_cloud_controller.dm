@@ -7,6 +7,7 @@
 	var/obj/item/disk/nanite_program/disk
 	var/list/datum/nanite_cloud_backup/cloud_backups = list()
 	var/current_view = 0 //0 is the main menu, any other number is the page of the backup with that ID
+	var/new_backup_id = 1
 
 /obj/machinery/computer/nanite_cloud_controller/Destroy()
 	QDEL_LIST(cloud_backups) //rip backups
@@ -96,6 +97,8 @@
 				disk_data["has_extra_settings"] = TRUE
 		data["disk"] = disk_data
 
+	data["new_backup_id"] = new_backup_id
+
 	data["current_view"] = current_view
 	if(current_view)
 		var/datum/nanite_cloud_backup/backup = get_backup(current_view)
@@ -153,10 +156,13 @@
 		if("set_view")
 			current_view = text2num(params["view"])
 			. = TRUE
+		if("update_new_backup_value")
+			var/backup_value = text2num(params["value"])
+			new_backup_id = backup_value
 		if("create_backup")
-			var/cloud_id = input("Choose a cloud ID (1-100):", name, null) as null|num
+			var/cloud_id = new_backup_id
 			if(!isnull(cloud_id))
-				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
+				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 				cloud_id = clamp(round(cloud_id, 1),1,100)
 				generate_backup(cloud_id, usr)
 			. = TRUE
