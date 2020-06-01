@@ -286,7 +286,7 @@
 	var/alt = 0
 	is_endgame = TRUE
 
-/obj/structure/destructible/cult/pillar/New()
+/obj/structure/destructible/cult/pillar/Initialize()
 	..()
 	var/turf/T = loc
 	if (!T)
