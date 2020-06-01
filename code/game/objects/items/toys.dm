@@ -995,10 +995,8 @@
 /obj/item/toy/cards/deck/uno
 	name = "deck of UNO cards"
 	desc = "A deck of space-grade UNO cards."
-	icon = 'icons/obj/toy.dmi'
 	deckstyle = "uno"
 	icon_state = "deck_uno_full"
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/toy/cards/deck/uno/Initialize()
 	. = ..()
