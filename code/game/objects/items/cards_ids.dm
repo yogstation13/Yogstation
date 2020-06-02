@@ -435,7 +435,7 @@ update_label("John Doe", "Clowny")
 	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
 	registered_name = "Central Command"
-	assignment = "General"
+	assignment = "CentCom Official"
 
 /obj/item/card/id/centcom/silver
 	name = "\improper silver CentCom ID"
