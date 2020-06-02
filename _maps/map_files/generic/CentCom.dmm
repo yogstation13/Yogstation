@@ -8624,11 +8624,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"sV" = (
-/obj/machinery/door/poddoor/shuttledock,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/centcom/evac)
 "sW" = (
 /obj/structure/showcase{
 	desc = "A strange machine supposedly from another world. The Wizard Federation has been meddling with it for years.";
@@ -22515,6 +22510,12 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/centcom/evac)
+"ZM" = (
+/obj/machinery/door/poddoor/shuttledock,
+/obj/effect/turf_decal/delivery,
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "ZN" = (
@@ -75187,19 +75188,19 @@ io
 qx
 qx
 qx
-sV
-sV
-sV
-sV
-sV
-sV
-sV
-sV
-sV
-sV
-sV
-sV
-sV
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
+ZM
 qx
 qx
 qx
