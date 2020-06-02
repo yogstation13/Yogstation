@@ -22,6 +22,7 @@
  *		Snowballs
  *		Clockwork Watches
  *		Toy Daggers
+ *		Turn Tracker
  */
 
 
@@ -1232,6 +1233,58 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 	. = ..()
 	if(user.dropItemToGround(src))
 		throw_at(target, throw_range, throw_speed)
+/*
+ * Turn tracker
+ */
+
+obj/item/toy/turn_tracker
+	name= "turn tracker"
+	icon = 'icons/obj/assemblies.dmi'//BIG RED BUTTON (TEMP SPRITE)
+	icon_state = "bigred"
+	desc= "A turn tracker, used to track turns. Duh.\nClick on it in hand to set it up.\nAlt-click to reverse turn order."
+	var/list/names=list()
+	var/turn=0
+	var/info=null
+	var/turndir=1//1 for forwards, -1 for backwards
+
+/obj/item/toy/turn_tracker/attack_self(mob/user)
+	info=input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names") as null|text
+	if (info)
+		names=list()
+		names+=splittext(info,",")
+		to_chat(user, "<span class='notice'>You set up the turn tracker. </span>")
+	return
+/obj/item/toy/turn_tracker/attack_hand(mob/user)
+	if (names.len==0)
+		to_chat(user, "<span class='warning'> You need to set it up first! </span>")
+		return
+	turn+=turndir//+1 for normal, -1 for backwardz
+	if(turn>names.len)
+		turn=1
+	else if(turn<1)
+		turn=names.len
+	audible_message("<span class='notice'>[src] says: \"It is [names[turn]]'s turn!\"</span>")
+
+/obj/item/toy/turn_tracker/AltClick(mob/user)
+	audible_message("<span class='notice'>[src] says: \"Direction Reversed!\"</span>")
+	turndir=turndir*-1
+
+/obj/item/toy/turn_tracker/MouseDrop(atom/over_object)
+	. = ..()
+	var/mob/living/M = usr
+	if(!istype(M) || !(M.mobility_flags & MOBILITY_PICKUP))
+		return
+	if(Adjacent(usr))
+		if(over_object == M && loc != M)
+			M.put_in_hands(src)
+			to_chat(usr, "<span class='notice'>You pick up the turn tracker.</span>")
+
+		else if(istype(over_object, /obj/screen/inventory/hand))
+			var/obj/screen/inventory/hand/H = over_object
+			if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
+				to_chat(usr, "<span class='notice'>You pick up the turn tracker.</span>")
+	else
+		to_chat(usr, "<span class='warning'>You can't reach it from here!</span>")
 
 /*
  * Clockwork Watch
