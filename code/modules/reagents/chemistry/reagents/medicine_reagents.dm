@@ -1355,19 +1355,19 @@
 	var/heal_roll = pick(-0.1,-0.2) // Base heal, Non OD
 	var/slur = 10 // Slur 10 sets up for future slur gains as real effects seem to start at 30
 	var/jitter = 0
-	start_effect(M)
-	epinephrine_effect(M)
-	perfluorodecalin_effect(M)
-	base_effect(M) // base effect has to be last
+	start_effect(M, heal_roll, slur, jitter)
+	epinephrine_effect(M, heal_roll, slur, jitter)
+	perfluorodecalin_effect(M, heal_roll, slur, jitter)
+	base_effect(M, heal_roll, slur, jitter) // base effect has to be last
 	..()
 	. = 1
 
-/datum/reagent/drug/burnmix/overdose_start(mob/living/M)
+/datum/reagent/drug/burnmix/overdose_start(mob/living/M, heal_roll , slur , jitter)
 	to_chat(M, "<span class='userdanger'>You feel the BurnMix increase in potency.</span>")
 	..()
 	. = 1
 
-/datum/reagent/medicine/burnmix/proc/start_effect(mob/living/carbon/M)
+/datum/reagent/medicine/burnmix/proc/start_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(!overdosed)
 		if(M.health <= M.crit_threshold)
 			heal_roll = 0 // Burnmix will not heal anyone inside of crit without epipen or morhpine
@@ -1380,7 +1380,7 @@
 			heal_roll = 0 // Burnmix has a chance not to basic heal at all
 	return
 
-/datum/reagent/medicine/burnmix/proc/perfluorodecalin_effect(mob/living/carbon/M)
+/datum/reagent/medicine/burnmix/proc/perfluorodecalin_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin))
 		if(!overdosed)
 			jitter += 5
@@ -1396,7 +1396,7 @@
 				M.adjustToxLoss(pick(0,-0.25), 0) // gives a chance to negate half perfluorodecalin tox damage
 	return
 
-/datum/reagent/medicine/burnmix/proc/base_effect(mob/living/carbon/M)
+/datum/reagent/medicine/burnmix/proc/base_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(!overdosed)
 		if(prob(10)) // Start of base probability effects
 			var/tox_roll = pick(1,-1) // Rolls for damage or healing
@@ -1433,7 +1433,7 @@
 			M.adjustBruteLoss(heal_roll*REM, 0)
 	return
 
-/datum/reagent/medicine/burnmix/proc/epinephrine_effect(mob/living/carbon/M)
+/datum/reagent/medicine/burnmix/proc/epinephrine_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		if(!overdosed)
 			jitter += 5
@@ -1454,7 +1454,7 @@
 					M.adjustToxLoss(pick(0.5,0.25,0,0,-0.25)*REM, 0)
 	return
 
-/datum/reagent/medicine/burnmix/proc/combined_effect(mob/living/carbon/M)
+/datum/reagent/medicine/burnmix/proc/combined_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(holder.has_reagent(holder.has_reagent(/datum/reagent/medicine/epinephrine) && /datum/reagent/medicine/perfluorodecalin))
 		if(overdosed)
 			if(prob(0.5)) // Should be 1 in 200 chance of a 1 in 3 chance to roll for faint if both epinephrine and perfluorodecalin are present
@@ -1476,11 +1476,11 @@
 	var/heal_roll = pick(-0.2,-0.4)
 	var/slur = 20
 	var/jitter = 2
-	start_effect(M)
-	perfluorodecalin_effect(M)
-	epinephrine_effect(M)
-	combined_effect(M)
-	base_effect(M) // base effect has to be last
+	start_effect(M, heal_roll, slur, jitter)
+	perfluorodecalin_effect(M, heal_roll, slur, jitter)
+	epinephrine_effect(M, heal_roll, slur, jitter)
+	combined_effect(M, heal_roll, slur, jitter)
+	base_effect(M, heal_roll, slur, jitter) // base effect has to be last
 	..()
 	. = 1
 
