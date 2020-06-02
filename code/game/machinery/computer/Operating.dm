@@ -26,8 +26,8 @@
 			table.computer = null
 		else
 			sbed = locate(/obj/machinery/stasis) in get_step(src, direction)
-			if(sbed && sbed.op_computer == src)
-				sbed.op_computer = null
+			if(sbed && sbed.computer == src)
+				sbed.computer = null
 	. = ..()
 
 /obj/machinery/computer/operating/attackby(obj/item/O, mob/user, params)
@@ -57,7 +57,7 @@
 		else
 			sbed = locate(/obj/machinery/stasis) in get_step(src, direction)
 			if(sbed)
-				sbed.op_computer = src
+				sbed.computer = src
 				break
 
 /obj/machinery/computer/operating/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.not_incapacitated_state)
