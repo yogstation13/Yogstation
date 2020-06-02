@@ -3018,15 +3018,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"agc" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "agd" = (
 /obj/machinery/shower{
 	dir = 8
@@ -3116,16 +3107,6 @@
 	onstation = 0
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/prison)
-"ago" = (
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 8;
-	icon_state = "right";
-	name = "Unisex Showers";
-	req_access_txt = "0"
-	},
-/turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "agp" = (
 /obj/item/soap/nanotrasen,
@@ -10941,13 +10922,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"auX" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "auY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57272,6 +57246,12 @@
 	icon_state = "wood-broken"
 	},
 /area/maintenance/department/crew_quarters/dorms)
+"etv" = (
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "euQ" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -57418,19 +57398,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"fjs" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
 "fkH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -57543,13 +57510,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"fIu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/vr_sleeper,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "fIN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -58461,6 +58421,19 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"jfk" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "jhD" = (
 /obj/structure/sink{
 	dir = 8;
@@ -58691,6 +58664,18 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"koM" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	icon_state = "right";
+	name = "Unisex Showers";
+	req_access_txt = "0"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "krS" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Bar"
@@ -62037,6 +62022,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+"wZf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "xaO" = (
 /obj/structure/disposaloutlet,
 /obj/structure/disposalpipe/trunk{
@@ -62047,6 +62041,12 @@
 "xbJ" = (
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
+"xbM" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "xja" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -62088,6 +62088,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"xmH" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/obj/machinery/computer/cryopod{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "xsO" = (
 /obj/item/ectoplasm,
 /turf/open/floor/plating{
@@ -83663,7 +83673,7 @@ lGp
 aeU
 afI
 aeU
-aeU
+xmH
 agy
 afH
 agY
@@ -83919,8 +83929,8 @@ aem
 aeW
 afr
 agy
-agc
-ago
+koM
+xbM
 agy
 agy
 agy
@@ -102446,9 +102456,9 @@ aaa
 apX
 apX
 apX
-auX
-fIu
-dbi
+jfk
+wZf
+etv
 avk
 aDV
 dbi
