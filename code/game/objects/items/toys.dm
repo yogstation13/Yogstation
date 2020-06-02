@@ -849,9 +849,11 @@
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/cardhand/C, mob/living/user, params) //Same as above, but for card hands!
 	if(istype(C))
-		if(C.parentdeck == src.parentdeck)
-			//TODO:ADDS THE OTHER HAND TO THIS ONE
-			//user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [C.cardname] to your hand.</span>")
+		if(C.parentdeck == src.parentdeck) //if the cards come from the same deck
+			var/i
+			for(i=1, i<=C.currenthand.len, i++)
+ 				src.currenthand += C.currenthand[i] //adds all the cards from the other hand to this one
+			user.visible_message("[user] adds the cards from [user.p_their()] hand to another, consalidating them.", "<span class='notice'>You add the cards from one hand to another.</span>")
 			qdel(C)
 			interact(user)
 			if(currenthand.len > 4)
