@@ -15,6 +15,7 @@ const VendingRow = (props, context) => {
     || product.price === 0
     || (
       !product.premium
+      && !product.extended
       && data.department
       && data.user
       && data.department === data.user.department

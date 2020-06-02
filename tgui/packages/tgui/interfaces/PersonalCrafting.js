@@ -39,10 +39,11 @@ export const PersonalCrafting = (props, context) => {
       continue;
     }
     // Push category
+
     categories.push({
       name: category,
       category,
-    });
+    }); 
     // Push recipes
     const _recipes = crafting_recipes[category];
     for (let recipe of _recipes) {
