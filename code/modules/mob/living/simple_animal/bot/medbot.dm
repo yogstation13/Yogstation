@@ -437,7 +437,7 @@
 	var/reagent_id = null
 
 	if(emagged == 2) //Emagged! Time to poison everybody.
-		reagent_id = "toxin"
+		reagent_id = /datum/reagent/toxin
 
 	else
 		if(treat_virus)
