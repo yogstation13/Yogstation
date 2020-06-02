@@ -1,0 +1,4 @@
+author: "Hopekz"
+delete-after: true 
+changes: 
+  - rscadd: "Cameras now have an EMP effect"
