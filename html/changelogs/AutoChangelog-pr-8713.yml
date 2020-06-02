@@ -1,0 +1,4 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - rscadd: "RCD drone now has a sprite!"

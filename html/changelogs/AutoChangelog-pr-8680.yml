@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "You can now rename and change the description of your guns with a pen"
