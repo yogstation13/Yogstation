@@ -35,8 +35,10 @@ $nanotrasen: #384e68;
     background-image: none;
   }
   
+  
   @include meta.load-css('../components/Section.scss', $with: (
-    'color-background': color.adjust(#2D1400, $alpha: -0.4),
+    'color-background': color.adjust(#120800, $alpha: -0.6),
+	'color-separator': color.adjust(#2D1400, $alpha: -0.7),
   ));
   @include meta.load-css('../layouts/TitleBar.scss', $with: (
     'color-background': #8f6f1b,

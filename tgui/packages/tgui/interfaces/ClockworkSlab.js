@@ -5,6 +5,7 @@ import { Window } from '../layouts';
 
 export const ClockworkSlab = (props, context) => {
   const { act, data } = useBackend(context);
+
   return (
     <Window theme="clockwork" resizeable>
       <Window.Content>
@@ -16,7 +17,8 @@ export const ClockworkSlab = (props, context) => {
         {data.recollection && (
 
           <Section>
-            {data.rec_text}
+            <div dangerouslySetInnerHTML={{ __html: data.rec_text }} />
+            <br />
             {data.recollection_categories.map(recollection => (
               <Button key={recollection.name}
                 content={recollection.name + " - " + recollection.desc}
@@ -24,21 +26,17 @@ export const ClockworkSlab = (props, context) => {
                   category: recollection.name,
                 })} />
             ))}
-            {data.rec_section}
-            {data.rec_binds}
+            <div dangerouslySetInnerHTML={{ __html: data.rec_section }} />
+            <div dangerouslySetInnerHTML={{ __html: data.rec_binds }} />
           </Section>
         ) || (
           <Fragment>
             <Section title="Power">
-              <LabeledList>
-                <LabeledList.Item>
-                  {data.power}
-                </LabeledList.Item>
-              </LabeledList>
+                  <div dangerouslySetInnerHTML={{ __html: data.power }} />
             </Section>
             <Section>
-              <LabeledList>
-                <LabeledList.Item>
+              <Fragment>
+                <Fragment>
                   <Button
                     content="Driver"
                     selected={data.selected === "Driver"}
@@ -58,18 +56,18 @@ export const ClockworkSlab = (props, context) => {
                       category: "Application",
                     })} />
                   <br />
-                  {data.tier_info}
-                </LabeledList.Item>
-                <LabeledList.Item>
-                  {data.scripturecolors}
-                </LabeledList.Item>
-                <LabeledList.Divider />
-                <LabeledList.Item>
+                  <div dangerouslySetInnerHTML={{ __html: data.tier_info }} />
+                </Fragment>
+                <Fragment>
+                  <div dangerouslySetInnerHTML={{ __html: data.scripturecolors }} />
+                </Fragment>
+                <Divider />
+                <Fragment>
 
                   {data.scripture.map(script => (
                     <Flex key={script.type}>
                       <Button
-                        tooltip={script.tooltip}
+                        tooltip={script.tip}
                         tooltipPosition="right"
                         content={"Recite " + script.required}
                         onClick={() => act('recite', {
@@ -80,7 +78,7 @@ export const ClockworkSlab = (props, context) => {
                         <div>
                           {script.bound && (
                             <Button
-                              content={"Unbind " + script.bound}
+                              dangerouslySetInnerHTML={{ __html: "Unbind " + script.bound }}
                               onClick={() => act('bind', {
                                 category: script.type,
                               })} />
@@ -93,13 +91,18 @@ export const ClockworkSlab = (props, context) => {
                           )}
                         </div>
                       )}
-                      {script.name} {script.descname} {script.invokers}
+                      {script.invokers && (
+                        <div style="padding-left: 4px;" dangerouslySetInnerHTML={{ __html: script.name + " " + script.descname + " " + script.invokers }} />
+                      ) || (
+                        <div style="padding-left: 4px;" dangerouslySetInnerHTML={{ __html: script.name + " " + script.descname }} />
+                      )}
+
 
                     </Flex>
                   ))}
 
-                </LabeledList.Item>
-              </LabeledList>
+                </Fragment>
+              </Fragment>
             </Section>
           </Fragment>
         )}

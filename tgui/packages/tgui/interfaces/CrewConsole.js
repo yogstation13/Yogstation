@@ -58,11 +58,11 @@ const HealthStat = props => {
   );
 };
 
-export const CrewConsole = props => {
-  const { act, data } = useBackend(props);
+export const CrewConsole = (props, context) => {
+  const { act, data } = useBackend(context);
   const sensors = data.sensors || [];
   return (
-    <Window resizeable>
+    <Window resizable>
       <Window.Content scrollable>
         <Flex>
           <Flex.Item>

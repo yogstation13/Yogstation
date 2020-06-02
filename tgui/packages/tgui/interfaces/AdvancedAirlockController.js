@@ -22,9 +22,9 @@ const ROLE_INT_DEPRESSURIZE = 2;
 const ROLE_EXT_PRESSURIZE = 4;
 const ROLE_EXT_DEPRESSURIZE = 8;
 
-export const AdvancedAirlockController = props => {
+export const AdvancedAirlockController = (props, context) => {
   const { state } = props;
-  const { act, data } = useBackend(props);
+  const { act, data } = useBackend(context);
   const locked = data.locked && !data.siliconUser;
   return (
     <Window>
@@ -42,8 +42,8 @@ export const AdvancedAirlockController = props => {
   );
 };
 
-const AACStatus = props => {
-  const { act, data } = useBackend(props);
+const AACStatus = (props, context) => {
+  const { act, data } = useBackend(context);
   const stateMap = {
     [STATE_INOPEN]: {
       color: 'good',
@@ -147,9 +147,9 @@ const AACStatus = props => {
   );
 };
 
-const AACControl = props => {
+const AACControl = (props, context) => {
   const { state } = props;
-  const { data, act } = useBackend(props);
+  const { data, act } = useBackend(context);
   /* Why not use NoticeBox? because its fucking broken and doesnt work
   thanks tg */
   return (
@@ -245,13 +245,13 @@ const AACControl = props => {
   );
 };
 
-const Vent = props => {
+const Vent = (props, context) => {
   const {
     vent_id,
     name,
     role,
   } = props;
-  const { act, data } = useBackend(props);
+  const { act, data } = useBackend(context);
   return (
     <Section
       level={2}
@@ -302,14 +302,14 @@ const Vent = props => {
   );
 };
 
-const Airlock = props => {
+const Airlock = (props, context) => {
   const {
     airlock_id,
     name,
     role,
     access,
   } = props;
-  const { act, data } = useBackend(props);
+  const { act, data } = useBackend(context);
   return (
     <Section
       level={2}
