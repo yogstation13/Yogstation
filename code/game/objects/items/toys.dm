@@ -1246,6 +1246,8 @@ obj/item/toy/turn_tracker
 	var/turn=0
 	var/info=null
 	var/turndir=1//1 for forwards, -1 for backwards
+/obj/item/toy/turn_tracker/update_icon()
+	icon_state="bigblue"
 
 /obj/item/toy/turn_tracker/attack_self(mob/user)
 	info=input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names") as null|text
@@ -1264,6 +1266,8 @@ obj/item/toy/turn_tracker
 	else if(turn<1)
 		turn=names.len
 	audible_message("<span class='notice'>[src] says: \"It is [names[turn]]'s turn!\"</span>")
+	icon_state = "bigblue_press"
+	addtimer(CALLBACK(src, .proc/update_icon), 6)
 
 /obj/item/toy/turn_tracker/AltClick(mob/user)
 	audible_message("<span class='notice'>[src] says: \"Direction Reversed!\"</span>")
