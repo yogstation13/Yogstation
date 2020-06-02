@@ -708,6 +708,57 @@
 	update_icon()
 	update_desc()
 
+obj/item/toy/cards/deck/AltClick(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!(L.mobility_flags & MOBILITY_PICKUP))
+			return
+		if(cards.len == 0)
+			to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
+			return
+		else
+			var/drawsize = input(user, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
+			if (drawsize)
+				drawsize=clamp(drawsize,1,min(cards.len,10))
+				if(drawsize==1)
+					draw_card(user)//if drawing a single card, no need to use the many proc
+				else
+					draw_many(drawsize,user)//this one draws many cards at once
+	return
+
+obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, mob who is drawing them
+	var/choice = null
+	var/obj/item/toy/cards/cardhand/C = new/obj/item/toy/cards/cardhand(user.loc)
+	var/obj/item/toy/cards/singlecard/H = new/obj/item/toy/cards/singlecard(user.loc)
+	var/i
+	var/O = src
+	for (i=1,i<=dr,i++)
+		if (holo)
+			holo.spawned +=H
+		choice = cards[i]
+		H.cardname = choice
+		H.parentdeck = src
+		C.apply_card_vars(H,O)
+		C.currenthand+=choice
+	src.cards.Cut(1,(1+dr))
+	C.interact(user)
+	if(C.currenthand.len > 4)
+		C.icon_state = "[deckstyle]_hand5"
+	else if(C.currenthand.len > 3)
+		C.icon_state = "[deckstyle]_hand4"
+	else if(C.currenthand.len > 2)
+		C.icon_state = "[deckstyle]_hand3"
+	else
+		C.icon_state = "[deckstyle]_hand2"
+	C.deckstyle=deckstyle
+	C.pickup(user)
+	user.put_in_hands(C)
+	user.visible_message("[user] draws [dr] cards from the deck.", "<span class='notice'>You draw [dr] cards from the deck.</span>")
+	update_icon()
+	update_desc()
+	C.update_sprite()
+	qdel(H)
+
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
 		icon_state = "deck_[deckstyle]_full"
