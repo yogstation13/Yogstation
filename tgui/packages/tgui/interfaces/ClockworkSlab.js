@@ -1,8 +1,12 @@
+/* eslint react/no-danger: 0 */
+/* eslint max-len: 0 */
+/* eslint react/style-prop-object: 0 */
 import { useBackend } from '../backend';
 import { Fragment } from 'inferno';
 import { Button, LabeledList, Section, Divider, Flex } from '../components';
 import { Window } from '../layouts';
 
+// I'm so sorry about this file, but I can't be bothered to redo the DM side. Everything is sanitized so it's secure, just not good practice.
 export const ClockworkSlab = (props, context) => {
   const { act, data } = useBackend(context);
 
@@ -32,7 +36,7 @@ export const ClockworkSlab = (props, context) => {
         ) || (
           <Fragment>
             <Section title="Power">
-                  <div dangerouslySetInnerHTML={{ __html: data.power }} />
+              <div dangerouslySetInnerHTML={{ __html: data.power }} />
             </Section>
             <Section>
               <Fragment>
@@ -58,50 +62,44 @@ export const ClockworkSlab = (props, context) => {
                   <br />
                   <div dangerouslySetInnerHTML={{ __html: data.tier_info }} />
                 </Fragment>
-                <Fragment>
-                  <div dangerouslySetInnerHTML={{ __html: data.scripturecolors }} />
-                </Fragment>
+                <div dangerouslySetInnerHTML={{ __html: data.scripturecolors }} />
                 <Divider />
-                <Fragment>
+                {data.scripture.map(script => (
+                  <Flex key={script.type}>
+                    <Button
+                      tooltip={script.tip}
+                      tooltipPosition="right"
+                      content={"Recite " + script.required}
+                      onClick={() => act('recite', {
+                        category: script.type,
+                      })} />
 
-                  {data.scripture.map(script => (
-                    <Flex key={script.type}>
-                      <Button
-                        tooltip={script.tip}
-                        tooltipPosition="right"
-                        content={"Recite " + script.required}
-                        onClick={() => act('recite', {
-                          category: script.type,
-                        })} />
-
-                      {script.quickbind && (
-                        <div>
-                          {script.bound && (
-                            <Button
-                              dangerouslySetInnerHTML={{ __html: "Unbind " + script.bound }}
-                              onClick={() => act('bind', {
-                                category: script.type,
-                              })} />
-                          ) || (
-                            <Button
-                              content="Quickbind"
-                              onClick={() => act('bind', {
-                                category: script.type,
-                              })} />
-                          )}
-                        </div>
-                      )}
-                      {script.invokers && (
-                        <div style="padding-left: 4px;" dangerouslySetInnerHTML={{ __html: script.name + " " + script.descname + " " + script.invokers }} />
-                      ) || (
-                        <div style="padding-left: 4px;" dangerouslySetInnerHTML={{ __html: script.name + " " + script.descname }} />
-                      )}
+                    {script.quickbind && (
+                      <div>
+                        {script.bound && (
+                          <Button
+                            dangerouslySetInnerHTML={{ __html: "Unbind " + script.bound }}
+                            onClick={() => act('bind', {
+                              category: script.type,
+                            })} />
+                        ) || (
+                          <Button
+                            content="Quickbind"
+                            onClick={() => act('bind', {
+                              category: script.type,
+                            })} />
+                        )}
+                      </div>
+                    )}
+                    {script.invokers && (
+                      <div style="padding-left: 4px;" dangerouslySetInnerHTML={{ __html: script.name + " " + script.descname + " " + script.invokers }} />
+                    ) || (
+                      <div style="padding-left: 4px;" dangerouslySetInnerHTML={{ __html: script.name + " " + script.descname }} />
+                    )}
 
 
-                    </Flex>
-                  ))}
-
-                </Fragment>
+                  </Flex>
+                ))}
               </Fragment>
             </Section>
           </Fragment>
