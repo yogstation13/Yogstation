@@ -24,7 +24,7 @@ export const PsiWeb = (props, context) => {
 
             />
           </Fragment>
-        )}
+        ))}
       </Section>
       </Window.Content>
     </Window>
