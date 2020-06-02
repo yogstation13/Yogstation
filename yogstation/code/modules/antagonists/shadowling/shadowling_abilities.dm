@@ -682,8 +682,7 @@
 		to_chat(user, "<span class='notice'>You project [M]'s life force toward the approaching shuttle, extending its arrival duration!</span>")
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
-		M.death()
-		ADD_TRAIT(M, TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+		M.dust()
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000
