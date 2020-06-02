@@ -145,12 +145,9 @@
 /obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user, params)
 	// Store chromosomes in the console if there's room
 	if (istype(I, /obj/item/chromosome))
-		if(LAZYLEN(stored_chromosomes) < max_chromosomes)
-			I.forceMove(src)
-			stored_chromosomes += I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
-		else
-			to_chat(user, "<span class='warning'>You cannot store any more chromosomes!</span>")
+		I.forceMove(src)
+		stored_chromosomes += I
+		to_chat(user, "<span class='notice'>You insert [I].</span>")
 		return
 
 	// Insert data disk if console disk slot is empty
@@ -174,14 +171,9 @@
 			if(A.research)
 				if(prob(60))
 					var/c_typepath = generate_chromosome()
-					var/obj/item/chromosome/CM = new c_typepath (drop_location())
-					if(LAZYLEN(stored_chromosomes) < max_chromosomes)
-						CM.forceMove(src)
-						stored_chromosomes += CM
-						to_chat(user,"<span class='notice'>[capitalize(CM.name)] added to storage.</span>")
-					else
-						to_chat(user, "<span class='warning'>You cannot store any more chromosomes!</span>")
-						to_chat(user, "<span class='notice'>[capitalize(CM.name)] added on top of the console.</span>")
+					var/obj/item/chromosome/CM = new c_typepath (src)
+					stored_chromosomes += CM
+					to_chat(user,"<span class='notice'>[capitalize(CM.name)] added to storage.</span>")
 				else
 					to_chat(user, "<span class='notice'>There was not enough genetic data to extract a viable chromosome.</span>")
 			qdel(I)
@@ -336,10 +328,8 @@
 		data["diskHasMakeup"] = FALSE
 		data["diskMakeupBuffer"] = null
 
-	data["mutationCapacity"] = max_storage - LAZYLEN(stored_mutations)
 	//data["mutationStorage"] = tgui_console_mutations
 	data["storage"]["console"] = tgui_console_mutations
-	data["chromoCapacity"] = max_chromosomes - LAZYLEN(stored_chromosomes)
 	data["chromoStorage"] = tgui_console_chromosomes
 	data["makeupCapacity"] = NUMBER_OF_BUFFERS
 	data["makeupStorage"] = tgui_genetic_makeup
@@ -655,10 +645,6 @@
 				if("disk")
 					search_flags |= SEARCH_DISKETTE
 
-			// GUARD CHECK - Is mutation storage full?
-			if(LAZYLEN(stored_mutations) >= max_storage)
-				to_chat(usr,"<span class='warning'>Mutation storage is full.</span>")
-				return
 
 			var/bref = params["mutref"]
 			var/datum/mutation/human/HM = get_mut_by_ref(bref, search_flags)
@@ -806,11 +792,6 @@
 		// params["secondref"] -  ATOM Ref of second mutation for combination
 		//  mutation
 		if("combine_console")
-			// GUaRD CHECK - Make sure mutation storage isn't full. If it is, we won't
-			//  be able to store the new combo mutation
-			if(LAZYLEN(stored_mutations) >= max_storage)
-				to_chat(usr,"<span class='warning'>Mutation storage is full.</span>")
-				return
 
 			// GUARD CHECK - We're running a research-type operation. If, for some
 			//  reason, somehow the DNA Console has been disconnected from the research
