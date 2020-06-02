@@ -57,7 +57,7 @@ export const ClockworkSlab = (props, context) => {
                     onClick={() => act('select', {
                       category: "Application",
                     })} />
-                    <br />
+                  <br />
                   {data.tier_info}
                 </LabeledList.Item>
                 <LabeledList.Item>
