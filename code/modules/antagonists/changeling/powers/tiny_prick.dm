@@ -123,8 +123,7 @@
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. On the bright side, at least you can cut wood with this."
-	force = 30 //yogs -- Prevents dual-stinging people with this sting to render them defenseless.
-	//daily reminder that xantam is a closet furry
+	force = 8
 	fake = TRUE
 
 /datum/action/changeling/sting/false_armblade/can_sting(mob/user, mob/target)
