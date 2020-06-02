@@ -32,9 +32,7 @@ export const ClockworkSlab = (props, context) => {
             <Section title="Power">
               <LabeledList>
                 <LabeledList.Item>
-                  <Fragment dangerouslySetInnerHTML={"<b><font color=#B18B25>403.22 kJ</b> power is available for scripture and other consumers.</font>"}>
                     {data.power}
-                  </Fragment>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
