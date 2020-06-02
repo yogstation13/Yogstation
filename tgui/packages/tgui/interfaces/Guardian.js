@@ -1,11 +1,10 @@
 import { Fragment } from 'inferno';
-import { act } from '../byond';
 import { Button, LabeledList, Section, Tabs } from '../components';
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
 
-export const Guardian = props => {
-  const { state } = props;
-  const { config, data } = state;
-  const { ref } = config;
+export const Guardian = (props, context) => {
+  const { act, data } = useBackend(context);
   const number2grade = {
     1: "F",
     2: "D",
@@ -14,7 +13,8 @@ export const Guardian = props => {
     5: "A",
   };
   return (
-    <Fragment>
+    <Window resizable>
+    <Window.Content scrollable>
       <LabeledList>
         <LabeledList.Item
           label="Points"
@@ -30,23 +30,23 @@ export const Guardian = props => {
             title="General stuff">
             <Button
               content={data.guardian_name || "Random Name"}
-              onClick={() => act(ref, 'name')} />
+              onClick={() => act('name')} />
             <Button
               icon="undo"
               content="Reset All"
-              onClick={() => act(ref, 'reset')} />
+              onClick={() => act('reset')} />
           </Section>
           <Section
             title="Attack Type">
             <Button
               content="Melee"
               selected={data.melee}
-              onClick={() => act(ref, 'melee')} />
+              onClick={() => act('melee')} />
             <Button
               content="Ranged"
               selected={!data.melee}
               disabled={data.melee && data.points < 3}
-              onClick={() => act(ref, 'ranged')} />
+              onClick={() => act('ranged')} />
           </Section>
         </Tabs.Tab>
         <Tabs.Tab
@@ -62,26 +62,26 @@ export const Guardian = props => {
                   content="A"
                   selected={skill.level === 5}
                   disabled={skill.level < 5 && data.points < 4}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 5 })} />
+                  onClick={() => act('set', { name: skill.name, level: 5 })} />
                 <Button
                   content="B"
                   selected={skill.level === 4}
                   disabled={skill.level < 4 && data.points < 3}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 4 })} />
+                  onClick={() => act('set', { name: skill.name, level: 4 })} />
                 <Button
                   content="C"
                   selected={skill.level === 3}
                   disabled={skill.level < 3 && data.points < 2}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 3 })} />
+                  onClick={() => act('set', { name: skill.name, level: 3 })} />
                 <Button
                   content="D"
                   selected={skill.level === 2}
                   disabled={skill.level < 2 && data.points < 1}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 2 })} />
+                  onClick={() => act('set', { name: skill.name, level: 2 })} />
                 <Button
                   content="F"
                   selected={skill.level === 1}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 1 })} />
+                  onClick={() => act('set', { name: skill.name, level: 1 })} />
               </LabeledList.Item>
             ))}
           </LabeledList>
@@ -100,7 +100,7 @@ export const Guardian = props => {
                 content={ability.cost + " points"}
                 selected={ability.selected}
                 disabled={!ability.selected && (data.points < ability.cost || !ability.available)}
-                onClick={() => act(ref, 'ability_major', { path: ability.path })} />
+                onClick={() => act('ability_major', { path: ability.path })} />
             </LabeledList.Item>
           ))}
         </Tabs.Tab>
@@ -117,7 +117,7 @@ export const Guardian = props => {
                 content={ability.cost + " points"}
                 selected={ability.selected}
                 disabled={!ability.selected && (data.points < ability.cost || !ability.available)}
-                onClick={() => act(ref, 'ability_minor', { path: ability.path })} />
+                onClick={() => act('ability_minor', { path: ability.path })} />
             </LabeledList.Item>
           ))}
         </Tabs.Tab>
@@ -175,9 +175,10 @@ export const Guardian = props => {
           <Button
             content={"Summon " + data.name}
             style={{ width: '100%', 'text-align': 'center', position: 'fixed', bottom: '12px' }}
-            onClick={() => act(ref, 'spawn')} />
+            onClick={() => act('spawn')} />
         </Tabs.Tab>
       </Tabs>
-    </Fragment>
+      </Window.Content>
+    </Window>
   );
 };
