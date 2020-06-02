@@ -824,6 +824,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/datum/techweb_node/mech_xray
+	id = "mech_xray"
+	display_name = "Exosuit Weapon (CH-XC \"Transitum\" X-Ray Laser)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_beam_weapons")
+	design_ids = list("mech_xray")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
 /datum/techweb_node/mech_disabler
 	id = "mech_disabler"
 	display_name =  "Exosuit Weapon (CH-DS \"Peacemaker\" Mounted Disabler)"
