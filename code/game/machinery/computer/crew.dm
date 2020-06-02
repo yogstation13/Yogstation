@@ -10,6 +10,9 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/computer/crew
 
+	ui_x = 1325
+	ui_y = 565
+
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/crew/syndie
@@ -81,7 +84,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	if (!ui)
 		for(var/datum/minimap/M in SSmapping.station_minimaps)
 			M.send(user)
-		ui = new(user, src, ui_key, "CrewConsole", "Crew Monitoring Console", 1000, 600 , master_ui, state)
+		ui = new(user, src, ui_key, "CrewConsole", "Crew Monitoring Console", ui_x, ui_y , master_ui, state)
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
