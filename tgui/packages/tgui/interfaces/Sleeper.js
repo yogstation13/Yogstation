@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Section, LabeledList, Button, ProgressBar } from '../components';
+import { Box, Section, LabeledList, Button, ProgressBar, AnimatedNumber } from '../components';
 import { Fragment } from 'inferno';
 import { Window } from '../layouts';
 
@@ -96,13 +96,21 @@ export const Sleeper = (props, context) => {
             </Fragment>
           )}
         </Section>
-        <Section title="Reagents" minHeight="50px">
-          {occupant.reagents.map(reagent => (
-            <Fragment key={reagent.name}>
-              {reagent.name} - {reagent.volume} units
-            </Fragment>
-          ))}
-        </Section>
+        {!!occupied && (
+          <Section title="Reagents" minHeight="50px">
+            {occupant.reagents.map(reagent => (
+              <Box key={reagent.name}>
+                {reagent.name} -
+                <AnimatedNumber
+                  value={reagent.volume}
+                  format={value => {
+                    return " " + Math.round(value * 100) / 100 + " units";
+                  }} />
+              </Box>
+
+            ))}
+          </Section>
+        )}
         <Section
           title="Medicines"
           minHeight="205px"
