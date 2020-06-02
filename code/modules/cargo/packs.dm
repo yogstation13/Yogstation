@@ -507,14 +507,14 @@
 
 /datum/supply_pack/security/armory/energy_single
 	name = "Energy Guns Single-Pack"
-	desc = "Contains one Energy Gun, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
+	desc = "Contains one energy gun, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
 	cost = 1500
 	small_item = TRUE
 	contains = list(/obj/item/gun/energy/e_gun)
 
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
-	desc = "Contains two Energy Guns, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
+	desc = "Contains two energy guns, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/gun/energy/e_gun,
 					/obj/item/gun/energy/e_gun)
@@ -618,23 +618,23 @@
 
 /datum/supply_pack/security/armory/smartmine
 	name = "Smart Mine Crate"
-	desc = "Contains three nonlethal pressure activated stun mines capable of ignoring mindshieled personnel. Requires Armory access to open."
+	desc = "Contains three non-lethal pressure activated stun mines capable of ignoring mindshieled personnel. Requires Armory access to open."
 	cost = 4000
-	contains = list(/obj/item/deployablemine/smartstun,					
+	contains = list(/obj/item/deployablemine/smartstun,
 					/obj/item/deployablemine/smartstun,
 					/obj/item/deployablemine/smartstun)
-	crate_name = "stun mine create"
+	crate_name = "stun mine crate"
 
 /datum/supply_pack/security/armory/stunmine
 	name = "Stun Mine Crate"
-	desc = "Contains five nonlethal pressure activated stun mines. Requires Armory access to open."
+	desc = "Contains five non-lethal pressure activated stun mines. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/deployablemine/stun,
 					/obj/item/deployablemine/stun,
 					/obj/item/deployablemine/stun,
 					/obj/item/deployablemine/stun,
 					/obj/item/deployablemine/stun)
-	crate_name = "stun mine create"
+	crate_name = "stun mine crate"
 
 /datum/supply_pack/security/armory/swat
 	name = "SWAT Crate"
