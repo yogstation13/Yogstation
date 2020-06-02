@@ -1239,8 +1239,8 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 
 obj/item/toy/turn_tracker
 	name= "turn tracker"
-	icon = 'icons/obj/assemblies.dmi'//BIG RED BUTTON (TEMP SPRITE)
-	icon_state = "bigred"
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "bigblue"
 	desc= "A turn tracker, used to track turns. Duh.\nClick on it in hand to set it up.\nAlt-click to reverse turn order."
 	var/list/names=list()
 	var/turn=0
