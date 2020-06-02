@@ -1358,7 +1358,7 @@
 	start_effect(M, heal_roll, slur, jitter)
 	epinephrine_effect(M, heal_roll, slur, jitter)
 	perfluorodecalin_effect(M, heal_roll, slur, jitter)
-	base_effect(M, heal_roll, slur, jitter) // base effect has to be last
+	base_effect(M, heal_roll, slur, jitter)
 	..()
 	. = 1
 
@@ -1370,7 +1370,7 @@
 	perfluorodecalin_effect(M, heal_roll, slur, jitter)
 	epinephrine_effect(M, heal_roll, slur, jitter)
 	combined_effect(M, heal_roll, slur, jitter) // OD allows for the combined effect
-	base_effect(M, heal_roll, slur, jitter) // base effect has to be last
+	base_effect(M, heal_roll, slur, jitter) 
 	..()
 	. = 1
 
