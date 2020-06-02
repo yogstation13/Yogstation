@@ -21,10 +21,6 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
-/obj/item/clothing/under/rank/security/on_mob_death()
-	. = ..()
-	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain
-
 /obj/item/clothing/under/rank/security/grey
 	name = "grey security jumpsuit"
 	desc = "A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
@@ -54,10 +50,6 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
-
-/obj/item/clothing/under/rank/warden/on_mob_death()
-	. = ..()
-	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0)
 
 /obj/item/clothing/under/rank/warden/grey
 	name = "grey security suit"
@@ -133,10 +125,6 @@
 	alt_covers_chest = TRUE
 	sensor_mode = 3
 	random_sensor = FALSE
-
-/obj/item/clothing/under/rank/head_of_security/on_mob_death()
-	. = ..()
-	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
 
 /obj/item/clothing/under/rank/head_of_security/skirt
 	name = "head of security's jumpskirt"
