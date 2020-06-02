@@ -78,9 +78,9 @@
 	occupant.AddComponent(/datum/component/nanites, 100)
 
 /obj/machinery/nanite_chamber/proc/remove_nanites(datum/nanite_program/NP)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return
-	if((machine_stat & MAINT) || panel_open)
+	if((stat & MAINT) || panel_open)
 		return
 	if(!occupant || busy)
 		return
