@@ -1,12 +1,12 @@
 import { useBackend } from '../backend';
 import { Fragment } from 'inferno';
-import { Button, LabeledList, Section } from '../components';
+import { Button, LabeledList, Section, Divider, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const ClockworkSlab = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window theme="clockwork">
+    <Window theme="clockwork" resizeable>
       <Window.Content>
         <Section>
           <Button
@@ -59,14 +59,17 @@ export const ClockworkSlab = (props, context) => {
                     onClick={() => act('select', {
                       category: "Application",
                     })} />
+                    <br />
                   {data.tier_info}
                 </LabeledList.Item>
                 <LabeledList.Item>
                   {data.scripturecolors}
                 </LabeledList.Item>
+                <LabeledList.Divider />
                 <LabeledList.Item>
+
                   {data.scripture.map(script => (
-                    <Fragment key={script.type}>
+                    <Flex key={script.type}>
                       <Button
                         tooltip={script.tooltip}
                         tooltipPosition="right"
@@ -74,6 +77,7 @@ export const ClockworkSlab = (props, context) => {
                         onClick={() => act('recite', {
                           category: script.type,
                         })} />
+
                       {script.quickbind && (
                         <div>
                           {script.bound && (
@@ -92,8 +96,10 @@ export const ClockworkSlab = (props, context) => {
                         </div>
                       )}
                       {script.name} {script.descname} {script.invokers}
-                    </Fragment>
+
+                    </Flex>
                   ))}
+
                 </LabeledList.Item>
               </LabeledList>
             </Section>
