@@ -190,7 +190,7 @@ export const Autolathe = (props, context) => {
             </Flex.Item>
             <Flex.Item>
               {searchterms.length > 1 ? (
-                <Section fluid title="Search Results" width={100}>
+                <Section fluid title="Search Results" width={50}>
                   <div>
                     <Flex.Item>
                       {data.designs.filter(design => {
@@ -271,7 +271,7 @@ export const Autolathe = (props, context) => {
                   </div>
                 </Section>
               ) : (
-                <Section fluid title="Known Designs" width={100}>
+                <Section fluid title="Known Designs" width={50}>
                   <div>
                     <Flex.Item>
                       {data.designs.filter(design => {
