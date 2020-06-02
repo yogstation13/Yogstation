@@ -32,7 +32,7 @@ export const ClockworkSlab = (props, context) => {
             <Section title="Power">
               <LabeledList>
                 <LabeledList.Item>
-                    {data.power}
+                  {data.power}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
