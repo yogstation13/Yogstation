@@ -653,7 +653,7 @@
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
 	populate_deck()
-	desc = desc +"\nThe deck originally contained [cards.len] cards."
+	update_desc()
 
 /obj/item/toy/cards/deck/proc/populate_deck()
 	icon_state = "deck_[deckstyle]_full"
@@ -706,6 +706,7 @@
 	user.put_in_hands(H)
 	user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
 	update_icon()
+	update_desc()
 
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
@@ -716,6 +717,9 @@
 		icon_state = "deck_[deckstyle]_low"
 	else if(cards.len == 0)
 		icon_state = "deck_[deckstyle]_empty"
+
+/obj/item/toy/cards/deck/proc/update_desc()
+	desc="A deck of space-grade playing cards. \nThis one contains [cards.len] cards."
 
 /obj/item/toy/cards/deck/attack_self(mob/user)
 	if(cooldown < world.time - 50)
@@ -737,6 +741,7 @@
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 		update_icon()
+		update_desc()
 	else if(istype(I, /obj/item/toy/cards/cardhand))
 		var/obj/item/toy/cards/cardhand/CH = I
 		if(CH.parentdeck == src)
@@ -749,6 +754,7 @@
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 		update_icon()
+		update_desc()
 	else
 		return ..()
 
@@ -780,7 +786,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/list/currenthand = list()
 	var/choice = null
-	
+
 
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
 	var/list/handradial = list()
@@ -840,6 +846,26 @@
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
 		return ..()
+
+/obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/cardhand/C, mob/living/user, params) //Same as above, but for card hands!
+	if(istype(C))
+		if(C.parentdeck == src.parentdeck)
+			//TODO:ADDS THE OTHER HAND TO THIS ONE
+			//user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [C.cardname] to your hand.</span>")
+			qdel(C)
+			interact(user)
+			if(currenthand.len > 4)
+				src.icon_state = "[deckstyle]_hand5"
+			else if(currenthand.len > 3)
+				src.icon_state = "[deckstyle]_hand4"
+			else if(currenthand.len > 2)
+				src.icon_state = "[deckstyle]_hand3"
+			update_desc()
+		else
+			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
+	else
+		return ..()
+
 
 /obj/item/toy/cards/cardhand/apply_card_vars(obj/item/toy/cards/newobj,obj/item/toy/cards/sourceobj)
 	..()
