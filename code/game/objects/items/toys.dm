@@ -654,7 +654,6 @@
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
 	populate_deck()
-	update_desc()
 
 /obj/item/toy/cards/deck/proc/populate_deck()
 	icon_state = "deck_[deckstyle]_full"
@@ -707,7 +706,6 @@
 	user.put_in_hands(H)
 	user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
 	update_icon()
-	update_desc()
 
 obj/item/toy/cards/deck/AltClick(mob/user)
 	if(isliving(user))
@@ -756,7 +754,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 	user.put_in_hands(C)
 	user.visible_message("[user] draws [dr] cards from the deck.", "<span class='notice'>You draw [dr] cards from the deck.</span>")
 	update_icon()
-	update_desc()
 	C.update_sprite()
 	qdel(H)
 
@@ -770,8 +767,10 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 	else if(cards.len == 0)
 		icon_state = "deck_[deckstyle]_empty"
 
-/obj/item/toy/cards/deck/proc/update_desc()
-	desc="A deck of space-grade playing cards. \nThis one contains [cards.len] cards."
+/obj/item/toy/cards/deck/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This one contains [cards.len] cards.</b><span>"
+	. += "<span class='notice'>Alt-click the deck to draw multiple cards at once.</b><span>"
 
 /obj/item/toy/cards/deck/attack_self(mob/user)
 	if(cooldown < world.time - 50)
@@ -793,7 +792,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 		update_icon()
-		update_desc()
 	else if(istype(I, /obj/item/toy/cards/cardhand))
 		var/obj/item/toy/cards/cardhand/CH = I
 		if(CH.parentdeck == src)
@@ -806,7 +804,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 		update_icon()
-		update_desc()
 	else
 		return ..()
 
@@ -869,7 +866,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 
 	interact(cardUser)
 	update_sprite()
-	update_desc()
 	if(length(currenthand) == 1)
 		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
 		N.parentdeck = parentdeck
@@ -893,7 +889,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 				src.icon_state = "[deckstyle]_hand4"
 			else if(currenthand.len > 2)
 				src.icon_state = "[deckstyle]_hand3"
-			update_desc()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -914,7 +909,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 				src.icon_state = "[deckstyle]_hand4"
 			else if(currenthand.len > 2)
 				src.icon_state = "[deckstyle]_hand3"
-			update_desc()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -956,8 +950,9 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
 		add_overlay(card_overlay)
 
-/obj/item/toy/cards/cardhand/proc/update_desc()
-	desc = "A number of cards not in a deck, customarily held in ones hand. \nThis hand has [currenthand.len] cards in it."
+/obj/item/toy/cards/cardhand/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This hand has [currenthand.len] cards in it.</b><span>"
 
 /obj/item/toy/cards/singlecard
 	name = "card"
