@@ -726,20 +726,14 @@ obj/item/toy/cards/deck/AltClick(mob/user)
 	return
 
 obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, mob who is drawing them
-	var/choice = null
 	var/obj/item/toy/cards/cardhand/C = new/obj/item/toy/cards/cardhand(user.loc)
-	var/obj/item/toy/cards/singlecard/H = new/obj/item/toy/cards/singlecard(user.loc)
 	var/i
-	var/O = src
+	if (holo)
+		holo.spawned +=C
 	for (i=1,i<=dr,i++)
-		if (holo)
-			holo.spawned +=H
-		choice = cards[i]
-		H.cardname = choice
-		H.parentdeck = src
-		C.apply_card_vars(H,O)
-		C.currenthand+=choice
+		C.currenthand+=cards[i]
 	src.cards.Cut(1,(1+dr))
+	C.parentdeck = src
 	C.interact(user)
 	if(C.currenthand.len > 4)
 		C.icon_state = "[deckstyle]_hand5"
@@ -755,7 +749,6 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 	user.visible_message("[user] draws [dr] cards from the deck.", "<span class='notice'>You draw [dr] cards from the deck.</span>")
 	update_icon()
 	C.update_sprite()
-	qdel(H)
 
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
