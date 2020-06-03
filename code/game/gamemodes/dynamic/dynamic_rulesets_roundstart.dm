@@ -741,7 +741,6 @@
 	weight = 1
 	cost = 35
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
-	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
 	var/shadowling_cap = list(3,3,3,3,3,3,3,3,3,4)
