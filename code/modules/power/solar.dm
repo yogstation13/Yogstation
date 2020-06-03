@@ -108,11 +108,14 @@
 
 /obj/machinery/power/solar/update_icon()
 	..()
-	cut_overlays()
+
+	var/matrix/turner = matrix()
+	turner.Turn(azimuth_current)
+	panel.transform = turner
 	if(stat & BROKEN)
-		add_overlay(mutable_appearance(icon, "solar_panel-b", FLY_LAYER))
+		panel.icon_state = "solar_panel-b"
 	else
-		add_overlay(mutable_appearance(icon, "solar_panel", FLY_LAYER))
+		panel.icon_state = "solar_panel"
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
