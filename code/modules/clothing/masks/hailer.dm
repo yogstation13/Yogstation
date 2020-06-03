@@ -192,4 +192,8 @@
 
 /obj/item/clothing/mask/gas/sechailer/on_mob_death()
 	. = ..()
-	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
+	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain
+
+/obj/item/clothing/mask/gas/sechailer/swat/on_mob_death()
+	. = ..()
+	playsound(loc, pick('sound/voice/cpdeath/cdie1.ogg', 'sound/voice/cpdeath/cdie2.ogg', 'sound/voice/cpdeath/cdie3.ogg'), 50, 0)
