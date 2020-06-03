@@ -23,14 +23,7 @@
 		update_icon()
 
 /obj/machinery/chem_heater/update_icon()
-	if(beaker)
-		icon_state = "mixer1b"
-	if(!beaker)
-		icon_state = "mixer0b"
-	if(on)
-		icon_state = "mixer0a"
-	if(on && beaker)
-		icon_state = "mixer1a"
+	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
