@@ -420,8 +420,10 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	if(occupant)
 		to_chat(user, "<span class='boldnotice'>\The [src] is in use.</span>")
 		return
+	var/offer = alert(usr, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
+	if(offer == "Yes" && offer_control(target))
+		return
 	close_machine(target)
-
 	to_chat(target, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 	name = "[name] ([occupant.name])"
 	log_admin("<span class='notice'>[key_name(target)] entered a stasis pod.</span>")
