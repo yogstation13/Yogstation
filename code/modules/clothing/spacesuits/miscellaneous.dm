@@ -264,7 +264,7 @@ Contains:
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65)
 
 /obj/item/clothing/head/helmet/space/eva/paramedic
-	name = "space helmet"
+	name = "paramedic space helmet"
 	icon_state = "paramedic"
 	item_state = "paramedic"
 	desc = "A lightweight space helmet with the basic ability to protect paramedics from the vacuum of space during recovery operations."
