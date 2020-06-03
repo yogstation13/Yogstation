@@ -1,6 +1,6 @@
 import { toArray } from 'common/collections';
 import { Fragment } from 'inferno';
-import { useBackend, useSharedState } from '../backend';
+import { useBackend, useSharedState, useLocalState } from '../backend';
 import { AnimatedNumber, Box, Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
@@ -115,9 +115,10 @@ const CargoStatus = (props, context) => {
 export const CargoCatalog = (props, context) => {
   const { express } = props;
   const { act, data } = useBackend(context);
-  const {
+  const [
     self_paid,
-  } = data;
+    set_self_paid,
+  ] = useLocalState(context, 'self_paid', 0);
   const supplies = toArray(data.supplies);
   const [
     activeSupplyName,
@@ -136,7 +137,7 @@ export const CargoCatalog = (props, context) => {
             ml={2}
             content="Buy Privately"
             checked={self_paid}
-            onClick={() => act('toggleprivate')} />
+            onClick={self_paid ? () => set_self_paid(0) : () => set_self_paid(1)} />
         </Fragment>
       )}>
       <Flex>
@@ -184,6 +185,7 @@ export const CargoCatalog = (props, context) => {
                       tooltipPosition="left"
                       onClick={() => act('add', {
                         id: pack.id,
+                        self_paid: self_paid,
                       })}>
                       {formatMoney(self_paid
                         ? Math.round(pack.cost * 1.1)
