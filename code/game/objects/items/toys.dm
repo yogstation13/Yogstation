@@ -639,7 +639,6 @@
 	if(!istype(sourceobj))
 		return
 
-
 /obj/item/toy/cards/deck
 	name = "deck of cards"
 	desc = "A deck of space-grade playing cards."
@@ -755,8 +754,8 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 
 /obj/item/toy/cards/deck/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>This one contains [cards.len] cards.</b><span>"
-	. += "<span class='notice'>Alt-click the deck to draw multiple cards at once.</b><span>"
+	. += "<span class='notice'>This one contains [cards.len] cards.<span>"
+	. += "<span class='notice'>Alt-click the deck to draw multiple cards at once.<span>"
 
 /obj/item/toy/cards/deck/attack_self(mob/user)
 	if(cooldown < world.time - 50)
@@ -929,7 +928,7 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 
 /obj/item/toy/cards/cardhand/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>This hand has [currenthand.len] cards in it.</b><span>"
+	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
 
 /obj/item/toy/cards/cardhand/update_icon()
 	if(src.currenthand.len > 4)
@@ -1234,6 +1233,7 @@ obj/item/toy/turn_tracker
 		names+=splittext(info,",")
 		to_chat(user, "<span class='notice'>You set up the turn tracker. </span>")
 	return
+	
 /obj/item/toy/turn_tracker/attack_hand(mob/user)
 	if (names.len==0)
 		to_chat(user, "<span class='warning'> You need to set it up first! </span>")
@@ -1249,7 +1249,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/turn_tracker/AltClick(mob/user)
 	audible_message("<span class='notice'>[src] says: \"Direction Reversed!\"</span>")
-	turndir=turndir*-1
+	turndir=turndir*-1 //this reverses the direction (1 becomes -1, -1 becomes 1)
 
 /obj/item/toy/turn_tracker/MouseDrop(atom/over_object)
 	. = ..()
