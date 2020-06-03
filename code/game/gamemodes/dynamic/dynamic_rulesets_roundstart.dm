@@ -146,6 +146,7 @@
 // Dynamic is a wonderful thing that adds wizards to every round and then adds even more wizards during the round.
 /datum/dynamic_ruleset/roundstart/wizard
 	name = "Wizard"
+	persistent = TRUE
 	antag_flag = ROLE_WIZARD
 	antag_datum = /datum/antagonist/wizard
 	minimum_required_age = 14
@@ -772,6 +773,7 @@
 
 /datum/dynamic_ruleset/roundstart/vampire
 	name = "Vampire"
+	persistent = TRUE
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
