@@ -59,19 +59,19 @@ export const Canister = (props, context) => {
             <LabeledControls.Item label="Regulator" mr={2}>
               <Box
                 position="relative">
-                  <Slider
-                    value={releasePressure}
-                    color={!!valveOpen && 'yellow'}
-                    fillValue={releasePressure}
-                    minValue={minReleasePressure}
-                    maxValue={maxReleasePressure}
-                    step={5}
-                    stepPixelSize={0.75}
-                    width={10}
-                    format={value => value + "kPa"}
-                    onDrag={(e, value) => act('pressure', {
-                      pressure: value,
-                    })} />
+                <Slider
+                  value={releasePressure}
+                  color={!!valveOpen && 'yellow'}
+                  fillValue={releasePressure}
+                  minValue={minReleasePressure}
+                  maxValue={maxReleasePressure}
+                  step={5}
+                  stepPixelSize={0.75}
+                  width={10}
+                  format={value => value + "kPa"}
+                  onDrag={(e, value) => act('pressure', {
+                    pressure: value,
+                  })} />
                 <Button
                   fluid
                   position="absolute"
