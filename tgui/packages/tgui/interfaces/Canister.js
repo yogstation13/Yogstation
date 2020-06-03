@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, Icon, Knob, LabeledControls, LabeledList, Section, Tooltip } from '../components';
+import { AnimatedNumber, Box, Button, Icon, Knob, LabeledControls, LabeledList, Section, Tooltip, Slider } from '../components';
 import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
@@ -21,7 +21,7 @@ export const Canister = (props, context) => {
     restricted,
   } = data;
   return (
-    <Window>
+    <Window resizable>
       <Window.Content>
         <Section
           title="Canister"
@@ -56,27 +56,27 @@ export const Canister = (props, context) => {
                   return formatSiUnit(value * 1000, 1, 'Pa');
                 }} />
             </LabeledControls.Item>
-            <LabeledControls.Item label="Regulator">
+            <LabeledControls.Item label="Regulator" mr={2}>
               <Box
-                position="relative"
-                left="-8px">
-                <Knob
-                  size={1.25}
-                  color={!!valveOpen && 'yellow'}
-                  value={releasePressure}
-                  unit="kPa"
-                  minValue={minReleasePressure}
-                  maxValue={maxReleasePressure}
-                  step={5}
-                  stepPixelSize={1}
-                  onDrag={(e, value) => act('pressure', {
-                    pressure: value,
-                  })} />
+                position="relative">
+                  <Slider
+                    value={releasePressure}
+                    color={!!valveOpen && 'yellow'}
+                    fillValue={releasePressure}
+                    minValue={minReleasePressure}
+                    maxValue={maxReleasePressure}
+                    step={5}
+                    stepPixelSize={0.75}
+                    width={10}
+                    format={value => value + "kPa"}
+                    onDrag={(e, value) => act('pressure', {
+                      pressure: value,
+                    })} />
                 <Button
                   fluid
                   position="absolute"
                   top="-2px"
-                  right="-20px"
+                  right="-22px"
                   color="transparent"
                   icon="fast-forward"
                   onClick={() => act('pressure', {
@@ -86,7 +86,7 @@ export const Canister = (props, context) => {
                   fluid
                   position="absolute"
                   top="16px"
-                  right="-20px"
+                  right="-22px"
                   color="transparent"
                   icon="undo"
                   onClick={() => act('pressure', {
@@ -97,7 +97,7 @@ export const Canister = (props, context) => {
             <LabeledControls.Item label="Valve">
               <Button
                 my={0.5}
-                width="50px"
+                width="75px"
                 lineHeight={2}
                 fontSize="11px"
                 color={valveOpen

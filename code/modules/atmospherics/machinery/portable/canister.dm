@@ -6,8 +6,8 @@
 	icon_state = "yellow"
 	density = TRUE
 
-	ui_x = 300
-	ui_y = 232
+	ui_x = 405
+	ui_y = 230
 
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump

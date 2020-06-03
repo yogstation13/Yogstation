@@ -58,7 +58,6 @@ export const SeedExtractor = (props, context) => {
               <Table.Cell>Production</Table.Cell>
               <Table.Cell>Yield</Table.Cell>
               <Table.Cell>Potency</Table.Cell>
-              <Table.Cell>Instability</Table.Cell>
               <Table.Cell>Stock</Table.Cell>
             </Table.Row>
             {seeds.map(item => (
@@ -70,9 +69,8 @@ export const SeedExtractor = (props, context) => {
                 <Table.Cell>{item.production}</Table.Cell>
                 <Table.Cell>{item.yield}</Table.Cell>
                 <Table.Cell>{item.potency}</Table.Cell>
-                <Table.Cell>{item.instability}</Table.Cell>
                 <Table.Cell>
-                  <Button
+                  <Button mr={0.5}
                     content="Vend"
                     onClick={() => act('select', {
                       item: item.key,
