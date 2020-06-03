@@ -185,7 +185,7 @@
 	if(user.client)
 		SSachievements.unlock_achievement(/datum/achievement/cargo/bsa, user.client)
 	message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike.")
-	investigate_log("[key_name(user)] has fired the bluespace artillery", INVESTIGATE_ARTILLERY)
+	log_game("[key_name(user)] has fired the bluespace artillery") // yogs
 	explosion(bullseye,ex_power,ex_power*2,ex_power*4)
 
 	reload()
