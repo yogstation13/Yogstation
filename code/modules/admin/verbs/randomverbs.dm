@@ -1244,11 +1244,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	for(var/obj/machinery/cryopod/cryopod in world)
 		if(cryopod.occupant)
 			continue
+		if(!istype(get_area(cryopod), /area/crew_quarters))
+			continue
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
 		target.forceMove(cryopod.loc)
+		var/msg = "[key_name_admin(usr)] has put [target.real_name]/[key_name(target)] into cryostorage at [ADMIN_VERBOSEJMP(target)]."
+		message_admins(msg)
+		log_admin(msg)
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
 		cryopod.close_machine(target)
 		return
-	var/msg = "[key_name_admin(usr)] has put [target.real_name]/[key_name(target)] into cryostorage."
-	message_admins(msg)
-	log_admin(msg)
