@@ -85,7 +85,8 @@
 	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
 
 /obj/effect/proc_holder/spell/self/vampire_help/cast(list/targets, mob/user = usr)
-	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you cannot draw blood from <b>catatonics or corpses</b>.</span>")
+	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you cannot draw blood from <b>catatonics or corpses</b>.\
+			Your bloodsucking speed depends on grab strength, you can <i>stealhily</i> extract blood by initiating without a grab, and can suck more blood per cycle by <b>having a neck grab or stronger</b>. Both of these modify the amount of blood taken by 50%; less for stealth, more for strong grabs.</span>")
 
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
