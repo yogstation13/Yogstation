@@ -682,9 +682,9 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 //ATTACK HAND NOT CALLING PARENT
 /obj/item/toy/cards/deck/attack_hand(mob/user)
-	draw_card(user)
+	draw_card(user, 1)
 
-/obj/item/toy/cards/deck/proc/draw_card(mob/user)
+/obj/item/toy/cards/deck/proc/draw_card(mob/user,num)//Person who draws the card, number of cards to be drawn
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -693,21 +693,40 @@
 	if(cards.len == 0)
 		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	var/obj/item/toy/cards/singlecard/H = new/obj/item/toy/cards/singlecard(user.loc)
-	if(holo)
-		holo.spawned += H // track them leaving the holodeck
-	choice = cards[1]
-	H.cardname = choice
-	H.parentdeck = src
-	var/O = src
-	H.apply_card_vars(H,O)
-	src.cards.Cut(1,2)
-	H.pickup(user)
-	user.put_in_hands(H)
-	user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
-	update_icon()
+	if (num==1)
+		var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(user.loc)
+		choice = cards[1]
+		user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
+		C.cardname = choice
+		if(holo)
+			holo.spawned += C // track them leaving the holodeck
+		C.parentdeck = src
+		var/O = src
+		C.apply_card_vars(C,O)
+		C.deckstyle=deckstyle
+		src.cards.Cut(1,2)
+		C.pickup(user)
+		user.put_in_hands(C)
+		update_icon()
+		C.interact(user)
+	else //if more than one card is drawn
+		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.loc)
+		user.visible_message("[user] draws [num] cards from the deck.", "<span class='notice'>You draw [num] cards from the deck.</span>")
+		var/i
+		for (i=1,i<=num,i++)
+			H.currenthand+=cards[i]
+		if(holo)
+			holo.spawned += H // track them leaving the holodeck
+		H.parentdeck = src
+		H.deckstyle=deckstyle
+		src.cards.Cut(1,num+1)
+		H.pickup(user)
+		user.put_in_hands(H)
+		update_icon()
+		H.interact(user)
+		H.update_sprite()
 
-obj/item/toy/cards/deck/AltClick(mob/user)
+/obj/item/toy/cards/deck/AltClick(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -719,29 +738,7 @@ obj/item/toy/cards/deck/AltClick(mob/user)
 			var/drawsize = input(user, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
 			if (drawsize)
 				drawsize=clamp(drawsize,1,min(cards.len,10))
-				if(drawsize==1)
-					draw_card(user)//if drawing a single card, no need to use the many proc
-				else
-					draw_many(drawsize,user)//this one draws many cards at once
-	return
-
-obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, mob who is drawing them
-	var/obj/item/toy/cards/cardhand/C = new/obj/item/toy/cards/cardhand(user.loc)
-	var/i
-	if (holo)
-		holo.spawned +=C
-	for (i=1,i<=dr,i++)
-		C.currenthand+=cards[i]
-	src.cards.Cut(1,(1+dr))
-	C.parentdeck = src
-	C.interact(user)
-	C.update_icon()
-	C.deckstyle=deckstyle
-	C.pickup(user)
-	user.put_in_hands(C)
-	user.visible_message("[user] draws [dr] cards from the deck.", "<span class='notice'>You draw [dr] cards from the deck.</span>")
-	update_icon()
-	C.update_sprite()
+				draw_card(user,drawsize)
 
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
