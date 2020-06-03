@@ -147,6 +147,7 @@
 	var/newlength = length_char(memory) + length_char(new_text)
 	if (newlength > MAX_MESSAGE_LEN * 100)
 		memory = copytext_char(memory, -newlength-MAX_MESSAGE_LEN * 100)
+	memory += "[new_text]<BR>"
 
 /datum/mind/proc/wipe_memory()
 	memory = null

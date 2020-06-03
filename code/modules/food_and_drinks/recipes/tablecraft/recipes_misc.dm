@@ -308,7 +308,6 @@
 	result = /obj/item/reagent_containers/food/snacks/salad/ricepudding
 	subcategory = CAT_MISCFOOD
 
-
 /datum/crafting_recipe/food/spiderlollipop
 	name = "Spider Lollipop"
 	reqs = list(/obj/item/stack/rods = 1,

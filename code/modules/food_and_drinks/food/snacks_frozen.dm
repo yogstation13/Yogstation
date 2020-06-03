@@ -48,20 +48,20 @@
 /////////////
 
 /obj/item/reagent_containers/food/snacks/snowcones //We use this as a base for all other snowcones
-	name = "flaverless snowcone"
-	desc = "Its just harden water slivers. Still fun to chew on."
+	name = "flavorless snowcone"
+	desc = "It's just hardened water slivers. Still fun to chew on."
 	icon = 'icons/obj/food/snowcones.dmi'
 	icon_state = "flaverless_sc"
 	trash = /obj/item/reagent_containers/food/drinks/sillycup //We dont eat paper cups
-	bonus_reagents = list(/datum/reagent/water = 10) //Base line will allways give water
+	bonus_reagents = list(/datum/reagent/water = 10) //Base line will always give water
 	list_reagents = list(/datum/reagent/water = 1) // We dont get food for water/juices
 	filling_color = "#FFFFFF" //Ice is white
 	tastes = list("ice" = 1, "water" = 1)
-	foodtype = SUGAR //We use SUGAR as a base line to act in as junkfood, other wise we use fruit
+	foodtype = SUGAR //We use SUGAR as a base line to act in as junkfood, otherwise we use fruit
 
 /obj/item/reagent_containers/food/snacks/snowcones/lime
 	name = "lime flavored snowcone"
-	desc = "A lime flavord snowball in a paper cup."
+	desc = "A lime flavored snowball in a paper cup."
 	icon_state = "lime_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/limejuice = 5)
 	tastes = list("ice" = 1, "water" = 1, "limes" = 5)
@@ -69,7 +69,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/lemon
 	name = "lemon flavored snowcone"
-	desc = "A lemon flavord snowball in a paper cup."
+	desc = "A lemon flavored snowball in a paper cup."
 	icon_state = "lemon_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/lemonjuice = 5)
 	tastes = list("ice" = 1, "water" = 1, "lemons" = 5)
@@ -77,7 +77,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/apple
 	name = "apple flavored snowcone"
-	desc = "A apple flavord snowball in a paper cup."
+	desc = "An apple flavored snowball in a paper cup."
 	icon_state = "blue_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/applejuice = 5)
 	tastes = list("ice" = 1, "water" = 1, "apples" = 5)
@@ -85,7 +85,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/grape
 	name = "grape flavored snowcone"
-	desc = "A grape flavord snowball in a paper cup."
+	desc = "A grape flavored snowball in a paper cup."
 	icon_state = "grape_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/grapejuice = 5)
 	tastes = list("ice" = 1, "water" = 1, "grape" = 5)
@@ -93,7 +93,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/orange
 	name = "orange flavored snowcone"
-	desc = "A orange flavors dizzled on a snowball in a paper cup."
+	desc = "An orange flavor drizzled on a snowball in a paper cup."
 	icon_state = "orange_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/orangejuice = 5)
 	tastes = list("ice" = 1, "water" = 1, "orange" = 5)
@@ -101,7 +101,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/blue
 	name = "bluecherry flavored snowcone"
-	desc = "A bluecharry flavord snowball in a paper cup, how rare!"
+	desc = "A blue cherry flavored snowball in a paper cup, how rare!"
 	icon_state = "red_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/bluecherryjelly = 5)
 	tastes = list("ice" = 1, "water" = 1, "blue" = 5)
@@ -109,7 +109,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/red
 	name = "cherry flavored snowcone"
-	desc = "A cherry flavord snowball in a paper cup."
+	desc = "A cherry flavored snowball in a paper cup."
 	icon_state = "blue_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cherryjelly = 5)
 	tastes = list("ice" = 1, "water" = 1, "red" = 5)
@@ -117,7 +117,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/mix
 	name = "mixed berry flavored snowcone"
-	desc = "A mix of different flavors dizzled on a snowball in a paper cup."
+	desc = "A mix of different flavors drizzled on a snowball in a paper cup."
 	icon_state = "berry_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/berryjuice = 10)
 	tastes = list("ice" = 1, "water" = 1, "berries" = 5)
@@ -125,7 +125,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/fruitsalad
 	name = "mixed fruit flavored snowcone"
-	desc = "A mix of different flavors dizzled on a snowball in a paper cup."
+	desc = "A mix of different flavors drizzled on a snowball in a paper cup."
 	icon_state = "fruitsalad_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/lemonjuice = 5, /datum/reagent/consumable/limejuice = 5, /datum/reagent/consumable/orangejuice = 5)
 	tastes = list("ice" = 1, "water" = 1, "fruits" = 25)
@@ -133,7 +133,7 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/pineapple
 	name = "pineapple flavored snowcone"
-	desc = "A pineapple flavord snowball in a paper cup."
+	desc = "A pineapple flavored snowball in a paper cup."
 	icon_state = "pineapple_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 10)
 	tastes = list("ice" = 1, "water" = 1, "pineapples" = 5)
@@ -148,14 +148,14 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/clown
 	name = "joke flavored snowcone"
-	desc = "A waterd down jokeful flavord snowball in a paper cup."
+	desc = "A watered down joke flavored snowball in a paper cup."
 	icon_state = "clown_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/pwr_game = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/laughter = 1)
 	tastes = list("jokes" = 5, "brainfreeze" = 5, "joy" = 5)
 
 /obj/item/reagent_containers/food/snacks/snowcones/soda
-	name = "sodawater flavored snowcone"
-	desc = "A waterd down sodawater flavored snowcone snowball in a paper cup."
+	name = "soda water flavored snowcone"
+	desc = "A watered down soda water flavored snowball in a paper cup."
 	icon_state = "soda_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sodawater = 5)
 	tastes = list("surgar" = 1, "water" = 5, "soda" = 5)
@@ -163,16 +163,16 @@
 
 /obj/item/reagent_containers/food/snacks/snowcones/pwgrmer
 	name = "pwergamer flavored snowcone"
-	desc = "A waterd down pwergamer soda flavord snowball in a paper cup."
+	desc = "A watered down pwergamer soda flavored snowball in a paper cup."
 	icon_state = "pwergamer_sc"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/laughter = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/pwr_game = 5)
 	tastes = list("vaild" = 5, "salt" = 5, "wats" = 5)
 	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/reagent_containers/food/snacks/snowcones/honey
 	name = "honey flavored snowcone"
-	desc = "A honey flavord snowball in a paper cup."
-	icon_state = "honey_sc"
+	desc = "A honey flavored snowball in a paper cup."
+	icon_state = "lemon_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/honey = 5)
 	tastes = list("pollen" = 5, "sweetness" = 5, "wax" = 1)
 
