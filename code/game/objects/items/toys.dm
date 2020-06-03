@@ -735,14 +735,7 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 	src.cards.Cut(1,(1+dr))
 	C.parentdeck = src
 	C.interact(user)
-	if(C.currenthand.len > 4)
-		C.icon_state = "[deckstyle]_hand5"
-	else if(C.currenthand.len > 3)
-		C.icon_state = "[deckstyle]_hand4"
-	else if(C.currenthand.len > 2)
-		C.icon_state = "[deckstyle]_hand3"
-	else
-		C.icon_state = "[deckstyle]_hand2"
+	C.update_icon()
 	C.deckstyle=deckstyle
 	C.pickup(user)
 	user.put_in_hands(C)
@@ -876,12 +869,8 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [C.cardname] to your hand.</span>")
 			qdel(C)
 			interact(user)
-			if(currenthand.len > 4)
-				src.icon_state = "[deckstyle]_hand5"
-			else if(currenthand.len > 3)
-				src.icon_state = "[deckstyle]_hand4"
-			else if(currenthand.len > 2)
-				src.icon_state = "[deckstyle]_hand3"
+			update_icon()
+			update_sprite()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -896,12 +885,7 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 			user.visible_message("[user] adds the cards from [user.p_their()] hand to another, consalidating them.", "<span class='notice'>You add the cards from one hand to another.</span>")
 			qdel(C)
 			interact(user)
-			if(currenthand.len > 4)
-				src.icon_state = "[deckstyle]_hand5"
-			else if(currenthand.len > 3)
-				src.icon_state = "[deckstyle]_hand4"
-			else if(currenthand.len > 2)
-				src.icon_state = "[deckstyle]_hand3"
+			update_icon()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -946,6 +930,16 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 /obj/item/toy/cards/cardhand/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.</b><span>"
+
+/obj/item/toy/cards/cardhand/update_icon()
+	if(src.currenthand.len > 4)
+		src.icon_state = "[deckstyle]_hand5"
+	else if(src.currenthand.len > 3)
+		src.icon_state = "[deckstyle]_hand4"
+	else if(src.currenthand.len > 2)
+		src.icon_state = "[deckstyle]_hand3"
+	else
+		src.icon_state = "[deckstyle]_hand2"
 
 /obj/item/toy/cards/singlecard
 	name = "card"
@@ -1003,6 +997,7 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 			qdel(src)
 			H.pickup(user)
 			user.put_in_active_hand(H)
+			H.update_sprite()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 
@@ -1013,12 +1008,7 @@ obj/item/toy/cards/deck/proc/draw_many(dr,mob/user) //Number of cards to draw, m
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", "<span class='notice'>You add the [cardname] to your hand.</span>")
 			qdel(src)
 			H.interact(user)
-			if(H.currenthand.len > 4)
-				H.icon_state = "[deckstyle]_hand5"
-			else if(H.currenthand.len > 3)
-				H.icon_state = "[deckstyle]_hand4"
-			else if(H.currenthand.len > 2)
-				H.icon_state = "[deckstyle]_hand3"
+			H.update_icon()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
