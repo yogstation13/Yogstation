@@ -147,6 +147,10 @@
 			F.exp_heavy = strength-3
 	F.exp_fire += strength
 
+obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
+	. = ..()
+	message_admins("[ADMIN_LOOKUPFLW(user)] has shot firebreath at [ADMIN_VERBOSEJMP(user)]")
+
 /obj/item/projectile/magic/aoe/fireball/firebreath
 	name = "fire breath"
 	exp_heavy = 0

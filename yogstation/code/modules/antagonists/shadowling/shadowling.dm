@@ -11,7 +11,6 @@
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.shadows += owner
 	owner.special_role = "Shadowling"
-	message_admins("[key_name_admin(owner.current)] was made into a shadowling!")
 	log_game("[key_name(owner.current)] was made into a shadowling!")
 	var/mob/living/carbon/human/S = owner.current
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hatch(null))
