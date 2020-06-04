@@ -69,8 +69,6 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=resetmovement'>Reset movement directions to default</A><BR>
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
 			"}
 
 	dat += "<BR>"
@@ -540,20 +538,6 @@
 			if(!check_rights(R_ADMIN))
 				return
 			toggle_all_ctf(usr)
-		if("masspurrbation")
-			if(!check_rights(R_FUN))
-				return
-			mass_purrbation()
-			message_admins("[key_name_admin(usr)] has put everyone on \
-				purrbation!")
-			log_admin("[key_name(usr)] has put everyone on purrbation.")
-		if("massremovepurrbation")
-			if(!check_rights(R_FUN))
-				return
-			mass_remove_purrbation()
-			message_admins("[key_name_admin(usr)] has removed everyone from \
-				purrbation.")
-			log_admin("[key_name(usr)] has removed everyone from purrbation.")
 		// yogs start - Custom keybindings
 		/*if("flipmovement")
 			if(!check_rights(R_FUN))
