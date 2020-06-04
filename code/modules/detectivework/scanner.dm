@@ -57,6 +57,15 @@
 		scanner.displayDetectiveScanResults(usr)
 
 /obj/item/detective_scanner/attack_self(mob/user)
+	// placeholders ; Redoing this part and splitting into different procs - Hopek
+	radial_generate()
+	radial_show(user)
+	
+	
+	//option_print(user)
+	//option_clearlogs(user)
+	
+/obj/item/detective_scanner/proc/option_print(mob/user)
 	if(log.len && !scanning)
 		scanning = 1
 		scan_animation()
@@ -65,12 +74,31 @@
 	else
 		to_chat(user, "<span class='notice'>The scanner has no logs or is in use.</span>")
 
+/obj/item/detective_scanner/proc/option_clearlogs(mob/user)
+	// Best way for checking if a player can use while not incapacitated, etc
+	if(!user.canUseTopic(src, be_close=TRUE))
+		return
+	if(!LAZYLEN(log))
+		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner has no logs.</span>")
+		return
+	if(scanning)
+		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner is in use.</span>")
+		return
+	to_chat(user, "<span class='notice'>The scanner logs are cleared.</span>")
+	log = list()
+
 /obj/item/detective_scanner/attack(mob/living/M, mob/user)
 	return
 
 /obj/item/detective_scanner/proc/scan_animation()
 	if(scan_icon)
 		icon_state = (scanning ? icon_state_scanning : icon_state_neutral)
+
+/obj/item/detective_scanner/proc/radial_generate() // generate option menu in order to show context sensitive menu
+	// placeholder
+
+/obj/item/detective_scanner/proc/radial_show(mob/user) // shows radial to user and performs actions based on it.
+	// placeholder
 
 /obj/item/detective_scanner/proc/PrintReport()
 	// Create our paper
@@ -225,17 +253,7 @@
 	return time2text(world.time + 432000, ":ss")
 
 /obj/item/detective_scanner/AltClick(mob/living/user)
-	// Best way for checking if a player can use while not incapacitated, etc
-	if(!user.canUseTopic(src, be_close=TRUE))
-		return
-	if(!LAZYLEN(log))
-		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner has no logs.</span>")
-		return
-	if(scanning)
-		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner is in use.</span>")
-		return
-	to_chat(user, "<span class='notice'>The scanner logs are cleared.</span>")
-	log = list()
+	return
 
 /obj/item/detective_scanner/examine(mob/user)
 	. = ..()
