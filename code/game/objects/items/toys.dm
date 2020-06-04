@@ -723,18 +723,18 @@
 		user.put_in_hands(H)
 		update_icon()
 		H.interact(user)
-		H.update_sprite()
+		H.update_icon()
 
 /obj/item/toy/cards/deck/AltClick(mob/living/L)
 	if(!(L.mobility_flags & MOBILITY_PICKUP))
 		return
 	if(cards.len == 0)
-		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
+		to_chat(L, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	var/drawsize = input(user, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
+	var/drawsize = input(L, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
 	if (drawsize)
 		drawsize=clamp(drawsize,1,min(cards.len,10))
-		draw_card(user,drawsize)
+		draw_card(L,drawsize)
 
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
@@ -844,7 +844,7 @@
 	cardUser.visible_message("<span class='notice'>[cardUser] draws a card from [cardUser.p_their()] hand.</span>", "<span class='notice'>You take the [C.cardname] from your hand.</span>")
 
 	interact(cardUser)
-	update_sprite()
+	update_icon()
 	if(length(currenthand) == 1)
 		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
 		N.parentdeck = parentdeck
@@ -863,7 +863,6 @@
 			qdel(C)
 			interact(user)
 			update_icon()
-			update_sprite()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 	else
@@ -911,14 +910,6 @@
 	return TRUE
 
 /// This proc updates the sprite for when you create a hand of cards
-/obj/item/toy/cards/cardhand/proc/update_sprite()
-	cut_overlays()
-	var/overlay_cards = currenthand.len
-
-	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
-	for(var/i = k; i <= overlay_cards; i++)
-		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
-		add_overlay(card_overlay)
 
 /obj/item/toy/cards/cardhand/examine(mob/user)
 	. = ..()
@@ -927,8 +918,16 @@
 /obj/item/toy/cards/cardhand/update_icon()
 	if(src.currenthand.len > 4)
 		src.icon_state = "[deckstyle]_hand5"
-	else 
+	else
 		src.icon_state = "[deckstyle]_hand[currenthand.len]"
+	//radial menu stuff
+	cut_overlays()
+	var/overlay_cards = currenthand.len
+
+	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
+	for(var/i = k; i <= overlay_cards; i++)
+		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
+		add_overlay(card_overlay)
 
 
 /obj/item/toy/cards/singlecard
@@ -987,7 +986,6 @@
 			qdel(src)
 			H.pickup(user)
 			user.put_in_active_hand(H)
-			H.update_sprite()
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
 
@@ -1214,8 +1212,8 @@ obj/item/toy/turn_tracker
 	var/turn=0
 	var/info=null
 	var/turndir=1//1 for forwards, -1 for backwards
-/obj/item/toy/turn_tracker/update_icon()
-	icon_state="bigblue"
+	var/cooldown=0
+
 
 /obj/item/toy/turn_tracker/attack_self(mob/user)
 	info=input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names") as null|text
@@ -1224,19 +1222,20 @@ obj/item/toy/turn_tracker
 		names+=splittext(info,",")
 		to_chat(user, "<span class='notice'>You set up the turn tracker. </span>")
 	return
-	
+
 /obj/item/toy/turn_tracker/attack_hand(mob/user)
-	if (names.len==0)
-		to_chat(user, "<span class='warning'> You need to set it up first! </span>")
-		return
-	turn+=turndir//+1 for normal, -1 for backwardz
-	if(turn>names.len)
-		turn=1
-	else if(turn<1)
-		turn=names.len
-	audible_message("<span class='notice'>[src] says: \"It is [names[turn]]'s turn!\"</span>")
-	icon_state = "bigblue_press"
-	addtimer(CALLBACK(src, .proc/update_icon), 6)
+	if (cooldown < world.time)
+		cooldown = (world.time + 5) //0.5 second cooldown
+		if (names.len==0)
+			to_chat(user, "<span class='warning'> You need to set it up first! </span>")
+			return
+		turn+=turndir//+1 for normal, -1 for backwardz
+		if(turn>names.len)
+			turn=1
+		else if(turn<1)
+			turn=names.len
+		audible_message("<span class='notice'>[src] says: \"It is [names[turn]]'s turn!\"</span>")
+		flick("bigblue_press", src)
 
 /obj/item/toy/turn_tracker/AltClick(mob/user)
 	audible_message("<span class='notice'>[src] says: \"Direction Reversed!\"</span>")
