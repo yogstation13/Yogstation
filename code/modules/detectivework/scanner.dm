@@ -24,7 +24,9 @@
 	var/scan_icon = TRUE // does the forensic scanner have a scanning icon state?
 	var/icon_state_scanning =  "forensicnew_scan" // icon state for scanning
 	var/scan_speed = 4 // the speed between scans. The delay is this value x2 . Total scan time  = scan_speed * 10 for minimum , scan_speed * 18 if results for each catagory are found
-	
+	var/admin = FALSE // does this scanner pull up hiddenprints? Also removes scan time and feedback giving instant results
+	var/advanced = FALSE // does this scanner pull up more details on results?
+
 	// sounds must be in sound/items by default. Modify sound_directory for a different directory.
 	var/can_sound = TRUE // can this scanner play sound at all?
 	var/sound_on = TRUE // is the sound currently turned on?
@@ -34,8 +36,8 @@
 	var/sound_match = "scanner_match" // plays at the end when there is a match found
 	var/sound_nomatch = "scanner_nomatch" // plays at the end when no matches were found
 
-/obj/item/detective_scanner/proc/feedback(var/file)
-	if(!file)
+/obj/item/detective_scanner/proc/feedback(file)
+	if(!file || admin)
 		return
 	var/sound_to_play = "[sound_directory]/[file].ogg"
 	sleep(scan_speed)
@@ -162,7 +164,7 @@
 
 		else if(!ismob(A))
 
-			fingerprints = A.return_fingerprints()
+			fingerprints = ( admin ? A.return_hiddenprints() : A.return_fingerprints() )
 
 			// Only get reagents from non-mobs.
 			if(A.reagents && A.reagents.reagent_list.len)
@@ -271,3 +273,11 @@
 	to_chat(user, "<span class='notice'><B>Scanner Report</B></span>")
 	for(var/iterLog in log)
 		to_chat(user, iterLog)
+
+
+/obj/item/detective_scanner/admin // An admin tool. returns hidden fingerprints and the duration is instant.
+	name = "badmin forensic scanner"
+	desc = "An unbelievable scanner capable of returning results seemingly out of nowhere."
+	admin = TRUE
+	advanced = TRUE
+	color = "#00FFFF" // aqua
