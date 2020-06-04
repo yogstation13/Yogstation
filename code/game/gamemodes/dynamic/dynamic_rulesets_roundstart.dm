@@ -28,6 +28,7 @@
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
 		M.mind.restricted_roles = restricted_roles
+		log_game("[key_name(M)] has been selected as a Traitor")
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/traitor/rule_process()
@@ -756,6 +757,7 @@
 		assigned += M.mind
 		M.mind.special_role = ROLE_SHADOWLING
 		M.mind.restricted_roles = restricted_roles
+		log_game("[key_name(M)] has been selected as a Shadowling")
 	return TRUE
 	
 /datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
@@ -923,4 +925,5 @@
 		assigned += M.mind
 		M.mind.special_role = ROLE_DARKSPAWN
 		M.mind.restricted_roles = restricted_roles
+		log_game("[key_name(M)] has been selected as a Darkspawn")
 	return TRUE
