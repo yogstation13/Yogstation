@@ -17,6 +17,8 @@
 			if(!(MM.movement_type & FLYING))
 				triggermine(AM)
 		else
+			if(istype(AM, /obj/item/projectile))
+				return
 			triggermine(AM)
 
 /obj/effect/mine/proc/triggermine(mob/victim)
