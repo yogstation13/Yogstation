@@ -72,7 +72,10 @@
 		scanning = 1
 		scan_animation()
 		to_chat(user, "<span class='notice'>Printing report, please wait...</span>")
-		addtimer(CALLBACK(src, .proc/PrintReport), 100)
+		if(admin)
+			PrintReport() // admin scanner bypasses print wait
+		else
+			addtimer(CALLBACK(src, .proc/PrintReport), 100)
 	else
 		to_chat(user, "<span class='notice'>The scanner has no logs or is in use.</span>")
 
@@ -281,3 +284,12 @@
 	admin = TRUE
 	advanced = TRUE
 	color = "#00FFFF" // aqua
+
+/obj/item/detective_scanner/advanced
+	name = "advanced forensic scanner"
+	desc = "Processes data much quicker at the cost of not being able to scan remotely. Gives more detailed reports."
+	icon_state = "forensic2"
+	var/icon_state_scanning =  "forensic2_scan" // icon state for scanning
+	var/range = 1 // this scanner does not have range
+	var/scan_speed = 4
+	var/advanced = TRUE
