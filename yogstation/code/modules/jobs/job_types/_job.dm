@@ -8,9 +8,6 @@
 	if(!is_donator(C))
 		return
 
-	if(C.prefs.purrbation)
-		purrbation_toggle(H)
-
 	if(C.prefs.donor_hat)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
 		if(BP)
