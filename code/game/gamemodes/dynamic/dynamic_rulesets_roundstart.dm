@@ -780,7 +780,7 @@
 	required_candidates = 3
 	weight = 1
 	cost = 25
-	requirements = list(80,70,60,50,50,45,30,30,20,25)
+	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 	
@@ -894,3 +894,33 @@
 		M.add_antag_datum(new antag_datum())
 	return TRUE
 	
+//////////////////////////////////////////////
+//                                          //
+//                DARKSPAWN                 //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/darkspawn
+	name = "Darkspawn"
+	antag_flag = ROLE_DARKSPAWN
+	antag_datum = /datum/antagonist/darkspawn/
+	minimum_required_age = 20
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 3
+	weight = 1
+	cost = 30
+	var/darkspawn_cap = list(3,3,3,3,3,3,3,3,4,5)
+	requirements = list(80,75,70,65,50,30,30,30,25,20)
+
+/datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
+	var/indice_pop = min(30,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
+	var/darkspawns = darkspawn_cap[indice_pop]
+	for(var/darkspawn_number = 1 to darkspawns)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.special_role = ROLE_DARKSPAWN
+		M.mind.restricted_roles = restricted_roles
+	return TRUE
