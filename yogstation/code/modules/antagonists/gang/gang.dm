@@ -98,6 +98,7 @@
 	. = ..()
 	.["Promote"] = CALLBACK(src,.proc/admin_promote)
 	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
+	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
 	if(gang.domination_time != NOT_DOMINATING)
 		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
 
@@ -140,6 +141,13 @@
 		gang.influence = inf
 		message_admins("[key_name_admin(usr)] changed [gang.name]'s influence to [inf].")
 		log_admin("[key_name(usr)] changed [gang.name]'s influence to [inf].")
+
+/datum/antagonist/gang/proc/admin_adjust_uniform_influence()
+	var/inf = input("Uniform Influence for [gang.name]", "Uniform influence", gang.uniform_influence) as null | num
+	if(!isnull(inf))
+		gang.uniform_influence = inf
+		message_admins("[key_name_admin(usr)] changed [gang.name]'s uniform influence to [inf].")
+		log_admin("[key_name(usr)] changed [gang.name]'s uniform influence to [inf].")
 
 /datum/antagonist/gang/proc/add_to_gang()
 	gang.add_member(owner)
@@ -295,6 +303,7 @@
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
 	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
+	var/uniform_influence = 0 // Influence gained from members wearing uniforms. Counts only to weapons.  yogs
 	var/winner // Once the gang wins with a dominator, this becomes true. For roundend credits purposes.
 	var/list/inner_outfits = list()
 	var/list/outer_outfits = list()
@@ -400,10 +409,14 @@
 		message += "<b>[domination_time_remaining()] seconds remain</b> in hostile takeover.<BR>"
 	else
 		var/new_influence = check_territory_income()
+		var/new_uniform_influence = check_uniform_income()
 		if(new_influence != influence)
-			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
+			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories<BR>"
+		if(new_uniform_influence != uniform_influence)  // yogs
+			message += "Gang supply has increased by [new_uniform_influence - uniform_influence] for having [uniformed] uniformed gangsters<BR>"
 		influence = new_influence
-		message += "Your gang now has <b>[influence] influence</b>.<BR>"
+		uniform_influence = new_uniform_influence
+		message += "Your gang now has <b>[influence] influence</b> and <b>[uniform_influence] supply points</b>.<BR>"
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
@@ -417,8 +430,12 @@
 	return valid_territories.len
 
 /datum/team/gang/proc/check_territory_income()
-	var/new_influence = min(999,influence + 15 + (check_clothing() * 2) + territories.len)
+	var/new_influence = min(999,influence + 15 + territories.len)
 	return new_influence
+
+/datum/team/gang/proc/check_uniform_income()
+	var/new_uniform_influence = min(999,uniform_influence + 10 + (check_clothing() * 5)) // 5 weapon supply points per uniformed gangster + 10 free per income cycle.
+	return new_uniform_influence
 
 /datum/team/gang/proc/check_clothing()
 	//Count uniformed gangsters
@@ -448,6 +465,9 @@
 
 /datum/team/gang/proc/adjust_influence(value)
 	influence = max(0, influence + value)
+
+/datum/team/gang/proc/adjust_uniform_influence(value)
+	uniform_influence = max(0, influence + value)
 
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
