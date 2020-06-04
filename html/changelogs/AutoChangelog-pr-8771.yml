@@ -1,0 +1,4 @@
+author: "  AnturK"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes ghosts orbit being offset to the left."
