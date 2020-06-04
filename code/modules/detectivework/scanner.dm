@@ -48,6 +48,7 @@
 	return
 
 /obj/item/detective_scanner/proc/scan_animation()
+	if(scan_icon)
 		icon_state = (scanning ? icon_state_scanning : icon_state_neutral)
 
 /obj/item/detective_scanner/proc/PrintReport()
