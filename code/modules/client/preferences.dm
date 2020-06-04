@@ -683,8 +683,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					qdel(temp_item)
 				dat += "<b>Fancy PDA:</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[donor_pdas[donor_pda]]</a><BR>"
-				dat += "<b>Purrbation (Humans only)</b> "
-				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
 				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
 			dat += "</tr></table>"
@@ -1063,8 +1061,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					yogtoggles ^= QUIET_ROUND
 				if("pda")
 					donor_pda = donor_pda % donor_pdas.len + 1
-				if("purrbation")
-					purrbation = !purrbation
 		else
 			message_admins("EXPLOIT \[donor\]: [user] tried to access donor only functions (as a non-donor). Attempt made on \"[href_list["preference"]]\" -> \"[href_list["task"]]\".")
 	// yogs end
