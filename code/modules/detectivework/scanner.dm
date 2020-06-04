@@ -25,14 +25,14 @@
 	var/icon_state_scanning =  "forensicnew_scan" // icon state for scanning
 	var/scan_speed = 4 // the speed between scans. The delay is this value x2 . Total scan time  = scan_speed * 10 for minimum , scan_speed * 18 if results for each catagory are found
 	
-	// sounds must be in 
+	// sounds must be in sound/items by default. Modify sound_directory for a different directory.
 	var/can_sound = TRUE // can this scanner play sound at all?
 	var/sound_on = TRUE // is the sound currently turned on?
 	var/sound_directory = "sound/items" // just in-case you decide to place your sounds outside of sound\items
-	var/sound_positive = "scanner_positive"
-	var/sound_scan = "scanner_scan"
-	var/sound_match = "scanner_match"
-	var/sound_nomatch = "scanner_nomatch"
+	var/sound_positive = "scanner_positive" // plays as a result is found during the scan
+	var/sound_scan = "scanner_scan" // plays as each new scan is starting
+	var/sound_match = "scanner_match" // plays at the end when there is a match found
+	var/sound_nomatch = "scanner_nomatch" // plays at the end when no matches were found
 
 /obj/item/detective_scanner/proc/feedback(var/file)
 	if(!file)
@@ -46,8 +46,7 @@
 /obj/item/detective_scanner/Initialize()
 	. = ..()
 	icon_state_neutral = icon_state
-	if(!can_sound)
-		sound_on = FALSE
+	sound_on = (can_sound ? sound_on : FALSE)
 
 /datum/action/item_action/displayDetectiveScanResults
 	name = "Display Forensic Scanner Results"
