@@ -5,6 +5,7 @@
  * since time_entered, which is world.time when the occupant moves in.
  * ~ Zuhayr
  */
+GLOBAL_LIST_EMPTY(cryopods)
 GLOBAL_LIST_EMPTY(cryopod_computers)
 
 //Main cryopod console.
@@ -47,41 +48,45 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	var/dat
 
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += "<hr/><br/><b>[storage_name]</b><br/>"
 	dat += "<i>Welcome, [user.real_name].</i><br/><br/><hr/>"
 	dat += "<a href='?src=[REF(src)];log=1'>View storage log</a>.<br>"
 	if(allow_items)
 		dat += "<a href='?src=[REF(src)];view=1'>View objects</a>.<br>"
+	if(allowed(user))
 		dat += "<a href='?src=[REF(src)];item=1'>Recover object</a>.<br>"
 		dat += "<a href='?src=[REF(src)];allitems=1'>Recover all objects</a>.<br>"
-
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	var/mob/user = usr
 
 	add_fingerprint(user)
 
 	if(href_list["log"])
-
-		var/dat = "<b>Recently stored [storage_type]</b><br/><hr/><br/>"
+		var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+		dat += "<b>Recently stored [storage_type]</b><br/><hr/><br/>"
 		for(var/person in frozen_crew)
 			dat += "[person]<br/>"
 		dat += "<hr/>"
+		dat += "</BODY></HTML>"
 
 		user << browse(dat, "window=cryolog")
 
 	if(href_list["view"])
 		if(!allow_items) return
-
-		var/dat = "<b>Recently stored objects</b><br/><hr/><br/>"
+		var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+		dat += "<b>Recently stored objects</b><br/><hr/><br/>"
 		for(var/obj/item/I in frozen_items)
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
+		dat += "</BODY></HTML>"
 
 		user << browse(dat, "window=cryoitems")
 
@@ -89,7 +94,9 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access Denied.</span>")
 			return
-		if(!allow_items) return
+
+		if(!allow_items)
+			return
 
 		if(frozen_items.len == 0)
 			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
@@ -104,8 +111,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			return
 
 		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
-
-		I.forceMove(get_turf(src))
+		I.forceMove(drop_location())
 		frozen_items -= I
 
 	else if(href_list["allitems"])
@@ -121,17 +127,12 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
 
 		for(var/obj/item/I in frozen_items)
-			I.forceMove(get_turf(src))
-			frozen_items -= I
+			I.forceMove(drop_location())
+		frozen_items.Cut()
 
 	updateUsrDialog()
 	return
-/* Should more cryos be buildable?
-    /obj/item/circuitboard/cryopodcontrol
-	name = "Circuit board (Cryogenic Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod"
-	origin_tech = "programming=1"
-*/
+
 //Cryopods themselves.
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
@@ -141,16 +142,16 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	density = TRUE
 	anchored = TRUE
 	state_open = TRUE
+	var/ready = FALSE
 
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
 
 	// 5 minutes-ish safe period before being despawned.
-	var/time_till_despawn = 5 * 600 // This is reduced to 30 seconds if a player manually enters cryo
-	var/despawn_world_time = null          // Used to keep track of the safe period.
+	var/time_till_despawn = 5 MINUTES // This is reduced to 30 seconds if a player manually enters cryo
 
 	var/obj/machinery/computer/cryopod/control_computer
-	var/last_no_computer_message = 0
+	var/cooldown = FALSE
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/static/list/preserve_items = list(
@@ -182,7 +183,12 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 /obj/machinery/cryopod/Initialize()
 	..()
+	GLOB.cryopods += src
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first
+
+/obj/machinery/cryopod/Destroy()
+	GLOB.cryopods -= src
+	..()
 
 /obj/machinery/cryopod/LateInitialize()
 	update_icon()
@@ -196,10 +202,11 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			break
 
 	// Don't send messages unless we *need* the computer, and less than five minutes have passed since last time we messaged
-	if(!control_computer && urgent && last_no_computer_message + 5*60*10 < world.time)
+	if(!control_computer && urgent && !cooldown)
+		cooldown = TRUE
 		log_admin("Cryopod in [get_area(src)] could not find control computer!")
 		message_admins("Cryopod in [get_area(src)] could not find control computer!")
-		last_no_computer_message = world.time
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
 
 	return control_computer != null
 
@@ -212,9 +219,9 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 		if(mob_occupant.client)//if they're logged in
-			despawn_world_time = world.time + (time_till_despawn * 0.1) // This gives them 30 seconds
+			addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1)) // This gives them 30 seconds
 		else
-			despawn_world_time = world.time + time_till_despawn
+			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
 	icon_state = "cryopod"
 
 /obj/machinery/cryopod/open_machine()
@@ -240,14 +247,9 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		// Eject dead people
 		if(mob_occupant.stat == DEAD)
 			open_machine()
-
-		if(!(world.time > despawn_world_time))
-			return
-
-		if(!mob_occupant.client && mob_occupant.stat < 2) //Occupant is living and has no client.
+		if(ready && !mob_occupant.client && mob_occupant.stat < 2) //Occupant is living and has no client.
 			if(!control_computer)
 				find_control_computer(urgent = TRUE)//better hope you found it this time
-
 			despawn_occupant()
 
 /obj/machinery/cryopod/proc/handle_objectives()

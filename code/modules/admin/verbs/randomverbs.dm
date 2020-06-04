@@ -1240,7 +1240,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Admin Cryo"
 	if(!check_rights(R_ADMIN))
 		return
-	var/offer = alert(usr, "Do you want to offer to ghosts?", "Ghost Offer", "Yes", "No")
+	var/offer = alert(usr, "Do you want to try to offer to ghosts first?", "Ghost Offer", "Yes", "No")
 	if(offer == "Yes" && offer_control(target))
 		return
 	for(var/obj/machinery/cryopod/cryopod in world)
