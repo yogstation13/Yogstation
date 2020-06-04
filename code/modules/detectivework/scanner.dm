@@ -185,9 +185,11 @@
 							blood[blood_DNA] = blood_type
 
 		// We gathered everything. Create a fork and slowly display the results to the holder of the scanner.
-
 		var/found_something = 0
 		add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", 0)
+		if(advanced)
+			var/area/scan_location = (get_area(src))
+			add_log("<B>Location of scan:</B> [scan_location.map_name].")
 
 		// Fingerprints
 		feedback(sound_scan)
