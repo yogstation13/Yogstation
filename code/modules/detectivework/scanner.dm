@@ -291,7 +291,7 @@
 	name = "advanced forensic scanner"
 	desc = "Processes data much quicker at the cost of not being able to scan remotely. Gives more detailed reports."
 	icon_state = "forensic2"
-	var/icon_state_scanning =  "forensic2_scan" // icon state for scanning
-	var/range = 1 // this scanner does not have range
-	var/scan_speed = 4
-	var/advanced = TRUE
+	icon_state_scanning =  "forensic2_scan" // icon state for scanning
+	range = 1 // this scanner does not have range
+	scan_speed = 4
+	advanced = TRUE
