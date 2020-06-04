@@ -500,3 +500,8 @@
 				replace_tank(usr, FALSE)
 				. = TRUE
 	update_icon()
+
+/obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
+	if(istype(user))
+		analyzer_act(user, src)
+	return ..()
