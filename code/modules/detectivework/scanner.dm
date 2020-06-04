@@ -19,7 +19,14 @@
 	var/range = 8
 	var/view_check = TRUE
 	var/forensicPrintCount = 0
+	var/icon_state_neutral // stores the neutral icon state
+	var/scan_icon = TRUE // does the forensic scanner have a scanning icon state?
+	var/icon_state_scanning =  "forensicnew_scan" // icon state for scanning
 	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
+
+/obj/item/detective_scanner/Initialize()
+	. = ..()
+	icon_state_neutral = icon_state
 
 /datum/action/item_action/displayDetectiveScanResults
 	name = "Display Forensic Scanner Results"
@@ -39,6 +46,9 @@
 
 /obj/item/detective_scanner/attack(mob/living/M, mob/user)
 	return
+
+/obj/item/detective_scanner/proc/scan_animation()
+		icon_state = (scanning ? icon_state_scanning : icon_state_neutral)
 
 /obj/item/detective_scanner/proc/PrintReport()
 	// Create our paper
@@ -75,6 +85,7 @@
 			return
 
 		scanning = 1
+		scan_animation()
 
 		user.visible_message("\The [user] points the [src.name] at \the [A] and performs a forensic scan.")
 		to_chat(user, "<span class='notice'>You scan \the [A]. The scanner is now analysing the results...</span>")
@@ -169,6 +180,7 @@
 
 		add_log("---------------------------------------------------------", 0)
 		scanning = 0
+		scan_animation()
 		return
 
 /obj/item/detective_scanner/proc/add_log(msg, broadcast = 1)
