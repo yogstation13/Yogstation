@@ -19,10 +19,12 @@
 		return TRUE
 
 /datum/gang_item/proc/weapon_purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool, check_canbuy_weapon = TRUE)
+	to_chat(world, "<span class='notice'>DEBUG : weapon_purchase</span>")
 	if(check_canbuy_weapon && !can_buy_weapon(user, gang, gangtool))
 		return FALSE
 	var/actual_cost = get_weapon_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
+		to_chat(world, "<span class='notice'>DEBUG : !spawn_item with [actual_cost]</span>")
 		gang.adjust_uniform_influence(-actual_cost)
 		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
 		return TRUE
@@ -40,6 +42,7 @@
 	return gang && (gang.influence >= get_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
 /datum/gang_item/proc/can_buy_weapon(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	to_chat(world, "<span class='notice'>DEBUG :can buy weapon </span>")
 	return gang && (gang.uniform_influence >= get_weapon_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
 /datum/gang_item/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
@@ -55,6 +58,7 @@
 	return "([get_cost(user, gang, gangtool)] Influence)"
 
 /datum/gang_item/proc/get_weapon_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	to_chat(world, "<span class='notice'>DEBUG : get weapon cost display</span>")
 	return "([get_weapon_cost(user, gang, gangtool)] Supply)"
 
 /datum/gang_item/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)

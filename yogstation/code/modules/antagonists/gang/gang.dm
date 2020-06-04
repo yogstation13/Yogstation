@@ -467,7 +467,10 @@
 	influence = max(0, influence + value)
 
 /datum/team/gang/proc/adjust_uniform_influence(value)
+	to_chat(world, "<span class='notice'>DEBUG : uniform influence [uniform_influence]</span>")
+	to_chat(world, "<span class='notice'>DEBUG :adjust uniform influence by [value] </span>")
 	uniform_influence = max(0, influence + value)
+	to_chat(world, "<span class='notice'>DEBUG : uniform influence [uniform_influence]</span>")
 
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
