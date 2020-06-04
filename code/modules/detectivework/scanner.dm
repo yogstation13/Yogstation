@@ -23,13 +23,14 @@
 	var/icon_state_neutral // stores the neutral icon state
 	var/scan_icon = TRUE // does the forensic scanner have a scanning icon state?
 	var/icon_state_scanning =  "forensicnew_scan" // icon state for scanning
+	var/scan_speed = 3 // the speed between scans. The delay is this value x2 . Total scan time  = scan_speed * 10 for minimum , scan_speed * 18 if results for each catagory are found
 	
 	// sounds must be in 
 	var/can_sound = TRUE // can this scanner play sound at all?
 	var/sound_on = TRUE // is the sound currently turned on?
 	var/sound_directory = "sound/items" // just in-case you decide to place your sounds outside of sound\items
 	var/sound_positive = "scanner_positive"
-	var/sound_negative = "scanner_negative"
+	var/sound_scan = "scanner_scan"
 	var/sound_match = "scanner_match"
 	var/sound_nomatch = "scanner_nomatch"
 
@@ -37,7 +38,9 @@
 	if(!file)
 		return
 	var/sound_to_play = "[sound_directory]/[file].ogg"
+	sleep(scan_speed)
 	playsound(src, sound_to_play, 50, 0)
+	sleep(scan_speed)
 
 /obj/item/detective_scanner/Initialize()
 	. = ..()
@@ -150,48 +153,40 @@
 		add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", 0)
 
 		// Fingerprints
+		feedback(sound_scan)
 		if(length(fingerprints))
-			sleep(30)
 			add_log("<span class='info'><B>Prints:</B></span>")
 			for(var/finger in fingerprints)
 				add_log("[finger]")
 			found_something = 1
 			feedback(sound_positive)
-		else
-			feedback(sound_negative)
 
 		// Blood
+		feedback(sound_scan)
 		if (length(blood))
-			sleep(30)
+			feedback(sound_positive)
 			add_log("<span class='info'><B>Blood:</B></span>")
 			for(var/B in blood)
 				add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
 				found_something = 1
-				feedback(sound_positive)
-		else
-			feedback(sound_negative)
 
 		//Fibers
+		feedback(sound_scan)
 		if(length(fibers))
-			sleep(30)
+			feedback(sound_positive)
 			add_log("<span class='info'><B>Fibers:</B></span>")
 			for(var/fiber in fibers)
 				add_log("[fiber]")
 			found_something = 1
-			feedback(sound_positive)
-		else
-			feedback(sound_negative)
 
 		//Reagents
+		feedback(sound_scan)
 		if(length(reagents))
-			sleep(30)
 			add_log("<span class='info'><B>Reagents:</B></span>")
 			for(var/R in reagents)
 				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
 			found_something = 1
 			feedback(sound_positive)
-		else
-			feedback(sound_negative)
 
 		// Get a new user
 		var/mob/holder = null
