@@ -59,6 +59,7 @@
 /obj/item/detective_scanner/attack_self(mob/user)
 	if(log.len && !scanning)
 		scanning = 1
+		scan_animation()
 		to_chat(user, "<span class='notice'>Printing report, please wait...</span>")
 		addtimer(CALLBACK(src, .proc/PrintReport), 100)
 	else
@@ -92,6 +93,7 @@
 	// Clear the logs
 	log = list()
 	scanning = 0
+	scan_animation()
 
 /obj/item/detective_scanner/afterattack(atom/A, mob/user, params)
 	. = ..()
