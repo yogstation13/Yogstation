@@ -194,7 +194,7 @@
 		if(advanced)
 			var/area/location_of_scan = get_area(A)
 			add_log("<B>Location of scan:</B> [location_of_scan.map_name].")
-			add_log("<B>GPS coordinate of scan:</B> [location_of_scan]")
+			add_log("<B>GPS coordinate of scan:</B> [location_of_scan.x],[location_of_scan.y]")
 
 		// Fingerprints
 		feedback(sound_scan)
@@ -303,5 +303,5 @@
 	icon_state = "forensic2"
 	icon_state_scanning =  "forensic2_scan" // icon state for scanning
 	range = 2 // this scanner does not have range
-	scan_speed = 4
+	scan_speed = 2
 	advanced = TRUE
