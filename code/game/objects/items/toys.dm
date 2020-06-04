@@ -308,7 +308,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
 	desc = "A replica toolbox that rumbles when you turn the key."
@@ -616,8 +615,6 @@
 || A Deck of Cards for playing various games of chance ||
 */
 
-
-
 /obj/item/toy/cards
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
@@ -805,7 +802,6 @@
 		to_chat(usr, "<span class='warning'>You can't reach it from here!</span>")
 
 
-
 /obj/item/toy/cards/cardhand
 	name = "hand of cards"
 	desc = "A number of cards not in a deck, customarily held in ones hand."
@@ -883,7 +879,6 @@
 	else
 		return ..()
 
-
 /obj/item/toy/cards/cardhand/apply_card_vars(obj/item/toy/cards/newobj,obj/item/toy/cards/sourceobj)
 	..()
 	newobj.deckstyle = sourceobj.deckstyle
@@ -895,7 +890,6 @@
 	newobj.card_throw_range = sourceobj.card_throw_range
 	newobj.card_attack_verb = sourceobj.card_attack_verb
 	newobj.resistance_flags = sourceobj.resistance_flags
-
 
 ///check_menu: Checks if we are allowed to interact with a radial menu
 
@@ -929,7 +923,6 @@
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
 		add_overlay(card_overlay)
 
-
 /obj/item/toy/cards/singlecard
 	name = "card"
 	desc = "a card"
@@ -940,7 +933,6 @@
 	var/flipped = 0
 	pixel_x = -5
 
-
 /obj/item/toy/cards/singlecard/examine(mob/user)
 	. = ..()
 	if(ishuman(user))
@@ -949,7 +941,6 @@
 			cardUser.visible_message("[cardUser] checks [cardUser.p_their()] card.", "<span class='notice'>The card reads: [cardname].</span>")
 		else
 			. += "<span class='warning'>You need to have the card in your hand to check it!</span>"
-
 
 /obj/item/toy/cards/singlecard/verb/Flip()
 	set name = "Flip Card"
@@ -1082,7 +1073,6 @@
 	for(j=1; j<=4; j++)
 		cards += "Wildcard"
 		cards += "Wild Draw Four"
-
 
 /obj/item/toy/cards/deck/uno/update_icon()
 	if(cards.len > 54)
