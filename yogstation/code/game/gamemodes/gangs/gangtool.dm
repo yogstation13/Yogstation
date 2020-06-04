@@ -121,14 +121,12 @@
 		return
 
 	if(href_list["purchase"])
-		to_chat(world, "<span class='notice'>DEBUG : purchase</span>")
 		if(islist(buyable_items[href_list["cat"]]))
 			var/list/L = buyable_items[href_list["cat"]]
 			var/datum/gang_item/G = L[href_list["id"]]
 			if(G && G.can_buy(usr, gang, src))
 				G.purchase(usr, gang, src, FALSE)
 	if(href_list["weapon_purchase"])
-		to_chat(world, "<span class='notice'>DEBUG : weapon_purchase</span>")
 		if(islist(buyable_items[href_list["cat"]]))
 			var/list/L = buyable_items[href_list["cat"]]
 			var/datum/gang_item/G = L[href_list["id"]]

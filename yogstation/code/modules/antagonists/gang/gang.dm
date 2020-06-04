@@ -295,6 +295,7 @@
 	var/hud_entry_num // because if you put something other than a number in GLOB.huds, god have mercy on your fucking soul friend
 	var/list/leaders = list() // bosses
 	var/max_leaders = MAX_LEADERS_GANG
+	var/members_amount = 0 // Counting members
 	var/list/territories = list() // territories owned by the gang.
 	var/list/lost_territories = list() // territories lost by the gang.
 	var/list/new_territories = list() // territories captured by the gang.
@@ -304,6 +305,7 @@
 	var/color
 	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
 	var/uniform_influence = 0 // Influence gained from members wearing uniforms. Counts only to weapons.  yogs
+	var/passive_uniform_income // Passive income for weapons. The more gang members  you have, the less you will get. Wear your uniform.
 	var/winner // Once the gang wins with a dominator, this becomes true. For roundend credits purposes.
 	var/list/inner_outfits = list()
 	var/list/outer_outfits = list()
@@ -434,7 +436,9 @@
 	return new_influence
 
 /datum/team/gang/proc/check_uniform_income()
-	var/new_uniform_influence = min(999,uniform_influence + 10 + (check_clothing() * 5)) // 5 weapon supply points per uniformed gangster + 10 free per income cycle.
+	members_amount = 0 // reset so it doesnt just add last cycles to next
+	count_members()
+	var/new_uniform_influence = min(999,uniform_influence + passive_uniform_income + (check_clothing() * 5)) // 5 weapon supply points per uniformed gangster + free income per cycle based on members
 	return new_uniform_influence
 
 /datum/team/gang/proc/check_clothing()
@@ -467,10 +471,21 @@
 	influence = max(0, influence + value)
 
 /datum/team/gang/proc/adjust_uniform_influence(value)
-	to_chat(world, "<span class='notice'>DEBUG : uniform influence [uniform_influence]</span>")
-	to_chat(world, "<span class='notice'>DEBUG :adjust uniform influence by [value] </span>")
 	uniform_influence = max(0, uniform_influence + value)
-	to_chat(world, "<span class='notice'>DEBUG : uniform influence [uniform_influence]</span>")
+
+/datum/team/gang/proc/count_members()
+	for(var/datum/mind/gangmind in members)
+		if(ishuman(gangmind.current))
+			var/mob/living/carbon/human/gangster = gangmind.current
+			if(gangster.stat != DEAD)
+				members_amount++
+			if(members_amount <= 3)
+				passive_uniform_income = 15
+			if(members_amount > 3 && members_amount <= 5)
+				passive_uniform_income = 10
+			if(members_amount >= 6)
+				passive_uniform_income = 0
+
 
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
