@@ -113,7 +113,7 @@
 	available_on_ntnet = TRUE
 
 /datum/computer_file/program/radar/lifeline/track()
-	var/mob/living/carbon/human/humanoid = locate(selected) in GLOB.human_list
+	var/mob/living/carbon/human/humanoid = locate(selected) in GLOB.mob_living_list
 	if(!istype(humanoid) || !trackable(humanoid))
 		return
 
@@ -150,8 +150,10 @@
 		return
 	next_scan = world.time + (2 SECONDS)
 	objects = list()
-	for(var/i in GLOB.human_list)
+	for(var/i in GLOB.mob_living_list)
 		var/mob/living/carbon/human/humanoid = i
+		if(!istype(humanoid))
+			continue
 		if(!trackable(humanoid))
 			continue
 		var/crewmember_name = "Unknown"
