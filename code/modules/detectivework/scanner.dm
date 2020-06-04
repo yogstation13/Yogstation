@@ -85,8 +85,7 @@
 		to_chat(user, "<span class='notice'>The scanner has no logs or is in use.</span>")
 
 /obj/item/detective_scanner/proc/option_clearlogs(mob/user)
-	// Best way for checking if a player can use while not incapacitated, etc
-	if(!user.canUseTopic(src, be_close=TRUE))
+	if(!user.canUseTopic(src, be_close=TRUE) && !admin) // Best way for checking if a player can use while not incapacitated, etc. Admin scanner doesn't care
 		return
 	if(!LAZYLEN(log))
 		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner has no logs.</span>")
@@ -193,8 +192,9 @@
 		found_something = 0
 		add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", 0)
 		if(advanced)
-			var/area/scan_location = (get_area(src))
-			add_log("<B>Location of scan:</B> [scan_location.map_name].")
+			var/area/location_of_scan = get_area(A)
+			add_log("<B>Location of scan:</B> [location_of_scan.map_name].")
+			add_log("<B>GPS coordinate of scan:</B> [location_of_scan]")
 
 		// Fingerprints
 		feedback(sound_scan)
@@ -299,9 +299,9 @@
 
 /obj/item/detective_scanner/advanced
 	name = "advanced forensic scanner"
-	desc = "Processes data much quicker at the cost of not being able to scan remotely. Gives more detailed reports."
+	desc = "Processes data much quicker at the cost of not being able to scan far remotely. Gives more detailed reports. Scan from 2 tiles away to avoid leaving prints on the scene of the crime!"
 	icon_state = "forensic2"
 	icon_state_scanning =  "forensic2_scan" // icon state for scanning
-	range = 1 // this scanner does not have range
+	range = 2 // this scanner does not have range
 	scan_speed = 4
 	advanced = TRUE
