@@ -14,6 +14,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
+	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
 	var/scanning = 0
 	var/list/log = list()
 	var/range = 8
@@ -22,7 +23,21 @@
 	var/icon_state_neutral // stores the neutral icon state
 	var/scan_icon = TRUE // does the forensic scanner have a scanning icon state?
 	var/icon_state_scanning =  "forensicnew_scan" // icon state for scanning
-	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
+	
+	// sounds must be in 
+	var/can_sound = TRUE // can this scanner play sound at all?
+	var/sound_on = TRUE // is the sound currently turned on?
+	var/sound_directory = "sound/items" // just in-case you decide to place your sounds outside of sound\items
+	var/sound_positive = "scanner_positive"
+	var/sound_negative = "scanner_negative"
+	var/sound_match = "scanner_match"
+	var/sound_nomatch = "scanner_nomatch"
+
+/obj/item/detective_scanner/proc/feedback(var/file)
+	if(!file)
+		return
+	var/sound_to_play = "[sound_directory]/[file].ogg"
+	playsound(src, sound_to_play, 50, 0)
 
 /obj/item/detective_scanner/Initialize()
 	. = ..()
@@ -141,14 +156,20 @@
 			for(var/finger in fingerprints)
 				add_log("[finger]")
 			found_something = 1
+			feedback(sound_positive)
+		else
+			feedback(sound_negative)
 
 		// Blood
 		if (length(blood))
 			sleep(30)
 			add_log("<span class='info'><B>Blood:</B></span>")
-			found_something = 1
 			for(var/B in blood)
 				add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
+				found_something = 1
+				feedback(sound_positive)
+		else
+			feedback(sound_negative)
 
 		//Fibers
 		if(length(fibers))
@@ -157,6 +178,9 @@
 			for(var/fiber in fibers)
 				add_log("[fiber]")
 			found_something = 1
+			feedback(sound_positive)
+		else
+			feedback(sound_negative)
 
 		//Reagents
 		if(length(reagents))
@@ -165,6 +189,9 @@
 			for(var/R in reagents)
 				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
 			found_something = 1
+			feedback(sound_positive)
+		else
+			feedback(sound_negative)
 
 		// Get a new user
 		var/mob/holder = null
@@ -172,10 +199,12 @@
 			holder = src.loc
 
 		if(!found_something)
+			feedback(sound_nomatch)
 			add_log("<I># No forensic traces found #</I>", 0) // Don't display this to the holder user
 			if(holder)
 				to_chat(holder, "<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!</span>")
 		else
+			feedback(sound_match)
 			if(holder)
 				to_chat(holder, "<span class='notice'>You finish scanning \the [target_name].</span>")
 
