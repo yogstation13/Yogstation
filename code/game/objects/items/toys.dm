@@ -683,7 +683,7 @@
 /obj/item/toy/cards/deck/attack_hand(mob/user)
 	draw_card(user, 1)
 
-/obj/item/toy/cards/deck/proc/draw_card(mob/user,num)//Person who draws the card, number of cards to be drawn
+/obj/item/toy/cards/deck/proc/draw_card(mob/user, drawnumber)//Person who draws the card, number of cards to be drawn
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -692,7 +692,7 @@
 	if(cards.len == 0)
 		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	if (num==1)
+	if (drawnumber==1)
 		var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(user.loc)
 		choice = cards[1]
 		user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
@@ -710,34 +710,31 @@
 		C.interact(user)
 	else //if more than one card is drawn
 		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.loc)
-		user.visible_message("[user] draws [num] cards from the deck.", "<span class='notice'>You draw [num] cards from the deck.</span>")
+		user.visible_message("[user] draws [drawnumber] cards from the deck.", "<span class='notice'>You draw [drawnumber] cards from the deck.</span>")
 		var/i
-		for (i=1,i<=num,i++)
+		for (i=1,i<=drawnumber,i++)
 			H.currenthand+=cards[i]
 		if(holo)
 			holo.spawned += H // track them leaving the holodeck
 		H.parentdeck = src
 		H.deckstyle=deckstyle
-		src.cards.Cut(1,num+1)
+		src.cards.Cut(1,drawnumber+1)
 		H.pickup(user)
 		user.put_in_hands(H)
 		update_icon()
 		H.interact(user)
 		H.update_sprite()
 
-/obj/item/toy/cards/deck/AltClick(mob/user)
-	if(isliving(user))
-		var/mob/living/L = user
-		if(!(L.mobility_flags & MOBILITY_PICKUP))
-			return
-		if(cards.len == 0)
-			to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
-			return
-		else
-			var/drawsize = input(user, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
-			if (drawsize)
-				drawsize=clamp(drawsize,1,min(cards.len,10))
-				draw_card(user,drawsize)
+/obj/item/toy/cards/deck/AltClick(mob/living/L)
+	if(!(L.mobility_flags & MOBILITY_PICKUP))
+		return
+	if(cards.len == 0)
+		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
+		return
+	var/drawsize = input(user, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
+	if (drawsize)
+		drawsize=clamp(drawsize,1,min(cards.len,10))
+		draw_card(user,drawsize)
 
 /obj/item/toy/cards/deck/update_icon()
 	if(cards.len > 26)
@@ -930,12 +927,9 @@
 /obj/item/toy/cards/cardhand/update_icon()
 	if(src.currenthand.len > 4)
 		src.icon_state = "[deckstyle]_hand5"
-	else if(src.currenthand.len > 3)
-		src.icon_state = "[deckstyle]_hand4"
-	else if(src.currenthand.len > 2)
-		src.icon_state = "[deckstyle]_hand3"
-	else
-		src.icon_state = "[deckstyle]_hand2"
+	else 
+		src.icon_state = "[deckstyle]_hand[currenthand.len]"
+
 
 /obj/item/toy/cards/singlecard
 	name = "card"
