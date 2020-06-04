@@ -16,6 +16,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
 	var/scanning = 0
+	var/found_something // placeholder for result boolian. placed here for admin scanner.
 	var/list/log = list()
 	var/range = 8
 	var/view_check = TRUE
@@ -189,7 +190,7 @@
 							blood[blood_DNA] = blood_type
 
 		// We gathered everything. Create a fork and slowly display the results to the holder of the scanner.
-		var/found_something = 0
+		found_something = 0
 		add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", 0)
 		if(advanced)
 			var/area/scan_location = (get_area(src))
