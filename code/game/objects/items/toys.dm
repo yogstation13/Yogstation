@@ -909,8 +909,6 @@
 		return FALSE
 	return TRUE
 
-/// This proc updates the sprite for when you create a hand of cards
-
 /obj/item/toy/cards/cardhand/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
