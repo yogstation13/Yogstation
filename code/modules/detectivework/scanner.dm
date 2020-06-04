@@ -36,7 +36,11 @@
 	var/sound_match = "scanner_match" // plays at the end when there is a match found
 	var/sound_nomatch = "scanner_nomatch" // plays at the end when no matches were found
 
-/obj/item/detective_scanner/proc/feedback(file)
+/obj/item/detective_scanner/proc/feedback(file , var/sound_only = FALSE)
+	if(sound_only)
+		var/sound_to_play = "[sound_directory]/[file].ogg"
+		playsound(src, sound_to_play, 50, 0)
+		return
 	if(!file || admin)
 		return
 	var/sound_to_play = "[sound_directory]/[file].ogg"
@@ -280,12 +284,17 @@
 		to_chat(user, iterLog)
 
 
-/obj/item/detective_scanner/admin // An admin tool. returns hidden fingerprints and the duration is instant.
+/obj/item/detective_scanner/admin // Strictly an admin tool. returns hidden fingerprints and the duration is instant.
 	name = "badmin forensic scanner"
 	desc = "An unbelievable scanner capable of returning results seemingly out of nowhere."
 	admin = TRUE
 	advanced = TRUE
 	color = "#00FFFF" // aqua
+	scan_icon = FALSE // this scanner doesn't get a chance to play the animation because scans are instant so its best to leave this false to avoid unnecessary icon updates.
+
+/obj/item/detective_scanner/admin/scan(atom/A, mob/user) // plays result sound after scan since it bypasses feedback
+	. = ..()
+	found_something ? feedback(sound_match , TRUE) : feedback(sound_nomatch , TRUE)
 
 /obj/item/detective_scanner/advanced
 	name = "advanced forensic scanner"
