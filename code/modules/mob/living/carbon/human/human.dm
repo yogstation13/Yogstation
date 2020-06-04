@@ -833,7 +833,6 @@
 	.["Make cyborg"] = "?_src_=vars;[HrefToken()];makerobot=[REF(src)]"
 	.["Make alien"] = "?_src_=vars;[HrefToken()];makealien=[REF(src)]"
 	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=[REF(src)]"
-	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
 	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // yogs -- make cluwne
