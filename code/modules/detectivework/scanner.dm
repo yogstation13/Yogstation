@@ -295,7 +295,7 @@
 	return time2text(world.time + 432000, ":ss")
 
 /obj/item/detective_scanner/AltClick(mob/living/user)
-	return
+	option_clearlogs(user)
 
 /obj/item/detective_scanner/examine(mob/user)
 	. = ..()
