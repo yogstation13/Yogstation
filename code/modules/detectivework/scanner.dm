@@ -68,7 +68,6 @@
 /obj/item/detective_scanner/attack_self(mob/user)
 	radial_show(user)
 	
-	
 /obj/item/detective_scanner/proc/option_print(mob/user)
 	if(log.len && !scanning)
 		scanning = 1
@@ -179,9 +178,7 @@
 		user.visible_message("\The [user] points the [src.name] at \the [A] and performs a forensic scan.")
 		to_chat(user, "<span class='notice'>You scan \the [A]. The scanner is now analysing the results...</span>")
 
-
 		// GATHER INFORMATION
-
 		//Make our lists
 		var/list/fingerprints = list()
 		var/list/blood = A.return_blood_DNA()
@@ -312,7 +309,6 @@
 	to_chat(user, "<span class='notice'><B>Scanner Report</B></span>")
 	for(var/iterLog in log)
 		to_chat(user, iterLog)
-
 
 /obj/item/detective_scanner/admin // Strictly an admin tool. returns hidden fingerprints and the duration is instant.
 	name = "badmin forensic scanner"
