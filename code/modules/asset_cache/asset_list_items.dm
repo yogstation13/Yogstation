@@ -346,13 +346,3 @@
 		"dna_undiscovered.gif"	= 'html/dna_undiscovered.gif',
 		"dna_extra.gif" 		= 'html/dna_extra.gif'
 )
-
-/datum/asset/simple/mapimage // Returns an image of the current map
-	assets = list(
-		//Initialized in New()
-	)
-/datum/asset/simple/mapimage/New()
-	assets = list(
-		"map.png" = fcopy_rsc("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
-	)
-	..()
