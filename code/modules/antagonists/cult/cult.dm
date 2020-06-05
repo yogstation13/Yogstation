@@ -320,19 +320,11 @@
 		objectives += sac_objective
 	else
 		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
-	C.make_image(src)
-	for(var/datum/mind/M in C.members)
-		if(M.current)
-			M.current.clear_alert("bloodsense")
-			M.current.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
 
-/datum/team/cult/proc/setup_objectives()
-	var/datum/objective/sacrifice/sac_objective = new
-	sac_objective.team = src
-	sac_objective.find_target()
-	objectives += sac_objective
 
-	var/datum/objective/eldergod/summon_objective = new
+	//SUMMON OBJECTIVE
+
+	var/datum/objective/eldergod/summon_objective = new()
 	summon_objective.team = src
 	objectives += summon_objective
 
