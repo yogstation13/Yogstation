@@ -386,7 +386,7 @@
 /obj/item/clothing/neck/bodycam/miner
 	name = "miner body camera"
 	desc = "A wearable camera, capable of streaming a live feed. This one is preconfigured to be used by miners."
-	prefix = "miner_"
+	prefix = "miner"
 	setup = TRUE
 	preset = TRUE
 
