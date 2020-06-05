@@ -303,7 +303,7 @@
 	desc = "A wearable camera, capable of streaming a live feed."
 	icon_state = "bodycam_off"
 	item_state = "bodycam_off"
-	var/prefix = ""//used for sprites, miner etc
+	var/prefix = "sec"//used for sprites, miner etc
 	var/obj/machinery/camera/bodcam = null
 	var/setup = FALSE
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
