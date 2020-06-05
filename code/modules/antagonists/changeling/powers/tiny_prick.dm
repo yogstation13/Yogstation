@@ -123,7 +123,7 @@
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. On the bright side, at least you can cut wood with this."
-	force = 8
+	force = 5
 	fake = TRUE
 
 /datum/action/changeling/sting/false_armblade/can_sting(mob/user, mob/target)
@@ -133,6 +133,9 @@
 		var/mob/living/L = target
 		if((HAS_TRAIT(L, TRAIT_HUSK)) || !L.has_dna())
 			to_chat(user, "<span class='warning'>Our sting appears ineffective against its DNA.</span>")
+			return 0
+		for(var/obj/item/melee/arm_blade/A in L.held_items)
+			to_chat(user, "<span class='warning'>Their DNA already codes for a blade!</span>")
 			return 0
 	return 1
 
