@@ -1281,9 +1281,9 @@
 	update_icon(AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
-		density = TRUE
 		air_update_turf(1)
-	sleep(1)
+	sleep(2)
+	density = TRUE
 	if(!air_tight)
 		density = TRUE
 		air_update_turf(1)
