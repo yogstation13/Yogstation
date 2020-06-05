@@ -193,7 +193,7 @@
 	joe.real_name = new_name
 	used_up = TRUE
 	mob_mobs += joe
-	joe.say("My soul will burn like this saint if I betray my familiy. I enter alive and I will have to get out dead.", forced = /obj/item/virgin_mary)
+	joe.say("My soul will burn like this saint if I betray my family. I enter alive and I will have to get out dead.", forced = /obj/item/virgin_mary)
 	to_chat(joe, "<span class='userdanger'>Being inducted into the mafia does not grant antagonist status.</span>")
 
 /obj/item/virgin_mary/suicide_act(mob/living/user)
