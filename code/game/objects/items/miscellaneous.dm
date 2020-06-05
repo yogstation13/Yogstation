@@ -161,7 +161,7 @@
 /obj/item/virgin_mary/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	var/ignition_msg = W.ignition_effect(src, user)
-	if(!ignition_msg)
+	if(!ignition_msg || resistance_flags & ON_FIRE)
 		return
 	if(resistance_flags & ON_FIRE)
 		return
