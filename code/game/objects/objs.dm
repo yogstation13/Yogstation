@@ -29,6 +29,8 @@
 
 	var/renamedByPlayer = FALSE //set when a player uses a pen on a renamable object
 
+	color = "#00FFFF"
+
 /obj/vv_edit_var(vname, vval)
 	switch(vname)
 		if("anchored")
