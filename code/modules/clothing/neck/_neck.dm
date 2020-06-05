@@ -308,6 +308,7 @@
 	var/onstate = "off"
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
+	strip_delay = 10 //takes one second to strip, so a downed officer can be un-cammed quickly
 
 /obj/item/clothing/neck/bodycam/Initialize()
 	..()
@@ -370,6 +371,14 @@
 
 	if(!usr.stat)
 		attack_self(usr)
+
+/obj/item/clothing/neck/bodycam/emp_act(severity)
+	. = ..()
+	if(prob(150/severity))
+		bodcam.c_tag = rand(1,10000)
+		bodcam.network = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
+		bodcam.status = 0
+		update_icon()
 
 //Miner specfic camera, cannot be reconfigured
 /obj/item/clothing/neck/bodycam/miner
