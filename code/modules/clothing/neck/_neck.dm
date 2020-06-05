@@ -294,7 +294,8 @@
 
 /*
  * Bodycamera stuff
- * NOTE: Unlike regular cameras, bodycams can only stream to one camera network at a time.
+ * NOTE: Unlike regular cameras, bodycams can only stream to one camera network at a time. Unless you want to give it more networks,
+ * the code will only ever worry about bodcam.network[1]
  */
 
 /obj/item/clothing/neck/bodycam
@@ -302,10 +303,9 @@
 	desc = "A wearable camera, capable of streaming a live feed."
 	icon_state = "bodycam_off"
 	item_state = "bodycam_off"
-	var/prefix = ""//used for sprites, miner_ etc
+	var/prefix = ""//used for sprites, miner etc
 	var/obj/machinery/camera/bodcam = null
 	var/setup = FALSE
-	var/onstate = "off"
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
 	strip_delay = 10 //takes one second to strip, so a downed officer can be un-cammed quickly
@@ -317,7 +317,7 @@
 	bodcam.c_tag = "NT_BodyCam"
 	bodcam.network = list("ss13")
 	bodcam.internal_light = FALSE
-	bodcam.status = 0
+	bodcam.status = FALSE
 	update_icon()
 
 /obj/item/clothing/neck/bodycam/attack_self(mob/user)
@@ -325,12 +325,10 @@
 		src.AltClick(user)
 		return
 	if(bodcam.status)
-		bodcam.status = 0
-		onstate = "off"
+		bodcam.status = FALSE
 		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
 	else
-		bodcam.status = 1
-		onstate = "on"
+		bodcam.status = TRUE
 		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
 	update_icon()
 
@@ -343,18 +341,20 @@
 	bodcam.network[1] = input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13") as null|text
 	if(bodcam.c_tag && bodcam.network.len > 0)
 		setup = TRUE
-		bodcam.status = 1
-		onstate = "on"
+		bodcam.status = TRUE
 		update_icon()
 
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
-	icon_state = "[prefix]_bodycam_[onstate]"
-	item_state = "[prefix]_bodycam_[onstate]"
+	var/suffix="off"
+	if (bodcam.status)
+		suffix="on"
+	icon_state = "[prefix]bodycam_[suffix]"
+	item_state = "[prefix]bodycam_[suffix]"
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
-	.+= "<span class='notice'>The camera is currently [onstate].<span>"
+	.+= "<span class='notice'>The camera is currently [bodcam.status? "on" : "off"].<span>"
 	if(setup)
 		.+= "<span class='notice'>It is registered under the name\"[bodcam.c_tag]\".</span>"
 		.+= "<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".</span>"
@@ -379,7 +379,6 @@
 		bodcam.c_tag = rand(1,10000)
 		bodcam.network[1] = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
 		bodcam.status = 0
-		onstate="off"
 		update_icon()
 
 //Miner specfic camera, cannot be reconfigured
