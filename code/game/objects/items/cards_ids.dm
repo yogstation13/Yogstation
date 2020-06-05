@@ -435,7 +435,7 @@ update_label("John Doe", "Clowny")
 	desc = "An ID straight from Central Command."
 	icon_state = "centcom"
 	registered_name = "Central Command"
-	assignment = "General"
+	assignment = "CentCom Official"
 
 /obj/item/card/id/centcom/silver
 	name = "\improper silver CentCom ID"
@@ -447,6 +447,8 @@ update_label("John Doe", "Clowny")
 	desc = "A gold ID straight from Central Command."
 	icon_state = "centcom_gold"
 
+
+	
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
 	. = ..()
@@ -457,6 +459,11 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
+
+/obj/item/card/id/ert/amber
+	name = "\improper Amber Task Force ID"
+	desc = "An Amber Task Force ID card."
+	assignment = "Amber Task Force"
 
 /obj/item/card/id/ert/Initialize()
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
