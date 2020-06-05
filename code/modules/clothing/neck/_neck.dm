@@ -349,8 +349,8 @@
 
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
-	icon_state = "[prefix]bodycam_[onstate]"
-	item_state = "[prefix]bodycam_[onstate]"
+	icon_state = "[prefix]_bodycam_[onstate]"
+	item_state = "[prefix]_bodycam_[onstate]"
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
