@@ -103,6 +103,12 @@
 
 	. = ..()
 
+/datum/game_mode/cult/check_finished(force_ending)
+	if (..())
+		return TRUE
+
+	return 1 - main_cult.check_sacrifice_status()
+
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
 		return FALSE
