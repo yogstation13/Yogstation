@@ -64,7 +64,6 @@
 	new /obj/item/clothing/neck/bodycam/miner(src)
 
 
-
 GLOBAL_LIST_EMPTY(dumb_rev_heads)
 /**********************Shuttle Computer**************************/
 
