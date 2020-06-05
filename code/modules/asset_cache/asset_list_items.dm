@@ -350,11 +350,9 @@
 /datum/asset/simple/mapimage // Returns an image of the current map
 	assets = list(
 		//Initialized in New()
-		"map.png" = file('icons/mapimages/YogStation.png')
 	)
 /datum/asset/simple/mapimage/New()
-	var/map_name = file("icons/mapimages/[SSmapping.config.map_name].png")
 	assets = list(
-		"map.png" = fcopy_rsc(map_name) //AFAIK this doesn't race with SSmapping loading up.
+		"map.png" = fcopy_rsc("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
 	)
 	..()
