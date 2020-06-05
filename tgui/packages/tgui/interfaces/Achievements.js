@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Collapsible, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Achievements = props => {
-  const { data } = useBackend(props);
+export const Achievements = (props, context) => {
+  const { data } = useBackend(context);
   return (
     <Window>
       <Window.Content>
