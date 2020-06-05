@@ -128,7 +128,7 @@ Contains:
 	equip_delay_other = 20
 
 /obj/item/clothing/suit/space/paramedic
-	name = "paramedic space suit"
+	name = "medical space suit"
 	desc = "A suit that protects against low pressure environments. Has a big cross on the back."
 	icon_state = "paramedic"
 	item_state = "paramedic"
