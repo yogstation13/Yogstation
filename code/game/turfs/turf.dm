@@ -84,6 +84,9 @@
 
 	ComponentInitialize()
 
+	if(prob(0.1)) // DOLPHINS!
+		new /mob/living/simple_animal/hostile/retaliate/dolphin
+
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/Initalize_Atmos(times_fired)
