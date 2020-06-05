@@ -309,6 +309,7 @@
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
 	strip_delay = 10 //takes one second to strip, so a downed officer can be un-cammed quickly
+	w_class = WEIGHT_CLASS_BULKY //you HAVE to wear it or carry it. No cheating by putting it in a bag!
 
 /obj/item/clothing/neck/bodycam/Initialize()
 	..()
