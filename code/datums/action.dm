@@ -199,6 +199,9 @@
 /datum/action/item_action/toggle_firemode
 	name = "Toggle Firemode"
 
+/datum/action/item_action/toggle_bodycam
+	name = "Toggle Bodycamera"
+
 /datum/action/item_action/rcl_col
 	name = "Change Cable Color"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'

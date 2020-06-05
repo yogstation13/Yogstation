@@ -291,3 +291,98 @@
 	desc = "A sizable white cape with gold connects."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
+
+
+/*
+ * Bodycamera stuff
+ * NOTE: Unlike regular cameras, bodycams can only stream to one camera network at a time.
+ */
+
+/obj/item/clothing/neck/bodycam
+	name = "body camera"
+	desc = "A wearable camera, capable of streaming a live feed."
+	icon_state = "bodycam_off"
+	item_state = "bodycam_off"
+	var/obj/machinery/camera/bodcam=null
+	var/setup= FALSE
+	var/onstate="off"
+	var/preset=FALSE //if true, the camera is already configured and cannot be reset
+	actions_types = list(/datum/action/item_action/toggle_bodycam)
+
+/obj/item/clothing/neck/bodycam/Initialize()
+	..()
+	bodcam = new (src)
+	bodcam.c_tag = "NT_BodyCam"
+	bodcam.network = list("ss13")
+	bodcam.internal_light = FALSE
+	bodcam.status = 0
+
+/obj/item/clothing/neck/bodycam/attack_self(mob/user)
+	if (!setup)
+		src.AltClick(user)
+		return
+	if(bodcam.status)
+		bodcam.status=0
+		onstate="off"
+		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
+	else
+		bodcam.status=1
+		onstate="on"
+		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
+	update_icon()
+
+/obj/item/clothing/neck/bodycam/AltClick(mob/user)
+	if (preset)
+		return //can't change the settings on it if it's preset
+	var/name=input(user, "What would you like your camera's display name to be?", "Camera id", "[user.name]") as null|text
+	if (name)
+		bodcam.c_tag="(Bodycam) "+name
+	bodcam.network[1]=input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13") as null|text
+	if(bodcam.c_tag && bodcam.network.len>0)
+		setup=TRUE
+		bodcam.status = 1
+		onstate="on"
+		update_icon()
+
+/obj/item/clothing/neck/bodycam/update_icon()
+	icon_state="bodycam_[onstate]"
+	item_state = "bodycam_[onstate]"
+
+/obj/item/clothing/neck/bodycam/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>The camera is currently [onstate].<span>"
+	if (setup)
+		. +="<span class='notice'>It is registered under the name\"[bodcam.c_tag]\".<span>"
+		. +="<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".<span>"
+		if (!preset)
+			. +="<span class='notice'>Alt-click to configure the camera.<span>"
+		else
+			. +="<span class='notice'>This camera is locked and cannot be reconfigured.<span>"
+	else
+		. +="<span class='warning'>It hasn't been set up yet!<span>"
+
+/obj/item/clothing/neck/bodycam/verb/toggle_bodycam()
+	set name = "Toggle Bodycam"
+	set category = "Object"
+	set src in oview(1)
+
+	if(!usr.stat)
+		attack_self(usr)
+
+//Miner specfic camera, cannot be reconfigured
+/obj/item/clothing/neck/bodycam/miner
+	name = "miner body camera"
+	desc = "A wearable camera, capable of streaming a live feed. This one is preconfigured to be used by miners."
+	setup=TRUE
+	preset=TRUE
+
+/obj/item/clothing/neck/bodycam/Initialize()
+	..()
+	bodcam.network[1]="mine"
+	bodcam.c_tag="Unactivated Miner Body Camera"
+
+/obj/item/clothing/neck/bodycam/miner/attack_self(mob/user)
+	..()
+	bodcam.c_tag="(Miner bodycam) "+user.name
+	bodcam.network[1]="mine"
+
