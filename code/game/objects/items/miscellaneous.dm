@@ -184,7 +184,9 @@
 		return
 	var/new_name
 	var/space_position = findtext(joe.real_name, " ")
+    new_name = "[joe.real_name] \"[nickname]\""
 	if(space_position)//Can we find a space?
+	    new_name = "[copytext(joe.real_name, 1, space_position)] \"[nickname]\" [copytext(joe.real_name, space_position)]"
 		new_name = "[copytext(joe.real_name, 1, space_position)] \"[nickname]\" [copytext(joe.real_name, space_position)]"
 	else //Append otherwise
 		new_name = "[joe.real_name] \"[nickname]\""
