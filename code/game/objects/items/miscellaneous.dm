@@ -168,7 +168,7 @@
 	user.dropItemToGround(src)
 	user.visible_message("<span class='danger'>[user] lights [src] ablaze with [W]!</span>", "<span class='danger'>You light [src] on fire!</span>")
 	fire_act()
-	if(used_up)
+	if(used_up || !isliving(user) || !user.mind)
 		return
 	if(!isliving(user) || !user.mind) //A sentient mob needs to be burning it, ya cheezit.
 		return
