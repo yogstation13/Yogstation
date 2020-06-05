@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/simple/pda)
 	assets.send(user)
 	register_asset("common.js", 'html/browser/common.js')
-	send_asset_list(user, list("common.js" = 'html/browser/common.js'), verify=FALSE)
+	send_asset_list(user, list("common.js" = 'html/browser/common.js'))
 
 	user.set_machine(src)
 
@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					mode = 0
 				else
 					mode = round(mode/10)
-					if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub. 
+					if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub.
 						mode = 0
 			if ("Authenticate")//Checks for ID
 				id_check(U)
