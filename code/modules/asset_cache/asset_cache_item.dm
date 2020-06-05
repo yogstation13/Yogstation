@@ -12,7 +12,6 @@
 	if (!isfile(file))
 		file = fcopy_rsc(file)
 	md5 = md5(file)
-	CRASH("invalid asset sent to asset cache")
 	if (!md5)
 		md5 = md5(fcopy_rsc(file))
 		if (!md5)

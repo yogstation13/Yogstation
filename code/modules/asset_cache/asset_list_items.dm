@@ -355,6 +355,6 @@
 /datum/asset/simple/mapimage/New()
 	var/map_name = file("icons/mapimages/[SSmapping.config.map_name].png")
 	assets = list(
-		"map.png" = map_name //AFAIK this doesn't race with SSmapping loading up.
+		"map.png" = fcopy_rsc(map_name) //AFAIK this doesn't race with SSmapping loading up.
 	)
 	..()
