@@ -379,6 +379,7 @@
 		bodcam.c_tag = rand(1,10000)
 		bodcam.network[1] = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
 		bodcam.status = 0
+		onstate="off"
 		update_icon()
 
 //Miner specfic camera, cannot be reconfigured
