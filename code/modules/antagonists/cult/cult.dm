@@ -333,7 +333,7 @@
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
 			// The chaplain gets triple relative weighting
-			if (player.mind.isholy)
+			if (player.mind.holy_role)
 				target_candidates[player.mind] = 3
 			else
 				target_candidates[player.mind] = 1
