@@ -66,7 +66,6 @@
 		scanner.displayDetectiveScanResults(usr)
 
 /obj/item/detective_scanner/attack_self(mob/user)
-	// placeholders ; Redoing this part and splitting into different procs - Hopek
 	radial_show(user)
 	
 	
