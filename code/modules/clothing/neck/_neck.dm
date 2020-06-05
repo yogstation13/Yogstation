@@ -303,6 +303,7 @@
 	desc = "A wearable camera, capable of streaming a live feed."
 	icon_state = "bodycam_off"
 	item_state = "bodycam_off"
+	var/prefix=""//used for sprites, miner_ etc
 	var/obj/machinery/camera/bodcam=null
 	var/setup= FALSE
 	var/onstate="off"
@@ -316,6 +317,7 @@
 	bodcam.network = list("ss13")
 	bodcam.internal_light = FALSE
 	bodcam.status = 0
+	update_icon()
 
 /obj/item/clothing/neck/bodycam/attack_self(mob/user)
 	if (!setup)
@@ -345,8 +347,9 @@
 		update_icon()
 
 /obj/item/clothing/neck/bodycam/update_icon()
-	icon_state="bodycam_[onstate]"
-	item_state = "bodycam_[onstate]"
+	..()
+	icon_state="[prefix]bodycam_[onstate]"
+	item_state = "[prefix]bodycam_[onstate]"
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	. = ..()
@@ -373,6 +376,7 @@
 /obj/item/clothing/neck/bodycam/miner
 	name = "miner body camera"
 	desc = "A wearable camera, capable of streaming a live feed. This one is preconfigured to be used by miners."
+	prefix="miner_"
 	setup=TRUE
 	preset=TRUE
 

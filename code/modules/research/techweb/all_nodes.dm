@@ -521,10 +521,10 @@
 	export_price = 5000
 
 /datum/techweb_node/camera_theory
-	id="cam_theory"
+	id = "cam_theory"
 	display_name = "Camera Theory"
-	description = "NT is watching you"
-	design_ids = list("minercam, bodycam")
+	description = "NT is watching you..."
+	design_ids = list("minercam", "bodycam")
 	prereq_ids = list("basic_mining","sec_basic")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000

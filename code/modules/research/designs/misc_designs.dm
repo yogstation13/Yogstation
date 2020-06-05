@@ -272,11 +272,9 @@
 	id = "bodycam"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000, MAT_GOLD = 500)
-	build_path = /obj/item/clothing/neck/bodycam
+	build_path = /obj/item/clothing/neck/bodycam/
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-	research_icon='icons/obj/clothing/neck.dmi'
-	research_icon_state="bodycam_on"
 
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////

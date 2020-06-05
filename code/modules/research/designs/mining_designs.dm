@@ -141,5 +141,3 @@
 	build_path = /obj/item/clothing/neck/bodycam/miner
 	category = list("Mining Designs","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
-	research_icon='icons/obj/clothing/neck.dmi'
-	research_icon_state="bodycam_off"
