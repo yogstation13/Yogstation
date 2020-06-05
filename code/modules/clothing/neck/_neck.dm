@@ -346,9 +346,9 @@
 
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
-	var/suffix="off"
+	var/suffix = "off"
 	if (bodcam.status)
-		suffix="on"
+		suffix = "on"
 	icon_state = "[prefix]bodycam_[suffix]"
 	item_state = "[prefix]bodycam_[suffix]"
 
