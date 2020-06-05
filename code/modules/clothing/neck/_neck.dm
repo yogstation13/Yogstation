@@ -291,7 +291,7 @@
 	desc = "A sizable white cape with gold connects."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
-	
+
 /*
  * Bodycamera stuff
  * NOTE: Unlike regular cameras, bodycams can only stream to one camera network at a time.
@@ -377,7 +377,7 @@
 	. = ..()
 	if(prob(150/severity))
 		bodcam.c_tag = rand(1,10000)
-		bodcam.network = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
+		bodcam.network[1] = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
 		bodcam.status = 0
 		update_icon()
 
