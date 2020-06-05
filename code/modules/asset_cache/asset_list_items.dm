@@ -350,9 +350,10 @@
 /datum/asset/simple/mapimage // Returns an image of the current map
 	assets = list(
 		//Initialized in New()
+		"map.png" = file('icons/mapimages/YogStation.png')
 	)
 /datum/asset/simple/mapimage/New()
 	assets = list(
-		"map.png" = "[file("icons/mapimages/[SSmapping.config.map_name].png")]" //AFAIK this doesn't race with SSmapping loading up.
+		"map.png" = file('icons/mapimages/[SSmapping.config.map_name].png') //AFAIK this doesn't race with SSmapping loading up.
 	)
 	..()
