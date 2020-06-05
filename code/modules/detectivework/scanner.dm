@@ -319,6 +319,11 @@
 	scan_icon = FALSE // this scanner doesn't get a chance to play the animation because scans are instant so its best to leave this false to avoid unnecessary icon updates.
 	view_check = FALSE // admin scanner doesn't care if you can actually see something
 
+/obj/item/detective_scanner/admin/Initialize()
+	. = ..()
+	if(prob(50)) // has a 50% chance to either have the regular or advanced sprite. Both with aqua coloring of course
+		icon_state = "forensic2"
+
 /obj/item/detective_scanner/admin/scan(atom/A, mob/user) // plays result sound after scan since it bypasses feedback
 	. = ..()
 	found_something ? feedback(sound_match , TRUE) : feedback(sound_nomatch , TRUE)
