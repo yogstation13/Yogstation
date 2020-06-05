@@ -349,8 +349,8 @@
 	var/suffix = "off"
 	if (bodcam.status)
 		suffix = "on"
-	icon_state = "[prefix]bodycam_[suffix]"
-	item_state = "[prefix]bodycam_[suffix]"
+	icon_state = "[prefix]_bodycam_[suffix]"
+	item_state = "[prefix]_bodycam_[suffix]"
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
