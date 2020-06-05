@@ -291,8 +291,7 @@
 	desc = "A sizable white cape with gold connects."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
-
-
+	
 /*
  * Bodycamera stuff
  * NOTE: Unlike regular cameras, bodycams can only stream to one camera network at a time.
