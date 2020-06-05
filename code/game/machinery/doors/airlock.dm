@@ -1237,8 +1237,9 @@
 	sleep(1)
 	set_opacity(0)
 	update_freelook_sight()
+	sleep(1)
 	density = FALSE
-	sleep(4)
+	sleep(3)
 	air_update_turf(1)
 	sleep(1)
 	layer = OPEN_DOOR_LAYER
