@@ -15,6 +15,8 @@
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
+	var/icons_available = list() // stores available icons for radial menu
+	var/icon_directory = 'icons/effects/icons.dmi' // dmi file containing the icons used in the radial menu
 	var/scanning = 0
 	var/found_something // placeholder for result boolian. placed here for admin scanner.
 	var/list/log = list()
@@ -65,12 +67,8 @@
 
 /obj/item/detective_scanner/attack_self(mob/user)
 	// placeholders ; Redoing this part and splitting into different procs - Hopek
-	radial_generate()
 	radial_show(user)
 	
-	
-	//option_print(user)
-	//option_clearlogs(user)
 	
 /obj/item/detective_scanner/proc/option_print(mob/user)
 	if(log.len && !scanning)
@@ -104,11 +102,43 @@
 		icon_state = (scanning ? icon_state_scanning : icon_state_neutral)
 
 /obj/item/detective_scanner/proc/radial_generate() // generate option menu in order to show context sensitive menu
-	// placeholder
+	icons_available = list()
+	icons_available += list("View results" = image(icon = icon_directory, icon_state = "view"))
+	if(can_sound)
+		sound_on ? (icons_available += list("Volume off" = image(icon = icon_directory, icon_state = "volume_off"))) : (icons_available += list("Volume on" = image(icon = icon_directory, icon_state = "volume_on")))
+	if(log.len)
+		icons_available += list("Print results" = image(icon = icon_directory, icon_state = "print"))
+		icons_available += list("Clear results" = image(icon = icon_directory, icon_state = "clear"))
 
 /obj/item/detective_scanner/proc/radial_show(mob/user) // shows radial to user and performs actions based on it.
-	// placeholder
+	if(scanning)
+		to_chat(user, "<span class='notice'>[src] is in use.</span>")
+		return
+	radial_generate()
+	if(icons_available)
+		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
+		if(!selection)
+			return
+		
+		if(selection == "View results")
+			var/obj/item/detective_scanner/scanner = src
+			if(istype(scanner))
+				scanner.displayDetectiveScanResults(user)
+			return
+		
+		if(selection == "Volume on" || selection == "Volume off")
+			to_chat(user, (sound_on ? "<span class='notice'>You mute the volume.</span>" : "<span class='notice'>You turn up the volume.</span>"))
+			sound_on = !sound_on
+			return
 
+		if(selection == "Print results")
+			option_print(user)
+			return
+
+		if(selection == "Clear results")
+			option_clearlogs(user)
+			return
+		
 /obj/item/detective_scanner/proc/PrintReport()
 	// Create our paper
 	var/obj/item/paper/P = new(get_turf(src))
@@ -292,6 +322,7 @@
 	advanced = TRUE
 	color = "#00FFFF" // aqua
 	scan_icon = FALSE // this scanner doesn't get a chance to play the animation because scans are instant so its best to leave this false to avoid unnecessary icon updates.
+	view_check = FALSE // admin scanner doesn't care if you can actually see something
 
 /obj/item/detective_scanner/admin/scan(atom/A, mob/user) // plays result sound after scan since it bypasses feedback
 	. = ..()
@@ -302,6 +333,6 @@
 	desc = "Processes data much quicker at the cost of not being able to scan far remotely. Gives more detailed reports. Scan from 2 tiles away to avoid leaving prints on the scene of the crime!"
 	icon_state = "forensic2"
 	icon_state_scanning =  "forensic2_scan" // icon state for scanning
-	range = 2 // this scanner does not have range
+	range = 2 // this scanner does not have much range
 	scan_speed = 2
 	advanced = TRUE
