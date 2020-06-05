@@ -354,6 +354,7 @@
 	)
 /datum/asset/simple/mapimage/New()
 	assets = list(
-		"map.png" = file("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
+		"map.png" = 'icons/mapimages/YogStation.png'
+		//"map.png" = file("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
 	)
 	..()
