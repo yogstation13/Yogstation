@@ -353,8 +353,9 @@
 		"map.png" = file('icons/mapimages/YogStation.png')
 	)
 /datum/asset/simple/mapimage/New()
+	var/map_name = 'icons/mapimages/' + SSmapping.config.map_name
+	map_name += '.png'
 	assets = list(
-		"map.png" = 'icons/mapimages/YogStation.png'
-		//"map.png" = file("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
+		"map.png" = map_name //AFAIK this doesn't race with SSmapping loading up.
 	)
 	..()
