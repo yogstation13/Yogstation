@@ -378,7 +378,7 @@
 	if(prob(150/severity))
 		bodcam.c_tag = rand(1,10000)
 		bodcam.network[1] = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
-		bodcam.status = 0
+		bodcam.status = FALSE
 		update_icon()
 
 //Miner specfic camera, cannot be reconfigured
@@ -389,7 +389,7 @@
 	setup = TRUE
 	preset = TRUE
 
-/obj/item/clothing/neck/bodycam/Initialize()
+/obj/item/clothing/neck/bodycam/miner/Initialize()
 	..()
 	bodcam.network[1] = "mine"
 	bodcam.c_tag = "Unactivated Miner Body Camera"
