@@ -303,11 +303,11 @@
 	desc = "A wearable camera, capable of streaming a live feed."
 	icon_state = "bodycam_off"
 	item_state = "bodycam_off"
-	var/prefix=""//used for sprites, miner_ etc
+	var/prefix = ""//used for sprites, miner_ etc
 	var/obj/machinery/camera/bodcam=null
 	var/setup= FALSE
-	var/onstate="off"
-	var/preset=FALSE //if true, the camera is already configured and cannot be reset
+	var/onstate = "off"
+	var/preset = FALSE //if true, the camera is already configured and cannot be reset
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
 
 /obj/item/clothing/neck/bodycam/Initialize()
@@ -325,21 +325,21 @@
 		return
 	if(bodcam.status)
 		bodcam.status=0
-		onstate="off"
+		onstate = "off"
 		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
 	else
 		bodcam.status=1
-		onstate="on"
+		onstate = "on"
 		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
 	update_icon()
 
 /obj/item/clothing/neck/bodycam/AltClick(mob/user)
 	if (preset)
 		return //can't change the settings on it if it's preset
-	var/name=input(user, "What would you like your camera's display name to be?", "Camera id", "[user.name]") as null|text
+	var/name = input(user, "What would you like your camera's display name to be?", "Camera id", "[user.name]") as null|text
 	if (name)
-		bodcam.c_tag="(Bodycam) "+name
-	bodcam.network[1]=input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13") as null|text
+		bodcam.c_tag = "(Bodycam) "+name
+	bodcam.network[1] = input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13") as null|text
 	if(bodcam.c_tag && bodcam.network.len>0)
 		setup=TRUE
 		bodcam.status = 1
@@ -348,7 +348,7 @@
 
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
-	icon_state="[prefix]bodycam_[onstate]"
+	icon_state = "[prefix]bodycam_[onstate]"
 	item_state = "[prefix]bodycam_[onstate]"
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
@@ -382,11 +382,11 @@
 
 /obj/item/clothing/neck/bodycam/Initialize()
 	..()
-	bodcam.network[1]="mine"
-	bodcam.c_tag="Unactivated Miner Body Camera"
+	bodcam.network[1] = "mine"
+	bodcam.c_tag = "Unactivated Miner Body Camera"
 
 /obj/item/clothing/neck/bodycam/miner/attack_self(mob/user)
 	..()
-	bodcam.c_tag="(Miner bodycam) "+user.name
-	bodcam.network[1]="mine"
+	bodcam.c_tag ="(Miner bodycam) "+user.name
+	bodcam.network[1] = "mine"
 
