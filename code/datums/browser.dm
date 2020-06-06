@@ -28,7 +28,6 @@
 	if (nref)
 		ref = nref
 	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
-	add_script("common", 'html/browser/common.js')
 
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content

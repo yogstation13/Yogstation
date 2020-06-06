@@ -863,6 +863,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	getFiles(
 		'html/search.js',
 		'html/panels.css',
+		'html/browser/common.js'
 		'html/browser/common.css',
 		'html/browser/scannernew.css',
 		'html/browser/playeroptions.css',
