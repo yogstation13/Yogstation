@@ -44,14 +44,6 @@
 	var/mob/dead/observer/G = usr
 	G.open_spawners_menu()
 
-/obj/screen/ghost/pai
-	name = "pAI Candidate"
-	icon_state = "pai"
-
-/obj/screen/ghost/pai/Click()
-	var/mob/dead/observer/G = usr
-	G.register_pai()
-
 /datum/hud/ghost/New(mob/owner)
 	..()
 	var/obj/screen/using
