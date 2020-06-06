@@ -17301,13 +17301,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"azv" = (
-/obj/structure/closet/secure_closet/paramedic,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid/regular,
-/obj/item/clothing/glasses/hud/health,
-/turf/open/floor/plasteel/dark,
-/area/medical)
 "azw" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -44713,6 +44706,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"wHx" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/regular,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/suit/space/eva/paramedic,
+/obj/item/clothing/head/helmet/space/eva/paramedic,
+/turf/open/floor/plasteel/dark,
+/area/medical)
 "wOJ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -26
@@ -84759,7 +84761,7 @@ ayc
 awy
 baW
 ayb
-azv
+wHx
 aKg
 aph
 aYL
