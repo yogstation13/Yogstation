@@ -49,6 +49,7 @@
 	tools = list(/obj/item/screwdriver)
 	time = 120
 	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 	always_availible = FALSE
 
 /datum/crafting_recipe/knifeboxing
@@ -58,6 +59,7 @@
 				/obj/item/kitchen/knife = 2)
 	time = 100
 	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 	always_availible = FALSE
 
 //Normal recipes

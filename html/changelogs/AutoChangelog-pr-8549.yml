@@ -1,0 +1,4 @@
+author: "MacHac"
+delete-after: true 
+changes: 
+  - tweak: "Blood cults may now be assigned a new target if they lose their old one."
