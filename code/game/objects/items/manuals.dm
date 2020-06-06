@@ -373,6 +373,13 @@
 	title = "Cloning techniques of the 26th century"
 	page_link = "Guide_to_genetics#Cloning"
 
+/obj/item/book/manual/wiki/medical_genetics
+	name = "Genetics of the 26th century"
+	icon_state ="bookCloning"
+	author = "Dr. Likes-The-Powers "
+	title = "Genetics of the 26th century"
+	page_link = "Guide_to_genetics"
+
 /obj/item/book/manual/wiki/cooking_to_serve_man
 	name = "To Serve Man"
 	desc = "It's a cookbook!"

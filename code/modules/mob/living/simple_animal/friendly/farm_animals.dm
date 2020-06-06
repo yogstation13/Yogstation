@@ -418,6 +418,9 @@
 		icon_dead = "sheep_dead"
 		icon_state = icon_living
 
+/mob/living/simple_animal/sheep/shawn
+	name = "shawn"
+
 //udder---------------------------------------
 /obj/item/udder
 	name = "udder"
@@ -462,4 +465,5 @@
 	lootcount = 1
 	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
 			/mob/living/simple_animal/cow/betsy = 1,
-			/mob/living/simple_animal/sheep = 1)
+			/mob/living/simple_animal/sheep = 1,
+			/mob/living/simple_animal/sheep/shawn = 1)

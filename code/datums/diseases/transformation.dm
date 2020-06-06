@@ -145,11 +145,12 @@
 /datum/disease/transformation/jungle_fever/monkeymode
 	visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
 	disease_flags = CAN_CARRY //no vaccines! no cure!
-
+	cure_text = "Clown's Tears."
+	cures = list(/datum/reagent/consumable/clownstears)
+	
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
 		visibility_flags = NONE
-
 
 
 /datum/disease/transformation/robot

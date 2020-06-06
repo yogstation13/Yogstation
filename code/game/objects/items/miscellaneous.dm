@@ -139,6 +139,14 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("skubbed")
 
+/obj/item/skub/admin
+	name = "amazing skub"
+	color = "#FF0000"
+	desc = "It's skub's ultimate form!"
+	throwforce = 400
+	throw_range = 10
+	throw_speed = 0.01
+
 /obj/item/skub/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] has declared themself as anti-skub! The skub tears them apart!</span>")
 

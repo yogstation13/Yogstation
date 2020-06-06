@@ -1,4 +1,4 @@
-/client/verb/cmd_view_polls()
+/client/proc/cmd_view_polls()
 	set category = "Server"
 	set name = "View poll results"
 
@@ -13,7 +13,7 @@
 	if(!query_poll_get.warn_execute())
 		qdel(query_poll_get)
 		return
-	var/output = "<div align='center'><B>Player polls</B><hr><table>"
+	var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player polls</B><hr><table>"
 	var/i = 0
 	var/rs = REF(src)
 	while(query_poll_get.NextRow())
@@ -22,7 +22,7 @@
 		output += "<tr bgcolor='#[ (i % 2 == 1) ? "e2e2e2" : "e2e2e2" ]'><td><a href=\"byond://?src=[rs];pollidshow=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
 		i++
 	qdel(query_poll_get)
-	output += "</table>"
+	output += "</table></BODY></HTML>"
 	if(!QDELETED(src))
 		src << browse(output,"window=playerpolllist;size=500x300")
 
@@ -66,7 +66,7 @@
 	if(adminonly)
 		question = "(<font color='#997700'>Admin only poll</font>) " + question
 
-	var output = "<!DOCTYPE html><html><body>"
+	var output = "<!DOCTYPE html><html><HEAD><meta charset='UTF-8'></HEAD><body>"
 	if(polltype == POLLTYPE_MULTI || polltype == POLLTYPE_OPTION)
 		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
 		select_query.Execute()

@@ -10,7 +10,7 @@
 	if(!query_poll_get.warn_execute())
 		qdel(query_poll_get)
 		return
-	var/output = "<div align='center'><B>Player polls</B><hr><table>"
+	var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player polls</B><hr><table>"
 	var/i = 0
 	var/rs = REF(src)
 	while(query_poll_get.NextRow())
@@ -19,7 +19,7 @@
 		output += "<tr bgcolor='#[ (i % 2 == 1) ? "e2e2e2" : "e2e2e2" ]'><td><a href=\"byond://?src=[rs];pollid=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
 		i++
 	qdel(query_poll_get)
-	output += "</table>"
+	output += "</table></BODY></HTML>"
 	if(!QDELETED(src))
 		src << browse(output,"window=playerpolllist;size=500x300")
 
@@ -66,7 +66,7 @@
 				PO.optiontext = query_option_options.item[2]
 				options += PO
 			qdel(query_option_options)
-			var/output = "<div align='center'><B>Player poll</B><hr>"
+			var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player poll</B><hr>"
 			output += "<b>Question: [pollquestion]</b><br>"
 			output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 			if(!votedoptionid)
@@ -88,8 +88,7 @@
 			if(!votedoptionid)
 				output += "<p><input type='submit' value='Vote'>"
 				output += "</form>"
-			output += "</div>"
-			src << browse(null ,"window=playerpolllist")
+			output += "</div></BODY></HTML>"
 			src << browse(output,"window=playerpoll;size=500x250")
 		if(POLLTYPE_TEXT)
 			var/datum/DBQuery/query_text_get_votes = SSdbcore.NewQuery("SELECT replytext FROM [format_table_name("poll_textreply")] WHERE pollid = [pollid] AND ckey = '[ckey]'")
@@ -100,7 +99,7 @@
 			if(query_text_get_votes.NextRow())
 				vote_text = query_text_get_votes.item[1]
 			qdel(query_text_get_votes)
-			var/output = "<div align='center'><B>Player poll</B><hr>"
+			var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player poll</B><hr>"
 			output += "<b>Question: [pollquestion]</b><br>"
 			output += "<font size='2'>Feedback gathering runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 			output += "<form name='cardcomp' action='?src=[REF(src)]' method='get'>"
@@ -115,7 +114,7 @@
 			output += "<input type='hidden' name='votepollid' value='[pollid]'>"
 			output += "<input type='hidden' name='votetype' value=[POLLTYPE_TEXT]>"
 			output += "<input type='hidden' name='replytext' value='ABSTAIN'>"
-			output += "<input type='submit' value='Abstain'></form>"
+			output += "<input type='submit' value='Abstain'></form></BODY></HTML>"
 
 			src << browse(null ,"window=playerpolllist")
 			src << browse(output,"window=playerpoll;size=500x500")
@@ -124,7 +123,7 @@
 			if(!query_rating_get_votes.warn_execute())
 				qdel(query_rating_get_votes)
 				return
-			var/output = "<div align='center'><B>Player poll</B><hr>"
+			var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player poll</B><hr>"
 			output += "<b>Question: [pollquestion]</b><br>"
 			output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 			var/rating
@@ -173,6 +172,7 @@
 				output += "<input type='hidden' name='minid' value='[minid]'>"
 				output += "<input type='hidden' name='maxid' value='[maxid]'>"
 				output += "<p><input type='submit' value='Submit'></form>"
+			output += "</BODY></HTML>"
 			if(!QDELETED(src))
 				src << browse(null ,"window=playerpolllist")
 				src << browse(output,"window=playerpoll;size=500x500")
@@ -202,7 +202,7 @@
 					minoptionid = PO.optionid
 				options += PO
 			qdel(query_multi_options)
-			var/output = "<div align='center'><B>Player poll</B><hr>"
+			var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><div align='center'><B>Player poll</B><hr>"
 			output += "<b>Question: [pollquestion]</b><br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
 			output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 			if(!votedfor.len)
@@ -225,7 +225,7 @@
 			output += "</td></tr></table>"
 			if(!votedfor.len)
 				output += "<p><input type='submit' value='Vote'></form>"
-			output += "</div>"
+			output += "</div></BODY></HTML>"
 			src << browse(null ,"window=playerpolllist")
 			src << browse(output,"window=playerpoll;size=500x250")
 		if(POLLTYPE_IRV)
@@ -288,6 +288,7 @@
 			var/output = {"
 				<html>
 				<head>
+				<meta charset='UTF-8'>
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 				<script src="jquery.min.js"></script>
 				<script src="jquery-ui.custom-core-widgit-mouse-sortable-min.js"></script>
@@ -340,6 +341,7 @@
 					<b><center>Least Preferred</center></b><br>
 				</div>
 					<p><input type='submit' value='[( votedfor.len ? "Re" : "")]Vote'></form>
+				</BODY></HTML>
 			"}
 			src << browse(null ,"window=playerpolllist")
 			src << browse(output,"window=playerpoll;size=500x500")

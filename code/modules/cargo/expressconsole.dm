@@ -111,7 +111,7 @@
 	if(SSshuttle.supplyBlocked)
 		message = blockade_warning
 	if(usingBeacon && !beacon)
-		message = "BEACON ERROR: BEACON MISSING"//beacon was destroyed 
+		message = "BEACON ERROR: BEACON MISSING"//beacon was destroyed
 	else if (usingBeacon && !canBeacon)
 		message = "BEACON ERROR: MUST BE EXPOSED"//beacon's loc/user's loc must be a turf
 	if(obj_flags & EMAGGED)
@@ -165,15 +165,15 @@
 			var/list/empty_turfs
 			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason)
 			var/points_to_check
+			var/turf/LZ
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D)
 				points_to_check = D.account_balance
 			if(!(obj_flags & EMAGGED))
 				if(SO.pack.cost <= points_to_check)
-					var/LZ
 					if (istype(beacon) && usingBeacon)//prioritize beacons over landing in cargobay
 						LZ = get_turf(beacon)
-						beacon.update_status(SP_LAUNCH)	
+						beacon.update_status(SP_LAUNCH)
 					else if (!usingBeacon)//find a suitable supplypod landing zone in cargobay
 						landingzone = GLOB.areas_by_type[/area/quartermaster/storage]
 						if (!landingzone)
@@ -190,6 +190,8 @@
 						D.adjust_money(-SO.pack.cost)
 						new /obj/effect/DPtarget(LZ, podType, SO)
 						. = TRUE
+						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
+						investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 						update_icon()
 			else
 				if(SO.pack.cost * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
@@ -204,9 +206,11 @@
 
 						SO.generateRequisition(get_turf(src))
 						for(var/i in 1 to MAX_EMAG_ROCKETS)
-							var/LZ = pick(empty_turfs)
+							LZ = pick(empty_turfs)
 							LAZYREMOVE(empty_turfs, LZ)
 							new /obj/effect/DPtarget(LZ, podType, SO)
 							. = TRUE
+							message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
+							investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
 							update_icon()
 							CHECK_TICK

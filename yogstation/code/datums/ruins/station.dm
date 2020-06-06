@@ -30,6 +30,11 @@
 	suffix = "bar_casino.dmm"
 	name = "Bar Casino"
 
+/datum/map_template/ruin/station/box/bar/citadel
+	id = "bar_citadel"
+	suffix = "bar_citadel.dmm"
+	name = "Bar Citadel"
+
 /datum/map_template/ruin/station/box/bar/conveyor
 	id = "bar_conveyor"
 	suffix = "bar_conveyor.dmm"
@@ -59,6 +64,11 @@
 	id = "bar_cheese"
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
+	
+/datum/map_template/ruin/station/box/bar/clock
+	id = "bar_clock"
+	suffix = "bar_clock.dmm"
+	name = "Bar Clock"
 
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
@@ -89,6 +99,21 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/testingsite/bunker
+	id = "testing_site_1"
+	suffix = "testingsite_range1.dmm"
+	name = "Bunker Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/syndicate
+	id = "testing_site_2"
+	suffix = "testingsite_range2.dmm"
+	name = "Syndicate Bomb Range"
+
+/datum/map_template/ruin/station/box/testingsite/clown
+	id = "testing_site_3"
+	suffix = "testingsite_range3.dmm"
+	name = "Clown Bomb Range"
 
 /datum/map_template/ruin/station/box/medbay/morgue
 	id = "medbay_morgue1"
@@ -159,3 +184,33 @@
 	id = "dorms_edoor9"
 	suffix = "dorms_edoor9.dmm"
 	name = "Dorm east door 9"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro1
+	id = "hydro1"
+	suffix = "hydro1.dmm"
+	name = "Hydroponics 1"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro2
+	id = "hydro2"
+	suffix = "hydro2.dmm"
+	name = "Hydroponics 2"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro3
+	id = "hydro3"
+	suffix = "hydro3.dmm"
+	name = "Hydroponics 3"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro4
+	id = "hydro4"
+	suffix = "hydro4.dmm"
+	name = "Hydroponics 4"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro5
+	id = "hydro5"
+	suffix = "hydro5.dmm"
+	name = "Hydroponics 5"
+
+/datum/map_template/ruin/station/box/hydroponics/hydro6
+	id = "hydro6"
+	suffix = "hydro6.dmm"
+	name = "Hydroponics 6"

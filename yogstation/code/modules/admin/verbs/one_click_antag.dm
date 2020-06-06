@@ -15,7 +15,7 @@
 				continue
 			if(is_banned_from(applicant.ckey, "shadowling") || is_banned_from(applicant.ckey, "Syndicate"))
 				continue
-			if(!temp.age_check(applicant.client) || applicant.job in temp.restricted_jobs)
+			if(!temp.age_check(applicant.client) || (applicant.job in temp.restricted_jobs))
 				continue
 			if(is_shadow_or_thrall(applicant))
 				continue

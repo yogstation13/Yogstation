@@ -39,7 +39,8 @@ GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
 
-GLOBAL_LIST_INIT(accents,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
+GLOBAL_LIST_INIT(accents_name2file,strings("accents.json", "accent_file_names", directory = "strings/accents")) // Keys are the names of the accents, values are the name of their .json file.
+GLOBAL_LIST_EMPTY(accents_name2regexes) // Holds some complex data regarding accents
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()
