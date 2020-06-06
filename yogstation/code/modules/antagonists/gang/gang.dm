@@ -479,12 +479,13 @@
 			var/mob/living/carbon/human/gangster = gangmind.current
 			if(gangster.stat != DEAD)
 				members_amount++
-			if(members_amount <= 3)
-				passive_uniform_income = 15
-			if(members_amount > 3 && members_amount <= 5)
-				passive_uniform_income = 10
-			if(members_amount >= 6)
-				passive_uniform_income = 0
+			switch(members_amount)
+				if(0 to 3)
+					passive_uniform_income = 15
+				if(4 to 5)
+					passive_uniform_income = 10
+				if(6 to INFINITY)
+					passive_uniform_income = 0
 
 
 /datum/team/gang/proc/message_gangtools(message)
