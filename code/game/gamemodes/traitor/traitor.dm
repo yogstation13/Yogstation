@@ -33,6 +33,9 @@
 
 /datum/game_mode/traitor/pre_setup()
 
+	if(num_players() < 31)
+		protected_jobs += list("Research Director", "Chief Medical Officer", "Chief Engineer")
+
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 

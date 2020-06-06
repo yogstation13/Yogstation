@@ -12,7 +12,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer") //YOGS - added hop
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") //YOGS - added hop
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
@@ -27,6 +27,9 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	var/list/changelings = list()
 
 /datum/game_mode/changeling/pre_setup()
+
+	if(num_players() < 31)
+		protected_jobs += list("Research Director", "Chief Medical Officer", "Chief Engineer")
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
