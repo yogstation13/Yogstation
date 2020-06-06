@@ -13,6 +13,7 @@
 	false_report_weight = 20 //Reports of traitors are pretty common.
 	restricted_jobs = list("Cyborg")//They are part of the AI if he is traitor so are they, they use to get double chances
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") //YOGS -  added the hop
+	lowpop_restricted_jobs = list("Chief Engineer", "Research Director", "Chief Medical Officer")
 	required_players = 0
 	required_enemies = 1
 	recommended_enemies = 4
@@ -33,8 +34,8 @@
 
 /datum/game_mode/traitor/pre_setup()
 
-	if(num_players() < 31)
-		protected_jobs += list("Research Director", "Chief Medical Officer", "Chief Engineer") //YOGS
+	if(num_players() <= lowpop_amount)
+		protected_jobs += lowpop_restricted_jobs
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
