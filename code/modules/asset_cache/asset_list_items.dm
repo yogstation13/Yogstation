@@ -352,7 +352,7 @@
 		//Initialized in New()
 	)
 /datum/asset/simple/mapimage/New()
+	..()
 	assets = list(
 		"map.png" = fcopy_rsc(file("icons/mapimages/[SSmapping.config.map_name].png")) //AFAIK this doesn't race with SSmapping loading up.
 	)
-	..()
