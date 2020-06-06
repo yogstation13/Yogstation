@@ -200,8 +200,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/simple/pda)
 	assets.send(user)
-	register_asset("common.js", 'html/browser/common.js')
-	send_asset_list(user, list("common.js" = 'html/browser/common.js'))
 
 	user.set_machine(src)
 
