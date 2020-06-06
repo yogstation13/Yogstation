@@ -687,13 +687,6 @@
 "ev" = (
 /turf/open/floor/plasteel/white/corner,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
-"ew" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/syndichem,
-/turf/open/floor/plasteel/white/side{
-	dir = 6
-	},
-/area/ruin/unpowered/syndicate_lava_base/chemistry)
 "ex" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5622,6 +5615,15 @@
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
+"Ay" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/syndichem{
+	products = list(/obj/item/stack/cable_coil/random = 20, /obj/item/assembly/igniter = 80, /obj/item/assembly/prox_sensor = 20, /obj/item/assembly/signaler = 20, /obj/item/assembly/timer = 20, /obj/item/assembly/voice = 20, /obj/item/assembly/health = 20, /obj/item/assembly/infra = 20, /obj/item/grenade/chem_grenade = 20, /obj/item/grenade/chem_grenade/large = 20, /obj/item/grenade/chem_grenade/pyro = 20, /obj/item/grenade/chem_grenade/cryo = 20, /obj/item/grenade/chem_grenade/adv_release = 20, /obj/item/reagent_containers/food/drinks/bottle/holywater = 1)
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 6
+	},
+/area/ruin/unpowered/syndicate_lava_base/chemistry)
 "Bd" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_virology"
@@ -5905,6 +5907,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
+"Ib" = (
+/obj/effect/turf_decal/box/white/corners,
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/vending_refill/medical,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/cargo)
 "IC" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Dormitories"
@@ -6424,22 +6441,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
-"Sq" = (
-/obj/effect/turf_decal/box/white/corners,
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/brute,
-/obj/item/storage/firstaid/regular{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/vending_refill/medical,
-/obj/item/vending_refill/medical,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/cargo)
 "Sr" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -8173,7 +8174,7 @@ as
 as
 dI
 dZ
-ew
+Ay
 as
 as
 as
@@ -8372,7 +8373,7 @@ ab
 ab
 dy
 dM
-Sq
+Ib
 ez
 eY
 ft
