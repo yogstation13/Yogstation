@@ -6,6 +6,3 @@
 		
 /datum/antagonist/shadowling/on_gain()
 	SSticker.mode.update_vampire_icons_added(owner)
-
-/datum/antagonist/vampire/on_removal()
-	SSticker.mode.update_vampire_icons_removed(owner)
