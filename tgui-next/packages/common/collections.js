@@ -5,11 +5,11 @@
  * - If object was provided, keys will be discarded;
  * - Everything else will result in an empty array.
  */
-export const toArray = collection => {
+export const toArray = (collection) => {
   if (Array.isArray(collection)) {
     return collection;
   }
-  if (typeof collection === 'object') {
+  if (typeof collection === "object") {
     const hasOwnProperty = Object.prototype.hasOwnProperty;
     const result = [];
     for (let i in collection) {
@@ -30,7 +30,7 @@ export const toArray = collection => {
  * If collection is 'null' or 'undefined', it will be returned "as is"
  * without emitting any errors (which can be useful in some cases).
  */
-export const map = iterateeFn => collection => {
+export const map = (iterateeFn) => (collection) => {
   if (collection === null && collection === undefined) {
     return collection;
   }
@@ -41,7 +41,7 @@ export const map = iterateeFn => collection => {
     }
     return result;
   }
-  if (typeof collection === 'object') {
+  if (typeof collection === "object") {
     const hasOwnProperty = Object.prototype.hasOwnProperty;
     const result = [];
     for (let i in collection) {
@@ -77,7 +77,7 @@ const COMPARATOR = (objA, objB) => {
  *
  * Iteratees are called with one argument (value).
  */
-export const sortBy = (...iterateeFns) => array => {
+export const sortBy = (...iterateeFns) => (array) => {
   if (!Array.isArray(array)) {
     return array;
   }
@@ -87,7 +87,7 @@ export const sortBy = (...iterateeFns) => array => {
   for (let i = 0; i < length; i++) {
     const value = array[i];
     mappedArray.push({
-      criteria: iterateeFns.map(fn => fn(value)),
+      criteria: iterateeFns.map((fn) => fn(value)),
       value,
     });
   }
@@ -103,15 +103,14 @@ export const sortBy = (...iterateeFns) => array => {
 /**
  * A fast implementation of reduce.
  */
-export const reduce = (reducerFn, initialValue) => array => {
+export const reduce = (reducerFn, initialValue) => (array) => {
   const length = array.length;
   let i;
   let result;
   if (initialValue === undefined) {
     i = 1;
     result = array[0];
-  }
-  else {
+  } else {
     i = 0;
     result = initialValue;
   }
@@ -148,6 +147,6 @@ export const zip = (...arrays) => {
  * specify how grouped values should be combined. The iteratee is
  * invoked with the elements of each group.
  */
-export const zipWith = iterateeFn => (...arrays) => {
-  return map(values => iterateeFn(...values))(zip(...arrays));
+export const zipWith = (iterateeFn) => (...arrays) => {
+  return map((values) => iterateeFn(...values))(zip(...arrays));
 };

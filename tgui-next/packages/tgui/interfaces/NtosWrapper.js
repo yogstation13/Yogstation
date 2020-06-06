@@ -1,8 +1,8 @@
-import { useBackend } from '../backend';
-import { Box, Button } from '../components';
-import { refocusLayout } from '../refocus';
+import { useBackend } from "../backend";
+import { Box, Button } from "../components";
+import { refocusLayout } from "../refocus";
 
-export const NtosWrapper = props => {
+export const NtosWrapper = (props) => {
   const { children } = props;
   const { act, data } = useBackend(props);
   const {
@@ -21,7 +21,8 @@ export const NtosWrapper = props => {
         className="NtosWrapper__header NtosHeader"
         onMouseDown={() => {
           refocusLayout();
-        }}>
+        }}
+      >
         <div className="NtosHeader__left">
           <Box inline bold mr={2}>
             {PC_stationtime}
@@ -31,37 +32,27 @@ export const NtosWrapper = props => {
           </Box>
         </div>
         <div className="NtosHeader__right">
-          {PC_programheaders.map(header => (
+          {PC_programheaders.map((header) => (
             <Box key={header.icon} inline mr={1}>
-              <img
-                className="NtosHeader__icon"
-                src={header.icon} />
+              <img className="NtosHeader__icon" src={header.icon} />
             </Box>
           ))}
           <Box inline>
             {PC_ntneticon && (
-              <img
-                className="NtosHeader__icon"
-                src={PC_ntneticon} />
+              <img className="NtosHeader__icon" src={PC_ntneticon} />
             )}
           </Box>
           {!!PC_showbatteryicon && PC_batteryicon && (
             <Box inline mr={1}>
               {PC_batteryicon && (
-                <img
-                  className="NtosHeader__icon"
-                  src={PC_batteryicon} />
+                <img className="NtosHeader__icon" src={PC_batteryicon} />
               )}
-              {PC_batterypercent && (
-                PC_batterypercent
-              )}
+              {PC_batterypercent && PC_batterypercent}
             </Box>
           )}
           {PC_apclinkicon && (
             <Box inline mr={1}>
-              <img
-                className="NtosHeader__icon"
-                src={PC_apclinkicon} />
+              <img className="NtosHeader__icon" src={PC_apclinkicon} />
             </Box>
           )}
           {!!PC_showexitprogram && (
@@ -73,7 +64,8 @@ export const NtosWrapper = props => {
               icon="window-minimize-o"
               tooltip="Minimize"
               tooltipPosition="bottom"
-              onClick={() => act('PC_minimize')} />
+              onClick={() => act("PC_minimize")}
+            />
           )}
           {!!PC_showexitprogram && (
             <Button
@@ -85,7 +77,8 @@ export const NtosWrapper = props => {
               icon="window-close-o"
               tooltip="Close"
               tooltipPosition="bottom-left"
-              onClick={() => act('PC_exit')} />
+              onClick={() => act("PC_exit")}
+            />
           )}
           {!PC_showexitprogram && (
             <Button
@@ -97,13 +90,12 @@ export const NtosWrapper = props => {
               icon="power-off"
               tooltip="Power off"
               tooltipPosition="bottom-left"
-              onClick={() => act('PC_shutdown')} />
+              onClick={() => act("PC_shutdown")}
+            />
           )}
         </div>
       </div>
-      <div className="NtosWrapper__content">
-        {children}
-      </div>
+      <div className="NtosWrapper__content">{children}</div>
     </div>
   );
 };

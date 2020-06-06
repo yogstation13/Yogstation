@@ -1,6 +1,6 @@
 author: "SomeguyManperson"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - tweak: "vampires suck quieter"
   - tweak: "vampire revive requires 100 total blood up from 0"
   - tweak: "grave fever requires 200 total blood up from 175"

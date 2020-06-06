@@ -1,9 +1,9 @@
-import { decodeHtmlEntities } from 'common/string';
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Box, Button, Grid, LabeledList, Section } from '../components';
+import { decodeHtmlEntities } from "common/string";
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import { Box, Button, Grid, LabeledList, Section } from "../components";
 
-export const EngravedMessage = props => {
+export const EngravedMessage = (props) => {
   const { act, data } = useBackend(props);
   const {
     admin_mode,
@@ -20,11 +20,7 @@ export const EngravedMessage = props => {
   return (
     <Fragment>
       <Section>
-        <Box
-          bold
-          textAlign="center"
-          fontSize="20px"
-          mb={2}>
+        <Box bold textAlign="center" fontSize="20px" mb={2}>
           {decodeHtmlEntities(hidden_message)}
         </Box>
         <Grid>
@@ -38,7 +34,8 @@ export const EngravedMessage = props => {
               textAlign="center"
               fontSize="16px"
               lineHeight="24px"
-              onClick={() => act('like')} />
+              onClick={() => act("like")}
+            />
           </Grid.Column>
           <Grid.Column>
             <Button
@@ -49,7 +46,8 @@ export const EngravedMessage = props => {
               textAlign="center"
               fontSize="16px"
               lineHeight="24px"
-              onClick={() => act('neutral')} />
+              onClick={() => act("neutral")}
+            />
           </Grid.Column>
           <Grid.Column>
             <Button
@@ -61,28 +59,29 @@ export const EngravedMessage = props => {
               textAlign="center"
               fontSize="16px"
               lineHeight="24px"
-              onClick={() => act('dislike')} />
+              onClick={() => act("dislike")}
+            />
           </Grid.Column>
         </Grid>
       </Section>
       <Section>
         <LabeledList>
-          <LabeledList.Item label="Created On">
-            {realdate}
-          </LabeledList.Item>
+          <LabeledList.Item label="Created On">{realdate}</LabeledList.Item>
         </LabeledList>
       </Section>
       <Section />
       {!!admin_mode && (
         <Section
           title="Admin Panel"
-          buttons={(
+          buttons={
             <Button
               icon="times"
               content="Delete"
               color="bad"
-              onClick={() => act('delete')} />
-          )}>
+              onClick={() => act("delete")}
+            />
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Creator Ckey">
               {creator_key}

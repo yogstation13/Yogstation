@@ -1,77 +1,77 @@
-import { Achievements } from './interfaces/Achievements';
-import { AdvancedAirlockController } from './interfaces/AdvancedAirlockController';
-import { AiAirlock } from './interfaces/AiAirlock';
-import { AirAlarm } from './interfaces/AirAlarm';
-import { AirlockElectronics } from './interfaces/AirlockElectronics';
-import { Apc } from './interfaces/Apc';
-import { AtmosAlertConsole } from './interfaces/AtmosAlertConsole';
-import { AtmosControlConsole } from './interfaces/AtmosControlConsole';
-import { AtmosFilter } from './interfaces/AtmosFilter';
-import { AtmosMixer } from './interfaces/AtmosMixer';
-import { AtmosPump } from './interfaces/AtmosPump';
-import { BankMachine } from './interfaces/BankMachine';
-import { BluespaceArtillery } from './interfaces/BluespaceArtillery';
-import { BorgPanel } from './interfaces/BorgPanel';
-import { BrigTimer } from './interfaces/BrigTimer';
-import { Canister } from './interfaces/Canister';
-import { Cargo, CargoExpress } from './interfaces/Cargo';
-import { CellularEmporium } from './interfaces/CellularEmporium';
-import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
-import { ChemDispenser } from './interfaces/ChemDispenser';
-import { ChemHeater } from './interfaces/ChemHeater';
-import { ChemMaster } from './interfaces/ChemMaster';
-import { CodexGigas } from './interfaces/CodexGigas';
-import { ComputerFabricator } from './interfaces/ComputerFabricator';
-import { Crayon } from './interfaces/Crayon';
-import { CrewConsole } from './interfaces/CrewConsole';
-import { Cryo } from './interfaces/Cryo';
-import { DisposalUnit } from './interfaces/DisposalUnit';
-import { DnaVault } from './interfaces/DnaVault';
-import { EngravedMessage } from './interfaces/EngravedMessage';
-import { Gps } from './interfaces/Gps';
-import { GravityGenerator } from './interfaces/GravityGenerator';
-import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
-import { Holodeck } from './interfaces/Holodeck';
-import { ImplantChair } from './interfaces/ImplantChair';
-import { KeycardAuth } from './interfaces/KeycardAuth';
-import { LanguageMenu } from './interfaces/LanguageMenu';
-import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
-import { NtosArcade } from './interfaces/NtosArcade';
-import { NtosMain } from './interfaces/NtosMain';
-import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
-import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
-import { NtosWrapper } from './interfaces/NtosWrapper';
-import { NuclearBomb } from './interfaces/NuclearBomb';
-import { OperatingComputer } from './interfaces/OperatingComputer';
-import { OreBox } from './interfaces/OreBox';
-import { OreRedemptionMachine } from './interfaces/OreRedemptionMachine';
-import { Pandemic } from './interfaces/Pandemic';
-import { PersonalCrafting } from './interfaces/PersonalCrafting';
-import { PortableGenerator } from './interfaces/PortableGenerator';
-import { PortablePump, PortableScrubber } from './interfaces/PortableAtmos';
-import { PowerMonitor } from './interfaces/PowerMonitor';
-import { Radio } from './interfaces/Radio';
-import { RapidPipeDispenser } from './interfaces/RapidPipeDispenser';
-import { SatelliteControl } from './interfaces/SatelliteControl';
-import { ScannerGate } from './interfaces/ScannerGate';
-import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
-import { SmartVend } from './interfaces/SmartVend';
-import { Smes } from './interfaces/Smes';
-import { SmokeMachine } from './interfaces/SmokeMachine';
-import { SolarControl } from './interfaces/SolarControl';
-import { SpaceHeater } from './interfaces/SpaceHeater';
-import { SpawnersMenu } from './interfaces/SpawnersMenu';
-import { StationAlertConsole } from './interfaces/StationAlertConsole';
-import { SuitStorageUnit } from './interfaces/SuitStorageUnit';
-import { Tank } from './interfaces/Tank';
-import { TankDispenser } from './interfaces/TankDispenser';
-import { ThermoMachine } from './interfaces/ThermoMachine';
-import { TurbineComputer } from './interfaces/TurbineComputer';
-import { Uplink } from './interfaces/Uplink';
-import { VaultController } from './interfaces/VaultController';
-import { Wires } from './interfaces/Wires';
-import { Guardian } from './interfaces/Guardian';
-import { Autolathe } from './interfaces/Autolathe';
+import { Achievements } from "./interfaces/Achievements";
+import { AdvancedAirlockController } from "./interfaces/AdvancedAirlockController";
+import { AiAirlock } from "./interfaces/AiAirlock";
+import { AirAlarm } from "./interfaces/AirAlarm";
+import { AirlockElectronics } from "./interfaces/AirlockElectronics";
+import { Apc } from "./interfaces/Apc";
+import { AtmosAlertConsole } from "./interfaces/AtmosAlertConsole";
+import { AtmosControlConsole } from "./interfaces/AtmosControlConsole";
+import { AtmosFilter } from "./interfaces/AtmosFilter";
+import { AtmosMixer } from "./interfaces/AtmosMixer";
+import { AtmosPump } from "./interfaces/AtmosPump";
+import { BankMachine } from "./interfaces/BankMachine";
+import { BluespaceArtillery } from "./interfaces/BluespaceArtillery";
+import { BorgPanel } from "./interfaces/BorgPanel";
+import { BrigTimer } from "./interfaces/BrigTimer";
+import { Canister } from "./interfaces/Canister";
+import { Cargo, CargoExpress } from "./interfaces/Cargo";
+import { CellularEmporium } from "./interfaces/CellularEmporium";
+import { CentcomPodLauncher } from "./interfaces/CentcomPodLauncher";
+import { ChemDispenser } from "./interfaces/ChemDispenser";
+import { ChemHeater } from "./interfaces/ChemHeater";
+import { ChemMaster } from "./interfaces/ChemMaster";
+import { CodexGigas } from "./interfaces/CodexGigas";
+import { ComputerFabricator } from "./interfaces/ComputerFabricator";
+import { Crayon } from "./interfaces/Crayon";
+import { CrewConsole } from "./interfaces/CrewConsole";
+import { Cryo } from "./interfaces/Cryo";
+import { DisposalUnit } from "./interfaces/DisposalUnit";
+import { DnaVault } from "./interfaces/DnaVault";
+import { EngravedMessage } from "./interfaces/EngravedMessage";
+import { Gps } from "./interfaces/Gps";
+import { GravityGenerator } from "./interfaces/GravityGenerator";
+import { GulagItemReclaimer } from "./interfaces/GulagItemReclaimer";
+import { Holodeck } from "./interfaces/Holodeck";
+import { ImplantChair } from "./interfaces/ImplantChair";
+import { KeycardAuth } from "./interfaces/KeycardAuth";
+import { LanguageMenu } from "./interfaces/LanguageMenu";
+import { MechBayPowerConsole } from "./interfaces/MechBayPowerConsole";
+import { NtosArcade } from "./interfaces/NtosArcade";
+import { NtosMain } from "./interfaces/NtosMain";
+import { NtosNetDownloader } from "./interfaces/NtosNetDownloader";
+import { NtosSupermatterMonitor } from "./interfaces/NtosSupermatterMonitor";
+import { NtosWrapper } from "./interfaces/NtosWrapper";
+import { NuclearBomb } from "./interfaces/NuclearBomb";
+import { OperatingComputer } from "./interfaces/OperatingComputer";
+import { OreBox } from "./interfaces/OreBox";
+import { OreRedemptionMachine } from "./interfaces/OreRedemptionMachine";
+import { Pandemic } from "./interfaces/Pandemic";
+import { PersonalCrafting } from "./interfaces/PersonalCrafting";
+import { PortableGenerator } from "./interfaces/PortableGenerator";
+import { PortablePump, PortableScrubber } from "./interfaces/PortableAtmos";
+import { PowerMonitor } from "./interfaces/PowerMonitor";
+import { Radio } from "./interfaces/Radio";
+import { RapidPipeDispenser } from "./interfaces/RapidPipeDispenser";
+import { SatelliteControl } from "./interfaces/SatelliteControl";
+import { ScannerGate } from "./interfaces/ScannerGate";
+import { ShuttleManipulator } from "./interfaces/ShuttleManipulator";
+import { SmartVend } from "./interfaces/SmartVend";
+import { Smes } from "./interfaces/Smes";
+import { SmokeMachine } from "./interfaces/SmokeMachine";
+import { SolarControl } from "./interfaces/SolarControl";
+import { SpaceHeater } from "./interfaces/SpaceHeater";
+import { SpawnersMenu } from "./interfaces/SpawnersMenu";
+import { StationAlertConsole } from "./interfaces/StationAlertConsole";
+import { SuitStorageUnit } from "./interfaces/SuitStorageUnit";
+import { Tank } from "./interfaces/Tank";
+import { TankDispenser } from "./interfaces/TankDispenser";
+import { ThermoMachine } from "./interfaces/ThermoMachine";
+import { TurbineComputer } from "./interfaces/TurbineComputer";
+import { Uplink } from "./interfaces/Uplink";
+import { VaultController } from "./interfaces/VaultController";
+import { Wires } from "./interfaces/Wires";
+import { Guardian } from "./interfaces/Guardian";
+import { Autolathe } from "./interfaces/Autolathe";
 
 const ROUTES = {
   achievements: {
@@ -234,36 +234,36 @@ const ROUTES = {
     component: () => NtosMain,
     wrapper: () => NtosWrapper,
     scrollable: true,
-    theme: 'ntos',
+    theme: "ntos",
   },
   ntos_net_downloader: {
     component: () => NtosNetDownloader,
     wrapper: () => NtosWrapper,
     scrollable: true,
-    theme: 'ntos',
+    theme: "ntos",
   },
   ntos_arcade: {
     component: () => NtosArcade,
     wrapper: () => NtosWrapper,
     scrollable: false,
-    theme: 'ntos',
+    theme: "ntos",
   },
   ntos_power_monitor: {
     component: () => PowerMonitor,
     wrapper: () => NtosWrapper,
     scrollable: true,
-    theme: 'ntos',
+    theme: "ntos",
   },
   ntos_supermatter_monitor: {
     component: () => NtosSupermatterMonitor,
     wrapper: () => NtosWrapper,
     scrollable: true,
-    theme: 'ntos',
+    theme: "ntos",
   },
   nuclear_bomb: {
     component: () => NuclearBomb,
     scrollable: false,
-    theme: 'retro',
+    theme: "retro",
   },
   ore_redemption_machine: {
     component: () => OreRedemptionMachine,
@@ -372,7 +372,7 @@ const ROUTES = {
   uplink: {
     component: () => Uplink,
     scrollable: true,
-    theme: 'syndicate',
+    theme: "syndicate",
   },
   vault_controller: {
     component: () => VaultController,
@@ -392,11 +392,11 @@ const ROUTES = {
   },
 };
 
-export const getRoute = state => {
-  if (process.env.NODE_ENV !== 'production') {
+export const getRoute = (state) => {
+  if (process.env.NODE_ENV !== "production") {
     // Show a kitchen sink
     if (state.showKitchenSink) {
-      const { KitchenSink } = require('./interfaces/KitchenSink');
+      const { KitchenSink } = require("./interfaces/KitchenSink");
       return {
         component: () => KitchenSink,
         scrollable: true,

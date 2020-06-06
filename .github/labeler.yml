@@ -1,45 +1,45 @@
 Admin:
-  - 'code/modules/admin/**'
+  - "code/modules/admin/**"
 
 # Any file within the config subfolder
-Config: 
-  - 'config/**'
+Config:
+  - "config/**"
 
 Dependencies:
-  - '**/package.json'
-  - '**/package-lock.json'
-  - '**/yarn.lock'
+  - "**/package.json"
+  - "**/package-lock.json"
+  - "**/yarn.lock"
 
 # When the .DME is changed
 DME Edit:
-  - './*.dme'
-  - '**/*.dme'
+  - "./*.dme"
+  - "**/*.dme"
 
 # Any .dmi changes
-Sprites: 
-  - '**/*.dmi'
+Sprites:
+  - "**/*.dmi"
 
 # Javascript changes
-Javascript: 
-  - '**/*.js'
+Javascript:
+  - "**/*.js"
 
 # Changes to a .dmm
-Map Change: 
-  - '**/*.dmm'
+Map Change:
+  - "**/*.dmm"
 
 # Any changes to .ogg files are marked as sound
-Sound: 
-  - '**/*.ogg'
+Sound:
+  - "**/*.ogg"
 
 # Changes to the SQL subfolder
-SQL: 
-  - 'SQL/**'
+SQL:
+  - "SQL/**"
 
 # Encompasses both the tgui and the tgui-next folder
-tgui: 
-  - 'tgui/**'
-  - 'tgui-next/**'
+tgui:
+  - "tgui/**"
+  - "tgui-next/**"
 
 # Changes to the .Github folder
-Github: 
-  - '.github/**'
+Github:
+  - ".github/**"

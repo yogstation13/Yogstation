@@ -12,9 +12,8 @@ plugins:
   - react
 settings:
   react:
-    version: '16.10'
+    version: "16.10"
 rules:
-
   ## Possible Errors
   ## ----------------------------------------
 
@@ -360,13 +359,16 @@ rules:
   ## Enforce a maximum depth that blocks can be nested
   # max-depth: error
   ## Enforce a maximum line length
-  max-len: [error, {
-    code: 100,
-    ## Ignore imports
-    ignorePattern: '^(import\s.+\sfrom\s|.*require\()',
-    ignoreUrls: true,
-    ignoreRegExpLiterals: true,
-  }]
+  max-len: [
+      error,
+      {
+        code: 100,
+        ## Ignore imports
+        ignorePattern: '^(import\s.+\sfrom\s|.*require\()',
+        ignoreUrls: true,
+        ignoreRegExpLiterals: true,
+      },
+    ]
   ## Enforce a maximum number of lines per file
   # max-lines: error
   ## Enforce a maximum number of line of code in a function
@@ -471,11 +473,8 @@ rules:
   ## Enforce consistent spacing before blocks
   space-before-blocks: [error, always]
   ## Enforce consistent spacing before function definition opening parenthesis
-  space-before-function-paren: [error, {
-    anonymous: always,
-    named: never,
-    asyncArrow: always,
-  }]
+  space-before-function-paren:
+    [error, { anonymous: always, named: never, asyncArrow: always }]
   ## Enforce consistent spacing inside parentheses
   space-in-parens: [error, never]
   ## Require spacing around infix operators
@@ -675,11 +674,14 @@ rules:
   ## expressions.
   # react/jsx-child-element-spacing: error
   ## Validate closing bracket location in JSX (fixable)
-  react/jsx-closing-bracket-location: [error, {
-    ## NOTE: Not really sure about enforcing this one
-    selfClosing: false,
-    nonEmpty: after-props,
-  }]
+  react/jsx-closing-bracket-location: [
+      error,
+      {
+        ## NOTE: Not really sure about enforcing this one
+        selfClosing: false,
+        nonEmpty: after-props,
+      },
+    ]
   ## Validate closing tag location in JSX (fixable)
   react/jsx-closing-tag-location: error
   ## Enforce or disallow newlines inside of curly braces in JSX attributes and
@@ -697,9 +699,7 @@ rules:
   ## Enforce event handler naming conventions in JSX
   react/jsx-handler-names: error
   ## Validate JSX indentation (fixable)
-  react/jsx-indent: [error, 2, {
-    checkAttributes: true,
-  }]
+  react/jsx-indent: [error, 2, { checkAttributes: true }]
   ## Validate props indentation in JSX (fixable)
   react/jsx-indent-props: [error, 2]
   ## Validate JSX has key prop when in array or iterator

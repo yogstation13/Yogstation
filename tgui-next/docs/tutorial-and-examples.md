@@ -13,15 +13,15 @@ ui_act(action, params)
 
 - `src_object` - The atom, which UI corresponds to in the game world.
 - `ui_interact` - The proc where you will handle a request to open an
-interface. Typically, you would update an existing UI (if it exists),
-or set up a new instance of UI by calling the `SStgui` subsystem.
+  interface. Typically, you would update an existing UI (if it exists),
+  or set up a new instance of UI by calling the `SStgui` subsystem.
 - `ui_data` - In this proc you munges whatever complex data your `src_object`
-has into an associative list, which will then be sent to UI as a JSON string.
+  has into an associative list, which will then be sent to UI as a JSON string.
 - `ui_act` - This proc receives user actions and reacts to them by changing
-the state of the game.
+  the state of the game.
 - `ui_state` (set in `ui_interact`) - This var dictates under what conditions
-a UI may be interacted with. This may be the standard checks that check if
-you are in range and conscious, or more.
+  a UI may be interacted with. This may be the standard checks that check if
+  you are in range and conscious, or more.
 
 Once backend is complete, you create an new interface component on the
 frontend, which will receive this JSON data and render it on screen.
@@ -116,29 +116,25 @@ Interface component will always receive 1 prop which is called `state`.
 This object contains a few special values:
 
 - `config` is always the same and is part of core tgui
-(it will be explained later),
+  (it will be explained later),
 - `data` is the data returned from `ui_data`
 
 ```jsx
-import { Section, LabeledList } from '../components';
+import { Section, LabeledList } from '../components'
 
-const SampleInterface = props => {
-  const { state } = props;
-  const { config, data } = state;
-  const { ref } = config;
+const SampleInterface = (props) => {
+  const { state } = props
+  const { config, data } = state
+  const { ref } = config
   return (
     <Section title="Health status">
       <LabeledList>
-        <LabeledList.Item label="Health">
-          {data.health}
-        </LabeledList.Item>
-        <LabeledList.Item label="Color">
-          {data.color}
-        </LabeledList.Item>
+        <LabeledList.Item label="Health">{data.health}</LabeledList.Item>
+        <LabeledList.Item label="Color">{data.color}</LabeledList.Item>
       </LabeledList>
     </Section>
-  );
-};
+  )
+}
 ```
 
 This syntax can be very confusing at first, but it is very important to
@@ -149,26 +145,22 @@ Return a different element based on a condition:
 
 ```jsx
 if (condition) {
-  return <Foo />;
+  return <Foo />
 }
-return <Bar />;
+return <Bar />
 ```
 
 Conditionally render a element inside of another element:
 
 ```jsx
-<Box>
-  {showProgress && (
-    <ProgressBar value={progress} />
-  )}
-</Box>
+<Box>{showProgress && <ProgressBar value={progress} />}</Box>
 ```
 
 Looping over the array to make an element for each item:
 
 ```jsx
 <LabeledList>
-  {items.map(item => (
+  {items.map((item) => (
     <LabeledList.Item key={item.id} label={item.label}>
       {item.content}
     </LabeledList.Item>
@@ -184,14 +176,14 @@ your interface. Key of this `ROUTES` object corresponds to the interface
 name you use in DM code.
 
 ```js
-import { SampleInterface } from './interfaces/SampleInterface';
+import { SampleInterface } from './interfaces/SampleInterface'
 
 const ROUTES = {
   sample_interface: {
     component: () => SampleInterface,
     scrollable: true,
   },
-};
+}
 ```
 
 ## Copypasta
@@ -226,20 +218,18 @@ upon code review):
 And the template:
 
 ```jsx
-import { Section, LabeledList } from '../components';
+import { Section, LabeledList } from '../components'
 
-const SampleInterface = props => {
-  const { state } = props;
-  const { config, data } = state;
-  const { ref } = config;
+const SampleInterface = (props) => {
+  const { state } = props
+  const { config, data } = state
+  const { ref } = config
   return (
     <Section title="Section name">
       <LabeledList>
-        <LabeledList.Item label="Variable">
-          {data.var}
-        </LabeledList.Item>
+        <LabeledList.Item label="Variable">{data.var}</LabeledList.Item>
       </LabeledList>
     </Section>
-  );
-};
+  )
+}
 ```

@@ -1,46 +1,46 @@
-import { createLogger } from 'common/logging.js';
-import fs from 'fs';
-import { basename } from 'path';
-import SourceMap from 'source-map';
-import StackTraceParser from 'stacktrace-parser';
-import { resolveGlob } from '../util.js';
+import { createLogger } from "common/logging.js";
+import fs from "fs";
+import { basename } from "path";
+import SourceMap from "source-map";
+import StackTraceParser from "stacktrace-parser";
+import { resolveGlob } from "../util.js";
 
-const logger = createLogger('retrace');
+const logger = createLogger("retrace");
 
 const { SourceMapConsumer } = SourceMap;
 const sourceMaps = [];
 
-export const loadSourceMaps = async bundleDir => {
+export const loadSourceMaps = async (bundleDir) => {
   // Destroy and garbage collect consumers
   while (sourceMaps.length !== 0) {
     const { consumer } = sourceMaps.shift();
     consumer.destroy();
   }
   // Load new sourcemaps
-  const paths = await resolveGlob(bundleDir, '*.map');
+  const paths = await resolveGlob(bundleDir, "*.map");
   for (let path of paths) {
     try {
-      const file = basename(path).replace('.map', '');
+      const file = basename(path).replace(".map", "");
       const consumer = await new SourceMapConsumer(
-        JSON.parse(fs.readFileSync(path, 'utf8')));
+        JSON.parse(fs.readFileSync(path, "utf8"))
+      );
       sourceMaps.push({ file, consumer });
-    }
-    catch (err) {
+    } catch (err) {
       logger.error(err);
     }
   }
   logger.log(`loaded ${sourceMaps.length} source maps`);
 };
 
-export const retrace = stack => {
+export const retrace = (stack) => {
   const header = stack.split(/\n\s.*at/)[0];
   const mappedStack = StackTraceParser.parse(stack)
-    .map(frame => {
+    .map((frame) => {
       if (!frame.file) {
         return frame;
       }
       // Find the correct source map
-      const sourceMap = sourceMaps.find(sourceMap => {
+      const sourceMap = sourceMaps.find((sourceMap) => {
         return frame.file.includes(sourceMap.file);
       });
       if (!sourceMap) {
@@ -60,17 +60,17 @@ export const retrace = stack => {
         column: mappedFrame.column,
       };
     })
-    .map(frame => {
+    .map((frame) => {
       // Stringify the frame
       const { file, methodName, lineNumber } = frame;
       if (!file) {
         return `  at ${methodName}`;
       }
       const compactPath = file
-        .replace(/^webpack:\/\/\/?/, './')
-        .replace(/.*node_modules\//, '');
+        .replace(/^webpack:\/\/\/?/, "./")
+        .replace(/.*node_modules\//, "");
       return `  at ${methodName} (${compactPath}:${lineNumber})`;
     })
-    .join('\n');
-  return header + '\n' + mappedStack;
+    .join("\n");
+  return header + "\n" + mappedStack;
 };

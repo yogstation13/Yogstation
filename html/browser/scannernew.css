@@ -1,37 +1,37 @@
-.dnaBlockNumber
-{
+.dnaBlockNumber {
 	font-family: Fixed, monospace;
-	float: left;
-	color: #ffffff;
-	background: #363636;
-	width: 20px;
-	padding: -3px 0 -1px 0;
-	margin: 2px 2px 0 10px;
-	text-align: center;
+	float      : left;
+	color      : #ffffff;
+	background : #363636;
+	width      : 20px;
+	padding    : -3px 0 -1px 0;
+	margin     : 2px 2px 0 10px;
+	text-align : center;
 }
-.dnaBlock
-{
+
+.dnaBlock {
 	font-family: Fixed, monospace;
-	float: left;
+	float      : left;
 }
-img.selected
-{
+
+img.selected {
 	border: 1px solid blue;
 }
-img.unselected
-{
+
+img.unselected {
 	border: 2px solid black;
 }
+
 div>table {
 	float: left;
 }
-td
-{
+
+td {
 	text-align: center;
 }
-a.clean
-{
+
+a.clean {
 	background: none;
-	border: none;
-	marging: none;
+	border    : none;
+	marging   : none;
 }

@@ -1,9 +1,17 @@
-import { toFixed } from 'common/math';
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Box, Button, Grid, LabeledList, NumberInput, ProgressBar, Section } from '../components';
+import { toFixed } from "common/math";
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import {
+  Box,
+  Button,
+  Grid,
+  LabeledList,
+  NumberInput,
+  ProgressBar,
+  Section,
+} from "../components";
 
-export const SolarControl = props => {
+export const SolarControl = (props) => {
   const { act, data } = useBackend(props);
   const {
     generated,
@@ -17,23 +25,27 @@ export const SolarControl = props => {
     <Fragment>
       <Section
         title="Status"
-        buttons={(
+        buttons={
           <Button
             icon="sync"
             content="Scan for new hardware"
-            onClick={() => act('refresh')} />
-        )}>
+            onClick={() => act("refresh")}
+          />
+        }
+      >
         <Grid>
           <Grid.Column>
             <LabeledList>
               <LabeledList.Item
                 label="Solar tracker"
-                color={connected_tracker ? 'good' : 'bad'}>
-                {connected_tracker ? 'OK' : 'N/A'}
+                color={connected_tracker ? "good" : "bad"}
+              >
+                {connected_tracker ? "OK" : "N/A"}
               </LabeledList.Item>
               <LabeledList.Item
                 label="Solar panels"
-                color={connected_panels > 0 ? 'good' : 'bad'}>
+                color={connected_panels > 0 ? "good" : "bad"}
+              >
                 {connected_panels}
               </LabeledList.Item>
             </LabeledList>
@@ -50,7 +62,8 @@ export const SolarControl = props => {
                   minValue={0}
                   maxValue={90000}
                   value={generated}
-                  content={generated + ' W'} />
+                  content={generated + " W"}
+                />
               </LabeledList.Item>
             </LabeledList>
           </Grid.Column>
@@ -63,18 +76,21 @@ export const SolarControl = props => {
               icon="times"
               content="Off"
               selected={tracking_state === 0}
-              onClick={() => act('tracking', { mode: 0 })} />
+              onClick={() => act("tracking", { mode: 0 })}
+            />
             <Button
               icon="clock-o"
               content="Timed"
               selected={tracking_state === 1}
-              onClick={() => act('tracking', { mode: 1 })} />
+              onClick={() => act("tracking", { mode: 1 })}
+            />
             <Button
               icon="sync"
               content="Auto"
               selected={tracking_state === 2}
               disabled={!connected_tracker}
-              onClick={() => act('tracking', { mode: 2 })} />
+              onClick={() => act("tracking", { mode: 2 })}
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Angle">
             {(tracking_state === 0 || tracking_state === 1) && (
@@ -86,8 +102,9 @@ export const SolarControl = props => {
                 minValue={-360}
                 maxValue={+720}
                 value={angle}
-                format={angle => Math.round(360 + angle) % 360}
-                onDrag={(e, value) => act('angle', { value })} />
+                format={(angle) => Math.round(360 + angle) % 360}
+                onDrag={(e, value) => act("angle", { value })}
+              />
             )}
             {tracking_state === 1 && (
               <NumberInput
@@ -98,15 +115,16 @@ export const SolarControl = props => {
                 minValue={-7200}
                 maxValue={7200}
                 value={tracking_rate}
-                format={rate => {
-                  const sign = Math.sign(rate) > 0 ? '+' : '-';
+                format={(rate) => {
+                  const sign = Math.sign(rate) > 0 ? "+" : "-";
                   return sign + toFixed(Math.abs(rate));
                 }}
-                onDrag={(e, value) => act('rate', { value })} />
+                onDrag={(e, value) => act("rate", { value })}
+              />
             )}
             {tracking_state === 2 && (
               <Box inline color="label" mt="3px">
-                {angle + ' °'} (auto)
+                {angle + " °"} (auto)
               </Box>
             )}
           </LabeledList.Item>

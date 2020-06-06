@@ -1,10 +1,10 @@
-import { map } from 'common/collections';
-import { toFixed } from 'common/math';
-import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NumberInput, Section } from '../components';
-import { RADIO_CHANNELS } from '../constants';
+import { map } from "common/collections";
+import { toFixed } from "common/math";
+import { useBackend } from "../backend";
+import { Box, Button, LabeledList, NumberInput, Section } from "../components";
+import { RADIO_CHANNELS } from "../constants";
 
-export const Radio = props => {
+export const Radio = (props) => {
   const { act, data } = useBackend(props);
   const {
     freqlock,
@@ -18,8 +18,9 @@ export const Radio = props => {
     subspace,
     subspaceSwitchable,
   } = data;
-  const tunedChannel = RADIO_CHANNELS
-    .find(channel => channel.freq === frequency);
+  const tunedChannel = RADIO_CHANNELS.find(
+    (channel) => channel.freq === frequency
+  );
   const channels = map((value, key) => ({
     name: key,
     status: !!value,
@@ -28,11 +29,11 @@ export const Radio = props => {
     <Section>
       <LabeledList>
         <LabeledList.Item label="Frequency">
-          {freqlock && (
+          {(freqlock && (
             <Box inline color="light-gray">
-              {toFixed(frequency / 10, 1) + ' kHz'}
+              {toFixed(frequency / 10, 1) + " kHz"}
             </Box>
-          ) || (
+          )) || (
             <NumberInput
               animate
               unit="kHz"
@@ -41,10 +42,13 @@ export const Radio = props => {
               minValue={minFrequency / 10}
               maxValue={maxFrequency / 10}
               value={frequency / 10}
-              format={value => toFixed(value, 1)}
-              onDrag={(e, value) => act('frequency', {
-                adjust: (value - frequency / 10),
-              })} />
+              format={(value) => toFixed(value, 1)}
+              onDrag={(e, value) =>
+                act("frequency", {
+                  adjust: value - frequency / 10,
+                })
+              }
+            />
           )}
           {tunedChannel && (
             <Box inline color={tunedChannel.color} ml={2}>
@@ -56,30 +60,34 @@ export const Radio = props => {
           <Button
             textAlign="center"
             width="37px"
-            icon={listening ? 'volume-up' : 'volume-mute'}
+            icon={listening ? "volume-up" : "volume-mute"}
             selected={listening}
-            onClick={() => act('listen')} />
+            onClick={() => act("listen")}
+          />
           <Button
             textAlign="center"
             width="37px"
-            icon={broadcasting ? 'microphone' : 'microphone-slash'}
+            icon={broadcasting ? "microphone" : "microphone-slash"}
             selected={broadcasting}
-            onClick={() => act('broadcast')} />
+            onClick={() => act("broadcast")}
+          />
           {!!command && (
             <Button
               ml={1}
               icon="bullhorn"
               selected={useCommand}
-              content={`High volume ${useCommand ? 'ON' : 'OFF'}`}
-              onClick={() => act('command')} />
+              content={`High volume ${useCommand ? "ON" : "OFF"}`}
+              onClick={() => act("command")}
+            />
           )}
           {!!subspaceSwitchable && (
             <Button
               ml={1}
               icon="bullhorn"
               selected={subspace}
-              content={`Subspace Tx ${subspace ? 'ON' : 'OFF'}`}
-              onClick={() => act('subspace')} />
+              content={`Subspace Tx ${subspace ? "ON" : "OFF"}`}
+              onClick={() => act("subspace")}
+            />
           )}
         </LabeledList.Item>
         {!!subspace && (
@@ -89,15 +97,18 @@ export const Radio = props => {
                 No encryption keys installed.
               </Box>
             )}
-            {channels.map(channel => (
+            {channels.map((channel) => (
               <Box key={channel.name}>
                 <Button
-                  icon={channel.status ? 'check-square-o' : 'square-o'}
+                  icon={channel.status ? "check-square-o" : "square-o"}
                   selected={channel.status}
                   content={channel.name}
-                  onClick={() => act('channel', {
-                    channel: channel.name,
-                  })} />
+                  onClick={() =>
+                    act("channel", {
+                      channel: channel.name,
+                    })
+                  }
+                />
               </Box>
             ))}
           </LabeledList.Item>

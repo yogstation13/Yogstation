@@ -1,6 +1,6 @@
 author: "Darkstick"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - rscadd: "new vampire objective"
   - rscadd: "vampire subtype with less objectives and own round end card spot"
   - rscadd: "Sleep stun after conversion to avoid immediate vengeance kills"

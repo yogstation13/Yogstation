@@ -1,10 +1,17 @@
-import { round, toFixed } from 'common/math';
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { AnimatedNumber, Box, Button, LabeledList, NumberInput, Section } from '../components';
-import { BeakerContents } from './common/BeakerContents';
+import { round, toFixed } from "common/math";
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from "../components";
+import { BeakerContents } from "./common/BeakerContents";
 
-export const ChemHeater = props => {
+export const ChemHeater = (props) => {
   const { act, data } = useBackend(props);
   const {
     targetTemp,
@@ -19,13 +26,15 @@ export const ChemHeater = props => {
     <Fragment>
       <Section
         title="Thermostat"
-        buttons={(
+        buttons={
           <Button
-            icon={isActive ? 'power-off' : 'times'}
+            icon={isActive ? "power-off" : "times"}
             selected={isActive}
-            content={isActive ? 'On' : 'Off'}
-            onClick={() => act('power')} />
-        )}>
+            content={isActive ? "On" : "Off"}
+            onClick={() => act("power")}
+          />
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Target">
             <NumberInput
@@ -36,39 +45,47 @@ export const ChemHeater = props => {
               value={round(targetTemp)}
               minValue={0}
               maxValue={1000}
-              onDrag={(e, value) => act('temperature', {
-                target: value,
-              })} />
+              onDrag={(e, value) =>
+                act("temperature", {
+                  target: value,
+                })
+              }
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Reading">
-            <Box
-              width="60px"
-              textAlign="right">
-              {isBeakerLoaded && (
+            <Box width="60px" textAlign="right">
+              {(isBeakerLoaded && (
                 <AnimatedNumber
                   value={currentTemp}
-                  format={value => toFixed(value) + ' K'} />
-              ) || '—'}
+                  format={(value) => toFixed(value) + " K"}
+                />
+              )) ||
+                "—"}
             </Box>
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
         title="Beaker"
-        buttons={!!isBeakerLoaded && (
-          <Fragment>
-            <Box inline color="label" mr={2}>
-              {beakerCurrentVolume} / {beakerMaxVolume} units
-            </Box>
-            <Button
-              icon="eject"
-              content="Eject"
-              onClick={() => act('eject')} />
-          </Fragment>
-        )}>
+        buttons={
+          !!isBeakerLoaded && (
+            <Fragment>
+              <Box inline color="label" mr={2}>
+                {beakerCurrentVolume} / {beakerMaxVolume} units
+              </Box>
+              <Button
+                icon="eject"
+                content="Eject"
+                onClick={() => act("eject")}
+              />
+            </Fragment>
+          )
+        }
+      >
         <BeakerContents
           beakerLoaded={isBeakerLoaded}
-          beakerContents={beakerContents} />
+          beakerContents={beakerContents}
+        />
       </Section>
     </Fragment>
   );

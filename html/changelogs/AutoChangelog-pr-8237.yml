@@ -1,6 +1,6 @@
 author: "  Identification"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - rscadd: "The hierarchy for CentCom has been reformatted! You may see new CentCom officials visit the station."
   - rscadd: "These new officials include: Official, Captain, Major, Commodore, Colonel, Rear-Admiral, Admiral, and Grand Admiral."
   - imageadd: "The Central Command uniforms have been resprited."

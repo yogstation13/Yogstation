@@ -1,5 +1,5 @@
-import { UI_DISABLED, UI_INTERACTIVE } from './constants';
-import { tridentVersion, act as _act } from './byond';
+import { UI_DISABLED, UI_INTERACTIVE } from "./constants";
+import { tridentVersion, act as _act } from "./byond";
 
 /**
  * This file provides a clear separation layer between backend updates
@@ -13,8 +13,8 @@ import { tridentVersion, act as _act } from './byond';
 /**
  * Creates a backend update action.
  */
-export const backendUpdate = state => ({
-  type: 'backendUpdate',
+export const backendUpdate = (state) => ({
+  type: "backendUpdate",
   payload: state,
 });
 
@@ -24,7 +24,7 @@ export const backendUpdate = state => ({
 export const backendReducer = (state, action) => {
   const { type, payload } = action;
 
-  if (type === 'backendUpdate') {
+  if (type === "backendUpdate") {
     // Merge config
     const config = {
       ...state.config,
@@ -83,7 +83,7 @@ export const backendReducer = (state, action) => {
  *   act: (action: string, params?: object) => void,
  * }}
  */
-export const useBackend = props => {
+export const useBackend = (props) => {
   // TODO: Dispatch "act" calls as Redux actions
   const { state, dispatch } = props;
   const ref = state.config.ref;

@@ -1,33 +1,30 @@
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Button, LabeledList, NoticeBox, Section } from '../components';
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import { Button, LabeledList, NoticeBox, Section } from "../components";
 
-export const BankMachine = props => {
+export const BankMachine = (props) => {
   const { act, data } = useBackend(props);
-  const {
-    current_balance,
-    siphoning,
-    station_name,
-  } = data;
+  const { current_balance, siphoning, station_name } = data;
   return (
     <Fragment>
-      <Section title={station_name + ' Vault'}>
+      <Section title={station_name + " Vault"}>
         <LabeledList>
-          <LabeledList.Item label="Current Balance"
-            buttons={(
+          <LabeledList.Item
+            label="Current Balance"
+            buttons={
               <Button
-                icon={siphoning ? 'times' : 'sync'}
-                content={siphoning ? 'Stop Siphoning' : 'Siphon Credits'}
+                icon={siphoning ? "times" : "sync"}
+                content={siphoning ? "Stop Siphoning" : "Siphon Credits"}
                 selected={siphoning}
-                onClick={() => act(siphoning ? 'halt' : 'siphon')} />
-            )}>
-            {'$' + current_balance}
+                onClick={() => act(siphoning ? "halt" : "siphon")}
+              />
+            }
+          >
+            {"$" + current_balance}
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <NoticeBox textAlign="center">
-        Authorized personnel only
-      </NoticeBox>
+      <NoticeBox textAlign="center">Authorized personnel only</NoticeBox>
     </Fragment>
   );
 };

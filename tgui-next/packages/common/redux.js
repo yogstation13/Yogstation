@@ -1,4 +1,4 @@
-import { compose } from './fp';
+import { compose } from "./fp";
 
 /**
  * Creates a Redux store.
@@ -14,19 +14,19 @@ export const createStore = (reducer, enhancer) => {
 
   const getState = () => currentState;
 
-  const subscribe = listener => {
+  const subscribe = (listener) => {
     listeners.push(listener);
   };
 
-  const dispatch = action => {
+  const dispatch = (action) => {
     currentState = reducer(currentState, action);
-    listeners.forEach(fn => fn());
+    listeners.forEach((fn) => fn());
   };
 
   // This creates the initial store by causing each reducer to be called
   // with an undefined state
   dispatch({
-    type: '@@INIT',
+    type: "@@INIT",
   });
 
   return {
@@ -41,12 +41,13 @@ export const createStore = (reducer, enhancer) => {
  * actions.
  */
 export const applyMiddleware = (...middlewares) => {
-  return createStore => (reducer, ...args) => {
+  return (createStore) => (reducer, ...args) => {
     const store = createStore(reducer, ...args);
 
     let dispatch = () => {
       throw new Error(
-        'Dispatching while constructing your middleware is not allowed.');
+        "Dispatching while constructing your middleware is not allowed."
+      );
     };
 
     const storeApi = {
@@ -54,7 +55,7 @@ export const applyMiddleware = (...middlewares) => {
       dispatch: (action, ...args) => dispatch(action, ...args),
     };
 
-    const chain = middlewares.map(middleware => middleware(storeApi));
+    const chain = middlewares.map((middleware) => middleware(storeApi));
     dispatch = compose(...chain)(store.dispatch);
 
     return {

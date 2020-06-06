@@ -8,9 +8,7 @@ $color-border: #272727 !default;
 .NoticeBox {
   // Adapt text color to background luminance to ensure high contast
   $luminance: luminance($color-first);
-  $text-color: if($luminance > 0.35,
-    rgba(0, 0, 0, 1),
-    rgba(255, 255, 255, 1));
+  $text-color: if($luminance > 0.35, rgba(0, 0, 0, 1), rgba(255, 255, 255, 1));
 
   padding: 4px 6px;
   margin-bottom: 6px;
@@ -24,5 +22,6 @@ $color-border: #272727 !default;
     $color-first,
     $color-first 10px,
     $color-second 10px,
-    $color-second 20px);
+    $color-second 20px
+  );
 }

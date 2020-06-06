@@ -496,11 +496,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	drone_hat = /obj/item/clothing/head/santa
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
-		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bublé - Winter Wonderland
-		"https://www.youtube.com/watch?v=nytpYtLtHpE", // You’re a Mean One, Mr. Grinch
+		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bublï¿½ - Winter Wonderland
+		"https://www.youtube.com/watch?v=nytpYtLtHpE", // Youï¿½re a Mean One, Mr. Grinch
 		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael Bublï¿½ - Holly Jolly Christmas
 		)
 
 /datum/holiday/xmas/greet()

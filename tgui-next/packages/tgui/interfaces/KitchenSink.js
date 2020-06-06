@@ -1,77 +1,79 @@
-import { Component } from 'inferno';
-import { BlockQuote, Box, Button, Collapsible, Input, LabeledList, NumberInput, ProgressBar, Section, Tabs, Tooltip } from '../components';
+import { Component } from "inferno";
+import {
+  BlockQuote,
+  Box,
+  Button,
+  Collapsible,
+  Input,
+  LabeledList,
+  NumberInput,
+  ProgressBar,
+  Section,
+  Tabs,
+  Tooltip,
+} from "../components";
 
 const COLORS_ARBITRARY = [
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'teal',
-  'blue',
-  'violet',
-  'purple',
-  'pink',
-  'brown',
-  'grey',
+  "red",
+  "orange",
+  "yellow",
+  "olive",
+  "green",
+  "teal",
+  "blue",
+  "violet",
+  "purple",
+  "pink",
+  "brown",
+  "grey",
 ];
 
-const COLORS_STATES = [
-  'good',
-  'average',
-  'bad',
-  'black',
-  'white',
-];
+const COLORS_STATES = ["good", "average", "bad", "black", "white"];
 
 const PAGES = [
   {
-    title: 'Button',
+    title: "Button",
     component: () => KitchenSinkButton,
   },
   {
-    title: 'Box',
+    title: "Box",
     component: () => KitchenSinkBox,
   },
   {
-    title: 'ProgressBar',
+    title: "ProgressBar",
     component: () => KitchenSinkProgressBar,
   },
   {
-    title: 'Tabs',
+    title: "Tabs",
     component: () => KitchenSinkTabs,
   },
   {
-    title: 'Tooltip',
+    title: "Tooltip",
     component: () => KitchenSinkTooltip,
   },
   {
-    title: 'Input',
+    title: "Input",
     component: () => KitchenSinkInput,
   },
   {
-    title: 'Collapsible',
+    title: "Collapsible",
     component: () => KitchenSinkCollapsible,
   },
   {
-    title: 'BlockQuote',
+    title: "BlockQuote",
     component: () => KitchenSinkBlockQuote,
   },
 ];
 
-export const KitchenSink = props => {
+export const KitchenSink = (props) => {
   return (
     <Section>
       <Tabs vertical>
-        {PAGES.map(page => (
-          <Tabs.Tab
-            key={page.title}
-            label={page.title}>
+        {PAGES.map((page) => (
+          <Tabs.Tab key={page.title} label={page.title}>
             {() => {
               const Component = page.component();
-              return (
-                <Component />
-              );
+              return <Component />;
             }}
           </Tabs.Tab>
         ))}
@@ -80,7 +82,7 @@ export const KitchenSink = props => {
   );
 };
 
-const KitchenSinkButton = props => {
+const KitchenSinkButton = (props) => {
   return (
     <Box>
       <Box mb={1}>
@@ -96,36 +98,27 @@ const KitchenSinkButton = props => {
           lineHeight={4}
           minWidth={30}
           textAlign="center"
-          content="With Box props" />
+          content="With Box props"
+        />
       </Box>
       <Box mb={1}>
-        {COLORS_STATES.map(color => (
-          <Button
-            key={color}
-            color={color}
-            content={color} />
+        {COLORS_STATES.map((color) => (
+          <Button key={color} color={color} content={color} />
         ))}
         <br />
-        {COLORS_ARBITRARY.map(color => (
-          <Button
-            key={color}
-            color={color}
-            content={color} />
+        {COLORS_ARBITRARY.map((color) => (
+          <Button key={color} color={color} content={color} />
         ))}
         <br />
-        {COLORS_ARBITRARY.map(color => (
-          <Box inline
-            mx="7px"
-            key={color}
-            color={color}
-            content={color} />
+        {COLORS_ARBITRARY.map((color) => (
+          <Box inline mx="7px" key={color} color={color} content={color} />
         ))}
       </Box>
     </Box>
   );
 };
 
-const KitchenSinkBox = props => {
+const KitchenSinkBox = (props) => {
   return (
     <Box>
       <Box bold content="bold" />
@@ -161,18 +154,25 @@ class KitchenSinkProgressBar extends Component {
           minValue={-1}
           maxValue={1}
           value={progress}
-          content={`value: ${Number(progress).toFixed(1)}`} />
+          content={`value: ${Number(progress).toFixed(1)}`}
+        />
         <Box mt={1}>
           <Button
             content="-0.1"
-            onClick={() => this.setState(prevState => ({
-              progress: prevState.progress - 0.1,
-            }))} />
+            onClick={() =>
+              this.setState((prevState) => ({
+                progress: prevState.progress - 0.1,
+              }))
+            }
+          />
           <Button
             content="+0.1"
-            onClick={() => this.setState(prevState => ({
-              progress: prevState.progress + 0.1,
-            }))} />
+            onClick={() =>
+              this.setState((prevState) => ({
+                progress: prevState.progress + 0.1,
+              }))
+            }
+          />
         </Box>
       </Box>
     );
@@ -189,25 +189,29 @@ class KitchenSinkTabs extends Component {
 
   render() {
     const { vertical } = this.state;
-    const TAB_KEYS = [1, 2, 3, 4, 5].map(x => 'tab_' + x);
+    const TAB_KEYS = [1, 2, 3, 4, 5].map((x) => "tab_" + x);
     return (
       <Box>
-        {'Vertical: '}
-        <Button inline
+        {"Vertical: "}
+        <Button
+          inline
           content={String(vertical)}
-          onClick={() => this.setState(prevState => ({
-            vertical: !prevState.vertical,
-          }))} />
+          onClick={() =>
+            this.setState((prevState) => ({
+              vertical: !prevState.vertical,
+            }))
+          }
+        />
         <Box mb={2} />
         <Tabs vertical={vertical}>
-          {TAB_KEYS.map(key => (
-            <Tabs.Tab
-              key={key}
-              label={'Label ' + key}>
+          {TAB_KEYS.map((key) => (
+            <Tabs.Tab key={key} label={"Label " + key}>
               {() => (
                 <Box>
-                  {'Active tab: '}
-                  <Box inline color="green">{key}</Box>
+                  {"Active tab: "}
+                  <Box inline color="green">
+                    {key}
+                  </Box>
                   <BoxOfSampleText mt={2} />
                 </Box>
               )}
@@ -219,14 +223,14 @@ class KitchenSinkTabs extends Component {
   }
 }
 
-const KitchenSinkTooltip = props => {
+const KitchenSinkTooltip = (props) => {
   const positions = [
-    'top',
-    'left',
-    'right',
-    'bottom',
-    'bottom-left',
-    'bottom-right',
+    "top",
+    "left",
+    "right",
+    "bottom",
+    "bottom-left",
+    "bottom-right",
   ];
   return (
     <Box>
@@ -235,18 +239,17 @@ const KitchenSinkTooltip = props => {
           Box (hover me).
           <Tooltip content="Tooltip text." />
         </Box>
-        <Button
-          tooltip="Tooltip text."
-          content="Button" />
+        <Button tooltip="Tooltip text." content="Button" />
       </Box>
       <Box mt={1}>
-        {positions.map(position => (
+        {positions.map((position) => (
           <Button
             key={position}
             color="transparent"
             tooltip="Tooltip text."
             tooltipPosition={position}
-            content={position} />
+            content={position}
+          />
         ))}
       </Box>
     </Box>
@@ -258,7 +261,7 @@ class KitchenSinkInput extends Component {
     super();
     this.state = {
       number: 0,
-      text: 'Sample text',
+      text: "Sample text",
     };
   }
 
@@ -276,9 +279,12 @@ class KitchenSinkInput extends Component {
               value={number}
               minValue={-100}
               maxValue={100}
-              onChange={(e, value) => this.setState({
-                number: value,
-              })} />
+              onChange={(e, value) =>
+                this.setState({
+                  number: value,
+                })
+              }
+            />
             <NumberInput
               animated
               width={10}
@@ -287,21 +293,30 @@ class KitchenSinkInput extends Component {
               value={number}
               minValue={-100}
               maxValue={100}
-              onDrag={(e, value) => this.setState({
-                number: value,
-              })} />
+              onDrag={(e, value) =>
+                this.setState({
+                  number: value,
+                })
+              }
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Input">
             <Input
               value={text}
-              onChange={(e, value) => this.setState({
-                text: value,
-              })} />
+              onChange={(e, value) =>
+                this.setState({
+                  text: value,
+                })
+              }
+            />
             <Input
               value={text}
-              onInput={(e, value) => this.setState({
-                text: value,
-              })} />
+              onInput={(e, value) =>
+                this.setState({
+                  text: value,
+                })
+              }
+            />
           </LabeledList.Item>
         </LabeledList>
       </Box>
@@ -309,13 +324,9 @@ class KitchenSinkInput extends Component {
   }
 }
 
-const KitchenSinkCollapsible = props => {
+const KitchenSinkCollapsible = (props) => {
   return (
-    <Collapsible
-      title="Collapsible Demo"
-      buttons={(
-        <Button icon="cog" />
-      )}>
+    <Collapsible title="Collapsible Demo" buttons={<Button icon="cog" />}>
       <Section>
         <BoxOfSampleText />
       </Section>
@@ -323,22 +334,19 @@ const KitchenSinkCollapsible = props => {
   );
 };
 
-const BoxOfSampleText = props => {
+const BoxOfSampleText = (props) => {
   return (
     <Box {...props}>
-      <Box italic>
-        Jackdaws love my big sphinx of quartz.
-      </Box>
+      <Box italic>Jackdaws love my big sphinx of quartz.</Box>
       <Box mt={1} bold>
-        The wide electrification of the southern
-        provinces will give a powerful impetus to the
-        growth of soviet agriculture.
+        The wide electrification of the southern provinces will give a powerful
+        impetus to the growth of soviet agriculture.
       </Box>
     </Box>
   );
 };
 
-const KitchenSinkBlockQuote = props => {
+const KitchenSinkBlockQuote = (props) => {
   return (
     <BlockQuote>
       <BoxOfSampleText />

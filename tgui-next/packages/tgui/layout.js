@@ -1,17 +1,17 @@
-import { classes } from 'common/react';
-import { decodeHtmlEntities } from 'common/string';
-import { Component, Fragment } from 'inferno';
-import { runCommand, winset } from './byond';
-import { Box, TitleBar } from './components';
-import { Toast } from './components/Toast';
-import { UI_DISABLED, UI_INTERACTIVE } from './constants';
-import { dragStartHandler, resizeStartHandler } from './drag';
-import { releaseHeldKeys } from './hotkeys';
-import { createLogger } from './logging';
-import { refocusLayout } from './refocus';
-import { getRoute } from './routes';
+import { classes } from "common/react";
+import { decodeHtmlEntities } from "common/string";
+import { Component, Fragment } from "inferno";
+import { runCommand, winset } from "./byond";
+import { Box, TitleBar } from "./components";
+import { Toast } from "./components/Toast";
+import { UI_DISABLED, UI_INTERACTIVE } from "./constants";
+import { dragStartHandler, resizeStartHandler } from "./drag";
+import { releaseHeldKeys } from "./hotkeys";
+import { createLogger } from "./logging";
+import { refocusLayout } from "./refocus";
+import { getRoute } from "./routes";
 
-const logger = createLogger('Layout');
+const logger = createLogger("Layout");
 
 export class Layout extends Component {
   componentDidMount() {
@@ -34,9 +34,10 @@ export class Layout extends Component {
       <div
         id="Layout__content"
         className={classes([
-          'Layout__content',
-          scrollable && 'Layout__content--scrollable',
-        ])}>
+          "Layout__content",
+          scrollable && "Layout__content--scrollable",
+        ])}
+      >
         <Box m={1}>
           <RoutedComponent state={state} dispatch={dispatch} />
         </Box>
@@ -45,9 +46,7 @@ export class Layout extends Component {
     // Wrap into the wrapper component
     if (WrapperComponent) {
       contentElement = (
-        <WrapperComponent
-          state={state}
-          dispatch={dispatch}>
+        <WrapperComponent state={state} dispatch={dispatch}>
           {contentElement}
         </WrapperComponent>
       );
@@ -57,7 +56,7 @@ export class Layout extends Component {
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE;
     return (
-      <div className={'theme-' + theme}>
+      <div className={"theme-" + theme}>
         <div className="Layout">
           <TitleBar
             className="Layout__titleBar"
@@ -66,26 +65,29 @@ export class Layout extends Component {
             fancy={config.fancy}
             onDragStart={dragStartHandler}
             onClose={() => {
-              logger.log('pressed close');
+              logger.log("pressed close");
               releaseHeldKeys();
-              winset(config.window, 'is-visible', false);
+              winset(config.window, "is-visible", false);
               runCommand(`uiclose ${config.ref}`);
-            }} />
+            }}
+          />
           {contentElement}
-          {showDimmer && (
-            <div className="Layout__dimmer" />
-          )}
-          {state.toastText && (
-            <Toast content={state.toastText} />
-          )}
+          {showDimmer && <div className="Layout__dimmer" />}
+          {state.toastText && <Toast content={state.toastText} />}
           {config.fancy && scrollable && (
             <Fragment>
-              <div className="Layout__resizeHandle__e"
-                onMousedown={resizeStartHandler(1, 0)} />
-              <div className="Layout__resizeHandle__s"
-                onMousedown={resizeStartHandler(0, 1)} />
-              <div className="Layout__resizeHandle__se"
-                onMousedown={resizeStartHandler(1, 1)} />
+              <div
+                className="Layout__resizeHandle__e"
+                onMousedown={resizeStartHandler(1, 0)}
+              />
+              <div
+                className="Layout__resizeHandle__s"
+                onMousedown={resizeStartHandler(0, 1)}
+              />
+              <div
+                className="Layout__resizeHandle__se"
+                onMousedown={resizeStartHandler(1, 1)}
+              />
             </Fragment>
           )}
         </div>

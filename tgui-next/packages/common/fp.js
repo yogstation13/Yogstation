@@ -9,8 +9,7 @@ export const flow = (...funcs) => (input, ...rest) => {
     // Recurse into the array of functions
     if (Array.isArray(func)) {
       output = flow(...func)(output, ...rest);
-    }
-    else if (func) {
+    } else if (func) {
       output = func(output, ...rest);
     }
   }
@@ -31,11 +30,12 @@ export const flow = (...funcs) => (input, ...rest) => {
  */
 export const compose = (...funcs) => {
   if (funcs.length === 0) {
-    return arg => arg;
+    return (arg) => arg;
   }
   if (funcs.length === 1) {
     return funcs[0];
   }
   return funcs.reduce((a, b) => (value, ...rest) =>
-    a(b(value, ...rest), ...rest));
+    a(b(value, ...rest), ...rest)
+  );
 };

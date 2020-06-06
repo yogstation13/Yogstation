@@ -1,4 +1,4 @@
-import { buildQueryString } from 'common/string';
+import { buildQueryString } from "common/string";
 
 /**
  * Version of Trident engine used in Internet Explorer.
@@ -23,7 +23,7 @@ export const tridentVersion = (() => {
  * (with an optional 'url' for eg winset).
  */
 const href = (url, params = {}) => {
-  return 'byond://' + url + '?' + buildQueryString(params);
+  return "byond://" + url + "?" + buildQueryString(params);
 };
 
 export const callByond = (url, params = {}) => {
@@ -40,7 +40,7 @@ export const callByondAsync = (url, params = {}) => {
   window.__callbacks__ = window.__callbacks__ || [];
   // Create a Promise and push its resolve function into callback array
   const callbackIndex = window.__callbacks__.length;
-  const promise = new Promise(resolve => {
+  const promise = new Promise((resolve) => {
     // TODO: Fix a potential memory leak
     window.__callbacks__.push(resolve);
   });
@@ -55,21 +55,21 @@ export const callByondAsync = (url, params = {}) => {
 /**
  * Literally types a command on the client.
  */
-export const runCommand = command => callByond('winset', { command });
+export const runCommand = (command) => callByond("winset", { command });
 
 /**
  * Helper to make a BYOND ui_act() call on the UI 'src' given an 'action'
  * and optional 'params'.
  */
 export const act = (src, action, params = {}) => {
-  return callByond('', { src, action, ...params });
+  return callByond("", { src, action, ...params });
 };
 
 /**
  * Calls 'winget' on window, retrieving value by the 'key'.
  */
 export const winget = async (win, key) => {
-  const obj = await callByondAsync('winget', {
+  const obj = await callByondAsync("winget", {
     id: win,
     property: key,
   });
@@ -79,6 +79,7 @@ export const winget = async (win, key) => {
 /**
  * Calls 'winset' on window, setting 'key' to 'value'.
  */
-export const winset = (win, key, value) => callByond('winset', {
-  [`${win}.${key}`]: value,
-});
+export const winset = (win, key, value) =>
+  callByond("winset", {
+    [`${win}.${key}`]: value,
+  });

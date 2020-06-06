@@ -1,22 +1,24 @@
-import { toTitleCase } from 'common/string';
-import { Component, Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { BlockQuote, Box, Button, NumberInput, Section, Table } from '../components';
+import { toTitleCase } from "common/string";
+import { Component, Fragment } from "inferno";
+import { useBackend } from "../backend";
+import {
+  BlockQuote,
+  Box,
+  Button,
+  NumberInput,
+  Section,
+  Table,
+} from "../components";
 
-export const OreRedemptionMachine = props => {
+export const OreRedemptionMachine = (props) => {
   const { act, data } = useBackend(props);
-  const {
-    unclaimedPoints,
-    materials,
-    alloys,
-    diskDesigns,
-    hasDisk,
-  } = data;
+  const { unclaimedPoints, materials, alloys, diskDesigns, hasDisk } = data;
   return (
     <Fragment>
       <Section>
         <BlockQuote mb={1}>
-          This machine only accepts ore.<br />
+          This machine only accepts ore.
+          <br />
           Gibtonite and Slag are not accepted.
         </BlockQuote>
         <Box>
@@ -28,20 +30,22 @@ export const OreRedemptionMachine = props => {
             ml={2}
             content="Claim"
             disabled={unclaimedPoints === 0}
-            onClick={() => act('Claim')} />
+            onClick={() => act("Claim")}
+          />
         </Box>
       </Section>
       <Section>
-        {hasDisk && (
+        {(hasDisk && (
           <Fragment>
             <Box mb={1}>
               <Button
                 icon="eject"
                 content="Eject design disk"
-                onClick={() => act('diskEject')} />
+                onClick={() => act("diskEject")}
+              />
             </Box>
             <Table>
-              {diskDesigns.map(design => (
+              {diskDesigns.map((design) => (
                 <Table.Row key={design.index}>
                   <Table.Cell>
                     File {design.index}: {design.name}
@@ -50,44 +54,54 @@ export const OreRedemptionMachine = props => {
                     <Button
                       disabled={!design.canupload}
                       content="Upload"
-                      onClick={() => act('diskUpload', {
-                        design: design.index,
-                      })} />
+                      onClick={() =>
+                        act("diskUpload", {
+                          design: design.index,
+                        })
+                      }
+                    />
                   </Table.Cell>
                 </Table.Row>
               ))}
             </Table>
           </Fragment>
-        ) || (
+        )) || (
           <Button
             icon="save"
             content="Insert design disk"
-            onClick={() => act('diskInsert')} />
+            onClick={() => act("diskInsert")}
+          />
         )}
       </Section>
       <Section title="Materials">
         <Table>
-          {materials.map(material => (
+          {materials.map((material) => (
             <MaterialRow
               key={material.id}
               material={material}
-              onRelease={amount => act('Release', {
-                id: material.id,
-                sheets: amount,
-              })} />
+              onRelease={(amount) =>
+                act("Release", {
+                  id: material.id,
+                  sheets: amount,
+                })
+              }
+            />
           ))}
         </Table>
       </Section>
       <Section title="Alloys">
         <Table>
-          {alloys.map(material => (
+          {alloys.map((material) => (
             <MaterialRow
               key={material.id}
               material={material}
-              onRelease={amount => act('Smelt', {
-                id: material.id,
-                sheets: amount,
-              })} />
+              onRelease={(amount) =>
+                act("Smelt", {
+                  id: material.id,
+                  sheets: amount,
+                })
+              }
+            />
           ))}
         </Table>
       </Section>
@@ -110,11 +124,11 @@ class MaterialRow extends Component {
     return (
       <Table.Row>
         <Table.Cell>
-          {toTitleCase(material.name).replace('Alloy', '')}
+          {toTitleCase(material.name).replace("Alloy", "")}
         </Table.Cell>
         <Table.Cell collapsing textAlign="right">
           <Box mr={2} color="label" inline>
-            {material.value && material.value + ' cr'}
+            {material.value && material.value + " cr"}
           </Box>
         </Table.Cell>
         <Table.Cell collapsing textAlign="right">
@@ -130,13 +144,17 @@ class MaterialRow extends Component {
             minValue={1}
             maxValue={50}
             value={amount}
-            onChange={(e, value) => this.setState({
-              amount: value,
-            })} />
+            onChange={(e, value) =>
+              this.setState({
+                amount: value,
+              })
+            }
+          />
           <Button
             disabled={amountAvailable < 1}
             content="Release"
-            onClick={() => onRelease(amount)} />
+            onClick={() => onRelease(amount)}
+          />
         </Table.Cell>
       </Table.Row>
     );

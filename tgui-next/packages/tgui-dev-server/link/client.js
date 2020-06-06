@@ -3,12 +3,12 @@ const queue = [];
 const subscribers = [];
 
 const ensureConnection = () => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     if (!window.WebSocket) {
       return;
     }
     if (!socket || socket.readyState === WebSocket.CLOSED) {
-      const DEV_SERVER_IP = process.env.DEV_SERVER_IP || '127.0.0.1';
+      const DEV_SERVER_IP = process.env.DEV_SERVER_IP || "127.0.0.1";
       socket = new WebSocket(`ws://${DEV_SERVER_IP}:3000`);
       socket.onopen = () => {
         // Empty the message queue
@@ -17,7 +17,7 @@ const ensureConnection = () => {
           socket.send(msg);
         }
       };
-      socket.onmessage = event => {
+      socket.onmessage = (event) => {
         const msg = JSON.parse(event.data);
         for (let subscriber of subscribers) {
           subscriber(msg);
@@ -27,22 +27,22 @@ const ensureConnection = () => {
   }
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   window.onunload = () => socket && socket.close();
 }
 
-const subscribe = fn => subscribers.push(fn);
+const subscribe = (fn) => subscribers.push(fn);
 
 /**
  * A json serializer which handles circular references and other junk.
  */
-const serializeObject = obj => {
+const serializeObject = (obj) => {
   let refs = [];
   const json = JSON.stringify(obj, (key, value) => {
-    if (typeof value === 'object' && value !== null) {
+    if (typeof value === "object" && value !== null) {
       // Circular reference
       if (refs.includes(value)) {
-        return '[circular ref]';
+        return "[circular ref]";
       }
       refs.push(value);
       // Error object
@@ -55,7 +55,7 @@ const serializeObject = obj => {
       }
       return value;
     }
-    if (typeof value === 'number' && !Number.isFinite(value)) {
+    if (typeof value === "number" && !Number.isFinite(value)) {
       return {
         __number__: String(value),
       };
@@ -66,16 +66,15 @@ const serializeObject = obj => {
   return json;
 };
 
-const sendRawMessage = msg => {
-  if (process.env.NODE_ENV !== 'production') {
+const sendRawMessage = (msg) => {
+  if (process.env.NODE_ENV !== "production") {
     const json = serializeObject(msg);
     // Send message using WebSocket
     if (window.WebSocket) {
       ensureConnection();
       if (socket.readyState === WebSocket.OPEN) {
         socket.send(json);
-      }
-      else {
+      } else {
         // Keep only 10 latest messages in the queue
         if (queue.length > 10) {
           queue.shift();
@@ -85,9 +84,9 @@ const sendRawMessage = msg => {
     }
     // Send message using plain HTTP request.
     else {
-      const DEV_SERVER_IP = process.env.DEV_SERVER_IP || '127.0.0.1';
+      const DEV_SERVER_IP = process.env.DEV_SERVER_IP || "127.0.0.1";
       const req = new XMLHttpRequest();
-      req.open('POST', `http://${DEV_SERVER_IP}:3001`);
+      req.open("POST", `http://${DEV_SERVER_IP}:3001`);
       req.timeout = 500;
       req.send(json);
     }
@@ -95,35 +94,36 @@ const sendRawMessage = msg => {
 };
 
 export const sendLogEntry = (level, ns, ...args) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     try {
       sendRawMessage({
-        type: 'log',
+        type: "log",
         payload: {
           level,
-          ns: ns || 'client',
+          ns: ns || "client",
           args,
         },
       });
-    }
-    catch (err) {}
+    } catch (err) {}
   }
 };
 
 export const setupHotReloading = () => {
-  if (process.env.NODE_ENV !== 'production'
-      && process.env.WEBPACK_HMR_ENABLED
-      && window.WebSocket) {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    process.env.WEBPACK_HMR_ENABLED &&
+    window.WebSocket
+  ) {
     if (module.hot) {
       ensureConnection();
-      sendLogEntry(0, null, 'setting up hot reloading');
-      subscribe(msg => {
+      sendLogEntry(0, null, "setting up hot reloading");
+      subscribe((msg) => {
         const { type } = msg;
-        sendLogEntry(0, null, 'received', type);
-        if (type === 'hotUpdate') {
+        sendLogEntry(0, null, "received", type);
+        if (type === "hotUpdate") {
           const status = module.hot.status();
-          if (status !== 'idle') {
-            sendLogEntry(0, null, 'hot reload status:', status);
+          if (status !== "idle") {
+            sendLogEntry(0, null, "hot reload status:", status);
             return;
           }
           module.hot
@@ -132,11 +132,11 @@ export const setupHotReloading = () => {
               ignoreDeclined: true,
               ignoreErrored: true,
             })
-            .then(modules => {
-              sendLogEntry(0, null, 'outdated modules', modules);
+            .then((modules) => {
+              sendLogEntry(0, null, "outdated modules", modules);
             })
-            .catch(err => {
-              sendLogEntry(0, null, 'reload error', err);
+            .catch((err) => {
+              sendLogEntry(0, null, "reload error", err);
             });
         }
       });

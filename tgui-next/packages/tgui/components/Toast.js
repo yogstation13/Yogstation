@@ -1,6 +1,6 @@
-import { pureComponentHooks } from 'common/react';
+import { pureComponentHooks } from "common/react";
 
-export const Toast = props => {
+export const Toast = (props) => {
   const { content, children } = props;
   return (
     <div className="Layout__toast">
@@ -26,11 +26,11 @@ export const showToast = (dispatch, text) => {
   toastTimeout = setTimeout(() => {
     toastTimeout = undefined;
     dispatch({
-      type: 'hideToast',
+      type: "hideToast",
     });
   }, 5000);
   dispatch({
-    type: 'showToast',
+    type: "showToast",
     payload: { text },
   });
 };
@@ -38,7 +38,7 @@ export const showToast = (dispatch, text) => {
 export const toastReducer = (state, action) => {
   const { type, payload } = action;
 
-  if (type === 'showToast') {
+  if (type === "showToast") {
     const { text } = payload;
     return {
       ...state,
@@ -46,7 +46,7 @@ export const toastReducer = (state, action) => {
     };
   }
 
-  if (type === 'hideToast') {
+  if (type === "hideToast") {
     return {
       ...state,
       toastText: null,

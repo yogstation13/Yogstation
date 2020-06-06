@@ -1,15 +1,26 @@
-import { map, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { toFixed } from 'common/math';
-import { pureComponentHooks } from 'common/react';
-import { Component, Fragment } from 'inferno';
-import { Box, Button, Chart, ColorBox, Flex, Icon, LabeledList, ProgressBar, Section, Table } from '../components';
+import { map, sortBy } from "common/collections";
+import { flow } from "common/fp";
+import { toFixed } from "common/math";
+import { pureComponentHooks } from "common/react";
+import { Component, Fragment } from "inferno";
+import {
+  Box,
+  Button,
+  Chart,
+  ColorBox,
+  Flex,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+} from "../components";
 
 const PEAK_DRAW = 500000;
 
-const powerRank = str => {
-  const unit = String(str.split(' ')[1]).toLowerCase();
-  return ['w', 'kw', 'mw', 'gw'].indexOf(unit);
+const powerRank = (str) => {
+  const unit = String(str.split(" ")[1]).toLowerCase();
+  return ["w", "kw", "mw", "gw"].indexOf(unit);
 };
 
 export class PowerMonitor extends Component {
@@ -29,10 +40,7 @@ export class PowerMonitor extends Component {
     const demand = history.demand[history.demand.length - 1] || 0;
     const supplyData = history.supply.map((value, i) => [i, value]);
     const demandData = history.demand.map((value, i) => [i, value]);
-    const maxValue = Math.max(
-      PEAK_DRAW,
-      ...history.supply,
-      ...history.demand);
+    const maxValue = Math.max(PEAK_DRAW, ...history.supply, ...history.demand);
     // Process area data
     const areas = flow([
       map((area, i) => ({
@@ -40,11 +48,13 @@ export class PowerMonitor extends Component {
         // Generate a unique id
         id: area.name + i,
       })),
-      sortByField === 'name' && sortBy(area => area.name),
-      sortByField === 'charge' && sortBy(area => -area.charge),
-      sortByField === 'draw' && sortBy(
-        area => -powerRank(area.load),
-        area => -parseFloat(area.load)),
+      sortByField === "name" && sortBy((area) => area.name),
+      sortByField === "charge" && sortBy((area) => -area.charge),
+      sortByField === "draw" &&
+        sortBy(
+          (area) => -powerRank(area.load),
+          (area) => -parseFloat(area.load)
+        ),
     ])(data.areas);
     return (
       <Fragment>
@@ -58,7 +68,8 @@ export class PowerMonitor extends Component {
                     minValue={0}
                     maxValue={maxValue}
                     color="teal"
-                    content={toFixed(supply / 1000) + ' kW'} />
+                    content={toFixed(supply / 1000) + " kW"}
+                  />
                 </LabeledList.Item>
                 <LabeledList.Item label="Draw">
                   <ProgressBar
@@ -66,7 +77,8 @@ export class PowerMonitor extends Component {
                     minValue={0}
                     maxValue={maxValue}
                     color="pink"
-                    content={toFixed(demand / 1000) + ' kW'} />
+                    content={toFixed(demand / 1000) + " kW"}
+                  />
                 </LabeledList.Item>
               </LabeledList>
             </Section>
@@ -79,14 +91,16 @@ export class PowerMonitor extends Component {
                 rangeX={[0, supplyData.length - 1]}
                 rangeY={[0, maxValue]}
                 strokeColor="rgba(0, 181, 173, 1)"
-                fillColor="rgba(0, 181, 173, 0.25)" />
+                fillColor="rgba(0, 181, 173, 0.25)"
+              />
               <Chart.Line
                 fillPositionedParent
                 data={demandData}
                 rangeX={[0, demandData.length - 1]}
                 rangeY={[0, maxValue]}
                 strokeColor="rgba(224, 57, 151, 1)"
-                fillColor="rgba(224, 57, 151, 0.25)" />
+                fillColor="rgba(224, 57, 151, 0.25)"
+              />
             </Section>
           </Flex.Item>
         </Flex>
@@ -96,35 +110,38 @@ export class PowerMonitor extends Component {
               Sort by:
             </Box>
             <Button.Checkbox
-              checked={sortByField === 'name'}
+              checked={sortByField === "name"}
               content="Name"
-              onClick={() => this.setState({
-                sortByField: sortByField !== 'name' && 'name',
-              })} />
+              onClick={() =>
+                this.setState({
+                  sortByField: sortByField !== "name" && "name",
+                })
+              }
+            />
             <Button.Checkbox
-              checked={sortByField === 'charge'}
+              checked={sortByField === "charge"}
               content="Charge"
-              onClick={() => this.setState({
-                sortByField: sortByField !== 'charge' && 'charge',
-              })} />
+              onClick={() =>
+                this.setState({
+                  sortByField: sortByField !== "charge" && "charge",
+                })
+              }
+            />
             <Button.Checkbox
-              checked={sortByField === 'draw'}
+              checked={sortByField === "draw"}
               content="Draw"
-              onClick={() => this.setState({
-                sortByField: sortByField !== 'draw' && 'draw',
-              })} />
+              onClick={() =>
+                this.setState({
+                  sortByField: sortByField !== "draw" && "draw",
+                })
+              }
+            />
           </Box>
           <Table>
             <Table.Row header>
-              <Table.Cell>
-                Area
-              </Table.Cell>
-              <Table.Cell collapsing>
-                Charge
-              </Table.Cell>
-              <Table.Cell textAlign="right">
-                Draw
-              </Table.Cell>
+              <Table.Cell>Area</Table.Cell>
+              <Table.Cell collapsing>Charge</Table.Cell>
+              <Table.Cell textAlign="right">Draw</Table.Cell>
               <Table.Cell collapsing title="Equipment">
                 Eqp
               </Table.Cell>
@@ -136,16 +153,10 @@ export class PowerMonitor extends Component {
               </Table.Cell>
             </Table.Row>
             {areas.map((area, i) => (
-              <tr
-                key={area.id}
-                className="Table__row candystripe">
-                <td>
-                  {area.name}
-                </td>
+              <tr key={area.id} className="Table__row candystripe">
+                <td>{area.name}</td>
                 <td className="Table__cell text-right text-nowrap">
-                  <AreaCharge
-                    charging={area.charging}
-                    charge={area.charge} />
+                  <AreaCharge charging={area.charging} charge={area.charge} />
                 </td>
                 <td className="Table__cell text-right text-nowrap">
                   {area.load}
@@ -168,36 +179,27 @@ export class PowerMonitor extends Component {
   }
 }
 
-const AreaCharge = props => {
+const AreaCharge = (props) => {
   const { charging, charge } = props;
   return (
     <Fragment>
       <Icon
         width="18px"
         textAlign="center"
-        name={(
-          charging === 0 && (
-            charge > 50
-              ? 'battery-half'
-              : 'battery-quarter'
-          )
-          || charging === 1 && 'bolt'
-          || charging === 2 && 'battery-full'
-        )}
-        color={(
-          charging === 0 && (
-            charge > 50
-              ? 'yellow'
-              : 'red'
-          )
-          || charging === 1 && 'yellow'
-          || charging === 2 && 'green'
-        )} />
-      <Box
-        inline
-        width="36px"
-        textAlign="right">
-        {toFixed(charge) + '%'}
+        name={
+          (charging === 0 &&
+            (charge > 50 ? "battery-half" : "battery-quarter")) ||
+          (charging === 1 && "bolt") ||
+          (charging === 2 && "battery-full")
+        }
+        color={
+          (charging === 0 && (charge > 50 ? "yellow" : "red")) ||
+          (charging === 1 && "yellow") ||
+          (charging === 2 && "green")
+        }
+      />
+      <Box inline width="36px" textAlign="right">
+        {toFixed(charge) + "%"}
       </Box>
     </Fragment>
   );
@@ -205,17 +207,17 @@ const AreaCharge = props => {
 
 AreaCharge.defaultHooks = pureComponentHooks;
 
-const AreaStatusColorBox = props => {
+const AreaStatusColorBox = (props) => {
   const { status } = props;
   const power = Boolean(status & 2);
   const mode = Boolean(status & 1);
-  const tooltipText = (power ? 'On' : 'Off')
-    + ` [${mode ? 'auto' : 'manual'}]`;
+  const tooltipText = (power ? "On" : "Off") + ` [${mode ? "auto" : "manual"}]`;
   return (
     <ColorBox
-      color={power ? 'good' : 'bad'}
-      content={mode ? undefined : 'M'}
-      title={tooltipText} />
+      color={power ? "good" : "bad"}
+      content={mode ? undefined : "M"}
+      title={tooltipText}
+    />
   );
 };
 

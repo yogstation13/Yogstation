@@ -34,92 +34,92 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-
 /* Tokens.  */
 #ifndef EXTOKENTYPE
-# define EXTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
+#define EXTOKENTYPE
+/* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
-   enum extokentype {
-     MINTOKEN = 258,
-     INTEGER = 259,
-     UNSIGNED = 260,
-     CHARACTER = 261,
-     FLOATING = 262,
-     STRING = 263,
-     VOIDTYPE = 264,
-     ADDRESS = 265,
-     ARRAY = 266,
-     BREAK = 267,
-     CALL = 268,
-     CASE = 269,
-     CONSTANT = 270,
-     CONTINUE = 271,
-     DECLARE = 272,
-     DEFAULT = 273,
-     DYNAMIC = 274,
-     ELSE = 275,
-     EXIT = 276,
-     FOR = 277,
-     FUNCTION = 278,
-     GSUB = 279,
-     ITERATE = 280,
-     ITERATER = 281,
-     ID = 282,
-     IF = 283,
-     LABEL = 284,
-     MEMBER = 285,
-     NAME = 286,
-     POS = 287,
-     PRAGMA = 288,
-     PRE = 289,
-     PRINT = 290,
-     PRINTF = 291,
-     PROCEDURE = 292,
-     QUERY = 293,
-     RAND = 294,
-     RETURN = 295,
-     SCANF = 296,
-     SPLIT = 297,
-     SPRINTF = 298,
-     SRAND = 299,
-     SSCANF = 300,
-     SUB = 301,
-     SUBSTR = 302,
-     SWITCH = 303,
-     TOKENS = 304,
-     UNSET = 305,
-     WHILE = 306,
-     F2I = 307,
-     F2S = 308,
-     I2F = 309,
-     I2S = 310,
-     S2B = 311,
-     S2F = 312,
-     S2I = 313,
-     F2X = 314,
-     I2X = 315,
-     S2X = 316,
-     X2F = 317,
-     X2I = 318,
-     X2S = 319,
-     X2X = 320,
-     XPRINT = 321,
-     OR = 322,
-     AND = 323,
-     NE = 324,
-     EQ = 325,
-     GE = 326,
-     LE = 327,
-     RS = 328,
-     LS = 329,
-//     IN = 330,
-     UNARY = 331,
-     DEC = 332,
-     INC = 333,
-     CAST = 334,
-     MAXTOKEN = 335
-   };
+enum extokentype
+{
+	MINTOKEN = 258,
+	INTEGER = 259,
+	UNSIGNED = 260,
+	CHARACTER = 261,
+	FLOATING = 262,
+	STRING = 263,
+	VOIDTYPE = 264,
+	ADDRESS = 265,
+	ARRAY = 266,
+	BREAK = 267,
+	CALL = 268,
+	CASE = 269,
+	CONSTANT = 270,
+	CONTINUE = 271,
+	DECLARE = 272,
+	DEFAULT = 273,
+	DYNAMIC = 274,
+	ELSE = 275,
+	EXIT = 276,
+	FOR = 277,
+	FUNCTION = 278,
+	GSUB = 279,
+	ITERATE = 280,
+	ITERATER = 281,
+	ID = 282,
+	IF = 283,
+	LABEL = 284,
+	MEMBER = 285,
+	NAME = 286,
+	POS = 287,
+	PRAGMA = 288,
+	PRE = 289,
+	PRINT = 290,
+	PRINTF = 291,
+	PROCEDURE = 292,
+	QUERY = 293,
+	RAND = 294,
+	RETURN = 295,
+	SCANF = 296,
+	SPLIT = 297,
+	SPRINTF = 298,
+	SRAND = 299,
+	SSCANF = 300,
+	SUB = 301,
+	SUBSTR = 302,
+	SWITCH = 303,
+	TOKENS = 304,
+	UNSET = 305,
+	WHILE = 306,
+	F2I = 307,
+	F2S = 308,
+	I2F = 309,
+	I2S = 310,
+	S2B = 311,
+	S2F = 312,
+	S2I = 313,
+	F2X = 314,
+	I2X = 315,
+	S2X = 316,
+	X2F = 317,
+	X2I = 318,
+	X2S = 319,
+	X2X = 320,
+	XPRINT = 321,
+	OR = 322,
+	AND = 323,
+	NE = 324,
+	EQ = 325,
+	GE = 326,
+	LE = 327,
+	RS = 328,
+	LS = 329,
+	//     IN = 330,
+	UNARY = 331,
+	DEC = 332,
+	INC = 333,
+	CAST = 334,
+	MAXTOKEN = 335
+};
 #endif
 /* Tokens.  */
 #define MINTOKEN 258
@@ -201,37 +201,30 @@
 #define CAST 334
 #define MAXTOKEN 335
 
-
-
-
-#if ! defined EXSTYPE && ! defined EXSTYPE_IS_DECLARED
-typedef union EXSTYPE
-{
+#if !defined EXSTYPE && !defined EXSTYPE_IS_DECLARED
+typedef union EXSTYPE {
 
 /* Line 1676 of yacc.c  */
 #line 45 "../../lib/expr/exparse.y"
 
-	struct Exnode_s*expr;
-	double		floating;
-	struct Exref_s*	reference;
-	struct Exid_s*	id;
-	Sflong_t	integer;
-	int		op;
-	char*		string;
-	void*		user;
-	struct Exbuf_s*	buffer;
-
-
+	struct Exnode_s *expr;
+	double floating;
+	struct Exref_s *reference;
+	struct Exid_s *id;
+	Sflong_t integer;
+	int op;
+	char *string;
+	void *user;
+	struct Exbuf_s *buffer;
 
 /* Line 1676 of yacc.c  */
 #line 226 "y.tab.h"
 } EXSTYPE;
-# define EXSTYPE_IS_TRIVIAL 1
-# define exstype EXSTYPE /* obsolescent; will be withdrawn */
-# define EXSTYPE_IS_DECLARED 1
+#define EXSTYPE_IS_TRIVIAL 1
+#define exstype EXSTYPE /* obsolescent; will be withdrawn */
+#define EXSTYPE_IS_DECLARED 1
 #endif
 
 extern EXSTYPE exlval;
-
 
 #endif /* _EXPARSE_H */

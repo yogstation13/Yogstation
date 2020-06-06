@@ -1,6 +1,6 @@
 author: "  RaveRadbury & Jumps"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - tweak: "Light tiles now use a radial menu for color selection."
   - tweak: "Light tiles need screwdrivers to be adjusted"
   - tweak: "AI can adjust the color"

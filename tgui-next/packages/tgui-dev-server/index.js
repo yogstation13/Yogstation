@@ -1,12 +1,12 @@
-import { setupWebpack, getWebpackConfig } from './webpack.js';
-import { reloadByondCache } from './reloader.js';
+import { setupWebpack, getWebpackConfig } from "./webpack.js";
+import { reloadByondCache } from "./reloader.js";
 
-const noHot = process.argv.includes('--no-hot');
-const reloadOnce = process.argv.includes('--reload');
+const noHot = process.argv.includes("--no-hot");
+const reloadOnce = process.argv.includes("--reload");
 
 const setupServer = async () => {
   const config = await getWebpackConfig({
-    mode: 'development',
+    mode: "development",
     hot: !noHot,
   });
   // Reload cache once

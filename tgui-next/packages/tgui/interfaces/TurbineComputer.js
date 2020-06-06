@@ -1,52 +1,59 @@
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Button, LabeledList, Section } from '../components';
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import { Button, LabeledList, Section } from "../components";
 
-export const TurbineComputer = props => {
+export const TurbineComputer = (props) => {
   const { act, data } = useBackend(props);
-  const operational = Boolean(data.compressor
-    && !data.compressor_broke
-    && data.turbine
-    && !data.turbine_broke);
+  const operational = Boolean(
+    data.compressor &&
+      !data.compressor_broke &&
+      data.turbine &&
+      !data.turbine_broke
+  );
   return (
     <Section
       title="Status"
-      buttons={(
+      buttons={
         <Fragment>
           <Button
-            icon={data.online ? 'power-off' : 'times'}
-            content={data.online ? 'Online' : 'Offline'}
+            icon={data.online ? "power-off" : "times"}
+            content={data.online ? "Online" : "Offline"}
             selected={data.online}
             disabled={!operational}
-            onClick={() => act('toggle_power')} />
+            onClick={() => act("toggle_power")}
+          />
           <Button
             icon="sync"
             content="Reconnect"
-            onClick={() => act('reconnect')} />
+            onClick={() => act("reconnect")}
+          />
         </Fragment>
-      )}>
-      {!operational && (
+      }
+    >
+      {(!operational && (
         <LabeledList>
           <LabeledList.Item
             label="Compressor Status"
-            color={(!data.compressor || data.compressor_broke)
-              ? 'bad'
-              : 'good'}>
+            color={!data.compressor || data.compressor_broke ? "bad" : "good"}
+          >
             {data.compressor_broke
-              ? data.compressor ? 'Offline' : 'Missing'
-              : 'Online'}
+              ? data.compressor
+                ? "Offline"
+                : "Missing"
+              : "Online"}
           </LabeledList.Item>
           <LabeledList.Item
             label="Turbine Status"
-            color={(!data.turbine || data.turbine_broke)
-              ? 'bad'
-              : 'good'}>
+            color={!data.turbine || data.turbine_broke ? "bad" : "good"}
+          >
             {data.turbine_broke
-              ? data.turbine ? 'Offline' : 'Missing'
-              : 'Online'}
+              ? data.turbine
+                ? "Offline"
+                : "Missing"
+              : "Online"}
           </LabeledList.Item>
         </LabeledList>
-      ) || (
+      )) || (
         <LabeledList>
           <LabeledList.Item label="Turbine Speed">
             {data.rpm} RPM

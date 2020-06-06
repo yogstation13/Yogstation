@@ -1,7 +1,7 @@
-import { createLogger } from './logging';
-import { callByond, tridentVersion } from './byond';
+import { createLogger } from "./logging";
+import { callByond, tridentVersion } from "./byond";
 
-const logger = createLogger('hotkeys');
+const logger = createLogger("hotkeys");
 
 // Key codes
 export const KEY_BACKSPACE = 8;
@@ -51,11 +51,7 @@ export const KEY_Z = 90;
 export const KEY_EQUAL = 187;
 export const KEY_MINUS = 189;
 
-const MODIFIER_KEYS = [
-  KEY_CTRL,
-  KEY_ALT,
-  KEY_SHIFT,
-];
+const MODIFIER_KEYS = [KEY_CTRL, KEY_ALT, KEY_SHIFT];
 
 const NO_PASSTHROUGH_KEYS = [
   KEY_ESCAPE,
@@ -70,21 +66,20 @@ const NO_PASSTHROUGH_KEYS = [
 const keyState = {};
 
 const createHotkeyString = (ctrlKey, altKey, shiftKey, keyCode) => {
-  let str = '';
+  let str = "";
   if (ctrlKey) {
-    str += 'Ctrl+';
+    str += "Ctrl+";
   }
   if (altKey) {
-    str += 'Alt+';
+    str += "Alt+";
   }
   if (shiftKey) {
-    str += 'Shift+';
+    str += "Shift+";
   }
   if (keyCode >= 48 && keyCode <= 90) {
     str += String.fromCharCode(keyCode);
-  }
-  else {
-    str += '[' + keyCode + ']';
+  } else {
+    str += "[" + keyCode + "]";
   }
   return str;
 };
@@ -92,7 +87,7 @@ const createHotkeyString = (ctrlKey, altKey, shiftKey, keyCode) => {
 /**
  * Parses the event and compiles information about the keypress.
  */
-const getKeyData = e => {
+const getKeyData = (e) => {
   const keyCode = window.event ? e.which : e.keyCode;
   const { ctrlKey, altKey, shiftKey } = e;
   return {
@@ -114,7 +109,7 @@ const handlePassthrough = (e, eventType) => {
     return;
   }
   const targetName = e.target && e.target.localName;
-  if (targetName === 'input' || targetName === 'textarea') {
+  if (targetName === "input" || targetName === "textarea") {
     return;
   }
   const keyData = getKeyData(e);
@@ -127,13 +122,13 @@ const handlePassthrough = (e, eventType) => {
     return;
   }
   // Send this keypress to BYOND
-  if (eventType === 'keydown' && !keyState[keyCode]) {
-    logger.debug('passthrough', eventType, keyData);
-    return callByond('', { __keydown: keyCode });
+  if (eventType === "keydown" && !keyState[keyCode]) {
+    logger.debug("passthrough", eventType, keyData);
+    return callByond("", { __keydown: keyCode });
   }
-  if (eventType === 'keyup' && keyState[keyCode]) {
-    logger.debug('passthrough', eventType, keyData);
-    return callByond('', { __keyup: keyCode });
+  if (eventType === "keyup" && keyState[keyCode]) {
+    logger.debug("passthrough", eventType, keyData);
+    return callByond("", { __keyup: keyCode });
   }
 };
 
@@ -146,23 +141,17 @@ export const releaseHeldKeys = () => {
     if (keyState[keyCode]) {
       logger.log(`releasing [${keyCode}] key`);
       keyState[keyCode] = false;
-      callByond('', { __keyup: keyCode });
+      callByond("", { __keyup: keyCode });
     }
   }
 };
 
 const handleHotKey = (e, eventType, dispatch) => {
-  if (eventType !== 'keyup') {
+  if (eventType !== "keyup") {
     return;
   }
   const keyData = getKeyData(e);
-  const {
-    ctrlKey,
-    altKey,
-    keyCode,
-    hasModifierKeys,
-    keyString,
-  } = keyData;
+  const { ctrlKey, altKey, keyCode, hasModifierKeys, keyString } = keyData;
   // Dispatch a detected hotkey as a store action
   if (hasModifierKeys && !MODIFIER_KEYS.includes(keyCode)) {
     logger.log(keyString);
@@ -172,13 +161,14 @@ const handleHotKey = (e, eventType, dispatch) => {
       // stack in order for this to be a fatal error.
       setTimeout(() => {
         throw new Error(
-          'OOPSIE WOOPSIE!! UwU We made a fucky wucky!! A wittle'
-          + ' fucko boingo! The code monkeys at our headquarters are'
-          + ' working VEWY HAWD to fix this!');
+          "OOPSIE WOOPSIE!! UwU We made a fucky wucky!! A wittle" +
+            " fucko boingo! The code monkeys at our headquarters are" +
+            " working VEWY HAWD to fix this!"
+        );
       });
     }
     dispatch({
-      type: 'hotKey',
+      type: "hotKey",
       payload: keyData,
     });
   }
@@ -189,35 +179,35 @@ const handleHotKey = (e, eventType, dispatch) => {
  * unfocused. Conveniently fires events when the browser window
  * is closed from the outside.
  */
-const subscribeToLossOfFocus = listenerFn => {
+const subscribeToLossOfFocus = (listenerFn) => {
   let timeout;
-  document.addEventListener('focusout', () => {
+  document.addEventListener("focusout", () => {
     timeout = setTimeout(listenerFn);
   });
-  document.addEventListener('focusin', () => {
+  document.addEventListener("focusin", () => {
     clearTimeout(timeout);
   });
-  window.addEventListener('beforeunload', listenerFn);
+  window.addEventListener("beforeunload", listenerFn);
 };
 
 /**
  * Subscribe to keydown/keyup events with globally tracked key state.
  */
-const subscribeToKeyPresses = listenerFn => {
-  document.addEventListener('keydown', e => {
+const subscribeToKeyPresses = (listenerFn) => {
+  document.addEventListener("keydown", (e) => {
     const keyCode = window.event ? e.which : e.keyCode;
-    listenerFn(e, 'keydown');
+    listenerFn(e, "keydown");
     keyState[keyCode] = true;
   });
-  document.addEventListener('keyup', e => {
+  document.addEventListener("keyup", (e) => {
     const keyCode = window.event ? e.which : e.keyCode;
-    listenerFn(e, 'keyup');
+    listenerFn(e, "keyup");
     keyState[keyCode] = false;
   });
 };
 
 // Middleware
-export const hotKeyMiddleware = store => {
+export const hotKeyMiddleware = (store) => {
   const { dispatch } = store;
   // Subscribe to key events
   subscribeToKeyPresses((e, eventType) => {
@@ -236,13 +226,13 @@ export const hotKeyMiddleware = store => {
     });
   }
   // Pass through store actions (do nothing)
-  return next => action => next(action);
+  return (next) => (action) => next(action);
 };
 
 // Reducer
 export const hotKeyReducer = (state, action) => {
   const { type, payload } = action;
-  if (type === 'hotKey') {
+  if (type === "hotKey") {
     const { ctrlKey, altKey, keyCode } = payload;
     // Toggle kitchen sink mode
     if (ctrlKey && altKey && keyCode === KEY_EQUAL) {

@@ -4,15 +4,14 @@
  */
 
 /* eslint-disable */
-(function(Proto) {
-
+(function (Proto) {
   function toAttr(prop) {
-    return prop.replace(/-[a-z]/g, function(bit) {
+    return prop.replace(/-[a-z]/g, function (bit) {
       return bit[1].toUpperCase();
     });
   }
 
-  if (typeof Proto.setAttribute !== 'undefined') {
+  if (typeof Proto.setAttribute !== "undefined") {
     Proto.setProperty = function (prop, value) {
       var attr = toAttr(prop);
       if (!value) {
@@ -34,5 +33,4 @@
       return value;
     };
   }
-
 })(CSSStyleDeclaration.prototype);

@@ -1,24 +1,24 @@
-import { classes } from 'common/react';
-import { useBackend } from '../backend';
-import { Box, Button, Flex, Grid, Icon } from '../components';
+import { classes } from "common/react";
+import { useBackend } from "../backend";
+import { Box, Button, Flex, Grid, Icon } from "../components";
 
 // This ui is so many manual overrides and !important tags
 // and hand made width sets that changing pretty much anything
 // is going to require a lot of tweaking it get it looking correct again
 // I'm sorry, but it looks bangin
-const NukeKeypad = props => {
+const NukeKeypad = (props) => {
   const { act } = useBackend(props);
   const keypadKeys = [
-    ['1', '4', '7', 'C'],
-    ['2', '5', '8', '0'],
-    ['3', '6', '9', 'E'],
+    ["1", "4", "7", "C"],
+    ["2", "5", "8", "0"],
+    ["3", "6", "9", "E"],
   ];
   return (
     <Box width="185px">
       <Grid width="1px">
-        {keypadKeys.map(keyColumn => (
+        {keypadKeys.map((keyColumn) => (
           <Grid.Column key={keyColumn[0]}>
-            {keyColumn.map(key => (
+            {keyColumn.map((key) => (
               <Button
                 fluid
                 bold
@@ -30,11 +30,12 @@ const NukeKeypad = props => {
                 lineHeight="50px"
                 width="55px"
                 className={classes([
-                  'NuclearBomb__Button',
-                  'NuclearBomb__Button--keypad',
-                  'NuclearBomb__Button--' + key,
+                  "NuclearBomb__Button",
+                  "NuclearBomb__Button--keypad",
+                  "NuclearBomb__Button--" + key,
                 ])}
-                onClick={() => act('keypad', { digit: key })} />
+                onClick={() => act("keypad", { digit: key })}
+              />
             ))}
           </Grid.Column>
         ))}
@@ -43,27 +44,18 @@ const NukeKeypad = props => {
   );
 };
 
-export const NuclearBomb = props => {
+export const NuclearBomb = (props) => {
   const { state } = props;
   const { act, data } = useBackend(props);
-  const {
-    anchored,
-    disk_present,
-    status1,
-    status2,
-  } = data;
+  const { anchored, disk_present, status1, status2 } = data;
   return (
     <Box m={1}>
-      <Box
-        mb={1}
-        className="NuclearBomb__displayBox">
+      <Box mb={1} className="NuclearBomb__displayBox">
         {status1}
       </Box>
       <Flex mb={1.5}>
         <Flex.Item grow={1}>
-          <Box className="NuclearBomb__displayBox">
-            {status2}
-          </Box>
+          <Box className="NuclearBomb__displayBox">{status2}</Box>
         </Flex.Item>
         <Flex.Item>
           <Button
@@ -76,7 +68,8 @@ export const NuclearBomb = props => {
             mr="3px"
             mt="3px"
             className="NuclearBomb__Button NuclearBomb__Button--keypad"
-            onClick={() => act('eject_disk')} />
+            onClick={() => act("eject_disk")}
+          />
         </Flex.Item>
       </Flex>
       <Flex ml="3px">
@@ -94,7 +87,8 @@ export const NuclearBomb = props => {
               lineHeight="32px"
               mb={1}
               className="NuclearBomb__Button NuclearBomb__Button--C"
-              onClick={() => act('arm')} />
+              onClick={() => act("arm")}
+            />
             <Button
               fluid
               bold
@@ -103,16 +97,12 @@ export const NuclearBomb = props => {
               fontSize="28px"
               lineHeight="32px"
               className="NuclearBomb__Button NuclearBomb__Button--E"
-              onClick={() => act('anchor')} />
-            <Box
-              textAlign="center"
-              color="#9C9987"
-              fontSize="80px">
+              onClick={() => act("anchor")}
+            />
+            <Box textAlign="center" color="#9C9987" fontSize="80px">
               <Icon name="radiation" />
             </Box>
-            <Box
-              height="80px"
-              className="NuclearBomb__NTIcon" />
+            <Box height="80px" className="NuclearBomb__NTIcon" />
           </Box>
         </Flex.Item>
       </Flex>

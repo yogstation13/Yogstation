@@ -1,4 +1,4 @@
 author: "TheGamerdk"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - bugfix: "You can now see status displays over windows again"

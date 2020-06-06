@@ -1,11 +1,11 @@
-import { flow } from 'common/fp';
-import { applyMiddleware, createStore as createReduxStore } from 'common/redux';
-import { backendReducer } from './backend';
-import { toastReducer } from './components/Toast';
-import { hotKeyMiddleware, hotKeyReducer } from './hotkeys';
-import { createLogger } from './logging';
+import { flow } from "common/fp";
+import { applyMiddleware, createStore as createReduxStore } from "common/redux";
+import { backendReducer } from "./backend";
+import { toastReducer } from "./components/Toast";
+import { hotKeyMiddleware, hotKeyReducer } from "./hotkeys";
+import { createLogger } from "./logging";
 
-const logger = createLogger('store');
+const logger = createLogger("store");
 
 // const loggingMiddleware = store => next => action => {
 //   const { type, payload } = action;

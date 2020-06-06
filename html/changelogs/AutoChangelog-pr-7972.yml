@@ -1,4 +1,4 @@
 author: "boodaliboo"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - tweak: "tweaked hypnosis time and made revive a roundstart vampire thing"

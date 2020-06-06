@@ -25,7 +25,7 @@ namespace MapAtmosFixer
                 return;
             }
 
-            Mapatmosfixer.Init(file);
+            Mapatmosfixer.Init (file);
         }
     }
 }

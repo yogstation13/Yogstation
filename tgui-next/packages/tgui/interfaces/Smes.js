@@ -1,29 +1,25 @@
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import { Box, Button, LabeledList, ProgressBar, Section } from "../components";
 
-export const Smes = props => {
+export const Smes = (props) => {
   const { act, data } = useBackend(props);
 
   let inputState;
   if (data.capacityPercent >= 100) {
-    inputState = 'good';
-  }
-  else if (data.inputting) {
-    inputState = 'average';
-  }
-  else {
-    inputState = 'bad';
+    inputState = "good";
+  } else if (data.inputting) {
+    inputState = "average";
+  } else {
+    inputState = "bad";
   }
   let outputState;
   if (data.outputting) {
-    outputState = 'good';
-  }
-  else if (data.charge > 0) {
-    outputState = 'average';
-  }
-  else {
-    outputState = 'bad';
+    outputState = "good";
+  } else if (data.charge > 0) {
+    outputState = "average";
+  } else {
+    outputState = "bad";
   }
 
   return (
@@ -35,7 +31,8 @@ export const Smes = props => {
             good: [0.5, Infinity],
             average: [0.15, 0.5],
             bad: [-Infinity, 0.15],
-          }} />
+          }}
+        />
       </Section>
       <Section title="Input">
         <LabeledList>
@@ -43,50 +40,65 @@ export const Smes = props => {
             label="Charge Mode"
             buttons={
               <Button
-                icon={data.inputAttempt ? 'sync-alt' : 'times'}
+                icon={data.inputAttempt ? "sync-alt" : "times"}
                 selected={data.inputAttempt}
-                onClick={() => act('tryinput')}>
-                {data.inputAttempt ? 'Auto' : 'Off'}
+                onClick={() => act("tryinput")}
+              >
+                {data.inputAttempt ? "Auto" : "Off"}
               </Button>
-            }>
+            }
+          >
             <Box color={inputState}>
               {data.capacityPercent >= 100
-                ? 'Fully Charged'
+                ? "Fully Charged"
                 : data.inputting
-                  ? 'Charging'
-                  : 'Not Charging'}
+                ? "Charging"
+                : "Not Charging"}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Target Input">
             <ProgressBar
-              value={data.inputLevel/data.inputLevelMax}
-              content={data.inputLevel_text} />
+              value={data.inputLevel / data.inputLevelMax}
+              content={data.inputLevel_text}
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Adjust Input">
             <Button
               icon="fast-backward"
               disabled={data.inputLevel === 0}
-              onClick={() => act('input', {
-                target: 'min',
-              })} />
+              onClick={() =>
+                act("input", {
+                  target: "min",
+                })
+              }
+            />
             <Button
               icon="backward"
               disabled={data.inputLevel === 0}
-              onClick={() => act('input', {
-                adjust: -10000,
-              })} />
+              onClick={() =>
+                act("input", {
+                  adjust: -10000,
+                })
+              }
+            />
             <Button
               icon="forward"
               disabled={data.inputLevel === data.inputLevelMax}
-              onClick={() => act('input', {
-                adjust: 10000,
-              })} />
+              onClick={() =>
+                act("input", {
+                  adjust: 10000,
+                })
+              }
+            />
             <Button
               icon="fast-forward"
               disabled={data.inputLevel === data.inputLevelMax}
-              onClick={() => act('input', {
-                target: 'max',
-              })} />
+              onClick={() =>
+                act("input", {
+                  target: "max",
+                })
+              }
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Available">
             {data.inputAvailable}
@@ -99,50 +111,65 @@ export const Smes = props => {
             label="Output Mode"
             buttons={
               <Button
-                icon={data.outputAttempt ? 'power-off' : 'times'}
+                icon={data.outputAttempt ? "power-off" : "times"}
                 selected={data.outputAttempt}
-                onClick={() => act('tryoutput')}>
-                {data.outputAttempt ? 'On' : 'Off'}
+                onClick={() => act("tryoutput")}
+              >
+                {data.outputAttempt ? "On" : "Off"}
               </Button>
-            }>
+            }
+          >
             <Box color={outputState}>
               {data.outputting
-                ? 'Sending'
+                ? "Sending"
                 : data.charge > 0
-                  ? 'Not Sending'
-                  : 'No Charge'}
+                ? "Not Sending"
+                : "No Charge"}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Target Output">
             <ProgressBar
-              value={data.outputLevel/data.outputLevelMax}
-              content={data.outputLevel_text} />
+              value={data.outputLevel / data.outputLevelMax}
+              content={data.outputLevel_text}
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Adjust Output">
             <Button
               icon="fast-backward"
               disabled={data.outputLevel === 0}
-              onClick={() => act('output', {
-                target: 'min',
-              })} />
+              onClick={() =>
+                act("output", {
+                  target: "min",
+                })
+              }
+            />
             <Button
               icon="backward"
               disabled={data.outputLevel === 0}
-              onClick={() => act('output', {
-                adjust: -10000,
-              })} />
+              onClick={() =>
+                act("output", {
+                  adjust: -10000,
+                })
+              }
+            />
             <Button
               icon="forward"
               disabled={data.outputLevel === data.outputLevelMax}
-              onClick={() => act('output', {
-                adjust: 10000,
-              })} />
+              onClick={() =>
+                act("output", {
+                  adjust: 10000,
+                })
+              }
+            />
             <Button
               icon="fast-forward"
               disabled={data.outputLevel === data.outputLevelMax}
-              onClick={() => act('output', {
-                target: 'max',
-              })} />
+              onClick={() =>
+                act("output", {
+                  target: "max",
+                })
+              }
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Outputting">
             {data.outputUsed}

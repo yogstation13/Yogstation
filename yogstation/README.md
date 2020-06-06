@@ -1,14 +1,5 @@
 # THIS IS ALL DEPRECATED AND NO LONGER NECESSARY. YOU CAN STILL DO THIS IF YOU WANT, BUT IT IS NO LONGER A REQUIREMENT, SINCE THE MIRRORBOT IS NO LONGER ACTIVE
 
-
-
-
-
-
-
-
-
-
 ###### Special thanks to [HippieStation](https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md) for the help.
 
 # Why do we use this /yogstation/ folder?
@@ -43,7 +34,6 @@ bunch of shitcode here
 
 Once you mirror a file, please follow the above for marking your changes, this way we know what needs to be updated when a file has been mirrored.
 
-
 ### tgstation.dme versus yogstation.dme
 
 **Do not alter the tgstation.dme file.** All additions and removals should be to the yogstation.dme file. Do not manually add files to the dme! Check the file's box in the Dream Maker program. The Dream Maker does not always use alphabetical order, and manually adding a file can cause it to reorder. This means that down the line, many PRs will contain this reorder when it could have been avoided in the first place.
@@ -54,7 +44,7 @@ Icons are notorious for conflicts. Because of this, **ALL NEW ICONS** must go in
 
 ### Defines
 
-Defines only work if they come before the code in which they are used. Because of this, please put all defines in the ``code/__DEFINES/~yogs_defines`` path. Use an existing file, or create a new one if necessary.
+Defines only work if they come before the code in which they are used. Because of this, please put all defines in the `code/__DEFINES/~yogs_defines` path. Use an existing file, or create a new one if necessary.
 
 If a small addition needs to be made outside of the "yogstation" folder, then it should be done by adding a proc. This proc will be defined inside of the "yogstation" folder. By doing this, a large number of things can be done by adding just one line of code outside of the folder! If a file must be changed a lot, re-create it with the changes inside of the "yogstation/code" folder. **Make sure to follow the file's path correctly** (i.e. "code/modules/clothing/clothing.dm"). Then, remove the original file from the yogstation.dme and add the new one.
 
@@ -62,11 +52,11 @@ If a small addition needs to be made outside of the "yogstation" folder, then it
 
 ### Clothing
 
-New clothing items should be a subtype of ``/obj/item/clothing/CLOTHINGTYPE/yogs`` inside of the respective clothing file. For example, replace CLOTHINGTYPE with ears to get ``/obj/item/clothing/ears/yogs`` inside of "ears.dm" in "code/modules/clothing." If the file does not exist, create it and follow this format.
+New clothing items should be a subtype of `/obj/item/clothing/CLOTHINGTYPE/yogs` inside of the respective clothing file. For example, replace CLOTHINGTYPE with ears to get `/obj/item/clothing/ears/yogs` inside of "ears.dm" in "code/modules/clothing." If the file does not exist, create it and follow this format.
 
 ### Actions and spells
 
-New actions and spells should use the "yogstation/icons/mob/actions.dmi" file. If it is a spell, put the code for the spell in "yogstation/code/modules/spells." To make sure that the spell uses the Yogs icon, please add ``action_icon = 'yogstation/icons/mob/actions.dmi'`` and the ``action_icon_state`` var.
+New actions and spells should use the "yogstation/icons/mob/actions.dmi" file. If it is a spell, put the code for the spell in "yogstation/code/modules/spells." To make sure that the spell uses the Yogs icon, please add `action_icon = 'yogstation/icons/mob/actions.dmi'` and the `action_icon_state` var.
 
 ### Reagents
 

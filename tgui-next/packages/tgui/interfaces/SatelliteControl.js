@@ -1,9 +1,16 @@
-import { useBackend } from '../backend';
-import { Button, LabeledList, ProgressBar, Section, Table, Box } from '../components';
-import { Fragment } from 'inferno';
-import { LabeledListItem } from '../components/LabeledList';
+import { useBackend } from "../backend";
+import {
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+  Box,
+} from "../components";
+import { Fragment } from "inferno";
+import { LabeledListItem } from "../components/LabeledList";
 
-export const SatelliteControl = props => {
+export const SatelliteControl = (props) => {
   const { act, data } = useBackend(props);
   const satellites = data.satellites || [];
   return (
@@ -13,29 +20,36 @@ export const SatelliteControl = props => {
           <LabeledList>
             <LabeledListItem label="Coverage">
               <ProgressBar
-                value={data.meteor_shield_coverage
-                  / data.meteor_shield_coverage_max}
-                content={100 * data.meteor_shield_coverage
-                  / data.meteor_shield_coverage_max + '%'}
+                value={
+                  data.meteor_shield_coverage / data.meteor_shield_coverage_max
+                }
+                content={
+                  (100 * data.meteor_shield_coverage) /
+                    data.meteor_shield_coverage_max +
+                  "%"
+                }
                 ranges={{
                   good: [1, Infinity],
-                  average: [0.30, 1],
-                  bad: [-Infinity, 0.30],
-                }} />
+                  average: [0.3, 1],
+                  bad: [-Infinity, 0.3],
+                }}
+              />
             </LabeledListItem>
           </LabeledList>
         </Section>
       )}
       <Section title="Satellite Controls">
         <Box mr={-1}>
-          {satellites.map(satellite => (
+          {satellites.map((satellite) => (
             <Button.Checkbox
               key={satellite.id}
               checked={satellite.active}
               content={"#" + satellite.id + " " + satellite.mode}
-              onClick={() => act('toggle', {
-                id: satellite.id,
-              })}
+              onClick={() =>
+                act("toggle", {
+                  id: satellite.id,
+                })
+              }
             />
           ))}
         </Box>

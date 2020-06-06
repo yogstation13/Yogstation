@@ -1,10 +1,10 @@
-import { classes, isFalsy } from 'common/react';
-import { Component, createRef } from 'inferno';
-import { Box } from './Box';
+import { classes, isFalsy } from "common/react";
+import { Component, createRef } from "inferno";
+import { Box } from "./Box";
 
-const toInputValue = value => {
+const toInputValue = (value) => {
   if (isFalsy(value)) {
-    return '';
+    return "";
   }
   return value;
 };
@@ -16,7 +16,7 @@ export class Input extends Component {
     this.state = {
       editing: false,
     };
-    this.handleInput = e => {
+    this.handleInput = (e) => {
       const { editing } = this.state;
       const { onInput } = this.props;
       if (!editing) {
@@ -26,13 +26,13 @@ export class Input extends Component {
         onInput(e, e.target.value);
       }
     };
-    this.handleFocus = e => {
+    this.handleFocus = (e) => {
       const { editing } = this.state;
       if (!editing) {
         this.setEditing(true);
       }
     };
-    this.handleBlur = e => {
+    this.handleBlur = (e) => {
       const { editing } = this.state;
       const { onChange } = this.props;
       if (editing) {
@@ -42,7 +42,7 @@ export class Input extends Component {
         }
       }
     };
-    this.handleKeyDown = e => {
+    this.handleKeyDown = (e) => {
       const { onInput, onChange } = this.props;
       if (e.keyCode === 13) {
         this.setEditing(false);
@@ -98,22 +98,13 @@ export class Input extends Component {
       ...boxProps
     } = props;
     // Box props
-    const {
-      className,
-      fluid,
-      ...rest
-    } = boxProps;
+    const { className, fluid, ...rest } = boxProps;
     return (
       <Box
-        className={classes([
-          'Input',
-          fluid && 'Input--fluid',
-          className,
-        ])}
-        {...rest}>
-        <div className="Input__baseline">
-          .
-        </div>
+        className={classes(["Input", fluid && "Input--fluid", className])}
+        {...rest}
+      >
+        <div className="Input__baseline">.</div>
         <input
           ref={this.inputRef}
           className="Input__input"
@@ -122,7 +113,8 @@ export class Input extends Component {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onKeyDown={this.handleKeyDown}
-          maxLength={maxLength} />
+          maxLength={maxLength}
+        />
       </Box>
     );
   }

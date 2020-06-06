@@ -1,7 +1,7 @@
-import { classes, pureComponentHooks } from 'common/react';
-import { clamp, toFixed } from 'common/math';
+import { classes, pureComponentHooks } from "common/react";
+import { clamp, toFixed } from "common/math";
 
-export const ProgressBar = props => {
+export const ProgressBar = (props) => {
   const {
     value,
     minValue = 0,
@@ -25,23 +25,20 @@ export const ProgressBar = props => {
   }
   // Default color
   if (!color) {
-    color = 'default';
+    color = "default";
   }
   return (
-    <div
-      className={classes([
-        'ProgressBar',
-        'ProgressBar--color--' + color,
-      ])}>
+    <div className={classes(["ProgressBar", "ProgressBar--color--" + color])}>
       <div
         className="ProgressBar__fill"
         style={{
-          'width': (clamp(scaledValue, 0, 1) * 100) + '%',
-        }} />
+          width: clamp(scaledValue, 0, 1) * 100 + "%",
+        }}
+      />
       <div className="ProgressBar__content">
         {hasContent && content}
         {hasContent && children}
-        {!hasContent && toFixed(scaledValue * 100) + '%'}
+        {!hasContent && toFixed(scaledValue * 100) + "%"}
       </div>
     </div>
   );

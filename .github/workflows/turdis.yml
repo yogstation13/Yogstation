@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Cache SpacemanDMM
         uses: actions/cache@v1
         with:
@@ -27,15 +27,15 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v1.2.0
-      
+
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
         with:
           default: true
-      
+
       - name: Setup PHP
         uses: nanasess/setup-php@v3.0.3
-        with: 
+        with:
           php_version: 5.6
 
       - name: Install Dependencies
@@ -60,21 +60,21 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Install Dependencies
         run: |
           curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386
-      
+
       - name: Cache BYOND
         uses: actions/cache@v1
         with:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
-          
+
       - name: Setup BYOND
         run: |
           tools/travis/install_byond.sh
@@ -84,25 +84,25 @@ jobs:
           echo "::set-env name=PATH::/home/runner/BYOND/byond/bin:$PATH"
           echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
-          
+
       - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
-          tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
+          tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-18.04
     services:
       mariadb:
-       image: mariadb/server
-       ports: 
-         - 3306:3306
-       env:
-        MARIADB_ALLOW_EMPTY_PASSWORD: yes
-        
+        image: mariadb/server
+        ports:
+          - 3306:3306
+        env:
+          MARIADB_ALLOW_EMPTY_PASSWORD: yes
+
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Install Dependencies
         run: |
           curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
@@ -110,14 +110,14 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
-          
+
       - name: Cache BYOND
         uses: actions/cache@v1
         with:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
           restore-keys: ${{ runner.os }}-byond
-          
+
       - name: Setup Environment
         run: |
           tools/travis/install_byond.sh
@@ -133,24 +133,23 @@ jobs:
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
           tools/travis/build_bsql.sh
-          
+
       - name: Compile
         run: |
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
-          
+
       - name: Prepare Artifacts
         run: |
           mkdir artifacts
           cp yogstation.dmb artifacts
           cp yogstation.rsc artifacts
-      
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v1
-        with: 
+        with:
           name: DMB + RSC
           path: ${{github.workspace}}/artifacts
-          
+
       - name: Run Tests
         run: |
           tools/travis/run_server.sh
-

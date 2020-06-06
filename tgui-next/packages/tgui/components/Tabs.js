@@ -1,17 +1,20 @@
-import { classes, normalizeChildren } from 'common/react';
-import { Component } from 'inferno';
-import { Box } from './Box';
-import { Button } from './Button';
+import { classes, normalizeChildren } from "common/react";
+import { Component } from "inferno";
+import { Box } from "./Box";
+import { Button } from "./Button";
 
 // A magic value for enforcing type safety
-const TAB_MAGIC_TYPE = 'Tab';
+const TAB_MAGIC_TYPE = "Tab";
 
-const validateTabs = tabs => {
+const validateTabs = (tabs) => {
   for (let tab of tabs) {
     if (!tab.props || tab.props.__type__ !== TAB_MAGIC_TYPE) {
       const json = JSON.stringify(tab, null, 2);
-      throw new Error('<Tabs> only accepts children of type <Tabs.Tab>.'
-        + 'This is what we received: ' + json);
+      throw new Error(
+        "<Tabs> only accepts children of type <Tabs.Tab>." +
+          "This is what we received: " +
+          json
+      );
     }
   }
 };
@@ -31,11 +34,10 @@ export class Tabs extends Component {
     // Get active tab
     let activeTabKey = props.activeTab || state.activeTabKey;
     // Verify that active tab exists
-    let activeTab = tabs
-      .find(tab => {
-        const key = tab.key || tab.props.label;
-        return key === activeTabKey;
-      });
+    let activeTab = tabs.find((tab) => {
+      const key = tab.key || tab.props.label;
+      return key === activeTabKey;
+    });
     // Set first tab as the active tab
     if (!activeTab) {
       activeTab = tabs[0];
@@ -50,36 +52,24 @@ export class Tabs extends Component {
 
   render() {
     const { props } = this;
-    const {
-      className,
-      vertical,
-      children,
-      ...rest
-    } = props;
-    const {
-      tabs,
-      activeTab,
-      activeTabKey,
-    } = this.getActiveTab();
+    const { className, vertical, children, ...rest } = props;
+    const { tabs, activeTab, activeTabKey } = this.getActiveTab();
     // Retrieve tab content
     let content = null;
     if (activeTab) {
       content = activeTab.props.content || activeTab.props.children;
     }
     // Get children by calling a wrapper function
-    if (typeof content === 'function') {
+    if (typeof content === "function") {
       content = content(activeTabKey);
     }
     return (
       <Box
-        className={classes([
-          'Tabs',
-          vertical && 'Tabs--vertical',
-          className,
-        ])}
-        {...rest}>
+        className={classes(["Tabs", vertical && "Tabs--vertical", className])}
+        {...rest}
+      >
         <div className="Tabs__tabBox">
-          {tabs.map(tab => {
+          {tabs.map((tab) => {
             const {
               className,
               label,
@@ -95,28 +85,27 @@ export class Tabs extends Component {
               <Button
                 key={key}
                 className={classes([
-                  'Tabs__tab',
-                  active && 'Tabs__tab--active',
-                  highlight && !active && 'color-yellow',
+                  "Tabs__tab",
+                  active && "Tabs__tab--active",
+                  highlight && !active && "color-yellow",
                   className,
                 ])}
                 selected={active}
                 color="transparent"
-                onClick={e => {
+                onClick={(e) => {
                   this.setState({ activeTabKey: key });
                   if (onClick) {
                     onClick(e, tab);
                   }
                 }}
-                {...rest}>
+                {...rest}
+              >
                 {label}
               </Button>
             );
           })}
         </div>
-        <div className="Tabs__content">
-          {content || null}
-        </div>
+        <div className="Tabs__content">{content || null}</div>
       </Box>
     );
   }
@@ -126,7 +115,7 @@ export class Tabs extends Component {
  * A dummy component, which is used for carrying props for the
  * tab container.
  */
-export const Tab = props => null;
+export const Tab = (props) => null;
 
 Tab.defaultProps = {
   __type__: TAB_MAGIC_TYPE,

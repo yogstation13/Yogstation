@@ -216,7 +216,7 @@
 
 
 /obj/structure/closet/crate/magic/PopulateContents()
-	var/table = rand(1,12) //12 customized surprise mechanics™  for you all
+	var/table = rand(1,12) //12 customized surprise mechanicsï¿½  for you all
 	switch(table)
 		if(1)
 			new /obj/item/gun/magic/rune/icycle_rune(src)

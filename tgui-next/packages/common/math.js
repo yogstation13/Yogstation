@@ -9,7 +9,7 @@ export const clamp = (value, min = 0, max = 1) => {
  * Returns a rounded number.
  * TODO: Replace this native rounding function with a more robust one.
  */
-export const round = value => Math.round(value);
+export const round = (value) => Math.round(value);
 
 /**
  * Returns a string representing a number in fixed point notation.

@@ -1,6 +1,6 @@
 author: "  Toriate"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - imageadd: "New claymore sprites"
   - imageadd: "New holy claymore sprites"
   - imageadd: "New eldritch longsword sprites"

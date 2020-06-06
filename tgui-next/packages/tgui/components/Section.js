@@ -1,7 +1,7 @@
-import { classes, isFalsy, pureComponentHooks } from 'common/react';
-import { Box } from './Box';
+import { classes, isFalsy, pureComponentHooks } from "common/react";
+import { Box } from "./Box";
 
-export const Section = props => {
+export const Section = (props) => {
   const {
     className,
     title,
@@ -15,20 +15,13 @@ export const Section = props => {
   const hasContent = !isFalsy(content) || !isFalsy(children);
   return (
     <Box
-      className={classes([
-        'Section',
-        'Section--level--' + level,
-        className,
-      ])}
-      {...rest}>
+      className={classes(["Section", "Section--level--" + level, className])}
+      {...rest}
+    >
       {hasTitle && (
         <div className="Section__title">
-          <span className="Section__titleText">
-            {title}
-          </span>
-          <div className="Section__buttons">
-            {buttons}
-          </div>
+          <span className="Section__titleText">{title}</span>
+          <div className="Section__buttons">{buttons}</div>
         </div>
       )}
       {hasContent && (

@@ -10,9 +10,11 @@
   right: 0;
   color: base.$color-fg;
   background-color: base.$color-bg;
-  background-image: linear-gradient(to bottom,
+  background-image: linear-gradient(
+    to bottom,
     base.$color-bg-start 0%,
-    base.$color-bg-end 100%);
+    base.$color-bg-end 100%
+  );
 }
 
 .Layout__titleBar {
@@ -35,27 +37,13 @@
   margin-bottom: -6px;
 
   // Fancy scrollbar
-  scrollbar-base-color: color.scale(
-    base.$color-bg,
-    $lightness: -25%);
-  scrollbar-face-color: color.scale(
-    base.$color-bg,
-    $lightness: 10%);
-  scrollbar-3dlight-color: color.scale(
-    base.$color-bg,
-    $lightness: 0%);
-  scrollbar-highlight-color: color.scale(
-    base.$color-bg,
-    $lightness: 0%);
-  scrollbar-track-color: color.scale(
-    base.$color-bg,
-    $lightness: -25%);
-  scrollbar-arrow-color: color.scale(
-    base.$color-bg,
-    $lightness: 50%);
-  scrollbar-shadow-color: color.scale(
-    base.$color-bg,
-    $lightness: 10%);
+  scrollbar-base-color: color.scale(base.$color-bg, $lightness: -25%);
+  scrollbar-face-color: color.scale(base.$color-bg, $lightness: 10%);
+  scrollbar-3dlight-color: color.scale(base.$color-bg, $lightness: 0%);
+  scrollbar-highlight-color: color.scale(base.$color-bg, $lightness: 0%);
+  scrollbar-track-color: color.scale(base.$color-bg, $lightness: -25%);
+  scrollbar-arrow-color: color.scale(base.$color-bg, $lightness: 50%);
+  scrollbar-shadow-color: color.scale(base.$color-bg, $lightness: 10%);
 }
 
 .Layout__content--scrollable {

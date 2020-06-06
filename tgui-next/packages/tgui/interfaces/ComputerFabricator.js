@@ -1,9 +1,9 @@
-import { multiline } from 'common/string';
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Box, Button, Grid, Section, Table, Tooltip } from '../components';
+import { multiline } from "common/string";
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import { Box, Button, Grid, Section, Table, Tooltip } from "../components";
 
-export const ComputerFabricator = props => {
+export const ComputerFabricator = (props) => {
   const { state } = props;
   const { act, data } = useBackend(props);
   return (
@@ -17,7 +17,8 @@ export const ComputerFabricator = props => {
           mb={1}
           icon="circle"
           content="Clear Order"
-          onClick={() => act('clean_order')} />
+          onClick={() => act("clean_order")}
+        />
       )}
       <CFScreen state={state} />
     </Fragment>
@@ -26,18 +27,12 @@ export const ComputerFabricator = props => {
 
 // This had a pretty gross backend so this was unfortunately one of the
 // best ways of doing it.
-const CFScreen = props => {
+const CFScreen = (props) => {
   const { act, data } = useBackend(props);
   if (data.state === 0) {
     return (
-      <Section
-        title="Step 1"
-        minHeight={51}>
-        <Box
-          mt={5}
-          bold
-          textAlign="center"
-          fontSize="40px">
+      <Section title="Step 1" minHeight={51}>
+        <Box mt={5} bold textAlign="center" fontSize="40px">
           Choose your Device
         </Box>
         <Box mt={3}>
@@ -50,9 +45,12 @@ const CFScreen = props => {
                 textAlign="center"
                 fontSize="30px"
                 lineHeight="50px"
-                onClick={() => act('pick_device', {
-                  pick: '1',
-                })} />
+                onClick={() =>
+                  act("pick_device", {
+                    pick: "1",
+                  })
+                }
+              />
             </Grid.Column>
             <Grid.Column>
               <Button
@@ -62,9 +60,12 @@ const CFScreen = props => {
                 textAlign="center"
                 fontSize="30px"
                 lineHeight="50px"
-                onClick={() => act('pick_device', {
-                  pick: '2',
-                })} />
+                onClick={() =>
+                  act("pick_device", {
+                    pick: "2",
+                  })
+                }
+              />
             </Grid.Column>
           </Grid>
         </Box>
@@ -76,84 +77,101 @@ const CFScreen = props => {
       <Section
         title="Step 2: Customize your device"
         minHeight={47}
-        buttons={(
+        buttons={
           <Box bold color="good">
             ${data.totalprice}
           </Box>
-        )}>
+        }
+      >
         <Table width="100%">
           <Table.Row>
-            <Table.Cell
-              bold
-              position="relative">
+            <Table.Cell bold position="relative">
               Battery:
               <Tooltip
                 content={multiline`
                   Allows your device to operate without external utility power
                   source. Advanced batteries increase battery life.
                 `}
-                position="right" />
+                position="right"
+              />
             </Table.Cell>
-            <Table.Cell >
+            <Table.Cell>
               <Button
                 content="Standard"
                 selected={data.hw_battery === 1}
-                onClick={() => act('hw_battery', {
-                  battery: '1',
-                })} />
+                onClick={() =>
+                  act("hw_battery", {
+                    battery: "1",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Upgraded"
                 selected={data.hw_battery === 2}
-                onClick={() => act('hw_battery', {
-                  battery: '2',
-                })} />
+                onClick={() =>
+                  act("hw_battery", {
+                    battery: "2",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Advanced"
                 selected={data.hw_battery === 3}
-                onClick={() => act('hw_battery', {
-                  battery: '3',
-                })} />
+                onClick={() =>
+                  act("hw_battery", {
+                    battery: "3",
+                  })
+                }
+              />
             </Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell
-              bold
-              position="relative">
+            <Table.Cell bold position="relative">
               Hard Drive:
               <Tooltip
                 content={multiline`
                   Stores file on your device. Advanced drives can store more
                   files, but use more power, shortening battery life.
                 `}
-                position="right" />
+                position="right"
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Standard"
                 selected={data.hw_disk === 1}
-                onClick={() => act('hw_disk', {
-                  disk: '1',
-                })} />
+                onClick={() =>
+                  act("hw_disk", {
+                    disk: "1",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Upgraded"
                 selected={data.hw_disk === 2}
-                onClick={() => act('hw_disk', {
-                  disk: '2',
-                })} />
+                onClick={() =>
+                  act("hw_disk", {
+                    disk: "2",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Advanced"
                 selected={data.hw_disk === 3}
-                onClick={() => act('hw_disk', {
-                  disk: '3',
-                })} />
+                onClick={() =>
+                  act("hw_disk", {
+                    disk: "3",
+                  })
+                }
+              />
             </Table.Cell>
           </Table.Row>
           <Table.Row>
@@ -166,31 +184,41 @@ const CFScreen = props => {
                   advanced cards can operate anywhere near the station, which
                   includes asteroid outposts
                 `}
-                position="right" />
+                position="right"
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="None"
                 selected={data.hw_netcard === 0}
-                onClick={() => act('hw_netcard', {
-                  netcard: '0',
-                })} />
+                onClick={() =>
+                  act("hw_netcard", {
+                    netcard: "0",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Standard"
                 selected={data.hw_netcard === 1}
-                onClick={() => act('hw_netcard', {
-                  netcard: '1',
-                })} />
+                onClick={() =>
+                  act("hw_netcard", {
+                    netcard: "1",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Advanced"
                 selected={data.hw_netcard === 2}
-                onClick={() => act('hw_netcard', {
-                  netcard: '2',
-                })} />
+                onClick={() =>
+                  act("hw_netcard", {
+                    netcard: "2",
+                  })
+                }
+              />
             </Table.Cell>
           </Table.Row>
           <Table.Row>
@@ -203,23 +231,30 @@ const CFScreen = props => {
                   This device was certified EcoFriendlyPlus and is capable of
                   recycling existing paper for printing purposes.
                 `}
-                position="right" />
+                position="right"
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="None"
                 selected={data.hw_nanoprint === 0}
-                onClick={() => act('hw_nanoprint', {
-                  print: '0',
-                })} />
+                onClick={() =>
+                  act("hw_nanoprint", {
+                    print: "0",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Standard"
                 selected={data.hw_nanoprint === 1}
-                onClick={() => act('hw_nanoprint', {
-                  print: '1',
-                })} />
+                onClick={() =>
+                  act("hw_nanoprint", {
+                    print: "1",
+                  })
+                }
+              />
             </Table.Cell>
           </Table.Row>
           <Table.Row>
@@ -232,23 +267,30 @@ const CFScreen = props => {
                   to read your identification, it is just necessary to
                   manipulate other cards.
                 `}
-                position="right" />
+                position="right"
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="None"
                 selected={data.hw_card === 0}
-                onClick={() => act('hw_card', {
-                  card: '0',
-                })} />
+                onClick={() =>
+                  act("hw_card", {
+                    card: "0",
+                  })
+                }
+              />
             </Table.Cell>
             <Table.Cell>
               <Button
                 content="Standard"
                 selected={data.hw_card === 1}
-                onClick={() => act('hw_card', {
-                  card: '1',
-                })} />
+                onClick={() =>
+                  act("hw_card", {
+                    card: "1",
+                  })
+                }
+              />
             </Table.Cell>
           </Table.Row>
           {data.devtype !== 2 && (
@@ -263,23 +305,30 @@ const CFScreen = props => {
                       Advanced CPUs use more power, but allow you to run
                       more programs on background at once.
                     `}
-                    position="right" />
+                    position="right"
+                  />
                 </Table.Cell>
                 <Table.Cell>
                   <Button
                     content="Standard"
                     selected={data.hw_cpu === 1}
-                    onClick={() => act('hw_cpu', {
-                      cpu: '1',
-                    })} />
+                    onClick={() =>
+                      act("hw_cpu", {
+                        cpu: "1",
+                      })
+                    }
+                  />
                 </Table.Cell>
                 <Table.Cell>
                   <Button
                     content="Advanced"
                     selected={data.hw_cpu === 2}
-                    onClick={() => act('hw_cpu', {
-                      cpu: '2',
-                    })} />
+                    onClick={() =>
+                      act("hw_cpu", {
+                        cpu: "2",
+                      })
+                    }
+                  />
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
@@ -292,23 +341,30 @@ const CFScreen = props => {
                       alternative power source. This component is currently
                       unavailable on tablet computers due to size restrictions.
                     `}
-                    position="right" />
+                    position="right"
+                  />
                 </Table.Cell>
                 <Table.Cell>
                   <Button
                     content="None"
                     selected={data.hw_tesla === 0}
-                    onClick={() => act('hw_tesla', {
-                      tesla: '0',
-                    })} />
+                    onClick={() =>
+                      act("hw_tesla", {
+                        tesla: "0",
+                      })
+                    }
+                  />
                 </Table.Cell>
                 <Table.Cell>
                   <Button
                     content="Standard"
                     selected={data.hw_tesla === 1}
-                    onClick={() => act('hw_tesla', {
-                      tesla: '1',
-                    })} />
+                    onClick={() =>
+                      act("hw_tesla", {
+                        tesla: "1",
+                      })
+                    }
+                  />
                 </Table.Cell>
               </Table.Row>
             </Fragment>
@@ -322,39 +378,24 @@ const CFScreen = props => {
           textAlign="center"
           fontSize="18px"
           lineHeight="26px"
-          onClick={() => act('confirm_order')} />
+          onClick={() => act("confirm_order")}
+        />
       </Section>
     );
   }
   if (data.state === 2) {
     return (
-      <Section
-        title="Step 3: Payment"
-        minHeight={47}>
-        <Box
-          italic
-          textAlign="center"
-          fontSize="20px">
+      <Section title="Step 3: Payment" minHeight={47}>
+        <Box italic textAlign="center" fontSize="20px">
           Your device is ready for fabrication...
         </Box>
-        <Box
-          bold
-          mt={2}
-          textAlign="center"
-          fontSize="16px">
-          <Box inline>
-            Please insert the required
-          </Box>
-          {' '}
+        <Box bold mt={2} textAlign="center" fontSize="16px">
+          <Box inline>Please insert the required</Box>{" "}
           <Box inline color="good">
             ${data.totalprice}
           </Box>
         </Box>
-        <Box
-          bold
-          mt={1}
-          textAlign="center"
-          fontSize="18px">
+        <Box bold mt={1} textAlign="center" fontSize="18px">
           Current:
         </Box>
         <Box
@@ -362,7 +403,8 @@ const CFScreen = props => {
           mt={0.5}
           textAlign="center"
           fontSize="18px"
-          color={data.credits >= data.totalprice ? "good" : "bad"}>
+          color={data.credits >= data.totalprice ? "good" : "bad"}
+        >
           ${data.credits}
         </Box>
         <Button
@@ -374,25 +416,18 @@ const CFScreen = props => {
           textAlign="center"
           fontSize="20px"
           lineHeight="28px"
-          onClick={() => act('purchase')} />
+          onClick={() => act("purchase")}
+        />
       </Section>
     );
   }
   if (data.state === 3) {
     return (
-      <Section
-        minHeight={47}>
-        <Box
-          bold
-          textAlign="center"
-          fontSize="28px"
-          mt={10}>
+      <Section minHeight={47}>
+        <Box bold textAlign="center" fontSize="28px" mt={10}>
           Thank you for your purchase!
         </Box>
-        <Box
-          italic
-          mt={1}
-          textAlign="center">
+        <Box italic mt={1} textAlign="center">
           If you experience any difficulties with your new device, please
           contact your local network administrator.
         </Box>

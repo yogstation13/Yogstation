@@ -7,6 +7,7 @@ The best practice to have while coding is to keep everything modularized, or the
 ## List of edits
 
 ### Example change
+
 ExampleProc() in /repo/ExampleTGFile.dm
 Example change description
 Example icon change

@@ -1,8 +1,8 @@
-import { Fragment } from 'inferno';
-import { useBackend } from '../backend';
-import { Box, Button, Section } from '../components';
+import { Fragment } from "inferno";
+import { useBackend } from "../backend";
+import { Box, Button, Section } from "../components";
 
-export const KeycardAuth = props => {
+export const KeycardAuth = (props) => {
   const { act, data } = useBackend(props);
   return (
     <Section>
@@ -21,8 +21,9 @@ export const KeycardAuth = props => {
                 textAlign="center"
                 lineHeight="60px"
                 fluid
-                onClick={() => act('auth_swipe')}
-                content="Authorize" />
+                onClick={() => act("auth_swipe")}
+                content="Authorize"
+              />
             )}
             {data.auth_required === 0 && (
               <Fragment>
@@ -30,19 +31,22 @@ export const KeycardAuth = props => {
                   icon="exclamation-triangle"
                   fluid
                   onClick={() => {
-                    return act('red_alert');
+                    return act("red_alert");
                   }}
-                  content="Red Alert" />
+                  content="Red Alert"
+                />
                 <Button
                   icon="wrench"
                   fluid
-                  onClick={() => act('emergency_maint')}
-                  content="Emergency Maintenance Access" />
+                  onClick={() => act("emergency_maint")}
+                  content="Emergency Maintenance Access"
+                />
                 <Button
                   icon="meteor"
                   fluid
-                  onClick={() => act('bsa_unlock')}
-                  content="Bluespace Artillery Unlock" />
+                  onClick={() => act("bsa_unlock")}
+                  content="Bluespace Artillery Unlock"
+                />
               </Fragment>
             )}
           </Fragment>

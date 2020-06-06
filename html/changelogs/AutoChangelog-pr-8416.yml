@@ -1,6 +1,6 @@
 author: "swissloaf"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - tweak: "Changes repo link to modern version"
   - rscdel: "Removes Yogs General Survey from MOTD"
   - rscadd: "Adds mentor reference and application link"

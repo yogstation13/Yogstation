@@ -1,6 +1,6 @@
 <?php
 //This file contains things that should not be touched by the automatic live tracker
- 
+
 //Github lets you have it sign the message with a secret that you can validate. This prevents people from faking events.
 //This var should match the secret you configured for this webhook on github.
 //This is required as otherwise somebody could trick the script into leaking the api key.
@@ -11,20 +11,19 @@ $hookSecret = '08ajh0qj93209qj90jfq932j32r';
 $apiKey = '209ab8d879c0f987d06a09b9d879c0f987d06a09b9d8787d0a089c';
 
 //Used to prevent potential RCEs
-$repoOwnerAndName = "tgstation/tgstation";
+$repoOwnerAndName = 'tgstation/tgstation';
 
 //Auto update settings
-$enable_live_tracking = true;	//auto update this file from the repository
+$enable_live_tracking = true; //auto update this file from the repository
 $path_to_script = 'tools/WebhookProcessor/github_webhook_processor.php';
-$tracked_branch = "master";
+$tracked_branch = 'master';
 
 //PR balance settings.
-$trackPRBalance = true;	//set this to false to disable PR balance tracking
-$prBalanceJson = '';	//Set this to the path you'd like the writable pr balance file to be stored, not setting it writes it to the working directory
-$startingPRBalance = 5;	//Starting balance for never before seen users
+$trackPRBalance = true; //set this to false to disable PR balance tracking
+$prBalanceJson = ''; //Set this to the path you'd like the writable pr balance file to be stored, not setting it writes it to the working directory
+$startingPRBalance = 5; //Starting balance for never before seen users
 //team 133041: tgstation/commit-access
-$maintainer_team_id = 133041;	//org team id that is exempt from PR balance system, setting this to null will use anyone with write access to the repo. Get from https://api.github.com/orgs/:org/teams
-
+$maintainer_team_id = 133041; //org team id that is exempt from PR balance system, setting this to null will use anyone with write access to the repo. Get from https://api.github.com/orgs/:org/teams
 
 //anti-spam measures. Don't announce PRs in game to people unless they've gotten a pr merged before
 //options are:
@@ -33,7 +32,7 @@ $maintainer_team_id = 133041;	//org team id that is exempt from PR balance syste
 //	"disable" - disables.
 //defaults to org if left blank or given invalid values.
 //This can also be ignored on a per webhook or per game server bases.
-$validation = "org";
+$validation = 'org';
 
 //how many merged prs must they have under the rules above to have their pr announced to the game servers.
 $validation_count = 1;
@@ -130,4 +129,3 @@ $discordWebHooks[$configitem]['no_text'] = false;
 */
 
 unset($configitem); //ignore
-

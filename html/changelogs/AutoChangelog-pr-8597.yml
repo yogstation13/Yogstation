@@ -1,4 +1,4 @@
 author: "FLME"
-delete-after: true 
-changes: 
+delete-after: true
+changes:
   - rscadd: "adds autolathe to pubby"

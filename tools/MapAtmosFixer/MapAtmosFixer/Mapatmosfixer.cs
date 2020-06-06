@@ -30,7 +30,8 @@ namespace MapAtmosFixer
         /// <returns>Shorted path</returns>
         public static string ShortenPath(string path, ref string masterpath)
         {
-            return path.Substring(masterpath.Length, path.Length - masterpath.Length);
+            return path
+                .Substring(masterpath.Length, path.Length - masterpath.Length);
         }
 
         /// <summary>
@@ -41,8 +42,7 @@ namespace MapAtmosFixer
         /// <returns></returns>
         public static bool StartsWith(string str, string start)
         {
-            if (start.Length > str.Length)
-                return false;
+            if (start.Length > str.Length) return false;
 
             return str.Substring(0, start.Length) == start;
         }
@@ -58,12 +58,10 @@ namespace MapAtmosFixer
             var rgx = new Regex(pattern, RegexOptions.IgnoreCase);
             MatchCollection matches = rgx.Matches(txt);
 
-            if (matches.Count == 0)
-                return null;
+            if (matches.Count == 0) return null;
 
             GroupCollection groups = matches[0].Groups;
-            if (groups.Count <= 1)
-                return null;
+            if (groups.Count <= 1) return null;
 
             return groups;
         }
@@ -110,7 +108,11 @@ namespace MapAtmosFixer
         /// <param name="path">Object path to change</param>
         /// <param name="iconstate">Iconstate it has</param>
         /// <param name="objtype">Type of the object</param>
-        public static void ProcessIconstate(ref string path, string iconstate, Objtype objtype)
+        public static void ProcessIconstate(
+            ref string path,
+            string iconstate,
+            Objtype objtype
+        )
         {
             switch (objtype)
             {
@@ -118,46 +120,60 @@ namespace MapAtmosFixer
                     switch (iconstate)
                     {
                         case "intact":
-                            path = "/obj/machinery/atmospherics/pipe/simple/general/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/general/visible";
                             return;
                         case "intact-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/general/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/general/hidden";
                             return;
                         case "intact-b":
-                            path = "/obj/machinery/atmospherics/pipe/simple/supply/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/supply/visible";
                             return;
                         case "intact-b-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/supply/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/supply/hidden";
                             return;
                         case "intact-r":
-                            path = "/obj/machinery/atmospherics/pipe/simple/scrubbers/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/scrubbers/visible";
                             return;
                         case "intact-r-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden";
                             return;
                         case "intact-y":
-                            path = "/obj/machinery/atmospherics/pipe/simple/yellow/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/yellow/visible";
                             return;
                         case "intact-y-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/yellow/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/yellow/hidden";
                             return;
                         case "intact-g":
-                            path = "/obj/machinery/atmospherics/pipe/simple/green/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/green/visible";
                             return;
                         case "intact-g-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/green/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/green/hidden";
                             return;
                         case "intact-c":
-                            path = "/obj/machinery/atmospherics/pipe/simple/cyan/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/cyan/visible";
                             return;
                         case "intact-c-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/cyan/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/cyan/hidden";
                             return;
                         case "intact-p":
-                            path = "/obj/machinery/atmospherics/pipe/simple/supplymain/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/supplymain/visible";
                             return;
                         case "intact-p-f":
-                            path = "/obj/machinery/atmospherics/pipe/simple/supplymain/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/simple/supplymain/hidden";
                             return;
                     }
                     return;
@@ -165,46 +181,60 @@ namespace MapAtmosFixer
                     switch (iconstate)
                     {
                         case "manifold":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/general/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/general/visible";
                             return;
                         case "manifold-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/general/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/general/hidden";
                             return;
                         case "manifold-b":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/supply/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/supply/visible";
                             return;
                         case "manifold-b-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/supply/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/supply/hidden";
                             return;
                         case "manifold-r":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible";
                             return;
                         case "manifold-r-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden";
                             return;
                         case "manifold-c":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/cyan/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/cyan/visible";
                             return;
                         case "manifold-c-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/cyan/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/cyan/hidden";
                             return;
                         case "manifold-y":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/yellow/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/yellow/visible";
                             return;
                         case "manifold-y-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/yellow/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/yellow/hidden";
                             return;
                         case "manifold-g":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/green/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/green/visible";
                             return;
                         case "manifold-g-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/green/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/green/hidden";
                             return;
                         case "manifold-p":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/supplymain/visible";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/supplymain/visible";
                             return;
                         case "manifold-p-f":
-                            path = "/obj/machinery/atmospherics/pipe/manifold/supplymain/hidden";
+                            path =
+                                "/obj/machinery/atmospherics/pipe/manifold/supplymain/hidden";
                             return;
                     }
                     return;
@@ -218,45 +248,48 @@ namespace MapAtmosFixer
         public static void ProcessObject(ref string line)
         {
             GroupCollection g = Regex(@"^(.+)\{(.+)\}", line);
-            if (g == null)
-                return;
+            if (g == null) return;
 
             string path = g[1].Value;
             string stringtags = g[2].Value;
 
             Objtype objtype = GetType(path);
-            if (objtype == Objtype.Null)
-                return;
+            if (objtype == Objtype.Null) return;
 
-            var tags = new List<string>(stringtags.Split(new[] {"; "}, StringSplitOptions.None));
+            var tags =
+                new List<string>(stringtags
+                        .Split(new [] { "; " }, StringSplitOptions.None));
             for (int i = 0; i < tags.Count; i++)
             {
                 string tag = tags[i];
 
                 GroupCollection g2 = Regex(@"^(.+)[ ]=[ ](.+)", tag);
-                if (g2 == null)
-                    continue;
+                if (g2 == null) continue;
 
                 string name = g2[1].Value;
-                string value = g2[2].Value.Trim(new[] {'"'});
+                string value = g2[2].Value.Trim(new [] { '"' });
 
                 //Removes icon_state from heaters/freezers
                 if (objtype == Objtype.Temp)
                 {
                     if (name == "icon_state")
                     {
-                        tags.RemoveAt(i);
+                        tags.RemoveAt (i);
                         i--;
                     }
                     continue;
                 }
 
                 //General removal of tags we shouldn't have
-                if (name == "pipe_color" || name == "color" || name == "level" ||
-                    (objtype != Objtype.Pump && name == "name")
-                    || (objtype == Objtype.Pump && name == "icon_state"))
+                if (
+                    name == "pipe_color" ||
+                    name == "color" ||
+                    name == "level" ||
+                    (objtype != Objtype.Pump && name == "name") ||
+                    (objtype == Objtype.Pump && name == "icon_state")
+                )
                 {
-                    tags.RemoveAt(i);
+                    tags.RemoveAt (i);
                     i--;
                     continue;
                 }
@@ -265,7 +298,7 @@ namespace MapAtmosFixer
                 if (name == "icon_state")
                 {
                     ProcessIconstate(ref path, value, objtype);
-                    tags.RemoveAt(i);
+                    tags.RemoveAt (i);
                     i--;
                     continue;
                 }
@@ -273,8 +306,9 @@ namespace MapAtmosFixer
                 //Fixes up injector
                 if (objtype == Objtype.Injector && name == "on")
                 {
-                    path = "/obj/machinery/atmospherics/unary/outlet_injector/on";
-                    tags.RemoveAt(i);
+                    path =
+                        "/obj/machinery/atmospherics/unary/outlet_injector/on";
+                    tags.RemoveAt (i);
                     i--;
                 }
             }
@@ -290,12 +324,18 @@ namespace MapAtmosFixer
         public static void FixConnector(ref string line)
         {
             //Dirty shit, don't read this
-            if (line.Contains("/obj/machinery/atmospherics/portables_connector") &&
+            if (
+                line
+                    .Contains("/obj/machinery/atmospherics/portables_connector") &&
                 //!line.Contains("/turf/open/floor/plating") &&                        // Most of the time connectors on plating want to be visible..
-                !line.Contains("/obj/machinery/atmospherics/portables_connector/visible"))  // Makes sure we don't update same line twice
+                !line
+                    .Contains("/obj/machinery/atmospherics/portables_connector/visible") // Makes sure we don't update same line twice
+            )
             {
-                line = line.Replace("/obj/machinery/atmospherics/portables_connector",
-                    "/obj/machinery/atmospherics/portables_connector/visible");
+                line =
+                    line
+                        .Replace("/obj/machinery/atmospherics/portables_connector",
+                        "/obj/machinery/atmospherics/portables_connector/visible");
             }
         }
 
@@ -336,15 +376,13 @@ namespace MapAtmosFixer
             {
                 string line = lines[i];
 
-                if (line.Length == 0)
-                    continue;
+                if (line.Length == 0) continue;
 
-                if (line[0] != '"')
-                    continue;
+                if (line[0] != '"') continue;
 
-                GroupCollection g = Regex(@"^""([\w]+)""[ ]\=[ ]\((.+)\)", line);
-                if (g == null)
-                    continue;
+                GroupCollection g =
+                    Regex(@"^""([\w]+)""[ ]\=[ ]\((.+)\)", line);
+                if (g == null) continue;
 
                 string letters = g[1].Value;
                 string types = g[2].Value;
@@ -362,8 +400,7 @@ namespace MapAtmosFixer
         {
             //string exepath = "C:\\Users\\Daniel\\Documents\\GitHub\\-tg-station";
             //string file = "C:\\Users\\Daniel\\Documents\\GitHub\\-tg-station\\_maps\\map_files\\tgstation.2.1.3.dmm";
-
-            Process(file);
+            Process (file);
             Console.WriteLine("Done");
             Console.Read();
         }
