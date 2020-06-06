@@ -17132,16 +17132,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"aHJ" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/camera{
-	c_tag = "Paramedic Staging";
-	dir = 8;
-	network = list("ss13","medbay")
-	},
-/obj/structure/closet/secure_closet/paramedic,
-/turf/open/floor/plasteel,
-/area/medical/paramedic)
 "aHK" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /obj/effect/turf_decal/tile/red{
@@ -58403,6 +58393,18 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"fKT" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/camera{
+	c_tag = "Paramedic Staging";
+	dir = 8;
+	network = list("ss13","medbay")
+	},
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/eva/paramedic,
+/turf/open/floor/plasteel,
+/area/medical/paramedic)
 "fLq" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -107113,7 +107115,7 @@ jTR
 bfP
 bfS
 bgC
-aHJ
+fKT
 rZt
 bjM
 bon

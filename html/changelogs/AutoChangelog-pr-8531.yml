@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - tweak: "ai is now in sat, comms are now in center, upload is in board storage, board storage is in gravgen, gravgen is in smes."

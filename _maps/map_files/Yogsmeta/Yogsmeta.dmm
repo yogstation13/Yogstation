@@ -20148,10 +20148,6 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aJq" = (
-/obj/structure/closet/secure_closet/paramedic,
-/turf/open/floor/plasteel/white,
-/area/medical/paramedic)
 "aJr" = (
 /turf/closed/wall,
 /area/clerk)
@@ -75337,6 +75333,12 @@
 	},
 /turf/open/floor/plating,
 /area/science/mixing)
+"cBr" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/suit/space/eva/paramedic,
+/obj/item/clothing/head/helmet/space/eva/paramedic,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "cBs" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -110942,7 +110944,7 @@ aiT
 auS
 ayY
 aBR
-aJq
+cBr
 azi
 bUq
 bZB

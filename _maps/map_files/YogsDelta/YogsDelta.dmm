@@ -126624,6 +126624,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"jAy" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/roller,
+/obj/item/clothing/glasses/hud/health,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/clothing/suit/space/eva/paramedic,
+/obj/item/clothing/head/helmet/space/eva/paramedic,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "jAD" = (
 /mob/living/simple_animal/pet/dog/pug{
 	name = "Swanson"
@@ -168573,7 +168584,7 @@ ccP
 cli
 cfj
 aaq
-aaG
+jAy
 aaG
 aaQ
 aaV
