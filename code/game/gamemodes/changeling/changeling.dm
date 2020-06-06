@@ -29,7 +29,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 /datum/game_mode/changeling/pre_setup()
 
 	if(num_players() < 31)
-		protected_jobs += list("Research Director", "Chief Medical Officer", "Chief Engineer")
+		protected_jobs += list("Research Director", "Chief Medical Officer", "Chief Engineer") //YOGS
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
