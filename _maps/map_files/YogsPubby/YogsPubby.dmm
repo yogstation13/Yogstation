@@ -57094,6 +57094,19 @@
 /obj/structure/sign/warning/vacuum/external,
 /turf/open/floor/plating,
 /area/science/mixing)
+"dBe" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "dBW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57231,6 +57244,16 @@
 "emV" = (
 /turf/open/space,
 /area/space/nearstation)
+"epy" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/obj/machinery/computer/cryopod{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "epJ" = (
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = 32
@@ -57246,12 +57269,6 @@
 	icon_state = "wood-broken"
 	},
 /area/maintenance/department/crew_quarters/dorms)
-"etv" = (
-/obj/machinery/cryopod{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "euQ" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -58350,6 +58367,15 @@
 /obj/item/clothing/suit/apron/chef,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
+"iFu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "iHa" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -58421,19 +58447,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
-"jfk" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/machinery/cryopod{
-	dir = 8
-	},
-/obj/machinery/computer/cryopod{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "jhD" = (
 /obj/structure/sink{
 	dir = 8;
@@ -58664,18 +58677,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"koM" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	icon_state = "right";
-	name = "Unisex Showers";
-	req_access_txt = "0"
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "krS" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Bar"
@@ -59061,6 +59062,12 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
+"lEL" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "lGp" = (
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plasteel/dark,
@@ -59235,6 +59242,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"msc" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	icon_state = "right";
+	name = "Unisex Showers";
+	req_access_txt = "0"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "mtu" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -60014,6 +60033,12 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"pcr" = (
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "pdq" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -62022,15 +62047,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
-"wZf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/cryopod{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "xaO" = (
 /obj/structure/disposaloutlet,
 /obj/structure/disposalpipe/trunk{
@@ -62041,12 +62057,13 @@
 "xbJ" = (
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
-"xbM" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
+"xdG" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/eva/paramedic,
+/turf/open/floor/plasteel,
+/area/medical/paramedic)
 "xja" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -62088,16 +62105,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"xmH" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/obj/machinery/computer/cryopod{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "xsO" = (
 /obj/item/ectoplasm,
 /turf/open/floor/plating{
@@ -83673,7 +83680,7 @@ lGp
 aeU
 afI
 aeU
-xmH
+epy
 agy
 afH
 agY
@@ -83929,8 +83936,8 @@ aem
 aeW
 afr
 agy
-koM
-xbM
+msc
+lEL
 agy
 agy
 agy
@@ -87334,7 +87341,7 @@ aDZ
 awN
 awG
 abd
-aaQ
+xdG
 abk
 abc
 aaM
@@ -102456,9 +102463,9 @@ aaa
 apX
 apX
 apX
-jfk
-wZf
-etv
+dBe
+iFu
+pcr
 avk
 aDV
 dbi
