@@ -98,15 +98,19 @@
 	if(default_deconstruction_crowbar(O) || stat)
 		return TRUE
 
-
 	if(istype(O, /obj/item/ticket_machine_remote))
 		if (!linked)
 			var/obj/item/ticket_machine_remote/Z = O //typecasting!!
-			Z.connection=src
-			to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
-			linked = TRUE
-			return TRUE
-		to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
+			if (!Z.connection)
+				Z.connection=src
+				to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
+				linked = TRUE
+				return TRUE
+			else
+				to_chat(user,"<span class='warning'>The remote is already linked to a ticket machine!</span>")
+
+		else
+			to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
 
 	if(istype(O, /obj/item/ticket_machine_ticket))
 		to_chat(user, "<span class='warning'>You put [O] into the ticket machine's recycling bin.</span>")
@@ -140,7 +144,7 @@
 	if(resistance_flags & ON_FIRE)
 		icon_state = "ticket_onfire"
 
-/obj/item/paper/attackby(obj/item/P, mob/living/carbon/human/user, params)
+/obj/item/ticket_machine_ticket/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	..()
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
@@ -155,7 +159,7 @@
 
 		user.dropItemToGround(src)
 		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
-		fire_act()
+		src.fire_act()
 
 /obj/item/paper/extinguish()
 	..()
