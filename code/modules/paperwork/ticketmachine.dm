@@ -54,6 +54,12 @@
 /obj/machinery/ticket_machine/proc/reset_cooldown()
 	ready = TRUE
 
+/obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
+	if(obj_flags & EMAGGED)
+		return
+	to_chat(user, "<span class='warning'>You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting.</span>")
+	obj_flags |= EMAGGED
+
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
 	. = ..()
 	if(!ready)
@@ -69,6 +75,12 @@
 	theirticket.ticket_number = currentNum
 	theirticket.update_icon()
 	user.put_in_hands(theirticket)
+	if(obj_flags & EMAGGED) //Emag the machine to destroy the HOP's life.
+		theirticket.fire_act()
+		user.dropItemToGround(theirticket)
+		user.adjust_fire_stacks(1)
+		user.IgniteMob()
+		return
 
 /obj/machinery/ticket_machine/attackby(obj/item/O, mob/user, params)
 	if(user.a_intent == INTENT_HARM) //so we can hit the machine
@@ -123,6 +135,26 @@
 	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]")
 	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]")
 	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]")
+	if(resistance_flags & ON_FIRE)
+		icon_state = "ticket_onfire"
+
+/obj/item/paper/attackby(obj/item/P, mob/living/carbon/human/user, params)
+	..()
+	if(P.is_hot())
+		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
+			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
+								"<span class='userdanger'>You miss the ticket and accidentally light yourself on fire!</span>")
+			user.dropItemToGround(P)
+			user.adjust_fire_stacks(1)
+			user.IgniteMob()
+			return
+
+		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
+			return
+
+		user.dropItemToGround(src)
+		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
+		fire_act()
 
 //Remote that operates it
 /obj/item/ticket_machine_remote
