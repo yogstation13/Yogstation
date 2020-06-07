@@ -193,7 +193,8 @@
 /obj/item/ticket_machine_remote/AltClick(mob/living/user)
 	..()
 	if(connection)
-		connection=null
+		connection.linked = FALSE
+		connection = null
 		to_chat(user,"<span class='info'>You unlink the remote from all connections.</span>")
 
 /obj/item/ticket_machine_remote/examine(mob/user)
