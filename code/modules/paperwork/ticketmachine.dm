@@ -92,7 +92,12 @@
 			linked = TRUE
 			return TRUE
 		else
-			to_chat(user,"<span class='warning'>It's already linked to a remote!.</span>")
+			to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
+
+	if(istype(O, /obj/item/ticket_machine_ticket))
+		to_chat(user, "<span class='warning'>You put [O] into the ticket machine's recycling bin.</span>")
+		qdel(O) //KMC put a delay here. I'm not so forgiving. You accidently shred your ticket, you cry. (Also the delay felt really clunky)
+		return TRUE
 
 /obj/machinery/ticket_machine/Destroy()
 	return ..()
@@ -138,7 +143,7 @@
 	if(!ready)
 		return
 	if(!connection)
-		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!.</span>")
+		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!</span>")
 		return
 	ready = FALSE
 	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)

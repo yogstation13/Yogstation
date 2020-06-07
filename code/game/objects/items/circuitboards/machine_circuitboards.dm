@@ -427,7 +427,7 @@
 /obj/item/circuitboard/machine/ticketmachine
 	name = "Ticket Machine (Machine Board)"
 	icon_state = "generic"
-	desc = "You will also need a Ticket Machine Remote to operate this."
+	desc = "You will also need a ticket machine remote to operate this."
 	build_path = /obj/machinery/ticket_machine
 	req_components = list(
 		/obj/item/hand_labeler = 1,
