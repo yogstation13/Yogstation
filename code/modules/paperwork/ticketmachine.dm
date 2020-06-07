@@ -58,6 +58,11 @@
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='warning'>You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting.</span>")
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(12, 1, src)
+	s.start()
+	screenNum = rand(1,999)
+	update_icon()
 	obj_flags |= EMAGGED
 
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
@@ -142,8 +147,7 @@
 	..()
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
-			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
-								"<span class='userdanger'>You miss the ticket and accidentally light yourself on fire!</span>")
+			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", "<span class='userdanger'>You miss the ticket and accidentally light yourself on fire!</span>")
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
 			user.IgniteMob()
@@ -155,11 +159,11 @@
 		user.dropItemToGround(src)
 		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
 		fire_act()
-		
+
 /obj/item/paper/extinguish()
 	..()
 	update_icon()
-	
+
 //Remote that operates it
 /obj/item/ticket_machine_remote
 	name = "Ticket Machine Remote"
