@@ -211,7 +211,7 @@
 		return open(user)
 
 /obj/structure/closet/proc/close_storage(mob/living/user)
-	for(var/obj/item/storage/opened in src.contents)
+	for(var/obj/item/storage/opened in contents)
 		var/datum/component/storage/closeall = opened.GetComponent(/datum/component/storage)
 		closeall.close_all()
 
