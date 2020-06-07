@@ -155,7 +155,11 @@
 		user.dropItemToGround(src)
 		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
 		fire_act()
-
+		
+/obj/item/paper/extinguish()
+	..()
+	update_icon()
+	
 //Remote that operates it
 /obj/item/ticket_machine_remote
 	name = "Ticket Machine Remote"
