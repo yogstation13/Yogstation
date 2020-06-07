@@ -18,9 +18,6 @@
 	. = ..()
 	update_icon()
 
-/obj/machinery/ticket_machine/proc/Debugg()
-	update_icon()
-
 /obj/machinery/ticket_machine/update_icon()
 	var/Temp=screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
@@ -48,9 +45,9 @@
 	if(screenNum > ticketNumMax)
 		screenNum=0
 		say("Error: Stack Overflow!")
-	if(currentNum < screenNum)
-		currentNum = screenNum //this should only happen if the queue is all caught up and more numbers keep getting called
-		screenNum -- //so the number wont go onto infinity. Numbers that haven't been taken yet won't show up on the screen yet either.
+	if(currentNum < screenNum - 1)
+		screenNum -- //this should only happen if the queue is all caught up and more numbers get called than tickets exist
+		currentNum = screenNum - 1 //so the number wont go onto infinity. Numbers that haven't been taken yet won't show up on the screen yet either.
 	update_icon() //Update our icon here rather than when they take a ticket to show the current ticket number being served
 
 /obj/machinery/ticket_machine/proc/reset_cooldown()
@@ -71,7 +68,6 @@
 	theirticket.ticket_number=currentNum
 	theirticket.update_icon()
 	user.put_in_hands(theirticket)
-
 
 /obj/machinery/ticket_machine/attackby(obj/item/O, mob/user, params)
 	if(user.a_intent == INTENT_HARM) //so we can hit the machine
@@ -97,6 +93,10 @@
 		else
 			to_chat(user,"<span class='warning'>It's already linked to a remote!.</span>")
 
+/obj/machinery/ticket_machine/Destroy()
+	return ..()
+
+//Tickets dispensed from the machine
 /obj/item/ticket_machine_ticket
 	name = "Ticket"
 	desc = "A ticket which shows your place in the queue."
@@ -118,6 +118,7 @@
 	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]")
 	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]")
 
+//Remote that operates it
 /obj/item/ticket_machine_remote
 	name = "Ticket Machine Remote"
 	desc = "A remote used to operate a ticket machine."
@@ -133,7 +134,10 @@
 	ready = TRUE
 
 /obj/item/ticket_machine_remote/attack_self(mob/user)
-	if(!connection || !ready)
+	if(!ready)
+		return
+	if(!connection)
+		to_chat(user,"<span class='info'>The remote isn't linked to a ticket machine!.</span>")
 		return
 	ready = FALSE
 	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)
