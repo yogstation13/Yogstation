@@ -9,7 +9,7 @@
 	circuit = /obj/item/circuitboard/machine/ticketmachine
 	density = TRUE
 	var/screenNum = 0 //this is the the number of the person who is up
-	var/currentNum= 0 //this is the the number someone who takes a ticket gets
+	var/currentNum = 0 //this is the the number someone who takes a ticket gets
 	var/ticketNumMax = 999 //No more!
 	var/cooldown = 10
 	var/ready = TRUE
@@ -20,14 +20,14 @@
 	update_icon()
 
 /obj/machinery/ticket_machine/update_icon()
-	var/Temp=screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
+	var/Temp = screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10) //Same idea, but divided by ten, to find the middle digit
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)//Same as above. Despite the weird notation these will only ever output integers, don't worry.
-	overlays=list()//this clears the overlays, so they don't start stacking on each other
-	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]")
-	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]")
-	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]")
+	overlays = list()//this clears the overlays, so they don't start stacking on each other
+	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]")
+	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]")
+	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]")
 	switch(currentNum) //Gives you an idea of how many tickets are left
 		if(0 to 200)
 			icon_state = "ticketmachine_100"
@@ -95,11 +95,9 @@
 		updateUsrDialog()
 		return TRUE
 
-	if(default_deconstruction_crowbar(O))
+	if(default_deconstruction_crowbar(O) || stat)
 		return TRUE
 
-	if(stat)
-		return TRUE
 
 	if(istype(O, /obj/item/ticket_machine_remote))
 		if (!linked)
@@ -108,8 +106,7 @@
 			to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
 			linked = TRUE
 			return TRUE
-		else
-			to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
+		to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
 
 	if(istype(O, /obj/item/ticket_machine_ticket))
 		to_chat(user, "<span class='warning'>You put [O] into the ticket machine's recycling bin.</span>")
@@ -132,7 +129,7 @@
 	var/ticket_number
 
 /obj/item/ticket_machine_ticket/update_icon()
-	var/Temp=ticket_number //this stuff is a repeat from the other update_icon
+	var/Temp = ticket_number //this stuff is a repeat from the other update_icon
 	var/Digit1 = round(Temp%10)
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10)
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)
@@ -172,7 +169,7 @@
 	icon_state = "setup_small_simple"
 	w_class = WEIGHT_CLASS_TINY
 	max_integrity = 100
-	var/obj/machinery/ticket_machine/connection=null
+	var/obj/machinery/ticket_machine/connection = null
 	var/cooldown = 20
 	var/ready = TRUE
 
