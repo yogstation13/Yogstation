@@ -33872,10 +33872,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "brd" = (
-/obj/machinery/button/ticket_machine{
-	pixel_x = 24;
-	pixel_y = 36
-	},
 /obj/machinery/button/door{
 	id = "hopqueue";
 	name = "Queue Shutters Control";
