@@ -6,6 +6,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "ticketmachine"
 	desc = "A marvel of bureaucratic engineering encased in an efficient plastic shell. Click to take a number!"
+	circuit = /obj/item/circuitboard/machine/ticketmachine
 	density = TRUE
 	var/screenNum = 0 //this is the the number of the person who is up
 	var/currentNum= 0 //this is the the number someone who takes a ticket gets
