@@ -87,7 +87,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
 		dat += "</BODY></HTML>"
-
 		user << browse(dat, "window=cryoitems")
 
 	else if(href_list["item"])
