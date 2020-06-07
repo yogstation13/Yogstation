@@ -728,7 +728,7 @@
 	if(cards.len == 0)
 		to_chat(L, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	var/drawsize = input(L, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
+	var/drawsize = stripped_input(L, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
 	if (drawsize)
 		drawsize=clamp(drawsize,1,min(cards.len,10))
 		draw_card(L,drawsize)
