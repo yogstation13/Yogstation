@@ -24,10 +24,10 @@
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10) //Same idea, but divided by ten, to find the middle digit
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)//Same as above. Despite the weird notation these will only ever output integers, don't worry.
-	overlays = list()//this clears the overlays, so they don't start stacking on each other
-	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]")
-	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]")
-	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]")
+	cut_overlays()//this clears the overlays, so they don't start stacking on each other
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]"))
 	switch(currentNum) //Gives you an idea of how many tickets are left
 		if(0 to 200)
 			icon_state = "ticketmachine_100"
@@ -133,14 +133,14 @@
 	var/ticket_number
 
 /obj/item/ticket_machine_ticket/update_icon()
-	var/Temp = ticket_number //this stuff is a repeat from the other update_icon
+	var/Temp = ticket_number //this stuff is a repeat from the other update_icon, but with new image files and the like
 	var/Digit1 = round(Temp%10)
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10)
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)
-	overlays = list() //since tickkets only update once, this shouldn't be super nessesary, but whatevs
-	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]")
-	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]")
-	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]")
+	cut_overlays()//this clears the overlays, so they don't start stacking on each other
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]"))
 	if(resistance_flags & ON_FIRE)
 		icon_state = "ticket_onfire"
 
@@ -189,3 +189,16 @@
 	ready = FALSE
 	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)
 	connection.increment()
+
+/obj/item/ticket_machine_remote/AltClick(mob/living/user)
+	..()
+	if(connection)
+		connection=null
+		to_chat(user,"<span class='info'>You unlink the remote from all connections.</span>")
+
+/obj/item/ticket_machine_remote/examine(mob/user)
+	.=..()
+	if(connection)
+		.+= "<span class='info'>The remote is currently connected to a ticket machine.\nAlt click the remote to sever this connection.</span>"
+	else
+		.+= "<span class='info'>Click on a ticket machine with this remote to link them.</span>"
