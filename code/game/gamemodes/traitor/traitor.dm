@@ -36,7 +36,7 @@
 /datum/game_mode/traitor/pre_setup()
 
 	if(num_players() <= lowpop_amount)
-		if(prob((2*1.14^lowpop_amount)-2)) //exponential equation, chance of restriction goes up as pop goes down
+		if(prob((2*1.14^lowpop_amount)-2)) //exponential equation, chance of restriction goes up as pop goes down.
 			protected_jobs += lowpop_restricted_jobs
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
