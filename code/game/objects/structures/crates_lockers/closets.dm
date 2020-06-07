@@ -201,6 +201,7 @@
 	density = TRUE
 	update_icon()
 	update_airtightness()
+	close_storage(user)
 	return TRUE
 
 /obj/structure/closet/proc/toggle(mob/living/user)
@@ -208,6 +209,11 @@
 		return close(user)
 	else
 		return open(user)
+
+/obj/structure/closet/proc/close_storage(mob/living/user)
+	for(var/obj/item/storage/opened in src.contents)
+		var/datum/component/storage/closeall = opened.GetComponent(/datum/component/storage)
+		closeall.close_all()
 
 /obj/structure/closet/deconstruct(disassembled = TRUE)
 	if(ispath(material_drop) && material_drop_amount && !(flags_1 & NODECONSTRUCT_1))
