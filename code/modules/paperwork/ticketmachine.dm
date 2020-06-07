@@ -41,10 +41,10 @@
 	say("Next customer, please!")
 	screenNum ++ //Increment the one we're serving.
 	if(currentNum > ticketNumMax)
-		currentNum=0
+		currentNum = 0
 		say("Error: Stack Overflow!")
 	if(screenNum > ticketNumMax)
-		screenNum=0
+		screenNum = 0
 		say("Error: Stack Overflow!")
 	if(currentNum < screenNum - 1)
 		screenNum -- //this should only happen if the queue is all caught up and more numbers get called than tickets exist
@@ -65,8 +65,8 @@
 	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're customer #[currentNum]...</span>")
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
 	theirticket.name = "Ticket #[currentNum]"
-	theirticket.source=src
-	theirticket.ticket_number=currentNum
+	theirticket.source = src
+	theirticket.ticket_number = currentNum
 	theirticket.update_icon()
 	user.put_in_hands(theirticket)
 
@@ -86,7 +86,7 @@
 
 	if(istype(O, /obj/item/ticket_machine_remote))
 		if (!linked)
-			var/obj/item/ticket_machine_remote/Z=O //typecasting!!
+			var/obj/item/ticket_machine_remote/Z = O //typecasting!!
 			Z.connection=src
 			to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
 			linked = TRUE
@@ -114,10 +114,10 @@
 	var/Digit1 = round(Temp%10)
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10)
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)
-	overlays=list()
-	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]")
-	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]")
-	overlays+=image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]")
+	overlays = list() //since tickkets only update once, this shouldn't be super nessesary, but whatevs
+	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]")
+	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]")
+	overlays += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]")
 
 //Remote that operates it
 /obj/item/ticket_machine_remote
@@ -138,7 +138,7 @@
 	if(!ready)
 		return
 	if(!connection)
-		to_chat(user,"<span class='info'>The remote isn't linked to a ticket machine!.</span>")
+		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!.</span>")
 		return
 	ready = FALSE
 	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)
