@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "laser rifle and knifeboxing gloves are no longer broken and will now actually show up in the crafting menu"
