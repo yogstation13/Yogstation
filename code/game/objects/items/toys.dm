@@ -678,9 +678,9 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 //ATTACK HAND NOT CALLING PARENT
 /obj/item/toy/cards/deck/attack_hand(mob/user)
-	draw_card(user, 1)
+	draw_card(user)
 
-/obj/item/toy/cards/deck/proc/draw_card(mob/user, drawnumber)//Person who draws the card, number of cards to be drawn
+/obj/item/toy/cards/deck/proc/draw_card(mob/user, drawnumber = 1)//Person who draws the card, number of cards to be drawn
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -689,24 +689,23 @@
 	if(cards.len == 0)
 		to_chat(user, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	if (drawnumber==1)
-		var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(user.loc)
+	if (drawnumber == 1)
+		var/obj/item/toy/cards/singlecard/C = new(user.loc)
 		choice = cards[1]
 		user.visible_message("[user] draws a card from the deck.", "<span class='notice'>You draw a card from the deck.</span>")
 		C.cardname = choice
 		if(holo)
 			holo.spawned += C // track them leaving the holodeck
 		C.parentdeck = src
-		var/O = src
-		C.apply_card_vars(C,O)
-		C.deckstyle=deckstyle
-		src.cards.Cut(1,2)
+		C.apply_card_vars(C, src)
+		C.deckstyle = deckstyle
+		cards.Cut(1,2)
 		C.pickup(user)
 		user.put_in_hands(C)
 		update_icon()
 		C.interact(user)
 	else //if more than one card is drawn
-		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.loc)
+		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.drop_location())
 		user.visible_message("[user] draws [drawnumber] cards from the deck.", "<span class='notice'>You draw [drawnumber] cards from the deck.</span>")
 		var/i
 		for (i=1,i<=drawnumber,i++)
@@ -1206,8 +1205,7 @@ obj/item/toy/turn_tracker
 /obj/item/toy/turn_tracker/attack_self(mob/user)
 	info=input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names") as null|text
 	if (info)
-		names=list()
-		names+=splittext(info,",")
+		names = splittext(info,",")
 		to_chat(user, "<span class='notice'>You set up the turn tracker. </span>")
 	return
 
@@ -1215,7 +1213,7 @@ obj/item/toy/turn_tracker
 	if (cooldown < world.time)
 		cooldown = (world.time + 5) //0.5 second cooldown
 		if (names.len==0)
-			to_chat(user, "<span class='warning'> You need to set it up first! </span>")
+			to_chat(user, "<span class='warning'>You need to set it up first!</span>")
 			return
 		turn+=turndir//+1 for normal, -1 for backwardz
 		if(turn>names.len)
