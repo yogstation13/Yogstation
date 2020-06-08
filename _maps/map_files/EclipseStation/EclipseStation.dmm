@@ -32220,7 +32220,6 @@
 /turf/open/floor/plating,
 /area/security/checkpoint/auxiliary)
 "bnL" = (
-/obj/machinery/ticket_machine,
 /turf/closed/wall,
 /area/crew_quarters/heads/hop)
 "bnM" = (
