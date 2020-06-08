@@ -610,7 +610,7 @@
 /obj/machinery/scanner_gate/luxury_shuttle{
 	layer = 2.6
 	},
-/obj/machinery/door/airlock/diamond{
+/obj/machinery/door/airlock/security/glass{
 	name = "Undesirables";
 	req_access_txt = "2"
 	},
