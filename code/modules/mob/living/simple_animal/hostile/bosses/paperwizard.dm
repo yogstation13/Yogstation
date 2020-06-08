@@ -113,10 +113,9 @@
 			original.copies -= src
 			for(var/c in original.copies)
 				qdel(c)
-		for(var/mob/living/L in range(5,src))
-			if(L == original || istype(L, type))
-				continue
-			L.adjustBruteLoss(50)
+		for(var/mob/living/carbon/L in range(5,src))
+			L.apply_damage(40)
+			to_chat(L, "<span class='userdanger'>The damaged clone showers you with paper cuts!</span>")
 		qdel(src)
 	else
 		. = ..()
