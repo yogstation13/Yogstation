@@ -308,7 +308,7 @@
 	var/setup = FALSE
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
-	strip_delay = 10 //takes one second to strip, so a downed officer can be un-cammed quickly
+	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
 	w_class = WEIGHT_CLASS_BULKY //you HAVE to wear it or carry it. No cheating by putting it in a bag!
 
 /obj/item/clothing/neck/bodycam/Initialize()
@@ -322,7 +322,7 @@
 
 /obj/item/clothing/neck/bodycam/attack_self(mob/user)
 	if(!setup)
-		src.AltClick(user)
+		AltClick(user)
 		return
 	if(bodcam.status)
 		bodcam.status = FALSE
@@ -351,33 +351,36 @@
 		suffix = "on"
 	icon_state = "[prefix]_bodycam_[suffix]"
 	item_state = "[prefix]_bodycam_[suffix]"
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
-	.+= "<span class='notice'>The camera is currently [bodcam.status? "on" : "off"].<span>"
+	. += "<span class='notice'>The camera is currently [bodcam.status ? "on" : "off"].<span>"
 	if(setup)
-		.+= "<span class='notice'>It is registered under the name\"[bodcam.c_tag]\".</span>"
-		.+= "<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".</span>"
+		. += "<span class='notice'>It is registered under the name \"[bodcam.c_tag]\".</span>"
+		. += "<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".</span>"
 		if(!preset)
-			.+= "<span class='notice'>Alt-click to configure the camera.</span>"
+			. += "<span class='notice'>Alt-click to configure the camera.</span>"
 		else
-			.+= "<span class='notice'>This camera is locked and cannot be reconfigured.</span>"
+			. += "<span class='notice'>This camera is locked and cannot be reconfigured.</span>"
 	else
-		.+= "<span class='warning'>It hasn't been set up yet!</span>"
+		. += "<span class='warning'>It hasn't been set up yet!</span>"
 
 /obj/item/clothing/neck/bodycam/verb/toggle_bodycam()
 	set name = "Toggle Bodycam"
 	set category = "Object"
 	set src in oview(1)
 
-	if(!usr.stat)
+	if(!usr.incapacitated())
 		attack_self(usr)
 
 /obj/item/clothing/neck/bodycam/emp_act(severity)
 	. = ..()
 	if(prob(150/severity))
 		bodcam.c_tag = rand(1,10000)
-		bodcam.network[1] = rand (1, 10000) //gibberish, this will render the camera basically unreadable by any console
+		bodcam.network[1] = rand(1, 10000) //gibberish, this will render the camera basically unreadable by any console
 		bodcam.status = FALSE
 		update_icon()
 
