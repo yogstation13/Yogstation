@@ -385,8 +385,8 @@
 		update_icon()
 
 /obj/item/clothing/neck/bodycam/Destroy()
-..()
-QDEL_NULL(bodcam)
+	. = ..()
+	QDEL_NULL(bodcam)
 
 //Miner specfic camera, cannot be reconfigured
 /obj/item/clothing/neck/bodycam/miner
