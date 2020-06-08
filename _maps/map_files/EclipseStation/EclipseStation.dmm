@@ -35250,7 +35250,7 @@
 "btZ" = (
 /obj/structure/sign/plaques/golden{
 	desc = "To the principal architect of this station: MayhemSailor, with specific mention of Utahclock, RoboticPotato and KMC2000 for their contributions to design. At the bottom of the plaque you can see someone scratched in Fluffe9911 was here... how rude!";
-	name = "Minsky Station Commissioning Plaque"
+	name = "Eclipse Station Commissioning Plaque"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
