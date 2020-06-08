@@ -132,7 +132,7 @@
 		to_chat(user, "<span class='danger'>Access denied.</span>")
 
 /obj/machinery/power/rad_collector/AltClick(mob/user)
-	if(!user.canUseTopic(src, BE_CLOSE) || !issilicon(user))
+	if(!user.canUseTopic(src, BE_CLOSE) || issilicon(user))
 		return
 	togglelock(user)
 
