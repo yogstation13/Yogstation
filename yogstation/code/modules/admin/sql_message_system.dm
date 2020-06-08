@@ -66,13 +66,24 @@
 					return
 				expiry = query_validate_expire_time.item[1]
 			qdel(query_validate_expire_time)
-	if(!expiry)
-		expiry = "NULL"
-	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp)
-	VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(IF(:address LIKE '', '0', :address)),
-	:port, :round_id,:secret, :expiry)"},
-	list("type" = type, "target_ckey" = target_ckey, "admin_ckey" = admin_ckey, "text" = text, "timestamp" = timestamp, "server" = server, "address" = world.internet_address,
-	"port" = world.port, "round_id" = GLOB.round_id, "secret" = secret, "expiry" = expiry))
+
+	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
+		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp)
+		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry)
+	"}, list(
+		"type" = type,
+		"target_ckey" = target_ckey,
+		"admin_ckey" = admin_ckey,
+		"text" = text,
+		"timestamp" = timestamp,
+		"server" = server,
+		"internet_address" = world.internet_address || "0",
+		"port" = "[world.port]",
+		"round_id" = GLOB.round_id,
+		"secret" = secret,
+		"expiry" = expiry || null,
+	))
+
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
 	var/header = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]" // yogs - Yog Tickets
 	if(!query_create_message.warn_execute())
