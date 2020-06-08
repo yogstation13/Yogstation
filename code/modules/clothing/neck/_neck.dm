@@ -335,10 +335,10 @@
 /obj/item/clothing/neck/bodycam/AltClick(mob/user)
 	if(preset)
 		return //can't change the settings on it if it's preset
-	var/name = input(user, "What would you like your camera's display name to be?", "Camera id", "[user.name]") as null|text
+	var/name = stripped_input(user, "What would you like your camera's display name to be?", "Camera id", "[user.name]")
 	if(name)
 		bodcam.c_tag = "(Bodycam) " + name
-	bodcam.network[1] = input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13") as null|text
+	bodcam.network[1] = stripped_input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13")
 	if(bodcam.c_tag && bodcam.network.len > 0)
 		setup = TRUE
 		bodcam.status = TRUE
