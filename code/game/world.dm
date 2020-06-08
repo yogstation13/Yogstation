@@ -3,7 +3,7 @@
 GLOBAL_VAR(restart_counter)
 
 /world/proc/enable_debugger()
-    var/dll = world.GetConfig("env", "EXTOOLS_DLL") || (fexists("./extools.dll") && "./extools.dll")
+    var/dll = (fexists(EXTOOLS) && EXTOOLS)
     if (dll)
         call(dll, "debug_initialize")()
 
