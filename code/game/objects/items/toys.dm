@@ -700,7 +700,6 @@
 		C.apply_card_vars(C, src)
 		C.deckstyle = deckstyle
 		cards.Cut(1,2)
-		C.pickup(user)
 		user.put_in_hands(C)
 		update_icon()
 		C.interact(user)
@@ -715,7 +714,6 @@
 		H.parentdeck = src
 		H.deckstyle=deckstyle
 		src.cards.Cut(1,drawnumber+1)
-		H.pickup(user)
 		user.put_in_hands(H)
 		update_icon()
 		H.interact(user)
@@ -834,7 +832,6 @@
 	C.parentdeck = parentdeck
 	C.cardname = choice
 	C.apply_card_vars(C,O)
-	C.pickup(cardUser)
 	cardUser.put_in_hands(C)
 	cardUser.visible_message("<span class='notice'>[cardUser] draws a card from [cardUser.p_their()] hand.</span>", "<span class='notice'>You take the [C.cardname] from your hand.</span>")
 
@@ -846,7 +843,6 @@
 		N.cardname = currenthand[1]
 		N.apply_card_vars(N,O)
 		qdel(src)
-		N.pickup(cardUser)
 		cardUser.put_in_hands(N)
 		cardUser.visible_message("[cardUser] also takes their last card and holds it.", "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")//the outside world will now know when you break a 2 card hand into two seperate cards. Useful for UNO but can be used by any card game
 
@@ -972,7 +968,6 @@
 			to_chat(user, "<span class='notice'>You combine the [C.cardname] and the [src.cardname] into a hand.</span>")
 			qdel(C)
 			qdel(src)
-			H.pickup(user)
 			user.put_in_active_hand(H)
 		else
 			to_chat(user, "<span class='warning'>You can't mix cards from other decks!</span>")
