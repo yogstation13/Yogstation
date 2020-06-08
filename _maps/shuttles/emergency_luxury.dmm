@@ -15,7 +15,7 @@
 /obj/machinery/scanner_gate/luxury_shuttle{
 	layer = 2.6
 	},
-/obj/machinery/door/airlock/gold{
+/obj/machinery/door/airlock/gold/glass{
 	name = "First Class"
 	},
 /turf/open/floor/mineral/gold,
@@ -31,7 +31,7 @@
 /obj/machinery/scanner_gate/luxury_shuttle{
 	layer = 2.6
 	},
-/obj/machinery/door/airlock/gold{
+/obj/machinery/door/airlock/gold/glass{
 	name = "First Class"
 	},
 /turf/open/floor/mineral/gold,
@@ -477,7 +477,7 @@
 /obj/machinery/scanner_gate/luxury_shuttle{
 	layer = 2.6
 	},
-/obj/machinery/door/airlock/gold{
+/obj/machinery/door/airlock/gold/glass{
 	name = "Steerage"
 	},
 /turf/open/floor/plating,
