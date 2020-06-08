@@ -14,6 +14,7 @@
 	var/cooldown = 10
 	var/ready = TRUE
 	var/linked = FALSE
+	var/list/obj/item/ticket_machine_ticket/tickets = list()
 
 /obj/machinery/ticket_machine/Initialize()
 	. = ..()
@@ -49,7 +50,11 @@
 	if(currentNum < screenNum - 1)
 		screenNum -- //this should only happen if the queue is all caught up and more numbers get called than tickets exist
 		currentNum = screenNum - 1 //so the number wont go onto infinity. Numbers that haven't been taken yet won't show up on the screen yet either.
-	update_icon() //Update our icon here rather than when they take a ticket to show the current ticket number being served
+	update_icon() //Update our icon here
+
+	if(!(obj_flags & EMAGGED) && tickets[screenNum]) //if the ticket actually, you know, exists and all
+		tickets[screenNum].audible_message("<span class='rose'>\the [tickets[screenNum]] dings!</span>",hearing_distance=1)
+		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, 0 ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
 
 /obj/machinery/ticket_machine/proc/reset_cooldown()
 	ready = TRUE
@@ -61,7 +66,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()
-	screenNum = rand(1,999)
+	screenNum = rand(0,ticketNumMax)
 	update_icon()
 	obj_flags |= EMAGGED
 
@@ -80,6 +85,9 @@
 	theirticket.ticket_number = currentNum
 	theirticket.update_icon()
 	user.put_in_hands(theirticket)
+	if(tickets.len<currentNum)
+		tickets.len = currentNum //this grows the size of the list as needed.
+	tickets[currentNum] = theirticket
 	if(obj_flags & EMAGGED) //Emag the machine to destroy the HOP's life.
 		theirticket.fire_act()
 		user.dropItemToGround(theirticket)
@@ -93,6 +101,7 @@
 
 	if(default_deconstruction_screwdriver(user, "ticketmachine_panel", "ticketmachine", O))
 		updateUsrDialog()
+		update_icon()
 		return TRUE
 
 	if(default_deconstruction_crowbar(O) || stat)
@@ -161,7 +170,7 @@
 		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
 		src.fire_act()
 
-/obj/item/paper/extinguish()
+/obj/item/ticket_machine_ticket/extinguish()
 	..()
 	update_icon()
 
