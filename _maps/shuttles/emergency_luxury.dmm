@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/indestructible/riveted/diamond,
+/turf/closed/indestructible/riveted/uranium,
 /area/shuttle/escape/luxury)
 "ac" = (
 /obj/machinery/door/airlock/external{
@@ -383,7 +383,7 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "qm" = (
-/turf/closed/indestructible/riveted/diamond,
+/turf/closed/indestructible/riveted/uranium,
 /area/shuttle/escape)
 "tN" = (
 /turf/template_noop,
@@ -520,7 +520,7 @@
 	name = "Emergency NanoMed";
 	use_power = 0
 	},
-/turf/closed/indestructible/riveted/diamond,
+/turf/closed/indestructible/riveted/uranium,
 /area/shuttle/escape/luxury)
 "Mg" = (
 /obj/structure/table/wood/fancy/black,
