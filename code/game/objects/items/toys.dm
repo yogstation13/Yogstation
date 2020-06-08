@@ -727,7 +727,7 @@
 	if(cards.len == 0)
 		to_chat(L, "<span class='warning'>There are no more cards to draw!</span>")
 		return
-	var/drawsize = stripped_input(L, "How many cards to draw? (1-[min(cards.len,10)])", "Cards")
+	var/drawsize = input(L, "How many cards to draw? (1-[min(cards.len,10)])", "Cards") as null|num
 	if (drawsize && isnum(drawsize))
 		drawsize=clamp(drawsize,1,min(cards.len,10))
 		draw_card(L,drawsize)
@@ -1203,7 +1203,7 @@ obj/item/toy/turn_tracker
 
 
 /obj/item/toy/turn_tracker/attack_self(mob/user)
-	info=input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names") as null|text
+	info=stripped_input(user, "Insert a list of names seperated by commas (John, Rose, Steve)", "Names")
 	if (info)
 		names = splittext(info,",")
 		to_chat(user, "<span class='notice'>You set up the turn tracker. </span>")
