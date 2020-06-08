@@ -69,15 +69,12 @@
 	if(can_switch_modes)
 		if(camera_mode == CAMERA_STANDARD && can_customise)
 			camera_mode = CAMERA_DESCRIPTION
-			to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
-			return
-		if(camera_mode == CAMERA_DESCRIPTION)
+		else if(camera_mode == CAMERA_DESCRIPTION)
 			camera_mode = CAMERA_STANDARD
-			to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
-			return
-	else
-		to_chat(user, "<span class='notice'>This [src] can only be used in the [camera_mode] mode.</span>") // just in-case somone makes a camera that can only be descriptive
-	return
+		to_chat(user, "<span class='notice'>You set the [src] to [camera_mode] mode.</span>")
+		return
+
+	to_chat(user, "<span class='notice'>This [src] can only be used in the [camera_mode] mode.</span>") // just in-case somone makes a camera that can only be descriptive
 
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
