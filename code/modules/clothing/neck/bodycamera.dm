@@ -33,6 +33,7 @@
 	if(bodcam.status)
 		bodcam.status = FALSE
 		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
+		Screenfuzz("Error: Feed disconnected")
 	else
 		bodcam.status = TRUE
 		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
@@ -49,6 +50,7 @@
 		bodcam.network[1]=temp
 		setup = TRUE
 		bodcam.status = TRUE
+		Screenfuzz("Error: Network change detected")
 		update_icon()
 
 /obj/item/clothing/neck/bodycam/update_icon()
@@ -86,6 +88,7 @@
 /obj/item/clothing/neck/bodycam/emp_act(severity)
 	. = ..()
 	if(prob(150/severity))
+		Screenfuzz("Error: Hardware compromised. Manual reboot required")
 		bodcam.c_tag = rand(1,10000)
 		bodcam.network[1] = rand(1, 10000) //gibberish, this will render the camera basically unreadable by any console
 		bodcam.status = FALSE
@@ -94,6 +97,18 @@
 /obj/item/clothing/neck/bodycam/Destroy()
 	. = ..()
 	QDEL_NULL(bodcam)
+
+/obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
+	var/desc="The screen bursts into static."
+	if (message)
+		desc+="The message \'[message]\' appears."
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if (M.client.eye == bodcam)
+			M.unset_machine()
+			M.reset_perspective(null)
+			to_chat(M, desc)
+
 
 //Miner specfic camera, cannot be reconfigured
 /obj/item/clothing/neck/bodycam/miner
