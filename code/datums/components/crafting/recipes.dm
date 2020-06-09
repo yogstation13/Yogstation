@@ -571,7 +571,8 @@
 	result = /obj/item/bombcore/chemical
 	reqs = list(
 		/datum/reagent/stabilizing_agent = 50,
-		/obj/item/stack/tile/plasteel = 3,
+		/obj/item/stack/sheet/plasteel = 3,
+		/obj/item/stack/sheet/bluespace_crystal = 1,
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/grenade/iedcasing = 3,
 		/obj/item/stack/cable_coil = 10,
