@@ -263,6 +263,18 @@ Contains:
 	flash_protect = 0
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65)
 
+/obj/item/clothing/head/helmet/space/eva/paramedic
+	name = "paramedic space helmet"
+	icon_state = "paramedic"
+	item_state = "paramedic"
+	desc = "A lightweight space helmet with the basic ability to protect paramedics from the vacuum of space during recovery operations."
+
+/obj/item/clothing/suit/space/eva/paramedic
+	name = "paramedic space suit"
+	desc = "A suit that protects paramedics against low pressure environments."
+	icon_state = "paramedic"
+	item_state = "paramedic"
+
 /obj/item/clothing/head/helmet/space/heads
 	name = "Command EVA helmet"
 	icon_state = "heads"

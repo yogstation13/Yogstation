@@ -318,6 +318,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	var/obj/structure/bodycontainer/connected = null
 	anchored = TRUE
 	pass_flags = LETPASSTHROW
+	layer = TABLE_LAYER
 	max_integrity = 350
 
 /obj/structure/tray/Destroy()
