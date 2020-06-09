@@ -565,6 +565,23 @@
 	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+	
+/datum/crafting_recipe/chemical_payload3
+	name = "Chemical Payload (IED)"
+	result = /obj/item/bombcore/chemical
+	reqs = list(
+		/datum/reagent/stabilizing_agent = 50,
+		/obj/item/stack/tile/plasteel = 3,
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/grenade/iedcasing = 3,
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/grenade/chem_grenade = 2
+	)
+	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER, TOOL_SCREWDRIVER)
 
 /datum/crafting_recipe/bonearmor
 	name = "Bone Armor"
