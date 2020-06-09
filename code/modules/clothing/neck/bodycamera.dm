@@ -101,7 +101,7 @@
 /obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
 	var/desc="The screen bursts into static."
 	if (message)
-		desc+="The message \'[message]\' appears."
+		desc += "\nThe message \'[message]\' appears."
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if (M.client.eye == bodcam)
