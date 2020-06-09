@@ -118,7 +118,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else if(circuit && (circuit.onstation != onstation)) //check if they're not the same to minimize the amount of edited values.
 		onstation = circuit.onstation //if it was constructed outside mapload, sync the vendor up with the circuit's var so you can't bypass price requirements by moving / reconstructing it off station.
 	if(isnull(alertradio))
-		alertradio = new /obj/item/radio(src)
+		alertradio = new(src)
 	alertradio.listening = 0
 	alertradio.set_frequency(FREQ_SECURITY)
 
