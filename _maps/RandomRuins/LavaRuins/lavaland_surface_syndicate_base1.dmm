@@ -5052,24 +5052,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
-"oj" = (
-/obj/structure/table/reinforced,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Syndicate Radio Intercom"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "ok" = (
 /obj/structure/chair{
 	dir = 8
@@ -5830,22 +5812,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
-"GT" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/storage/toolbox/syndicate,
-/obj/item/multitool,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Hi" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/chemistry,
@@ -5950,6 +5916,11 @@
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
+"IO" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/red,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Ja" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
@@ -6123,10 +6094,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
-"LK" = (
-/obj/machinery/computer/secure_data/syndie,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "LM" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -6459,6 +6426,17 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
+"SC" = (
+/obj/machinery/button/door{
+	id = "lavalandsyndi_telecomms";
+	name = "Telecomms Blast Door Control";
+	pixel_x = 26;
+	req_access_txt = "150"
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "SI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/defibrillator{
@@ -6621,6 +6599,20 @@
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"XT" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "XW" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
@@ -6687,6 +6679,24 @@
 /obj/item/paicard,
 /turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
+"Zi" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Syndicate Radio Intercom"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "ZV" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_bar"
@@ -6698,18 +6708,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
-"ZY" = (
-/obj/machinery/button/door{
-	id = "lavalandsyndi_telecomms";
-	name = "Telecomms Blast Door Control";
-	pixel_x = 26;
-	req_access_txt = "150"
-	},
-/obj/machinery/computer/med_data/syndie{
-	req_one_access = null
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/telecomms)
 
 (1,1,1) = {"
 aa
@@ -7147,7 +7145,7 @@ ab
 ab
 ab
 Oh
-LK
+Ev
 nk
 dS
 oi
@@ -7197,10 +7195,10 @@ ab
 ab
 ab
 Oh
-Ev
+IO
 nl
-GT
-oj
+Zi
+XT
 ov
 mn
 ab
@@ -7247,7 +7245,7 @@ ab
 ab
 ab
 Oh
-ZY
+SC
 nm
 nK
 ok
