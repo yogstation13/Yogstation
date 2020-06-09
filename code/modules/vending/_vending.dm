@@ -123,6 +123,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	alertradio.set_frequency(FREQ_SECURITY)
 
 /obj/machinery/vending/Destroy()
+	QDEL_NULL(alertradio)
 	QDEL_NULL(wires)
 	QDEL_NULL(coin)
 	QDEL_NULL(bill)
