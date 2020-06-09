@@ -51,8 +51,6 @@
 		screenNum -- //this should only happen if the queue is all caught up and more numbers get called than tickets exist
 		currentNum = screenNum - 1 //so the number wont go onto infinity. Numbers that haven't been taken yet won't show up on the screen yet either.
 	update_icon() //Update our icon here
-	if(tickets.len<screenNum)
-		tickets.len = screenNum //this helps prevents runtimes that happen due to mapping stuff. Just an extra safety
 
 	if(!(obj_flags & EMAGGED) && tickets[screenNum]) //if the ticket actually, you know, exists and all
 		tickets[screenNum].audible_message("<span class='rose'>\the [tickets[screenNum]] dings!</span>",hearing_distance=1)
