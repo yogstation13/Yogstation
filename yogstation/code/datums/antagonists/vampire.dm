@@ -23,6 +23,7 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
+		/obj/effect/proc_holder/spell/self/vampire_help = 0,
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 75,
