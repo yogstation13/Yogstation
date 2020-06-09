@@ -473,21 +473,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 			if (R.amount <= 0)
 				say("Sold out of [R.name].")
-			if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
-				say("You are not of legal age to purchase [R.name].")
-				if(!(usr in GLOB.narcd_underages))
-					alertradio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
-					GLOB.narcd_underages += H
-				flick(icon_deny,src)
-				vend_ready = TRUE
-				return
-			var/datum/bank_account/account = C.registered_account
-			if(account.account_job && account.account_job.paycheck_department == payment_department)
-				price_to_use = 0
-			if(coin_records.Find(R) || hidden_records.Find(R))
-				price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
-			if(price_to_use && !account.adjust_money(-price_to_use))
-				say("You do not possess the funds to purchase [R.name].")
 				flick(icon_deny,src)
 				vend_ready = TRUE
 				return
@@ -506,6 +491,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 					return
 				else if (!C.registered_account)
 					say("No account found.")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
+					say("You are not of legal age to purchase [R.name].")
+					if(!(usr in GLOB.narcd_underages))
+						alertradio.set_frequency(FREQ_SECURITY)
+						alertradio.talk_into(src, "SECURITY ALERT: Underaged crewmember [H] recorded attempting to purchase [R.name] in [get_area(src)]. Please watch for substance abuse.", FREQ_SECURITY)
+						GLOB.narcd_underages += H
 					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
