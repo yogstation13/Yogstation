@@ -99,16 +99,15 @@
 	QDEL_NULL(bodcam)
 
 /obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
-	var/desc="The screen bursts into static."
+	var/temp="The screen bursts into static."
 	if (message)
-		desc += "\nThe message \'[message]\' appears."
+		temp += "\nThe message \'[message]\' appears."
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if (M.client.eye == bodcam)
 			M.unset_machine()
 			M.reset_perspective(null)
-			to_chat(M, desc)
-
+			to_chat(M, temp)
 
 //Miner specfic camera, cannot be reconfigured
 /obj/item/clothing/neck/bodycam/miner
