@@ -263,10 +263,6 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"aN" = (
-/obj/structure/lattice/catwalk,
-/turf/open/lava/smooth/lava_land_surface,
-/area/mine/living_quarters)
 "aO" = (
 /obj/machinery/atmospherics/components/unary/tank/nitrogen,
 /turf/open/floor/plating,
@@ -295,14 +291,6 @@
 "aU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
 /turf/open/floor/plating,
-/area/mine/living_quarters)
-"aV" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	on = 1;
-	volume_rate = 200
-	},
-/turf/open/lava/smooth,
 /area/mine/living_quarters)
 "aW" = (
 /obj/structure/cable{
@@ -348,16 +336,6 @@
 "bb" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"bc" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/obj/structure/closet/crate/secure/loot,
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
@@ -516,23 +494,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"bw" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"bx" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple,
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "by" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
@@ -652,10 +613,6 @@
 	name = "Nitrogen Gas Filter";
 	on = 1
 	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"bY" = (
-/obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "bZ" = (
@@ -2086,6 +2043,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"kT" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "ld" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2338,6 +2300,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"AQ" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure/loot,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Bo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -2578,6 +2550,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/maintenance)
+"HH" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "HK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -2663,6 +2642,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"Kc" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/mine/living_quarters)
 "KB" = (
 /obj/machinery/airalarm/tcomms{
 	pixel_y = 24
@@ -2875,6 +2861,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"WW" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Xc" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/purple{
@@ -3137,7 +3132,7 @@ ab
 ab
 ab
 ab
-ab
+ac
 ac
 ac
 bT
@@ -3169,7 +3164,7 @@ ab
 ab
 ab
 ab
-ab
+ac
 ac
 ac
 bT
@@ -3201,7 +3196,7 @@ ab
 ab
 ab
 ab
-ab
+ac
 ac
 ac
 bT
@@ -3265,11 +3260,11 @@ ab
 ab
 ab
 ab
-ab
+ac
 ac
 ac
 ak
-ak
+bI
 bQ
 CH
 ui
@@ -3297,11 +3292,11 @@ ab
 ab
 ab
 ab
-ab
-ab
 ac
 ac
-ak
+ac
+ac
+bI
 bQ
 Uy
 bB
@@ -3329,11 +3324,11 @@ ab
 ab
 ab
 ab
-ab
-aL
-aL
 ac
 ac
+aL
+ac
+bP
 bQ
 AK
 Bo
@@ -3365,7 +3360,7 @@ aL
 aL
 aL
 ac
-aN
+ak
 bQ
 kc
 di
@@ -3396,8 +3391,8 @@ ab
 aL
 aL
 ac
-aN
-aV
+ak
+Kc
 bF
 Ew
 ht
@@ -3493,9 +3488,9 @@ aL
 aL
 bQ
 bQ
-bc
+WW
 cb
-bx
+HH
 eG
 cK
 bQ
@@ -3590,9 +3585,9 @@ ac
 bm
 aU
 bZ
-bw
+AQ
 bD
-bY
+kT
 cr
 cF
 eT
