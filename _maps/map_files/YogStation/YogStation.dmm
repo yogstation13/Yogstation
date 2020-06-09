@@ -3985,17 +3985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"ahN" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "ahO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -4849,15 +4838,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
-"ajt" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/meson,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
@@ -50022,6 +50002,25 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"gOj" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/meson{
+	pixel_y = -4
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 0;
+	pixel_y = 11
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "gQJ" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/light/small{
@@ -52329,6 +52328,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"krT" = (
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 6
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "kvW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -92309,8 +92321,8 @@ bwO
 aJm
 bXK
 afE
-ahN
-ajt
+krT
+gOj
 afE
 alh
 amv
