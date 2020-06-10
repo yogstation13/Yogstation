@@ -143,7 +143,6 @@
 
 /area/shuttle/escape/luxury
 	name = "Luxurious Emergency Shuttle"
-	noteleport = TRUE
 
 /area/shuttle/escape/arena
 	name = "The Arena"
