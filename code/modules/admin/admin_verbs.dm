@@ -147,8 +147,9 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
-	/client/proc/mentor_memo, /* YOGS - something stupid about "Mentor memos" */
-	/client/proc/release_queue // Yogs -- Adds some queue-manipulation verbs
+	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
+	/client/proc/release_queue, // Yogs -- Adds some queue-manipulation verbs
+	/client/proc/dump_memory_usage
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -778,3 +779,30 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
+
+/client/proc/dump_memory_usage()
+	set name = "Dump Server Memory Usage"
+	set category = "Server"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(alert(usr, "This will momentarily block the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+		return
+
+	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"
+
+	to_chat(world, "<span class='userdanger'>The server will momentarily freeze in 2 seconds!</span>")
+	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
+	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
+
+	sleep(20)
+
+	if(!dump_memory_profile("data/logs/memory/[fname]"))
+		to_chat(usr, "<span class='warning'>Dumping memory failed at dll call.</span>")
+		return
+
+	if(!fexists("data/logs/memory/[fname]"))
+		to_chat(usr, "<span class='warning'>File creation failed. Please check to see if the data/logs/memory folder actually exists.</span>")
+	else
+		to_chat(usr, "<span class='notice'>Memory dump completed.</span>")
