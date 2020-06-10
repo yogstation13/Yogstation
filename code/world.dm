@@ -1,5 +1,5 @@
 //This file is just for the necessary /world definition
-//Try looking in game/world.dm
+//Try looking in game/world.d
 
 /world
 	mob = /mob/dead/new_player
