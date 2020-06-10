@@ -141,7 +141,7 @@
 	maxHealth = 100
 	health = 100
 	speed = -5
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/clothing/suit/armor/bone)
+	loot = list(/obj/effect/gibspawner/human, /obj/item/soap, /obj/item/clothing/suit/armor/bone)
 	
 /mob/living/simple_animal/hostile/retaliate/clown/honkling
 	name = "Honkling"
