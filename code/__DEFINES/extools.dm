@@ -28,7 +28,6 @@
 		world << result
 	call_cb("sample.dll", "do_work", /proc/print_result, "arg1", "arg2")
 	 - Calls do_work with 2 arguments. The callback is invoked with the result as the single argument. Execution resumes immediately.
-
 */
 
 #if 0
