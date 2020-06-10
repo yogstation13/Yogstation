@@ -35,8 +35,8 @@
 /proc/tffi_initialize()
 	return call(EXTOOLS, "tffi_initialize")() == EXTOOLS_SUCCESS
 
-var/fallback_alerted = FALSE
-var/next_promise_id = 0
+GLOBAL_VAR_INIT(fallback_alerted, FALSE)
+GLOBAL_VAR_INIT(next_promise_id, 0)
 
 /datum/promise
 	var/completed = FALSE
