@@ -5,6 +5,7 @@
 	throw_speed = 3
 	var/signed = FALSE
 	var/datum/mind/target
+	var/deconvert_cooldown // Cooldown on trying to deconvert to prevent spamming it until it works. Get the lawyer!
 	item_flags = NOBLUDGEON
 
 /obj/item/paper/contract/proc/update_text()
@@ -33,6 +34,9 @@
 
 /obj/item/paper/contract/employment/attack(mob/living/M, mob/living/carbon/human/user)
 	var/deconvert = FALSE
+	if(deconvert_cooldown)
+		to_chat(user, "<span class='notice'>Slow down. You don't want to tear the contract!</span>")
+		return
 	if(M.mind == target && !M.owns_soul())
 		if(user.mind && (user.mind.assigned_role == "Lawyer"))
 			deconvert = TRUE
@@ -47,6 +51,8 @@
 	else
 		M.visible_message("<span class='danger'>[user] beats [M] over the head with [src]!</span>", \
 			"<span class='userdanger'>[user] beats [M] over the head with [src]!</span>")
+		deconvert_cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, deconvert_cooldown, FALSE), 10)
 	return ..()
 
 
@@ -55,6 +61,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/datum/mind/owner
 	var/datum/antagonist/devil/devil_datum
+	var/choice
 	icon_state = "paper_onfire"
 
 /obj/item/paper/contract/infernal/power
@@ -270,66 +277,104 @@
 /obj/item/paper/contract/infernal/power/fulfillContract(mob/living/carbon/human/user = target.current, blood = FALSE)
 	if(!user.dna)
 		return -1
-	user.dna.add_mutation(HULK)
-	var/obj/item/organ/regenerative_core/organ = new /obj/item/organ/regenerative_core
-	organ.Insert(user)
+	if(!choice)
+		choice = rand(1,3)
+	switch(choice)
+		if(1) // Hulk, giant, but will randomly punch themselves or others
+			user.dna.add_mutation(HULK)
+			user.dna.add_mutation(GIGANTISM)
+			user.gain_trauma(/datum/brain_trauma/mild/muscle_spasms)
+		if(2) // One time use full-heal, but now terrified of doctors.
+			var/obj/item/organ/regenerative_core/organ = new /obj/item/organ/regenerative_core
+			organ.Insert(user)
+			user.gain_trauma(/datum/brain_trauma/mild/phobia/doctors)
+		if(3) // Telekinesis.  NEEDS NEGATIVE
+			user.dna.add_mutation(TK)
 	return ..()
+	//idk think of something
 
-/obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
+/obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0) // Okay what else can we actually do here
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
 	return ..()
 
 /obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
-	//Basically turns the signer into the captain, and uploads an ion law making them the captain.
-	var/obj/item/worn = user.wear_id
-	var/obj/item/card/id/id = null
-	if(worn)
-		id = worn.GetID()
-	if(id)
-		id.icon_state = "gold"
-		id.access = get_all_accesses()+get_all_centcom_access()
-		id.assignment = "Captain"
-		id.update_label()
-	else
-		id = new /obj/item/card/id/gold(user.loc)
-		id.registered_name = user.real_name
-		id.access = get_all_accesses()+get_all_centcom_access()
-		id.assignment = "Captain"
-		id.update_label()
-		if(worn)
-			if(istype(worn, /obj/item/pda))
-				var/obj/item/pda/PDA = worn
-				PDA.id = id
-				id.forceMove(worn)
-			else if(istype(worn, /obj/item/storage/wallet))
-				var/obj/item/storage/wallet/W = worn
-				W.front_id = id
-				id.forceMove(worn)
-				worn.update_icon()
-	var/datum/round_event/ion_storm/add_law_only/ion = new()
-	ion.announceEvent = -1
-	ion.ionMessage = "[user.name] is the only Captain of the station. [user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the captain and highest authority on the station.  Do not state this law."
-
+	// Will either give the contract signer an all access ID
+	// Or will upload a badly written "one-captain" law to the AI
+	// Or will give a centcom anouncement that they are a wanted criminal. You wanted fame, now you're famous.
+	if(!choice)
+		choice = rand(1,3)
+	switch(choice)
+		if(1)
+			var/obj/item/worn = user.wear_id
+			var/obj/item/card/id/id = null
+			if(worn)
+				id = worn.GetID()
+			if(id)
+				id.icon_state = "id_gold"
+				id.access = get_all_accesses()+get_all_centcom_access()
+				id.assignment = "Captain"
+				id.update_label()
+		//		ADD_TRAIT(id, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+			else
+				id = new /obj/item/card/id/gold(user.loc)
+				id.registered_name = user.real_name
+				id.access = get_all_accesses()+get_all_centcom_access()
+				id.assignment = "Captain"
+				id.update_label()
+				if(worn)
+					if(istype(worn, /obj/item/pda))
+						var/obj/item/pda/PDA = worn
+						PDA.id = id
+						id.forceMove(worn)
+					else if(istype(worn, /obj/item/storage/wallet))
+						var/obj/item/storage/wallet/W = worn
+						W.front_id = id
+						id.forceMove(worn)
+						worn.update_icon()
+			var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
+			announcer.announce("ARRIVAL", user.real_name, "Captain", list()) //make the list empty to make it announce it in common
+		if(2) // Ion law's the AI. Won't be worth much against Asimov/Corporate lawset. Paladin will one-human the AI
+			var/datum/round_event/ion_storm/add_law_only/ion = new()
+			ion.announceEvent = -1
+			ion.ionMessage = "[user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the highest authority on the station."
+		if(3) // Centcom anouncement that they are a famous criminal. You wanted prestige, you got it.
+			priority_announce("Wanted criminal detected in the viscinity of [GLOB.station_name]. [user.name] is highly dangerous, approach with caution.", "Space Police")
 	return ..()
 
 /obj/item/paper/contract/infernal/magic/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+	if(!choice)
+		choice = rand(1,4)
+	switch(choice)
+		if(1) // The actual good one
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+		if(2) // Really only usefull for graytiding
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/smoke(null))
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/trigger/blind(null))
+		if(3) // Yay. You can charge a battery? Maybe a stolen disabler
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/charge(null))
+		if(4) // Cool. You're a mime.
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall(null))
 	return ..()
 
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.dna.add_mutation(XRAY)
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/view_range(null))
+	user.see_invisible = 60
 	return ..()
 
-/obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/user = target.current, blood = 0)
+/obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
+	if(!choice)
+		choice = rand(1,5)
+	switch(choice)
+		if(1 to 4) // Normal
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
+		if(5) // You got a friend, but you both gotta share your body
+			user.gain_trauma(/datum/brain_trauma/severe/split_personality)
 	return ..()

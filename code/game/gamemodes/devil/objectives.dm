@@ -8,7 +8,17 @@
 	target_amount = pick(6,7,8)
 	update_explanation_text()
 
+/datum/objective/devil/lessersoulquantity
+	explanation_text = "You shouldn't see this text.  Error:DEVIL6"
+
+/datum/objective/devil/lessersoulquantity/New()
+	target_amount = pick(2,3,4,5)
+	update_explanation_text()
+
 /datum/objective/devil/soulquantity/update_explanation_text()
+	explanation_text = "Purchase, and retain control over at least [target_amount] souls."
+
+/datum/objective/devil/lessersoulquantity/update_explanation_text()
 	explanation_text = "Purchase, and retain control over at least [target_amount] souls."
 
 /datum/objective/devil/soulquantity/check_completion()
@@ -21,6 +31,15 @@
 			count++
 	return count >= target_amount
 
+/datum/objective/devil/lessersoulquantity/check_completion()
+	var/count = 0
+	var/datum/antagonist/devil/devilDatum = owner.has_antag_datum(/datum/antagonist/devil)
+	var/list/souls = devilDatum.soulsOwned
+	for(var/S in souls) //Just a sanity check.
+		var/datum/mind/L = S
+		if(L.soulOwner == owner)
+			count++
+	return count >= target_amount
 
 
 /datum/objective/devil/soulquality

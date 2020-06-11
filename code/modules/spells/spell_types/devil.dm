@@ -46,7 +46,55 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/effect/proc_holder/spell/targeted/summon_contract/cast(list/targets, mob/user = usr)
-	for(var/mob/living/carbon/C in targets)
+	var/datum/antagonist/devil/D = user.mind.has_antag_datum(/datum/antagonist/devil)
+	for(var/mob/living/carbon/human/C in targets)
+		if(D.obsession == "species")
+			if(D.actual_obsession == "lizard" && !is_species(C, /datum/species/lizard))
+				return to_chat(user, "<span class='notice'>This soul does not suit our tastes.")
+			if(D.actual_obsession == "moth" && !is_species(C, /datum/species/moth))
+				return
+			if(D.actual_obsession == "human" && !is_species(C, /datum/species/human))
+				return
+			if(D.actual_obsession == "pod" && !is_species(C, /datum/species/pod))
+				return
+			if(D.actual_obsession == "plasmaman" && !is_species(C, /datum/species/plasmaman))
+				return
+			if(D.actual_obsession == "android" && !is_species(C, /datum/species/android))
+				return
+			if(D.actual_obsession == "ethereal" && !is_species(C, /datum/species/ethereal))
+				return
+			if(D.actual_obsession == "felinid" && !is_species(C, /datum/species/human/felinid))
+				return
+		if(D.obsession == "gender")
+			if(D.actual_obsession == "male" && C.gender != MALE)
+				return
+			if(D.actual_obsession == "female" && C.gender != FEMALE)
+				return
+		if(D.obsession == "blood")
+			if(D.actual_obsession == "A-" && C.dna.blood_type != "A-")
+				return
+			if(D.actual_obsession == "A+" && C.dna.blood_type != "A+")
+				return
+			if(D.actual_obsession == "B-" && C.dna.blood_type != "B-")
+				return
+			if(D.actual_obsession == "B+" && C.dna.blood_type != "B+")
+				return
+			if(D.actual_obsession == "AB-" && C.dna.blood_type != "AB-")
+				return
+			if(D.actual_obsession == "AB+" && C.dna.blood_type != "AB+")
+				return
+			if(D.actual_obsession == "O-" && C.dna.blood_type != "O-")
+				return
+			if(D.actual_obsession == "O+" && C.dna.blood_type != "O+")
+				return
+			if(D.actual_obsession == "L" && C.dna.blood_type != "L")
+				return
+		if(D.obsession == "age")
+			if(D.actual_obsession == "16 to 30" && C.age >29)
+				return
+			if(D.actual_obsession == "30 and up" && C.age <30)
+				return
+			
 		if(C.mind && user.mind)
 			if(C.stat == DEAD)
 				if(user.dropItemToGround(user.get_active_held_item()))

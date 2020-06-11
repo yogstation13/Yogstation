@@ -109,6 +109,27 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		/obj/effect/proc_holder/spell/targeted/conjure_item/violin,
 		/obj/effect/proc_holder/spell/targeted/summon_dancefloor))
 	var/ascendable = FALSE
+	// Gives devils an obsession, so they cant just offer powers to anyone.
+	// Hopefully reduces graytide by making devils hand select who they offer to, instead of just the first person they see.
+	var/species_obsession = list(
+								"humans" = 2,
+								"felinids" = 3,
+								"podpeople" = 3,
+								"plasmamen",
+								"moths" = 2,
+								"lizards" = 3,
+								"preternis" = 2,
+								"ethereals"
+								) 
+								// Humans less likely to add difficulty, Lizards and cabbages and cats most likely, moths  and preternis even with humans
+								// then ethereals and plasmamen last because they are less likely.
+	var/bloodtype_obsession = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L")
+	var/gender_obsession = list("male", "female")
+	var/age_obsession = list("16 to 30", "30 and up")
+	var/obsession
+	var/actual_obsession
+	var/actual_obsession_text
+
 
 /datum/antagonist/devil/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -173,6 +194,29 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 
 /proc/randomdevilbanish()
 	return pick(BANISH_WATER, BANISH_COFFIN, BANISH_FORMALDYHIDE, BANISH_RUNES, BANISH_CANDLES, BANISH_DESTRUCTION, BANISH_FUNERAL_GARB)
+
+/datum/antagonist/devil/proc/randomobsession()
+	switch(rand(1,4))
+		if(1)
+			var/temp_species_obsession = pick(species_obsession)
+			obsession = "species"
+			actual_obsession = temp_species_obsession
+			actual_obsession_text = "[temp_species_obsession]"
+		if(2)
+			var/temp_bloodtype_obsession = pick(bloodtype_obsession)
+			obsession = "blood"
+			actual_obsession = temp_bloodtype_obsession
+			actual_obsession_text = "people with the bloodtype [temp_bloodtype_obsession]"
+		if(3)
+			var/temp_age_obsession = pick(age_obsession)
+			obsession = "age"
+			actual_obsession = temp_age_obsession
+			actual_obsession_text = "people between the ages of [temp_age_obsession]"
+		if(4)
+			var/temp_gender_obsession = pick(gender_obsession)
+			obsession = "gender"
+			actual_obsession = temp_gender_obsession
+			actual_obsession_text = "[temp_gender_obsession]s"
 
 /datum/antagonist/devil/proc/add_soul(datum/mind/soul)
 	if(soulsOwned.Find(soul))
@@ -335,6 +379,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		give_true_spells()
 	else if(SOULVALUE >= BLOOD_THRESHOLD)
 		give_blood_spells()
+	else if(SOULVALUE >= 0 && !ascendable)
+		give_base_spells()
+		give_lesser_spells() // Gives midround their extra spells
 	else if(SOULVALUE >= 0)
 		give_base_spells()
 
@@ -356,6 +403,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 /datum/antagonist/devil/proc/give_arch_spells()
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/ascended(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/sintouch/ascended(null))
+
+/datum/antagonist/devil/proc/give_lesser_spells()
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/infernal_jaunt(null)) // Given early for midround because they won't grow stronger
 
 /datum/antagonist/devil/proc/beginResurrectionCheck(mob/living/body)
 	if(SOULVALUE>0)
@@ -493,6 +543,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	to_chat(owner.current, GLOB.lawlorify[LAW][ban])
 	to_chat(owner.current, GLOB.lawlorify[LAW][obligation])
 	to_chat(owner.current, GLOB.lawlorify[LAW][banish])
+	to_chat(owner.current, "You are obsessed with the thought of collecting souls of [actual_obsession_text].")
 	to_chat(owner.current, "<span class='warning'>Remember, the crew can research your weaknesses if they find out your devil name.</span><br>")
 	.=..()
 
@@ -503,8 +554,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	obligation = randomdevilobligation()
 	banish = randomdevilbanish()
 	GLOB.allDevils[lowertext(truename)] = src
+	randomobsession()
 
-	antag_memory += "Your devilic true name is [truename]<br>[GLOB.lawlorify[LAW][ban]]<br>You may not use violence to coerce someone into selling their soul.<br>You may not directly and knowingly physically harm a devil, other than yourself.<br>[GLOB.lawlorify[LAW][bane]]<br>[GLOB.lawlorify[LAW][obligation]]<br>[GLOB.lawlorify[LAW][banish]]<br>"
+	antag_memory += "Your devilic true name is [truename]<br>[GLOB.lawlorify[LAW][ban]]<br>You may not use violence to coerce someone into selling their soul.<br>You may not directly and knowingly physically harm a devil, other than yourself.<br>[GLOB.lawlorify[LAW][bane]]<br>[GLOB.lawlorify[LAW][obligation]]<br>[GLOB.lawlorify[LAW][banish]]<br>You are obsessed with the thought of collecting souls of [actual_obsession_text]<br>"
 	if(issilicon(owner.current))
 		var/mob/living/silicon/robot_devil = owner.current
 		var/laws = list("You may not use violence to coerce someone into selling their soul.", "You may not directly and knowingly physically harm a devil, other than yourself.", GLOB.lawlorify[LAW][ban], GLOB.lawlorify[LAW][obligation], "Accomplish your objectives at all costs.")
@@ -514,7 +566,17 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		var/mob/living/carbon/human/S = owner.current
 		to_chat(S, "<span class='notice'>Your infernal nature has allowed you to overcome your clownishness.</span>")
 		S.dna.remove_mutation(CLOWNMUT)
+	if(!ascendable)
+		forge_objectives()
+		owner.announce_objectives()
 	.=..()
+
+/datum/antagonist/devil/proc/forge_objectives()
+	var/list/validtypes = list(/datum/objective/devil/lessersoulquantity, /datum/objective/devil/soulquality)
+	var/type = pick(validtypes)
+	var/datum/objective/devil/O = new type(null)
+	O.owner = owner
+	objectives += O
 
 /datum/antagonist/devil/on_removal()
 	to_chat(owner.current, "<span class='userdanger'>Your infernal link has been severed! You are no longer a devil!</span>")
@@ -542,6 +604,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][bane]]"
 	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][obligation]]"
 	parts += "[GLOB.TAB][GLOB.lawlorify[LORE][banish]]"
+	parts += "The devil was obsessed with the thought of collecting souls of [actual_obsession_text]."
 	return parts.Join("<br>")
 
 /datum/antagonist/devil/roundend_report()
