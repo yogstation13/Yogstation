@@ -49,7 +49,7 @@
 		return //can't change the settings on it if it's preset
 	var/name = stripped_input(user, "What would you like your camera's display name to be?", "Camera id", "[user.name]")
 	if(name)
-		bodcam.c_tag = "(Bodycam) " + name
+		bodcam.c_tag = "(Bodycam) [name]"
 	var/temp = stripped_input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13")
 	if(temp)
 		bodcam.network[1]=temp
@@ -73,7 +73,7 @@
 
 /obj/item/clothing/neck/bodycam/examine(mob/user)
 	.=..()
-	. += "<span class='notice'>The camera is currently [bodcam.status ? "on" : "off"].<span>"
+	. += "<span class='notice'>The camera is currently [bodcam.status ? "on" : "off"].</span>"
 	if(setup)
 		. += "<span class='notice'>It is registered under the name \"[bodcam.c_tag]\".</span>"
 		. += "<span class='notice'>It is streaming to the network \"[bodcam.network[1]]\".</span>"
@@ -115,8 +115,7 @@
 	var/temp="The screen bursts into static."
 	if (message)
 		temp += "\nThe message \'[message]\' appears."
-	for(var/i in GLOB.player_list)
-		var/mob/M = i
+	for(var/mob/M in GLOB.player_list)
 		if (M.client.eye == bodcam)
 			M.unset_machine()
 			M.reset_perspective(null)
@@ -162,5 +161,5 @@
 
 /obj/item/clothing/neck/bodycam/miner/attack_self(mob/user)
 	..()
-	bodcam.c_tag = "(Miner bodycam) " + user.name
+	bodcam.c_tag = "(Miner bodycam) [user.name]"
 	bodcam.network[1] = "mine"
