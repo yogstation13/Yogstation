@@ -145,7 +145,6 @@
 	if (!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
-	to_chat(user,"Debug: Trigger")
 	GLOB.cameranet.updatePortableCamera(bodcam)
 
 //Miner specfic camera, cannot be reconfigured
