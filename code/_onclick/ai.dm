@@ -43,12 +43,10 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
-		log_admin(message)
-		if(REALTIMEOFDAY >= chnotify + 9000)
-			chnotify = REALTIMEOFDAY
-			send2irc_adminless_only("NOCHEAT", message)
+		message_admins("[ADMIN_LOOKUPFLW(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		log_admin("[key_name(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
+		to_chat(src, "<span class='reallybig'>You have been automatically kicked because you clicked a turf you shouldnt of been able to see as an AI. Please reconnect to continue playing.</span>")
+		qdel(client) //YEEEEEEEEEEEET
 		return
 
 	var/list/modifiers = params2list(params)
