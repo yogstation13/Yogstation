@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		if(manualplace_min_time)
 			. +=  "Time Before Manual Placement: [max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)]"
 		. += "Time Before Automatic Placement: [max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)]"
-	
+
 /mob/camera/blob/Move(NewLoc, Dir = 0)
 	if(placed)
 		var/obj/structure/blob/B = locate() in range("3x3", NewLoc)
@@ -446,8 +446,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			return
 
 /mob/camera/blob/infection/add_points(points)
-  if(points > 0)
-	  stage_point_buffer += (points * stage_resources) - points
+	if(points > 0)
+		stage_point_buffer += (points * stage_resources) - points
 	blob_points = clamp(blob_points + points, 0, max_blob_points)
 	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
 
