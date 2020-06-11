@@ -33,6 +33,7 @@
 	var/check_records = TRUE //Does it check security records?
 	var/arrest_type = FALSE //If true, don't handcuff
 	var/russian = FALSE // If true, it uses russian voice lines
+	var/stuncount = 0 // The securitron will stun you until it gets tired of doing it
 
 /mob/living/simple_animal/bot/secbot/beepsky
 	name = "Commander Beepsky"
@@ -220,8 +221,9 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(!C.IsParalyzed() || arrest_type)
+		if(!C.IsParalyzed() || arrest_type || stuncount(A) < 30)
 			stun_attack(A)
+			stuncount(A)++
 		else if(C.canBeHandcuffed() && !C.handcuffed)
 			cuff(A)
 	else
