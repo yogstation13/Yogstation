@@ -263,8 +263,17 @@
 	parts += antag_report()
 
 	CHECK_TICK
+	//Security
+	parts += sec_report()
+
+	CHECK_TICK
 	//Medals
 	parts += medal_report()
+	CHECK_TICK
+
+	parts += mouse_report()
+
+	CHECK_TICK
 	//Station Goals
 	parts += goal_report()
 
@@ -335,6 +344,11 @@
 			else
 				parts += "<div class='panel greenborder'>"
 				parts += "<span class='greentext'>You managed to survive the events on [station_name()] as [M.real_name].</span>"
+				if(M.mind.assigned_role in GLOB.engineering_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/engineering, C)
+				else if(M.mind.assigned_role in GLOB.supply_positions) // We don't actually need to even really do a check to see if assigned_role is set to anything.
+					SSachievements.unlock_achievement(/datum/achievement/cargo, C)
+
 
 		else
 			parts += "<div class='panel redborder'>"
@@ -412,6 +426,16 @@
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
 
+/datum/controller/subsystem/ticker/proc/mouse_report()
+	if(GLOB.mouse_food_eaten)
+		var/list/parts = list()
+		parts += "<span class='header'>Mouse stats:</span>"
+		parts += "Mice Born: [GLOB.mouse_spawned]"
+		parts += "Mice Killed: [GLOB.mouse_killed]"
+		parts += "Trash Eaten: [GLOB.mouse_food_eaten]"
+		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
+	return ""
+
 /datum/controller/subsystem/ticker/proc/antag_report()
 	var/list/result = list()
 	var/list/all_teams = list()
@@ -461,6 +485,21 @@
 		result += "</div>"
 
 	return result.Join()
+
+/datum/controller/subsystem/ticker/proc/sec_report()
+	var/list/sec = list()
+	for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+		if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
+			sec |= player.mind
+	if (sec.len)
+		var/list/result = list()
+		result += "<span class='header'>Security Officers:<br></span>"
+		for(var/mob/living/carbon/human/player in GLOB.carbon_list)
+			if(player.mind && (player.mind.assigned_role in GLOB.security_positions))
+				result += "<ul class='player report'><b>[player.name]</b> (Played by: <b>[player.mind.key]</b>) [(player.stat != DEAD)? "<span class='greentext'>survived</span> as a <b>[player.mind.assigned_role]</b>" : "<span class='redtext'>fell in the line of duty</span> as a <b>[player.mind.assigned_role]</b>"]<br></ul>"
+
+		return "<div class='panel stationborder', style='text-indent: -.4in'><ul>[result.Join()]</ul></div>"
+	return ""
 
 /proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
 	return sorttext(B.roundend_category,A.roundend_category)

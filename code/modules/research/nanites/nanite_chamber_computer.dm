@@ -22,6 +22,12 @@
 	else
 		..()
 
+/obj/machinery/computer/nanite_chamber_control/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
+
 /obj/machinery/computer/nanite_chamber_control/proc/eject(mob/living/user)
 	if(!disk)
 		return
@@ -119,14 +125,14 @@
 		if("set_safety")
 			var/threshold = input("Set safety threshold (0-500):", name, null) as null|num
 			if(!isnull(threshold))
-				chamber.set_safety(CLAMP(round(threshold, 1),0,500))
+				chamber.set_safety(clamp(round(threshold, 1),0,500))
 				playsound(src, "terminal_type", 25, 0)
 				chamber.occupant.investigate_log("'s nanites' safety threshold was set to [threshold] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_cloud")
 			var/cloud_id = input("Set cloud ID (1-100, 0 to disable):", name, null) as null|num
 			if(!isnull(cloud_id))
-				chamber.set_cloud(CLAMP(round(cloud_id, 1),0,100))
+				chamber.set_cloud(clamp(round(cloud_id, 1),0,100))
 				playsound(src, "terminal_type", 25, 0)
 				chamber.occupant.investigate_log("'s nanites' cloud id was set to [cloud_id] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE

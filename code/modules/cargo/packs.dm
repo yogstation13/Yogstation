@@ -507,14 +507,14 @@
 
 /datum/supply_pack/security/armory/energy_single
 	name = "Energy Guns Single-Pack"
-	desc = "Contains one Energy Gun, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
+	desc = "Contains one energy gun, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
 	cost = 1500
 	small_item = TRUE
 	contains = list(/obj/item/gun/energy/e_gun)
 
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
-	desc = "Contains two Energy Guns, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
+	desc = "Contains two energy guns, capable of firing both non-lethal and lethal blasts of light. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/gun/energy/e_gun,
 					/obj/item/gun/energy/e_gun)
@@ -615,6 +615,26 @@
 	for(var/i in 1 to 10)
 		var/item = pick(contains)
 		new item(C)
+
+/datum/supply_pack/security/armory/smartmine
+	name = "Smart Mine Crate"
+	desc = "Contains three non-lethal pressure activated stun mines capable of ignoring mindshieled personnel. Requires Armory access to open."
+	cost = 4000
+	contains = list(/obj/item/deployablemine/smartstun,
+					/obj/item/deployablemine/smartstun,
+					/obj/item/deployablemine/smartstun)
+	crate_name = "stun mine crate"
+
+/datum/supply_pack/security/armory/stunmine
+	name = "Stun Mine Crate"
+	desc = "Contains five non-lethal pressure activated stun mines. Requires Armory access to open."
+	cost = 2500
+	contains = list(/obj/item/deployablemine/stun,
+					/obj/item/deployablemine/stun,
+					/obj/item/deployablemine/stun,
+					/obj/item/deployablemine/stun,
+					/obj/item/deployablemine/stun)
+	crate_name = "stun mine crate"
 
 /datum/supply_pack/security/armory/swat
 	name = "SWAT Crate"
@@ -1123,7 +1143,7 @@
 /datum/supply_pack/materials/watertank
 	name = "Water Tank Crate"
 	desc = "Contains a tank of dihydrogen monoxide... sounds dangerous."
-	cost = 600
+	cost = 700
 	contains = list(/obj/structure/reagent_dispensers/watertank)
 	crate_name = "water tank crate"
 	crate_type = /obj/structure/closet/crate/large
@@ -1164,14 +1184,14 @@
 /datum/supply_pack/medical/firstaidbruises_single
 	name = "Bruise Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing bruises and broken bones."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/brute)
 
 /datum/supply_pack/medical/firstaidburns_single
 	name = "Burn Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing severe burns."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/fire)
 
@@ -1209,7 +1229,7 @@
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
 	desc = "Contains one first aid kit for healing most types of wounds."
-	cost = 250
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/regular)
 
@@ -1255,7 +1275,7 @@
 /datum/supply_pack/medical/firstaidoxygen_single
 	name = "Oxygen Deprivation Kit Single-Pack"
 	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
 
@@ -1271,7 +1291,7 @@
 /datum/supply_pack/medical/firstaidtoxins_single
 	name = "Toxin Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
-	cost = 330
+	cost = 700
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/toxin)
 
@@ -2365,7 +2385,7 @@
 
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"
-	desc = "Get your sad station movin' and groovin' with this fine collection! Contains nine different instruments!"
+	desc = "Get your sad station movin' and groovin' with this fine collection! Contains ten different instruments!"
 	cost = 5000
 	crate_name = "Big band musical instruments collection"
 	contains = list(/obj/item/instrument/violin,
@@ -2376,7 +2396,8 @@
 					/obj/item/instrument/trombone,
 					/obj/item/instrument/recorder,
 					/obj/item/instrument/harmonica,
-					/obj/structure/piano/unanchored)
+					/obj/structure/piano/unanchored,
+					/obj/item/instrument/banjo)
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/book_crate
@@ -2436,7 +2457,7 @@
 /datum/supply_pack/misc/funeral
 	name = "Funeral Supply crate"
 	desc = "At the end of the day, someone's gonna want someone dead. Give them a proper send-off with these funeral supplies! Contains a coffin with burial garmets and flowers."
-	cost = 600
+	cost = 600 //doesn't sell for 500 credits like a normal crate so its fine
 	contains = list(/obj/item/clothing/under/burial,
 					/obj/item/reagent_containers/food/snacks/grown/harebell,
 					/obj/item/reagent_containers/food/snacks/grown/poppy/geranium)

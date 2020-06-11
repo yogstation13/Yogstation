@@ -23,10 +23,7 @@
 		update_icon()
 
 /obj/machinery/chem_heater/update_icon()
-	if(beaker)
-		icon_state = "mixer1b"
-	else
-		icon_state = "mixer0b"
+	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -119,6 +116,7 @@
 		if("power")
 			on = !on
 			. = TRUE
+			update_icon()
 		if("temperature")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
@@ -132,7 +130,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				target_temperature = CLAMP(target, 0, 1000)
+				target_temperature = clamp(target, 0, 1000)
 		if("eject")
 			on = FALSE
 			replace_beaker(usr)

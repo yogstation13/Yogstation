@@ -1,5 +1,61 @@
 // CHAPLAIN CUSTOM ARMORS //
 
+/obj/item/clothing/suit/space/hardsuit/darktemplarfollower
+	name = "Black Templar armor"
+	desc = "Custom-made Black Templar armor, it's abnormally light. The words 'Purge Heresy' are written on the back."
+	icon_state = "darktemplar-follower0"
+	item_state = "darktemplar-follower0"
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	slowdown = 0.8
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
+
+/obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap
+	name = "Black Templar chaplain battle-armor"
+	desc = "Custom-made Black Templar chaplain armor, it's abnormally light. The words 'Purge Heresy' are written on the back."
+	icon_state = "darktemplar-chaplain0"
+	item_state = "darktemplar-chaplain0"
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	slowdown = 0.8
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
+
+/obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
+	name = "Black Templar helmet"
+	desc = "A custom-made Black Templar helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
+	icon_state = "darktemplar-follower1"
+	item_state = "darktemplar-follower1"
+	armor = list("melee" = 20, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	strip_delay = 50
+	actions_types = list()
+
+/obj/item/clothing/head/helmet/space/hardsuit/darktemplarchap
+	name = "Black Templar chaplain battle-helmet"
+	desc = "A custom-made Black Templar chaplain battle-helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
+	icon_state = "darktemplar-chaplain1"
+	item_state = "darktemplar-chaplain1"
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 55)
+	cold_protection = null
+	min_cold_protection_temperature = null
+	heat_protection = null
+	max_heat_protection_temperature = null
+	clothing_flags = null
+	strip_delay = 50
+	actions_types = list()
+
 /obj/item/clothing/head/helmet/chaplain
 	name = "crusader helmet"
 	desc = "Deus Vult."
@@ -23,7 +79,7 @@
 	desc = "Contains a set of armaments for the chaplain."
 
 /obj/item/choice_beacon/holy/canUseBeacon(mob/living/user)
-	if(user.mind && user.mind.isholy)
+	if(user.mind && user.mind.holy_role)
 		return ..()
 	else
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 40, 1)
@@ -160,6 +216,14 @@
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
 
+/obj/item/storage/box/holy/darktemplar
+	name = "Founder Kit of the Black Templars"
+
+/obj/item/storage/box/holy/darktemplar/PopulateContents()
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollower(src)
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollower(src)
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollower(src)
+	new /obj/item/clothing/suit/space/hardsuit/darktemplarfollowerchap(src)
 
 // CHAPLAIN NULLROD AND CUSTOM WEAPONS //
 
@@ -188,26 +252,33 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/nullrod/attack_self(mob/user)
-	if(user.mind && (user.mind.isholy) && !reskinned)
+	if(user.mind && (user.mind.holy_role) && !reskinned)
 		reskin_holy_weapon(user)
 
+  /*
+  reskin_holy_weapon: Shows a user a list of all available nullrod reskins and based on his choice replaces the nullrod with the reskinned version
+
+  Arguments:
+  M : The mob choosing a nullrod reskin
+  */
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
 	if(GLOB.holy_weapon_type)
 		return
-	var/obj/item/nullrod/holy_weapon
-	var/list/holy_weapons_list = typesof(/obj/item/nullrod)
 	var/list/display_names = list()
-	for(var/V in holy_weapons_list)
+	var/list/nullrod_icons = list()
+	for(var/V in typesof(/obj/item/nullrod))
 		var/obj/item/nullrod/rodtype = V
-		if (initial(rodtype.chaplain_spawnable))
+		if(initial(rodtype.chaplain_spawnable))
 			display_names[initial(rodtype.name)] = rodtype
+			nullrod_icons += list(initial(rodtype.name) = image(icon = initial(rodtype.icon), icon_state = initial(rodtype.icon_state)))
 
-	var/choice = input(M,"What theme would you like for your holy weapon?","Holy Weapon Theme") as null|anything in display_names
-	if(QDELETED(src) || !choice || M.stat || !in_range(M, src) || M.incapacitated() || reskinned)
+	nullrod_icons = sortList(nullrod_icons)
+	var/choice = show_radial_menu(M, src , nullrod_icons, custom_check = CALLBACK(src, .proc/check_menu, M), radius = 42, require_near = TRUE, tooltips = TRUE)
+	if(!choice || !check_menu(M))
 		return
 
 	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
-	holy_weapon = new A
+	var/obj/item/nullrod/holy_weapon = new A
 
 	GLOB.holy_weapon_type = holy_weapon.type
 
@@ -217,6 +288,21 @@
 		holy_weapon.reskinned = TRUE
 		qdel(src)
 		M.put_in_active_hand(holy_weapon)
+
+  /*
+  check_menu : Checks if we are allowed to interact with a radial menu
+
+  Arguments:
+  user : The mob interacting with a menu
+  */
+/obj/item/nullrod/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src) || reskinned)
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
 
 /obj/item/nullrod/godhand
 	icon_state = "disintegrate"
@@ -260,8 +346,8 @@
 	shield_icon = "shield-old"
 
 /obj/item/nullrod/claymore
-	icon_state = "claymore"
-	item_state = "claymore"
+	icon_state = "holyblade"
+	item_state = "holyblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "holy claymore"
@@ -281,13 +367,11 @@
 /obj/item/nullrod/claymore/darkblade
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "dark blade"
 	desc = "Spread the glory of the dark gods!"
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
 /obj/item/nullrod/claymore/chainsaw_sword
@@ -589,10 +673,12 @@
 
 /obj/item/nullrod/carp/attack_self(mob/living/user)
 	if(used_blessing)
-	else if(user.mind && (user.mind.isholy))
+	else if(user.mind && (user.mind.holy_role))
 		to_chat(user, "You are blessed by Carp-Sie. Wild space carp will no longer attack you.")
 		user.faction |= "carp"
 		used_blessing = TRUE
+
+
 
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
 	name = "monk's staff"

@@ -162,3 +162,25 @@
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
 
 	foodtype = MEAT | BREAKFAST | EGG
+
+/obj/item/reagent_containers/food/snacks/spidereggsham
+	name = "green eggs and ham"
+	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
+	icon_state = "spidereggsham"
+	trash = /obj/item/trash/plate
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+	bitesize = 4
+	filling_color = "#7FFF00"
+	tastes = list("meat" = 1, "the colour green" = 1)
+	foodtype = MEAT | EGG
+
+/obj/item/reagent_containers/food/snacks/eggwrap
+	name = "egg wrap"
+	desc = "The precursor to pigs in a blanket."
+	icon_state = "eggwrap"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	filling_color = "#F0E68C"
+	tastes = list("egg" = 1)
+	foodtype = MEAT | GRAIN | EGG

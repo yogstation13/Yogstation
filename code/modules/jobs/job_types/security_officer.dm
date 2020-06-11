@@ -23,11 +23,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
-	changed_maps = list("MinskyStation", "YogsPubby", "OmegaStation")
+	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 
-/datum/job/officer/proc/MinskyStationChanges()
-	total_positions = 6
-	spawn_positions = 6
+/datum/job/officer/proc/EclipseStationChanges()
+	total_positions = 14
+	spawn_positions = 10
 
 /datum/job/officer/proc/YogsPubbyChanges()
 	access += ACCESS_CREMATORIUM
@@ -45,7 +45,7 @@
 	L |= ..() | check_config_for_sec_maint()
 	return L
 
-GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
+GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
 
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -53,12 +53,12 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_security_department
-		if(!LAZYLEN(GLOB.available_depts) || department == "None")
+		if(!LAZYLEN(GLOB.available_depts_sec) || department == "None")
 			return
-		else if(department in GLOB.available_depts)
-			LAZYREMOVE(GLOB.available_depts, department)
+		else if(department in GLOB.available_depts_sec)
+			LAZYREMOVE(GLOB.available_depts_sec, department)
 		else
-			department = pick_n_take(GLOB.available_depts)
+			department = pick_n_take(GLOB.available_depts_sec)
 	var/ears = null
 	var/accessory = null
 	var/list/dep_access = null
@@ -89,6 +89,12 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 			destination = /area/security/checkpoint/science
 			spawn_point = locate(/obj/effect/landmark/start/depsec/science) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/science
+		if(SEC_DEPT_SERVICE)
+			ears = /obj/item/radio/headset/headset_sec/alt/department/service
+			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE)
+			destination = /area/security/checkpoint/service
+			spawn_point = locate(/obj/effect/landmark/start/depsec/service) in GLOB.department_security_spawns
+			accessory =  /obj/item/clothing/accessory/armband/service
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -174,3 +180,7 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 /obj/item/radio/headset/headset_sec/alt/department/sci
 	keyslot = new /obj/item/encryptionkey/headset_sec
 	keyslot2 = new /obj/item/encryptionkey/headset_sci
+
+/obj/item/radio/headset/headset_sec/alt/department/service
+	keyslot = new /obj/item/encryptionkey/headset_sec
+	keyslot2 = new /obj/item/encryptionkey/headset_service

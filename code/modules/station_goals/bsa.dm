@@ -182,8 +182,10 @@
 		T.ex_act(EXPLODE_DEVASTATE)
 	point.Beam(get_target_turf(),icon_state="bsa_beam",time=50,maxdistance = world.maxx) //ZZZAP
 	new /obj/effect/temp_visual/bsa_splash(point, dir)
-
+	if(user.client)
+		SSachievements.unlock_achievement(/datum/achievement/cargo/bsa, user.client)
 	message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike.")
+	log_game("[key_name(user)] has fired the bluespace artillery") // yogs
 	explosion(bullseye,ex_power,ex_power*2,ex_power*4)
 
 	reload()

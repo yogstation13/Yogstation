@@ -20,7 +20,14 @@
 	code = "Blue"
 
 /datum/ert/amber
+	opendoors = FALSE
 	code = "Amber"
+	rename_team = "Amber Task Force"
+	mission = "Eliminate the threat to the station."
+	polldesc = "the Amber Task Force"
+	teamsize = 7
+	leader_role = /datum/antagonist/ert/amber/commander
+	roles = list(/datum/antagonist/ert/amber,/datum/antagonist/ert/amber,/datum/antagonist/ert/amber/medic) // entered duplicate here to increase change of soldiers
 
 /datum/ert/red
 	leader_role = /datum/antagonist/ert/commander/red
@@ -35,17 +42,60 @@
 	mission = "Leave no witnesses."
 	polldesc = "an elite Nanotrasen Strike Team"
 
-/datum/ert/centcom_official
+/datum/ert/official
 	code = "Green"
 	teamsize = 1
 	opendoors = FALSE
-	leader_role = /datum/antagonist/official
-	roles = list(/datum/antagonist/official)
+	leader_role = /datum/antagonist/centcom
+	roles = list(/datum/antagonist/centcom)
 	rename_team = "CentCom Officials"
 	polldesc = "a CentCom Official"
 
-/datum/ert/centcom_official/New()
+/datum/ert/official/New()
 	mission = "Conduct a routine performance review of [station_name()] and its Captain."
+
+
+/datum/ert/official/captain
+	leader_role = /datum/antagonist/centcom/captain
+	roles = list(/datum/antagonist/centcom/captain)
+	rename_team = "CentCom Captains"
+	polldesc = "a CentCom Captain"
+
+/datum/ert/official/major
+	leader_role = /datum/antagonist/centcom/major
+	roles = list(/datum/antagonist/centcom/major)
+	rename_team = "CentCom Majors"
+	polldesc = "a CentCom Major"
+
+/datum/ert/official/commodore
+	leader_role = /datum/antagonist/centcom/commander
+	roles = list(/datum/antagonist/centcom/commander)
+	rename_team = "CentCom Commodores"
+	polldesc = "a CentCom Commodore"
+
+/datum/ert/official/colonel
+	leader_role = /datum/antagonist/centcom/colonel
+	roles = list(/datum/antagonist/centcom/colonel)
+	rename_team = "CentCom Colonels"
+	polldesc = "a CentCom Colonel"
+
+/datum/ert/official/rear_admiral
+	leader_role = /datum/antagonist/centcom/rear_admiral
+	roles = list(/datum/antagonist/centcom/rear_admiral)
+	rename_team = "CentCom Rear-Admirals"
+	polldesc = "a CentCom Rear-Admiral"
+
+/datum/ert/official/admiral
+	leader_role = /datum/antagonist/centcom/admiral
+	roles = list(/datum/antagonist/centcom/admiral)
+	rename_team = "CentCom Admirals"
+	polldesc = "a CentCom Admiral"
+
+/datum/ert/official/grand_admiral
+	leader_role = /datum/antagonist/centcom/grand_admiral
+	roles = list(/datum/antagonist/centcom/grand_admiral)
+	rename_team = "CentCom Grand Admirals"
+	polldesc = "a CentCom Grand Admiral"
 
 /datum/ert/inquisition
 	roles = list(/datum/antagonist/ert/chaplain/inquisitor, /datum/antagonist/ert/security/inquisitor, /datum/antagonist/ert/medic/inquisitor)

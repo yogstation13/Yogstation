@@ -123,20 +123,20 @@
 ///////////VOICE OF GOD///////////////
 //////////////////////////////////////
 
-/proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE)
+/proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE, forced_span = FALSE)
 	var/cooldown = 0
 
 	if(!user || !user.can_speak() || user.stat)
 		return 0 //no cooldown
 
 	var/log_message = uppertext(message)
-	if(!span_list || !span_list.len)
+	if(!forced_span)
 		if(iscultist(user))
 			span_list = list("narsiesmall")
 		else if (is_servant_of_ratvar(user))
 			span_list = list("ratvar")
-		else
-			span_list = list()
+	if(!span_list || !span_list.len)
+		span_list = list()
 
 	user.say(message, spans = span_list, sanitize = FALSE)
 
@@ -190,19 +190,19 @@
 			listeners = list(L) //Devil names are unique.
 			power_multiplier *= 5 //if you're a devil and god himself addressed you, you fucked up
 			//Cut out the name so it doesn't trigger commands
-			message = copytext(message, 0, start)+copytext(message, start + length(devilinfo.truename), length(message) + 1)
+			message = copytext(message, 1, start) + copytext(message, start + length(devilinfo.truename))
 			break
-		else if(dd_hasprefix(message, L.real_name))
+		else if(findtext(message, L.real_name, 1, length(L.real_name) + 1))
 			specific_listeners += L //focus on those with the specified name
 			//Cut out the name so it doesn't trigger commands
 			found_string = L.real_name
 
-		else if(dd_hasprefix(message, L.first_name()))
+		else if(findtext(message, L.first_name(), 1, length(L.first_name()) + 1))
 			specific_listeners += L //focus on those with the specified name
 			//Cut out the name so it doesn't trigger commands
 			found_string = L.first_name()
 
-		else if(L.mind && L.mind.assigned_role && dd_hasprefix(message, L.mind.assigned_role))
+		else if(L.mind && L.mind.assigned_role && findtext(message, L.mind.assigned_role, 1, length(L.mind.assigned_role) + 1))
 			specific_listeners += L //focus on those with the specified job
 			//Cut out the job so it doesn't trigger commands
 			found_string = L.mind.assigned_role
@@ -210,7 +210,7 @@
 	if(specific_listeners.len)
 		listeners = specific_listeners
 		power_multiplier *= (1 + (1/specific_listeners.len)) //2x on a single guy, 1.5x on two and so on
-		message = copytext(message, 0, 1)+copytext(message, 1 + length(found_string), length(message) + 1)
+		message = copytext(message, length(found_string) + 1)
 
 	var/static/regex/stun_words = regex("stop|wait|stand still|hold on|halt")
 	var/static/regex/knockdown_words = regex("drop|fall|trip|knockdown")

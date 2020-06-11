@@ -19,7 +19,7 @@
 	var/map_file = "YogStation.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 7
+	var/space_ruin_levels = 4
 	var/space_empty_levels = 1
 
 	var/minetype = "lavaland"
@@ -70,8 +70,8 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
-
 	map_file = json["map_file"]
+
 	// "map_file": "BoxStation.dmm"
 	if (istext(map_file))
 		if (!fexists("_maps/[map_path]/[map_file]"))

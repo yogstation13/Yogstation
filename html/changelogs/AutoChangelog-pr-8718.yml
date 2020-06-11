@@ -1,0 +1,5 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - rscadd: "omega gets a nanite lab!"
+  - rscdel: "some omega maint room is gone now"

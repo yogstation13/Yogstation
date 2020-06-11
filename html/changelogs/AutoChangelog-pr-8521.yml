@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "Mechs can no longer punch or activate leg actuator overload while their equipment is disabled"

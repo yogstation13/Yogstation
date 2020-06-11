@@ -156,8 +156,8 @@
 	if(active)
 		return sequence
 	while(difficulty)
-		var/randnum = rand(1, length(sequence))
-		sequence = copytext(sequence, 1, randnum) + "X" + copytext(sequence, randnum+1, length(sequence)+1)
+		var/randnum = rand(1, length_char(sequence))
+		sequence = copytext_char(sequence, 1, randnum) + "X" + copytext_char(sequence, randnum + 1)
 		difficulty--
 	return sequence
 
@@ -461,14 +461,14 @@
 
 /proc/getleftblocks(input,blocknumber,blocksize)
 	if(blocknumber > 1)
-		return copytext(input,1,((blocksize*blocknumber)-(blocksize-1)))
+		return copytext_char(input,1,((blocksize*blocknumber)-(blocksize-1)))
 
 /proc/getrightblocks(input,blocknumber,blocksize)
 	if(blocknumber < (length(input)/blocksize))
-		return copytext(input,blocksize*blocknumber+1,length(input)+1)
+		return copytext_char(input,blocksize*blocknumber+1,length(input)+1)
 
 /proc/getblock(input, blocknumber, blocksize=DNA_BLOCK_SIZE)
-	return copytext(input, blocksize*(blocknumber-1)+1, (blocksize*blocknumber)+1)
+	return copytext_char(input, blocksize*(blocknumber-1)+1, (blocksize*blocknumber)+1)
 
 /proc/setblock(istring, blocknumber, replacement, blocksize=DNA_BLOCK_SIZE)
 	if(!istring || !blocknumber || !replacement || !blocksize)
@@ -611,9 +611,9 @@
 					O.forceMove(drop_location())
 					if(prob(20))
 						O.animate_atom_living()
-			/* YOGSif(9 to 10)
+			if(9 to 10)
 				ForceContractDisease(new/datum/disease/gastrolosis())
-				to_chat(src, "<span class='notice'>Oh, I actually feel quite alright!</span>") YOGS*/
+				to_chat(src, "<span class='notice'>Oh, I actually feel quite alright!</span>") 
 	else
 		switch(rand(0,5))
 			if(0)

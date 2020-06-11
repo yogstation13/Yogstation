@@ -28,7 +28,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/Aggro()
 	..()
-	if(vision_range != aggro_vision_range)
+	if(vision_range == aggro_vision_range && icon_aggro)
 		icon_state = icon_aggro
 
 /mob/living/simple_animal/hostile/asteroid/LoseAggro()
@@ -54,6 +54,9 @@
 			visible_message("<span class='notice'>The [T.name] [throw_message] [src.name]!</span>")
 			return
 	..()
+
+/mob/living/simple_animal/hostile/asteroid/sentience_act()
+	faction -= "mining"
 
 /mob/living/simple_animal/hostile/asteroid/death(gibbed)
 	SSblackbox.record_feedback("tally", "mobs_killed_mining", 1, type)

@@ -355,6 +355,9 @@
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE
 
+	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
+		return FALSE
+
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if (H.wear_suit && H.head && istype(H.wear_suit, /obj/item/clothing) && istype(H.head, /obj/item/clothing))
@@ -362,6 +365,7 @@
 			var/obj/item/clothing/CH = H.head
 			if (CS.clothing_flags & CH.clothing_flags & THICKMATERIAL)
 				return FALSE // Skip over them if they have no exposed flesh.
+
 
 	if(declare_crit && C.health <= 0) //Critical condition! Call for help!
 		declare(C)
@@ -433,7 +437,7 @@
 	var/reagent_id = null
 
 	if(emagged == 2) //Emagged! Time to poison everybody.
-		reagent_id = "toxin"
+		reagent_id = /datum/reagent/toxin
 
 	else
 		if(treat_virus)
@@ -514,9 +518,6 @@
 		update_icon()
 		soft_reset()
 		return
-
-	reagent_id = null
-	return
 
 /mob/living/simple_animal/bot/medbot/proc/check_overdose(mob/living/carbon/patient,reagent_id,injection_amount)
 	var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]

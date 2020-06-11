@@ -639,16 +639,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"cT" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med{
-	contents = newlist(/obj/item/scalpel,/obj/item/hemostat,/obj/item/retractor,/obj/item/cautery,/obj/item/circular_saw,/obj/item/surgicaldrill,/obj/item/razor);
-	desc = "A large dufflebag for holding extra medical supplies - this one seems to be designed for holding surgical tools.";
-	name = "surgical dufflebag";
-	pixel_y = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "cZ" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -918,13 +908,6 @@
 /obj/machinery/computer/shuttle/white_ship/miner,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"qu" = (
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "qA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -981,6 +964,11 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"xX" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "zy" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mineral/titanium,
@@ -1004,12 +992,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"Bi" = (
-/obj/structure/table/optable,
-/obj/item/surgical_drapes,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Ct" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1089,6 +1071,17 @@
 /obj/item/storage/toolbox/emergency,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"Mw" = (
+/obj/structure/table/optable,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
+"MD" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Nt" = (
@@ -1598,7 +1591,7 @@ bk
 bk
 aJ
 lL
-qu
+MD
 ae
 "}
 (23,1,1) = {"
@@ -1613,9 +1606,9 @@ JR
 wj
 Fj
 bk
-Bi
+Mw
 Nt
-cT
+xX
 bk
 "}
 (24,1,1) = {"

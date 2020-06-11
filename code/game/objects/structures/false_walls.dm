@@ -47,7 +47,9 @@
 	. = ..()
 	if(.)
 		return
+	toggle(user)
 
+/obj/structure/falsewall/proc/toggle(mob/user)
 	opening = TRUE
 	update_icon()
 	if(!density)
@@ -91,6 +93,11 @@
 /obj/structure/falsewall/attackby(obj/item/W, mob/user, params)
 	if(opening)
 		to_chat(user, "<span class='warning'>You must wait until the door has stopped moving!</span>")
+		return
+
+	if(W.tool_behaviour == TOOL_CROWBAR)
+		to_chat(user, "<span class='warning'>You pry open the false wall!</span>")
+		toggle(user)
 		return
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)

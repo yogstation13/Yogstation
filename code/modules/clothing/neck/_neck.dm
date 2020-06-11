@@ -193,10 +193,14 @@
 
 /obj/item/clothing/neck/petcollar
 	name = "pet collar"
-	desc = "It's for pets."
+	desc = "It has a little bell!"
 	icon_state = "petcollar"
 	item_color = "petcollar"
 	var/tagname = null
+
+/obj/item/clothing/neck/petcollar/Initialize()
+	.= ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	var/mob/living/carbon/C = M
@@ -205,7 +209,7 @@
 	return ..()
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = copytext(sanitize(input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot") as null|text),1,MAX_NAME_LEN)
+	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
 //////////////
@@ -247,3 +251,43 @@
 			user.visible_message("You untie [oldName] back into a [newBand.name]", "[user] unties [oldName] back into a [newBand.name]")
 		else
 			to_chat(user, "<span class='warning'>You must be holding [src] in order to untie it!</span>")
+
+//CentCom
+
+/obj/item/clothing/neck/pauldron
+	name = "major's pauldron"
+	icon_state = "major"
+	item_state = "major"
+	desc = "A red padded pauldron signifying the rank of Major; offers a small amount of protection to the wearer."
+	w_class = WEIGHT_CLASS_SMALL
+	body_parts_covered = CHEST
+	armor = list("melee" = 15, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/clothing/neck/pauldron/commander
+	name = "commodore's pauldron"
+	desc = "A gold alloy reinforced pauldron signifying the rank of Commodore;offers a moderate amount of protection to the wearer."
+	icon_state = "commodore"
+	item_state = "commodore"
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 20, "energy" = 20, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 50)
+
+/obj/item/clothing/neck/pauldron/colonel
+	name = "colonel's pauldrons"
+	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commander's pauldron to the wearer."
+	icon_state = "colonel"
+	item_state = "colonel"
+	armor = list("melee" = 35, "bullet" = 30, "laser" = 35, "energy" = 35, "bomb" = 5, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 90)
+
+/obj/item/clothing/neck/cape
+	name = "admiral's cape"
+	desc = "A sizable green cape with gold connects."
+	icon_state = "admiralcape"
+	item_state = "admiralcape"
+	w_class = WEIGHT_CLASS_SMALL
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_inv = HIDESUITSTORAGE
+
+/obj/item/clothing/neck/cape/grand
+	name = "grand admiral's cape"
+	desc = "A sizable white cape with gold connects."
+	icon_state = "grandadmiral"
+	item_state = "grand_admiral"

@@ -1,0 +1,5 @@
+author: "  Hopek , Partheo , Nickvr628"
+delete-after: true 
+changes: 
+  - rscadd: "Added the paramedic space suit. Each Paramedic office spawns with 1 space suit for space extractions."
+  - imageadd: "Credit to Partheo and Nickvr628 for the Paramedic space suit sprite."

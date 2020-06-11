@@ -1,0 +1,5 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "Added space suits"
+  - bugfix: "added a space suit no more suffocation"
