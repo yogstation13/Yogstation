@@ -224,7 +224,7 @@ Auto Patrol: []"},
 		var/mob/living/carbon/C = A
 		if(!C.IsParalyzed() || arrest_type || stuncount < 30)
 			stun_attack(A)
-			if(lastStunned %% lastStunned == A)
+			if(lastStunned && lastStunned == A)
 				stuncount++
 			else
 				stuncount = 0
