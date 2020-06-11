@@ -1,0 +1,4 @@
+author: "Codeatmos"
+delete-after: true 
+changes: 
+  - bugfix: "Preternis Chems should work properly"

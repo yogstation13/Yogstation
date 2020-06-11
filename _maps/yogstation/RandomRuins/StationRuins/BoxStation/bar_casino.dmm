@@ -320,21 +320,23 @@
 	},
 /area/crew_quarters/kitchen)
 "aR" = (
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks,
-/obj/machinery/door/window/eastleft{
+/obj/structure/table,
+/obj/machinery/firealarm{
 	dir = 8;
-	icon_state = "right";
-	name = "Soda Dispenser";
-	req_access_txt = "0"
+	pixel_x = 26
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aS" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks{
+	icon_state = "soda_dispenser";
+	dir = 4
 	},
+/obj/machinery/door/window/westright,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aT" = (
@@ -463,8 +465,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -535,12 +536,10 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "bq" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+/obj/machinery/vending/boozeomat,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -587,7 +586,10 @@
 /obj/machinery/door/window/northright{
 	name = "Teller's Desk"
 	},
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bv" = (
@@ -600,10 +602,6 @@
 	pixel_x = 2
 	},
 /turf/open/floor/carpet/black,
-/area/crew_quarters/bar)
-"bx" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "by" = (
 /obj/machinery/smartfridge/drinks,
@@ -816,8 +814,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -876,8 +873,7 @@
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -1165,7 +1161,7 @@ ag
 ag
 ij
 aH
-aR
+aS
 cl
 bY
 cl
@@ -1197,7 +1193,7 @@ aL
 ai
 bf
 aI
-aS
+cm
 bM
 cm
 cm
@@ -1212,8 +1208,8 @@ ay
 aM
 cc
 ag
+aR
 bq
-bx
 cm
 bh
 cm

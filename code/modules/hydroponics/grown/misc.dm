@@ -56,9 +56,8 @@
 		return
 
 	var/datum/gas_mixture/stank = new
-	ADD_GAS(/datum/gas/miasma, stank.gases)
-	stank.gases[/datum/gas/miasma][MOLES] = (yield + 6)*7*MIASMA_CORPSE_MOLES // this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
-	stank.temperature = T20C // without this the room would eventually freeze and miasma mining would be easier
+	stank.set_moles(/datum/gas/miasma, (yield + 6)*7*MIASMA_CORPSE_MOLES) // this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
+	stank.set_temperature(T20C) // without this the room would eventually freeze and miasma mining would be easier
 	T.assume_air(stank)
 	T.air_update_turf()
 
@@ -121,7 +120,7 @@
 // Gatfruit
 /obj/item/seeds/gatfruit
 	name = "pack of gatfruit seeds"
-	desc = "These seeds grow into .357 revolvers."
+	desc = "These seeds grow into .357 revolvers. A prized commodity among the criminal shadow-collective."
 	icon_state = "seed-gatfruit"
 	species = "gatfruit"
 	plantname = "Gatfruit Tree"

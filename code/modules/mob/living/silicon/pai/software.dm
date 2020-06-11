@@ -89,6 +89,7 @@
 	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 			<html>
 			<head>
+				<meta charset='UTF-8'>
 				<style type=\"text/css\">
 					body { background-image:url('html/paigrid.png'); }
 
@@ -557,7 +558,6 @@
 		dat += "Unable to obtain a reading.<br>"
 	else
 		var/datum/gas_mixture/environment = T.return_air()
-		var/list/env_gases = environment.gases
 
 		var/pressure = environment.return_pressure()
 		var/total_moles = environment.total_moles()
@@ -565,11 +565,11 @@
 		dat += "Air Pressure: [round(pressure,0.1)] kPa<br>"
 
 		if (total_moles)
-			for(var/id in env_gases)
-				var/gas_level = env_gases[id][MOLES]/total_moles
+			for(var/id in environment.get_gases())
+				var/gas_level = environment.get_moles(id)/total_moles
 				if(gas_level > 0.01)
-					dat += "[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
-		dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
+					dat += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [round(gas_level*100)]%<br>"
+		dat += "Temperature: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 	dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Refresh Reading</a> <br>"
 	dat += "<br>"
 	return dat

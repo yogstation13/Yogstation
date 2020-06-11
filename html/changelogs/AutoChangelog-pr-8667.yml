@@ -1,0 +1,4 @@
+author: "MacHac"
+delete-after: true 
+changes: 
+  - tweak: "Borgs can tell when someone locks or unlocks their cover."

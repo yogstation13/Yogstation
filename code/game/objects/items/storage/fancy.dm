@@ -133,6 +133,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	icon_type = "cigarette"
 	spawn_type = /obj/item/clothing/mask/cigarette/space_cigarette
+	age_restricted = TRUE
 
 /obj/item/storage/box/fancy/cigarettes/ComponentInitialize()
 	. = ..()
@@ -250,6 +251,12 @@
 	desc = "Loaded with 100% pure slime. And also nicotine."
 	icon_state = "slime"
 	spawn_type = /obj/item/clothing/mask/cigarette/xeno
+
+/obj/item/storage/box/fancy/cigarettes/cigpack_nonico
+	name = "nicotine-free cigarette packet"
+	desc = "A dull-looking pack of cigarettes."
+	icon_state = "nonico"
+	spawn_type = /obj/item/clothing/mask/cigarette/nonico
 
 /obj/item/storage/box/fancy/cigarettes/cigpack_cannabis
 	name = "\improper Freak Brothers' Special packet"

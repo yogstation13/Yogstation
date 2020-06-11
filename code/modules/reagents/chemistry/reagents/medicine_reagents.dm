@@ -935,7 +935,7 @@
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
 	M.AdjustAllImmobility(-60, FALSE)
-	M.adjustStaminaLoss(-5*REM, 0)
+	M.adjustStaminaLoss(-30*REM, 0)
 	..()
 	. = 1
 
@@ -1339,7 +1339,7 @@
 
 /datum/reagent/medicine/burnmix
 	name = "BurnMix"
-	description = "Take in moderation. Heals damage at a snail's pace. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
+	description = "Take in moderation. Initially heals damage at a snail's pace until overdosed. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
 	reagent_state = LIQUID
 	color = "#BD328A" //  R 189 G 50 B 138 , Medium Red Violet , Hue of Violet 
 	overdose_threshold = 15

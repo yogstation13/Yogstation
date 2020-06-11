@@ -1,0 +1,5 @@
+author: "  Toriate"
+delete-after: true 
+changes: 
+  - rscadd: "RPD now has inhands"
+  - imageadd: "RCD and RPD have been resprited"

@@ -1,6 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
+	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	var/projectile
 	var/fire_sound
 	var/projectiles_per_shot = 1
@@ -100,6 +101,15 @@
 	energy_drain = 60
 	projectile = /obj/item/projectile/beam/laser/heavylaser
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
+	equip_cooldown = 10
+	name = "\improper CH-XC \"Transitum\" x-ray laser"
+	desc = "A weapon for combat exosuits. Shoots concentrated X-ray blasts."
+	icon_state = "mecha_xray"
+	energy_drain = 60
+	projectile = /obj/item/projectile/beam/xray
+	fire_sound = 'sound/weapons/laser3.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
 	equip_cooldown = 20
@@ -486,7 +496,7 @@
 
 /obj/item/punching_glove/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..())
-		if(ismovableatom(hit_atom))
+		if(ismovable(hit_atom))
 			var/atom/movable/AM = hit_atom
 			AM.safe_throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 7, 2)
 		qdel(src)

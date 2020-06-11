@@ -1,0 +1,6 @@
+author: "  VG for sprites and base bloodstone code, theos for porting"
+delete-after: true 
+changes: 
+  - tweak: "Nar-Sie rune uses 20 health down from 40.1, takes 30 seconds to scribe down from 50, and the cult master counts as 5 cultists up from 1 to activate if they are the person activating the rune"
+  - imageadd: "new sprites for Nar-Sie being summoned and bloodcult endgame structures from VG"
+  - rscadd: "Bloodcult no longer ends after the summon rune, instead they need to protect several bloodstones that appear across the station. This is split into two stages, the first requiring defense of at least one of four bloodstones for 5 minutes, and the second requiring the defense of a much stronger bloodstone for 1-4 minutes depending on how many bloodstones survived the first stage, with more speeding up the summoning."

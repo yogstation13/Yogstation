@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Ported TG's singularity hammer sprite"
+  - rscdel: "Deleted an unused Mjolnir duplicate sprite"

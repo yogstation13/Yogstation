@@ -1,13 +1,12 @@
 /mob/dead/observer/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if (!message)
 		return
 
 	var/message_mode = get_message_mode(message)
 	if(client && (message_mode == MODE_ADMIN || message_mode == MODE_DEADMIN))
-		message = copytext(message, 3)
-		if(findtext(message, " ", 1, 2))
-			message = copytext(message, 2)
+		message = copytext_char(message, 3)
+		message = trim_left(message)
 
 		if(message_mode == MODE_ADMIN)
 			client.cmd_admin_say(message)
@@ -32,7 +31,9 @@
 		else
 			to_follow = V.source
 	var/link = FOLLOW_LINK(src, to_follow)
+	// Create map text prior to modifying message for goonchat
+	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	to_chat(src, "[link] [message]")
-

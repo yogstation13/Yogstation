@@ -60,7 +60,7 @@
 	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
 	.["melee"] = !saved_stats.ranged
 	.["abilities_major"] = list()
-	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : ((subtypesof(/datum/guardian_ability/major)-/datum/guardian_ability/major/healing) - typesof(/datum/guardian_ability/major/special))
 	for(var/ability in types)
 		var/datum/guardian_ability/major/GA = new ability
 		GA.master_stats = saved_stats
@@ -96,27 +96,27 @@
 		if("set")
 			switch(params["name"])
 				if("Damage")
-					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
+					var/lvl = clamp(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.damage > 1 ? saved_stats.damage - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.damage = lvl
 					. = TRUE
 				if("Defense")
-					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
+					var/lvl = clamp(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.defense > 1 ? saved_stats.defense - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.defense = lvl
 					. = TRUE
 				if("Speed")
-					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
+					var/lvl = clamp(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.speed > 1 ? saved_stats.speed - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.speed = lvl
 					. = TRUE
 				if("Potential")
-					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
+					var/lvl = clamp(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.potential > 1 ? saved_stats.potential - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.potential = lvl
 					. = TRUE
 				if("Range")
-					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
+					var/lvl = clamp(text2num(params["level"]), 1, 5)
 					if((points + (saved_stats.range > 1 ? saved_stats.range - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.range = lvl
 					. = TRUE
@@ -124,7 +124,7 @@
 			QDEL_NULL(saved_stats.ability)
 		if("ability_major")
 			var/ability = text2path(params["path"])
-			var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+			var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : ((subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/healing) - typesof(/datum/guardian_ability/major/special))
 			if(ispath(ability))
 				if(saved_stats.ability && saved_stats.ability.type == ability)
 					QDEL_NULL(saved_stats.ability)

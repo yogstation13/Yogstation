@@ -1,0 +1,156 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Turdis
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  pull_request:
+    branches: master
+  push:
+    branches: master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  lint:
+    name: Lints
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Cache SpacemanDMM
+        uses: actions/cache@v1
+        with:
+          path: ~/SpacemanDMM
+          key: ${{ runner.os }}-dreamchecker-${{ hashFiles('dependencies.sh')}}
+          restore-keys: ${{ runner.os }}-dreamchecker
+
+      - name: Setup Python
+        uses: actions/setup-python@v1.2.0
+      
+      - name: Setup Rust
+        uses: hecrj/setup-rust-action@v1.3.2
+        with:
+          default: true
+      
+      - name: Setup PHP
+        uses: nanasess/setup-php@v3.0.3
+        with: 
+          php_version: 5.6
+
+      - name: Install Dependencies
+        run: |
+          wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+          tools/travis/install_build_tools.sh
+          tools/travis/install_spaceman_dmm.sh dreamchecker
+
+      - name: Misc Checks
+        run: |
+          tools/travis/check_filedirs.sh yogstation.dme
+          tools/travis/check_changelogs.sh
+          find . -name "*.php" -print0 | xargs -0 -n1 php -l
+          find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
+          tools/travis/build_tgui.sh
+          tools/travis/check_grep.sh
+
+      - name: Run Linter
+        run: ~/dreamchecker
+  compile:
+    name: Compile All Maps
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Install Dependencies
+        run: |
+          curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt install libstdc++6:i386
+      
+      - name: Cache BYOND
+        uses: actions/cache@v1
+        with:
+          path: ~/BYOND
+          key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
+          restore-keys: ${{ runner.os }}-byond
+          
+      - name: Setup BYOND
+        run: |
+          tools/travis/install_byond.sh
+          cd $GITHUB_WORKSPACE
+          printenv
+          echo "::set-env name=BYOND_SYSTEM::/home/runner/BYOND/byond"
+          echo "::set-env name=PATH::/home/runner/BYOND/byond/bin:$PATH"
+          echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
+          echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
+          
+      - name: Compile All Maps
+        run: |
+          tools/travis/template_dm_generator.py
+          tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme  
+  test:
+    name: Compile and Run Tests
+    runs-on: ubuntu-18.04
+    services:
+      mariadb:
+       image: mariadb/server
+       ports: 
+         - 3306:3306
+       env:
+        MARIADB_ALLOW_EMPTY_PASSWORD: yes
+        
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Install Dependencies
+        run: |
+          curl https://raw.githubusercontent.com/yogstation13/Yogstation/master/.github/sources.list | sudo tee /etc/apt/sources.list
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
+          
+      - name: Cache BYOND
+        uses: actions/cache@v1
+        with:
+          path: ~/BYOND
+          key: ${{ runner.os }}-byond-${{ hashFiles('Dockerfile')}}
+          restore-keys: ${{ runner.os }}-byond
+          
+      - name: Setup Environment
+        run: |
+          tools/travis/install_byond.sh
+          echo "::set-env name=BYOND_SYSTEM::/home/runner/BYOND/byond"
+          echo "::set-env name=PATH::/home/runner/BYOND/byond/bin:$PATH"
+          echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
+          echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
+          cd $GITHUB_WORKSPACE
+          tools/travis/install_libmariadb.sh
+          tools/travis/install_rust_g.sh
+          mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
+          mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
+          mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
+          mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
+          tools/travis/build_bsql.sh
+          
+      - name: Compile
+        run: |
+          tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
+          
+      - name: Prepare Artifacts
+        run: |
+          mkdir artifacts
+          cp yogstation.dmb artifacts
+          cp yogstation.rsc artifacts
+      
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v1
+        with: 
+          name: DMB + RSC
+          path: ${{github.workspace}}/artifacts
+          
+      - name: Run Tests
+        run: |
+          tools/travis/run_server.sh
+

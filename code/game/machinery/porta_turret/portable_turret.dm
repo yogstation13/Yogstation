@@ -729,6 +729,11 @@
 /obj/machinery/porta_turret/ai/assess_perp(mob/living/carbon/human/perp)
 	return 10 //AI turrets shoot at everything not in their faction
 
+/obj/machinery/porta_turret/ai/in_faction(mob/target)
+	. = ..()
+	if(ismouse(target))
+		return TRUE
+
 /obj/machinery/porta_turret/aux_base
 	name = "perimeter defense turret"
 	desc = "A plasma beam turret calibrated to defend outposts against non-humanoid fauna. It is more effective when exposed to the environment."
@@ -838,7 +843,7 @@
 
 /obj/machinery/turretid/examine(mob/user)
 	. += ..()
-	if(issilicon(user) && (!stat & BROKEN))
+	if(issilicon(user) && !(stat & BROKEN))
 		. += {"<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>
 					<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>"}
 

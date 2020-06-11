@@ -87,7 +87,8 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_propability_multiplier()
 
-		if((prob(prob_chance) || iscyborg(user)) && chem_check(target) && !try_to_fail)
+		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
+	 tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
 				advance = 1
 		else
@@ -122,19 +123,26 @@
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return 1
 
-/datum/surgery_step/proc/chem_check(mob/living/carbon/target)
+/datum/surgery_step/proc/chem_check(mob/living/carbon/target, user,  obj/item/tool)
 	if(!LAZYLEN(chems_needed))
 		return TRUE
-
+	var/obj/item/reagent_containers/syringe/S
+	if(target.can_inject(user, FALSE))
+		S = tool
 	if(require_all_chems)
 		. = TRUE
 		for(var/R in chems_needed)
 			if(!target.reagents.has_reagent(R))
-				return FALSE
+				if(!(S && S.reagents.has_reagent(R)))
+					return FALSE
+				S.reagents.remove_reagent(R, min(S.amount_per_transfer_from_this, S.reagents.get_reagent_amount(R)))
 	else
 		. = FALSE
 		for(var/R in chems_needed)
 			if(target.reagents.has_reagent(R))
+				return TRUE
+			if(S && S.reagents.has_reagent(R))
+				S.reagents.remove_reagent(R, min(S.amount_per_transfer_from_this, S.reagents.get_reagent_amount(R)))
 				return TRUE
 
 /datum/surgery_step/proc/get_chem_list()

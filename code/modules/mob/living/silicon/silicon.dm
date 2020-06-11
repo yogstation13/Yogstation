@@ -272,7 +272,7 @@
 
 /mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
 
-	var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>"
+	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 
 	if (laws.devillaws && laws.devillaws.len)
 		for(var/index = 1, index <= laws.devillaws.len, index++)
@@ -322,7 +322,7 @@
 				lawcheck[number+1] = "Yes"
 			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> <font color='#990099'>[law]</font><BR>"}
 			number++
-	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A>"}
+	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
 
 	usr << browse(list, "window=laws")
 
@@ -417,3 +417,41 @@
 
 /mob/living/silicon/handle_high_gravity(gravity)
 	return
+
+/mob/living/silicon/get_status_tab_items()
+	.=..()
+	.+= ""
+	.+= "<h2>Current Silicon Laws:</h2>"
+	if (laws.devillaws && laws.devillaws.len)
+		for(var/index = 1, index <= laws.devillaws.len, index++)
+			.+= "[laws.devillaws[index]]"
+
+	if (laws.zeroth)
+		.+= "<b><font color='#ff0000'>0: [laws.zeroth]</font></b>"
+
+	for (var/index = 1, index <= laws.hacked.len, index++)
+		var/law = laws.hacked[index]
+		if (length(law) > 0)
+			.+= "<b><font color='#660000'>[ionnum()]:</b>	 [law]</font>"
+			hackedcheck.len += 1
+
+	for (var/index = 1, index <= laws.ion.len, index++)
+		var/law = laws.ion[index]
+		if (length(law) > 0)
+			.+= "<b><font color='#547DFE'>[ionnum()]:</b> 	[law]</font>"
+
+	var/number = 1
+	for (var/index = 1, index <= laws.inherent.len, index++)
+		var/law = laws.inherent[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "<b>[number]:</b> [law]"
+			number++
+
+	for (var/index = 1, index <= laws.supplied.len, index++)
+		var/law = laws.supplied[index]
+		if (length(law) > 0)
+			lawcheck.len += 1
+			.+= "<b>[number]:</b> [law]"
+			number++
+	.+= ""

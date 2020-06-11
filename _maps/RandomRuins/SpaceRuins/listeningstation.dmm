@@ -93,6 +93,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "ak" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
+	generates_heat = 0;
 	use_power = 0
 	},
 /obj/effect/decal/cleanable/dirt,
