@@ -15,10 +15,12 @@
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
 	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
-	w_class = WEIGHT_CLASS_BULKY //you HAVE to wear it or carry it. No cheating by putting it in a bag!
+	w_class = WEIGHT_CLASS_NORMAL
+	var/mob/listeningTo //This code is simular to the code for the RCL.
 
 /obj/item/clothing/neck/bodycam/Initialize()
 	..()
+	ADD_TRAIT(src, TRAIT_NO_STORAGE, TRAIT_GENERIC)
 	bodcam = new(src)
 	bodcam.c_tag = "NT_BodyCam"
 	bodcam.network = list("ss13")
@@ -34,9 +36,12 @@
 		bodcam.status = FALSE
 		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
 		Screenfuzz("Error: Feed disconnected")
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
 	else
 		bodcam.status = TRUE
 		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
+		getMobhook(user)
 	update_icon()
 
 /obj/item/clothing/neck/bodycam/AltClick(mob/user)
@@ -52,6 +57,8 @@
 		bodcam.status = TRUE
 		Screenfuzz("Error: Network change detected")
 		update_icon()
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
 
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
@@ -93,9 +100,15 @@
 		bodcam.network[1] = rand(1, 10000) //gibberish, this will render the camera basically unreadable by any console
 		bodcam.status = FALSE
 		update_icon()
+		if(listeningTo)
+			UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+			listeningTo = null
 
 /obj/item/clothing/neck/bodycam/Destroy()
 	. = ..()
+	if (listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
 	QDEL_NULL(bodcam)
 
 /obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
@@ -108,6 +121,32 @@
 			M.unset_machine()
 			M.reset_perspective(null)
 			to_chat(M, temp)
+
+/obj/item/clothing/neck/bodycam/pickup(mob/user)
+	..()
+	getMobhook(user)
+
+/obj/item/clothing/neck/bodycam/dropped(mob/wearer)
+	..()
+	if (bodcam.status)//if it's on
+		attack_self(wearer) //turn it off
+	GLOB.cameranet.updatePortableCamera(bodcam)
+	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+
+/obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
+	if(listeningTo == to_hook)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	listeningTo = to_hook
+	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, .proc/trigger)
+
+/obj/item/clothing/neck/bodycam/proc/trigger(mob/user)
+	if (!bodcam.status)//this is a safety in case of some fucky wucky shit. This SHOULD not ever be true but sometimes it is anyway :(
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
+	to_chat(user,"Debug: Trigger")
+	GLOB.cameranet.updatePortableCamera(bodcam)
 
 //Miner specfic camera, cannot be reconfigured
 /obj/item/clothing/neck/bodycam/miner

@@ -125,7 +125,7 @@
 	if (can_hold_list != null)
 		can_hold = typecacheof(can_hold_list)
 
-	if (cant_hold_list != null)	
+	if (cant_hold_list != null)
 		cant_hold = typecacheof(cant_hold_list)
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)
@@ -624,6 +624,10 @@
 			if(!stop_messages)
 				to_chat(M, "<span class='warning'>[IP] cannot hold [I] as it's a storage item of the same size!</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
+	if(HAS_TRAIT(I, TRAIT_NO_STORAGE))
+		if(!stop_messages)
+			to_chat(M, "<span class='warning'>\the [I] can't seem to fit in \the [host]! You're not sure it would fit in any container at all!</span>")
+		return FALSE
 	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>\the [I] is stuck to your hand, you can't put it in \the [host]!</span>")
