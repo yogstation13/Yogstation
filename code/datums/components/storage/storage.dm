@@ -626,7 +626,7 @@
 			return FALSE //To prevent the stacking of same sized storage items.
 	if(HAS_TRAIT(I, TRAIT_NO_STORAGE))
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>\the [I] can't seem to fit in \the [host]! You're not sure it would fit in any container at all!</span>")
+			to_chat(M, "<span class='warning'>\the [I] can't seem to fit in \the [host]!</span>")
 		return FALSE
 	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
