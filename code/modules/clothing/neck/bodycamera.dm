@@ -52,7 +52,7 @@
 		bodcam.c_tag = "(Bodycam) [name]"
 	var/temp = stripped_input(user, "Which network should the camera broadcast to?\nFor example, 'ss13', 'security', and 'mine' are existing networks", "Camera network", "ss13")
 	if(temp)
-		bodcam.network[1]=temp
+		bodcam.network[1] = temp
 		setup = TRUE
 		bodcam.status = TRUE
 		Screenfuzz("Error: Network change detected")
