@@ -19,7 +19,7 @@
 		return FALSE //this means the attack goes through
 	if(istype(hitby, /obj/item/projectile))
 		var/obj/item/projectile/P = hitby
-		if(P.firer && P.fired_from && (P.firer != P.fired_from)) //if the projectile comes from YOU, like your spit or some shit, you can't steal that bro. Also protects mechs
+		if(P?.firer && P.fired_from && (P.firer != P.fired_from)) //if the projectile comes from YOU, like your spit or some shit, you can't steal that bro. Also protects mechs
 			if(ismachinery(P.firer) || isanimal(P.firer) || issilicon(P.firer)) //You can't switcharoo with turrets or simplemobs, or borgs
 				return FALSE
 			switcharoo(P.firer, owner, P.fired_from)
@@ -40,7 +40,7 @@
 
 /obj/item/syndicateReverseCard/examine(mob/user)
 	. = ..()
-	if(user.mind.special_role)
+	if(is_special_character(user))
 		. += "<span class='info'>Hold this in your hand when you are getting shot at to steal your opponent's gun. You'll lose this, so be careful!</span>"
 		return
 	if(used)
