@@ -379,13 +379,14 @@
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("IAA All"))
 			for(var/mob/living/H in GLOB.player_list)
-				if(!(ishuman(H))
+				if(!(ishuman(H)))
 					continue
 				if(H.stat == DEAD || !H.client || !H.mind || ispAI(H))
 					continue
 				if(is_special_character(H))
 					continue
-				if(mind.assigned_role == list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security"))
+				var/list/badjobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security")
+				if(H.mind.assigned_role in badjobs)
 					continue
 				var/datum/antagonist/traitor/internal_affairs/T = new()
 				H.mind.add_antag_datum(T)
