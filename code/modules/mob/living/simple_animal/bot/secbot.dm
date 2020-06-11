@@ -34,6 +34,7 @@
 	var/arrest_type = FALSE //If true, don't handcuff
 	var/russian = FALSE // If true, it uses russian voice lines
 	var/stuncount = 0 // The securitron will stun you until it gets tired of doing it
+	var/mob/lastStunned // Who was stunned last?
 
 /mob/living/simple_animal/bot/secbot/beepsky
 	name = "Commander Beepsky"
@@ -221,13 +222,13 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		var/lastStunned = A
 		if(!C.IsParalyzed() || arrest_type || stuncount < 30)
 			stun_attack(A)
 			if(lastStunned == A)
 				stuncount++
 			else
 				stuncount = 0
+			lastStunned = A
 		else if(C.canBeHandcuffed() && !C.handcuffed)
 			stuncount = 0
 			cuff(A)
