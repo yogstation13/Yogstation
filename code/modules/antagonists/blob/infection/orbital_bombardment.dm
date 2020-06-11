@@ -43,7 +43,11 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 
 		var/DisplayTarget
 		if(selectedTarget)
-			DisplayTarget = "[selectedTarget.name] (X: [selectedTarget.loc.x], Y: [selectedTarget.loc.y])"
+			if(!selectedTarget.loc.x || !selectedTarget.loc.y)
+				DisplayTarget = "None"
+				selectedTarget = null
+			else
+				DisplayTarget = "[selectedTarget.name] (X: [selectedTarget.loc.x], Y: [selectedTarget.loc.y])"
 		else
 			DisplayTarget = "None"
 
@@ -114,6 +118,10 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 		if(selectedTarget.firedOn)
 			to_chat(usr, "<span>There's already a missile inbound to this target!</span>")
 			return
+		if(!selectedTarget.loc.x || !selectedTarget.loc.y)
+			selectedTarget = null
+			to_chat(usr, "<span>Failed. Unknown error.</span>")
+			return
 		var/dev = selectedMuniton.dev
 		var/heavy = selectedMuniton.heavy
 		var/light = selectedMuniton.light
@@ -123,11 +131,16 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 		selectedTarget.help = new /obj/effect/missileTarget(selectedTarget.loc)
 		selectedTarget.firedOn = TRUE
 		selectedTarget.prime()
-		addtimer(CALLBACK(selectedTarget, /obj/item/flashlight/glowstick/cyan/orb/proc/bombard, dev, heavy, light, flash, flame), selectedMuniton.landTime)
+		addtimer(CALLBACK(selectedTarget, .proc/bombard, loc, dev, heavy, light, flash, flame), selectedMuniton.landTime)
 		to_chat(usr, "<span>Order recieved, firing.</span>")
+		GLOB.orbital_beacons -= selectedTarget
+		qdel(selectedTarget)
 		selectedTarget = null
 		fired = TRUE
 	updateUsrDialog()
+
+/obj/machinery/computer/orbital_bomb/proc/bombard(loc, dev, heavy, light, flash, flame)
+	explosion(loc, dev, heavy, light, flash_range = flash, flame_range = flame)
 
 /obj/item/flashlight/glowstick/cyan/orb
 	name = "orbital bombardment beacon"
