@@ -221,6 +221,7 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
+		var/lastStunned = A
 		if(!C.IsParalyzed() || arrest_type || stuncount < 30)
 			stun_attack(A)
 			if(lastStunned == A)
