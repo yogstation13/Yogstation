@@ -221,9 +221,9 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(!C.IsParalyzed() || arrest_type || stuncount(A) < 30)
+		if(!C.IsParalyzed() || arrest_type || A.stuncount < 30)
 			stun_attack(A)
-			stuncount(A)++
+			A.stuncount++
 		else if(C.canBeHandcuffed() && !C.handcuffed)
 			cuff(A)
 	else
