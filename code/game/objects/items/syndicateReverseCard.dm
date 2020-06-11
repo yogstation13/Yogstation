@@ -16,15 +16,15 @@
 
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))
-		return 0 //this means the attack goes through
+		return FALSE //this means the attack goes through
 	if(istype(hitby, /obj/item/projectile))
 		var/obj/item/projectile/P = hitby
 		if(P.firer && P.fired_from && (P.firer != P.fired_from)) //if the projectile comes from YOU, like your spit or some shit, you can't steal that bro. Also protects mechs
-			if(istype(P.firer, /obj/machinery) || istype(P.firer, /mob/living/simple_animal) || istype(P.firer, /mob/living/silicon)) //You can't switcharoo with turrets or simplemobs, or borgs
-				return 0
+			if((ismachinery(P.firer) || isanimal(P.firer) || issilicon(P.firer)) //You can't switcharoo with turrets or simplemobs, or borgs
+				return FALSE
 			switcharoo(P.firer, owner, P.fired_from)
-			return 1 //this means the attack is blocked
-	return 0
+			return TRUE //this means the attack is blocked
+	return FALSE
 
 /obj/item/syndicateReverseCard/proc/switcharoo(mob/firer, mob/user, gun) //this proc teleports the gun out of the firer's hands and into the user's. The firer gets the card.
 	//first, the sparks!
