@@ -133,7 +133,10 @@
 		return FALSE
 	if(!uses)
 		return FALSE
-	if(!do_teleport(A, get_turf(linked_gateway), forceMove = TRUE, channel = TELEPORT_CHANNEL_CULT))
+	var/area/gate1 = get_area(src)
+	var/area/gate2 = get_area(linked_gateway)
+	var/reebeport = (gate1 && gate2) && ((is_reebe(src.z) && is_reebe(linked_gateway.z)) || (is_reebe(src.z) && !gate2.noteleport) || (is_reebe(linked_gateway.z) && !gate1.noteleport)) //reebe is noteleport so we have to check if either side is on reebe or otherwise teleport-accessible to force do_teleport
+	if(!do_teleport(A, get_turf(linked_gateway), forceMove = TRUE, channel = TELEPORT_CHANNEL_CULT, forced = reebeport))
 		visible_message("<span class='warning'>[A] bounces off [src]!</span>")
 		return FALSE
 	if(isliving(A))

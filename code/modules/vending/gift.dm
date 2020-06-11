@@ -40,6 +40,7 @@
 					/obj/item/instrument/trombone = 1,
 					/obj/item/instrument/trumpet = 1,
 					/obj/item/instrument/piano_synth = 1,
+					/obj/item/instrument/banjo = 1,
 					/obj/item/storage/backpack = 4,
 					/obj/item/reagent_containers/syringe = 3,
 					/obj/item/reagent_containers/pill/patch/styptic = 2,

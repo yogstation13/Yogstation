@@ -45,9 +45,6 @@
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
-	kill.owner = owner
-	kill.target = obsessionmind
 	var/datum/quirk/family_heirloom/family_heirloom
 
 	for(var/datum/quirk/quirky in obsessionmind.current.roundstart_quirks)
@@ -70,14 +67,10 @@
 				spendtime.target = obsessionmind
 				objectives += spendtime
 			if("polaroid")
-				/*
-				 * This is currently commented out like this so that there still is a chance for a third objective if applicable
-				 * but this won't add the objective if it tries to select the picture one
 				var/datum/objective/polaroid/polaroid = new
 				polaroid.owner = owner
 				polaroid.target = obsessionmind
 				objectives += polaroid
-				*/
 			if("hug")
 				var/datum/objective/hug/hug = new
 				hug.owner = owner
@@ -95,7 +88,22 @@
 				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
 				objectives += jealous
 
-	objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
+	if(prob(50))
+		var/datum/objective/protect/yandere_one = new
+		yandere_one.owner = owner
+		yandere_one.target = obsessionmind
+		yandere_one.update_explanation_text()
+		objectives += yandere_one
+		var/datum/objective/maroon/yandere_two = new
+		yandere_two.owner = owner
+		yandere_two.target = obsessionmind
+		yandere_two.update_explanation_text() //usually called in find_target()
+		objectives += yandere_two
+	else
+		var/datum/objective/assassinate/obsessed/kill = new
+		kill.owner = owner
+		kill.target = obsessionmind
+		objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 
@@ -263,7 +271,7 @@
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
-				if(P.picture.mobs_seen.Find(owner) && P.picture.mobs_seen.Find(target) && !P.picture.dead_seen.Find(target))//you are in the picture, they are but they are not dead.
+				if(P.picture.mobs_seen.Find(owner.current) && P.picture.mobs_seen.Find(target.current) && !P.picture.dead_seen.Find(target.current))//you are in the picture, they are but they are not dead.
 					return TRUE
 	return FALSE
 

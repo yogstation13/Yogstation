@@ -6,9 +6,7 @@
 /turf/closed/wall/r_wall,
 /area/awaymission/academy/headmaster)
 "ac" = (
-/mob/living/simple_animal/hostile/carp/ranged{
-	faction = list("wizard")
-	},
+/mob/living/simple_animal/hostile/carp/ranged/wizard,
 /turf/open/space,
 /area/space/nearstation)
 "ad" = (
@@ -48,7 +46,7 @@
 	dir = 1;
 	environ = 3;
 	equipment = 3;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /turf/open/floor/carpet,
@@ -1284,7 +1282,7 @@
 	dir = 1;
 	environ = 3;
 	equipment = 3;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /turf/open/floor/plasteel/grimy,
@@ -2539,7 +2537,7 @@
 	dir = 1;
 	environ = 3;
 	equipment = 3;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /turf/open/floor/plasteel,
@@ -3571,7 +3569,7 @@
 	dir = 1;
 	environ = 3;
 	equipment = 3;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /obj/structure/cable{
@@ -3915,7 +3913,7 @@
 "lp" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -4018,7 +4016,7 @@
 /area/awaymission/academy/academyengine)
 "lK" = (
 /obj/effect/immovablerod{
-	dir = 4
+	dir = 4;
 	notdebris = 1
 	},
 /obj/structure/cable,

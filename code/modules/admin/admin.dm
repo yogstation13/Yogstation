@@ -32,7 +32,7 @@
 			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>", confidential=TRUE)
 		return //yogs end
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
+	var/body = "<html><head><meta charset='UTF-8'><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
@@ -114,6 +114,11 @@
 	body += "<A href='?_src_=holder;[HrefToken()];narrateto=[REF(M)]'>Narrate to</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];subtlemessage=[REF(M)]'>Subtle message</A> | "
 	body += "<A href='?_src_=holder;[HrefToken()];languagemenu=[REF(M)]'>Language Menu</A>"
+
+	body += "<br><br>"
+	body += "<A href='?_src_=holder;[HrefToken()];antag_token_give=[M.ckey]'>Give Antag Token</A> | "
+	body += "<A href='?_src_=holder;[HrefToken()];antag_token_redeem=[M.ckey]'>Redeem Antag Token</A> | "
+	body += "<A href='?_src_=holder;[HrefToken()];searchAntagTokenByKey=[M.ckey]'>See Antag Tokens</A>"
 
 	if (M.client)
 		if(!isnewplayer(M))
@@ -210,7 +215,7 @@
 		to_chat(usr, "Error: you are not an admin!", confidential=TRUE)
 		return
 	var/dat
-	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
+	dat = text("<HEAD><meta charset='UTF-8'><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
 
 	switch(admincaster_screen)
 		if(0)
@@ -412,6 +417,7 @@
 		return
 
 	var/dat = {"
+		<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
@@ -428,6 +434,8 @@
 
 	if(marked_datum && istype(marked_datum, /atom))
 		dat += "<A href='?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</A><br>"
+
+	dat += "</BODY></HTML>"
 
 	usr << browse(dat, "window=admin2;size=210x200")
 	return
@@ -484,6 +492,27 @@
 	if(confirm == "Yes")
 		SSticker.force_ending = 1
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "End Round") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/admins/proc/delay_end_round()
+	set category = "Server"
+	set name = "Delay Round-End"
+	set desc = "Delays the round end when round end timer has already been started"
+
+	if(!check_rights(R_ADMIN)) //YOGS - R_SERVER -> R_ADMIN
+		return
+	if(!SSticker.delay_end)
+		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		if(isnull(SSticker.admin_delay_notice))
+			return
+	else
+		SSticker.admin_delay_notice = null
+	SSticker.delay_end = !SSticker.delay_end
+	var/reason = SSticker.delay_end ? "for reason: [SSticker.admin_delay_notice]" : "."//laziness
+	var/msg = "[SSticker.delay_end ? "delayed" : "undelayed"] the round end [reason]"
+	log_admin("[key_name(usr)] [msg]")
+	message_admins("[key_name_admin(usr)] [msg]")
+	if(SSticker.ready_for_reboot && !SSticker.delay_end) //we undelayed after standard reboot would occur
+		SSticker.standard_reboot()
 
 
 /datum/admins/proc/announce()

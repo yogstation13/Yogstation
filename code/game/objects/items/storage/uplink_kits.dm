@@ -23,7 +23,7 @@
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
 			new /obj/item/reagent_containers/syringe/mulligan(src) // 4 tc
 			new /obj/item/switchblade(src) //I'll count this as 2 tc
-			new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src) // 2 tc this shit heals
+			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) // 2 tc this shit heals
 			new /obj/item/flashlight/emp(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
@@ -194,7 +194,7 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/security(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
-			
+
 		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
@@ -209,14 +209,14 @@
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
-			
+
 
 		if("gang_boss")
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
 			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
-			new /obj/item/storage/fancy/donut_box(src) //d o n u t s
+			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
@@ -308,7 +308,7 @@
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndicate/contract_kit/PopulateContents()
@@ -547,6 +547,7 @@
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom_officer(src)
+	new /obj/item/clothing/head/beret/sec/centcom(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/radio/headset/headset_cent/empty(src)
@@ -554,6 +555,7 @@
 	new /obj/item/storage/backpack/satchel(src)
 	new /obj/item/pda/heads(src)
 	new /obj/item/clipboard(src)
+	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/broken/PopulateContents()
 	new /obj/item/clothing/under/chameleon/broken(src)

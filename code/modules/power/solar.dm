@@ -273,6 +273,7 @@
 	var/nexttime = 0		// time for a panel to rotate of 1 degree in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
+	var/mob/living/carbon/human/last_user // The last guy to open up the console
 
 /obj/machinery/power/solar_control/Initialize()
 	. = ..()
@@ -344,6 +345,8 @@
 	if(!ui)
 		ui = new(user, src, ui_key, "solar_control", name, 380, 230, master_ui, state)
 		ui.open()
+	if(ishuman(user))
+		last_user = user
 
 /obj/machinery/power/solar_control/ui_data()
 	var/data = list()
@@ -369,7 +372,7 @@
 		if(adjust)
 			value = currentdir + adjust
 		if(value != null)
-			currentdir = CLAMP((360 + value) % 360, 0, 359)
+			currentdir = clamp((360 + value) % 360, 0, 359)
 			targetdir = currentdir
 			set_panels(currentdir)
 			return TRUE
@@ -380,7 +383,7 @@
 		if(adjust)
 			value = trackrate + adjust
 		if(value != null)
-			trackrate = CLAMP(value, -7200, 7200)
+			trackrate = clamp(value, -7200, 7200)
 			if(trackrate)
 				nexttime = world.time + 36000 / abs(trackrate)
 			return TRUE
@@ -398,7 +401,11 @@
 			set_panels(targetdir)
 		return TRUE
 	if(action == "refresh")
+		var/was_not_connected = !(connected_tracker && connected_panels.len)
 		search_for_connected()
+		if(last_user && last_user.client && was_not_connected && connected_tracker && connected_panels.len) // If this guy finished up the solars
+			if(last_user.stat != DEAD && (last_user.mind?.assigned_role in GLOB.engineering_positions)) // and he's an engineer who isn't long-dead or adminbussing
+				SSachievements.unlock_achievement(/datum/achievement/engineering/solar, last_user.client) // Give him the achievement
 		if(connected_tracker && track == 2)
 			connected_tracker.set_angle(SSsun.angle)
 		set_panels(currentdir)

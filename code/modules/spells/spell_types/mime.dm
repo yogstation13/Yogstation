@@ -14,6 +14,7 @@
 	cast_sound = null
 	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -43,6 +44,7 @@
 	cast_sound = null
 	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -80,6 +82,7 @@
 	cast_sound = null
 	human_req = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -88,7 +91,8 @@
 	var/turf/T = user.loc
 	for (var/obj/item/storage/box/mime/B in T)
 		user.put_in_hands(B)
-		B.alpha = 255
+		if(user.get_active_held_item() == B)
+			B.alpha = 255
 		addtimer(CALLBACK(B, /obj/item/storage/box/mime/.proc/emptyStorage, FALSE), (summon_lifespan - 1))
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box/Click()
@@ -114,6 +118,7 @@
 	range = -1
 	include_user = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -156,6 +161,7 @@
 	range = -1
 	include_user = TRUE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 
@@ -187,6 +193,7 @@
 	deactive_msg = "You put your fingers at ease. Another time."
 	active = FALSE
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mime"
 	action_background_icon_state = "bg_mime"
 	base_icon_state = "mime"

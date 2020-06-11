@@ -18,6 +18,7 @@
 	hand_path = /obj/item/melee/touch_attack/shock
 	charge_max = 100
 	clothes_req = FALSE
+	icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "zap"
 
 /obj/item/melee/touch_attack/shock
@@ -32,6 +33,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(C.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE))//doesnt stun. never let this stun
+			user.Beam(C, icon_state="red_lightning", time=15)
 			C.dropItemToGround(C.get_active_held_item())
 			C.dropItemToGround(C.get_inactive_held_item())
 			C.confused += 15
@@ -43,6 +45,7 @@
 	else if(isliving(target))
 		var/mob/living/L = target
 		L.electrocute_act(15, src, 1, FALSE, FALSE, FALSE, FALSE)
+		user.Beam(L, icon_state="red_lightning", time=15)
 		L.visible_message("<span class='danger'>[user] electrocutes [target]!</span>","<span class='userdanger'>[user] electrocutes you!</span>")
 		return ..()
 	else

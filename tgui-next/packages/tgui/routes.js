@@ -1,4 +1,5 @@
 import { Achievements } from './interfaces/Achievements';
+import { AdvancedAirlockController } from './interfaces/AdvancedAirlockController';
 import { AiAirlock } from './interfaces/AiAirlock';
 import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
@@ -70,6 +71,7 @@ import { Uplink } from './interfaces/Uplink';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
 import { Guardian } from './interfaces/Guardian';
+import { Autolathe } from './interfaces/Autolathe';
 
 const ROUTES = {
   achievements: {
@@ -79,6 +81,10 @@ const ROUTES = {
   ai_airlock: {
     component: () => AiAirlock,
     scrollable: false,
+  },
+  advanced_airlock_controller: {
+    component: () => AdvancedAirlockController,
+    scrollabel: false,
   },
   airalarm: {
     component: () => AirAlarm,
@@ -378,6 +384,10 @@ const ROUTES = {
   },
   guardian: {
     component: () => Guardian,
+    scrollable: true,
+  },
+  autolathe: {
+    component: () => Autolathe,
     scrollable: true,
   },
 };

@@ -155,7 +155,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
 /turf/open/floor/carpet,
@@ -285,7 +285,7 @@
 /area/awaymission/academy/headmaster)
 "ba" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/mirror/magic/lesser{
+/obj/structure/mirror{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
@@ -337,8 +337,6 @@
 "bj" = (
 /obj/structure/safe/floor,
 /obj/item/voodoo,
-/obj/item/gun/magic/wand/fireball,
-/obj/item/clothing/suit/space/hardsuit/wizard,
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bk" = (
@@ -406,7 +404,6 @@
 /area/awaymission/academy/headmaster)
 "bw" = (
 /obj/structure/table/wood,
-/obj/item/guardiancreator,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academyengine)
 "bx" = (
@@ -513,7 +510,7 @@
 "bR" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -1638,22 +1635,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
-"fj" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	environ = 3;
-	equipment = 3;
-	locked = 0;
-	pixel_y = 23;
-	req_access = ""
-	},
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
-	},
-/area/awaymission/academy/classrooms)
 "fk" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/cafeteria,
@@ -1897,20 +1878,21 @@
 	},
 /area/awaymission/academy/classrooms)
 "fU" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /obj/machinery/power/apc{
 	dir = 1;
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
 	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
+/area/awaymission/academy/classrooms)
 "fV" = (
 /turf/open/floor/carpet,
 /area/awaymission/academy/classrooms)
@@ -3101,14 +3083,15 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "0-2";
+	pixel_y = 1
 	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academygate)
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
 "ja" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Jaidon The Brave"
@@ -3281,21 +3264,9 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"jt" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Alexander The Holy"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
 "ju" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Druja The Foolish"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
-"jv" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Colburn The Egg"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -3933,7 +3904,7 @@
 /area/awaymission/academy/academyaft)
 "kV" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Zero The Valid"
+	name = "Rotciv The Dented"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
@@ -4392,6 +4363,20 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
+"mt" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	environ = 3;
+	equipment = 3;
+	locked = 0;
+	pixel_y = 24;
+	req_access = ""
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academygate)
 "mu" = (
 /mob/living/simple_animal/hostile/netherworld,
 /turf/open/floor/vault,
@@ -4605,6 +4590,15 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academycellar)
+"py" = (
+/obj/structure/mirror/magic/lesser{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria";
+	dir = 2
+	},
+/area/awaymission/academy/academyaft)
 "xE" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -4645,7 +4639,19 @@
 	icon_state = "tile_corner";
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/wizard{
+	name = "Colburn The Egg"
+	},
 /turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
+"Sa" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Alexander The Holy"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria";
+	dir = 2
+	},
 /area/awaymission/academy/academyaft)
 "WF" = (
 /mob/living/simple_animal/hostile/carp/ranged,
@@ -8521,7 +8527,7 @@ eN
 eN
 iI
 iL
-fU
+iZ
 jg
 iw
 iD
@@ -9100,8 +9106,8 @@ iX
 iU
 jC
 hq
-jV
-jV
+py
+Sa
 jV
 jV
 jV
@@ -9423,7 +9429,7 @@ eO
 fc
 eL
 dh
-fj
+fU
 gg
 fW
 gz
@@ -10620,7 +10626,7 @@ lK
 lK
 lK
 lI
-iZ
+mt
 lM
 lM
 lM
@@ -12090,9 +12096,9 @@ iU
 iX
 iX
 iX
-jt
 iX
-jv
+iX
+iX
 iX
 iX
 iX

@@ -92,7 +92,7 @@
 
 /obj/structure/blob/CanAStarPass(ID, dir, caller)
 	. = 0
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSBLOB)
 
@@ -338,7 +338,6 @@
 /obj/structure/blob/proc/change_to(type, controller)
 	if(!ispath(type))
 		CRASH("change_to(): invalid type for blob")
-		return
 	var/obj/structure/blob/B = new type(src.loc, controller)
 	B.creation_action()
 	B.update_icon()
@@ -400,8 +399,5 @@
 		icon_state = "blob"
 		name = "dead blob"
 		desc = "A thick wall of lifeless tendrils."
-<<<<<<< HEAD
 		brute_resist = 0.3
-=======
 		brute_resist = 0.25
->>>>>>> 0bd31fb067ef051a85d07265a5c8d6d092e1b03d

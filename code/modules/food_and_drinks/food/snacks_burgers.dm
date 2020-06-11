@@ -62,8 +62,8 @@
 	foodtype = GRAIN | MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/burger/fish
-	name = "fillet -o- carp sandwich"
-	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
+	name = "fillet-o-carp burger"
+	desc = "Almost like a carp is yelling somewhere... Give me back that fillet-o-carp, give me that carp."
 	icon_state = "fishburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("bun" = 4, "fish" = 4)
@@ -97,7 +97,7 @@
 	foodtype = GRAIN | TOXIC
 
 /obj/item/reagent_containers/food/snacks/burger/xeno
-	name = "xenoburger"
+	name = "xeno burger"
 	desc = "Smells caustic. Tastes like heresy."
 	icon_state = "xburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 6)
@@ -126,7 +126,7 @@
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/burger/brain
-	name = "brainburger"
+	name = "brain burger"
 	desc = "A strange looking burger. It looks almost sentient."
 	icon_state = "brainburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/medicine/mannitol = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -200,7 +200,7 @@
 
 /obj/item/reagent_containers/food/snacks/burger/white
 	name = "white burger"
-	desc = "Delicous Titanium!"
+	desc = "Delicious titanium!"
 	icon_state = "cburger"
 	color = "#FFFFFF"
 	bonus_reagents = list(/datum/reagent/colorful_reagent/crayonpowder/white = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
@@ -288,4 +288,13 @@
 	icon_state = "empoweredburger"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/liquidelectricity = 5)
 	tastes = list("bun" = 2, "pure electricity" = 4)
+	foodtype = GRAIN | TOXIC
+
+/obj/item/reagent_containers/food/snacks/burger/cluwneburger
+	name = "cluwneburger"
+	desc = "A old burger with a cluwne mask on it. It seems to be staring into your soul..."
+	icon_state = "cluwneburger"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/cluwnification = 2, /datum/reagent/consumable/nutriment/vitamin = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/cluwnification = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("bun" = 4, "regret" = 2, "something funny" = 1)
 	foodtype = GRAIN | TOXIC

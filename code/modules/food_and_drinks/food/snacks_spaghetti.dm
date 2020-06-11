@@ -56,7 +56,7 @@
 
 /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti
 	name = "spaghetti and meatballs"
-	desc = "Now that's a nic'e meatball!"
+	desc = "Now that's a nice meatball!"
 	icon_state = "meatballspaghetti"
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/food/snacks/spaghetti/spesslaw
 	name = "spesslaw"
-	desc = "A lawyers favourite."
+	desc = "A lawyer's favorite."
 	icon_state = "spesslaw"
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
@@ -104,3 +104,25 @@
 	cooked_type = null
 	tastes = list("noodle" = 1, "butter" = 1)
 	foodtype = GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/spaghetti/falfredo
+	name = "fettuccine alfredo"
+	desc = "A dish of fresh fettuccine tossed with creamy butter and parmesan cheese. The proportions are huge."
+	icon_state = "falfredo"
+	bitesize = 8
+	trash = /obj/item/trash/plate
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
+	cooked_type = null
+	filling_color = "#DC143C"
+	tastes = list("fettuccine" = 1, "alfredo" = 1, "italy" = 1, "creamy goodness" = 1)
+	foodtype = GRAIN | DAIRY | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/lasagna
+	name = "lasagna"
+	desc = "I hate Mondays."
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	trash = /obj/item/trash/plate
+	icon_state = "lasagna"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
+	tastes = list("pasta" = 2, "meat" = 1, "cheese" = 1)
+	foodtype = MEAT | DAIRY | GRAIN

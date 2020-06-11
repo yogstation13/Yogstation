@@ -112,6 +112,13 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "key"
 	w_class = WEIGHT_CLASS_TINY
+	max_integrity = 250000
+	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/detonation_key/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/stationloving, TRUE)
 
 /obj/item/detonation_key/captain
 	name = "Captain's detonation key"

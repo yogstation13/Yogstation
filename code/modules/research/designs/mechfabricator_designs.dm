@@ -651,6 +651,15 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_plasmacutter
+	name = "Cyborg Upgrade (Plasma Cutter)"
+	id = "borg_upgrade_plasmacutter"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/plasmacutter
+	materials = list(MAT_METAL = 3000, MAT_GLASS = 1000, MAT_PLASMA = 2000, MAT_GOLD = 500)
+	construction_time = 80
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_syndicate_module
 	name = "Cyborg Upgrade (Illegal Modules)"
 	id = "borg_syndicate_module"
@@ -668,14 +677,13 @@
 	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_BANANIUM = 1000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
-	
 
 /datum/design/borg_transform_security
 	name = "Cyborg Upgrade (Security Module)"
 	id = "borg_transform_security"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/security
-	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_DIAMOND = 3000)
+	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_URANIUM = 3000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 

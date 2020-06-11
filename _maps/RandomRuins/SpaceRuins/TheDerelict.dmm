@@ -208,7 +208,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
@@ -304,7 +304,7 @@
 	equipment = 0;
 	lighting = 0;
 	name = "Starboard Solar APC";
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/structure/cable,
 /obj/structure/cable{
@@ -565,7 +565,7 @@
 /obj/structure/table,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -617,7 +617,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Worn-out APC";
-	pixel_x = -25
+	pixel_x = -24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -843,7 +843,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
@@ -874,7 +874,7 @@
 "cQ" = (
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/white,
@@ -1359,7 +1359,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/arrival)
@@ -1367,7 +1367,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
@@ -3802,7 +3802,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Worn-out APC";
-	pixel_x = -25
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
@@ -3826,7 +3826,7 @@
 	areastring = "/area/ruin/space/derelict/atmospherics";
 	dir = 1;
 	name = "Worn-out APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -4143,7 +4143,7 @@
 	equipment = 0;
 	lighting = 0;
 	name = "Worn-out APC";
-	pixel_x = -25
+	pixel_x = -24
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/se_solar)

@@ -94,7 +94,7 @@
 		return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(user.get_active_held_item() == src)
-		newtime = CLAMP(newtime, 10, 60000)
+		newtime = clamp(newtime, 10, 60000)
 		det_time = newtime
 		to_chat(user, "Timer set for [det_time] seconds.")
 
@@ -105,6 +105,10 @@
 		return
 	if(ismob(AM) && !can_attach_mob)
 		return
+	if(AM.GetComponent(/datum/component/storage))
+		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
+		if(fuckup_safety != "Yes")
+			return
 
 	to_chat(user, "<span class='notice'>You start planting [src]. The timer is set to [det_time]...</span>")
 

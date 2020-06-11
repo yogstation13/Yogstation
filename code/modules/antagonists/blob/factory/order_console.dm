@@ -31,6 +31,7 @@
 		if(pass)
 			dat += "<a href='?src=[REF(src)];make=[design.id]'>[design.name]</a><br>"
 
+	dat += "<br><a href='?src=[REF(src)];clear=1'>Clear Queue</a>"
 	var/datum/browser/popup = new(user, "computer", "Ordering Console", 400, 500)
 	popup.set_content(dat)
 	popup.open()
@@ -49,6 +50,9 @@
 					to_chat(usr, "<span>Order sent to factory machinery.</span>")
 				else
 					to_chat(usr, "<span>Order <b>NOT</b> sent to factory machinery.</span>")
+	if(href_list["clear"])
+		for(var/obj/machinery/factory/dispenser/thing in GLOB.factory_dispensers)
+			thing.queuedItems = list()
 
 	ui_interact(usr)
 	updateUsrDialog()

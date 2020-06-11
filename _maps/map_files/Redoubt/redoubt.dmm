@@ -797,7 +797,7 @@
 /area/infection/three/command)
 "cL" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/carpet/blue,
 /area/infection/three/command)
 "cM" = (

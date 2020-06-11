@@ -33,7 +33,7 @@
 /area/maintenance/aft)
 "i" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigpack_uplift,
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
 /obj/item/cigbutt,
 /turf/open/floor/wood,
 /area/maintenance/aft)

@@ -185,11 +185,11 @@
 	. = ..()
 	if(is_secured(user))
 		user.set_machine(src)
-		var/dat = "<TT><B>Infrared Laser</B></TT>"
+		var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><TT><B>Infrared Laser</B></TT>"
 		dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
 		dat += "<BR><B>Visibility</B>: [visible ? "<A href='?src=[REF(src)];visible=0'>Visible</A>" : "<A href='?src=[REF(src)];visible=1'>Invisible</A>"]"
 		dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A>"
+		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A></BODY></HTML>"
 		user << browse(dat, "window=infra")
 		onclose(user, "infra")
 		return

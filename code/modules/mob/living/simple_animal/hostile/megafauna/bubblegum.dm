@@ -109,15 +109,15 @@ Difficulty: Hard
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
 				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
-	
+
 
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/OpenFire()
 	if(charging)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/60),0,20)
-	enrage_time = initial(enrage_time) * CLAMP(anger_modifier / 20, 0.5, 1)
+	anger_modifier = clamp(((maxHealth - health)/60),0,20)
+	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
 	ranged_cooldown = world.time + 50
 
 	if(client)
@@ -518,7 +518,7 @@ Difficulty: Hard
 	alpha = 127.5
 	crusher_loot = null
 	loot = null
-	deathmessage = "Explodes into a pool of blood!"
+	deathmessage = "explodes into a pool of blood!"
 	deathsound = 'sound/effects/splat.ogg'
 	true_spawn = FALSE
 

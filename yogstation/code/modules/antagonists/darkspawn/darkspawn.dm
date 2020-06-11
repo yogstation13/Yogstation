@@ -168,7 +168,7 @@
 	var/new_psi = input(admin, "Enter a new psi amount. (Current: [psi]/[psi_cap])", "Change Psi", psi) as null|num
 	if(!new_psi)
 		return
-	new_psi = CLAMP(new_psi, 0, psi_cap)
+	new_psi = clamp(new_psi, 0, psi_cap)
 	psi = new_psi
 
 /datum/antagonist/darkspawn/proc/admin_edit_lucidity(mob/admin)
@@ -348,6 +348,7 @@
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
+	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
 	if(!SSticker.mode.sacrament_done)
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)

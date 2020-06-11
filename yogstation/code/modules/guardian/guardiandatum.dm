@@ -3,6 +3,7 @@
 /datum/antagonist/guardian
 	name = "Guardian"
 	show_in_antagpanel = FALSE
+	prevent_roundtype_conversion = FALSE
 	var/datum/guardian_stats/stats
 	var/datum/mind/summoner
 

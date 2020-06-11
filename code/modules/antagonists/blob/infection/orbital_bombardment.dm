@@ -50,6 +50,8 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 		dat += "<br><h4>Selected Target: [DisplayTarget]</h4><br>"
 		for(var/R in GLOB.orbital_beacons)
 			var/obj/item/flashlight/glowstick/cyan/orb/beacon = R
+			if(!beacon.loc)
+				continue
 			dat += "<a href='?src=[REF(src)];select=[beacon.glowID]'>Beacon (X: [beacon.loc.x], Y: [beacon.loc.y])</a><br>"
 
 		dat += "<br><br>"
@@ -105,12 +107,22 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 		if(selectedMuniton.amountLeft < 1)
 			to_chat(usr, "<span>Not enough munitions left! Please reselect your choice of munition.</span>")
 			return
+		if(!selectedTarget.loc)
+			selectedTarget = null
+			to_chat(usr, "<span>No target selected!</span>")
+			return
+		if(selectedTarget.firedOn)
+			to_chat(usr, "<span>There's already a missile inbound to this target!</span>")
+			return
 		var/dev = selectedMuniton.dev
 		var/heavy = selectedMuniton.heavy
 		var/light = selectedMuniton.light
 		var/flash = selectedMuniton.flash
 		var/flame = selectedMuniton.flame
 		selectedMuniton.amountLeft--
+		selectedTarget.help = new /obj/effect/missileTarget(selectedTarget.loc)
+		selectedTarget.firedOn = TRUE
+		selectedTarget.prime()
 		addtimer(CALLBACK(selectedTarget, /obj/item/flashlight/glowstick/cyan/orb/proc/bombard, dev, heavy, light, flash, flame), selectedMuniton.landTime)
 		to_chat(usr, "<span>Order recieved, firing.</span>")
 		selectedTarget = null
@@ -122,11 +134,25 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	desc = "Throw this at the target, and tell the Big Boss to fire"
 	var/listAdded = FALSE
 	var/glowID = 0
+	var/obj/effect/missileTarget/help = null
+	var/firedOn = FALSE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/flashlight/glowstick/cyan/orb/Destroy()
+	if(listAdded)
+		GLOB.orbital_beacons -= src
+	..()
+/obj/item/flashlight/glowstick/cyan/orb/blob_act()
+	return FALSE
+
 
 /obj/item/flashlight/glowstick/cyan/orb/Initialize(mapload)
 	glowID = GLOB.orbital_beacon_count
 	GLOB.orbital_beacon_count++
 	..()
+
+/obj/item/flashlight/glowstick/cyan/orb/proc/prime()
+	interaction_flags_item = FALSE
 
 /obj/item/flashlight/glowstick/cyan/orb/attack_self(mob/user)
 	..()
@@ -137,9 +163,13 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 
 /obj/item/flashlight/glowstick/cyan/orb/proc/bombard(dev = 0, heavy = 0, light = 0, flash = 0, flame = 0)
 	GLOB.orbital_beacons -= src
+	if(!src.loc)
+		return
 
 	explosion(src.loc, dev, heavy, light, flash_range = flash, flame_range = flame)
 	if(src)
+		if(help)
+			qdel(help)
 		qdel(src)
 
 /datum/orb_munition
@@ -186,3 +216,11 @@ GLOBAL_VAR_INIT(orbital_beacon_count, 0)
 	flash = 8
 	flame = 4
 	id = "sidewinder"
+
+/obj/effect/missileTarget
+	name = "Landing Zone Indicator"
+	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
+	icon = 'icons/mob/actions/actions_items.dmi'
+	icon_state = "sniper_zoom"
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+	light_range = 2

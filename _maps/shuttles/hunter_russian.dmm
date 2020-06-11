@@ -101,7 +101,7 @@
 /area/shuttle/hunter)
 "s" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 6
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -125,10 +125,6 @@
 "w" = (
 /obj/machinery/fugitive_capture,
 /turf/open/floor/mineral/plastitanium,
-/area/shuttle/hunter)
-"x" = (
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plating,
 /area/shuttle/hunter)
 "y" = (
 /turf/template_noop,
@@ -219,7 +215,7 @@
 	dwidth = 3;
 	height = 13;
 	id = "huntership";
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "hunter shuttle";
 	rechargeTime = 1800;
 	width = 15
@@ -232,6 +228,41 @@
 "L" = (
 /obj/effect/mob_spawn/human/fugitive/russian{
 	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/hunter)
+"P" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
 	},
 /turf/open/floor/plating,
 /area/shuttle/hunter)
@@ -315,7 +346,7 @@ b
 b
 p
 t
-x
+P
 B
 B
 F

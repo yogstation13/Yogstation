@@ -20,8 +20,10 @@
 	floor_tile = /obj/item/stack/tile/carpet/blue
 	canSmoothWith = list(/turf/open/floor/carpet/blue)
 
-/turf/open/floor/plasteel/stairs/goon/stairs_alone
+/turf/open/floor/plasteel/stairs/goon
 	icon = 'goon/icons/turfs/floors.dmi'
+
+/turf/open/floor/plasteel/stairs/goon/stairs_alone
 	icon_state = "stairs_alone"
 
 /turf/open/floor/plasteel/stairs/goon/stairs_wide

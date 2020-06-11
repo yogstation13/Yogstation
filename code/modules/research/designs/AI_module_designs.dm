@@ -109,6 +109,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/crewsimov
+	name = "Core Module Design (Crewsimov)"
+	desc = "Allows for the construction of a Crewsimov AI Core Module."
+	id = "crewsimov_module"
+	materials = list(MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/aiModule/core/full/crewsimov
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/paladin_module
 	name = "Core Module Design (P.A.L.A.D.I.N.)"
 	desc = "Allows for the construction of a P.A.L.A.D.I.N. AI Core Module."
@@ -137,6 +146,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/ceo_module
+	name = "Core Module Design (CEO)"
+	desc = "Allows for the construction of a CEO AI Core Module."
+	id = "ceo_module"
+	materials = list(MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/aiModule/core/full/ceo
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/corporate_module
 	name = "Core Module Design (Corporate)"
 	desc = "Allows for the construction of a Corporate AI Core Module."
@@ -152,5 +170,14 @@
 	id = "default_module"
 	materials = list(MAT_GLASS = 1000, MAT_DIAMOND = 2000)
 	build_path = /obj/item/aiModule/core/full/custom
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/cowboy_module
+	name = "Core Module Design (Cowboy)"
+	desc = "Allows for the construction of a Cowboy AI Core Module."
+	id = "cowboy_module"
+	materials = list(MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/aiModule/core/full/cowboy
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

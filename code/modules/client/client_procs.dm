@@ -335,6 +335,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(SSinput.initialized)
 		set_macros()
 
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+
 	chatOutput.start() // Starts the chat
 
 	if(alert_mob_dupe_login)
@@ -361,11 +363,12 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			return 0
 	else if (byond_version < cwv)	//We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			var/msg = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Your version of byond may be getting out of date:</b><br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
 			msg += "Your version: [byond_version]<br>"
 			msg += "Required version to remove this message: [cwv] or later<br>"
 			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			msg += "</BODY></HTML>"
 			src << browse(msg, "window=warning_popup")
 		else
 			to_chat(src, "<span class='danger'><b>Your version of byond may be getting out of date:</b></span>")
@@ -400,7 +403,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
-			message_admins("New user: [key_name_admin(src)] ([address]) <a href=\"https://ipintel2.glitch.me/lookup/[address]\">(Check for VPN/Proxy)</a> is connecting here for the first time.")
+			message_admins("New user: [key_name_admin(src)] ([address]) is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)
@@ -456,7 +459,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			winset(src, "[child]", "[entries[child]]")
 			if (!ispath(child, /datum/verbs/menu))
 				var/procpath/verbpath = child
-				if (copytext(verbpath.name,1,2) != "@")
+				if (verbpath.name[1] != "@")
 					new child(src)
 
 	for (var/thing in prefs.menuoptions)
@@ -503,8 +506,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(movingmob != null)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
+	seen_messages = null
 	Master.UpdateTickRate()
-	sync_logout_with_db(connection_number) // yogs - logout logging
+	world.sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
 /client/Destroy()
@@ -606,17 +610,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		qdel(query_log_player)
 	if(!account_join_date)
 		account_join_date = "Error"
-	// yogs start - logout logging
-	var/serverip = "[world.internet_address]"
-	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
-	if(query_log_connection.Execute(async = FALSE))
-		var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
-		query_getid.Execute(async = FALSE)
-		if(query_getid.NextRow())
-			connection_number = query_getid.item[1]
-		qdel(query_getid)
-	qdel(query_log_connection)
-	// yogs end
+
+	sync_login_with_db()
 	if(new_player)
 		player_age = -1
 	. = player_age
@@ -880,6 +875,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			var/file = GLOB.vox_sounds_male[name]
 			Export("##action=load_rsc", file)
 			stoplag() //YOGS end - male vox
+		for (var/name in GLOB.vox_sounds_military)
+			var/file = GLOB.vox_sounds_military[name]
+			Export("##action=load_rsc", file)
+			stoplag()
 		#endif
 
 
@@ -905,8 +904,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/viewscale = getviewsize(view)
 	var/x = viewscale[1]
 	var/y = viewscale[2]
-	x = CLAMP(x+change, min, max)
-	y = CLAMP(y+change, min,max)
+	x = clamp(x+change, min, max)
+	y = clamp(y+change, min,max)
 	change_view("[x]x[y]")
 
 /client/proc/change_view(new_size)

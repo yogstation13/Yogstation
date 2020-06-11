@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/proc/blob_talk(message)
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	if (!message)
 		return
@@ -244,20 +244,19 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/camera/blob/blob_act(obj/structure/blob/B)
 	return
 
-/mob/camera/blob/Stat()
-	..()
-	if(statpanel("Status"))
-		if(blob_core)
-			stat(null, "Core Health: [blob_core.obj_integrity]")
-			stat(null, "Power Stored: [blob_points]/[max_blob_points]")
-			stat(null, "Blobs to Win: [blobs_legit.len]/[blobwincount]")
-		if(free_strain_rerolls)
-			stat(null, "You have [free_strain_rerolls] Free Strain Reroll\s Remaining")
-		if(!placed)
-			if(manualplace_min_time)
-				stat(null, "Time Before Manual Placement: [max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)]")
-			stat(null, "Time Before Automatic Placement: [max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)]")
-
+/mob/camera/blob/get_status_tab_items()
+	. = ..()
+	if(blob_core)
+		. += "Core Health: [blob_core.obj_integrity]"
+		. += "Power Stored: [blob_points]/[max_blob_points]"
+		. += "Blobs to Win: [blobs_legit.len]/[blobwincount]"
+	if(free_strain_rerolls)
+		. += "You have [free_strain_rerolls] Free Strain Reroll\s Remaining"
+	if(!placed)
+		if(manualplace_min_time)
+			. +=  "Time Before Manual Placement: [max(round((manualplace_min_time - world.time)*0.1, 0.1), 0)]"
+		. += "Time Before Automatic Placement: [max(round((autoplace_max_time - world.time)*0.1, 0.1), 0)]"
+	
 /mob/camera/blob/Move(NewLoc, Dir = 0)
 	if(placed)
 		var/obj/structure/blob/B = locate() in range("3x3", NewLoc)
@@ -277,6 +276,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/datum/antagonist/blob/B = mind.has_antag_datum(/datum/antagonist/blob)
 	if(!B)
 		mind.add_antag_datum(/datum/antagonist/blob)
+
 
 #define STAGE1 0
 #define STAGE2 9000
@@ -446,15 +446,16 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			return
 
 /mob/camera/blob/infection/add_points(points)
-	stage_point_buffer += (points * stage_resources) - points
+  if(points > 0)
+	  stage_point_buffer += (points * stage_resources) - points
 	blob_points = clamp(blob_points + points, 0, max_blob_points)
 	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
 
-/mob/camera/blob/infection/Stat()
-	..()
-	if(statpanel("Status"))
-		stat(null, "Bio-points: [biopoints]")
-		stat(null, "Time to next Bio-point: [max(round((biopoint_timer - world.time)*0.1, 0.1), 0)]")
-		stat(null, "Stage: [stage]")
-		stat(null, "Zone: [zone]")
-		stat(null, "Time to next zone: [max(round((zone_timer - world.time)*0.1, 0.1), 0)]")
+/mob/camera/blob/infection/get_status_tab_items()
+	. += ..()
+	if(!stat)
+		. += text("Bio-points: [biopoints]")
+		. += text("Time to next Bio-point: [max(round((biopoint_timer - world.time)*0.1, 0.1), 0)]")
+		. += text("Stage: [stage]")
+		. += text("Zone: [zone]")
+		. += text("Time to next zone: [max(round((zone_timer - world.time)*0.1, 0.1), 0)]")

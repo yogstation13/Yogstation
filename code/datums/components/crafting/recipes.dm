@@ -12,6 +12,57 @@
 	var/subcategory = CAT_NONE
 	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
+//Antag recipes - see granters.dm - at the top for easy viewing
+/datum/crafting_recipe/baseball_bat
+	name = "Baseball Bat"
+	result = /obj/item/melee/baseball_bat
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 30
+				)
+	tools = list(TOOL_HATCHET) //to carve the wood into shape
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/lance
+	name = "Explosive Lance (Grenade)"
+	result = /obj/item/twohanded/spear
+	reqs = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	blacklist = list(/obj/item/twohanded/spear/explosive,
+					/obj/item/grenade/flashbang)
+	parts = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	time = 15
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+	
+/datum/crafting_recipe/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	result = /obj/item/gun/energy/laser/makeshiftlasrifle
+	reqs = list(/obj/item/stack/cable_coil = 15,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/pipe = 1,
+				/obj/item/light/bulb = 1,
+				/obj/item/stock_parts/cell = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/knifeboxing
+	name = "Knife-boxing Gloves"
+	result = /obj/item/clothing/gloves/knifeboxing
+	reqs = list(/obj/item/clothing/gloves/boxing = 1,
+				/obj/item/kitchen/knife = 2)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+//Normal recipes
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
@@ -33,21 +84,6 @@
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
-/* - yogs change: removes explosive lance for being stupid
-/datum/crafting_recipe/lance
-	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive,
-					/obj/item/grenade/flashbang) //yogs change - removes flashbangs from explosive lances for being even stupider
-	parts = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	time = 15
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-*/
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
@@ -483,7 +519,7 @@
 
 /datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
 	name = "Toilet"
-	reqs = 	list(/obj/item/stack/sheet/metal = 5 , /obj/structure/mopbucket = 1)
+	reqs = 	list(/obj/item/stack/sheet/metal = 5, /obj/item/reagent_containers/glass/bucket = 1)
 	result = /obj/structure/toilet
 	category = CAT_MISC
 
@@ -497,6 +533,11 @@
 	name = "Curtains"
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
 	result = /obj/structure/cloth_curtain
+	category = CAT_MISC
+/datum/crafting_recipe/personal_closet
+	name = "Personal Closet"
+	reqs = list(/obj/item/stack/sheet/metal = 5, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
+	result = /obj/structure/closet/secure_closet/personal
 	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
@@ -737,8 +778,12 @@
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
-/datum/crafting_recipe/urinal 
+/datum/crafting_recipe/urinal
 	name = "Urinal"
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
 	category = CAT_MISC
+	
+
+
+	

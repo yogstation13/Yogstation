@@ -60,6 +60,11 @@
 		if(ACTION_TARGETLLEG)
 			user.body_l_leg()
 			return
+		if(ACTION_GIVE)
+			var/mob/living/carbon/O = src
+			if(O)
+				O.give()
+			return
 
 	return ..()
 
@@ -72,16 +77,28 @@
 
 		switch(dir)
 			if(NORTH)
-				northface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					northshift()
+				else
+					northface()
 				return
 			if(SOUTH)
-				southface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					southshift()
+				else
+					southface()
 				return
 			if(WEST)
-				westface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					westshift()
+				else
+					westface()
 				return
 			if(EAST)
-				eastface()
+				if(user.prefs.bindings.isheld_key("Shift"))
+					eastshift()
+				else
+					eastface()
 				return
 
 	return ..()
