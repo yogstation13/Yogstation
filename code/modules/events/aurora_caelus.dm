@@ -13,8 +13,6 @@
 /datum/round_event/meteor_wave/aurora_caelus
 	wave_name = "aurora"
 	announceWhen = 1
-	startWhen = 9
-	endWhen = 50
 
 /datum/round_event/meteor_wave/aurora_caelus/announce()
 	priority_announce("[station_name()]: A harmless cloud of ions is approaching your station, and will exhaust their energy battering the hull. Nanotrasen has approved a short break for all employees to relax and observe this very rare event. During this time, starlight will be bright but gentle, shifting between quiet green and blue colors. Any staff who would like to view these lights for themselves may proceed to the area nearest to them with viewing ports to open space. We hope you enjoy the lights.",
@@ -24,3 +22,7 @@
 		var/mob/M = V
 		if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.z))
 			M.playsound_local(M, 'sound/ambience/aurora_caelus.ogg', 20, FALSE, pressure_affected = FALSE)
+	sleep(500)
+	priority_announce("The aurora caelus event is now ending. Starlight conditions will slowly return to normal. When this has concluded, please return to your workplace and continue work as normal. Have a pleasant shift, [station_name()], and thank you for watching with us.",
+	sound = 'sound/misc/notice2.ogg',
+	sender_override = "Nanotrasen Meteorology Division")
