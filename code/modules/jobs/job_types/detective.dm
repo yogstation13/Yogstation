@@ -49,7 +49,9 @@
 	l_pocket = /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter
 	backpack_contents = list(/obj/item/storage/box/evidence=1,\
-		/obj/item/detective_scanner=1)
+		/obj/item/detective_scanner=1,\
+		/obj/item/assembly/flash)
+		
 	mask = /obj/item/clothing/mask/cigarette
 
 	implants = list(/obj/item/implant/mindshield)
@@ -64,4 +66,3 @@
 
 	if(visualsOnly)
 		return
-
