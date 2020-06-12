@@ -16,6 +16,8 @@ GLOBAL_LIST_INIT(meteorsB, list(/obj/effect/meteor/meaty=5, /obj/effect/meteor/m
 
 GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
+GLOBAL_LIST_INIT(meteorsAURORA, list(/obj/effect/meteor/aurora)) //for aurora caelus
+
 
 ///////////////////////////////
 //Meteor spawning global procs
@@ -350,6 +352,19 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	meteordrop = list(/obj/item/stand_arrow)
 	dropamt = 1
 	threat = 100
+
+//Aurora bolt
+/obj/effect/meteor/aurora
+	name = "glowing bolt"
+	desc = "It's so pretty."
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "ion"
+	lifetime = 50
+	hits = 0
+	hitpwr = 0
+	meteorsound = 'sound/effects/gravhit.ogg'
+	meteordrop = list(/obj/effect/temp_visual/impact_effect/ion)
+	dropamt = 1
 
 //////////////////////////
 //Spookoween meteors
