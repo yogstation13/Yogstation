@@ -359,7 +359,6 @@ GLOBAL_LIST_INIT(meteorsAURORA, list(/obj/effect/meteor/aurora)) //for aurora ca
 	desc = "It's so pretty."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ion"
-	lifetime = 50
 	hits = 0
 	hitpwr = 0
 	meteorsound = 'sound/effects/gravhit.ogg'
