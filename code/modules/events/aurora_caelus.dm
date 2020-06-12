@@ -22,7 +22,7 @@
 		var/mob/M = V
 		if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.z))
 			M.playsound_local(M, 'sound/ambience/aurora_caelus.ogg', 20, FALSE, pressure_affected = FALSE)
-	addtimer(CALLBACK(src, .proc/end), 99)
+	addtimer(CALLBACK(src, .proc/end), 50)
 
 /datum/round_event/meteor_wave/aurora_caelus/end()
 	priority_announce("The aurora caelus event is now ending. Starlight conditions will slowly return to normal. When this has concluded, please return to your workplace and continue work as normal. Have a pleasant shift, [station_name()], and thank you for watching with us.",
