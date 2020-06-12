@@ -32,10 +32,10 @@
 	s.set_up(12, 1, firer)
 	s.start()
 	//next, we move the gun to the user and the card to the firer
+	to_chat(user, "The [src] vanishes from your hands, and [gun] appears in them!")
+	to_chat(firer, "<span class='warning'>[gun] vanishes from your hands, and a [src] appears in them!</span>")
 	user.put_in_hands(gun)
 	firer.put_in_hands(src)
-	to_chat(user, "The [src] vanishes from your hands, and [gun] appears in them!")
-	to_chat(user, "<span class='warning'>[gun] vanishes from your hands, and a [src] appears in them!</span>")
 	used = TRUE
 
 /obj/item/syndicateReverseCard/examine(mob/user)
