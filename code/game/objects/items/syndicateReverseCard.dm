@@ -14,6 +14,12 @@
 	name = "[cardColor] Reverse"
 	icon_state = "sc_[cardColor] Reverse_uno"
 
+/obj/item/syndicateReverseCard/update_icon()
+	..()
+	if (used)
+		cut_overlays()
+		add_overlay(image('icons/obj/items_and_weapons.dmi',icon_state = "Reverse_Overlay"))
+
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))
 		return FALSE //this means the attack goes through
@@ -37,6 +43,7 @@
 	user.put_in_hands(gun)
 	firer.put_in_hands(src)
 	used = TRUE
+	update_icon()
 
 /obj/item/syndicateReverseCard/examine(mob/user)
 	. = ..()
@@ -44,5 +51,5 @@
 		. += "<span class='info'>Hold this in your hand when you are getting shot at to steal your opponent's gun. You'll lose this, so be careful!</span>"
 		return
 	if(used)
-		. += "<span class='notice'>It sparks slightly. But why?</span>"
+		. += "<span class='warning'>Something sinister is strapped to this card. It looks like it was once masked with some sort of cloaking field, which is now nonfunctional.</span>"
 		return
