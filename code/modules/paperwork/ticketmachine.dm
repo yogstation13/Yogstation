@@ -78,7 +78,7 @@
 		return
 	ready = FALSE
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
-	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)//Small cooldown to prevent the clown from ripping out every ticket
+	addtimer(VARSET_CALLBACK(src, ready, FALSE), cooldown) //Small cooldown to prevent the clown from ripping out every ticket
 	currentNum ++
 	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're customer #[currentNum]...</span>")
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
@@ -117,8 +117,7 @@
 				to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
 				linked = TRUE
 				return TRUE
-			else
-				to_chat(user,"<span class='warning'>The remote is already linked to a ticket machine!</span>")
+			to_chat(user,"<span class='warning'>The remote is already linked to a ticket machine!</span>")
 
 		else
 			to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
@@ -188,9 +187,6 @@
 	var/cooldown = 20
 	var/ready = TRUE
 
-/obj/item/ticket_machine_remote/proc/reset_cooldown()
-	ready = TRUE
-
 /obj/item/ticket_machine_remote/attack_self(mob/user)
 	if(!ready)
 		return
@@ -198,7 +194,7 @@
 		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!</span>")
 		return
 	ready = FALSE
-	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)
+	addtimer(VARSET_CALLBACK(src, ready, FALSE), cooldown)
 	connection.increment()
 
 /obj/item/ticket_machine_remote/AltClick(mob/living/user)
