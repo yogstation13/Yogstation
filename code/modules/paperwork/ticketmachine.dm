@@ -128,6 +128,11 @@
 		return TRUE
 
 /obj/machinery/ticket_machine/Destroy()
+	var/obj/item/ticket_machine_ticket/T
+	for (T in tickets)
+		T.audible_message("The ticket vibrates for a moment, then dissolves into paper scraps!")
+		qdel(T)
+	tickets = list()
 	return ..()
 
 //Tickets dispensed from the machine
