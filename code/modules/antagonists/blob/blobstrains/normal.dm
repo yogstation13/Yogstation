@@ -18,4 +18,7 @@
 
 /datum/reagent/blob/infection/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/infection/O)
 	reac_volume = ..()
-	M.apply_damage((0.7*reac_volume)*O.stage_attack, BRUTE)
+	var/stage_attack_thing = 1
+	if(O.stage_attack)
+		stage_attack_thing = O.stage_attack
+	M.apply_damage((0.7*reac_volume) * stage_attack_thing, BRUTE)
