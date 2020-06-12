@@ -61,8 +61,7 @@
 			if(!user.is_holding(src))
 				return ..()
 			eject(user)
-		else
-			return ..()
+		return ..()
 	else
 		return ..()
 
