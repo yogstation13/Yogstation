@@ -99,6 +99,7 @@
 	switch(action)
 		if("eject")
 			eject(usr)
+			ui_interact(usr)
 			. = TRUE
 		if("download")
 			if(!disk)

@@ -61,6 +61,7 @@ const HealthStat = props => {
 export const CrewConsole = (props, context) => {
   const { act, data } = useBackend(context);
   const sensors = data.sensors || [];
+
   return (
     <Window resizable>
       <Window.Content scrollable>
@@ -114,11 +115,15 @@ export const CrewConsole = (props, context) => {
                     </Table.Cell>
                     <Table.Cell collapsing textAlign="center">
                       <ColorBox
-                        color={healthToColor(
-                          sensor.oxydam,
-                          sensor.toxdam,
-                          sensor.brutedam,
-                          sensor.brutedam)} />
+                        color={sensor.oxydam !== null
+                          ? healthToColor(
+                            sensor.oxydam,
+                            sensor.toxdam,
+                            sensor.brutedam,
+                            sensor.brutedam) : (
+                            sensor.life_status
+                              ? HEALTH_COLOR_BY_LEVEL[0]
+                              : HEALTH_COLOR_BY_LEVEL[5])} />
                     </Table.Cell>
                     <Table.Cell collapsing textAlign="center">
                       {sensor.oxydam !== null ? (
