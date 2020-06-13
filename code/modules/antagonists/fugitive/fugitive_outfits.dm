@@ -91,6 +91,17 @@
 	r_pocket = /obj/item/ammo_box/magazine/m45
 	id = /obj/item/card/id
 
+/datum/outfit/russianhunters
+	name = "Russian Bouny Hunter"
+	uniform = /obj/item/clothing/under/soviet
+	shoes = /obj/item/clothing/shoes/jackboots
+	head = /obj/item/clothing/head/bearpelt
+	gloves = /obj/item/clothing/gloves/color/black
+	mask = /obj/item/clothing/mask/gas
+	r_hand = /obj/item/gun/ballistic/rifle/boltaction
+	r_pocket = /obj/item/ammo_box/magazine/internal/boltaction
+	mask = /obj/item/clothing/mask/gas
+
 /datum/outfit/spacepol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
