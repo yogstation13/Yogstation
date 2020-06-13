@@ -32,5 +32,3 @@
 				affected_mob.throw_at(target, 4, 3, spin = FALSE, diagonals_first = TRUE)
 				playsound(affected_mob, 'sound/weapons/fwoosh.ogg', 50, 1, 1)
 				affected_mob.visible_message("<span class='warning'>[affected_mob] uncontrollably leaps forward!</span>")
-
-//implement it in the event, stupid
