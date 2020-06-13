@@ -2153,3 +2153,28 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Pina Colada"
 	glass_desc = "If you like pina coladas, and getting caught in the rain... well, you'll like this drink."
 
+/datum/reagent/consumable/ethanol/flaming_moe
+	name = "Flaming Moe"
+	description = "The drink that always keeps you coming back for Moe."
+	boozepwr = 38
+	color = "#FFF1B2"
+	quality = DRINK_FANTASTIC
+	taste_description = "tequila, creme de menthe, and a hint of medicine?"
+	glass_icon_state = "Flaming_moe2"
+	glass_name = "Flaming Moe"
+	glass_desc = "an amazing concoction of various different bar drinks and a secret ingredient"
+	
+/datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
+	M.drowsyness = max(M.drowsyness-5, 0)
+	M.AdjustStun(-20, FALSE)
+	M.AdjustKnockdown(-20, FALSE)
+	M.AdjustUnconscious(-20, FALSE)
+	M.AdjustImmobilized(-20, FALSE)
+	M.AdjustParalyzed(-20, FALSE)
+	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
+		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
+	M.hallucination = max(0, M.hallucination - 10)
+	if(prob(30))
+		M.adjustToxLoss(1, 0)
+		. = 1
+	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)

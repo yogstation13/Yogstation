@@ -1050,8 +1050,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -3141,7 +3140,6 @@
 	dir = 8
 	},
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -4020,7 +4018,6 @@
 	tag = ""
 	},
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -6328,7 +6325,6 @@
 	light_color = "#e8eaff"
 	},
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/wood,
@@ -6684,8 +6680,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/wood,
 /area/security/warden)
@@ -6855,7 +6850,6 @@
 /area/crew_quarters/dorms/a)
 "anL" = (
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -10263,8 +10257,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/janitor/a)
@@ -10638,7 +10631,6 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/pod/dark,
@@ -11539,8 +11531,7 @@
 "axL" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
@@ -11801,8 +11792,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/janitor/a)
@@ -13756,8 +13746,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -13804,8 +13793,7 @@
 /obj/structure/table,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
@@ -14510,7 +14498,6 @@
 	dir = 4
 	},
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -14626,8 +14613,7 @@
 "aEq" = (
 /obj/machinery/light_switch{
 	dir = 1;
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel)
@@ -14707,7 +14693,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -15162,8 +15147,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel{
 	icon_state = "grimy"
@@ -17120,8 +17104,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
@@ -17447,8 +17430,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/security)
@@ -17989,8 +17971,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/storage/art)
@@ -19088,8 +19069,7 @@
 	network = list("ss13")
 	},
 /obj/structure/sign/departments/minsky/command{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/security)
@@ -20357,7 +20337,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -20552,7 +20531,6 @@
 "aRq" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -21139,8 +21117,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/evac)
@@ -22704,7 +22681,6 @@
 "aVz" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/closed/wall,
@@ -22761,8 +22737,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
@@ -22815,8 +22790,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -24720,7 +24694,6 @@
 "aZt" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -26103,8 +26076,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
@@ -29518,7 +29490,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -29934,7 +29905,6 @@
 "bjK" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
@@ -30453,8 +30423,7 @@
 "bkE" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
@@ -31436,8 +31405,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -31496,7 +31464,6 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -33802,7 +33769,6 @@
 /obj/item/wirecutters,
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -34139,7 +34105,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -34281,8 +34246,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -34396,8 +34360,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/medical)
@@ -35263,7 +35226,7 @@
 "btZ" = (
 /obj/structure/sign/plaques/golden{
 	desc = "To the principal architect of this station: MayhemSailor, with specific mention of Utahclock, RoboticPotato and KMC2000 for their contributions to design. At the bottom of the plaque you can see someone scratched in Fluffe9911 was here... how rude!";
-	name = "Minsky Station Commissioning Plaque"
+	name = "Eclipse Station Commissioning Plaque"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -35797,8 +35760,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
@@ -36005,7 +35967,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -36336,7 +36297,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -36366,12 +36326,10 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/white,
@@ -36660,7 +36618,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/white,
@@ -38532,7 +38489,6 @@
 "bAl" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -38550,8 +38506,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -39420,7 +39375,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/carpet/black,
@@ -40438,7 +40392,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -41829,7 +41782,6 @@
 "bGD" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -42940,8 +42892,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/janitor/b)
@@ -43742,8 +43693,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -44168,12 +44118,10 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -44531,7 +44479,6 @@
 /obj/machinery/suit_storage_unit/cmo,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -44565,8 +44512,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/sign/departments/minsky/command{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/security)
@@ -44769,7 +44715,6 @@
 /obj/structure/table,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -45472,7 +45417,6 @@
 "bNG" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -47789,7 +47733,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -47889,7 +47832,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -48746,8 +48688,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
@@ -49283,8 +49224,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/command)
@@ -49310,8 +49250,7 @@
 "bVq" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/status_display/supply{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -51168,8 +51107,7 @@
 	},
 /obj/machinery/computer/stockexchange,
 /obj/machinery/status_display/supply{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/carpet/orange,
 /area/quartermaster/qm)
@@ -51192,8 +51130,7 @@
 	network = list("ss13","Cargo")
 	},
 /obj/machinery/status_display/supply{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/supply)
@@ -51935,7 +51872,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -52997,8 +52933,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic/a)
@@ -53705,7 +53640,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -53885,7 +53819,6 @@
 /obj/item/mop,
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -54086,8 +54019,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display/evac{
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
@@ -54223,8 +54155,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white"
@@ -56617,8 +56548,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -58577,8 +58507,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/engine,
 /area/science/misc_lab)
@@ -61401,8 +61330,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -61798,8 +61726,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/science/research)
@@ -61989,8 +61916,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
@@ -62902,8 +62828,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -63237,7 +63162,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/white,
@@ -65831,8 +65755,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
@@ -66962,8 +66885,7 @@
 "cEU" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -67139,7 +67061,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plating,
@@ -67279,8 +67200,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -67366,8 +67286,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/auxiliary)
@@ -68089,7 +68008,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -69169,8 +69087,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/wood,
 /area/quartermaster/qm)
@@ -69974,8 +69891,7 @@
 "cKt" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /obj/structure/fireaxecabinet{
 	pixel_y = 32
@@ -70828,7 +70744,6 @@
 "cLO" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/wood,
@@ -70843,7 +70758,6 @@
 /obj/item/book/manual/wiki/security_space_law,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel/dark,
@@ -72059,8 +71973,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter/hub/science)
@@ -72656,8 +72569,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/cafeteria)
@@ -72741,7 +72653,6 @@
 /obj/structure/closet,
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -73273,8 +73184,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -74899,7 +74809,6 @@
 /obj/item/radio/headset,
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -75342,8 +75251,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/entrance)
@@ -75521,7 +75429,6 @@
 "cVB" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -77120,8 +77027,7 @@
 /obj/item/circuitboard/machine/telecomms/server,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/entrance)
@@ -77136,7 +77042,6 @@
 	idExterior = "telecomms_airlock_exterior";
 	idInterior = "telecomms_airlock_interior";
 	idSelf = "telecomms_airlock_control";
-	pixel_x = 0;
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel/dark,
@@ -77406,7 +77311,6 @@
 	icon_state = "tile_corner"
 	},
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel/dark,
@@ -77820,8 +77724,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Station Intercom (Telecomms)";
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -78281,8 +78184,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Station Intercom (Telecomms)";
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
@@ -78468,7 +78370,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -78476,7 +78377,6 @@
 "dbQ" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -78524,7 +78424,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -78564,8 +78463,7 @@
 /obj/machinery/camera{
 	c_tag = "Telecomms Server Room South";
 	dir = 1;
-	network = list("ss13","minisat");
-	pixel_y = 0
+	network = list("ss13","minisat")
 	},
 /obj/structure/table,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -78602,7 +78500,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -78718,7 +78615,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -78779,7 +78675,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -79076,8 +78971,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Station Intercom (Telecomms)";
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
@@ -79426,7 +79320,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -79613,7 +79506,6 @@
 "deg" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -79759,7 +79651,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -79969,8 +79860,7 @@
 "deM" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -80128,7 +80018,6 @@
 /obj/machinery/vending/autodrobe,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -80141,8 +80030,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -80178,8 +80066,7 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -80235,15 +80122,13 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "dfi" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -80262,8 +80147,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
@@ -80287,7 +80171,6 @@
 /obj/structure/closet/emcloset,
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -80344,7 +80227,6 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
@@ -80382,8 +80264,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
@@ -80398,7 +80279,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
@@ -80509,7 +80389,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -80532,7 +80411,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
@@ -80720,7 +80598,6 @@
 /obj/machinery/light,
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -80869,7 +80746,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -80916,8 +80792,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
@@ -81075,7 +80950,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
@@ -81095,7 +80969,6 @@
 	dir = 1
 	},
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel/white,
@@ -81119,7 +80992,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -81167,8 +81039,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
@@ -81229,7 +81100,6 @@
 "dgM" = (
 /obj/machinery/vending/wardrobe/sig_wardrobe,
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel,
@@ -81247,8 +81117,7 @@
 	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -27;
-	pixel_y = 0
+	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -82257,8 +82126,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/white{
@@ -82507,8 +82375,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/brown{
@@ -84131,8 +83998,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/circuit,
 /area/hallway/primary/port)
@@ -84557,8 +84423,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
@@ -84837,7 +84702,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -85487,8 +85351,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/hallway/primary/aft)
@@ -85687,8 +85550,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/b)
@@ -85845,8 +85707,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
@@ -87137,7 +86998,6 @@
 "qGB" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -87226,8 +87086,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -88404,7 +88263,6 @@
 "uEE" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -88657,8 +88515,7 @@
 /obj/item/radio/intercom{
 	freerange = 1;
 	name = "Common Channel";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -89307,7 +89164,6 @@
 /obj/effect/turf_decal/tile/darkblue,
 /obj/structure/extinguisher_cabinet{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
