@@ -21,19 +21,19 @@
 		return MAP_ERROR
 	var/turf/landing_turf = pick(possible_spawns)
 	var/list/possible_backstories = list()
-	var/list/candidates = get_candidates(ROLE_TRAITOR, null, ROLE_TRAITOR)
+	var/list/candidates = get_candidates(ROLE_FUGITIVE, null, ROLE_FUGITIVE)
 	if(candidates.len >= 1) //solo refugees
 		possible_backstories.Add("waldo")
-	if(candidates.len >= 4)//group refugees
+	if(candidates.len >= 2)//group refugees
 		possible_backstories.Add("prisoner", "cultist", "synth")
 	if(!possible_backstories.len)
 		return NOT_ENOUGH_PLAYERS
 
 	var/backstory = pick(possible_backstories)
-	var/member_size = 3
+	var/member_size = min(rand(candidates.len, 5), 5)
 	var/leader
 	switch(backstory)
-		if("cultist" || "synth")
+		if("cultist" || "synth" || "prisoner")
 			leader = pick_n_take(candidates)
 		if("waldo")
 			member_size = 0 //solo refugees have no leader so the member_size gets bumped to one a bit later
@@ -74,6 +74,9 @@
 			S.equipOutfit(/datum/outfit/prisoner)
 		if("cultist")
 			S.equipOutfit(/datum/outfit/yalp_cultist)
+			var/datum/action/innate/yalpcomms/comm
+			comm = new
+			comm.Grant(S)
 		if("waldo")
 			S.equipOutfit(/datum/outfit/waldo)
 		if("synth")

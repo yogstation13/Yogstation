@@ -9,13 +9,16 @@
 	var/lastWarning = 0
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
+	var/datum/action/cooldown/yalp_heal/heal
 
 /mob/camera/yalp_elor/Initialize()
 	. = ..()
 	transmit = new
 	transport = new
+	heal = new
 	transmit.Grant(src)
 	transport.Grant(src)
+	heal.Grant(src)
 	START_PROCESSING(SSobj, src)
 
 /mob/camera/yalp_elor/Destroy()
@@ -144,7 +147,7 @@
 	var/mob/living/target
 	for(var/mob/V in GLOB.player_list)
 		var/datum/antagonist/fugitive/fug = V.mind.has_antag_datum(/datum/antagonist/fugitive)
-		if(!fug || V == src)
+		if(!fug || fug == owner)
 			continue
 		if(fug.is_captured)
 			continue
@@ -163,3 +166,29 @@
 		return TRUE
 	to_chat(owner, "<span class='warning'>Something horrible just happened to your target!</span>")
 	return FALSE
+
+/datum/action/cooldown/yalp_heal
+	name = "Purification"
+	desc = "Heals all followers a bit."
+	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	background_icon_state = "bg_spell"
+	button_icon_state = "god_transport"
+	cooldown_time = 200
+
+/datum/action/cooldown/yalp_heal/Trigger()
+	var/list/faithful = list()
+	for(var/mob/V in GLOB.player_list)
+		var/datum/antagonist/fugitive = V.mind.has_antag_datum(/datum/antagonist/fugitive)
+		if(!fugitive || fugitive == owner)
+			continue
+		faithful += V
+	if(!faithful.len)
+		to_chat(owner, "There are no followers left to heal!")
+		return
+	for(var/mob/living/A in faithful)
+		A.adjustBruteLoss(-20)
+		A.adjustFireLoss(-20)
+		A.adjustOxyLoss(-20)
+		A.adjustToxLoss(-20)
+		to_chat(A, "You have been healed by the great Yalp Elor!")
+	to_chat(owner, "You have healed your followers!")

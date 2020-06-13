@@ -99,3 +99,32 @@
 	var/datum/atom_hud/antag/fughud = GLOB.huds[ANTAG_HUD_FUGITIVE]
 	fughud.leave_hud(fugitive)
 	set_antag_hud(fugitive, null)
+
+/datum/action/innate/yalpcomms
+	name = "Yalp Elor Communion"
+	desc = "Allows talking with the brothers of yalp elor."
+	button_icon_state = "cult_comms"
+
+/datum/action/innate/yalpcomms/Activate()
+	var/input = stripped_input(usr, "Input a message to send to your brothers.", "Yalp Elor Communion", "")
+	if(!input || !IsAvailable())
+		return
+
+	yalp_speech(usr, input)
+
+/datum/action/innate/yalpcomms/proc/yalp_speech(mob/living/user, message)
+	var/my_message
+	if(!message)
+		return
+	user.whisper(html_decode(message), language = /datum/language/common) // yogs
+	var/title = "Brother"
+	var/span = "cult italic"
+	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if(M.mind.has_antag_datum(/datum/antagonist/fugitive))
+			to_chat(M, my_message)
+		else if(M in GLOB.dead_mob_list)
+			var/link = FOLLOW_LINK(M, user)
+			to_chat(M, "[link] [my_message]")
+	user.log_talk(message, LOG_SAY, tag="Yalp Elor")

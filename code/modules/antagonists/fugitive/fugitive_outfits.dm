@@ -8,6 +8,22 @@
 	if(visualsOnly)
 		return
 	H.fully_replace_character_name(null,"NTP #CC-0[rand(111,999)]") //same as the lavaland prisoner transport, but this time they are from CC, or CentCom
+	var/list/rhand_items = list(
+		/obj/item/storage/toolbox/mechanical,
+		/obj/item/twohanded/spear,
+		/obj/item/gun/ballistic/automatic/surplus,
+		/obj/item/melee/baton/cattleprod	
+		)
+	
+	var/chosen = pick(rhand_items)
+	var/turf/T = get_turf(H)
+	var/obj/item/I = new chosen(T)
+	H.put_in_hands(I)
+
+	if(chosen == /obj/item/melee/baton/cattleprod)
+		var/obj/item/stock_parts/cell/upgraded/C = new /obj/item/stock_parts/cell/upgraded
+		C.charge = 1000
+		new C(get_turf(H))
 
 /datum/outfit/yalp_cultist
 	name = "Cultist of Yalp Elor"
@@ -53,6 +69,7 @@
 	name = "Factory Error Synth"
 	uniform = /obj/item/clothing/under/color/white
 	ears = /obj/item/radio/headset
+	r_pocket = /obj/item/reagent_containers/medspray/synthflesh
 
 /datum/outfit/synthetic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
