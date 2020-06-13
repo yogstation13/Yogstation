@@ -298,6 +298,11 @@
 	desc = "A small bottle. Contains a sample of Inquisitius."
 	spawned_disease = /datum/disease/fluspanish
 
+/obj/item/reagent_containers/glass/bottle/jitters
+	name = "Jitters culture bottle"
+	desc = "A small bottle. Contains a sample of the Jitters."
+	spawned_disease = /datum/disease/jitters
+
 /obj/item/reagent_containers/glass/bottle/tuberculosis
 	name = "Fungal Tuberculosis culture bottle"
 	desc = "A small bottle. Contains a sample of Fungal Tubercle bacillus."
