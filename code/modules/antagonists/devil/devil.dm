@@ -112,19 +112,19 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	// Gives devils an obsession, so they cant just offer powers to anyone.
 	// Hopefully reduces graytide by making devils hand select who they offer to, instead of just the first person they see.
 	var/species_obsession = list(
-								"humans" = 2,
-								"felinids" = 3,
-								"podpeople" = 3,
-								"plasmamen",
-								"moths" = 2,
-								"lizards" = 3,
-								"preternis" = 2,
-								"ethereals"
+								"Human" = 2,
+								"Felinid" = 3,
+								"Podperson" = 3,
+								"Plasmaman",
+								"Mothman" = 2,
+								"Lizardperson" = 3,
+								"Preternis" = 2,
+								"Ethereal"
 								) 
 								// Humans less likely to add difficulty, Lizards and cabbages and cats most likely, moths  and preternis even with humans
 								// then ethereals and plasmamen last because they are less likely.
 	var/bloodtype_obsession = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L")
-	var/gender_obsession = list("male", "female")
+	var/gender_obsession = list("MALE", "FEMALE")
 	var/age_obsession = list("16 to 30", "30 and up")
 	var/obsession
 	var/actual_obsession
@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 			var/temp_species_obsession = pick(species_obsession)
 			obsession = "species"
 			actual_obsession = temp_species_obsession
-			actual_obsession_text = "[temp_species_obsession]"
+			actual_obsession_text = "people of the [temp_species_obsession] species"
 		if(2)
 			var/temp_bloodtype_obsession = pick(bloodtype_obsession)
 			obsession = "blood"
@@ -291,8 +291,6 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		owner.current.color = "#501010"
 	give_appropriate_spells()
 	form = BLOOD_LIZARD
-
-
 
 /datum/antagonist/devil/proc/increase_true_devil()
 	to_chat(owner.current, "<span class='warning'>You feel as though your current form is about to shed.  You will soon turn into a true devil.</span>")

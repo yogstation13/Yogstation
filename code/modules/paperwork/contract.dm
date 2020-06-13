@@ -17,6 +17,7 @@
 
 /obj/item/paper/contract/employment
 	icon_state = "paper_words"
+	var/law_school // Time multiplier for those who aren't lawyer or HoP
 
 /obj/item/paper/contract/employment/New(atom/loc, mob/living/nOwner)
 	. = ..()
@@ -33,26 +34,35 @@
 
 
 /obj/item/paper/contract/employment/attack(mob/living/M, mob/living/carbon/human/user)
-	var/deconvert = FALSE
-	if(deconvert_cooldown)
-		to_chat(user, "<span class='notice'>Slow down. You don't want to tear the contract!</span>")
-		return
 	if(M.mind == target && !M.owns_soul())
 		if(user.mind && (user.mind.assigned_role == "Lawyer"))
-			deconvert = TRUE
+			law_school = 1
 		else if (user.mind && (user.mind.assigned_role =="Head of Personnel") || (user.mind.assigned_role == "CentCom Commander"))
-			deconvert = prob (25) // the HoP doesn't have AS much legal training
+			law_school = 1.5 // They have an easier time reading legal documents
 		else
-			deconvert = prob (5)
-	if(deconvert)
-		M.visible_message("<span class='notice'>[user] reminds [M] that [M]'s soul was already purchased by Nanotrasen!</span>")
-		to_chat(M, "<span class='boldnotice'>You feel that your soul has returned to its rightful owner, Nanotrasen.</span>")
-		M.return_soul()
-	else
-		M.visible_message("<span class='danger'>[user] beats [M] over the head with [src]!</span>", \
-			"<span class='userdanger'>[user] beats [M] over the head with [src]!</span>")
-		deconvert_cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, deconvert_cooldown, FALSE), 10)
+			law_school = 2 // Legal documents are hard to read, this is going to take longer
+	if(!do_mob(user, M , (30*law_school) ,0,1))
+		return
+	M.visible_message("<span class='warning'>[user] begins reading out [M]'s employment contract.</span>", \
+						"<span class='warning'>[user] begins reading out your employment contract.</span>")
+	if(!do_mob(user, M , (30*law_school) ,0,1))
+		return
+	M.visible_message("<span class='warning'>[M] starts shaking with fear.</span>", \
+					"<span class='warning'>You start shaking with fear.</span>")
+	M.Jitter(30*law_school)
+	if(!do_mob(user, M , (30*law_school) ,0,1))
+		return
+	M.visible_message("<span class='warning'>[M]'s skin starts to sizzle and burn!</span>", \
+					"<span class='warning'>Your skin starts to sizzle and burn!</span>")
+	M.emote("scream")
+	M.apply_damage(15, BURN)
+	M.fakefire()
+	addtimer(CALLBACK(M, /mob/living/carbon/human.proc/fakefireextinguish), 30)
+	if(!do_mob(user, M , (30*law_school) ,0,1))
+		return
+	M.visible_message("<span class='notice'>[user] reminds [M] that [M]'s soul was already purchased by Nanotrasen!</span>")
+	to_chat(M, "<span class='boldnotice'>You feel that your soul has returned to its rightful owner, Nanotrasen.</span>")
+	M.return_soul()
 	return ..()
 
 
@@ -313,14 +323,13 @@
 				id = worn.GetID()
 			if(id)
 				id.icon_state = "id_gold"
-				id.access = get_all_accesses()+get_all_centcom_access()
+				id.access = get_all_accesses()
 				id.assignment = "Captain"
 				id.update_label()
-		//		ADD_TRAIT(id, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 			else
 				id = new /obj/item/card/id/gold(user.loc)
 				id.registered_name = user.real_name
-				id.access = get_all_accesses()+get_all_centcom_access()
+				id.access = get_all_accesses()
 				id.assignment = "Captain"
 				id.update_label()
 				if(worn)
@@ -364,7 +373,19 @@
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.see_invisible = 60
+	if(!choice)
+		choice = rand(1,3)
+	switch(choice)
+		if(1) // Xray and can change view range, but hallucinating
+			user.dna.add_mutation(XRAY)
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/view_range(null))
+			user.gain_trauma(/datum/brain_trauma/mild/hallucinations)
+		if(2) // Gets an eightball that allows ghosts to answer, but now has a phobia of everything religious (Chaplain, cults, ghosts)
+			var/obj/item/E = new /obj/item/toy/eightball/haunted
+			user.put_in_hands(E)
+			user.gain_trauma(/datum/brain_trauma/mild/phobia/supernatural)
+		if(3) // They can see ghosts, but not hear them.
+			user.see_invisible = 60
 	return ..()
 
 /obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)

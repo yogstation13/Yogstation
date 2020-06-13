@@ -1,6 +1,8 @@
 /datum/round_event_control/devil
 	name = "Create Devil"
 	typepath = /datum/round_event/ghost_role/devil
+	min_players = 20
+	weight = 8 // 10 is default. 8 is Ninja weight 
 	max_occurrences = 1 // Theres only one devil
 
 /datum/round_event/ghost_role/devil
