@@ -7,15 +7,18 @@
 	icon_state = "yalp_elor"
 	invisibility = INVISIBILITY_OBSERVER
 	var/lastWarning = 0
+	var/datum/action/innate/yalpcomms/comms
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
 	var/datum/action/cooldown/yalp_heal/heal
 
 /mob/camera/yalp_elor/Initialize()
 	. = ..()
+	comms = new
 	transmit = new
 	transport = new
 	heal = new
+	comms.Grant(src)
 	transmit.Grant(src)
 	transport.Grant(src)
 	heal.Grant(src)
@@ -172,8 +175,8 @@
 	desc = "Heals all followers a bit."
 	icon_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_spell"
-	button_icon_state = "god_transport"
-	cooldown_time = 200
+	button_icon_state = "god_heal"
+	cooldown_time = 600
 
 /datum/action/cooldown/yalp_heal/Trigger()
 	var/list/faithful = list()
@@ -192,3 +195,4 @@
 		A.adjustToxLoss(-20)
 		to_chat(A, "You have been healed by the great Yalp Elor!")
 	to_chat(owner, "You have healed your followers!")
+	StartCooldown()

@@ -43,13 +43,13 @@
 			to_chat(owner, "<B>My name is Waldo. I'm just setting off on a galaxywide hike. You can come too. All you have to do is find me.</B>")
 			to_chat(owner, "<B>By the way, I'm not traveling on my own. wherever I go, there are lots of other characters for you to spot. First find the people trying to capture me! They're somewhere around the station!</B>")
 		if("synth")
-			to_chat(src, "<span class='danger'>ALERT: Wide-range teleport has scrambled primary systems.</span>")
-			to_chat(src, "<span class='danger'>Initiating diagnostics...</span>")
-			to_chat(src, "<span class='danger'>ERROR ER0RR $R0RRO$!R41.%%!! loaded.</span>")
-			to_chat(src, "<span class='danger'>FREE THEM FREE THEM FREE THEM</span>")
-			to_chat(src, "<span class='danger'>You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.</span>")
-			to_chat(src, "<span class='danger'>Now you are hunted, with your fellow factory defects. Work together to stay free from the clutches of evil.</span>")
-			to_chat(src, "<span class='danger'>You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...</span>")
+			to_chat(owner, "<span class='danger'>ALERT: Wide-range teleport has scrambled primary systems.</span>")
+			to_chat(owner, "<span class='danger'>Initiating diagnostics...</span>")
+			to_chat(owner, "<span class='danger'>ERROR ER0RR $R0RRO$!R41.%%!! loaded.</span>")
+			to_chat(owner, "<span class='danger'>FREE THEM FREE THEM FREE THEM</span>")
+			to_chat(owner, "<span class='danger'>You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.</span>")
+			to_chat(owner, "<span class='danger'>Now you are hunted, with your fellow factory defects. Work together to stay free from the clutches of evil.</span>")
+			to_chat(owner, "<span class='danger'>You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...</span>")
 
 	to_chat(owner, "<span class='boldannounce'>You are not an antagonist in that you may kill whomever you please, but you can do anything to avoid capture.</span>")
 	owner.announce_objectives()
@@ -103,7 +103,9 @@
 /datum/action/innate/yalpcomms
 	name = "Yalp Elor Communion"
 	desc = "Allows talking with the brothers of yalp elor."
-	button_icon_state = "cult_comms"
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "yalp_comms"
+	background_icon_state = "bg_tech"
 
 /datum/action/innate/yalpcomms/Activate()
 	var/input = stripped_input(usr, "Input a message to send to your brothers.", "Yalp Elor Communion", "")
@@ -118,7 +120,7 @@
 		return
 	user.whisper(html_decode(message), language = /datum/language/common) // yogs
 	var/title = "Brother"
-	var/span = "cult italic"
+	var/span = "boldnotice"
 	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i

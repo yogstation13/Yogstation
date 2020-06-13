@@ -20,7 +20,7 @@
 	var/obj/item/I = new chosen(T)
 	H.put_in_hands(I)
 
-	if(chosen == /obj/item/melee/baton/cattleprod)
+	if(I == /obj/item/melee/baton/cattleprod)
 		var/obj/item/stock_parts/cell/upgraded/C = new /obj/item/stock_parts/cell/upgraded
 		C.charge = 1000
 		new C(get_turf(H))
