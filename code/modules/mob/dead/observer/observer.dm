@@ -664,8 +664,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest()
+	dat += GLOB.data_core.get_manifest_html()
 	dat += "</BODY></HTML>"
+
 	src << browse(dat, "window=manifest;size=387x420;can_close=1")
 
 //this is called when a ghost is drag clicked to something.
