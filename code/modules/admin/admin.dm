@@ -549,7 +549,6 @@
 		log_admin("Announce: [key_name(usr)] : [message]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Announce") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-		<br/>
 /datum/admins/proc/set_admin_notice()
 	set category = "Special Verbs"
 	set name = "Set Admin Notice"
