@@ -18,11 +18,11 @@
 	result = /obj/item/melee/baseball_bat/metal
 	reqs = list(/obj/item/stack/sheet/plasteel = 5,
 			   /obj/item/stack/rods = 1)
-	tools = list(TOOL_WELDING) //Researched how metal baseball bats are made, ending up tossing all that out the window.
+	tools = list(TOOL_WELDER) //Researched how metal baseball bats are made, ending up tossing all that out the window.
 	time = 30 //Original time for wooden baseball bat construction.
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_available = FALSE
+	always_availible = FALSE
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
