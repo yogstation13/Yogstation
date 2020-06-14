@@ -1855,6 +1855,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"eY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/circuit/telecomms,
+/area/mine/maintenance)
 "eZ" = (
 /obj/machinery/vending/snack,
 /obj/effect/turf_decal/tile/bar,
@@ -1987,6 +1994,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"ia" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms,
+/area/mine/maintenance)
 "id" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
@@ -2005,6 +2021,27 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/living_quarters)
+"iy" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/hooded/wintercoat,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Communications Relay";
+	dir = 8;
+	network = list("mine")
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "jV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2093,13 +2130,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"lB" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/yellow/hidden,
-/turf/open/floor/circuit/telecomms,
-/area/mine/maintenance)
 "lZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2169,16 +2199,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"rk" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "rD" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -2189,6 +2209,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"rU" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "tY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2213,17 +2245,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"uS" = (
+"uv" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 9
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
+/turf/open/floor/circuit/telecomms,
+/area/mine/maintenance)
+"vD" = (
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/circuit/telecomms,
 /area/mine/maintenance)
 "vS" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -2247,29 +2282,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"yx" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 9
-	},
-/turf/open/floor/circuit/telecomms,
-/area/mine/maintenance)
-"yU" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/hooded/wintercoat,
-/obj/item/clothing/shoes/winterboots,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/camera{
-	c_tag = "Communications Relay";
-	dir = 8;
-	network = list("mine")
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "zh" = (
 /obj/machinery/door/airlock{
 	id_tag = "miningdorm1";
@@ -2322,6 +2334,17 @@
 "Bs" = (
 /obj/machinery/telecomms/relay/preset/mining,
 /turf/open/floor/circuit/green/telecomms,
+/area/mine/maintenance)
+"Bx" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Mining Communications APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "Cr" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -2557,53 +2580,6 @@
 /obj/machinery/atmospherics/pipe/simple,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
-"HK" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
-"IM" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 4;
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/circuit/telecomms,
-/area/mine/maintenance)
-"Jd" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 1
-	},
-/obj/machinery/door/airlock/public{
-	frequency = 1449;
-	glass = 1;
-	id_tag = "mining_telecomms_relay";
-	name = "Mining Station Communications Relay";
-	req_access_txt = "48"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/mine/maintenance)
 "Je" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/effect/turf_decal/tile/purple{
@@ -2654,17 +2630,6 @@
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/circuit/telecomms,
-/area/mine/maintenance)
-"ML" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Mining Communications APC";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /turf/open/floor/circuit/telecomms,
 /area/mine/maintenance)
 "OT" = (
@@ -2845,6 +2810,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"Vp" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 1
+	},
+/obj/machinery/door/airlock/public{
+	frequency = 1449;
+	glass = 1;
+	id_tag = "mining_telecomms_relay";
+	name = "Mining Station Communications Relay";
+	req_access_txt = "48"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/mine/maintenance)
 "WJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2902,6 +2885,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"YV" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 
 (1,1,1) = {"
 ab
@@ -3136,8 +3128,8 @@ ac
 ac
 ac
 bT
-ML
-IM
+eY
+uv
 QA
 CK
 WJ
@@ -3169,10 +3161,10 @@ ac
 ac
 bT
 Bs
-lB
-Jd
-uS
-HK
+vD
+Vp
+YV
+rU
 kM
 To
 EF
@@ -3201,10 +3193,10 @@ ac
 ac
 bT
 KB
-yx
+ia
 QA
-rk
-yU
+Bx
+iy
 cU
 dl
 Gs
