@@ -16,6 +16,7 @@
 	icon_dead = "towercap-dead"
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	mutatelist = list(/obj/item/seeds/tower/steel)
+	rarity = 20
 
 /obj/item/seeds/tower/steel
 	name = "pack of steel-cap mycelium"
@@ -61,8 +62,8 @@
 	seed = /obj/item/seeds/tower/ash
 	name = "ash-cap log"
 	desc = "A log from a grey mushroom, native to Lavaland."
-	icon_state = "Ash logs" //TODO
-	plank_type = /obj/item/stack/sheet/mineral/wood/ash //TODO
+	icon_state = "greyscale_logs" //TODO
+	plank_type = /obj/item/stack/sheet/mineral/wood/ash
 	plank_name = "ash planks"
 	resistance_flags = FIRE_PROOF
 
