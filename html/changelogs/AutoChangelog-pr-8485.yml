@@ -1,6 +1,0 @@
-author: "  Putnam3145"
-delete-after: true 
-changes: 
-  - rscadd: "Added ghost spawners button (can still use spawners menu verb)"
-  - rscdel: "pAI candidate button is gone (can still use pAI setup verb)"
-  - imageadd: "icon/animation for new ghost spawners hud button"
