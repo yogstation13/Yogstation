@@ -30,7 +30,7 @@
 		return NOT_ENOUGH_PLAYERS
 
 	var/backstory = pick(possible_backstories)
-	var/member_size = min(rand(candidates.len, 5), 5)
+	var/member_size = min(candidates.len, 5)
 	var/leader
 	switch(backstory)
 		if("cultist" || "synth")
