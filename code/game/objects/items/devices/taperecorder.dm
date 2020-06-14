@@ -58,7 +58,8 @@
 /obj/item/taperecorder/attack_hand(mob/user)
 	if(loc == user && mytape && user.is_holding(src))
 		eject(user)
-	return ..()
+	else
+		return ..()
 
 /obj/item/taperecorder/proc/can_use(mob/user)
 	if(user && ismob(user))
