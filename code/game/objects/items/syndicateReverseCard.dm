@@ -32,7 +32,7 @@
 			return TRUE //this means the attack is blocked
 	return FALSE
 
-/obj/item/syndicateReverseCard/proc/switcharoo(mob/firer, mob/user, gun) //this proc teleports the gun out of the firer's hands and into the user's. The firer gets the card.
+/obj/item/syndicateReverseCard/proc/switcharoo(mob/firer, mob/user, obj/item/gun/gun) //this proc teleports the gun out of the firer's hands and into the user's. The firer gets the card.
 	//first, the sparks!
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, firer)
