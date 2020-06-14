@@ -49,7 +49,7 @@ jobs:
 
       - name: Run Linter
         run: |
-          ~/dreamchecker > dreamoutput.txt
+          ~/dreamchecker > dreamoutput.txt 2>&1
           cat dreamoutput.txt
 
       - name: Annotate Errors
