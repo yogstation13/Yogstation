@@ -420,6 +420,12 @@
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
+	
+/obj/item/storage/box/syndie_kit/imp_mindshield
+	name = "mindshield implant box"
+
+/obj/item/storage/box/syndie_kit/imp_mindshield/PopulateContents()
+	new /obj/item/implanter/mindshield/tot(src)
 
 /obj/item/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
