@@ -88169,8 +88169,8 @@
 /area/hallway/primary/aft)
 "uyN" = (
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel,
 /area/medical/paramedic/a)
 "uzJ" = (
