@@ -722,7 +722,7 @@
 		user.visible_message("[user] shuffles the deck.", "<span class='notice'>You shuffle the deck.</span>")
 		cooldown = world.time
 
-/obj/item/toy/cards/deck/attackby(obj/item/I, mob/living/user, params) 
+/obj/item/toy/cards/deck/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/toy/cards/singlecard))
 		var/obj/item/toy/cards/singlecard/SC = I
 		if(SC.parentdeck == src)
@@ -816,8 +816,7 @@
 		qdel(src)
 		N.pickup(cardUser)
 		cardUser.put_in_hands(N)
-		to_chat(cardUser, "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")
-
+		cardUser.visible_message("[cardUser] also takes their last card and holds it.", "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")//the outside world will now know when you break a 2 card hand into two seperate cards. Useful for UNO but can be used by any card game
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/singlecard/C, mob/living/user, params)
 	if(istype(C))
@@ -851,7 +850,7 @@
 
 
 ///check_menu: Checks if we are allowed to interact with a radial menu
-  
+
 ///Arguments:
 ///user The mob interacting with a menu
 
@@ -988,6 +987,58 @@
 	card_throw_range = 7
 	card_attack_verb = list("attacked", "sliced", "diced", "slashed", "cut")
 	resistance_flags = NONE
+
+/*
+ * YOU HAVE UNO IT CAME FREE WITH YOUR FUCKING PDA
+ */
+
+/obj/item/toy/cards/deck/uno
+	name = "deck of UNO cards"
+	desc = "A deck of space-grade UNO cards."
+	deckstyle = "uno"
+	icon_state = "deck_uno_full"
+
+/obj/item/toy/cards/deck/uno/populate_deck() //RED GREEN YELLOW BLUE
+	icon_state = "deck_[deckstyle]_full"
+	for(var/i in 0 to 9)
+		cards += "Red [i]"
+		cards += "Green [i]"
+		cards += "Yellow [i]"
+		cards += "Blue [i]"
+	for(var/k in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+		cards += "Red [k]"
+		cards += "Green [k]"
+		cards += "Yellow [k]"
+		cards += "Blue [k]"
+	var/j=1
+	for(j=1; j<=2; j++)
+		cards += "Red Draw Two"
+		cards += "Green Draw Two"
+		cards += "Yellow Draw Two"
+		cards += "Blue Draw Two"
+		cards += "Red Skip"
+		cards += "Green Skip"
+		cards += "Yellow Skip"
+		cards += "Blue Skip"
+		cards += "Red Reverse"
+		cards += "Green Reverse"
+		cards += "Yellow Reverse"
+		cards += "Blue Reverse"
+	j=1
+	for(j=1; j<=4; j++)
+		cards += "Wildcard"
+		cards += "Wild Draw Four"
+
+
+/obj/item/toy/cards/deck/uno/update_icon()
+	if(cards.len > 54)
+		icon_state = "deck_[deckstyle]_full"
+	else if(cards.len > 25)
+		icon_state = "deck_[deckstyle]_half"
+	else if(cards.len > 0)
+		icon_state = "deck_[deckstyle]_low"
+	else if(cards.len == 0)
+		icon_state = "deck_[deckstyle]_empty"
 
 /*
  * Fake nuke

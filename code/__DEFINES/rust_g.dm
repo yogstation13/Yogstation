@@ -50,7 +50,7 @@
 #define rustg_git_revparse(rev) call(RUST_G, "rg_git_revparse")(rev)
 #define rustg_git_commit_date(rev) call(RUST_G, "rg_git_commit_date")(rev)
 
-#define rustg_log_write(fname, text) call(RUST_G, "log_write")(fname, text)
+#define rustg_log_write(fname, text, format) call(RUST_G, "log_write")(fname, text, format)
 /proc/rustg_log_close_all() return call(RUST_G, "log_close_all")()
 
 #define RUSTG_HTTP_METHOD_GET "get"

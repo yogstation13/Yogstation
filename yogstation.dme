@@ -78,7 +78,6 @@
 #include "code\__DEFINES\procpath.dm"
 #include "code\__DEFINES\profile.dm"
 #include "code\__DEFINES\qdel.dm"
-#include "code\__DEFINES\quickwrite.dm"
 #include "code\__DEFINES\radiation.dm"
 #include "code\__DEFINES\radio.dm"
 #include "code\__DEFINES\reactions.dm"

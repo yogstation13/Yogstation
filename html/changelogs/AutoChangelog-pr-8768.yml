@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "null charge ability is actually given to shadowlings"
