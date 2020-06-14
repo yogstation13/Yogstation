@@ -2216,7 +2216,7 @@
 /area/awaymission/BMPship/Aft)
 "gE" = (
 /obj/effect/decal/remains/human,
-/obj/item/clothing/head/helmet/space/syndicate/green/dark,
+/obj/item/clothing/head/helmet/space/fragile,
 /obj/effect/gibspawner/generic,
 /turf/open/floor/plating/asteroid/airless,
 /area/awaymission/BMPship)
@@ -2277,7 +2277,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/BMPship/Aft)
 "gQ" = (
-/obj/item/clothing/suit/space/syndicate/green/dark,
+/obj/item/clothing/suit/space/fragile,
 /turf/open/floor/plating/asteroid/airless,
 /area/awaymission/BMPship)
 "gR" = (

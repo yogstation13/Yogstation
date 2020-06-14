@@ -784,6 +784,26 @@
 	result = /obj/structure/urinal
 	category = CAT_MISC
 	
+/datum/crafting_recipe/paint/crayon
+	name = "Paint"
+	result = /obj/item/paint/anycolor
+	reqs = list(/obj/item/toy/crayon = 1,
+				/datum/reagent/water = 5,
+				/datum/reagent/consumable/milk = 5,
+				/obj/item/reagent_containers/glass/bucket = 1)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+	time = 30
 
+/datum/crafting_recipe/paint/spraycan
+	name = "Paint"
+	result = /obj/item/paint/anycolor
+	reqs = list(/obj/item/toy/crayon/spraycan = 1,
+				/datum/reagent/water = 5,
+				/datum/reagent/consumable/milk = 5,
+				/obj/item/reagent_containers/glass/bucket = 1)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+	time = 30
 
 	

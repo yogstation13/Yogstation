@@ -44711,8 +44711,8 @@
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/regular,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel/dark,
 /area/medical)
 "wOJ" = (
