@@ -301,7 +301,7 @@
 	id = /obj/item/card/id/centcom
 	belt = /obj/item/pda/clown
 	ears = /obj/item/radio/headset/headset_cent
-	uniform = /obj/item/clothing/under/rank/civilian/clown
+	uniform = /obj/item/clothing/under/rank/clown
 	back = /obj/item/storage/backpack/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat
@@ -337,7 +337,7 @@
 /datum/outfit/centcom_clown/honk_squad
 	name = "HONK Squad Trooper"
 	back = /obj/item/storage/backpack/holding/clown
-	shoes = /obj/item/clothing/shoes/clown_shoes/taeclowndo
+	shoes = /obj/item/clothing/shoes/clown_shoes/combat
 	suit = /obj/item/clothing/suit/space/hardsuit/shielded/swat/honk
 	suit_store = /obj/item/tank/internals/emergency_oxygen/double
 	l_pocket = /obj/item/bikehorn/golden
