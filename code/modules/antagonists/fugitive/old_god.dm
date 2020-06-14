@@ -7,18 +7,15 @@
 	icon_state = "yalp_elor"
 	invisibility = INVISIBILITY_OBSERVER
 	var/lastWarning = 0
-	var/datum/action/innate/yalpcomms/comms
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
 	var/datum/action/cooldown/yalp_heal/heal
 
 /mob/camera/yalp_elor/Initialize()
 	. = ..()
-	comms = new
 	transmit = new
 	transport = new
 	heal = new
-	comms.Grant(src)
 	transmit.Grant(src)
 	transport.Grant(src)
 	heal.Grant(src)
@@ -74,7 +71,7 @@
 	if(!message)
 		return
 	src.log_talk(message, LOG_SAY, tag="fugitive god")
-	message = "<span class='cultitalic'><b>[name]:</b> \"[capitalize(message)]\"</span>"
+	message = "<span class='boldnotice'><b>[name]:</b> \"[capitalize(message)]\"</span>"
 	for(var/mob/V in GLOB.player_list)
 		if(V.mind.has_antag_datum(/datum/antagonist/fugitive))
 			to_chat(V, "[message]")

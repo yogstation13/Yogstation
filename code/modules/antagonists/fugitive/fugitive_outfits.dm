@@ -13,17 +13,17 @@
 		/obj/item/twohanded/spear,
 		/obj/item/gun/ballistic/automatic/surplus,
 		/obj/item/melee/baton/cattleprod	
-		)
+		) //Prisoners get a random item from this list
 	
 	var/chosen = pick(rhand_items)
 	var/turf/T = get_turf(H)
 	var/obj/item/I = new chosen(T)
 	H.put_in_hands(I)
 
-	if(I == /obj/item/melee/baton/cattleprod)
-		var/obj/item/stock_parts/cell/upgraded/C = new /obj/item/stock_parts/cell/upgraded
-		C.charge = 1000
-		new C(get_turf(H))
+	if(istype(I, /obj/item/melee/baton/cattleprod)) //If they get a stunprod, they get one hit worth of charge.
+		var/obj/item/stock_parts/cell/upgraded/C = new(T)
+		C.charge = 2500
+		H.put_in_hands(C)
 
 /datum/outfit/yalp_cultist
 	name = "Cultist of Yalp Elor"
@@ -90,6 +90,8 @@
 	l_pocket = /obj/item/ammo_box/magazine/m45
 	r_pocket = /obj/item/ammo_box/magazine/m45
 	id = /obj/item/card/id
+	back = /obj/item/storage/backpack
+	box = /obj/item/storage/box/survival
 
 /datum/outfit/russianhunters
 	name = "Russian Bouny Hunter"
@@ -101,6 +103,8 @@
 	r_hand = /obj/item/gun/ballistic/rifle/boltaction
 	r_pocket = /obj/item/ammo_box/magazine/internal/boltaction
 	mask = /obj/item/clothing/mask/gas
+	back = /obj/item/storage/backpack
+	box = /obj/item/storage/box/survival
 
 /datum/outfit/spacepol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

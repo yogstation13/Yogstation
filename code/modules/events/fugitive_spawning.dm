@@ -33,7 +33,7 @@
 	var/member_size = min(rand(candidates.len, 5), 5)
 	var/leader
 	switch(backstory)
-		if("cultist" || "synth" || "prisoner")
+		if("cultist" || "synth")
 			leader = pick_n_take(candidates)
 		if("waldo")
 			member_size = 0 //solo refugees have no leader so the member_size gets bumped to one a bit later
@@ -98,11 +98,7 @@
 			player_mind.assigned_role = "Yalp Elor"
 			player_mind.special_role = "Old God"
 			player_mind.add_antag_datum(/datum/antagonist/fugitive)
-		if("synth")
-			var/mob/living/carbon/human/S = gear_fugitive(leader, landing_turf, backstory)
-			var/obj/item/choice_beacon/augments/A = new(S)
-			S.put_in_hands(A)
-			new /obj/item/autosurgeon(landing_turf)
+
 
 //security team gets called in after 10 minutes of prep to find the refugees
 /datum/round_event/ghost_role/fugitives/proc/spawn_hunters()
