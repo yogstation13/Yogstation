@@ -13,16 +13,16 @@
 	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
 //Antag recipes - see granters.dm - at the top for easy viewing
-/datum/crafting_recipe/baseball_bat
-	name = "Baseball Bat"
-	result = /obj/item/melee/baseball_bat
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 30
-				)
-	tools = list(TOOL_HATCHET) //to carve the wood into shape
-	time = 30
+/datum/crafting_recipe/baseball_bat_metal
+	name = "Metal Baseball Bat"
+	result = /obj/item/melee/baseball_bat/metal
+	reqs = list(/obj/item/stack/sheet/plasteel = 5,
+			   /obj/item/stack/rods = 1)
+	tools = list(TOOL_WELDING) //Researched how metal baseball bats are made, ending up tossing all that out the window.
+	time = 30 //Original time for wooden baseball bat construction.
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
@@ -73,6 +73,15 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/baseball_bat
+	name = "Baseball Bat"
+	result = /obj/item/melee/baseball_bat
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 30)
+	tools = list(TOOL_HATCHET) //to carve the wood into shape
+	time = 60 //You're carving a bat from wood with a hatchet, of course it's gonna take a bit.
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	
 /datum/crafting_recipe/IED
 	name = "IED"
 	result = /obj/item/grenade/iedcasing

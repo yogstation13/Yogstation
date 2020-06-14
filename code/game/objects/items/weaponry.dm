@@ -598,18 +598,20 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		playsound(get_turf(src), 'sound/weapons/homerun.ogg', 100, 1)
 		homerun_ready = 0
 		return
-	else if(!target.anchored)
-		target.throw_at(throw_target, rand(1,2), 7, user)
+	else if(!target.anchored) //This bit of code is the normal, non-home run behavior of bats.
+		target.throw_at(throw_target, 1, 7, user)
 
-/obj/item/melee/baseball_bat/ablative
+/obj/item/melee/baseball_bat/metal
 	name = "metal baseball bat"
-	desc = "This bat is made of highly reflective, highly armored material."
+	desc = "Grass grows, birds fly, sun shines, and brother? You HURT people."
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
-	force = 12
-	throwforce = 15
+	force = 14 //Unlike normal aluminum bats, this one has a solid core, which leads to more weight, which, you guessed it, leads to more BONK
+	throwforce = 18
+	
+/* Commenting this out for now. Something will be done with this eventually.
 
-/obj/item/melee/baseball_bat/ablative/IsReflect()//some day this will reflect thrown items instead of lasers
+/obj/item/melee/baseball_bat/metal/admin/IsReflect()//some day this will reflect thrown items instead of lasers
 	var/picksound = rand(1,2)
 	var/turf = get_turf(src)
 	if(picksound == 1)
@@ -617,6 +619,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	if(picksound == 2)
 		playsound(turf, 'sound/weapons/effects/batreflect2.ogg', 50, 1)
 	return 1
+*/
 
 /obj/item/melee/flyswatter
 	name = "flyswatter"
