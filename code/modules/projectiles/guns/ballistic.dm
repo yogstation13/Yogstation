@@ -70,13 +70,11 @@
 	var/feedback_fire_slide = FALSE // does the gun slide move back when firing?
 
 /obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
-	message_admins("I'm starting feedback with input of [type]")
 	if(feedback_types[type])
 		feedback_commence(type, feedback_types[type])
 
 /obj/item/gun/ballistic/proc/feedback_commence(type,frames)
 	if(type && frames)
-		message_admins("I'm doing feedback with [type] for [frames] frames")
 		cut_overlays()
 		if (suppressed)
 			add_overlay("[icon_state]_suppressor")
@@ -134,7 +132,6 @@
 	update_icon()
 
 /obj/item/gun/ballistic/update_icon()
-	message_admins("I'm updating the icon for [src]")
 	if (QDELETED(src))
 		return
 	..()
