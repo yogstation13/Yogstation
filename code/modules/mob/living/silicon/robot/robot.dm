@@ -85,7 +85,7 @@
 	/obj/item/clothing/head/helmet/space/santahat,
 	/obj/item/clothing/head/welding,
 	/obj/item/clothing/head/mob_holder, //I am so very upset that this breaks things
-	/obj/item/clothing/head/helmet/space/eva,
+	/obj/item/clothing/head/helmet/space,
 	)
 
 	can_buckle = TRUE
