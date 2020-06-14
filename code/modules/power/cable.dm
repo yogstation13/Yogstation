@@ -115,7 +115,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		var/cableNum = 1
 		if (d1*d2 > 0) //this be true if the cable has two directions, aka it contains two cables. If there is only one cable, one out of d1 and d2 will be zero
 			cableNum = 2
-		var/newCables = new /obj/item/stack/cable_coil(T,cableNum,cable_color)
+		var/newCables = new /obj/item/stack/cable_coil(T, cableNum, cable_color)
 		TransferComponents(newCables) //this copies the fingerprints over to the new object
 	qdel(src)
 
