@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Linter
         run: |
-          ~/dreamchecker 2> dreamoutput.txt
+          ~/dreamchecker > dreamoutput.txt 2> dreamoutput.txt
 
       - name: Annotate Errors
         uses: pytorch/add-annotations-github-action@master
