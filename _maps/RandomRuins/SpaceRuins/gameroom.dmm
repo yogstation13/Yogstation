@@ -1,0 +1,883 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aR" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"bC" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game,
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game,
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game,
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game,
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry,
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry,
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry,
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry,
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist,
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist,
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist,
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered)
+"cp" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/pizzabox/infinite{
+	desc = "You will never have to order and wait for more pizza when you have this thing";
+	name = "Infinite Pizza Box";
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/circuit/green,
+/area/ruin/space/has_grav/powered)
+"dd" = (
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"dF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"dH" = (
+/obj/structure/chair/sofa/right,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"dO" = (
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/structure/table/wood/poker,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"eJ" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered)
+"ff" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"gg" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/oxygen,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"gZ" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"hL" = (
+/obj/structure/table/wood/poker,
+/obj/item/storage/pill_bottle/dice,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"hR" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered)
+"hU" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = -32;
+	req_access_txt = "0";
+	use_power = 0
+	},
+/obj/machinery/light,
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"ip" = (
+/obj/structure/table/wood/poker,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"iE" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"jl" = (
+/obj/machinery/teleport/station,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"jA" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"kp" = (
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"kr" = (
+/obj/machinery/vending/games,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"la" = (
+/obj/structure/mirror{
+	pixel_y = 32
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"li" = (
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"mJ" = (
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"mQ" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"ov" = (
+/obj/machinery/vending/autodrobe/all_access,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"pe" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/nasavoid/old,
+/obj/item/clothing/head/helmet/space/nasavoid/old,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"pr" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"pN" = (
+/obj/structure/chair/sofa{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"pX" = (
+/obj/machinery/computer/arcade/orion_trail,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"qI" = (
+/obj/structure/chair/sofa/left{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"ri" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"rY" = (
+/obj/machinery/door/airlock/vault{
+	name = "Secure Snack Storage"
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"ta" = (
+/obj/item/beacon,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"uv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/space)
+"vn" = (
+/obj/machinery/vending/cigarette/syndicate,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"wt" = (
+/obj/structure/chair/sofa/left,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"wE" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"xk" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
+	name = "Secure Snack Storage";
+	pixel_x = 32
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"xR" = (
+/obj/machinery/door/airlock/hatch{
+	desc = "All who enter shall be greeted with snacks and a great time";
+	name = "The Game Room"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"yc" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered)
+"Bg" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/candy,
+/obj/item/trash/cheesie,
+/obj/item/trash/can,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered)
+"Ca" = (
+/obj/machinery/vending/gifts,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Ds" = (
+/obj/machinery/computer/arcade/battle,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Ez" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"Fn" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"FP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Gf" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/cas/black{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/toy/cards/deck/cas{
+	pixel_x = 5;
+	pixel_y = 11
+	},
+/obj/item/toy/cards/deck/uno{
+	pixel_x = -6
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = 5
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Gg" = (
+/obj/machinery/vending/clothing,
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"HZ" = (
+/obj/machinery/teleport/hub,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"Io" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/space/has_grav/powered)
+"Ks" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"KE" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/template_noop)
+"Mf" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Mj" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Of" = (
+/obj/structure/chair/sofa,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Ow" = (
+/obj/structure/table/wood/poker,
+/obj/item/hourglass,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Qq" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"Rb" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Rn" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/syndicate,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Rq" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"Ta" = (
+/turf/template_noop,
+/area/template_noop)
+"Tg" = (
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Th" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered)
+"Ue" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"US" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/urinal{
+	pixel_y = 32
+	},
+/obj/item/soap/deluxe,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"VC" = (
+/turf/closed/wall/mineral/wood,
+/area/template_noop)
+"Wf" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered)
+"WP" = (
+/obj/structure/closet/wardrobe/mixed,
+/obj/item/instrument/piano_synth,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"XK" = (
+/obj/machinery/computer/teleporter{
+	dir = 1;
+	id = null
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered)
+"Yg" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered)
+"ZH" = (
+/obj/item/kitchen/knife{
+	pixel_x = -5
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/pack/ketchup{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/pack/hotsauce{
+	pixel_x = 10;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/condiment/pack/hotsauce{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/condiment/pack/ketchup{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered)
+
+(1,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+"}
+(2,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+"}
+(3,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Io
+iE
+iE
+iE
+Io
+Ta
+Io
+Io
+xR
+Io
+Io
+Io
+Ta
+Ta
+Ta
+"}
+(4,1,1) = {"
+Ta
+Ta
+Ta
+Io
+Io
+Ds
+mQ
+pX
+Io
+Ta
+Io
+wE
+Tg
+Mj
+XK
+Io
+Ta
+Ta
+Ta
+"}
+(5,1,1) = {"
+Ta
+Ta
+Io
+Io
+FP
+gZ
+gZ
+gZ
+Io
+Io
+Io
+pe
+Tg
+ta
+jl
+Io
+Ta
+Ta
+Ta
+"}
+(6,1,1) = {"
+Ta
+Ta
+Io
+Gf
+Tg
+Tg
+Tg
+Tg
+kr
+Ca
+ri
+gg
+Tg
+Mj
+HZ
+Io
+Ta
+Ta
+Ta
+"}
+(7,1,1) = {"
+Ta
+Ta
+Io
+Tg
+Tg
+jA
+dd
+Tg
+Tg
+Tg
+ri
+ri
+Mf
+Io
+Io
+Io
+Ta
+Ta
+Ta
+"}
+(8,1,1) = {"
+Ta
+Ta
+iE
+Tg
+dH
+Rn
+dO
+pr
+Tg
+Tg
+Tg
+Tg
+Tg
+FP
+Tg
+iE
+Ta
+Ta
+Ta
+"}
+(9,1,1) = {"
+Ta
+Ta
+iE
+Tg
+Of
+Rb
+Ow
+pN
+Tg
+Tg
+Tg
+aR
+aR
+aR
+aR
+iE
+Ta
+Ta
+Ta
+"}
+(10,1,1) = {"
+Ta
+Ta
+iE
+Tg
+wt
+hL
+ip
+mJ
+Tg
+Tg
+hU
+Io
+Io
+Io
+Io
+Io
+Ta
+Ta
+Ta
+"}
+(11,1,1) = {"
+Ta
+Ta
+iE
+Tg
+Tg
+li
+qI
+Tg
+Tg
+Tg
+Tg
+Tg
+WP
+ov
+Gg
+Io
+Io
+Ta
+Ta
+"}
+(12,1,1) = {"
+Ta
+Ta
+Io
+uv
+Tg
+Tg
+Tg
+dF
+xk
+Tg
+xk
+Tg
+Tg
+Tg
+Tg
+Tg
+Io
+Ta
+Ta
+"}
+(13,1,1) = {"
+Ta
+Ta
+Io
+Wf
+Ez
+Ez
+Ez
+Io
+Io
+rY
+Io
+Io
+Io
+Io
+Io
+Ue
+iE
+Ta
+Ta
+"}
+(14,1,1) = {"
+Ta
+Ta
+Io
+yc
+eJ
+ZH
+Bg
+Io
+Yg
+ff
+bC
+Io
+Rq
+Io
+la
+kp
+iE
+Ta
+Ta
+"}
+(15,1,1) = {"
+Ta
+Ta
+VC
+VC
+KE
+KE
+VC
+Io
+Qq
+Ks
+Fn
+Io
+US
+Ue
+kp
+vn
+Io
+Ta
+Ta
+"}
+(16,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Io
+Th
+cp
+hR
+Io
+Io
+Io
+Io
+Io
+Io
+Ta
+Ta
+"}
+(17,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Io
+Io
+Io
+Io
+Io
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+"}
+(18,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+"}
+(19,1,1) = {"
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+Ta
+"}
