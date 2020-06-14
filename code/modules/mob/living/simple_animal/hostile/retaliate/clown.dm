@@ -127,22 +127,6 @@
 	speed = 2
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
 	
-/mob/living/simple_animal/hostile/retaliate/clown/bone
-	name = "Bone Clown"
-	desc = "An undead clown with part of his skin missing."
-	icon_state = "c_boney"
-	icon_living = "c_boney"
-	response_help = "pats"
-	response_disarm = "slaps"
-	response_harm = "hits"
-	turns_per_move = 1
-	speak = list("HONK!!!", "What do you mean I'm missing something?", "Just give me some milk, I'll be fine!")
-	emote_see = list("bones", "rustles")
-	maxHealth = 100
-	health = 100
-	speed = -5
-	loot = list(/obj/effect/gibspawner/human, /obj/item/soap, /obj/item/clothing/suit/armor/bone)
-	
 /mob/living/simple_animal/hostile/retaliate/clown/honkling
 	name = "Honkling"
 	desc = "A divine being sent by the Honkmother to spread joy. It's not dangerous, but it's a bit of a nuisance."
