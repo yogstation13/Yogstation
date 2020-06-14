@@ -11,6 +11,7 @@
 	var/role = "Security Officer"
 	var/list/name_source
 	show_in_antagpanel = FALSE
+	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_PREVENT
 

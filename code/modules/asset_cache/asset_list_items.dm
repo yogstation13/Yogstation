@@ -347,6 +347,11 @@
 		"dna_extra.gif" 		= 'html/dna_extra.gif'
 )
 
+/datum/asset/simple/orbit
+	assets = list(
+		"ghost.png"	= 'html/ghost.png'
+	)
+
 /datum/asset/simple/mapimage // Returns an image of the current map
 	assets = list(
 		//Initialized in New()
