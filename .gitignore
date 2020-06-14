@@ -215,3 +215,4 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #Debugging and other stuff
 extools.dll
+rust_g.dll
