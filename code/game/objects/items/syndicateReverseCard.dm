@@ -32,15 +32,15 @@
 			return TRUE //this means the attack is blocked
 	return FALSE
 
-/obj/item/syndicateReverseCard/proc/switcharoo(mob/firer, mob/user, obj/item/gun/gun) //this proc teleports the gun out of the firer's hands and into the user's. The firer gets the card.
+/obj/item/syndicateReverseCard/proc/switcharoo(mob/firer, mob/user, obj/item/gun/target_gun) //this proc teleports the target_gun out of the firer's hands and into the user's. The firer gets the card.
 	//first, the sparks!
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, firer)
 	s.start()
 	//next, we move the gun to the user and the card to the firer
-	to_chat(user, "The [src] vanishes from your hands, and [gun] appears in them!")
-	to_chat(firer, "<span class='warning'>[gun] vanishes from your hands, and a [src] appears in them!</span>")
-	user.put_in_hands(gun)
+	to_chat(user, "The [src] vanishes from your hands, and [target_gun] appears in them!")
+	to_chat(firer, "<span class='warning'>[target_gun] vanishes from your hands, and a [src] appears in them!</span>")
+	user.put_in_hands(target_gun)
 	firer.put_in_hands(src)
 	used = TRUE
 	update_icon()
