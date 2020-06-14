@@ -180,7 +180,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		roll_powers(user)
-		ui = new(user, src, ui_key, "dna_vault", name, 350, 400, master_ui, state)
+		ui = new(user, src, ui_key, "DnaVault", name, 350, 400, master_ui, state)
 		ui.open()
 
 
