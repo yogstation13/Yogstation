@@ -1,0 +1,9 @@
+{
+    "map_name": "Redoubt",
+    "map_path": "map_files/Redoubt",
+    "map_file": "redoubt.dmm",
+    "shuttles": {
+	    "ferry": "ferry_fancy",
+	    "emergency": "emergency_box"
+    }
+}

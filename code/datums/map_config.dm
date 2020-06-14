@@ -31,7 +31,7 @@
 		"whiteship" = "whiteship_box",
 		"emergency" = "emergency_box")
 
-/proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
+/proc/load_map_config(filename = "code/uwu.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
 	if (default_to_box)
 		return config
