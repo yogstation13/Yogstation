@@ -48,10 +48,9 @@ jobs:
       - name: Run Linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-          cat ${GITHUB_WORKSPACE}/output-annotations.txt
 
       - name: Annotate Errors
-        uses: pytorch/add-annotations-github-action@master
+        uses: yogstation13/add-annotations-github-action@master
         with:
           check_name: "Lints"
           linter_output_path: 'output-annotations.txt'
