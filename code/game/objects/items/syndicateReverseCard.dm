@@ -26,7 +26,7 @@
 	if(istype(hitby, /obj/item/projectile))
 		var/obj/item/projectile/P = hitby
 		if(P?.firer && P.fired_from && (P.firer != P.fired_from)) //if the projectile comes from YOU, like your spit or some shit, you can't steal that bro. Also protects mechs
-			if(isCarbon(P.firer)) //You can't switcharoo with turrets or simplemobs, or borgs
+			if(iscarbon(P.firer)) //You can't switcharoo with turrets or simplemobs, or borgs
 				switcharoo(P.firer, owner, P.fired_from)
 				return TRUE //this means the attack is blocked
 	return FALSE
