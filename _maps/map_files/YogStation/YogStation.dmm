@@ -51859,10 +51859,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jLm" = (
-/mob/living/simple_animal/mouse,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jLB" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -56575,8 +56571,8 @@
 	network = list("ss13","medbay")
 	},
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
 "riC" = (
@@ -59544,6 +59540,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"vZy" = (
+/mob/living/simple_animal/mouse{
+	desc = "The raddest rodent around.";
+	name = "Becquerel"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "vZM" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -99783,7 +99786,7 @@ jkG
 nYI
 cQn
 dpF
-jLm
+vZy
 ceE
 bPq
 aaa
