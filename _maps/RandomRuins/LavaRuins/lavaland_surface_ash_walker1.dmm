@@ -569,11 +569,11 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/seeds/tower,
+/obj/item/stack/sheet/mineral/wood/ash,
+/obj/item/stack/sheet/mineral/wood/ash,
+/obj/item/stack/sheet/mineral/wood/ash,
+/obj/item/stack/sheet/mineral/wood/ash,
+/obj/item/seeds/tower/ash,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "bx" = (
