@@ -56,14 +56,9 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE.
 /obj/item/taperecorder/attack_hand(mob/user)
-	if(loc == user)
-		if(mytape)
-			if(!user.is_holding(src))
-				return ..()
-			eject(user)
-		return ..()
-	else
-		return ..()
+	if(loc == user && mytape && user.is_holding(src))
+		eject(user)
+	return ..()
 
 /obj/item/taperecorder/proc/can_use(mob/user)
 	if(user && ismob(user))
