@@ -54,7 +54,16 @@ jobs:
           tools/travis/check_grep.sh
 
       - name: Run Linter
-        run: ~/dreamchecker
+        run: ~/dreamchecker > dreamoutput.txt
+
+      - name: Annotate Errors
+        uses: pytorch/add-annotations-github-action@master
+        with:
+          check_name: "Lints"
+          linter_output_path: 'dreamoutput.txt'
+          commit_sha: ${{ github.event.pull_request.head.sha }}
+          regex: '(?<filename>.*?), line (?<lineNumber>\d+), column (?<columnNumber>\d+):\n(?<errorCode>\w+): (?<errorDesc>.*)'
+
   compile:
     name: Compile All Maps
     runs-on: ubuntu-18.04
