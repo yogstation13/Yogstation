@@ -133,7 +133,7 @@
 
 		ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 		if(!ui)
-			ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
+			ui = new(user, src, ui_key, "Sleeper", name, 375, 550, master_ui, state)
 			ui.open()
 	else //yogs start   aplly backup UI
 		var/mob/living/mob_occupant = occupant
