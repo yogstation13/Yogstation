@@ -244,6 +244,23 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
 
+/obj/item/stack/sheet/mineral/wood/ash
+	name = "ash plank"
+	desc = "One can only guess that this is a bunch of wood."
+	singular_name = "ash plank"
+	icon_state = "sheet-wood" //TODO:SPRITES
+	item_state = "sheet-wood"
+	icon = 'icons/obj/stack_objects.dmi'
+	sheettype = "ash wood"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 100, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 0)
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/sheet/mineral/wood
+	novariants = TRUE
+	grind_results = list(/datum/reagent/carbon = 20, /datum/reagent/ash = 10)
+
+/obj/item/stack/sheet/mineral/wood/ash/fifty
+	amount = 50
+
 /*
  * Bamboo
  */

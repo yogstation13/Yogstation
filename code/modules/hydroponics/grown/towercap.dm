@@ -28,7 +28,7 @@
 	rarity = 20
 
 /obj/item/seeds/tower/ash
-name = "pack of ash-cap mycelium"
+	name = "pack of ash-cap mycelium"
 	desc = "This mycelium grows into ashy logs."
 	icon_state = "mycelium-ashcap" //todo
 	species = "ashcap"
@@ -58,12 +58,12 @@ name = "pack of ash-cap mycelium"
 	/obj/item/reagent_containers/food/snacks/grown/wheat))
 
 /obj/item/grown/log/ash
-	seed = /obj/items/seeds/tower/ash
+	seed = /obj/item/seeds/tower/ash
 	name = "ash-cap log"
 	desc = "A log from a grey mushroom, native to Lavaland."
 	icon_state = "Ash logs" //TODO
-	var/plank_type = /obj/item/stack/sheet/mineral/wood/ash //TODO
-	var/plank_name = "ash planks"
+	plank_type = /obj/item/stack/sheet/mineral/wood/ash //TODO
+	plank_name = "ash planks"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
