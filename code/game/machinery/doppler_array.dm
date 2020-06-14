@@ -12,7 +12,6 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	ui_y = 225
 	var/cooldown = 10
 	var/next_announce = 0
-	var/integrated = FALSE
 	var/max_dist = 150
 	/// Number which will be part of the name of the next record, increased by one for each already created record
 	var/record_number = 1
@@ -155,7 +154,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 	if(distance > max_dist)
 		return FALSE
-	if(!(direct & dir) && !integrated)
+	if(!(direct & dir))
 		return FALSE
 
 	var/datum/data/tachyon_record/R = new /datum/data/tachyon_record()
@@ -178,14 +177,6 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		R.theory_radius["outer_radius"] = orig_heavy_range
 		R.theory_radius["shockwave_radius"] = orig_light_range
 
-	if(integrated)
-		var/obj/item/clothing/head/helmet/space/hardsuit/helm = loc
-		if(!helm || !istype(helm, /obj/item/clothing/head/helmet/space/hardsuit))
-			return FALSE
-		helm.display_visor_message("Explosion detected! Epicenter: [devastation_range], Outer: [heavy_impact_range], Shock: [light_impact_range]")
-		else
-		for(var/message in messages)
-			say(message)
 	for(var/message in messages)
 		say(message)
 
@@ -254,12 +245,4 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	. = ..()
 	linked_techweb = SSresearch.science_tech
 
-//Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
-/obj/machinery/doppler_array/integrated
-	name = "integrated tachyon-doppler module"
-	integrated = TRUE
-	max_dist = 21 //Should detect most explosions in hearing range.
-	use_power = NO_POWER_USE
-
 #undef PRINTER_TIMEOUT
-
