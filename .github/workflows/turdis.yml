@@ -49,14 +49,14 @@ jobs:
 
       - name: Run Linter
         run: |
-          ~/dreamchecker > dreamoutput.txt 2>&1
-          cat dreamoutput.txt
+          ~/dreamchecker > ~/dreamoutput.txt 2>&1
+          cat ~/dreamoutput.txt
 
       - name: Annotate Errors
         uses: pytorch/add-annotations-github-action@master
         with:
           check_name: "Lints"
-          linter_output_path: 'dreamoutput.txt'
+          linter_output_path: '~/dreamoutput.txt'
           commit_sha: ${{ github.event.pull_request.head.sha }}
           regex: '(?<filename>.*?), line (?<lineNumber>\d+), column (?<columnNumber>\d+):\n(?<errorCode>\w+): (?<errorDesc>.*)'
         if: always()
