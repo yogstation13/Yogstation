@@ -91,7 +91,6 @@
 	var/mask_x = 0
 	var/mask_y = 0
 	var/anim_parts = "left=-14,0;right=13,0"
-	var/aperture_animation = FALSE
 	var/list/part_overlays
 	var/panel_attachment = "right"
 	var/note_attachment = "left"
