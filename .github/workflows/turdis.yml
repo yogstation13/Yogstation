@@ -48,7 +48,9 @@ jobs:
           tools/travis/check_grep.sh
 
       - name: Run Linter
-        run: ~/dreamchecker > dreamoutput.txt
+        run: |
+          ~/dreamchecker > dreamoutput.txt
+          cat dreamoutput.txt
 
       - name: Annotate Errors
         uses: pytorch/add-annotations-github-action@master
