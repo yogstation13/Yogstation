@@ -166,6 +166,10 @@
 					return ", missing tool."
 				var/list/parts = del_reqs(R, user)
 				var/atom/movable/I = new R.result (get_turf(user.loc))
+				if(isobj(I))
+					var/obj/W = I
+					if (W.obj_flags & WOODEN)
+						W.ProcessWoodVarients(parts)
 				I.CheckParts(parts, R)
 				if(send_feedback)
 					SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
@@ -362,7 +366,7 @@
 			crafting_recipes[R.category][R.subcategory] += list(build_recipe_data(R))
 
 	data["crafting_recipes"] = crafting_recipes
-	return data	
+	return data
 
 /datum/component/personal_crafting/ui_act(action, params)
 	if(..())

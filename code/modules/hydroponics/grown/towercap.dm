@@ -65,7 +65,7 @@
 	icon_state = "greyscale_logs" //TODO
 	plank_type = /obj/item/stack/sheet/mineral/wood/ash
 	plank_name = "ash planks"
-	resistance_flags = FIRE_PROOF
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
