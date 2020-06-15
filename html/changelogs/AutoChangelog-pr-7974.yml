@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscadd: "reagents inside syringes can now be used for surgeries that require reagents and use a syringe in the same step"
-  - tweak: "removes a spare else in DNA recovery"

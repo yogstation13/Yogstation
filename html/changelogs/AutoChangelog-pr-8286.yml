@@ -1,6 +1,0 @@
-author: "wejengin2"
-delete-after: true 
-changes: 
-  - rscadd: "adds service department guard"
-  - tweak: "service lathe moved to maint"
-  - imageadd: "service sec band"
