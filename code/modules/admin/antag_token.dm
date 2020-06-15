@@ -91,13 +91,6 @@
 
 	var/admin_key = key_name_admin(usr)
 
-	var/token = list(
-	list("granted_time" = "NOW()",
-	"ckey" = "'[ckey(ckey)]'",
-	"round_id" = roundid,
-	"reason" = "'[reason]'",
-	"applying_admin" = "'[ckey(owner.ckey)]'",
-	))
 	var/datum/DBQuery/add_token = SSdbcore.NewQuery(
 			"INSERT INTO [format_table_name("antag_tokens")] (granted_time, ckey, round_id, reason, applying_admin) VALUES (NOW(), :ckey, :id, :reason, :admin)",
 			list("ckey" = ckey(ckey), "id" = roundid,"reason" = reason, "admin" = ckey(owner.ckey))
