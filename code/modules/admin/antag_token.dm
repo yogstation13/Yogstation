@@ -104,7 +104,7 @@
 		)
 
 	if(!add_token.warn_execute())
-		qdel(query_antag_token)
+		qdel(add_token)
 		alert("Failed to give token!")
 		return
 
