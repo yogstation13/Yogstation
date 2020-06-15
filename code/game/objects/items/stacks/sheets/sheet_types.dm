@@ -253,10 +253,15 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	icon = 'icons/obj/stack_objects.dmi'
 	sheettype = "ash wood"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 100, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 0)
-	resistance_flags = FIRE_PROOF
-	merge_type = /obj/item/stack/sheet/mineral/wood
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
+	merge_type = /obj/item/stack/sheet/mineral/wood/ash
 	novariants = TRUE
 	grind_results = list(/datum/reagent/carbon = 10, /datum/reagent/ash = 10)
+
+/obj/item/stack/sheet/mineral/wood/ash/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.wood_recipes //I'm 80% sure I can Cut this but it needs testing first :P
+	recipes.Cut(27, 28)//This is the firebrand recipe. You can't light ash-caps on fire!
+	return ..()
 
 /obj/item/stack/sheet/mineral/wood/ash/fifty
 	amount = 50
