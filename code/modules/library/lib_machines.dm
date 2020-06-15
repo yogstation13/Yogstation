@@ -48,7 +48,6 @@
 			else
 				dat += "<table>"
 				dat += "<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"
-
 				var/datum/DBQuery/query_library_list_books = SSdbcore.NewQuery({"
 				SELECT author, title, category, id
 					FROM [format_table_name("library")]
@@ -56,8 +55,7 @@
 						AND author LIKE :like_author
 						AND title LIKE :like_title
 						AND (:category = 'Any' OR category = :category)
-					LIMIT :skip, :take
-				"}, list("author" = author, "title" = title, "category" = category, "skip" = booksperpage * search_page, "take" = booksperpage, "like_author" = "%[author]%", "like_title" = "%[title]%"))
+				"}, list("author" = author, "title" = title, "category" = category, "like_author" = "%[author]%", "like_title" = "%[title]%"))
 				if(!query_library_list_books.Execute())
 					dat += "<font color=red><b>ERROR</b>: Unable to retrieve book listings. Please contact your system administrator for assistance.</font><BR>"
 				else
