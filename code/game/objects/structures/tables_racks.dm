@@ -36,7 +36,7 @@
 	
 /obj/structure/table/Bumped(mob/living/carbon/human/H)
 	. = ..()
-	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || istype(dna.species, /datum/species/shadow/ling))
+	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || istype(H.dna.species, /datum/species/shadow/ling))
 		return ..()
 	if(prob(5))
 		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
