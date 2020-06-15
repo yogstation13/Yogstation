@@ -229,7 +229,7 @@ or something covering your eyes."
 	var/mob/living/L = usr
 	to_chat(L, "<span class='mind_control'>[command]</span>")
 
-/obj/screen/alert/drunk //Not implemented
+/obj/screen/alert/drunk
 	name = "Drunk"
 	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition. Make sure to act like it."
 	icon_state = "drunk"
