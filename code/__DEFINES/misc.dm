@@ -459,6 +459,11 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 
+
+// camera shooting modes , originally was going to put this under tools since the camera is a tool in rl but wasn't 100% sure
+#define CAMERA_STANDARD 		"standard"
+#define CAMERA_DESCRIPTION		"description"
+
 //Religion
 
 #define HOLY_ROLE_PRIEST 1 //default priestly role
@@ -467,3 +472,4 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define ALIGNMENT_GOOD "good"
 #define ALIGNMENT_NEUT "neutral"
 #define ALIGNMENT_EVIL "evil"
+
