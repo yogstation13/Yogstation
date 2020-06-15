@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/show_tip,
 	/client/proc/smite,
 	/client/proc/spawn_floor_cluwne, // Yogs
-	/client/proc/spawnhuman
+	/client/proc/spawnhuman,
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away,
