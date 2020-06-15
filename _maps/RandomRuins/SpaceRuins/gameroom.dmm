@@ -1,5 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"bc" = (
+"ce" = (
+/obj/machinery/computer/arcade/orion_trail,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"ch" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/cas/black{
 	pixel_x = -6;
@@ -9,11 +13,7 @@
 	pixel_x = 5;
 	pixel_y = 6
 	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"ce" = (
-/obj/machinery/computer/arcade/orion_trail,
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
 "cD" = (
 /obj/structure/closet/crate,
@@ -88,35 +88,16 @@
 /obj/machinery/computer/arcade/minesweeper,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
-"fb" = (
-/obj/structure/closet/crate/bin,
-/obj/item/trash/candy,
-/obj/item/trash/cheesie,
-/obj/item/trash/can,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
 "fu" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
-"fT" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen{
-	pixel_x = 1;
-	pixel_y = -2
+"fZ" = (
+/obj/machinery/vending/gifts{
+	products = list(/obj/item/toy/heartballoon = 3, /obj/item/toy/toyballoon = 3, /obj/item/toy/gun/toyglock = 3, /obj/item/toy/gun/toyflaregun = 3, /obj/item/toy/toygrenade = 15, /obj/item/toy/plush/teddybear = 5, /obj/item/toy/plush/stuffedmonkey = 5, /obj/item/toy/plush/flowerbunch = 5, /obj/item/camera_film = 30, /obj/item/storage/photo_album = 5, /obj/item/storage/photobook = 5, /obj/item/hourglass = 2, /obj/item/toy/frisbee = 2, /obj/item/toy/boomerang = 2, /obj/item/storage/bag/photo = 5, /obj/item/toy/plush/bubbleplush = 2, /obj/item/toy/plush/plushvar = 2, /obj/item/toy/plush/narplush = 2, /obj/item/toy/plush/lizardplushie = 2, /obj/item/toy/plush/snakeplushie = 2, /obj/item/toy/plush/nukeplushie = 2, /obj/item/toy/plush/slimeplushie = 2, /obj/item/toy/plush/inorixplushie = 2, /obj/item/toy/plush/beeplushie = 2, /obj/item/instrument/accordion = 1, /obj/item/instrument/eguitar = 1, /obj/item/instrument/glockenspiel = 1, /obj/item/instrument/harmonica = 1, /obj/item/instrument/recorder = 1, /obj/item/instrument/saxophone = 1, /obj/item/instrument/trombone = 1, /obj/item/instrument/trumpet = 1, /obj/item/instrument/piano_synth = 1, /obj/item/instrument/banjo = 1, /obj/item/storage/backpack = 4, /obj/item/reagent_containers/syringe = 3, /obj/item/reagent_containers/pill/patch/styptic = 2, /obj/item/reagent_containers/pill/patch/silver_sulf = 2, /obj/item/reagent_containers/glass/bottle/charcoal = 1, /obj/item/reagent_containers/pill/epinephrine = 1, /obj/item/reagent_containers/glass/beaker/large = 2, /obj/item/flashlight = 3, /obj/item/flashlight/flare = 1, /obj/item/storage/toolbox/mechanical = 1, /obj/item/stack/cable_coil/random = 4, /obj/item/pda = 8, /obj/item/cartridge/engineering = 2, /obj/item/cartridge/atmos = 2, /obj/item/cartridge/medical = 2, /obj/item/cartridge/chemistry = 2, /obj/item/cartridge/janitor = 2, /obj/item/cartridge/lawyer = 2, /obj/item/cartridge/curator = 2, /obj/item/cartridge/roboticist = 2, /obj/item/cartridge/quartermaster = 2, /obj/item/storage/box/fancy/candle_box = 2, /obj/item/storage/crayons = 2)
 	},
-/obj/item/pen{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_x = -9;
-	pixel_y = 8
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -143,186 +124,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"iO" = (
-/obj/structure/table/wood,
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "jl" = (
 /obj/structure/closet/crate,
@@ -388,11 +189,26 @@
 /obj/item/radio,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
+"ko" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/can,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
 "kM" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
 	name = "Secure Snack Storage";
 	pixel_x = 32
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"kQ" = (
+/obj/machinery/button/door{
+	id = "snack_vault";
+	name = "Secure Snack Storage Lockdown";
+	pixel_x = 23;
+	pixel_y = -21;
+	req_access_txt = "200"
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
@@ -473,12 +289,185 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/gaming)
-"tx" = (
-/obj/machinery/vending/gifts,
-/obj/machinery/light{
-	dir = 8
+"tr" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
 	},
-/turf/open/floor/carpet,
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
 "tA" = (
 /obj/structure/rack,
@@ -488,6 +477,26 @@
 /obj/item/clothing/head/helmet/space/nasavoid/old,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
+"tB" = (
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = -7
+	},
+/obj/structure/table/wood,
+/obj/item/hourglass{
+	pixel_x = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"tR" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = 10;
+	pixel_y = 24
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
 "vI" = (
 /obj/structure/table/wood/poker,
 /obj/item/storage/pill_bottle/dice,
@@ -495,6 +504,19 @@
 /area/ruin/space/has_grav/powered/gaming)
 "vK" = (
 /turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"xq" = (
+/obj/machinery/door/airlock/vault{
+	id_tag = "snack_vault";
+	name = "Secure Snack Storage";
+	req_access_txt = "200"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "snack_vault";
+	layer = 2.75;
+	name = "Secure Snack Storage blast door"
+	},
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
 "xM" = (
 /obj/structure/closet/crate,
@@ -603,6 +625,39 @@
 "Gj" = (
 /turf/closed/wall/mineral/wood,
 /area/ruin/space/has_grav/powered/gaming)
+"Ha" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
+	name = "Secure Snack Storage";
+	pixel_x = 32
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/structure/rack,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"IN" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/syndicate,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
 "Jg" = (
 /obj/machinery/light{
 	dir = 1
@@ -632,6 +687,13 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
+"NK" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/uno{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
 "NS" = (
 /obj/structure/mirror{
 	pixel_y = 32
@@ -641,53 +703,8 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/gaming)
-"Om" = (
-/obj/item/storage/pill_bottle/dice{
-	pixel_x = -7
-	},
-/obj/structure/table/wood,
-/obj/item/hourglass{
-	pixel_x = 6
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
 "OA" = (
 /obj/structure/chair/sofa/left,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Qr" = (
-/obj/structure/table/wood,
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/toy/cards/deck{
-	pixel_x = -5;
-	pixel_y = 6
-	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "QN" = (
@@ -734,7 +751,7 @@
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
-"Ry" = (
+"Rs" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/syndicate{
 	pixel_x = -6;
@@ -744,7 +761,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
 "Sp" = (
 /obj/structure/mineral_door/wood,
@@ -769,18 +786,19 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/gaming)
-"UV" = (
+"Ub" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"Vo" = (
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/button/door{
+	id = "snack_vault";
+	name = "Secure Snack Storage Lockdown";
+	pixel_x = -22;
+	pixel_y = -21;
+	req_access_txt = "200"
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
 "Vs" = (
 /obj/machinery/vending/clothing,
@@ -807,25 +825,82 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/gaming)
+"We" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -7
+	},
+/obj/item/pen{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/item/pen{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/folder/yellow{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/pen{
+	pixel_x = 1;
+	pixel_y = -2
+	},
+/obj/item/pen{
+	pixel_x = 9;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"WE" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
 "WP" = (
 /obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "Xh" = (
 /obj/machinery/computer/arcade/battle,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"XL" = (
-/obj/machinery/door/airlock/vault{
-	name = "Secure Snack Storage"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"Zd" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/uno{
-	pixel_y = 5
-	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "Ze" = (
@@ -844,11 +919,6 @@
 "ZB" = (
 /obj/item/beacon,
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"ZG" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/syndicate,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 
@@ -920,14 +990,14 @@ Ta
 Ta
 Gj
 Gj
-Vo
+tR
 yq
 yq
 yq
 Gj
 Gj
 Gj
-ZG
+IN
 EP
 Ca
 Aw
@@ -946,7 +1016,7 @@ EP
 EP
 EP
 BU
-tx
+fZ
 Gj
 jD
 EP
@@ -960,7 +1030,7 @@ Ta
 (6,1,1) = {"
 Ta
 Gj
-Ry
+Rs
 EP
 EP
 EP
@@ -981,7 +1051,7 @@ Ta
 (7,1,1) = {"
 Ta
 Gj
-bc
+ch
 EP
 qi
 ie
@@ -1002,7 +1072,7 @@ Ta
 (8,1,1) = {"
 Ta
 gh
-Zd
+NK
 EP
 lG
 ne
@@ -1023,7 +1093,7 @@ Ta
 (9,1,1) = {"
 Ta
 gh
-fT
+We
 EP
 lG
 ie
@@ -1044,7 +1114,7 @@ Ta
 (10,1,1) = {"
 Ta
 gh
-Om
+tB
 EP
 lG
 DZ
@@ -1065,7 +1135,7 @@ Ta
 (11,1,1) = {"
 Ta
 gh
-Qr
+WE
 EP
 OA
 vI
@@ -1086,7 +1156,7 @@ Ta
 (12,1,1) = {"
 Ta
 Gj
-iO
+tr
 EP
 EP
 EP
@@ -1114,8 +1184,8 @@ EP
 EP
 VQ
 kM
-EP
-kM
+kQ
+Ha
 Gj
 Gj
 Gj
@@ -1135,7 +1205,7 @@ vK
 vK
 Gj
 Gj
-XL
+xq
 Gj
 Gj
 qL
@@ -1153,10 +1223,10 @@ Gj
 xR
 xN
 Sw
-fb
+ko
 Gj
 xM
-UV
+Ub
 jl
 Gj
 TQ
