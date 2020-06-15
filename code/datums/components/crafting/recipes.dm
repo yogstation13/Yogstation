@@ -76,7 +76,7 @@
 /datum/crafting_recipe/baseball_bat
 	name = "Baseball Bat"
 	result = /obj/item/melee/baseball_bat
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 30)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 25)
 	tools = list(TOOL_HATCHET) //to carve the wood into shape
 	time = 60 //You're carving a bat from wood with a hatchet, of course it's gonna take a bit.
 	category = CAT_WEAPONRY

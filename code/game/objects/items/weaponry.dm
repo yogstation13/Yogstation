@@ -606,7 +606,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "Grass grows, birds fly, sun shines, and brother? You HURT people."
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
-	force = 14 //Unlike normal aluminum bats, this one has a solid core, which leads to more weight, which, you guessed it, leads to more BONK
+	force = 15 //Unlike normal aluminum bats, this one has a solid core, which leads to more weight, which, you guessed it, leads to more BONK
 	throwforce = 18
 	
 /* Commenting this out for now. Something will be done with this eventually.
