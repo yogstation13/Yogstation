@@ -275,6 +275,7 @@
 	materials = null
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
 	resistance_flags = FLAMMABLE
+	obj_flags = WOODEN
 
 /obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/user, params)
 	if(istype(O, /obj/item/mop))
@@ -345,6 +346,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pestle"
 	force = 7
+	obj_flags = WOODEN
 
 /obj/item/reagent_containers/glass/mortar
 	name = "mortar"
@@ -356,6 +358,7 @@
 	reagent_flags = OPENCONTAINER
 	spillable = TRUE
 	var/obj/item/grinded
+	obj_flags = WOODEN
 
 /obj/item/reagent_containers/glass/mortar/AltClick(mob/user)
 	if(grinded)

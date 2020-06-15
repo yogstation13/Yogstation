@@ -37,6 +37,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	permeability_coefficient = 0.9
+	obj_flags = WOODEN
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic black shoes."

@@ -74,6 +74,7 @@
 	materials = null
 	flags_1 = NONE
 	resistance_flags = FLAMMABLE
+	obj_flags = WOODEN
 
 /obj/item/hatchet
 	name = "hatchet"

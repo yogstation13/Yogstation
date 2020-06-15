@@ -113,6 +113,7 @@
 	transparent = FALSE
 	max_integrity = 55
 	w_class = WEIGHT_CLASS_NORMAL
+	obj_flags = WOODEN
 
 /obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)

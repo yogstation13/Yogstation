@@ -198,6 +198,7 @@
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = null
 	var/list/tikimask_designs = list()
+	obj_flags = WOODEN
 
 /obj/item/clothing/mask/gas/tiki_mask/Initialize(mapload)
 	.=..()
