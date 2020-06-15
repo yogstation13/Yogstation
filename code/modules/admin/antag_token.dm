@@ -98,8 +98,13 @@
 	"reason" = "'[reason]'",
 	"applying_admin" = "'[ckey(owner.ckey)]'",
 	))
+	var/datum/DBQuery/add_token = SSdbcore.NewQuery(
+			"INSERT INTO [format_table_name("antag_tokens")] (granted_time, ckey, round_id, reason, applying_admin) VALUES (NOW(), :ckey, :id, :reason, :admin)",
+			list("ckey" = ckey(ckey), "id" = roundid,"reason" = reason, "admin" = ckey(owner.ckey))
+		)
 
-	if(!SSdbcore.MassInsert(format_table_name("antag_tokens"), token, warn = 1))
+	if(!add_token.warn_execute())
+		qdel(query_antag_token)
 		alert("Failed to give token!")
 		return
 
