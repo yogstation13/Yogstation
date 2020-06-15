@@ -148,6 +148,15 @@
 	hardness = 50
 	canSmoothWith = list(/turf/closed/wall/mineral/wood, /obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood/nonmetal)
 
+/turf/closed/wall/mineral/wood/ash
+	desc = "A solidly wooden wall. The ashy planks prove to be stronger than they look!"
+	girder_type = /obj/structure/barricade/wooden/ash
+	slicing_duration = 150   //It's fireproof! So it takes longer to slice with fire.
+	hardness = 80
+	canSmoothWith = list(/turf/closed/wall/mineral/wood/ash)
+	icon = 'icons/turf/walls/ashcap_wall.dmi'
+	icon_state = "ashcap"
+
 /turf/closed/wall/mineral/iron
 	name = "rough metal wall"
 	desc = "A wall with rough metal plating."

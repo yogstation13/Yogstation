@@ -5,6 +5,7 @@
 #define METAL 1
 #define WOOD 2
 #define SAND 3
+#define ASHCAP 4
 
 //Barricades/cover
 
@@ -79,6 +80,27 @@
 				return
 	return ..()
 
+/obj/structure/barricade/wooden/ash
+	name = "ashcap barricade"
+	desc = "This space is blocked off by a wooden barricade."
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "greyscale_woodenbarricade"
+	material = ASHCAP
+
+/obj/structure/barricade/wooden/ash/attackby(obj/item/I, mob/user)
+	if(istype(I,/obj/item/stack/sheet/mineral/wood/ash))
+		var/obj/item/stack/sheet/mineral/wood/W = I
+		if(W.amount < 5)
+			to_chat(user, "<span class='warning'>You need at least five ashcap planks to make a wall!</span>")
+			return
+		else
+			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
+			if(do_after(user, 50, target=src))
+				W.use(5)
+				new /turf/closed/wall/mineral/wood/ash(get_turf(src))
+				qdel(src)
+				return
+	return ..()
 
 /obj/structure/barricade/wooden/crude
 	name = "crude plank barricade"
@@ -199,3 +221,4 @@
 #undef METAL
 #undef WOOD
 #undef SAND
+#undef ASHCAP
