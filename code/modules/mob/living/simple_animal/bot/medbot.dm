@@ -330,7 +330,7 @@
 		if(MEDBOT_PANIC_HIGH)
 			messagevoice = list("Please, I am scared!" = 'sound/voice/medbot/please_im_scared.ogg')
 		if(MEDBOT_PANIC_FUCK)
-			messagevoice = list("I don't like this, I need help!" = 'sound/voice/medbot/dont_like.ogg', "This hurts, my pain is real!" = 'sound/voice/medbot/pain_is_real.ogg')
+			messagevoice = list("I DON'T LIKE THIS, I NEED HELP!" = 'sound/voice/medbot/dont_like.ogg', "THIS HURTS, MY PAIN IS REAL!" = 'sound/voice/medbot/pain_is_real.ogg')
 		if(MEDBOT_PANIC_ENDING)
 			messagevoice = list("Is this the end?" = 'sound/voice/medbot/is_this_the_end.ogg', "Nooo!" = 'sound/voice/medbot/nooo.ogg')
 		if(MEDBOT_PANIC_END)
