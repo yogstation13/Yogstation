@@ -74,6 +74,7 @@
 	var/feedback_recoil_speed = 2 // the time from recoil to recovery. full time = *4
 	var/feedback_recoil_reverse = FALSE // TRUE for clockwise , FALSE for anti-clockwise
 	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
+
 /obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
 	if(feedback_types[type])
 		feedback_commence(type, feedback_types[type])
