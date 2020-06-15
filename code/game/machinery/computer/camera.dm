@@ -22,6 +22,8 @@
 
 	var/obj/machinery/camera/active_camera
 
+	var/processing = FALSE
+
 /obj/machinery/computer/security/Initialize()
 	. = ..()
 	// Map name has to start and end with an A-Z character,
@@ -106,6 +108,16 @@
 		))
 	return data
 
+/obj/machinery/computer/security/process()
+	if(active_camera.built_in)
+		if(!active_camera?.can_use())
+			show_camera_static()
+			return TRUE
+		update_camera(active_camera)
+	else
+		STOP_PROCESSING(SSfastprocess, src)
+		processing = FALSE
+
 /obj/machinery/computer/security/ui_act(action, params)
 	. = ..()
 	if(.)
@@ -123,21 +135,38 @@
 			show_camera_static()
 			return TRUE
 
-		var/list/visible_turfs = list()
-		for(var/turf/T in (C.isXRay() \
-				? range(C.view_range, C) \
-				: view(C.view_range, C)))
-			visible_turfs += T
 
-		var/list/bbox = get_bbox_of_atoms(visible_turfs)
-		var/size_x = bbox[3] - bbox[1] + 1
-		var/size_y = bbox[4] - bbox[2] + 1
+		//Assume it's a moving camera.
+		if(C.built_in)
+			if(!processing)
+				START_PROCESSING(SSfastprocess, src)
+				processing = TRUE
+		else
+			STOP_PROCESSING(SSfastprocess, src)
+			processing = FALSE
 
-		cam_screen.vis_contents = visible_turfs
-		cam_background.icon_state = "clear"
-		cam_background.fill_rect(1, 1, size_x, size_y)
+		update_camera(C)
 
 		return TRUE
+
+/obj/machinery/computer/security/proc/update_camera(obj/machinery/camera/C)
+	var/originator = C
+	if(C.built_in)
+		originator = C.built_in
+
+	var/list/visible_turfs = list()
+	for(var/turf/T in (C.isXRay() \
+			? range(C.view_range, originator) \
+			: view(C.view_range, originator)))
+		visible_turfs += T
+
+	var/list/bbox = get_bbox_of_atoms(visible_turfs)
+	var/size_x = bbox[3] - bbox[1] + 1
+	var/size_y = bbox[4] - bbox[2] + 1
+
+	cam_screen.vis_contents = visible_turfs
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, size_x, size_y)
 
 /obj/machinery/computer/security/ui_close(mob/user)
 	var/user_ref = REF(user)
