@@ -19,6 +19,8 @@
 	var/starting_tape_type = /obj/item/tape/random
 	var/open_panel = 0
 	var/canprint = 1
+	var/list/icons_available = list()
+	var/icon_directory = 'icons/effects/icons.dmi'
 
 
 /obj/item/taperecorder/Initialize(mapload)
@@ -219,7 +221,7 @@
 	if(mytape.ruined)
 		to_chat(user, "<span class='notice'>The tape inside the [src] appears to be broken.</span>")
 		return
-		
+
 	update_available_icons()
 	if(icons_available)
 		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
