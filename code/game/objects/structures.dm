@@ -9,6 +9,7 @@
 	var/mob/living/structureclimber
 	var/broken = 0 //similar to machinery's stat BROKEN
 	layer = BELOW_OBJ_LAYER
+	var/woodtype = null
 
 
 /obj/structure/Initialize()

@@ -45,4 +45,8 @@ STRUCTURES
 			obj_flags += FIRE_PROOF
 			obj_flags += LAVA_PROOF
 		else if(isstructure(src))
+			var/obj/structure/W = src
+			W.resistance_flags += FIRE_PROOF
+			W.resistance_flags += LAVA_PROOF
+			W.woodtype = ASHCAP
 			//TODO: STRUCTURES DROP THE RIGHT WOOD type
