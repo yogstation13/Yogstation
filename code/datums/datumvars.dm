@@ -500,10 +500,6 @@
 			</tbody>
 			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
 
-	else if(istype(value, /matrix))
-		var/matrix/M = value
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>matrix([M.a], [M.b], [M.c], [M.d], [M.e], [M.f])</span>"
-
 	else if(isappearance(value))
 		var/image/I = value
 		item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = appearance(<span class='value'>[I.icon]</span>, <span class='value'>\"[I.icon_state]\"</span>)"
