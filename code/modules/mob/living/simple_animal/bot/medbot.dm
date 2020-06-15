@@ -322,7 +322,6 @@
 	var/list/messagevoice
 	
 	switch(tipped_status)
-	switch(tipped_status)
 		if(MEDBOT_PANIC_LOW)
 			messagevoice = list("I require assistance." = 'sound/voice/medbot/i_require_asst.ogg')
 		if(MEDBOT_PANIC_MED)
@@ -502,11 +501,7 @@
 
 	return FALSE
 
-/mob/living/simple_animal/bot/medbot/attack_hand(mob/living/carbon/human/H)
-	if(INTERACTING_WITH(H, src))
-		to_chat(H, "<span class='warning'>You're already interacting with [src].</span>")
-		return	
-	
+/mob/living/simple_animal/bot/medbot/attack_hand(mob/living/carbon/human/H)	
 	if(H.a_intent == INTENT_DISARM && mode != BOT_TIPPED)
 		H.visible_message("<span class='danger'>[H] begins tipping over [src].</span>", "<span class='warning'>You begin tipping over [src]...</span>")
 
