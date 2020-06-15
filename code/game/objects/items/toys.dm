@@ -1215,11 +1215,11 @@ obj/item/toy/turn_tracker
 			turn=1
 		else if(turn<1)
 			turn=names.len
-		audible_message("<span class='notice'>[src] says: \"It is [names[turn]]'s turn!\"</span>")
+		audible_message("<span class='notice'>[user] clicks the button. [src] says: \"It is [names[turn]]'s turn!\"</span>")
 		flick("bigblue_press", src)
 
 /obj/item/toy/turn_tracker/AltClick(mob/user)
-	audible_message("<span class='notice'>[src] says: \"Direction Reversed!\"</span>")
+	audible_message("<span class='notice'>[user] clicks the button. [src] says: \"Direction Reversed!\"</span>")
 	turndir=turndir*-1 //this reverses the direction (1 becomes -1, -1 becomes 1)
 
 /obj/item/toy/turn_tracker/MouseDrop(atom/over_object)
