@@ -68,7 +68,12 @@
 	var/feedback_firing_icon = null // stores icon of gun while firing
 	var/feedback_original_icon_base = null // original base icon without the slide
 	var/feedback_fire_slide = FALSE // does the gun slide move back when firing?
-
+	var/feedback_has_recoil = TRUE
+	var/feedback_recoil_amount = 1 // angle of recoil .decimal numbers are okay for less recoil as long as its more than 0
+	var/feedback_recoil_hold = 0 // the amount the recoil holds before going back. best to set this to 1/4th of the fire time.
+	var/feedback_recoil_speed = 2 // the time from recoil to recovery. full time = *4
+	var/feedback_recoil_reverse = FALSE // TRUE for clockwise , FALSE for anti-clockwise
+	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
 /obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
 	if(feedback_types[type])
 		feedback_commence(type, feedback_types[type])
@@ -103,13 +108,15 @@
 					if (capacity_number)
 						add_overlay("[icon_state]_mag_[capacity_number]")
 			add_overlay(feedback_firing_icon)
+			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
 			sleep(frames)
 			update_icon()
 			return
 		if (bolt_type == BOLT_TYPE_LOCKING)
 			if(type != "slide*")
 				add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
-
+			if(type == "slide_close") // cause the gun to move clockwise if slide is closed
+				DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
 		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
 		sleep(frames)
 		update_icon()
