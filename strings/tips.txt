@@ -147,7 +147,7 @@ As the Chaplain, your null rod has anti magic functions: it can destroy cultist 
 As the Chaplain, your bible is also a container that can store small items. Depending on your god, your starting bible may come with a surprise!
 As the Chaplain, you are much more likely to get a response by praying to the gods than most people. To boost your chances, make altars with colorful crayon runes, lit candles, and wire art.
 As a Botanist, you can hack the MegaSeed Vendor to get access to more exotic seeds. These seeds can alternatively be ordered from cargo.
-As a Botanist, you can mutate the plants growing in your hydroponics trays with unstable mutagen or, as an alternative, crude radioactives from chemistry to get special variations.
+As a Botanist, you can mutate the plants growing in your hydroponics trays with unstable mutagen from chemistry or, as an alternative, grow glowshrooms for their radium which also mutates plants to start you up! You can also take uranium out of the servicelathe and grind that up to mutate plants, isn't science amazing?
 As a Botanist, you should look into increasing the potency of your plants. This increases the size, amount of chemicals, points gained from grinding them in the biogenerator, and lets people know you are a proficient botanist.
 As a Botanist, you can combine production trait chemicals just like a Chemist. Chlorine (blumpkin) + radium and phosphorus (glowshrooms) equals unstable mutagen!
 As a Cook, you can load your food into snack vending machines.
@@ -209,6 +209,7 @@ As a Blobbernaut, your HUD shows your health and the core health of the overmind
 As a Revolutionary, you cannot convert a head of staff or someone who has a mindshield implant, such as a security officer or those they implant. Implants can however be surgically removed, and do not carry over with cloning. Take control of medbay to keep control of conversions!
 As a Revolutionary, cargo can be your best friend or your worst nightmare. In the best case scenario you will be able to order a limitless amount of guns and armor, in the worst case scenario security will take control and order a limitless number of mindshield implants to turn your fellow revolutionaries against you.
 As a Revolutionary, your main power comes from who you convert, choose your converts wisely to ensure you win the round.
+As a Changeling, the Extract DNA sting counts for your genome absorb objective, but does not let you respec your powers.
 As a Changeling, you can absorb someone by strangling them and using the Absorb verb; this gives you the ability to rechoose your powers, the DNA of whoever you absorbed, the memory of the absorbed, and some samples of things the absorbed said.
 As a Cultist, do not cause too much chaos before your objective is completed. If the shuttle gets called too soon, you may not have enough time to win.
 As a Cultist, your team starts off very weak, but if necessary can quickly convert everything they have into raw power. Make sure you have the numbers and equipment to support going loud, or the cult will fall flat on its face.
@@ -220,7 +221,8 @@ The Chaplain can bless any container with water by hitting it with their bible. 
 The Chaplain's holy weapon will kill clockwork marauders in two hits.
 As a Wizard, you can turn people to stone, then animate the resulting statue with a staff of animation to create an extremely powerful minion, for all of 5 minutes at least.
 As a Wizard, the fireball spell performs very poorly at close range, as it can easily catch you in the blast. It is best used as a form of artillery down long hallways.
-As a Wizard, the staff of chaos can fire any type of bolts from the magical wands. This can range from bolts of fireball to healing or reviving someone.
+As a Wizard, summoning guns will turn a large portion of the crew against themselves, but will also give everyone anything from a floral somatoray to a pulse rifle. Use at your own risk!
+As a Wizard, the staff of chaos can fire any type of bolts from the magical wands. This can range from bolts of instant death to healing or reviving someone.
 As a Wizard, most spells become unusable if you are not wearing your robe, hat, and sandals.
 As an Abductor, you can select where your victims will be sent on the ship control console.
 As an Abductor Agent, the combat mode vest has much higher resistance to every kind of weapon, and your helmet prevents the AI from tracking you.
@@ -241,14 +243,21 @@ As a Devil, you gain power for every three souls you control, however you also b
 As a Devil, as long as you control at least one other soul, you will automatically resurrect, as long as a banishment ritual is not performed.
 At which time a Devil's nameth is spake on the tongue of man, the Devil may appeareth. 
 As a Security Officer, remember that correlation does not equal causation. Someone may have just been at the wrong place at the wrong time!
-As a Security Officer, remember that you can attach a sec-lite to your taser or your helmet!
+As a Security Officer, remember that you can attach a sec-lite to your disabler or your helmet!
 You can swap floor tiles by holding a crowbar in one hand and a stack of tiles in the other.
 When hacking doors, cutting and mending a "test light wire" will restore power to the door.
 When crafting most items, you can either manually combine parts or use the crafting menu.
 Suit storage units not only remove blood and dirt from clothing, but also radiation!
 Remote devices will work when used through cameras. For example: Bluespace RPEDs and door remotes.
 You can light a cigar on a supermatter crystal.
-YOU CAN SUCK BLOOD AS A VAMPIRE BY HARM INTENTING THE HEAD
+In a pinch, stripping yourself naked will give you a sizeable resistance to being tackled. What do you value more, your freedom or your dignity?
+Wearing riot armor makes you significantly more effective at performing tackle takedowns, but will use extra stamina with each leap! It will also significantly protect you from other tackles!
+As a Changeling, your Regenerate Limbs power will quickly heal all of your wounds, but they'll still leave scars. Changelings can use Fleshmend to get rid of scars, or you can ingest Carpotoxin to get rid of them like a normal person.
+Stasis beds halt ALL passive life functions, including regeneration. If your patient isn't responding to treatment, especially with cut or burn wounds, try unbuckling them!
+Epipens contain a powerful coagulant that drastically reduces bleeding on all open cuts. If you don't have time to properly treat someone with lots of cuts, stick them with a pen to buy some time!
+If a patient has an absurd amount of wounds, putting them in cryo will slowly treat all of their wounds simultaneously.
+Anything you can light a cigarette with, you can use to cauterize a bleeding wound. Technically, that includes the supermatter.
+Moderate and Severe cuts will slowly clot by themselves and don't require immediate attention on their own. Critical cuts will actively get worse with time, and are an immediate threat to the patient's life.
 Click the ‘resist’ button to get out of a chair.
 Using a multitool on a flux-wave anomaly does not fix it. Stop shocking yourself on it.
 Normal analysers can determine a blob's type, the code to neutralize an anomaly, and the composition of gas in both the atmosphere or a tank/canister.

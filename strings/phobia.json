@@ -32,7 +32,7 @@
 		"hos",
 		"head of personnel",
 		"hop",
-		"head of research",
+		"research director",
 		"rd",
 		"chief medical officer",
 		"cmo",
@@ -203,8 +203,9 @@
 	],
 	"strangers": [
 		"as (unknown)",
+		"unidentified",
 		"unknown",
-		"stranger danger"
+		"stranger"
 	],
 	"birds": [
 		"birdemic",
