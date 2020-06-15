@@ -5,7 +5,7 @@ X = Item is fully functional with the system
 
 ITEMS
 "wooden sandals", /obj/item/clothing/shoes/sandal X
-"wood floor tile", /obj/item/stack/tile/wood
+"wood floor tile", /obj/item/stack/tile/wood -
 "rifle stock", /obj/item/weaponcrafting/stock -
 "rolling pin", /obj/item/kitchen/rollingpin X
 "picture frame", /obj/item/wallframe/picture -
@@ -19,10 +19,10 @@ ITEMS
 "pestle", /obj/item/pestle X
 
 STRUCTURES
-"apiary", /obj/structure/beebox
-"loom", /obj/structure/loom
+"apiary", /obj/structure/beebox -
+"loom", /obj/structure/loom X
 "wood table frame", /obj/structure/table_frame/wood
-"wooden chair", /obj/structure/chair/wood/
+"wooden chair", /obj/structure/chair/wood
 "winged wooden chair", /obj/structure/chair/wood/wings
 "wooden barricade", /obj/structure/barricade/wooden
 "wooden door", /obj/structure/mineral_door/wood
@@ -39,9 +39,16 @@ STRUCTURES
 "pew (right)", /obj/structure/chair/pew/right
 "display case chassis", /obj/structure/displaycase_chassis
 */
+/*HOW TO ADD A NEW WOOD TYPE
+	1) define a new wood typepath and make a new wood type of obj/item/stack/sheet/mineral/wood/x
+	2) have an else if istype(parts[1], text2path(x))
+	3) set the icon_state = greyscale_ + icon state
+	4) change the obj color var to match the new wood
+*/
 #define ASHCAP "/obj/item/stack/sheet/mineral/wood/ash"
 /obj/proc/ProcessWoodVarients(list/parts)
-	if (istype(parts[1], ASHCAP))//These wooden objects are wood and nothing else, so this should handle wood types easily
+	world.log << parts[1]//DEBUG
+	if (istype(parts[1], text2path(ASHCAP)))//These wooden objects are wood and nothing else, so this should handle wood types easily
 		icon_state = ("greyscale_" + icon_state)
 		resistance_flags += FIRE_PROOF
 		resistance_flags += LAVA_PROOF

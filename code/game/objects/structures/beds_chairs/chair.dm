@@ -54,6 +54,8 @@
 /obj/structure/chair/deconstruct()
 	// If we have materials, and don't have the NOCONSTRUCT flag
 	if(buildstacktype && (!(flags_1 & NODECONSTRUCT_1)))
+		if (woodtype)
+			buildstacktype = woodtype
 		new buildstacktype(loc,buildstackamount)
 	..()
 
@@ -129,6 +131,8 @@
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
 	buildstackamount = 3
 	item_chair = /obj/item/chair/wood
+	obj_flags = WOODEN
+
 
 /obj/structure/chair/wood/narsie_act()
 	return

@@ -170,6 +170,9 @@
 					var/obj/W = I
 					if (W.obj_flags & WOODEN)
 						W.ProcessWoodVarients(parts)
+						to_chat(user, "DEBUG: ITEM WOOD PROCCESSED")
+					else
+						to_chat(user, "DEBUG: ITEM NOT WOOD PROCESSED")
 				I.CheckParts(parts, R)
 				if(send_feedback)
 					SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
