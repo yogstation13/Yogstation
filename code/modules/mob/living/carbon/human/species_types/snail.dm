@@ -66,9 +66,6 @@
 
 	if(H.reagents.has_reagent(/datum/reagent/consumable/sodiumchloride))
 		H.adjustFireLoss(+2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-	
-/datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
 
 	if(H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
 		H.adjustFireLoss(+2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
