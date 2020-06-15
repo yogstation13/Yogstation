@@ -1240,7 +1240,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Spawns a mindless human"
 	set category = "Fun"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_SPAWN))
 		return
 
 	var/turf/T = get_turf(usr)
