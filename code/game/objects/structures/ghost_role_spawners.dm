@@ -597,3 +597,23 @@
 
 /obj/effect/mob_spawn/human/pirate/gunner
 	rank = "Gunner"
+
+/obj/effect/mob_spawn/human/gamer
+	name = "gamer sleeper"
+	desc = "A humming cryo pod."
+	mob_name = "a gamer"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	short_desc = "You are a person who just wants to play some card games with their friends."
+	flavour_text = "You don't remember the last time you had to go out of here, the food supply is limitless and you're having a great time."
+	important_info = "Do not abandon the game room and defend the Snack Vault from looters, it's for gametime snacking only."
+	outfit = /datum/outfit/hotelstaff
+	assignedrole = "Gamer"
+
+/obj/effect/mob_spawn/human/gamer/Destroy()
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	return ..()
