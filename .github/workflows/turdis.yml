@@ -84,9 +84,7 @@ jobs:
           echo "::set-env name=PATH::/home/runner/BYOND/byond/bin:$PATH"
           echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
-      - name: Fucking work
-        run: |
-            ldd libbyond-extools.so
+
       - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
@@ -138,6 +136,8 @@ jobs:
           
       - name: Compile
         run: |
+          ls -a -l
+          ldd libbyond-extools.so
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
       - name: Prepare Artifacts
