@@ -916,7 +916,7 @@
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
-	var/indice_pop = min(25,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
+	var/indice_pop = min(30,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/darkspawns = darkspawn_cap[indice_pop]
 	for(var/darkspawn_number = 1 to darkspawns)
 		if(candidates.len <= 0)
