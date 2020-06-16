@@ -1047,7 +1047,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat/honk
 	name = "honk squad helmet"
-	desc = "A hilarious helmet with built in anti-mime propaganda shielding."
+	desc = "A hilarious helmet with built-in anti-mime propaganda shielding."
 	icon_state = "hardsuit0-clown"
 	item_state = "hardsuit0-clown"
 	item_color = "clown"
