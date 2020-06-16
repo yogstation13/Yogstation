@@ -127,6 +127,5 @@
 		if(M.mind.has_antag_datum(/datum/antagonist/fugitive))
 			to_chat(M, my_message)
 		else if(M in GLOB.dead_mob_list)
-			var/link = FOLLOW_LINK(M, user)
-			to_chat(M, "[link] [my_message]")
+			to_chat(M, "[FOLLOW_LINK(M, user)] [my_message]")
 	user.log_talk(message, LOG_SAY, tag="Yalp Elor")
