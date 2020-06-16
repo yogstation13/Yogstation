@@ -43,7 +43,8 @@
 		"https://www.youtube.com/watch?v=uMszu_VgMfY", // Säkkijärven Polkka
 		"https://www.youtube.com/watch?v=Qn16z3fn-j4", // Kremlin Uni
 		"https://www.youtube.com/watch?v=d91FuK11QvU", // Jääkärimarssi
-		"https://www.youtube.com/watch?v=8IaUXefAsCU" // The Song of the Pioneers
+		"https://www.youtube.com/watch?v=8IaUXefAsCU", // The Song of the Pioneers
+		"https://www.youtube.com/watch?v=PJR3xTdbXH8" // Nyet Molotov
 		)
 
 /datum/holiday/oakday/getStationPrefix()
