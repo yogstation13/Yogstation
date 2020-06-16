@@ -342,7 +342,7 @@
 	desc = "Sends a signal when the nanites hear a determined word or sentence."
 	extra_settings = list("Sent Code","Sentence","Inclusive Mode")
 	var/spent = FALSE
-	var/sentence = "Enter Phrase"
+	var/sentence = "Enter phrase"
 	var/inclusive = TRUE
 
 /datum/nanite_program/sensor/voice/on_mob_add()
