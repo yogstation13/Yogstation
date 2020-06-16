@@ -266,14 +266,14 @@
 /obj/effect/proc_holder/spell/self/screech/cast(list/targets, mob/user = usr)
 	user.visible_message("<span class='warning'>[user] lets out an ear piercing shriek!</span>", "<span class='warning'>You let out a loud shriek.</span>", "<span class='warning'>You hear a loud painful shriek!</span>")
 	for(var/mob/living/carbon/C in hearers(4))
-		if(C == user || (ishuman(C) && C.get_ear_protection()) || is_vampire(C))
-			continue
-		to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
-		C.Knockdown(40)
-		C.adjustEarDamage(0, 30)
-		C.stuttering = 250
-		C.Paralyze(40)
-		C.Jitter(150)
+		if(!C == user  || !is_vampire(C))
+			if(ishuman(C) && !C.get_ear_protection())
+				to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
+				C.Knockdown(40)
+				C.adjustEarDamage(0, 30)
+				C.stuttering = 250
+				C.Paralyze(40)
+				C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
