@@ -787,7 +787,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!check_rights(R_SERVER))
 		return
 
-	if(alert(usr, "This will momentarily block the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
 		return
 
 	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"
