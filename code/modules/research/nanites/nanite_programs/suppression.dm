@@ -135,11 +135,11 @@
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
 
 	extra_settings = list("Sentence","Comm Code")
-	var/sentence = ""
+	var/sentence = "Enter Phrase"
 
 /datum/nanite_program/triggered/comm/speech/set_extra_setting(user, setting)
 	if(setting == "Sentence")
-		var/new_sentence = stripped_input(user, "Choose the sentence that the host will be forced to say.", "Sentence", "", MAX_MESSAGE_LEN)
+		var/new_sentence = stripped_input(user, "Choose the sentence that the host will be forced to say.", "Sentence", sentence, MAX_MESSAGE_LEN)
 		if(!new_sentence)
 			return
 		if(copytext(new_sentence, 1, 2) == "*") //emotes are abusable, like surrender
@@ -181,7 +181,7 @@
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
 
 	extra_settings = list("Message","Comm Code")
-	var/message = ""
+	var/message = "Enter Message"
 
 /datum/nanite_program/triggered/comm/voice/set_extra_setting(user, setting)
 	if(setting == "Message")

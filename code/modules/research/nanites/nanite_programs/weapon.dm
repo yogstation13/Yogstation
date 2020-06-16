@@ -169,11 +169,11 @@
 
 	extra_settings = list("Directive")
 	var/cooldown = 0 //avoids spam when nanites are running low
-	var/directive = "..."
+	var/directive = "Enter directive"
 
 /datum/nanite_program/mind_control/set_extra_setting(user, setting)
 	if(setting == "Directive")
-		var/new_directive = stripped_input(user, "Choose the directive to imprint with mind control.", "Directive", "", MAX_MESSAGE_LEN)
+		var/new_directive = stripped_input(user, "Choose the directive to imprint with mind control.", "Directive", directive, MAX_MESSAGE_LEN)
 		if(!new_directive)
 			return
 		directive = new_directive
