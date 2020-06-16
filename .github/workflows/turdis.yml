@@ -138,7 +138,9 @@ jobs:
           ls -a -l
           ldd libbyond-extools.so
           file libbyond-extools.so
+          echo okay
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
+          
           
       - name: Run Tests
         run: |
