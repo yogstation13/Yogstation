@@ -108,7 +108,7 @@ jobs:
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev curl strace
+          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev curl strace file
           
       - name: Cache BYOND
         uses: actions/cache@v1
@@ -137,6 +137,7 @@ jobs:
         run: |
           ls -a -l
           ldd libbyond-extools.so
+          file libbyond-extools.so
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
       - name: Run Tests
