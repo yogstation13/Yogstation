@@ -86,7 +86,7 @@ jobs:
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
       - name: Fucking work
         run: |
-            strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
+            ldd libbyond-extools.so
       - name: Compile All Maps
         run: |
           tools/travis/template_dm_generator.py
