@@ -181,14 +181,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
-"jD" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/radio,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
 "ko" = (
 /obj/structure/closet/crate/bin,
 /obj/item/trash/can,
@@ -249,6 +241,15 @@
 	pixel_y = 3
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"oa" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/radio,
+/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "pB" = (
 /obj/structure/chair/sofa/left{
@@ -608,6 +609,12 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
+"Co" = (
+/obj/structure/chair/sofa{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
 "Cr" = (
 /obj/structure/chair/sofa/right{
 	dir = 1
@@ -664,6 +671,18 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
+"JG" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/uno{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/toy/turn_tracker{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
 "JK" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/stripes/line{
@@ -686,13 +705,6 @@
 	use_power = 0
 	},
 /turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"NK" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/uno{
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
 "NS" = (
 /obj/structure/mirror{
@@ -1018,7 +1030,7 @@ EP
 BU
 fZ
 Gj
-jD
+oa
 EP
 ZB
 fu
@@ -1072,11 +1084,11 @@ Ta
 (8,1,1) = {"
 Ta
 gh
-NK
+JG
 EP
 lG
 ne
-pB
+Co
 EP
 EP
 EP
@@ -1097,7 +1109,7 @@ We
 EP
 lG
 ie
-ie
+Co
 EP
 EP
 EP
@@ -1118,7 +1130,7 @@ tB
 EP
 lG
 DZ
-Cr
+Co
 EP
 EP
 Ze
