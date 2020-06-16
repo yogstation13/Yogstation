@@ -58500,8 +58500,8 @@
 	network = list("ss13","medbay")
 	},
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
-/obj/item/clothing/suit/space/eva/paramedic,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space/paramedic,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
 "fLq" = (

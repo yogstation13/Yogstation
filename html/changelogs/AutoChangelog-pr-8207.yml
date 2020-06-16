@@ -1,6 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new songs"
-  - rscdel: "Deletes old songs"
-  - tweak: "changes some songs versions/remix"
