@@ -109,7 +109,7 @@
 	return data
 
 /obj/machinery/computer/security/process()
-	if(active_camera?.built_in)
+	if(active_camera && active_camera.built_in)
 		if(!active_camera?.can_use())
 			show_camera_static()
 			return TRUE
