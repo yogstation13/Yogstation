@@ -362,7 +362,7 @@
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor/clown
 	name = "lubinator 8000"
-	desc = "A modified industrial cleaning sprayer, capable of coating entire hallways in high performance lubricant, honk!"
+	desc = "A modified industrial cleaning sprayer capable of coating entire hallways in a high-performance lubricant, honk!"
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	list_reagents = list(/datum/reagent/lube = 1000)
