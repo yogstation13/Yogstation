@@ -911,8 +911,8 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 3
 	weight = 1
-	cost = 25
-	var/darkspawn_cap = list(3,3,3,3,3,3,3,3,4)
+	cost = 30
+	var/darkspawn_cap = list(3,3,3,3,3,3,3,3,4,5)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
