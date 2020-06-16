@@ -615,7 +615,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(!account_join_date)
 		account_join_date = "Error"
 
-	sync_login_with_db()
+	sync_login_with_db(sql_ckey, sql_ip, sql_computerid)
 	if(new_player)
 		player_age = -1
 	. = player_age
