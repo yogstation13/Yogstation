@@ -303,7 +303,7 @@
 	begin_day = 14
 	begin_month = JULY
 	drone_hat = /obj/item/clothing/head/beret
-	lobby_music = pick(
+	lobby_music = list(
 		"https://www.youtube.com/watch?v=4K1q9Ntcr5g", // French Anthem La Marseillaise
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
