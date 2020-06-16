@@ -361,6 +361,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "dS" = (
@@ -4359,8 +4362,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "mM" = (
-/obj/machinery/telecomms/relay/preset/ruskie,
-/turf/open/floor/circuit/green/telecomms,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/circuit/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "mN" = (
 /obj/structure/sign/warning/securearea,
@@ -4464,9 +4470,6 @@
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nh" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -4474,9 +4477,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "ni" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 4
-	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -4485,6 +4485,8 @@
 	name = "Telecommunications Relay";
 	req_access_txt = "150"
 	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "nk" = (
@@ -5436,7 +5438,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "ue" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 4
+	},
 /turf/open/floor/circuit/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "uB" = (
@@ -5738,11 +5742,8 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "EY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/turf/open/floor/circuit/telecomms,
+/obj/machinery/telecomms/relay/preset/ruskie,
+/turf/open/floor/circuit/green/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "EZ" = (
 /obj/machinery/door/airlock/external{
@@ -5939,8 +5940,7 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "IO" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Ja" = (
@@ -6292,7 +6292,9 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/open/floor/circuit/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Qg" = (
@@ -6640,6 +6642,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/folder/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "XW" = (
