@@ -1,5 +1,4 @@
 #!/bin/bash
-strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 set -euo pipefail
 
 source dependencies.sh
