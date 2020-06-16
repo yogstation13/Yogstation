@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "malf will now actually send a command report and set the security level to blue like every other roundtype does"

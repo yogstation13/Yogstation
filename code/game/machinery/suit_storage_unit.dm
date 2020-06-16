@@ -30,8 +30,8 @@
 	var/breakout_time = 300
 
 /obj/machinery/suit_storage_unit/standard_unit
-	suit_type = /obj/item/clothing/suit/space/eva
-	helmet_type = /obj/item/clothing/head/helmet/space/eva
+	suit_type = /obj/item/clothing/suit/space
+	helmet_type = /obj/item/clothing/head/helmet/space
 	mask_type = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/captain
@@ -389,7 +389,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "suit_storage_unit", name, 400, 305, master_ui, state)
+		ui = new(user, src, ui_key, "SuitStorageUnit", name, 400, 305, master_ui, state)
 		ui.open()
 
 /obj/machinery/suit_storage_unit/ui_data()

@@ -809,7 +809,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, ui_key, "Apc", name, 535, 515, master_ui, state)
 		ui.open()
 	if(ui)
 		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
@@ -924,7 +924,7 @@
 		. = UI_INTERACTIVE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && !(integration_cog && (is_servant_of_ratvar(usr)))))
+	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && action != "toggle_nightshift" && !(integration_cog && (is_servant_of_ratvar(usr)))))
 		return
 	switch(action)
 		if("lock")

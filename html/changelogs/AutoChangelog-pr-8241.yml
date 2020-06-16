@@ -1,5 +1,0 @@
-author: "wejengin2"
-delete-after: true 
-changes: 
-  - rscadd: "adds five new placement variations to hydroponics, now 6 in total"
-  - tweak: "hydroponics now gets tables and an ai holopad among other things"
