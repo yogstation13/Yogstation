@@ -792,7 +792,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"
 
-	to_chat(world, "<span class='userdanger'>The server will momentarily freeze in 2 seconds!</span>")
+	to_chat(world, "<span class='userdanger'>Performing a memory dump!</span>")
 	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 
