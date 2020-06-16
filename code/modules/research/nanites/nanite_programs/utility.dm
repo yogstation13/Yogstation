@@ -152,7 +152,7 @@
 
 /datum/nanite_program/relay/set_extra_setting(user, setting)
 	if(setting == "Relay Channel")
-		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
+		var/new_channel = input(user, "Set the relay channel (1-9999):", name, 0) as null|num
 		if(isnull(new_channel))
 			return
 		relay_channel = clamp(round(new_channel, 1), 1, 9999)

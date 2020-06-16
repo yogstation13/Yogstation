@@ -8,7 +8,7 @@
 
 /datum/nanite_program/sensor/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
@@ -43,12 +43,12 @@
 
 /datum/nanite_program/sensor/repeat/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Delay")
-		var/new_delay = input(user, "Set the delay in seconds:", name, null) as null|num
+		var/new_delay = input(user, "Set the delay in seconds:", name, 0) as null|num
 		if(isnull(new_delay))
 			return
 		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
@@ -81,17 +81,17 @@
 
 /datum/nanite_program/sensor/relay_repeat/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Relay Channel")
-		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
+		var/new_channel = input(user, "Set the relay channel (1-9999):", name, 0) as null|num
 		if(isnull(new_channel))
 			return
 		relay_channel = clamp(round(new_channel, 1), 1, 9999)
 	if(setting == "Delay")
-		var/new_delay = input(user, "Set the delay in seconds:", name, null) as null|num
+		var/new_delay = input(user, "Set the delay in seconds:", name, 0) as null|num
 		if(isnull(new_delay))
 			return
 		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
@@ -130,12 +130,12 @@
 
 /datum/nanite_program/sensor/health/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Health Percent")
-		var/new_percent = input(user, "Set the health percentage:", name, null) as null|num
+		var/new_percent = input(user, "Set the health percentage:", name, 0) as null|num
 		if(isnull(new_percent))
 			return
 		percent = clamp(round(new_percent, 1), -99, 100)
@@ -210,12 +210,12 @@
 
 /datum/nanite_program/sensor/nanite_volume/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Nanite Percent")
-		var/new_percent = input(user, "Set the nanite percentage:", name, null) as null|num
+		var/new_percent = input(user, "Set the nanite percentage:", name, 0) as null|num
 		if(isnull(new_percent))
 			return
 		percent = clamp(round(new_percent, 1), 1, 100)
@@ -269,12 +269,12 @@
 
 /datum/nanite_program/sensor/damage/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Damage")
-		var/new_damage = input(user, "Set the damage threshold:", name, null) as null|num
+		var/new_damage = input(user, "Set the damage threshold:", name, 0) as null|num
 		if(isnull(new_damage))
 			return
 		damage = clamp(round(new_damage, 1), 0, 500)
@@ -342,7 +342,7 @@
 	desc = "Sends a signal when the nanites hear a determined word or sentence."
 	extra_settings = list("Sent Code","Sentence","Inclusive Mode")
 	var/spent = FALSE
-	var/sentence = ""
+	var/sentence = "Enter Phrase"
 	var/inclusive = TRUE
 
 /datum/nanite_program/sensor/voice/on_mob_add()
@@ -354,12 +354,12 @@
 
 /datum/nanite_program/sensor/voice/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Sentence")
-		var/new_sentence = stripped_input(user, "Choose the sentence that triggers the sensor.", "Sentence", sentence, MAX_MESSAGE_LEN)
+		var/new_sentence = stripped_input(user, "Choose the sentence that triggers the sensor.", "Sentence", "", MAX_MESSAGE_LEN)
 		if(!new_sentence)
 			return
 		sentence = new_sentence
@@ -418,7 +418,7 @@
 //preternis is yog only baybe
 /datum/nanite_program/sensor/race/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
-		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
+		var/new_code = input(user, "Set the sent code (1-9999):", name, 0) as null|num
 		if(isnull(new_code))
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
