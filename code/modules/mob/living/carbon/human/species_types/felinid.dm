@@ -106,6 +106,5 @@
 
 /datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
-	
 	if(H.reagents.has_reagent(/datum/reagent/consumable/coco))
 		H.adjustToxLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
