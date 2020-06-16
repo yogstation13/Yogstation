@@ -359,7 +359,7 @@
 			return
 		sent_code = clamp(round(new_code, 1), 1, 9999)
 	if(setting == "Sentence")
-		var/new_sentence = stripped_input(user, "Choose the sentence that triggers the sensor.", "Sentence", "", MAX_MESSAGE_LEN)
+		var/new_sentence = stripped_input(user, "Choose the sentence that triggers the sensor.", "Sentence", sentence, MAX_MESSAGE_LEN)
 		if(!new_sentence)
 			return
 		sentence = new_sentence
