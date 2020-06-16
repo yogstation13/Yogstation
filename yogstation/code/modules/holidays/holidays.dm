@@ -63,3 +63,24 @@
 	
 /datum/holiday/yogsday/greet()
 	return "Happy founding of Yogstation day!"
+	
+/datum/holiday/halflife
+	name = "Half-Life Release Day"
+	begin_day = 19
+	begin_month = NOVEMBER
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=eU32H6FpO2I", // Hazardous Environments (1)
+		"https://www.youtube.com/watch?v=AIIm5wtE2uM", // Military Precision (1)
+		"https://www.youtube.com/watch?v=meynBFQW7M8", // Diabolical Adrenaline Guitar (1)
+		"https://www.youtube.com/watch?v=BcFnS3bCwpI", // Brane Scan (2)
+		"https://www.youtube.com/watch?v=dvKgMWNjRk0", // Guard Down (2)
+		"https://www.youtube.com/watch?v=s22XqGkuIFw", // Sector Sweep (2)
+		"https://www.youtube.com/watch?v=BLJZnJe7KgU", // Ending Triump (Alyx)
+		"https://www.youtube.com/watch?v=d6ZZJp2nfCc" // Vault Mirror Room (Alyx)
+		)
+	
+/datum/holiday/halflife/getStationPrefix()
+	return pick("Black-Mesa","Combine","Overwatch","Freeman","Vortigaunt","Resistance","Vance","HECU","G-Man","Borealis")
+	
+/datum/holiday/halflife/greet()
+	return "Happy Half-Life Release Day!"
