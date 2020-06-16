@@ -781,7 +781,7 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 1
-	cost = 25
+	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
@@ -911,12 +911,12 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 3
 	weight = 1
-	cost = 30
-	var/darkspawn_cap = list(3,3,3,3,3,3,3,3,4,5)
+	cost = 25
+	var/darkspawn_cap = list(3,3,3,3,3,3,3,3,4)
 	requirements = list(80,75,70,65,50,30,30,30,25,20)
 
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
-	var/indice_pop = min(30,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
+	var/indice_pop = min(25,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/darkspawns = darkspawn_cap[indice_pop]
 	for(var/darkspawn_number = 1 to darkspawns)
 		if(candidates.len <= 0)
