@@ -153,7 +153,7 @@
 /obj/machinery/computer/security/proc/update_camera(obj/machinery/camera/C)
 	var/originator = C
 	if(C.built_in)
-		originator = C.built_in
+		originator = get_turf(C.built_in)
 
 	var/list/visible_turfs = list()
 	for(var/turf/T in (C.isXRay() \
