@@ -610,7 +610,7 @@
 	mob_species = /datum/species/human
 	short_desc = "You are a person who just wants to have fun with their friends."
 	flavour_text = "How did I get here? What is this place? \
-	My last memory from outside the room is talking with my friends about playing some card games and looking around for a room to rent. \
+	My last memory is looking around for a place I could rent to play games with my friends. \
 	Trying to leave just pulls me back here, better stay and defend the Snack Vault, if we lose the pizza box, we will probably starve to death. \
 	Seeing as the food supply is limitless and I'm having a great time, I might as well stay and enjoy myself."
 	important_info = "Do not abandon your friends and defend the Snack Vault, you are free to invite guests to play with you."
