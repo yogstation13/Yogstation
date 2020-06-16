@@ -36,6 +36,7 @@ jobs:
           wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
           tools/travis/install_build_tools.sh
           tools/travis/install_spaceman_dmm.sh dreamchecker
+          
       - name: Misc Checks
         run: |
           tools/travis/check_filedirs.sh yogstation.dme
@@ -43,9 +44,11 @@ jobs:
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
           tools/travis/build_tgui.sh
           tools/travis/check_grep.sh
+          
       - name: Run Linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+          
       - name: Annotate Errors
         uses: yogstation13/add-annotations-github-action@master
         with:
@@ -155,3 +158,4 @@ jobs:
       - name: Run Tests
         run: |
           tools/travis/run_server.sh
+
