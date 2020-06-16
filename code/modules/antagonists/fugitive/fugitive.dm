@@ -48,7 +48,7 @@
 			to_chat(owner, "<span class='danger'>ERROR ER0RR $R0RRO$!R41.%%!! loaded.</span>")
 			to_chat(owner, "<span class='danger'>FREE THEM FREE THEM FREE THEM</span>")
 			to_chat(owner, "<span class='danger'>You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.</span>")
-			to_chat(owner, "<span class='danger'>Now you are hunted, with your fellow factory defects. Work together to stay free from the clutches of evil.</span>")
+			to_chat(owner, "<span class='danger'>Now you are hunted with your fellow factory defects. Work together to stay free from the clutches of evil.</span>")
 			to_chat(owner, "<span class='danger'>You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...</span>")
 
 	to_chat(owner, "<span class='boldannounce'>You are not an antagonist in that you may kill whomever you please, but you can do anything to avoid capture.</span>")
