@@ -288,7 +288,7 @@
 
 /obj/item/pneumatic_cannon/pie/selfcharge/compact
 	name = "honkinator-4 compact pie cannon"
-	desc = "A compact, self loading pie cannon for tactical pranking action."
+	desc = "A compact, self-loading pie cannon for tactical pranking action."
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/pneumatic_cannon/pie/selfcharge/cyborg
