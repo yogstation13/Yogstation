@@ -139,6 +139,10 @@ jobs:
           ldd libbyond-extools.so
           tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
           
+      - name: Run Tests
+        run: |
+          tools/travis/run_server.sh
+
       - name: Prepare Artifacts
         run: |
           mkdir artifacts
@@ -152,7 +156,4 @@ jobs:
           name: DMB + RSC
           path: ${{github.workspace}}/artifacts
           
-      - name: Run Tests
-        run: |
-          tools/travis/run_server.sh
-
+     
