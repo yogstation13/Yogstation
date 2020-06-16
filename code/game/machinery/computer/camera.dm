@@ -109,7 +109,7 @@
 	return data
 
 /obj/machinery/computer/security/process()
-	if(active_camera.built_in)
+	if(active_camera?.built_in)
 		if(!active_camera?.can_use())
 			show_camera_static()
 			return TRUE
@@ -117,6 +117,7 @@
 	else
 		STOP_PROCESSING(SSfastprocess, src)
 		processing = FALSE
+	..()
 
 /obj/machinery/computer/security/ui_act(action, params)
 	. = ..()
