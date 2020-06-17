@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/ghost_role/devil
 	min_players = 20
 	weight = 0 // 10 is default. 8 is Ninja weight. Set to 0 for admin-only test merge
-	max_occurrences = 1 // Theres only one devil
+	max_occurrences = 5 // Theres only one devil. 
 
 /datum/round_event/ghost_role/devil
 	var/success_spawn = 0
