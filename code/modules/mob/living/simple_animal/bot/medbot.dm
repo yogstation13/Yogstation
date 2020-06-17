@@ -260,7 +260,7 @@
 
 	if(assess_patient(H))
 		last_found = world.time
-		if((last_newpatient_speak + 300) < world.time) //Don't spam these messages!
+		if((last_newpatient_speak + (emagged ? : 20 :300)) < world.time) //Don't spam these messages!
 			var/list/messagevoice = list("Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/coming.ogg',"Wait [H.name]! I want to help!" = 'sound/voice/medbot/help.ogg',"[H.name], you appear to be injured!" = 'sound/voice/medbot/injured.ogg')
 			var/message = pick(messagevoice)
 			speak(message)
