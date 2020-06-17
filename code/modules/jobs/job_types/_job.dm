@@ -228,7 +228,7 @@
 		else
 			back = backpack //Department backpack
 
-	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fixe to stop having two boxes
+	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
