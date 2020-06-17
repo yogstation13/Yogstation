@@ -13,7 +13,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,29)
+	var/loot = rand(1,30)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -81,6 +81,8 @@
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(29)
 			new /obj/item/rune_scimmy(src)
+		if(30)
+			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -422,7 +424,7 @@
 	armour_penetration = 100
 	damage_type = BRUTE
 	hitsound = 'sound/effects/splat.ogg'
-	paralyze = 30
+	knockdown = 30
 	var/chain
 
 /obj/item/projectile/hook/fire(setAngle)
@@ -811,6 +813,7 @@
 /obj/item/melee/ghost_sword/Destroy()
 	for(var/mob/dead/observer/G in spirits)
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 	spirits.Cut()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list -= src
@@ -853,10 +856,12 @@
 	for(var/i in spirits - current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 
 	for(var/i in current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = 0
+		G.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	spirits = current_spirits
 	return length(spirits)

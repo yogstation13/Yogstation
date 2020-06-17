@@ -23,7 +23,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
-	changed_maps = list("YogsPubby", "OmegaStation")
+	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
+
+/datum/job/officer/proc/EclipseStationChanges()
+	total_positions = 14
+	spawn_positions = 10
 
 /datum/job/officer/proc/YogsPubbyChanges()
 	access += ACCESS_CREMATORIUM
@@ -41,7 +45,7 @@
 	L |= ..() | check_config_for_sec_maint()
 	return L
 
-GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
+GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
 
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -49,12 +53,12 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_security_department
-		if(!LAZYLEN(GLOB.available_depts) || department == "None")
+		if(!LAZYLEN(GLOB.available_depts_sec) || department == "None")
 			return
-		else if(department in GLOB.available_depts)
-			LAZYREMOVE(GLOB.available_depts, department)
+		else if(department in GLOB.available_depts_sec)
+			LAZYREMOVE(GLOB.available_depts_sec, department)
 		else
-			department = pick_n_take(GLOB.available_depts)
+			department = pick_n_take(GLOB.available_depts_sec)
 	var/ears = null
 	var/accessory = null
 	var/list/dep_access = null

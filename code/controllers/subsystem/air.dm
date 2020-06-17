@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(air)
 	msg += "HP:[high_pressure_delta.len]|"
 	msg += "AS:[active_super_conductivity.len]|"
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
-	..(msg)
+	return ..(msg)
 
 /datum/controller/subsystem/air/Initialize(timeofday)
 	extools_update_ssair()
@@ -233,7 +233,8 @@ SUBSYSTEM_DEF(air)
 		var/turf/open/T = currentrun[currentrun.len]
 		currentrun.len--
 		if (T)
-			T.equalize_pressure_in_zone(fire_count)
+			if(istype(T))
+				T.equalize_pressure_in_zone(fire_count)
 			//equalize_pressure_in_zone(T, fire_count)
 		if (MC_TICK_CHECK)
 			return

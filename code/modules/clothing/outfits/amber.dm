@@ -24,7 +24,7 @@
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/jawsoflife(src)
 
 
 /obj/item/storage/belt/military/amber_commander/ComponentInitialize() // Amber Commander
@@ -35,7 +35,7 @@
 	new /obj/item/melee/classic_baton/telescopic(src)
 	new /obj/item/megaphone(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/jawsoflife(src)
 
 /obj/item/storage/belt/military/amber_medic/ComponentInitialize() // Amber Medic
 	. = ..()
@@ -45,7 +45,7 @@
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/reagent_containers/hypospray/medipen/survival(src)
 	new /obj/item/reagent_containers/hypospray/combat(src)
-	new /obj/item/crowbar/power(src)
+	new /obj/item/jawsoflife(src)
 
 
 /datum/outfit/amber
@@ -62,7 +62,7 @@
 	back = /obj/item/tank/internals/oxygen/tactical
 	head = /obj/item/clothing/head/helmet/riot/raised
 	l_pocket = /obj/item/flashlight/seclite
-	id = /obj/item/card/id/centcom
+	id = /obj/item/card/id/ert/amber
 	implants = list(/obj/item/implant/mindshield)
 	
 

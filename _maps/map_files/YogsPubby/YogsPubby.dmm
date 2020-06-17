@@ -26646,6 +26646,9 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "aYi" = (
@@ -29512,6 +29515,9 @@
 	name = "Quartermaster APC";
 	pixel_x = -24
 	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bdI" = (
@@ -29574,6 +29580,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1;
 	icon_state = "vent_map_on-1"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -56913,6 +56922,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"cRK" = (
+/obj/machinery/button/door{
+	id = "xenobiomain";
+	name = "Containment Blast Doors";
+	pixel_x = 28;
+	req_access_txt = "55"
+	},
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "cSK" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/window/eastright{
@@ -57390,19 +57411,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"fjs" = (
-/obj/machinery/light{
-	dir = 8
+"fhX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "fkH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -58975,6 +58990,20 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"lgn" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
 "lhA" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/plasteel/dark,
@@ -59259,6 +59288,14 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"mBT" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/stripes/corner,
+/obj/structure/window/reinforced,
+/obj/item/folder/blue,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "mCe" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -59738,15 +59775,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ost" = (
-/obj/structure/table/glass,
-/obj/item/paper_bin{
-	layer = 2.9
-	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/structure/window/reinforced,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "ous" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/loading_area{
@@ -61278,18 +61306,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"ueP" = (
-/obj/structure/table/glass,
-/obj/item/folder/blue,
-/obj/item/pen,
-/obj/machinery/button/door{
-	id = "xenobiomain";
-	name = "Containment Blast Doors";
-	pixel_x = 28;
-	req_access_txt = "55"
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "ueV" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -62018,6 +62034,13 @@
 "xbJ" = (
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
+"xdG" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space/paramedic,
+/turf/open/floor/plasteel,
+/area/medical/paramedic)
 "xja" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -87295,7 +87318,7 @@ aDZ
 awN
 awG
 abd
-aaQ
+xdG
 abk
 abc
 aaM
@@ -101695,7 +101718,7 @@ bpd
 bqo
 brG
 bgx
-fjs
+lgn
 aOI
 bti
 aRv
@@ -102190,7 +102213,7 @@ bGZ
 bAO
 bGZ
 bFG
-aAF
+fhX
 bbE
 bcC
 beK
@@ -107602,8 +107625,8 @@ bkF
 xWl
 hPN
 nxT
-ueP
-ost
+cRK
+mBT
 aKU
 bqu
 aNo

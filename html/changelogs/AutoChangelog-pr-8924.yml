@@ -1,0 +1,4 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "made snails take burn damage from ingesting salt"

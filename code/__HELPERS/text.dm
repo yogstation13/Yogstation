@@ -149,7 +149,7 @@
 			if(48 to 57)			//Numbers
 				if(last_char_group == NO_CHARS_DETECTED || !allow_numbers) //suppress at start of string
 					continue
-				
+
 				number_of_alphanumeric++
 				last_char_group = NUMBERS_DETECTED
 
@@ -163,7 +163,7 @@
 			// ~   |   @  :  #  $  %  &  *  +
 			if(126,124,64,58,35,36,37,38,42,43)			//Other symbols that we'll allow (mainly for AI)
 				if(last_char_group == NO_CHARS_DETECTED || !allow_numbers)	//suppress at start of string
-					continue	
+					continue
 
 				last_char_group = SYMBOLS_DETECTED
 
@@ -171,7 +171,7 @@
 			if(32)
 				if(last_char_group == NO_CHARS_DETECTED || last_char_group == SPACES_DETECTED) //suppress double-spaces and spaces at start of string
 					continue
-				
+
 				last_char_group = SPACES_DETECTED
 
 			if(127 to INFINITY)
@@ -571,11 +571,11 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		char = text[i]
 		ascii = text2ascii(char)
 		switch(ascii)
-			if(65 to 77, 97 to 109) // A to M, a to am
+			if(65 to 77, 97 to 109) //A to M, a to m
 				ascii += 13
 			if(78 to 90, 110 to 122) //N to Z, n to z
 				ascii -= 13
-				. += ascii2text(ascii)
+		. += ascii2text(ascii)
 
 //Takes a list of values, sanitizes it down for readability and character count,
 //then exports it as a json file at data/npc_saves/[filename].json.

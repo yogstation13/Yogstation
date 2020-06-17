@@ -154,8 +154,8 @@
 /area/ruin/powered/beach)
 "aF" = (
 /obj/machinery/vending/boozeomat{
-	set_obj_flags = "EMAGGED";
-	req_access_txt = "0"
+	req_access_txt = "0";
+	set_obj_flags = "EMAGGED"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
@@ -456,14 +456,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/beach)
-"gg" = (
-/obj/structure/table,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/storage/box/beakers,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plating,
-/area/ruin/powered/beach)
 "hY" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer,
@@ -535,6 +527,15 @@
 	dir = 8
 	},
 /turf/open/floor/pod/light,
+/area/ruin/powered/beach)
+"ry" = (
+/obj/structure/table,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/donkpockets,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/plating,
 /area/ruin/powered/beach)
 "sy" = (
 /obj/effect/turf_decal/caution{
@@ -915,7 +916,7 @@ aa
 aa
 bW
 ae
-gg
+ry
 bW
 aB
 aK

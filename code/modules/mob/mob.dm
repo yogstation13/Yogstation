@@ -528,28 +528,16 @@
 /mob/proc/is_muzzled()
 	return 0
 
+/mob/proc/get_status_tab_items()
+	. = list()
+
 /mob/Stat()
 	..()
 
-	if(statpanel("Status"))
-		if (client)
-			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
-		stat(null, "Map: [SSmapping.config?.map_name || "Loading..."]")
-		var/datum/map_config/cached = SSmapping.next_map_config
-		if(cached)
-			stat(null, "Next Map: [cached.map_name]")
-		stat(null, "Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]")
-		stat(null, "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]")
-		stat(null, "Round Time: [worldtime2text()]")
-		stat(null, "Station Time: [station_time_timestamp()]")
-		stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
-		if(SSshuttle.emergency)
-			var/ETA = SSshuttle.emergency.getModeStr()
-			if(ETA)
-				stat(null, "[ETA] [SSshuttle.emergency.getTimerStr()]")
-
+	statpanel("Status")
 	if(client && client.holder)
-		if(statpanel("MC"))
+		statpanel("MC")
+		if(client.holder.legacy_mc && statpanel("MC (legacy)"))
 			var/turf/T = get_turf(client.eye)
 			stat("Location:", COORD(T))
 			stat("CPU:", "[world.cpu]")
@@ -569,7 +557,7 @@
 			if(Master)
 				stat(null)
 				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry()
+					SS.stat_entry_legacy()
 			GLOB.cameranet.stat_entry()
 		// yogs start - Yogs Ticket
 		/*if(statpanel("Tickets"))
@@ -603,21 +591,28 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
+	if(client)
+		for(var/tab in client.spell_tabs)
+			statpanel(tab)
 
+/mob/proc/get_proc_holders()
+	. = list()
 	if(mind)
-		add_spells_to_statpanel(mind.spell_list)
-	add_spells_to_statpanel(mob_spell_list)
+		. += add_spells_to_statpanel(mind.spell_list)
+	. += add_spells_to_statpanel(mob_spell_list)
 
 /mob/proc/add_spells_to_statpanel(list/spells)
+	var/list/L = list()
 	for(var/obj/effect/proc_holder/spell/S in spells)
 		if(S.can_be_cast_by(src))
 			switch(S.charge_type)
 				if("recharge")
-					statpanel("[S.panel]","[S.charge_counter/10.0]/[S.charge_max/10]",S)
+					L[++L.len] = list("[S.panel]","[S.charge_counter/10.0]/[S.charge_max/10]",S.name,"\ref[S]")
 				if("charges")
-					statpanel("[S.panel]","[S.charge_counter]/[S.charge_max]",S)
+					L[++L.len] = list("[S.panel]","[S.charge_counter]/[S.charge_max]",S.name,S)
 				if("holdervar")
-					statpanel("[S.panel]","[S.holder_var_type] [S.holder_var_amount]",S)
+					L[++L.len] = list("[S.panel]","[S.holder_var_type] [S.holder_var_amount]",S.name,S)
+	return L
 
 #define MOB_FACE_DIRECTION_DELAY 1
 
@@ -673,32 +668,44 @@
 	return TRUE
 
 /mob/verb/eastshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_x <= 16)
-		pixel_x++
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_x <= 16)
+        pixel_x++
+        is_shifted = TRUE
 
 /mob/verb/westshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_x >= -16)
-		pixel_x--
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_x >= -16)
+        pixel_x--
+        is_shifted = TRUE
 
 /mob/verb/northshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_y <= 16)
-		pixel_y++
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_y <= 16)
+        pixel_y++
+        is_shifted = TRUE
 
 /mob/verb/southshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_y >= -16)
-		pixel_y--
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_y >= -16)
+        pixel_y--
+        is_shifted = TRUE
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
 	return FALSE

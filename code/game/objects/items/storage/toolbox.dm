@@ -144,6 +144,7 @@
 	item_state = "toolbox_syndi"
 	force = 15
 	throwforce = 18
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
 	. = ..()
