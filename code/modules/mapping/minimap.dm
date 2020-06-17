@@ -11,9 +11,10 @@
 	var/id = 0
 
 /datum/minimap/proc/send(mob/user)
-	register_asset("minimap-[id].png", map_icon)
-	register_asset("minimap-[id]-meta.png", meta_icon)
-	send_asset_list(user, list("minimap-[id].png" = map_icon, "minimap-[id]-meta.png" = meta_icon), verify=FALSE)
+	if(!SSassets.cache["minimap-[id].png"])
+		register_asset("minimap-[id].png", map_icon)
+		register_asset("minimap-[id]-meta.png", meta_icon)
+	send_asset_list(user, list("minimap-[id].png" = map_icon, "minimap-[id]-meta.png" = meta_icon))
 
 /datum/minimap/New(z, x1 = 1, y1 = 1, x2 = world.maxx, y2 = world.maxy)
 	var/static/id_counter = 1

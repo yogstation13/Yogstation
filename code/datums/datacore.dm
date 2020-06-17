@@ -1,13 +1,13 @@
 
 /datum/datacore
-	var/medical[] = list()
+	var/list/medical = list()
 	var/medicalPrintCount = 0
-	var/general[] = list()
-	var/security[] = list()
+	var/list/general = list()
+	var/list/security = list()
 	var/securityPrintCount = 0
 	var/securityCrimeCounter = 0
 	//This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
-	var/locked[] = list()
+	var/list/locked = list()
 
 /datum/data
 	var/name = "data"
@@ -120,7 +120,43 @@
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
 
-/datum/datacore/proc/get_manifest(monochrome, OOC)
+/datum/datacore/proc/get_manifest()
+	var/list/manifest_out = list()
+	var/list/departments = list(
+		"Command" = GLOB.command_positions,
+		"Security" = GLOB.security_positions,
+		"Engineering" = GLOB.engineering_positions,
+		"Medical" = GLOB.medical_positions,
+		"Science" = GLOB.science_positions,
+		"Supply" = GLOB.supply_positions,
+		"Civilian" = GLOB.civilian_positions,
+		"Silicon" = GLOB.nonhuman_positions
+	)
+	for(var/datum/data/record/t in GLOB.data_core.general)
+		var/name = t.fields["name"]
+		var/rank = t.fields["rank"]
+		var/has_department = FALSE
+		for(var/department in departments)
+			var/list/jobs = departments[department]
+			if(rank in jobs)
+				if(!manifest_out[department])
+					manifest_out[department] = list()
+				manifest_out[department] += list(list(
+					"name" = name,
+					"rank" = rank
+				))
+				has_department = TRUE
+				break
+		if(!has_department)
+			if(!manifest_out["Misc"])
+				manifest_out["Misc"] = list()
+			manifest_out["Misc"] += list(list(
+				"name" = name,
+				"rank" = rank
+			))
+	return manifest_out
+
+/datum/datacore/proc/get_manifest_html(monochrome = FALSE)
 	var/list/heads = list()
 	var/list/sec = list()
 	var/list/eng = list()
@@ -225,7 +261,6 @@
 	dat = replacetext(dat, "\n", "")
 	dat = replacetext(dat, "\t", "")
 	return dat
-
 
 /datum/datacore/proc/manifest_inject(mob/living/carbon/human/H, client/C)
 	set waitfor = FALSE

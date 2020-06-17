@@ -9,7 +9,7 @@
 /datum/spawners_menu/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.observer_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "spawners_menu", "Spawners Menu", 700, 600, master_ui, state)
+		ui = new(user, src, ui_key, "SpawnersMenu", "Spawners Menu", 700, 600, master_ui, state)
 		ui.open()
 
 /datum/spawners_menu/ui_data(mob/user)
@@ -32,7 +32,7 @@
 					this["important_info"] = MS.important_info
 				else
 					var/obj/O = spawner_obj
-					this["desc"] = O.desc
+					this["short_desc"] = O.desc
 		this["amount_left"] = LAZYLEN(GLOB.mob_spawners[spawner])
 		data["spawners"] += list(this)
 
@@ -48,7 +48,7 @@
 	var/list/spawnerlist = GLOB.mob_spawners[group_name]
 	if(!spawnerlist.len)
 		return
-	var/obj/effect/mob_spawn/MS = pick(spawnerlist)
+	var/obj/MS = pick(spawnerlist)
 	if(!istype(MS) || !(MS in GLOB.poi_list))
 		return
 	switch(action)
