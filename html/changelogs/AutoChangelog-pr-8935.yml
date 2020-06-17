@@ -1,0 +1,4 @@
+author: "  Xoxeyos"
+delete-after: true 
+changes: 
+  - rscadd: "Attempts to make midrounds respect player's preferences."
