@@ -198,6 +198,9 @@
 			continue
 		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
 			living_players -= player // We don't autotator people with roles already
+			continue
+		if(!(ROLE_TRAITOR in player.client.prefs.be_special))
+			living_players -= player
 
 /datum/dynamic_ruleset/midround/autotraitor/ready(forced = FALSE)
 	if (required_candidates > living_players.len)
@@ -247,6 +250,9 @@
 			continue
 		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
 			candidates -= player
+			continue
+		if(!(ROLE_MALF in player.client.prefs.be_special))
+			living_players -= player
 
 /datum/dynamic_ruleset/midround/malf/execute()
 	if(!candidates || !candidates.len)
@@ -493,6 +499,9 @@
 			continue
 		if(player.mind && (player.mind.special_role || player.mind.antag_datums?.len > 0))
 			living_players -= player // We don't autovamp people with roles already
+			continue
+		if(!(ROLE_VAMPIRE in player.client.prefs.be_special))
+			living_players -= player
 
 /datum/dynamic_ruleset/midround/autovamp/ready(forced = FALSE)
 	if (required_candidates > living_players.len)
