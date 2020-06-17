@@ -448,4 +448,20 @@
 			node.addMember(src)
 		build_network()
 
+/obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
+	if(on)
+		on = FALSE
+	else if(!state_open)
+		on = TRUE
+	update_icon()
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine()
+	update_icon()
+
 #undef CRYOMOBS

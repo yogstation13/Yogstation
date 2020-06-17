@@ -1232,5 +1232,5 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /mob/living/carbon/proc/adminpie(mob/user)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
-	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW
+	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSMACHINES | PASSCOMPUTER
 	p.throw_at(user, 10, 0.5, usr)
