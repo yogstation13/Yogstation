@@ -194,7 +194,7 @@
 			P.client.playtitlemusic()
 			
 /datum/holiday/april_fools/greet()
-	return "NOTICE: Yogstation will be from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
+	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
 
 /datum/holiday/spess
 	name = "Cosmonautics Day"
@@ -308,7 +308,7 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà 
+		"https://www.youtube.com/watch?v=8KdTChn-pEA" // MarÃ©chal, nous voilÃ  
 		)
 
 /datum/holiday/france/getStationPrefix()
@@ -543,11 +543,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	drone_hat = /obj/item/clothing/head/santa
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
-		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael Bublé - Winter Wonderland
-		"https://www.youtube.com/watch?v=nytpYtLtHpE", // You’re a Mean One, Mr. Grinch
+		"https://www.youtube.com/watch?v=oIKt5p3UmXg", // Michael BublÃ© - Winter Wonderland
+		"https://www.youtube.com/watch?v=nytpYtLtHpE", // YouÂ’re a Mean One, Mr. Grinch
 		"https://www.youtube.com/watch?v=jCjrcjFGQCA", // Frosty The Snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // Twelve Days of Christmas
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael Bublé - Holly Jolly Christmas
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // Michael BublÃ© - Holly Jolly Christmas
 		)
 
 /datum/holiday/xmas/greet()
