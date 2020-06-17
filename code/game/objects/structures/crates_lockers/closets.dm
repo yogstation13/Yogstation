@@ -212,7 +212,7 @@
 
 /obj/structure/closet/proc/close_storage(mob/living/user)
 	for(var/obj/object in contents)
-		var/datum/component/storage/closeall = opened.GetComponent(/datum/component/storage)
+		var/datum/component/storage/closeall = object.GetComponent(/datum/component/storage)
 		if(closeall)
 			closeall.close_all()
 
