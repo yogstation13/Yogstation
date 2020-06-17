@@ -25,6 +25,12 @@
 /obj/machinery/chem_heater/update_icon()
 	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 
+/obj/machinery/chem_heater/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	on = !on
+	update_icon()
+
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return

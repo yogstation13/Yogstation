@@ -273,7 +273,7 @@
 
 	if(assess_patient(H))
 		last_found = world.time
-		if((last_newpatient_speak + 300) < world.time) //Don't spam these messages!
+		if((last_newpatient_speak + (emagged ? 20 : 300)) < world.time) //Don't spam these messages!
 			var/list/messagevoice = list("Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/coming.ogg',"Wait [H.name]! I want to help!" = 'sound/voice/medbot/help.ogg',"[H.name], you appear to be injured!" = 'sound/voice/medbot/injured.ogg')
 			var/message = pick(messagevoice)
 			speak(message)
@@ -385,8 +385,9 @@
 		soft_reset()
 
 	if(QDELETED(patient))
+
 		if(!shut_up && prob(1))
-			if(emagged && prob(30))
+			if((emagged || !shut_up) && prob(emagged ? 8 : 1))
 				var/list/i_need_scissors = list('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/turn_off.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/close.ogg', 'sound/voice/medbot/shindemashou.ogg')
 				playsound(src, pick(i_need_scissors), 70)
 			else
@@ -394,6 +395,7 @@
 				var/message = pick(messagevoice)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
+
 		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
 		patient = scan(/mob/living/carbon/human, oldpatient, scan_range)
 		oldpatient = patient
