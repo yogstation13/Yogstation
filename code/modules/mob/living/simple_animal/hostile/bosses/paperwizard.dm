@@ -17,6 +17,7 @@
 	melee_damage_upper = 20
 	health = 1000
 	maxHealth = 1000
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	loot = list(/obj/effect/temp_visual/paperwiz_dying)
 	projectiletype = /obj/item/projectile/temp
 	projectilesound = 'sound/weapons/emitter.ogg'
@@ -112,10 +113,9 @@
 			original.copies -= src
 			for(var/c in original.copies)
 				qdel(c)
-		for(var/mob/living/L in range(5,src))
-			if(L == original || istype(L, type))
-				continue
-			L.adjustBruteLoss(50)
+		for(var/mob/living/carbon/L in range(5,src))
+			L.apply_damage(40)
+			to_chat(L, "<span class='userdanger'>The damaged clone showers you with paper cuts!</span>")
 		qdel(src)
 	else
 		. = ..()

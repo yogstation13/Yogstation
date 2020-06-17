@@ -28,7 +28,6 @@
 	if (nref)
 		ref = nref
 	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
-	add_script("common", 'html/browser/common.js')
 
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
@@ -44,8 +43,11 @@
 		var/datum/asset/spritesheet/sheet = name
 		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
 	else
-		stylesheets["[ckey(name)].css"] = file
-		register_asset("[ckey(name)].css", file)
+		var/asset_name = "[name].css"
+		stylesheets[asset_name] = file
+
+		if (!SSassets.cache[asset_name])
+			register_asset(asset_name, file)
 
 /datum/browser/proc/add_script(name, file)
 	scripts["[ckey(name)].js"] = file
@@ -105,9 +107,9 @@
 	if (width && height)
 		window_size = "size=[width]x[height];"
 	if (stylesheets.len)
-		send_asset_list(user, stylesheets, verify=FALSE)
+		send_asset_list(user, stylesheets)
 	if (scripts.len)
-		send_asset_list(user, scripts, verify=FALSE)
+		send_asset_list(user, scripts)
 	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
 	if (use_onclose)
 		setup_onclose()
