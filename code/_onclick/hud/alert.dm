@@ -231,7 +231,7 @@ or something covering your eyes."
 
 /obj/screen/alert/drunk
 	name = "Drunk"
-	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition. Make sure to act like it."
+	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition."
 	icon_state = "drunk"
 
 /obj/screen/alert/embeddedobject
