@@ -47624,7 +47624,7 @@
 /area/hallway/secondary/command)
 "bRF" = (
 /obj/structure/table,
-/obj/item/aiModule/core/full/corp,
+/obj/item/aiModule/core/full/ceo,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "bRG" = (
