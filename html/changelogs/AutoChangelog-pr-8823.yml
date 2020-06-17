@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Adds ghost *dab"
+  - rscadd: "Adds framework for future ghost emotes"

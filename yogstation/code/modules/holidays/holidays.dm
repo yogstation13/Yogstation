@@ -8,6 +8,7 @@
 		"https://www.youtube.com/watch?v=cW38y4AFGyI", // Let's Go
 		"https://www.youtube.com/watch?v=zgKazTrhXmI", // Red Army is the Strongest
 		"https://www.youtube.com/watch?v=Q_iIeFWJszY", // Shchors' Song
+		"https://www.youtube.com/watch?v=8iAoibAgAvM", // Swallowing Dust
 		"https://www.youtube.com/watch?v=zmI2yDAyWYI", // No Motherland Without You
 		"https://www.youtube.com/watch?v=rA1LFD6xfi4", // December's Concert - Footsteps
 		"https://www.youtube.com/watch?v=maYCStVzjDs",  // Sacred War
