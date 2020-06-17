@@ -106,12 +106,14 @@
 
 /obj/item/clothing/neck/bodycam/Destroy()
 	. = ..()
+	//bodcam.built_in = null
 	if (listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 	QDEL_NULL(bodcam)
 
 /obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
+	//bodcam.built_in = null
 	var/temp="The screen bursts into static."
 	if (message)
 		temp += "\nThe message \'[message]\' appears."
@@ -133,6 +135,7 @@
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 
 /obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
+	//bodcam.built_in = mob_to_hook
 	if(listeningTo == to_hook)
 		return
 	if(listeningTo)
