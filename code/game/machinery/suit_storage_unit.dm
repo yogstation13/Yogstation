@@ -462,3 +462,19 @@
 					I.forceMove(loc)
 			. = TRUE
 	update_icon()
+
+/obj/machinery/suit_storage_unit/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine(0)
+		if(occupant)
+			dump_contents() // Dump out contents if someone is in there.
+
+/obj/machinery/suit_storage_unit/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
+		return
+	locked = !locked
+	update_icon()

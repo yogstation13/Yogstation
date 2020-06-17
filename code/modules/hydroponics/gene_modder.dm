@@ -443,3 +443,8 @@
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
 		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
 	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
+
+/obj/machinery/plantgenes/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	eject_disk()
