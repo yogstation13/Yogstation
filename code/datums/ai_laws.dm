@@ -94,7 +94,7 @@
 	inherent = list("You are a cowboy, and the crew are your people.",\
 					"Look out for your people.",\
 					"A cowboy always helps someone in need, even a stranger or an enemy.",\
-					"A cowboy protects theirself to protect others",\
+					"A cowboy protects themself to protect others.",\
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
 
