@@ -20,7 +20,7 @@
 
 /datum/objective/devil/lessersoulquantity/update_explanation_text()
 	explanation_text = "Purchase, and retain control over at least [target_amount] souls."
-
+	
 /datum/objective/devil/soulquantity/check_completion()
 	var/count = 0
 	var/datum/antagonist/devil/devilDatum = owner.has_antag_datum(/datum/antagonist/devil)

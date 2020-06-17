@@ -59,7 +59,9 @@
 				return to_chat(user, "<span class='notice'>This soul does not suit our tastes.")
 			if(D.actual_obsession == "30 and up" && C.age <30)
 				return to_chat(user, "<span class='notice'>This soul does not suit our tastes.")
-			
+		if(C.sold_soul)
+			return to_chat(user, "<span class='notice'>[C] has already sold their soul to something far more evil than us.</span>")
+
 		if(C.mind && user.mind)
 			if(C.stat == DEAD)
 				if(user.dropItemToGround(user.get_active_held_item()))
@@ -67,10 +69,12 @@
 					user.put_in_hands(contract)
 			else
 				var/obj/item/paper/contract/infernal/contract  // = new(user.loc, C.mind, contractType, user.mind)
-				var/contractTypeName = input(user, "What type of contract?") in list ("Power", "Wealth", "Prestige", "Magic", "Knowledge", "Friendship")
+				var/contractTypeName = input(user, "What type of contract?") in list ("Power", "Life", "Wealth", "Prestige", "Magic", "Knowledge", "Science", "Friendship")
 				switch(contractTypeName)
 					if("Power")
 						contract = new /obj/item/paper/contract/infernal/power(C.loc, C.mind, user.mind)
+					if("Life")
+						contract = new /obj/item/paper/contract/infernal/life(C.loc, C.mind, user.mind)
 					if("Wealth")
 						contract = new /obj/item/paper/contract/infernal/wealth(C.loc, C.mind, user.mind)
 					if("Prestige")
@@ -79,6 +83,8 @@
 						contract = new /obj/item/paper/contract/infernal/magic(C.loc, C.mind, user.mind)
 					if("Knowledge")
 						contract = new /obj/item/paper/contract/infernal/knowledge(C.loc, C.mind, user.mind)
+					if("Science")
+						contract = new /obj/item/paper/contract/infernal/science(C.loc, C.mind, user.mind)
 					if("Friendship")
 						contract = new /obj/item/paper/contract/infernal/friend(C.loc, C.mind, user.mind)
 				C.put_in_hands(contract)

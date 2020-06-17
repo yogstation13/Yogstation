@@ -34,23 +34,26 @@
 
 
 /obj/item/paper/contract/employment/attack(mob/living/M, mob/living/carbon/human/user)
-	if(M.mind == target && !M.owns_soul())
-		if(user.mind && (user.mind.assigned_role == "Lawyer"))
-			law_school = 1
-		else if (user.mind && (user.mind.assigned_role =="Head of Personnel") || (user.mind.assigned_role == "CentCom Commander"))
-			law_school = 1.5 // They have an easier time reading legal documents
-		else
-			law_school = 2 // Legal documents are hard to read, this is going to take longer
-	if(!do_mob(user, M , (30*law_school) ,0,1))
+	if(M.mind == target && !M.hellbound)
+		return
+	if(user.mind && (user.mind.assigned_role == "Lawyer"))
+		law_school = 1
+	else if (user.mind && (user.mind.assigned_role =="Head of Personnel") || (user.mind.assigned_role == "CentCom Commander"))
+		law_school = 1.5 // They have an easier time reading legal documents
+	else if (user.mind && (user.mind.assigned_role != "Lawyer") || (user.mind.assigned_role !="Head of Personnel") || (user.mind.assigned_role == "CentCom Commander"))
+		law_school = 2 // Legal documents are hard to read, this is going to take longer
+	if(!do_mob(user, M , (50*law_school) ,0,1))
 		return
 	M.visible_message("<span class='warning'>[user] begins reading out [M]'s employment contract.</span>", \
 						"<span class='warning'>[user] begins reading out your employment contract.</span>")
-	if(!do_mob(user, M , (30*law_school) ,0,1))
+	M.apply_damage(15, BURN)
+	if(!do_mob(user, M , (50*law_school) ,0,1))
 		return
 	M.visible_message("<span class='warning'>[M] starts shaking with fear.</span>", \
 					"<span class='warning'>You start shaking with fear.</span>")
 	M.Jitter(30*law_school)
-	if(!do_mob(user, M , (30*law_school) ,0,1))
+	M.apply_damage(15, BURN)
+	if(!do_mob(user, M , (50*law_school) ,0,1))
 		return
 	M.visible_message("<span class='warning'>[M]'s skin starts to sizzle and burn!</span>", \
 					"<span class='warning'>Your skin starts to sizzle and burn!</span>")
@@ -58,7 +61,7 @@
 	M.apply_damage(15, BURN)
 	M.fakefire()
 	addtimer(CALLBACK(M, /mob/living/carbon/human.proc/fakefireextinguish), 30)
-	if(!do_mob(user, M , (30*law_school) ,0,1))
+	if(!do_mob(user, M , (50*law_school) ,0,1))
 		return
 	M.visible_message("<span class='notice'>[user] reminds [M] that [M]'s soul was already purchased by Nanotrasen!</span>")
 	to_chat(M, "<span class='boldnotice'>You feel that your soul has returned to its rightful owner, Nanotrasen.</span>")
@@ -77,6 +80,10 @@
 /obj/item/paper/contract/infernal/power
 	name = "paper- contract for infernal power"
 	contractType = CONTRACT_POWER
+
+/obj/item/paper/contract/infernal/life
+	name = "paper- contract for life"
+	contractType = CONTRACT_LIFE
 
 /obj/item/paper/contract/infernal/wealth
 	name = "paper- contract for unlimited wealth"
@@ -98,6 +105,10 @@
 /obj/item/paper/contract/infernal/knowledge
 	name = "paper- contract for knowledge"
 	contractType = CONTRACT_KNOWLEDGE
+
+/obj/item/paper/contract/infernal/science
+	name = "paper- contract for science"
+	contractType = CONTRACT_SCIENCE
 
 /obj/item/paper/contract/infernal/friend
 	name = "paper- contract for a friend"
@@ -216,6 +227,9 @@
 	if(signed)
 		to_chat(user, "<span class='notice'>This contract has already been signed.  It may not be signed again.</span>")
 		return 0
+	if(user.sold_soul)
+		to_chat(user, "<span class='notice'>You have already sold your soul to something far more evil than the Devil.</span>")
+		return 0
 	if(!user.mind.hasSoul)
 		to_chat(user, "<span class='notice'>You do not possess a soul.</span>")
 		return 0
@@ -234,8 +248,10 @@
 
 
 
-/obj/item/paper/contract/infernal/revive/attack(mob/M, mob/living/user)
+/obj/item/paper/contract/infernal/revive/attack(mob/living/M, mob/living/user)
 	if (target == M.mind && M.stat == DEAD && M.mind.soulOwner == M.mind)
+		if(M.sold_soul)
+			return to_chat(user, "<span class='notice'>[M] has already sold their soul to something far more evil than us.</span>")
 		if (cooldown)
 			to_chat(user, "<span class='notice'>Give [M] a chance to think through the contract, don't rush [M.p_them()].</span>")
 			return 0
@@ -284,37 +300,32 @@
 	signed = 1
 	update_text("your name", blood)
 
-/obj/item/paper/contract/infernal/power/fulfillContract(mob/living/carbon/human/user = target.current, blood = FALSE)
+/obj/item/paper/contract/infernal/power/fulfillContract(mob/living/carbon/human/user = target.current, blood = FALSE) 	// Hulk and giant and TK. Hard to hide.
 	if(!user.dna)
 		return -1
-	if(!choice)
-		choice = rand(1,3)
-	switch(choice)
-		if(1) // Hulk, giant, but will randomly punch themselves or others
-			user.dna.add_mutation(HULK)
-			user.dna.add_mutation(GIGANTISM)
-			user.gain_trauma(/datum/brain_trauma/mild/muscle_spasms)
-		if(2) // One time use full-heal, but now terrified of doctors.
-			var/obj/item/organ/regenerative_core/organ = new /obj/item/organ/regenerative_core
-			organ.Insert(user)
-			user.gain_trauma(/datum/brain_trauma/mild/phobia/doctors)
-		if(3) // Telekinesis.  NEEDS NEGATIVE
-			user.dna.add_mutation(TK)
+	user.dna.add_mutation(HULK)
+	user.dna.add_mutation(GIGANTISM)
+	user.dna.add_mutation(TK)
+	if(prob(40)) // Chance to randomly punch themselves or others
+		user.gain_trauma(/datum/brain_trauma/mild/muscle_spasms)
 	return ..()
-	//idk think of something
 
-/obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0) // Okay what else can we actually do here
+/obj/item/paper/contract/infernal/life/fulfillContract(mob/living/carbon/human/user, blood) 	// One time use full-heal, but now terrified of doctors.
+	if(!istype(user) || !user.mind) // How in the hell could that happen?
+		return -1
+	var/obj/item/organ/regenerative_core/organ = new /obj/item/organ/regenerative_core
+	organ.Insert(user)
+	user.gain_trauma(/datum/brain_trauma/mild/phobia/doctors)
+
+/obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
 	return ..()
 
-/obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
-	// Will either give the contract signer an all access ID
-	// Or will upload a badly written "one-captain" law to the AI
-	// Or will give a centcom anouncement that they are a wanted criminal. You wanted fame, now you're famous.
+/obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0) 	// Will give the contract signer an all access ID, but announces them as Captain
 	if(!choice)
-		choice = rand(1,3)
+		choice = rand(1,2)
 	switch(choice)
 		if(1)
 			var/obj/item/worn = user.wear_id
@@ -344,30 +355,14 @@
 						worn.update_icon()
 			var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 			announcer.announce("ARRIVAL", user.real_name, "Captain", list()) //make the list empty to make it announce it in common
-		if(2) // Ion law's the AI. Won't be worth much against Asimov/Corporate lawset. Paladin will one-human the AI
-			var/datum/round_event/ion_storm/add_law_only/ion = new()
-			ion.announceEvent = -1
-			ion.ionMessage = "[user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the highest authority on the station."
-		if(3) // Centcom anouncement that they are a famous criminal. You wanted prestige, you got it.
-			priority_announce("Wanted criminal detected in the viscinity of [GLOB.station_name]. [user.name] is highly dangerous, approach with caution.", "Space Police")
 	return ..()
 
 /obj/item/paper/contract/infernal/magic/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	if(!choice)
-		choice = rand(1,4)
-	switch(choice)
-		if(1) // The actual good one
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
-		if(2) // Really only usefull for graytiding
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/smoke(null))
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/trigger/blind(null))
-		if(3) // Yay. You can charge a battery? Maybe a stolen disabler
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/charge(null))
-		if(4) // Cool. You're a mime.
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall(null))
+	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
+	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/smoke(null))
 	return ..()
 
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
@@ -383,19 +378,21 @@
 		if(2) // Gets an eightball that allows ghosts to answer, but now has a phobia of everything religious (Chaplain, cults, ghosts)
 			var/obj/item/E = new /obj/item/toy/eightball/haunted
 			user.put_in_hands(E)
-			user.gain_trauma(/datum/brain_trauma/mild/phobia/supernatural)
 		if(3) // They can see ghosts, but not hear them.
 			user.see_invisible = 60
+	return ..()
+
+/obj/item/paper/contract/infernal/science/fulfillContract(mob/living/carbon/human/user = target.current, blood)
+	var/datum/techweb/linked_techweb
+	linked_techweb = SSresearch.science_tech
+	if(!istype(user) || !user.mind)
+		return -1
+	var/points_to_give = rand(5000,15000)
+	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, points_to_give)
 	return ..()
 
 /obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	if(!choice)
-		choice = rand(1,5)
-	switch(choice)
-		if(1 to 4) // Normal
-			user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
-		if(5) // You got a friend, but you both gotta share your body
-			user.gain_trauma(/datum/brain_trauma/severe/split_personality)
+	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
 	return ..()

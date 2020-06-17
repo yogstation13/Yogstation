@@ -78,6 +78,7 @@
 	var/butcher_difficulty = 0 //effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
 
 	var/hellbound = 0 //People who've signed infernal contracts are unrevivable.
+	var/sold_soul = 0 //People who've had their soul returned with contract. This is to prevent people from re-signing devil contracts for more powers.
 
 	var/list/weather_immunities = list()
 

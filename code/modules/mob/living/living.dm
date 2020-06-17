@@ -931,6 +931,7 @@
 
 /mob/living/proc/return_soul()
 	hellbound = 0
+	sold_soul = 1
 	if(mind)
 		var/datum/antagonist/devil/devilInfo = mind.soulOwner.has_antag_datum(/datum/antagonist/devil)
 		if(devilInfo)//Not sure how this could be null, but let's just try anyway.

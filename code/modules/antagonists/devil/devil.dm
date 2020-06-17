@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 								"Felinid" = 3,
 								"Podperson" = 3,
 								"Plasmaman",
-								"Mothman" = 2,
+								"Mothpeople" = 2,
 								"Lizardperson" = 3,
 								"Preternis" = 2,
 								"Ethereal"
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 								// Humans less likely to add difficulty, Lizards and cabbages and cats most likely, moths  and preternis even with humans
 								// then ethereals and plasmamen last because they are less likely.
 	var/bloodtype_obsession = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L")
-	var/gender_obsession = list("MALE", "FEMALE")
+	var/gender_obsession = list("male", "female")
 	var/age_obsession = list("16 to 30", "30 and up")
 	var/obsession
 	var/actual_obsession

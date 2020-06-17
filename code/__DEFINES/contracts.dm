@@ -6,6 +6,8 @@
 #define CONTRACT_FRIEND "friend"
 #define CONTRACT_KNOWLEDGE "knowledge"
 #define CONTRACT_UNWILLING "unwilling"
+#define CONTRACT_LIFE "life"
+#define CONTRACT_SCIENCE "science"
 
 #define BANE_SALT "salt"
 #define BANE_LIGHT "light"
