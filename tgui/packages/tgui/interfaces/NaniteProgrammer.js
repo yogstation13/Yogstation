@@ -111,7 +111,7 @@ export const NaniteExtraEntry = (props, context) => {
   return (
     <LabeledList.Item label={name}>
       <Button
-        content={extra_setting.value}
+        content={"Current: " + extra_setting.value}
         onClick={(e, val) => act('set_extra_setting', {
           target_setting: name,
           value: val,
