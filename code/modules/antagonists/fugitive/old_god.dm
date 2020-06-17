@@ -178,7 +178,7 @@
 /datum/action/cooldown/yalp_heal/Trigger()
 	var/list/faithful = list()
 	for(var/mob/V in GLOB.player_list)
-		var/datum/antagonist/fugitive = V.mind.has_antag_datum(/datum/antagonist/fugitive)
+		var/datum/antagonist/fugitive = V?.mind?.has_antag_datum(/datum/antagonist/fugitive)
 		if(!fugitive || fugitive == owner)
 			continue
 		faithful += V
