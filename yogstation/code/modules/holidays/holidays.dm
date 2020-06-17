@@ -57,6 +57,10 @@
 	name = "Yogstation Day"
 	begin_day = 11
 	begin_month = OCTOBER
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=bJAvwllkDjo", // yogscast outro
+		"https://www.youtube.com/watch?v=F2K6wE7Wsr0' // yogs old intro
+		)
 	
 /datum/holiday/yogsday/getStationPrefix()
 	return pick("Revolution","Hardy","Xantam","Ross","Spl","UtahClock","Hitman")
