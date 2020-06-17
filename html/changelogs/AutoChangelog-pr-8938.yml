@@ -1,0 +1,6 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - tweak: "Tweaks holidays, adds music and greetings to some"
+  - rscadd: "Adds Yogs founding holiday"
+  - rscadd: "Adds half life holiday"
