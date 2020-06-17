@@ -1,0 +1,4 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "Added the ability for android species to heal from oil"

@@ -1,5 +1,0 @@
-author: "boodaliboo"
-delete-after: true 
-changes: 
-  - rscadd: "ports makeshift laser"
-  - imageadd: "ports makeshift laser sprite"

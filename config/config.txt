@@ -498,8 +498,8 @@ DEFAULT_VIEW 15x15
 ## You probably shouldn't ever be changing this, but it's here if you want to.
 DEFAULT_VIEW_SQUARE 15x15
 
-##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
-#WEBHOOK_ADDRESS http://example.com
+##Used to send round data to a webhook. Can now use HTTPS thanks to rust_g
+#WEBHOOK_ADDRESS https://example.com
 #WEBHOOK_KEY webkey
 
 ## Comment this out if you want to use the SQL based mentor system, the legacy system uses mentors.txt.

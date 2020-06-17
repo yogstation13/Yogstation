@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(demo)
 	init_order = INIT_ORDER_DEMO
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
-	var/demo_file
 	var/list/pre_init_lines = list() // stuff like chat before the init
 	var/list/icon_cache = list()
 	var/list/icon_state_caches = list()
@@ -24,28 +23,22 @@ SUBSYSTEM_DEF(demo)
 	var/last_completed = 0
 
 /datum/controller/subsystem/demo/proc/write_time()
-	if(world.system_type != MS_WINDOWS)
-		return
 	var/new_time = world.time
 	if(last_written_time != new_time)
 		if(initialized)
-			QUICKWRITE_WRITE(demo_file, "time [new_time]\n")
+			WRITE_LOG_NO_FORMAT(GLOB.demo_log, "time [new_time]\n")
 		else
 			pre_init_lines += "time [new_time]"
 	last_written_time = new_time
 
 /datum/controller/subsystem/demo/proc/write_event_line(line)
-	if(world.system_type != MS_WINDOWS)
-		return
 	write_time()
 	if(initialized)
-		QUICKWRITE_WRITE(demo_file, line + "\n")
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "[line]\n")
 	else
 		pre_init_lines += line
 
 /datum/controller/subsystem/demo/proc/write_chat(target, text)
-	if(world.system_type != MS_WINDOWS)
-		return
 	var/target_text = ""
 	if(target == GLOB.clients)
 		target_text = "world"
@@ -68,20 +61,15 @@ SUBSYSTEM_DEF(demo)
 	last_chat_message = text
 
 /datum/controller/subsystem/demo/Initialize()
-	if(world.system_type != MS_WINDOWS)
-		can_fire = FALSE
-		return ..();
-	demo_file = "[GLOB.log_directory]/demo.txt"
-	quickwrite_open(demo_file)
-	QUICKWRITE_WRITE(demo_file, "demo version 1\n") // increment this if you change the format
+	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
-		QUICKWRITE_WRITE(demo_file, "commit [GLOB.revdata.originmastercommit || GLOB.revdata.commit]\n")
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "commit [GLOB.revdata.originmastercommit || GLOB.revdata.commit]\n")
 
 	// write a "snapshot" of the world at this point.
 	// start with turfs
-	world.log << "Writing turfs..."
-	QUICKWRITE_WRITE(demo_file, "init [world.maxx] [world.maxy] [world.maxz]\n")
-	marked_turfs.len = 0
+	log_world("Writing turfs...")
+	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "init [world.maxx] [world.maxy] [world.maxz]\n")
+	marked_turfs.Cut()
 	for(var/z in 1 to world.maxz)
 		var/row_list = list()
 		var/last_appearance
@@ -113,12 +101,12 @@ SUBSYSTEM_DEF(demo)
 				last_appearance = this_appearance
 		if(rle_count > 1)
 			row_list += rle_count
-		QUICKWRITE_WRITE(demo_file, jointext(row_list, ",") + "\n")
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, jointext(row_list, ",") + "\n")
 	CHECK_TICK
 	// then do objects
-	world.log << "Writing objects"
-	marked_new.len = 0
-	marked_dirty.len = 0
+	log_world("Writing objects")
+	marked_new.Cut()
+	marked_dirty.Cut()
 	for(var/z in 1 to world.maxz)
 		var/spacing = 0
 		var/row_list = list()
@@ -139,20 +127,22 @@ SUBSYSTEM_DEF(demo)
 					row_list += turf_list
 				spacing++
 			CHECK_TICK // This is a bit risky because something might change but meh, its not a big deal.
-		QUICKWRITE_WRITE(demo_file, jointext(row_list, ",") + "\n")
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, jointext(row_list, ",") + "\n")
 
 	// track objects that exist in nullspace
 	var/nullspace_list = list()
-	for(var/atom/movable/M in world)
-		if(M.loc != null) continue
+	for(var/M in world)
 		if(!isobj(M) && !ismob(M))
 			continue
-		nullspace_list += encode_init_obj(M)
+		var/atom/movable/AM = M
+		if(AM.loc != null)
+			continue
+		nullspace_list += encode_init_obj(AM)
 		CHECK_TICK
-	QUICKWRITE_WRITE(demo_file, jointext(nullspace_list, ",") + "\n")
+	WRITE_LOG_NO_FORMAT(GLOB.demo_log, jointext(nullspace_list, ",") + "\n")
 
 	for(var/line in pre_init_lines)
-		QUICKWRITE_WRITE(demo_file, line + "\n")
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "[line]\n")
 
 	return ..()
 
@@ -166,8 +156,8 @@ SUBSYSTEM_DEF(demo)
 	write_time()
 	if(src.del_list.len)
 		var/s = "del [jointext(src.del_list, ",")]\n" // if I don't do it like this I get "incorrect number of macro arguments" because byond is stupid and sucks
-		QUICKWRITE_WRITE(demo_file, s)
-	src.del_list.len = 0
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, s)
+	src.del_list.Cut()
 
 	var/canceled = FALSE
 
@@ -177,7 +167,7 @@ SUBSYSTEM_DEF(demo)
 		last_completed++
 		var/atom/movable/M = marked_dirty[marked_dirty.len]
 		marked_dirty.len--
-		if(QDELETED(M))
+		if(M.gc_destroyed || !M)
 			continue
 		if(M.loc == M.demo_last_loc && M.appearance == M.demo_last_appearance)
 			continue
@@ -199,9 +189,9 @@ SUBSYSTEM_DEF(demo)
 			break
 	if(dirty_updates.len)
 		var/s = "update [jointext(dirty_updates, ",")]\n"
-		QUICKWRITE_WRITE(demo_file, s)
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, s)
 	if(canceled)
-		return;
+		return
 
 
 	var/list/marked_new = src.marked_new
@@ -210,7 +200,7 @@ SUBSYSTEM_DEF(demo)
 		last_completed++
 		var/atom/movable/M = marked_new[marked_new.len]
 		marked_new.len--
-		if(QDELETED(M))
+		if(M.gc_destroyed || !M)
 			continue
 		var/loc_string = "null"
 		if(isturf(M.loc))
@@ -224,9 +214,9 @@ SUBSYSTEM_DEF(demo)
 			break
 	if(new_updates.len)
 		var/s = "new [jointext(new_updates, ",")]\n"
-		QUICKWRITE_WRITE(demo_file, s)
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, s)
 	if(canceled)
-		return;
+		return
 
 
 	var/list/marked_turfs = src.marked_turfs
@@ -243,11 +233,11 @@ SUBSYSTEM_DEF(demo)
 				break
 	if(turf_updates.len)
 		var/s = "turf [jointext(turf_updates, ",")]\n"
-		QUICKWRITE_WRITE(demo_file, s)
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, s)
 	if(canceled)
-		return;
+		return
 
-/datum/controller/subsystem/demo/proc/encode_init_obj(var/atom/movable/M)
+/datum/controller/subsystem/demo/proc/encode_init_obj(atom/movable/M)
 	M.demo_last_loc = M.loc
 	M.demo_last_appearance = M.appearance
 	var/encoded_appearance = encode_appearance(M.appearance)
@@ -401,7 +391,7 @@ SUBSYSTEM_DEF(demo)
 	msg += "Upd:[marked_dirty.len]|"
 	msg += "Del:[del_list.len]"
 	msg += "}"
-	return ..(msg)
+	..(msg)
 
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
 	if(!isturf(T))
@@ -411,7 +401,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
 	if(!isobj(M) && !ismob(M))
 		return
-	if(QDELING(M))
+	if(M.gc_destroyed)
 		return
 	marked_new[M] = TRUE
 	if(marked_dirty[M])
@@ -421,7 +411,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
 	if(!isobj(M) && !ismob(M))
 		return
-	if(QDELING(M))
+	if(M.gc_destroyed)
 		return
 	if(!marked_new[M])
 		marked_dirty[M] = TRUE

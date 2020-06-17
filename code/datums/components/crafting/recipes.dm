@@ -49,6 +49,17 @@
 	tools = list(/obj/item/screwdriver)
 	time = 120
 	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/knifeboxing
+	name = "Knife-boxing Gloves"
+	result = /obj/item/clothing/gloves/knifeboxing
+	reqs = list(/obj/item/clothing/gloves/boxing = 1,
+				/obj/item/kitchen/knife = 2)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 	always_availible = FALSE
 
 //Normal recipes
@@ -773,6 +784,26 @@
 	result = /obj/structure/urinal
 	category = CAT_MISC
 	
+/datum/crafting_recipe/paint/crayon
+	name = "Paint"
+	result = /obj/item/paint/anycolor
+	reqs = list(/obj/item/toy/crayon = 1,
+				/datum/reagent/water = 5,
+				/datum/reagent/consumable/milk = 5,
+				/obj/item/reagent_containers/glass/bucket = 1)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+	time = 30
 
+/datum/crafting_recipe/paint/spraycan
+	name = "Paint"
+	result = /obj/item/paint/anycolor
+	reqs = list(/obj/item/toy/crayon/spraycan = 1,
+				/datum/reagent/water = 5,
+				/datum/reagent/consumable/milk = 5,
+				/obj/item/reagent_containers/glass/bucket = 1)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+	time = 30
 
 	

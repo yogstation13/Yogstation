@@ -1,4 +1,5 @@
 #define ALL_POWERS_UNLOCKED 800
+#define BLOOD_SUCK_BASE 25
 
 /datum/antagonist/vampire
 
@@ -22,6 +23,7 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
+		/obj/effect/proc_holder/spell/self/vampire_help = 0,
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 75,
@@ -197,8 +199,8 @@
 	var/ay = C.y
 
 	for(var/i = 1 to 20)
-		ax += SSsun.dx
-		ay += SSsun.dy
+		ax += round(sin(SSsun.azimuth), 0.01)
+		ay += round(cos(SSsun.azimuth), 0.01)
 
 		var/turf/T = locate(round(ax, 0.5), round(ay, 0.5), C.z)
 
@@ -234,38 +236,67 @@
 	draining = H
 	var/mob/living/carbon/human/O = owner.current
 	var/blood = 0
+	var/blood_coeff = 1 //how much blood is gained as a % from the amount drained, currently changed by how dead the victim is
 	var/old_bloodtotal = 0 //used to see if we increased our blood total
 	var/old_bloodusable = 0 //used to see if we increased our blood usable
+	var/silent = FALSE //if the succ gives a message/sounds
+	var/warned = FALSE //has the vampire been warned they're about to alert a target while stealth sucking?
+	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ? changes depending on grab state
 	log_attack("[O] ([O.ckey]) bit [H] ([H.ckey]) in the neck")
-	O.visible_message("<span class='danger'>[O] grabs [H]'s neck harshly and sinks in their fangs!</span>", "<span class='danger'>You sink your fangs into [H] and begin to drain their blood.</span>", "<span class='notice'>You hear a soft puncture and a wet sucking noise.</span>")
+	if(!(O.pulling == H))
+		silent = TRUE
+		blood_to_take *= 0.5 //half blood from targets that aren't being pulled, but they also don't get warned until it starts to cause damage
+	else if(O.grab_state >= GRAB_NECK)
+		blood_to_take *= 1.5 //50% more blood from targets that are being neck grabbed or above
+	if(!silent)
+		O.visible_message("<span class='danger'>[O] grabs [H]'s neck harshly and sinks in their fangs!</span>", "<span class='danger'>You sink your fangs into [H] and begin to [blood_to_take > BLOOD_SUCK_BASE ? "quickly" : ""] drain their blood.</span>", "<span class='notice'>You hear a soft puncture and a wet sucking noise.</span>")
+		playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
+	else
+		to_chat(O, "<span class='notice'>You stealthily begin to drain blood from [H], be careful, as they will notice if their blood gets too low.</span>")
+		O.playsound_local(O, 'sound/weapons/bite.ogg', 50, 1)
 	if(!iscarbon(owner))
 		H.LAssailant = null
 	else
 		H.LAssailant = O
-	playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 	while(do_mob(O, H, 50))
 		if(!is_vampire(O))
 			to_chat(O, "<span class='warning'>Your fangs have disappeared!</span>")
 			return
+		if(blood_to_take > BLOOD_SUCK_BASE && (!(O.pulling == H) || O.grab_state < GRAB_NECK))//smooth movement from aggressive suck to normal suck
+			blood_to_take = BLOOD_SUCK_BASE
+			to_chat(O, "<span class='warning'>You lose your grip on [H], reducing your bloodsucking speed.</span>")
+		if(blood_to_take == BLOOD_SUCK_BASE && (O.pulling == H && O.grab_state >= GRAB_NECK))//smooth movement from normal suck to aggressive suck
+			blood_to_take *= 1.5
+			to_chat(O, "<span class='warning'>Your enchanced grip on [H] allows you to extract blood faster.</span>")
+		if(silent && O.pulling == H) //smooth movement from stealth suck to normal suck
+			silent = FALSE
+			blood_to_take = BLOOD_SUCK_BASE
+			O.visible_message("<span class='danger'>[O] grabs [H]'s neck harshly and sinks in their fangs!</span>", "<span class='danger'>You sink your fangs into [H] and begin to drain their blood.</span>", "<span class='notice'>You hear a soft puncture and a wet sucking noise.</span>")
+			playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
 		old_bloodtotal = total_blood
 		old_bloodusable = usable_blood
 		if(!H.blood_volume)
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
 			break
-		if(H.stat != DEAD)
-			blood = min(20, H.blood_volume)	// if they have less than 20 blood, give them the remnant else they get 20 blood
-			total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
-			usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
-		else
-			blood = min(5, H.blood_volume)	// The dead only give 5 blood
-			total_blood += blood
+		blood_coeff = 0.8 //20 blood gain at base for living, 30 with aggressive grab, 10 with stealth
+		if(H.stat == DEAD)
+			blood_coeff = 0.2 //5 blood gain at base for dead, 7 with aggressive grab, 2 with stealth
+		blood = round(min(blood_to_take * blood_coeff, H.blood_volume))	//if the victim has less than the amount of blood left to take, just take all of it.
+		total_blood += blood			//get total blood 100% efficiency because fuck waiting out 5 fucking minutes and 1500 actual blood to get your 600 blood for the objective
+		usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
 			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
-		H.blood_volume = max(H.blood_volume - 25, 0)
+		H.blood_volume = max(H.blood_volume - blood_to_take, 0)
+		if(silent && !warned && (H.blood_volume <= (BLOOD_VOLUME_SAFE(H) + 20)))
+			to_chat(O, "<span class='boldwarning'>Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue...</span>")
+			warned = TRUE
 		if(ishuman(O))
-			O.nutrition = min(O.nutrition + (blood / 2), NUTRITION_LEVEL_WELL_FED)
-		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
+			O.nutrition = min(O.nutrition + (blood * 0.5), NUTRITION_LEVEL_WELL_FED)
+		if(!silent)
+			playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1, extrarange = -4)//have to be within 3 tiles to hear the sucking
+		else if(H.get_blood_state() <= BLOOD_OKAY)
+			to_chat(H, "<span class='warning'>You feel oddly faint...</span>")
 
 	draining = null
 	to_chat(owner, "<span class='notice'>You stop draining [H.name] of blood.</span>")
@@ -368,5 +399,5 @@
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
 
 	return result.Join("<br>")
-
+#undef BLOOD_SUCK_BASE
 #undef ALL_POWERS_UNLOCKED

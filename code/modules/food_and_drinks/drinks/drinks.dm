@@ -256,6 +256,7 @@
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
+	age_restricted = TRUE
 
 /obj/item/reagent_containers/food/drinks/beer/light
 	name = "Carp Lite"

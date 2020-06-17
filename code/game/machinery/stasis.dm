@@ -25,7 +25,7 @@
 	for(var/direction in GLOB.cardinals)
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
-			computer.bed = src
+			computer.sbed = src
 			break
 
 /obj/machinery/stasis/examine(mob/user)

@@ -55,7 +55,7 @@
 	integrity_failure = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	resistance_flags = FIRE_PROOF
-	
+
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
@@ -432,7 +432,7 @@
 				vent.on = FALSE
 				vent.update_icon()
 	update_icon(TRUE)
-	
+
 /obj/machinery/advanced_airlock_controller/attackby(obj/item/W, mob/user, params)
 	switch(buildstage)
 		if(2)
@@ -594,7 +594,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "advanced_airlock_controller", name, 440, 650, master_ui, state)
+		ui = new(user, src, ui_key, "AdvancedAirlockController", name, 440, 650, master_ui, state)
 		ui.open()
 
 /obj/machinery/advanced_airlock_controller/ui_data(mob/user)
@@ -652,7 +652,7 @@
 				if(I != 1)
 					access_str += ", "
 				access_str += get_access_desc(airlock.req_one_access[I])
-			
+
 		data["airlocks"] += list(list(
 			"role" = airlocks[airlock],
 			"airlock_id" = "\ref[airlock]",

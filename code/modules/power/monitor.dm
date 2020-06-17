@@ -85,7 +85,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "power_monitor", name, 550, 700, master_ui, state)
+		ui = new(user, src, ui_key, "PowerMonitor", name, 550, 700, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/monitor/ui_data()
