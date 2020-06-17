@@ -128,6 +128,6 @@
 	teamsize = 5
 	opendoors = TRUE
 	rename_team = "HONK Squad"
-	mission = "HONK them into submission"
+	mission = "HONK them into submission."
 	polldesc = "an elite Nanotrasen tactical pranking squad"
 	code = "HOOOOOOOOOONK"
