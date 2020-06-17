@@ -43,18 +43,15 @@
 
 	if(recording)
 		icons_available += list("Stop Recording" = image(icon = icon_directory, icon_state = "record_stop"))
-	else
-		if(!playing)
-			icons_available += list("Record" = image(icon = icon_directory, icon_state = "record"))
-	
+
 	if(playing)
 		icons_available += list("Pause" = image(icon = icon_directory, icon_state = "pause"))
-	else
-		if(!recording)
-			icons_available += list("Play" = image(icon = icon_directory, icon_state = "play"))
-	
-	if(canprint && !recording && !playing)
-		icons_available += list("Print Transcript" = image(icon = icon_directory, icon_state = "print"))
+
+	if(!playing && !recording)
+		icons_available += list("Record" = image(icon = icon_directory, icon_state = "record"))
+		icons_available += list("Play" = image(icon = icon_directory, icon_state = "play"))
+		if(canprint)
+			icons_available += list("Print Transcript" = image(icon = icon_directory, icon_state = "print"))
 	if(mytape)
 		icons_available += list("Eject" = image(icon = icon_directory, icon_state = "eject"))
 
