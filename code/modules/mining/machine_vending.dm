@@ -241,14 +241,6 @@
 	if(prob(50 / severity) && severity < 3)
 		qdel(src)
 
-
-/obj/machinery/mineral/equipment_vendor/AltClick(mob/user)
-	if(!user.canUseTopic(src, BE_CLOSE))
-		return
-	inserted_id.forceMove(loc)
-	inserted_id.verb_pickup()
-	inserted_id = null
-
 /****************Golem Point Vendor**************************/
 
 /obj/machinery/mineral/equipment_vendor/golem
