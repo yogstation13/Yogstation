@@ -232,16 +232,17 @@
 		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
 		if(!selection)
 			return
-		if(selection == "Stop Recording" || selection == "Pause")
-			stop()
-		if(selection == "Record")
-			record()
-		if(selection == "Play")
-			play()
-		if(selection == "Print Transcript")
-			print_transcript()
-		if(selection == "Eject")
-			eject(user)
+		switch(selection)
+			if("Stop Recording" || "Pause")
+				stop()
+			if("Record")
+				record()
+			if("Play")
+				play()
+			if("Print Transcript")
+				print_transcript()
+			if("Eject")
+				eject(user)
 
 
 
