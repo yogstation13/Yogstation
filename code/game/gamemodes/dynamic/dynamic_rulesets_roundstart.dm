@@ -945,7 +945,7 @@
 	required_candidates = 8
 	weight = 1
 	cost = 35
-	requirements = list(80,75,65,60,55,50,45,40,40,40)
+	requirements = list(80,75,65,60,55,50,45,45,45,40)
 
 /datum/dynamic_ruleset/roundstart/traitor/IAA/pre_execute()
 	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
