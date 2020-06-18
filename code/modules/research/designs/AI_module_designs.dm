@@ -181,3 +181,12 @@
 	build_path = /obj/item/aiModule/core/full/cowboy
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/verdure_module
+	name = "Core Module Design (Verdure)"
+	desc = "Allows for the construction of a Verdure AI Core Module."
+	id = "verdure_module"
+	materials = list(MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/aiModule/core/full/verdure
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

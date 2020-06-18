@@ -459,6 +459,12 @@ AI MODULES
 	name = "'Cowboy' Core AI Module"
 	law_id = "cowboy"
 
+/******************** Verdure *********************/
+
+/obj/item/aiModule/core/full/verdure
+	name = "'Verdure' Core AI Module"
+	law_id = "verdure"
+
 
 /******************** Freeform Core ******************/
 
