@@ -1,4 +1,0 @@
-author: "Takahiru"
-delete-after: true 
-changes: 
-  - bugfix: "tape recorders without tapes can now be moved around"
