@@ -13,7 +13,6 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") //YOGS - added hop
-	lowpop_restricted_jobs = list("Chief Engineer", "Research Director", "Chief Medical Officer")
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
@@ -31,8 +30,8 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 /datum/game_mode/changeling/pre_setup()
 
 	if(num_players() <= lowpop_amount)
-		if(prob((2*1.14^lowpop_amount)-2)) //exponential equation, chance of restriction goes up as pop goes down.
-			protected_jobs += lowpop_restricted_jobs
+		if(prob((2*1.14**lowpop_amount)-2)) //exponential equation, chance of restriction goes up as pop goes down.
+			protected_jobs += GLOB.command_positions
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
