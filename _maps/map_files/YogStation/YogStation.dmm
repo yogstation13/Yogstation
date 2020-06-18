@@ -51384,6 +51384,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"jhZ" = (
+/mob/living/simple_animal/cockroach{
+	desc = "Virtually unkillable.";
+	name = "Becquerel";
+	status_flags = 16
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "jig" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -51846,10 +51854,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jLm" = (
-/mob/living/simple_animal/mouse,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jLB" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -56618,8 +56622,8 @@
 	network = list("ss13","medbay")
 	},
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
 "riC" = (
@@ -99916,7 +99920,7 @@ jkG
 nYI
 cQn
 dpF
-jLm
+jhZ
 ceE
 bPq
 aaa

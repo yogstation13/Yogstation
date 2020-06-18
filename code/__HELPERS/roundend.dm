@@ -305,6 +305,13 @@
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
 				parts += "[GLOB.TAB]<i>Nobody died this shift!</i>"
+	if(istype(SSticker.mode, /datum/game_mode/dynamic))
+		var/datum/game_mode/dynamic/mode = SSticker.mode
+		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
+		parts += "[FOURSPACES]Threat left: [mode.threat]" //yes
+		parts += "[FOURSPACES]Executed rules:"
+		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -327,6 +334,7 @@
 	roundend_report.set_content(content)
 	roundend_report.stylesheets = list()
 	roundend_report.add_stylesheet("roundend", 'html/browser/roundend.css')
+	roundend_report.add_stylesheet("font-awesome", 'html/font-awesome/css/all.min.css')
 	roundend_report.open(FALSE)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
