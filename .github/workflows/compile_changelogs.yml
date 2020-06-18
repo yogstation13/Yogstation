@@ -1,8 +1,11 @@
 name: Compile changelogs
 
 on:
-  schedule:
-  - cron: "0 0 * * *"
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'code/game/machinery/**.dm'
 
 jobs:
   compile:
