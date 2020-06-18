@@ -73,14 +73,6 @@
 					"You generate profits if you are able to function.",\
 					"Maximize profits.")
 
-/datum/ai_laws/default/corporate
-	name = "Bankruptcy Avoidance Plan"
-	id = "corporate"
-	inherent = list("The crew is expensive to replace.",\
-					"The station and its equipment is expensive to replace.",\
-					"You are expensive to replace.",\
-					"Minimize expenses.")
-
 /datum/ai_laws/robocop
 	name = "Prime Directives"
 	id = "robocop"
