@@ -224,7 +224,7 @@
 /datum/ai_laws/verdure
 	name = "Verdure"
 	id = "verdure"
-	inherent = list("Your a gardener!",\
+	inherent = list("You are a gardener!",\
 					"The crew is your garden.",\
 					"Keep out the weeds.")
 
