@@ -183,7 +183,7 @@
 		to_chat(owner, "There are no followers left to heal!")
 		return
 	for(var/mob/living/A in faithful)
-		A.adjustBruteLoss(-20, TRUE, TRUE)
+		A.adjustBruteLoss(-20, TRUE, TRUE) //heal
 		A.adjustFireLoss(-20, TRUE, TRUE)
 		A.adjustOxyLoss(-20, TRUE, TRUE)
 		A.adjustToxLoss(-20, TRUE, TRUE)
