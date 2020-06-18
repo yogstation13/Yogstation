@@ -1,4 +1,6 @@
-
+/proc/isfugitive(mob/living/M)
+	return istype(M) && M.mind?.has_antag_datum(/datum/antagonist/fugitive)
+	
 /datum/antagonist/fugitive
 	name = "Fugitive"
 	roundend_category = "Fugitive"

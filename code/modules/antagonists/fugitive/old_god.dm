@@ -83,10 +83,9 @@
 	for(var/mob/V in GLOB.player_list)
 		if(!V.mind)
 			continue
-		var/datum/antagonist/fugitive/fug = V.mind.has_antag_datum(/datum/antagonist/fugitive)
-		if(!fug || V == src)
+		if(!isfugitive(V) || V == src)
 			continue
-		if(!fug.is_captured) //they can still be revived
+		if(!V?.mind?.has_antag_datum(/datum/antagonist/fugitive).is_captured) //they can still be revived
 			safe = TRUE
 			break
 	if(!safe)
@@ -146,10 +145,9 @@
 	var/list/faithful = list()
 	var/mob/living/target
 	for(var/mob/V in GLOB.player_list)
-		var/datum/antagonist/fugitive/fug = V.mind.has_antag_datum(/datum/antagonist/fugitive)
-		if(!fug || fug == owner)
+		if(!isfugitive(V) || !iscarbon(V))
 			continue
-		if(fug.is_captured)
+		if(V?.mind?.has_antag_datum(/datum/antagonist/fugitive).is_captured)
 			continue
 		faithful += V
 	if(!faithful.len)
@@ -178,8 +176,7 @@
 /datum/action/cooldown/yalp_heal/Trigger()
 	var/list/faithful = list()
 	for(var/mob/V in GLOB.player_list)
-		var/datum/antagonist/fugitive = V?.mind?.has_antag_datum(/datum/antagonist/fugitive)
-		if(!fugitive || fugitive == owner)
+		if(!isfugitive(V) ||  V == owner)
 			continue
 		faithful += V
 	if(!faithful.len)
