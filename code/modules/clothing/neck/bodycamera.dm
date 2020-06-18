@@ -7,8 +7,8 @@
 /obj/item/clothing/neck/bodycam
 	name = "body camera"
 	desc = "A wearable camera, capable of streaming a live feed."
-	icon_state = "bodycam_off"
-	item_state = "bodycam_off"
+	icon_state = "sec_bodycam_off"
+	item_state = "sec_bodycam_off"
 	var/prefix = "sec"//used for sprites, miner etc
 	var/obj/machinery/camera/bodcam = null
 	var/setup = FALSE
@@ -33,9 +33,9 @@
 		AltClick(user)
 		return
 	if(bodcam.status)
-		bodcam.status = FALSE
 		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
 		Screenfuzz("Error: Feed disconnected")
+		bodcam.status = FALSE
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 	else
@@ -106,22 +106,24 @@
 
 /obj/item/clothing/neck/bodycam/Destroy()
 	. = ..()
-	//bodcam.built_in = null
+	bodcam.built_in = null
 	if (listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
 	QDEL_NULL(bodcam)
 
 /obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
-	//bodcam.built_in = null
 	var/temp="The screen bursts into static."
 	if (message)
 		temp += "\nThe message \'[message]\' appears."
 	for(var/mob/M in GLOB.player_list)
+		world.log << M.client.eye
+		world.log << bodcam
 		if (M.client.eye == bodcam)
 			M.unset_machine()
 			M.reset_perspective(null)
 			to_chat(M, temp)
+	bodcam.built_in = null
 
 /obj/item/clothing/neck/bodycam/pickup(mob/user)
 	..()
@@ -135,8 +137,8 @@
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 
 /obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
-	//bodcam.built_in = mob_to_hook
-	if(listeningTo == to_hook)
+	bodcam.built_in = to_hook
+	if(listeningTo == to_hook)//if it's already hooked, no need to do it again lol
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
@@ -154,6 +156,7 @@
 	name = "miner body camera"
 	desc = "A wearable camera, capable of streaming a live feed. This one is preconfigured to be used by miners."
 	prefix = "miner"
+	icon_state = "miner_bodycam_off"
 	setup = TRUE
 	preset = TRUE
 
