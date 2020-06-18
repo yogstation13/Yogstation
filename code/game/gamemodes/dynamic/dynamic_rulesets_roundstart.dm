@@ -944,7 +944,7 @@
 	restricted_roles = list("Cyborg")
 	required_candidates = 8
 	weight = 1
-	cost = 35
+	cost = 55
 	requirements = list(80,75,65,60,55,50,45,45,45,40)
 
 /datum/dynamic_ruleset/roundstart/traitor/IAA/pre_execute()
