@@ -5,7 +5,6 @@
 	throw_speed = 3
 	var/signed = FALSE
 	var/datum/mind/target
-	var/deconvert_cooldown // Cooldown on trying to deconvert to prevent spamming it until it works. Get the lawyer!
 	item_flags = NOBLUDGEON
 
 /obj/item/paper/contract/proc/update_text()
@@ -26,7 +25,6 @@
 		return -1
 	target = nOwner.mind
 	update_text()
-
 
 /obj/item/paper/contract/employment/update_text()
 	name = "paper- [target] employment contract"
@@ -65,7 +63,7 @@
 		return
 	M.visible_message("<span class='notice'>[user] reminds [M] that [M]'s soul was already purchased by Nanotrasen!</span>")
 	to_chat(M, "<span class='boldnotice'>You feel that your soul has returned to its rightful owner, Nanotrasen.</span>")
-	M.return_soul()
+	M.return_soul(M)
 	return ..()
 
 
@@ -146,6 +144,13 @@
 	else
 		info += "<i>[signature]</i>"
 
+/obj/item/paper/contract/infernal/life/update_text(signature = "____________", blood = 0)
+	info = "<center><B>Contract for infernal life</B></center><BR><BR><BR>I, [target] of sound mind, do hereby willingly offer my soul to the infernal hells by way of the infernal agent [devil_datum.truename], in exchange for life.  I understand that upon my demise, my soul shall fall into the infernal hells, and my body may not be resurrected, cloned, or otherwise brought back to life.  I also understand that this will prevent my brain from being used in an MMI.<BR><BR><BR>Signed, "
+	if(blood)
+		info += "<font face=\"Nyala\" color=#600A0A size=6><i>[signature]</i></font>"
+	else
+		info += "<i>[signature]</i>"
+
 /obj/item/paper/contract/infernal/wealth/update_text(signature = "____________", blood = 0)
 	info = "<center><B>Contract for unlimited wealth</B></center><BR><BR><BR>I, [target] of sound mind, do hereby willingly offer my soul to the infernal hells by way of the infernal agent [devil_datum.truename], in exchange for a pocket that never runs out of valuable resources.  I understand that upon my demise, my soul shall fall into the infernal hells, and my body may not be resurrected, cloned, or otherwise brought back to life.  I also understand that this will prevent my brain from being used in an MMI.<BR><BR><BR>Signed, "
 	if(blood)
@@ -176,6 +181,13 @@
 
 /obj/item/paper/contract/infernal/knowledge/update_text(signature = "____________", blood = 0)
 	info = "<center><B>Contract for knowledge</B></center><BR><BR><BR>I, [target] of sound mind, do hereby willingly offer my soul to the infernal hells by way of the infernal agent [devil_datum.truename], in exchange for boundless knowledge.  I understand that upon my demise, my soul shall fall into the infernal hells, and my body may not be resurrected, cloned, or otherwise brought back to life.  I also understand that this will prevent my brain from being used in an MMI.<BR><BR><BR>Signed, "
+	if(blood)
+		info += "<font face=\"Nyala\" color=#600A0A size=6><i>[signature]</i></font>"
+	else
+		info += "<i>[signature]</i>"
+
+/obj/item/paper/contract/infernal/science/update_text(signature = "____________", blood = 0)
+	info = "<center><B>Contract for science</B></center><BR><BR><BR>I, [target] of sound mind, do hereby willingly offer my soul to the infernal hells by way of the infernal agent [devil_datum.truename], in exchange for boundless knowledge.  I understand that upon my demise, my soul shall fall into the infernal hells, and my body may not be resurrected, cloned, or otherwise brought back to life.  I also understand that this will prevent my brain from being used in an MMI.<BR><BR><BR>Signed, "
 	if(blood)
 		info += "<font face=\"Nyala\" color=#600A0A size=6><i>[signature]</i></font>"
 	else
@@ -246,9 +258,7 @@
 			to_chat(user, "<span class='notice'>But it seemed to have no effect, perhaps even Hell itself cannot grant this boon?</span>")
 		return 1
 
-
-
-/obj/item/paper/contract/infernal/revive/attack(mob/living/M, mob/living/user)
+/obj/item/paper/contract/infernal/revive/attack(mob/living/carbon/human/M, mob/living/user)
 	if (target == M.mind && M.stat == DEAD && M.mind.soulOwner == M.mind)
 		if(M.sold_soul)
 			return to_chat(user, "<span class='notice'>[M] has already sold their soul to something far more evil than us.</span>")
@@ -280,7 +290,6 @@
 /obj/item/paper/contract/infernal/revive/proc/resetcooldown()
 	cooldown = FALSE
 
-
 /obj/item/paper/contract/infernal/proc/fulfillContract(mob/living/carbon/human/user = target.current, blood = FALSE)
 	signed = TRUE
 	if(user.mind.soulOwner != user.mind) //They already sold their soul to someone else?
@@ -308,19 +317,23 @@
 	user.dna.add_mutation(TK)
 	if(prob(40)) // Chance to randomly punch themselves or others
 		user.gain_trauma(/datum/brain_trauma/mild/muscle_spasms)
+	user.contracted = "power"
 	return ..()
 
-/obj/item/paper/contract/infernal/life/fulfillContract(mob/living/carbon/human/user, blood) 	// One time use full-heal, but now terrified of doctors.
+/obj/item/paper/contract/infernal/life/fulfillContract(mob/living/carbon/human/user, blood = FALSE) 	// One time use full-heal, but now terrified of doctors.
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
 	var/obj/item/organ/regenerative_core/organ = new /obj/item/organ/regenerative_core
 	organ.Insert(user)
 	user.gain_trauma(/datum/brain_trauma/mild/phobia/doctors)
+	user.contracted = "life" 
+	return ..()
 
 /obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
+	user.contracted = "wealth"
 	return ..()
 
 /obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0) 	// Will give the contract signer an all access ID, but announces them as Captain
@@ -355,6 +368,7 @@
 						worn.update_icon()
 			var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 			announcer.announce("ARRIVAL", user.real_name, "Captain", list()) //make the list empty to make it announce it in common
+	user.contracted = "prestige"
 	return ..()
 
 /obj/item/paper/contract/infernal/magic/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
@@ -363,6 +377,7 @@
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/smoke(null))
+	user.contracted = "magic"
 	return ..()
 
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
@@ -380,6 +395,7 @@
 			user.put_in_hands(E)
 		if(3) // They can see ghosts, but not hear them.
 			user.see_invisible = 60
+	user.contracted = "knowledge"
 	return ..()
 
 /obj/item/paper/contract/infernal/science/fulfillContract(mob/living/carbon/human/user = target.current, blood)
@@ -389,10 +405,13 @@
 		return -1
 	var/points_to_give = rand(5000,15000)
 	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, points_to_give)
+	to_chat(user, "<span class='notice'>The arcane secrets the devil showed to you generated [points_to_give] research points.</span>")
+	user.contracted = "science"
 	return ..()
 
 /obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
+	user.contracted = "friend"
 	return ..()

@@ -929,7 +929,7 @@
 		return mind.soulOwner == mind
 	return TRUE
 
-/mob/living/proc/return_soul()
+/mob/living/proc/return_soul(var/mob/living/carbon/human/M)
 	hellbound = 0
 	sold_soul = 1
 	if(mind)
@@ -937,6 +937,29 @@
 		if(devilInfo)//Not sure how this could be null, but let's just try anyway.
 			devilInfo.remove_soul(mind)
 		mind.soulOwner = mind
+	switch(contracted)
+		if("power")
+			M.dna.remove_mutation(HULK)
+			M.dna.remove_mutation(GIGANTISM)
+			M.dna.remove_mutation(TK)
+			M.cure_trauma_type(/datum/brain_trauma/mild/muscle_spasms)
+//		if("life")
+//			var/obj/item/organ/O = getorgan(/obj/item/organ/regenerative_core)
+//			if(O)
+//				O.Remove()
+//			M.cure_trauma_type(/datum/brain_trauma/mild/phobia/doctors)
+		if("wealth")
+			M.mind.RemoveSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
+		if("magic")
+			M.mind.RemoveSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
+			M.mind.RemoveSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+			M.mind.RemoveSpell(new /obj/effect/proc_holder/spell/targeted/smoke(null))
+		if("knowledge")
+			M.dna.remove_mutation(XRAY)
+			M.mind.RemoveSpell(new /obj/effect/proc_holder/spell/targeted/view_range(null))
+			M.cure_trauma_type(/datum/brain_trauma/mild/hallucinations)
+		if("friendship")
+			M.mind.RemoveSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
 
 /mob/living/proc/has_bane(banetype)
 	var/datum/antagonist/devil/devilInfo = is_devil(src)
