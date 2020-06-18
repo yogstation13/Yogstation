@@ -447,7 +447,17 @@
 				search = "^\[^\[:alpha:\]\]"
 			else
 				search = "^[index]"
-		var/datum/DBQuery/query_list_messages = SSdbcore.NewQuery("SELECT DISTINCT targetckey, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey) FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey REGEXP :search AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY targetckey", list("search" = search))
+			var/datum/DBQuery/query_list_messages = SSdbcore.NewQuery({"
+			SELECT DISTINCT
+				targetckey,
+				(SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey)
+			FROM [format_table_name("messages")]
+			WHERE type <> 'memo'
+				AND targetckey REGEXP :search
+				AND deleted = 0
+				AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
+			ORDER BY targetckey
+		"}, list("search" = search))
 		if(!query_list_messages.warn_execute())
 			qdel(query_list_messages)
 			return
