@@ -561,8 +561,8 @@
 	player_mind.special_role = "Zombie"
 	M.set_species(/datum/species/zombie/infectious)
 	playsound(M, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
-	message_admins("[ADMIN_LOOKUPFLW(M)] has been made into a Zombie by the midround ruleset.")
-	log_game("[key_name(M)] was spawned as a Zombie by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(M)] has been made into a Zombie by an event.")
+	log_game("[key_name(M)] was spawned as a Zombie by an event.")
 	spawned_mobs += M
 	return SUCCESSFUL_SPAWN
 	
