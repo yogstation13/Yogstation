@@ -10,7 +10,7 @@
 #define PLUOXIUM_HEAT_PENALTY -1
 #define TRITIUM_HEAT_PENALTY 10
 #define BZ_HEAT_PENALTY 5
-#define NITROGEN_HEAT_MODIFIER -1.5
+#define NITROGEN_HEAT_PENALTY -1.5
 
 #define OXYGEN_TRANSMIT_MODIFIER 1.5   //Higher == Bigger bonus to power generation.
 #define PLASMA_TRANSMIT_MODIFIER 4
@@ -386,7 +386,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
 		pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
 		tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
-		bzcomp = max(removed.get_moles(/datum/gas/bz][MOLES)/combined_gas, 0)
+		bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
 		
 		if(pluoxiumcomp >= 0.15)
 			pluoxiumbonus = 1	// Bad code probably /shrug
