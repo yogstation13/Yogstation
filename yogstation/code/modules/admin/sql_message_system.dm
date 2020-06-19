@@ -447,7 +447,7 @@
 				search = "^\[^\[:alpha:\]\]"
 			else
 				search = "^[index]"
-			var/datum/DBQuery/query_list_messages = SSdbcore.NewQuery({"
+		var/datum/DBQuery/query_list_messages = SSdbcore.NewQuery({"
 			SELECT DISTINCT
 				targetckey,
 				(SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey)
