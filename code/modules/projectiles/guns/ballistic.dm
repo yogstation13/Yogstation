@@ -108,7 +108,7 @@
 							capacity_number = 100
 					if (capacity_number)
 						add_overlay("[icon_state]_mag_[capacity_number]")
-			add_overlay(feedback_firing_icon)
+			feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
 			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
 			sleep(frames)
 			update_icon()
