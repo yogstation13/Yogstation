@@ -2,7 +2,7 @@
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
 
-#SUPERMATTER_MAXIMUM_ENERGY 1e6
+#define SUPERMATTER_MAXIMUM_ENERGY 1e6
 
 #define PLASMA_HEAT_PENALTY 15     // Higher == Bigger heat and waste penalty from having the crystal surrounded by this gas. Negative numbers reduce penalty.
 #define OXYGEN_HEAT_PENALTY 1
