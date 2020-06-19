@@ -34,10 +34,7 @@
 		return
 	if(bodcam.status)
 		to_chat(user, "<span class='notice'>You shut off the body camera.</span>")
-		Screenfuzz("Error: Feed disconnected")
-		bodcam.status = FALSE
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		listeningTo = null
+		Disconnect()
 	else
 		bodcam.status = TRUE
 		to_chat(user, "<span class='notice'>You turn on the body camera.</span>")
@@ -55,10 +52,7 @@
 		bodcam.network[1] = temp
 		setup = TRUE
 		bodcam.status = TRUE
-		Screenfuzz("Error: Network change detected")
 		update_icon()
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		listeningTo = null
 
 /obj/item/clothing/neck/bodycam/update_icon()
 	..()
@@ -95,35 +89,22 @@
 /obj/item/clothing/neck/bodycam/emp_act(severity)
 	. = ..()
 	if(prob(150/severity))
-		Screenfuzz("Error: Hardware compromised. Manual reboot required")
+		Disconnect()
 		bodcam.c_tag = rand(1,10000)
 		bodcam.network[1] = rand(1, 10000) //gibberish, this will render the camera basically unreadable by any console
-		bodcam.status = FALSE
 		update_icon()
-		if(listeningTo)
-			UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-			listeningTo = null
 
 /obj/item/clothing/neck/bodycam/Destroy()
 	. = ..()
+	Disconnect()
+	QDEL_NULL(bodcam)
+
+/obj/item/clothing/neck/bodycam/proc/Disconnect()//this handles what happens when your camera disconnects
+	bodcam.status = FALSE
 	bodcam.built_in = null
 	if (listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
-	QDEL_NULL(bodcam)
-
-/obj/item/clothing/neck/bodycam/proc/Screenfuzz(message)//this handles what happens when your camera disconnects and someone is watching
-	var/temp="The screen bursts into static."
-	if (message)
-		temp += "\nThe message \'[message]\' appears."
-	for(var/mob/M in GLOB.player_list)
-		world.log << M.client.eye
-		world.log << bodcam
-		if (M.client.eye == bodcam)
-			M.unset_machine()
-			M.reset_perspective(null)
-			to_chat(M, temp)
-	bodcam.built_in = null
 
 /obj/item/clothing/neck/bodycam/pickup(mob/user)
 	..()
