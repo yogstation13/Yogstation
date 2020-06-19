@@ -1,9 +1,231 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ce" = (
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"aD" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"bc" = (
+/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"bZ" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"cx" = (
+/obj/machinery/computer/teleporter{
+	dir = 1;
+	id = null
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"cF" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"cM" = (
+/obj/structure/chair/sofa/right,
+/obj/structure/chair/sofa/right,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"dv" = (
+/obj/machinery/teleport/hub,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"ex" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
+	name = "Secure Snack Storage";
+	pixel_x = 32
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"fS" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/ruin/unpowered/no_grav)
+"gA" = (
+/obj/structure/mirror{
+	pixel_y = 32
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"gE" = (
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"gZ" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/uno{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/toy/turn_tracker{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"hE" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/radio,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"io" = (
+/obj/effect/mob_spawn/human/gamer{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"iw" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"jp" = (
+/obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"jX" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"kk" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"ku" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
-"ch" = (
+"le" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/chocolatebar{
+	pixel_x = -9;
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/chocolatebar{
+	pixel_x = -4;
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/food/snacks/chocolatebar{
+	pixel_x = 2;
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/food/snacks/chocolatebar{
+	pixel_x = 6;
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/snacks/no_raisin{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered/gaming)
+"mG" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"na" = (
+/obj/structure/table/wood/poker,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"nl" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"nr" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/gaming)
+"nE" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"os" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
+	name = "Secure Snack Storage";
+	pixel_x = 32
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/item/card/id/away{
+	desc = "A key to the Secure Snack Storage";
+	name = "gamer id card"
+	},
+/obj/structure/rack,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"ow" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck/cas/black{
 	pixel_x = -6;
@@ -15,7 +237,752 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/gaming)
-"cD" = (
+"oA" = (
+/turf/closed/mineral/random,
+/area/ruin/unpowered/no_grav)
+"pk" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c1{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_x = 5;
+	pixel_y = 14
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c50{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c100{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/obj/item/stack/spacecash/c200{
+	pixel_x = -10;
+	pixel_y = 13
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"qS" = (
+/obj/machinery/computer/arcade/battle,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"rg" = (
+/obj/structure/bookcase/random/fiction,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"rN" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"rV" = (
+/obj/machinery/vending/gifts{
+	products = list(/obj/item/toy/heartballoon = 3, /obj/item/toy/toyballoon = 3, /obj/item/toy/gun/toyglock = 3, /obj/item/toy/gun/toyflaregun = 3, /obj/item/toy/toygrenade = 15, /obj/item/toy/plush/teddybear = 5, /obj/item/toy/plush/stuffedmonkey = 5, /obj/item/toy/plush/flowerbunch = 5, /obj/item/camera_film = 30, /obj/item/storage/photo_album = 5, /obj/item/storage/photobook = 5, /obj/item/hourglass = 2, /obj/item/toy/frisbee = 2, /obj/item/toy/boomerang = 2, /obj/item/storage/bag/photo = 5, /obj/item/toy/plush/bubbleplush = 2, /obj/item/toy/plush/plushvar = 2, /obj/item/toy/plush/narplush = 2, /obj/item/toy/plush/lizardplushie = 2, /obj/item/toy/plush/snakeplushie = 2, /obj/item/toy/plush/nukeplushie = 2, /obj/item/toy/plush/slimeplushie = 2, /obj/item/toy/plush/inorixplushie = 2, /obj/item/toy/plush/beeplushie = 2, /obj/item/instrument/accordion = 1, /obj/item/instrument/eguitar = 1, /obj/item/instrument/glockenspiel = 1, /obj/item/instrument/harmonica = 1, /obj/item/instrument/recorder = 1, /obj/item/instrument/saxophone = 1, /obj/item/instrument/trombone = 1, /obj/item/instrument/trumpet = 1, /obj/item/instrument/piano_synth = 1, /obj/item/instrument/banjo = 1, /obj/item/storage/backpack = 4, /obj/item/reagent_containers/syringe = 3, /obj/item/reagent_containers/pill/patch/styptic = 2, /obj/item/reagent_containers/pill/patch/silver_sulf = 2, /obj/item/reagent_containers/glass/bottle/charcoal = 1, /obj/item/reagent_containers/pill/epinephrine = 1, /obj/item/reagent_containers/glass/beaker/large = 2, /obj/item/flashlight = 3, /obj/item/flashlight/flare = 1, /obj/item/storage/toolbox/mechanical = 1, /obj/item/stack/cable_coil/random = 4, /obj/item/pda = 8, /obj/item/cartridge/engineering = 2, /obj/item/cartridge/atmos = 2, /obj/item/cartridge/medical = 2, /obj/item/cartridge/chemistry = 2, /obj/item/cartridge/janitor = 2, /obj/item/cartridge/lawyer = 2, /obj/item/cartridge/curator = 2, /obj/item/cartridge/roboticist = 2, /obj/item/cartridge/quartermaster = 2, /obj/item/storage/box/fancy/candle_box = 2, /obj/item/storage/crayons = 2)
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"ti" = (
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"tm" = (
+/obj/item/pickaxe/emergency,
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"tM" = (
+/obj/machinery/door/airlock/vault{
+	id_tag = "snack_vault";
+	name = "Secure Snack Storage";
+	req_access_txt = "200"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "snack_vault";
+	layer = 2.75;
+	name = "Secure Snack Storage blast door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"ui" = (
+/obj/machinery/light_switch{
+	pixel_x = -21;
+	pixel_y = -9
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"vh" = (
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = -7
+	},
+/obj/structure/table/wood,
+/obj/item/hourglass{
+	pixel_x = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"wi" = (
+/turf/closed/mineral/random/high_chance,
+/area/ruin/unpowered/no_grav)
+"xJ" = (
+/mob/living/simple_animal/bot/medbot{
+	desc = "A little medical robot. It has pizza grease stains on the chassis";
+	name = "Gary G.";
+	radio_key = null;
+	stationary_mode = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"zL" = (
+/obj/structure/chair/sofa,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Ba" = (
+/obj/machinery/door/airlock/hatch{
+	desc = "All who enter shall be greeted with snacks and a great time";
+	name = "The Game Room"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"BX" = (
+/obj/structure/curtain,
+/obj/machinery/shower,
+/obj/item/soap,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"CR" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"CY" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"Fv" = (
+/obj/machinery/teleport/station,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"FS" = (
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"Gm" = (
+/obj/item/beacon,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"GD" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = 9;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = -2;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 11;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -10;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -10;
+	pixel_y = 3
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered/gaming)
+"GJ" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/pizzabox/infinite{
+	desc = "You will never have to order and wait for more pizza when you have this thing";
+	name = "Infinite Pizza Box";
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/circuit/green,
+/area/ruin/space/has_grav/powered/gaming)
+"GR" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"HD" = (
+/obj/structure/table/wood/poker,
+/obj/item/instrument/piano_synth,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"HR" = (
+/obj/structure/chair/sofa{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Jg" = (
+/obj/machinery/vending/games,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"JU" = (
+/obj/structure/chair/sofa/left,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Ks" = (
+/obj/machinery/vending/cigarette/syndicate,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"Kv" = (
+/obj/structure/closet/wardrobe/mixed,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"KG" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"KX" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Lf" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"Lk" = (
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Mk" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"MO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Np" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = -32;
+	req_access_txt = "0";
+	use_power = 0
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"NB" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/suit/space/nasavoid/old,
+/obj/item/clothing/head/helmet/space/nasavoid/old,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Oh" = (
+/obj/structure/table/wood/poker,
+/obj/item/storage/pill_bottle/dice,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"Oy" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"OG" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"OS" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"OW" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/syndicate,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Ph" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Pj" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/gaming)
+"PX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/button/door{
+	id = "snack_vault";
+	name = "Secure Snack Storage Lockdown";
+	pixel_x = -22;
+	pixel_y = -21;
+	req_access_txt = "200"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"Qb" = (
+/obj/structure/table/wood/poker,
+/obj/item/reagent_containers/food/snacks/chips{
+	pixel_x = -5;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/cola{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"Qk" = (
+/obj/machinery/vending/clothing,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Qm" = (
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Qw" = (
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"RZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/gaming)
+"SB" = (
+/obj/item/reagent_containers/food/snacks/grown/carrot,
+/obj/item/reagent_containers/food/snacks/grown/cabbage,
+/obj/structure/closet/crate{
+	name = "Healthy Food Rations"
+	},
+/obj/item/reagent_containers/food/snacks/grown/apple,
+/obj/item/reagent_containers/food/snacks/grown/parsnip,
+/obj/item/reagent_containers/glass/beaker/waterbottle/large,
+/obj/item/reagent_containers/glass/beaker/waterbottle/large,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"SE" = (
+/obj/machinery/button/door{
+	id = "snack_vault";
+	name = "Secure Snack Storage Lockdown";
+	pixel_x = 23;
+	pixel_y = -21;
+	req_access_txt = "200"
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"TM" = (
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"Ur" = (
+/obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"UP" = (
+/obj/item/kitchen/knife{
+	pixel_x = -5
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 7
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"VW" = (
+/obj/structure/closet/crate/bin,
+/obj/item/trash/can,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"Wn" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/gaming)
+"Xt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Xw" = (
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c500{
+	pixel_x = 5
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"Za" = (
+/obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/gaming)
+"ZI" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -7
+	},
+/obj/item/pen{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/item/pen{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/folder/yellow{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/pen{
+	pixel_x = 1;
+	pixel_y = -2
+	},
+/obj/item/pen{
+	pixel_x = 9;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"ZL" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+	pixel_x = 9;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+	pixel_x = -2;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -2;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/circuit,
+/area/ruin/space/has_grav/powered/gaming)
+"ZP" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/chips{
 	pixel_x = -6;
@@ -75,1261 +1042,964 @@
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/powered/gaming)
-"di" = (
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"eN" = (
-/obj/effect/mob_spawn/human/gamer{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"eZ" = (
-/obj/machinery/computer/arcade/minesweeper,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"fu" = (
-/obj/machinery/teleport/station,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"fZ" = (
-/obj/machinery/vending/gifts{
-	products = list(/obj/item/toy/heartballoon = 3, /obj/item/toy/toyballoon = 3, /obj/item/toy/gun/toyglock = 3, /obj/item/toy/gun/toyflaregun = 3, /obj/item/toy/toygrenade = 15, /obj/item/toy/plush/teddybear = 5, /obj/item/toy/plush/stuffedmonkey = 5, /obj/item/toy/plush/flowerbunch = 5, /obj/item/camera_film = 30, /obj/item/storage/photo_album = 5, /obj/item/storage/photobook = 5, /obj/item/hourglass = 2, /obj/item/toy/frisbee = 2, /obj/item/toy/boomerang = 2, /obj/item/storage/bag/photo = 5, /obj/item/toy/plush/bubbleplush = 2, /obj/item/toy/plush/plushvar = 2, /obj/item/toy/plush/narplush = 2, /obj/item/toy/plush/lizardplushie = 2, /obj/item/toy/plush/snakeplushie = 2, /obj/item/toy/plush/nukeplushie = 2, /obj/item/toy/plush/slimeplushie = 2, /obj/item/toy/plush/inorixplushie = 2, /obj/item/toy/plush/beeplushie = 2, /obj/item/instrument/accordion = 1, /obj/item/instrument/eguitar = 1, /obj/item/instrument/glockenspiel = 1, /obj/item/instrument/harmonica = 1, /obj/item/instrument/recorder = 1, /obj/item/instrument/saxophone = 1, /obj/item/instrument/trombone = 1, /obj/item/instrument/trumpet = 1, /obj/item/instrument/piano_synth = 1, /obj/item/instrument/banjo = 1, /obj/item/storage/backpack = 4, /obj/item/reagent_containers/syringe = 3, /obj/item/reagent_containers/pill/patch/styptic = 2, /obj/item/reagent_containers/pill/patch/silver_sulf = 2, /obj/item/reagent_containers/glass/bottle/charcoal = 1, /obj/item/reagent_containers/pill/epinephrine = 1, /obj/item/reagent_containers/glass/beaker/large = 2, /obj/item/flashlight = 3, /obj/item/flashlight/flare = 1, /obj/item/storage/toolbox/mechanical = 1, /obj/item/stack/cable_coil/random = 4, /obj/item/pda = 8, /obj/item/cartridge/engineering = 2, /obj/item/cartridge/atmos = 2, /obj/item/cartridge/medical = 2, /obj/item/cartridge/chemistry = 2, /obj/item/cartridge/janitor = 2, /obj/item/cartridge/lawyer = 2, /obj/item/cartridge/curator = 2, /obj/item/cartridge/roboticist = 2, /obj/item/cartridge/quartermaster = 2, /obj/item/storage/box/fancy/candle_box = 2, /obj/item/storage/crayons = 2)
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"gh" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/gaming)
-"hV" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"ie" = (
-/obj/structure/table/wood/poker,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"iI" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"jl" = (
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
-/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
-/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
-/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = 9;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = 3;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = -2;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
-	pixel_x = -8;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 11;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry{
-	pixel_x = 11;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -2;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -9;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/starkist{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/turf/open/floor/circuit,
-/area/ruin/space/has_grav/powered/gaming)
-"ko" = (
-/obj/structure/closet/crate/bin,
-/obj/item/trash/can,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
-"kM" = (
-/obj/structure/sign/warning/securearea{
-	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
-	name = "Secure Snack Storage";
-	pixel_x = 32
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"kQ" = (
-/obj/machinery/button/door{
-	id = "snack_vault";
-	name = "Secure Snack Storage Lockdown";
-	pixel_x = 23;
-	pixel_y = -21;
-	req_access_txt = "200"
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"lG" = (
-/obj/structure/chair/sofa,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"lZ" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/gaming)
-"mt" = (
-/obj/structure/curtain,
-/obj/machinery/shower,
-/obj/item/soap,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"mY" = (
-/obj/structure/table/wood/fancy/red,
-/obj/item/pizzabox/infinite{
-	desc = "You will never have to order and wait for more pizza when you have this thing";
-	name = "Infinite Pizza Box";
-	pixel_y = 8
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/circuit/green,
-/area/ruin/space/has_grav/powered/gaming)
-"ne" = (
-/obj/structure/table/wood/poker,
-/obj/item/reagent_containers/food/snacks/chips{
-	pixel_x = -5;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"oa" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/hand_labeler,
-/obj/item/radio,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"pB" = (
-/obj/structure/chair/sofa/left{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"qi" = (
-/obj/structure/chair/sofa/right,
-/obj/structure/chair/sofa/right,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"qF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"qL" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"qO" = (
-/obj/machinery/teleport/hub,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"rq" = (
-/obj/structure/sink{
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
-"tr" = (
-/obj/structure/table/wood,
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c1{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c10{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_x = 5;
-	pixel_y = 14
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c50{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c100{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -10;
-	pixel_y = 13
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"tA" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/breath,
-/obj/item/tank/internals/oxygen,
-/obj/item/clothing/suit/space/nasavoid/old,
-/obj/item/clothing/head/helmet/space/nasavoid/old,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"tB" = (
-/obj/item/storage/pill_bottle/dice{
-	pixel_x = -7
-	},
-/obj/structure/table/wood,
-/obj/item/hourglass{
-	pixel_x = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"tR" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = 10;
-	pixel_y = 24
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"vI" = (
-/obj/structure/table/wood/poker,
-/obj/item/storage/pill_bottle/dice,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"vK" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
-"xq" = (
-/obj/machinery/door/airlock/vault{
-	id_tag = "snack_vault";
-	name = "Secure Snack Storage";
-	req_access_txt = "200"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "snack_vault";
-	layer = 2.75;
-	name = "Secure Snack Storage blast door"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"xM" = (
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 9;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 4;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -2;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = -6;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 10;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 11;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -10;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
-	pixel_x = -10;
-	pixel_y = 3
-	},
-/turf/open/floor/circuit,
-/area/ruin/space/has_grav/powered/gaming)
-"xN" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
-"xR" = (
-/obj/machinery/vending/boozeomat/all_access,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
-"yq" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Aw" = (
-/obj/machinery/computer/teleporter{
-	dir = 1;
-	id = null
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"AD" = (
-/obj/machinery/door/airlock/hatch{
-	desc = "All who enter shall be greeted with snacks and a great time";
-	name = "The Game Room"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"BU" = (
-/obj/machinery/vending/games,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Ca" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Co" = (
-/obj/structure/chair/sofa{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Cr" = (
-/obj/structure/chair/sofa/right{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"DZ" = (
-/obj/structure/table/wood/poker,
-/obj/item/instrument/piano_synth,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"EP" = (
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Gj" = (
-/turf/closed/wall/mineral/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"Ha" = (
-/obj/structure/sign/warning/securearea{
-	desc = "A warning sign which reads 'SECURE SNACK STORAGE'.";
-	name = "Secure Snack Storage";
-	pixel_x = 32
-	},
-/obj/item/card/id/away{
-	desc = "A key to the Secure Snack Storage";
-	name = "gamer id card"
-	},
-/obj/item/card/id/away{
-	desc = "A key to the Secure Snack Storage";
-	name = "gamer id card"
-	},
-/obj/item/card/id/away{
-	desc = "A key to the Secure Snack Storage";
-	name = "gamer id card"
-	},
-/obj/item/card/id/away{
-	desc = "A key to the Secure Snack Storage";
-	name = "gamer id card"
-	},
-/obj/structure/rack,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"IN" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/syndicate,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Jg" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"JG" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/uno{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/toy/turn_tracker{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"JK" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"Mc" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"Nt" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_x = -32;
-	req_access_txt = "0";
-	use_power = 0
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"NS" = (
-/obj/structure/mirror{
-	pixel_y = 32
-	},
-/obj/structure/sink{
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"OA" = (
-/obj/structure/chair/sofa/left,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"QN" = (
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = -9;
-	pixel_y = -8
-	},
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = -4;
-	pixel_y = -9
-	},
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = 2;
-	pixel_y = -9
-	},
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = 6;
-	pixel_y = -9
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -10;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -7;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/snacks/no_raisin{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/turf/open/floor/circuit,
-/area/ruin/space/has_grav/powered/gaming)
-"Rs" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/toy/cards/deck{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"Sp" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"Sw" = (
-/obj/item/kitchen/knife{
-	pixel_x = -5
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 7
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/powered/gaming)
-"Ta" = (
-/turf/template_noop,
-/area/template_noop)
-"TQ" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"Ub" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/button/door{
-	id = "snack_vault";
-	name = "Secure Snack Storage Lockdown";
-	pixel_x = -22;
-	pixel_y = -21;
-	req_access_txt = "200"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
-"Vs" = (
-/obj/machinery/vending/clothing,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Vw" = (
-/obj/machinery/vending/cigarette/syndicate,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"VQ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"VX" = (
-/obj/item/stack/sheet/mineral/wood/fifty,
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/storage/box/lights/mixed,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered/gaming)
-"We" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -7
-	},
-/obj/item/pen{
-	pixel_x = -8;
-	pixel_y = -2
-	},
-/obj/item/pen{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/item/pen{
-	pixel_x = -9;
-	pixel_y = 8
-	},
-/obj/item/folder/yellow{
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/pen{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/item/pen{
-	pixel_x = 9;
-	pixel_y = -2
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"WE" = (
-/obj/structure/table/wood,
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5
-	},
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/stack/spacecash/c1000{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/toy/cards/deck{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"WP" = (
-/obj/machinery/vending/autodrobe/all_access,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Xh" = (
-/obj/machinery/computer/arcade/battle,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Ze" = (
-/mob/living/simple_animal/bot/medbot{
-	desc = "A little medical robot. It has pizza grease stains on the chassis";
-	name = "Gary G.";
-	radio_key = null;
-	stationary_mode = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"Zi" = (
-/obj/structure/closet/wardrobe/mixed,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"ZB" = (
-/obj/item/beacon,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
 
 (1,1,1) = {"
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (2,1,1) = {"
-Ta
-Ta
-Ta
-Ta
-Gj
-gh
-gh
-gh
-Gj
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (3,1,1) = {"
-Ta
-Ta
-Ta
-Gj
-Gj
-Xh
-eZ
-ce
-Gj
-Ta
-Gj
-Gj
-AD
-Gj
-Gj
-Gj
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+fS
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (4,1,1) = {"
-Ta
-Ta
-Gj
-Gj
-tR
-yq
-yq
-yq
-Gj
-Gj
-Gj
-IN
-EP
-Ca
-Aw
-Gj
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+aa
+fS
+fS
+CY
+nr
+nr
+nr
+CY
+fS
+fS
+aa
+aa
+aa
+aa
+fS
+fS
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (5,1,1) = {"
-Ta
-Gj
-Gj
-hV
-EP
-EP
-EP
-EP
-BU
-fZ
-Gj
-oa
-EP
-ZB
-fu
-Gj
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+fS
+CY
+CY
+CY
+CY
+qS
+rN
+ku
+CY
+fS
+CY
+CY
+Ba
+CY
+CY
+CY
+fS
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (6,1,1) = {"
-Ta
-Gj
-Rs
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-lZ
-tA
-EP
-Ca
-qO
-Gj
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+fS
+CY
+rg
+ui
+MO
+KX
+KX
+KX
+CY
+CY
+CY
+OW
+Lk
+mG
+cx
+CY
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (7,1,1) = {"
-Ta
-Gj
-ch
-EP
-qi
-ie
-Cr
-EP
-EP
-EP
-lZ
-lZ
-Sp
-Gj
-Gj
-Gj
-Gj
-Ta
-Ta
+aa
+aa
+aa
+aa
+fS
+CY
+Qw
+Lk
+Lk
+Lk
+Lk
+Lk
+Jg
+rV
+CY
+hE
+Lk
+Gm
+Fv
+CY
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (8,1,1) = {"
-Ta
-gh
-JG
-EP
-lG
-ne
-Co
-EP
-EP
-EP
-EP
-EP
-EP
-Nt
-EP
-eN
-gh
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+CY
+OS
+Lk
+Lk
+Lk
+Lk
+Lk
+Lk
+Lk
+Pj
+NB
+Lk
+mG
+dv
+CY
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (9,1,1) = {"
-Ta
-gh
-We
-EP
-lG
-ie
-Co
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-eN
-gh
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+CY
+ow
+Lk
+cM
+na
+kk
+Lk
+Lk
+Lk
+Pj
+Pj
+jp
+CY
+CY
+CY
+CY
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (10,1,1) = {"
-Ta
-gh
-tB
-EP
-lG
-DZ
-Co
-EP
-EP
-Ze
-EP
-EP
-EP
-EP
-EP
-eN
-gh
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+nr
+gZ
+Lk
+zL
+Qb
+HR
+Lk
+Lk
+Lk
+Lk
+Oy
+Lk
+Np
+Lk
+io
+nr
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (11,1,1) = {"
-Ta
-gh
-WE
-EP
-OA
-vI
-pB
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-eN
-gh
-Ta
-Ta
+aa
+aa
+aa
+aa
+aa
+nr
+ZI
+Lk
+zL
+na
+HR
+Lk
+Lk
+Lk
+Lk
+Oy
+Lk
+Lk
+Lk
+io
+nr
+Mk
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (12,1,1) = {"
-Ta
-Gj
-tr
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-EP
-WP
-Vs
-Zi
-EP
-VQ
-Gj
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+nr
+vh
+Lk
+zL
+HD
+HR
+Lk
+Lk
+xJ
+Lk
+Oy
+Lk
+Lk
+Lk
+io
+nr
+Mk
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (13,1,1) = {"
-Ta
-Gj
-Gj
-Jg
-EP
-EP
-EP
-VQ
-kM
-kQ
-Ha
-Gj
-Gj
-Gj
-Mc
-Gj
-Gj
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+nr
+Xw
+Lk
+JU
+Oh
+Qm
+Lk
+Lk
+Lk
+Lk
+Oy
+Lk
+Lk
+Lk
+io
+nr
+Mk
+Mk
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
 "}
 (14,1,1) = {"
-Ta
-Ta
-Gj
-rq
-vK
-vK
-vK
-Gj
-Gj
-xq
-Gj
-Gj
-qL
-Gj
-NS
-di
-Gj
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+CY
+pk
+Lk
+Lk
+Lk
+Lk
+Lk
+Lk
+Lk
+Lk
+bc
+Qk
+Kv
+Lk
+Xt
+CY
+oA
+oA
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
 "}
 (15,1,1) = {"
-Ta
-Ta
-Gj
-xR
-xN
-Sw
-ko
-Gj
-xM
-Ub
-jl
-Gj
-TQ
-Mc
-di
-di
-gh
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+CY
+CY
+Ph
+Lk
+Lk
+Lk
+Xt
+ex
+SE
+os
+CY
+CY
+CY
+Za
+CY
+CY
+oA
+oA
+oA
+Mk
+Mk
+aa
+aa
+aa
+aa
 "}
 (16,1,1) = {"
-Ta
-Ta
-Gj
-Gj
-gh
-gh
-Gj
-Gj
-iI
-qF
-JK
-Gj
-mt
-Gj
-VX
-Vw
-Gj
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+oA
+CY
+KG
+Wn
+Wn
+Wn
+CY
+CY
+tM
+CY
+CY
+OG
+CY
+gA
+gE
+CY
+oA
+oA
+oA
+Mk
+Mk
+aa
+aa
+aa
+aa
 "}
 (17,1,1) = {"
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Gj
-cD
-mY
-QN
-Gj
-Gj
-Gj
-Gj
-Gj
-Gj
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+oA
+CY
+Lf
+iw
+UP
+VW
+CY
+GD
+PX
+ZL
+CY
+nl
+Ur
+gE
+gE
+CY
+oA
+oA
+oA
+oA
+Mk
+aa
+aa
+aa
+aa
 "}
 (18,1,1) = {"
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Gj
-Gj
-Gj
-Gj
-Gj
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+oA
+CY
+CY
+CY
+CY
+CY
+CY
+cF
+RZ
+aD
+CY
+BX
+CY
+FS
+Ks
+CY
+oA
+oA
+wi
+oA
+oA
+aa
+aa
+aa
+aa
 "}
 (19,1,1) = {"
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
+aa
+aa
+aa
+aa
+Mk
+Mk
+oA
+oA
+oA
+oA
+oA
+CY
+ZP
+GJ
+le
+CY
+CY
+CY
+CY
+CY
+CY
+oA
+oA
+oA
+oA
+oA
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+Mk
+Mk
+Mk
+wi
+oA
+oA
+oA
+CY
+CY
+CY
+CY
+CY
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+Mk
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+oA
+oA
+oA
+oA
+oA
+oA
+CR
+tm
+oA
+oA
+wi
+oA
+oA
+oA
+oA
+wi
+oA
+oA
+Mk
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+oA
+wi
+oA
+oA
+oA
+GR
+jX
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+oA
+oA
+oA
+oA
+oA
+SB
+ti
+oA
+TM
+bZ
+oA
+oA
+wi
+oA
+oA
+oA
+oA
+wi
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+oA
+oA
+oA
+oA
+oA
+oA
+GR
+oA
+oA
+nE
+Mk
+Mk
+bZ
+nE
+oA
+wi
+oA
+oA
+aa
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+Mk
+Mk
+wi
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+Mk
+Mk
+Mk
+oA
+oA
+oA
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+Mk
+oA
+oA
+oA
+oA
+oA
+wi
+oA
+oA
+Mk
+Mk
+bZ
+nE
+bZ
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+Mk
+Mk
+oA
+oA
+oA
+oA
+oA
+oA
+oA
+Mk
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+Mk
+Mk
+oA
+oA
+Mk
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Mk
+Mk
+Mk
+Mk
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
