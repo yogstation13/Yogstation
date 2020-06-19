@@ -384,9 +384,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		co2comp = max(removed.get_moles(/datum/gas/carbon_dioxide)/combined_gas, 0)
 		n2ocomp = max(removed.get_moles(/datum/gas/nitrous_oxide)/combined_gas, 0)
 		n2comp = max(removed.get_moles(/datum/gas/nitrogen)/combined_gas, 0)
-		pluoxiumcomp = max(removed.gases[/datum/gas/pluoxium][MOLES]/combined_gas, 0)
-		tritiumcomp = max(removed.gases[/datum/gas/tritium][MOLES]/combined_gas, 0)
-		bzcomp = max(removed.gases[/datum/gas/bz][MOLES]/combined_gas, 0)
+		pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
+		tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
+		bzcomp = max(removed.get_moles(/datum/gas/bz][MOLES)/combined_gas, 0)
 		
 		if(pluoxiumcomp >= 0.15)
 			pluoxiumbonus = 1	// Bad code probably /shrug
