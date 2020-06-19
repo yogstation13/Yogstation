@@ -524,9 +524,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/zombie
 	name = "Zombie"
-	antag_datum = /datum/round_event/ghost_role/zombie
 	antag_flag = "ROLE_ZOMBIE"
-	antag_flag_override = ROLE_ALIEN
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain", "Chief Medical Officer")
 	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
