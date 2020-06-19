@@ -18,7 +18,7 @@
 	..()
 	if (used)
 		cut_overlays()
-		add_overlay(image('icons/obj/items_and_weapons.dmi', icon_state = "Reverse_Overlay"))
+		add_overlay(image('icons/obj/items_and_weapons.dmi', icon_state = "reverse_overlay"))
 
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))
@@ -36,6 +36,9 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, firer)
 	s.start()
+	var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+	p.set_up(12, 1, user)
+	p.start()
 	//next, we move the gun to the user and the card to the firer
 	to_chat(user, "The [src] vanishes from your hands, and [target_gun] appears in them!")
 	to_chat(firer, "<span class='warning'>[target_gun] vanishes from your hands, and a [src] appears in them!</span>")
