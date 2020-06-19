@@ -26,6 +26,20 @@ Passive gate is similar to the regular pump except:
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
 
+
+/obj/machinery/atmospherics/components/binary/passive_gate/CtrlClick(mob/user)
+	if(can_interact(user))
+		on = !on
+		update_icon()
+	return ..()
+
+/obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
+	if(can_interact(user))
+		target_pressure = MAX_OUTPUT_PRESSURE
+		update_icon()
+	return ..()
+
+
 /obj/machinery/atmospherics/components/binary/passive_gate/Destroy()
 	SSradio.remove_object(src,frequency)
 	return ..()
@@ -91,7 +105,7 @@ Passive gate is similar to the regular pump except:
 																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_pump", name, 335, 115, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosPump", name, 335, 115, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/ui_data()

@@ -1339,7 +1339,7 @@
 
 /datum/reagent/medicine/burnmix
 	name = "BurnMix"
-	description = "Take in moderation. Heals damage at a snail's pace. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
+	description = "Take in moderation. Initially heals damage at a snail's pace until overdosed. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
 	reagent_state = LIQUID
 	color = "#BD328A" //  R 189 G 50 B 138 , Medium Red Violet , Hue of Violet 
 	overdose_threshold = 15
@@ -1355,106 +1355,134 @@
 	var/heal_roll = pick(-0.1,-0.2) // Base heal, Non OD
 	var/slur = 10 // Slur 10 sets up for future slur gains as real effects seem to start at 30
 	var/jitter = 0
-	if(M.health <= M.crit_threshold)
-		heal_roll = 0 // Burnmix will not heal anyone inside of crit without epipen or morhpine
-	if(prob(10))
-		heal_roll = 0 // Burnmix has a chance not to basic heal at all
-	if(holder.has_reagent(/datum/reagent/medicine/epinephrine)) // start IF has Epinephrine in body
-		jitter += 5
-		slur += 25
-		heal_roll -= 0.15
-		if(prob(15))
-			M.losebreath++
-			if(prob(80))
-				M.adjustStaminaLoss(1.25*REM, 0) // end IF has Epinephrine in body
-
-	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin)) // start IF has Perfluorodecalin in body
-		jitter += 5
-		slur += 25
-		M.drowsyness += 0.5
-		heal_roll -= 0.2 // start IF has Perfluorodecalin in body
-
-	if(prob(10)) // Start of base probability effects
-		var/tox_roll = pick(1,-1) // Rolls for damage or healing
-		if(tox_roll == 1)
-			M.emote("moan")
-		if(tox_roll == -1)
-			M.emote("twitch")
-		if(prob(90))
-			M.adjustToxLoss(tox_roll*REM, 0)
-		M.Jitter(jitter)
-	if(prob(1)) // Last set of non OD probability effects
-		M.Dizzy(jitter)
-		M.apply_effect(slur, EFFECT_SLUR) // End of base probability effects
-	if(heal_roll < 0) // Healing payload after calculations
-		M.adjustFireLoss(heal_roll*REM, 0) 
-		M.adjustBruteLoss(heal_roll*REM, 0) 
+	start_effect(M, heal_roll, slur, jitter)
+	epinephrine_effect(M, heal_roll, slur, jitter)
+	perfluorodecalin_effect(M, heal_roll, slur, jitter)
+	base_effect(M, heal_roll, slur, jitter)
 	..()
 	. = 1
-
-/datum/reagent/drug/burnmix/overdose_start(mob/living/M)
-	to_chat(M, "<span class='userdanger'>You feel the BurnMix increase in potency.</span>")
-
 
 /datum/reagent/medicine/burnmix/overdose_process(mob/living/M)
 	var/heal_roll = pick(-0.2,-0.4)
 	var/slur = 20
 	var/jitter = 2
-	if(M.health <= M.crit_threshold)
-		heal_roll -= 0.2 // Burnmix in overdose will heal inside of crit without epipen or perfluorodecalin. Being in crit means a roll for either no base healing or half reduction to base heal.
-	if(prob(10))
-		heal_roll = 0 // Burnmix has a chance not to basic heal at all
-	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
-		heal_roll -= 0.35
-		jitter += 15
-		slur += 25
-		if(prob(25))
-			M.losebreath++
-			M.adjustStaminaLoss(2.5*REM, 0)
-			if(prob(80))
-				M.adjustToxLoss(pick(0.5,0.25,0,0,-0.25)*REM, 0)
+	start_effect(M, heal_roll, slur, jitter)
+	perfluorodecalin_effect(M, heal_roll, slur, jitter)
+	epinephrine_effect(M, heal_roll, slur, jitter)
+	combined_effect(M, heal_roll, slur, jitter) // OD allows for the combined effect
+	base_effect(M, heal_roll, slur, jitter) 
+	..()
+	. = 1
 
-	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin))
-		heal_roll -= 0.4
-		jitter += 15
-		slur += 25
-		if(prob(25))
-			M.adjustToxLoss(0.5*REM, 0)
-			M.adjustToxLoss(pick(0,-0.25), 0) // gives a chance to negate half perfluorodecalin tox damage
+/datum/reagent/drug/burnmix/overdose_start(mob/living/M, heal_roll , slur , jitter)
+	to_chat(M, "<span class='userdanger'>You feel the BurnMix increase in potency.</span>")
+	..()
+	. = 1
 
-	if(holder.has_reagent(holder.has_reagent(/datum/reagent/medicine/epinephrine) && /datum/reagent/medicine/perfluorodecalin)) // start IF both drugs present
-		if(prob(0.5)) // Should be 1 in 200 chance of a 1 in 3 chance to roll for faint if both epinephrine and perfluorodecalin are present
-			M.emote((pick("scream","faint","gasp")))
-		if(prob(60)) // Original edit did too much brain damage. Moved to both drug effects. Was default OD effect
-			M.adjustOrganLoss(ORGAN_SLOT_BRAIN,pick(1,-1))
-		if(prob(30))
-			slur += 25
-		if(prob(30))
-			jitter = 50
-		if(prob(30))
-			M.drowsyness += 0.5
-			if(prob(2))
-				to_chat(M, "<span class ='notice'>Your fingers spasm!</span>")
-				M.drop_all_held_items() // end IF both drugs present
+/datum/reagent/medicine/burnmix/proc/start_effect(mob/living/carbon/M, heal_roll, slur, jitter)
+	if(!overdosed)
+		if(M.health <= M.crit_threshold)
+			heal_roll = 0 // Burnmix will not heal anyone inside of crit without epipen or morhpine
+		if(prob(10))
+			heal_roll = 0 // Burnmix has a chance not to basic heal at all
+	else if(overdosed)
+		if(M.health <= M.crit_threshold)
+			heal_roll -= 0.2 // Burnmix in overdose will heal inside of crit without epipen or perfluorodecalin. Being in crit means a roll for either no base healing or half reduction to base heal.
+		if(prob(10))
+			heal_roll = 0 // Burnmix has a chance not to basic heal at all
+	return
 
-	if(prob(40)) // start last set of OD probability effects
-		M.emote(pick("twitch","drool","moan","giggle","spin"))
+/datum/reagent/medicine/burnmix/proc/base_effect(mob/living/carbon/M, heal_roll, slur, jitter)
+	if(!overdosed)
+		if(prob(10)) // Start of base probability effects
+			var/tox_roll = pick(1,-1) // Rolls for damage or healing
+			if(tox_roll == 1)
+				M.emote("moan")
+			if(tox_roll == -1)
+				M.emote("twitch")
+			if(prob(90))
+				M.adjustToxLoss(tox_roll*REM, 0)
+			M.Jitter(jitter)
+		if(prob(1)) // Last set of non OD probability effects
+			M.Dizzy(jitter)
+			M.apply_effect(slur, EFFECT_SLUR) // End of base probability effects
+		if(heal_roll < 0) // Healing payload after calculations
+			M.adjustFireLoss(heal_roll*REM, 0) 
+			M.adjustBruteLoss(heal_roll*REM, 0) 
+	
+	else if(overdosed)
+		if(prob(40)) // start last set of OD probability effects
+			M.emote(pick("twitch","drool","moan","giggle","spin"))
 		if(prob(60))
 			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0,1,2,2.5,-1,-2))
 		if(prob(15))
 			M.set_drugginess(rand(2,6))
 		M.Jitter(jitter)
-	if(prob(40))	
-		M.adjustToxLoss(pick(1,-1)*REM, 0)
-	if(prob(1))
-		M.Dizzy(jitter) // end last set of OD probability effects
-	M.Jitter(jitter) // OD slur and jitter after calculations
-	M.apply_effect(slur, EFFECT_SLUR)
-	if(heal_roll < 0) // OD Healing payload after calculations
-		M.adjustFireLoss(heal_roll*REM, FALSE, FALSE, BODYPART_ORGANIC)
-		M.adjustBruteLoss(heal_roll*REM, 0)
-	..()
-	. = 1
+		if(prob(40))	
+			M.adjustToxLoss(pick(1,-1)*REM, 0)
+		if(prob(1))
+			M.Dizzy(jitter) // end last set of OD probability effects
+		M.Jitter(jitter) // OD slur and jitter after calculations
+		M.apply_effect(slur, EFFECT_SLUR)
+		if(heal_roll < 0) // OD Healing payload after calculations
+			M.adjustFireLoss(heal_roll*REM, FALSE, FALSE, BODYPART_ORGANIC)
+			M.adjustBruteLoss(heal_roll*REM, 0)
+	return
+
+/datum/reagent/medicine/burnmix/proc/perfluorodecalin_effect(mob/living/carbon/M, heal_roll, slur, jitter)
+	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin))
+		if(!overdosed)
+			jitter += 5
+			slur += 25
+			M.drowsyness += 0.5
+			heal_roll -= 0.2
+		else if(overdosed)
+			heal_roll -= 0.4
+			jitter += 15
+			slur += 25
+			if(prob(25))
+				M.adjustToxLoss(0.5*REM, 0)
+				M.adjustToxLoss(pick(0,-0.25), 0) // gives a chance to negate half perfluorodecalin tox damage
+	return
+
+/datum/reagent/medicine/burnmix/proc/epinephrine_effect(mob/living/carbon/M, heal_roll, slur, jitter)
+	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
+		if(!overdosed)
+			jitter += 5
+			slur += 25
+			heal_roll -= 0.15
+			if(prob(15))
+				M.losebreath++
+				if(prob(80))
+					M.adjustStaminaLoss(1.25*REM, 0) // end IF has Epinephrine in body
+		else if(overdosed)
+			heal_roll -= 0.35
+			jitter += 15
+			slur += 25
+			if(prob(25))
+				M.losebreath++
+				M.adjustStaminaLoss(2.5*REM, 0)
+				if(prob(80))
+					M.adjustToxLoss(pick(0.5,0.25,0,0,-0.25)*REM, 0)
+	return
+
+/datum/reagent/medicine/burnmix/proc/combined_effect(mob/living/carbon/M, heal_roll, slur, jitter)
+	if(holder.has_reagent(holder.has_reagent(/datum/reagent/medicine/epinephrine) && /datum/reagent/medicine/perfluorodecalin))
+		if(overdosed)
+			if(prob(0.5)) // Should be 1 in 200 chance of a 1 in 3 chance to roll for faint if both epinephrine and perfluorodecalin are present
+				M.emote((pick("scream","faint","gasp")))
+			if(prob(60)) // Original edit did too much brain damage. Moved to both drug effects. Was default OD effect
+				M.adjustOrganLoss(ORGAN_SLOT_BRAIN,pick(1,-1))
+			if(prob(30))
+				slur += 25
+			if(prob(30))
+				jitter = 50
+			if(prob(30))
+				M.drowsyness += 0.5
+				if(prob(2))
+					to_chat(M, "<span class ='notice'>Your fingers spasm!</span>")
+					M.drop_all_held_items() // end IF both drugs present
+	return
 
 /datum/reagent/medicine/burnmix/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
 	if(iscarbon(M))
@@ -1472,8 +1500,8 @@
 					RNG_TEXT = "made things worse!"
 				if(RNG_ROLL != 0)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-				M.adjustBruteLoss(RNG_ROLL*reac_volume)
-				M.adjustFireLoss(RNG_ROLL*reac_volume)
+					M.adjustBruteLoss(RNG_ROLL*reac_volume)
+					M.adjustFireLoss(RNG_ROLL*reac_volume)
 				M.visible_message("<span class='warning'>[M]'s body reacts with the medicine. It seemed to have [RNG_TEXT]!</span>")
 	..()
 

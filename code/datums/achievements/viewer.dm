@@ -15,7 +15,7 @@
 /datum/achievement_browser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "achievements", "achievements", 450, 450, master_ui, state)
+		ui = new(user, src, ui_key, "Achievements", "achievements", 450, 450, master_ui, state)
 		ui.open()
 
 /datum/achievement_browser/ui_data(mob/user)
@@ -29,7 +29,7 @@
 			"desc" = (!achievement.hidden || achievements[achievement]) ? achievement.desc : "???"
 		)
 		data["achievements"] += list(A)
-	
+
 	return data
 
 /client/verb/checkachievements()

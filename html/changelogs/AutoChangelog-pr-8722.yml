@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes crate pricing that could be exploited for infinite money"

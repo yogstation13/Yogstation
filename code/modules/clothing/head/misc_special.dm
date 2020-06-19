@@ -184,7 +184,7 @@
 /obj/item/clothing/head/wig
 	name = "wig"
 	desc = "A bunch of hair without a head attached."
-	icon_state = ""
+	icon_state = "pwig"
 	item_state = "pwig"
 	flags_inv = HIDEHAIR
 	var/hair_style = "Very Long Hair"
@@ -197,6 +197,7 @@
 
 /obj/item/clothing/head/wig/update_icon()
 	cut_overlays()
+	icon_state = ""
 	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
 	if(!S)
 		icon_state = "pwig"
@@ -227,6 +228,7 @@
 	if(adjustablecolor)
 		hair_color = input(usr,"","Choose Color",hair_color) as color|null
 	update_icon()
+
 
 /obj/item/clothing/head/wig/random/Initialize(mapload)
 	hair_style = pick(GLOB.hair_styles_list - "Bald") //Don't want invisible wig
