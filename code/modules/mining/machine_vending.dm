@@ -241,7 +241,6 @@
 	if(prob(50 / severity) && severity < 3)
 		qdel(src)
 
-
 /****************Golem Point Vendor**************************/
 
 /obj/machinery/mineral/equipment_vendor/golem
