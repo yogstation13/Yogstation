@@ -669,6 +669,9 @@
 		to_chat(user, "<span class='warning'>[M] is dead!</span>")
 		return
 	var/mob/living/simple_animal/SM = M
+	if(SM.status_flags & GODMODE)
+		to_chat(user, "<span class='warning'>[M] is too powerful to be made sentient!</span>")
+		return ..()
 	if(SM.sentience_type != sentience_type)
 		to_chat(user, "<span class='warning'>[src] won't work on [SM].</span>")
 		return
@@ -727,6 +730,9 @@
 		to_chat(user, "<span class='warning'>[M] is dead!</span>")
 		return ..()
 	var/mob/living/simple_animal/SM = M
+	if(SM.status_flags & GODMODE)
+		to_chat(user, "<span class='warning'>[M] is too powerful to be transfered into!</span>")
+		return ..()
 	if(SM.sentience_type != animal_type)
 		to_chat(user, "<span class='warning'>You cannot transfer your consciousness to [SM].</span>" )
 		return ..()
