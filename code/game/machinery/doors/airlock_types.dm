@@ -280,6 +280,7 @@
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
 	normal_integrity = 400
+	anim_parts = "rightu=11,0;left=-12,0;right=11,0"
 
 /obj/machinery/door/airlock/titanium/glass
 	normal_integrity = 350
