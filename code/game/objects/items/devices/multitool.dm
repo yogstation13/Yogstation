@@ -173,7 +173,7 @@
 /obj/item/multitool/ghetto
 	name = "ghetto multitool"
 	desc = "As crappy as it is, its still mostly the same as a standard issue Nanotrasen one."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "multitool_ghetto"
 	toolspeed = 0.5
 
