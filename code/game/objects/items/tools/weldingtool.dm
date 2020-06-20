@@ -380,7 +380,7 @@
 /obj/item/weldingtool/ghetto
 	name = "ghetto welding tool"
 	desc = "A MacGyver-style welder."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder_ghetto"
 	toolspeed = 0.5
 	materials = list(MAT_METAL=140)
