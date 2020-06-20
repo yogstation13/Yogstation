@@ -22,6 +22,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 /datum/controller/global_vars/Destroy()
 	//fuck off kevinz
+	SHOULD_CALL_PARENT(FALSE)
 	return QDEL_HINT_IWILLGC
 
 /datum/controller/global_vars/stat_entry()

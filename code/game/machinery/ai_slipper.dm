@@ -18,6 +18,7 @@
 	. += "<span class='notice'>It has <b>[uses]</b> uses of foam remaining.</span>"
 
 /obj/machinery/ai_slipper/power_change()
+	. = ..()
 	if(stat & BROKEN)
 		return
 	else

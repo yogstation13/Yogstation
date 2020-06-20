@@ -53,6 +53,7 @@
 		..()
 
 /obj/item/minigunpack/dropped(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	if(armed)
 		user.dropItemToGround(gun, TRUE)
 
