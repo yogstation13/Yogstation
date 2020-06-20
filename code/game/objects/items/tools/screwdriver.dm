@@ -109,3 +109,11 @@
 	desc = "An electrical screwdriver, designed to be both precise and quick."
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
+
+/obj/item/screwdriver/ghetto
+	name = "ghetto screwdriver"
+	desc = "Crude driver of screws. A primitive way to screw things up."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "screwdriver_ghetto"
+	toolspeed = 0.5
+	random_color = FALSE
