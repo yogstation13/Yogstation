@@ -113,7 +113,7 @@
 /obj/item/screwdriver/ghetto
 	name = "ghetto screwdriver"
 	desc = "Crude driver of screws. A primitive way to screw things up."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_ghetto"
 	toolspeed = 0.5
 	random_color = FALSE
