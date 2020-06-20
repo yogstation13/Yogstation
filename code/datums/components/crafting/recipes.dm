@@ -806,4 +806,51 @@
 	category = CAT_MISC
 	time = 30
 
+/datum/crafting_recipe/crowbar_ghetto
+	name = "ghetto crowbar"
+	result = /obj/item/crowbar/ghetto
+	reqs = list(/obj/item/stack/sheet/metal = 3) //just bang them together
+	time = 120
+	category = CAT_MISC
+
+/datum/crafting_recipe/wrench_ghetto
+	name = "ghetto wrench"
+	result = /obj/item/wrench/ghetto
+	reqs = list(/obj/item/stack/sheet/metal = 2)
+	time = 120
+	category = CAT_MISC
+
+/datum/crafting_recipe/wirecutters_ghetto
+	name = "ghetto wirecutters"
+	result = /obj/item/wirecutters/ghetto
+	reqs = list(/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/rods = 2)
+	time = 150
+	category = CAT_MISC
+
+/datum/crafting_recipe/welder_ghetto
+	name = "ghetto welding tool"
+	result = /obj/item/weldingtool/ghetto
+	reqs = list(/obj/item/tank/internals/emergency_oxygen = 1,
+				/obj/item/assembly/igniter = 1)
+	time = 160
+	category = CAT_MISC
+
+/datum/crafting_recipe/multitool_ghetto
+	name = "ghetto multitool"
+	result = /obj/item/multitool/ghetto
+	reqs = list(/obj/item/radio/headset = 1,
+				/obj/item/stack/sheet/metal = 2,
+				/obj/item/screwdriver)
+	time = 160
+	category = CAT_MISC
+
+/datum/crafting_recipe/screwdriver_ghetto
+	name = "ghetto screwdriver"
+	result = /obj/item/screwdriver/ghetto
+	reqs = list(/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/rods = 1)
+	time = 120
+	category = CAT_MISC 
+
 	
