@@ -91,7 +91,7 @@
 /obj/item/wirecutters/ghetto
 	name = "ghetto wirecutters"
 	desc = "Mind your fingers."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_ghetto"
 	toolspeed = 0.5
 	random_color = FALSE
