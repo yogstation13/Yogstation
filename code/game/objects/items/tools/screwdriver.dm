@@ -117,3 +117,9 @@
 	icon_state = "screwdriver_ghetto"
 	toolspeed = 0.5
 	random_color = FALSE
+
+/obj/item/screwdriver/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(prob(5))
+		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
+		qdel(src)
+		return
