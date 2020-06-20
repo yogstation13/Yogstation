@@ -169,3 +169,17 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool"
 	toolspeed = 0.1
+
+/obj/item/multitool/ghetto
+	name = "ghetto multitool"
+	desc = "As crappy as it is, its still mostly the same as a standard issue Nanotrasen one."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "multitool_ghetto"
+	toolspeed = 0.5
+
+/obj/item/multitool/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(prob(5))
+		user.rad_act(20)
+		to_chat(user, "<span class='userdanger'>[src] breaks down and emits dangerous rays!</span>")
+		src.tool_behaviour = 0
+		return
