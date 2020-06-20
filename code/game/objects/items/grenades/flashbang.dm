@@ -32,8 +32,8 @@
 	var/banged = M.soundbang_act(1, 20/max(1,distance), rand(0, 5))
 
 	// If missing two resists
-	if(flashed > 0 && banged > 0)
+	if(flashed && banged)
 		M.Paralyze(max(150/max(1,distance), 60))
 	// If missing one resist
-	else if (flashed > 0 || banged > 0)
+	else if (flashed || banged)
 		M.Paralyze(max(50/max(1, distance), 30))
