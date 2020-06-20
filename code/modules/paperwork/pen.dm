@@ -233,7 +233,6 @@
 	icon_state = "pen-charcoal"
 	colour = "dimgray"
 	font = CHARCOAL_FONT
-	custom_materials = null
 	grind_results = list(/datum/reagent/ash = 5)
 
 /datum/crafting_recipe/charcoal_stylus
