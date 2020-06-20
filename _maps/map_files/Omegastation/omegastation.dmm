@@ -39850,20 +39850,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"gPY" = (
-/obj/machinery/vr_sleeper,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar/atrium)
 "gSv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -86956,8 +86942,8 @@ aEX
 aAQ
 aAT
 aHT
-gPY
-gPY
+asg
+asg
 asg
 avj
 bdj

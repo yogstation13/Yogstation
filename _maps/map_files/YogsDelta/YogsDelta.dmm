@@ -82725,13 +82725,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"cwd" = (
-/obj/machinery/vr_sleeper,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "cwe" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -127390,13 +127383,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"twt" = (
-/obj/machinery/vr_sleeper,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "tCh" = (
 /turf/closed/wall,
 /area/science/misc_lab)
@@ -181149,7 +181135,7 @@ dtv
 aaa
 aaa
 cuL
-cwd
+bEz
 bCO
 bDK
 bEz
@@ -181406,7 +181392,7 @@ clA
 aad
 aad
 dtE
-cwd
+bEz
 cxx
 bDL
 bDL
@@ -181663,7 +181649,7 @@ clA
 aaa
 aaa
 dtE
-cwd
+bEz
 cxy
 cDN
 cwj
@@ -182691,7 +182677,7 @@ ajr
 aad
 aad
 dtE
-twt
+cwi
 cxy
 cDK
 bHz
@@ -182948,7 +182934,7 @@ aaa
 aaa
 aaa
 dtE
-twt
+cwi
 cxy
 cxy
 cxy
@@ -183205,7 +183191,7 @@ aad
 ajr
 aad
 dtE
-twt
+cwi
 cwi
 cwi
 cwi

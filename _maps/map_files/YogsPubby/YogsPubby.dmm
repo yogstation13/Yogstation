@@ -56937,10 +56937,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"dbi" = (
-/obj/machinery/vr_sleeper,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "dci" = (
 /obj/structure/rack,
 /obj/item/gun/energy/laser/practice,
@@ -102468,8 +102464,8 @@ iFu
 pcr
 avk
 aDV
-dbi
-dbi
+avk
+avk
 aDk
 aEd
 aFb

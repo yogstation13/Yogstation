@@ -3057,20 +3057,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/fitness/recreation)
-"aft" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/fitness/recreation)
 "afu" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/sillycup{
@@ -3118,20 +3104,6 @@
 /area/crew_quarters/fitness/recreation)
 "afx" = (
 /obj/structure/closet/athletic_mixed,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/fitness/recreation)
-"afy" = (
-/obj/structure/closet/boxinggloves,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -3726,25 +3698,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
-"agv" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera{
-	c_tag = "Fitness Room - Fore";
-	dir = 2
-	},
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -6649,13 +6602,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"alk" = (
-/obj/machinery/vr_sleeper,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "all" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -83248,10 +83194,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
-"etr" = (
-/obj/machinery/vr_sleeper,
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "eFN" = (
 /obj/structure/bodycontainer/crematorium{
 	dir = 1;
@@ -83792,6 +83734,24 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"kGo" = (
+/obj/structure/closet/boxinggloves,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Fitness Room - Fore";
+	dir = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/fitness/recreation)
 "kHf" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -84209,6 +84169,22 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"qya" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/fitness/recreation)
 "qBh" = (
 /obj/structure/table,
 /obj/item/paicard,
@@ -84332,20 +84308,6 @@
 /obj/structure/girder/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
-"sxy" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/easel,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/fitness/recreation)
 "sBu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1;
@@ -84561,13 +84523,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
-"vlx" = (
-/obj/machinery/vr_sleeper,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
 "vsg" = (
 /obj/machinery/cryopod,
 /turf/open/floor/plasteel/dark,
@@ -84791,6 +84746,23 @@
 "xVl" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
+"xYj" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/fitness/recreation)
 "ybn" = (
 /obj/structure/chair/comfy/brown,
 /obj/effect/landmark/blobstart,
@@ -119850,7 +119822,7 @@ hON
 tys
 hPi
 qca
-aft
+xYj
 agt
 ahf
 ahJ
@@ -120621,8 +120593,8 @@ vsg
 gLv
 dWB
 sGn
-acP
-agv
+qya
+agu
 kbS
 ahW
 aiS
@@ -121139,7 +121111,7 @@ afx
 agw
 ahj
 ahX
-sxy
+afA
 ajT
 afA
 amy
@@ -121392,7 +121364,7 @@ sGn
 sGn
 sGn
 sGn
-afy
+kGo
 agx
 ahk
 ahX
@@ -121909,11 +121881,11 @@ acP
 afz
 agz
 dBY
-vlx
-vlx
-etr
-alk
-alk
+ahl
+ahl
+ahg
+akN
+akN
 akN
 ahh
 aqk
