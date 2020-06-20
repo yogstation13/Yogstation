@@ -69,3 +69,10 @@
 	icon_state = "crowbar_ghetto"
 	force = 12 //same as large crowbar, but bulkier
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/crowbar/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(prob(2))
+		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
+		qdel(src)
+		return
+		...()
