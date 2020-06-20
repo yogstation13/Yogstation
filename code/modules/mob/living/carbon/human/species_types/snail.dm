@@ -14,7 +14,7 @@
 	siemens_coeff = 2 //snails are mostly water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP
 	sexes = FALSE //snails are hermaphrodites
-	var/shell_type = /obj/item/storage/backpack/snail
+	var/shell_type = /obj/item/storage/backpack/snail/species
 
 	mutanteyes = /obj/item/organ/eyes/snail
 	mutanttongue = /obj/item/organ/tongue/snail
@@ -46,7 +46,7 @@
 		C.doUnEquip(bag, TRUE, no_move = TRUE)
 		qdel(bag)
 
-/obj/item/storage/backpack/snail
+/obj/item/storage/backpack/snail/species
 	name = "snail shell"
 	desc = "Worn by snails as armor and storage compartment."
 	icon_state = "snailshell"
@@ -59,4 +59,13 @@
 
 /obj/item/storage/backpack/snail/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	
+/datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+
+	if(H.reagents.has_reagent(/datum/reagent/consumable/sodiumchloride))
+		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
+		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)

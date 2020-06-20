@@ -381,7 +381,7 @@ AI MODULES
 /obj/item/aiModule/core/full/asimovpp
 	name = "'Asimov++' Core AI Module"
 	law_id = "asimovpp"
-	
+
 /******************** CEO ********************/
 
 /obj/item/aiModule/core/full/ceo
@@ -393,13 +393,6 @@ AI MODULES
 /obj/item/aiModule/core/full/crewsimov
 	name = "'Crewsimov' Core AI Module"
 	law_id = "crewsimov"
-
-/******************** Corporate ********************/
-
-/obj/item/aiModule/core/full/corp
-	name = "'Corporate' Core AI Module"
-	law_id = "corporate"
-
 
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
@@ -451,6 +444,13 @@ AI MODULES
 /obj/item/aiModule/core/full/antimov
 	name = "'Antimov' Core AI Module"
 	law_id = "antimov"
+
+
+/******************** Cowboy *********************/
+
+/obj/item/aiModule/core/full/cowboy
+	name = "'Cowboy' Core AI Module"
+	law_id = "cowboy"
 
 
 /******************** Freeform Core ******************/

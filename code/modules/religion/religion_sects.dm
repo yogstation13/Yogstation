@@ -171,7 +171,7 @@
 	if(the_cell.charge < 3000)
 		to_chat(L,"<span class='notice'>[GLOB.deity] does not accept pity amounts of power.</span>")
 		return
-	adjust_favor(round(the_cell.charge/3000), L)
+	adjust_favor(round(the_cell.charge/1500), L)
 	to_chat(L, "<span class='notice'>You offer [the_cell]'s power to [GLOB.deity], pleasing them.</span>")
 	qdel(I)
 	return TRUE

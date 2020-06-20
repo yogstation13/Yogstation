@@ -42,8 +42,9 @@
 	//FREQ_BROADCASTING = 2
 
 /obj/item/radio/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	return BRUTELOSS
+	talk_into(user, pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"), null, SPAN_COMMAND)
+	use_command = TRUE // converts the radio in to use LOUD per poll.
+	return OXYLOSS // you die from oxygen loss by yelling the brain damage line at full volume
 
 /obj/item/radio/proc/set_frequency(new_frequency)
 	SEND_SIGNAL(src, COMSIG_RADIO_NEW_FREQUENCY, args)
@@ -51,10 +52,7 @@
 	frequency = add_radio(src, new_frequency)
 
 /obj/item/radio/proc/recalculateChannels()
-	channels = list()
-	translate_binary = FALSE
-	syndie = FALSE
-	independent = FALSE
+	resetChannels()
 
 	if(keyslot)
 		for(var/ch_name in keyslot.channels)
@@ -70,6 +68,13 @@
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
+
+// Used for cyborg override
+/obj/item/radio/proc/resetChannels()
+	channels = list()
+	translate_binary = FALSE
+	syndie = FALSE
+	independent = FALSE
 
 /obj/item/radio/proc/make_syndie() // Turns normal radios into Syndicate radios!
 	qdel(keyslot)
@@ -118,7 +123,7 @@
 				ui_height += 6 + channels.len * 21
 			else
 				ui_height += 24
-		ui = new(user, src, ui_key, "radio", name, ui_width, ui_height, master_ui, state)
+		ui = new(user, src, ui_key, "Radio", name, ui_width, ui_height, master_ui, state)
 		ui.open()
 
 /obj/item/radio/ui_data(mob/user)
@@ -373,11 +378,17 @@
 
 /obj/item/radio/borg
 	name = "cyborg radio"
+	subspace_transmission = TRUE
 	subspace_switchable = TRUE
 	dog_fashion = null
 
-/obj/item/radio/borg/Initialize(mapload)
+/obj/item/radio/borg/resetChannels()
 	. = ..()
+
+	var/mob/living/silicon/robot/R = loc
+	if(istype(R))
+		for(var/ch_name in R.module.radio_channels)
+			channels[ch_name] = 1
 
 /obj/item/radio/borg/syndicate
 	syndie = 1

@@ -309,7 +309,7 @@
 		
 /obj/item/seeds/fungus
 	name = "pack of cave fungus mycelium"
-	desc = "This mycelium grows into cave fungi, an edible variety of mushroom with anti-toxic properties."
+	desc = "This mycelium grows into cave fungi, an edible variety of mushroom with anti-toxic properties. The anti-toxic properties don't appear until fully grown."
 	icon_state = "seed-fungus"
 	species = "cave fungus"
 	plantname = "cave fungi"

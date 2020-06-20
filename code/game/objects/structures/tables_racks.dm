@@ -33,6 +33,16 @@
 	integrity_failure = 30
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
+	
+/obj/structure/table/Bumped(mob/living/carbon/human/H)
+	. = ..()
+	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || istype(H.dna.species, /datum/species/shadow/ling))
+		return ..()
+	if(prob(5))
+		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
+		H.emote("scream")
+		H.apply_damage(2, BRUTE, def_zone = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT))
+		H.Paralyze(20)
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
@@ -481,27 +491,38 @@
 
 /obj/structure/table/optable/Initialize()
 	. = ..()
-	for(var/direction in GLOB.cardinals)
-		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
+	for(var/direction in GLOB.alldirs)
+		computer = locate(/obj/machinery/computer/operating) in get_step(src, direction)
 		if(computer)
 			computer.table = src
 			break
 
+/obj/structure/table/optable/Destroy()
+	. = ..()
+	if(computer && computer.table == src)
+		computer.table = null
+
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
-	visible_message("<span class='notice'>[user] has laid [pushed_mob] on [src].</span>")
-	check_patient()
+	visible_message("<span class='notice'>[user] lays [pushed_mob] on [src].</span>")
+	get_patient()
 
-/obj/structure/table/optable/proc/check_patient()
-	var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
+/obj/structure/table/optable/proc/get_patient()
+	var/mob/living/carbon/M = locate(/mob/living/carbon) in loc
 	if(M)
 		if(M.resting)
 			patient = M
-			return TRUE
 	else
 		patient = null
+
+/obj/structure/table/optable/proc/check_eligible_patient()
+	get_patient()
+	if(!patient)
 		return FALSE
+	if(ishuman(patient) ||  ismonkey(patient))
+		return TRUE
+	return FALSE
 
 /*
  * Racks
