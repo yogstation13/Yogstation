@@ -87,3 +87,9 @@
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "wrench_ghetto"
 	toolspeed = 0.5
+
+/obj/item/wrench/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(prob(2))
+		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
+		qdel(src)
+		return
