@@ -65,7 +65,7 @@
 /obj/item/crowbar/ghetto
 	name = "ghetto crowbar"
 	desc = "A crude, self-wrought crowbar. Heavy."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_ghetto"
 	force = 12 //same as large crowbar, but bulkier
 	w_class = WEIGHT_CLASS_BULKY
