@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 		var/offer = alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
-		if(offer == "Yes" && offer_control(target))
+		if(offer == "Yes" && offer_control(occupant))
 			return
 		if(mob_occupant.loc != loc)
 			to_chat(occupant, "<span class='boldnotice'>You left the cryopod, sequence aborted!</span>")
@@ -282,14 +282,12 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 
 			for(var/M in owners)
 				var/datum/mind/own = M
-
 				to_chat(own.current, "<BR><span class='userdanger'>You get the feeling your target is no longer within reach. Time for Plan [pick("A","B","C","D","X","Y","Z")]. Objectives updated!</span>")
-				ob.owner.announce_objectives()
+				O.owner.announce_objectives()
 
 // This function can not be undone; do not call this unless you are sure
 /obj/machinery/cryopod/proc/despawn_occupant()
 	var/mob/living/mob_occupant = occupant
-
 	if(mob_occupant.mind && mob_occupant.mind.assigned_role)
 		//Handle job slot/tater cleanup.
 		var/job = mob_occupant.mind.assigned_role
@@ -328,7 +326,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		if(W.loc.loc && (( W.loc.loc == loc ) || (W.loc.loc == control_computer)))
 			continue//means we already moved whatever this thing was in
 			//I'm a professional, okay
-		for(var/T in typecache_cryoitems)
+		for(var/T in GLOB.typecache_cryoitems)
 			if(istype(W, T))
 				if(control_computer && control_computer.allow_items)
 					control_computer.frozen_items += W
@@ -351,7 +349,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))
-		if(I in typecache_cryoitems)
+		if(I in GLOB.typecache_cryoitems)
 			continue //Double safety check
 		qdel(I) //Cleanup anything left
 	open_machine()
