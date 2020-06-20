@@ -8,6 +8,29 @@
 GLOBAL_LIST_EMPTY(cryopods)
 GLOBAL_LIST_EMPTY(cryopod_computers)
 
+// These items are preserved when the process() despawn proc occurs.
+GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
+		/obj/item/hand_tele,
+		/obj/item/card/id/captains_spare,
+		/obj/item/aicard,
+		/obj/item/mmi,
+		/obj/item/paicard,
+		/obj/item/gun,
+		/obj/item/pinpointer,
+		/obj/item/clothing/shoes/magboots,
+		/obj/item/areaeditor/blueprints,
+		/obj/item/clothing/head/helmet/space,
+		/obj/item/clothing/suit/space,
+		/obj/item/clothing/suit/armor,
+		/obj/item/defibrillator/compact,
+		/obj/item/reagent_containers/hypospray/CMO,
+		/obj/item/clothing/accessory/medal/gold/captain,
+		/obj/item/clothing/gloves/krav_maga,
+		/obj/item/nullrod,
+		/obj/item/tank/jetpack,
+		/obj/item/documents,
+		/obj/item/nuke_core_container)))
+
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
@@ -152,29 +175,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
 
-	// These items are preserved when the process() despawn proc occurs.
-	var/static/list/preserve_items = list(
-		/obj/item/hand_tele,
-		/obj/item/card/id/captains_spare,
-		/obj/item/aicard,
-		/obj/item/mmi,
-		/obj/item/paicard,
-		/obj/item/gun,
-		/obj/item/pinpointer,
-		/obj/item/clothing/shoes/magboots,
-		/obj/item/areaeditor/blueprints,
-		/obj/item/clothing/head/helmet/space,
-		/obj/item/clothing/suit/space,
-		/obj/item/clothing/suit/armor,
-		/obj/item/defibrillator/compact,
-		/obj/item/reagent_containers/hypospray/CMO,
-		/obj/item/clothing/accessory/medal/gold/captain,
-		/obj/item/clothing/gloves/krav_maga,
-		/obj/item/nullrod,
-		/obj/item/tank/jetpack,
-		/obj/item/documents,
-		/obj/item/nuke_core_container
-	)
 	// These items will NOT be preserved
 	var/static/list/do_not_preserve_items = list (
 		/obj/item/mmi/posibrain
@@ -217,6 +217,12 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
+		var/offer = alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
+		if(offer == "Yes" && offer_control(target))
+			return
+		if(mob_occupant.loc != loc)
+			to_chat(occupant, "<span class='boldnotice'>You left the cryopod, sequence aborted!</span>")
+			return
 		if(mob_occupant.client)//if they're logged in
 			addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1)) // This gives them 30 seconds
 		else
@@ -295,21 +301,19 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	// Delete them from datacore.
 
 	var/announce_rank = null
-	for(var/datum/data/record/R in GLOB.data_core.medical)
+	for(var/medrecord in GLOB.data_core.medical)
+		var/datum/data/record/R = medrecord
 		if((R.fields["name"] == mob_occupant.real_name))
 			qdel(R)
-	for(var/datum/data/record/T in GLOB.data_core.security)
+	for(var/secrecord in GLOB.data_core.security)
+		var/datum/data/record/T = secrecord
 		if((T.fields["name"] == mob_occupant.real_name))
 			qdel(T)
-	for(var/datum/data/record/G in GLOB.data_core.general)
+	for(var/genrecord in GLOB.data_core.general)
+		var/datum/data/record/G = genrecord
 		if((G.fields["name"] == mob_occupant.real_name))
 			announce_rank = G.fields["rank"]
 			qdel(G)
-
-	for(var/obj/machinery/computer/cloning/cloner in world)
-		for(var/datum/data/record/R in cloner.records)
-			if(R.fields["name"] == mob_occupant.real_name)
-				cloner.records.Remove(R)
 
 	//Make an announcement and log the person entering storage.
 	if(control_computer)
@@ -324,7 +328,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		if(W.loc.loc && (( W.loc.loc == loc ) || (W.loc.loc == control_computer)))
 			continue//means we already moved whatever this thing was in
 			//I'm a professional, okay
-		for(var/T in preserve_items)
+		for(var/T in typecache_cryoitems)
 			if(istype(W, T))
 				if(control_computer && control_computer.allow_items)
 					control_computer.frozen_items += W
@@ -347,7 +351,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))
-		if(I in preserve_items)
+		if(I in typecache_cryoitems)
 			continue //Double safety check
 		qdel(I) //Cleanup anything left
 	open_machine()
@@ -400,9 +404,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	if(target == user)
 		visible_message("[user] starts climbing into the cryo pod.")
-		var/offer = alert(usr, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
-		if(offer == "Yes" && offer_control(target))
-			return
 	else
 		visible_message("[user] starts putting [target] into the cryo pod.")
 	close_machine(target)
@@ -411,7 +412,3 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	log_admin("<span class='notice'>[key_name(target)] entered a stasis pod.</span>")
 	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
-
-//Attacks/effects.
-/obj/machinery/cryopod/blob_act()
-	return //Sorta gamey, but we don't really want these to be destroyed.
