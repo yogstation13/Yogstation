@@ -466,6 +466,8 @@
 				return
 			var/index_ckey = query_list_messages.item[1]
 			var/index_key = query_list_messages.item[2]
+			if(!index_key)
+				index_key = index_ckey
 			output += "<a href='?_src_=holder;[HrefToken()];showmessageckey=[index_ckey]'>[index_key]</a><br>"
 		qdel(query_list_messages)
 	else if(!type && !target_ckey && !index)
