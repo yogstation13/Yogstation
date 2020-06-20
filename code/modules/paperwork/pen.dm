@@ -234,7 +234,7 @@
 	colour = "dimgray"
 	font = CHARCOAL_FONT
 	custom_materials = null
-	grind_results = list(/datum/reagent/ash = 5, /datum/reagent/cellulose = 10)
+	grind_results = list(/datum/reagent/ash = 5)
 
 /datum/crafting_recipe/charcoal_stylus
 	name = "Charcoal Stylus"
