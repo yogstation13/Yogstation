@@ -84,7 +84,7 @@
 /obj/item/wrench/ghetto
 	name = "ghetto wrench"
 	desc = "A crude, self-wrought wrench with common uses. Can be found in your hand."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench_ghetto"
 	toolspeed = 0.5
 
