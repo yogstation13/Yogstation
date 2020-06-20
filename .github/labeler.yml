@@ -16,7 +16,7 @@ DME Edit:
   - '**/*.dme'
 
 # Any .dmi changes
-Sprites / Icon Changes: 
+Sprites: 
   - '**/*.dmi'
 
 # Javascript changes
