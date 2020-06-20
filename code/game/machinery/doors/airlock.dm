@@ -1282,7 +1282,7 @@
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		air_update_turf(1)
-	sleep(2)
+	sleep(1)
 	density = TRUE
 	if(!air_tight)
 		density = TRUE
