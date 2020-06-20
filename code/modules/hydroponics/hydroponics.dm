@@ -443,7 +443,11 @@
 /obj/machinery/hydroponics/proc/applyChemicals(datum/reagents/S, mob/user)
 	if(myseed)
 		myseed.on_chem_reaction(S) //In case seeds have some special interactions with special chems, currently only used by vines
-
+	
+	// 50 units of mutagen or 100 units of radium or uranium guarantees a spceies mutation.
+	if(S.has_reagent(/datum/reagent/toxin/mutagen, 50) || S.has_reagent(/datum/reagent/uranium/radium, 100) || S.has_reagent(/datum/reagent/uranium, 100))
+		mutatespecie()
+	
 	// Requires 5 mutagen to possibly change species.// Poor man's mutagen.
 	if(S.has_reagent(/datum/reagent/toxin/mutagen, 5) || S.has_reagent(/datum/reagent/uranium/radium, 10) || S.has_reagent(/datum/reagent/uranium, 10))
 		switch(rand(100))
