@@ -376,3 +376,11 @@
 		reagents.add_reagent(/datum/reagent/fuel, 1)
 
 #undef WELDER_FUEL_BURN_INTERVAL
+
+/obj/item/weldingtool/ghetto
+	name = "ghetto welding tool"
+	desc = "A MacGyver-style welder."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "welder_ghetto"
+	toolspeed = 0.5
+	materials = list(MAT_METAL=140)
