@@ -384,3 +384,32 @@
 	icon_state = "welder_ghetto"
 	toolspeed = 0.5
 	materials = list(MAT_METAL=140)
+
+/obj/item/weldingtool/ghetto/switched_on(mob/user)
+	if(!status)
+		to_chat(user, "<span class='warning'>[src] can't be turned on while unsecured!</span>")
+		return
+	welding = !welding
+	if(welding)
+		if(get_fuel() >= 1)
+			to_chat(user, "<span class='notice'>You switch [src] on.</span>")
+			playsound(loc, acti_sound, 50, 1)
+			force = 15
+			if(prob(2))
+				var/datum/effect_system/reagents_explosion/e = new()
+				to_chat(user, "<span class='userdanger'>Shoddy construction causes [src] to blow the fuck up!</span>")
+				e.set_up(round(reagents.get_reagent_amount("welding_fuel") / 10, 1), get_turf(src), 0, 0)
+				e.start()
+				qdel(src)
+				return
+			damtype = "fire"
+			hitsound = 'sound/items/welder.ogg'
+			update_icon()
+			START_PROCESSING(SSobj, src)
+		else
+			to_chat(user, "<span class='warning'>You need more fuel!</span>")
+			switched_off(user)
+	else
+		to_chat(user, "<span class='notice'>You switch [src] off.</span>")
+		playsound(loc, deac_sound, 50, 1)
+		switched_off(user) 
