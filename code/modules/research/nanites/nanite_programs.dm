@@ -43,7 +43,7 @@
 	//Changing these values is handled by set_extra_setting()
 	//Viewing these values is handled by get_extra_setting()
 	//Copying these values is handled by copy_extra_settings_to()
-	VAR_FINAL/list/extra_settings = list()
+	var/list/extra_settings = list()
 
 /datum/nanite_program/triggered
 	use_rate = 0
