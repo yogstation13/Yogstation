@@ -438,8 +438,7 @@
 		var/search
 		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
-
-		index = text2num(index)
+		
 		switch(index)
 			if(1)
 				search = "^."
