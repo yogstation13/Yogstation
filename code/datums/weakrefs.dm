@@ -16,7 +16,7 @@
 /datum/weakref/New(datum/thing)
 	reference = REF(thing)
 
-/datum/weakref/Destroy()
+/datum/weakref/Destroy(force)
 	if(!force)
 		return QDEL_HINT_LETMELIVE	//Let BYOND autoGC thiswhen nothing is using it anymore.
 	var/datum/target = resolve()

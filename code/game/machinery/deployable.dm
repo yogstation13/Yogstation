@@ -41,10 +41,10 @@
 	. = ..()
 	if(locate(/obj/structure/barricade) in get_turf(mover))
 		return TRUE
-	else if(istype(mover, /obj/projectile))
+	else if(istype(mover, /obj/item/projectile))
 		if(!anchored)
 			return TRUE
-		var/obj/projectile/proj = mover
+		var/obj/item/projectile/proj = mover
 		if(proj.firer && Adjacent(proj.firer))
 			return TRUE
 		if(prob(proj_pass_rate))
