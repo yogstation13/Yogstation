@@ -1,0 +1,5 @@
+author: "Xoxeyos"
+delete-after: true 
+changes: 
+  - rscadd: "Added ROLE_ZOMBIE, adds zombie to preferences aswell."
+  - tweak: "Changed ROLE_ALIEN to ROLE_ZOMBIE"
