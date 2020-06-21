@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 /obj/item/shard/Crossed(atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
-		if(!(L.is_flying() || L.is_floating() || L.buckled))
+		if(!(L.is_flying() || L.buckled))
 			if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
 				playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
 			else

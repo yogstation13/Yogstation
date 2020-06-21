@@ -135,8 +135,8 @@
 
 /obj/effect/particle_effect/smoke/bad/Crossed(atom/movable/AM, oldloc)
 	. = ..()
-	if(istype(AM, /obj/projectile/beam))
-		var/obj/projectile/beam/B = AM
+	if(istype(AM, /obj/item/projectile/beam))
+		var/obj/item/projectile/beam/B = AM
 		B.damage = (B.damage/2)
 
 /datum/effect_system/smoke_spread/bad

@@ -515,9 +515,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	world.sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
-/client/Destroy()
-	return QDEL_HINT_HARDDEL_NOW
-
 /client/proc/set_client_age_from_db(connectiontopic)
 	if (IsGuestKey(src.key))
 		return

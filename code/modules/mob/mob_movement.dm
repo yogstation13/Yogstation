@@ -1,6 +1,3 @@
-/mob/CanPass(atom/movable/mover, turf/target)
-	return TRUE				//There's almost no cases where non /living mobs should be used in game as actual mobs, other than ghosts.
-
 //DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
 //See mob_movespeed.dm
 /mob/proc/movement_delay()	//update /living/movement_delay() if you change this

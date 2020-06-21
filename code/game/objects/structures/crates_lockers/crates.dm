@@ -216,7 +216,7 @@
 
 
 /obj/structure/closet/crate/magic/PopulateContents()
-	var/table = rand(1,12) //12 customized surprise mechanics™  for you all
+	var/table = rand(1,12) //12 customized surprise mechanicsï¿½  for you all
 	switch(table)
 		if(1)
 			new /obj/item/gun/magic/rune/icycle_rune(src)
@@ -290,6 +290,7 @@
 	desc = "Contains a completly random goat from Goat Tech Industries that may or may not break the laws of science!"
 
 /obj/structure/closet/crate/critter/exoticgoats/Initialize()
+	. = ..()
 	var/loot = rand(1,39) //39 different goats!
 	switch(loot)
 		if(1)
