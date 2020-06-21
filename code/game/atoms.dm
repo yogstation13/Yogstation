@@ -129,6 +129,7 @@
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_BE_PURE(TRUE)
 	if(mover.movement_type & UNSTOPPABLE)
 		return TRUE
 	. = CanAllowThrough(mover, target)
