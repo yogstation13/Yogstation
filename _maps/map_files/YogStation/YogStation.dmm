@@ -26591,6 +26591,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"bgr" = (
+/mob/living/simple_animal/cockroach{
+	desc = "Virtually unkillable.";
+	name = "Becquerel";
+	sentience_type = 5;
+	status_flags = 16
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "bgs" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -51389,14 +51398,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jhZ" = (
-/mob/living/simple_animal/cockroach{
-	desc = "Virtually unkillable.";
-	name = "Becquerel";
-	status_flags = 16
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jig" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -99792,7 +99793,7 @@ jkG
 nYI
 cQn
 dpF
-jhZ
+bgr
 ceE
 bPq
 aaa
