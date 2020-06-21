@@ -153,7 +153,7 @@
 		if("frequency")
 			if(freqlock)
 				return
-			var/tune = params["tune"]
+			var/tune
 			var/adjust = text2num(params["adjust"])
 			adjust -= frequency / 10
 
