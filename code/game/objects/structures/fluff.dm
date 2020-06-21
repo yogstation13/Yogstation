@@ -167,3 +167,13 @@
 	desc = "A crudely-made sign with the words 'fok of' written in some sort of red paint."
 	icon = 'icons/obj/fluff.dmi'
 	icon_state = "fokof"
+
+/obj/structure/fluff/big_chain
+	name = "giant chain"
+	desc = "A towering link of chains leading up to the ceiling."
+	icon = 'icons/effects/32x96.dmi'
+	icon_state = "chain"
+	layer = ABOVE_OBJ_LAYER
+	anchored = TRUE
+	density = TRUE
+	deconstructible = FALSE

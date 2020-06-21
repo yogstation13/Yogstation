@@ -426,7 +426,7 @@
 	name = "King Goat Boss Ruin"
 	id = "kinggoatboss"
 	description = "Abandon All Hope Ye Who Enter Here."
-	suffix = "kinggoatboss.dmm"
+	suffix = "lavaland_surface_kinggoatboss.dmm"
 	always_place = TRUE
 	allow_duplicates = FALSE
 
