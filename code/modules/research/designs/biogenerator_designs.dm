@@ -2,6 +2,8 @@
 ///////Biogenerator Designs ///////
 ///////////////////////////////////
 
+//Food//
+
 /datum/design/milk
 	name = "10 Milk"
 	id = "milk"
@@ -75,13 +77,15 @@
 	build_path = /obj/item/reagent_containers/food/snacks/monkeycube
 	category = list("initial", "Food")
 
+//Botanical Chemicals//
+
 /datum/design/ez_nut
 	name = "E-Z Nutrient"
 	id = "ez_nut"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 10)
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/ez
-	category = list("initial","Botany Chemicals")
+	category = list("initial","Botanical Chemicals")
 
 /datum/design/l4z_nut
 	name = "Left 4 Zed"
@@ -89,7 +93,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 20)
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/l4z
-	category = list("initial","Botany Chemicals")
+	category = list("initial","Botanical Chemicals")
 
 /datum/design/rh_nut
 	name = "Robust Harvest"
@@ -97,7 +101,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 25)
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/rh
-	category = list("initial","Botany Chemicals")
+	category = list("initial","Botanical Chemicals")
 
 /datum/design/weed_killer
 	name = "Weed Killer"
@@ -105,7 +109,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 50)
 	build_path = /obj/item/reagent_containers/glass/bottle/killer/weedkiller
-	category = list("initial","Botany Chemicals")
+	category = list("initial","Botanical Chemicals")
 
 /datum/design/pest_spray
 	name = "Pest Killer"
@@ -113,7 +117,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 50)
 	build_path = /obj/item/reagent_containers/glass/bottle/killer/pestkiller
-	category = list("initial","Botany Chemicals")
+	category = list("initial","Botanical Chemicals")
 
 /datum/design/botany_bottle
 	name = "Empty Bottle"
@@ -121,7 +125,9 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 5)
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/empty
-	category = list("initial", "Botany Chemicals")
+	category = list("initial", "Botanical Chemicals")
+
+//Organic Materials//
 
 /datum/design/cloth
 	name = "Roll of Cloth"
