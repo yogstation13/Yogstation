@@ -1,5 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - tweak: "Makes airlocks feel less clunky by allowing you to walk through them when they're open on-screen vs when the full animation is done."
-  - tweak: "Makes airlocks feel even less clunky by allowing you to walk through them while closing when the on-screen animation has a gap VS you crashing into an invisible wall as soon as the animation starts."
