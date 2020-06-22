@@ -75,4 +75,4 @@
 		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
 		qdel(src)
 		return
-		...()
+		..()
