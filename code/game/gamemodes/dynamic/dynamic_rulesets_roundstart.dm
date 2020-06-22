@@ -927,3 +927,33 @@
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Darkspawn")
 	return TRUE
+
+//////////////////////////////////////////////
+//                                         	//
+//         INTERNAL AFFAIRS AGENTS			//
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/traitor/IAA
+	name = "Internal Affairs Agent"
+	persistent = FALSE
+	antag_flag = ROLE_INTERNAL_AFFAIRS
+	antag_datum = /datum/antagonist/traitor/internal_affairs
+	minimum_required_age = 4
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	restricted_roles = list("Cyborg")
+	required_candidates = 8
+	weight = 1
+	cost = 55
+	requirements = list(80,75,65,60,55,50,45,45,45,40)
+
+/datum/dynamic_ruleset/roundstart/traitor/IAA/pre_execute()
+	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
+	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
+	for (var/i = 1 to num_traitors)
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.special_role = ROLE_INTERNAL_AFFAIRS
+		M.mind.restricted_roles = restricted_roles
+		log_game("[key_name(M)] has been selected as an Internal Affairs Agent")
+	return TRUE
