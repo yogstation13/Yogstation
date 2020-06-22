@@ -678,6 +678,15 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
 
+/obj/item/twohanded/pitchfork/trident
+	icon_state = "trident"
+	name = "trident"
+	desc = "A trident recovered from the ruins of atlantis"
+	force = 14
+	throwforce = 23
+	force_unwielded = 14
+	force_wielded = 20
+	
 /obj/item/twohanded/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
