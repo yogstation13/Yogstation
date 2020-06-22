@@ -389,12 +389,14 @@
 	color = "#FFEBEB"
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
+	var/healmod = 1
 	if(iscarbon(M))
 		if (M.stat == DEAD)
+			healmod = 2
 			show_message = 0
 		if(method in list(PATCH, TOUCH))
-			M.adjustBruteLoss(-1.25 * reac_volume)
-			M.adjustFireLoss(-1.25 * reac_volume)
+			M.adjustBruteLoss(-0.75 * reac_volume * healmod)
+			M.adjustFireLoss(-0.75 * reac_volume * healmod)
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
