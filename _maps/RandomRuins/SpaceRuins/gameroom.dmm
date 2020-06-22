@@ -17,10 +17,6 @@
 /obj/structure/closet/wardrobe/mixed,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
-"bP" = (
-/obj/machinery/teleport/hub,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
 "bQ" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroid,
@@ -363,6 +359,10 @@
 	pixel_y = 6
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/gaming)
+"nB" = (
+/obj/machinery/teleport/hub/syndicate,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
 "nL" = (
 /obj/structure/closet/crate,
@@ -1286,7 +1286,7 @@ xo
 YR
 Ag
 GL
-bP
+nB
 XL
 og
 og
