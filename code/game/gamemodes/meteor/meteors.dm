@@ -363,6 +363,7 @@ GLOBAL_LIST_INIT(meteorsAURORA, list(/obj/effect/meteor/aurora)) //for aurora ca
 	meteorsound = 'sound/effects/gravhit.ogg'
 	meteordrop = list(/obj/effect/temp_visual/impact_effect/ion)
 	dropamt = 1
+	
 /obj/effect/meteor/aurora/Initialize(mapload, target)
 	. = ..()
 	color = pick("#A2FF80", "#A2FF8B", "#A2FF96", "#A2FFA5", "#A2FFB6", "#A2FFC7", "#A2FFDE", "#A2FFEE")
