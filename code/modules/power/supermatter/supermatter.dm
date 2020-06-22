@@ -390,7 +390,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
 		bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
 		
-		if(pluoxiumcomp >= 0.15)
+		if(pluoxiumcomp >= 0.02) // used to be 15% but moved it down to 2% as it's hard to achieve while farming pluoxium
 			pluoxiumbonus = 1	// Bad code probably /shrug
 		else
 			pluoxiumbonus = 0
