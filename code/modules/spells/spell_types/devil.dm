@@ -125,12 +125,17 @@
 	if(istype(user))
 		if(istype(user.loc, /obj/effect/dummy/phased_mob/slaughter/))
 			if(valid_location(user))
-				to_chat(user, "<span class='warning'>You are now phasing in.</span>")
-				if(do_mob(user,user,150))
-					if(valid_location(user))
-						user.infernalphasein()
-					else
-						to_chat(user, "<span class='warning'>You are no longer near a potential signer.</span>")
+				to_chat(user, "<span class='warning'>You are now phasing in. Move away from a living creature to cancel this.</span>")
+				if(!do_mob(user,user,50, 0, 1))
+					return
+				to_chat(user, "<span class='warning'>You begin to reshape your mortal form.</span>")
+				if(!do_mob(user,user,50, 0, 1))
+					return
+				to_chat(user, "<span class='warning'>You re-enter the mortal plane.</span>")
+				if(valid_location(user))
+					user.infernalphasein()
+				else
+					to_chat(user, "<span class='warning'>You are no longer near a potential signer.</span>")
 
 			else
 				to_chat(user, "<span class='warning'>You can only re-appear near a potential signer.</span>")
@@ -139,8 +144,10 @@
 		else
 			user.notransform = TRUE
 			user.fakefire()
-			to_chat(src, "<span class='warning'>You begin to phase back into sinful flames.</span>")
-			if(do_mob(user,user,150))
+			to_chat(user, "<span class='warning'>You must hold still for this.</span>")
+			if(do_mob(user,user,50, 0, 1))
+				to_chat(user, "<span class='warning'>You begin to phase back into sinful flames.</span>")
+			if(do_mob(user,user,50, 0, 1))
 				user.infernalphaseout()
 			else
 				to_chat(user, "<span class='warning'>You must remain still while exiting.</span>")
@@ -154,7 +161,7 @@
 	if(istype(get_area(user), /area/shuttle/)) // Can always phase in in a shuttle.
 		return TRUE
 	else
-		for(var/mob/living/C in orange(2, get_turf(user))) //Can also phase in when nearby a potential buyer.
+		for(var/mob/living/C in orange(6, get_turf(user))) //Can also phase in when nearby a potential buyer.
 			if (C.owns_soul())
 				return TRUE
 	return FALSE
@@ -275,3 +282,36 @@
 
 /obj/effect/particle_effect/smoke/transparent/dancefloor_devil
 	lifetime = 2
+
+/obj/effect/proc_holder/spell/targeted/devilshapeshift
+	name = "Shapeshift"
+	desc = "Changes your name and appearance with a cooldown of 3 minutes."
+	action_icon_state = "genetic_poly"
+	action_icon = 'yogstation/icons/mob/vampire.dmi'
+	action_background_icon_state = "bg_demon"
+	clothes_req = FALSE
+	include_user = TRUE
+	range = -1
+	charge_max = 1800 // 3 minutes.
+
+/obj/effect/proc_holder/spell/targeted/devilshapeshift/cast(list/targets, mob/user = usr)
+	user.visible_message("<span class='warning'>[user] transforms!</span>")
+	randomize_human(user)
+	user.regenerate_icons()
+
+/obj/effect/proc_holder/spell/targeted/devilhelp
+	name = "Devil Help"
+	desc = "Explains how the Devil does business."
+	action_icon_state ="demonomicon"
+	action_icon = 'icons/obj/library.dmi'
+	action_background_icon_state = "bg_demon"
+	clothes_req = FALSE
+	include_user = TRUE
+	range = -1
+	charge_max = 50
+
+/obj/effect/proc_holder/spell/targeted/devilhelp/cast(list/targets, mob/user = usr)
+	to_chat(user, "<span class='notice'>Your Summon infernal contract spell will create a contract in the hand of the targeted user. If your chosen target does not fufill your obsession, the contract will not appear for them, but they will still see you cast your magicks.</span>")
+	to_chat(user, "<span class='warning'>Be warned, your contracts include your full name, and can be used against you to find your weakness. Make sure they are willing to sign before you give them a contract.</span>")
+	to_chat(user, "<span class='notice'>Infernal Jaunt will allow you move through walls and stalk your targets, seeing and hearing what they can. Use this to discover what it is they want most.</span>")
+	to_chat(user, "<span class='warning'>After collecting three souls, you will ascend into a higher form of life, the Blood Lizard. This will make your presence more noticeable, and may frighten morals. It may not be wise to ascend this far if you are not required to.</span>")

@@ -103,6 +103,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/greater,
 		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/ascended,
 		/obj/effect/proc_holder/spell/targeted/infernal_jaunt,
+		/obj/effect/proc_holder/spell/targeted/devilshapeshift,
 		/obj/effect/proc_holder/spell/targeted/sintouch,
 		/obj/effect/proc_holder/spell/targeted/sintouch/ascended,
 		/obj/effect/proc_holder/spell/targeted/summon_contract,
@@ -293,6 +294,8 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	form = BLOOD_LIZARD
 
 /datum/antagonist/devil/proc/increase_true_devil()
+	if(!ascendable)
+		return
 	to_chat(owner.current, "<span class='warning'>You feel as though your current form is about to shed.  You will soon turn into a true devil.</span>")
 	sleep(50)
 	var/mob/living/carbon/true_devil/A = new /mob/living/carbon/true_devil(owner.current.loc)
@@ -386,6 +389,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 /datum/antagonist/devil/proc/give_base_spells()
 	owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball/hellish(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork(null))
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/devilshapeshift(null))
 
 /datum/antagonist/devil/proc/give_blood_spells()
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork(null))
