@@ -1,5 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "Four new Engineering-related Achievements have been added!"
-  - bugfix: "A potential NTSL exploit involving the Poly achievements has been fixed."

@@ -185,6 +185,7 @@
 	if(user.client)
 		SSachievements.unlock_achievement(/datum/achievement/cargo/bsa, user.client)
 	message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike.")
+	log_game("[key_name(user)] has fired the bluespace artillery") // yogs
 	explosion(bullseye,ex_power,ex_power*2,ex_power*4)
 
 	reload()
@@ -222,7 +223,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "bsa", name, 400, 220, master_ui, state)
+		ui = new(user, src, ui_key, "BluespaceArtillery", name, 400, 220, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/bsa_control/ui_data()

@@ -66,7 +66,7 @@
 			dat += "<center><font color='red'>Takeover In Progress:<br><B>[DisplayTimeText(gang.domination_time_remaining() * 10)] remain</B></font></center>"
 
 		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"
-		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B><br>"
+		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B> | Supply: <B>[gang.uniform_influence]</B><br>"
 		dat += "Time until Influence grows: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
 		dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
 		dat += "<a href='?src=[REF(src)];recall=1'>Recall shuttle</a><br>"
@@ -77,19 +77,29 @@
 				var/datum/gang_item/G = buyable_items[cat][id]
 				if(!G.can_see(user, gang, src))
 					continue
+				if(G.category != "Purchase Weapons:")
+					var/cost = G.get_cost_display(user, gang, src)
+					if(cost)
+						dat += cost + " "
 
-				var/cost = G.get_cost_display(user, gang, src)
-				if(cost)
-					dat += cost + " "
+					var/toAdd = G.get_name_display(user, gang, src)
+					if(G.can_buy(user, gang, src))
+						toAdd = "<a href='?src=[REF(src)];purchase=1;id=[id];cat=[cat]'>[toAdd]</a>"
+					dat += toAdd
+					dat += "<br>"
+				else if(G.category == "Purchase Weapons:")
+					var/weapon_cost = G.get_weapon_cost_display(user, gang, src)
+					if(weapon_cost)
+						dat += weapon_cost + " "
 
-				var/toAdd = G.get_name_display(user, gang, src)
-				if(G.can_buy(user, gang, src))
-					toAdd = "<a href='?src=[REF(src)];purchase=1;id=[id];cat=[cat]'>[toAdd]</a>"
-				dat += toAdd
+					var/toAdd = G.get_name_display(user, gang, src)
+					if(G.can_buy_weapon(user, gang, src))
+						toAdd = "<a href='?src=[REF(src)];weapon_purchase=1;id=[id];cat=[cat]'>[toAdd]</a>"
+					dat += toAdd
+					dat += "<br>"
 				var/extra = G.get_extra_info(user, gang, src)
 				if(extra)
 					dat += "<br><i>[extra]</i>"
-				dat += "<br>"
 			dat += "<br>"
 
 	dat += "<a href='?src=[REF(src)];choice=refresh'>Refresh</a><br>"
@@ -116,7 +126,12 @@
 			var/datum/gang_item/G = L[href_list["id"]]
 			if(G && G.can_buy(usr, gang, src))
 				G.purchase(usr, gang, src, FALSE)
-
+	if(href_list["weapon_purchase"])
+		if(islist(buyable_items[href_list["cat"]]))
+			var/list/L = buyable_items[href_list["cat"]]
+			var/datum/gang_item/G = L[href_list["id"]]
+			if(G && G.can_buy_weapon(usr, gang, src))
+				G.weapon_purchase(usr, gang, src, FALSE)
 	if(href_list["commute"])
 		ping_gang(usr)
 	if(href_list["recall"])

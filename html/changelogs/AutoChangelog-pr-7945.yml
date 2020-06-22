@@ -1,4 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - tweak: "Reformatted the small amount of PowerShell that we use."
