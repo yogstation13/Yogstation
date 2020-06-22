@@ -25,8 +25,8 @@
 
 /datum/clockwork_scripture/create_object/replica_fabricator/get_spawn_path(mob/user)
 	if(!is_servant_of_ratvar(user, TRUE))
-		return /obj/item/clockwork/replica_fabricator/agent
 		creator_message = "You form a replica fabricator. <span class='nezbere'>You can use this to make soul vessels out of positronic brains for soul extraction objectives</span>"
+		return /obj/item/clockwork/replica_fabricator/agent
 	return ..()
 
 //Ocular Warden: Creates an ocular warden, which defends a small area near it.
