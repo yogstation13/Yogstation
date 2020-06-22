@@ -224,16 +224,7 @@
 	<head>
 		<meta charset='UTF-8'>
 		<title>[title]</title>
-		<style>
-			body {
-				font-family: Verdana, sans-serif;
-				font-size: 9pt;
-			}
-			.value {
-				font-family: "Courier New", monospace;
-				font-size: 8pt;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="view_variables.css">
 	</head>
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
@@ -460,6 +451,7 @@
 
 
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
+/// Get displayed variable in VV variable list
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA && !isappearance(DA))
@@ -496,9 +488,17 @@
 	else if (isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
-	else if(istype(value, /matrix))
+	else if(istype(value,/matrix)) // Needs to be before datum
 		var/matrix/M = value
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>matrix([M.a], [M.b], [M.c], [M.d], [M.e], [M.f])</span>"
+		item = {"[VV_HTML_ENCODE(name)] = <span class='value'>
+			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
+			<table class='matrix'>
+			<tbody>
+				<tr><td>[M.a]</td><td>[M.d]</td><td>0</td></tr>
+				<tr><td>[M.b]</td><td>[M.e]</td><td>0</td></tr>
+				<tr><td>[M.c]</td><td>[M.f]</td><td>1</td></tr>
+			</tbody>
+			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
 
 	else if(isappearance(value))
 		var/image/I = value

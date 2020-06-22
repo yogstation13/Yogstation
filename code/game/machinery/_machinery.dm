@@ -553,10 +553,12 @@ Class Procs:
 	AM.pixel_y = -8 + (round( . / 3)*8)
 
 /obj/machinery/CanPass(atom/movable/mover, turf/target)
+	if(!density)
+		return TRUE
 	if(istype(mover) && (mover.pass_flags & PASSMACHINES))
 		return TRUE
 	return FALSE
-  
+
 /obj/machinery/proc/end_processing()
 	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
 	STOP_PROCESSING(subsystem, src)
