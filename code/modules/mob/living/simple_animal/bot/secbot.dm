@@ -56,6 +56,7 @@
 
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
+	lastStunned = null
 	var/atom/Tsec = drop_location()
 	new /obj/item/stock_parts/cell/potato(Tsec)
 	var/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/S = new(Tsec)
