@@ -34,7 +34,7 @@
 	var/arrest_type = FALSE //If true, don't handcuff
 	var/russian = FALSE // If true, it uses russian voice lines
 	var/stuncount = 0 // The securitron will stun you until it gets tired of doing it
-	var/mob/lastStunned // Who was stunned last?
+	var/mob/living/carbon/lastStunned // Who was stunned last?
 
 /mob/living/simple_animal/bot/secbot/beepsky
 	name = "Commander Beepsky"
