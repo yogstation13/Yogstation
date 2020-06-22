@@ -37,6 +37,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 	var/req_keyword = 0 //If the rune requires a keyword - go figure amirite
 	var/keyword //The actual keyword for the rune
+	var/requires_full_power = FALSE //can the rune be used by cult agents? if TRUE it can't
 
 /obj/effect/rune/Initialize(mapload, set_keyword)
 	. = ..()
@@ -191,6 +192,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	color = RUNE_COLOR_OFFER
 	req_cultists = 1
 	rune_in_use = FALSE
+	requires_full_power = TRUE
 
 /obj/effect/rune/convert/do_invoke_glow()
 	return
@@ -473,6 +475,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	scribe_delay = 300 //how long the rune takes to create
 	scribe_damage = 20 //how much damage you take doing it
 	var/used = FALSE
+	requires_full_power = TRUE
 
 /obj/effect/rune/narsie/Initialize(mapload, set_keyword)
 	. = ..()
@@ -868,6 +871,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/turf/T = get_turf(src)
 	var/choice = alert(user,"You tear open a connection to the spirit realm...",,"Summon a Cult Ghost","Ascend as a Dark Spirit","Cancel")
 	if(choice == "Summon a Cult Ghost")
+		if(user.mind.has_antag_datum(/datum/antagonist/cult/agent)) //agents can use the cult meta ability but not summon murder ghosts
+			to_chat(user, "<span class='cultitalic'><b>The veil is too strong to summon cult ghosts.</b></span>")
+			return
 		var/area/A = get_area(T)
 		if(A.map_name == "Space" || is_mining_level(T.z))
 			to_chat(user, "<span class='cultitalic'><b>The veil is not weak enough here to manifest spirits, you must be on station!</b></span>")
@@ -971,6 +977,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	color = RUNE_COLOR_DARKRED
 	req_cultists = 3
 	scribe_delay = 100
+	requires_full_power = TRUE //might make this available later
 
 /obj/effect/rune/apocalypse/invoke(var/list/invokers)
 	if(rune_in_use)

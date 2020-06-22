@@ -66,6 +66,9 @@
 	BS = possible_spells[entered_spell_name]
 	if(QDELETED(src) || owner.incapacitated() || !BS || (rune && !(locate(/obj/effect/rune/empower) in range(1, owner))) || (spells.len >= limit))
 		return
+	if(!iscultist(owner, TRUE) && BS.requires_full_power)
+		to_chat(owner, "<span class='warning'>The veil is not weak enough to use this spell!</span>")
+		return
 	to_chat(owner,"<span class='warning'>You begin to carve unnatural symbols into your flesh!</span>")
 	SEND_SOUND(owner, sound('sound/weapons/slice.ogg',0,1,10))
 	if(!channeling)
@@ -95,6 +98,7 @@
 	var/base_desc //To allow for updating tooltips
 	var/invocation
 	var/health_cost = 0
+	var/requires_full_power = FALSE //TRUE if agents can't use it
 
 /datum/action/innate/cult/blood_spell/Grant(mob/living/owner, datum/action/innate/cult/blood_magic/BM)
 	if(health_cost)
@@ -143,6 +147,7 @@
 	button_icon_state = "hand"
 	magic_path = "/obj/item/melee/blood_magic/stun"
 	health_cost = 10
+	requires_full_power = TRUE
 
 /datum/action/innate/cult/blood_spell/teleport
 	name = "Teleport"
@@ -176,7 +181,7 @@
 
 /datum/action/innate/cult/blood_spell/construction
 	name = "Twisted Construction"
-	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
+	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 metal into a construct shell<br>30 sheets of reinforced glass into a soulstone<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
 	button_icon_state = "transmute"
 	magic_path = "/obj/item/melee/blood_magic/construction"
 	health_cost = 12
@@ -330,6 +335,7 @@
 	button_icon_state = "manip"
 	charges = 5
 	magic_path = "/obj/item/melee/blood_magic/manipulator"
+	requires_full_power = TRUE
 
 
 // The "magic hand" items
@@ -564,6 +570,7 @@
 	. += {"<u>A sinister spell used to convert:</u>\n
 	Plasteel into runed metal\n
 	[METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal into a construct shell\n
+	[RGLASS_TO_SOULSTONE_CONVERSION] reinforced glass into a soul stone\n
 	Living cyborgs into constructs after a delay\n
 	Cyborg shells into construct shells\n
 	Airlocks into brittle runed airlocks after a delay (harm intent)"}
@@ -583,6 +590,15 @@
 			else
 				to_chat(user, "<span class='warning'>You need [METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal to produce a construct shell!</span>")
 				return
+		else if(istype(target, /obj/item/stack/sheet/rglass))
+			var/obj/item/stack/sheet/candidate = target
+			if(candidate.use(RGLASS_TO_SOULSTONE_CONVERSION))
+				uses--
+				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a construct shell!</span>")
+				new /obj/item/soulstone(T)
+				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+			else
+				to_chat(user, "<span class='warning'>You need [RGLASS_TO_SOULSTONE_CONVERSION] reinforced glass to produce a soulstone!</span>")
 		else if(istype(target, /obj/item/stack/sheet/plasteel))
 			var/obj/item/stack/sheet/plasteel/candidate = target
 			var/quantity = candidate.amount
