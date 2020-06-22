@@ -357,7 +357,6 @@
 		"map.png" = fcopy_rsc(file("icons/mapimages/[SSmapping.config.map_name].png")) //AFAIK this doesn't race with SSmapping loading up.
 	)
 
-
 /datum/asset/simple/vv
 	assets = list(
 		"view_variables.css" = 'html/admin/view_variables.css'
