@@ -95,7 +95,38 @@
 	speed = -10
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/seeds/banana)
 	banana_time = 20
-
+	
+/mob/living/simple_animal/hostile/retaliate/clown/afro
+	name = "Afro Clown"
+	desc = "A clown but with an unusually large hair style."
+	icon_state = "c_perm"
+	icon_living = "c_perm"
+	response_help = "pokes"
+	response_disarm = "slaps"
+	response_harm = "punches"
+	turns_per_move = 1
+	emote_see = list("pats its hair", "shuffles")
+	maxHealth = 200
+	health = 200
+	speed = 2
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
+	
+/mob/living/simple_animal/hostile/retaliate/clown/thin
+	name = "Thin Clown"
+	desc = "He seems to be short when he turns!"
+	icon_state = "c_thin"
+	icon_living = "c_thin"
+	response_help = "pats"
+	response_disarm = "slaps"
+	response_harm = "hits"
+	turns_per_move = 1
+	speak = list("Honk!!", "HONK!!!", "Thin as a mint cookie!")
+	emote_see = list("pats its hair", "shuffles")
+	maxHealth = 150
+	health = 150
+	speed = 2
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap)
+	
 /mob/living/simple_animal/hostile/retaliate/clown/honkling
 	name = "Honkling"
 	desc = "A divine being sent by the Honkmother to spread joy. It's not dangerous, but it's a bit of a nuisance."
@@ -232,8 +263,28 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 40
 	armour_penetration = 30
-	stat_attack = UNCONSCIOUS
 	attacktext = "acts out divine vengeance on"
+	obj_damage = 50
+	environment_smash = ENVIRONMENT_SMASH_RWALLS
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
+	
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/punisher
+	name = "The Punisher"
+	desc = "A being that is the pinnacle of raw strength."
+	icon_state = "c_punished"
+	icon_living = "c_punished"
+	response_disarm = "bounces off of"
+	response_harm = "bounces off of"
+	speak = list("HONK!!!", "IT'S LEG DAY!!", "GET YOUR LAPS IN!!", "DIE!!!")
+	maxHealth = 300
+	health = 300
+	speed = 5
+	harm_intent_damage = 25
+	melee_damage_lower = 15
+	melee_damage_upper = 35
+	armour_penetration = 25
+	stat_attack = UNCONSCIOUS
+	attacktext = "flexes on"
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
@@ -274,3 +325,17 @@
 	attacktext = "bounces off of"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
 	attack_reagent = /datum/reagent/toxin/mindbreaker
+
+/mob/living/simple_animal/hostile/retaliate/clown/mutant/thicc
+	name = "Thicc Clown"
+	desc = "An unusually large clown with a thicc bottom."
+	icon_state = "c_thicc"
+	icon_living = "c_thicc"
+	speak = list("HONK!!", "Look at these honkers!", "It's the squats, babygirl!", "My milkshake brings all the boys to the yard!")
+	emote_see = list("jiggles", "wobbles")
+	health = 130
+	mob_size = MOB_SIZE_LARGE
+	speed = 20
+	attacktext = "bounces off of"
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
+	attack_reagent = /datum/reagent/consumable/banana

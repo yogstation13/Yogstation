@@ -33,7 +33,8 @@
 
 	var/custom_price
 	var/custom_premium_price
-
+	///Whether spessmen with an ID with an age below AGE_MINOR (21 by default) can buy this item
+	var/age_restricted = FALSE
 	var/datum/component/orbiter/orbiters
 
 	var/rad_flags = NONE // Will move to flags_1 when i can be arsed to

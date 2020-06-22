@@ -6,6 +6,10 @@
 	if(!check_rights(R_ADMIN))
 		return
 
+	var/confirm = alert(src, "Revive all mobs?", "Message", "Yes", "No")
+	if(confirm != "Yes")
+		return
+
 	var/revive_count = 0
 	for(var/mob/living/M in world)
 		M.revive(TRUE, TRUE)
