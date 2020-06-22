@@ -362,8 +362,8 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
-	dirx = "-1";
-	diry = "1"
+	dirx = -1;
+	diry = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
@@ -4367,6 +4367,10 @@
 	external_pressure_bound = 120;
 	name = "server vent"
 	},
+/obj/machinery/airalarm/tcomms{
+	pixel_y = 24;
+	req_access_txt = "150"
+	},
 /turf/open/floor/circuit/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "mN" = (
@@ -4475,7 +4479,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "ni" = (
 /obj/machinery/door/firedoor/border_only,
@@ -4488,8 +4492,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
-	dirx = "1";
-	diry = "-1"
+	dirx = 1;
+	diry = -1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
@@ -5746,7 +5750,9 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "EY" = (
-/obj/machinery/telecomms/relay/preset/ruskie,
+/obj/machinery/telecomms/relay/preset/ruskie{
+	use_power = 0
+	},
 /turf/open/floor/circuit/green/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "EZ" = (
