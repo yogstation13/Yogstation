@@ -245,7 +245,12 @@
 									ROLE_OVERTHROW, ROLE_REV, ROLE_REVENANT,
 									ROLE_REV_HEAD, ROLE_SERVANT_OF_RATVAR, ROLE_SYNDICATE,
 									ROLE_TRAITOR, ROLE_WIZARD, ROLE_GANG, ROLE_VAMPIRE,
+
 									ROLE_SHADOWLING, ROLE_DARKSPAWN, ROLE_CLOCK_AGENT/*, ROLE_BLOOD_AGENT*/)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV
+=======
+									ROLE_SHADOWLING, ROLE_DARKSPAWN, ROLE_ZOMBIE,
+									 ROLE_CLOCK_AGENT, ROLE_BLOOD_AGENT)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV
+>>>>>>> 775d50a8b205a8c8bb9504df499e8085cb4d0159
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0

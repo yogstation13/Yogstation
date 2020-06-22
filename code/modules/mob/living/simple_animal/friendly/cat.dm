@@ -15,7 +15,7 @@
 	turns_per_move = 5
 	see_in_dark = 6
 	ventcrawler = VENTCRAWLER_ALWAYS
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSCOMPUTER
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	minbodytemp = 200

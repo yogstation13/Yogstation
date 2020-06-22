@@ -44,6 +44,7 @@
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
 #define ROLE_CLOCK_AGENT		"Clockwork Agent" //Yogs
 #define ROLE_BLOOD_AGENT		"Cultist Agent" //Yogs
+#define ROLE_ZOMBIE				"Zombie" //Yogs
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -75,9 +76,14 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
+<<<<<<< HEAD
 	ROLE_CLOCK_AGENT = /datum/game_mode/traitor/traitorcult,
 	ROLE_BLOOD_AGENT = /datum/game_mode/traitor/traitorcult,
 	ROLE_SENTIENCE
+=======
+	ROLE_SENTIENCE,
+	ROLE_ZOMBIE
+>>>>>>> 775d50a8b205a8c8bb9504df499e8085cb4d0159
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

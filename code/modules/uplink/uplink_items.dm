@@ -1147,6 +1147,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/multitool/ai_detect
 	cost = 1
 
+/datum/uplink_item/stealthy_tools/syndireverse
+	name = "Bluespace Projectile Weapon Disrupter"
+	desc = "Hidden in an ordinary-looking playing card, this device will teleport an opponent's gun to your hand when they fire at you. Just make sure to hold this in your hand!"
+	item = /obj/item/syndicateReverseCard
+	cost = 6
+
 /datum/uplink_item/stealthy_tools/chameleon
 	name = "Chameleon Kit"
 	desc = "A set of items that contain chameleon technology allowing you to disguise as pretty much anyone on the station, and more! \
@@ -1600,6 +1606,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	// An empty uplink is kinda useless.
 	surplus = 0
 	restricted = TRUE
+
+/datum/uplink_item/implants/mindshield
+	name = "Syndicate Brainwash Denial Implant"
+	desc = "An implant injected into the body, to deny brainwashing attempts."
+	item = /obj/item/storage/box/syndie_kit/imp_mindshield
+	limited_stock = 3
+	player_minimum = 30
+	illegal_tech = FALSE // This is a cheap knockoff of NT tech.
+	surplus = 5
+	cost = 1
 
 /datum/uplink_item/implants/xray
 	name = "X-ray Vision Implant"
