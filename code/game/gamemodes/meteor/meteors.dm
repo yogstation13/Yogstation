@@ -358,7 +358,6 @@ GLOBAL_LIST_INIT(meteorsAURORA, list(/obj/effect/meteor/aurora)) //for aurora ca
 	name = "glowing bolt"
 	desc = "It's so pretty."
 	icon_state = "aurora"
-	color = pick("#A2FF80", "#A2FF8B", "#A2FF96", "#A2FFA5", "#A2FFB6", "#A2FFC7", "#A2FFDE", "#A2FFEE")
 	hits = 0
 	hitpwr = 0
 	meteorsound = 'sound/effects/gravhit.ogg'
