@@ -85,7 +85,7 @@
 			continue
 		if(!isfugitive(V) || V == src)
 			continue
-		if(!V?.mind?.has_antag_datum(/datum/antagonist/fugitive).is_captured) //they can still be revived
+		if(!(V?.mind?.has_antag_datum(/datum/antagonist/fugitive).is_captured)) //they can still be revived //they can still be revived
 			safe = TRUE
 			break
 	if(!safe)
@@ -147,7 +147,7 @@
 	for(var/mob/V in GLOB.player_list)
 		if(!isfugitive(V) || !iscarbon(V))
 			continue
-		if(V?.mind?.has_antag_datum(/datum/antagonist/fugitive).is_captured)
+		if(!(V?.mind?.has_antag_datum(/datum/antagonist/fugitive).is_captured)) //they can still be revived
 			continue
 		faithful += V
 	if(!faithful.len)
