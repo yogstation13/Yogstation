@@ -23,7 +23,7 @@
 #define BZ_RADIOACTIVITY_MODIFIER 5 //Improves the effect of transmit modifiers
 
 #define N2O_HEAT_RESISTANCE 6          //Higher == Gas makes the crystal more resistant against heat damage.
-#define PLUOXIUM_HEAT_RESISTANCE 3
+#define PLUOXIUM_HEAT_RESISTANCE 12
 
 #define POWERLOSS_INHIBITION_GAS_THRESHOLD 0.20         //Higher == Higher percentage of inhibitor gas needed before the charge inertia chain reaction effect starts.
 #define POWERLOSS_INHIBITION_MOLE_THRESHOLD 20        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
@@ -116,8 +116,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/pluoxiumcomp = 0
 	var/tritiumcomp = 0
 	var/bzcomp = 0
-
-	var/pluoxiumbonus = 0
+	
+	var/rps = 0 // control how many radballs to emit
+	var/bzmol = 0
 
 	var/combined_gas = 0
 	var/gasmix_power_ratio = 0
@@ -158,7 +159,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/moveable = FALSE
 
-	var/last_accent_sound = 0	/// cooldown tracker for accent sounds, 
+	var/last_accent_sound = 0	/// cooldown tracker for accent sounds,
 
 	var/messages_admins = TRUE
 
@@ -377,7 +378,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			//capping damage
 			damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
 
-		
+
 		//calculating gas related values
 		combined_gas = max(removed.total_moles(), 0)
 
@@ -390,18 +391,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
 		bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
 		
-		if(pluoxiumcomp >= 0.02) // used to be 15% but moved it down to 2% as it's hard to achieve while farming pluoxium
-			pluoxiumbonus = 1	// Bad code probably /shrug
-		else
-			pluoxiumbonus = 0
+		bzmol = max((combined_gas * bzcomp), 0) // Calculate how many mols of BZ we have
 
 		gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp + tritiumcomp + bzcomp - pluoxiumcomp - n2comp, 0), 1)
-		
-		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + ((pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) * pluoxiumbonus) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY), 0.5)
-		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + ((pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE) * pluoxiumbonus), 1)
+
+		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY) + (o2comp * OXYGEN_HEAT_PENALTY) + (co2comp * CO2_HEAT_PENALTY) + (tritiumcomp * TRITIUM_HEAT_PENALTY) + (pluoxiumcomp * PLUOXIUM_HEAT_PENALTY) + (n2comp * NITROGEN_HEAT_PENALTY) + (bzcomp * BZ_HEAT_PENALTY), 0.5)
+		dynamic_heat_resistance = max((n2ocomp * N2O_HEAT_RESISTANCE) + (pluoxiumcomp * PLUOXIUM_HEAT_RESISTANCE), 1)
 
 		//Value between 30 and -5, used to determine radiation output as it concerns things like collecters
-		power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER) * pluoxiumbonus)
+		power_transmission_bonus = (plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER) + (bzcomp * BZ_TRANSMIT_MODIFIER) + (tritiumcomp * TRITIUM_TRANSMIT_MODIFIER) + (pluoxiumcomp * PLUOXIUM_TRANSMIT_MODIFIER)
 		//more moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
@@ -431,8 +429,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
 			radiation_pulse(src, power * max(0, (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER))))))// RadModBZ(500%)
-		if(bzcomp >= 0.4 && prob(30 * bzcomp))
-			src.fire_nuclear_particle()		// Start to emit radballs at a maximum of 30% chance per tick
+		if(bzcomp >= 0.4 && prob(50 * bzcomp))
+			src.fire_nuclear_particle()	// Start to emit radballs at a maximum of 50% chance per tick
+			rps = round((bzmol/150), 1) // Cause more radballs to be spawned
+			for(var/i = 1 to rps)
+				if(prob(80))
+					src.fire_nuclear_particle()		// Spawn more radballs at 90% chance each
 
 		var/device_energy = power * REACTION_POWER_MODIFIER
 
