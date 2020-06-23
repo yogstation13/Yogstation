@@ -10,12 +10,12 @@
 	icon_state = "sec_bodycam_off"
 	item_state = "sec_bodycam_off"
 	var/prefix = "sec"//used for sprites, miner etc
+	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
+	actions_types = list(/datum/action/item_action/toggle_bodycam)
+	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/machinery/camera/bodcam = null
 	var/setup = FALSE
 	var/preset = FALSE //if true, the camera is already configured and cannot be reset
-	actions_types = list(/datum/action/item_action/toggle_bodycam)
-	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
-	w_class = WEIGHT_CLASS_NORMAL
 	var/mob/listeningTo //This code is simular to the code for the RCL.
 
 /obj/item/clothing/neck/bodycam/Initialize()
@@ -95,9 +95,9 @@
 		update_icon()
 
 /obj/item/clothing/neck/bodycam/Destroy()
-	. = ..()
 	Disconnect()
 	QDEL_NULL(bodcam)
+	. = ..()
 
 /obj/item/clothing/neck/bodycam/proc/Disconnect()//this handles what happens when your camera disconnects
 	bodcam.status = FALSE
