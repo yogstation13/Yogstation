@@ -217,6 +217,7 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/huge/Initialize()
+	. = ..()
 	transform *= 2
 
 /mob/living/simple_animal/hostile/retaliate/goat/tiny
@@ -227,6 +228,7 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/tiny/Initialize()
+	. = ..()
 	transform *= 0.5
 
 /mob/living/simple_animal/hostile/retaliate/goat/ghost

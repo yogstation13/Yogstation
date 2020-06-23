@@ -50,6 +50,7 @@
 			play_laugh1()
 
 /obj/item/clothing/mask/yogs/cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_WEAR_MASK)
@@ -84,6 +85,7 @@
 		play_laugh1()
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
