@@ -42,7 +42,7 @@
 
 /datum/action/innate/hierophant/Activate()
 	var/input = stripped_input(usr, "Please enter a message to send to other servants.", "Hierophant Network", "")
-	if(!input && !IsAvailable())
+	if(!input || !IsAvailable())
 		return
 	if(ishuman(owner))
 		clockwork_say(owner, "[text2ratvar("Servants, hear my words: [input]")]", TRUE)
