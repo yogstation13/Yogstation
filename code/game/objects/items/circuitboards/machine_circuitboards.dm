@@ -442,6 +442,15 @@
 	build_path = /obj/machinery/paystand
 	req_components = list()
 
+/obj/item/circuitboard/machine/ticketmachine
+	name = "Ticket Machine (Machine Board)"
+	icon_state = "generic"
+	desc = "You will also need a ticket machine remote to operate this."
+	build_path = /obj/machinery/ticket_machine
+	req_components = list(
+		/obj/item/hand_labeler = 1,
+		/obj/item/stack/sheet/glass = 1)
+
 /obj/item/circuitboard/machine/protolathe
 	name = "Protolathe (Machine Board)"
 	icon_state = "generic"

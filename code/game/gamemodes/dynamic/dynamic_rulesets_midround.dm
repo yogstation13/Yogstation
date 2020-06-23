@@ -515,7 +515,7 @@
 	var/datum/antagonist/vampire/newVampire = new
 	M.mind.add_antag_datum(newVampire)
 	return TRUE
-
+	
 //////////////////////////////////////////////
 //                                          //
 //              ZOMBIE (GHOST)              //
@@ -524,8 +524,9 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/zombie
 	name = "Zombie"
+	antag_flag = "ROLE_ZOMBIE"
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain", "Chief Medical Officer")
-	required_enemies = list(2,2,1,1,1,1,0,0,0,0,)
+	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
 	weight = 1
 	cost = 20
@@ -534,7 +535,7 @@
 	var/list/spawn_locs = list()
 
 /datum/round_event/ghost_role/zombie/spawn_role()
-	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
+	var/list/candidates = get_candidates(ROLE_ZOMBIE, null, ROLE_ZOMBIE)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
@@ -554,14 +555,14 @@
 		message_admins("No valid spawn locations found, aborting...")
 		return MAP_ERROR
 
-	var/mob/living/carbon/human/S = new ((pick(spawn_locs)))
-	player_mind.transfer_to(S)
+	var/mob/living/carbon/human/M = new ((pick(spawn_locs)))
+	player_mind.transfer_to(M)
 	player_mind.assigned_role = "Zombie"
 	player_mind.special_role = "Zombie"
-	S.set_species(/datum/species/zombie/infectious)
-	playsound(S, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Zombie by an event.")
-	log_game("[key_name(S)] was spawned as a Zombie by an event.")
-	spawned_mobs += S
+	M.set_species(/datum/species/zombie/infectious)
+	playsound(M, 'sound/hallucinations/growl1.ogg', 50, 1, -1)
+	message_admins("[ADMIN_LOOKUPFLW(M)] has been made into a Zombie by an event.")
+	log_game("[key_name(M)] was spawned as a Zombie by an event.")
+	spawned_mobs += M
 	return SUCCESSFUL_SPAWN
 	
