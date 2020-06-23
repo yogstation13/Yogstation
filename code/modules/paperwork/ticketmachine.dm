@@ -58,9 +58,6 @@
 		tickets[screenNum].audible_message("<span class='rose'>\the [tickets[screenNum]] dings!</span>",hearing_distance=1)
 		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, 0 ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
 
-/obj/machinery/ticket_machine/proc/reset_cooldown()
-	ready = TRUE
-
 /obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
 	if(obj_flags & EMAGGED)
 		return
@@ -78,7 +75,7 @@
 		return
 	ready = FALSE
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
-	addtimer(VARSET_CALLBACK(src, ready, FALSE), cooldown) //Small cooldown to prevent the clown from ripping out every ticket
+	addtimer(VARSET_CALLBACK(src, ready, TRUE), cooldown) //Small cooldown to prevent the clown from ripping out every ticket
 	currentNum ++
 	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're customer #[currentNum]...</span>")
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
@@ -199,7 +196,7 @@
 		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!</span>")
 		return
 	ready = FALSE
-	addtimer(VARSET_CALLBACK(src, ready, FALSE), cooldown)
+	addtimer(VARSET_CALLBACK(src, ready, TRUE), cooldown)
 	connection.increment()
 
 /obj/item/ticket_machine_remote/AltClick(mob/living/user)
