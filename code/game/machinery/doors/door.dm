@@ -77,10 +77,6 @@
 	else
 		layer = initial(layer)
 
-/obj/machinery/door/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/door/Destroy()
 	update_freelook_sight()
 	GLOB.airlocks -= src
@@ -134,13 +130,10 @@
 	. = ..()
 	move_update_air(T)
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover)) //yogs start
-		if(mover.pass_flags & PASSGLASS)
-			return !opacity
-		else if(mover.pass_flags & PASSDOOR)
-			return TRUE //yogs end
-	return !density
+/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSGLASS))
+		return !opacity
 
 /obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)

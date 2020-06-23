@@ -21,6 +21,7 @@
 	var/lastWarning = 0
 
 /mob/camera/eminence/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
 /mob/camera/eminence/Move(NewLoc, direct)

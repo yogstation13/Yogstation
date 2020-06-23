@@ -51,6 +51,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return src
 
 /datum/antagonist/proc/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects(old_body)
 	apply_innate_effects(new_body)
 
@@ -68,6 +69,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Proc called when the datum is given to a mind.
 /datum/antagonist/proc/on_gain()
+	SHOULD_CALL_PARENT(TRUE)
 	if(owner && owner.current)
 		if(!silent)
 			greet()
@@ -95,6 +97,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		owner.current.key = C.key
 
 /datum/antagonist/proc/on_removal()
+	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects()
 	clear_antag_moodies()
 	if(owner)

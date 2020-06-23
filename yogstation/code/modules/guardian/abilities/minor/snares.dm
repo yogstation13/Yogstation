@@ -44,6 +44,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/snare/Crossed(AM as mob|obj)
+	. = ..()
 	if(isliving(AM) && spawner && spawner?.summoner?.current && AM != spawner && !spawner.hasmatchingsummoner(AM))
 		to_chat(spawner.summoner.current, "<span class='danger'><B>[AM] has crossed surveillance snare, [name].</span></B>")
 		var/list/guardians = spawner.summoner.current.hasparasites()
