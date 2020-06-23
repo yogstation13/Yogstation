@@ -138,8 +138,10 @@
 	desc = "A wearable camera, capable of streaming a live feed. This one is preconfigured to be used by miners."
 	prefix = "miner"
 	icon_state = "miner_bodycam_off"
+	item_state = "miner_bodycam_off"
 	setup = TRUE
 	preset = TRUE
+	resistance_flags = FIRE_PROOF //For showing off to your friends about how you can kill an ashdrake, or some shit
 
 /obj/item/clothing/neck/bodycam/miner/Initialize()
 	..()
