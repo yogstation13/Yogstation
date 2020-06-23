@@ -200,6 +200,8 @@
 	if(length(CONFIG_GET(keyed_list/cross_server)))
 		send_news_report()
 
+	set_observer_default_invisibility(0, "<span class='warning'>The round is over! You are now visible to the living.</span>")
+	
 	CHECK_TICK
 
 	//These need update to actually reflect the real antagonists
