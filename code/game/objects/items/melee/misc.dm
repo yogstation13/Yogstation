@@ -385,9 +385,9 @@
 	item_flags = NONE
 	force = 5
 
-	cooldown = 30
-	stun_time_carbon = 85
-	affect_silicon = TRUE
+	cooldown = 20
+	stun_time_carbon = 85 
+	affect_silicon = TRUE 
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
 	stun_animation = TRUE
@@ -542,7 +542,7 @@
 /obj/item/melee/roastingstick/Initialize()
 	. = ..()
 	if (!ovens)
-		ovens = typecacheof(list(/obj/singularity, /obj/machinery/power/supermatter_crystal, /obj/structure/bonfire, /obj/structure/destructible/clockwork/massive/ratvar))
+		ovens = typecacheof(list(/obj/singularity, /obj/machinery/power/supermatter_crystal, /obj/structure/bonfire, /obj/structure/destructible/clockwork/massive/ratvar, /obj/structure/destructible/clockwork/massive/celestial_gateway))
 
 /obj/item/melee/roastingstick/attack_self(mob/user)
 	on = !on

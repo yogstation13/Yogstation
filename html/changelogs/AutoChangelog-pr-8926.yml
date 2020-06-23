@@ -1,0 +1,4 @@
+author: "MrHorizons"
+delete-after: true 
+changes: 
+  - tweak: "The Syndicate's Lavaland telecomm relay now generates heat. It has been outfitted with a simple cooling system to compensate."

@@ -67,12 +67,12 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
-/* 
+/*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
 	and add said map's name to the changed_maps list, like so:
-	
+
 	changed_maps = list("OmegaStation")
-	
+
 	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
 	actually making the changes, like so:
 
@@ -84,7 +84,7 @@
 
 	/datum/job/warden
 		changed_maps = list("OmegaStation")
-	
+
 	/datum/job/warden/proc/OmegaStationChanges()
 		total_positions = 2
 		spawn_positions = 2
@@ -227,6 +227,9 @@
 			back = duffelbag //Department duffel bag
 		else
 			back = backpack //Department backpack
+
+	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
+		box = null
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

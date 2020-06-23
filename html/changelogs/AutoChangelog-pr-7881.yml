@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscadd: "Progenitors have a new spell that gives them more offensive capability"
-  - bugfix: "curse hands now actually hit people instead of passing them ineffectively"

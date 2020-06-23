@@ -200,8 +200,6 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/simple/pda)
 	assets.send(user)
-	register_asset("common.js", 'html/browser/common.js')
-	send_asset_list(user, list("common.js" = 'html/browser/common.js'), verify=FALSE)
 
 	user.set_machine(src)
 
@@ -459,7 +457,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					mode = 0
 				else
 					mode = round(mode/10)
-					if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub. 
+					if(mode==4 || mode == 5)//Fix for cartridges. Redirects to hub.
 						mode = 0
 			if ("Authenticate")//Checks for ID
 				id_check(U)
@@ -1075,7 +1073,16 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(incapacitated())
 		return
 	if(!isnull(aiPDA))
-		var/HTML = "<html><head><meta charset='UTF-8'><title>AI PDA Message Log</title></head><body>[aiPDA.tnote]</body></html>"
+		//Build the message list
+		var/dat
+		for(var/x in aiPDA.tnote)
+			if(istext(x)) // If it's literally just text
+				dat += aiPDA.tnote
+			else // It's hopefully a signal
+				var/datum/signal/subspace/messaging/pda/sig = x
+				dat += "<b>[sig.data["name"]]([sig.data["job"]])<i> (<a href='byond://?src=[REF(src.aiPDA)];choice=Message;target=[REF(sig.source)]'>Reply</a>) (<a href='?src=[REF(usr)];track=[html_encode(sig.data["name"])]'>Track</a>):</b></i><br>[sig.format_message(user)]<br>"
+				dat += "<br>"
+		var/HTML = "<html><head><meta charset='UTF-8'><title>AI PDA Message Log</title></head><body>[dat]</body></html>"
 		user << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 	else
 		to_chat(user, "You do not have a PDA. You should make an issue report about this.")
@@ -1107,7 +1114,16 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(incapacitated())
 		return
 	if(!isnull(aiPDA))
-		var/HTML = "<html><head><meta charset='UTF-8'><title>AI PDA Message Log</title></head><body>[aiPDA.tnote]</body></html>"
+		//Build the message list
+		var/dat
+		for(var/x in aiPDA.tnote)
+			if(istext(x)) // If it's literally just text
+				dat += aiPDA.tnote
+			else // It's hopefully a signal
+				var/datum/signal/subspace/messaging/pda/sig = x
+				dat += "<b>[sig.data["name"]]([sig.data["job"]])<i> (<a href='byond://?src=[REF(src.aiPDA)];choice=Message;target=[REF(sig.source)]'>Reply</a>):</b></i><br>[sig.format_message(user)]<br>"
+				dat += "<br>"
+		var/HTML = "<html><head><meta charset='UTF-8'><title>AI PDA Message Log</title></head><body>[dat]</body></html>"
 		user << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 	else
 		to_chat(user, "You do not have a PDA. You should make an issue report about this.")

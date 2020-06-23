@@ -407,6 +407,24 @@
 	build_path = /obj/machinery/holopad
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE //wew lad
+	var/secure = FALSE
+
+/obj/item/circuitboard/machine/holopad/attackby(obj/item/P, mob/user, params)
+	if(P.tool_behaviour == TOOL_MULTITOOL)
+		if(secure)
+			build_path = /obj/machinery/holopad
+			secure = FALSE
+		else
+			build_path = /obj/machinery/holopad/secure
+			secure = TRUE
+		to_chat(user, "<span class='notice'>You [secure? "en" : "dis"]able the security on the [src]</span>")
+	. = ..()
+
+/obj/item/circuitboard/machine/holopad/examine(mob/user)
+	. = ..()
+	. += "There is a connection port on this board that could be <b>pulsed</b>"
+	if(secure)
+		. += "There is a red light flashing next to the word \"secure\""
 
 
 /obj/item/circuitboard/machine/launchpad
@@ -423,6 +441,15 @@
 	icon_state = "generic"
 	build_path = /obj/machinery/paystand
 	req_components = list()
+
+/obj/item/circuitboard/machine/ticketmachine
+	name = "Ticket Machine (Machine Board)"
+	icon_state = "generic"
+	desc = "You will also need a ticket machine remote to operate this."
+	build_path = /obj/machinery/ticket_machine
+	req_components = list(
+		/obj/item/hand_labeler = 1,
+		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/protolathe
 	name = "Protolathe (Machine Board)"

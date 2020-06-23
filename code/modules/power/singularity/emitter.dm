@@ -120,10 +120,6 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/emitter/power_change()
-	. = ..()
-	update_icon()
-
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(state == EMITTER_WELDED)
@@ -299,19 +295,8 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/I, mob/user, params)
 	if(I.GetID())
-		if(obj_flags & EMAGGED)
-			to_chat(user, "<span class='warning'>The lock seems to be broken!</span>")
-			return
-		if(allowed(user))
-			if(active)
-				locked = !locked
-				to_chat(user, "<span class='notice'>You [src.locked ? "lock" : "unlock"] the controls.</span>")
-			else
-				to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is online!</span>")
-		else
-			to_chat(user, "<span class='danger'>Access denied.</span>")
+		togglelock(user)
 		return
-
 	else if(is_wire_tool(I) && panel_open)
 		wires.interact(user)
 		return
@@ -319,6 +304,22 @@
 		if(integrate(I,user))
 			return
 	return ..()
+
+/obj/machinery/power/emitter/proc/togglelock(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>The lock seems to be broken!</span>")
+		return
+	if(allowed(user))
+		if(active)
+			locked = !locked
+			to_chat(user, "<span class='notice'>You [src.locked ? "lock" : "unlock"] the controls.</span>")
+		else
+			to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is online!</span>")
+	else
+		to_chat(user, "<span class='danger'>Access denied.</span>")
+	return
 
 /obj/machinery/power/emitter/proc/integrate(obj/item/gun/energy/E,mob/user)
 	if(istype(E, /obj/item/gun/energy))
