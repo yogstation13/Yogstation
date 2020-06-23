@@ -406,8 +406,7 @@
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
-					/obj/item/clothing/head/taqiyahred = 3,
-					/obj/item/clothing/head/beanie/rasta = 1)
+					/obj/item/clothing/head/taqiyahred = 3)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,

@@ -90,24 +90,6 @@
 		animate(src, color = previouscolor, time = 8)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
-/turf/closed/wall/clockwork/dismantle_wall(devastated=0, explode=0)
-	if(devastated)
-		devastate_wall()
-		ScrapeAway()
-	else
-		playsound(src, 'sound/items/welder.ogg', 100, 1)
-		var/newgirder = break_wall()
-		if(newgirder) //maybe we want a gear!
-			transfer_fingerprints_to(newgirder)
-		ScrapeAway()
-
-	for(var/obj/O in src) //Eject contents!
-		if(istype(O, /obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-		else
-			O.forceMove(src)
-
 /turf/closed/wall/clockwork/devastate_wall()
 	for(var/i in 1 to 2)
 		new/obj/item/clockwork/alloy_shards/large(src)

@@ -224,16 +224,7 @@
 	<head>
 		<meta charset='UTF-8'>
 		<title>[title]</title>
-		<style>
-			body {
-				font-family: Verdana, sans-serif;
-				font-size: 9pt;
-			}
-			.value {
-				font-family: "Courier New", monospace;
-				font-size: 8pt;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="view_variables.css">
 	</head>
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
@@ -460,6 +451,7 @@
 
 
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
+/// Get displayed variable in VV variable list
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA && !isappearance(DA))
@@ -496,9 +488,17 @@
 	else if (isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
-	else if(istype(value, /matrix))
+	else if(istype(value,/matrix)) // Needs to be before datum
 		var/matrix/M = value
-		item = "[VV_HTML_ENCODE(name)] = <span class='value'>matrix([M.a], [M.b], [M.c], [M.d], [M.e], [M.f])</span>"
+		item = {"[VV_HTML_ENCODE(name)] = <span class='value'>
+			<table class='matrixbrak'><tbody><tr><td class='lbrak'>&nbsp;</td><td>
+			<table class='matrix'>
+			<tbody>
+				<tr><td>[M.a]</td><td>[M.d]</td><td>0</td></tr>
+				<tr><td>[M.b]</td><td>[M.e]</td><td>0</td></tr>
+				<tr><td>[M.c]</td><td>[M.f]</td><td>1</td></tr>
+			</tbody>
+			</table></td><td class='rbrak'>&nbsp;</td></tr></tbody></table></span>"} //TODO link to modify_transform wrapper for all matrices
 
 	else if(isappearance(value))
 		var/image/I = value
@@ -1498,3 +1498,27 @@
 						H.remove_quirk(T)
 					else
 						H.add_quirk(T,TRUE)
+		else if(href_list["delete_paint"])
+			if(!check_rights(R_ADMIN))
+				return
+
+			var/obj/structure/sign/painting/P = locate(href_list["delete_paint"])
+
+			var/mob/user = usr
+			if(!P.persistence_id || !P.C)
+				to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+				return
+			var/md5 = md5(P.C.get_data_string())
+			var/author = P.C.author_ckey
+			var/list/current = SSpersistence.paintings[P.persistence_id]
+			if(current)
+				for(var/list/entry in current)
+					if(entry["md5"] == md5)
+						current -= entry
+				var/png = "data/paintings/[P.persistence_id]/[md5].png"
+				fdel(png)
+			for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+				if(PA.C && md5(PA.C.get_data_string()) == md5)
+					QDEL_NULL(PA.C)
+			log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+			message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")

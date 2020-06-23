@@ -1,4 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscdel: "removes minsky reference from readme.md"

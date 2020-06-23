@@ -30,13 +30,6 @@ jobs:
       
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
-        with:
-          default: true
-      
-      - name: Setup PHP
-        uses: nanasess/setup-php@v3.0.3
-        with: 
-          php_version: 5.6
 
       - name: Install Dependencies
         run: |
@@ -48,13 +41,25 @@ jobs:
         run: |
           tools/travis/check_filedirs.sh yogstation.dme
           tools/travis/check_changelogs.sh
-          find . -name "*.php" -print0 | xargs -0 -n1 php -l
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
           tools/travis/build_tgui.sh
           tools/travis/check_grep.sh
 
       - name: Run Linter
-        run: ~/dreamchecker
+        run: |
+          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+
+      - name: Annotate Errors
+        uses: yogstation13/add-annotations-github-action@master
+        with:
+          check_name: "Lints"
+          linter_output_path: 'output-annotations.txt'
+          commit_sha: ${{ github.event.pull_request.head.sha }}
+          regex: '(?<filename>.*?), line (?<lineNumber>\d+), column (?<columnNumber>\d+):\n(?<errorCode>\w+): (?<errorDesc>.*)'
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   compile:
     name: Compile All Maps
     runs-on: ubuntu-18.04

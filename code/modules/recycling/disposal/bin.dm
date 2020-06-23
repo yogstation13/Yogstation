@@ -285,13 +285,20 @@
 
 // handle machine interaction
 
+/obj/machinery/disposal/bin/AltClick(mob/user)
+	. = ..()
+	if(!user.canUseTopic(src, TRUE))
+		return
+	flush = !flush
+	update_icon()
+
 /obj/machinery/disposal/bin/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	if(stat & BROKEN)
 		return
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "disposal_unit", name, 300, 180, master_ui, state)
+		ui = new(user, src, ui_key, "DisposalUnit", name, 300, 180, master_ui, state)
 		ui.open()
 
 /obj/machinery/disposal/bin/ui_data(mob/user)

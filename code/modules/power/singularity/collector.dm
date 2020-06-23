@@ -113,17 +113,28 @@
 		loaded_tank = W
 		update_icon()
 	else if(W.GetID())
-		if(allowed(user))
-			if(active)
-				locked = !locked
-				to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the controls.</span>")
-			else
-				to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is active!</span>")
-		else
-			to_chat(user, "<span class='danger'>Access denied.</span>")
+		if(togglelock(user))
 			return TRUE
 	else
 		return ..()
+
+/obj/machinery/power/rad_collector/proc/togglelock(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(allowed(user))
+		if(active)
+			locked = !locked
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the controls.</span>")
+			return TRUE
+		else
+			to_chat(user, "<span class='warning'>The controls can only be locked when \the [src] is active!</span>")
+	else
+		to_chat(user, "<span class='danger'>Access denied.</span>")
+
+/obj/machinery/power/rad_collector/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE) || issilicon(user))
+		return
+	togglelock(user)
 
 /obj/machinery/power/rad_collector/wrench_act(mob/living/user, obj/item/I)
 	default_unfasten_wrench(user, I)
