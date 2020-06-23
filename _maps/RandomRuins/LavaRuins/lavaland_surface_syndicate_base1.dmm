@@ -350,6 +350,23 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"dR" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Telecommunications Control";
+	req_access_txt = "150"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "dS" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1473,6 +1490,15 @@
 "gj" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/unpowered/syndicate_lava_base/virology)
+"gk" = (
+/obj/machinery/light/small,
+/obj/structure/rack,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/suit/hooded/wintercoat,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "gn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6
@@ -4337,7 +4363,15 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "mM" = (
-/turf/open/floor/circuit/green,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/obj/machinery/airalarm/tcomms{
+	pixel_y = 24;
+	req_access_txt = "150"
+	},
+/turf/open/floor/circuit/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "mN" = (
 /obj/structure/sign/warning/securearea,
@@ -4440,35 +4474,26 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nh" = (
-/obj/machinery/telecomms/relay/preset/ruskie{
-	generates_heat = 0;
-	use_power = 0
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "ni" = (
-/obj/effect/turf_decal/tile/neutral{
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/machinery/door/airlock/public/glass{
+	name = "Telecommunications Relay";
+	req_access_txt = "150"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = -1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
@@ -4732,13 +4757,6 @@
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nH" = (
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -5427,6 +5445,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
+"ue" = (
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "uB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
@@ -5606,6 +5630,12 @@
 	dir = 6
 	},
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
+"AX" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Bd" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_virology"
@@ -5720,27 +5750,10 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "EY" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Telecommunications Control";
-	req_access_txt = "150"
+/obj/machinery/telecomms/relay/preset/ruskie{
+	use_power = 0
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/circuit/green/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "EZ" = (
 /obj/machinery/door/airlock/external{
@@ -5790,6 +5803,26 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"Fy" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "FB" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medbay"
@@ -5917,8 +5950,7 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "IO" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Ja" = (
@@ -6266,6 +6298,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"PW" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Qg" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -6611,12 +6652,19 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/folder/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
 "XW" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
+"Yb" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Yh" = (
 /obj/machinery/door/poddoor{
 	id = "lavalandsyndi_cargo"
@@ -6893,7 +6941,7 @@ ab
 ab
 ab
 ab
-ab
+mn
 mn
 mn
 mn
@@ -6944,10 +6992,10 @@ ab
 ab
 ab
 mn
-mn
-mM
+EY
+PW
 nh
-mM
+AX
 mn
 mn
 ab
@@ -6995,10 +7043,10 @@ ab
 ab
 mn
 mM
-mM
+ue
 ni
-mM
-mM
+Yb
+gk
 mn
 ab
 ab
@@ -7046,8 +7094,8 @@ ab
 mn
 mn
 mN
-EY
 mn
+dR
 mn
 mn
 ab
@@ -7096,7 +7144,7 @@ ab
 ab
 TY
 mP
-ni
+Fy
 nH
 oh
 mn
