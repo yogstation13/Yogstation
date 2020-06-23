@@ -55,6 +55,8 @@
 	for(var/I in subtypesof(/datum/action/innate/cult/blood_spell))
 		var/datum/action/innate/cult/blood_spell/J = I
 		var/cult_name = initial(J.name)
+		if(!iscultist(owner, TRUE) && initial(J.requires_full_power))
+			continue
 		possible_spells[cult_name] = J
 	possible_spells += "(REMOVE SPELL)"
 	entered_spell_name = input(owner, "Pick a blood spell to prepare...", "Spell Choices") as null|anything in possible_spells
@@ -65,9 +67,6 @@
 		return
 	BS = possible_spells[entered_spell_name]
 	if(QDELETED(src) || owner.incapacitated() || !BS || (rune && !(locate(/obj/effect/rune/empower) in range(1, owner))) || (spells.len >= limit))
-		return
-	if(!iscultist(owner, TRUE) && BS.requires_full_power)
-		to_chat(owner, "<span class='warning'>The veil is not weak enough to use this spell!</span>")
 		return
 	to_chat(owner,"<span class='warning'>You begin to carve unnatural symbols into your flesh!</span>")
 	SEND_SOUND(owner, sound('sound/weapons/slice.ogg',0,1,10))

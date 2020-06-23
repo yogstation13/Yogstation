@@ -178,9 +178,9 @@
 	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a servant of Ratvar.")
 
 /datum/antagonist/clockcult/admin_remove(mob/user)
-	remove_servant_of_ratvar(owner.current, TRUE)
 	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
+	remove_servant_of_ratvar(owner.current, TRUE)
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()

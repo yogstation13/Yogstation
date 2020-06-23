@@ -3,6 +3,7 @@
 	var/datum/team/clock_agents/clock_agent_team//clock team for tracking objectives
 	var/list/datum/mind/bloodagents = list()	//ditto for blood
 	var/datum/team/blood_agents/blood_agent_team //same
+	var/agent_objective_scaling = 1
 
 /datum/game_mode/traitor/traitorcult
 	name = "traitor+cultagents"
@@ -32,6 +33,7 @@
 		var/team_size = min_team_size
 		if(asc)
 			team_size = min(round(GLOB.joined_player_list.len / (asc * 2)) + 2, round(GLOB.joined_player_list.len / asc))
+		agent_objective_scaling = max(round(num_players() / 20), 1)
 		clock_agent_team = new
 		GLOB.servants_active = TRUE //needed for scripture alerts, doesn't do much else aside from reebe stuff so :shrug:
 		for(var/k = 1 to team_size)
@@ -52,6 +54,4 @@
 		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
 	for(var/datum/mind/M in blood_agent_team.members)
 		M.add_antag_datum(/datum/antagonist/cult/agent)
-	clock_agent_team.forge_clock_objectives()
-	blood_agent_team.forge_blood_objectives()
 	return ..()

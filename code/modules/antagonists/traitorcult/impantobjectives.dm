@@ -5,7 +5,7 @@
 	var/list/datum/mind/dudes_stabbed = list()  //list of people with the implants
 
 /datum/objective/implant/update_explanation_text()
-	dudes_to_stab = team.members.len * rand(1,5) //1 to 5 implantees per agent
+	dudes_to_stab = SSticker.mode.agent_objective_scaling * rand(1,5) //1 to 5 implantees per agent
 	explanation_text = "<span class='sevtug'>Implant at least [dudes_to_stab] of these heretics with guvax capacitors, I'll need them later. Use a replica fabricator on an implanter to make one, and try to keep them alive please and thank you.</span>"
 
 /datum/objective/implant/check_completion()
@@ -17,6 +17,12 @@
 			successful_stabs += 0.5 //still get points if they're dead
 	return successful_stabs >= dudes_to_stab
 
+/datum/objective/implant/blood
+	name = "bloodcult implant"
+
+/datum/objective/implant/blood/update_explanation_text()
+	dudes_to_stab = SSticker.mode.agent_objective_scaling * rand(1,5) //1 to 5 implantees per agent
+	explanation_text = "<span class='cultbold'>Implant at least [dudes_to_stab] of the nonbelievers with soulshards created from using twisted construction on implanters. Keeping them alive is preferable.</span>"
 
 /datum/antagonist/cult_implanted //used for guvax implanted gamers to stop them from being twits
 	name = "Capacitor-seeded"
@@ -129,16 +135,9 @@
 		playsound(source, break_sound, 20, 1)
 		QDEL_NULL(src)
 
-
-/datum/objective/implant/blood //to be added in the "bloodcult" DLC expansion pack
-	name = "bloodcult implant"
-
-/datum/objective/implant/blood/update_explanation_text()
-	explanation_text = "<span class='cultbold'>Implant at least [dudes_to_stab] of the nonbelievers with soulshards created from using twisted construction on implanters. Keeping them alive is preferable.</span>"
-
 /datum/antagonist/cult_implanted/blood
 	name = "Soul-seeded"
-	flavor_message = "<span class ='cultbold'>\"Run, insect. Your time will come.\"</span>" //placeholder
+	flavor_message = "<span class ='cultbold'>\"Run, insect. Your time will come.\"</span>"
 
 /obj/item/implanter/cult/blood
 	name = "soulshard"

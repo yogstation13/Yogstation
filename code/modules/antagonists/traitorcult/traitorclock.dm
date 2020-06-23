@@ -1,6 +1,6 @@
 /datum/antagonist/clockcult/agent
 	name = "ClockCult Agent"
-	antagpanel_category = "Cult Agent"
+	antagpanel_category = "Clock Agent"
 	make_team = FALSE
 	agent = TRUE
 	ignore_holy_water = TRUE
@@ -15,6 +15,7 @@
 	if(!agent_team)
 		agent_team = new(owner)
 		SSticker.mode.clock_agent_team = agent_team
+		agent_team.forge_clock_objectives()
 		agent_team.add_member(owner)
 		objectives += agent_team.objectives
 	else
@@ -30,6 +31,10 @@
 	owner.current.playsound_local(get_turf(owner.current),'sound/effects/screech.ogg' , 100, FALSE, pressure_affected = FALSE)
 	owner.announce_objectives()
 
+/datum/antagonist/clockcult/agent/on_removal()
+	SSticker.mode.clockagents -= owner
+	. = ..()
+
 /datum/antagonist/clockcult/agent/admin_add(datum/mind/new_owner, mob/admin)
 	add_servant_of_ratvar(new_owner.current, TRUE, FALSE, TRUE)
 	agent_team = SSticker.mode.clock_agent_team
@@ -37,9 +42,9 @@
 	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a Clockwork Agent.")
 
 /datum/antagonist/clockcult/agent/admin_remove(mob/user)
-	remove_servant_of_ratvar(owner.current, TRUE)
 	message_admins("[key_name_admin(user)] has removed clockwork agent status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed clockwork agent status from [key_name(owner)].")
+	remove_servant_of_ratvar(owner.current, TRUE)
 
 /datum/antagonist/clockcult/agent/proc/equip_clock_agent(mob/living/M)
 	if(!M || !ishuman(M))
@@ -62,7 +67,7 @@
 	return S
 
 /datum/antagonist/clockcult/agent/admin_give_slab(mob/admin)
-	if(equip_clock_agent(owner.current))
+	if(!equip_clock_agent(owner.current))
 		to_chat(admin, "<span class='warning'>Failed to outfit [owner.current]!</span>")
 	else
 		to_chat(admin, "<span class='notice'>Successfully gave [owner.current] a slab!</span>")
