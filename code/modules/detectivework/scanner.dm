@@ -29,24 +29,17 @@
 	var/scan_speed = 4 // the speed between scans. The delay is this value x2 . Total scan time  = scan_speed * 10 for minimum , scan_speed * 18 if results for each catagory are found
 	var/admin = FALSE // does this scanner pull up hiddenprints? Also removes scan time and feedback giving instant results
 	var/advanced = FALSE // does this scanner pull up more details on results?
-
-	// sounds must be in sound/items by default. Modify sound_directory for a different directory.
 	var/can_sound = TRUE // can this scanner play sound at all?
 	var/sound_on = TRUE // is the sound currently turned on?
-	var/sound_directory = "sound/items" // just in-case you decide to place your sounds outside of sound\items
-	var/sound_positive = "scanner_positive" // plays as a result is found during the scan
-	var/sound_scan = "scanner_scan" // plays as each new scan is starting
-	var/sound_match = "scanner_match" // plays at the end when there is a match found
-	var/sound_nomatch = "scanner_nomatch" // plays at the end when no matches were found
 
 /obj/item/detective_scanner/proc/feedback(file , var/sound_only = FALSE)
 	if(sound_only)
-		var/sound_to_play = "[sound_directory]/[file].ogg"
+		var/sound_to_play = "sound/items/[file].ogg"
 		playsound(src, sound_to_play, 50, 0)
 		return
 	if(!file || admin)
 		return
-	var/sound_to_play = "[sound_directory]/[file].ogg"
+	var/sound_to_play = "sound/items/[file].ogg"
 	if(sound_on)
 		playsound(src, sound_to_play, 50, 0)
 	sleep(scan_speed*2)
@@ -220,40 +213,40 @@
 			add_log("<B>GPS coordinate of scan:</B> [location_of_scan.x],[location_of_scan.y]")
 
 		// Fingerprints
-		feedback(sound_scan)
+		feedback("scanner_scan")
 		if(length(fingerprints))
 			add_log("<span class='info'><B>Prints:</B></span>")
 			for(var/finger in fingerprints)
 				add_log("[finger]")
 			found_something = 1
-			feedback(sound_positive)
+			feedback("scanner_positive")
 
 		// Blood
-		feedback(sound_scan)
+		feedback("scanner_scan")
 		if (length(blood))
-			feedback(sound_positive)
+			feedback("scanner_positive")
 			add_log("<span class='info'><B>Blood:</B></span>")
 			for(var/B in blood)
 				add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
 				found_something = 1
 
 		//Fibers
-		feedback(sound_scan)
+		feedback("scanner_scan")
 		if(length(fibers))
-			feedback(sound_positive)
+			feedback("scanner_positive")
 			add_log("<span class='info'><B>Fibers:</B></span>")
 			for(var/fiber in fibers)
 				add_log("[fiber]")
 			found_something = 1
 
 		//Reagents
-		feedback(sound_scan)
+		feedback("scanner_scan")
 		if(length(reagents))
 			add_log("<span class='info'><B>Reagents:</B></span>")
 			for(var/R in reagents)
 				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
 			found_something = 1
-			feedback(sound_positive)
+			feedback("scanner_positive")
 
 		// Get a new user
 		var/mob/holder = null
@@ -261,12 +254,12 @@
 			holder = src.loc
 
 		if(!found_something)
-			feedback(sound_nomatch)
+			feedback("scanner_nomatch")
 			add_log("<I># No forensic traces found #</I>", 0) // Don't display this to the holder user
 			if(holder)
 				to_chat(holder, "<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on \the [target_name]!</span>")
 		else
-			feedback(sound_match)
+			feedback("scanner_match")
 			if(holder)
 				to_chat(holder, "<span class='notice'>You finish scanning \the [target_name].</span>")
 
@@ -323,7 +316,7 @@
 
 /obj/item/detective_scanner/admin/scan(atom/A, mob/user) // plays result sound after scan since it bypasses feedback
 	. = ..()
-	found_something ? feedback(sound_match , TRUE) : feedback(sound_nomatch , TRUE)
+	found_something ? feedback("scanner_match" , TRUE) : feedback("scanner_nomatch" , TRUE)
 
 /obj/item/detective_scanner/advanced
 	name = "advanced forensic scanner"
