@@ -18,7 +18,7 @@
 	var/icons_available = list() // stores available icons for radial menu
 	var/icon_directory = 'icons/effects/icons.dmi' // dmi file containing the icons used in the radial menu
 	var/scanning = 0
-	var/found_something // placeholder for result boolian. placed here for admin scanner.
+	var/found_something // placeholder for result boolean. placed here for admin scanner.
 	var/list/log = list()
 	var/range = 8
 	var/view_check = TRUE
