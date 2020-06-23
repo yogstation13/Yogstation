@@ -65,7 +65,33 @@
 		scanner.displayDetectiveScanResults(usr)
 
 /obj/item/detective_scanner/attack_self(mob/user)
-	radial_show(user)
+	if(scanning)
+		to_chat(user, "<span class='notice'>[src] is in use.</span>")
+		return
+	radial_generate()
+	if(icons_available)
+		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
+		if(!selection)
+			return
+		
+		if(selection == "View results")
+			var/obj/item/detective_scanner/scanner = src
+			if(istype(scanner))
+				scanner.displayDetectiveScanResults(user)
+			return
+		
+		if(selection == "Volume on" || selection == "Volume off")
+			to_chat(user, (sound_on ? "<span class='notice'>You mute the volume.</span>" : "<span class='notice'>You turn up the volume.</span>"))
+			sound_on = !sound_on
+			return
+
+		if(selection == "Print results")
+			option_print(user)
+			return
+
+		if(selection == "Clear results")
+			option_clearlogs(user)
+			return
 	
 /obj/item/detective_scanner/proc/option_print(mob/user)
 	if(log.len && !scanning)
@@ -107,34 +133,6 @@
 		icons_available += list("Print results" = image(icon = icon_directory, icon_state = "print"))
 		icons_available += list("Clear results" = image(icon = icon_directory, icon_state = "clear"))
 
-/obj/item/detective_scanner/proc/radial_show(mob/user) // shows radial to user and performs actions based on it.
-	if(scanning)
-		to_chat(user, "<span class='notice'>[src] is in use.</span>")
-		return
-	radial_generate()
-	if(icons_available)
-		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE, tooltips = TRUE)
-		if(!selection)
-			return
-		
-		if(selection == "View results")
-			var/obj/item/detective_scanner/scanner = src
-			if(istype(scanner))
-				scanner.displayDetectiveScanResults(user)
-			return
-		
-		if(selection == "Volume on" || selection == "Volume off")
-			to_chat(user, (sound_on ? "<span class='notice'>You mute the volume.</span>" : "<span class='notice'>You turn up the volume.</span>"))
-			sound_on = !sound_on
-			return
-
-		if(selection == "Print results")
-			option_print(user)
-			return
-
-		if(selection == "Clear results")
-			option_clearlogs(user)
-			return
 		
 /obj/item/detective_scanner/proc/PrintReport()
 	// Create our paper
