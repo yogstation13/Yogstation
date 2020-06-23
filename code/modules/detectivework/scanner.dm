@@ -47,10 +47,9 @@
 	if(!file || admin)
 		return
 	var/sound_to_play = "[sound_directory]/[file].ogg"
-	sleep(scan_speed)
 	if(sound_on)
 		playsound(src, sound_to_play, 50, 0)
-	sleep(scan_speed)
+	sleep(scan_speed*2)
 
 /obj/item/detective_scanner/Initialize()
 	. = ..()
