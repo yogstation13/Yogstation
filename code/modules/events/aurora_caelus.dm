@@ -24,7 +24,7 @@
 			M.playsound_local(M, 'sound/ambience/aurora_caelus.ogg', 20, FALSE, pressure_affected = FALSE)
 
 /datum/round_event/meteor_wave/aurora_caelus/start()
-	spawn_meteors(100, GLOB.meteorsAURORA)
+	spawn_meteors(600, GLOB.meteorsAURORA)
 
 /datum/round_event/meteor_wave/aurora_caelus/end()
 	priority_announce("The aurora caelus event is now ending. Starlight conditions will slowly return to normal. When this has concluded, please return to your workplace and continue work as normal. Have a pleasant shift, [station_name()], and thank you for watching with us.",
