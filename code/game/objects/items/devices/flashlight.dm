@@ -254,7 +254,10 @@
 	brightness_on = 7 // Pretty bright.
 	icon_state = "flare"
 	item_state = "flare"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	actions_types = list()
+	var/ignition_sound = 'sound/items/flare_strike_1.ogg'
 	var/fuel = 0
 	var/on_damage = 7
 	var/frng_min = 800
@@ -319,6 +322,7 @@
 	// All good, turn it on.
 	if(.)
 		user.visible_message("<span class='notice'>[user] lights \the [src].</span>", "<span class='notice'>You light \the [src]!</span>")
+		playsound(loc, ignition_sound, 50, 1) //make some noise!
 		force = on_damage
 		name = "lit [initial(src.name)]"
 		desc = "[initial(src.desc)] This one is lit."
@@ -332,8 +336,11 @@
 
 /obj/item/flashlight/flare/emergency
 	name = "safety flare"
-	desc = "A flare issued to nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey nanotrasen'."
+	desc = "A flare issued to Nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey Nanotrasen'."
 	brightness_on = 3
+	item_state = "flaresafety"
+	icon_state = "flaresafety"
+	ignition_sound = 'sound/items/flare_strike_2.ogg'
 	frng_min = 40
 	frng_max = 70
 
@@ -359,6 +366,7 @@
 	item_state = "torch"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	ignition_sound = 'sound/items/match_strike.ogg'
 	light_color = LIGHT_COLOR_ORANGE
 	on_damage = 10
 	slot_flags = null
