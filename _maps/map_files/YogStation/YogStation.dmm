@@ -37185,19 +37185,19 @@
 	pixel_x = 4;
 	pixel_y = 1
 	},
+/obj/item/folder{
+	pixel_x = -5;
+	pixel_y = 8
+	},
 /obj/item/pen{
-	pixel_x = -6;
-	pixel_y = 6
+	pixel_x = -5;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bBX" = (
 /obj/machinery/computer/rdservercontrol{
 	dir = 1
-	},
-/obj/item/folder/blue{
-	pixel_x = 25;
-	pixel_y = 5
 	},
 /obj/machinery/airalarm{
 	dir = 1;
@@ -54021,6 +54021,21 @@
 "nds" = (
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"nfJ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "nfX" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -60099,21 +60114,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"wNp" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "wPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -106217,7 +106217,7 @@ cHZ
 cIf
 box
 btA
-wNp
+nfJ
 byf
 bKS
 bAD
