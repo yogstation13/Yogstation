@@ -21,9 +21,8 @@
 /area/reebe/city_of_cogs)
 "af" = (
 /obj/structure/table/reinforced/brass,
-/obj/item/clockwork/slab,
-/obj/item/clockwork/slab,
-/obj/item/clockwork/slab,
+/obj/item/kitchen/fork,
+/obj/item/kitchen/fork,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "ag" = (
@@ -197,6 +196,11 @@
 /area/reebe/city_of_cogs)
 "aL" = (
 /obj/structure/table/reinforced/brass,
+/obj/item/clockwork/slab,
+/obj/item/clockwork/slab,
+/obj/item/clockwork/slab,
+/obj/item/kitchen/fork,
+/obj/item/kitchen/fork,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "aM" = (
@@ -219,6 +223,11 @@
 "aP" = (
 /obj/machinery/door/airlock/clockwork/brass,
 /turf/open/indestructible/clock_spawn_room,
+/area/reebe/city_of_cogs)
+"aQ" = (
+/obj/structure/table/reinforced/brass,
+/obj/item/kitchen/fork,
+/turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "bj" = (
 /obj/structure/destructible/clockwork/eminence_spire,
@@ -3641,7 +3650,7 @@ aj
 aj
 aj
 ah
-af
+aL
 aj
 aj
 ag
@@ -3821,7 +3830,7 @@ aj
 aj
 aj
 ah
-af
+aL
 ax
 aj
 aj
@@ -4639,7 +4648,7 @@ aj
 aj
 aj
 ah
-aL
+af
 aj
 aj
 aj
@@ -5007,7 +5016,7 @@ aj
 aj
 aj
 ah
-aL
+aQ
 am
 ai
 aj
