@@ -246,7 +246,11 @@ Credit where due:
 		prob(99)
 			SSticker.mode_result = "win - servants completed their objective (summon ratvar)",
 		prob(1)
+<<<<<<< Updated upstream
 			SSticker.mode_result = "Coggers",
+=======
+			SSticker.mode_result = "Coggers"
+>>>>>>> Stashed changes
 		)
 	else
 		SSticker.news_report = CULT_FAILURE
