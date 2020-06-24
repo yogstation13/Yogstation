@@ -813,5 +813,16 @@
 	time = 20
 	category = CAT_PRIMAL
 
-
+/datum/crafting_recipe/universal_recorder
+	name = "Universal Recorder"
+	result = /obj/item/taperecorder
+	reqs = list(/obj/item/computer_hardware/hard_drive = 1,
+				/obj/item/computer_hardware/battery = 1,
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/computer_hardware/printer = 1,
+				/obj/item/radio = 1)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	time = 30
+	category = CAT_MISC
 	
