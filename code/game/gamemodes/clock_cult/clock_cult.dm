@@ -242,7 +242,12 @@ Credit where due:
 	..()
 	if(GLOB.clockwork_gateway_activated)
 		SSticker.news_report = CLOCK_SUMMON
-		SSticker.mode_result = "win - servants completed their objective (summon ratvar)"
+		pick (
+		prob(99)
+			SSticker.mode_result = "win - servants completed their objective (summon ratvar)",
+		prob(1)
+			SSticker.mode_result = "Coggers",
+		)
 	else
 		SSticker.news_report = CULT_FAILURE
 		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"
