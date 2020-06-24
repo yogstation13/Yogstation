@@ -60,7 +60,8 @@
 		user.set_nutrition(min((user.nutrition + target.nutrition), NUTRITION_LEVEL_WELL_FED))
 
 	// Absorb a lizard, speak Draconic.
-	owner.copy_languages(target, LANGUAGE_ABSORB)
+	if(owner)
+		owner.copy_languages(target, LANGUAGE_ABSORB)
 
 	if(target.mind && user.mind)//if the victim and user have minds
 
