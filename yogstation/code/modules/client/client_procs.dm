@@ -6,7 +6,8 @@
 		return
 
 	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = Now() WHERE id = :number", list("number" = number))
-	query_logout.Execute()
+	if(!query_logout.Execute())
+		log_sql("Failed: [query_logout.last_error]")
 	log_sql("SQL: [query_logout.sql]")
 	var/list/uwu = query_logout.arguments
 	log_sql("Arguments: [uwu.Join(", ")]")
