@@ -30419,11 +30419,13 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1;
+	step_x = 0
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1;
+	step_x = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -35552,6 +35554,8 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "byi" = (
@@ -36085,12 +36089,7 @@
 /turf/closed/wall,
 /area/maintenance/aft)
 "bzt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 140;
-	name = "server vent";
-	pressure_checks = 0
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bzu" = (
@@ -36098,18 +36097,16 @@
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bzv" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bzw" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'SERVER ROOM'.";
 	name = "SERVER ROOM";
@@ -36119,7 +36116,9 @@
 /turf/open/floor/plating,
 /area/science/server)
 "bzx" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 8
+	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
@@ -36500,12 +36499,12 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bAs" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 9
-	},
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -26
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
@@ -36540,6 +36539,10 @@
 /area/engine/atmos_distro)
 "bAy" = (
 /obj/effect/landmark/blobstart,
+/obj/machinery/atmospherics/pipe/manifold/general/hidden{
+	dir = 8
+	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
 "bAz" = (
@@ -36553,9 +36556,10 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
 "bAA" = (
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bAB" = (
@@ -36569,28 +36573,30 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bAC" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 9
-	},
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bAD" = (
 /obj/structure/chair/office/light,
-/obj/machinery/atmospherics/pipe/simple{
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/general/hidden,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bAE" = (
@@ -37131,7 +37137,7 @@
 /area/maintenance/aft)
 "bBS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 4;
+	dir = 1;
 	external_pressure_bound = 120;
 	name = "server vent"
 	},
@@ -37169,22 +37175,28 @@
 	name = "SERVER ROOM";
 	pixel_y = -32
 	},
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/server)
 "bBW" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
+/obj/structure/table,
+/obj/item/paper_bin{
+	step_x = 4;
+	step_y = 1
 	},
-/obj/machinery/airalarm/directional/south,
+/obj/item/pen{
+	step_x = -6;
+	step_y = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bBX" = (
 /obj/machinery/computer/rdservercontrol{
 	dir = 1
+	},
+/obj/item/folder/blue{
+	step_x = 25;
+	step_y = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
@@ -40255,10 +40267,12 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bKT" = (
@@ -48679,6 +48693,18 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"eIx" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "eIF" = (
 /obj/structure/table,
 /obj/item/pet_carrier/xenobio,
@@ -53007,21 +53033,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"ltB" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "luw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -60497,11 +60508,6 @@
 /obj/machinery/teleport/hub,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
-"xLe" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/closed/wall/r_wall,
-/area/science/server)
 "xLv" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -106203,8 +106209,8 @@ cHZ
 cIf
 box
 btA
-ltB
-xLe
+eIx
+byf
 bKS
 bAD
 bBX
