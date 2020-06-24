@@ -7,6 +7,8 @@
 
 	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = Now() WHERE id = :number", list("number" = number))
 	query_logout.Execute()
+	log_sql("SQL: [query_logout.sql]")
+	log_sql("Arguments: [query_logout.arguments]")
 	qdel(query_logout)
 
 /client/proc/sync_login_with_db()
