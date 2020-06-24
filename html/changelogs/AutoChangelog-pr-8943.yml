@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new jukebox music"
+  - soundadd: "Adds new ogg jukebox sounds"
