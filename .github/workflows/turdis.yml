@@ -32,11 +32,6 @@ jobs:
         uses: hecrj/setup-rust-action@v1.3.2
         with:
           default: true
-      
-      - name: Setup PHP
-        uses: nanasess/setup-php@v3.0.3
-        with: 
-          php_version: 7.2
 
       - name: Install Dependencies
         run: |
