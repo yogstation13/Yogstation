@@ -61,7 +61,7 @@
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
 
 /obj/structure/destructible/clockwork/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/kitchen/fork)
+	if(istype(I, /obj/item/kitchen/fork))
 		if(world.time < next_spaghetti)
 			return
 		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [src].", "<span class='brass'>You reach your [I] into [src], pulling out a plateful of spaghetti!</span>")
