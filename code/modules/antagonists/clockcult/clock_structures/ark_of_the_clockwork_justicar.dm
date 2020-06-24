@@ -58,6 +58,11 @@
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
 
+/obj/structure/destructible/clockwork/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/kitchen/fork)
+		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [parent].", "<span class='brass'>You reach your [I] into [parent], pulling out a plateful of spaghetti!</span>")
+	. = ..()
+
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/final_countdown(ark_time) //WE'RE LEAVING TOGETHEEEEEEEEER
 	if(!ark_time)
 		ark_time = 30 //minutes
