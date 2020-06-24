@@ -43,6 +43,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/glockroach/Crossed(var/atom/movable/AM)
+	. = ..()
 	if(ismob(AM))
 		if(isliving(AM))
 			var/mob/living/A = AM

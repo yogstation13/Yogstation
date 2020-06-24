@@ -1,6 +1,6 @@
 /datum/symptom/necroseed
 	name = "Necropolis Seed"
-	desc = "An infantile form of the root of Lavaland's tendrils. Forms a symbiotic bond with the host, making them stronger and hardier, at the cost of speed. Should the disease be cured, the host will be severely weakened"
+	desc = "An infantile form of the root of Lavaland's tendrils. Forms a symbiotic bond with the host, making them stronger and hardier, at the cost of speed. Should the disease be cured, the host will be severely weakened."
 	stealth = 0
 	resistance = 3
 	stage_speed = -10
@@ -15,7 +15,7 @@
 	var/fireproof = FALSE
 	threshold_descs = list(
 	"Resistance 15" = "The area near the host roils with paralyzing tendrils.",
-	"Resistance 20" = "Host becomes immune to heat, ash, and lava",
+	"Resistance 20" = "Host becomes immune to heat, ash, and lava.",
 	)
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
@@ -80,7 +80,7 @@
 		for(var/t in cached_tentacle_turfs)
 			if(isopenturf(t))
 				if(prob(10))
-					new /obj/effect/temp_visual/goliath_tentacle(t, src)
+					new /obj/effect/temp_visual/goliath_tentacle(t, .)
 			else
 				cached_tentacle_turfs -= t
 

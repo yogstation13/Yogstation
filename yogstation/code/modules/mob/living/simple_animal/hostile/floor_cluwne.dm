@@ -19,7 +19,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	attacktext = "attacks"
 	attack_sound = 'sound/items/bikehorn.ogg'
 	del_on_death = TRUE
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | LETPASSTHROW | PASSGLASS | PASSBLOB//it's practically a ghost when unmanifested (under the floor)
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | LETPASSTHROW | PASSGLASS | PASSBLOB | PASSMACHINES //it's practically a ghost when unmanifested (under the floor)
 	loot = list(/obj/item/clothing/mask/yogs/cluwne)
 	wander = FALSE
 	minimum_distance = 2
@@ -74,6 +74,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/CanPass(atom/A, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
 

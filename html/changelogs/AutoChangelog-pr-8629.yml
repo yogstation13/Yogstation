@@ -1,5 +1,0 @@
-author: "MrHorizons"
-delete-after: true 
-changes: 
-  - rscadd: "Added spade, tobacco pipe, and corn cob pipe to Botanist heirloom list, adds vape to Chemist heirloom list, adds an (empty) universal recorder to the Detective heirloom list, and adds a Clerk heirloom list with various types of coin. Also, all of the heirloom buckets are now wooden."
-  - rscdel: "Removed the plant bag from the Botanist heirloom list."

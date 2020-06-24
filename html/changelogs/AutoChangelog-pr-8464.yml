@@ -1,5 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - rscadd: "Adds bank accounts to agent ids"
-  - bugfix: "Fixes Agent ID Forging"

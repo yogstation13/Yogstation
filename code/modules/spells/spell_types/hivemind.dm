@@ -900,6 +900,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/forcefield/wizard/hive/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	if(mover == wizard)
 		return TRUE
 	return  FALSE

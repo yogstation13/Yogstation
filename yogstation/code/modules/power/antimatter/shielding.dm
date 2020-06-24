@@ -78,11 +78,6 @@
 	//Might want to have it leave a mess on the floor but no sprites for now
 	return ..()
 
-
-/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target)
-	return 0
-
-
 /obj/machinery/am_shielding/process()
 	if(!processing)
 		. = PROCESS_KILL
