@@ -60,7 +60,7 @@
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
 
-/obj/structure/destructible/clockwork/attackby(obj/item/I, mob/user, params)
+/obj/structure/destructible/clockwork/massive/celestial_gateway/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/fork))
 		if(world.time < next_spaghetti)
 			return
