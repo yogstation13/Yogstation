@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(blackbox)
 		"admincount" = admincount,
 		"time" = SQLtime(),
 		"server_ip" = world.internet_address || "0",
-		"server_port" = "[world.port]",
+		"server_port" = world.port,
 		"round_id" = GLOB.round_id,
 	))
 	query_record_playercount.Execute()
