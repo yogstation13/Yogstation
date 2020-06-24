@@ -35,6 +35,8 @@
 	var/last_scream = 0
 	var/recalls_remaining = 1
 	var/recalling
+	var/next_spaghetti = 0
+	var/spaghetti_cooldown = 50
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
 	. = ..()
@@ -60,7 +62,11 @@
 
 /obj/structure/destructible/clockwork/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/fork)
-		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [parent].", "<span class='brass'>You reach your [I] into [parent], pulling out a plateful of spaghetti!</span>")
+		if(world.time < next_spaghetti)
+			return
+		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [src].", "<span class='brass'>You reach your [I] into [src], pulling out a plateful of spaghetti!</span>")
+		new /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(user.loc)
+		next_spaghetti = world.time + spaghetti_cooldown
 	. = ..()
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/final_countdown(ark_time) //WE'RE LEAVING TOGETHEEEEEEEEER
