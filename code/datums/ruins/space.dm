@@ -326,7 +326,7 @@
 	suffix = "kinggoatarena.dmm"
 	name = "King Goat Boss Arena"
 	description = "Abandon All Hope Ye Who Enter Here."
-	always_place = TRUE
+	always_place = TRUE // This is just the space part, king_goat_boss in /code/datums/ruins/lavaland.dm needs to have this set to true aswell for goat king to actually be reachable
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/space/drifting_spacepod

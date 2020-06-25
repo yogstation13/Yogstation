@@ -58,13 +58,6 @@
 /obj/structure/stone_tile,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"l" = (
-/obj/item/paper/crumpled{
-	info = "Lest ye be prepared, abandon all hope ye who enter here.";
-	name = "Wise Man's Warning."
-	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
 "m" = (
 /turf/open/floor/carpet/cyan,
 /area/ruin/powered/kinggoatlair)
@@ -118,6 +111,13 @@
 "y" = (
 /obj/structure/mineral_door/silver,
 /turf/open/floor/carpet/red,
+/area/ruin/powered/kinggoatlair)
+"B" = (
+/obj/item/paper/crumpled{
+	info = "Lest ye be prepared, abandon all hope ye who enter here.";
+	name = "Wise Man's Warning"
+	},
+/turf/open/floor/mineral/gold,
 /area/ruin/powered/kinggoatlair)
 "C" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -516,7 +516,7 @@ N
 U
 P
 u
-l
+B
 b
 Y
 n

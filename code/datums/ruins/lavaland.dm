@@ -427,7 +427,7 @@
 	id = "kinggoatboss"
 	description = "Abandon All Hope Ye Who Enter Here."
 	suffix = "lavaland_surface_kinggoatboss.dmm"
-	always_place = TRUE
+	always_place = TRUE // This is just the lavaland part, king_goat_arena in /code/datums/ruins/space.dm needs to have this set to true aswell for goat king to actually appear
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/elite_tumor
