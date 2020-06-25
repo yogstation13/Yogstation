@@ -134,8 +134,10 @@
 				to_chat(user, "<span class='warning'>You re-enter the mortal plane.</span>")
 				if(valid_location(user))
 					user.infernalphasein()
-				else
-					to_chat(user, "<span class='warning'>You are no longer near a potential signer.</span>")
+				if(!valid_location(user))
+					to_chat(user, "<span class='warning'>You are no longer near a potential signer. This will take us a little longer.</span>")
+					if(do_mob(user,user,50, 0, 1))
+						user.infernalphasein()
 
 			else
 				to_chat(user, "<span class='warning'>You can only re-appear near a potential signer.</span>")
@@ -314,4 +316,4 @@
 	to_chat(user, "<span class='notice'>Your Summon infernal contract spell will create a contract in the hand of the targeted user. If your chosen target does not fufill your obsession, the contract will not appear for them, but they will still see you cast your magicks.</span>")
 	to_chat(user, "<span class='warning'>Be warned, your contracts include your full name, and can be used against you to find your weakness. Make sure they are willing to sign before you give them a contract.</span>")
 	to_chat(user, "<span class='notice'>Infernal Jaunt will allow you move through walls and stalk your targets, seeing and hearing what they can. Use this to discover what it is they want most.</span>")
-	to_chat(user, "<span class='warning'>After collecting three souls, you will ascend into a higher form of life, the Blood Lizard. This will make your presence more noticeable, and may frighten morals. It may not be wise to ascend this far if you are not required to.</span>")
+	to_chat(user, "<span class='warning'>After collecting three souls, you will ascend into a higher form of life, the Blood Lizard. This will make your presence more noticeable, and may frighten mortals. It may not be wise to ascend this far if you are not required to.</span>")

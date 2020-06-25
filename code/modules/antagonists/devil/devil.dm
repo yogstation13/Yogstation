@@ -98,6 +98,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	var/reviveNumber = 0
 	var/form = BASIC_DEVIL
 	var/static/list/devil_spells = typecacheof(list(
+		/obj/effect/proc_holder/spell/targeted/devilhelp,
 		/obj/effect/proc_holder/spell/aimed/fireball/hellish,
 		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork,
 		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/greater,
@@ -387,6 +388,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		give_base_spells()
 
 /datum/antagonist/devil/proc/give_base_spells()
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/devilhelp(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball/hellish(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/devilshapeshift(null))
