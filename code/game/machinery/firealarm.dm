@@ -52,10 +52,6 @@
 	LAZYREMOVE(myarea.firealarms, src)
 	return ..()
 
-/obj/machinery/firealarm/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/firealarm/update_icon()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
@@ -272,10 +268,12 @@
 	..()
 
 /obj/machinery/firealarm/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1) && buildstage != 0) //can't break the electronics if there isn't any inside.
+	if(buildstage == 0) //can't break the electronics if there isn't any inside.
+		return
+
+	. = ..()
+	if(.)
 		LAZYREMOVE(myarea.firealarms, src)
-		stat |= BROKEN
-		update_icon()
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -294,35 +292,3 @@
 		set_light(l_power = 0.8)
 	else
 		set_light(l_power = 0)
-
-/*
- * Return of Party button
- */
-
-/area
-	var/party = FALSE
-
-/obj/machinery/firealarm/partyalarm
-	name = "\improper PARTY BUTTON"
-	desc = "Cuban Pete is in the house!"
-	var/static/party_overlay
-
-/obj/machinery/firealarm/partyalarm/reset()
-	if (stat & (NOPOWER|BROKEN))
-		return
-	var/area/A = get_area(src)
-	if (!A || !A.party)
-		return
-	A.party = FALSE
-	A.cut_overlay(party_overlay)
-
-/obj/machinery/firealarm/partyalarm/alarm()
-	if (stat & (NOPOWER|BROKEN))
-		return
-	var/area/A = get_area(src)
-	if (!A || A.party || A.name == "Space")
-		return
-	A.party = TRUE
-	if (!party_overlay)
-		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
-	A.add_overlay(party_overlay)

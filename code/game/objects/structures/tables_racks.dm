@@ -101,25 +101,21 @@
 /obj/structure/table/attack_tk()
 	return FALSE
 
-/obj/structure/table/attack_tk()
-	return FALSE
+/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
-		return 1
-	//YOGS start - flying over tables in nograv
+		return TRUE
+		
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
 		var/obj/item/tank/jetpack/jetpacktable = C.get_jetpack()
 		if(jetpacktable && jetpacktable.on && !has_gravity(C))
 			return 1
-	//YOGS end - flying over tables in nograv
 	if(mover.throwing)
-		return 1
+		return TRUE
 	if(locate(/obj/structure/table) in get_turf(mover))
-		return 1
-	else
-		return !density
+		return TRUE
 
 /obj/structure/table/CanAStarPass(ID, dir, caller)
 	. = !density
@@ -542,13 +538,12 @@
 	. = ..()
 	. += "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>"
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target)
-	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
-		return 1
+/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
-		return 1
-	else
-		return 0
+		return TRUE
 
 /obj/structure/rack/CanAStarPass(ID, dir, caller)
 	. = !density

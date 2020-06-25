@@ -2,13 +2,15 @@
 /mob/camera/aiEye/remote/base_construction
 	name = "construction holo-drone"
 	move_on_shuttle = 1 //Allows any curious crew to watch the base after it leaves. (This is safe as the base cannot be modified once it leaves)
-	icon = 'yogstation/icons/obj/rcd_drone.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "construction_drone"
 	var/area/starting_area
+	invisibility = 0 //Not invisible
 
 /mob/camera/aiEye/remote/base_construction/Initialize()
 	. = ..()
 	starting_area = get_area(loc)
+	icon_state = "construction_drone" // Overrides /mob/camera/aiEye/Initialize() in \modules\mob\living\silicon\ai\freelook\eye
 
 /mob/camera/aiEye/remote/base_construction/setLoc(var/t)
 	var/area/curr_area = get_area(t)

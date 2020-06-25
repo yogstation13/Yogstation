@@ -170,9 +170,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	QDEL_NULL(spawners_menu)
 	return ..()
 
-/mob/dead/CanPass(atom/movable/mover, turf/target)
-	return 1
-
 /*
  * This proc will update the icon of the ghost itself, with hair overlays, as well as the ghost image.
  * Please call update_icon(icon_state) from now on when you want to update the icon_state of the ghost,
@@ -630,7 +627,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!target)
 		return 0
 
-	if(ismegafauna(target))
+	if(ismegafauna(target) || (target.status_flags & GODMODE))
 		to_chat(src, "<span class='warning'>This creature is too powerful for you to possess!</span>")
 		return 0
 

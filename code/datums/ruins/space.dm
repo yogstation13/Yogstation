@@ -326,3 +326,9 @@
 	suffix = "drifting_spacepod.dmm"
 	name = "Drifting Spacepod"
 	description = "An abandoned spacepod, just drifting through space."
+
+/datum/map_template/ruin/space/gaming
+	id = "gaming"
+	suffix = "gameroom.dmm"
+	name = "Game Room"
+	description = "A room in space in which you can play card games and munch on some snacks."

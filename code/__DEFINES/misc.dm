@@ -89,6 +89,7 @@
 #define GAME_STATE_PLAYING		3
 #define GAME_STATE_FINISHED		4
 
+
 //FONTS:
 // Used by Paper and PhotoCopier (and PaperBin once a year).
 // Used by PDA's Notekeeper.
@@ -99,6 +100,8 @@
 #define CRAYON_FONT "Comic Sans MS"
 #define PRINTER_FONT "Times New Roman"
 #define SIGNFONT "Times New Roman"
+#define CHARCOAL_FONT "Candara"
+
 
 #define RESIZE_DEFAULT_SIZE 1
 

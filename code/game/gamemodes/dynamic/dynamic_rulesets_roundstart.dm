@@ -105,7 +105,7 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
 	weight = 1
-	cost = 30
+	cost = 15
 	requirements = list(80,70,60,50,40,20,20,10,10,10)
 	high_population_requirement = 10
 	var/team_mode_probability = 30

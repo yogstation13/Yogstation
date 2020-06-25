@@ -18,6 +18,7 @@
 		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 
 /obj/structure/destructible/clockwork/trap/steam_vent/Crossed(atom/movable/AM)
+	. = ..()
 	if(isliving(AM) && opacity)
 		var/mob/living/L = AM
 		L.adjust_fire_stacks(-1) //It's wet!

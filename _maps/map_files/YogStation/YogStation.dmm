@@ -26591,6 +26591,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"bgr" = (
+/mob/living/simple_animal/cockroach{
+	desc = "Virtually unkillable.";
+	name = "Becquerel";
+	sentience_type = 5;
+	status_flags = 16
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "bgs" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -39765,6 +39774,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"bJv" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/engine/atmos_distro)
 "bJx" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue{
@@ -40205,10 +40219,6 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos_distro)
-"bKP" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/open/floor/engine/co2,
-/area/engine/atmos_distro)
 "bKQ" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -40579,10 +40589,6 @@
 "bLQ" = (
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
-"bLR" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine/n2,
-/area/engine/atmos_distro)
 "bLS" = (
 /obj/machinery/air_sensor{
 	id_tag = "n2_sensor"
@@ -40618,10 +40624,6 @@
 /obj/machinery/air_sensor{
 	id_tag = "n2o_sensor"
 	},
-/turf/open/floor/engine/n2o,
-/area/engine/atmos_distro)
-"bLX" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
 "bLY" = (
@@ -40881,10 +40883,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bMI" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/engine/o2,
-/area/engine/atmos_distro)
 "bMJ" = (
 /obj/machinery/air_sensor{
 	id_tag = "o2_sensor"
@@ -40914,10 +40912,6 @@
 /obj/machinery/air_sensor{
 	id_tag = "tox_sensor"
 	},
-/turf/open/floor/engine/plasma,
-/area/engine/atmos_distro)
-"bMP" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos_distro)
 "bMQ" = (
@@ -51404,14 +51398,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jhZ" = (
-/mob/living/simple_animal/cockroach{
-	desc = "Virtually unkillable.";
-	name = "Becquerel";
-	status_flags = 16
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jig" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -57662,6 +57648,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"sVz" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos_distro)
 "sVZ" = (
 /obj/structure/table,
 /obj/item/storage/box/beakers{
@@ -59720,6 +59711,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"wmE" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos_distro)
 "wmI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -59860,6 +59856,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wyn" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
+/area/engine/atmos_distro)
 "wyC" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "AI Satellite Monitoring";
@@ -59891,6 +59892,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wAc" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos_distro)
 "wAw" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -95405,11 +95411,11 @@ bKJ
 bJq
 bvA
 bLD
-bLR
+sVz
 bLD
 bvA
 bMf
-bMI
+bJv
 bMf
 bvA
 aaa
@@ -99513,15 +99519,15 @@ bHa
 aaf
 bvA
 bKH
-bKP
+wmE
 bKH
 bvA
 bLQ
-bLX
+wyn
 bLQ
 bvA
 bMA
-bMP
+wAc
 bMA
 bvA
 aaf
@@ -99787,7 +99793,7 @@ jkG
 nYI
 cQn
 dpF
-jhZ
+bgr
 ceE
 bPq
 aaa
