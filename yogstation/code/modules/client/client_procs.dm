@@ -24,7 +24,7 @@
 	list("serverip" = serverip, "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "address" = address, "computer_id" = computer_id))
 	if(query_log_connection.Execute())
 		if(query_log_connection.last_insert_id)
-			connection_number = query_log_connection.last_insert_id
+			connection_number = "[num2text(query_log_connection.last_insert_id,24)]"
 		qdel(query_log_connection)
 
 /client/proc/yogs_client_procs(href_list)
