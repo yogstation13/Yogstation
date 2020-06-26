@@ -269,6 +269,10 @@
 			to_chat(S, "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>")
 			S.target = null
 			return FALSE
+		else if(istype(A, /area/tcommsat/server))
+			to_chat(S, "<span class ='warning'>Destroying this object has the potential to cause a temperature imbalance.</span>")
+			S.target = null
+			return TRUE
 	S.DisIntegrate(src)
 	return TRUE
 
@@ -349,6 +353,10 @@
 			to_chat(S, "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>")
 			S.target = null
 			return TRUE
+		else if(istype(A, /area/tcommsat/server))
+			to_chat(S, "<span class ='warning'>Destroying this object has the potential to cause a temperature imbalance.</span>")
+			S.target = null
+			return TRUE
 	return ..()
 
 /obj/structure/window/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
@@ -361,6 +369,10 @@
 			return TRUE
 		else if(istype(A, /area/engine/supermatter))
 			to_chat(S, "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>")
+			S.target = null
+			return TRUE
+		else if(istype(A, /area/tcommsat/server))
+			to_chat(S, "<span class ='warning'>Destroying this object has the potential to cause a temperature imbalance.</span>")
 			S.target = null
 			return TRUE
 	return ..()
