@@ -71,6 +71,7 @@
 	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSBLOB))
 		return TRUE
+	return FALSE
 
 /obj/structure/blob/CanAtmosPass(turf/T)
 	return !atmosblock
