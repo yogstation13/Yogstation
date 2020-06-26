@@ -127,7 +127,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	materials = list ()
 	transparent = FALSE
-	block_power = 25
+	block_chance = 25
 	max_integrity = 70
 	w_class = WEIGHT_CLASS_BULKY
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
