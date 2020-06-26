@@ -1,0 +1,4 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer buy an on sale syndie item and sell it back for full price."

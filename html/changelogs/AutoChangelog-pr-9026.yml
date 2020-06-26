@@ -1,4 +1,4 @@
 author: "jcatjmeow"
 delete-after: true 
 changes: 
-  - bugfix: "the ticket machine now works"
+  - bugfix: "fixes snow golem sprites"

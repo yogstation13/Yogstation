@@ -1,0 +1,4 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - imageadd: "Adds clownpack icon to yogstation/icon/obj/storage.dmi"
