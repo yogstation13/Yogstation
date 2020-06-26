@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "AIs now get a confirmation box when they try to shunt into an APC"
