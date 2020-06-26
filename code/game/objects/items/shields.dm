@@ -123,16 +123,14 @@
 	desc = "A shield made from interwoven plates of goliath hide."
 	icon_state = "goliath_shield"
 	item_state = "goliath_shield"
-	block_level = 1
-	block_upgrade_walk = 1
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	materials = list ()
 	transparent = FALSE
 	block_power = 25
 	max_integrity = 70
-	block_flags = BLOCKING_HUNTER | BLOCKING_PROJECTILE
 	w_class = WEIGHT_CLASS_BULKY
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 
 /obj/item/shield/riot/goliath/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)
