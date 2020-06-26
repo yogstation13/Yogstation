@@ -6,7 +6,7 @@
 	requires_ntnet = FALSE
 	network_destination = "arcade network"
 	size = 6
-	tgui_id = "ntos_arcade"
+	tgui_id = "NtosArcade"
 	ui_x = 450
 	ui_y = 350
 
@@ -90,7 +90,7 @@
 	data["BossID"] = "boss[boss_id].gif"
 	return data
 
-/datum/computer_file/program/arcade/ui_act(action, params, mob/user)
+/datum/computer_file/program/arcade/ui_act(action, list/params, mob/user)
 	if(..())
 		return TRUE
 	var/obj/item/computer_hardware/printer/printer

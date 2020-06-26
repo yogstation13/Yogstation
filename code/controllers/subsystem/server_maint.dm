@@ -55,7 +55,6 @@ SUBSYSTEM_DEF(server_maint)
 
 	var/kick_inactive = CONFIG_GET(flag/kick_inactive)
 	var/afk_period
-	var/can_tracking = SSdbcore.Connect()
 
 	if(kick_inactive)
 		afk_period = CONFIG_GET(number/afk_period)
@@ -69,13 +68,6 @@ SUBSYSTEM_DEF(server_maint)
 				to_chat(C, "<span class='userdanger'>You have been inactive for more than [DisplayTimeText(afk_period)] and have been disconnected.</span><br><span class='danger'>You may reconnect via the button in the file menu or by <b><u><a href='byond://winset?command=.reconnect'>clicking here to reconnect</a></u></b>.</span>")
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
-
-		if(can_tracking)
-			if(C.holder?.rank.name == "RetiredAdmin" && C.is_afk() && C.connection_number)
-				world.sync_logout_with_db(C.connection_number)
-				C.connection_number = null
-			if(!C.is_afk() && !C.connection_number) //no connection number but not inactive
-				C.sync_login_with_db() 
 
 		if (!(!C || world.time - C.connection_time < PING_BUFFER_TIME || C.inactivity >= (wait-1)))
 			winset(C, null, "command=.update_ping+[world.time+world.tick_lag*TICK_USAGE_REAL/100]")

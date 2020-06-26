@@ -1,0 +1,4 @@
+author: "Xoxeyos"
+delete-after: true 
+changes: 
+  - tweak: "Disables Revs for the time being by setting their requirement to 101, thus making it admin only."

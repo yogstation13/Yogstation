@@ -74,7 +74,7 @@
 			if(brainmob.get_ghost(FALSE, TRUE))
 				. += "<span class='info'>Its muscles are still twitching slightly... It still seems to have a bit of life left to it.</span>"
 			else
-				. += "<span class='info'>It seems seems particularly lifeless. Perhaps there'll be a chance for them later.</span>"
+				. += "<span class='info'>It seems particularly lifeless. Perhaps there'll be a chance for them later.</span>"
 		else if(brain?.decoy_override)
 			. += "<span class='info'>It seems particularly lifeless. Perhaps there'll be a chance for them later.</span>"
 		else

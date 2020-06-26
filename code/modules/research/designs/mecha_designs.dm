@@ -219,6 +219,16 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
+/datum/design/mech_xray
+	name = "Exosuit Weapon (CH-XC \"Transitum\" X-Ray Laser)"
+	desc = "Allows for the construction of the CH-XC X-Ray Laser."
+	id = "mech_xray"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
+	materials = list(MAT_METAL=10000,MAT_GOLD = 6000,MAT_URANIUM = 5000,MAT_TITANIUM = 3000,MAT_BLUESPACE = 3000)
+	construction_time = 100
+	category = list("Exosuit Equipment")
+
 /datum/design/mech_disabler
 	name = "Exosuit Weapon (CH-DS \"Peacemaker\" Disabler)"
 	desc = "Allows for the construction of the CH-DS Disabler."

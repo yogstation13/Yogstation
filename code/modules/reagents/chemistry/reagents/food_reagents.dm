@@ -275,6 +275,7 @@
 	description = "A chemical agent used for self-defense and in police work."
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
+	metabolization_rate = 4 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(!ishuman(M) && !ismonkey(M))
@@ -313,8 +314,12 @@
 		victim.update_damage_hud()
 
 /datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
-	if(prob(5))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
+	if(prob(10))
+		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
+	if(prob(15))
+		M.emote("cough")
+
+	M.adjustStaminaLoss(3)
 	..()
 
 /datum/reagent/consumable/sodiumchloride

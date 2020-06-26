@@ -20190,10 +20190,6 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aJq" = (
-/obj/structure/closet/secure_closet/paramedic,
-/turf/open/floor/plasteel/white,
-/area/medical/paramedic)
 "aJr" = (
 /turf/closed/wall,
 /area/clerk)
@@ -75379,6 +75375,12 @@
 	},
 /turf/open/floor/plating,
 /area/science/mixing)
+"cBr" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "cBs" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -83377,15 +83379,6 @@
 /obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"gyC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/break_room)
 "gLo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -110785,7 +110778,7 @@ aiT
 auS
 ayY
 aBR
-aJq
+cBr
 azi
 bUq
 bZB

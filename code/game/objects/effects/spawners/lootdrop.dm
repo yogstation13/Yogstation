@@ -238,7 +238,6 @@
 	name = "neutral AI module spawner"
 	loot = list(
 				/obj/item/aiModule/core/full/ceo,
-				/obj/item/aiModule/core/full/corp,
 				/obj/item/aiModule/core/full/maintain,
 				/obj/item/aiModule/core/full/drone,
 				/obj/item/aiModule/core/full/peacekeeper,

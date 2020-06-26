@@ -45,7 +45,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/d1 = 0   // cable direction 1 (see above)
 	var/d2 = 1   // cable direction 2 (see above)
 	var/datum/powernet/powernet
-	var/obj/item/stack/cable_coil/stored
+	//Cables no longer keep a copy of the cable to be dropped in nullspace
 
 	var/cable_color = "red"
 	color = "#ff0000"
@@ -97,11 +97,6 @@ By design, d1 is the smallest direction and d2 is the highest
 		hide(T.intact)
 	GLOB.cable_list += src //add it to the global cable list
 
-	if(d1)
-		stored = new/obj/item/stack/cable_coil(null,2,cable_color)
-	else
-		stored = new/obj/item/stack/cable_coil(null,1,cable_color)
-
 	var/list/cable_colors = GLOB.cable_colors
 	cable_color = param_color || cable_color || pick(cable_colors)
 	if(cable_colors[cable_color])
@@ -117,7 +112,11 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/turf/T = loc
-		stored.forceMove(T)
+		var/cableNum = 1
+		if (d1*d2 > 0) //this be true if the cable has two directions, aka it contains two cables. If there is only one cable, one out of d1 and d2 will be zero
+			cableNum = 2
+		var/newCables = new /obj/item/stack/cable_coil(T, cableNum, cable_color)
+		TransferComponents(newCables) //this copies the fingerprints over to the new object
 	qdel(src)
 
 ///////////////////////////////////
@@ -144,8 +143,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		if (shock(user, 50))
 			return
 		user.visible_message("[user] cuts the cable.", "<span class='notice'>You cut the cable.</span>")
-		stored.add_fingerprint(user)
 		investigate_log("was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
+		add_fingerprint(user)
 		deconstruct()
 		return
 
@@ -194,11 +193,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	..()
 	if(current_size >= STAGE_FIVE)
 		deconstruct()
-
-/obj/structure/cable/proc/update_stored(length = 1, colorC = "red")
-	stored.amount = length
-	stored.item_color = colorC
-	stored.update_icon()
 
 ////////////////////////////////////////////
 // Power related
@@ -742,7 +736,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		C.d2 = nd2
 
 		//updates the stored cable coil
-		C.update_stored(2, item_color)
 
 		C.add_fingerprint(user)
 		C.update_icon()

@@ -227,4 +227,5 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		qdel(src) // Thank you for your service
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE

@@ -1,5 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - soundadd: "New supermatter alert (level 1) sound"
-  - tweak: "Changes supermatter alert code"

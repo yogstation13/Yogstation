@@ -2,6 +2,10 @@
 
 /datum/game_mode
 	var/list/datum/mind/cult = list()
+	var/list/bloodstone_list = list()
+	var/anchor_bloodstone
+	var/anchor_time2kill = 5 MINUTES
+	var/bloodstone_cooldown = FALSE
 
 /proc/iscultist(mob/living/M)
 	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/cult)
@@ -99,6 +103,12 @@
 
 	. = ..()
 
+/datum/game_mode/cult/check_finished(force_ending)
+	if (..())
+		return TRUE
+
+	return 1 - main_cult.check_sacrifice_status()
+
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
 		return FALSE
@@ -163,5 +173,98 @@
 			the cult of Nar-Sie. If evidence of this cult is discovered aboard your station, extreme caution and extreme vigilance must be taken going forward, and all resources should be \
 			devoted to stopping this cult. Note that holy water seems to weaken and eventually return the minds of cultists that ingest it, and mindshield implants will prevent conversion \
 			altogether."
+
+/datum/game_mode/proc/begin_bloodstone_phase()
+	for(var/i = 0, i < 4, i++) //four bloodstones
+		var/spawnpoint = get_turf(pick(GLOB.generic_event_spawns))
+		new /obj/structure/destructible/cult/bloodstone(spawnpoint)
+	var/list/bloodstone_areas = list()
+	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+		var/area/A = get_area(B)
+		bloodstone_areas.Add(A.map_name)
+	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
+	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
+
+/datum/game_mode/proc/increase_bloodstone_power()
+	if(!bloodstone_list.len) //check if we somehow ran out of bloodstones
+		return
+	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+		if(B.current_fullness == 9)
+			create_anchor_bloodstone()
+			return //We're done here
+		else
+			B.current_fullness++
+		B.update_icon()
+	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
+
+/datum/game_mode/proc/create_anchor_bloodstone()
+	if(SSticker.mode.anchor_bloodstone)
+		return
+	var/obj/structure/destructible/cult/bloodstone/anchor_target = bloodstone_list[1] //which bloodstone is the current cantidate for anchorship
+	var/anchor_power = 0 //anchor will be faster if there are more stones
+	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+		anchor_power++
+		if(B.obj_integrity > anchor_target.obj_integrity)
+			anchor_target = B
+	SSticker.mode.anchor_bloodstone = anchor_target
+	anchor_target.name = "anchor bloodstone"
+	anchor_target.desc = "It pulses rythmetically with migrane-inducing light. Something is being reflected on every surface, something that isn't quite there..."
+	anchor_target.anchor = TRUE
+	anchor_target.max_integrity = 1200
+	anchor_target.obj_integrity = 1200
+	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
+	anchor_target.set_animate()
+	var/area/A = get_area(anchor_target)
+	addtimer(CALLBACK(anchor_target, /obj/structure/destructible/cult/bloodstone.proc/summon), anchor_time2kill)
+	priority_announce("The anomaly has weakened the veil to a hazardous level in [A.map_name]! Destroy whatever is causing it before something gets through!","Central Command Higher Dimensional Affairs")
+
+/datum/game_mode/proc/cult_loss_bloodstones()
+	priority_announce("The veil anomaly appears to have been destroyed, shuttle locks have been lifted.","Central Command Higher Dimensional Affairs")
+	bloodstone_cooldown = TRUE
+	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 5 MINUTES) //5 minutes
+	for(var/datum/mind/M in cult)
+		var/mob/living/cultist = M.current
+		if(!cultist)
+			continue
+		cultist.playsound_local(cultist, 'sound/magic/demon_dies.ogg', 75, FALSE)
+		if(isconstruct(cultist))
+			to_chat(cultist, "<span class='cultbold'>You feel your form lose some of its density, becoming more fragile!</span>")
+			cultist.maxHealth *= 0.75
+			cultist.health *= 0.75
+		else
+			cultist.Stun(20)
+			cultist.confused += 15 //30 seconds of confusion
+		to_chat(cultist, "<span class='narsiesmall'>Your mind is flooded with pain as the last bloodstone is destroyed!</span>")
+
+/datum/game_mode/proc/cult_loss_anchor()
+	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
+	bloodstone_cooldown = TRUE
+	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 7 MINUTES) //7 minutes
+	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+		qdel(B)
+		for(var/datum/mind/M in cult)
+			var/mob/living/cultist = M.current
+			if(!cultist)
+				continue
+			cultist.playsound_local(cultist, 'sound/effects/screech.ogg', 75, FALSE)
+			if(isconstruct(cultist))
+				to_chat(cultist, "<span class='cultbold'>You feel your form lose most of its density, becoming incredibly fragile!</span>")
+				cultist.maxHealth *= 0.5
+				cultist.health *= 0.5
+			else
+				cultist.Stun(40)
+				cultist.confused += 30 //one minute of confusion
+			to_chat(cultist, "<span class='narsiesmall'>You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!</span>")
+
+/datum/game_mode/proc/disable_bloodstone_cooldown()
+	bloodstone_cooldown = FALSE
+	for(var/datum/mind/M in cult)
+		var/mob/living/L = M.current
+		if(L)
+			to_chat(M, "<span class='narsiesmall'>The veil has weakened enough for another attempt, prepare the summoning!</span>")
+		if(isconstruct(L))
+			L.maxHealth = initial(L.maxHealth)
+			to_chat(L, "<span class='cult'>Your form regains its original durability!</span>")
+	//send message to cultists saying they can do stuff again
 
 #undef CULT_SCALING_COEFFICIENT

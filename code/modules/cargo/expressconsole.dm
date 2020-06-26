@@ -87,7 +87,7 @@
 /obj/machinery/computer/cargo/express/ui_interact(mob/living/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state) // Remember to use the appropriate state.
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "cargo_express", name, 600, 700, master_ui, state)
+		ui = new(user, src, ui_key, "CargoExpress", name, 600, 700, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/cargo/express/ui_data(mob/user)

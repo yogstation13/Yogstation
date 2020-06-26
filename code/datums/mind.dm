@@ -147,6 +147,7 @@
 	var/newlength = length_char(memory) + length_char(new_text)
 	if (newlength > MAX_MESSAGE_LEN * 100)
 		memory = copytext_char(memory, -newlength-MAX_MESSAGE_LEN * 100)
+	memory += "[new_text]<BR>"
 
 /datum/mind/proc/wipe_memory()
 	memory = null
@@ -611,6 +612,10 @@
 	// yogs end
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
+
+/datum/mind/proc/make_Contractor_Support()
+	if(!(has_antag_datum(/datum/antagonist/traitor/contractor_support)))
+		add_antag_datum(/datum/antagonist/traitor/contractor_support)
 
 /datum/mind/proc/make_Changeling()
 	// yogs start - Donor features, quiet round

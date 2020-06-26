@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscadd: "Vampire hypnotize spell has a mute attached to the start and is now uninterruptible, it can be broken if you break line of sight with the vampire when it activates"
-  - rscadd: "Vampire hypnotize spell now requires the target to be within 2 meters to be used"

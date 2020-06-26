@@ -18,28 +18,6 @@
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"af" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Telecoms Satellite Monitoring";
-	req_one_access_txt = "10;61"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ag" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -283,18 +261,6 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"aH" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "aI" = (
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -807,6 +773,14 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"jw" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "kx" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -850,17 +824,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
-/area/engine/engineering)
-"od" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "py" = (
 /obj/effect/turf_decal/stripes/line{
@@ -948,6 +911,25 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plating,
+/area/engine/engineering)
+"GW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "AI Satellite Access";
+	req_one_access_txt = "10;17;32"
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "Io" = (
 /obj/structure/cable{
@@ -1783,7 +1765,7 @@ aa
 (27,1,1) = {"
 ab
 at
-od
+jw
 at
 nL
 Ma
@@ -1811,7 +1793,7 @@ aa
 (28,1,1) = {"
 ab
 ck
-aH
+an
 aE
 bb
 mQ
@@ -1839,7 +1821,7 @@ aa
 (29,1,1) = {"
 ab
 av
-af
+GW
 bb
 bb
 bb

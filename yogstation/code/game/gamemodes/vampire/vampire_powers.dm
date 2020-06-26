@@ -75,6 +75,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/obj/effect/proc_holder/spell/self/vampire_help
+	name = "How to suck blood 101"
+	desc = "Explains how the vampire blood sucking system works."
+	action_icon_state = "bloodymaryglass"
+	icon = 'icons/obj/drinks.dmi'
+	action_background_icon_state = "bg_demon"
+	charge_max = 0
+	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
+
+/obj/effect/proc_holder/spell/self/vampire_help/cast(list/targets, mob/user = usr)
+	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you cannot draw blood from <b>catatonics or corpses</b>.\n\
+			Your bloodsucking speed depends on grab strength, you can <i>stealhily</i> extract blood by initiating without a grab, and can suck more blood per cycle by <b>having a neck grab or stronger</b>. Both of these modify the amount of blood taken by 50%; less for stealth, more for strong grabs.</span>")
+
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
 	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
@@ -253,14 +266,14 @@
 /obj/effect/proc_holder/spell/self/screech/cast(list/targets, mob/user = usr)
 	user.visible_message("<span class='warning'>[user] lets out an ear piercing shriek!</span>", "<span class='warning'>You let out a loud shriek.</span>", "<span class='warning'>You hear a loud painful shriek!</span>")
 	for(var/mob/living/carbon/C in hearers(4))
-		if(C == user || (ishuman(C) && C.get_ear_protection()) || is_vampire(C))
-			continue
-		to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
-		C.Knockdown(40)
-		C.adjustEarDamage(0, 30)
-		C.stuttering = 250
-		C.Paralyze(40)
-		C.Jitter(150)
+		if(!C == user  || !is_vampire(C))
+			if(ishuman(C) && C.soundbang_act(1, 0))
+				to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
+				C.Knockdown(40)
+				C.adjustEarDamage(0, 30)
+				C.stuttering = 250
+				C.Paralyze(40)
+				C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
@@ -326,9 +339,11 @@
 	for(var/mob/living/carbon/target in targets)
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
+			vamp.usable_blood += blood_used	// Refund cost
 			continue
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
+			vamp.usable_blood += blood_used	// Refund cost
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, pure dread eminating from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
@@ -345,6 +360,7 @@
 			if(!do_mob(user, target, 70))
 				to_chat(user, "<span class='danger'>The pact has failed! [target] has not became a vampire.</span>")
 				to_chat(target, "<span class='notice'>The visions stop, and you relax.</span>")
+				vamp.usable_blood += blood_used / 2	// Refund half the cost
 				return
 		if(!QDELETED(user) && !QDELETED(target))
 			to_chat(user, "<span class='notice'>. . .</span>")

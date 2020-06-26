@@ -25,8 +25,8 @@
 	},
 /area/awaymission/challenge/start)
 "ag" = (
-/obj/item/clothing/suit/space/syndicate/blue,
-/obj/item/clothing/head/helmet/space/syndicate/blue,
+/obj/item/clothing/suit/space/syndicate/black/med,
+/obj/item/clothing/head/helmet/space/syndicate/black/med,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
@@ -57,8 +57,8 @@
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
 "am" = (
-/obj/item/clothing/suit/space/syndicate/green,
-/obj/item/clothing/head/helmet/space/syndicate/green,
+/obj/item/clothing/suit/space/syndicate/black,
+/obj/item/clothing/head/helmet/space/syndicate/black,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
@@ -69,8 +69,8 @@
 	},
 /area/awaymission/challenge/start)
 "ao" = (
-/obj/item/clothing/suit/space/syndicate/orange,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
+/obj/item/clothing/suit/space/syndicate/black/engie,
+/obj/item/clothing/head/helmet/space/syndicate/black/engie,
 /turf/open/floor/plasteel/airless,
 /area/awaymission/challenge/start)
 "ap" = (

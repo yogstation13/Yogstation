@@ -106,7 +106,7 @@
 
 /datum/design/stunmine/sec //mines ported from BeeStation
 	name = "Stun Mine"
-	desc = "A basic nonlethal stunning mine. Stuns anyone who walks over it."
+	desc = "A basic non-lethal stunning mine. Stuns anyone who walks over it."
 	id = "stunmine"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 4000, MAT_GLASS = 1000)
@@ -116,7 +116,7 @@
 
 /datum/design/adv_stunmine/sec
 	name = "Smart Stun Mine"
-	desc = "A advanced nonlethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant."
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant."
 	id = "stunmine_adv"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 8000, MAT_GLASS = 3000, MAT_SILVER = 200)
@@ -126,7 +126,7 @@
 
 /datum/design/lm6_stunmine/sec
 	name = "Rapid Deployment Smartmine"
-	desc = "A advanced nonlethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Can be rapidly placed and disarmed."
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Can be rapidly placed and disarmed."
 	id = "stunmine_rapid"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000, MAT_SILVER = 500, MAT_URANIUM = 200)
@@ -136,7 +136,7 @@
 
 /datum/design/lm12_stunmine/sec
 	name = "Sledgehammer Smartmine"
-	desc = "A advanced nonlethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Very powerful and hard to disarm."
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Very powerful and hard to disarm."
 	id = "stunmine_heavy"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000, MAT_SILVER = 500, MAT_URANIUM = 200)

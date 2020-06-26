@@ -57418,19 +57418,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"fjs" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
 "fkH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -62047,6 +62034,13 @@
 "xbJ" = (
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
+"xdG" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space/paramedic,
+/turf/open/floor/plasteel,
+/area/medical/paramedic)
 "xja" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -87324,7 +87318,7 @@ aDZ
 awN
 awG
 abd
-aaQ
+xdG
 abk
 abc
 aaM
