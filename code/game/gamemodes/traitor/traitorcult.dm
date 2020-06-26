@@ -50,6 +50,7 @@
 	return ..()
 
 /datum/game_mode/traitor/traitorcult/post_setup()
+	adjust_clockwork_power(1000) //should be enough to start
 	for(var/datum/mind/M in clock_agent_team.members)
 		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
 	for(var/datum/mind/M in blood_agent_team.members)
