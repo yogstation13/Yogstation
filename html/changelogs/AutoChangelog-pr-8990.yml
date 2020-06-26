@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "synthflesh healing now 0.75 down from 1.25"
+  - tweak: "synthflesh now heals twice as much when used on things that are dead"
