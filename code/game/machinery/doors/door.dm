@@ -135,9 +135,8 @@
 	if(istype(mover)) //yogs start
 		if(mover.pass_flags & PASSGLASS)
 			return !opacity
-		else if(mover.pass_flags & PASSDOOR)
+		if(mover.pass_flags & PASSDOOR)
 			return TRUE //yogs end
-	return .
 
 /obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)
