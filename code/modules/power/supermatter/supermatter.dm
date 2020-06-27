@@ -65,8 +65,6 @@
 #define SUPERMATTER_WARNING_PERCENT 100
 
 #define SUPERMATTER_COUNTDOWN_TIME 30 SECONDS
-#define SUPERMATTER_EMAG_SPACE_DAMAGE 4 //higher for faster delamination when emagged and spaced. 4 is around best as it has roughly the same speed as a high temperature delam
-
 #define SUPERMATTER_ACCENT_SOUND_MIN_COOLDOWN 2 SECONDS ///to prevent accent sounds from layering
 
 GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
@@ -495,13 +493,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			air_update_turf()
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
+		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || (obj_flags & EMAGGED))
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
 			l.hallucination += power * config_hallucination_power * D
 			l.hallucination = clamp(0, 200, l.hallucination)
-		if(obj_flags & EMAGGED)
-			var/D = sqrt(1 / max(1, get_dist(l, src)))
-			l.hallucination += power * config_hallucination_power * D *2
 
 	for(var/mob/living/l in range(src, round((power / 100) ** 0.25)))
 		var/rads = (power / 10) * sqrt( 1 / max(get_dist(l, src),1) )
@@ -635,7 +630,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					src.fire_nuclear_particle()
 		if(support_integrity<10)
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < 10)
-				damage += SUPERMATTER_EMAG_SPACE_DAMAGE //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
+				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
 				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 
