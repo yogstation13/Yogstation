@@ -262,9 +262,9 @@
 		return
 	var/choice
 	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
-		alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Veil Walker Set")
+		choice = alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Veil Walker Set")
 	else
-		alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Shuttle Curse","Veil Walker Set")
+		choice = alert(user,"You flip through the black pages of the archives...",,"Zealot's Blindfold","Shuttle Curse","Veil Walker Set")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Zealot's Blindfold")
