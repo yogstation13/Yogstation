@@ -15,7 +15,7 @@
 	/obj/item/clockwork/alloy_shards/small = 2, \
 	/obj/item/clockwork/component/geis_capacitor/antennae = 1)
 	var/mania_cost = 150 //motor's power cost
-	var/agent = FALSE //is the motor able to convert
+	var/agent = FALSE //is the motor restricted from converting
 
 /obj/structure/destructible/clockwork/powered/mania_motor/agent
 	agent = TRUE
