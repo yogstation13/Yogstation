@@ -65,6 +65,7 @@
 #define SUPERMATTER_WARNING_PERCENT 100
 
 #define SUPERMATTER_COUNTDOWN_TIME 30 SECONDS
+#define SUPERMATTER_EMAG_SPACE_DAMAGE 4 //higher for faster delamination when emagged and spaced. 4 is around best as it has roughly the same speed as a high temperature delam
 
 #define SUPERMATTER_ACCENT_SOUND_MIN_COOLDOWN 2 SECONDS ///to prevent accent sounds from layering
 
@@ -248,7 +249,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	return integrity
 
 /obj/machinery/power/supermatter_crystal/proc/get_fake_integrity()
-	return round(rand() * 100, 0.01)
+	return max(min(support_integrity + round(rand() * 10, 0.01)-5,99.99),0.01) //never give 100 or 0 as that would be too suspicious.
 
 /obj/machinery/power/supermatter_crystal/proc/countdown()
 	set waitfor = FALSE
@@ -303,14 +304,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	explode()
 
 /obj/machinery/power/supermatter_crystal/proc/explode()
-	if(obj_flags & EMAGGED)
-		explosion_power = explosion_power * 2
-		var/turf/T = get_turf(src)
-		//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
-		if(istype(T, /turf/open/space) || T.return_air().total_moles() < 10)
-			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
-			explosion(explosion_power, explosion_power+2, explosion_power+4, explosion_power+6)
-
 	for(var/mob in GLOB.alive_mob_list)
 		var/mob/living/L = mob
 		if(istype(L) && L.z == z)
@@ -328,19 +321,30 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 	if(combined_gas > MOLE_PENALTY_THRESHOLD)
+		message_admins("[src] has collapsed into a singularity. [ADMIN_JMP(src)].")
 		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
 		if(T)
 			var/obj/singularity/S = new(T)
 			if(obj_flags & EMAGGED)
 				S.energy = 2400
-			else S.energy = 800
+			else
+				S.energy = 800
 			S.consume(src)
 	else
-		investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
 		if(obj_flags & EMAGGED)
-			explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.5) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.5) + 2, explosion_power * max(gasmix_power_ratio, 0.5) + 4 , explosion_power * max(gasmix_power_ratio, 0.5) + 6, 1, 1)
+			explosion_power = explosion_power * 2
+			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
+			if(istype(T, /turf/open/space) || src.return_air().total_moles() < 10)
+				message_admins("[src] has exploded in empty space.")
+				investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
+				explosion(get_turf(T), explosion_power * 0.5, explosion_power+2, explosion_power+4, explosion_power+6, 1, 1)
+			else
+				message_admins("[src] has exploded")
+				explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.5) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.5) + 2, explosion_power * max(gasmix_power_ratio, 0.5) + 4 , explosion_power * max(gasmix_power_ratio, 0.5) + 6, 1, 1)
 		else
+			message_admins("[src] has exploded")
 			explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
+			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
 		if(power > POWER_PENALTY_THRESHOLD)
 			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
 			var/obj/singularity/energy_ball/E = new(T)
@@ -589,9 +593,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//emagged SM go BRRRRRRR here
 	if(obj_flags & EMAGGED)
-		//radio chatter to make people panic
-		if(support_integrity != 0) //cuts off the evaluation process during the second phase of the delam to save compute cycles
-			if(support_integrity%10 == 0 )
+		if(prob(10) & support_integrity>0)
+			if(support_integrity%10 == 0 ) //radio chatter to make people panic
 				switch(support_integrity/10)
 					if(10)
 						radio.talk_into(src, "CORRUPTION OF PRIMARY SUPERMATTER SUPPORT INFRASTRUCTURE DETECTED!", engineering_channel)
@@ -613,14 +616,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 						radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES IMMINENT, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", engineering_channel)
 					if(1)
 						radio.talk_into(src, "ELECTROMAGNETIC PULSE CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, DELAMINATION IMMINENT", engineering_channel)
-
-		if(prob(10) & support_integrity>0)
 			support_integrity -= 1
 			radiation_pulse(src, (100-support_integrity)*2, 4)
 			if(prob(50))
 				radio.talk_into(src, "BRRRRRRRR", engineering_channel)
-			if(support_integrity<10)
-				var/emp_power = round(explosion_power * (1+(1-(support_integrity/10))),1)
+			if(support_integrity<5)
+				var/emp_power = round(explosion_power * (1+(1-(support_integrity/5))),1)
 				empulse(src, emp_power, emp_power*2)
 		if(support_integrity<100)
 			power += round((100-support_integrity)/2,1)
@@ -634,7 +635,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					src.fire_nuclear_particle()
 		if(support_integrity<10)
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < 10)
-				damage += 1 //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
+				damage += SUPERMATTER_EMAG_SPACE_DAMAGE //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
 				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 
