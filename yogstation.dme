@@ -3384,6 +3384,7 @@
 #include "yogstation\code\modules\power\singularity\particle_accelerator\particle_control.dm"
 #include "yogstation\code\modules\projectiles\ammunition\caseless\misc.dm"
 #include "yogstation\code\modules\projectiles\boxes_magazines\internal\misc.dm"
+#include "yogstation\code\modules\projectiles\guns\funnyfinger.dm"
 #include "yogstation\code\modules\projectiles\guns\ballistic\launchers.dm"
 #include "yogstation\code\modules\projectiles\projectile\beams.dm"
 #include "yogstation\code\modules\projectiles\reusable\kineticspear.dm"
