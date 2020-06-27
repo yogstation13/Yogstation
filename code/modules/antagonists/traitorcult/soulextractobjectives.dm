@@ -116,7 +116,7 @@
 	if(!target)
 		explanation_text = "Free Objective"
 	else
-		explanation_text = "<span class='cultbold'>Attain a soulstone and use it to capture [target]'s soul. They are occupied as a [target.assigned_role].</span>"
+		explanation_text = "<span class='cultbold'>Attain a soulstone and use it to capture [target]'s soul. They are occupied as a [target.assigned_role]. You can get soulstones by using twisted construction on 30 sheets of reinforced glass.</span>"
 
 /datum/objective/soulshard/check_completion()
 	var/list/datum/mind/owners = get_owners()
