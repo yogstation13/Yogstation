@@ -50,6 +50,7 @@
 /obj/item/storage/backpack/holding/clown
 	name = "bag of honking"
 	desc = "An advanced clowning backpack for holding large quantities of pranking gear."
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "clownpack"
 	item_state = "clownpack"
 
