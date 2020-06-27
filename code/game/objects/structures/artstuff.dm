@@ -246,6 +246,14 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30 : 30)
 		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0
 
+/obj/structure/sign/painting/New(loc, dir, build)
+	..()
+	if(dir)
+		setDir(dir)
+	if(build)
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30 : 30)
+		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0
+
 /obj/structure/sign/painting/Destroy()
 	. = ..()
 	SSpersistence.painting_frames -= src
