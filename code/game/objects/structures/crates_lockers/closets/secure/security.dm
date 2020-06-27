@@ -289,3 +289,20 @@
 	..()
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
+
+/obj/structure/closet/secure_closet/collars
+	name = "bomb collars"
+	desc = "Contains bomb collars and a detonator, for keeping prisoners in line."
+	req_access = list(access_hos)
+
+/obj/structure/closet/secure_closet/collars/New()
+	..()
+	new /obj/item/clothing/head/bombCollar(src)
+	new /obj/item/clothing/head/bombCollar(src)
+	new /obj/item/clothing/head/bombCollar(src)
+	new /obj/item/clothing/head/bombCollar(src)
+	new /obj/item/clothing/head/bombCollar(src)
+	new /obj/item/device/collarDetonator(src)
+	new /obj/item/weapon/paper/bombcollars(src)
+	new /obj/item/weapon/implantcase/bombcollar(src)
+	new /obj/item/weapon/implanter(src)

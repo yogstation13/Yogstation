@@ -998,6 +998,7 @@
 #include "code\game\objects\items\implants\implant_track.dm"
 #include "code\game\objects\items\implants\implantcase.dm"
 #include "code\game\objects\items\implants\implantchair.dm"
+#include "code\game\objects\items\implants\implantcollar.dm"
 #include "code\game\objects\items\implants\implanter.dm"
 #include "code\game\objects\items\implants\implantpad.dm"
 #include "code\game\objects\items\implants\implantuplink.dm"
