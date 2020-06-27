@@ -41,14 +41,14 @@
 		possible_clocks -= clock
 		antag_candidates -= clock
 		clock.restricted_roles = restricted_jobs
-		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
+		add_servant_of_ratvar(clock, TRUE, FALSE, TRUE)
 	blood_agent_team = new
 	for(var/k = 1 to team_size)
 		var/datum/mind/blood = antag_pick(possible_bloods)
 		possible_bloods -= blood
 		antag_candidates -= blood
 		blood.restricted_roles = restricted_jobs
-		M.add_antag_datum(/datum/antagonist/cult/agent)
+		blood.add_antag_datum(/datum/antagonist/cult/agent)
 	return ..()
 
 /datum/game_mode/traitor/traitorcult/post_setup()
