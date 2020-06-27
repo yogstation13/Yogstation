@@ -139,9 +139,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
-
 	var/support_integrity = 100 //integrity of the support base, used only when emagged
-	var/support_collapsed = FALSE //used for the big last BRRRRRR
 
 	var/obj/item/radio/radio
 	var/radio_key = /obj/item/encryptionkey/headset_eng
@@ -166,7 +164,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/last_accent_sound = 0	/// cooldown tracker for accent sounds,
 
 	var/messages_admins = TRUE //varedit in case of Colton
-
 
 
 /obj/machinery/power/supermatter_crystal/Initialize()
@@ -250,7 +247,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	integrity = integrity < 0 ? 0 : integrity
 	return integrity
 
-
 /obj/machinery/power/supermatter_crystal/proc/get_fake_integrity()
 	return round(rand() * 100, 0.01)
 
@@ -267,7 +263,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/speaking
 
 	if(obj_flags & EMAGGED)
-		speaking = "BRRRRRRRR-ntegri-BRRRRRRRR at [get_fake_integrity()]%!"
+		speaking = "BRRRRRRRR SUPERMATTER CRITICAL FAILURE ENGAGING FAILSAFE" //technically the failsafe is fail-danger, but whatever.
 	else
 		speaking = "[emergency_alert] The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
 	radio.talk_into(src, speaking, common_channel, language = get_selected_language())
@@ -484,18 +480,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		//Calculate how much gas to release, emagged SM produces much more gas
 
 		if(obj_flags & EMAGGED)
-
 			removed.adjust_moles(/datum/gas/plasma, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
-
 			removed.adjust_moles(/datum/gas/oxygen, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
-
 		else
-
 			removed.adjust_moles(/datum/gas/plasma, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
-
 			removed.adjust_moles(/datum/gas/oxygen, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
-
-
 
 		if(produces_gas)
 			env.merge(removed)
@@ -600,14 +589,39 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//emagged SM go BRRRRRRR here
 	if(obj_flags & EMAGGED)
+		//radio chatter to make people panic
+		if(support_integrity != 0) //cuts off the evaluation process during the second phase of the delam to save compute cycles
+			if(support_integrity%10 == 0 )
+				switch(support_integrity/10)
+					if(10)
+						radio.talk_into(src, "CORRUPTION OF PRIMARY SUPERMATTER SUPPORT INFRASTRUCTURE DETECTED!", engineering_channel)
+					if(9)
+						radio.talk_into(src, "CHARGE SEQUESTRATION SYSTEM FAILING, ENERGY LEVELS INCREASING!", engineering_channel)
+					if(8)
+						radio.talk_into(src, "COMPLETE FAILURE OF CHARGE SQEQUESTRATION IMMINENT, ACTIVATING EMERGENCY CHARGE DISPERSION SYSTEM!", engineering_channel)
+					if(7)
+						radio.talk_into(src, "CHARGE DISPERSION SYSTEM ACTIVE. CORRUPTION OF PARANOBLIUM INTERFACE SYSTEM DETECTED, MATTER EMISSION LEVELS RISING", engineering_channel)
+					if(6)
+						radio.talk_into(src, "PARANOBLIUM INTERFACE OPERATING AT [round(75+ rand()*10,0.01)]% CAPACITY, MATTER EMISSION FACTOR RISING", engineering_channel)
+					if(5)
+						radio.talk_into(src, "COMPLETE FAILURE OF GAMMA RADIATION SUPPRESSION SYSTEM DETECTED, ACTIVATING GAMMA EMISSION BUNDLING AND DISPERSION SYSTEM", engineering_channel)
+					if(4)
+						radio.talk_into(src, "DISPERSION SYSTEM ACTIVATION FAILED, BUNDLER NOW FIRING WITHOUT GUIDANCE", engineering_channel)
+					if(3)
+						radio.talk_into(src, "WARNING ENERGY SPIKE IN CRYSTAL WELL DETECTED, ESTIMATED ENERGY OUTPUT EXCEEDS PEAK CHARGE DISPERSION CAPACITY", engineering_channel)
+					if(2)
+						radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES IMMINENT, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", engineering_channel)
+					if(1)
+						radio.talk_into(src, "ELECTROMAGNETIC PULSE CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, DELAMINATION IMMINENT", engineering_channel)
+
 		if(prob(10) & support_integrity>0)
 			support_integrity -= 1
-			radiation_pulse(src, (100-support_integrity)*10, 4)
+			radiation_pulse(src, (100-support_integrity)*2, 4)
 			if(prob(50))
 				radio.talk_into(src, "BRRRRRRRR", engineering_channel)
-			if(support_integrity<10 & !support_collapsed)
-				empulse(src, round(explosion_power * (10/support_integrity),1), round(explosion_power * 2 * (10/support_integrity),1))
-				support_collapsed = TRUE
+			if(support_integrity<10)
+				var/emp_power = round(explosion_power * (1+(1-(support_integrity/10))),1)
+				empulse(src, emp_power, emp_power*2)
 		if(support_integrity<100)
 			power += round((100-support_integrity)/2,1)
 		if(support_integrity<70)
@@ -618,8 +632,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
 					src.fire_nuclear_particle()
-		if(support_integrity<10 & prob(2))
-			empulse(src, 10-support_integrity, (10-support_integrity)*2)
+		if(support_integrity<10)
+			if(istype(T, /turf/open/space))
+				damage += 1 //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
+			if(prob(2))
+				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
+
 
 
 	return 1
@@ -793,9 +811,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if (moveable)
 		default_unfasten_wrench(user, tool, time = 20)
 	return TRUE
-
-/obj/machinery/power/supermatter_crystal/emag_act(obj/item/W, mob/living/user,)
-
 
 /obj/machinery/power/supermatter_crystal/Bumped(atom/movable/AM)
 	if(isliving(AM))
