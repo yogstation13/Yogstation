@@ -18,6 +18,7 @@
 		agent_team.forge_clock_objectives()
 		agent_team.add_member(owner)
 		objectives += agent_team.objectives
+		adjust_clockwork_power(1000)
 	else
 		agent_team.add_member(owner)
 		objectives += agent_team.objectives
