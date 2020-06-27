@@ -26,7 +26,7 @@
 /datum/antagonist/cult/agent/greet()
 	if(considered_alive(owner))
 		to_chat(owner, "<span class='cultlarge'>\"These fools are in possession of some things I want. You are here to retrieve them for me.\
-		 				The veil is not weak enough to allow much support in this area, so you will be unable to use constructs or some spells. \
+		 				The veil is not weak enough to allow much support in this area, so you will be unable to convert, use constructs or some spells. \
 		 				Additionally, you may be in contact with some heretical forces. Do not get yourselves killed.\"</span>")
 	owner.current.playsound_local(get_turf(owner.current),'sound/ambience/antag/assimilation.ogg' , 100, FALSE, pressure_affected = FALSE)
 	owner.announce_objectives()
