@@ -20,6 +20,9 @@
 
 	var/const/min_team_size = 1
 
+	var/list/bloods = list()
+	var/list/clocks = list()
+
 /datum/game_mode/traitor/traitorcult/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -41,18 +44,20 @@
 			possible_clocks -= clock
 			antag_candidates -= clock
 			clock.restricted_roles = restricted_jobs
+			clocks += clock
 		blood_agent_team = new
 		for(var/k = 1 to team_size)
 			var/datum/mind/blood = antag_pick(possible_bloods)
 			possible_bloods -= blood
 			antag_candidates -= blood
 			blood.restricted_roles = restricted_jobs
+			bloods += blood
 	return ..()
 
 /datum/game_mode/traitor/traitorcult/post_setup()
 	adjust_clockwork_power(1000) //should be enough to start
-	for(var/datum/mind/M in clock_agent_team.members)
+	for(var/datum/mind/M in clocks)
 		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
-	for(var/datum/mind/M in blood_agent_team.members)
+	for(var/datum/mind/M in bloods)
 		M.add_antag_datum(/datum/antagonist/cult/agent)
 	return ..()
