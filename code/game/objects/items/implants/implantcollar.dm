@@ -1,7 +1,6 @@
 /obj/item/weapon/implant/bombcollar
 	name = "collar console implant"
 	desc = "You die with me."
-	origin_tech = "programming=5;biotech=3;bluespace=3"
 	var/list/linkedCollars = list()
 	var/info
 	var/list/boundCollars = list()

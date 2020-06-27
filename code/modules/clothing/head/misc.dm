@@ -310,12 +310,12 @@
 	icon_state = "bombCollar"
 	item_state = "electronic"
 	strip_delay = 150
-	unacidable = 1 //nice try!
+	resistance_flags = UNACIDABLE
 	var/obj/item/device/collarDetonator/linked = null //The linked detonator
 	var/locked = 0 //if the collar can be removed
 	
 /obj/item/clothing/head/bombCollar/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/screwdriver) && !locked && linked)
+	if(istype(W, /obj/item/screwdriver) && !locked && linked)
 		user << "<span class='notice'>You unlink [src] from [linked].</span>"
 		linked.linkedCollars.Remove(src)
 		linked = null
@@ -345,16 +345,16 @@
 		H.update_hair()
 		H.visible_message("<span class='warning'>[H]'s bomb collar explodes!</span>", \
 						  "<span class='userdanger'>Your collar explodes!</span>")
-		if(flags & NODROP)
-			flags &= ~NODROP
+		if(flag & nodrop)
+			flag &= ~nodrop
 			H.unEquip(src)
 		locked = 0
 		qdel(src)
 		return
 
 /obj/item/clothing/head/bombCollar/pickup(mob/living/carbon/user)
-	if(src.locked == 1 && flags & NODROP)
-		flags &= ~NODROP
+	if(src.locked == 1 && flag & nodrop)
+		flag &= ~nodrop
 		user << "<span class='notice'>[src] blares a sharp red light as if it's just come to realize something.</span>"
 		if(linked && linked.z == src.z)
 			var/area/A = get_area(linked)
