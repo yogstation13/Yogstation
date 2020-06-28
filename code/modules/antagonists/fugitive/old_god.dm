@@ -28,6 +28,7 @@
 	. = ..()
 
 /mob/camera/yalp_elor/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
 /mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0)

@@ -115,7 +115,7 @@
 			photographer = TRUE
 
 	if(pictures_left == 0)
-		. += "The [src] is empty."
+		. += "[src] is empty."
 	else
 		if(iscarbon)
 			if (photographer)
@@ -125,8 +125,8 @@
 		else
 			. += "It has [pictures_left] photos left." 
 	if(photographer)
-		. += "The [src] lens is set for a [picture_size_x] by [picture_size_y] picture."
-		. += "The [src] is set to the [camera_mode] mode."
+		. += "[src] lens is set for a [picture_size_x] by [picture_size_y] picture."
+		. += "[src] is set to the [camera_mode] mode."
 
 //user can be atom or mob
 /obj/item/camera/proc/can_target(atom/target, mob/user, prox_flag)

@@ -48,7 +48,7 @@
 				amount = 1
 			for(var/i in 1 to amount)
 				load(new typekey(src))
-	
+
 	//Slogan pitches work almost identically to the vendor code:
 	slogan_list = splittext(product_slogans, ";")
 	last_pitch = world.time + rand(0, pitch_delay)
@@ -82,8 +82,6 @@
 			START_PROCESSING(SSmachines, src)
 		else
 			stat |= NOPOWER
-
-	update_icon()
 
 /obj/machinery/smartfridge/process()
 	if(stat & (BROKEN|NOPOWER))
@@ -343,7 +341,7 @@
 			if(!allow_ai_retrieve && isAI(usr))
 				to_chat(usr, "<span class='warning'>[src] does not seem to be configured to respect your authority!</span>")
 				return
-			
+
 			if(!dispenser_arm)
 				audible_message("<span class='warning'>\The [src] makes a loud clunk and the dispenser arm twitches slightly.</span>", "<span class='warning'>The dispenser arm on the [src] twitches slightly.</span>")
 				return
@@ -352,7 +350,7 @@
 				desired = text2num(params["amount"])
 			else
 				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
-			
+
 			if(desired <= 0)
 				return FALSE
 
@@ -450,13 +448,15 @@
 			return TRUE
 	return FALSE
 
+/obj/machinery/smartfridge/drying_rack/powered()
+	if(!anchored)
+		return FALSE
+	return ..()
+
 /obj/machinery/smartfridge/drying_rack/power_change()
-	if(powered() && anchored)
-		stat &= ~NOPOWER
-	else
-		stat |= NOPOWER
+	. = ..()
+	if(!powered())
 		toggle_drying(TRUE)
-	update_icon()
 
 /obj/machinery/smartfridge/drying_rack/load() //For updating the filled overlay
 	..()
@@ -518,6 +518,10 @@
 		return
 	atmos_spawn_air("TEMP=1000")
 
+/obj/machinery/smartfridge/drying_rack/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	toggle_drying(FALSE)
 
 // ----------------------------
 //  Bar drink smartfridge
@@ -613,12 +617,11 @@
 			O.damage = max(0, O.damage - repair_rate)
 	..()
 
-/obj/machinery/smartfridge/organ/deconstruct()
-	for(var/organ in src)
-		var/obj/item/organ/O = organ
-		if(O)
-			O.organ_flags &= ~ORGAN_FROZEN
-	..()
+/obj/machinery/smartfridge/organ/Exited(atom/movable/AM, atom/newLoc)
+	. = ..()
+	if(isorgan(AM))
+		var/obj/item/organ/O = AM
+		O.organ_flags &= ~ORGAN_FROZEN
 
 // -----------------------------
 // Chemistry Medical Smartfridge

@@ -122,10 +122,10 @@
 /datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
 	can_hold_description = generate_hold_desc(can_hold_list)
 
-	if (can_hold_list != null)
+	if (can_hold_list)
 		can_hold = typecacheof(can_hold_list)
 
-	if (cant_hold_list != null)	
+	if (cant_hold_list)
 		cant_hold = typecacheof(cant_hold_list)
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)
@@ -772,7 +772,10 @@
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
 	if(!isliving(user) || !user.CanReach(parent))
 		return
+
 	if(locked)
+		if(istype(parent, /obj/item/storage/lockbox))
+			return
 		to_chat(user, "<span class='warning'>[parent] seems to be locked!</span>")
 		return
 

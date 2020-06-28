@@ -169,6 +169,7 @@
 	builtInCamera = new (src)
 	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
+	builtInCamera.built_in = src
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -469,7 +470,7 @@
 	set category = "AI Commands"
 	set name = "Access Robot Control"
 	set desc = "Wirelessly control various automatic robots."
-	
+
 	if(!robot_control)
 		robot_control = new(src)
 	robot_control.ui_interact(src)
@@ -839,7 +840,7 @@
 
 	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
-	
+
 	show_message(rendered, 2)
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname,newname)

@@ -338,10 +338,12 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/structure/spacevine/Crossed(mob/crosser)
-	if(isliving(crosser))
-		for(var/datum/spacevine_mutation/SM in mutations)
-			SM.on_cross(src, crosser)
+/obj/structure/spacevine/Crossed(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return
+	for(var/datum/spacevine_mutation/SM in mutations)
+		SM.on_cross(src, AM)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/spacevine/attack_hand(mob/user)
@@ -508,6 +510,30 @@
 		if(!locate(/obj/structure/spacevine, stepturf))
 			if(master)
 				master.spawn_spacevine_piece(stepturf, src)
+	else if(locate(/obj/machinery/door, stepturf) && !locate(/obj/structure/spacevine, stepturf)) //if there's a door in the way
+		var/obj/machinery/door/D = locate(/obj/machinery/door, stepturf)
+		if(D)
+			if(!D.locked && !D.welded)
+				if(!locate(/obj/structure/spacevine, stepturf))
+					if(istype(D, /obj/machinery/door/airlock))
+						if(!istype(D, /obj/machinery/door/airlock/external))
+							var/obj/machinery/door/airlock/A = D
+							playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
+							sleep(60)
+							A.open(2)
+							for(var/datum/spacevine_mutation/SM in mutations)
+								SM.on_spread(src, stepturf)
+								stepturf = get_step(src,direction)
+							if(master)
+								master.spawn_spacevine_piece(stepturf, src)
+					else
+						if(!istype(D, /obj/machinery/door/firedoor))
+							D.open()
+							for(var/datum/spacevine_mutation/SM in mutations)
+								SM.on_spread(src, stepturf)
+								stepturf = get_step(src,direction)
+							if(master)
+								master.spawn_spacevine_piece(stepturf, src)
 
 /obj/structure/spacevine/ex_act(severity, target)
 	if(istype(target, type)) //if its agressive spread vine dont do anything
@@ -525,11 +551,10 @@
 	if(!override)
 		qdel(src)
 
-/obj/structure/spacevine/CanPass(atom/movable/mover, turf/target)
+/obj/structure/spacevine/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(isvineimmune(mover))
-		. = TRUE
-	else
-		. = ..()
+		return TRUE
 
 /proc/isvineimmune(atom/A)
 	if(isliving(A))

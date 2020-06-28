@@ -82,10 +82,6 @@
 	cost = pcost
 	category = cat
 
-/obj/machinery/mineral/equipment_vendor/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/mineral/equipment_vendor/Initialize()
 	. = ..()
 	build_inventory()
@@ -240,7 +236,6 @@
 	do_sparks(5, TRUE, src)
 	if(prob(50 / severity) && severity < 3)
 		qdel(src)
-
 
 /****************Golem Point Vendor**************************/
 

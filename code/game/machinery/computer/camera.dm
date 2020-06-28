@@ -16,10 +16,13 @@
 	var/map_name
 	var/const/default_map_size = 15
 	var/obj/screen/cam_screen
-	var/obj/screen/plane_master/lighting/cam_plane_master
+	/// All the plane masters that need to be applied.
+	var/list/cam_plane_masters
 	var/obj/screen/background/cam_background
 
 	var/obj/machinery/camera/active_camera
+
+	var/processing = FALSE
 
 /obj/machinery/computer/security/Initialize()
 	. = ..()
@@ -37,18 +40,20 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
-	cam_plane_master = new
-	cam_plane_master.name = "plane_master"
-	cam_plane_master.assigned_map = map_name
-	cam_plane_master.del_on_map_removal = FALSE
-	cam_plane_master.screen_loc = "[map_name]:CENTER"
+	cam_plane_masters = list()
+	for(var/plane in subtypesof(/obj/screen/plane_master))
+		var/obj/screen/instance = new plane()
+		instance.assigned_map = map_name
+		instance.del_on_map_removal = FALSE
+		instance.screen_loc = "[map_name]:CENTER"
+		cam_plane_masters += instance
 	cam_background = new
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
 /obj/machinery/computer/security/Destroy()
 	qdel(cam_screen)
-	qdel(cam_plane_master)
+	QDEL_LIST(cam_plane_masters)
 	qdel(cam_background)
 	return ..()
 
@@ -73,7 +78,8 @@
 			use_power(active_power_usage)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
-		user.client.register_map_obj(cam_plane_master)
+		for(var/plane in cam_plane_masters)
+			user.client.register_map_obj(plane)
 		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, ui_key, "CameraConsole", name, ui_x, ui_y, master_ui, state)
@@ -102,6 +108,17 @@
 		))
 	return data
 
+/obj/machinery/computer/security/process()
+	if(active_camera && active_camera.built_in)
+		if(!active_camera?.can_use())
+			show_camera_static()
+			return TRUE
+		update_camera(active_camera)
+	else
+		STOP_PROCESSING(SSfastprocess, src)
+		processing = FALSE
+	..()
+
 /obj/machinery/computer/security/ui_act(action, params)
 	. = ..()
 	if(.)
@@ -119,21 +136,38 @@
 			show_camera_static()
 			return TRUE
 
-		var/list/visible_turfs = list()
-		for(var/turf/T in (C.isXRay() \
-				? range(C.view_range, C) \
-				: view(C.view_range, C)))
-			visible_turfs += T
 
-		var/list/bbox = get_bbox_of_atoms(visible_turfs)
-		var/size_x = bbox[3] - bbox[1] + 1
-		var/size_y = bbox[4] - bbox[2] + 1
+		//Assume it's a moving camera.
+		if(C.built_in)
+			if(!processing)
+				START_PROCESSING(SSfastprocess, src)
+				processing = TRUE
+		else
+			STOP_PROCESSING(SSfastprocess, src)
+			processing = FALSE
 
-		cam_screen.vis_contents = visible_turfs
-		cam_background.icon_state = "clear"
-		cam_background.fill_rect(1, 1, size_x, size_y)
+		update_camera(C)
 
 		return TRUE
+
+/obj/machinery/computer/security/proc/update_camera(obj/machinery/camera/C)
+	var/originator = C
+	if(C.built_in)
+		originator = get_turf(C.built_in)
+
+	var/list/visible_turfs = list()
+	for(var/turf/T in (C.isXRay() \
+			? range(C.view_range, originator) \
+			: view(C.view_range, originator)))
+		visible_turfs += T
+
+	var/list/bbox = get_bbox_of_atoms(visible_turfs)
+	var/size_x = bbox[3] - bbox[1] + 1
+	var/size_y = bbox[4] - bbox[2] + 1
+
+	cam_screen.vis_contents = visible_turfs
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, size_x, size_y)
 
 /obj/machinery/computer/security/ui_close(mob/user)
 	var/user_ref = REF(user)

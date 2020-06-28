@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "emagged medibots inject the toxin they are supposed to instead of doing nothing"

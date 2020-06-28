@@ -543,13 +543,13 @@
 
 /obj/item/clothing/head/helmet/space/orange
 	name = "emergency space helmet"
-	icon_state = "syndicate-helm-orange"
-	item_state = "syndicate-helm-orange"
+	icon_state = "emergency"
+	item_state = "emergency"
 
 /obj/item/clothing/suit/space/orange
 	name = "emergency space suit"
-	icon_state = "syndicate-orange"
-	item_state = "syndicate-orange"
+	icon_state = "emergency"
+	item_state = "emergency"
 	slowdown = 3
 
 /obj/item/pickaxe/emergency
