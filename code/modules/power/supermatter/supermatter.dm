@@ -29,6 +29,7 @@
 #define POWERLOSS_INHIBITION_MOLE_THRESHOLD 20        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
 #define POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD 500  //bonus powerloss inhibition boost if this amount of moles is reached
 
+#define MOLE_SPACE_THRESHOLD 10 			  //Prevents engineers from spacing the crystal or using full vacuum to stop crystal explosions, higher to make penalty apply quicker
 #define MOLE_PENALTY_THRESHOLD 1800           //Higher == Shard can absorb more moles before triggering the high mole penalties.
 #define MOLE_HEAT_PENALTY 350                 //Heat damage scales around this. Too hot setups with this amount of moles do regular damage, anything above and below is scaled
 #define POWER_PENALTY_THRESHOLD 5000          //Higher == Engine can generate more power before triggering the high power penalties.
@@ -332,7 +333,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(obj_flags & EMAGGED)
 			explosion_power = explosion_power * 2
 			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
-			if(istype(T, /turf/open/space) || src.return_air().total_moles() < 10)
+			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 				message_admins("[src] has exploded in empty space.")
 				investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
 				explosion(get_turf(T), explosion_power * 0.5, explosion_power+2, explosion_power+4, explosion_power+6, 1, 1)
@@ -588,29 +589,30 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//emagged SM go BRRRRRRR here
 	if(obj_flags & EMAGGED)
-		if(prob(10) & support_integrity>0)
-			if(support_integrity%10 == 0 ) //radio chatter to make people panic
-				switch(support_integrity/10)
-					if(10)
+		if(prob(10) & support_integrity>0)//radio chatter to make people panic
+			switch(support_integrity)
+					if(100)
 						radio.talk_into(src, "CORRUPTION OF PRIMARY SUPERMATTER SUPPORT INFRASTRUCTURE DETECTED!", engineering_channel)
-					if(9)
+					if(90)
 						radio.talk_into(src, "CHARGE SEQUESTRATION SYSTEM FAILING, ENERGY LEVELS INCREASING!", engineering_channel)
-					if(8)
+					if(80)
 						radio.talk_into(src, "COMPLETE FAILURE OF CHARGE SQEQUESTRATION IMMINENT, ACTIVATING EMERGENCY CHARGE DISPERSION SYSTEM!", engineering_channel)
-					if(7)
+					if(70)
 						radio.talk_into(src, "CHARGE DISPERSION SYSTEM ACTIVE. CORRUPTION OF PARANOBLIUM INTERFACE SYSTEM DETECTED, MATTER EMISSION LEVELS RISING", engineering_channel)
-					if(6)
+					if(60)
 						radio.talk_into(src, "PARANOBLIUM INTERFACE OPERATING AT [round(75+ rand()*10,0.01)]% CAPACITY, MATTER EMISSION FACTOR RISING", engineering_channel)
-					if(5)
+					if(50)
 						radio.talk_into(src, "COMPLETE FAILURE OF GAMMA RADIATION SUPPRESSION SYSTEM DETECTED, ACTIVATING GAMMA EMISSION BUNDLING AND DISPERSION SYSTEM", engineering_channel)
-					if(4)
+					if(40)
 						radio.talk_into(src, "DISPERSION SYSTEM ACTIVATION FAILED, BUNDLER NOW FIRING WITHOUT GUIDANCE", engineering_channel)
-					if(3)
+					if(30)
 						radio.talk_into(src, "WARNING ENERGY SPIKE IN CRYSTAL WELL DETECTED, ESTIMATED ENERGY OUTPUT EXCEEDS PEAK CHARGE DISPERSION CAPACITY", engineering_channel)
-					if(2)
-						radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES IMMINENT, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", engineering_channel)
-					if(1)
-						radio.talk_into(src, "ELECTROMAGNETIC PULSE CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, DELAMINATION IMMINENT", engineering_channel)
+					if(20)
+						radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES INBOUND, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", common_channel)
+					if(10)
+						radio.talk_into(src, "ELECTROMAGNETIC PULSE CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, DELAMINATION IMMINENT", common_channel)
+					if(6)
+						radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT", common_channel)
 			support_integrity -= 1
 			radiation_pulse(src, (100-support_integrity)*2, 4)
 			if(prob(50))
