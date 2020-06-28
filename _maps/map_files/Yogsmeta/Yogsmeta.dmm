@@ -84133,6 +84133,12 @@
 "rrB" = (
 /turf/closed/wall,
 /area/vacant_room/commissary)
+"rwu" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/bridge)
 "rzX" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -84152,12 +84158,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"rMA" = (
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/bridge)
 "rOP" = (
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -111509,7 +111509,7 @@ bsV
 bsU
 bwu
 bqM
-rMA
+rwu
 bBH
 biB
 bCQ
