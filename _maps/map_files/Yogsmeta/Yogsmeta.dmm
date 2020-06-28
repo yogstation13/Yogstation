@@ -44653,15 +44653,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/secondary)
-"bzU" = (
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/bridge)
 "bzV" = (
 /obj/structure/table/wood,
 /obj/item/folder/white{
@@ -84161,6 +84152,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"rMA" = (
+/obj/structure/chair/comfy/teal{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/bridge)
 "rOP" = (
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -111512,7 +111509,7 @@ bsV
 bsU
 bwu
 bqM
-bzU
+rMA
 bBH
 biB
 bCQ
