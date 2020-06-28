@@ -13,30 +13,30 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bP" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bT" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "cc" = (
 /obj/structure/chair/comfy/shuttle{
@@ -47,10 +47,6 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"dd" = (
-/obj/structure/extinguisher_cabinet,
-/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "dt" = (
 /obj/effect/turf_decal/tile/blue{
@@ -65,29 +61,34 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /obj/effect/turf_decal/bot,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "dV" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
-/obj/machinery/light/small{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "ev" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom";
-	pixel_x = -26
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -108,27 +109,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"ge" = (
-/obj/structure/table/optable,
-/obj/effect/turf_decal/tile/blue{
+"fC" = (
+/obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/effect/turf_decal/bot,
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = -28
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "gj" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/effect/turf_decal/bot,
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_x = 28
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -189,11 +191,17 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "kT" = (
-/obj/structure/chair/comfy/shuttle{
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/neutral,
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "lo" = (
@@ -209,6 +217,9 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -317,7 +328,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/storage/firstaid/o2,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "mU" = (
@@ -337,6 +350,7 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "rh" = (
@@ -427,13 +441,13 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "uE" = (
-/obj/machinery/stasis,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "wb" = (
@@ -451,6 +465,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"xb" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "xi" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
@@ -458,11 +477,16 @@
 /obj/machinery/computer/security{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "yx" = (
 /obj/structure/table,
-/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/suit/apron/surgical{
+	pixel_y = 2
+	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -471,6 +495,20 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"yU" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "za" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
@@ -641,6 +679,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"Lt" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "My" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -652,7 +700,18 @@
 /obj/machinery/computer/crew{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Nw" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "Ny" = (
 /obj/machinery/door/firedoor/border_only{
@@ -661,6 +720,9 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -785,16 +847,14 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "Vv" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed"
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
 	},
-/turf/closed/wall/mineral/titanium,
+/obj/effect/turf_decal/bot,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "Xn" = (
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 4
-	},
 /obj/structure/table,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -802,24 +862,23 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 3;
+	pixel_y = 4
+	},
 /obj/item/storage/firstaid/toxin{
+	pixel_x = 1;
 	pixel_y = 3
 	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = -2;
+/obj/item/storage/firstaid/fire{
+	pixel_x = -1;
 	pixel_y = 2
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "Yz" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/crowbar,
-/obj/item/extinguisher,
+/obj/effect/turf_decal/delivery,
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "Zp" = (
@@ -868,13 +927,13 @@ bP
 ev
 rA
 pH
-cc
-My
-My
-My
 dM
-qe
 My
+My
+My
+My
+qe
+fC
 My
 Yz
 xi
@@ -888,15 +947,15 @@ UW
 sc
 yx
 dt
-dt
+bT
 rI
 pH
 RB
 aj
 aj
 aj
-bT
 aj
+kT
 aj
 jG
 ST
@@ -909,7 +968,7 @@ RH
 (4,1,1) = {"
 UW
 sc
-ge
+uE
 UI
 uE
 rI
@@ -918,8 +977,8 @@ rh
 HO
 HO
 Uh
-kT
 HO
+Vv
 HO
 jG
 wC
@@ -937,10 +996,10 @@ xi
 xi
 za
 zX
-dd
+mK
 PK
 wb
-Vv
+xi
 wb
 PK
 mK
@@ -965,7 +1024,7 @@ My
 My
 Da
 My
-My
+Nw
 My
 jG
 Zy
@@ -987,8 +1046,8 @@ Lk
 Db
 Db
 Db
-gj
-jG
+Db
+yU
 jG
 jG
 ST
@@ -1006,13 +1065,13 @@ dV
 Ap
 EQ
 ew
-rh
+gj
 HO
 HO
 HO
-kT
-ew
 HO
+xb
+Lt
 HO
 Yz
 xi
