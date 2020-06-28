@@ -300,7 +300,8 @@
 	name = "emergency lifejacket"
 	},
 /obj/structure/closet{
-	icon_state = "emergency"
+	icon_state = "emergency";
+	name = "emergency closet"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
