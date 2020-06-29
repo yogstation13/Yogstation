@@ -1,0 +1,6 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - rscadd: "Added body cameras for miners and sec! Miners start with them, sec has to print them later"
+  - rscadd: "new TRAIT_NO_STORAGE, not even in a bag of holding >:3"
+  - imageadd: "amazing sprites! Better than the prebase ones! Three cheers for Partheo!"
