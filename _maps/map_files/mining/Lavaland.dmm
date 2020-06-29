@@ -78,8 +78,8 @@
 /area/lavaland/surface/outdoors)
 "ao" = (
 /obj/machinery/computer/shuttle/labor/one_way{
-	icon_state = "computer";
-	dir = 4
+	dir = 4;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
@@ -305,16 +305,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
-"aY" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Security Airlock";
-	req_access_txt = "2"
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
 "aZ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -363,8 +353,8 @@
 /area/mine/laborcamp)
 "bh" = (
 /obj/machinery/computer/secure_data{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
@@ -400,20 +390,11 @@
 /area/mine/laborcamp)
 "bw" = (
 /obj/machinery/computer/security/labor{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"bx" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Prisoner Airlock"
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
 "by" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -529,8 +510,8 @@
 /area/mine/laborcamp)
 "ci" = (
 /obj/machinery/computer/prisoner{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
@@ -573,6 +554,27 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
+"cN" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Labor Camp Shuttle Prisoner Airlock"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
+"ew" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Labor Camp Shuttle Security Airlock";
+	req_access_txt = "2"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
 "fQ" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/unexplored/danger)
@@ -1685,6 +1687,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Pk" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock{
+	name = "Labor Camp External Access"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
 "Uq" = (
 /obj/docking_port/stationary{
 	area_type = /area/lavaland/surface/outdoors;
@@ -1697,15 +1709,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"WA" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock{
-	name = "Labor Camp External Access"
-	},
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
 "WB" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -6309,11 +6312,11 @@ aq
 aq
 aq
 aq
-aY
+ew
 aq
 aq
 aq
-bx
+cN
 aq
 aw
 aw
@@ -9646,7 +9649,7 @@ an
 an
 aD
 aq
-WA
+Pk
 aq
 aT
 aD
