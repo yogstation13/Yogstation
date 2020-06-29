@@ -84235,6 +84235,7 @@
 	dir = 1
 	},
 /obj/structure/window,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "gJo" = (
@@ -85320,6 +85321,16 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/hallway/primary/port)
+"jmt" = (
+/obj/structure/chair/sofa/right,
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "jng" = (
 /obj/structure/closet/wardrobe/science_white,
 /obj/effect/turf_decal/tile/purple{
@@ -85434,6 +85445,7 @@
 /area/crew_quarters/kitchen)
 "jJY" = (
 /obj/structure/table,
+/obj/item/reagent_containers/food/drinks/soda_cans/tonic,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "jPi" = (
@@ -86150,6 +86162,7 @@
 /obj/structure/window{
 	dir = 1
 	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "lHM" = (
@@ -87806,6 +87819,12 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/maintenance/department/chapel)
+"pSu" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "pTA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -88439,6 +88458,7 @@
 /obj/structure/chair/sofa/right{
 	dir = 1
 	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "rIK" = (
@@ -88521,6 +88541,7 @@
 /area/hallway/primary/fore)
 "rWx" = (
 /obj/machinery/light/small,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "rXx" = (
@@ -89637,6 +89658,12 @@
 /obj/item/storage/belt/utility,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"uMl" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "uMF" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
@@ -89787,6 +89814,7 @@
 /area/medical/morgue)
 "vgj" = (
 /obj/structure/chair/stool,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "vgA" = (
@@ -137596,11 +137624,11 @@ avR
 asI
 asI
 knh
-ulk
+jmt
 mOM
 qkd
 ulu
-asI
+pSu
 eZy
 ulk
 dPg
@@ -139902,7 +139930,7 @@ wNY
 asA
 fiJ
 aCU
-asI
+uMl
 asI
 auy
 asI
