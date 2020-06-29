@@ -215,7 +215,7 @@
 	var/static/list/check_times = list()
 	var/list/payees = list()
 
-/obj/effect/forcefield/luxury_shuttle/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/machinery/scanner_gate/luxury_shuttle/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(mover in approved_passengers)
 		set_scanline("scanning", 10)
