@@ -18,7 +18,6 @@
 	recommended_enemies = 4
 	reroll_friendly = 1
 	enemy_minimum_age = 0
-	lowpop_amount = 30
 
 	announce_span = "danger"
 	announce_text = "There are Syndicate agents on the station!\n\
@@ -35,7 +34,7 @@
 /datum/game_mode/traitor/pre_setup()
 
 	if(num_players() <= lowpop_amount)
-		if(prob((2*1.14**lowpop_amount)-2)) //exponential equation, chance of restriction goes up as pop goes down.
+		if(!prob((2*1.14**num_players)-2)) //exponential equation, chance of restriction goes up as pop goes down.
 			protected_jobs += GLOB.command_positions
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
