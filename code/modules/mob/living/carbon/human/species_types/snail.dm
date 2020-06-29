@@ -43,7 +43,7 @@
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(SLOT_BACK)
 	if(istype(bag, /obj/item/storage/backpack/snail))
 		bag.emptyStorage()
-		C.doUnEquip(bag, TRUE, no_move = TRUE)
+		C.temporarilyRemoveItemFromInventory(bag, TRUE)
 		qdel(bag)
 
 /obj/item/storage/backpack/snail/species
@@ -60,3 +60,12 @@
 /obj/item/storage/backpack/snail/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	
+/datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+
+	if(H.reagents.has_reagent(/datum/reagent/consumable/sodiumchloride))
+		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
+		H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)

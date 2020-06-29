@@ -26591,6 +26591,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"bgr" = (
+/mob/living/simple_animal/cockroach{
+	desc = "Virtually unkillable.";
+	name = "Becquerel";
+	sentience_type = 5;
+	status_flags = 16
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "bgs" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -30400,24 +30409,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"bnT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "bnU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -35531,20 +35522,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"byh" = (
-/obj/machinery/door/airlock/command{
-	name = "Server Room";
-	req_access_txt = "30"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "byi" = (
 /turf/closed/wall,
 /area/security/checkpoint/science)
@@ -36077,7 +36054,6 @@
 /area/maintenance/aft)
 "bzt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
 	external_pressure_bound = 140;
 	name = "server vent";
 	pressure_checks = 0
@@ -36089,18 +36065,10 @@
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bzv" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
+/obj/machinery/atmospherics/components/unary/portables_connector,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bzw" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'SERVER ROOM'.";
 	name = "SERVER ROOM";
@@ -36108,11 +36076,6 @@
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/science/server)
-"bzx" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/dark,
 /area/science/server)
 "bzy" = (
 /obj/machinery/light,
@@ -36491,14 +36454,10 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bAs" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 9
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/white,
 /area/science/server)
 "bAt" = (
 /obj/structure/table/reinforced,
@@ -36531,6 +36490,9 @@
 /area/engine/atmos_distro)
 "bAy" = (
 /obj/effect/landmark/blobstart,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
 "bAz" = (
@@ -36544,9 +36506,11 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
 "bAA" = (
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
 	},
+/obj/machinery/meter,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bAB" = (
@@ -36560,11 +36524,14 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bAC" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 9
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -36573,8 +36540,11 @@
 /area/science/server)
 "bAD" = (
 /obj/structure/chair/office/light,
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
@@ -37116,7 +37086,7 @@
 /area/maintenance/aft)
 "bBS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 4;
+	dir = 1;
 	external_pressure_bound = 120;
 	name = "server vent"
 	},
@@ -37154,21 +37124,45 @@
 	name = "SERVER ROOM";
 	pixel_y = -32
 	},
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/server)
 "bBW" = (
 /obj/structure/table,
-/obj/item/folder/white,
-/obj/item/pen,
+/obj/item/paper_bin{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/folder{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/pen{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/item/reagent_containers/food/drinks/britcup{
+	desc = "This is a legendary cup. Some sources claim it was a trophy, won after a lengthy war over tables.";
+	name = "Medium Roast Premium coffee cup";
+	pixel_x = 8;
+	pixel_y = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "bBX" = (
 /obj/machinery/computer/rdservercontrol{
 	dir = 1
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
@@ -39765,6 +39759,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"bJv" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/engine/atmos_distro)
 "bJx" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue{
@@ -40205,10 +40204,6 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos_distro)
-"bKP" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/open/floor/engine/co2,
-/area/engine/atmos_distro)
 "bKQ" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -40579,10 +40574,6 @@
 "bLQ" = (
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
-"bLR" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine/n2,
-/area/engine/atmos_distro)
 "bLS" = (
 /obj/machinery/air_sensor{
 	id_tag = "n2_sensor"
@@ -40618,10 +40609,6 @@
 /obj/machinery/air_sensor{
 	id_tag = "n2o_sensor"
 	},
-/turf/open/floor/engine/n2o,
-/area/engine/atmos_distro)
-"bLX" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos_distro)
 "bLY" = (
@@ -40881,10 +40868,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bMI" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/engine/o2,
-/area/engine/atmos_distro)
 "bMJ" = (
 /obj/machinery/air_sensor{
 	id_tag = "o2_sensor"
@@ -40914,10 +40897,6 @@
 /obj/machinery/air_sensor{
 	id_tag = "tox_sensor"
 	},
-/turf/open/floor/engine/plasma,
-/area/engine/atmos_distro)
-"bMP" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos_distro)
 "bMQ" = (
@@ -48281,6 +48260,24 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space)
+"dTV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "dVa" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 1
@@ -51859,10 +51856,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jLm" = (
-/mob/living/simple_animal/mouse,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jLB" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -52787,6 +52780,22 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"lcM" = (
+/obj/machinery/door/airlock/command{
+	name = "Server Room";
+	req_access_txt = "30"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "ldM" = (
 /obj/machinery/recharge_station,
 /obj/structure/sign/departments/minsky/command/charge{
@@ -56575,8 +56584,8 @@
 	network = list("ss13","medbay")
 	},
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
 "riC" = (
@@ -56915,6 +56924,16 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"rLC" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "rMj" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer1{
 	dir = 4;
@@ -57658,6 +57677,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"sVz" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/engine/atmos_distro)
 "sVZ" = (
 /obj/structure/table,
 /obj/item/storage/box/beakers{
@@ -59716,6 +59740,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"wmE" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/miner/carbon_dioxide,
+/turf/open/floor/engine/co2,
+/area/engine/atmos_distro)
 "wmI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -59856,6 +59885,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wyn" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/atmospherics/miner/n2o,
+/turf/open/floor/engine/n2o,
+/area/engine/atmos_distro)
 "wyC" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "AI Satellite Monitoring";
@@ -59887,6 +59921,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wAc" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/atmospherics/miner/toxins,
+/turf/open/floor/engine/plasma,
+/area/engine/atmos_distro)
 "wAw" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -95401,11 +95440,11 @@ bKJ
 bJq
 bvA
 bLD
-bLR
+sVz
 bLD
 bvA
 bMf
-bMI
+bJv
 bMf
 bvA
 aaa
@@ -99509,15 +99548,15 @@ bHa
 aaf
 bvA
 bKH
-bKP
+wmE
 bKH
 bvA
 bLQ
-bLX
+wyn
 bLQ
 bvA
 bMA
-bMP
+wAc
 bMA
 bvA
 aaf
@@ -99783,7 +99822,7 @@ jkG
 nYI
 cQn
 dpF
-jLm
+bgr
 ceE
 bPq
 aaa
@@ -105905,8 +105944,8 @@ bqa
 cIe
 box
 bgp
-bnT
-byh
+bnH
+byf
 bzv
 bAA
 bAs
@@ -106162,9 +106201,9 @@ cHZ
 cIf
 box
 btA
-bnH
-byf
-bKS
+dTV
+lcM
+rLC
 bAD
 bBX
 bDb
@@ -106421,7 +106460,7 @@ box
 bgp
 bnH
 byf
-bzx
+bKS
 bAC
 bBW
 bDb

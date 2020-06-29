@@ -51,7 +51,7 @@
 /obj/machinery/computer/nanite_chamber_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_chamber_control", name, 550, 800, master_ui, state)
+		ui = new(user, src, ui_key, "NaniteChamberControl", name, 550, 800, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/nanite_chamber_control/ui_data()
@@ -123,17 +123,17 @@
 			eject(usr)
 			. = TRUE
 		if("set_safety")
-			var/threshold = input("Set safety threshold (0-500):", name, null) as null|num
+			var/threshold = text2num(params["value"])
 			if(!isnull(threshold))
 				chamber.set_safety(clamp(round(threshold, 1),0,500))
-				playsound(src, "terminal_type", 25, 0)
+				playsound(src, "terminal_type", 25, FALSE)
 				chamber.occupant.investigate_log("'s nanites' safety threshold was set to [threshold] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_cloud")
-			var/cloud_id = input("Set cloud ID (1-100, 0 to disable):", name, null) as null|num
+			var/cloud_id = text2num(params["value"])
 			if(!isnull(cloud_id))
 				chamber.set_cloud(clamp(round(cloud_id, 1),0,100))
-				playsound(src, "terminal_type", 25, 0)
+				playsound(src, "terminal_type", 25, FALSE)
 				chamber.occupant.investigate_log("'s nanites' cloud id was set to [cloud_id] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE
 		if("connect_chamber")
@@ -145,21 +145,9 @@
 			log_combat(usr, chamber.occupant, "injected", null, "with nanites via [src]")
 			chamber.occupant.investigate_log("was injected with nanites by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE
-		if("add_program")
-			if(!disk?.program || !chamber || !chamber.occupant)
-				return
-			playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
-			chamber.install_program(disk.program)
-			chamber.occupant.investigate_log("had program of type [disk.program.type] installed by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
-			. = TRUE
-		if("remove_program")
-			if(!chamber || !chamber.occupant)
-				return
-			playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
-			var/list/nanite_programs = list()
-			SEND_SIGNAL(chamber.occupant, COMSIG_NANITE_GET_PROGRAMS, nanite_programs)
-			if(LAZYLEN(nanite_programs))
-				var/datum/nanite_program/P = nanite_programs[text2num(params["program_id"])]
-				chamber.uninstall_program(P)
-				chamber.occupant.investigate_log("had program of type [P.type] uninstalled by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
+		if("remove_nanites")
+			playsound(src, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
+			chamber.remove_nanites()
+			log_combat(usr, chamber.occupant, "cleared nanites from", null, "via [src]")
+			chamber.occupant.investigate_log("'s nanites were cleared by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE

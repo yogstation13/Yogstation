@@ -122,10 +122,10 @@
 /datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
 	can_hold_description = generate_hold_desc(can_hold_list)
 
-	if (can_hold_list != null)
+	if (can_hold_list)
 		can_hold = typecacheof(can_hold_list)
 
-	if (cant_hold_list != null)	
+	if (cant_hold_list)
 		cant_hold = typecacheof(cant_hold_list)
 
 /datum/component/storage/proc/generate_hold_desc(can_hold_list)
@@ -624,6 +624,10 @@
 			if(!stop_messages)
 				to_chat(M, "<span class='warning'>[IP] cannot hold [I] as it's a storage item of the same size!</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
+	if(HAS_TRAIT(I, TRAIT_NO_STORAGE))
+		if(!stop_messages)
+			to_chat(M, "<span class='warning'>\the [I] can't seem to fit in \the [host]!</span>")
+		return FALSE
 	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>\the [I] is stuck to your hand, you can't put it in \the [host]!</span>")
@@ -772,7 +776,10 @@
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
 	if(!isliving(user) || !user.CanReach(parent))
 		return
+
 	if(locked)
+		if(istype(parent, /obj/item/storage/lockbox))
+			return
 		to_chat(user, "<span class='warning'>[parent] seems to be locked!</span>")
 		return
 

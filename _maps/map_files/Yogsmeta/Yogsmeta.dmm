@@ -44653,15 +44653,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/secondary)
-"bzU" = (
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/bridge)
 "bzV" = (
 /obj/structure/table/wood,
 /obj/item/folder/white{
@@ -75377,8 +75368,8 @@
 /area/science/mixing)
 "cBr" = (
 /obj/structure/closet/secure_closet/paramedic,
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "cBs" = (
@@ -84142,6 +84133,12 @@
 "rrB" = (
 /turf/closed/wall,
 /area/vacant_room/commissary)
+"rwu" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/bridge)
 "rzX" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -111512,7 +111509,7 @@ bsV
 bsU
 bwu
 bqM
-bzU
+rwu
 bBH
 biB
 bCQ

@@ -68,6 +68,10 @@
 	using.screen_loc = ui_ghost_spawners
 	static_inventory += using
 
+	using = new /obj/screen/ghost/pai()
+	using.screen_loc = ui_ghost_pai
+	static_inventory += using
+
 	using = new /obj/screen/language_menu
 	using.icon = ui_style
 	static_inventory += using

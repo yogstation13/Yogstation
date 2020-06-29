@@ -126797,8 +126797,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/clothing/suit/space/eva/paramedic,
-/obj/item/clothing/head/helmet/space/eva/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "jAD" = (

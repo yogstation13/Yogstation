@@ -52,10 +52,6 @@
 	LAZYREMOVE(myarea.firealarms, src)
 	return ..()
 
-/obj/machinery/firealarm/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/firealarm/update_icon()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
@@ -142,7 +138,7 @@
 		return ..()
 	add_fingerprint(user)
 	var/area/A = get_area(src)
-	if(A.fire)
+	if(A.fire || A.party)
 		reset(user)
 	else
 		alarm(user)
@@ -272,10 +268,12 @@
 	..()
 
 /obj/machinery/firealarm/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1) && buildstage != 0) //can't break the electronics if there isn't any inside.
+	if(buildstage == 0) //can't break the electronics if there isn't any inside.
+		return
+
+	. = ..()
+	if(.)
 		LAZYREMOVE(myarea.firealarms, src)
-		stat |= BROKEN
-		update_icon()
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -296,7 +294,7 @@
 		set_light(l_power = 0)
 
 /*
- * Return of Party button
+ * Return of the Return of the Party button
  */
 
 /area

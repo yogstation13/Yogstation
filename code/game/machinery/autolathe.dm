@@ -24,7 +24,6 @@
 	var/shock_wire
 	var/prod_coeff = 1
 	var/datum/techweb/stored_research
-	var/screen = 1
 	var/base_price = 25
 	var/hacked_price = 50
 	var/datum/research/files
@@ -39,9 +38,10 @@
 	var/processing_line
 	var/printdirection = 0
 	var/queuelength = 0
-	var/selected_category = "Tools"
+	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Misc","Dinnerware","Imported", "Search")
 
-	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Misc","Dinnerware","Imported")
+	ui_x = 1116
+	ui_y = 703
 
 /obj/machinery/autolathe/Initialize()
 	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
@@ -62,7 +62,7 @@
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(!ui)
-		ui = new(user, src, ui_key, "autolathe", name, 1116, 703, master_ui, state)  //Create the TGUI from autolathe.js
+		ui = new(user, src, ui_key, "Autolathe", name, ui_x, ui_y, master_ui, state)  //Create the TGUI from autolathe.js
 		ui.open()
 
 /obj/machinery/autolathe/proc/wallcheck(direction) //Check for nasty walls and update ui
@@ -74,21 +74,21 @@
 /obj/machinery/autolathe/ui_data(mob/user) // All the data the ui will need
 	var/list/data = list()
 	var/list/designs = list()
-
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	data["screen"] = screen
 	data["total_amount"] = materials.total_amount
 	data["max_amount"] = materials.max_amount
 	data["metal_amount"] = materials.amount(MAT_METAL)
 	data["glass_amount"] = materials.amount(MAT_GLASS)
-	data["categories"] = categories
-	data["selected_category"] = selected_category
-
 	data["rightwall"] = wallcheck(4) // Wall data for ui
 	data["leftwall"] = wallcheck(8)
 	data["abovewall"] = wallcheck(1)
 	data["belowwall"] = wallcheck(2)
-
+	processing_line = being_built.len ? get_processing_line() : null
+	data["processing"] = processing_line
+	data["printdir"] = printdirection
+	data["isprocessing"] = processing_queue
+	data["queuelength"] = queuelength
+	data["categories"] = categories
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		var/list/design = list()
@@ -113,15 +113,7 @@
 		design["materials_metal"] = get_design_cost_metal(D)
 		design["materials_glass"] = get_design_cost_glass(D)
 		designs += list(design)
-
 	data["designs"] = designs
-	processing_line = being_built.len ? get_processing_line() : null
-	data["processing"] = processing_line
-
-	data["printdir"] = printdirection
-
-	data["isprocessing"] = processing_queue
-	data["queuelength"] = queuelength
 	if(istype(autoqueue) && autoqueue.len)
 		var/list/uidata = list()
 		var/index = 1
@@ -140,9 +132,6 @@
 		return
 
 	switch(action)
-		if("set_category")
-			selected_category = params["category"]
-
 		if("make") // Lets try make the item supplied via the UI
 			request = stored_research.isDesignResearchedID(params["item_id"])
 			if(!request)
@@ -153,7 +142,6 @@
 				add_to_queue(request, multiplier) // Add item to queue for processing
 			else
 				to_chat(usr, "<span class='warning'>The autolathe queue is full!</span>")
-
 		if("eject")
 			request = stored_research.isDesignResearchedID(params["item_id"])
 			if(processing_queue)
@@ -195,6 +183,7 @@
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 
+	ui_interact(usr)
 	update_icon()
 
 /obj/machinery/autolathe/on_deconstruction()
@@ -421,7 +410,7 @@
 			say("Queue processing halted.")
 			processing_queue = FALSE
 			return
-		if(stat&(NOPOWER|BROKEN))
+		if(stat&(NOPOWER|BROKEN) || panel_open)
 			processing_queue = FALSE
 			return
 		if(!can_build(D,multiplier))

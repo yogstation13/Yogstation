@@ -125,12 +125,9 @@
 	if(working_state)
 		flick(working_state,src)
 
-/obj/machinery/chem_dispenser/power_change()
-	..()
-	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
-
 /obj/machinery/chem_dispenser/update_icon()
 	cut_overlays()
+	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
 	if(has_panel_overlay && panel_open)
 		add_overlay(mutable_appearance(icon, "[initial(icon_state)]_panel-o"))
 
@@ -167,7 +164,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_dispenser", name, 565, 620, master_ui, state)
+		ui = new(user, src, ui_key, "ChemDispenser", name, 565, 620, master_ui, state)
 		if(user.hallucinating())
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()

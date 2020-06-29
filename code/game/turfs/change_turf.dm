@@ -281,6 +281,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		ImmediateCalculateAdjacentTurfs()
 	else
 		CALCULATE_ADJACENT_TURFS(src)
+	SSair.add_to_active(src)
 
 	//update firedoor adjacency
 	var/list/turfs_to_check = get_adjacent_open_turfs(src) | src

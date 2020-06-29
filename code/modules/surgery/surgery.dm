@@ -128,8 +128,6 @@
 
 	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
 		propability = 1
-	else if(locate(/obj/machinery/stasis, T))
-		propability = 0.9
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
 	else if(locate(/obj/structure/bed, T))

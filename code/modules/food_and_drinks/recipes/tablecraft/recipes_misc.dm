@@ -165,7 +165,7 @@
 	result = /obj/item/reagent_containers/food/snacks/cubannachos
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/dolphinandchips
+/datum/crafting_recipe/food/dolphinandchips
 	name = "Dolphin and Chips"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 3,
@@ -174,7 +174,7 @@
 	result = /obj/item/reagent_containers/food/snacks/dolphinandchips
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/dolphincereal
+/datum/crafting_recipe/food/dolphincereal
 	name = "Dolphin Cereal"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/dolphinmeat = 2,
@@ -220,6 +220,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/honeybar
 	subcategory = CAT_MISCFOOD
+
 
 /datum/crafting_recipe/food/lizardwine
 	name = "Lizard Wine"

@@ -427,7 +427,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.real_name = record_found.fields["name"]
 		new_character.gender = record_found.fields["gender"]
 		new_character.age = record_found.fields["age"]
-		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
+		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])	
 	else
 		var/datum/preferences/A = new()
 		A.copy_to(new_character)
@@ -1232,5 +1232,5 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /mob/living/carbon/proc/adminpie(mob/user)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
-	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW
+	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSMACHINES | PASSCOMPUTER
 	p.throw_at(user, 10, 0.5, usr)

@@ -23,6 +23,7 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
+		/obj/effect/proc_holder/spell/self/vampire_help = 0,
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 75,
@@ -198,8 +199,8 @@
 	var/ay = C.y
 
 	for(var/i = 1 to 20)
-		ax += SSsun.dx
-		ay += SSsun.dy
+		ax += round(sin(SSsun.azimuth), 0.01)
+		ay += round(cos(SSsun.azimuth), 0.01)
 
 		var/turf/T = locate(round(ax, 0.5), round(ay, 0.5), C.z)
 
