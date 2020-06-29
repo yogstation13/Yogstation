@@ -30,9 +30,6 @@ jobs:
       
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
-        with:
-          default: true
-      
 
       - name: Install Dependencies
         run: |
