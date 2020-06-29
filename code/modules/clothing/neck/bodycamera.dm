@@ -90,8 +90,8 @@
 	. = ..()
 	if(prob(150/severity))
 		Disconnect()
-		bodcam.c_tag = rand(1,10000)
-		bodcam.network[1] = rand(1, 10000) //gibberish, this will render the camera basically unreadable by any console
+		bodcam.c_tag = null
+		bodcam.network[1] = null //requires a reset
 		update_icon()
 
 /obj/item/clothing/neck/bodycam/Destroy()
