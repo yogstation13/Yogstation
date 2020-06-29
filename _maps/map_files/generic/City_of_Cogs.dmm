@@ -129,11 +129,6 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"aB" = (
-/obj/structure/table/reinforced/brass,
-/obj/item/clockwork/construct_chassis/cogscarab,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aC" = (
 /obj/machinery/sleeper/clockwork{
 	dir = 1
@@ -241,6 +236,11 @@
 	name = "paper - 'Station Radio Frequencies'"
 	},
 /turf/closed/wall/clockwork,
+/area/reebe/city_of_cogs)
+"Vl" = (
+/obj/structure/table/reinforced/brass,
+/obj/effect/landmark/servant_of_ratvar/scarab,
+/turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 
 (1,1,1) = {"
@@ -3561,7 +3561,7 @@ aj
 aj
 ah
 aj
-aB
+Vl
 ai
 aj
 aj
@@ -3924,7 +3924,7 @@ aj
 aj
 aj
 aj
-aB
+Vl
 az
 ah
 ai
@@ -4011,7 +4011,7 @@ aj
 aj
 aj
 ai
-aB
+Vl
 aj
 aj
 aj
