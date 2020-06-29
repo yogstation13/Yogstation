@@ -122,7 +122,7 @@
 	base_icon_state = "fireball"
 	action_icon_state = "fireball0"
 	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
-	active_msg = "You built up heat in your mouth."
+	active_msg = "You build up heat in your mouth."
 	deactive_msg = "You swallow the flame."
 	var/strength = 1
 
@@ -144,7 +144,8 @@
 		if(1 to 3)
 			F.exp_light = strength-1
 		if(4 to INFINITY)
-			F.exp_heavy = strength-3
+			strength = 3
+			F.exp_light = strength-1
 	F.exp_fire += strength
 
 obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
