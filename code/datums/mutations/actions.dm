@@ -105,11 +105,11 @@
 	instability = 30
 	energy_coeff = 1
 	power_coeff = 1
-
+	
 /datum/mutation/human/firebreath/modify()
 	if(power)
 		var/obj/effect/proc_holder/spell/aimed/firebreath/S = power
-		S.strength = GET_MUTATION_POWER(src)
+		S.strength = min(GET_MUTATION_POWER(src), S.strengthMax)
 
 /obj/effect/proc_holder/spell/aimed/firebreath
 	name = "Fire Breath"
@@ -126,7 +126,7 @@
 	deactive_msg = "You swallow the flame."
 	var/strength = 1
 	var/const/strengthMax = 3
-
+	
 /obj/effect/proc_holder/spell/aimed/firebreath/before_cast(list/targets)
 	. = ..()
 	if(iscarbon(usr))
@@ -141,8 +141,6 @@
 	if(!istype(P, /obj/item/projectile/magic/aoe/fireball))
 		return
 	var/obj/item/projectile/magic/aoe/fireball/F = P
-	if (strength > strengthMax)
-		strength = strengthMax
 	F.exp_light = strength-1
 	F.exp_fire += strength
 
