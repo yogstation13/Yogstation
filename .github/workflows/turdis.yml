@@ -33,10 +33,6 @@ jobs:
         with:
           default: true
       
-      - name: Setup PHP
-        uses: nanasess/setup-php@v3.0.3
-        with: 
-          php_version: 5.6
 
       - name: Install Dependencies
         run: |
