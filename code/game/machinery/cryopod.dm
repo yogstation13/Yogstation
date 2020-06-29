@@ -175,11 +175,6 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	var/obj/machinery/computer/cryopod/control_computer
 	var/cooldown = FALSE
 
-	// These items will NOT be preserved
-	var/static/list/do_not_preserve_items = list (
-		/obj/item/mmi/posibrain
-	)
-
 /obj/machinery/cryopod/Initialize()
 	..()
 	GLOB.cryopods += src
@@ -323,20 +318,19 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		visible_message("<span class='notice'>\The [src] hums and hisses as it moves [mob_occupant.real_name] into storage.</span>")
 
 	for(var/obj/item/W in mob_occupant.GetAllContents())
+		if(QDELETED(W))
+			continue
 		if(W.loc.loc && (( W.loc.loc == loc ) || (W.loc.loc == control_computer)))
 			continue//means we already moved whatever this thing was in
 			//I'm a professional, okay
-		for(var/T in GLOB.typecache_cryoitems)
-			if(istype(W, T))
-				if(control_computer && control_computer.allow_items)
-					control_computer.frozen_items += W
-					mob_occupant.transferItemToLoc(W, control_computer, TRUE)
-				else
-					mob_occupant.transferItemToLoc(W, loc, TRUE)
-
-	for(var/obj/item/W in mob_occupant.GetAllContents())
-		qdel(W)	//because we moved all items to preserve away
-				//and yes, this totally deletes their bodyparts one by one, I just couldn't bother
+		if(is_type_in_typecache(W, GLOB.typecache_cryoitems))
+			if(control_computer && control_computer.allow_items)
+				control_computer.frozen_items += W
+				mob_occupant.transferItemToLoc(W, control_computer, TRUE)
+			else
+				mob_occupant.transferItemToLoc(W, loc, TRUE)
+			continue
+		qdel()
 
 	if(iscyborg(mob_occupant))
 		var/mob/living/silicon/robot/R = occupant
@@ -349,7 +343,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))
-		if(I in GLOB.typecache_cryoitems)
+		if(is_type_in_typecache(I, GLOB.typecache_cryoitems))
 			continue //Double safety check
 		qdel(I) //Cleanup anything left
 	open_machine()
