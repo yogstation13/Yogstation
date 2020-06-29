@@ -17,7 +17,6 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
-	lowpop_amount = 30
 
 	announce_span = "green"
 	announce_text = "Alien changelings have infiltrated the crew!\n\
