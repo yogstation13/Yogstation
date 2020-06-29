@@ -132,6 +132,9 @@ SUBSYSTEM_DEF(dbcore)
 	query_round_last_id.Execute(async = FALSE)
 	if(query_round_last_id.NextRow(async = FALSE))
 		GLOB.round_id = query_round_last_id.item[1]
+		var/datum/DBQuery/query_fix_connections = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET 'left' = NOW() WHERE 'left' IS NULL AND round_id = [text2num(GLOB.round_id) - 1]")
+		query_fix_connections.Execute()
+		qdel(query_fix_connections)
 	qdel(query_round_last_id)
 
 /datum/controller/subsystem/dbcore/proc/SetRoundStart()
