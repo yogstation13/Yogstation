@@ -83,8 +83,6 @@
 		else
 			stat |= NOPOWER
 
-	update_icon()
-
 /obj/machinery/smartfridge/process()
 	if(stat & (BROKEN|NOPOWER))
 		return PROCESS_KILL
@@ -450,13 +448,15 @@
 			return TRUE
 	return FALSE
 
+/obj/machinery/smartfridge/drying_rack/powered()
+	if(!anchored)
+		return FALSE
+	return ..()
+
 /obj/machinery/smartfridge/drying_rack/power_change()
-	if(powered() && anchored)
-		stat &= ~NOPOWER
-	else
-		stat |= NOPOWER
+	. = ..()
+	if(!powered())
 		toggle_drying(TRUE)
-	update_icon()
 
 /obj/machinery/smartfridge/drying_rack/load() //For updating the filled overlay
 	..()
@@ -617,12 +617,11 @@
 			O.damage = max(0, O.damage - repair_rate)
 	..()
 
-/obj/machinery/smartfridge/organ/deconstruct()
-	for(var/organ in src)
-		var/obj/item/organ/O = organ
-		if(O)
-			O.organ_flags &= ~ORGAN_FROZEN
-	..()
+/obj/machinery/smartfridge/organ/Exited(atom/movable/AM, atom/newLoc)
+	. = ..()
+	if(isorgan(AM))
+		var/obj/item/organ/O = AM
+		O.organ_flags &= ~ORGAN_FROZEN
 
 // -----------------------------
 // Chemistry Medical Smartfridge

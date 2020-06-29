@@ -833,7 +833,7 @@
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
 
-/mob/living/carbon/proc/can_defib() //yogs start
+/mob/living/carbon/proc/can_defib(careAboutGhost = TRUE) //yogs start
 	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
 		return FALSE
 	if((world.time - timeofdeath) > DEFIB_TIME_LIMIT * 10) //too late
@@ -845,7 +845,7 @@
 	var/obj/item/organ/brain/BR = getorgan(/obj/item/organ/brain)
 	if(QDELETED(BR) || BR.brain_death || BR.organ_flags & ORGAN_FAILING || BR.suicided)
 		return FALSE
-	if(get_ghost())
+	if(careAboutGhost && get_ghost())
 		return FALSE
 	return TRUE //yogs end
 

@@ -46,10 +46,6 @@
 	The safety-mode light is [safety_mode ? "on" : "off"].
 	The safety-sensors status light is [obj_flags & EMAGGED ? "off" : "on"]."}
 
-/obj/machinery/recycler/power_change()
-	..()
-	update_icon()
-
 
 /obj/machinery/recycler/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "grinder-oOpen", "grinder-o0", I))
@@ -82,7 +78,17 @@
 		is_powered = FALSE
 	icon_state = icon_name + "[is_powered]" + "[(blood ? "bld" : "")]" // add the blood tag at the end
 
-/obj/machinery/recycler/Bumped(atom/movable/AM)
+/obj/machinery/recycler/CanAllowThrough(atom/movable/AM)
+	. = ..()
+	if(!anchored)
+		return
+	var/move_dir = get_dir(loc, AM.loc)
+	if(move_dir == eat_dir)
+		return TRUE
+
+/obj/machinery/recycler/Crossed(atom/movable/AM)
+	eat(AM)
+	. = ..()
 
 	if(stat & (BROKEN|NOPOWER))
 		return

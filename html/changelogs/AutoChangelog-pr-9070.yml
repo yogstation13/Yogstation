@@ -1,0 +1,5 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - tweak: "Firebreath's power is now capped at roughly the level of the wizard fireball."
+  - spellcheck: "You **built** up heat in your mouth--> You **build** up heat in your mouth"

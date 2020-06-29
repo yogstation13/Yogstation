@@ -105,7 +105,7 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
 	weight = 1
-	cost = 30
+	cost = 15
 	requirements = list(80,70,60,50,40,20,20,10,10,10)
 	high_population_requirement = 10
 	var/team_mode_probability = 30
@@ -338,7 +338,6 @@
 	name = "Revolution"
 	persistent = TRUE
 	antag_flag = ROLE_REV_HEAD
-	antag_flag_override = ROLE_REV
 	antag_datum = /datum/antagonist/rev/head
 	minimum_required_age = 14
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
@@ -346,7 +345,7 @@
 	weight = 1
 	delay = 7 MINUTES
 	cost = 35
-	requirements = list(70,70,60,40,30,20,10,10,10,10)
+	requirements = list(101,101,101,101,101,101,101,101,101,101)
 	high_population_requirement = 10
 	flags = TRAITOR_RULESET
 	// I give up, just there should be enough heads with 35 players...

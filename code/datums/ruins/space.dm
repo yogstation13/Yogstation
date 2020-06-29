@@ -321,6 +321,14 @@
 	name= "Exotic Goat Transport Vessel"
 	description = "A ship transporting goats attacked by goats. How ironic..."
 
+/datum/map_template/ruin/space/king_goat_arena
+	id = "kinggoatarena"
+	suffix = "kinggoatarena.dmm"
+	name = "King Goat Boss Arena"
+	description = "Abandon All Hope Ye Who Enter Here."
+	always_place = TRUE // This is just the space part, king_goat_boss in /code/datums/ruins/lavaland.dm needs to have this set to true aswell for goat king to actually be reachable
+	allow_duplicates = FALSE
+
 /datum/map_template/ruin/space/drifting_spacepod
 	id = "drifting_spacepod"
 	suffix = "drifting_spacepod.dmm"

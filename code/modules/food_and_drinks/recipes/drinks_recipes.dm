@@ -19,11 +19,11 @@
 	results = list(/datum/reagent/consumable/ethanol/bilk = 2)
 	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/ethanol/beer = 1)
 	
-/datum/chemical_reaction/bilk
+/datum/chemical_reaction/soy_bilk
 	name = "Soy Bilk"
 	id = /datum/reagent/consumable/ethanol/bilk/soy
 	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
-	required_reagents = list(/datum/reagent/consumable/soymilk, /datum/reagent/consumable/ethanol/beer = 1)
+	required_reagents = list(/datum/reagent/consumable/soymilk = 1, /datum/reagent/consumable/ethanol/beer = 1)
 	
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
@@ -805,6 +805,7 @@
 
 /datum/chemical_reaction/catsip
 	name = "Catsip"
+	id = /datum/reagent/consumable/ethanol/catsip
 	results = list(/datum/reagent/consumable/ethanol/catsip = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/corn_syrup = 1, /datum/reagent/consumable/grenadine = 1)
 
@@ -813,5 +814,5 @@
 	required_temp = 500
 	id = /datum/reagent/consumable/ethanol/flaming_moe
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe, /datum/reagent/medicine/synaptizine)
+	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
  

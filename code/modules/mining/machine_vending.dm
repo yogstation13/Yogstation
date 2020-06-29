@@ -82,10 +82,6 @@
 	cost = pcost
 	category = cat
 
-/obj/machinery/mineral/equipment_vendor/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/mineral/equipment_vendor/Initialize()
 	. = ..()
 	build_inventory()
@@ -417,6 +413,7 @@
 	new /obj/item/encryptionkey/headset_mining(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/card/mining_access_card(src)
+	new /obj/item/clothing/neck/bodycam/miner(src)
 
 #undef VENDING_WEAPON
 #undef VENDING_UPGRADE
