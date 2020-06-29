@@ -385,7 +385,6 @@
 		soft_reset()
 
 	if(QDELETED(patient))
-
 		if(!shut_up && prob(1))
 			if((emagged || !shut_up) && prob(emagged ? 8 : 1))
 				var/list/i_need_scissors = list('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/turn_off.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/close.ogg', 'sound/voice/medbot/shindemashou.ogg')
