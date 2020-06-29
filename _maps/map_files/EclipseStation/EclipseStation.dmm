@@ -84230,6 +84230,12 @@
 "gIg" = (
 /turf/open/floor/bronze,
 /area/maintenance/port/fore)
+"gID" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "gIP" = (
 /obj/structure/chair/sofa{
 	dir = 1
@@ -85321,16 +85327,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/hallway/primary/port)
-"jmt" = (
-/obj/structure/chair/sofa/right,
-/obj/structure/window{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "jng" = (
 /obj/structure/closet/wardrobe/science_white,
 /obj/effect/turf_decal/tile/purple{
@@ -85383,6 +85379,16 @@
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
+"jtG" = (
+/obj/structure/chair/sofa/right,
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "juD" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -87815,16 +87821,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"pRc" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "pRI" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/maintenance/department/chapel)
-"pSu" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "pTA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -89658,12 +89664,6 @@
 /obj/item/storage/belt/utility,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"uMl" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "uMF" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
@@ -137624,11 +137624,11 @@ avR
 asI
 asI
 knh
-jmt
+jtG
 mOM
 qkd
 ulu
-pSu
+gID
 eZy
 ulk
 dPg
@@ -139930,7 +139930,7 @@ wNY
 asA
 fiJ
 aCU
-uMl
+pRc
 asI
 auy
 asI
