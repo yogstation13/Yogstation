@@ -1634,6 +1634,7 @@
 #include "code\modules\clothing\masks\hailer.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\neck\_neck.dm"
+#include "code\modules\clothing\neck\bodycamera.dm"
 #include "code\modules\clothing\outfits\amber.dm"
 #include "code\modules\clothing\outfits\ert.dm"
 #include "code\modules\clothing\outfits\event.dm"

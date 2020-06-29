@@ -413,6 +413,7 @@
 	new /obj/item/encryptionkey/headset_mining(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/card/mining_access_card(src)
+	new /obj/item/clothing/neck/bodycam/miner(src)
 
 #undef VENDING_WEAPON
 #undef VENDING_UPGRADE
