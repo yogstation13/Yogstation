@@ -8,7 +8,7 @@
 	singular_name = "bluespace crystal"
 	w_class = WEIGHT_CLASS_TINY
 	materials = list(MAT_BLUESPACE=MINERAL_MATERIAL_AMOUNT)
-	points = 50
+	points = 75
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 	refined_type = /obj/item/stack/sheet/bluespace_crystal
 	grind_results = list(/datum/reagent/bluespace = 20)
