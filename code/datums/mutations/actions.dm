@@ -141,11 +141,9 @@
 		return
 	var/obj/item/projectile/magic/aoe/fireball/F = P
 	switch(strength)
-		if(1 to 3)
-			F.exp_light = strength-1
 		if(4 to INFINITY)
 			strength = 3
-			F.exp_light = strength-1
+	F.exp_light = strength-1
 	F.exp_fire += strength
 
 obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
