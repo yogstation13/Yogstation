@@ -10,8 +10,6 @@
 	l += "<div id='techweb-container' unselectable='on'><div id='techweb'>[RDSCREEN_NOBREAK]"
 	for (var/node_ in stored_research.tiers)
 		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_)
-		if(!node.ui_resolved)
-			continue
 		var/class = ""
 		if(stored_research.researched_nodes[node_])
 			class = ""
@@ -26,7 +24,7 @@
 		l += {"
 			<div class='technode-web-container'
 			style='left:[node.ui_x]px;top:[node.ui_y]px'
-			data-tooltip='[node.display_name] [node.price_display(stored_research)]'
+			data-tooltip='[node.display_name] [node.price_display(stored_research)][!do_node_drag ? "" : " ([node.ui_x],[node.ui_y])"]'
 			><div
 			class='technode-web [class]'
 			data-nodeid='[node_]'
@@ -34,8 +32,6 @@
 		// now for the LINES
 		for(var/prereq_id in node.prereq_ids)
 			var/datum/techweb_node/prereq = SSresearch.techweb_node_by_id(prereq_id)
-			if(!node.ui_resolved)
-				continue
 			var/line_class = ""
 			if(stored_research.researched_nodes[prereq_id])
 				line_class = "researched"
@@ -55,6 +51,7 @@
 				></div>[RDSCREEN_NOBREAK]"}
 	l += "</div></div>[RDSCREEN_NOBREAK]"
 	l += {"<script>
+		var do_node_drag = [do_node_drag];
 		var techweb = document.getElementById("techweb");
 		var techweb_container = document.getElementById("techweb-container");
 		var curr_px = 0;
@@ -66,17 +63,35 @@
 		techweb.style.left = curr_px + "px";
 		techweb.style.top = curr_py + "px";
 		techweb_container.addEventListener("mousedown", function(e) {
+			var nodeid = null;
+			var nodeel = e.target;
+			if(do_node_drag) {
+				while(nodeel) {
+					if(nodeel.getAttribute) {
+						nodeid = nodeel.getAttribute("data-nodeid");
+						if(nodeid) break;
+					}
+					nodeel = nodeel.parentNode;
+				}
+			}
+			var nodecontainer;
+			if(nodeid) nodecontainer = nodeel.parentNode;
 			var curr_x = e.screenX;
 			var curr_y = e.screenY;
 			document.addEventListener("mousemove", mousemove);
 			document.addEventListener("mouseup", mouseup);
 			function mousemove(e) {
-				curr_px += e.screenX - curr_x;
-				curr_py += e.screenY - curr_y;
-				curr_px = Math.max(Math.min(curr_px, [SSresearch.techweb_pixel_size]), [-SSresearch.techweb_pixel_size]);
-				curr_py = Math.max(Math.min(curr_py, [SSresearch.techweb_pixel_size]), [-SSresearch.techweb_pixel_size]);
-				techweb.style.left = curr_px + "px";
-				techweb.style.top = curr_py + "px";
+				if(nodeid) {
+					nodecontainer.style.left = (parseInt(nodecontainer.style.left) + (e.screenX - curr_x)) + "px";
+					nodecontainer.style.top = (parseInt(nodecontainer.style.top) + (e.screenY - curr_y)) + "px";
+				} else {
+					curr_px += e.screenX - curr_x;
+					curr_py += e.screenY - curr_y;
+					curr_px = Math.max(Math.min(curr_px, [SSresearch.techweb_pixel_size]), [-SSresearch.techweb_pixel_size]);
+					curr_py = Math.max(Math.min(curr_py, [SSresearch.techweb_pixel_size]), [-SSresearch.techweb_pixel_size]);
+					techweb.style.left = curr_px + "px";
+					techweb.style.top = curr_py + "px";
+				}
 				curr_x = e.screenX;
 				curr_y = e.screenY;
 				if(sessionStorage) {
@@ -87,12 +102,17 @@
 			function mouseup(e) {
 				document.removeEventListener("mousemove", mousemove);
 				document.removeEventListener("mouseup", mouseup);
+				if(nodeid) {
+					location = "?src=[REF(src)];move_node=" + nodeid + ";back_screen=[screen];ui_x=" + parseInt(nodecontainer.style.left) + ";ui_y=" + parseInt(nodecontainer.style.top);
+					e.preventDefault();
+				}
 			}
 		});
 		techweb_container.addEventListener("wheel", function(e) {e.preventDefault();});
 		function add_listeners(node) {
 			var nodeid = node.getAttribute("data-nodeid");
 			node.addEventListener("click", function(e) {
+				if(do_node_drag) return;
 				var verb = "view";
 				if(e.altKey || e.button == 1)
 					verb = "research";
@@ -119,3 +139,10 @@
 		}
 	</script>[RDSCREEN_NOBREAK]"}
 	return l
+
+/obj/machinery/computer/rdconsole/proc/techweb_to_text()
+	var/text = ""
+	for (var/node_ in stored_research.tiers)
+		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_)
+		text += "[node.type]\n\tui_x = [node.ui_x]\n\tui_y = [node.ui_y]\n\n"
+	return text	
