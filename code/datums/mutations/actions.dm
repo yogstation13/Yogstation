@@ -125,6 +125,7 @@
 	active_msg = "You build up heat in your mouth."
 	deactive_msg = "You swallow the flame."
 	var/strength = 1
+	var/const/strengthMax = 3
 
 /obj/effect/proc_holder/spell/aimed/firebreath/before_cast(list/targets)
 	. = ..()
@@ -140,9 +141,8 @@
 	if(!istype(P, /obj/item/projectile/magic/aoe/fireball))
 		return
 	var/obj/item/projectile/magic/aoe/fireball/F = P
-	switch(strength)
-		if(4 to INFINITY)
-			strength = 3
+	if (strength > strengthMax)
+		strength = strengthMax
 	F.exp_light = strength-1
 	F.exp_fire += strength
 
