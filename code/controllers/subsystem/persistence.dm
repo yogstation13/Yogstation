@@ -12,9 +12,9 @@ SUBSYSTEM_DEF(persistence)
 	var/list/antag_rep = list()
 	var/list/antag_rep_change = list()
 	var/list/picture_logging_information = list()
-	var/list/obj/structure/sign/picture_frame/photo_frames
-	var/list/obj/item/storage/photo_album/photo_albums
-	var/list/obj/structure/sign/painting/painting_frames
+	var/list/obj/structure/sign/picture_frame/photo_frames = list()
+	var/list/obj/item/storage/photo_album/photo_albums = list()
+	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/paintings = list()
 
 /datum/controller/subsystem/persistence/Initialize()
@@ -305,7 +305,7 @@ SUBSYSTEM_DEF(persistence)
 					loaded = TRUE
 		if(!loaded) //We do not have information for whatever reason, just generate new one
 			R.GenerateRecipe()
-		
+
 		if(!R.HasConflicts()) //Might want to try again if conflicts happened in the future.
 			add_chemical_reaction(R)
 
@@ -327,7 +327,7 @@ SUBSYSTEM_DEF(persistence)
 			recipe_data["results"] = R.results
 			recipe_data["required_container"] = "[R.required_container]"
 			file_data["[R.id]"] = recipe_data
-	
+
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 

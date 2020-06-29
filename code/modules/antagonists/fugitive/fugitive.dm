@@ -104,7 +104,7 @@
 
 /datum/action/innate/yalpcomms
 	name = "Yalp Elor Communion"
-	desc = "Allows talking with the brothers of yalp elor."
+	desc = "Allows talking with the brothers of Yalp Elor."
 	icon_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "yalp_comms"
 	background_icon_state = "bg_tech"

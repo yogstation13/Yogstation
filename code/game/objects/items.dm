@@ -186,7 +186,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	. = ..()
 
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weightclass2text(w_class)] item."
-
+	
+	if(HAS_TRAIT(src, TRAIT_NO_STORAGE))
+		. += "[gender == PLURAL ? "They are" : "It is"] too bulky, fragile, or cumbersome to fit in a container."
+	
 	if(resistance_flags & INDESTRUCTIBLE)
 		. += "[src] seems extremely robust! It'll probably withstand anything that could happen to it!"
 	else
@@ -240,7 +243,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/item/ui_act(action, params)
+/obj/item/ui_act(action, list/params)
 	add_fingerprint(usr)
 	return ..()
 
@@ -368,6 +371,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	return ITALICS | REDUCE_RANGE
 
 /obj/item/proc/dropped(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(user)
@@ -378,6 +382,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
 
@@ -389,8 +394,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // user is mob that equipped it
 // slot uses the slot_X defines found in setup.dm
 // for items that can be placed in multiple slots
-// note this isn't called during the initial dressing of a player
-/obj/item/proc/equipped(mob/user, slot)
+// Initial is used to indicate whether or not this is the initial equipment (job datums etc) or just a player doing it
+/obj/item/proc/equipped(mob/user, slot, initial = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -791,6 +797,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	return ..()
 
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
+	SHOULD_BE_PURE(TRUE)
 	return !HAS_TRAIT(src, TRAIT_NODROP)
 
 /obj/item/proc/doStrip(mob/stripper, mob/owner)

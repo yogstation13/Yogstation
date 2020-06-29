@@ -112,6 +112,15 @@ SUBSYSTEM_DEF(mapping)
 	seedStation()
 	loading_ruins = FALSE
 #endif
+
+	//Load Reebe
+	var/list/errorList = list()
+	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
+	if(errorList.len)	// reebe failed to load
+		message_admins("Reebe failed to load!")
+		log_game("Reebe failed to load!")
+	for(var/datum/parsed_map/PM in reebes)
+		PM.initTemplateBounds()
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
@@ -533,6 +542,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 //DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
 /datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
+	PRIVATE_PROC(TRUE)
 	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
 	for(var/i in turf_reservations)
 		var/datum/turf_reservation/TR = i

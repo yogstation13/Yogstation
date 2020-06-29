@@ -35,6 +35,8 @@
 	var/last_scream = 0
 	var/recalls_remaining = 1
 	var/recalling
+	var/next_spaghetti = 0
+	var/spaghetti_cooldown = 50
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
 	. = ..()
@@ -57,6 +59,15 @@
 					M.playsound_local(M, 'sound/machines/clockcult/ark_scream.ogg', 100, FALSE, pressure_affected = FALSE)
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
+
+/obj/structure/destructible/clockwork/massive/celestial_gateway/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/kitchen/fork))
+		if(world.time < next_spaghetti)
+			return
+		visible_message("<span class='brass'>[user] spins a serving of spaghetti out of [src].", "<span class='brass'>You reach your [I] into [src], pulling out a plateful of spaghetti!</span>")
+		new /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(user.loc)
+		next_spaghetti = world.time + spaghetti_cooldown
+	. = ..()
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/final_countdown(ark_time) //WE'RE LEAVING TOGETHEEEEEEEEER
 	if(!ark_time)

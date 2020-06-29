@@ -313,6 +313,9 @@
 /obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection
 	disease = /datum/disease/fluspanish
 
+/obj/effect/mob_spawn/human/corpse/assistant/jitters_infection
+	disease = /datum/disease/jitters
+
 /obj/effect/mob_spawn/human/corpse/cargo_tech
 	name = "Cargo Tech"
 	outfit = /datum/outfit/job/cargo_tech

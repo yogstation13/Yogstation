@@ -46,20 +46,7 @@ jobs:
           tools/travis/check_grep.sh
 
       - name: Run Linter
-        run: |
-          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-
-      - name: Annotate Errors
-        uses: yogstation13/add-annotations-github-action@master
-        with:
-          check_name: "Lints"
-          linter_output_path: 'output-annotations.txt'
-          commit_sha: ${{ github.event.pull_request.head.sha }}
-          regex: '(?<filename>.*?), line (?<lineNumber>\d+), column (?<columnNumber>\d+):\n(?<errorCode>\w+): (?<errorDesc>.*)'
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        run: ~/dreamchecker
   compile:
     name: Compile All Maps
     runs-on: ubuntu-18.04

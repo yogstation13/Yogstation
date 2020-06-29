@@ -65,10 +65,10 @@
 	heavyfootstep = null
 	var/sound
 
-/turf/open/indestructible/sound/Entered(var/mob/AM)
+/turf/open/indestructible/sound/Entered(atom/movable/AM)
 	..()
-	if(istype(AM))
-		playsound(src,sound,50,1)
+	if(ismob(AM))
+		playsound(src,sound,50,TRUE)
 
 /turf/open/indestructible/necropolis
 	name = "necropolis floor"
@@ -90,6 +90,21 @@
 
 /turf/open/indestructible/necropolis/air
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
+/turf/open/indestructible/carpet
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"

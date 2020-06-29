@@ -222,9 +222,8 @@ Difficulty: Medium
 	else
 		A = new storm_type(list(user_turf.z))
 		A.name = "staff storm"
-		log_game("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
-		if (is_special_character(user))
-			message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)], a non-antagonist")
+		log_admin("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
+		message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)]")		
 		A.area_type = user_area.type
 		A.telegraph_duration = 100
 		A.end_duration = 100

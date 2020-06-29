@@ -16,6 +16,7 @@
 
 	var/port_x_offset
 	var/port_y_offset
+	var/extra_desc = ""
 
 /datum/map_template/shuttle/proc/prerequisites_met()
 	return TRUE
@@ -217,8 +218,9 @@
 	suffix = "luxury"
 	name = "Luxury Shuttle"
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
+	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 10000
+	credit_cost = 50000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"

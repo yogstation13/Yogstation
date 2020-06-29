@@ -31,6 +31,7 @@
 	. = ..()
 
 /mob/camera/yalp_elor/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
 /mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0)
@@ -166,6 +167,7 @@
 		return TRUE
 	to_chat(owner, "<span class='warning'>Something horrible just happened to your target!</span>")
 	return FALSE
+
 
 /datum/action/cooldown/yalp_heal
 	name = "Purification"
