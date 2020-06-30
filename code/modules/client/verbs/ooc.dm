@@ -149,7 +149,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	source["key"] = key
 	
 	//no need for source, we handle that ourself
-	send2otherserver(source, data, "ooc")
+	send2otherserver(json_encode(source), json_encode(data), "ooc")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
