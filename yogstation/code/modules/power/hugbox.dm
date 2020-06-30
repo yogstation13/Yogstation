@@ -82,7 +82,7 @@
 				crunched.adjustBruteLoss(4)
 				sleep(40)
 			if(crunched.buckled)
-				crunched.visible_message("<span class='danger'>You hear a loud snap coming from [crunched]!</span>", "<span class='colossus'>SNAP</span>")
+				crunched.visible_message("<span class='danger'>You hear a loud crunch coming from [crunched]!</span>", "<span class='colossus'>CRUNCH</span>")
 				crunched.add_splatter_floor(location)
 				crunched.emote("scream")
 				crunched.adjustBruteLoss(5)
