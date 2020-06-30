@@ -22,7 +22,7 @@
 
 	if(istype(I, /obj/item/melee/baton/cattleprod)) //If they get a stunprod, they get one hit worth of charge.
 		var/obj/item/stock_parts/cell/upgraded/C = new(T)
-		C.charge = 2500
+		C.charge = 2000
 		H.put_in_hands(C)
 
 /datum/outfit/yalp_cultist
