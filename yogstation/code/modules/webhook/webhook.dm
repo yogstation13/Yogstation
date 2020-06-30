@@ -8,10 +8,10 @@
 	req.begin_async() //why would we ever want to track the results of the request, meme made by yogstation gang
 
 /proc/webhook(var/ckey, var/message)
-	return list("ckey" = url_encode(ckey), "message" = url_encode(message))
+	return list("ckey" = url_encode(ckey), "message" = url_encode(message), "server" = CONFIG_GET(string/cross_comms_name))
 
 /proc/webhook_send_roundstatus(var/status, var/extraData)
-	var/list/query = list("status" = status)
+	var/list/query = list("status" = status, "server" = CONFIG_GET(string/cross_comms_name))
 
 	if(extraData)
 		query.Add(extraData)
@@ -39,9 +39,9 @@
 
 
 /proc/webhook_send_mres(var/ckey, var/ckey2, var/message)
-	var/query = list("to" = url_encode(ckey), "from" = url_encode(ckey2), "message" = url_encode(message))
+	var/query = list("to" = url_encode(ckey), "from" = url_encode(ckey2), "message" = url_encode(message), "server" = CONFIG_GET(string/cross_comms_name))
 	webhook_send("mres", query)
 
 /proc/webhook_send_mchange(var/ckey, var/ckey2, var/action)
-	var/query = list("ckey" = url_encode(ckey), "ckey2" = url_encode(ckey2), "action" = url_encode(action))
+	var/query = list("ckey" = url_encode(ckey), "ckey2" = url_encode(ckey2), "action" = url_encode(action), "server" = CONFIG_GET(string/cross_comms_name))
 	webhook_send("mchange", query)
