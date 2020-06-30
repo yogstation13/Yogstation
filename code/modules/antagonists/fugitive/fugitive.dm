@@ -121,7 +121,7 @@
 		return
 	user.whisper(html_decode(message), language = /datum/language/common) // yogs
 	var/span = "boldnotice"
-	var/my_message = "<span class='[span]'><b>[Brother] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	var/my_message = "<span class='[span]'><b>["Brother"] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if(M?.mind?.has_antag_datum(/datum/antagonist/fugitive))
