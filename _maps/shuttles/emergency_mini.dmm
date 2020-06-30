@@ -24,20 +24,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"bT" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "cc" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -46,6 +32,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"cX" = (
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "dt" = (
@@ -78,19 +67,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"ev" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom";
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "ew" = (
 /obj/effect/turf_decal/delivery,
@@ -146,6 +122,17 @@
 	},
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"gP" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Escape Shuttle Cell";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "jx" = (
 /obj/machinery/door/firedoor/border_only{
@@ -363,16 +350,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"rA" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "rI" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
@@ -408,6 +385,28 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"sw" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom";
+	pixel_x = -26
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "sQ" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -472,6 +471,23 @@
 /area/shuttle/escape)
 "xi" = (
 /turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"xI" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Escape Shuttle Infirmary"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"xQ" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "xU" = (
 /obj/machinery/computer/security{
@@ -615,17 +631,6 @@
 "Et" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"EQ" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Escape Shuttle Cell";
-	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "GX" = (
@@ -794,13 +799,6 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"ST" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "Ug" = (
 /obj/structure/table,
 /obj/item/storage/box/fancy/donut_box,
@@ -876,11 +874,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"Yz" = (
-/obj/effect/turf_decal/delivery,
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "Zp" = (
 /obj/machinery/computer/atmos_alert{
 	dir = 4
@@ -924,8 +917,8 @@ xi
 xi
 Xn
 bP
-ev
-rA
+sw
+rI
 pH
 dM
 My
@@ -935,7 +928,7 @@ My
 qe
 fC
 My
-Yz
+My
 xi
 Zp
 Nb
@@ -947,8 +940,8 @@ UW
 sc
 yx
 dt
-bT
-rI
+dt
+xI
 pH
 RB
 aj
@@ -958,7 +951,7 @@ aj
 kT
 aj
 jG
-ST
+cX
 xi
 Uv
 Uv
@@ -1040,7 +1033,7 @@ sc
 Kk
 Kk
 Kk
-rI
+gP
 pH
 Lk
 Db
@@ -1050,7 +1043,7 @@ Db
 yU
 jG
 jG
-ST
+cX
 xi
 sQ
 sQ
@@ -1063,7 +1056,7 @@ xi
 Rs
 dV
 Ap
-EQ
+rI
 ew
 gj
 HO
@@ -1073,7 +1066,7 @@ HO
 xb
 Lt
 HO
-Yz
+xQ
 xi
 xU
 zy
