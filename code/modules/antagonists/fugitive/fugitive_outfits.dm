@@ -3,18 +3,17 @@
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	r_pocket = /obj/item/kitchen/knife/carrotshiv
-
-/datum/outfit/prisoner/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)
-	if(visualsOnly)
-		return
-	H.fully_replace_character_name(null,"NTP #CC-0[rand(111,999)]") //same as the lavaland prisoner transport, but this time they are from CC, or CentCom
 	var/list/rhand_items = list(
 		/obj/item/storage/toolbox/mechanical,
 		/obj/item/twohanded/spear,
 		/obj/item/gun/ballistic/automatic/surplus,
 		/obj/item/melee/baton/cattleprod	
 		) //Prisoners get a random item from this list
-	
+
+/datum/outfit/prisoner/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)
+	if(visualsOnly)
+		return
+	H.fully_replace_character_name(null,"NTP #CC-0[rand(111,999)]") //same as the lavaland prisoner transport, but this time they are from CC, or CentCom
 	var/chosen = pick(rhand_items)
 	var/turf/T = get_turf(H)
 	var/obj/item/I = new chosen(T)

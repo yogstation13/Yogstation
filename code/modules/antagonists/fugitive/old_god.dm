@@ -179,7 +179,7 @@
 
 /datum/action/cooldown/yalp_heal/Trigger()
 	var/list/faithful = list()
-	var/heal_amount = -20
+	var/heal_amount = 20
 	for(var/mob/V in GLOB.player_list)
 		if(!isfugitive(V) ||  V == owner)
 			continue
@@ -188,10 +188,10 @@
 		to_chat(owner, "There are no followers left to heal!")
 		return
 	for(var/mob/living/A in faithful)
-		A.adjustBruteLoss(heal_amount, TRUE, TRUE) //heal
-		A.adjustFireLoss(heal_amount, TRUE, TRUE)
-		A.adjustOxyLoss(heal_amount, TRUE, TRUE)
-		A.adjustToxLoss(heal_amount, TRUE, TRUE)
+		A.adjustBruteLoss(-heal_amount, TRUE, TRUE) //heal
+		A.adjustFireLoss(-heal_amount, TRUE, TRUE)
+		A.adjustOxyLoss(-heal_amount, TRUE, TRUE)
+		A.adjustToxLoss(-heal_amount, TRUE, TRUE)
 		to_chat(A, "You have been healed by the great Yalp Elor!")
 	to_chat(owner, "You have healed your followers!")
 	StartCooldown()

@@ -117,11 +117,10 @@
 	if(!message)
 		return
 	user.whisper(html_decode(message), language = /datum/language/common) // yogs
-	var/span = "boldnotice"
-	var/my_message = "<span class='[span]'><b>["Brother"] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	var/my_message = "<span class='boldnotice'><b>Brother [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		if(M?.mind?.has_antag_datum(/datum/antagonist/fugitive))
+		if(isfugitive(M))
 			to_chat(M, my_message)
 		else if(M in GLOB.dead_mob_list)
 			to_chat(M, "[FOLLOW_LINK(M, user)] [my_message]")
