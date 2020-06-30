@@ -144,8 +144,12 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	data["normal"] = oocmsg
 	data["admin"] = oocmsg_toadmins
 	
+	var/source = list()
+	source["is_admin"] = !!holder
+	source["key"] = key
+	
 	//no need for source, we handle that ourself
-	send2otherserver("", data, "ooc")
+	send2otherserver(source, data, "ooc")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
