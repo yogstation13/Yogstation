@@ -84,10 +84,10 @@
 	for(var/mob/V in GLOB.player_list)
 		if(!V.mind)
 			continue
-		if(!isfugitive(V) || V == src)
+		var/datum/antagonist/fugitive/fug = isfugitive(V)
+		if(!fug || V == src)
 			continue
-		var/datum/antagonist/fugitive/bad = isfugitive(V)
-		if(bad.is_captured)
+		if(fug.is_captured)
 			safe = TRUE
 			break
 	if(!safe)
@@ -147,9 +147,9 @@
 	var/list/faithful = list()
 	var/mob/living/target
 	for(var/mob/V in GLOB.player_list)
-		if(!isfugitive(V) || !iscarbon(V))
+		var/datum/antagonist/fugitive/fug = isfugitive(V)
+		if(!fug || !iscarbon(V))
 			continue
-		var/datum/antagonist/fugitive/bad = isfugitive(V)
 		if(bad.is_captured)
 			continue
 		faithful += V
