@@ -88,7 +88,7 @@
 		icon_state = "[initial(icon_state)]-p"
 
 /obj/machinery/sparker/powered()
-	if(!disable)
+	if(disable)
 		return FALSE
 	return ..()
 
