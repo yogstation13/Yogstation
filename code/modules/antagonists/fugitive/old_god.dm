@@ -150,7 +150,7 @@
 		var/datum/antagonist/fugitive/fug = isfugitive(V)
 		if(!fug || !iscarbon(V))
 			continue
-		if(bad.is_captured)
+		if(fug.is_captured)
 			continue
 		faithful += V
 	if(!faithful.len)
