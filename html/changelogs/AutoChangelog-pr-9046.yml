@@ -1,0 +1,4 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new traitor theft objective, steal the blackbox from the blackbox recorder"
