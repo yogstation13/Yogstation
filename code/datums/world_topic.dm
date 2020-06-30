@@ -105,17 +105,21 @@
 	var/messages = input["message"]
 	var/oocmsg = messages["normal"]
 	var/oocmsg_toadmins = messages["admin"]
+	
+	var/source = input["message_sender"]
+	var/sourceadmin = source["is_admin"]
+	var/sourcekey = source["key"]
 
 	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
-		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
+		if( (C.prefs.chat_toggles & CHAT_OOC) && (sourceadmin || !(sourcekey in C.prefs.ignoring)) )
 			var/sentmsg // The message we're sending to this specific person
 			if(C.holder) // If they're an admin-ish
 				sentmsg = oocmsg_toadmins // Get the admin one
 			else
 				sentmsg = oocmsg
-			sentmsg = "<span class='prefix'>(RELAY: [input["source"]])</span>" + sendmsg
+			sentmsg = "<span class='prefix'>(RELAY: [input["source"]])</span>" + sentmsg
 			//no pinging across servers, thats intentional
 			to_chat(C,sentmsg)
 
