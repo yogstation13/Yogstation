@@ -1,4 +1,0 @@
-author: "jcatjmeow"
-delete-after: true 
-changes: 
-  - bugfix: "Being defibbed now alerts you if you are a ghost!"

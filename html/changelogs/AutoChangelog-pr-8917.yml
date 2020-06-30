@@ -1,7 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the ability to tip medbots over"
-  - rscadd: "Adds a new emag sound for medbot"
-  - rscadd: "Medbots can now cry out for help and it will get progressively more intense"
-  - soundadd: "New medbot sounds"
