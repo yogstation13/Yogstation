@@ -102,11 +102,11 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/ooc_relay/Run(list/input)
-	var/messages = input["message"]
+	var/messages = json_decode(input["message"])
 	var/oocmsg = messages["normal"]
 	var/oocmsg_toadmins = messages["admin"]
 	
-	var/source = input["message_sender"]
+	var/source = json_decode(input["message_sender"])
 	var/sourceadmin = source["is_admin"]
 	var/sourcekey = source["key"]
 
