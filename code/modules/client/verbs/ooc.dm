@@ -140,6 +140,12 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
 			to_chat(C,sentmsg)
 	//YOGS END
+	var/data = list()
+	data["normal"] = oocmsg
+	data["admin"] = oocmsg_toadmins
+	
+	//no need for source, we handle that ourself
+	send2otherserver("", data, "ooc")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
