@@ -14,6 +14,12 @@
 
 /datum/round_event/flutes
 
+/datum/round_event/flutes/sound_intro
+	for(var/V in GLOB.player_list)
+		var/mob/M = V
+		if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.z))
+			M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
+
 /datum/round_event/flutes/effect(mob/living/M)
   var/mob/living/M = A.affected_mob
   var/flute_effect = 0
