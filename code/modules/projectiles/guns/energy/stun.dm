@@ -41,6 +41,11 @@
 	flight_x_offset = 15
 	flight_y_offset = 10
 
+/obj/item/gun/energy/disabler/attack_self(mob/living/user)
+	. = ..()
+	toggle_gunlight()
+
+
 /obj/item/gun/energy/disabler/cyborg
 	name = "cyborg disabler"
 	desc = "A cyborg-integrated disabler that self charges."

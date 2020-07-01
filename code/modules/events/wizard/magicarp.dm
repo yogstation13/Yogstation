@@ -46,6 +46,12 @@
 	projectiletype = pick(allowed_projectile_types)
 	. = ..()
 
+/mob/living/simple_animal/hostile/carp/ranged/wizard
+	faction = list("wizard")
+
+/mob/living/simple_animal/hostile/carp/ranged/wizard/sentience_act()
+	faction -= "wizard"
+
 /mob/living/simple_animal/hostile/carp/ranged/chaos
 	name = "chaos magicarp"
 	desc = "50% carp, 100% magic, 150% horrible."

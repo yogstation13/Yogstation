@@ -5,234 +5,210 @@
 	name = "ticket machine"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "ticketmachine"
-	desc = "A marvel of bureaucratic engineering encased in an efficient plastic shell. It can be refilled with a hand labeler refill roll and linked to buttons with a multitool."
-	density = FALSE
-	maptext_height = 26
-	maptext_width = 32
-	maptext_x = 7
-	maptext_y = 10
-	layer = HIGH_OBJ_LAYER
-	var/ticket_number = 0 //Increment the ticket number whenever the HOP presses his button
-	var/current_number = 0 //What ticket number are we currently serving?
-	var/max_number = 100 //At this point, you need to refill it.
-	var/cooldown = 50
+	desc = "A marvel of bureaucratic engineering encased in an efficient plastic shell. Click to take a number!"
+	circuit = /obj/item/circuitboard/machine/ticketmachine
+	density = TRUE
+	var/screenNum = 0 //this is the the number of the person who is up
+	var/currentNum = 0 //this is the the number someone who takes a ticket gets
+	var/ticketNumMax = 999 //No more!
+	var/cooldown = 10
 	var/ready = TRUE
-	var/id = "ticket_machine_default" //For buttons
-	var/list/ticket_holders = list()
+	var/linked = FALSE
 	var/list/obj/item/ticket_machine_ticket/tickets = list()
-
-/obj/machinery/ticket_machine/multitool_act(mob/living/user, obj/item/I)
-	if(!multitool_check_buffer(user, I)) //make sure it has a data buffer
-		return
-	var/obj/item/multitool/M = I
-	M.buffer = src
-	to_chat(user, "<span class='notice'>You store linkage information in [I]'s buffer.</span>")
-	return TRUE
-
-/obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its number to destroy the HoP's mind.
-	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, "<span class='warning'>You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting.</span>")
-	ticket_number = rand(0,max_number)
-	current_number = ticket_number
-	obj_flags |= EMAGGED
-	if(tickets.len)
-		for(var/obj/item/ticket_machine_ticket/ticket in tickets)
-			ticket.audible_message("<span class='notice'>\the [ticket] disperses!</span>")
-			qdel(ticket)
-		tickets.Cut()
-	update_icon()
 
 /obj/machinery/ticket_machine/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/machinery/ticket_machine/proc/increment()
-	if(current_number > ticket_number)
-		return
-	if(current_number && !(obj_flags & EMAGGED) && tickets[current_number])
-		tickets[current_number].audible_message("<span class='notice'>\the [tickets[current_number]] disperses!</span>")
-		qdel(tickets[current_number])
-	if(current_number < ticket_number)
-		current_number ++ //Increment the one we're serving.
-		playsound(src, 'sound/misc/announce_dig.ogg', 50, FALSE)
-		say("Now serving ticket #[current_number]!")
-		if(!(obj_flags & EMAGGED) && tickets[current_number])
-			tickets[current_number].audible_message("<span class='notice'>\the [tickets[current_number]] vibrates!</span>")
-		update_icon() //Update our icon here rather than when they take a ticket to show the current ticket number being served
-
-/obj/machinery/button/ticket_machine
-	name = "increment ticket counter"
-	desc = "Use this button after you've served someone to tell the next person to come forward."
-	device_type = /obj/item/assembly/control/ticket_machine
-	req_access = list()
-	id = "ticket_machine_default"
-
-/obj/machinery/button/ticket_machine/Initialize()
-	. = ..()
-	if(device)
-		var/obj/item/assembly/control/ticket_machine/ours = device
-		ours.id = id
-
-/obj/machinery/button/ticket_machine/multitool_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(I.tool_behaviour == TOOL_MULTITOOL)
-		var/obj/item/multitool/M = I
-		if(M.buffer && !istype(M.buffer, /obj/machinery/ticket_machine))
-			return
-		var/obj/item/assembly/control/ticket_machine/controller = device
-		controller.linked = M.buffer
-		id = null
-		controller.id = null
-		to_chat(user, "<span class='warning'>You've linked [src] to [controller.linked].</span>")
-
-/obj/item/assembly/control/ticket_machine
-	name = "ticket machine controller"
-	desc = "A remote controller for the HoP's ticket machine."
-	var/obj/machinery/ticket_machine/linked //To whom are we linked?
-
-/obj/item/assembly/control/ticket_machine/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/assembly/control/ticket_machine/LateInitialize()
-	find_machine()
-
-/obj/item/assembly/control/ticket_machine/proc/find_machine() //Locate the one to which we're linked
-	for(var/obj/machinery/ticket_machine/ticketsplease in GLOB.machines)
-		if(ticketsplease.id == id)
-			linked = ticketsplease
-	if(linked)
-		return TRUE
-	else
-		return FALSE
-
-/obj/item/assembly/control/ticket_machine/activate()
-	if(cooldown)
-		return
-	if(!linked)
-		return
-	cooldown = TRUE
-	linked.increment()
-	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
-
 /obj/machinery/ticket_machine/update_icon()
-	switch(ticket_number) //Gives you an idea of how many tickets are left
-		if(0 to 49)
+	var/Temp = screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
+	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
+	var/Digit2 = round(((Temp-Digit1)*0.1)%10) //Same idea, but divided by ten, to find the middle digit
+	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)//Same as above. Despite the weird notation these will only ever output integers, don't worry.
+	cut_overlays()//this clears the overlays, so they don't start stacking on each other
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]"))
+	switch(currentNum) //Gives you an idea of how many tickets are left
+		if(0 to 200)
 			icon_state = "ticketmachine_100"
-		if(50 to 99)
+		if(201 to 800)
 			icon_state = "ticketmachine_50"
-		if(100)
+		if(801 to 999)
 			icon_state = "ticketmachine_0"
-	handle_maptext()
 
-/obj/machinery/ticket_machine/proc/handle_maptext()
-	switch(ticket_number) //This is here to handle maptext offsets so that the numbers align.
-		if(0 to 9)
-			maptext_x = 13
-		if(10 to 99)
-			maptext_x = 10
-		if(100)
-			maptext_x = 8
-	maptext = "[current_number]" //Finally, apply the maptext
+/obj/machinery/ticket_machine/proc/increment()
+	playsound(src, 'sound/misc/announce_dig.ogg', 50, 0)
+	say("Next customer, please!")
+	screenNum ++ //Increment the one we're serving.
+	if(currentNum > ticketNumMax)
+		currentNum = 0
+		say("Error: Stack Overflow!")
+	if(screenNum > ticketNumMax)
+		screenNum = 0
+		say("Error: Stack Overflow!")
+	if(currentNum < screenNum - 1)
+		screenNum -- //this should only happen if the queue is all caught up and more numbers get called than tickets exist
+		currentNum = screenNum - 1 //so the number wont go onto infinity. Numbers that haven't been taken yet won't show up on the screen yet either.
+	update_icon() //Update our icon here
+	if(tickets.len<screenNum)
+		tickets.len = screenNum //this helps prevents runtimes that happen due to mapping stuff. Just an extra safety
 
-/obj/machinery/ticket_machine/attackby(obj/item/I, mob/user, params)
-	..()
-	if(istype(I, /obj/item/hand_labeler_refill))
-		if(!(ticket_number >= max_number))
-			to_chat(user, "<span class='notice'>[src] refuses [I]! There [max_number-ticket_number==1 ? "is" : "are"] still [max_number-ticket_number] ticket\s left!</span>")
-			return
-		to_chat(user, "<span class='notice'>You start to refill [src]'s ticket holder (doing this will reset its ticket count!).</span>")
-		if(do_after(user, 30, target = src))
-			to_chat(user, "<span class='notice'>You insert [I] into [src] as it whirs nondescriptly.</span>")
-			qdel(I)
-			ticket_number = 0
-			current_number = 0
-			if(tickets.len)
-				for(var/obj/item/ticket_machine_ticket/ticket in tickets)
-					ticket.audible_message("<span class='notice'>\the [ticket] disperses!</span>")
-					qdel(ticket)
-				tickets.Cut()
-			max_number = initial(max_number)
-			update_icon()
-			return
+	if(!(obj_flags & EMAGGED) && tickets[screenNum]) //if the ticket actually, you know, exists and all
+		tickets[screenNum].audible_message("<span class='rose'>\the [tickets[screenNum]] dings!</span>",hearing_distance=1)
+		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, 0 ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
 
-/obj/machinery/ticket_machine/proc/reset_cooldown()
-	ready = TRUE
+/obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
+	if(obj_flags & EMAGGED)
+		return
+	to_chat(user, "<span class='warning'>You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting.</span>")
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(12, 1, src)
+	s.start()
+	screenNum = rand(0,ticketNumMax)
+	update_icon()
+	obj_flags |= EMAGGED
 
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
 	. = ..()
 	if(!ready)
-		to_chat(user,"You press the button, but nothing happens...")
 		return
-	if(ticket_number >= max_number)
-		to_chat(user,"Ticket supply depleted, please refill this unit with a hand labeller refill cartridge!")
-		return
-	if((user in ticket_holders) && !(obj_flags & EMAGGED))
-		to_chat(user, "You already have a ticket!")
-		return
-	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, FALSE)
-	ticket_number ++
-	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're ticket number #[ticket_number]...</span>")
+	ready = FALSE
+	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
+	addtimer(VARSET_CALLBACK(src, ready, TRUE), cooldown) //Small cooldown to prevent the clown from ripping out every ticket
+	currentNum ++
+	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're customer #[currentNum]...</span>")
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
-	theirticket.name = "Ticket #[ticket_number]"
-	theirticket.maptext = "<font color='#000000'>[ticket_number]</font>"
-	theirticket.saved_maptext = "<font color='#000000'>[ticket_number]</font>"
-	theirticket.ticket_number = ticket_number
+	theirticket.name = "Ticket #[currentNum]"
 	theirticket.source = src
-	theirticket.owner = user
+	theirticket.ticket_number = currentNum
+	theirticket.update_icon()
 	user.put_in_hands(theirticket)
-	ticket_holders += user
-	tickets += theirticket
+	if(tickets.len<currentNum)
+		tickets.len = currentNum //this grows the size of the list as needed.
+	tickets[currentNum] = theirticket
 	if(obj_flags & EMAGGED) //Emag the machine to destroy the HOP's life.
-		ready = FALSE
-		addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)//Small cooldown to prevent piles of flaming tickets
 		theirticket.fire_act()
 		user.dropItemToGround(theirticket)
 		user.adjust_fire_stacks(1)
 		user.IgniteMob()
 		return
 
+/obj/machinery/ticket_machine/attackby(obj/item/O, mob/user, params)
+	if(user.a_intent == INTENT_HARM) //so we can hit the machine
+		return ..()
+
+	if(default_deconstruction_screwdriver(user, "ticketmachine_panel", "ticketmachine", O))
+		updateUsrDialog()
+		update_icon()
+		return TRUE
+
+	if(default_deconstruction_crowbar(O) || stat)
+		return TRUE
+
+	if(istype(O, /obj/item/ticket_machine_remote))
+		if (!linked)
+			var/obj/item/ticket_machine_remote/Z = O //typecasting!!
+			if (!Z.connection)
+				Z.connection=src
+				to_chat(user,"<span class='info'>You link the remote to the machine.</span>")
+				linked = TRUE
+				return TRUE
+			to_chat(user,"<span class='warning'>The remote is already linked to a ticket machine!</span>")
+
+		else
+			to_chat(user,"<span class='warning'>The ticket machine is already linked to a remote!</span>")
+
+	if(istype(O, /obj/item/ticket_machine_ticket))
+		to_chat(user, "<span class='warning'>You put [O] into the ticket machine's recycling bin.</span>")
+		qdel(O) //KMC put a delay here. I'm not so forgiving. You accidently shred your ticket, you cry. (Also the delay felt really clunky)
+		return TRUE
+
+/obj/machinery/ticket_machine/Destroy()
+	var/obj/item/ticket_machine_ticket/T
+	for (T in tickets)
+		T.audible_message("The ticket vibrates for a moment, then dissolves into paper scraps!")
+		qdel(T)
+	tickets = list()
+	return ..()
+
+//Tickets dispensed from the machine
 /obj/item/ticket_machine_ticket
 	name = "Ticket"
-	desc = "A ticket which shows your place in the Head of Personnel's line. Made from Nanotrasen patented NanoPaper®. Though solid, its form seems to shimmer slightly. Feels (and burns) just like the real thing."
+	desc = "A ticket which shows your place in the queue."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "ticket"
-	maptext_x = 7
-	maptext_y = 10
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
-	var/saved_maptext = null
-	var/mob/living/carbon/owner
 	var/obj/machinery/ticket_machine/source
 	var/ticket_number
 
-/obj/item/ticket_machine_ticket/attack_hand(mob/user)
-	. = ..()
-	maptext = saved_maptext //For some reason, storage code removes all maptext off objs, this stops its number from being wiped off when taken out of storage.
+/obj/item/ticket_machine_ticket/update_icon()
+	var/Temp = ticket_number //this stuff is a repeat from the other update_icon, but with new image files and the like
+	var/Digit1 = round(Temp%10)
+	var/Digit2 = round(((Temp-Digit1)*0.1)%10)
+	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)
+	cut_overlays()//this clears the overlays, so they don't start stacking on each other
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]"))
+	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]"))
+	if(resistance_flags & ON_FIRE)
+		icon_state = "ticket_onfire"
 
-/obj/item/ticket_machine_ticket/attackby(obj/item/P, mob/living/carbon/human/user, params) //Stolen from papercode
+/obj/item/ticket_machine_ticket/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	..()
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
-			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
-								"<span class='userdanger'>You miss the paper and accidentally light yourself on fire!</span>")
+			user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", "<span class='userdanger'>You miss the ticket and accidentally light yourself on fire!</span>")
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
 			user.IgniteMob()
 			return
-		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
-		fire_act()
 
-/obj/item/paper/extinguish()
+		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
+			return
+
+		user.dropItemToGround(src)
+		user.visible_message("<span class='danger'>[user] lights [src] ablaze with [P]!</span>", "<span class='danger'>You light [src] on fire!</span>")
+		src.fire_act()
+
+/obj/item/ticket_machine_ticket/extinguish()
 	..()
 	update_icon()
 
-/obj/item/ticket_machine_ticket/Destroy()
-	if(owner && source)
-		source.ticket_holders -= owner
-		source.tickets[ticket_number] = null
-		owner = null
-		source = null
-	return ..()
+//Remote that operates it
+/obj/item/ticket_machine_remote
+	name = "Ticket Machine Remote"
+	desc = "A remote used to operate a ticket machine."
+	icon = 'icons/obj/assemblies/electronic_setups.dmi'
+	icon_state = "setup_small_simple"
+	w_class = WEIGHT_CLASS_TINY
+	max_integrity = 100
+	var/obj/machinery/ticket_machine/connection = null
+	var/cooldown = 20
+	var/ready = TRUE
+
+/obj/item/ticket_machine_remote/attack_self(mob/user)
+	if(!ready)
+		return
+	if(!connection)
+		to_chat(user,"<span class='warning'>The remote isn't linked to a ticket machine!</span>")
+		return
+	ready = FALSE
+	addtimer(VARSET_CALLBACK(src, ready, TRUE), cooldown)
+	connection.increment()
+
+/obj/item/ticket_machine_remote/AltClick(mob/living/user)
+	..()
+	if(connection)
+		connection.linked = FALSE
+		connection = null
+		to_chat(user,"<span class='info'>You unlink the remote from all connections.</span>")
+
+/obj/item/ticket_machine_remote/examine(mob/user)
+	.=..()
+	if(connection)
+		.+= "<span class='info'>The remote is currently connected to a ticket machine.\nAlt click the remote to sever this connection.</span>"
+	else
+		.+= "<span class='info'>Click on a ticket machine with this remote to link them.</span>"

@@ -1,12 +1,29 @@
 Any time you make a change to the schema files, remember to increment the database schema version. Generally increment the minor number, major should be reserved for significant changes to the schema. Both values go up to 255.
 
-The latest database version is 5.3; The query to update the schema revision table is:
+The latest database version is 5.4; The query to update the schema revision table is:
 
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 3);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 4);
 or
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 3);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 4);
 
 In any query remember to add a prefix to the table names if you use one.
+
+version 5.4 18 May 2020, by TheGamer01
+
+Adds table for antag tokens
+
+CREATE TABLE `antag_tokens` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NULL NOT NULL,
+	`reason` VARCHAR(2048) NOT NULL,
+	`denial_reason` VARCHAR(2048) DEFAULT NULL,
+	`applying_admin` VARCHAR(32) NOT NULL,
+	`denying_admin` VARCHAR(32) DEFAULT NULL,
+	`granted_time` DATETIME NOT NULL,
+	`redeemed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+	`round_id` int(11) unsigned NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
 ----------------------------------------------------
 

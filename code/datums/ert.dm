@@ -114,10 +114,20 @@
 	polldesc = "a Nanotrasen Janitorial Response Team"
 
 /datum/ert/clown
-	roles = list(/datum/antagonist/ert/clown, /datum/antagonist/ert/clown/robust)
-	leader_role = /datum/antagonist/ert/clown/robust
+	roles = list(/datum/antagonist/ert/clown)
+	leader_role = /datum/antagonist/ert/clown
 	teamsize = 7
 	opendoors = FALSE
+	rename_team = "The Circus"
+	mission = "Provide vital moral support to the station in this time of crisis"
+	code = "Banana"
+
+/datum/ert/honk
+	roles = list(/datum/antagonist/ert/clown/honk)
+	leader_role = /datum/antagonist/ert/clown/honk
+	teamsize = 5
+	opendoors = TRUE
 	rename_team = "HONK Squad"
-	mission = "Bring joy and happiness to all the crew the only way a clown can. Honk!"
-	polldesc = "a Nanotrasen Clown Response Team"
+	mission = "HONK them into submission."
+	polldesc = "an elite Nanotrasen tactical pranking squad"
+	code = "HOOOOOOOOOONK"

@@ -138,7 +138,7 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
-"r" = (
+"E" = (
 /obj/machinery/button/door{
 	id = "Interpolship";
 	pixel_y = 26
@@ -147,6 +147,13 @@
 	dir = 8;
 	icon_state = "warningline"
 	},
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
 "s" = (
@@ -190,7 +197,7 @@ a
 (2,1,1) = {"
 a
 c
-r
+E
 n
 g
 c

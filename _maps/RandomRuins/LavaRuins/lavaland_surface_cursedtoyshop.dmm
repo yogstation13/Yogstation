@@ -205,7 +205,6 @@
 "aE" = (
 /obj/structure/rack,
 /obj/item/clothing/head/santa,
-/obj/item/storage/backpack/santabag,
 /obj/item/clothing/suit/wizrobe/santa,
 /turf/open/floor/wood,
 /area/ruin/powered)

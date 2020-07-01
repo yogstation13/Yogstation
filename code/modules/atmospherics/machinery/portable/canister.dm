@@ -6,6 +6,9 @@
 	icon_state = "yellow"
 	density = TRUE
 
+	ui_x = 405
+	ui_y = 230
+
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""
@@ -258,18 +261,27 @@
 		return
 
 	cut_overlays()
+	set_light(FALSE)
 	if(update & CANISTER_UPDATE_HOLDING)
 		add_overlay("can-open")
 	if(update & CANISTER_UPDATE_CONNECTED)
 		add_overlay("can-connector")
 	if(update & CANISTER_UPDATE_LOW)
-		add_overlay("can-o0")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o0", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_MEDIUM)
-		add_overlay("can-o1")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o1", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_FULL)
-		add_overlay("can-o2")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o2", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_YELLOW)
 	else if(update & CANISTER_UPDATE_DANGER)
-		add_overlay("can-o3")
+		var/mutable_appearance/indicator_overlay = mutable_appearance(icon, "can-o3", ABOVE_LIGHTING_LAYER)
+		add_overlay(indicator_overlay)
+		set_light(1.4, 1, COLOR_LIME)
 #undef CANISTER_UPDATE_HOLDING
 #undef CANISTER_UPDATE_CONNECTED
 #undef CANISTER_UPDATE_EMPTY
@@ -309,7 +321,8 @@
 	return TRUE
 
 /obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
-	if((stat & BROKEN) || (flags_1 & NODECONSTRUCT_1))
+	. = ..()
+	if(!.)
 		return
 	canister_break()
 
@@ -320,14 +333,13 @@
 	T.assume_air(expelled_gas)
 	air_update_turf()
 
-	stat |= BROKEN
+	obj_break()
 	density = FALSE
-	playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
-	update_icon()
+	playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	investigate_log("was destroyed.", INVESTIGATE_ATMOS)
 
 	if(holding)
-		holding.forceMove(T)
+		usr.put_in_hands(holding)
 		holding = null
 
 /obj/machinery/portable_atmospherics/canister/replace_tank(mob/living/user, close_valve)
@@ -366,7 +378,7 @@
 															datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "canister", name, 420, 405, master_ui, state)
+		ui = new(user, src, ui_key, "Canister", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/portable_atmospherics/canister/ui_data()
@@ -491,3 +503,8 @@
 				replace_tank(usr, FALSE)
 				. = TRUE
 	update_icon()
+
+/obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
+	if(istype(user))
+		analyzer_act(user, src)
+	return ..()

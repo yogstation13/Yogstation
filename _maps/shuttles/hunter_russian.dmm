@@ -126,10 +126,6 @@
 /obj/machinery/fugitive_capture,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter)
-"x" = (
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plating,
-/area/shuttle/hunter)
 "y" = (
 /turf/template_noop,
 /area/shuttle/hunter)
@@ -235,6 +231,41 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/hunter)
+"P" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	name = "russian space helmet"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/obj/item/clothing/suit/space/syndicate{
+	name = "russian space suit"
+	},
+/turf/open/floor/plating,
+/area/shuttle/hunter)
 "U" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/machinery/door/firedoor/border_only{
@@ -315,7 +346,7 @@ b
 b
 p
 t
-x
+P
 B
 B
 F

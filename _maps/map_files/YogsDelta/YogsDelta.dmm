@@ -101609,14 +101609,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"cXm" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/extinguisher,
-/turf/open/floor/circuit/green,
-/area/science/xenobiology)
 "cXn" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -126676,19 +126668,6 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/space,
 /area/space/nearstation)
-"hFQ" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/extinguisher,
-/obj/item/extinguisher,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/turf/open/floor/circuit/green,
-/area/science/xenobiology)
 "hLm" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -126725,6 +126704,15 @@
 /mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"iMT" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 8
+	},
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "iQh" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 1
@@ -126802,6 +126790,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
+"jAy" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/roller,
+/obj/item/clothing/glasses/hud/health,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "jAD" = (
 /mob/living/simple_animal/pet/dog/pug{
 	name = "Swanson"
@@ -127049,6 +127048,19 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space)
+"nWW" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "olS" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -160341,9 +160353,9 @@ cMY
 cMY
 cTV
 cVT
-cXm
+nWW
 cZb
-hFQ
+iMT
 dcu
 ddV
 cMY
@@ -168575,7 +168587,7 @@ ccP
 cli
 cfj
 aaq
-aaG
+jAy
 aaG
 aaQ
 aaV

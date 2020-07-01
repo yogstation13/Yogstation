@@ -37,7 +37,7 @@
 	density = FALSE
 	health = 80
 	maxHealth = 80
-	pass_flags = PASSTABLE | PASSMOB
+	pass_flags = PASSTABLE | PASSMOB | PASSCOMPUTER
 
 	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")

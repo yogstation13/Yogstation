@@ -49,6 +49,7 @@
 	desc = "A thick vine, painful to the touch."
 
 /obj/effect/ebeam/vine/Crossed(atom/movable/AM)
+	. = ..()
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(!isvineimmune(L))
@@ -83,6 +84,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
+	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	faction = list("hostile","vines","plants")
 	initial_language_holder = /datum/language_holder/venus
@@ -113,7 +115,7 @@
 			pull_vines()
 			ranged_cooldown = world.time + (ranged_cooldown_time * 0.5)
 			return
-	if(get_dist(src,the_target) > vine_grab_distance || vines.len == max_vines)
+	if(get_dist(src,the_target) > vine_grab_distance || vines.len >= max_vines)
 		return
 	for(var/turf/T in getline(src,target))
 		if (T.density)

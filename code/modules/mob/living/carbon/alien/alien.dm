@@ -53,6 +53,7 @@
 		return
 
 	var/loc_temp = get_temperature(environment)
+	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 
 	// Aliens are now weak to fire.
 
@@ -62,9 +63,9 @@
 			//Place is hotter than we are
 			var/thermal_protection = heat_protection //This returns a 0 - 1 value, which corresponds to the percentage of heat protection.
 			if(thermal_protection < 1)
-				adjust_bodytemperature((1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR))
+				adjust_bodytemperature((1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR) * heat_capacity_factor)
 		else
-			adjust_bodytemperature(1 * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR))
+			adjust_bodytemperature(heat_capacity_factor * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR))
 
 	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
 		//Body temperature is too hot.

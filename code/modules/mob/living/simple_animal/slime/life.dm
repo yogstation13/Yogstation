@@ -114,8 +114,9 @@
 		return
 
 	var/loc_temp = get_temperature(environment)
+	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 
-	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1))
+	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1) * heat_capacity_factor)
 
 	//Account for massive pressure differences
 

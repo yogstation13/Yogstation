@@ -92,6 +92,16 @@
 	var/datum/language_holder/H = M.get_language_holder()
 	H.open_language_menu(usr)
 
+/obj/screen/ghost/pai
+	name = "pAI Candidate"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "pai_setup"
+	screen_loc = ui_ghost_pai
+
+/obj/screen/ghost/pai/Click()
+	var/mob/dead/observer/G = usr
+	G.register_pai()
+
 /obj/screen/inventory
 	var/slot_id	// The indentifier for the slot. It has nothing to do with ID cards.
 	var/icon_empty // Icon when empty. For now used only by humans.

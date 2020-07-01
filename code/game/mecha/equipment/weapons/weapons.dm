@@ -102,6 +102,15 @@
 	projectile = /obj/item/projectile/beam/laser/heavylaser
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
+	equip_cooldown = 10
+	name = "\improper CH-XC \"Transitum\" x-ray laser"
+	desc = "A weapon for combat exosuits. Shoots concentrated X-ray blasts."
+	icon_state = "mecha_xray"
+	energy_drain = 60
+	projectile = /obj/item/projectile/beam/xray
+	fire_sound = 'sound/weapons/laser3.ogg'
+
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
 	equip_cooldown = 20
 	name = "\improper MKIV ion heavy cannon"

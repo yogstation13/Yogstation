@@ -55,7 +55,7 @@
 	add_to_all_human_data_huds()
 
 /mob/living/carbon/human/get_status_tab_items()
-	. = ..()
+	. = .=..()
 	. += "Intent: [a_intent]"
 	. += "Move Mode: [m_intent]"
 	if (internal)
@@ -999,7 +999,7 @@
 
 /mob/living/carbon/human/species/golem/durathread
 	race = /datum/species/golem/durathread
-	
+
 /mob/living/carbon/human/species/golem/snow
 	race = /datum/species/golem/snow
 
@@ -1014,6 +1014,9 @@
 
 /mob/living/carbon/human/species/golem/soviet
 	race = /datum/species/golem/soviet
+
+/mob/living/carbon/human/species/golem/cheese
+	race = /datum/species/golem/cheese
 
 /mob/living/carbon/human/species/jelly
 	race = /datum/species/jelly

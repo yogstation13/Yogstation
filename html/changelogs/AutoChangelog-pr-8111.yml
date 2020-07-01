@@ -1,5 +1,0 @@
-author: "  ATHATH"
-delete-after: true 
-changes: 
-  - tweak: "The chances to break out of aggressive, neck, and kill grabs have been modified slightly, and having large amounts of damage should actually affect how hard it is to break out of a kill grab now."
-  - tweak: "All types of damage now affect how hard it is to break out of a grab, not just brute and stamina damage. Stamina damage is, as before, weighted twice as much as the other damage types in the grab escape chance calculation(s)."

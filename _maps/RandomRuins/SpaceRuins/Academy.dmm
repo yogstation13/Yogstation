@@ -3904,7 +3904,7 @@
 /area/awaymission/academy/academyaft)
 "kV" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Zero The Valid"
+	name = "Rotciv The Dented"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)

@@ -1,5 +1,0 @@
-author: "Darkstick"
-delete-after: true 
-changes: 
-  - tweak: "round start vampires only get a convert objective and a traitor objective"
-  - tweak: "renamed the \"full_objective\" variable to \"full_vampire\" to avoid confusion"

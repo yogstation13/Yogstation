@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Helios",
 	"House",
 	"Inverted",
+	"Malicious",
 	"Matrix",
 	"Monochrome",
 	"Murica",
@@ -176,7 +177,7 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 
-GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt" + ""))
+GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt") + "")
 
 GLOBAL_LIST_INIT(station_suffixes, world.file2list("strings/station_suffixes.txt"))
 

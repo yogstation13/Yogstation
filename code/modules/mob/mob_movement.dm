@@ -1,6 +1,3 @@
-/mob/CanPass(atom/movable/mover, turf/target)
-	return TRUE				//There's almost no cases where non /living mobs should be used in game as actual mobs, other than ghosts.
-
 //DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
 //See mob_movespeed.dm
 /mob/proc/movement_delay()	//update /living/movement_delay() if you change this
@@ -25,6 +22,42 @@
 #define MOVEMENT_DELAY_BUFFER 0.75
 #define MOVEMENT_DELAY_BUFFER_DELTA 1.25
 
+/**
+  * Move a client in a direction
+  *
+  * Huge proc, has a lot of functionality
+  *
+  * Mostly it will despatch to the mob that you are the owner of to actually move
+  * in the physical realm
+  *
+  * Things that stop you moving as a mob:
+  * * world time being less than your next move_delay
+  * * not being in a mob, or that mob not having a loc
+  * * missing the n and direction parameters
+  * * being in remote control of an object (calls Moveobject instead)
+  * * being dead (it ghosts you instead)
+  *
+  * Things that stop you moving as a mob living (why even have OO if you're just shoving it all
+  * in the parent proc with istype checks right?):
+  * * having incorporeal_move set (calls Process_Incorpmove() instead)
+  * * being grabbed
+  * * being buckled  (relaymove() is called to the buckled atom instead)
+  * * having your loc be some other mob (relaymove() is called on that mob instead)
+  * * Not having MOBILITY_MOVE
+  * * Failing Process_Spacemove() call
+  *
+  * At this point, if the mob is is confused, then a random direction and target turf will be calculated for you to travel to instead
+  *
+  * Now the parent call is made (to the byond builtin move), which moves you
+  *
+  * Some final move delay calculations (doubling if you moved diagonally successfully)
+  *
+  * if mob throwing is set I believe it's unset at this point via a call to finalize
+  *
+  * Finally if you're pulling an object and it's dense, you are turned 180 after the move
+  * (if you ask me, this should be at the top of the move so you don't dance around)
+  *
+  */
 /client/Move(n, direct)
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return FALSE
@@ -131,9 +164,19 @@
 		else
 			return mob.resist_grab(1)
 
-///Process_Incorpmove
-///Called by client/Move()
-///Allows mobs to run though walls
+/**
+  * Allows mobs to ignore density and phase through objects
+  *
+  * Called by client/Move()
+  *
+  * The behaviour depends on the incorporeal_move value of the mob
+  *
+  * * INCORPOREAL_MOVE_BASIC - forceMoved to the next tile with no stop
+  * * INCORPOREAL_MOVE_SHADOW  - the same but leaves a cool effect path
+  * * INCORPOREAL_MOVE_JAUNT - the same but blocked by holy tiles
+  *
+  * You'll note this is another mob living level proc living at the client level
+  */
 /client/proc/Process_Incorpmove(direct)
 	var/turf/mobloc = get_turf(mob)
 	if(!isliving(mob))
@@ -209,10 +252,15 @@
 	return TRUE
 
 
-///Process_Spacemove
-///Called by /client/Move()
-///For moving in space
-///return TRUE for movement 0 for none
+/**
+  * Handles mob/living movement in space (or no gravity)
+  *
+  * Called by /client/Move()
+  *
+  * return TRUE for movement or FALSE for none
+  *
+  * You can move in space if you have a spacewalk ability
+  */
 /mob/Process_Spacemove(movement_dir = 0)
 	if(spacewalk || ..())
 		return TRUE
@@ -357,6 +405,11 @@
 	if(mob)
 		mob.toggle_move_intent(usr)
 
+/**
+  * Toggle the move intent of the mob
+  *
+  * triggers an update the move intent hud as well
+  */
 /mob/proc/toggle_move_intent(mob/user)
 	if(m_intent == MOVE_INTENT_RUN)
 		m_intent = MOVE_INTENT_WALK

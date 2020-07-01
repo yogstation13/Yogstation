@@ -260,7 +260,7 @@
 
 	if(assess_patient(H))
 		last_found = world.time
-		if((last_newpatient_speak + 300) < world.time) //Don't spam these messages!
+		if((last_newpatient_speak + (emagged ? 20 : 300)) < world.time) //Don't spam these messages!
 			var/list/messagevoice = list("Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/coming.ogg',"Wait [H.name]! I want to help!" = 'sound/voice/medbot/help.ogg',"[H.name], you appear to be injured!" = 'sound/voice/medbot/injured.ogg')
 			var/message = pick(messagevoice)
 			speak(message)
@@ -288,7 +288,7 @@
 		soft_reset()
 
 	if(QDELETED(patient))
-		if(!shut_up && prob(1))
+		if((emagged || !shut_up) && prob(emagged ? 8 : 1))
 			var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg')
 			var/message = pick(messagevoice)
 			speak(message)
@@ -437,7 +437,7 @@
 	var/reagent_id = null
 
 	if(emagged == 2) //Emagged! Time to poison everybody.
-		reagent_id = "toxin"
+		reagent_id = /datum/reagent/toxin
 
 	else
 		if(treat_virus)

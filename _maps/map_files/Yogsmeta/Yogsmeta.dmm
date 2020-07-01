@@ -20190,10 +20190,6 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aJq" = (
-/obj/structure/closet/secure_closet/paramedic,
-/turf/open/floor/plasteel/white,
-/area/medical/paramedic)
 "aJr" = (
 /turf/closed/wall,
 /area/clerk)
@@ -57241,18 +57237,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"bXg" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bXh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -57387,18 +57371,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"bXw" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bXx" = (
 /obj/machinery/shower{
 	dir = 8;
@@ -75403,6 +75375,12 @@
 	},
 /turf/open/floor/plating,
 /area/science/mixing)
+"cBr" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/suit/space/paramedic,
+/obj/item/clothing/head/helmet/space,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "cBs" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -81443,39 +81421,10 @@
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"deU" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "deV" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
-"deW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering Supermatter Starboard";
-	dir = 4;
-	network = list("ss13","engine")
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"deX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "deY" = (
 /obj/structure/reflector/single/anchored{
 	dir = 9
@@ -83416,6 +83365,20 @@
 /obj/item/clothing/suit/apron/chef,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"gwI" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "gLo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -83765,6 +83728,18 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"kHv" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "kKf" = (
 /obj/structure/window/reinforced,
 /obj/structure/lattice,
@@ -84280,6 +84255,20 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/fore)
+"taY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering Supermatter Starboard";
+	dir = 4;
+	network = list("ss13","engine")
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "tDM" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -84354,6 +84343,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"uhq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "uun" = (
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel,
@@ -110782,7 +110778,7 @@ aiT
 auS
 ayY
 aBR
-aJq
+cBr
 azi
 bUq
 bZB
@@ -118262,7 +118258,7 @@ aaa
 aaf
 cqs
 cRS
-bXg
+kHv
 bXO
 cyk
 bYo
@@ -118776,7 +118772,7 @@ aaa
 aaf
 cqs
 cRS
-bXw
+gwI
 bXP
 cym
 bYp
@@ -128706,10 +128702,10 @@ aFS
 axY
 aOS
 aTr
-deI
 deN
 deI
-deW
+deN
+taY
 aMm
 dfd
 deN
@@ -128963,10 +128959,10 @@ dea
 aFT
 den
 aUE
-deJ
 deO
-deU
-deX
+deJ
+dBz
+uhq
 dBx
 dfe
 dBz

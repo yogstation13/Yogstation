@@ -527,6 +527,8 @@
 			target = safepick(oview(1,src))
 		if(!melee_can_hit || !istype(target, /atom))
 			return
+		if(equipment_disabled)
+			return
 		target.mech_melee_attack(src)
 		melee_can_hit = 0
 		spawn(melee_cooldown)
@@ -669,11 +671,12 @@
 		if(..()) //mech was thrown
 			return
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
-			if(nextsmash < world.time)
-				obstacle.mech_melee_attack(src)
-				nextsmash = world.time + smashcooldown
-				if(!obstacle || obstacle.CanPass(src,newloc))
-					step(src,dir)
+			if(!equipment_disabled)
+				if(nextsmash < world.time)
+					obstacle.mech_melee_attack(src)
+					nextsmash = world.time + smashcooldown
+					if(!obstacle || obstacle.CanPass(src,newloc))
+						step(src,dir)
 		if(isobj(obstacle))
 			var/obj/O = obstacle
 			if(!O.anchored)

@@ -11,6 +11,7 @@
 		"https://www.youtube.com/watch?v=KaOC9danxNo", 						// David Bowie - Space Oddity (Cover by Chris Hadfield)
 		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
+		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
 		"https://www.youtube.com/watch?v=3W7mwRpUbqQ", 						// Stellardrone - Comet Haley
@@ -27,8 +28,10 @@
 	    "https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
 	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=NQPUMvP2fyM",						// Chris Remo - The Wizard
-		"https://www.youtube.com/watch?v=nRjLv1L0WF8",                      // Blue Oyster Cult - Sole Survivor
-		"https://www.youtube.com/watch?v=51Uw-9lNl08")                      // fIREHOSE - Brave Captain
+		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
+		"https://www.youtube.com/watch?v=51Uw-9lNl08",						// fIREHOSE - Brave Captain
+		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords
+		"https://www.youtube.com/watch?v=Ld6TfpgJg7g")						// Tom Kane - Freeway Jazz
 
 	selected_lobby_music = pick(songs)
 

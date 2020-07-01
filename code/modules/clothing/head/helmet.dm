@@ -53,6 +53,10 @@
 /obj/item/clothing/head/helmet/sec
 	can_flashlight = TRUE
 
+/obj/item/clothing/head/helmet/sec/attack_self(mob/user)
+	. = ..()
+	toggle_helmlight()
+
 /obj/item/clothing/head/helmet/sec/attackby(obj/item/I, mob/user, params)
 	if(issignaler(I))
 		var/obj/item/assembly/signaler/S = I

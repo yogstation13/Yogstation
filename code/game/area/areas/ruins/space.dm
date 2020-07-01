@@ -65,6 +65,8 @@
 	name = "Aesthetic"
 	ambientsounds = list('sound/ambience/ambivapor1.ogg')
 
+/area/ruin/space/has_grav/powered/gaming
+	name ="Game Room"
 
 //Ruin of Hotel
 

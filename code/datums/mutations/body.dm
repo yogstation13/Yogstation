@@ -220,12 +220,40 @@
 	conflicts = list(/datum/mutation/human/glow)
 	locked = TRUE
 
+/datum/mutation/human/thickskin
+	name = "Thick skin"
+	desc = "The user's skin acquires a leathery texture, and becomes more resilient to harm."
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>Your skin feels dry and heavy.</span>"
+	text_lose_indication = "<span class='notice'>Your skin feels soft again...</span>"
+	difficulty = 18
+	instability = 30
+	var/brutemodbefore
+	var/burnmodbefore
+
+/datum/mutation/human/thickskin/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(owner.physiology)
+		brutemodbefore = owner.physiology.brute_mod
+		burnmodbefore = owner.physiology.burn_mod
+		owner.physiology.brute_mod *= 0.8
+		owner.physiology.burn_mod *= 0.9
+
+/datum/mutation/human/thickskin/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	if(owner.physiology)
+		owner.physiology.brute_mod = brutemodbefore
+		owner.physiology.burn_mod = burnmodbefore
+
+//Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
 	name = "Strength"
 	desc = "The user's muscles slightly expand."
 	quality = POSITIVE
-	text_gain_indication = "<span class='notice'>You feel strong.</span>"
-	difficulty = 16
+	text_gain_indication = "<span class='notice'>You feel strong!</span>"
+	text_lose_indication = "<span class='notice'>You feel fairly weak.</span>"
+	difficulty = 12
+	instability = 10
 
 /datum/mutation/human/insulated
 	name = "Insulated"

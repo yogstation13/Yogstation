@@ -131,7 +131,7 @@
 			var/mob/living/simple_animal/hostile/H = L
 			if(("ratvar" in H.faction) || (!H.mind && ("neutral" in H.faction)))
 				continue
-			if(ismegafauna(H) || (!H.mind && H.AIStatus == AI_OFF))
+			if(ismegafauna(H) || (H.status_flags & GODMODE) || (!H.mind && H.AIStatus == AI_OFF))
 				continue
 		else if(isrevenant(L))
 			var/mob/living/simple_animal/revenant/R = L

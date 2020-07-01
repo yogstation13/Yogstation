@@ -263,6 +263,7 @@
 
 
 /proc/is_blind(A)
+	SHOULD_BE_PURE(TRUE)
 	if(ismob(A))
 		var/mob/B = A
 		return B.eye_blind

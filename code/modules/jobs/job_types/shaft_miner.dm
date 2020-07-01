@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2
@@ -26,7 +26,12 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	supervisors = "the head of personnel"
-	
+
+
+/datum/job/mining/proc/EclipseStationChanges()
+	total_positions = 6
+	spawn_positions = 4
+
 /datum/outfit/job/miner
 	name = "Shaft Miner"
 	jobtype = /datum/job/mining

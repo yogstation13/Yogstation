@@ -171,6 +171,7 @@
 #define TRAIT_EMPATH			"empath"
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_ALLERGIC			"allergic"
+#define TRAIT_KLEPTOMANIAC		"kleptomaniac"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"

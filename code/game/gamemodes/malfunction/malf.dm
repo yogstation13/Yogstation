@@ -32,7 +32,7 @@
 		AI.mind.add_antag_datum(/datum/antagonist/traitor/malf)
 
 	gamemode_ready = TRUE
-	return TRUE
+	. = ..()
 
 /datum/game_mode/malf/make_antag_chance()
 	return FALSE //no latejoins for you

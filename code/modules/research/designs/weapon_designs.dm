@@ -104,6 +104,56 @@
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/stunmine/sec //mines ported from BeeStation
+	name = "Stun Mine"
+	desc = "A basic non-lethal stunning mine. Stuns anyone who walks over it."
+	id = "stunmine"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 4000, MAT_GLASS = 1000)
+	build_path = /obj/item/deployablemine/stun
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/adv_stunmine/sec
+	name = "Smart Stun Mine"
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant."
+	id = "stunmine_adv"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 8000, MAT_GLASS = 3000, MAT_SILVER = 200)
+	build_path = /obj/item/deployablemine/smartstun
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/lm6_stunmine/sec
+	name = "Rapid Deployment Smartmine"
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Can be rapidly placed and disarmed."
+	id = "stunmine_rapid"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000, MAT_SILVER = 500, MAT_URANIUM = 200)
+	build_path = /obj/item/deployablemine/rapid
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/lm12_stunmine/sec
+	name = "Sledgehammer Smartmine"
+	desc = "An advanced non-lethal stunning mine. Uses advanced detection software to only trigger when activated by someone without a mindshield implant. Very powerful and hard to disarm."
+	id = "stunmine_heavy"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000, MAT_SILVER = 500, MAT_URANIUM = 200)
+	build_path = /obj/item/deployablemine/heavy
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/honkmine
+	name = "Honkblaster 1000"
+	desc = "An advanced pressure activated pranking mine, honk!"
+	id = "clown_mine"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 4000, MAT_GLASS = 1000, MAT_BANANIUM = 500)
+	build_path = /obj/item/deployablemine/honk
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/stunrevolver
 	name = "Tesla Revolver"
 	desc = "A high-tech revolver that fires internal, reusable shock cartridges in a revolving cylinder. The cartridges can be recharged using conventional rechargers."

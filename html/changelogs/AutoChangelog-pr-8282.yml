@@ -1,7 +1,0 @@
-author: "  LemonInTheDark & Arkatos"
-delete-after: true 
-changes: 
-  - rscadd: "Both Service borg skin select & RSF radial menus"
-  - tweak: "RSF's are now modular"
-  - tweak: "Subtypes of RSFs can now have sublists"
-  - imageadd: "RSF icons from TG"

@@ -27,7 +27,7 @@
 /datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "guardian", "Build-A-Guardian", 500, 600, master_ui, state)
+		ui = new(user, src, ui_key, "Guardian", "Build-A-Guardian", 500, 600, master_ui, state)
 		ui.set_autoupdate(TRUE)
 		ui.open()
 

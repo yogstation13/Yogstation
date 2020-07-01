@@ -83,6 +83,12 @@
 	var/datum/component/waddle
 	var/enabled_waddle = TRUE
 
+/obj/item/clothing/shoes/clown_shoes/clowncrocs
+	desc = "The prankster's standard-issue clowning crocs. Damn, they're cool! These crocs seems smaller than the clown's standard shoes. Ctrl-click to toggle waddle dampeners."
+	name = "clown crocs"
+	icon_state = "clowncrocs"
+	item_state = "clowncrocs"
+
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)

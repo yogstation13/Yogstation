@@ -17001,6 +17001,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
+/obj/structure/chair/office/light,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "aHl" = (
@@ -17255,16 +17256,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"aHJ" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/camera{
-	c_tag = "Paramedic Staging";
-	dir = 8;
-	network = list("ss13","medbay")
-	},
-/obj/structure/closet/secure_closet/paramedic,
-/turf/open/floor/plasteel,
-/area/medical/paramedic)
 "aHK" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /obj/effect/turf_decal/tile/red{
@@ -19362,6 +19353,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -32734,6 +32728,9 @@
 /area/science/explab)
 "bnb" = (
 /obj/machinery/recharge_station,
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "bnc" = (
@@ -37897,6 +37894,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "bwo" = (
@@ -38265,8 +38265,8 @@
 /area/engine/atmos_distro)
 "bxb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -44083,7 +44083,6 @@
 /area/maintenance/port/aft)
 "bJs" = (
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
@@ -44585,6 +44584,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/loading_area,
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bKD" = (
@@ -45713,14 +45715,13 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bNm" = (
-/obj/structure/chair/office/light{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/structure/table,
+/obj/item/stock_parts/cell/high/plus,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "bNn" = (
@@ -48697,7 +48698,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
-/area/maintenance/starboard/fore)
+/area/crew_quarters/bar)
 "bTt" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/kitchen";
@@ -49792,8 +49793,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -50708,8 +50708,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -51793,8 +51792,7 @@
 "bZL" = (
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -52238,8 +52236,8 @@
 /area/crew_quarters/theatre)
 "caT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -52286,8 +52284,8 @@
 /area/science/xenobiology)
 "caX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -52331,8 +52329,8 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -52354,8 +52352,8 @@
 /area/maintenance/starboard/aft)
 "cbg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -52656,8 +52654,8 @@
 /area/crew_quarters/kitchen)
 "cbL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
@@ -52804,8 +52802,8 @@
 /area/crew_quarters/kitchen)
 "ccc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -52923,8 +52921,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -53009,20 +53006,24 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "ccx" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"ccy" = (
 /obj/machinery/vending/boozeomat,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"ccy" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -53180,8 +53181,8 @@
 "ccS" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -53202,8 +53203,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -53548,8 +53549,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -53585,8 +53585,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 1
+	dir = 1;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -53910,16 +53910,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ceu" = (
-/obj/structure/noticeboard{
-	pixel_y = -27
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "cev" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -54552,6 +54542,53 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cfN" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
+"cfO" = (
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
+"cfP" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/recharge_station,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/locker)
+"cfQ" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
+"cfR" = (
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet)
+"cfS" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -35
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/recharge_station,
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "cfY" = (
 /obj/effect/spawner/lootdrop/maintenance{
 	lootcount = 2;
@@ -56120,18 +56157,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cpT" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -35
-	},
-/obj/item/stock_parts/cell/high/plus,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "cpX" = (
 /obj/structure/table,
 /obj/item/stack/rods/fifty,
@@ -58467,6 +58492,18 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"fKT" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/camera{
+	c_tag = "Paramedic Staging";
+	dir = 8;
+	network = list("ss13","medbay")
+	},
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space/paramedic,
+/turf/open/floor/plasteel,
+/area/medical/paramedic)
 "fLq" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -59366,10 +59403,6 @@
 	dir = 4
 	},
 /area/escapepodbay)
-"iRL" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "iTb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -82279,7 +82312,7 @@ aZt
 aXQ
 aZt
 aXQ
-aZt
+cfP
 aXQ
 bek
 bkF
@@ -82785,7 +82818,7 @@ uru
 aQN
 aQN
 aQN
-aQN
+cfO
 aXQ
 aYe
 bfa
@@ -88502,7 +88535,7 @@ cnn
 cnM
 bEG
 cpk
-cpT
+cfS
 cjJ
 aae
 bPs
@@ -93296,7 +93329,7 @@ ank
 ann
 aoj
 bON
-iRL
+cfN
 bLE
 ayZ
 bQG
@@ -97165,7 +97198,7 @@ ati
 ati
 ati
 aGI
-ati
+cfQ
 aHH
 aJg
 aKo
@@ -99480,7 +99513,7 @@ ayq
 aAh
 aGp
 aHX
-aBy
+cfR
 aAh
 caQ
 cbx
@@ -101805,7 +101838,7 @@ cct
 cct
 cct
 cba
-ceu
+ccy
 cam
 bcr
 aYV
@@ -102049,7 +102082,7 @@ bkD
 aae
 alQ
 bSO
-alQ
+cam
 cam
 cam
 cam
@@ -102306,7 +102339,7 @@ bkD
 apU
 alQ
 bSO
-alQ
+cam
 cao
 caI
 cbd
@@ -102570,7 +102603,7 @@ cbe
 cbG
 cbW
 ccl
-ccx
+cba
 ccO
 cba
 cba
@@ -102820,14 +102853,14 @@ bkD
 apU
 alQ
 aIb
-alQ
+cam
 caq
 caJ
 cbg
 cbH
 cam
 ccm
-ccy
+ccx
 cba
 cdq
 cba
@@ -103077,7 +103110,7 @@ bkD
 aae
 alQ
 aIb
-alQ
+cam
 cam
 caK
 cbl
@@ -106953,7 +106986,7 @@ jTR
 bfP
 bfS
 bgC
-aHJ
+fKT
 rZt
 bjM
 bon

@@ -59,6 +59,9 @@
 	if(issilicon(M))
 		return FALSE
 
+	if(ismegafauna(M))
+		return FALSE
+
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(S.damage_coeff[TOX] <= 0 && S.damage_coeff[CLONE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.

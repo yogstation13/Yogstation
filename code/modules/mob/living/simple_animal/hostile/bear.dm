@@ -70,6 +70,9 @@
 	maxHealth = 120
 	armored = TRUE
 
+/mob/living/simple_animal/hostile/bear/russian/sentience_act()
+	faction -= "russian"
+
 /mob/living/simple_animal/hostile/bear/update_icons()
 	..()
 	if(armored)

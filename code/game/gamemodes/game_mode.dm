@@ -51,9 +51,15 @@
 	var/gamemode_ready = FALSE //Is the gamemode all set up and ready to start checking for ending conditions.
 	var/setup_error		//What stopepd setting up the mode.
 
+/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
+	//var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
+
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
 	to_chat(world, "<b>[announce_text]</b>")
+	
+/datum/game_mode/proc/admin_panel()
+	return
 
 
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
@@ -310,6 +316,16 @@
 //     Player A: 150 / 250 = 0.6 = 60%
 //     Player B: 100 / 250 = 0.4 = 40%
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
+	if(GLOB.antag_token_users.len >= 1) //Antag token users get first priority, no matter their preferences
+		var/client/C = pick_n_take(GLOB.antag_token_users)
+		var/mob/M = C.mob
+		if(C && istype(M, /mob/dead/new_player))
+			var/mob/dead/new_player/player = M
+			if(player.ready == PLAYER_READY_TO_PLAY)
+				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
+					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 30 SECONDS)
+					return player.mind
+
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
 		return pick(candidates)
 
@@ -583,3 +599,7 @@
 		SSticker.news_report = STATION_EVACUATED
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
+
+
+/datum/game_mode/proc/AdminPanelEntry()
+	return

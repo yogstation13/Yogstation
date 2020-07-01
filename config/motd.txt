@@ -1,16 +1,14 @@
-<h1 style="font-family: Verdana; margin: 0px; padding: 0px; text-align: center;">Welcome to Yogstation 13!</h1>
-<span style="font-family: Verdana; margin: 0px; padding: 0px;">We have a support ticket system at Yogstation. If you have an issue, please file a ticket by pressing <b>F1</b> or going to the <b>admin tab</b> and clicking <b>Ahelp</b>. An admin will help you as soon as possible.</span>
-
-<span style="font-family: Verdana; margin: 0px; padding: 0px;">We are constantly seeking dedicated new <span style="font-weight: bold; color: #dd4400;">admins</span>, <span style="font-weight: bold; color: #dd4400;">coders</span>, <span style="font-weight: bold; color: #dd4400;">spriters</span> and <span style="font-weight: bold; color: #dd4400;">mappers</span> to improve our server. Without them, you wouldn't have a server to play on. If you feel you may be a good addition to our team, please apply:</span>
+<h1 style="font-family: Verdana; margin: 0px; padding: 0px; text-align: center;">Welcome to Yogstation 13!</h1><br>
+<span style="font-family: Verdana; margin: 0px; padding: 0px;">We have a support ticket system at Yogstation. If you have an issue, please file a ticket by pressing <b>F1</b> or going to the <b>admin tab</b> and clicking <b>Ahelp</b>. An admin will help you as soon as possible.</span><br>
+<span style="font-family: Verdana; margin: 0px; padding: 0px;">We are constantly seeking dedicated new <span style="font-weight: bold; color: #dd4400;">admins</span>, <span style="font-weight: bold; color: #dd4400;">coders</span>, <span style="font-weight: bold; color: #dd4400;">spriters</span>, <span style="font-weight: bold; color: #dd4400;">mappers</span>, and <span style="font-weight: bold; color: #dd4400;">mentors</span> to improve our server. Without them, you wouldn't have a server to play on. If you feel you may be a good addition to our Admin or Mentor team, please apply through the links below. If you are interested in joining the development team, the Github Repository is listed below.</span><br>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">
- ¤ <a href="https://forums.yogstation.net/index.php?forms/admin-application-form.4/respond">Admin Application</a>
- ¤ <a href="https://github.com/yogstation13/Yogstation-TG">GitHub Repo</a>
-</span>
-<span style="font-family: Verdana; margin: 0px; padding: 0px;">We are running a high power server, we need <a href="http://www.yogstation.net/index.php?do=donate">donations to keep the server running</a>. Donators get <i>multiple benefits</i>, one such benefit is <b>fun hats</b>!<br> 
-<a href="https://forms.gle/yfPFifsR38oD9gAYA"><b>YOGS GENERAL SURVEY!</b></a> Tell us what modes you want to see more or less of!</span><br>
-
+ ¤ <a href="https://forums.yogstation.net/index.php?form/18/select">Admin Application</a>
+ ¤ <a href="https://forums.yogstation.net/index.php?form/8/select">Mentor Application</a>
+ ¤ <a href="https://github.com/yogstation13/Yogstation">GitHub Repo</a>.
+</span><br>	
+<span style="font-family: Verdana; margin: 0px; padding: 0px;">We are running a high power server and we need <a href="http://www.yogstation.net/index.php?do=donate">donations to keep the server running</a>. Donators get <i>multiple benefits</i> such as <b>fun hats</b>, <b>custom cyborg skins</b> and <b>Quiet Mode</b>!<br><br> 
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">Discord: <a href="https://discord.gg/0keg6hQH05Ha8OfO">https://discord.gg/0keg6hQH05Ha8OfO</a></span><br>
-<span style="font-family: Verdana; margin: 0px; padding: 0px;">If you need to create an account on the forums please use this keyword to register: assistantgreytide</a></span><br>
+<span style="font-family: Verdana; margin: 0px; padding: 0px;">If you need to create an account on the forums please use this keyword to register: <b>assistantgreytide</b></a></span><br>
 
 
 <hr><br>

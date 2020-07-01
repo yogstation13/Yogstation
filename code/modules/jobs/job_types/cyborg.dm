@@ -14,6 +14,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
+	changed_maps = list("EclipseStation")
+
+/datum/job/cyborg/proc/EclipseStationChanges()
+	spawn_positions = 2
 
 /datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	if(visualsOnly)

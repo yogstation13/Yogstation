@@ -69,11 +69,12 @@
 	set desc = "Mark a floor as your beacon point, allowing you to warp targets to it. Your beacon will not work at extreme distances."
 
 	if(beacon_cooldown >= world.time)
-		to_chat(src, "<span class='danger'><B>Your power is on cooldown. You must wait five minutes between placing beacons.</span></B>")
+		to_chat(src, "<span class='danger'><B>Your power is on cooldown. You must wait five minutes between placing beacons.</B></span>")
 		return
 
 	var/turf/beacon_loc = get_turf(src.loc)
 	if(!isfloorturf(beacon_loc))
+		to_chat(src, "<span class='danger'>Your beacon can only be placed on solid flooring!</span>")
 		return
 
 	if(beacon)
