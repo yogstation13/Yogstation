@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - bugfix: "deletes a rogue pipe from the mining base"
