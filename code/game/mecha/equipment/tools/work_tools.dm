@@ -1,3 +1,6 @@
+#define DECONSTRUCT 0
+#define WALL 1
+#define AIRLOCK 2
 
 //Hydraulic clamp, Kill clamp, Extinguisher, RCD, Cable layer.
 
@@ -254,7 +257,7 @@
 	energy_drain = 250
 	range = MELEE|RANGED
 	item_flags = NO_MAT_REDEMPTION
-	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
+	var/mode = DECONSTRUCT
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Initialize()
 	. = ..()
@@ -275,15 +278,20 @@
 	playsound(chassis, 'sound/machines/click.ogg', 50, 1)
 
 	switch(mode)
-		if(0)
+		if(DECONSTRUCT)
 			if(iswallturf(target))
+				if(istype(target, /turf/closed/wall/rwall))
+					occupant_message("Wall reinforcements are too complex for deconstruction, must be deconstructed manually.")
+					return
 				var/turf/closed/wall/W = target
 				occupant_message("Deconstructing [W]...")
 				if(do_after_cooldown(W))
 					chassis.spark_system.start()
 					W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					playsound(W, 'sound/items/deconstruct.ogg', 50, 1)
-			else if(isfloorturf(target))
+			else if(isfloorturf(target) && !istype(target, /turf/open/floor/engine))
+				if(istype(target, /turf/open/floor/engine))
+					occupant_message("Floor reinforcements prevent deconstruction, remove before continuing.")
 				var/turf/open/floor/F = target
 				occupant_message("Deconstructing [F]...")
 				if(do_after_cooldown(target))
@@ -291,12 +299,16 @@
 					F.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 			else if (istype(target, /obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/A = target
+				if(A.damage_deflection > 21)
+					occupant_message("Airlock too reinforced for deconstruction, remove reinforcements before continuing.")
+					return
 				occupant_message("Deconstructing [target]...")
 				if(do_after_cooldown(target))
 					chassis.spark_system.start()
 					qdel(target)
 					playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
-		if(1)
+		if(WALL)
 			if(isspaceturf(target))
 				var/turf/open/space/S = target
 				occupant_message("Building Floor...")
@@ -311,7 +323,7 @@
 					F.PlaceOnTop(/turf/closed/wall)
 					playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
-		if(2)
+		if(AIRLOCK)
 			if(isfloorturf(target))
 				occupant_message("Building Airlock...")
 				if(do_after_cooldown(target))
@@ -541,3 +553,7 @@
 	qdel(M)
 	playsound(get_turf(N),'sound/items/ratchet.ogg',50,1)
 	return
+
+#undef DECONSTRUCT
+#undef WALL
+#undef AIRLOCK
