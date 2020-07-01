@@ -288,11 +288,11 @@
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
 	
 
-/datum/disease/transformation/morph
-	name = "Spectral Blessing"
+/datum/disease/transformation/ghost
+	name = "Spectral Curse"
 	cure_text = /datum/reagent/water/holywater
 	cures = list(/datum/reagent/water/holywater)
-	agent = "Gluttony's Blessing"
+	agent = "Spectral Curse"
 	desc = "A 'gift' from the spectral realm
 	stage_prob = 20
 	severity = DISEASE_SEVERITY_BIOHAZARD
