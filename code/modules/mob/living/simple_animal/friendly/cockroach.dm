@@ -57,8 +57,8 @@
 /mob/living/simple_animal/cockroach/clownbug
 	name = "clown bug"
 	desc = "Absolutely disgusting... almost as horrid as that one green clown."
-	icon_state = "clownbug"
-	icon_dead = "clownbug"
+	icon_state = "clowngoblin"
+	icon_dead = "clowngoblin"
 	verb_say = "honks"
 	verb_ask = "honks inquisitively"
 	verb_exclaim = "honks loudly"
