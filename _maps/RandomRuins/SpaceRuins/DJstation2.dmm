@@ -858,6 +858,23 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation/solars)
+"Tf" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	dir = 8;
+	freerange = 1;
+	listening = 0;
+	name = "Pirate Radio Broadcast Channel";
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
 "To" = (
 /obj/structure/table,
 /obj/item/radio/intercom{
@@ -922,27 +939,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"We" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	dir = 8;
-	freerange = 1;
-	listening = 0;
-	name = "Pirate Radio Broadcast Channel";
-	pixel_x = -4;
-	pixel_y = 5
-	},
-/obj/item/gun/ballistic/rifle/boltaction{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 "WP" = (
 /obj/structure/cable{
@@ -1225,7 +1221,7 @@ zB
 Pd
 fb
 nr
-We
+Tf
 nt
 Oa
 aw
