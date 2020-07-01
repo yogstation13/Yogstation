@@ -96,7 +96,7 @@
 				to_chat(user, "You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.")
 				
 /obj/item/clothing/head/det_hat/evil
-	name = "syndicate fedora"
+	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
 	desc = "A suspicious black fedora with a red band."
 	w_class = 4
