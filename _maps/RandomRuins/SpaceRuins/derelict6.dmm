@@ -489,9 +489,12 @@
 	},
 /turf/template_noop,
 /area/ruin/unpowered)
-"OP" = (
+"EB" = (
+/obj/item/reagent_containers/syringe/ghost,
+/turf/open/floor/plasteel/airless,
+/area/ruin/unpowered)
+"Fs" = (
 /mob/living/simple_animal/hostile/retaliate/ghost,
-/obj/item/scrying,
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered)
 
@@ -733,7 +736,7 @@ as
 ai
 ai
 ag
-OP
+Fs
 ag
 ai
 aK
@@ -779,7 +782,7 @@ by
 ag
 ag
 ag
-ag
+EB
 ag
 ai
 ai
