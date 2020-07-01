@@ -289,7 +289,7 @@
 					chassis.spark_system.start()
 					W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					playsound(W, 'sound/items/deconstruct.ogg', 50, 1)
-			else if(isfloorturf(target) && !istype(target, /turf/open/floor/engine))
+			else if(isfloorturf(target))
 				if(istype(target, /turf/open/floor/engine))
 					occupant_message("Floor reinforcements prevent deconstruction, remove before continuing.")
 				var/turf/open/floor/F = target
