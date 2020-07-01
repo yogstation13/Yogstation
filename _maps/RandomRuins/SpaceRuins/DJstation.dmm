@@ -323,6 +323,28 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
+"lt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/structure/rack,
+/obj/item/clothing/mask/breath{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/space/fragile{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet/space/fragile{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
 "lK" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -588,25 +610,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"BY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/structure/rack,
-/obj/item/clothing/suit/space/syndicate/orange,
-/obj/item/clothing/mask/breath{
-	pixel_x = 8;
-	pixel_y = -6
-	},
-/obj/item/clothing/head/helmet/space/syndicate/orange{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/turf/open/floor/plating,
 /area/ruin/space/djstation)
 "BZ" = (
 /obj/structure/cable{
@@ -1241,7 +1244,7 @@ ah
 uQ
 uw
 hj
-BY
+lt
 af
 xp
 aw
