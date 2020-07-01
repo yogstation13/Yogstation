@@ -64,7 +64,7 @@
 	icon_state = "borgi"
 	icon_living = "borgi"
 	icon_dead = "borgi_dead"
-	var/emagged = 0
+	var/emagged = FALSE
 	minbodytemp = 0
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	del_on_death = 1
