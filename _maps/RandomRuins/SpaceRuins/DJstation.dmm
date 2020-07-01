@@ -6,10 +6,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation/solars)
-"ac" = (
-/obj/machinery/power/solar/fake,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/ruin/space/djstation/solars)
 "ad" = (
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation/solars)
@@ -34,21 +30,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
-"aj" = (
-/obj/machinery/power/terminal,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ak" = (
-/obj/item/multitool,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"al" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
 "am" = (
 /obj/item/extinguisher,
 /turf/open/floor/plating,
@@ -69,77 +50,8 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
-"ap" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -24
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"aq" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/item/storage/box/lights/mixed,
-/obj/structure/sign/warning/electricshock{
-	pixel_y = -32
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ar" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"as" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/space/fragile,
-/obj/item/clothing/head/helmet/space/fragile,
-/obj/item/clothing/mask/breath,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"at" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"au" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"av" = (
-/obj/machinery/vending/snack,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
 "aw" = (
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"ax" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"ay" = (
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"az" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
 /area/ruin/space/djstation)
 "aA" = (
 /obj/effect/turf_decal/tile/bar,
@@ -147,73 +59,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aB" = (
-/obj/effect/spawner/lootdrop/crate_spawner,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aC" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aD" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aE" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aF" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aG" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Kitchen"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aH" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	broadcasting = 0;
-	dir = 8;
-	freerange = 1;
-	listening = 1;
-	name = "Pirate Radio Listening Channel"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aI" = (
-/obj/structure/chair/office/light,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aJ" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Rest Room"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aK" = (
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aL" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
 /area/ruin/space/djstation)
 "aM" = (
 /obj/machinery/disposal/bin,
@@ -224,75 +69,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/djstation)
-"aN" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aO" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aP" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aQ" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	dir = 8;
-	freerange = 1;
-	listening = 0;
-	name = "Pirate Radio Broadcast Channel"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aR" = (
-/obj/structure/table,
-/obj/item/paper/fluff/ruins/djstation,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aS" = (
-/obj/structure/frame/computer{
-	anchored = 1;
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
 "aT" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/djstation)
-"aU" = (
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aV" = (
-/obj/structure/closet,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
 "aW" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
-/area/ruin/space/djstation)
-"aX" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Washroom"
-	},
-/turf/open/floor/plasteel/freezer,
 /area/ruin/space/djstation)
 "aY" = (
 /obj/machinery/light{
@@ -304,18 +89,8 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"ba" = (
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/djstation)
 "bb" = (
 /obj/structure/chair,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"bc" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/space_heater,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 "bd" = (
@@ -326,21 +101,6 @@
 /obj/item/clothing/under/soviet,
 /obj/item/clothing/head/ushanka,
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"be" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/djstation)
-"bf" = (
-/obj/structure/toilet{
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/freezer,
 /area/ruin/space/djstation)
 "bg" = (
 /obj/structure/table,
@@ -371,6 +131,503 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"bu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"bZ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"dc" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"dN" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/chair,
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"ei" = (
+/obj/machinery/firealarm/partyalarm,
+/turf/closed/wall,
+/area/ruin/space/djstation)
+"eq" = (
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/structure/closet/crate{
+	name = "solar pack crate"
+	},
+/obj/item/paper/guides/jobs/engi/solars,
+/obj/item/hot_potato/harmless,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"fb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"fP" = (
+/obj/machinery/atmospherics/components/binary/valve/on/layer1{
+	name = "Air Release Valve"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"fU" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"hj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"hr" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"hu" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"hv" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/computer/arcade/orion_trail,
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"hI" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"hL" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"hS" = (
+/obj/machinery/computer/camera_advanced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"ie" = (
+/obj/structure/table,
+/obj/item/paper/fluff/ruins/djstation{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 10;
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"ig" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/machinery/cell_charger,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"ir" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"iY" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/turf/template_noop,
+/area/space/nearstation)
+"jf" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Washroom"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/djstation)
+"jW" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/djstation)
+"kX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"lh" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"ln" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 1;
+	piping_layer = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"lK" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"lQ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation)
+"mi" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"nr" = (
+/obj/structure/chair/office/light,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"nt" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"nU" = (
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/airalarm/all_access{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"qn" = (
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"qG" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"rb" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"ro" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"rr" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"sC" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"tW" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/solars/solar_96,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"uk" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"uw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"uQ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"vd" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation)
+"vj" = (
+/obj/structure/table,
+/obj/item/crowbar/large,
+/obj/item/clothing/head/bearpelt{
+	pixel_x = 1;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"vR" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"wO" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"xp" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"yG" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/obj/item/toy/plush/teddybear,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"yY" = (
+/obj/machinery/space_heater,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"zm" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"zp" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "Rest Room"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"zB" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"zF" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	dir = 4;
+	icon_state = "inje_map-2"
+	},
+/turf/template_noop,
+/area/space/nearstation)
+"zI" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/djstation)
+"zS" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"Bc" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "Kitchen"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"BY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/structure/rack,
+/obj/item/clothing/suit/space/syndicate/orange,
+/obj/item/clothing/mask/breath{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/helmet/space/syndicate/orange{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"BZ" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Cb" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/solar_control{
+	id = "portsolar";
+	name = "Port Quarter Solar Control"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
 "Co" = (
 /obj/machinery/door/airlock/external{
 	name = "Ruskie DJ Station"
@@ -379,6 +636,372 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/ruin/space/djstation)
+"CV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"DT" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"El" = (
+/obj/item/storage/box/lights/mixed,
+/obj/structure/sign/warning/electricshock{
+	pixel_y = -32
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"Ep" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"EZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"FS" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"GL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"GU" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"HV" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/turf/template_noop,
+/area/space/nearstation)
+"Kg" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"Lh" = (
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Ln" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Lo" = (
+/obj/machinery/power/apc{
+	name = "Worn-out APC";
+	pixel_y = -24
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"LF" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"LZ" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/costume,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"My" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"MJ" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Nt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"NJ" = (
+/obj/structure/mirror{
+	pixel_x = 7
+	},
+/turf/closed/wall,
+/area/ruin/space/djstation)
+"NW" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"Oa" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"Pd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"Qf" = (
+/obj/structure/grille/broken,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Qm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"QF" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/vending/snack,
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"QP" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"Rf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/djstation)
+"RE" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/stack/cable_coil/random{
+	pixel_x = -3
+	},
+/obj/item/stack/cable_coil/random{
+	pixel_x = -1;
+	pixel_y = -3
+	},
+/obj/item/stack/cable_coil/random{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"Se" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Tf" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	dir = 8;
+	freerange = 1;
+	listening = 0;
+	name = "Pirate Radio Broadcast Channel";
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"To" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 0;
+	dir = 8;
+	freerange = 1;
+	listening = 1;
+	name = "Pirate Radio Listening Channel";
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -9;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/snacks/grown/potato{
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"UI" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 0;
+	dir = 8;
+	freerange = 1;
+	listening = 1;
+	name = "Pirate Radio Listening Channel";
+	pixel_x = 6;
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 7;
+	pixel_y = 15
+	},
+/obj/item/ammo_box/a762{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"VX" = (
+/obj/structure/curtain,
+/obj/machinery/shower,
+/obj/item/soap/deluxe,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/djstation)
+"VY" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"WP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/tracker,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"WT" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"XA" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"YS" = (
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating/airless,
+/area/ruin/space/djstation/solars)
+"Zw" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_x = -10;
+	pixel_y = 7
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/djstation)
+"ZI" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 
 (1,1,1) = {"
@@ -390,15 +1013,15 @@ aa
 ab
 ab
 ab
-ab
+dc
 ab
 ab
 ab
 aa
 af
-ag
-ag
-ag
+Kg
+Kg
+Kg
 af
 aa
 ae
@@ -413,22 +1036,22 @@ aa
 aa
 aa
 ab
-ac
+lK
+Lh
 ad
-ac
-ad
-ac
+hL
+FS
 ab
 aa
 af
-az
-aF
+QF
+uk
 aM
 aW
 aZ
-aZ
-aZ
 bj
+aa
+aa
 aa
 "}
 (3,1,1) = {"
@@ -438,18 +1061,18 @@ aa
 aa
 aa
 ab
-ac
+lK
+Lh
 ad
-ac
-ad
-ac
+hL
+FS
 ab
-aa
+zF
 af
-aA
-aA
-aN
-af
+VY
+QP
+ir
+ag
 ae
 ae
 aa
@@ -463,19 +1086,19 @@ aa
 aa
 ae
 ab
-ac
+lK
+Lh
 ad
-ac
-ad
-ac
+hL
+FS
 ab
-aa
+iY
 af
-aA
-aA
-aO
+dN
+Zw
+sC
 af
-af
+NJ
 af
 af
 aa
@@ -488,20 +1111,20 @@ aa
 ae
 ae
 ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
+lK
+Lh
+Ln
+hL
+tW
+YS
+HV
 af
+hv
+XA
 aA
-aA
-aA
-aX
-ba
-be
+jf
+zI
+jW
 af
 aa
 aa
@@ -513,41 +1136,41 @@ ab
 ab
 ab
 af
-ag
-ag
-af
-ag
-ag
-af
-af
-af
-ag
-aG
-ag
+Kg
+Kg
+lQ
+Kg
+zS
 af
 af
-bf
+af
+ag
+Bc
+ag
+ei
+af
+VX
 af
 aa
 aa
 "}
 (7,1,1) = {"
 ab
-ac
-ac
-ac
-ac
-ag
-ah
-ah
-ah
-am
-ah
-ap
+BZ
+BZ
+BZ
+BZ
 af
-au
-aw
-aw
+eq
+ah
+DT
+am
+EZ
+Lo
+af
+yY
+GL
+kX
 aw
 aw
 af
@@ -557,23 +1180,23 @@ aa
 aa
 "}
 (8,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ag
-ah
-ah
-ah
-ah
-ah
-aq
+hI
+LF
+WT
+WT
+GU
 af
-av
+ai
+ah
+DT
+bZ
+rb
+El
+af
+mi
 aw
-aH
-aP
+UI
+To
 aw
 bb
 bg
@@ -582,50 +1205,50 @@ aa
 aa
 "}
 (9,1,1) = {"
-ab
-ac
-ac
-ac
-ac
-af
-ai
-ah
-aj
-an
+Qf
+Lh
+ad
+hL
+WP
+vd
+Cb
 ao
-ar
-at
-aw
-aw
-aI
-aQ
-aw
-aw
+My
+an
+bu
+Qm
+zB
+Pd
+fb
+nr
+Tf
+nt
+Oa
 aw
 af
 aa
 aa
 "}
 (10,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ag
-ah
-ah
-ak
-ah
-ah
-ah
+hr
+Se
+Ep
+Ep
+MJ
 af
-ax
+RE
+ah
+uQ
+uw
+hj
+BY
+af
+xp
 aw
-aH
-aR
-aw
-bc
+hS
+ie
+Nt
+wO
 bh
 af
 af
@@ -633,22 +1256,22 @@ af
 "}
 (11,1,1) = {"
 ab
-ac
-ac
-ac
-ac
-ag
-ah
-ah
-al
-ah
-ah
-as
+rr
+rr
+rr
+rr
 af
-ay
-aw
-aw
-aw
+lh
+NW
+qG
+fP
+uw
+ln
+af
+nU
+GL
+CV
+ZI
 aY
 bd
 aw
@@ -663,16 +1286,16 @@ ab
 ab
 ab
 af
-ag
-ag
+Kg
+Kg
+lQ
+Kg
+Kg
+af
+af
 af
 ag
-ag
-af
-af
-af
-ag
-aJ
+zp
 ag
 af
 af
@@ -688,17 +1311,17 @@ ae
 ae
 ae
 ab
-ac
-ad
-ac
-ad
-ac
+lK
+Lh
+zm
+hL
+FS
 ab
 aa
 af
-aB
-aK
-aS
+fU
+ro
+vj
 af
 aa
 aa
@@ -713,16 +1336,16 @@ aa
 aa
 ae
 ab
-ac
+lK
+Lh
 ad
-ac
-ad
-ac
+hL
+FS
 ab
 aa
 af
-aC
-aK
+LZ
+ro
 aT
 af
 aa
@@ -738,17 +1361,17 @@ aa
 aa
 ae
 ab
-ac
+lK
+Lh
 ad
-ac
-ad
-ac
+hL
+FS
 ab
 aa
 af
-aD
-aK
-aU
+vR
+Rf
+qn
 af
 ae
 ae
@@ -763,17 +1386,17 @@ aa
 aa
 aa
 ab
-ac
+lK
+Lh
 ad
-ac
-ad
-ac
+hL
+FS
 ab
 aa
 af
-aE
-aL
-aV
+ig
+yG
+hu
 af
 aa
 aa
@@ -790,15 +1413,15 @@ aa
 ab
 ab
 ab
-ab
+dc
 ab
 ab
 ab
 aa
 af
-ag
-ag
-ag
+Kg
+Kg
+Kg
 af
 aa
 aa
