@@ -287,7 +287,6 @@
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
 	
-
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"
 	cure_text = /datum/reagent/water/holywater
