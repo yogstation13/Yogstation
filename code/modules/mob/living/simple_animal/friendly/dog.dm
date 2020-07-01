@@ -67,7 +67,7 @@
 	var/emagged = FALSE
 	minbodytemp = 0
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
-	del_on_death = 1
+	del_on_death = TRUE
 	deathmessage = "blows apart!"
 	animal_species = /mob/living/simple_animal/pet/dog/corgi/borgi
 	nofur = TRUE
