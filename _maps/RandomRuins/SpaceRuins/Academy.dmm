@@ -2,79 +2,68 @@
 "aa" = (
 /turf/open/space,
 /area/space)
-"ab" = (
-/obj/structure/flora/ausbushes/leafybush,
-/obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
 "ac" = (
 /turf/closed/indestructible/rock,
 /area/ruin/unpowered)
-"ae" = (
-/obj/structure/table,
-/obj/item/trash/semki,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
+"ag" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/remains/human,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
 "aj" = (
 /mob/living/simple_animal/hostile/carp/ranged{
 	faction = list("wizard")
 	},
 /turf/open/space,
 /area/space)
-"aB" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"aJ" = (
-/obj/item/stack/sheet/metal,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"aK" = (
-/obj/structure/table/reinforced,
-/obj/item/pen/red,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"aM" = (
-/obj/structure/noticeboard{
-	pixel_y = -32
+"aw" = (
+/obj/structure/chair/office/light{
+	dir = 1
 	},
-/obj/item/paper{
-	name = "Biology Lab"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
-	},
-/area/awaymission/academy/academyclassroom)
-"aT" = (
-/obj/structure/table/wood,
-/obj/item/dice/d6,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"bg" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
+"ay" = (
+/obj/machinery/button/door{
+	id = "AcademyAuto";
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"aB" = (
+/obj/structure/chair/wood/normal,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"aC" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyclassroom)
+"bb" = (
+/obj/item/storage/box/monkeycubes,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"bd" = (
+/obj/structure/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"bp" = (
+/obj/structure/table/wood,
+/obj/item/book/granter/spell/smoke/lesser,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"bA" = (
+/obj/effect/turf_decal/tile/yellow{
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	icon_state = "tile_corner"
 	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"bj" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/awaymission/academy/academyclassroom)
-"bp" = (
-/obj/structure/target_stake,
-/obj/item/target,
 /turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"bF" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/gold,
-/turf/open/floor/carpet,
 /area/awaymission/academy/academyclassroom)
 "bI" = (
 /obj/machinery/light/small{
@@ -88,312 +77,41 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
-"bL" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/wood,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyclassroom)
-"bM" = (
-/mob/living/simple_animal/hostile/carp/ranged{
-	faction = list("wizard")
-	},
-/turf/closed/mineral/random/high_chance,
-/area/ruin/unpowered)
-"bS" = (
-/mob/living/simple_animal/hostile/morph{
-	faction = list("skeleton");
-	name = "Bob"
-	},
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"bT" = (
-/obj/item/bikehorn,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"bX" = (
-/obj/structure/flora/ausbushes/leafybush,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"ce" = (
-/obj/structure/closet/radiation,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"cg" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"cG" = (
-/obj/machinery/computer/mech_bay_power_console,
-/turf/open/floor/circuit/green,
-/area/awaymission/academy/academyclassroom)
-"cJ" = (
-/turf/open/floor/mech_bay_recharge_floor,
-/area/awaymission/academy/academyclassroom)
-"cR" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"cS" = (
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"df" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel{
-	dir = 4;
-	icon_state = "whitehall"
-	},
-/area/awaymission/academy/academyclassroom)
-"do" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"dp" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"dA" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"dG" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"dP" = (
-/obj/machinery/computer/teleporter,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"dW" = (
-/obj/structure/flora/ausbushes/leafybush,
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"ep" = (
-/obj/singularity/academy,
-/turf/open/space,
-/area/ruin/unpowered/no_grav)
-"eq" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/ruin/unpowered/no_grav)
-"eu" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"ez" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetsymbol"
-	},
-/area/awaymission/academy/academyclassroom)
-"eB" = (
-/obj/structure/closet/athletic_mixed,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"eE" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/iron,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyclassroom)
-"eP" = (
-/obj/structure/frame/computer{
-	anchored = 1
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"eY" = (
-/obj/structure/frame/computer{
-	anchored = 1;
-	dir = 8;
-	icon_state = "0"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"fb" = (
-/obj/machinery/teleport/hub,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"fd" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"fh" = (
+"bJ" = (
 /obj/structure/table,
-/obj/item/gun/energy/floragun,
 /obj/item/paper{
-	info = "Grade: D- Educator's Notes: SEE ME AFTER CLASS.";
+	info = "Grade: B- Educator's Notes: Keep applying yourself, you're showing improvement.";
 	name = "Summoning Midterm Exam"
 	},
+/obj/item/gun/ballistic/revolver/russian,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
-"fp" = (
-/obj/structure/chair/wood/normal,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"fq" = (
-/obj/structure/trap/damage,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"fr" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"ft" = (
-/obj/structure/table,
-/obj/item/scalpel,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"fu" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"fx" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"fz" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"fB" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"fC" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"fF" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"fH" = (
-/turf/open/floor/plasteel/airless{
-	dir = 4;
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyaft)
-"fM" = (
-/obj/structure/target_stake,
-/obj/item/target/syndicate,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"fP" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"fT" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/awaymission/academy/academyclassroom)
-"fX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"gc" = (
-/obj/structure/reagent_dispensers/fueltank,
+"bL" = (
+/obj/structure/rack,
+/obj/item/stack/cable_coil,
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
-"gk" = (
-/obj/effect/turf_decal/tile/red{
+"bN" = (
+/mob/living/simple_animal/hostile/retaliate/bat,
+/turf/open/floor/mineral/uranium,
+/area/awaymission/academy/academycellar)
+"bQ" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"bX" = (
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
 	dir = 8;
 	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"gq" = (
-/obj/structure/table,
-/obj/item/stack/rods,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"gs" = (
-/obj/machinery/door/window{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"gw" = (
-/obj/structure/table/wood,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"gx" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/chem_master/condimaster,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"gR" = (
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"gT" = (
+"cc" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -405,56 +123,123 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
-"hc" = (
-/obj/effect/turf_decal/tile/black{
+"cd" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"cw" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/pointybush,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"cy" = (
+/obj/effect/immovablerod{
 	dir = 4;
-	icon_state = "tile_corner"
+	notdebris = 1
 	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"cD" = (
+/obj/structure/flora/ausbushes/pointybush,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"cM" = (
+/obj/structure/closet/crate/internals,
+/obj/item/tank/internals/oxygen,
+/obj/item/tank/internals/oxygen/red,
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"hd" = (
-/obj/structure/chair/stool,
-/turf/open/floor/carpet,
+"cZ" = (
+/obj/structure/table/wood,
+/obj/item/pen/invisible,
+/turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
-"hh" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Uland The Powerful"
+"de" = (
+/obj/structure/chair{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"hi" = (
-/obj/machinery/mech_bay_recharge_port,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"ho" = (
-/obj/structure/rack,
-/obj/item/stack/cable_coil,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"hq" = (
-/turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "whitehall"
+"dl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10;
+	icon_state = "warningline"
 	},
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
-"hs" = (
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"hA" = (
+"dp" = (
 /turf/open/floor/plasteel{
 	icon_state = "grimy"
 	},
-/area/awaymission/academy/academyaft)
-"hM" = (
-/turf/closed/indestructible/fakeglass{
+/area/awaymission/academy/academyclassroom)
+"dP" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"dR" = (
+/obj/structure/window/reinforced{
+	color = "#008000";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"ei" = (
+/obj/structure/closet/athletic_mixed,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"ev" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"eM" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/structure/window/reinforced{
 	color = "#008000"
 	},
-/area/awaymission/academy/academyaft)
-"hU" = (
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"eW" = (
+/obj/structure/table/wood,
+/obj/item/staff,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"eY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"fd" = (
+/obj/structure/noticeboard,
+/turf/closed/indestructible/riveted/uranium,
+/area/awaymission/academy/academyfore)
+"fl" = (
+/obj/structure/target_stake,
+/obj/item/target/syndicate,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"fr" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"fz" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"fC" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1;
@@ -464,6 +249,114 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
+"fG" = (
+/obj/item/stack/sheet/animalhide/monkey,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"fH" = (
+/turf/open/floor/plasteel/airless{
+	dir = 4;
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyaft)
+"fT" = (
+/obj/structure/chair,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"fV" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"fX" = (
+/obj/structure/window/reinforced{
+	color = "#008000"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"ga" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"gd" = (
+/turf/closed/wall/mineral/wood,
+/area/awaymission/academy/academycellar)
+"gl" = (
+/obj/structure/table,
+/obj/item/weldingtool/hugetank,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"gr" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/unpowered/no_grav)
+"gC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/book/manual/wiki/robotics_cyborgs,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"gK" = (
+/obj/structure/trap/damage,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"hf" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"hl" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel{
+	dir = 2;
+	icon_state = "cafeteria"
+	},
+/area/awaymission/academy/academyaft)
+"hs" = (
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"ht" = (
+/obj/structure/closet/crate,
+/obj/item/crowbar/red,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"hA" = (
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
+/area/awaymission/academy/academyaft)
+"hC" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"hL" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Benjamin The Generic"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"hM" = (
+/turf/closed/indestructible/fakeglass{
+	color = "#008000"
+	},
+/area/awaymission/academy/academyaft)
 "hW" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1;
@@ -484,68 +377,40 @@
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
 "ig" = (
-/obj/structure/target_stake,
-/obj/item/target/alien,
-/turf/open/floor/engine,
-/area/awaymission/academy/academyclassroom)
-"ii" = (
-/obj/structure/window/reinforced,
-/obj/item/ammo_casing,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"ij" = (
-/turf/open/floor/mineral/uranium,
-/area/awaymission/academy/academycellar)
-"in" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8;
-	icon_state = "tile_corner"
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/open/floor/plasteel{
+	icon_state = "white"
 	},
-/obj/effect/turf_decal/tile/red,
+/area/awaymission/academy/academyclassroom)
+"ih" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"ik" = (
+/obj/structure/table/wood,
+/obj/item/seeds/kudzu,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"io" = (
-/turf/closed/wall,
+"in" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
-"ip" = (
-/mob/living/simple_animal/hostile/wizard/trey,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"it" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
+"is" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4;
+	icon_state = "warningline"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
 "iw" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"iy" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"iA" = (
-/obj/structure/ladder/unbreakable/rune{
-	height = 1;
-	id = "academy_storage"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"iB" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "iC" = (
 /obj/machinery/light{
 	dir = 8
@@ -571,8 +436,17 @@
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
 "iJ" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetsymbol"
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/vomit,
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/item/slime_extract/rainbow,
+/turf/open/floor/plasteel{
+	dir = 2;
+	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
 "iN" = (
@@ -581,6 +455,13 @@
 /area/awaymission/academy/academyaft)
 "iO" = (
 /turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"iP" = (
+/obj/structure/window/reinforced{
+	color = "#008000";
+	dir = 4
+	},
+/turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
 "iR" = (
 /obj/structure/rack,
@@ -603,19 +484,6 @@
 "iU" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/awaymission/academy/academycellar)
-"iV" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"iW" = (
-/obj/effect/immovablerod{
-	dir = 4;
-	notdebris = 1
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
 "iX" = (
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -625,6 +493,10 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
+"jd" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
 "jh" = (
 /obj/structure/window/reinforced,
 /obj/structure/table,
@@ -636,16 +508,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/academy/academyaft)
-"jk" = (
-/obj/structure/table,
-/obj/item/pen/red,
-/turf/open/floor/plasteel,
+"ji" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6;
+	icon_state = "warningline"
+	},
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
-"jl" = (
-/obj/structure/table/reinforced,
-/obj/item/laser_pointer/upgraded,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
+"jm" = (
+/obj/structure/table,
+/obj/item/trash/semki,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"jo" = (
+/obj/structure/target_stake,
+/turf/open/floor/engine,
+/area/awaymission/academy/academyclassroom)
 "jq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -658,6 +536,12 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
+"ju" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/hunter{
+	name = "Cerberus"
+	},
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
 "jw" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1;
@@ -672,15 +556,6 @@
 "jx" = (
 /obj/structure/frame/machine,
 /turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"jy" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Sayk The Young"
-	},
-/turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
 /area/awaymission/academy/academyaft)
 "jz" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -768,23 +643,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"jN" = (
-/obj/machinery/vending/hydronutrients,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "jO" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"jP" = (
+/obj/item/bikehorn,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
 "jQ" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -807,11 +673,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"jS" = (
-/obj/structure/flora/ausbushes/leafybush,
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
 "jT" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -832,6 +693,10 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
+"jW" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
 "jX" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel{
@@ -849,10 +714,6 @@
 /obj/item/stock_parts/micro_laser/high,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"jZ" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plasteel/cult,
-/area/awaymission/academy/academycellar)
 "ka" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry,
 /turf/open/floor/plating,
@@ -936,6 +797,12 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
+"km" = (
+/turf/open/floor/plasteel{
+	dir = 1;
+	icon_state = "chapel"
+	},
+/area/awaymission/academy/academyclassroom)
 "ko" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1;
@@ -995,6 +862,21 @@
 /obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"kw" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
 "kx" = (
 /obj/item/multitool,
 /turf/open/floor/engine,
@@ -1009,11 +891,11 @@
 /turf/open/floor/engine,
 /area/awaymission/academy/academyaft)
 "kB" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8;
-	icon_state = "tile_corner"
+/obj/structure/chair/wood/normal{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
+/obj/structure/trap/fire,
+/turf/open/floor/wood,
 /area/awaymission/academy/academyclassroom)
 "kC" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -1048,19 +930,11 @@
 /obj/item/book/granter/spell/summonitem,
 /turf/open/floor/vault,
 /area/awaymission/academy/academycellar)
-"kJ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
+"kM" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/glass,
+/obj/item/target,
+/obj/item/target,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "kN" = (
@@ -1079,39 +953,23 @@
 	},
 /turf/open/space,
 /area/awaymission/academy/academyaft)
-"kQ" = (
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"kS" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"kT" = (
-/obj/structure/table/reinforced,
-/obj/item/paper{
-	info = "We're upgrading to the latest mainframes for our consoles, the shipment should be in before spring break is over!";
-	name = "Console Maintenance"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
 "kV" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Rotciv The Dented"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"kY" = (
-/obj/effect/turf_decal/tile/red{
+"kW" = (
+/obj/structure/noticeboard{
 	dir = 8;
-	icon_state = "tile_corner"
+	pixel_x = 27
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1;
-	icon_state = "tile_corner"
+/obj/item/paper{
+	name = "Weapon Summoning 201"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
 /area/awaymission/academy/academyclassroom)
 "lb" = (
 /obj/machinery/light{
@@ -1119,9 +977,10 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"ld" = (
-/obj/structure/mecha_wreckage/durand,
-/turf/open/floor/plating,
+"le" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "lg" = (
 /mob/living/simple_animal/hostile/wizard{
@@ -1129,27 +988,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"lh" = (
-/obj/machinery/light{
-	dir = 8
-	},
+"lk" = (
+/obj/structure/table/wood,
+/obj/item/hand_labeler,
 /turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"li" = (
-/obj/structure/mineral_door/wood,
-/obj/effect/turf_decal/tile/red,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"lm" = (
-/obj/structure/disposaloutlet{
-	dir = 4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/awaymission/academy/academyclassroom)
+/area/awaymission/academy/academyfore)
 "lo" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Art Cox The Star Gazer"
@@ -1162,19 +1005,10 @@
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
-"lq" = (
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
 "lr" = (
 /obj/machinery/igniter,
 /turf/open/floor/plating,
 /area/awaymission/academy/academyaft)
-"lt" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Poe The Lawyer"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "lu" = (
 /mob/living/simple_animal/hostile/bear{
 	name = "Papa Bear"
@@ -1182,13 +1016,9 @@
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
 "lw" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Alison The Rabbit"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
-	},
-/area/awaymission/academy/academyclassroom)
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
 "lz" = (
 /mob/living/simple_animal/hostile/bear{
 	name = "Baby Bear"
@@ -1214,19 +1044,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academycellar)
-"lF" = (
-/obj/item/storage/box/monkeycubes,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
 "lG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/awaymission/academy/academyaft)
-"lH" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Maya The Funny"
+"lI" = (
+/obj/machinery/door/window{
+	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
 "lN" = (
 /turf/closed/mineral/random,
@@ -1281,14 +1110,20 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
-"mi" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"mj" = (
-/obj/structure/falsewall/wood,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
+"mk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
 "ml" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -1308,10 +1143,23 @@
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
 "mr" = (
-/obj/structure/chair/wood/normal{
-	dir = 1
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	icon_state = "tile_corner"
 	},
-/turf/open/floor/wood,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/structure/window/reinforced{
+	color = "#008000";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "mu" = (
 /mob/living/simple_animal/hostile/netherworld,
@@ -1331,11 +1179,13 @@
 /obj/item/clothing/mask/gas/syndicate,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
-"mB" = (
-/obj/structure/window/reinforced,
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
+"mz" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/silver,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
 "mC" = (
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/plating,
@@ -1345,11 +1195,6 @@
 /obj/item/gun/magic/wand,
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
-"mG" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical/old,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "mI" = (
 /obj/structure/rack,
 /obj/item/staff,
@@ -1370,6 +1215,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academycellar)
+"mO" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
 "mP" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -1417,14 +1266,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
-"ni" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
-	},
-/area/awaymission/academy/academyclassroom)
 "nj" = (
 /obj/structure/noticeboard,
 /turf/closed/indestructible/riveted/uranium,
@@ -1444,9 +1285,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
-"no" = (
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
 "np" = (
 /obj/structure/ladder/unbreakable/rune{
 	id = "academy_storage"
@@ -1457,6 +1295,9 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academycellar)
+"nw" = (
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
 "nA" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1472,119 +1313,107 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/academy/academyaft)
-"nC" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"nV" = (
-/obj/machinery/light/small,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"nX" = (
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"od" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"ol" = (
+"nE" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"oq" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/fans/tiny/invisible,
+"nI" = (
+/obj/structure/bookcase/random,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"ow" = (
-/turf/closed/indestructible/rock,
-/area/awaymission/academy/academycellar)
-"oE" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/ausbushes/pointybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"oG" = (
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/engine,
-/area/awaymission/academy/academyclassroom)
-"oH" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/red,
-/obj/item/dice/d20/fate/one_use,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"oR" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/gin,
-/obj/item/reagent_containers/hypospray/medipen/survival,
-/turf/open/floor/wood,
-/area/awaymission/academy/academycellar)
-"oT" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"pb" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Druja The Foolish"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"pc" = (
-/obj/structure/flora/ausbushes/pointybush,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"pd" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Gael The Suicidal"
-	},
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"po" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/transparent/plasma,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyclassroom)
-"pt" = (
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"pM" = (
-/obj/machinery/door/window{
-	dir = 4
-	},
-/obj/item/ammo_casing,
+"nQ" = (
+/obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4;
 	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"pO" = (
-/obj/structure/noticeboard{
-	dir = 8;
-	pixel_x = 27
+"nR" = (
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"nV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9;
+	icon_state = "warningline"
 	},
-/obj/item/paper{
-	name = "Weapon Summoning 201"
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"nZ" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"od" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"ol" = (
+/obj/item/toy/beach_ball/holoball,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"om" = (
+/obj/structure/table/reinforced,
+/obj/item/pen/red,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"oq" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"oJ" = (
+/obj/structure/trap/damage,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"oR" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/reagent_containers/hypospray/medipen/survival,
+/turf/open/floor/wood,
+/area/awaymission/academy/academycellar)
+"pj" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/structure/window/reinforced{
+	color = "#008000";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"pm" = (
+/obj/machinery/gibber,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"pI" = (
+/obj/structure/chair/stool,
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/open/floor/plasteel{
-	icon_state = "grimy"
+	icon_state = "showroomfloor"
 	},
 /area/awaymission/academy/academyclassroom)
 "pP" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/gold,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"pS" = (
-/obj/structure/chair/stool,
+/obj/machinery/recharger,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"pT" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "pX" = (
@@ -1593,18 +1422,14 @@
 /obj/item/reagent_containers/hypospray/medipen/survival,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/academy/academycellar)
-"qa" = (
+"qe" = (
 /obj/effect/turf_decal/tile/red{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/stripes/line{
 	dir = 4;
-	icon_state = "warningline"
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -1613,90 +1438,81 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
-"qn" = (
-/obj/structure/table,
-/obj/item/paper{
-	info = "Grade: A+ Educator's Notes: Excellent form.";
-	name = "Summoning Midterm Exam"
+"ql" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
 	},
-/obj/item/gun/ballistic/shotgun/automatic/combat,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/button/door{
+	id = "AcademyGate";
+	name = "Skeleton Storage Control";
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"qv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4;
+	icon_state = "warningline"
+	},
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"qA" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"qI" = (
-/mob/living/simple_animal/hostile/retaliate/bat,
-/turf/open/floor/mineral/uranium,
-/area/awaymission/academy/academycellar)
+"qF" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"qP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/indestructible/riveted/uranium,
+/area/awaymission/academy/academyclassroom)
 "qS" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/coffee,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"qW" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
 "qZ" = (
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"ra" = (
-/mob/living/simple_animal/hostile/syndicate{
-	name = "Operative John Adams"
-	},
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"rl" = (
-/obj/structure/sign/warning/nosmoking,
-/turf/closed/wall,
-/area/awaymission/academy/academyclassroom)
-"rm" = (
-/obj/machinery/door/window{
-	dir = 4
-	},
-/obj/machinery/door/window{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"rv" = (
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"rx" = (
-/turf/open/floor/plasteel{
-	dir = 4;
-	icon_state = "chapel"
-	},
-/area/awaymission/academy/academyclassroom)
-"ry" = (
-/turf/closed/indestructible/fakeglass{
-	color = "#008000"
-	},
-/area/awaymission/academy/academyfore)
-"rC" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/remains/human,
+/obj/effect/rune/malformed,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academycellar)
-"rF" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
+"rh" = (
+/obj/effect/turf_decal/tile/yellow{
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/green{
+/obj/effect/turf_decal/tile/yellow{
 	dir = 8;
 	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"rj" = (
+/turf/open/floor/plasteel{
+	dir = 1;
+	icon_state = "whitehall"
+	},
+/area/awaymission/academy/academyclassroom)
+"ro" = (
+/obj/structure/table/wood,
+/obj/item/folder/blue,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"rv" = (
+/turf/open/floor/circuit/green,
+/area/awaymission/academy/academyclassroom)
+"rG" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Jeff The Intern"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "chapel"
+	},
+/area/awaymission/academy/academyclassroom)
+"rL" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/engine,
 /area/awaymission/academy/academyclassroom)
 "rM" = (
 /obj/structure/grille,
@@ -1705,23 +1521,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/academy/academyaft)
-"rO" = (
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/awaymission/academy/academyclassroom)
-"rR" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"rU" = (
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"rW" = (
-/obj/structure/noticeboard,
-/turf/closed/indestructible/riveted/uranium,
-/area/awaymission/academy/academyfore)
 "rX" = (
 /turf/closed/indestructible/fakeglass{
 	color = "#008000"
@@ -1739,32 +1538,68 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
-"se" = (
-/obj/structure/ladder/unbreakable/rune{
-	id = "academy_engine"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
 "sj" = (
 /obj/structure/trap/chill,
 /obj/structure/fans/tiny/invisible,
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"sn" = (
-/obj/structure/table/wood,
-/obj/item/hand_labeler,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
+"sl" = (
+/obj/structure/window/reinforced{
+	color = "#008000"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"sr" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
 "ss" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/meson/truesight,
 /turf/open/floor/plasteel/white,
 /area/awaymission/academy/academyaft)
-"sL" = (
-/obj/item/ectoplasm,
+"sx" = (
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"sz" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"sD" = (
+/obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
+/area/awaymission/academy/academyclassroom)
+"sG" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"sK" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"sM" = (
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
 "sT" = (
 /obj/structure/table,
 /obj/structure/window/reinforced,
@@ -1779,6 +1614,12 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyaft)
+"sV" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/hunter{
+	name = "Orthrus"
+	},
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
 "sY" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -1788,239 +1629,15 @@
 /obj/item/caution,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"td" = (
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plating,
+"te" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plasteel/cult,
 /area/awaymission/academy/academycellar)
-"tk" = (
-/obj/structure/window/reinforced{
-	color = "#008000"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "tm" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
-"tE" = (
-/obj/structure/bed,
-/obj/item/bedsheet/purple,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"tF" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"tI" = (
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"tN" = (
-/mob/living/simple_animal/hostile/retaliate/bat,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"tP" = (
-/obj/machinery/button/door{
-	id = "AcademyAuto";
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"ui" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"uz" = (
-/obj/machinery/portable_atmospherics/scrubber/huge,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"uB" = (
-/obj/item/seeds/eggplant/eggy,
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"uG" = (
-/obj/structure/ladder/unbreakable/rune{
-	id = "academy_cellar"
-	},
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"uV" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/glass,
-/obj/item/target,
-/obj/item/target,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"vo" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/bag/tray,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"vp" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/electrical,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"vt" = (
-/obj/structure/window/reinforced{
-	color = "#008000";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"vu" = (
-/obj/structure/window/reinforced,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"vv" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"vC" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
-"vE" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"vJ" = (
-/obj/structure/table,
-/obj/item/assembly/flash,
-/obj/item/assembly/flash,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"vK" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"vO" = (
-/turf/closed/indestructible/riveted/uranium,
-/area/awaymission/academy/academyaft)
-"vU" = (
-/obj/machinery/power/smes/magical,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"vW" = (
-/obj/effect/decal/remains/human,
-/obj/effect/rune/malformed,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"wm" = (
-/obj/structure/table,
-/obj/item/lighter/greyscale,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"wp" = (
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
-	},
-/area/awaymission/academy/academyclassroom)
-"wq" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"ww" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"wD" = (
-/obj/structure/table,
-/obj/item/gun/magic/wand/polymorph,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"wH" = (
-/obj/structure/mineral_door/iron,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"wQ" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"wS" = (
-/obj/structure/spider/stickyweb,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"wU" = (
-/obj/structure/table,
-/obj/item/organ/brain{
-	name = "The preserved brain of Harry Houdini"
-	},
-/turf/open/floor/plasteel/airless{
-	dir = 4;
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyaft)
-"xJ" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/structure/mirror{
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
-/area/awaymission/academy/academyaft)
-"xT" = (
-/obj/effect/rune/malformed,
-/mob/living/simple_animal/hostile/skeleton,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"xV" = (
-/obj/effect/rune/malformed,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"yf" = (
+"to" = (
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
@@ -2034,48 +1651,149 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
-"yg" = (
-/obj/effect/turf_decal/tile/yellow{
+"tt" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"tD" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"tG" = (
+/obj/structure/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"tJ" = (
+/obj/structure/frame/computer{
+	anchored = 1;
+	dir = 8;
+	icon_state = "0"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"tO" = (
+/mob/living/simple_animal/hostile/morph{
+	faction = list("skeleton");
+	name = "Bob"
+	},
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"tS" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"tT" = (
+/obj/structure/table,
+/obj/item/lighter/greyscale,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"tW" = (
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"ua" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"ud" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"ue" = (
+/turf/open/floor/engine,
+/area/awaymission/academy/academyclassroom)
+"ui" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"up" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
 	dir = 8;
 	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4;
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"us" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/structure/window/reinforced{
-	color = "#008000";
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"yl" = (
-/obj/effect/decal/cleanable/xenoblood,
+"ut" = (
+/obj/structure/table/wood,
+/obj/item/candle/infinite,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academycellar)
-"yn" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
+"ux" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Gael The Suicidal"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"uI" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Chester The Powerful"
+	},
+/turf/open/floor/plasteel{
+	dir = 2;
+	icon_state = "cafeteria"
+	},
+/area/awaymission/academy/academyaft)
+"uQ" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/awaymission/academy/academyclassroom)
+"uS" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"uU" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Sayk The Young"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"yp" = (
-/obj/structure/destructible/cult/tome,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"yr" = (
-/obj/structure/table,
-/obj/item/stack/sheet/animalhide/monkey,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"ys" = (
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/cafeteria,
+"uV" = (
+/obj/structure/noticeboard{
+	pixel_y = -32
+	},
+/obj/item/paper{
+	name = "Biology Lab"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
 /area/awaymission/academy/academyclassroom)
-"yv" = (
+"vb" = (
+/obj/structure/chair/wood/normal{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"vc" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical/old,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"vJ" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"vL" = (
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
@@ -2086,39 +1804,143 @@
 	icon_state = "grimy"
 	},
 /area/awaymission/academy/academyclassroom)
-"yE" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
+"vM" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "AcademyAuto"
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/delivery,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"vO" = (
+/turf/closed/indestructible/riveted/uranium,
+/area/awaymission/academy/academyaft)
+"vU" = (
+/obj/machinery/power/smes/magical,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"wd" = (
+/obj/structure/table,
+/obj/item/assembly/flash,
+/obj/item/assembly/flash,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"wG" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"wH" = (
+/obj/effect/turf_decal/tile/green{
 	dir = 8;
 	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"wU" = (
+/obj/structure/table,
+/obj/item/organ/brain{
+	name = "The preserved brain of Harry Houdini"
+	},
+/turf/open/floor/plasteel/airless{
 	dir = 4;
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyaft)
+"xd" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/mineral/uranium,
+/area/awaymission/academy/academycellar)
+"xf" = (
+/turf/closed/wall,
+/area/awaymission/academy/academyclassroom)
+"xm" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/snacks/burger/spell,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/structure/window/reinforced{
-	color = "#008000";
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"xq" = (
+/obj/structure/chair{
 	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"xu" = (
+/obj/item/stack/cable_coil/random,
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"xA" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"xG" = (
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyclassroom)
+"xI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/hypospray/medipen/survival,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"yj" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Maya The Funny"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"yI" = (
-/obj/structure/table,
-/obj/item/lazarus_injector,
-/turf/open/floor/plasteel{
-	dir = 4;
-	icon_state = "whitehall"
-	},
-/area/awaymission/academy/academyclassroom)
-"yL" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Benjamin The Generic"
+"ys" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"yB" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
+/area/awaymission/academy/academyaft)
+"yC" = (
+/obj/machinery/vending/hydronutrients,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"yD" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"yG" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"yI" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/transparent/plasma,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyclassroom)
 "yN" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/red,
@@ -2132,97 +1954,99 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/academy/academyaft)
-"yX" = (
-/turf/closed/indestructible/riveted/uranium,
-/area/awaymission/academy/academyclassroom)
-"yZ" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/tomato/blue/bluespace,
+"yO" = (
+/obj/structure/chair{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"za" = (
-/obj/structure/table/wood,
+"yX" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"zd" = (
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"zh" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"zn" = (
+/obj/structure/safe/floor,
+/obj/item/voodoo,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"zE" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/red,
+/obj/item/dice/d20/fate/one_use,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"zP" = (
+/obj/structure/table,
+/obj/item/book/manual/ripley_build_and_repair,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"zQ" = (
+/obj/structure/table,
+/obj/item/stack/cable_coil/random,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"zR" = (
 /obj/item/candle/infinite,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academycellar)
-"zi" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/item/crowbar/red,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
-"zj" = (
-/obj/structure/holohoop,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"zo" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"zp" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/flora/ausbushes/pointybush,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"zq" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/ausbushes/pointybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"zs" = (
-/obj/machinery/igniter,
+"Ab" = (
+/obj/structure/mecha_wreckage/honker,
 /turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
-"zt" = (
-/turf/open/floor/circuit/green,
+"Af" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/iron,
+/turf/open/floor/carpet,
 /area/awaymission/academy/academyclassroom)
-"zz" = (
-/obj/structure/closet/crate,
-/obj/item/crowbar/red,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"zP" = (
+"Ai" = (
 /obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/vomit,
-/obj/structure/toilet{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/bear,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"Aj" = (
+/turf/closed/indestructible/riveted/uranium,
+/area/awaymission/academy/academyfore)
+"Al" = (
+/obj/machinery/photocopier,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"An" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Ao" = (
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "cafeteria"
+	icon_state = "showroomfloor"
 	},
-/area/awaymission/academy/academyaft)
-"zW" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"Ad" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
 "Ar" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
+"Av" = (
+/obj/item/target,
+/turf/open/floor/engine,
+/area/awaymission/academy/academyclassroom)
 "Aw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2233,9 +2057,30 @@
 /turf/open/floor/plating,
 /area/awaymission/academy/academyaft)
 "AC" = (
-/obj/structure/chair,
-/turf/open/floor/plasteel,
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
 /area/awaymission/academy/academyclassroom)
+"AJ" = (
+/obj/structure/table/reinforced,
+/obj/item/paper{
+	info = "We're upgrading to the latest mainframes for our consoles, the shipment should be in before spring break is over!";
+	name = "Console Maintenance"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"AP" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/awaymission/academy/academyclassroom)
+"AR" = (
+/obj/structure/ladder/unbreakable/rune{
+	id = "academy_cellar"
+	},
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
 "AT" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2257,40 +2102,74 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyaft)
+"Bb" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Bc" = (
+/obj/structure/table,
+/obj/item/stack/rods,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"Bl" = (
+/obj/structure/closet/radiation,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
 "Bp" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Onion The Fixer"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"BE" = (
-/obj/structure/table/wood,
-/obj/item/pen/invisible,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"BG" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/hypospray/medipen/survival,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"BK" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel{
-	icon_state = "white"
+"Bq" = (
+/obj/structure/table,
+/obj/item/stack/sheet/animalhide/monkey,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"BB" = (
+/turf/open/floor/carpet{
+	icon_state = "carpetsymbol"
 	},
-/area/awaymission/academy/academyclassroom)
-"BN" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Maximillus The Boss Slayer"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyclassroom)
-"BW" = (
+/area/awaymission/academy/academyaft)
+"BC" = (
+/obj/structure/table/wood,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"BD" = (
+/obj/structure/table,
+/obj/item/stack/sheet/runed_metal,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"BF" = (
+/obj/machinery/shieldwallgen,
 /obj/effect/turf_decal/stripes/line{
-	dir = 1;
+	dir = 8;
 	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"BJ" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"BN" = (
+/obj/structure/table,
+/obj/item/gun/energy/floragun,
+/obj/item/paper{
+	info = "Grade: D- Educator's Notes: SEE ME AFTER CLASS.";
+	name = "Summoning Midterm Exam"
+	},
+/turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
 "Ce" = (
 /mob/living/simple_animal/hostile/wizard{
@@ -2298,70 +2177,71 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"Ch" = (
+"Cn" = (
+/obj/structure/bed,
+/obj/item/bedsheet/purple,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"Cq" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"Cr" = (
+/obj/structure/table,
+/obj/item/weldingtool,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"CN" = (
+/obj/structure/table,
+/obj/item/scalpel,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"CP" = (
+/obj/structure/ladder/unbreakable/rune{
+	height = 1;
+	id = "academy_cellar"
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"CS" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"CZ" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel{
+	dir = 2;
+	icon_state = "cafeteria"
+	},
+/area/awaymission/academy/academyaft)
+"Dm" = (
+/turf/open/floor/mech_bay_recharge_floor,
+/area/awaymission/academy/academyclassroom)
+"Dn" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
 /obj/structure/window/reinforced{
 	color = "#008000";
 	dir = 4
 	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"Ck" = (
-/mob/living/simple_animal/hostile/carp/ranged{
-	faction = list("wizard")
-	},
-/obj/structure/lattice,
-/turf/open/space,
-/area/ruin/unpowered/no_grav)
-"Cv" = (
-/obj/structure/window/reinforced,
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"CB" = (
-/obj/machinery/door/window,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"CF" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"CJ" = (
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"CP" = (
-/obj/structure/table/wood,
-/obj/item/kitchen/knife/ritual,
-/obj/item/candle/infinite,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"CS" = (
-/obj/effect/decal/cleanable/oil,
-/obj/structure/table,
-/obj/item/staff,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"CZ" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"Dl" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/mineral/uranium,
-/area/awaymission/academy/academycellar)
 "Dq" = (
 /obj/item/shard{
 	color = "#008000";
@@ -2369,31 +2249,30 @@
 	},
 /turf/open/space,
 /area/space)
-"Ds" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
+"Dw" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/mirror{
+	pixel_y = 32
 	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"DJ" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/structure/window/reinforced{
-	color = "#008000"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"DK" = (
-/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"DB" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "whitehall"
+	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
+"DF" = (
+/turf/open/floor/plasteel{
+	icon_state = "chapel"
+	},
+/area/awaymission/academy/academyclassroom)
+"DI" = (
+/obj/structure/table,
+/obj/item/stack/cable_coil,
+/obj/item/stack/sheet/xenochitin,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
 "DM" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -2403,54 +2282,81 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/academy/academyaft)
-"DN" = (
+"DW" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/chem_master/condimaster,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"Eb" = (
+/obj/machinery/teleport/hub,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"Ee" = (
+/obj/singularity/academy,
+/turf/open/space,
+/area/ruin/unpowered/no_grav)
+"Ef" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"Eg" = (
+/turf/open/floor/plasteel{
+	dir = 4;
+	icon_state = "chapel"
+	},
+/area/awaymission/academy/academyclassroom)
+"Eq" = (
+/obj/structure/target_stake,
+/obj/item/target/alien,
+/turf/open/floor/engine,
+/area/awaymission/academy/academyclassroom)
+"EE" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"EG" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"DR" = (
-/obj/structure/chair/office/dark,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"DS" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"DU" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"Ec" = (
-/mob/living/simple_animal/hostile/retaliate/clown{
-	name = "Jeck Honkbottoms"
-	},
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"El" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/flora/ausbushes/pointybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"EH" = (
 /obj/structure/table,
-/obj/item/stack/cable_coil,
-/obj/item/stack/sheet/xenochitin,
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"Eq" = (
-/obj/structure/table/reinforced,
-/obj/item/coin/plasma,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/awaymission/academy/academyclassroom)
 "EK" = (
 /turf/open/space/basic,
 /area/space)
-"EO" = (
+"EN" = (
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
+"EP" = (
+/obj/structure/sign/warning/nosmoking,
+/turf/closed/wall,
+/area/awaymission/academy/academyclassroom)
 "ES" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -2467,74 +2373,60 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/academy/academyaft)
+"EX" = (
+/obj/structure/chair/wood/normal{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"EZ" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Fc" = (
+/turf/open/floor/carpet{
+	icon_state = "carpetsymbol"
+	},
+/area/awaymission/academy/academyclassroom)
+"Fi" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
 "Fj" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"Fp" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	icon_state = "tile_corner"
+"Fs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5;
+	icon_state = "warningline"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
-"Fx" = (
-/obj/structure/frame/computer{
-	anchored = 1;
-	dir = 4;
-	icon_state = "0"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"Fz" = (
-/obj/structure/ladder/unbreakable/rune{
-	height = 1;
-	id = "academy_cellar"
-	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"FA" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/mug/tea,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"FC" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"FD" = (
-/obj/structure/safe/floor,
-/obj/item/voodoo,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
 "FH" = (
-/obj/structure/table,
-/obj/item/stack/cable_coil/random,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"FI" = (
-/obj/structure/chair/wood/normal{
-	dir = 8
-	},
-/obj/structure/trap/fire,
-/turf/open/floor/wood,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
 "FM" = (
-/obj/machinery/light{
+/obj/machinery/door/window{
 	dir = 4
 	},
-/obj/structure/table,
-/obj/item/book/manual/wiki/robotics_cyborgs,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4;
+	icon_state = "warningline"
+	},
 /turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"FN" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet,
 /area/awaymission/academy/academyclassroom)
 "FP" = (
 /mob/living/simple_animal/hostile/wizard{
@@ -2542,22 +2434,37 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"FW" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+"FR" = (
+/obj/structure/trap/chill,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"FS" = (
+/obj/structure/chair/stool,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"FU" = (
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Gi" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1;
+	icon_state = "warningline"
+	},
+/mob/living/simple_animal/hostile/wizard{
+	name = "Larry The Master of Satchels"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Gk" = (
+/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
-"Gh" = (
-/turf/closed/mineral/random/high_chance,
-/area/ruin/unpowered)
-"Go" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"Gu" = (
-/obj/structure/table/wood,
-/obj/item/book/granter/spell/smoke/lesser,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
+"Gr" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
 "Gw" = (
 /obj/structure/mineral_door/iron,
 /obj/structure/fans/tiny/invisible,
@@ -2566,140 +2473,63 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
+"Gy" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
 "GC" = (
 /obj/structure/rack,
 /obj/item/clothing/glasses/welding,
 /obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"GP" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1;
-	icon_state = "tile_corner"
+"GG" = (
+/obj/structure/table/wood,
+/obj/item/dice/d6,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"GI" = (
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"GL" = (
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"Ha" = (
-/obj/machinery/light,
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/academyclassroom)
-"Hb" = (
-/obj/item/target,
-/turf/open/floor/engine,
-/area/awaymission/academy/academyclassroom)
-"Hd" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/ruin/unpowered/no_grav)
-"Hf" = (
-/obj/machinery/autolathe,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"Hg" = (
-/obj/structure/window/reinforced,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"Hm" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"Hp" = (
-/obj/structure/chair/wood/normal{
-	dir = 8
-	},
+"GP" = (
+/obj/structure/chair/office/dark,
 /turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"Hq" = (
-/obj/structure/table/wood,
+/area/awaymission/academy/academyfore)
+"GV" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"GX" = (
 /obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"Hy" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"HD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
-"HH" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"HI" = (
-/obj/structure/table,
-/obj/item/paper{
-	info = "Grade: B- Educator's Notes: Keep applying yourself, you're showing improvement.";
-	name = "Summoning Midterm Exam"
-	},
-/obj/item/gun/ballistic/revolver/russian,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"HP" = (
-/mob/living/simple_animal/hostile/wizard{
-	name = "Jeff The Intern"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "chapel"
-	},
-/area/awaymission/academy/academyclassroom)
-"HR" = (
-/turf/open/floor/plasteel{
-	dir = 8;
-	icon_state = "chapel"
-	},
-/area/awaymission/academy/academyclassroom)
-"HW" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/bear,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"Ia" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"If" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4;
-	icon_state = "warningline"
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
 	},
+/area/awaymission/academy/academyclassroom)
+"Ha" = (
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/tomato/blue/bluespace,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"Ih" = (
-/turf/open/floor/plasteel/dark,
+"Hb" = (
+/obj/structure/ladder/unbreakable/rune{
+	height = 1;
+	id = "academy_storage"
+	},
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
-"Ii" = (
+"Hg" = (
 /obj/structure/table,
 /obj/machinery/microwave,
 /obj/effect/turf_decal/tile/blue,
@@ -2711,15 +2541,86 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
-"Iq" = (
+"Hh" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"Hm" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"Hv" = (
+/obj/structure/table/wood,
+/obj/item/gun/magic/wand/fireball,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"Hy" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"HI" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/flora/ausbushes/pointybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"HQ" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "AcademyGate"
+	},
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"Ib" = (
+/turf/open/floor/plasteel{
+	dir = 2;
+	icon_state = "whitehall"
+	},
+/area/awaymission/academy/academyclassroom)
+"Ik" = (
 /obj/machinery/door/window{
 	dir = 4
 	},
+/obj/item/ammo_casing,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4;
 	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Il" = (
+/obj/structure/window/reinforced,
+/obj/item/ammo_casing,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Im" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
+/area/awaymission/academy/academyclassroom)
+"Iu" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Ix" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
 /area/awaymission/academy/academyclassroom)
 "IA" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -2727,285 +2628,101 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
+"IE" = (
+/obj/machinery/teleport/station,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
 "IO" = (
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/destructible/cult/tome,
 /turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
-"IY" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"Jn" = (
-/obj/structure/noticeboard{
-	pixel_y = 32
+"IW" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"Jb" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	icon_state = "tile_corner"
 	},
-/obj/item/paper{
-	name = "Pyromancy 250"
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel{
-	icon_state = "grimy"
+	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
-"JF" = (
-/turf/open/floor/plasteel{
-	icon_state = "chapel"
+"Jd" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
 	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Je" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/gold,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyclassroom)
+"Ji" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"Jl" = (
+/obj/structure/mineral_door/iron,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Jt" = (
+/obj/structure/table/reinforced,
+/obj/item/pen/red,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"Jy" = (
+/obj/structure/table,
+/obj/item/gun/magic/wand/polymorph,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"JC" = (
+/obj/machinery/door/window{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
 "JG" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
-"JR" = (
-/obj/machinery/gibber,
-/turf/open/floor/plasteel{
-	icon_state = "white"
+"Kd" = (
+/obj/structure/disposaloutlet{
+	dir = 4
 	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
 /area/awaymission/academy/academyclassroom)
-"JV" = (
-/mob/living/simple_animal/hostile/skeleton,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"Kj" = (
-/mob/living/simple_animal/hostile/bear,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"Kl" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/fans/tiny/invisible,
+"Kq" = (
+/obj/item/seeds/eggplant/eggy,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "Kr" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"KA" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"KC" = (
-/obj/structure/table/wood,
-/obj/item/dice/d20,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"KR" = (
-/obj/structure/window/reinforced{
-	color = "#008000"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"KX" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/mirror{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"KY" = (
-/obj/item/stack/sheet/animalhide/monkey,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"KZ" = (
-/obj/structure/chair/stool,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/awaymission/academy/academyclassroom)
-"Lj" = (
-/obj/structure/filingcabinet/filingcabinet,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"Ln" = (
-/obj/structure/flora/ausbushes/leafybush,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"LG" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"LU" = (
-/turf/open/floor/plasteel/white,
-/area/awaymission/academy/academyaft)
-"Md" = (
-/turf/open/floor/plasteel{
-	dir = 4;
-	icon_state = "whitehall"
-	},
-/area/awaymission/academy/academyclassroom)
-"Mq" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "AcademyGate"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"Mu" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"Mv" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/structure/window/reinforced{
-	color = "#008000";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"My" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"MD" = (
-/obj/structure/chair/wood/wings{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "AcademyGate";
-	name = "Skeleton Storage Control";
-	pixel_y = -24
-	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"ME" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"MF" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"MQ" = (
-/turf/closed/wall/mineral/wood,
-/area/awaymission/academy/academycellar)
-"MR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"MT" = (
-/obj/machinery/teleport/station,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"MX" = (
-/obj/effect/turf_decal/tile/red,
-/mob/living/simple_animal/hostile/wizard/cloaked{
-	desc = "EI NATH?";
-	name = "Cali The Stubborn"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"Ns" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyclassroom)
-"Nu" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
-"Nz" = (
-/obj/structure/table/wood,
-/obj/item/seeds/kudzu,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"NA" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/red,
-/mob/living/simple_animal/hostile/wizard{
-	desc = "Accused of copying off another wizards work without crediting them. A month after he added proper credits...";
-	name = "Jack The Thief"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"ND" = (
-/mob/living/simple_animal/hostile/poison/giant_spider/hunter{
-	name = "Orthrus"
-	},
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"NG" = (
-/obj/machinery/shieldwallgen,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8;
-	icon_state = "warningline"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"NI" = (
-/obj/structure/table/wood,
-/obj/item/pen/red,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"NS" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
-"NU" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/wood,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"Oa" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"Ok" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"OG" = (
-/obj/structure/mecha_wreckage/honker,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"OH" = (
-/obj/structure/ladder/unbreakable/rune{
-	height = 1;
-	id = "academy_coldroom"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"OT" = (
+"Ks" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/black{
 	dir = 4;
@@ -3020,33 +2737,299 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
-"OW" = (
-/obj/effect/turf_decal/tile/green,
+"Kv" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"KC" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"KL" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"KP" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"KR" = (
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"KV" = (
 /obj/effect/turf_decal/tile/green{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
+"Lb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"Li" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"Lk" = (
+/mob/living/simple_animal/hostile/carp/ranged{
+	faction = list("wizard")
+	},
+/turf/closed/mineral/random/high_chance,
+/area/ruin/unpowered)
+"Lp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1;
+	icon_state = "warningline"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"LA" = (
+/obj/structure/mecha_wreckage/durand,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"LI" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"LN" = (
+/turf/closed/mineral/random/high_chance,
+/area/ruin/unpowered)
+"LU" = (
+/turf/open/floor/plasteel/white,
+/area/awaymission/academy/academyaft)
+"LV" = (
+/obj/effect/turf_decal/tile/yellow{
 	dir = 8;
 	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"Pd" = (
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"Pg" = (
-/obj/structure/chair/wood/normal{
-	dir = 4
+"LZ" = (
+/obj/structure/ladder/unbreakable/rune{
+	id = "academy_engine"
 	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"Ph" = (
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"Mc" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8;
 	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"Pi" = (
-/obj/structure/table,
-/obj/item/weldingtool/hugetank,
+"MF" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/ritual,
+/obj/item/candle/infinite,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"MM" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Druja The Foolish"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"MZ" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"Nb" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Ns" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"Nt" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Alison The Rabbit"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
+/area/awaymission/academy/academyclassroom)
+"Nu" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
+"Nv" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"Nw" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"Nx" = (
+/obj/structure/table/wood,
+/obj/item/pen/red,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"NS" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"NT" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyclassroom)
+"NX" = (
+/mob/living/simple_animal/slaughter{
+	desc = "A radioactive being made of condensed fusion material";
+	name = "Radioactive Prat Demon"
+	},
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"Oc" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Of" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"Oh" = (
+/obj/effect/decal/remains/robot,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyaft)
+"Oi" = (
+/obj/effect/turf_decal/tile/black{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/black{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"Ok" = (
+/obj/structure/table/wood,
+/obj/item/folder/blue,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"Os" = (
+/obj/structure/falsewall/wood,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"Oz" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"OE" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel{
+	dir = 2;
+	icon_state = "whitehall"
+	},
+/area/awaymission/academy/academyclassroom)
+"OI" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/item/clothing/head/that{
+	throwforce = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"OJ" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/item/crowbar/red,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
+"OT" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Pc" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4;
+	icon_state = "warningline"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Pg" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "Pq" = (
@@ -3067,72 +3050,73 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/academy/academyaft)
 "Px" = (
-/turf/closed/indestructible/riveted/uranium,
+/obj/effect/rune/malformed,
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"Pz" = (
+/obj/machinery/light/small,
+/turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"PV" = (
-/obj/structure/trap/chill,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"PW" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/awaymission/academy/academyclassroom)
-"Qm" = (
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
-"Qn" = (
+"PH" = (
 /obj/structure/target_stake,
-/turf/open/floor/engine,
+/obj/item/target,
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"Qo" = (
-/obj/effect/turf_decal/stripes/line{
+"PM" = (
+/obj/machinery/processor,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
 	dir = 1;
-	icon_state = "warningline"
-	},
-/mob/living/simple_animal/hostile/wizard{
-	name = "Larry The Master of Satchels"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"Qp" = (
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"Qs" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
 	icon_state = "tile_corner"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
 /area/awaymission/academy/academyclassroom)
-"Qw" = (
-/obj/machinery/photocopier,
-/turf/open/floor/wood,
+"PN" = (
+/obj/structure/table/reinforced,
+/obj/item/laser_pointer/upgraded,
+/turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"Qx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+"PP" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
 	},
-/turf/closed/indestructible/riveted/uranium,
 /area/awaymission/academy/academyclassroom)
-"Qy" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
+"Qd" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4;
 	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
+"Qm" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
+"Qp" = (
+/obj/machinery/door/window,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"Qr" = (
+/obj/structure/frame/computer{
+	anchored = 1;
+	dir = 4;
+	icon_state = "0"
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"Qz" = (
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"QE" = (
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
 "QL" = (
 /obj/machinery/door/airlock/vault,
 /obj/structure/fans/tiny/invisible,
@@ -3140,53 +3124,56 @@
 /area/awaymission/academy/academycellar)
 "QN" = (
 /obj/structure/table/reinforced,
-/obj/item/pen/red,
+/obj/item/folder/blue,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"QQ" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
-"QY" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
-"QZ" = (
-/obj/machinery/seed_extractor,
+"Re" = (
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/replicapod,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"RB" = (
-/obj/machinery/recharger,
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"RN" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"RO" = (
-/obj/machinery/light/small,
-/turf/open/floor/carpet,
+"Rq" = (
+/turf/closed/indestructible/fakeglass{
+	color = "#008000"
+	},
 /area/awaymission/academy/academyfore)
-"RP" = (
-/obj/structure/target_stake,
-/obj/item/target/clown,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"RU" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+"Rw" = (
+/obj/structure/holohoop,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academycellar)
-"RZ" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "AcademyAuto"
-	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
+"RA" = (
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
+"RG" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"RO" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"RU" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/structure/window/reinforced{
+	color = "#008000";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"RV" = (
+/mob/living/simple_animal/hostile/retaliate/clown{
+	name = "Jeck Honkbottoms"
+	},
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
 "Sa" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Alexander The Holy"
@@ -3197,32 +3184,45 @@
 	},
 /area/awaymission/academy/academyaft)
 "Se" = (
-/obj/structure/chair/office/light{
+/obj/structure/window/reinforced{
+	color = "#008000";
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
+/area/awaymission/academy/academyaft)
+"Sg" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
 "Si" = (
-/obj/structure/closet/crate/trashcart,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
 /turf/open/floor/plasteel{
-	icon_state = "grimy"
+	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
 "Sk" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"Sm" = (
+/obj/machinery/computer/teleporter,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
+"Sp" = (
 /obj/structure/table,
-/obj/item/stack/sheet/runed_metal,
-/obj/item/stack/sheet/mineral/wood,
+/obj/item/lazarus_injector,
+/turf/open/floor/plasteel{
+	dir = 4;
+	icon_state = "whitehall"
+	},
+/area/awaymission/academy/academyclassroom)
+"Ss" = (
+/obj/effect/decal/cleanable/oil,
+/obj/structure/table,
+/obj/item/staff,
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
-"Sp" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "St" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1;
@@ -3237,134 +3237,107 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyaft)
-"SB" = (
-/mob/living/simple_animal/hostile/poison/giant_spider/hunter{
-	name = "Cerberus"
-	},
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"SG" = (
-/obj/structure/chair/wood/normal{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"SL" = (
-/obj/structure/table,
-/obj/item/reagent_containers/hypospray/medipen/survival,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"SS" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"SY" = (
-/obj/structure/fans/tiny/invisible,
-/obj/structure/mineral_door/silver,
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"Tg" = (
-/obj/structure/trap/damage,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"Tm" = (
-/obj/structure/table/wood,
-/obj/item/staff,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"Tq" = (
-/obj/machinery/door/airlock/external,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"TJ" = (
-/obj/structure/window/reinforced{
-	color = "#008000";
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"TM" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"TT" = (
-/obj/structure/filingcabinet/filingcabinet,
-/turf/open/floor/plasteel/dark,
-/area/awaymission/academy/academyclassroom)
-"Uh" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"Up" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"Ur" = (
+"Sv" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 4;
+	dir = 8;
 	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"UD" = (
-/obj/item/toy/beach_ball/holoball,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"UE" = (
+"SA" = (
+/turf/open/floor/plasteel{
+	dir = 4;
+	icon_state = "whitehall"
+	},
+/area/awaymission/academy/academyclassroom)
+"SH" = (
+/obj/structure/lattice,
+/turf/open/space,
+/area/ruin/unpowered/no_grav)
+"SL" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"SQ" = (
 /obj/structure/window/reinforced{
 	color = "#008000";
 	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
-"UG" = (
+"Tc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"Td" = (
+/obj/effect/turf_decal/tile/red,
+/mob/living/simple_animal/hostile/wizard/cloaked{
+	desc = "EI NATH?";
+	name = "Cali The Stubborn"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"Te" = (
+/turf/closed/indestructible/riveted/uranium,
+/area/awaymission/academy/academyclassroom)
+"Tk" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"Tp" = (
+/mob/living/simple_animal/hostile/wizard/trey,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"Tx" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Poe The Lawyer"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"TD" = (
 /obj/effect/turf_decal/tile/yellow{
-	dir = 8;
+	dir = 4;
 	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/yellow,
 /obj/structure/window/reinforced{
 	color = "#008000";
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"UQ" = (
-/obj/machinery/processor,
+"TE" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/awaymission/academy/academyaft)
+"TZ" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"Ua" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"Ue" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"Uo" = (
+/obj/item/ectoplasm,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"UL" = (
+/obj/machinery/door/airlock/external,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/awaymission/academy/academyclassroom)
+"UP" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1;
@@ -3374,26 +3347,49 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
-"US" = (
-/obj/machinery/light{
-	dir = 4
+"UQ" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1;
+	icon_state = "tile_corner"
 	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"UT" = (
+/obj/structure/table,
+/obj/item/pen/red,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "UW" = (
-/obj/structure/chair{
-	dir = 4
+/obj/effect/turf_decal/tile/red{
+	dir = 1;
+	icon_state = "tile_corner"
 	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/cafeteria,
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "UX" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/table,
+/obj/effect/turf_decal/tile/red,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
 	},
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
 	},
+/turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/academyclassroom)
 "Va" = (
 /obj/machinery/light/small{
@@ -3408,104 +3404,109 @@
 	icon_state = "cafeteria"
 	},
 /area/awaymission/academy/academyaft)
-"Vk" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
+"Vd" = (
+/obj/machinery/igniter,
 /turf/open/floor/plating,
 /area/awaymission/academy/academyclassroom)
-"Vn" = (
-/obj/structure/closet/crate/internals,
-/obj/item/tank/internals/oxygen,
-/obj/item/tank/internals/oxygen/red,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"Vu" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
-/area/awaymission/academy/academyclassroom)
-"Vz" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
 "VA" = (
-/obj/structure/table,
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"VD" = (
+"VB" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"VL" = (
 /obj/structure/table,
-/obj/machinery/light{
-	dir = 4
+/obj/item/paper{
+	info = "Grade: A+ Educator's Notes: Excellent form.";
+	name = "Summoning Midterm Exam"
 	},
-/obj/item/reagent_containers/food/snacks/burger/spell,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white"
-	},
+/obj/item/gun/ballistic/shotgun/automatic/combat,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
 "VN" = (
-/turf/open/floor/plasteel{
-	dir = 1;
-	icon_state = "chapel"
-	},
-/area/awaymission/academy/academyclassroom)
-"VP" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/replicapod,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"VQ" = (
 /obj/structure/chair,
 /turf/open/floor/plasteel{
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
-"VT" = (
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyaft)
+"VP" = (
+/obj/structure/table/wood,
+/obj/item/dice/d20,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"VQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"VV" = (
+/obj/structure/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
 "Wg" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
-"Wj" = (
-/obj/structure/table,
-/obj/item/book/manual/ripley_build_and_repair,
+"Wu" = (
+/turf/open/floor/plasteel/dark,
+/area/awaymission/academy/academyclassroom)
+"Ww" = (
+/obj/structure/mineral_door/wood,
+/obj/effect/turf_decal/tile/red,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"Wx" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyclassroom)
+"Wz" = (
+/obj/effect/rune/malformed,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
+"WC" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"WC" = (
-/obj/structure/table,
-/obj/item/weldingtool,
-/turf/open/floor/plating,
+"WF" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/hypospray/medipen/survival,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"WI" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red,
+/mob/living/simple_animal/hostile/wizard{
+	desc = "Accused of copying off another wizards work without crediting them. A month after he added proper credits...";
+	name = "Jack The Thief"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyclassroom)
+"WK" = (
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"WO" = (
+/turf/open/floor/mineral/uranium,
 /area/awaymission/academy/academycellar)
 "WW" = (
-/mob/living/simple_animal/slaughter{
-	desc = "A radioactive being made of condensed fusion material";
-	name = "Radioactive Prat Demon"
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academycellar)
-"WX" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/mug/tea,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
 "WY" = (
@@ -3527,166 +3528,166 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyaft)
+"Xh" = (
+/obj/structure/table/reinforced,
+/obj/item/coin/plasma,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
 "Xl" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
-"Xn" = (
-/obj/structure/chair/wood/normal{
-	dir = 4
+"Xm" = (
+/mob/living/simple_animal/hostile/carp/ranged{
+	faction = list("wizard")
 	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"Xp" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"Xu" = (
-/obj/item/stack/cable_coil/random,
-/obj/structure/table/wood,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyaft)
-"Xv" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"XE" = (
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyclassroom)
-"XJ" = (
-/obj/structure/kitchenspike,
+/obj/structure/lattice,
+/turf/open/space,
+/area/ruin/unpowered/no_grav)
+"Xq" = (
 /turf/open/floor/plasteel{
-	icon_state = "white"
+	dir = 8;
+	icon_state = "chapel"
 	},
 /area/awaymission/academy/academyclassroom)
-"XK" = (
-/turf/open/floor/engine,
+"XA" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"XC" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
+"XG" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
 "XL" = (
 /obj/structure/mineral_door/iron,
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
-"XS" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
 "XU" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/red,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/awaymission/academy/academyclassroom)
+/obj/structure/table/reinforced,
+/obj/item/storage/briefcase,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
 "XW" = (
 /obj/structure/fans/tiny/invisible,
 /obj/structure/mineral_door/iron,
 /obj/structure/trap/chill,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"XX" = (
-/obj/effect/decal/remains/robot,
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"XY" = (
-/obj/structure/closet/secure_closet/hydroponics,
-/turf/open/floor/plasteel,
+"Yd" = (
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/circuit/green,
 /area/awaymission/academy/academyclassroom)
-"Yb" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/blue,
-/turf/open/floor/carpet,
-/area/awaymission/academy/academyfore)
-"Ye" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/structure/window/reinforced{
-	color = "#008000";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"Yf" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
-/area/awaymission/academy/academyaft)
 "Yh" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/awaymission/academy/academyaft)
-"Yl" = (
-/obj/structure/chair{
-	dir = 8
+"Yo" = (
+/mob/living/simple_animal/hostile/wizard{
+	name = "Maximillus The Boss Slayer"
 	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyclassroom)
+"Yx" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/obj/item/paper{
+	name = "Pyromancy 250"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
+/area/awaymission/academy/academyclassroom)
+"Yz" = (
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/cafeteria,
+/area/awaymission/academy/academyclassroom)
+"YH" = (
+/turf/closed/indestructible/rock,
+/area/awaymission/academy/academycellar)
+"YS" = (
+/obj/structure/target_stake,
+/obj/item/target/clown,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"YE" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/briefcase,
+"YU" = (
+/obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
-"Zm" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating,
+"YX" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
-"Zu" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/grass,
-/area/awaymission/academy/academyclassroom)
-"Zz" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyclassroom)
-"ZG" = (
+"YY" = (
 /obj/structure/table/wood,
-/obj/item/gun/magic/wand/fireball,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"Zh" = (
+/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
-/area/awaymission/academy/academyclassroom)
-"ZL" = (
-/obj/item/candle/infinite,
-/turf/open/floor/engine/cult,
-/area/awaymission/academy/academycellar)
-"ZN" = (
-/obj/machinery/door/window{
+/area/awaymission/academy/academyfore)
+"Zi" = (
+/obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyclassroom)
-"ZY" = (
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"Zv" = (
 /turf/open/floor/plasteel{
-	dir = 1;
+	icon_state = "showroomfloor"
+	},
+/area/awaymission/academy/academyclassroom)
+"Zw" = (
+/mob/living/simple_animal/hostile/retaliate/bat,
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"ZA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	dir = 4;
 	icon_state = "whitehall"
 	},
 /area/awaymission/academy/academyclassroom)
+"ZB" = (
+/mob/living/simple_animal/hostile/syndicate{
+	name = "Operative John Adams"
+	},
+/turf/open/floor/engine/cult,
+/area/awaymission/academy/academycellar)
+"ZG" = (
+/obj/structure/ladder/unbreakable/rune{
+	height = 1;
+	id = "academy_coldroom"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white"
+	},
+/area/awaymission/academy/academyclassroom)
+"ZT" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/mineral_door/gold,
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyfore)
+"ZX" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/awaymission/academy/academyaft)
 
 (1,1,1) = {"
 aa
@@ -4295,9 +4296,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -4409,11 +4410,11 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -4450,8 +4451,8 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
 aa
@@ -4524,18 +4525,15 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
-Gh
-Gh
-aa
-aa
-aa
+LN
+LN
 aa
 aa
 aa
@@ -4564,10 +4562,13 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
+aa
+aa
+aa
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -4639,18 +4640,15 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
-Gh
-Gh
-aa
-aa
-aa
+LN
+LN
 aa
 aa
 aa
@@ -4678,12 +4676,15 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
-Gh
+aa
+aa
+aa
+LN
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -4757,7 +4758,7 @@ aa
 aa
 aa
 aa
-Gh
+LN
 aa
 aa
 aa
@@ -4793,11 +4794,11 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -4865,8 +4866,8 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
 aa
@@ -4909,9 +4910,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -4980,9 +4981,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5016,9 +5017,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5095,23 +5096,17 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-aa
-aa
-aa
-aa
-aa
-aa
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5130,11 +5125,17 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+aa
+aa
+aa
+aa
+aa
+aa
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5216,11 +5217,11 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5245,11 +5246,11 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5330,12 +5331,12 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5361,9 +5362,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5379,8 +5380,8 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
 aa
@@ -5445,12 +5446,12 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5476,8 +5477,8 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
 aa
@@ -5493,8 +5494,8 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
 aa
@@ -5560,11 +5561,11 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5608,11 +5609,11 @@ aa
 aa
 aa
 aa
-Gh
-Gh
+LN
+LN
 aa
 aa
-Gh
+LN
 aa
 aa
 aa
@@ -5726,9 +5727,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5840,10 +5841,10 @@ aa
 aa
 aa
 aa
-bM
-Gh
-Gh
-Gh
+Lk
+LN
+LN
+LN
 aa
 aa
 aa
@@ -5955,9 +5956,9 @@ aa
 aa
 aa
 aa
-Gh
-Gh
-Gh
+LN
+LN
+LN
 aa
 aa
 aa
@@ -6386,10 +6387,10 @@ aa
 aa
 aa
 aa
-HD
-HD
-HD
-HD
+is
+is
+is
+is
 aa
 aa
 aa
@@ -6498,16 +6499,16 @@ aa
 aa
 aa
 aa
-yX
-yX
-yX
-Tq
-yX
-yX
-Tq
-yX
-yX
-yX
+Te
+Te
+Te
+UL
+Te
+Te
+UL
+Te
+Te
+Te
 aa
 aa
 aa
@@ -6600,37 +6601,37 @@ aa
 aa
 aa
 aa
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-zs
-Oa
-lq
-lq
-lq
-lq
-Oa
-zs
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Vd
+FH
+Qz
+Qz
+Qz
+Qz
+FH
+Vd
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
 vO
 vO
 vO
@@ -6714,38 +6715,38 @@ aa
 aa
 aa
 aa
-yX
-yX
-Hf
-Pi
-jk
+Te
+Te
+FU
+gl
+UT
+zQ
+zP
+RA
+RA
+rv
+sD
+rv
+sD
+rv
+Te
+Vd
 FH
-Wj
-CJ
-CJ
-zt
-hi
-zt
-hi
-zt
-yX
-zs
-Oa
-lq
-lq
-lq
-lq
-Oa
-zs
-yX
-lq
-Vk
-lF
-Mu
-Zm
-lq
-HW
-lq
+Qz
+Qz
+Qz
+Qz
+FH
+Vd
+Te
+Qz
+Ji
+bb
+KL
+KP
+Qz
+Ai
+Qz
 vO
 vU
 iO
@@ -6829,38 +6830,38 @@ aa
 aa
 aa
 aa
-RZ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-zt
-cJ
-zt
-cJ
-zt
-yX
-yX
-yX
-rU
-Oa
-Oa
-rU
-yX
-yX
-yX
-lq
-lq
-lq
-Mu
-Zm
-Kj
-lq
-lq
+vM
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+rv
+Dm
+rv
+Dm
+rv
+Te
+Te
+Te
+fz
+FH
+FH
+fz
+Te
+Te
+Te
+Qz
+Qz
+Qz
+KL
+KP
+yG
+Qz
+Qz
 vO
 jQ
 iO
@@ -6944,38 +6945,38 @@ aa
 aa
 aa
 aa
-RZ
-HH
-lq
-lq
-lq
-OG
-bT
-My
-hh
-zt
-cG
-zt
-cG
-zt
-yX
-Qp
-yg
-CJ
-Qy
-Vz
-CJ
-Mv
-FC
-yX
-lq
-lq
-lq
-Mu
-Zm
-lq
-lq
-Kj
+vM
+nV
+Qz
+Qz
+Qz
+Ab
+jP
+dl
+RA
+rv
+Yd
+rv
+Yd
+rv
+Te
+sx
+RU
+RA
+bA
+Nb
+RA
+Dn
+Qd
+Te
+Qz
+Qz
+Qz
+KL
+KP
+Qz
+Qz
+yG
 vO
 Aw
 jq
@@ -7059,38 +7060,38 @@ aa
 aa
 aa
 aa
-RZ
-lq
-lq
-vK
-lq
-lq
-lq
-lq
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-yX
-DJ
-ep
-vt
-Qy
-Vz
-tk
-ep
-Ye
-yX
-Oa
-Oa
-rm
-Oa
-Oa
-rm
-Oa
-Oa
+vM
+Qz
+Qz
+Nw
+Qz
+Qz
+Qz
+Qz
+uU
+RA
+RA
+RA
+RA
+RA
+Te
+eM
+Ee
+dR
+bA
+Nb
+fX
+Ee
+TD
+Te
+FH
+FH
+lI
+FH
+FH
+lI
+FH
+FH
 vO
 Hy
 iO
@@ -7174,38 +7175,38 @@ aa
 aa
 aa
 aa
-RZ
-lq
-lq
-ld
-lq
-iA
-aJ
-lq
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-yX
-kB
-UG
-CJ
-Qy
-Vz
-CJ
-yE
-Ds
-yX
-NG
-Ph
-Ph
-Ph
-Ph
-Ph
-Ph
-NG
+vM
+Qz
+Qz
+LA
+Qz
+Hb
+jW
+Qz
+RA
+RA
+RA
+RA
+RA
+RA
+Te
+LV
+pj
+RA
+bA
+Nb
+RA
+mr
+OT
+Te
+BF
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+BF
 vO
 iX
 iX
@@ -7289,38 +7290,38 @@ aa
 aa
 aa
 aa
-RZ
-MR
-lq
-lq
-lq
-lq
-lq
-fX
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-wH
-TM
-Kr
-CJ
-Kr
-Kr
-CJ
-TM
-TM
-wH
-ZY
-CJ
-CJ
-CJ
-pb
-CJ
-CJ
-hq
+vM
+Fs
+Qz
+Qz
+Qz
+Qz
+Qz
+ji
+RA
+RA
+RA
+RA
+RA
+RA
+Jl
+rh
+Pg
+RA
+Pg
+Pg
+RA
+rh
+rh
+Jl
+rj
+RA
+RA
+RA
+MM
+RA
+RA
+Ib
 vO
 iX
 iX
@@ -7404,38 +7405,38 @@ aa
 aa
 aa
 aa
-RZ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-wH
-DS
-DS
-DS
-DS
-DS
-DS
-DS
-DS
-wH
-ZY
-CJ
-qZ
-pS
-ft
-pS
-qZ
-DK
+vM
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+Jl
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+Jl
+rj
+RA
+ev
+EZ
+CN
+EZ
+ev
+OE
 vO
 iX
 iX
@@ -7519,38 +7520,38 @@ aa
 aa
 aa
 aa
-yX
-tP
-CJ
-CJ
-US
-CJ
-CJ
-zo
-zo
-CJ
-FM
-FH
-mG
-vJ
-yX
-yv
-wp
-wp
-lw
-wp
-wp
-wp
-aM
-yX
-ZY
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-hq
+Te
+ay
+RA
+RA
+eY
+RA
+RA
+XG
+XG
+RA
+gC
+zQ
+vc
+wd
+Te
+vL
+dp
+dp
+Nt
+dp
+dp
+dp
+uV
+Te
+rj
+RA
+RA
+RA
+RA
+RA
+RA
+Ib
 vO
 iX
 iX
@@ -7634,38 +7635,38 @@ aa
 aa
 aa
 aa
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-UX
-wp
-XE
-XE
-XE
-XE
-wp
-wp
-yX
-ZY
-jk
-CJ
-CJ
-qZ
-pS
-SL
-DK
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+GX
+dp
+xG
+xG
+xG
+xG
+dp
+dp
+Te
+rj
+UT
+RA
+RA
+ev
+EZ
+xI
+OE
 vO
 iX
 iX
@@ -7749,55 +7750,55 @@ aa
 aa
 aa
 aa
-yX
-bj
-bj
-bj
-bj
-qa
-GP
-kY
-lh
-Pd
-Xn
-Pd
-Pd
-Pd
-yX
-Jn
-wp
-XE
-VN
-HR
-XE
-wp
-wp
-yX
+Te
+uQ
+uQ
+uQ
+uQ
+Pc
+us
+KC
 VQ
-yI
-Md
-df
-Md
-Md
-Md
-gR
+nw
+vb
+nw
+nw
+nw
+Te
+Yx
+dp
+xG
+km
+Xq
+xG
+dp
+dp
+Te
+VN
+Sp
+SA
+ZA
+SA
+SA
+SA
+zd
 vO
 vO
 XW
 vO
 vO
-Ck
-Hd
+Xm
+SH
 aa
 aa
 aa
-Hd
+SH
 aa
-Hd
-Hd
+SH
+SH
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -7864,40 +7865,40 @@ aa
 aa
 aa
 aa
-yX
-bj
-oG
-XK
-XK
-Hb
-BW
-in
-Pd
-XS
-XS
-XS
-Pd
-Pd
-Ns
-wp
-wp
-XE
-rx
-JF
-XE
-wp
-wp
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
+Te
+uQ
+rL
+ue
+ue
+Av
+Lp
+Kv
+nw
+Wx
+Wx
+Wx
+nw
+nw
+aC
+dp
+dp
+xG
+Eg
+DF
+xG
+dp
+dp
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
 vO
-vC
+KV
 hW
 Nu
 vO
@@ -7912,8 +7913,8 @@ vO
 vO
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -7978,57 +7979,57 @@ aa
 aa
 aa
 aa
-Hd
-yX
-bj
-Qn
-XK
-XK
-XK
-BW
-NA
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
-Ns
-wp
-wp
-XE
-XE
-XE
-XE
-wp
-wp
-yX
+SH
+Te
+uQ
+jo
+ue
+ue
+ue
+Lp
+WI
+nw
+nw
+nw
+nw
+nw
+nw
+aC
 dp
-Pd
-Pd
-lh
-Pd
-Pd
-Pd
-Fz
+dp
+xG
+xG
+xG
+xG
+dp
+dp
+Te
+qF
+nw
+nw
+VQ
+nw
+nw
+nw
+CP
 vO
 iX
 Ce
 iX
 vO
 jV
-xJ
+hl
 jV
 jV
-yf
+to
 jV
 jV
-xJ
+hl
 vO
 aa
 aa
 aa
-Hd
+SH
 aa
 aa
 aa
@@ -8092,40 +8093,40 @@ aa
 aa
 aa
 aa
-Hd
-Hd
-yX
-bj
-XK
-XK
-XK
-XK
-BW
-in
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
-yX
-wp
-wp
-XE
-VN
-HR
-XE
-wp
-wp
-Oa
-Pd
-fp
-KC
-mr
-fp
-XS
-mr
-Pd
+SH
+SH
+Te
+uQ
+ue
+ue
+ue
+ue
+Lp
+Kv
+nw
+nw
+nw
+nw
+nw
+nw
+Te
+dp
+dp
+xG
+km
+Xq
+xG
+dp
+dp
+FH
+nw
+aB
+VP
+tG
+aB
+Wx
+tG
+nw
 vO
 iX
 iX
@@ -8206,41 +8207,41 @@ aa
 aa
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
-yX
-bj
-XK
-oG
-XK
-XK
-BW
-in
-Pd
-XS
-Pd
-XS
-Pd
-Pd
-yX
-wp
-wp
-XE
-rx
-JF
-XE
-wp
-wp
-Oa
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
+Te
+uQ
+ue
+rL
+ue
+ue
+Lp
+Kv
+nw
+Wx
+nw
+Wx
+nw
+nw
+Te
+dp
+dp
+xG
+Eg
+DF
+xG
+dp
+dp
+FH
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 vO
 iX
 iX
@@ -8252,7 +8253,7 @@ jV
 jV
 jV
 jV
-jy
+uI
 jV
 vO
 ES
@@ -8320,42 +8321,42 @@ aa
 aa
 aa
 aa
-Hd
-eq
-Hd
-Hd
-yX
-bj
-ig
-XK
-XK
-XK
-Qo
-in
-Pd
-SG
-Pd
-FI
-Pd
-Pd
-yX
-wp
-wp
-XE
-XE
-XE
-XE
-wp
-wp
-Oa
-Pd
-Xp
-Pd
-Xp
-Pd
-Xp
-Pd
-Pd
+SH
+gr
+SH
+SH
+Te
+uQ
+Eq
+ue
+ue
+ue
+Gi
+Kv
+nw
+VV
+nw
+kB
+nw
+nw
+Te
+dp
+dp
+xG
+xG
+xG
+xG
+dp
+dp
+FH
+nw
+SL
+nw
+SL
+nw
+SL
+nw
+nw
 vO
 iX
 iX
@@ -8380,8 +8381,8 @@ vO
 vO
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -8434,43 +8435,43 @@ aa
 aa
 aa
 aa
-Hd
-Hd
-Hd
+SH
+SH
+SH
 aa
 aa
-yX
-bj
-XK
-XK
-XK
-XK
-BW
-in
-Pd
-ZG
-Pd
-XS
-Pd
-Pd
-yX
-wp
-wp
-XE
-VN
-HR
-XE
-wp
-wp
-Oa
-Pd
-Xp
-Pd
-Xp
-Pd
-Xp
-Pd
-Pd
+Te
+uQ
+ue
+ue
+ue
+ue
+Lp
+Kv
+nw
+Hv
+nw
+Wx
+nw
+nw
+Te
+dp
+dp
+xG
+km
+Xq
+xG
+dp
+dp
+FH
+nw
+SL
+nw
+SL
+nw
+SL
+nw
+nw
 vO
 iX
 iX
@@ -8496,13 +8497,13 @@ vO
 vO
 vO
 vO
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
+SH
+SH
+SH
+SH
+SH
+SH
+SH
 aa
 aa
 aa
@@ -8535,57 +8536,57 @@ aa
 aa
 aa
 aa
-Px
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-Px
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
+Aj
+Rq
+Rq
+Rq
+Rq
+Rq
+Rq
+Rq
+Aj
+SH
+SH
+SH
+SH
+SH
+SH
 aa
-Hd
+SH
 aa
 aa
-yX
-bj
-bj
-bj
-bj
-eu
-Ia
-gk
-tF
-SG
-Pd
-SG
-Pd
-Pd
-yX
-wp
-wp
-XE
-rx
-JF
-XE
-wp
-wp
-yX
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
-Pd
+Te
+uQ
+uQ
+uQ
+uQ
+Mc
+qe
+sG
+Tc
+VV
+nw
+VV
+nw
+nw
+Te
+dp
+dp
+xG
+Eg
+DF
+xG
+dp
+dp
+Te
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 vO
 iX
 iX
@@ -8598,7 +8599,7 @@ bI
 vO
 bI
 vO
-zP
+iJ
 vO
 hA
 hA
@@ -8615,7 +8616,7 @@ aa
 aa
 aa
 aa
-Hd
+SH
 vO
 vO
 vO
@@ -8649,58 +8650,58 @@ aa
 aa
 aa
 aa
-Px
-Px
-wQ
-kT
-Fx
-ol
-Fx
-YE
-Eq
-Px
-Px
-Px
-Px
-ry
-Px
-Px
-ry
-Px
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-UX
-wp
-XE
-XE
-XE
-XE
-wp
-wp
-yX
-yX
-Oa
-Oa
-Oa
-Oa
-yX
-bL
-yX
+Aj
+Aj
+Of
+AJ
+Qr
+WW
+Qr
+XU
+Xh
+Aj
+Aj
+Aj
+Aj
+Rq
+Aj
+Aj
+Rq
+Aj
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+GX
+dp
+xG
+xG
+xG
+xG
+dp
+dp
+Te
+Te
+FH
+FH
+FH
+FH
+Te
+FN
+Te
 vO
 hX
 hX
@@ -8721,7 +8722,7 @@ Fj
 hs
 hs
 hs
-Ch
+iP
 hs
 hA
 ko
@@ -8732,10 +8733,10 @@ aa
 aa
 vO
 vO
-fu
-fP
-fu
-fu
+ys
+yB
+ys
+ys
 vO
 vO
 aa
@@ -8763,59 +8764,59 @@ aa
 aa
 aa
 aa
-Px
-Px
-nX
-nX
-nX
-hd
-nX
-hd
-nX
-nX
-nX
-Px
-rW
-no
-no
-Qw
-BE
-no
-no
-yX
-CJ
-CJ
-vE
-CJ
-CJ
-CJ
-CJ
-CJ
-vE
-CJ
-CJ
-Pd
-Pd
-Pd
-Pd
-yX
-wp
-wp
-XE
-VN
-HR
-XE
-wp
-wp
-yX
-wp
-wp
-wp
-wp
-wp
-wp
-XE
-wp
+Aj
+Aj
+KR
+KR
+KR
+FS
+KR
+FS
+KR
+KR
+KR
+Aj
+fd
+sM
+sM
+Al
+cZ
+sM
+sM
+Te
+RA
+RA
+pT
+RA
+RA
+RA
+RA
+RA
+pT
+RA
+RA
+nw
+nw
+nw
+nw
+Te
+dp
+dp
+xG
+km
+Xq
+xG
+dp
+dp
+Te
+dp
+dp
+dp
+dp
+dp
+dp
+xG
+dp
 vO
 hs
 hs
@@ -8835,9 +8836,9 @@ hs
 vO
 hs
 hs
-KR
-ep
-TJ
+sl
+Ee
+Se
 hA
 kq
 vO
@@ -8846,12 +8847,12 @@ hM
 hM
 hM
 vO
-it
-Hp
-Hp
-Hp
-Hp
-it
+nI
+bd
+bd
+bd
+bd
+nI
 vO
 vO
 vO
@@ -8878,59 +8879,59 @@ aa
 aa
 aa
 aa
-ry
-Lj
-nX
-nX
-nX
-nX
-qW
-nX
-nX
-nX
-nX
-Px
-no
-no
-nX
-nX
-nX
-nX
-rv
-yX
-CJ
-VN
-HR
-oT
-CJ
+Rq
+lw
+KR
+KR
+KR
+KR
+qS
+KR
+KR
+KR
+KR
+Aj
+sM
+sM
+KR
+KR
+KR
+KR
+dP
+Te
+RA
+km
+Xq
+VA
+RA
+fT
+ev
+yO
+km
+Xq
+RA
+nw
 AC
-qZ
-cR
-VN
-HR
-CJ
-Pd
-Ln
-bX
-od
-Oa
-wp
-wp
-XE
-rx
-JF
-XE
-wp
-XE
-bL
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
+Gr
+Ix
+FH
+dp
+dp
+xG
+Eg
+DF
+xG
+dp
+xG
+FN
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
 vO
 ja
 hs
@@ -8951,15 +8952,15 @@ vO
 jw
 jR
 hs
-UE
+SQ
 hs
 hA
 hA
 vO
-zq
-oE
-VT
-mB
+EG
+HI
+tt
+bQ
 hs
 hs
 hs
@@ -8967,9 +8968,9 @@ hs
 hs
 hs
 hs
-iJ
+BB
 vO
-rR
+wG
 iO
 iO
 vO
@@ -8993,59 +8994,59 @@ aa
 aa
 aa
 aa
-ry
-eP
-Se
-nX
-Px
-Px
-Px
-Px
-Px
-nX
-nX
-Px
-no
-no
-nX
-nX
-EO
-nX
-no
-yX
-CJ
-rx
-JF
-wm
-CJ
-AC
-qZ
-cR
-rx
-HP
-CJ
-Pd
-jS
-dW
-od
-Oa
-wp
-wp
-XE
-BN
-XE
-XE
-wp
-XE
-bL
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
+Rq
+QE
+aw
+KR
+Aj
+Aj
+Aj
+Aj
+Aj
+KR
+KR
+Aj
+sM
+sM
+KR
+KR
+EN
+KR
+sM
+Te
+RA
+Eg
+DF
+tT
+RA
+fT
+ev
+yO
+Eg
+rG
+RA
+nw
+vJ
+fr
+Ix
+FH
+dp
+dp
+xG
+Yo
+xG
+xG
+dp
+xG
+FN
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
 iN
 hs
 hs
@@ -9074,19 +9075,19 @@ Pt
 hs
 hs
 hs
-CB
+Qp
 hs
 hs
-iJ
+BB
 hs
-Xu
+xu
 hs
 hs
 hs
-Mq
+HQ
 iO
-JV
-Ok
+GI
+Ns
 vO
 aa
 aa
@@ -9108,59 +9109,59 @@ aa
 aa
 aa
 aa
-ry
-QN
-nX
-nX
-Px
-KX
-QY
-yp
-Px
-nX
-nX
-pP
-fq
-nX
-nX
-fC
-NI
-nX
-no
-yX
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-PV
-Pd
-Pd
-Pd
-yX
-wp
-wp
-XE
-VN
-HR
-XE
-wp
-wp
-Oa
-wp
-wp
-wp
-wp
-wp
-wp
-wp
-wp
+Rq
+Jt
+KR
+KR
+Aj
+Dw
+ud
+IO
+Aj
+KR
+KR
+ZT
+oJ
+KR
+KR
+Cq
+Nx
+KR
+sM
+Te
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+RA
+FR
+nw
+nw
+nw
+Te
+dp
+dp
+xG
+km
+Xq
+xG
+dp
+dp
+FH
+dp
+dp
+dp
+dp
+dp
+dp
+dp
+dp
 vO
 hs
 hs
@@ -9186,22 +9187,22 @@ hs
 hs
 hs
 vO
-zW
-zW
-zW
-vu
+TE
+TE
+TE
+ih
 hs
 hs
 hs
 hs
-dP
+Sk
 hs
 hs
 hs
-Mq
-Ok
+HQ
+Ns
 iO
-JV
+GI
 vO
 aa
 aa
@@ -9223,59 +9224,59 @@ aa
 aa
 aa
 aa
-ry
-eP
-nX
-nX
-NU
-KY
-no
-MD
-Px
-fF
-nX
-Px
-no
-no
-DR
-WX
-fB
-nX
-nX
-bF
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-bL
-XE
-wp
-XE
-rx
-JF
-XE
-wp
-wp
-Oa
-wp
-wp
-wp
-wp
-wp
-wp
-wp
-wp
+Rq
+QE
+KR
+KR
+XA
+fG
+sM
+ql
+Aj
+CS
+KR
+Aj
+sM
+sM
+GP
+ro
+YU
+KR
+KR
+Je
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+FN
+xG
+dp
+xG
+Eg
+DF
+xG
+dp
+dp
+FH
+dp
+dp
+dp
+dp
+dp
+dp
+dp
+dp
 vO
 hs
 hs
@@ -9301,21 +9302,21 @@ hs
 hs
 hs
 vO
-zW
-mi
-zW
-Cv
+TE
+sz
+TE
+tS
 hs
 hs
 hs
 hs
-MT
+IE
 hs
 hs
 hs
-Mq
+HQ
 iO
-wq
+ua
 iO
 vO
 aa
@@ -9338,59 +9339,59 @@ aa
 aa
 aa
 aa
-ry
-eP
-nX
-RO
-Px
-DN
-no
-no
-Px
-nX
-nX
-Px
-no
-no
-nX
-NI
-aT
-iV
-nX
-bF
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-bL
-XE
-wp
-XE
-XE
-XE
-XE
-wp
-XE
-bL
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
+Rq
+QE
+KR
+Pz
+Aj
+XC
+sM
+sM
+Aj
+KR
+KR
+Aj
+sM
+sM
+KR
+Nx
+GG
+sK
+KR
+Je
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+FN
+xG
+dp
+xG
+xG
+xG
+xG
+dp
+xG
+FN
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
 iN
 hs
 hs
@@ -9419,19 +9420,19 @@ Pt
 hs
 hs
 hs
-CB
+Qp
 hs
 hs
-iJ
+BB
 hs
-fb
+Eb
 hs
 hs
 hs
-Mq
-JV
-Ok
-JV
+HQ
+GI
+Ns
+GI
 vO
 aa
 aa
@@ -9453,59 +9454,59 @@ aa
 aa
 aa
 aa
-ry
-Yb
-Se
-nX
-Px
-tE
-FD
-BG
-Px
-nX
-nX
-pP
-nX
-nX
-nX
-Tm
-FA
-iV
-no
-yX
-CJ
-CJ
-CJ
-lH
-XE
-ez
-XE
-CJ
-CJ
-CJ
-CJ
-Pd
-Pd
-Pd
-Pd
-yX
-wp
-wp
-XE
-VN
-HR
-XE
-wp
-XE
-bL
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
+Rq
+QN
+aw
+KR
+Aj
+Cn
+zn
+WF
+Aj
+KR
+KR
+ZT
+KR
+KR
+KR
+eW
+YY
+sK
+sM
+Te
+RA
+RA
+RA
+yj
+xG
+Fc
+xG
+RA
+RA
+RA
+RA
+nw
+nw
+nw
+nw
+Te
+dp
+dp
+xG
+km
+Xq
+xG
+dp
+xG
+FN
+xG
+xG
+xG
+xG
+xG
+xG
+xG
+xG
 vO
 hs
 hs
@@ -9526,15 +9527,15 @@ vO
 jz
 ke
 hs
-Ch
+iP
 hs
 hA
 hA
 vO
-zp
-pc
-zW
-Hg
+cw
+cD
+TE
+xA
 hs
 hs
 hs
@@ -9542,9 +9543,9 @@ hs
 hs
 hs
 hs
-iJ
+BB
 vO
-XX
+Oh
 iO
 iO
 vO
@@ -9568,59 +9569,59 @@ aa
 aa
 aa
 aa
-ry
-eP
-nX
-nX
-Px
-Px
-Px
-Px
-Px
-nX
-nX
-Px
-no
-no
-nX
-nX
-nX
-yL
-no
-yX
-CJ
-VN
-HR
-CJ
-XE
-XE
-XE
-CJ
-VN
-HR
-CJ
-Pd
-ab
-RN
-Zu
-Oa
-wp
-wp
-XE
-rx
-JF
-XE
-wp
-wp
-yX
-Si
-wp
-wp
-ni
-wp
-pO
-XE
-wp
+Rq
+QE
+KR
+KR
+Aj
+Aj
+Aj
+Aj
+Aj
+KR
+KR
+Aj
+sM
+sM
+KR
+KR
+KR
+hL
+sM
+Te
+RA
+km
+Xq
+RA
+xG
+xG
+xG
+RA
+km
+Xq
+RA
+nw
+uS
+IW
+NT
+FH
+dp
+dp
+xG
+Eg
+DF
+xG
+dp
+dp
+Te
+PP
+dp
+dp
+Im
+dp
+kW
+xG
+dp
 vO
 hs
 hs
@@ -9640,9 +9641,9 @@ hs
 vO
 hs
 hs
-KR
-ep
-TJ
+sl
+Ee
+Se
 hA
 ks
 vO
@@ -9651,12 +9652,12 @@ hM
 hM
 hM
 vO
-it
-Pg
-Pg
-Pg
-Pg
-it
+nI
+EX
+EX
+EX
+EX
+nI
 vO
 vO
 vO
@@ -9683,59 +9684,59 @@ aa
 aa
 aa
 aa
-ry
-nX
-nX
-nX
-nX
-nX
-fd
-nX
-nX
-nX
-nX
-Px
-no
-no
-nX
-nX
-nX
-nX
-rv
-yX
-CJ
-rx
-JF
-CJ
-XE
-ez
-XE
-CJ
-rx
-JF
-CJ
-Pd
-dA
-cS
-Zu
-Oa
-wp
-wp
-XE
-XE
-XE
-XE
-wp
-wp
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-eE
-yX
+Rq
+KR
+KR
+KR
+KR
+KR
+Zi
+KR
+KR
+KR
+KR
+Aj
+sM
+sM
+KR
+KR
+KR
+KR
+dP
+Te
+RA
+Eg
+DF
+RA
+xG
+Fc
+xG
+RA
+Eg
+DF
+RA
+nw
+GV
+Nv
+NT
+FH
+dp
+dp
+xG
+xG
+xG
+xG
+dp
+dp
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Af
+Te
 vO
 hW
 Nu
@@ -9756,7 +9757,7 @@ lb
 hs
 hs
 hs
-UE
+SQ
 hs
 hA
 kG
@@ -9767,10 +9768,10 @@ aa
 aa
 vO
 vO
-fu
-Gu
-Hq
-fu
+ys
+bp
+ZX
+ys
 vO
 vO
 aa
@@ -9798,59 +9799,59 @@ aa
 aa
 aa
 aa
-Px
-Px
-nX
-nX
-nX
-hd
-nX
-hd
-nX
-nX
-nX
-Px
-Px
-no
-Go
-sn
-IY
-LG
-IO
-yX
-CJ
-CJ
-US
-CJ
-XE
-XE
-XE
-CJ
-US
-CJ
-CJ
-Pd
-Pd
-Pd
-Pd
-yX
-wp
-wp
-wp
-ni
-wp
-wp
-wp
-wp
-yX
-hc
-Ih
-Ih
-fx
-Ih
-Ih
-Ih
-Ih
+Aj
+Aj
+KR
+KR
+KR
+FS
+KR
+FS
+KR
+KR
+KR
+Aj
+Aj
+sM
+RG
+lk
+BJ
+Ok
+Zh
+Te
+RA
+RA
+eY
+RA
+xG
+xG
+xG
+RA
+eY
+RA
+RA
+nw
+nw
+nw
+nw
+Te
+dp
+dp
+dp
+Im
+dp
+dp
+dp
+dp
+Te
+Oi
+Wu
+Wu
+in
+Wu
+Wu
+Wu
+Wu
 vO
 iX
 iX
@@ -9880,7 +9881,7 @@ aa
 aa
 aa
 aa
-Hd
+SH
 vO
 vO
 vO
@@ -9914,58 +9915,58 @@ aa
 aa
 aa
 aa
-Px
-Px
-qS
-qA
-eY
-jl
-eY
-wQ
-QN
-Px
-Px
-Px
-Px
-ry
-Px
-Px
-ry
-Px
-yX
-yX
-yX
-yX
-yX
-po
-yX
-po
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-li
-li
-yX
-yX
-yX
-hc
-RB
-Ih
-Ih
-Ih
-Ih
-Ih
-Ih
+Aj
+Aj
+nE
+Kr
+tJ
+PN
+tJ
+Of
+Jt
+Aj
+Aj
+Aj
+Aj
+Rq
+Aj
+Aj
+Rq
+Aj
+Te
+Te
+Te
+Te
+Te
+yI
+Te
+yI
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Ww
+Ww
+Te
+Te
+Te
+Oi
+pP
+Wu
+Wu
+Wu
+Wu
+Wu
+Wu
 vO
 iX
 iX
@@ -9991,13 +9992,13 @@ vO
 vO
 vO
 vO
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
+SH
+SH
+SH
+SH
+SH
+SH
+SH
 aa
 aa
 aa
@@ -10030,57 +10031,57 @@ aa
 aa
 aa
 aa
-Px
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-Px
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
+Aj
+Rq
+Rq
+Rq
+Rq
+Rq
+Rq
+Rq
+Aj
+SH
+SH
+SH
+SH
+SH
+SH
 aa
-Hd
+SH
 aa
 aa
-yX
-fx
-CJ
-Ih
-CJ
-Ih
-CJ
-Ad
-yX
-kJ
-iy
-iy
-iy
-iy
-iy
-rF
-yX
-ys
-ys
-ys
-ys
-ys
-ys
-yX
-OT
-aK
-Ih
-Ih
-qn
-MF
-CF
-MF
+Te
+in
+RA
+Wu
+RA
+Wu
+RA
+Lb
+Te
+kw
+An
+An
+An
+An
+An
+sr
+Te
+Yz
+Yz
+Yz
+Yz
+Yz
+Yz
+Te
+Ks
+om
+Wu
+Wu
+VL
+mO
+Gk
+mO
 vO
 iX
 iX
@@ -10105,8 +10106,8 @@ vO
 vO
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -10159,43 +10160,43 @@ aa
 aa
 aa
 aa
-Hd
-Hd
-Hd
+SH
+SH
+SH
 aa
 aa
-yX
-CJ
-Ih
-CJ
-Ih
-CJ
-Ih
-CJ
-yX
-Fp
-pS
-CJ
-pS
-CJ
-pS
-OW
-yX
-ys
-ys
-ys
-ys
-UW
-ys
-yX
-hc
-TT
-Ih
-Ih
-HI
-MF
-CF
-MF
+Te
+RA
+Wu
+RA
+Wu
+RA
+Wu
+RA
+Te
+Jd
+EZ
+RA
+EZ
+RA
+EZ
+up
+Te
+Yz
+Yz
+Yz
+Yz
+yD
+Yz
+Te
+Oi
+zh
+Wu
+Wu
+bJ
+mO
+Gk
+mO
 vO
 iX
 iX
@@ -10275,42 +10276,42 @@ aa
 aa
 aa
 aa
-Hd
-eq
-Hd
-Hd
-yX
-Ih
-CJ
-pd
-CJ
-Ih
-CJ
-Ih
-yX
-vv
-uB
-CJ
-pt
-CJ
-pt
-OW
-yX
-ys
-ys
-ys
-ys
-ae
-aB
-yX
-hc
-Ih
-Ih
-Ih
-CF
-MF
-fh
-MF
+SH
+gr
+SH
+SH
+Te
+Wu
+RA
+ux
+RA
+Wu
+RA
+Wu
+Te
+mk
+Kq
+RA
+VB
+RA
+VB
+up
+Te
+Yz
+Yz
+Yz
+Yz
+jm
+TZ
+Te
+Oi
+Wu
+Wu
+Wu
+Gk
+mO
+BN
+mO
 vO
 iX
 iX
@@ -10391,59 +10392,59 @@ aa
 aa
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
-yX
-CJ
-io
-io
-ZN
-rl
-Ih
-Vn
-yX
-ww
-CJ
-CJ
-CJ
-CJ
-CJ
-OW
-yX
-QQ
-XU
-nC
-ys
-cg
-ys
-yX
-do
-do
-do
-do
-do
-do
-do
-do
+Te
+RA
+xf
+xf
+ga
+EP
+Wu
+cM
+Te
+Iu
+RA
+RA
+RA
+RA
+RA
+up
+Te
+LI
+UX
+MZ
+Yz
+xq
+Yz
+Te
+UW
+UW
+UW
+UW
+UW
+UW
+UW
+UW
 vO
 iX
 iX
 iX
 vO
 jV
-Yf
+CZ
 jV
 jV
-Yf
+CZ
 jV
 jV
-Yf
+CZ
 vO
 aa
 aa
 aa
-Hd
+SH
 Dq
 aa
 aa
@@ -10507,42 +10508,42 @@ aa
 aa
 aa
 aa
-Hd
-Hd
-yX
-FW
-io
-uz
-lq
-io
-CJ
-zz
-yX
-Fp
-pS
-CJ
-pS
-CJ
-CJ
-OW
-yX
-KA
-ys
-MX
-ys
-ys
-Ha
-yX
-Sp
-CJ
-Sp
-CJ
-ii
-CJ
-uV
-yX
+SH
+SH
+Te
+YX
+xf
+Hh
+Qz
+xf
+RA
+ht
+Te
+Jd
+EZ
+RA
+EZ
+RA
+RA
+up
+Te
+GL
+Yz
+Td
+Yz
+Yz
+nZ
+Te
+Tk
+RA
+Tk
+RA
+Il
+RA
+kM
+Te
 vO
-zi
+OJ
 hX
 sY
 vO
@@ -10557,8 +10558,8 @@ vO
 vO
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -10623,56 +10624,56 @@ aa
 aa
 aa
 aa
-Hd
-yX
-Oa
-Oa
-Oa
-gs
-Oa
-Oa
-Oa
-yX
-Fp
-pt
-lt
-VP
-CJ
-QZ
-Zz
-yX
-ys
-ys
-QQ
-oH
-nC
-ys
-yX
-If
-Iq
-If
-pM
-If
-Ur
-yX
-yX
+SH
+Te
+FH
+FH
+FH
+JC
+FH
+FH
+FH
+Te
+Jd
+VB
+Tx
+Re
+RA
+tD
+wH
+Te
+Yz
+Yz
+LI
+zE
+MZ
+Yz
+Te
+nQ
+FM
+nQ
+Ik
+nQ
+qv
+Te
+Te
 vO
 vO
 sj
 vO
 vO
-Ck
+Xm
 aa
 aa
 aa
 aa
-Hd
+SH
 aa
-Hd
-Hd
+SH
+SH
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -10739,38 +10740,38 @@ aa
 aa
 aa
 aa
-yX
-rO
-rO
-rO
-rO
-rO
-PW
-rO
-yX
-Fp
-CJ
-CJ
-CJ
-CJ
-CJ
-CJ
-Kl
-ys
-ys
-ys
-ys
-ys
-ys
-yX
-CJ
-CJ
-CJ
-CJ
-RP
-yX
-yX
-Hd
+Te
+Zv
+Zv
+Zv
+Zv
+Zv
+AP
+Zv
+Te
+Jd
+RA
+RA
+RA
+RA
+RA
+RA
+od
+Yz
+Yz
+Yz
+Yz
+Yz
+Yz
+Te
+RA
+RA
+RA
+RA
+YS
+Te
+Te
+SH
 vO
 iX
 iX
@@ -10854,37 +10855,37 @@ aa
 aa
 aa
 aa
-yX
-rO
-PW
-rO
-rO
-rO
-rO
-rO
-yX
-vv
-CJ
-Xv
-Nz
-yZ
-CJ
-CJ
-Kl
-ys
-ys
-ys
-ys
-ys
-ys
-yX
-iB
-CJ
-CJ
-nV
-yX
-yX
-Hd
+Te
+Zv
+AP
+Zv
+Zv
+Zv
+Zv
+Zv
+Te
+mk
+RA
+le
+ik
+Ha
+RA
+RA
+od
+Yz
+Yz
+Yz
+Yz
+Yz
+Yz
+Te
+Oc
+RA
+RA
+jd
+Te
+Te
+SH
 aa
 vO
 iX
@@ -10969,36 +10970,36 @@ aa
 aa
 aa
 aa
-yX
-yX
-KZ
-fT
-VA
-fT
-KZ
-yX
-yX
-Fp
-CJ
-XY
-Yl
-CJ
-CJ
-Qs
-yX
-ys
-ys
-ys
-ys
-ys
-ys
-yX
-CJ
-CJ
-fM
-yX
-yX
-Hd
+Te
+Te
+pI
+Ao
+EH
+Ao
+pI
+Te
+Te
+Jd
+RA
+hC
+de
+RA
+RA
+bX
+Te
+Yz
+Yz
+Yz
+Yz
+Yz
+Yz
+Te
+RA
+RA
+fl
+Te
+Te
+SH
 aa
 aa
 vO
@@ -11085,34 +11086,34 @@ aa
 aa
 aa
 aa
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-fz
-yn
-yn
-yn
-yn
-yn
-jN
-yX
-SS
-vo
-Uh
-gT
-CZ
-Vu
-yX
-CJ
-CJ
-yX
-yX
-Hd
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Bb
+Fi
+Fi
+Fi
+Fi
+Fi
+yC
+Te
+OI
+fC
+EE
+cc
+UQ
+Si
+Te
+RA
+RA
+Te
+Te
+SH
 aa
 aa
 aa
@@ -11203,34 +11204,34 @@ aa
 aa
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
 aa
-yX
-yX
-yX
-SY
-yX
-SY
-yX
-yX
-yX
-hU
-hU
-hU
-hU
-hU
-hU
-yX
-bp
-yX
-yX
-Hd
+Te
+Te
+Te
+mz
+Te
+mz
+Te
+Te
+Te
+UP
+UP
+UP
+UP
+UP
+UP
+Te
+PH
+Te
+Te
+SH
 aa
 aj
 aa
-Hd
+SH
 vO
 iX
 iX
@@ -11319,33 +11320,33 @@ aa
 aa
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
-yX
-OH
-gR
-gR
-gR
-gR
-tI
-tI
-yX
-hU
-hU
-hU
-hU
-hU
-hU
-yX
-yX
-yX
-Hd
+Te
+ZG
+zd
+zd
+zd
+zd
+WK
+WK
+Te
+UP
+UP
+UP
+UP
+UP
+UP
+Te
+Te
+Te
+SH
 aa
 aa
 aa
-Hd
-Hd
+SH
+SH
 vO
 iO
 iO
@@ -11434,32 +11435,32 @@ aa
 aa
 aa
 aa
-Hd
-Hd
-Hd
-yX
-gR
-gR
-gR
-gR
-gR
-gR
-gR
-SY
-hU
-hU
-hU
-hU
-hU
-hU
-yX
-yX
-Hd
+SH
+SH
+SH
+Te
+zd
+zd
+zd
+zd
+zd
+zd
+zd
+mz
+UP
+UP
+UP
+UP
+UP
+UP
+Te
+Te
+SH
 aa
 aa
 aa
-Hd
-Hd
+SH
+SH
 aa
 vO
 iO
@@ -11473,7 +11474,7 @@ iX
 iX
 vO
 vO
-Hd
+SH
 aa
 aa
 aa
@@ -11551,31 +11552,31 @@ aa
 aa
 aa
 aa
-Hd
-yX
-JR
-gR
-gR
-gR
-gR
-gR
-gR
-yX
-bg
-UQ
-VD
-Ii
-fr
-yX
-yX
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
+SH
+Te
+pm
+zd
+zd
+zd
+zd
+zd
+zd
+Te
+Jb
+PM
+xm
+Hg
+hf
+Te
+Te
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
 vO
 iO
 jx
@@ -11587,7 +11588,7 @@ iO
 iX
 vO
 vO
-Hd
+SH
 aa
 aa
 aa
@@ -11643,11 +11644,11 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+gd
+gd
 ac
 ac
 ac
@@ -11667,22 +11668,22 @@ aa
 aa
 aj
 aa
-yX
-yX
-gR
-gx
-BK
-XJ
-XJ
-dG
-yX
-Qx
-yX
-yX
-yX
-yX
-yX
-Hd
+Te
+Te
+zd
+DW
+DB
+Ef
+Ef
+ig
+Te
+qP
+Te
+Te
+Te
+Te
+Te
+SH
 aa
 aa
 aa
@@ -11701,8 +11702,8 @@ iO
 iO
 vO
 vO
-Hd
-Hd
+SH
+SH
 aa
 aa
 aa
@@ -11758,11 +11759,11 @@ ac
 ac
 ac
 ac
-MQ
-Tg
-gw
-Tg
-MQ
+gd
+gK
+BC
+gK
+gd
 ac
 ac
 ac
@@ -11783,29 +11784,29 @@ aa
 aa
 aa
 aa
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-lm
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
-Hd
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Te
+Kd
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
+SH
 vO
 vO
 vO
@@ -11867,17 +11868,17 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-MQ
-MQ
-MQ
-MQ
-Tg
-Tg
-Tg
-MQ
+gd
+gd
+gd
+gd
+gd
+gd
+gd
+gK
+gK
+gK
+gd
 ac
 ac
 ac
@@ -11982,17 +11983,17 @@ ac
 ac
 ac
 ac
-MQ
-kQ
-kQ
-kQ
-kQ
-bS
-MQ
-kQ
-kQ
-kQ
-MQ
+gd
+nR
+nR
+nR
+nR
+tO
+gd
+nR
+nR
+nR
+gd
 ac
 ac
 ac
@@ -12097,17 +12098,17 @@ ac
 ac
 ac
 ac
-MQ
-kQ
-xT
-kQ
-kQ
-Up
-MQ
-MQ
-jZ
-MQ
-MQ
+gd
+nR
+Px
+nR
+nR
+Ua
+gd
+gd
+te
+gd
+gd
 ac
 ac
 ac
@@ -12212,17 +12213,17 @@ ac
 ac
 ac
 ac
-MQ
-kQ
-za
-kQ
-kQ
-Up
-MQ
-Dl
-tN
-ij
-MQ
+gd
+nR
+ut
+nR
+nR
+Ua
+gd
+xd
+Zw
+WO
+gd
 ac
 ac
 ac
@@ -12327,17 +12328,17 @@ ac
 ac
 ac
 ac
-MQ
-kQ
-kQ
-kQ
-kQ
-Up
-MQ
-tN
-ij
-kQ
-MQ
+gd
+nR
+nR
+nR
+nR
+Ua
+gd
+Zw
+WO
+nR
+gd
 ac
 ac
 ac
@@ -12435,24 +12436,24 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+gd
 ac
 ac
 ac
-MQ
-kQ
-vW
-kQ
-kQ
-Up
-MQ
-ij
-kQ
-qI
-MQ
+gd
+nR
+qZ
+nR
+nR
+Ua
+gd
+WO
+nR
+bN
+gd
 ac
 ac
 ac
@@ -12461,7 +12462,7 @@ ac
 iU
 lV
 lV
-se
+LZ
 lV
 lV
 iU
@@ -12549,25 +12550,25 @@ aa
 ac
 ac
 ac
-MQ
-MQ
-eB
-eB
-MQ
-MQ
+gd
+gd
+ei
+ei
+gd
+gd
 ac
 ac
-MQ
-kQ
-CP
-kQ
-kQ
-Up
-MQ
-kQ
-qI
-kQ
-MQ
+gd
+nR
+MF
+nR
+nR
+Ua
+gd
+nR
+bN
+nR
+gd
 ac
 ac
 ac
@@ -12663,26 +12664,26 @@ aa
 aa
 ac
 ac
-MQ
-MQ
-kQ
-kQ
-kQ
-kQ
-MQ
-MQ
+gd
+gd
+nR
+nR
+nR
+nR
+gd
+gd
 ac
-MQ
-MQ
-MQ
-DU
-MQ
-MQ
-MQ
-ij
-tN
-ij
-MQ
+gd
+gd
+gd
+Oz
+gd
+gd
+gd
+WO
+Zw
+WO
+gd
 ac
 ac
 ac
@@ -12778,26 +12779,26 @@ aa
 aa
 ac
 ac
-MQ
-kQ
-kQ
-kQ
-kQ
-kQ
-kQ
-MQ
-MQ
+gd
+nR
+nR
+nR
+nR
+nR
+nR
+gd
+gd
 ac
 ac
-MQ
-kQ
-MQ
-ow
-MQ
-tN
-ij
-kQ
-MQ
+gd
+nR
+gd
+YH
+gd
+Zw
+WO
+nR
+gd
 ac
 ac
 ac
@@ -12893,26 +12894,26 @@ aa
 aa
 ac
 ac
-MQ
-kQ
-kQ
-kQ
-kQ
-kQ
-kQ
-kQ
-MQ
-MQ
+gd
+nR
+nR
+nR
+nR
+nR
+nR
+nR
+gd
+gd
 ac
-MQ
-kQ
-MQ
-ow
-MQ
-MQ
-jZ
-mj
-MQ
+gd
+nR
+gd
+YH
+gd
+gd
+te
+Os
+gd
 ac
 ac
 ac
@@ -12923,7 +12924,7 @@ lV
 lV
 lV
 ml
-yr
+Bq
 iU
 ac
 ac
@@ -13008,37 +13009,37 @@ aa
 aa
 ac
 ac
-MQ
-ZL
-kQ
-kQ
-ZL
-kQ
-kQ
-kQ
-ZL
-MQ
-MQ
-ZL
-kQ
-ZL
-MQ
-MQ
-wS
-wS
-wS
-MQ
+gd
+zR
+nR
+nR
+zR
+nR
+nR
+nR
+zR
+gd
+gd
+zR
+nR
+zR
+gd
+gd
+RO
+RO
+RO
+gd
 ac
 ac
 ac
 ac
 ac
 iU
-sL
+Uo
 lV
 lV
 lV
-wD
+Jy
 iU
 ac
 ac
@@ -13123,37 +13124,37 @@ aa
 aa
 ac
 ac
-MQ
-zj
-kQ
-kQ
-kQ
-UD
-kQ
-kQ
-kQ
-DU
-kQ
-kQ
-uG
-kQ
-kQ
-jZ
-kQ
-kQ
-wS
-MQ
+gd
+Rw
+nR
+nR
+nR
+ol
+nR
+nR
+nR
+Oz
+nR
+nR
+AR
+nR
+nR
+te
+nR
+nR
+RO
+gd
 ac
 ac
 ac
 ac
 ac
 iU
-xV
-ip
+Wz
+Tp
 lV
 lV
-El
+DI
 iU
 ac
 ac
@@ -13238,26 +13239,26 @@ aa
 aa
 ac
 ac
-MQ
-ZL
-kQ
-kQ
-ZL
-kQ
-kQ
-kQ
-ZL
-MQ
-MQ
-ZL
-kQ
-ZL
-MQ
-MQ
-kQ
-SB
-kQ
-MQ
+gd
+zR
+nR
+nR
+zR
+nR
+nR
+nR
+zR
+gd
+gd
+zR
+nR
+zR
+gd
+gd
+nR
+ju
+nR
+gd
 ac
 ac
 ac
@@ -13265,10 +13266,10 @@ ac
 ac
 iU
 lV
-sL
+Uo
 lV
 lV
-Sm
+BD
 iU
 ac
 ac
@@ -13353,26 +13354,26 @@ aa
 aa
 ac
 ac
-MQ
-kQ
-kQ
-kQ
-kQ
-kQ
-kQ
-kQ
-MQ
-MQ
+gd
+nR
+nR
+nR
+nR
+nR
+nR
+nR
+gd
+gd
 ac
-MQ
-kQ
-MQ
-ow
-MQ
-RU
-kQ
-ND
-MQ
+gd
+nR
+gd
+YH
+gd
+fV
+nR
+sV
+gd
 ac
 ac
 ac
@@ -13468,26 +13469,26 @@ aa
 aa
 ac
 ac
-MQ
-kQ
-kQ
-kQ
-kQ
-kQ
-kQ
-MQ
-MQ
+gd
+nR
+nR
+nR
+nR
+nR
+nR
+gd
+gd
 ac
 ac
-MQ
-kQ
-MQ
-ow
-MQ
-MQ
-MQ
-MQ
-MQ
+gd
+nR
+gd
+YH
+gd
+gd
+gd
+gd
+gd
 ac
 ac
 ac
@@ -13583,22 +13584,22 @@ aa
 aa
 ac
 ac
-MQ
-MQ
-kQ
-kQ
-kQ
-kQ
-MQ
-MQ
+gd
+gd
+nR
+nR
+nR
+nR
+gd
+gd
 ac
-MQ
-MQ
-MQ
-DU
-MQ
-MQ
-MQ
+gd
+gd
+gd
+Oz
+gd
+gd
+gd
 ac
 ac
 ac
@@ -13609,7 +13610,7 @@ ac
 ac
 ac
 iU
-vp
+cd
 lV
 lV
 lV
@@ -13699,21 +13700,21 @@ aa
 ac
 ac
 ac
-MQ
-MQ
-kQ
-kQ
-MQ
-MQ
+gd
+gd
+nR
+nR
+gd
+gd
 ac
 ac
-MQ
-Ec
-ME
-kQ
-ME
-yl
-MQ
+gd
+RV
+Li
+nR
+Li
+tW
+gd
 ac
 ac
 ac
@@ -13724,11 +13725,11 @@ ac
 ac
 ac
 iU
-CS
+Ss
 lV
 lV
 lV
-ce
+Bl
 iU
 ac
 ac
@@ -13815,20 +13816,20 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+gd
 ac
 ac
 ac
-MQ
-MQ
-MQ
-kQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+nR
+gd
+gd
+gd
 ac
 ac
 ac
@@ -13839,11 +13840,11 @@ ac
 ac
 ac
 iU
-gq
-WC
+Bc
+Cr
 lV
 lV
-gc
+Sg
 iU
 ac
 ac
@@ -13937,13 +13938,13 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-kQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+nR
+gd
+gd
+gd
 ac
 ac
 ac
@@ -13956,7 +13957,7 @@ ac
 iU
 iU
 iU
-td
+Ue
 iU
 iU
 iU
@@ -14052,13 +14053,13 @@ ac
 ac
 ac
 ac
-MQ
-Sk
-ME
-kQ
-ME
-kQ
-MQ
+gd
+yX
+Li
+nR
+Li
+nR
+gd
 ac
 ac
 ac
@@ -14070,9 +14071,9 @@ ac
 ac
 ac
 iU
-ho
+bL
 lV
-kS
+Gy
 iU
 ac
 ac
@@ -14167,13 +14168,13 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-kQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+nR
+gd
+gd
+gd
 ac
 ac
 ac
@@ -14282,13 +14283,13 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-kQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+nR
+gd
+gd
+gd
 ac
 ac
 ac
@@ -14397,13 +14398,13 @@ ac
 ac
 ac
 ac
-MQ
-ra
-ME
-kQ
-ME
-rC
-MQ
+gd
+ZB
+Li
+nR
+Li
+ag
+gd
 ac
 ac
 ac
@@ -14512,13 +14513,13 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-ZL
-MQ
-MQ
-MQ
+gd
+gd
+gd
+zR
+gd
+gd
+gd
 ac
 ac
 ac
@@ -14596,11 +14597,11 @@ aa
 aa
 ac
 ac
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
 ac
 ac
 ac
@@ -14627,13 +14628,13 @@ ac
 ac
 ac
 ac
-MQ
-MQ
-MQ
-MQ
-MQ
-MQ
-MQ
+gd
+gd
+gd
+gd
+gd
+gd
+gd
 ac
 ac
 ac
@@ -14646,7 +14647,7 @@ ac
 ac
 iU
 lV
-iW
+cy
 lV
 iU
 ac
@@ -14711,12 +14712,12 @@ aa
 aa
 ac
 ac
-Gh
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
+LN
 ac
 ac
 ac
@@ -14761,7 +14762,7 @@ ac
 ac
 iU
 lV
-WW
+NX
 lV
 iU
 ac
@@ -14826,12 +14827,12 @@ aa
 aa
 ac
 ac
-Gh
-Gh
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
+LN
+LN
 ac
 ac
 ac
@@ -14942,10 +14943,10 @@ aa
 ac
 ac
 ac
-Gh
-Gh
-Gh
-Gh
+LN
+LN
+LN
+LN
 ac
 ac
 aa
