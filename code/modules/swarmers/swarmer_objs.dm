@@ -129,7 +129,7 @@
 	. = ..()
 	if(isswarmer(O))
 		return TRUE
-	if(istype(O, /obj/projectile/beam/disabler))
+	if(istype(O, /obj/item/projectile/beam/disabler))
 		return TRUE
 	
 /obj/effect/temp_visual/swarmer //temporary swarmer visual feedback objects
