@@ -346,7 +346,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					empulse(src, 6, 6)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
-						O.MakeSlippery(TURF_WET_LUBE, 30)
+						O.MakeSlippery(TURF_WET_LUBE, 300)
 						playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 				eating = TRUE
 
