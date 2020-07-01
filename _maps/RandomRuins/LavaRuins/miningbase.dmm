@@ -2552,21 +2552,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"Gs" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "GP" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 4
@@ -3199,7 +3184,7 @@ Bx
 iy
 cU
 dl
-Gs
+cZ
 dL
 cY
 aD
