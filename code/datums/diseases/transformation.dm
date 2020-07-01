@@ -292,7 +292,7 @@
 	cure_text = /datum/reagent/water/holywater
 	cures = list(/datum/reagent/water/holywater)
 	agent = "Spectral Curse"
-	desc = "A 'gift' from the spectral realm
+	desc = "A 'gift' from the spectral realm"
 	stage_prob = 20
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = 0
