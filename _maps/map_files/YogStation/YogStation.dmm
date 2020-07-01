@@ -16653,16 +16653,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"aIS" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "aIT" = (
 /obj/item/storage/bag/plants/portaseeder,
 /obj/structure/table/glass,
@@ -50833,6 +50823,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"igu" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "igK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -53881,6 +53881,13 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"mXk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "mXC" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -56561,6 +56568,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"reU" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "rfa" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics";
@@ -57828,6 +57845,13 @@
 "tfA" = (
 /turf/template_noop,
 /area/space)
+"tfB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "tfC" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -57968,6 +57992,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"toE" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -58456,6 +58487,10 @@
 /obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plasteel,
 /area/storage/tools)
+"uiF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "uiY" = (
 /obj/machinery/telecomms/receiver/preset_right{
 	name = "subspace receiver B"
@@ -59783,6 +59818,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"wrN" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "wuM" = (
 /obj/machinery/meter,
 /obj/machinery/button/door{
@@ -59968,6 +60014,10 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/solarpanel,
 /area/solar/starboard/fore)
+"wCM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "wDq" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -75073,15 +75123,15 @@ aAI
 aBH
 azz
 azz
-azz
-azz
-azz
-azz
-aIS
-aBH
-azz
-aPu
-rzM
+nMn
+mXk
+mXk
+mXk
+wrN
+igu
+mXk
+toE
+tfB
 ayl
 xML
 aym
@@ -75336,9 +75386,9 @@ ayl
 ayl
 ayl
 aNb
-ayl
-ayl
-rzM
+wCM
+uiF
+reU
 ayl
 aTr
 aUM
