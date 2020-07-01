@@ -73,3 +73,15 @@
 		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
 	new /obj/item/bikehorn(src.loc)
 	..()
+	
+/mob/living/simple_animal/cockroach/clownbug/admin
+	name = "mother clown bug"
+	
+/mob/living/simple_animal/cockroach/clownbug/admin/death(gibbed)
+	var/turf/T = get_turf(src)
+	if(T)
+		new /mob/living/simple_animal/cockroach/clownbug(T)
+		new /mob/living/simple_animal/cockroach/clownbug(T)
+		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
+	new /obj/item/bikehorn(src.loc)
+	..()
