@@ -441,7 +441,7 @@ mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	
-/obj/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
+/obj/item/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(!.)
 		return
