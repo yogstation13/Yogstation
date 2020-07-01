@@ -280,7 +280,7 @@
 	switch(mode)
 		if(DECONSTRUCT)
 			if(iswallturf(target))
-				if(istype(target, /turf/closed/wall/rwall))
+				if(istype(target, /turf/closed/wall/r_wall))
 					occupant_message("Wall reinforcements are too complex for deconstruction, must be deconstructed manually.")
 					return
 				var/turf/closed/wall/W = target
