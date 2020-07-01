@@ -50,6 +50,12 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
+"av" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
 "aw" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
@@ -179,6 +185,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
+"fp" = (
+/obj/structure/chair/office/light,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
 "fP" = (
 /obj/machinery/atmospherics/components/binary/valve/on/layer1{
 	name = "Air Release Valve"
@@ -231,15 +243,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation/solars)
-"hS" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
 "ie" = (
 /obj/structure/table,
 /obj/item/paper/fluff/ruins/djstation{
@@ -302,12 +305,9 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/djstation)
-"kX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
+"ka" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
@@ -359,37 +359,13 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation)
-"mi" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"nr" = (
-/obj/structure/chair/office/light,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"nt" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"nU" = (
+"pP" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
 /obj/machinery/airalarm/all_access{
 	dir = 8;
 	pixel_x = 24
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
@@ -511,27 +487,11 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
-"xp" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
 "yG" = (
 /obj/structure/bed,
 /obj/item/bedsheet/random,
 /obj/item/toy/plush/teddybear,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"yY" = (
-/obj/machinery/space_heater,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 "zm" = (
 /obj/structure/cable{
@@ -611,6 +571,18 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
+"BU" = (
+/obj/machinery/computer/camera_advanced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
 "BZ" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -640,12 +612,12 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
-"CV" = (
+"DO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
+	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
@@ -686,10 +658,6 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation/solars)
-"GL" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
 "GU" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -725,6 +693,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
+"Lt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
 "LF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -759,12 +731,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/djstation/solars)
-"Nt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
 "NJ" = (
 /obj/structure/mirror{
 	pixel_x = 7
@@ -779,11 +745,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"Pd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
 "Qf" = (
@@ -903,7 +864,11 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
-"UI" = (
+"Uy" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/djstation)
+"UW" = (
 /obj/structure/table,
 /obj/item/radio/intercom{
 	broadcasting = 0;
@@ -924,6 +889,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/djstation)
@@ -1171,9 +1139,9 @@ am
 EZ
 Lo
 af
-yY
-GL
-kX
+Uy
+aw
+DO
 aw
 aw
 af
@@ -1196,9 +1164,9 @@ bZ
 rb
 El
 af
-mi
+av
 aw
-UI
+UW
 To
 aw
 bb
@@ -1221,11 +1189,11 @@ an
 bu
 Qm
 zB
-Pd
 fb
-nr
+fb
+fp
 Tf
-nt
+Lt
 Oa
 aw
 af
@@ -1246,11 +1214,11 @@ uw
 hj
 lt
 af
-xp
+ka
 aw
-hS
+BU
 ie
-Nt
+aw
 wO
 bh
 af
@@ -1271,9 +1239,9 @@ fP
 uw
 ln
 af
-nU
-GL
-CV
+pP
+aw
+DO
 ZI
 aY
 bd
