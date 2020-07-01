@@ -71,5 +71,5 @@
 	if(T)
 		new /mob/living/simple_animal/cockroach/clownbug(T)
 		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
-	new /obj/item/device/assembly/bikehorn(src.loc)
+	new /obj/item/bikehorn(src.loc)
 	..()
