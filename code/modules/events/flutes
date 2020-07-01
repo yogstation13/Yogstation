@@ -1,0 +1,37 @@
+///Add Flute noises for event
+//randomly pick people from a short list
+//add ability to cure sanity instability with psychatrist
+//add sprites?
+
+/datum/round_event_control/flutes
+	name = "Flutes"
+	typepath = /datum/round_event/flutes
+	max_occurrences = 1
+  weight = 0
+  min_players = 40
+
+/datum/round_event/flutes
+
+/datum/round_event/flutes/effect(mob/living/M)
+  var/mob/living/M = A.affected_mob
+  var/flute_effect = 0
+    if(prob(15))
+      to_chat(M, "<span class='warning'><b>Your vision flickers.</b</span>")
+      M.blur_eyes(15)      
+					if(prob(20))
+                to_chat(M, "<span class='warning'><b>You get an intense headache!</b</span>")
+                M.blur_eyes(15) 
+                target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 30, 35)
+                stamina_damage = 15
+						if(prob(30))
+							  to_chat(M, "<span class='warning'><b>Something trembles along the edge of your vision, your eyes water, with the familiar beat of blood racing through your head.</b</span>)
+                M.blur_eyes(30) 
+                target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30, 35)
+                stamina_damage = 30
+              if(prob(35))
+                to_chat(M, "<span class ='cultlarge'><b>You hear faint chanting.. You feel a heavy weight upon your shoulders, as something shifts it's gaze towards you..</b></span>")
+                M.blur_eyes(30)
+                target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30, 40, 45, 50, 60)
+                stamina_damage = 50
+
+
