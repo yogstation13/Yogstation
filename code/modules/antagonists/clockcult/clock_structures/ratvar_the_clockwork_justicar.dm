@@ -25,7 +25,7 @@
 	for(var/mob/living/simple_animal/hostile/clockwork/M in GLOB.all_clockwork_mobs)
 		M.ratvar_act()
 	START_PROCESSING(SSobj, src)
-	if(prob(25)
+	if(prob(25))
 		send_to_playing_players("<span class='ratvar'>COGGERS!</span>")
 	else
 		send_to_playing_players("<span class='ratvar'>[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]</span>")
