@@ -33,6 +33,10 @@
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav)
+"q" = (
+/obj/structure/fans/tiny,
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav)
 "r" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
@@ -795,7 +799,7 @@ l
 l
 l
 d
-c
+q
 T
 "}
 (20,1,1) = {"
