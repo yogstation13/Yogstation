@@ -57,6 +57,14 @@
 /turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
+/turf/open/indestructible/plating
+	name = "plating"
+	icon_state = "plating"
+	footstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
 /turf/open/indestructible/sound
 	name = "squeaky floor"
 	footstep = null
