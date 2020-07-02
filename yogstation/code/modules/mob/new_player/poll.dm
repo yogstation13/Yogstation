@@ -38,7 +38,7 @@
 	if(!SSdbcore.IsConnected())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
-	var/datum/DBQuery/select_query = SSdbcore.NewQuery("SELECT polltype, question, adminonly, multiplechoiceoptions, starttime, endtime FROM [format_table_name("poll_question")] WHERE id = [pollid]")
+	var/datum/DBQuery/select_query = SSdbcore.NewQuery("SELECT polltype, question, adminonly, multiplechoiceoptions, starttime, endtime FROM [format_table_name("poll_question")] WHERE id = :pollid", list("pollid" = pollid))
 	select_query.Execute()
 	var/question = ""
 	var/polltype = ""
@@ -68,7 +68,7 @@
 
 	var output = "<!DOCTYPE html><html><HEAD><meta charset='UTF-8'></HEAD><body>"
 	if(polltype == POLLTYPE_MULTI || polltype == POLLTYPE_OPTION)
-		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
+		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = :pollid", list("pollid" = pollid));
 		select_query.Execute()
 		var/list/options = list()
 		var/total_votes = 1
@@ -115,7 +115,7 @@
 		<tr bgcolor='#ddffdd'>
 			<th colspan='4' align='center'>[question]<br><font size='1'><b>[starttime] - [endtime]</b></font></th>
 		</tr>"}
-		select_query = SSdbcore.NewQuery("SELECT id, text, (SELECT AVG(rating) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id AND rating != 'abstain') AS avgrating, (SELECT COUNT(rating) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id AND rating != 'abstain') AS countvotes, minval, maxval FROM [format_table_name("poll_option")] WHERE pollid = [pollid]")
+		select_query = SSdbcore.NewQuery("SELECT id, text, (SELECT AVG(rating) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id AND rating != 'abstain') AS avgrating, (SELECT COUNT(rating) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id AND rating != 'abstain') AS countvotes, minval, maxval FROM [format_table_name("poll_option")] WHERE pollid = :pollid", list("pollid" = pollid))
 		select_query.Execute()
 		while(select_query.NextRow())
 			output += {"
@@ -131,7 +131,7 @@
 			var/maxvote = 1
 			var/list/votecounts = list()
 			for(var/I in minval to maxval)
-				var/datum/DBQuery/rating_query = SSdbcore.NewQuery("SELECT COUNT(rating) AS countrating FROM [format_table_name("poll_vote")] WHERE optionid = [optionid] AND rating = [I] GROUP BY rating")
+				var/datum/DBQuery/rating_query = SSdbcore.NewQuery("SELECT COUNT(rating) AS countrating FROM [format_table_name("poll_vote")] WHERE optionid = :optionid AND rating = :I GROUP BY rating", list("optionid" = optionid, "I" = I))
 				rating_query.Execute()
 				var/votecount = 0
 				while(rating_query.NextRow())
@@ -154,7 +154,7 @@
 		output += "</table>"
 		qdel(select_query)
 	if(polltype == POLLTYPE_TEXT)
-		select_query = SSdbcore.NewQuery("SELECT replytext, COUNT(replytext) AS countresponse, GROUP_CONCAT(DISTINCT ckey SEPARATOR ', ') as ckeys FROM [format_table_name("poll_textreply")] WHERE pollid = [pollid] GROUP BY replytext ORDER BY countresponse DESC");
+		select_query = SSdbcore.NewQuery("SELECT replytext, COUNT(replytext) AS countresponse, GROUP_CONCAT(DISTINCT ckey SEPARATOR ', ') as ckeys FROM [format_table_name("poll_textreply")] WHERE pollid = :pollid GROUP BY replytext ORDER BY countresponse DESC", list("pollid" = pollid));
 		select_query.Execute()
 		output += {"
 		<table width='900' align='center' bgcolor='#eeffee' cellspacing='0' cellpadding='4'>
