@@ -77,13 +77,13 @@
 	on_the_trail(user)
 
 /obj/effect/proc_holder/spell/targeted/olfaction/proc/on_the_trail(mob/living/user)
-	var/turf/pos = get_turf(tracking_target)
 	if(!tracking_target)
 		to_chat(user,"<span class='warning'>You're not tracking a scent, but the game thought you were. Something's gone wrong! Report this as a bug.</span>")
 		return
 	if(tracking_target == user)
 		to_chat(user,"<span class='warning'>You smell out the trail to yourself. Yep, it's you.</span>")
 		return
+	var/turf/pos = get_turf(tracking_target)
 	if(usr.z < pos.z)
 		to_chat(user,"<span class='warning'>The trail leads... way up above you? Huh. They must be really, really far away.</span>")
 		return
