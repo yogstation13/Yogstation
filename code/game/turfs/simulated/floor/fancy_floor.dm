@@ -68,7 +68,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/wood/lavaland
-	intial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/grass
 	name = "grass patch"
