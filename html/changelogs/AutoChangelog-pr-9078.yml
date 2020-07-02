@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds E-N, the borgi"
+  - rscadd: "Adds a sprite for generic dog"
