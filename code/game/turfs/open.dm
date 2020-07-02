@@ -106,6 +106,63 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 
+/turf/open/indestructible/grass
+	name = "grass patch"
+	desc = "Yep, it's grass."
+	icon_state = "grass"
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	clawfootstep = FOOTSTEP_GRASS
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/grass/sand
+	name = "sand"
+	desc = "Course, rough, irritating, gets everywhere."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "asteroid"
+	icon_plating = "asteroid"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/dirt
+	name = "dirt"
+	desc = "Upon closer examination, it's still dirt."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dirt"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/dirt/dark
+	icon_state = "greenerdirt"
+
+/turf/open/indestructible/grass/snow
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	desc = "Looks cold."
+	icon_state = "snow"
+	slowdown = 2
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/basalt
+	name = "volcanic floor"
+	desc = "Feels hot"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "basalt"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
 	icon = 'icons/turf/boss_floors.dmi'
