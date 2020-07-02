@@ -74,6 +74,12 @@
 	if(M.applied >= SLIME_EXTRACT_CROSSING_REQUIRED)
 		M.spawn_corecross()
 
+/obj/item/slime_extract/bad
+	name = "ruined slime extract"
+	icon_state = "ruined slime extract"
+	Uses = 0
+	desc = "Goo extracted from a slime. This one's sheen is dull and it smells awful... the slime must have been very stressed during it's lifetime.\nThe core is not usable. Yuck!"
+
 /obj/item/slime_extract/grey
 	name = "grey slime extract"
 	icon_state = "grey slime extract"

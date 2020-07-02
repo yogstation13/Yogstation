@@ -1,3 +1,4 @@
+#define HAPPINESS_THRESHOLD		2 //how happy does the slime need to be to make a core?
 /mob/living/simple_animal/slime
 	name = "grey baby slime (123)"
 	icon = 'icons/mob/slimes.dmi'
@@ -7,6 +8,8 @@
 	gender = NEUTER
 	var/is_adult = 0
 	var/docile = 0
+	var/personality = 0
+	var/happiness = 0
 	faction = list("slime","neutral")
 
 	harm_intent_damage = 5
@@ -102,6 +105,7 @@
 	set_colour(new_colour)
 	. = ..()
 	set_nutrition(700)
+	personality = rand(-7,7)
 
 /mob/living/simple_animal/slime/Destroy()
 	for (var/A in actions)
@@ -511,3 +515,8 @@
 
 /mob/living/simple_animal/slime/random/Initialize(mapload, new_colour, new_is_adult)
 	. = ..(mapload, pick(slime_colours), prob(50))
+
+/mob/living/simple_animal/slime/proc/isHappyEnough()
+	if(happiness > HAPPINESS_THRESHOLD)
+		return TRUE
+	return FALSE
