@@ -53,3 +53,35 @@
 
 /mob/living/simple_animal/cockroach/ex_act() //Explosions are a terrible way to handle a cockroach.
 	return
+	
+/mob/living/simple_animal/cockroach/clownbug
+	name = "clown bug"
+	desc = "Absolutely disgusting... almost as horrid as that one green clown."
+	icon_state = "clowngoblin"
+	icon_dead = "clowngoblin"
+	verb_say = "honks"
+	verb_ask = "honks inquisitively"
+	verb_exclaim = "honks loudly"
+	verb_yell = "honks loudly"
+	speak_emote = list("honks")
+
+
+/mob/living/simple_animal/cockroach/clownbug/death(gibbed)
+	var/turf/T = get_turf(src)
+	if(T)
+		new /mob/living/simple_animal/cockroach/clownbug(T)
+		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
+	new /obj/item/bikehorn(src.loc)
+	..()
+	
+/mob/living/simple_animal/cockroach/clownbug/admin
+	name = "mother clown bug"
+	
+/mob/living/simple_animal/cockroach/clownbug/admin/death(gibbed)
+	var/turf/T = get_turf(src)
+	if(T)
+		new /mob/living/simple_animal/cockroach/clownbug/admin(T)
+		new /mob/living/simple_animal/cockroach/clownbug/admin(T)
+		playsound(loc, 'sound/items/bikehorn.ogg', 100, 0)
+	new /obj/item/bikehorn(src.loc)
+	..()
