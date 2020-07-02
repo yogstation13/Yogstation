@@ -177,6 +177,12 @@
 		return 1
 	return 0
 
+/datum/objective_item/steal/blackbox
+	name = "the telecommunications blackbox."
+	targetitem = /obj/item/blackbox
+	difficulty = 10
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")
+
 //Unique Objectives
 /datum/objective_item/unique/docs_red
 	name = "the \"Red\" secret documents."

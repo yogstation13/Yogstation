@@ -452,7 +452,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun. \
 			This deadly weapon has a massive 50-round magazine of devastating 7.12x82mm ammunition."
 	item = /obj/item/gun/ballistic/automatic/l6_saw
-	cost = 18
+	cost = 20
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1911,6 +1911,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	cant_discount = TRUE
 	illegal_tech = FALSE
+	
+/datum/uplink_item/badass/syndiefedora
+	name = "Syndicate Fedora"
+	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style!"
+	item = /obj/item/clothing/head/det_hat/evil
+	cost = 3
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"

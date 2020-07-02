@@ -44557,15 +44557,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/secondary)
-"bzU" = (
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/bridge)
 "bzV" = (
 /obj/structure/table/wood,
 /obj/item/folder/white{
@@ -84243,6 +84234,12 @@
 "rrB" = (
 /turf/closed/wall,
 /area/vacant_room/commissary)
+"rwu" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/bridge)
 "rzX" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -111650,7 +111647,7 @@ bsV
 bsU
 bwu
 bqM
-bzU
+rwu
 bBH
 biB
 bCQ

@@ -150,6 +150,8 @@
 							switch(crimstat)
 								if("*Arrest*")
 									background = "'background-color:#990000;'"
+								if("Search")
+									background = "'background-color:#5C4949;'"
 								if("Incarcerated")
 									background = "'background-color:#CD6500;'"
 								if("Paroled")
@@ -785,6 +787,7 @@ What a mess.*/
 							temp += "<ul>"
 							temp += "<li><a href='?src=[REF(src)];choice=Change Criminal Status;criminal2=none'>None</a></li>"
 							temp += "<li><a href='?src=[REF(src)];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
+							temp += "<li><a href='?src=[REF(src)];choice=Change Criminal Status;criminal2=search'>Search</a></li>"
 							temp += "<li><a href='?src=[REF(src)];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
 							temp += "<li><a href='?src=[REF(src)];choice=Change Criminal Status;criminal2=paroled'>Paroled</a></li>"
 							temp += "<li><a href='?src=[REF(src)];choice=Change Criminal Status;criminal2=released'>Discharged</a></li>"
@@ -818,6 +821,8 @@ What a mess.*/
 									active2.fields["criminal"] = "None"
 								if("arrest")
 									active2.fields["criminal"] = "*Arrest*"
+								if("search")
+									active2.fields["criminal"] = "Search"
 								if("incarcerated")
 									active2.fields["criminal"] = "Incarcerated"
 								if("paroled")
@@ -895,7 +900,7 @@ What a mess.*/
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)
-					R.fields["criminal"] = pick("None", "*Arrest*", "Incarcerated", "Paroled", "Discharged")
+					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged")
 				if(5)
 					R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 				if(6)
