@@ -262,7 +262,7 @@
 	list_reagents = list(/datum/reagent/gluttonytoxin = 1)
 	
 /obj/item/reagent_containers/syringe/ghost
-	name = "Gluttony's Blessing"
+	name = "Spectral Curse"
 	desc = "A syringe recovered from a dreaded place. It probably isn't wise to use."
 	amount_per_transfer_from_this = 1
 	volume = 1
