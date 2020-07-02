@@ -298,8 +298,8 @@
 	visibility_flags = 0
 	stage1	= list("Your stomach rumbles.")
 	stage2	= list("Your body feels tired")
-	stage3	= list("<span class='danger'>Your skin starts to look trasnparent</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
-	stage4	= list("<span class='danger'>your organs seems to suddenly disapeer.</span>")
+	stage3	= list("<span class='danger'>Your skin starts to look transparent</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
+	stage4	= list("<span class='danger'>your organs seems to suddenly disappear.</span>")
 	stage5	= list("<span class='danger'>You have become a ghost.</span>")
 	new_form = /mob/living/simple_animal/hostile/retaliate/ghost
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
