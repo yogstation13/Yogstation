@@ -595,9 +595,11 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		if(!stat)
 			visible_message("[src] whirs as it prints and binds a new book.")
 			var/obj/item/book/B = new(src.loc)
-			B.dat = P.info
+			for(var/datum/langtext/L in P.written)
+				B.dat = L.text
 			B.name = "Print Job #" + "[rand(100, 999)]"
 			B.icon_state = "book[rand(1,7)]"
+			B.author = user
 			qdel(P)
 		else
 			P.forceMove(drop_location())
