@@ -1033,11 +1033,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ach" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aci" = (
 /obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
@@ -1202,10 +1197,6 @@
 /obj/item/stack/cable_coil/random,
 /turf/open/space,
 /area/space/nearstation)
-"acz" = (
-/obj/machinery/computer/holodeck/perma,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "acA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -10806,11 +10797,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"awy" = (
-/obj/structure/bookcase,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "awz" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/neutral{
@@ -11142,11 +11128,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"axm" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "axo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -15803,11 +15784,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"aHi" = (
-/obj/structure/table,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aHj" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -20572,11 +20548,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"aSL" = (
-/obj/machinery/computer/arcade,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aSM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -20599,24 +20570,9 @@
 	luminosity = 2
 	},
 /area/security/prison)
-"aSO" = (
-/obj/structure/chair/stool,
-/obj/effect/landmark/event_spawn,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aSP" = (
 /obj/structure/table,
 /obj/item/toy/cards/deck,
-/turf/open/floor/plasteel,
-/area/security/prison)
-"aSV" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aSX" = (
@@ -20836,13 +20792,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"aTy" = (
-/obj/machinery/vending/sustenance{
-	onstation = 0
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aTz" = (
 /obj/structure/table,
 /turf/open/floor/plasteel,
@@ -23259,12 +23208,6 @@
 /obj/item/storage/pill_bottle/dice,
 /turf/open/floor/wood,
 /area/medical/psych)
-"aYZ" = (
-/obj/machinery/computer/libraryconsole/bookmanagement,
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aZa" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -47273,6 +47216,11 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"cSq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/arcade,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "cSL" = (
 /obj/machinery/button/door{
 	id = "atmos";
@@ -50045,6 +49993,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hco" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hcE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -50674,6 +50628,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hXt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "hXW" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -54444,6 +54405,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"nHr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "nJW" = (
 /obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plasteel/dark,
@@ -54926,6 +54897,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
+"oxm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "oyj" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -58210,6 +58187,13 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/chapel,
 /area/escapepodbay)
+"twR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/holodeck/perma{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "txj" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube/junction/flipped{
@@ -59340,6 +59324,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"vyg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "vzc" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -60378,6 +60369,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"wYr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "wZZ" = (
 /obj/effect/landmark/stationroom/box/aftmaint,
 /turf/template_noop,
@@ -60465,6 +60462,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"xnj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/obj/machinery/computer/cryopod{
+	dir = 4;
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xnl" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -60702,6 +60710,11 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"xOp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bookcase,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xPt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -60763,6 +60776,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"xVR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "xWi" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -86522,9 +86541,9 @@ aWi
 aXO
 abi
 aYN
-awy
-aSL
-aTy
+hXt
+xnj
+aat
 aUg
 afA
 abt
@@ -86782,7 +86801,7 @@ aYX
 aat
 aat
 aat
-aat
+vyg
 afA
 abw
 acc
@@ -87038,7 +87057,7 @@ aat
 aat
 aat
 aat
-aSO
+aat
 aat
 afA
 abv
@@ -87290,12 +87309,12 @@ aal
 aVz
 aVz
 aXi
+xOp
 aat
 acK
 aat
 aat
-aET
-aSP
+hco
 bab
 afA
 afA
@@ -87547,12 +87566,12 @@ aaj
 aay
 aVz
 aXj
+xVR
+baa
 aat
 aat
-aat
-aat
-aHi
-aSV
+aET
+aSP
 aat
 abj
 abA
@@ -87804,12 +87823,12 @@ aSZ
 aVB
 aVz
 aXk
+wYr
 aat
-aYZ
-axm
 aat
-axm
-baa
+aat
+oxm
+nHr
 aat
 aat
 aat
@@ -88062,11 +88081,11 @@ abG
 aVz
 aXm
 aat
-ach
+aat
 aat
 aTM
-aat
-aat
+baa
+baa
 aat
 aat
 aat
@@ -88575,7 +88594,7 @@ aaj
 aVE
 aVH
 aXi
-acz
+aat
 aat
 aat
 aTN
@@ -88833,10 +88852,10 @@ abx
 adO
 aXn
 aat
+cSq
 aat
 aat
-aat
-aat
+twR
 aat
 aat
 aat
