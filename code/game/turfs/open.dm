@@ -162,6 +162,43 @@
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
+/turf/open/indestructible/grass/water
+	name = "water"
+	desc = "Shallow water."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	slowdown = 1
+	bullet_sizzle = TRUE
+	bullet_bounce_sound = null //needs a splashing sound one day.
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	heavyfootstep = FOOTSTEP_WATER
+
+/turf/open/indestructible/grass/beach
+	name = "sand"
+	icon = 'icons/misc/beach.dmi'
+	icon_state = "sand"
+	bullet_bounce_sound = null
+
+/turf/open/indestructible/grass/beach/coast_t
+	name = "coastline"
+	icon_state = "sandwater_t"
+
+/turf/open/indestructible/grass/beach/coast_b
+	name = "coastline"
+	icon_state = "sandwater_b"
+
+/turf/open/indestructible/grass/beach/water
+	name = "water"
+	icon_state = "water"
+	slowdown = 1
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	heavyfootstep = FOOTSTEP_WATER
+
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
 	icon = 'icons/turf/boss_floors.dmi'
