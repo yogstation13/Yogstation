@@ -7178,6 +7178,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"aoa" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/secondary)
 "aob" = (
 /obj/machinery/camera{
 	c_tag = "Detective's Office"
@@ -10795,10 +10807,8 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "awy" = (
+/obj/structure/bookcase,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/cryopod{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "awz" = (
@@ -20563,14 +20573,8 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "aSL" = (
+/obj/machinery/computer/arcade,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer/cryopod{
-	dir = 4;
-	pixel_x = -26
-	},
-/obj/machinery/cryopod{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aSM" = (
@@ -20594,6 +20598,12 @@
 /turf/open/floor/plating{
 	luminosity = 2
 	},
+/area/security/prison)
+"aSO" = (
+/obj/structure/chair/stool,
+/obj/effect/landmark/event_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
 /area/security/prison)
 "aSP" = (
 /obj/structure/table,
@@ -20826,6 +20836,13 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"aTy" = (
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aTz" = (
 /obj/structure/table,
 /turf/open/floor/plasteel,
@@ -46575,15 +46592,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cBK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "cBL" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
@@ -48807,15 +48815,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"fbJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "fbU" = (
 /obj/structure/rack,
 /obj/item/tank/internals/emergency_oxygen,
@@ -48937,12 +48936,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"fnr" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "foH" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -49706,21 +49699,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
-"gxM" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Cryogenics"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
 "gyl" = (
 /obj/machinery/light{
 	dir = 4
@@ -51164,15 +51142,6 @@
 /obj/structure/target_stake,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"iOV" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/cryopods";
-	name = "Cryogenic Crew Storage APC";
-	pixel_y = -24
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "iQR" = (
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/chapel{
@@ -52611,13 +52580,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"kRN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/obj/machinery/computer/cryopod{
-	pixel_y = 26
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "kRV" = (
 /obj/machinery/camera{
 	c_tag = "AI Chamber - Aft";
@@ -53070,13 +53032,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/aft)
-"luL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/sustenance{
-	onstation = 0
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "lve" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -53861,12 +53816,15 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "mOR" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
+/obj/machinery/button/door{
+	id = "Dorm1";
+	name = "Dorm Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	specialfunctions = 4
 	},
-/obj/machinery/cryopod,
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "mRQ" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -54486,15 +54444,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"nHH" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "nJW" = (
 /obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plasteel/dark,
@@ -56109,9 +56058,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
-"qpE" = (
-/turf/closed/wall,
-/area/crew_quarters/cryopods)
 "qpS" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -57105,10 +57051,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
-"rMg" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/crew_quarters/cryopods)
 "rMj" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer1{
 	dir = 4;
@@ -57439,15 +57381,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"ssW" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 1
-	},
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "ssY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -58631,23 +58564,18 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "ucA" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Cryogenics"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
+/obj/machinery/door/airlock{
+	id_tag = "Dorm1";
+	name = "Dorm 1"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/cryopods)
+/turf/template_noop,
+/area/crew_quarters/dorms)
 "udc" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -59165,12 +59093,6 @@
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"vbt" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "vbD" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "EVA Storage";
@@ -59345,12 +59267,6 @@
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"vrx" = (
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "vrz" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -86608,7 +86524,7 @@ abi
 aYN
 awy
 aSL
-aat
+aTy
 aUg
 afA
 abt
@@ -86866,7 +86782,7 @@ aYX
 aat
 aat
 aat
-luL
+aat
 afA
 abw
 acc
@@ -87122,7 +87038,7 @@ aat
 aat
 aat
 aat
-aat
+aSO
 aat
 afA
 abv
@@ -92814,10 +92730,10 @@ tFJ
 tfA
 tfA
 tFJ
-qpE
-qpE
-qpE
-qpE
+tfA
+tfA
+tFJ
+anF
 aJw
 bOS
 bOS
@@ -93071,10 +92987,10 @@ tfA
 tfA
 tfA
 tfA
-nHH
-vrx
-vrx
-vrx
+tfA
+tfA
+tfA
+anF
 aJw
 aaa
 bOS
@@ -93328,10 +93244,10 @@ tfA
 tfA
 tfA
 tfA
-kRN
-fnr
-vbt
-iOV
+tfA
+tfA
+tfA
+anF
 aJw
 aaa
 bOS
@@ -93586,9 +93502,9 @@ sGC
 pxG
 pxG
 mOR
-fbJ
-cBK
-ssW
+pxG
+tfA
+anF
 aJw
 aJw
 aJw
@@ -93842,10 +93758,10 @@ pxG
 pxG
 pxV
 pxG
-rMg
+pxG
 ucA
-gxM
-rMg
+tfA
+aoa
 aJw
 aJv
 aKG
