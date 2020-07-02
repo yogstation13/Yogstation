@@ -122,7 +122,6 @@
 	desc = "Course, rough, irritating, gets everywhere."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
-	icon_plating = "asteroid"
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
