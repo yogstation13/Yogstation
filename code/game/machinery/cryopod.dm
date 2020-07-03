@@ -209,17 +209,19 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		find_control_computer(TRUE)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		..(user)
+		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 		var/offer = alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
 		if(offer == "Yes" && offer_control(occupant))
 			return
+		if(!mob_occupant) //Check they still exist
+			return
 		if(mob_occupant.client)//if they're logged in
 			addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1)) // This gives them 30 seconds
 		else
 			addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn)
-	icon_state = "cryopod"
 
 /obj/machinery/cryopod/open_machine()
 	..()
