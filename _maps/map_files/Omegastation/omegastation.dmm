@@ -15579,21 +15579,6 @@
 "awQ" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
-"awR" = (
-/obj/structure/table/wood,
-/obj/item/soap/nanotrasen,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/theatre)
 "awS" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -39452,6 +39437,22 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"dSI" = (
+/obj/structure/table/wood,
+/obj/item/soap/nanotrasen,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/phone/banana,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/theatre)
 "dYW" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
@@ -85100,7 +85101,7 @@ sHZ
 atX
 ava
 awf
-awR
+dSI
 axM
 ayE
 azE

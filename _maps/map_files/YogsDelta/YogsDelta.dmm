@@ -24972,27 +24972,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"aOw" = (
-/obj/structure/table/wood,
-/obj/item/instrument/eguitar,
-/obj/item/toy/crayon/spraycan/lubecan{
-	charges = 5
-	},
-/obj/structure/sign/poster/contraband/clown{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/theatre)
 "aOx" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -127344,6 +127323,28 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"reX" = (
+/obj/structure/table/wood,
+/obj/item/instrument/eguitar,
+/obj/item/toy/crayon/spraycan/lubecan{
+	charges = 5
+	},
+/obj/structure/sign/poster/contraband/clown{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/phone/banana,
+/turf/open/floor/plasteel,
+/area/crew_quarters/theatre)
 "rfe" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -160799,7 +160800,7 @@ aIO
 aSY
 aCD
 aMX
-aOw
+reX
 aQf
 aDb
 awB
