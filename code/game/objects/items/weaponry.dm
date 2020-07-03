@@ -1,4 +1,4 @@
-/obj/item/banhamme
+/obj/item/banhammer
 	desc = "A banhammer."
 	name = "banhammer"
 	icon = 'icons/obj/items_and_weapons.dmi'
