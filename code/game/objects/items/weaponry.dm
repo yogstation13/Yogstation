@@ -374,7 +374,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	
 /obj/item/phone/banana
 	name = "banana phone"
-	desc = "Emergency telecommunications line to the Clown Planet. Use for emergencies only!"
+	desc = "Direct telecommunications line to the Clown Planet. Use for emergencies only!"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "banana_phone"
 	force = 3
