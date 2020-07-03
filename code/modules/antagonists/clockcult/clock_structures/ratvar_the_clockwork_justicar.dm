@@ -26,7 +26,7 @@
 		M.ratvar_act()
 	START_PROCESSING(SSobj, src)
 	if(prob(25))
-		send_to_playing_players("<span class='ratvar'>COGGERS!</span>")
+		send_to_playing_players("<span class='ratvar'>[text2ratvar("COGGERS")]!</span>")
 	else
 		send_to_playing_players("<span class='ratvar'>[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]</span>")
 
