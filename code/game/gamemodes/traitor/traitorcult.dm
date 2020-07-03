@@ -36,7 +36,7 @@
 	agent_objective_scaling = max(round(num_players() / 20), 1)
 	clock_agent_team = new
 	GLOB.servants_active = TRUE //needed for scripture alerts, doesn't do much else aside from reebe stuff so :shrug:
-	for(var/k = 1 to team_size)
+	for(var/j = 1 to team_size)
 		var/datum/mind/clock = antag_pick(possible_clocks)
 		possible_clocks -= clock
 		antag_candidates -= clock
