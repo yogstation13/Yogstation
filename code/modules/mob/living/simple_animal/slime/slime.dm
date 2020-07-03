@@ -1,4 +1,4 @@
-#define HAPPINESS_THRESHOLD		2 //how happy does the slime need to be to make a core?
+#define HAPPINESS_THRESHOLD		20 //how happy does the slime need to be to make a core?
 /mob/living/simple_animal/slime
 	name = "grey baby slime (123)"
 	icon = 'icons/mob/slimes.dmi'
@@ -9,7 +9,7 @@
 	var/is_adult = 0
 	var/docile = 0
 	var/personality = 0
-	var/happiness = 0
+	var/happiness = 50 //map spawned slimes have high happiness to give a buffer for people starting out.
 	faction = list("slime","neutral")
 
 	harm_intent_damage = 5

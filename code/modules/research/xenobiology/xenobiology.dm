@@ -77,7 +77,7 @@
 /obj/item/slime_extract/bad
 	name = "ruined slime extract"
 	icon_state = "ruined slime extract"
-	Uses = 0
+	Uses = 0 //not usable
 	desc = "Goo extracted from a slime. This one's sheen is dull and it smells awful... the slime must have been very stressed during it's lifetime.\nThe core is not usable. Yuck!"
 
 /obj/item/slime_extract/grey
@@ -94,14 +94,14 @@
 				M.forceMove(user.drop_location())
 			playsound(user, 'sound/effects/splat.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>You spit out a monkey cube.</span>")
-			return 120
+			return 200
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, "<span class='notice'>Your [name] starts pulsing...</span>")
 			if(do_after(user, 40, target = user))
 				var/mob/living/simple_animal/slime/S = new(get_turf(user), "grey")
 				playsound(user, 'sound/effects/splat.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You spit out [S].</span>")
-				return 350
+				return 300
 			else
 				return 0
 

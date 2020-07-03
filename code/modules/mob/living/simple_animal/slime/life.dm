@@ -1,4 +1,5 @@
-
+#define MIN_HAPPY 				-50
+#define MAX_HAPPY				50
 /mob/living/simple_animal/slime
 	var/AIproc = 0 // determines if the AI loop is activated
 	var/Atkcool = 0 // attack cooldown
@@ -44,6 +45,7 @@
 	AIproc = 1
 
 	while(AIproc && stat != DEAD && (attacked || hungry || rabid || buckled))
+		happiness -= 0.5 //a hungry or fearful slime is not a happy slime
 		if(!(mobility_flags & MOBILITY_MOVE)) //also covers buckling. Not sure why buckled is in the while condition if we're going to immediately break, honestly
 			break
 
@@ -107,7 +109,51 @@
 
 		sleep(sleeptime + 2) // this is about as fast as a player slime can go
 
+	if(stat != DEAD && stat != UNCONSCIOUS && (!(attacked || rabid)))
+		if(locate(/mob/living/simple_animal/slime) in view(5, src))
+			var/stepping = FALSE
+			for(var/mob/living/simple_animal/slime/S in view(5, src))
+				if (-1*personality == S.personality)
+					happiness -= 10 //This is very very bad
+					step_away(src, S, 8)
+				else
+					var/diff = abs(personality - S.personality)
+					switch(diff)
+						if (0)//They have the same personality
+							happiness += 1 //yaaay!
+							if (!S.Adjacent(src) && !stepping)
+								MoveAtSlime(S) //time to go towards friend!
+								stepping = TRUE
+						if (1)
+							happiness += 0.5 //Adjacent slimes are still ok, I guess...
+							if (!S.Adjacent(src) && !stepping)
+								MoveAtSlime(S)
+								stepping = TRUE
+						if (3 to 5)
+							happiness -= 0.5 //No! I don't like that!
+							if (!stepping)
+								MoveAtSlime(S, FALSE)
+								stepping = TRUE
+						if (6 to 9)
+							happiness -= 1 //I DONT LIKE YOU
+							if (!stepping)
+								MoveAtSlime(S, FALSE)
+								stepping = TRUE
+						if (9 to 14)
+							happiness -= 2 //ANGEREY
+							if (!stepping)
+								MoveAtSlime(S, FALSE)
+								stepping = TRUE
+		else//No slime friends?
+			happiness -= 0.25 //I'm lonely...
+	happiness = clamp(happiness, MIN_HAPPY, MAX_HAPPY)
 	AIproc = 0
+
+/mob/living/simple_animal/slime/proc/MoveAtSlime(mob/living/simple_animal/slime/S, Towards = TRUE) //helper proc for the above.
+	if(Towards)
+		step_towards(src, S, 0)
+	else
+		step_away(src, S, 2)
 
 /mob/living/simple_animal/slime/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -413,6 +459,8 @@
 	var/newmood = ""
 	if (rabid || attacked)
 		newmood = "angry"
+	else if (happiness < 0)
+		newmood = pick("sad", "pout")
 	else if (docile)
 		newmood = ":3"
 	else if (Target)

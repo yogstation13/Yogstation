@@ -192,16 +192,23 @@
 				if(i != 1)
 					step_away(M,src)
 				M.Friends = Friends.Copy()
+				M.happiness = 5 //Babies don't get the same grace period as the mapspawned or adminspawned slimes do
 				babies += M
 				M.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
 				SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
 
-			var/mob/living/simple_animal/slime/new_slime = pick(babies)
-			new_slime.a_intent = INTENT_HARM
-			if(src.mind)
-				src.mind.transfer_to(new_slime)
+			if(!ckey && happiness < 0)//player slimes never have stillborns. They are too angery!! Or whatever.
+				for (var/mob/living/simple_animal/slime/S in babies)
+					if(prob(abs(happiness)*2))//so at -20 its a 40% chance. at -50 happiness it's an 100% chance
+						S.death()
+						S.desc += " It looks like it was a stillborn..."
 			else
-				new_slime.key = src.key
+				var/mob/living/simple_animal/slime/new_slime = pick(babies)
+				new_slime.a_intent = INTENT_HARM
+				if(src.mind)
+					src.mind.transfer_to(new_slime)
+				else
+					new_slime.key = src.key
 			qdel(src)
 		else
 			to_chat(src, "<i>I am not ready to reproduce yet...</i>")
