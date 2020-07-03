@@ -42,7 +42,7 @@
 				if(isnull(new_cloud))
 					return
 				overwrite_cloud = TRUE
-				set_cloud = CLAMP(round(new_cloud, 1), 1, 100)
+				set_cloud = clamp(round(new_cloud, 1), 1, 100)
 
 /datum/nanite_program/viral/get_extra_setting(setting)
 	if(setting == "Program Overwrite")
@@ -155,7 +155,7 @@
 		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
 		if(isnull(new_channel))
 			return
-		relay_channel = CLAMP(round(new_channel, 1), 1, 9999)
+		relay_channel = clamp(round(new_channel, 1), 1, 9999)
 
 /datum/nanite_program/relay/get_extra_setting(setting)
 	if(setting == "Relay Channel")
@@ -181,6 +181,15 @@
 		return
 	SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, code, source)
 
+/datum/nanite_program/relay/proc/relay_comm_signal(comm_code, relay_code, comm_message)
+	if(!activated)
+		return
+	if(!host_mob)
+		return
+	if(relay_code != relay_channel)
+		return
+	SEND_SIGNAL(host_mob, COMSIG_NANITE_COMM_SIGNAL, comm_code, comm_message)
+
 /datum/nanite_program/metabolic_synthesis
 	name = "Metabolic Synthesis"
 	desc = "The nanites use the metabolic cycle of the host to speed up their replication rate, using their extra nutrition as fuel."
@@ -196,7 +205,7 @@
 	return ..()
 
 /datum/nanite_program/metabolic_synthesis/active_effect()
-	host_mob.nutrition -= 0.5
+	host_mob.adjust_nutrition(-0.5)
 
 /datum/nanite_program/triggered/access
 	name = "Subdermal ID"
@@ -237,7 +246,11 @@
 	if(prob(10))
 		var/list/mob/living/target_hosts = list()
 		for(var/mob/living/L in oview(5, host_mob))
+			if(!(MOB_ORGANIC in L.mob_biotypes) && !(MOB_UNDEAD in L.mob_biotypes))
+				continue
 			target_hosts += L
+		if(!target_hosts.len)
+			return
 		var/mob/living/infectee = pick(target_hosts)
 		if(prob(100 - (infectee.get_permeability_protection() * 100)))
 			//this will potentially take over existing nanites!
@@ -257,7 +270,7 @@
 		return
 	var/rep_rate = round(nanites.nanite_volume / 50, 1) //0.5 per 50 nanite volume
 	rep_rate *= 0.5
-	nanites.adjust_nanites(rep_rate)
+	nanites.adjust_nanites(null,rep_rate)
 	if(prob(rep_rate))
 		var/datum/nanite_program/fault = pick(nanites.programs)
 		if(fault == src)

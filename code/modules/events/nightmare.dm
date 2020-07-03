@@ -2,7 +2,8 @@
 	name = "Spawn Nightmare"
 	typepath = /datum/round_event/ghost_role/nightmare
 	max_occurrences = 1
-	min_players = 20
+	min_players = 30
+	earliest_start = 45 MINUTES
 
 /datum/round_event/ghost_role/nightmare
 	minimum_required = 1
@@ -39,6 +40,5 @@
 	playsound(S, 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Nightmare by an event.")
 	log_game("[key_name(S)] was spawned as a Nightmare by an event.")
-	atom_of_interest = S
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN

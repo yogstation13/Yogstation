@@ -23,11 +23,14 @@
 	mob_size = MOB_SIZE_LARGE
 
 	radio_key = /obj/item/encryptionkey/headset_cargo
-	radio_channel = "Supply"
+	radio_channel = RADIO_CHANNEL_SUPPLY
 
 	bot_type = MULE_BOT
 	model = "MULE"
 	bot_core_type = /obj/machinery/bot_core/mulebot
+
+	var/ui_x = 350
+	var/ui_y = 425
 
 	var/id
 
@@ -149,7 +152,8 @@
 	return
 
 /mob/living/simple_animal/bot/mulebot/bullet_act(obj/item/projectile/Proj)
-	if(..())
+	. = ..()
+	if(.)
 		if(prob(50) && !isnull(load))
 			unload(0)
 		if(prob(25))
@@ -168,7 +172,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "mulebot", name, 600, 375, master_ui, state)
+		ui = new(user, src, ui_key, "Mule", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /mob/living/simple_animal/bot/mulebot/ui_data(mob/user)
@@ -188,12 +192,15 @@
 		else
 	data["load"] = load ? load.name : null
 	data["destination"] = destination ? destination : null
+	data["home"] = home_destination
+	data["destinations"] = GLOB.deliverybeacontags
 	data["cell"] = cell ? TRUE : FALSE
 	data["cellPercent"] = cell ? cell.percent() : null
 	data["autoReturn"] = auto_return
 	data["autoPickup"] = auto_pickup
 	data["reportDelivery"] = report_delivery
 	data["haspai"] = paicard ? TRUE : FALSE
+	data["id"] = id
 	return data
 
 /mob/living/simple_animal/bot/mulebot/ui_act(action, params)
@@ -213,10 +220,10 @@
 					return
 			. = TRUE
 		else
-			bot_control(action, usr) // Kill this later.
+			bot_control(action, usr, params) // Kill this later.
 			. = TRUE
 
-/mob/living/simple_animal/bot/mulebot/bot_control(command, mob/user, pda = 0)
+/mob/living/simple_animal/bot/mulebot/bot_control(command, mob/user, list/params = list(), pda = FALSE)
 	if(pda && wires.is_cut(WIRE_RX)) // MULE wireless is controlled by wires.
 		return
 
@@ -231,15 +238,27 @@
 			if(mode == BOT_IDLE || mode == BOT_DELIVER)
 				start_home()
 		if("destination")
-			var/new_dest = input(user, "Enter Destination:", name, destination) as null|anything in GLOB.deliverybeacontags
+			var/new_dest
+			if(pda)
+				new_dest = input(user, "Enter Destination:", name, destination) as null|anything in GLOB.deliverybeacontags
+			else
+				new_dest = params["value"]
 			if(new_dest)
 				set_destination(new_dest)
 		if("setid")
-			var/new_id = stripped_input(user, "Enter ID:", name, id, MAX_NAME_LEN)
+			var/new_id
+			if(pda)
+				new_id = stripped_input(user, "Enter ID:", name, id, MAX_NAME_LEN)
+			else
+				new_id = params["value"]
 			if(new_id)
 				set_id(new_id)
 		if("sethome")
-			var/new_home = input(user, "Enter Home:", name, home_destination) as null|anything in GLOB.deliverybeacontags
+			var/new_home
+			if(pda)
+				new_home = input(user, "Enter Home:", name, home_destination) as null|anything in GLOB.deliverybeacontags
+			else
+				new_home = params["value"]
 			if(new_home)
 				home_destination = new_home
 		if("unload")
@@ -580,7 +599,7 @@
 // called when bot reaches current target
 /mob/living/simple_animal/bot/mulebot/proc/at_target()
 	if(!reached_target)
-		radio_channel = "Supply" //Supply channel
+		radio_channel = RADIO_CHANNEL_SUPPLY //Supply channel
 		audible_message("[src] makes a chiming sound!", "<span class='italics'>You hear a chime.</span>")
 		playsound(loc, 'sound/machines/chime.ogg', 50, 0)
 		reached_target = 1
@@ -591,7 +610,7 @@
 				to_chat(calling_ai, "<span class='notice'>[icon2html(src, calling_ai)] [src] wirelessly plays a chiming sound!</span>")
 				playsound(calling_ai, 'sound/machines/chime.ogg',40, 0)
 				calling_ai = null
-				radio_channel = "AI Private" //Report on AI Private instead if the AI is controlling us.
+				radio_channel = RADIO_CHANNEL_AI_PRIVATE //Report on AI Private instead if the AI is controlling us.
 
 		if(load)		// if loaded, unload at target
 			if(report_delivery)
@@ -634,7 +653,7 @@
 				if(!paicard)
 					log_combat(src, L, "knocked down")
 					visible_message("<span class='danger'>[src] knocks over [L]!</span>")
-					L.Paralyze(160)
+					L.Knockdown(8 SECONDS)
 	return ..()
 
 // called from mob/living/carbon/human/Crossed()

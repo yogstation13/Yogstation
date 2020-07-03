@@ -15,6 +15,7 @@
 	var/salvageable = 1
 	var/selectable = 1	// Set to 0 for passive equipment such as mining scanner or armor plates
 	var/harmful = FALSE //Controls if equipment can be used to attack by a pacifist.
+	var/destroy_sound = 'sound/mecha/critdestr.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
@@ -35,14 +36,22 @@
 		if(chassis.selected == src)
 			chassis.selected = null
 		src.update_chassis_page()
-		chassis.occupant_message("<span class='danger'>[src] is destroyed!</span>")
 		log_message("[src] is destroyed.", LOG_MECHA)
-		SEND_SOUND(chassis.occupant, sound(istype(src, /obj/item/mecha_parts/mecha_equipment/weapon) ? 'sound/mecha/weapdestr.ogg' : 'sound/mecha/critdestr.ogg', volume=50))
+		if(chassis.occupant)
+			chassis.occupant_message("<span class='danger'>[src] is destroyed!</span>")
+			chassis.occupant.playsound_local(chassis, destroy_sound, 50)
 		chassis = null
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/proc/critfail()
-	log_message("Critical failure", LOG_MECHA, color="red")
+/obj/item/mecha_parts/mecha_equipment/try_attach_part(mob/user, obj/mecha/M)
+	if(can_attach(M))
+		if(!user.temporarilyRemoveItemFromInventory(src))
+			return FALSE
+		attach(M)
+		user.visible_message("[user] attaches [src] to [M].", "<span class='notice'>You attach [src] to [M].</span>")
+		return TRUE
+	to_chat(user, "<span class='warning'>You are unable to attach [src] to [M]!</span>")
+	return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()
 	if(!chassis)
@@ -71,9 +80,12 @@
 		return 0
 	if(!equip_ready)
 		return 0
-	if(crit_fail)
-		return 0
 	if(energy_drain && !chassis.has_charge(energy_drain))
+		return 0
+	if(chassis.is_currently_ejecting)
+		return 0
+	if(chassis.equipment_disabled)
+		to_chat(chassis.occupant, "<span=warn>Error -- Equipment control unit is unresponsive.</span>")
 		return 0
 	return 1
 
@@ -113,8 +125,6 @@
 	chassis = M
 	forceMove(M)
 	log_message("[src] initialized.", LOG_MECHA)
-	if(!M.selected && selectable)
-		M.selected = src
 	update_chassis_page()
 	return
 

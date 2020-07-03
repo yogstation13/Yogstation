@@ -30,21 +30,21 @@
 
 
 /obj/structure/window/examine(mob/user)
-	..()
+	. = ..()
 	if(reinf)
 		if(anchored && state == WINDOW_SCREWED_TO_FRAME)
-			to_chat(user, "<span class='notice'>The window is <b>screwed</b> to the frame.</span>")
+			. += "<span class='notice'>The window is <b>screwed</b> to the frame.</span>"
 		else if(anchored && state == WINDOW_IN_FRAME)
-			to_chat(user, "<span class='notice'>The window is <i>unscrewed</i> but <b>pried</b> into the frame.</span>")
+			. += "<span class='notice'>The window is <i>unscrewed</i> but <b>pried</b> into the frame.</span>"
 		else if(anchored && state == WINDOW_OUT_OF_FRAME)
-			to_chat(user, "<span class='notice'>The window is out of the frame, but could be <i>pried</i> in. It is <b>screwed</b> to the floor.</span>")
+			. += "<span class='notice'>The window is out of the frame, but could be <i>pried</i> in. It is <b>screwed</b> to the floor.</span>"
 		else if(!anchored)
-			to_chat(user, "<span class='notice'>The window is <i>unscrewed</i> from the floor, and could be deconstructed by <b>wrenching</b>.</span>")
+			. += "<span class='notice'>The window is <i>unscrewed</i> from the floor, and could be deconstructed by <b>wrenching</b>.</span>"
 	else
 		if(anchored)
-			to_chat(user, "<span class='notice'>The window is <b>screwed</b> to the floor.</span>")
+			. += "<span class='notice'>The window is <b>screwed</b> to the floor.</span>"
 		else
-			to_chat(user, "<span class='notice'>The window is <i>unscrewed</i> from the floor, and could be deconstructed by <b>wrenching</b>.</span>")
+			. += "<span class='notice'>The window is <i>unscrewed</i> from the floor, and could be deconstructed by <b>wrenching</b>.</span>"
 
 /obj/structure/window/Initialize(mapload, direct)
 	. = ..()
@@ -102,13 +102,15 @@
 	else
 		..(FULLTILE_WINDOW_DIR)
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return 1
 	if(dir == FULLTILE_WINDOW_DIR)
 		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
-		return !density
+	var/attempted_dir = get_dir(loc, target)
+	if(attempted_dir == dir)
+		return
 	if(istype(mover, /obj/structure/window))
 		var/obj/structure/window/W = mover
 		if(!valid_window_location(loc, W.ini_dir))
@@ -119,7 +121,8 @@
 			return FALSE
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
-	return 1
+	else if(attempted_dir != dir)
+		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && (O.pass_flags & PASSGLASS))
@@ -383,10 +386,17 @@
 	reinf = TRUE
 	heat_resistance = 1600
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100)
-	max_integrity = 50
+	max_integrity = 100
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
+
+/obj/structure/window/reinforced/bronze
+	name = "bronze window"
+	desc = "A paper-thin pane of translucent yet reinforced bronze."
+	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window_single"
+	glass_type = /obj/item/stack/tile/bronze
 
 /obj/structure/window/reinforced/spawner/east
 	dir = EAST
@@ -511,7 +521,7 @@
 	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
 	icon_state = "r_window"
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 100
+	max_integrity = 200
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	smooth = SMOOTH_TRUE
@@ -540,6 +550,13 @@
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	level = 3
 	glass_amount = 2
+
+/obj/structure/window/reinforced/fulltile/bronze
+	name = "bronze window"
+	desc = "A pane of translucent yet reinforced bronze."
+	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window"
+	glass_type = /obj/item/stack/tile/bronze
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
@@ -572,7 +589,7 @@
 
 /obj/structure/window/plastitanium
 	name = "plastitanium window"
-	desc = "An evil looking window of plasma and titanium."
+	desc = "A durable looking window made of an alloy of of plasma and titanium."
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window"
 	dir = FULLTILE_WINDOW_DIR
@@ -701,7 +718,7 @@
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
 	if(obj_integrity < max_integrity)
-		to_chat(user, "<span class='info'>It looks a bit damaged, you may be able to fix it with some <b>paper</b>.</span>")
+		. += "<span class='info'>It looks a bit damaged, you may be able to fix it with some <b>paper</b>.</span>"
 
 /obj/structure/window/paperframe/spawnDebris(location)
 	. = list(new /obj/item/stack/sheet/mineral/wood(location))
@@ -753,3 +770,87 @@
 			return
 	..()
 	update_icon()
+
+
+
+
+
+/obj/structure/cloth_curtain
+	name = "curtain"
+	desc = "Beta brand soft sheets"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "curtain_open"
+	color = "#af439d" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.
+	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
+	layer = SIGN_LAYER
+	anchored = TRUE
+	opacity = FALSE
+	density = FALSE
+	var/open = TRUE
+
+/obj/structure/cloth_curtain/proc/toggle()
+	open = !open
+	update_icon()
+
+/obj/structure/cloth_curtain/update_icon()
+	if(!open)
+		icon_state = "curtain_closed"
+		layer = WALL_OBJ_LAYER
+		density = TRUE
+		open = FALSE
+		opacity = TRUE
+
+	else
+		icon_state = "curtain_open"
+		layer = SIGN_LAYER
+		density = FALSE
+		open = TRUE
+		opacity = FALSE
+
+/obj/structure/cloth_curtain/attackby(obj/item/W, mob/user)
+	if (istype(W, /obj/item/toy/crayon))
+		color = input(user,"","Choose Color",color) as color
+		return TRUE
+	else
+		return ..()
+
+/obj/structure/cloth_curtain/wrench_act(mob/living/user, obj/item/I)
+	default_unfasten_wrench(user, I, 50)
+	return TRUE
+
+/obj/structure/cloth_curtain/wirecutter_act(mob/living/user, obj/item/I)
+	if(anchored)
+		return TRUE
+
+	user.visible_message("<span class='warning'>[user] starts cuttting apart [src].</span>",
+		"<span class='notice'>You start to cut apart [src].</span>", "You hear cutting.")
+	if(I.use_tool(src, user, 50, volume=100) && !anchored)
+		to_chat(user, "<span class='notice'>You cut apart [src].</span>")
+		deconstruct()
+
+	return TRUE
+
+
+/obj/structure/cloth_curtain/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	playsound(loc, 'sound/effects/curtain.ogg', 50, 1)
+	toggle()
+
+/obj/structure/cloth_curtain/deconstruct(disassembled = TRUE)
+	if(QDELETED(src))
+		return
+	new /obj/item/stack/sheet/cloth(loc, 2)
+	new /obj/item/stack/rods(loc, 1)
+	qdel(src)
+
+/obj/structure/cloth_curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	if(damage_amount)
+		switch(damage_type)
+			if(BRUTE)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+			if(BURN)
+				playsound(loc, 'sound/items/welder.ogg', 80, 1)
+	else
+		playsound(loc, 'sound/weapons/tap.ogg', 50, 1)

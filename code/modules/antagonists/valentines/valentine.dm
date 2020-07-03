@@ -2,6 +2,7 @@
 	name = "valentine"
 	roundend_category = "valentines" //there's going to be a ton of them so put them in separate category
 	show_in_antagpanel = FALSE
+	prevent_roundtype_conversion = FALSE
 	var/datum/mind/date
 
 /datum/antagonist/valentine/proc/forge_objectives()
@@ -39,6 +40,6 @@
 				break
 
 	if(objectives_complete)
-		return "<span class='greentext big'>[owner.name] protected [owner.p_their()] date</span>"
+		return "<span class='greentext'>[owner.name] protected their date!</span>"
 	else
-		return "<span class='redtext big'>[owner.name] date failed!</span>"
+		return "<span class='redtext'>[owner.name] failed their date!</span>"

@@ -16,21 +16,31 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	if(!quirks.len)
 		SetupQuirks()
-	quirk_blacklist = list(list("Blind","Nearsighted"))
+
+	quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic","Hypersensitive"),list("Ageusia","Vegetarian","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Light Drinker"),list("Prosthetic Limb (Left Arm)","Prosthetic Limb (Right Arm)","Prosthetic Limb (Left Leg)","Prosthetic Limb (Right Leg)","Prosthetic Limb"))
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
-	for(var/V in subtypesof(/datum/quirk))
+	// Sort by Positive, Negative, Neutral; and then by name
+	var/list/quirk_list = sortList(subtypesof(/datum/quirk), /proc/cmp_quirk_asc)
+
+	for(var/V in quirk_list)
 		var/datum/quirk/T = V
 		quirks[initial(T.name)] = T
 		quirk_points[initial(T.name)] = initial(T.value)
 
 /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects)
-	GenerateQuirks(cli)
-	for(var/V in cli.prefs.character_quirks)
-		user.add_quirk(V, spawn_effects)
+	if(!checkquirks(user,cli)) return// Yogs -- part of Adding Mood as Preference
 
-/datum/controller/subsystem/processing/quirks/proc/GenerateQuirks(client/user)
-	if(user.prefs.character_quirks.len)
-		return
-	user.prefs.character_quirks = user.prefs.all_quirks
+	var/badquirk = FALSE
+
+	for(var/V in cli.prefs.all_quirks)
+		var/datum/quirk/Q = quirks[V]
+		if(Q)
+			user.add_quirk(Q, spawn_effects)
+		else
+			stack_trace("Invalid quirk \"[V]\" in client [cli.ckey] preferences")
+			cli.prefs.all_quirks -= V
+			badquirk = TRUE
+	if(badquirk)
+		cli.prefs.save_character()

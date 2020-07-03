@@ -17,12 +17,25 @@
 		if (M.client)
 			. = M.client.encoding
 
-
-/proc/to_utf8(var/message, var/mob_or_client)
-	return LIBVG("to_utf8", _determine_encoding(mob_or_client), message)
+#if DM_VERSION < 513
+/proc/to_utf8(var/message, var/mob_or_client = usr)
+	. = message // in case runtimes happen
+	var/is_513 = FALSE
+	if(istype(mob_or_client, /client))
+		var/client/C = mob_or_client
+		is_513 = (C.byond_version >= 513)
+	else if(ismob(mob_or_client))
+		var/mob/M = mob_or_client
+		if(M.client)
+			is_513 = (M.client.byond_version >= 513)
+	return is_513 ? message : LIBVG("to_utf8", _determine_encoding(mob_or_client), message)
+#else
+/proc/to_utf8(var/message) // it's already utf8
+	return message
+#endif
 
 // Converts a byte string to a UTF-8 string, sanitizes it and caps the length.
-/proc/utf8_sanitize(var/message, var/mob_or_client, var/length)
+/proc/utf8_sanitize(var/message, var/mob_or_client, var/length = MAX_MESSAGE_LEN)
 	return LIBVG("utf8_sanitize", _determine_encoding(mob_or_client), message, num2text(length))
 
 // Get the length (Unicode Scalars) of a UTF-8 string.

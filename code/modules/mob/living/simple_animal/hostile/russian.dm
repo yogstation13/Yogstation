@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/russian
-	name = "Russian"
+	name = "\improper Russian"
 	desc = "For the Motherland!"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "russianmelee"
@@ -31,6 +31,8 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/russian/sentience_act()
+	faction -= "russian"
 
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
@@ -46,7 +48,7 @@
 
 /mob/living/simple_animal/hostile/russian/ranged/mosin
 	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged,
-				/obj/item/gun/ballistic/shotgun/boltaction)
+				/obj/item/gun/ballistic/rifle/boltaction)
 	casingtype = /obj/item/ammo_casing/a762
 
 /mob/living/simple_animal/hostile/russian/ranged/trooper

@@ -11,7 +11,6 @@
 	pixel_x = -24
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
@@ -91,6 +90,40 @@
 "aj" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/pirate)
+"ak" = (
+/obj/machinery/airalarm/all_access{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/freezer{
+	locked = 0;
+	name = "fridge"
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/fancy/donut_box,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/cookie{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/turf/open/floor/plasteel,
+/area/shuttle/pirate)
 "al" = (
 /obj/machinery/loot_locator,
 /obj/effect/decal/cleanable/dirt,
@@ -155,6 +188,10 @@
 /obj/structure/barricade/wooden/crude,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
 "aq" = (
@@ -172,25 +209,25 @@
 "ar" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes{
+/obj/item/storage/box/fancy/cigarettes{
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_carp{
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
 	pixel_x = 10;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_robust{
+/obj/item/storage/box/fancy/cigarettes/cigpack_robust{
 	pixel_x = 2
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_midori{
+/obj/item/storage/box/fancy/cigarettes/cigpack_midori{
 	pixel_x = 10
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_shadyjims{
+/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims{
 	pixel_x = 2;
 	pixel_y = -6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_uplift{
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
 	pixel_x = 10;
 	pixel_y = -6
 	},
@@ -221,6 +258,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
 "av" = (
@@ -230,6 +271,10 @@
 /obj/structure/barricade/wooden/crude,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
 "aw" = (
@@ -324,6 +369,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "aG" = (
@@ -361,6 +410,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "aK" = (
@@ -391,7 +444,7 @@
 	specialfunctions = 4
 	},
 /obj/effect/turf_decal/stripes/corner{
-	dir = 1
+	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -622,38 +675,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
-"bw" = (
-/obj/machinery/airalarm/all_access{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/freezer{
-	locked = 0;
-	name = "fridge"
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/fancy/donut_box,
-/obj/item/reagent_containers/food/snacks/cookie,
-/obj/item/reagent_containers/food/snacks/cookie{
-	pixel_x = -6;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/pirate)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -714,7 +735,9 @@
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
 "bH" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat/all_access{
+	onstation = 0
+	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -772,6 +795,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
 "bO" = (
@@ -779,6 +806,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
+	aidisabled = 1;
 	dir = 1;
 	name = "Pirate Corvette APC";
 	pixel_y = 24;
@@ -836,6 +864,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "ce" = (
@@ -868,6 +900,10 @@
 	name = "Deep Space";
 	width = 17
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "df" = (
@@ -1011,6 +1047,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
+"jv" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/pirate)
 "km" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /obj/effect/turf_decal/bot,
@@ -1032,6 +1077,10 @@
 	name = "Engineering"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
 "np" = (
@@ -1067,6 +1116,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/pirate)
 "wR" = (
@@ -1086,7 +1141,25 @@
 	name = "Armory Access"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/pod/dark,
+/area/shuttle/pirate)
+"yv" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/pirate)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1094,12 +1167,39 @@
 	name = "Captain's Quarters"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
+/area/shuttle/pirate)
+"DZ" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/pirate)
 "Gk" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/suit_storage_unit/pirate,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/shuttle/pirate)
+"IC" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "JT" = (
@@ -1179,6 +1279,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
+"Xk" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/pirate)
 
 (1,1,1) = {"
 af
@@ -1207,7 +1318,7 @@ eA
 aa
 ap
 aw
-bw
+ak
 bF
 aj
 aj
@@ -1241,7 +1352,7 @@ af
 af
 af
 af
-ey
+jv
 ay
 Oe
 OL
@@ -1275,7 +1386,7 @@ af
 af
 af
 ey
-ey
+IC
 aj
 aj
 aj
@@ -1292,7 +1403,7 @@ aJ
 af
 af
 ey
-ey
+DZ
 aC
 aW
 aj
@@ -1309,7 +1420,7 @@ aj
 (8,1,1) = {"
 af
 af
-ey
+jv
 ab
 ae
 bf
@@ -1327,7 +1438,7 @@ aH
 (9,1,1) = {"
 af
 af
-ey
+jv
 ac
 ag
 am
@@ -1345,7 +1456,7 @@ aK
 (10,1,1) = {"
 af
 af
-ey
+jv
 ad
 ah
 an
@@ -1364,7 +1475,7 @@ er
 af
 af
 ey
-ey
+yv
 al
 aB
 aj
@@ -1383,7 +1494,7 @@ af
 af
 af
 ey
-ey
+Xk
 aj
 aj
 aj
@@ -1421,7 +1532,7 @@ af
 af
 af
 af
-ey
+jv
 eE
 bC
 bJ

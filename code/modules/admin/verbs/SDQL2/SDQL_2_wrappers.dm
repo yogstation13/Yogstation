@@ -48,6 +48,12 @@
 /proc/_image(icon, loc, icon_state, layer, dir)
 	return image(icon, loc, icon_state, layer, dir)
 
+/proc/_istype(object, type)
+	return istype(object, type)
+
+/proc/_ispath(path, type)
+	return ispath(path, type)
+
 /proc/_length(E)
 	return length(E)
 
@@ -78,8 +84,11 @@
 /proc/_min(...)
 	return min(arglist(args))
 
-/proc/_new(type, arguments)
-	return new type (arglist(arguments))
+/proc/_new(type, ...)
+	if(args.len < 2)
+		return new type
+	else
+		return new type (arglist(args.Copy(2)))
 
 /proc/_num2text(N, SigFig = 6)
 	return num2text(N, SigFig)
@@ -144,6 +153,9 @@
 /proc/_sin(X)
 	return sin(X)
 
+/proc/_list_new(...)
+	return args.Copy()
+
 /proc/_list_add(list/L, ...)
 	if (args.len < 2)
 		return
@@ -171,6 +183,9 @@
 
 /proc/_list_set(list/L, key, value)
 	L[key] = value
+
+/proc/_list_get(list/L, key)
+	return L[key]
 
 /proc/_list_numerical_add(L, key, num)
 	L[key] += num
@@ -208,4 +223,12 @@
 /proc/_step_away(ref, trg, max)
 	step_away(ref, trg, max)
 
+/proc/_has_trait(datum/thing,trait)
+	return HAS_TRAIT(thing,trait)
+
+/proc/_add_trait(datum/thing,trait,source)
+	ADD_TRAIT(thing,trait,source)
+
+/proc/_remove_trait(datum/thing,trait,source)
+	REMOVE_TRAIT(thing,trait,source)
 

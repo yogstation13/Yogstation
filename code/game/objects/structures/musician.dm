@@ -33,7 +33,7 @@
 // note is a number from 1-7 for A-G
 // acc is either "b", "n", or "#"
 // oct is 1-8 (or 9 for C)
-/datum/song/proc/playnote(note, acc as text, oct)
+/datum/song/proc/playnote(mob/user, note, acc as text, oct)
 	// handle accidental -> B<>C of E<>F
 	if(acc == "b" && (note == 3 || note == 6)) // C or F
 		if(note == 3)
@@ -67,14 +67,17 @@
 	if((world.time - MUSICIAN_HEARCHECK_MINDELAY) > last_hearcheck)
 		LAZYCLEARLIST(hearing_mobs)
 		for(var/mob/M in get_hearers_in_view(15, source))
-			if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
-				continue
 			LAZYADD(hearing_mobs, M)
 		last_hearcheck = world.time
 
 	var/sound/music_played = sound(soundfile)
 	for(var/i in hearing_mobs)
 		var/mob/M = i
+		if(HAS_TRAIT(user, TRAIT_MUSICIAN) && isliving(M))
+			var/mob/living/L = M
+			L.apply_status_effect(STATUS_EFFECT_GOOD_MUSIC)
+		if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
+			continue
 		M.playsound_local(source, null, 100, falloff = 5, S = music_played)
 
 /datum/song/proc/updateDialog(mob/user)
@@ -104,13 +107,15 @@
 						playing = FALSE
 						hearing_mobs = null
 						return
-					if(!lentext(note))
+					if(!length(note))
 						continue
 					var/cur_note = text2ascii(note) - 96
 					if(cur_note < 1 || cur_note > 7)
 						continue
-					for(var/i=2 to lentext(note))
-						var/ni = copytext(note,i,i+1)
+					var/notelen = length(note)
+					var/ni = ""
+					for(var/i = length(note[1]) + 1, i <= notelen, i += length(ni))
+						ni = note[i]
 						if(!text2num(ni))
 							if(ni == "#" || ni == "b" || ni == "n")
 								cur_acc[cur_note] = ni
@@ -119,7 +124,7 @@
 						else
 							cur_oct[cur_note] = text2num(ni)
 					if(user.dizziness > 0 && prob(user.dizziness / 2))
-						cur_note = CLAMP(cur_note + rand(round(-user.dizziness / 10), round(user.dizziness / 10)), 1, 7)
+						cur_note = clamp(cur_note + rand(round(-user.dizziness / 10), round(user.dizziness / 10)), 1, 7)
 					if(user.dizziness > 0 && prob(user.dizziness / 5))
 						if(prob(30))
 							cur_acc[cur_note] = "#"
@@ -127,7 +132,7 @@
 							cur_acc[cur_note] = "b"
 						else if(prob(75))
 							cur_acc[cur_note] = "n"
-					playnote(cur_note, cur_acc[cur_note], cur_oct[cur_note])
+					playnote(user, cur_note, cur_acc[cur_note], cur_oct[cur_note])
 				if(notes.len >= 2 && text2num(notes[2]))
 					sleep(sanitize_tempo(tempo / text2num(notes[2])))
 				else
@@ -199,9 +204,10 @@
 	//split into lines
 	lines = splittext(text, "\n")
 	if(lines.len)
-		if(copytext(lines[1],1,6) == "BPM: ")
-			tempo = sanitize_tempo(600 / text2num(copytext(lines[1],6)))
-			lines.Cut(1,2)
+		var/bpm_string = "BPM: "
+		if(findtext(lines[1], bpm_string, 1, length(bpm_string) + 1))
+			tempo = sanitize_tempo(600 / text2num(copytext(lines[1], length(bpm_string) + 1)))
+			lines.Cut(1, 2)
 		else
 			tempo = sanitize_tempo(5) // default 120 BPM
 		if(lines.len > MUSIC_MAXLINES)
@@ -209,7 +215,7 @@
 			lines.Cut(MUSIC_MAXLINES + 1)
 		var/linenum = 1
 		for(var/l in lines)
-			if(lentext(l) > MUSIC_MAXLINECHARS)
+			if(length_char(l) > MUSIC_MAXLINECHARS)
 				to_chat(usr, "Line [linenum] too long!")
 				lines.Remove(l)
 			else
@@ -236,13 +242,13 @@
 			if(!usr.canUseTopic(instrumentObj, BE_CLOSE, FALSE, NO_TK))
 				return
 
-			if(lentext(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
+			if(length(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
 				var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 				if(!usr.canUseTopic(instrumentObj, BE_CLOSE, FALSE, NO_TK))
 					return
 				if(cont == "no")
 					break
-		while(lentext(t) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
+		while(length(t) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
 		ParseSong(t)
 
 	else if(href_list["help"])
@@ -274,8 +280,8 @@
 			return
 		if(lines.len > MUSIC_MAXLINES)
 			return
-		if(lentext(newline) > MUSIC_MAXLINECHARS)
-			newline = copytext(newline, 1, MUSIC_MAXLINECHARS)
+		if(length_char(newline) > MUSIC_MAXLINECHARS)
+			newline = copytext_char(newline, 1, MUSIC_MAXLINECHARS)
 		lines.Add(newline)
 
 	else if(href_list["deleteline"])
@@ -286,11 +292,9 @@
 
 	else if(href_list["modifyline"])
 		var/num = round(text2num(href_list["modifyline"]),1)
-		var/content = html_encode(input("Enter your line: ", instrumentObj.name, lines[num]) as text|null)
+		var/content = stripped_input(usr, "Enter your line: ", instrumentObj.name, lines[num], MUSIC_MAXLINECHARS)
 		if(!content || !usr.canUseTopic(instrumentObj, BE_CLOSE, FALSE, NO_TK))
 			return
-		if(lentext(content) > MUSIC_MAXLINECHARS)
-			content = copytext(content, 1, MUSIC_MAXLINECHARS)
 		if(num > lines.len || num < 1)
 			return
 		lines[num] = content
@@ -333,8 +337,8 @@
 /obj/structure/piano/unanchored
 	anchored = FALSE
 
-/obj/structure/piano/New()
-	..()
+/obj/structure/piano/Initialize()
+	. = ..()
 	song = new("piano", src)
 
 	if(prob(50) && icon_state == initial(icon_state))

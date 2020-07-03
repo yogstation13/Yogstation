@@ -12,6 +12,11 @@
 	can_buckle = 1
 	buckle_requires_restraints = 1
 	buckle_lying = -1
+	FASTDMM_PROP(\
+		set_instance_vars(\
+			icon_state = INSTANCE_VAR_DEFAULT\
+        ),\
+    )
 
 /obj/machinery/atmospherics/pipe/New()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
@@ -31,14 +36,6 @@
 	if(QDELETED(parent))
 		parent = new
 		parent.build_pipeline(src)
-
-/obj/machinery/atmospherics/pipe/update_icon() //overridden by manifolds
-	if(nodes[1] && nodes[2])
-		icon_state = "intact[invisibility ? "-f" : "" ]"
-	else
-		var/have_node1 = nodes[1] ? TRUE : FALSE
-		var/have_node2 = nodes[2] ? TRUE : FALSE
-		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
 /obj/machinery/atmospherics/pipe/atmosinit()
 	var/turf/T = loc			// hide if turf is not intact
@@ -73,6 +70,11 @@
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
 
+/obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
+	if(istype(user))
+		analyzer_act(user, src)
+	return ..()
+
 /obj/machinery/atmospherics/pipe/returnPipenet()
 	return parent
 
@@ -92,6 +94,13 @@
 			meter.transfer_fingerprints_to(PM)
 			qdel(meter)
 	. = ..()
+
+/obj/machinery/atmospherics/pipe/update_icon()
+	. = ..()
+	update_alpha()
+
+/obj/machinery/atmospherics/pipe/proc/update_alpha()
+	alpha = invisibility ? 64 : 255
 
 /obj/machinery/atmospherics/pipe/proc/update_node_icon()
 	for(var/i in 1 to device_type)

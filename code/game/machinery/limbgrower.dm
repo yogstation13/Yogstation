@@ -10,7 +10,6 @@
 	icon = 'icons/obj/machines/limbgrower.dmi'
 	icon_state = "limbgrower_idleoff"
 	density = TRUE
-	container_type = OPENCONTAINER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
@@ -27,6 +26,7 @@
 	var/list/categories = list(
 							"human",
 							"lizard",
+							"gorilla", // yogs -- gorilla people
 							"fly",
 							"moth",
 							"plasmaman",
@@ -34,7 +34,7 @@
 							)
 
 /obj/machinery/limbgrower/Initialize()
-	create_reagents(100)
+	create_reagents(100, OPENCONTAINER)
 	stored_research = new /datum/techweb/specialized/autounlocking/limbgrower
 	. = ..()
 
@@ -88,7 +88,7 @@
 			selected_category = href_list["category"]
 
 		if(href_list["disposeI"])  //Get rid of a reagent incase you add the wrong one by mistake
-			reagents.del_reagent(href_list["disposeI"])
+			reagents.del_reagent(text2path(href_list["disposeI"]))
 
 		if(href_list["make"])
 
@@ -99,10 +99,10 @@
 				return
 
 
-			var/synth_cost = being_built.reagents_list["synthflesh"]*prod_coeff
+			var/synth_cost = being_built.reagents_list[/datum/reagent/medicine/synthflesh]*prod_coeff
 			var/power = max(2000, synth_cost/5)
 
-			if(reagents.has_reagent("synthflesh", being_built.reagents_list["synthflesh"]*prod_coeff))
+			if(reagents.has_reagent(/datum/reagent/medicine/synthflesh, being_built.reagents_list[/datum/reagent/medicine/synthflesh]*prod_coeff))
 				busy = TRUE
 				use_power(power)
 				flick("limbgrower_fill",src)
@@ -116,8 +116,8 @@
 	return
 
 /obj/machinery/limbgrower/proc/build_item()
-	if(reagents.has_reagent("synthflesh", being_built.reagents_list["synthflesh"]*prod_coeff))	//sanity check, if this happens we are in big trouble
-		reagents.remove_reagent("synthflesh",being_built.reagents_list["synthflesh"]*prod_coeff)
+	if(reagents.has_reagent(/datum/reagent/medicine/synthflesh, being_built.reagents_list[/datum/reagent/medicine/synthflesh]*prod_coeff))	//sanity check, if this happens we are in big trouble
+		reagents.remove_reagent(/datum/reagent/medicine/synthflesh,being_built.reagents_list[/datum/reagent/medicine/synthflesh]*prod_coeff)
 		var/buildpath = being_built.build_path
 		if(ispath(buildpath, /obj/item/bodypart))	//This feels like spatgheti code, but i need to initilise a limb somehow
 			build_limb(buildpath)
@@ -139,13 +139,14 @@
 		limb.icon = 'icons/mob/human_parts_greyscale.dmi'
 		limb.should_draw_greyscale = TRUE
 	else
-		limb.icon = 'icons/mob/human_parts.dmi'
+		limb.icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
 	// Set this limb up using the specias name and body zone
 	limb.icon_state = "[selected_category]_[limb.body_zone]"
 	limb.name = "\improper synthetic [selected_category] [parse_zone(limb.body_zone)]"
-	limb.desc = "A synthetic [selected_category] limb that will morph on its first use in surgery. This one is for the [parse_zone(limb.body_zone)]"
+	limb.desc = "A synthetic [selected_category] limb that will morph on its first use in surgery. This one is for the [parse_zone(limb.body_zone)]."
 	limb.species_id = selected_category
 	limb.update_icon_dropped()
+	limb.original_owner = "limb grower"	 //prevents updating the icon, so a lizard arm on a human stays a lizard arm etc.
 
 /obj/machinery/limbgrower/RefreshParts()
 	reagents.maximum_volume = 0
@@ -156,6 +157,11 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T -= M.rating*0.2
 	prod_coeff = min(1,max(0,T)) // Coeff going 1 -> 0,8 -> 0,6 -> 0,4
+
+/obj/machinery/limbgrower/examine(mob/user)
+	. = ..()
+	if(in_range(user, src) || isobserver(user))
+		. += "<span class='notice'>The status display reads: Storing up to <b>[reagents.maximum_volume]u</b> of synthflesh.<br>Synthflesh consumption at <b>[prod_coeff*100]%</b>.<span>"
 
 /obj/machinery/limbgrower/proc/main_win(mob/user)
 	var/dat = "<div class='statusDisplay'><h3>Limb Grower Menu:</h3><br>"
@@ -197,7 +203,7 @@
 
 	for(var/datum/reagent/R in reagents.reagent_list)
 		dat += "[R.name]: [R.volume]"
-		dat += "<A href='?src=[REF(src)];disposeI=[R.id]'>Purge</A><BR>"
+		dat += "<A href='?src=[REF(src)];disposeI=[R]'>Purge</A><BR>"
 
 	dat += "</div>"
 	return dat
@@ -207,12 +213,12 @@
 	return dat
 
 /obj/machinery/limbgrower/proc/can_build(datum/design/D)
-	return (reagents.has_reagent("synthflesh", D.reagents_list["synthflesh"]*prod_coeff)) //Return whether the machine has enough synthflesh to produce the design
+	return (reagents.has_reagent(/datum/reagent/medicine/synthflesh, D.reagents_list[/datum/reagent/medicine/synthflesh]*prod_coeff)) //Return whether the machine has enough synthflesh to produce the design
 
 /obj/machinery/limbgrower/proc/get_design_cost(datum/design/D)
 	var/dat
-	if(D.reagents_list["synthflesh"])
-		dat += "[D.reagents_list["synthflesh"] * prod_coeff] Synthetic flesh "
+	if(D.reagents_list[/datum/reagent/medicine/synthflesh])
+		dat += "[D.reagents_list[/datum/reagent/medicine/synthflesh] * prod_coeff] Synthetic flesh "
 	return dat
 
 /obj/machinery/limbgrower/emag_act(mob/user)

@@ -13,9 +13,11 @@
 	symptom_delay_max = 10
 	var/stun_reduce = -15
 	var/stamina_regen = FALSE
-	threshold_desc = "<b>Resistance 8:</b> Increases stun resistance.<br>\
-					  <b>Transmission 6:</b> Gives stamina regen.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Resistance 8" = "Increases stun resistance.",
+		"Transmission 6" = "Gives stamina regen.",
+		"Stealth 4" = "The symptom remains hidden until active."
+	)
 					  
 /datum/symptom/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
 	if(!..())

@@ -3,7 +3,7 @@
 	set desc = "Area to jump to"
 	set category = "Admin"
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	if(!A)
@@ -17,7 +17,7 @@
 
 	var/turf/T = safepick(turfs)
 	if(!T)
-		to_chat(src, "Nowhere to jump to!")
+		to_chat(src, "Nowhere to jump to!", confidential=TRUE)
 		return
 	usr.forceMove(T)
 	log_admin("[key_name(usr)] jumped to [AREACOORD(A)]")
@@ -28,7 +28,7 @@
 	set name = "Jump to Turf"
 	set category = "Admin"
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	log_admin("[key_name(usr)] jumped to [AREACOORD(T)]")
@@ -42,7 +42,7 @@
 	set name = "Jump to Mob"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	log_admin("[key_name(usr)] jumped to [key_name(M)]")
@@ -61,14 +61,13 @@
 	set name = "Jump to Coordinate"
 
 	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	if(src.mob)
 		var/mob/A = src.mob
-		A.x = tx
-		A.y = ty
-		A.z = tz
+		var/turf/T = locate(tx,ty,tz)
+		A.forceMove(T)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Jump To Coordiate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
@@ -77,7 +76,7 @@
 	set name = "Jump to Key"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	var/list/keys = list()
@@ -85,7 +84,7 @@
 		keys += M.client
 	var/client/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
 	if(!selection)
-		to_chat(src, "No keys found.")
+		to_chat(src, "No keys found.", confidential=TRUE)
 		return
 	var/mob/M = selection.mob
 	log_admin("[key_name(usr)] jumped to [key_name(M)]")
@@ -100,7 +99,7 @@
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	var/atom/loc = get_turf(usr)
@@ -117,7 +116,7 @@
 	set desc = "Key to teleport"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 
 	var/list/keys = list()
@@ -143,7 +142,7 @@
 	set category = "Admin"
 	set name = "Send Mob"
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in GLOB.sortedAreas|null
 	if(A && istype(A))
@@ -154,5 +153,5 @@
 			message_admins(msg)
 			admin_ticket_log(M, msg)
 		else
-			to_chat(src, "Failed to move mob to a valid location.")
+			to_chat(src, "Failed to move mob to a valid location.", confidential=TRUE)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Send Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

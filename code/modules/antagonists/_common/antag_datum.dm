@@ -4,11 +4,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/name = "Antagonist"
 	var/roundend_category = "other antagonists"				//Section of roundend report, datums with same category will be displayed together, also default header for the section
 	var/show_in_roundend = TRUE								//Set to false to hide the antagonists from roundend report
+	var/prevent_roundtype_conversion = TRUE		//If false, the roundtype will still convert with this antag active
 	var/datum/mind/owner						//Mind that owns this datum
 	var/silent = FALSE							//Silent will prevent the gain/lose texts to show
 	var/can_coexist_with_others = TRUE			//Whether or not the person will be able to have more than one datum
 	var/list/typecache_datum_blacklist = list()	//List of datums this type can't coexist with
-	var/delete_on_mind_deletion = TRUE
 	var/job_rank
 	var/replace_banned = TRUE //Should replace jobbanned player with ghosts if granted.
 	var/list/objectives = list()
@@ -20,6 +20,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
 	var/antagpanel_category = "Uncategorized"	//Antagpanel will display these together, REQUIRED
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
+	var/datum/achievement/greentext/greentext_achieve // The achievement received for greentexting as this antag type. Not all antag types use this to distribute their achievements.
+	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
+
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -48,6 +51,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	return src
 
 /datum/antagonist/proc/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects(old_body)
 	apply_innate_effects(new_body)
 
@@ -65,6 +69,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Proc called when the datum is given to a mind.
 /datum/antagonist/proc/on_gain()
+	SHOULD_CALL_PARENT(TRUE)
 	if(owner && owner.current)
 		if(!silent)
 			greet()
@@ -72,11 +77,13 @@ GLOBAL_LIST_EMPTY(antagonists)
 		give_antag_moodies()
 		if(is_banned(owner.current) && replace_banned)
 			replace_banned_player()
+		else if(owner.current.client?.holder && (CONFIG_GET(flag/auto_deadmin_antagonists) || owner.current.client.prefs?.toggles & DEADMIN_ANTAGONIST))
+			owner.current.client.holder.auto_deadmin()
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
 		return FALSE
-	. = (jobban_isbanned(M, ROLE_SYNDICATE) || QDELETED(M) || (job_rank && (jobban_isbanned(M,job_rank) || QDELETED(M))))
+	. = (is_banned_from(M.ckey, list(ROLE_SYNDICATE, job_rank)) || QDELETED(M))
 
 /datum/antagonist/proc/replace_banned_player()
 	set waitfor = FALSE
@@ -90,6 +97,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		owner.current.key = C.key
 
 /datum/antagonist/proc/on_removal()
+	SHOULD_CALL_PARENT(TRUE)
 	remove_innate_effects()
 	clear_antag_moodies()
 	if(owner)
@@ -140,6 +148,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
+		if(istype(greentext_achieve))
+			SSachievements.unlock_achievement(greentext_achieve,owner.current)
+		else // The above still does award the generic greentext achievement, just implicitly.
+			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client) 
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
 
@@ -210,7 +222,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 			return
 
 /datum/antagonist/proc/edit_memory(mob/user)
-	var/new_memo = copytext(trim(input(user,"Write new memory", "Memory", antag_memory) as null|message),1,MAX_MESSAGE_LEN)
+	var/new_memo = stripped_multiline_input(user, "Write new memory", "Memory", antag_memory, MAX_MESSAGE_LEN)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo

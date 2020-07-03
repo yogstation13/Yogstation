@@ -12,7 +12,7 @@
 /obj/item/clockwork/component/examine(mob/user)
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		to_chat(user, "<span class='[get_component_span(component_id)]'>You can activate this in your hand to break it down for power.</span>")
+		. += "<span class='[get_component_span(component_id)]'>You can activate this in your hand to break it down for power.</span>"
 
 /obj/item/clockwork/component/attack_self(mob/living/user)
 	if(is_servant_of_ratvar(user))
@@ -24,9 +24,9 @@
 
 /obj/item/clockwork/component/pickup(mob/living/user)
 	..()
-	if(iscultist(user) || (user.mind && user.mind.isholy))
+	if(iscultist(user) || (user.mind && user.mind.holy_role))
 		to_chat(user, "<span class='[message_span]'>[cultist_message]</span>")
-		if(user.mind && user.mind.isholy)
+		if(user.mind && user.mind.holy_role)
 			to_chat(user, "<span class='boldannounce'>The power of your faith melts away [src]!</span>")
 			var/obj/item/stack/ore/slag/wrath = new /obj/item/stack/ore/slag
 			qdel(src)
@@ -181,9 +181,9 @@
 		pixel_y = rand(-sprite_shift, sprite_shift)
 
 /obj/item/clockwork/alloy_shards/examine(mob/user)
-	..()
+	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		to_chat(user, "<span class='brass'>Can be consumed by a replica fabricator as a source of power.</span>")
+		. += "<span class='brass'>Can be consumed by a replica fabricator as a source of power.</span>"
 
 /obj/item/clockwork/alloy_shards/proc/replace_name_desc()
 	name = "replicant alloy shard"

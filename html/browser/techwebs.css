@@ -13,8 +13,118 @@
     color: white;
     content: attr(data-tooltip);
     min-width: 160px;
+    opacity: 0.8;/* yogs */
+    pointer-events: none; /* yogs - the fact that TG didn't include this shows they know nothing about CSS and the likes */
 }
 
 .technode {
     width: 256px;
 }
+
+/* yogs start */
+#techweb-container {
+    position: absolute;
+    overflow: hidden;
+    margin: 0px;
+    width: 100%;
+    bottom: 0px;
+    top: 0px;
+    z-index: -1;
+}
+#techweb {
+    margin-left: 50%;
+    margin-top: 50%;
+    position: absolute;
+    overflow: visible;
+}
+
+.line {
+    background-color: #221111;
+    border-color: #221111;
+    position: absolute;
+    height: 1px;
+    transform-origin: center left;
+    z-index: -1;
+
+}
+.line[data-showing=true] {
+    background-color: red;
+    border-color: red;
+}
+.line[data-showing=true][data-outputting=true] {
+    background-color: #886644;
+    border-color: #886644;
+}
+.line.researched[data-showing=true][data-outputting=true] {
+    background-color: #448866;
+    border-color: #448866;
+}
+.line:after { /* arrowheads */
+    content: "";
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    border-color: inherit;
+    position: absolute;
+    right: 0px;
+    bottom: 1px;
+    transform: rotate(-45deg);
+    width: 5px;
+    height: 5px;
+    transform-origin: right bottom;
+}
+
+.line.researched {
+    background-color: #112211;
+    border-color: #112211;
+}
+
+.line.researched[data-showing=true] {
+    background-color: green;
+    border-color: green;
+}
+
+.line.researched[data-showing=true] {
+    background-color: green;
+    border-color:green;
+}
+
+.technode-web-container {
+    position: absolute;
+    overflow: visible;
+}
+
+.technode-web {
+    position: relative;
+    left: -16px;
+    top: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid blue;
+    background-color: black;
+    overflow: hidden;
+}
+@keyframes technode-web-available {
+    from {
+        border-color: black
+    }
+    to {
+        border-color: green
+    }
+}
+.technode-web.available {
+    border: 1px solid green;
+    animation-duration: 1s;
+    animation-name: technode-web-available;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.technode-web.unavailable {
+    border: 1px solid grey;
+}
+.technode-web.too-expensive {
+    border: 1px solid red;
+}
+/* yogs end */

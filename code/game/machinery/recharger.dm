@@ -21,6 +21,24 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_coeff = C.rating
 
+/obj/machinery/recharger/examine(mob/user)
+	. = ..()
+	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
+		. += "<span class='warning'>You're too far away to examine [src]'s contents and display!</span>"
+		return
+
+	if(charging)
+		. += {"<span class='notice'>\The [src] contains:</span>
+		<span class='notice'>- \A [charging].</span>"}
+
+	if(!(stat & (NOPOWER|BROKEN)))
+		. += "<span class='notice'>The status display reads:<span>"
+		. += "<span class='notice'>- Recharging <b>[recharge_coeff*10]%</b> cell charge per cycle.<span>"
+		if(charging)
+			var/obj/item/stock_parts/cell/C = charging.get_cell()
+			. += "<span class='notice'>- \The [charging]'s cell is at <b>[C.percent()]%</b>.<span>"
+
+
 /obj/machinery/recharger/proc/setCharging(new_charging)
 	charging = new_charging
 	if (new_charging)
@@ -121,10 +139,6 @@
 			return
 	else
 		return PROCESS_KILL
-
-/obj/machinery/recharger/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/recharger/emp_act(severity)
 	. = ..()

@@ -2,9 +2,6 @@
 	Station Airlocks Regular
 */
 
-/obj/machinery/door/airlock/abandoned
-	abandoned = TRUE
-
 /obj/machinery/door/airlock/command
 	icon = 'icons/obj/doors/airlocks/station/command.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_com
@@ -19,9 +16,6 @@
 	icon = 'icons/obj/doors/airlocks/station/engineering.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_eng
 
-/obj/machinery/door/airlock/engineering/abandoned
-	abandoned = TRUE
-
 /obj/machinery/door/airlock/medical
 	icon = 'icons/obj/doors/airlocks/station/medical.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_med
@@ -31,9 +25,6 @@
 	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mai
 	normal_integrity = 250
-
-/obj/machinery/door/airlock/maintenance/abandoned
-	abandoned = TRUE
 
 /obj/machinery/door/airlock/maintenance/external
 	name = "external airlock access"
@@ -49,9 +40,6 @@
 	name = "atmospherics airlock"
 	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_atmo
-
-/obj/machinery/door/airlock/atmos/abandoned
-	abandoned = TRUE
 
 /obj/machinery/door/airlock/research
 	icon = 'icons/obj/doors/airlocks/station/research.dmi'
@@ -109,9 +97,6 @@
 	opacity = 0
 	glass = TRUE
 	normal_integrity = 400
-
-/obj/machinery/door/airlock/security/glass/abandoned
-	abandoned = TRUE
 
 /obj/machinery/door/airlock/medical/glass
 	opacity = 0
@@ -363,9 +348,6 @@
 	overlays_file = 'icons/obj/doors/airlocks/centcom/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_grunge
 
-/obj/machinery/door/airlock/grunge/abandoned
-	abandoned = TRUE
-
 //////////////////////////////////
 /*
 	Vault Airlocks
@@ -398,9 +380,6 @@
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mhatch
-
-/obj/machinery/door/airlock/maintenance_hatch/abandoned
-	abandoned = TRUE
 
 //////////////////////////////////
 /*
@@ -471,12 +450,9 @@
 /obj/machinery/door/airlock/cult/canAIControl(mob/user)
 	return (iscultist(user) && !isAllPowerCut())
 
-/obj/machinery/door/airlock/cult/obj_break(damage_flag)
-	if(!(flags_1 & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		stat |= BROKEN
-		if(!panel_open)
-			panel_open = TRUE
-		update_icon()
+/obj/machinery/door/airlock/cult/on_break()
+	if(!panel_open)
+		panel_open = TRUE
 
 /obj/machinery/door/airlock/cult/isElectrified()
 	return FALSE
@@ -583,14 +559,14 @@
 	return ..()
 
 /obj/machinery/door/airlock/clockwork/examine(mob/user)
-	..()
+	. = ..()
 	var/gear_text = "The cogwheel is flickering and twisting wildly. Report this to a coder."
 	switch(construction_state)
 		if(GEAR_SECURE)
 			gear_text = "<span class='brass'>The cogwheel is solidly <b>wrenched</b> to the brass around it.</span>"
 		if(GEAR_LOOSE)
 			gear_text = "<span class='alloy'>The cogwheel has been <i>loosened</i>, but remains <b>connected loosely</b> to the door!</span>"
-	to_chat(user, gear_text)
+	. += gear_text
 
 /obj/machinery/door/airlock/clockwork/emp_act(severity)
 	if(prob(80/severity))

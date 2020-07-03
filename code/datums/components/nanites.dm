@@ -32,6 +32,8 @@
 
 		if(cloud_id)
 			cloud_sync()
+/datum/component/nanites/proc/delete_nanites()
+	qdel(src)
 
 /datum/component/nanites/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
@@ -46,6 +48,7 @@
 	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
 	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
 	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
 
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
@@ -53,9 +56,9 @@
 		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
 		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
 		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
-		RegisterSignal(parent, COMSIG_MOVABLE_HEAR, .proc/on_hear)
 		RegisterSignal(parent, COMSIG_SPECIES_GAIN, .proc/check_viable_biotype)
 		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, .proc/receive_signal)
+		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, .proc/receive_comm_signal)
 
 /datum/component/nanites/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_HAS_NANITES,
@@ -77,7 +80,9 @@
 								COMSIG_LIVING_MINOR_SHOCK,
 								COMSIG_MOVABLE_HEAR,
 								COMSIG_SPECIES_GAIN,
-								COMSIG_NANITE_SIGNAL))
+								COMSIG_NANITE_SIGNAL,
+								COMSIG_NANITE_COMM_SIGNAL,
+								COMSIG_NANITE_DELETE))
 
 /datum/component/nanites/Destroy()
 	STOP_PROCESSING(SSnanites, src)
@@ -153,7 +158,7 @@
 	return (nanite_volume > 0)
 
 /datum/component/nanites/proc/adjust_nanites(datum/source, amount)
-	nanite_volume = CLAMP(nanite_volume + amount, 0, max_nanites)
+	nanite_volume = clamp(nanite_volume + amount, 0, max_nanites)
 	if(nanite_volume <= 0) //oops we ran out
 		qdel(src)
 
@@ -165,7 +170,7 @@
 	if(remove || stealth)
 		return //bye icon
 	var/nanite_percent = (nanite_volume / max_nanites) * 100
-	nanite_percent = CLAMP(CEILING(nanite_percent, 10), 10, 100)
+	nanite_percent = clamp(CEILING(nanite_percent, 10), 10, 100)
 	holder.icon_state = "nanites[nanite_percent]"
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
@@ -195,15 +200,16 @@
 		var/datum/nanite_program/NP = X
 		NP.on_death(gibbed)
 
-/datum/component/nanites/proc/on_hear(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-	for(var/X in programs)
-		var/datum/nanite_program/NP = X
-		NP.on_hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
-
 /datum/component/nanites/proc/receive_signal(datum/source, code, source = "an unidentified source")
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.receive_signal(code, source)
+
+/datum/component/nanites/proc/receive_comm_signal(datum/source, comm_code, comm_message, comm_source = "an unidentified source")
+	for(var/X in programs)
+		if(istype(X, /datum/nanite_program/triggered/comm))
+			var/datum/nanite_program/triggered/comm/NP = X
+			NP.receive_comm_signal(comm_code, comm_message, comm_source)
 
 /datum/component/nanites/proc/check_viable_biotype()
 	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes))
@@ -218,16 +224,16 @@
 	return FALSE
 
 /datum/component/nanites/proc/set_volume(datum/source, amount)
-	nanite_volume = CLAMP(amount, 0, max_nanites)
+	nanite_volume = clamp(amount, 0, max_nanites)
 
 /datum/component/nanites/proc/set_max_volume(datum/source, amount)
 	max_nanites = max(1, max_nanites)
 
 /datum/component/nanites/proc/set_cloud(datum/source, amount)
-	cloud_id = CLAMP(amount, 0, 100)
+	cloud_id = clamp(amount, 0, 100)
 
 /datum/component/nanites/proc/set_safety(datum/source, amount)
-	safety_threshold = CLAMP(amount, 0, max_nanites)
+	safety_threshold = clamp(amount, 0, max_nanites)
 
 /datum/component/nanites/proc/set_regen(datum/source, amount)
 	regen_rate = amount

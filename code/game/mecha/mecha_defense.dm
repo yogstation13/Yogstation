@@ -107,12 +107,15 @@
 /obj/mecha/attack_tk()
 	return
 
-/obj/mecha/hitby(atom/movable/A as mob|obj) //wrapper
-	log_message("Hit by [A].", LOG_MECHA, color="red")
+/obj/mecha/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum) //wrapper
+	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
+	if (!enclosed && occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
+		return BULLET_ACT_HIT
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
 	. = ..()
 
@@ -148,7 +151,15 @@
 		use_power((cell.charge/3)/(severity*2))
 		take_damage(30 / severity, BURN, "energy", 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
-	check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
+
+	if(istype(src, /obj/mecha/combat))
+		mouse_pointer = 'icons/mecha/mecha_mouse-disable.dmi'
+		occupant?.update_mouse_pointer()
+	if(!equipment_disabled && occupant) //prevent spamming this message with back-to-back EMPs
+		to_chat(occupant, "<span=danger>Error -- Connection to equipment control unit has been lost.</span>")
+	overload_action.Activate(0)
+	addtimer(CALLBACK(src, /obj/mecha/proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	equipment_disabled = 1
 
 /obj/mecha/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature>max_temperature)
@@ -164,17 +175,10 @@
 			to_chat(user, "[src]-[W] interface initialization failed.")
 		return
 
-	if(istype(W, /obj/item/mecha_parts/mecha_equipment))
-		var/obj/item/mecha_parts/mecha_equipment/E = W
-		spawn()
-			if(E.can_attach(src))
-				if(!user.temporarilyRemoveItemFromInventory(W))
-					return
-				E.attach(src)
-				user.visible_message("[user] attaches [W] to [src].", "<span class='notice'>You attach [W] to [src].</span>")
-			else
-				to_chat(user, "<span class='warning'>You were unable to attach [W] to [src]!</span>")
+	if(istype(W, /obj/item/mecha_ammo))
+		ammo_resupply(W, user)
 		return
+
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
@@ -215,32 +219,47 @@
 			else
 				to_chat(user, "<span class='warning'>You need two lengths of cable to fix this mech!</span>")
 		return
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent != INTENT_HARM)
-		if(internal_damage & MECHA_INT_TEMP_CONTROL)
-			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
-			to_chat(user, "<span class='notice'>You repair the damaged temperature controller.</span>")
-		else if(state==3 && cell)
-			cell.forceMove(loc)
-			cell = null
-			state = 4
-			to_chat(user, "<span class='notice'>You unscrew and pry out the powercell.</span>")
-			log_message("Powercell removed", LOG_MECHA)
-		else if(state==4 && cell)
-			state=3
-			to_chat(user, "<span class='notice'>You screw the cell in place.</span>")
-		return
 
 	else if(istype(W, /obj/item/stock_parts/cell))
-		if(state==4)
+		if(state==3)
 			if(!cell)
 				if(!user.transferItemToLoc(W, src))
 					return
 				var/obj/item/stock_parts/cell/C = W
-				to_chat(user, "<span class='notice'>You install the powercell.</span>")
+				to_chat(user, "<span class='notice'>You install the power cell.</span>")
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				cell = C
 				log_message("Powercell installed", LOG_MECHA)
 			else
-				to_chat(user, "<span class='notice'>There's already a powercell installed.</span>")
+				to_chat(user, "<span class='notice'>There's already a power cell installed.</span>")
+		return
+
+	if(istype(W, /obj/item/stock_parts/scanning_module))
+		if(state == 3)
+			if(!scanmod)
+				if(!user.transferItemToLoc(W, src))
+					return
+				to_chat(user, "<span class='notice'>You install the scanning module.</span>")
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
+				scanmod = W
+				log_message("[W] installed", LOG_MECHA)
+				update_part_values()
+			else
+				to_chat(user, "<span class='notice'>There's already a scanning module installed.</span>")
+		return
+
+	if(istype(W, /obj/item/stock_parts/capacitor))
+		if(state == 3)
+			if(!capacitor)
+				if(!user.transferItemToLoc(W, src))
+					return
+				to_chat(user, "<span class='notice'>You install the capacitor.</span>")
+				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
+				capacitor = W
+				log_message("[W] installed", LOG_MECHA)
+				update_part_values()
+			else
+				to_chat(user, "<span class='notice'>There's already a capacitor installed.</span>")
 		return
 
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
@@ -260,14 +279,15 @@
 			to_chat(user, "<span class='warning'>The [name] is at full integrity!</span>")
 		return 1
 
-	else if(istype(W, /obj/item/mecha_parts/mecha_tracking))
-		if(!user.transferItemToLoc(W, src))
-			to_chat(user, "<span class='warning'>\the [W] is stuck to your hand, you cannot put it in \the [src]!</span>")
-			return
-		trackers += W
-		user.visible_message("[user] attaches [W] to [src].", "<span class='notice'>You attach [W] to [src].</span>")
-		diag_hud_set_mechtracking()
+	else if(istype(W, /obj/item/mecha_parts))
+		var/obj/item/mecha_parts/P = W
+		P.try_attach_part(user, src)
 		return
+
+	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
+		var/obj/item/airlock_scanner/S = W
+		S.show_access(src, user)					//yogs end
+
 	else
 		return ..()
 
@@ -278,10 +298,10 @@
 /obj/mecha/proc/mech_toxin_damage(mob/living/target)
 	playsound(src, 'sound/effects/spray2.ogg', 50, 1)
 	if(target.reagents)
-		if(target.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
-			target.reagents.add_reagent("cryptobiolin", force/2)
-		if(target.reagents.get_reagent_amount("toxin") + force < force*2)
-			target.reagents.add_reagent("toxin", force/2.5)
+		if(target.reagents.get_reagent_amount(/datum/reagent/cryptobiolin) + force < force*2)
+			target.reagents.add_reagent(/datum/reagent/cryptobiolin, force/2)
+		if(target.reagents.get_reagent_amount(/datum/reagent/toxin) + force < force*2)
+			target.reagents.add_reagent(/datum/reagent/toxin, force/2.5)
 
 
 /obj/mecha/mech_melee_attack(obj/mecha/M)
@@ -308,11 +328,7 @@
 		clearInternalDamage(MECHA_INT_CONTROL_LOST)
 
 /obj/mecha/narsie_act()
-	if(occupant)
-		var/mob/living/L = occupant
-		go_out(TRUE)
-		if(L)
-			L.narsie_act()
+	emp_act(EMP_HEAVY)
 
 /obj/mecha/ratvar_act()
 	if((GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated) && occupant)
@@ -335,3 +351,29 @@
 			else if(damtype == TOX)
 				visual_effect_icon = ATTACK_EFFECT_MECHTOXIN
 	..()
+
+/obj/mecha/obj_destruction()
+	if(wreckage)
+		var/mob/living/silicon/ai/AI
+		if(isAI(occupant))
+			AI = occupant
+			occupant = null
+		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+			if(E.salvageable && prob(30))
+				WR.crowbar_salvage += E
+				E.detach(WR) //detaches from src into WR
+				E.equip_ready = 1
+			else
+				E.detach(loc)
+				qdel(E)
+		if(cell)
+			WR.crowbar_salvage += cell
+			cell.forceMove(WR)
+			cell.charge = rand(0, cell.charge)
+			cell = null
+		if(internal_tank)
+			WR.crowbar_salvage += internal_tank
+			internal_tank.forceMove(WR)
+			cell = null
+	. = ..() 

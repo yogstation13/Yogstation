@@ -60,8 +60,8 @@
 	new /obj/item/melee/flyswatter(src)
 	new /obj/item/flashlight(src)
 	for(var/i in 1 to 4) // yogs - Makes there be 4 caution signs instead of 3
-		new /obj/item/caution(src)
-	new /obj/item/holosign_creator(src)
+		new /obj/item/clothing/suit/caution(src)
+	new /obj/item/holosign_creator/janibarrier(src)
 	new /obj/item/lightreplacer(src)
 	new /obj/item/soap(src)
 	new /obj/item/storage/bag/trash(src)
@@ -97,16 +97,16 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/PopulateContents()
-	new /obj/item/holybeacon(src)
+	new /obj/item/choice_beacon/holy(src)
 	new /obj/item/clothing/accessory/pocketprotector/cosmetology(src)
 	new /obj/item/clothing/under/rank/chaplain(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
-	new /obj/item/clothing/suit/nun(src)
+	new /obj/item/clothing/suit/chaplainsuit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
-	new /obj/item/clothing/suit/holidaypriest(src)
+	new /obj/item/clothing/suit/chaplainsuit/holidaypriest(src)
 	new /obj/item/storage/backpack/cultpack(src)
-	new /obj/item/storage/fancy/candle_box(src)
-	new /obj/item/storage/fancy/candle_box(src)
+	new /obj/item/storage/box/fancy/candle_box(src)
+	new /obj/item/storage/box/fancy/candle_box(src)
 	return
 
 /obj/structure/closet/wardrobe/red
@@ -309,3 +309,19 @@
 	new /obj/item/clothing/shoes/workboots/mining(src)
 	new /obj/item/storage/backpack/satchel/explorer(src)
 
+/obj/structure/closet/wardrobe/tcomms
+	name = "signal tech wardrobe"
+	icon = 'yogstation/icons/obj/closet.dmi'
+	icon_state = "sigtech"
+	icon_door = "sigtech"
+
+/obj/structure/closet/wardrobe/tcomms/PopulateContents()
+	..()
+	contents = list()
+	new /obj/item/storage/backpack/duffelbag/engineering(src)
+	new /obj/item/storage/backpack/industrial(src)
+	new /obj/item/storage/backpack/satchel/eng(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms(src)
+	new /obj/item/clothing/under/yogs/rank/signal_tech(src)
+	new /obj/item/clothing/shoes/workboots(src)
+	new /obj/item/clothing/under/yogs/rank/signal_tech/skirt(src)

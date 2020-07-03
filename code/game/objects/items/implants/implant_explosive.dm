@@ -27,7 +27,6 @@
 	return dat
 
 /obj/item/implant/explosive/activate(cause)
-	. = ..()
 	if(!cause || !imp_in || active)
 		return 0
 	if(cause == "action_button" && !popup)
@@ -41,6 +40,7 @@
 	weak = round(weak)
 	to_chat(imp_in, "<span class='notice'>You activate your [name].</span>")
 	active = TRUE
+	. = ..()
 	var/turf/boomturf = get_turf(imp_in)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of [cause].")
 //If the delay is short, just blow up already jeez
@@ -111,10 +111,14 @@
 
 
 /obj/item/implanter/explosive
-	name = "implanter (explosive)"
+	name = "implanter (microbomb)"
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implantcase/explosive
 	name = "implant case - 'Explosive'"
 	desc = "A glass case containing an explosive implant."
 	imp_type = /obj/item/implant/explosive
+
+/obj/item/implanter/explosive_macro
+	name = "implanter (macrobomb)"
+	imp_type = /obj/item/implant/explosive/macro

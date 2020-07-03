@@ -5,16 +5,17 @@
 #define SHADOWWALK_THRESHOLD 0.02
 
 /datum/component/walk
+
 /datum/component/walk/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_PROCESS_MOVE, .proc/handle_move)
-	GET_COMPONENT_FROM(footsteps, /datum/component/footstep, parent)
+	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
 	if(footsteps)
 		footsteps.signal_enabled = FALSE
 
 /datum/component/walk/RemoveComponent()
-	GET_COMPONENT_FROM(footsteps, /datum/component/footstep, parent)
+	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
 	if(footsteps)
 		footsteps.signal_enabled = TRUE
 	return ..()
@@ -73,8 +74,9 @@
 		pulled = null
 
 /datum/component/walk/jaunt
+
 /datum/component/walk/jaunt/can_walk(mob/living/user, turf/destination)
-	for(var/obj/effect/decal/cleanable/salt/S in destination)
+	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
 		to_chat(user, "<span class='warning'>[S] bars your passage!</span>")
 		if(isrevenant(user))
 			var/mob/living/simple_animal/revenant/R = user

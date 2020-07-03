@@ -52,12 +52,11 @@
 
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
 	if(morphed)
-		form.examine(user) // Refactor examine to return desc so it's static? Not sure if worth it
+		. = form.examine(user)
 		if(get_dist(user,src)<=3)
-			to_chat(user, "<span class='warning'>It doesn't look quite right...</span>")
+			. += "<span class='warning'>It doesn't look quite right...</span>"
 	else
-		..()
-	return
+		. = ..()
 
 /mob/living/simple_animal/hostile/morph/med_hud_set_health()
 	if(morphed && !isliving(form))
@@ -214,7 +213,7 @@
 /datum/round_event_control/morph
 	name = "Spawn Morph"
 	typepath = /datum/round_event/ghost_role/morph
-	weight = 0 //Admin only
+	weight = 5
 	max_occurrences = 1
 
 /datum/round_event/ghost_role/morph

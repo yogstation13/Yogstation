@@ -54,7 +54,7 @@
 		icon_regular_floor = "floor"
 	else
 		icon_regular_floor = icon_state
-	if(mapload)
+	if(mapload && prob(33))
 		MakeDirty()
 
 /turf/open/floor/ex_act(severity, target)
@@ -63,29 +63,29 @@
 	if(severity != 1 && shielded && target != src)
 		return
 	if(target == src)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return
 	if(target != null)
 		severity = 3
 
 	switch(severity)
 		if(1)
-			ScrapeAway(2)
+			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 		if(2)
 			switch(pick(1,2;75,3))
 				if(1)
 					if(!length(baseturfs) || !ispath(baseturfs[baseturfs.len-1], /turf/open/floor))
-						ScrapeAway()
+						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 						ReplaceWithLattice()
 					else
-						ScrapeAway(2)
+						ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 					if(prob(33))
 						new /obj/item/stack/sheet/metal(src)
 				if(2)
-					ScrapeAway(2)
+					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 				if(3)
 					if(prob(80))
-						ScrapeAway()
+						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					else
 						break_tile()
 					hotspot_expose(1000,CELL_VOLUME)
@@ -136,7 +136,7 @@
 	burnt = 1
 
 /turf/open/floor/proc/make_plating()
-	return ScrapeAway()
+	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/ChangeTurf(path, new_baseturf, flags)
 	if(!isfloorturf(src))
@@ -214,7 +214,7 @@
 /turf/open/floor/narsie_act(force, ignore_mobs, probability = 20)
 	. = ..()
 	if(.)
-		ChangeTurf(/turf/open/floor/engine/cult)
+		ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/ratvar_act(force, ignore_mobs)
 	. = ..()
@@ -222,7 +222,7 @@
 		ChangeTurf(/turf/open/floor/clockwork)
 
 /turf/open/floor/acid_melt()
-	ScrapeAway()
+	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
@@ -237,6 +237,10 @@
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 33)
 		if(RCD_WINDOWGRILLE)
 			return list("mode" = RCD_WINDOWGRILLE, "delay" = 10, "cost" = 4)
+		if(RCD_MACHINE)
+			return list("mode" = RCD_MACHINE, "delay" = 20, "cost" = 25)
+		if(RCD_COMPUTER)
+			return list("mode" = RCD_COMPUTER, "delay" = 20, "cost" = 25)
 	return FALSE
 
 /turf/open/floor/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
@@ -264,7 +268,7 @@
 			A.autoclose = TRUE
 			return TRUE
 		if(RCD_DECONSTRUCT)
-			if(ScrapeAway() == src)
+			if(ScrapeAway(flags = CHANGETURF_INHERIT_AIR) == src)
 				return FALSE
 			to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
 			return TRUE
@@ -275,4 +279,21 @@
 			var/obj/structure/grille/G = new(src)
 			G.anchored = TRUE
 			return TRUE
+		if(RCD_MACHINE)
+			if(locate(/obj/structure/frame/machine) in src)
+				return FALSE
+			var/obj/structure/frame/machine/M = new(src)
+			M.state = 2
+			M.icon_state = "box_1"
+			M.anchored = TRUE
+			return TRUE
+		if(RCD_COMPUTER)
+			if(locate(/obj/structure/frame/computer) in src)
+				return FALSE
+			var/obj/structure/frame/computer/C = new(src)
+			C.anchored = TRUE
+			C.state = 1
+			C.setDir(the_rcd.computer_dir)
+			return TRUE
+
 	return FALSE

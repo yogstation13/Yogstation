@@ -29,12 +29,15 @@
 /obj/item/locator/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+	
 	if (temp)
 		dat = "[temp]<BR><BR><A href='byond://?src=[REF(src)];temp=1'>Clear</A>"
 	else
 		dat = {"
 <B>Persistent Signal Locator</B><HR>
 <A href='?src=[REF(src)];refresh=1'>Refresh</A>"}
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
@@ -80,7 +83,7 @@
 					else
 						var/mob/living/M = W.loc
 						if (M.stat == DEAD)
-							if (M.timeofdeath + 6000 < world.time)
+							if (M.timeofdeath + W.lifespan_postmortem < world.time)
 								continue
 
 					var/turf/tr = get_turf(W)

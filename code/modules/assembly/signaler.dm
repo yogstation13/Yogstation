@@ -8,7 +8,8 @@
 	materials = list(MAT_METAL=400, MAT_GLASS=120)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
-
+	var/ui_x = 280
+	var/ui_y = 280
 	var/code = DEFAULT_SIGNALER_CODE
 	var/frequency = FREQ_SIGNALER
 	var/delay = 0
@@ -21,12 +22,14 @@
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	user.transferItemToLoc(src, user, TRUE)
 	suicider = user
-	return MANUAL_SUICIDE
+	return MANUAL_SUICIDE_NONLETHAL
 
 /obj/item/assembly/signaler/proc/manual_suicide(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user]'s \the [src] receives a signal, killing [user.p_them()] instantly!</span>")
+	user.visible_message("<span class='suicide'>[user]'s [src] receives a signal, killing [user.p_them()] instantly!</span>")
 	user.adjustOxyLoss(200)//it sends an electrical pulse to their heart, killing them. or something.
 	user.death(0)
+	user.set_suicide(TRUE)
+	user.suicide_log()
 
 /obj/item/assembly/signaler/Initialize()
 	. = ..()
@@ -48,63 +51,63 @@
 		holder.update_icon()
 	return
 
-/obj/item/assembly/signaler/ui_interact(mob/user, flag1)
-	. = ..()
+/obj/item/assembly/signaler/ui_status(mob/user)
 	if(is_secured(user))
-		var/t1 = "-------"
-		var/dat = {"
-<TT>
+		return ..()
+	return UI_CLOSE
 
-<A href='byond://?src=[REF(src)];send=1'>Send Signal</A><BR>
-<B>Frequency/Code</B> for signaler:<BR>
-Frequency:
-<A href='byond://?src=[REF(src)];freq=-10'>-</A>
-<A href='byond://?src=[REF(src)];freq=-2'>-</A>
-[format_frequency(src.frequency)]
-<A href='byond://?src=[REF(src)];freq=2'>+</A>
-<A href='byond://?src=[REF(src)];freq=10'>+</A><BR>
+/obj/item/assembly/signaler/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "Signaler", name, ui_x, ui_y, master_ui, state)
+		ui.open()
 
-Code:
-<A href='byond://?src=[REF(src)];code=-5'>-</A>
-<A href='byond://?src=[REF(src)];code=-1'>-</A>
-[src.code]
-<A href='byond://?src=[REF(src)];code=1'>+</A>
-<A href='byond://?src=[REF(src)];code=5'>+</A><BR>
-[t1]
-</TT>"}
-		user << browse(dat, "window=radio")
-		onclose(user, "radio")
+
+/obj/item/assembly/signaler/ui_data(mob/user)
+	var/list/data = list()
+	data["frequency"] = frequency
+	data["code"] = code
+	data["minFrequency"] = MIN_FREE_FREQ
+	data["maxFrequency"] = MAX_FREE_FREQ
+
+	data["color"] = label_color
+
+	return data
+
+/obj/item/assembly/signaler/ui_act(action, params)
+	if(..())
 		return
 
+	switch(action)
+		if("signal")
+			INVOKE_ASYNC(src, .proc/signal)
+			. = TRUE
+		if("freq")
+			frequency = unformat_frequency(params["freq"])
+			frequency = sanitize_frequency(frequency, TRUE)
+			set_frequency(frequency)
+			. = TRUE
+		if("code")
+			code = text2num(params["code"])
+			code = round(code)
+			. = TRUE
+		if("reset")
+			if(params["reset"] == "freq")
+				frequency = initial(frequency)
+			else
+				code = initial(code)
+			. = TRUE
+		if("color")
+			var/idx = label_colors.Find(label_color)
+			if(idx == label_colors.len || idx == 0)
+				idx = 1
+			else
+				idx++
+			label_color = label_colors[idx]
+			update_icon()
 
-/obj/item/assembly/signaler/Topic(href, href_list)
-	..()
-
-	if(!usr.canUseTopic(src, BE_CLOSE))
-		usr << browse(null, "window=radio")
-		onclose(usr, "radio")
-		return
-
-	if (href_list["freq"])
-		var/new_frequency = (frequency + text2num(href_list["freq"]))
-		if(new_frequency < MIN_FREE_FREQ || new_frequency > MAX_FREE_FREQ)
-			new_frequency = sanitize_frequency(new_frequency)
-		set_frequency(new_frequency)
-
-	if(href_list["code"])
-		src.code += text2num(href_list["code"])
-		src.code = round(src.code)
-		src.code = min(100, src.code)
-		src.code = max(1, src.code)
-
-	if(href_list["send"])
-		spawn( 0 )
-			signal()
-
-	if(usr)
-		attack_self(usr)
-
-	return
+	update_icon()
 
 /obj/item/assembly/signaler/attackby(obj/item/W, mob/user, params)
 	if(issignaler(W))
@@ -112,6 +115,10 @@ Code:
 		if(secured && signaler2.secured)
 			code = signaler2.code
 			set_frequency(signaler2.frequency)
+			// yogs start - signaller colors
+			label_color = signaler2.label_color
+			update_icon()
+			// yogs end
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()
 
@@ -126,9 +133,6 @@ Code:
 	var/turf/T = get_turf(src)
 	if(usr)
 		GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(frequency)]/[code]")
-
-
-	return
 
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
 	. = FALSE
@@ -169,8 +173,8 @@ Code:
 	return TRUE
 
 /obj/item/assembly/signaler/receiver/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The radio receiver is [on?"on":"off"].</span>")
+	. = ..()
+	. += "<span class='notice'>The radio receiver is [on?"on":"off"].</span>"
 
 /obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)
 	if(!on)
@@ -194,9 +198,22 @@ Code:
 		return FALSE
 	if(signal.data["code"] != code)
 		return FALSE
+	if(suicider)
+		manual_suicide(suicider)
 	for(var/obj/effect/anomaly/A in get_turf(src))
 		A.anomalyNeutralize()
 	return TRUE
+
+/obj/item/assembly/signaler/anomaly/manual_suicide(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user]'s [src] is reacting to the radio signal, warping [user.p_their()] body!</span>")
+	user.set_suicide(TRUE)
+	user.suicide_log()
+	user.gib()
+
+/obj/item/assembly/signaler/anomaly/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_ANALYZER)
+		to_chat(user, "<span class='notice'>Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code].</span>")
+	..()
 
 /obj/item/assembly/signaler/anomaly/attack_self()
 	return

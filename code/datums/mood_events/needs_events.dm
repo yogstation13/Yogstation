@@ -19,6 +19,19 @@
 	description = "<span class='boldwarning'>I'm starving!</span>\n"
 	mood_change = -15
 
+//charge
+/datum/mood_event/charged
+	description = "<span class='nicegreen'>I feel the power in my veins!</span>\n"
+	mood_change = 6
+
+/datum/mood_event/lowpower
+	description = "<span class='warning'>My power is running low, I should go charge up somewhere.</span>\n"
+	mood_change = -7
+
+/datum/mood_event/decharged
+	description = "<span class='boldwarning'>I'm in desperate need of some electricity!</span>\n"
+	mood_change = -12
+
 //Disgust
 /datum/mood_event/gross
 	description = "<span class='warning'>I saw something gross.</span>\n"
@@ -56,7 +69,17 @@
 	mood_change = -4
 	timeout = 2400
 
+/datum/mood_event/breakfast
+	description = "<span class='nicegreen'>Nothing like a hearty breakfast to start the shift.</span>\n"
+	mood_change = 2
+	timeout = 10 MINUTES
+
 /datum/mood_event/nice_shower
 	description = "<span class='nicegreen'>I have recently had a nice shower.</span>\n"
 	mood_change = 2
 	timeout = 1800
+
+/datum/mood_event/fresh_laundry
+	description = "<span class='nicegreen'>There's nothing like the feeling of a freshly laundered jumpsuit.</span>\n"
+	mood_change = 2
+	timeout = 10 MINUTES

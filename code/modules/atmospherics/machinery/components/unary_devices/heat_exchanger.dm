@@ -1,11 +1,12 @@
 /obj/machinery/atmospherics/components/unary/heat_exchanger
 
-	icon_state = "he_intact"
+	icon_state = "he1"
 
 	name = "heat exchanger"
 	desc = "Exchanges heat between two input gases. Set up for fast heat transfer."
 
 	can_unwrench = TRUE
+	shift_underlay_only = FALSE // not really used
 
 	layer = LOW_OBJ_LAYER
 
@@ -15,22 +16,21 @@
 	pipe_state = "heunary"
 	
 /obj/machinery/atmospherics/components/unary/heat_exchanger/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
+	piping_layer = 1
+	icon_state = "he_map-1"
 
 /obj/machinery/atmospherics/components/unary/heat_exchanger/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
+	piping_layer = 3
+	icon_state = "he_map-3"
 
 /obj/machinery/atmospherics/components/unary/heat_exchanger/update_icon()
 	if(nodes[1])
-		icon_state = "he_intact"
+		icon_state = "he1"
 		var/obj/machinery/atmospherics/node = nodes[1]
 		add_atom_colour(node.color, FIXED_COLOUR_PRIORITY)
 	else
-		icon_state = "he_exposed"
+		icon_state = "he0"
+	PIPING_LAYER_SHIFT(src, piping_layer)
 
 /obj/machinery/atmospherics/components/unary/heat_exchanger/atmosinit()
 	if(!partner)
@@ -59,18 +59,18 @@
 	var/other_air_heat_capacity = partner_air_contents.heat_capacity()
 	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
 
-	var/old_temperature = air_contents.temperature
-	var/other_old_temperature = partner_air_contents.temperature
+	var/old_temperature = air_contents.return_temperature()
+	var/other_old_temperature = partner_air_contents.return_temperature()
 
 	if(combined_heat_capacity > 0)
-		var/combined_energy = partner_air_contents.temperature*other_air_heat_capacity + air_heat_capacity*air_contents.temperature
+		var/combined_energy = partner_air_contents.return_temperature()*other_air_heat_capacity + air_heat_capacity*air_contents.return_temperature()
 
 		var/new_temperature = combined_energy/combined_heat_capacity
-		air_contents.temperature = new_temperature
-		partner_air_contents.temperature = new_temperature
+		air_contents.set_temperature(new_temperature)
+		partner_air_contents.set_temperature(new_temperature)
 
-	if(abs(old_temperature-air_contents.temperature) > 1)
+	if(abs(old_temperature-air_contents.return_temperature()) > 1)
 		update_parents()
 
-	if(abs(other_old_temperature-partner_air_contents.temperature) > 1)
+	if(abs(other_old_temperature-partner_air_contents.return_temperature()) > 1)
 		partner.update_parents()

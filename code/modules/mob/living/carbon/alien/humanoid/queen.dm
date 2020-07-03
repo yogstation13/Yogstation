@@ -25,6 +25,8 @@
 	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
+	SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
+	addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) //yogs: time until shuttle is freed/called
 	//there should only be one queen
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.carbon_list)
 		if(Q == src)
@@ -49,6 +51,22 @@
 	internal_organs += new /obj/item/organ/alien/neurotoxin
 	internal_organs += new /obj/item/organ/alien/eggsac
 	..()
+
+/mob/living/carbon/alien/humanoid/royal/queen/proc/game_end()
+	if(stat != DEAD)
+		SSshuttle.clearHostileEnvironment(src)
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			priority_announce("Xenomorph infestation detected: crisis shuttle protocols activated - jamming recall signals across all frequencies. P.S.: Bring back a live one please.")
+			SSshuttle.emergency.request(null, set_coefficient=0.5)
+			SSshuttle.emergencyNoRecall = TRUE
+
+/mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
+	SSshuttle.clearHostileEnvironment(src)
+	..()
+
+/mob/living/carbon/alien/humanoid/royal/queen/Destroy()
+	SSshuttle.clearHostileEnvironment(src)
+	..() //yogs end
 
 //Queen verbs
 /obj/effect/proc_holder/alien/lay_egg
@@ -103,8 +121,12 @@
 	name = "\improper royal parasite"
 	desc = "Inject this into one of your grown children to promote her to a Praetorian!"
 	icon_state = "alien_medal"
-	item_flags = ABSTRACT | NODROP | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	icon = 'icons/mob/alien.dmi'
+
+/obj/item/queenpromote/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/queenpromote/attack(mob/living/M, mob/living/carbon/alien/humanoid/user)
 	if(!isalienadult(M) || isalienroyal(M))

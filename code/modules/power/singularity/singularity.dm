@@ -10,7 +10,7 @@
 	move_resist = INFINITY
 	layer = MASSIVE_OBJ_LAYER
 	light_range = 6
-	appearance_flags = 0
+	appearance_flags = LONG_GLIDE
 	var/current_size = 1
 	var/allowed_size = 1
 	var/contained = 1 //Are we going to move around?
@@ -89,7 +89,7 @@
 		var/turf/T = get_turf(C)
 		for(var/i in 1 to 3)
 			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
-			new /obj/effect/gibspawner/generic(T)
+			new /obj/effect/gibspawner/generic(T, C)
 			sleep(1)
 		C.ghostize()
 		var/obj/item/bodypart/head/rip_u = C.get_bodypart(BODY_ZONE_HEAD)
@@ -97,23 +97,35 @@
 		qdel(rip_u)
 
 /obj/singularity/ex_act(severity, target)
+	var/energy_loss_ratio = 0
+	var/stage_collapse = null
 	switch(severity)
-		if(1)
-			if(current_size <= STAGE_TWO)
-				investigate_log("has been destroyed by a heavy explosion.", INVESTIGATE_SINGULO)
-				qdel(src)
-				return
-			else
-				energy -= round(((energy+1)/2),1)
-		if(2)
-			energy -= round(((energy+1)/3),1)
-		if(3)
-			energy -= round(((energy+1)/4),1)
-	return
+		if(EXPLODE_DEVASTATE)
+			stage_collapse = STAGE_TWO
+			energy_loss_ratio = 0.60
+		if(EXPLODE_HEAVY)
+			stage_collapse = STAGE_ONE
+			energy_loss_ratio = 0.40
+		if(EXPLODE_LIGHT)
+			energy_loss_ratio = 0.30
+
+	if(stage_collapse && current_size <= stage_collapse)
+		investigate_log("has been destroyed by an explosion", INVESTIGATE_SINGULO)
+		qdel(src)
+		return
+
+	energy -= round(energy * energy_loss_ratio)
+	check_energy()
+
+	if(energy <= 60)
+		investigate_log("collapsed due to low energy after an explosion.", INVESTIGATE_SINGULO)
+		qdel(src)
+		return
 
 
 /obj/singularity/bullet_act(obj/item/projectile/P)
-	return 0 //Will there be an impact? Who knows.  Will we see it? No.
+	qdel(P)
+	return BULLET_ACT_HIT //Will there be an impact? Who knows.  Will we see it? No.
 
 
 /obj/singularity/Bump(atom/A)

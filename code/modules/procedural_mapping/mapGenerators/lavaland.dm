@@ -11,14 +11,18 @@
 /datum/mapGeneratorModule/splatterLayer/lavalandMonsters
 	spawnableTurfs = list()
 	spawnableAtoms = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast = 10,
+	/mob/living/simple_animal/slime/random = 10,
 	/mob/living/simple_animal/hostile/asteroid/hivelord/legion = 10,
-	/mob/living/simple_animal/hostile/asteroid/basilisk/watcher = 10)
+	/mob/living/simple_animal/hostile/asteroid/basilisk/watcher = 10,
+	/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 10)
+
 
 /datum/mapGeneratorModule/splatterLayer/lavalandTendrils
 	spawnableTurfs = list()
-	spawnableAtoms = list(/mob/living/simple_animal/hostile/spawner/lavaland = 5,
-	/mob/living/simple_animal/hostile/spawner/lavaland/legion = 5,
-	/mob/living/simple_animal/hostile/spawner/lavaland/goliath = 5)
+	spawnableAtoms = list(/obj/structure/spawner/lavaland = 5,
+	/obj/structure/spawner/lavaland/legion = 5,
+	/obj/structure/spawner/lavaland/goliath = 5,
+	/obj/structure/spawner/lavaland/magmawing = 5)
 
 /datum/mapGenerator/lavaland/ground_only
 	modules = list(/datum/mapGeneratorModule/bottomLayer/lavaland_default)

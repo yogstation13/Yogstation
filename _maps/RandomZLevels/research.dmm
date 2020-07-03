@@ -249,7 +249,6 @@
 /turf/open/floor/plasteel{
 	icon_state = "damaged4"
 	},
-/turf/closed/wall/mineral/plastitanium,
 /area/awaymission/research/interior/engineering)
 "aT" = (
 /mob/living/simple_animal/hostile/syndicate/melee/sword,
@@ -258,9 +257,6 @@
 "aU" = (
 /turf/open/floor/plasteel{
 	icon_state = "damaged1"
-	},
-/turf/closed/wall/mineral/plastitanium{
-	dir = 4
 	},
 /area/awaymission/research/interior/engineering)
 "aV" = (
@@ -311,7 +307,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -24
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -344,7 +340,6 @@
 /turf/open/floor/plasteel{
 	icon_state = "damaged5"
 	},
-/turf/closed/wall/mineral/plastitanium,
 /area/awaymission/research/interior/engineering)
 "bd" = (
 /turf/open/floor/plasteel{
@@ -417,8 +412,7 @@
 	auto_name = 1;
 	dir = 4;
 	name = "Engineering APC";
-	pixel_x = 27;
-	pixel_y = 2
+	pixel_x = 24
 	},
 /turf/open/floor/plating,
 /area/awaymission/research/interior/engineering)
@@ -966,7 +960,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/gateway)
@@ -1082,7 +1076,7 @@
 	name = "panic lockdown button"
 	},
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -1343,7 +1337,7 @@
 /obj/structure/closet/crate,
 /obj/item/disk/data{
 	desc = "A data disk used to store cloning and genetic records. The name on the label appears to be scratched off.";
-	fields = list("label" = "Buffer1:Kr-$$@##", "UI" = "f8f603857000f930127c4", "SE" = "414401462231053131010241514651403453121613263463440351136366", "UE" = "340008485c321e542aed4df7032ac04d", "name" = "Krystal Symers", "blood_type" = "A+");
+	genetic_makeup_buffer = list("label" = "Buffer1:Kr-$$@##", "UI" = "f8f603857000f930127c4", "SE" = "414401462231053131010241514651403453121613263463440351136366", "UE" = "340008485c321e542aed4df7032ac04d", "name" = "Krystal Symers", "blood_type" = "A+");
 	name = "dusty genetics data disk";
 	read_only = 1
 	},
@@ -1739,7 +1733,7 @@
 /obj/structure/closet/crate,
 /obj/item/disk/data{
 	desc = "A data disk used to store cloning and genetic records. The name on the label appears to be scratched off with the words 'DO NOT CLONE' hastily written over it.";
-	fields = list("label" = "Buffer1:George Melons", "UI" = "3c300f11b5421ca7014d8", "SE" = "430431205660551642142504334461413202111310233445620533134255", "UE" = "6893e6a0b0076a41897776b10cc2b324", "name" = "George Melons", "blood_type" = "B+");
+	genetic_makeup_buffer = list("label" = "Buffer1:George Melons", "UI" = "3c300f11b5421ca7014d8", "SE" = "430431205660551642142504334461413202111310233445620533134255", "UE" = "6893e6a0b0076a41897776b10cc2b324", "name" = "George Melons", "blood_type" = "B+");
 	name = "old genetics data disk"
 	},
 /obj/item/disk/data{
@@ -1961,7 +1955,7 @@
 /area/awaymission/research/interior)
 "ej" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -2099,7 +2093,7 @@
 /area/awaymission/research/interior/cryo)
 "ew" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -2321,7 +2315,7 @@
 "eT" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	pixel_x = -32
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
@@ -2549,7 +2543,7 @@
 /area/awaymission/research/interior/security)
 "fu" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -2916,7 +2910,7 @@
 /area/awaymission/research/interior/security)
 "gb" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -4498,7 +4492,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 1;
-	pixel_y = -32
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -4617,7 +4611,7 @@
 /area/awaymission/research/interior/dorm)
 "iZ" = (
 /obj/machinery/airalarm{
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
@@ -5710,7 +5704,7 @@
 /area/awaymission/research/interior/medbay)
 "lx" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/box/fancy/cigarettes/dromedaryco,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -5837,7 +5831,7 @@
 	},
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 4
@@ -5930,7 +5924,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Escape APC";
-	pixel_y = -24
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -6331,7 +6325,7 @@
 "mX" = (
 /obj/machinery/airalarm{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1

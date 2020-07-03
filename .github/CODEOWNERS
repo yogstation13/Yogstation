@@ -9,21 +9,32 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Partheo
-#/yogstation/icons/ @Partheo
+#Altoids
 
-#ThatLing
+/yogstation/code/modules/scripting/ @Altoids1
 
-/code/__DEFINES/tick.dm @ThatLing
-/code/controllers/admin.dm @ThatLing
-/code/controllers/failsafe.dm @ThatLing
-/code/controllers/subsystem.dm @ThatLing
-/code/controllers/subsystem/ @ThatLing
-/code/modules/keybindings/ @ThatLing
-/yogstation/code/controllers/ @ThatLing
-/yogstation/code/modules/keybindings/ @ThatLing
+#AsV9
+
+/code/__DEFINES/MC.dm @AsV9
+/code/__DEFINES/tick.dm @AsV9
+/code/controllers/master.dm @AsV9
+/SQL/database_changelog.txt @AsV9
+/code/controllers/admin.dm @AsV9
+/code/controllers/failsafe.dm @AsV9
+/code/controllers/subsystem.dm @AsV9
+/code/controllers/subsystem/timer.dm @AsV9
+
+#Ktlwjec
+/_maps/ @Ktlwjec1
+
+#monster860
+
+/code/modules/atmospherics/ @monster860
+/yogstation/code/modules/atmospherics/ @monster860
+
+#partheo
+
+/icons/ @Partheo
+/sound/ @Partheo
 
 #Multiple Owners
-
-/code/__DEFINES/MC.dm @AsV9 @ThatLing
-/code/controllers/master.dm @AsV9 @ThatLing

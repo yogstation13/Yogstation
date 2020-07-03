@@ -44,27 +44,27 @@
 		speed_multiplier = initial(speed_multiplier)
 
 /obj/item/clockwork/replica_fabricator/examine(mob/living/user)
-	..()
+	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
-		to_chat(user, "<span class='brass'>Can be used to replace walls, floors, tables, windows, windoors, and airlocks with Clockwork variants.</span>")
-		to_chat(user, "<span class='brass'>Can construct Clockwork Walls on Clockwork Floors and deconstruct Clockwork Walls to Clockwork Floors.</span>")
+		. += {"<span class='brass'>Can be used to replace walls, floors, tables, windows, windoors, and airlocks with Clockwork variants.</span>\n
+			<span class='brass'>Can construct Clockwork Walls on Clockwork Floors and deconstruct Clockwork Walls to Clockwork Floors.</span>"}
 		if(uses_power)
-			to_chat(user, "<span class='alloy'>It can consume floor tiles, rods, metal, and plasteel for power at rates of <b>2:[DisplayPower(POWER_ROD)]</b>, <b>1:[DisplayPower(POWER_ROD)]</b>, <b>1:[DisplayPower(POWER_METAL)]</b>, \
-			and <b>1:[DisplayPower(POWER_PLASTEEL)]</b>, respectively.</span>")
-			to_chat(user, "<span class='alloy'>It can also consume brass sheets for power at a rate of <b>1:[DisplayPower(POWER_FLOOR)]</b>.</span>")
-			to_chat(user, "<span class='alloy'>Use it in-hand to produce <b>5</b> brass sheets at a cost of <b>[DisplayPower(POWER_WALL_TOTAL)]</b> power.</span>")
-			to_chat(user, "<span class='alloy'>It has access to <b>[DisplayPower(get_clockwork_power())]</b> of power.</span>")
+			. += {"<span class='alloy'>It can consume floor tiles, rods, metal, and plasteel for power at rates of <b>2:[DisplayEnergy(POWER_ROD)]</b>, <b>1:[DisplayEnergy(POWER_ROD)]</b>, <b>1:[DisplayEnergy(POWER_METAL)]</b>, \
+			and <b>1:[DisplayEnergy(POWER_PLASTEEL)]</b>, respectively.</span>\n
+			<span class='alloy'>It can also consume brass sheets for power at a rate of <b>1:[DisplayEnergy(POWER_FLOOR)]</b>.</span>\n
+			<span class='alloy'>Use it in-hand to produce <b>5</b> brass sheets at a cost of <b>[DisplayEnergy(POWER_WALL_TOTAL)]</b> power.</span>\n
+			<span class='alloy'>It has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power.</span>"}
 
 /obj/item/clockwork/replica_fabricator/attack_self(mob/living/user)
 	if(is_servant_of_ratvar(user))
 		if(uses_power)
 			if(!get_clockwork_power(POWER_WALL_TOTAL))
-				to_chat(user, "<span class='warning'>[src] requires <b>[DisplayPower(POWER_WALL_TOTAL)]</b> of power to produce brass sheets!</span>")
+				to_chat(user, "<span class='warning'>[src] requires <b>[DisplayEnergy(POWER_WALL_TOTAL)]</b> of power to produce brass sheets!</span>")
 				return
 			adjust_clockwork_power(-POWER_WALL_TOTAL)
 		playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 		new/obj/item/stack/tile/brass(user.loc, 5)
-		to_chat(user, "<span class='brass'>You use [get_clockwork_power() ? "some":"all"] of [src]'s power to produce <b>5</b> brass sheets. It now has access to <b>[DisplayPower(get_clockwork_power())]</b> of power.</span>")
+		to_chat(user, "<span class='brass'>You use [get_clockwork_power() ? "some":"all"] of [src]'s power to produce <b>5</b> brass sheets. It now has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power.</span>")
 
 /obj/item/clockwork/replica_fabricator/pre_attack(atom/target, mob/living/user, params)
 	if(!target || !user || !is_servant_of_ratvar(user) || istype(target, /obj/item/storage))
@@ -139,7 +139,7 @@
 	var/new_thing_type = fabrication_values["new_obj_type"]
 	if(isturf(target)) //if our target is a turf, we're just going to ChangeTurf it and assume it'll work out.
 		var/turf/T = target
-		T.ChangeTurf(new_thing_type)
+		T.ChangeTurf(new_thing_type, flags = CHANGETURF_INHERIT_AIR)
 	else
 		if(new_thing_type)
 			if(fabrication_values["dir_in_new"])
@@ -177,7 +177,7 @@
 			if(!silent)
 				var/atom/A = fabrication_values["new_obj_type"]
 				if(A)
-					to_chat(user, "<span class='warning'>You need <b>[DisplayPower(fabrication_values["power_cost"])]</b> power to fabricate \a [initial(A.name)] from [target]!</span>")
+					to_chat(user, "<span class='warning'>You need <b>[DisplayEnergy(fabrication_values["power_cost"])]</b> power to fabricate \a [initial(A.name)] from [target]!</span>")
 		return FALSE
 	return TRUE
 
@@ -217,7 +217,7 @@
 	repair_values["power_required"] = round(repair_values["healing_for_cycle"]*MIN_CLOCKCULT_POWER, MIN_CLOCKCULT_POWER) //and get the power cost from that
 	if(!GLOB.ratvar_awakens && !get_clockwork_power(repair_values["power_required"]))
 		if(!silent)
-			to_chat(user, "<span class='warning'>You need at least <b>[DisplayPower(repair_values["power_required"])]</b> power to start repairin[target == user ? "g yourself" : "g [target]"], and at least \
-			<b>[DisplayPower(repair_values["amount_to_heal"]*MIN_CLOCKCULT_POWER, MIN_CLOCKCULT_POWER)]</b> to fully repair [target == user ? "yourself" : "[target.p_them()]"]!</span>")
+			to_chat(user, "<span class='warning'>You need at least <b>[DisplayEnergy(repair_values["power_required"])]</b> power to start repairin[target == user ? "g yourself" : "g [target]"], and at least \
+			<b>[DisplayEnergy(repair_values["amount_to_heal"]*MIN_CLOCKCULT_POWER, MIN_CLOCKCULT_POWER)]</b> to fully repair [target == user ? "yourself" : "[target.p_them()]"]!</span>")
 		return FALSE
 	return TRUE

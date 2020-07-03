@@ -9,6 +9,7 @@
 /obj/machinery/door/poddoor{
 	id = "bigderelictshipdock"
 	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ad" = (
@@ -42,6 +43,7 @@
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "aj" = (
 /obj/machinery/button/door{
+	id = "bigderelictshipdock";
 	name = "tradepost entry doors";
 	pixel_y = 24
 	},
@@ -548,9 +550,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/derelictoutpost)
 "bB" = (
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/table,
 /obj/machinery/recharger,
 /obj/effect/turf_decal/tile/red{
@@ -816,8 +816,7 @@
 	start_charge = 0;
 	dir = 4;
 	name = "Power Storage APC";
-	pixel_x = 23;
-	pixel_y = 2
+	pixel_x = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -876,11 +875,6 @@
 /area/ruin/space/has_grav/derelictoutpost)
 "cg" = (
 /obj/item/shard,
-/obj/item/stack/cable_coil{
-	amount = 2;
-	icon_state = "coil_red2";
-	item_state = "coil_red"
-	},
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
@@ -899,6 +893,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/stack/cable_coil,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/derelictoutpost)
 "ch" = (
@@ -1147,8 +1142,8 @@
 /area/ruin/space/has_grav/derelictoutpost)
 "cG" = (
 /obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+	dir = 4;
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
@@ -1248,8 +1243,8 @@
 /area/ruin/space/has_grav/derelictoutpost)
 "cQ" = (
 /obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
+	dir = 8;
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost)
@@ -1440,9 +1435,7 @@
 	icon_state = "trails_1";
 	dir = 5
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
@@ -1586,23 +1579,12 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/derelictoutpost)
 "dw" = (
-/obj/effect/decal/cleanable/blood/old{
-	name = "dried blood trail";
-	icon_state = "trails_1";
-	dir = 4
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
 	},
-/obj/structure/alien/weeds{
-	color = "#4BAE56";
-	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
-	name = "gelatinous floor"
-	},
-/obj/structure/alien/weeds{
-	color = "#4BAE56";
-	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
-	name = "gelatinous floor"
-	},
-/turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "dx" = (
 /obj/effect/decal/cleanable/blood/old{
 	name = "dried blood trail";
@@ -1636,9 +1618,7 @@
 	icon_state = "trails_1";
 	dir = 5
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
@@ -1689,19 +1669,6 @@
 	name = "gelatinous floor"
 	},
 /obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/derelictoutpost)
-"dE" = (
-/obj/structure/alien/weeds{
-	color = "#4BAE56";
-	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
-	name = "gelatinous floor"
-	},
-/obj/structure/alien/weeds{
-	color = "#4BAE56";
-	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
-	name = "gelatinous floor"
-	},
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/derelictoutpost)
 "dF" = (
@@ -2156,13 +2123,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
-"eD" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "eE" = (
 /obj/structure/closet/crate/internals,
 /obj/item/tank/internals/emergency_oxygen/engi,
@@ -2551,8 +2511,8 @@ cH
 cV
 dc
 ab
-dw
-dE
+dx
+cR
 dL
 dU
 dW
@@ -2666,7 +2626,7 @@ dX
 dW
 dW
 ex
-eD
+dw
 dL
 aR
 aZ
@@ -2895,7 +2855,7 @@ ad
 ab
 ab
 ab
-aj
+ak
 an
 au
 au

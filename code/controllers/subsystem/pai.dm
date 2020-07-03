@@ -39,34 +39,34 @@ SUBSYSTEM_DEF(pai)
 
 		switch(option)
 			if("name")
-				t = input("Enter a name for your pAI", "pAI Name", candidate.name) as text
+				t = sanitize_name(stripped_input(usr, "Enter a name for your pAI", "pAI Name", candidate.name, MAX_NAME_LEN))
 				if(t)
-					candidate.name = copytext(sanitize(t),1,MAX_NAME_LEN)
+					candidate.name = t
 			if("desc")
-				t = input("Enter a description for your pAI", "pAI Description", candidate.description) as message
+				t = stripped_multiline_input(usr, "Enter a description for your pAI", "pAI Description", candidate.description, MAX_MESSAGE_LEN)
 				if(t)
-					candidate.description = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+					candidate.description = t
 			if("role")
-				t = input("Enter a role for your pAI", "pAI Role", candidate.role) as text
+				t = stripped_input(usr, "Enter a role for your pAI", "pAI Role", candidate.role, MAX_MESSAGE_LEN)
 				if(t)
-					candidate.role = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+					candidate.role = t
 			if("ooc")
-				t = input("Enter any OOC comments", "pAI OOC Comments", candidate.comments) as message
+				t = stripped_multiline_input(usr, "Enter any OOC comments", "pAI OOC Comments", candidate.comments, MAX_MESSAGE_LEN)
 				if(t)
-					candidate.comments = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+					candidate.comments = t
 			if("save")
 				candidate.savefile_save(usr)
 			if("load")
 				candidate.savefile_load(usr)
 				//In case people have saved unsanitized stuff.
 				if(candidate.name)
-					candidate.name = copytext(sanitize(candidate.name),1,MAX_NAME_LEN)
+					candidate.name = copytext_char(sanitize(candidate.name),1,MAX_NAME_LEN)
 				if(candidate.description)
-					candidate.description = copytext(sanitize(candidate.description),1,MAX_MESSAGE_LEN)
+					candidate.description = copytext_char(sanitize(candidate.description),1,MAX_MESSAGE_LEN)
 				if(candidate.role)
-					candidate.role = copytext(sanitize(candidate.role),1,MAX_MESSAGE_LEN)
+					candidate.role = copytext_char(sanitize(candidate.role),1,MAX_MESSAGE_LEN)
 				if(candidate.comments)
-					candidate.comments = copytext(sanitize(candidate.comments),1,MAX_MESSAGE_LEN)
+					candidate.comments = copytext_char(sanitize(candidate.comments),1,MAX_MESSAGE_LEN)
 
 			if("submit")
 				if(candidate)
@@ -90,6 +90,7 @@ SUBSYSTEM_DEF(pai)
 
 
 	var/dat = ""
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += {"
 			<style type="text/css">
 
@@ -127,6 +128,8 @@ SUBSYSTEM_DEF(pai)
 	dat += "<a href='byond://?src=[REF(src)];option=save;new=1;candidate=[REF(candidate)]'>Save Personality</a><br>"
 	dat += "<a href='byond://?src=[REF(src)];option=load;new=1;candidate=[REF(candidate)]'>Load Personality</a><br>"
 
+	dat += "</BODY></HTML>"
+
 	M << browse(dat, "window=paiRecruit")
 
 /datum/controller/subsystem/pai/proc/spam_again()
@@ -154,7 +157,7 @@ SUBSYSTEM_DEF(pai)
 	for(var/datum/paiCandidate/c in SSpai.candidates)
 		available.Add(check_ready(c))
 	var/dat = ""
-
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += {"
 			<style type="text/css">
 
@@ -185,6 +188,8 @@ SUBSYSTEM_DEF(pai)
 		dat += "<tr class=\"d2\"><td><a href='byond://?src=[REF(src)];download=1;candidate=[REF(c)];device=[REF(p)]'>\[Download [c.name]\]</a></td><td></td></tr>"
 
 	dat += "</table>"
+
+	dat += "</BODY></HTML>"
 
 	user << browse(dat, "window=findPai")
 

@@ -72,6 +72,7 @@
 #define ADMIN_PUNISHMENT_SUPPLYPOD_QUICK "Supply Pod (Quick)"
 #define ADMIN_PUNISHMENT_SUPPLYPOD "Supply Pod"
 #define ADMIN_PUNISHMENT_MAZING "Puzzle"
+#define ADMIN_PUNISHMENT_PIE "Pie"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
@@ -81,3 +82,10 @@
 
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
+
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
+
+#define POLICY_POLYMORPH "polymorph" //Shown to vicitm of staff of change and related effects.
+#define POLICY_VERB_HEADER "policy_verb_header" //Shown on top of policy verb window

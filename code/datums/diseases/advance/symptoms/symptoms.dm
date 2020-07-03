@@ -4,7 +4,7 @@
 	// Buffs/Debuffs the symptom has to the overall engineered disease.
 	var/name = ""
 	var/desc = "If you see this something went very wrong." //Basic symptom description
-	var/threshold_desc = "" //Description of threshold effects
+	var/threshold_descs = list() //Descriptions of threshold effects
 	var/stealth = 0
 	var/resistance = 0
 	var/stage_speed = 0
@@ -59,6 +59,11 @@
 	else
 		next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
 		return TRUE
+
+/datum/symptom/proc/on_stage_change(new_stage, datum/disease/advance/A)
+	if(neutered)
+		return FALSE
+	return TRUE
 
 /datum/symptom/proc/Copy()
 	var/datum/symptom/new_symp = new type

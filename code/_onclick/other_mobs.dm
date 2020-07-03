@@ -1,5 +1,5 @@
 /*
-	Humans:
+	Humans: 
 	Adds an exception for gloves, to allow special glove types like the ninja ones.
 
 	Otherwise pretty standard.
@@ -20,7 +20,7 @@
 	var/override = 0
 
 	for(var/datum/mutation/human/HM in dna.mutations)
-		override += HM.on_attack_hand(src, A, proximity)
+		override += HM.on_attack_hand(A, proximity)
 
 	if(override)
 		return
@@ -93,7 +93,7 @@
 			return
 
 	for(var/datum/mutation/human/HM in dna.mutations)
-		HM.on_ranged_attack(src, A, mouseparams)
+		HM.on_ranged_attack(A, mouseparams)
 
 	if(isturf(A) && get_dist(src,A) <= 1)
 		src.Move_Pulled(A)
@@ -182,9 +182,13 @@
 	Nothing happening here
 */
 /mob/living/simple_animal/slime/UnarmedAttack(atom/A)
+	if(isturf(A))
+		return ..()
 	A.attack_slime(src)
+
 /atom/proc/attack_slime(mob/user)
 	return
+
 /mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
 	return
 

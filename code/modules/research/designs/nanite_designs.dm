@@ -76,7 +76,7 @@
 
 /datum/design/nanites/emp
 	name = "Electromagnetic Resonance"
-	desc = "The nanites cause an elctromagnetic pulse around the host when triggered. Will corrupt other nanite programs!"
+	desc = "The nanites cause an electromagnetic pulse around the host when triggered. Will corrupt other nanite programs!"
 	id = "emp_nanites"
 	program_type = /datum/nanite_program/triggered/emp
 	category = list("Utility Nanites")
@@ -320,7 +320,7 @@
 
 /datum/design/nanites/cryo
 	name = "Cryogenic Treatment"
-	desc = "The nanites rapidly skin heat through the host's skin, lowering their temperature."
+	desc = "The nanites rapidly sink heat through the host's skin, lowering their temperature."
 	id = "cryo_nanites"
 	program_type = /datum/nanite_program/cryo
 	category = list("Weaponized Nanites")
@@ -364,7 +364,7 @@
 
 /datum/design/nanites/stun
 	name = "Neural Shock"
-	desc = "The nanites pulse the host's nerves when triggered, inapacitating them for a short period."
+	desc = "The nanites pulse the host's nerves when triggered, incapacitating them for a short period."
 	id = "stun_nanites"
 	program_type = /datum/nanite_program/triggered/stun
 	category = list("Suppression Nanites")
@@ -415,21 +415,21 @@
 	name = "Skull Echo"
 	desc = "The nanites echo a synthesized message inside the host's skull."
 	id = "voice_nanites"
-	program_type = /datum/nanite_program/triggered/voice
+	program_type = /datum/nanite_program/triggered/comm/voice
 	category = list("Suppression Nanites")
 
 /datum/design/nanites/speech
 	name = "Forced Speech"
 	desc = "The nanites force the host to say a pre-programmed sentence when triggered."
 	id = "speech_nanites"
-	program_type = /datum/nanite_program/triggered/speech
+	program_type = /datum/nanite_program/triggered/comm/speech
 	category = list("Suppression Nanites")
 
 /datum/design/nanites/hallucination
 	name = "Hallucination"
 	desc = "The nanites make the host see and hear things that aren't real."
 	id = "hallucination_nanites"
-	program_type = /datum/nanite_program/triggered/hallucination
+	program_type = /datum/nanite_program/triggered/comm/hallucination
 	category = list("Suppression Nanites")
 
 ////////////////////SENSOR NANITES//////////////////////////////////////
@@ -474,4 +474,11 @@
 	desc = "The nanites receive a signal when the nanite supply is above/below a certain percentage."
 	id = "sensor_nanite_volume"
 	program_type = /datum/nanite_program/sensor/nanite_volume
-	category = list("Sensor Nanites")
+	category = list("Sensor Nanites") 
+	
+/datum/design/nanites/sensor_race
+	name = "Race Sensor"
+	desc = "When triggered, the nanites scan the host to determine their race and output a signal depending on the conditions set in the settings."
+	id = "sensor_race_nanites"
+	program_type = /datum/nanite_program/sensor/race
+	category = list("Sensor Nanites") 

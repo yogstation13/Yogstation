@@ -111,12 +111,12 @@
 	return 0 //multiplier for whatever head armor you wear as a drone
 
 /mob/living/simple_animal/drone/proc/update_drone_hack(hack, clockwork)
-	if(!istype(src) || !mind)
+	if(!mind)
 		return
 	if(hack)
 		if(hacked)
 			return
-			Stun(40)
+		Stun(40)
 		if(clockwork)
 			to_chat(src, "<span class='large_brass'><b>ERROR: LAW OVERRIDE DETECTED</b></span>")
 			to_chat(src, "<span class='heavy_brass'>From now on, these are your laws:</span>")
@@ -135,7 +135,7 @@
 		mind.special_role = "hacked drone"
 		ventcrawler = VENTCRAWLER_NONE //Again, balance
 		speed = 1 //gotta go slow
-		message_admins("[src] ([src.key]) became a hacked drone hellbent on [clockwork ? "serving Ratvar" : "destroying the station"]!")
+		message_admins("[ADMIN_LOOKUPFLW(src)] became a hacked drone hellbent on [clockwork ? "serving Ratvar" : "destroying the station"]!")
 	else
 		if(!hacked)
 			return
@@ -152,7 +152,7 @@
 		speed = initial(speed)
 		if(is_servant_of_ratvar(src))
 			remove_servant_of_ratvar(src, TRUE)
-		message_admins("[src] ([src.key]), a hacked drone, was restored to factory defaults!")
+		message_admins("[ADMIN_LOOKUPFLW(src)], a hacked drone, was restored to factory defaults!")
 	update_drone_icon()
 
 /mob/living/simple_animal/drone/proc/liberate()

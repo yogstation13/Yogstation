@@ -37,6 +37,8 @@ GLOBAL_LIST_EMPTY(r_wings_list)
 GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(caps_list)
 
+GLOBAL_LIST_INIT(color_list_ethereal, list("F Class(Green)" = "97ee63", "F2 Class (Light Green)" = "00fa9a", "F3 Class (Dark Green)" = "37835b", "M Class (Red)" = "9c3030", "M1 Class (Purple)" = "ee82ee", "G Class (Yellow)" = "fbdf56", "O Class (Blue)" = "3399ff", "A Class (Cyan)" = "00ffff"))
+
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites
 GLOBAL_LIST_INIT(ghost_forms_with_accessories_list, list("ghost")) //stores the ghost forms that support hair and other such things
 
@@ -46,7 +48,9 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Angel",
 	"Banned",
 	"Bliss",
+	"Blob",
 	"Blue",
+	"Cat",
 	"Clown",
 	"Database",
 	"Dorf",
@@ -54,17 +58,20 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Fuzzy",
 	"Gentoo",
 	"Glitchman",
+	"Gondola",
 	"Goon",
 	"Hades",
 	"Heartline",
 	"Helios",
 	"House",
 	"Inverted",
+	"Malicious",
 	"Matrix",
 	"Monochrome",
 	"Murica",
 	"Nanotrasen",
 	"Not Malf",
+	"Plain",
 	"President",
 	"Random",
 	"Rainbow",
@@ -86,7 +93,9 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 			input = pick(GLOB.ai_core_display_screens - "Random")
 		return "ai-[lowertext(input)]"
 
-GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
+GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
+
+GLOBAL_LIST_INIT(engineering_depts_prefs, list(ENG_DEPT_RANDOM, ENG_DEPT_NONE, ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 
 	//Backpacks
 #define GBACKPACK "Grey Backpack"
@@ -142,7 +151,7 @@ GLOBAL_LIST_INIT(scarySounds, list('sound/weapons/thudswoosh.ogg','sound/weapons
 21 Hydroponics
 22 Janitor
 23 Genetics
-24 Circuitry
+24 Testing Range
 25 Toxins
 26 Dormitories
 27 Virology
@@ -163,12 +172,12 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 	"CMO Office", "Chemistry", "Research", "RD Office",
 	"Robotics", "HoP Office", "Library", "Chapel", "Theatre",
 	"Bar", "Kitchen", "Hydroponics", "Janitor Closet","Genetics",
-	"Circuitry", "Toxins", "Dormitories", "Virology",
+	"Testing Range", "Toxins", "Dormitories", "Virology",
 	"Xenobiology", "Law Office","Detective's Office"))
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 
-GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt" + ""))
+GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt") + "")
 
 GLOBAL_LIST_INIT(station_suffixes, world.file2list("strings/station_suffixes.txt"))
 

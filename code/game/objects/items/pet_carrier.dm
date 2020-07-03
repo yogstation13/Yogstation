@@ -43,17 +43,17 @@
 	..()
 
 /obj/item/pet_carrier/examine(mob/user)
-	..()
+	. = ..()
 	if(occupants.len)
 		for(var/V in occupants)
 			var/mob/living/L = V
-			to_chat(user, "<span class='notice'>It has [L] inside.</span>")
+			. += "<span class='notice'>It has [L] inside.</span>"
 	else
-		to_chat(user, "<span class='notice'>It has nothing inside.</span>")
+		. += "<span class='notice'>It has nothing inside.</span>"
 	if(user.canUseTopic(src))
-		to_chat(user, "<span class='notice'>Activate it in your hand to [open ? "close" : "open"] its door.</span>")
+		. += "<span class='notice'>Activate it in your hand to [open ? "close" : "open"] its door.</span>"
 		if(!open)
-			to_chat(user, "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] its door.</span>")
+			. += "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] its door.</span>"
 
 /obj/item/pet_carrier/attack_self(mob/living/user)
 	if(open)
@@ -122,7 +122,7 @@
 	if(user.mob_size <= MOB_SIZE_SMALL)
 		to_chat(user, "<span class='notice'>You poke a limb through [src]'s bars and start fumbling for the lock switch... (This will take some time.)</span>")
 		to_chat(loc, "<span class='warning'>You see [user] reach through the bars and fumble for the lock switch!</span>")
-		if(!do_after(user, rand(300, 400), target = user) || open || !locked || !user in occupants)
+		if(!do_after(user, rand(300, 400), target = user) || open || !locked || !(user in occupants))
 			return
 		loc.visible_message("<span class='warning'>[user] flips the lock switch on [src] by reaching through!</span>", null, null, null, user)
 		to_chat(user, "<span class='boldannounce'>Bingo! The lock pops open!</span>")
@@ -132,7 +132,7 @@
 	else
 		loc.visible_message("<span class='warning'>[src] starts rattling as something pushes against the door!</span>", null, null, null, user)
 		to_chat(user, "<span class='notice'>You start pushing out of [src]... (This will take about 20 seconds.)</span>")
-		if(!do_after(user, 200, target = user) || open || !locked || !user in occupants)
+		if(!do_after(user, 200, target = user) || open || !locked || !(user in occupants))
 			return
 		loc.visible_message("<span class='warning'>[user] shoves out of	[src]!</span>", null, null, null, user)
 		to_chat(user, "<span class='notice'>You shove open [src]'s door against the lock's resistance and fall out!</span>")
@@ -185,7 +185,7 @@
 	occupant_weight += occupant.mob_size
 
 /obj/item/pet_carrier/proc/remove_occupant(mob/living/occupant, turf/new_turf)
-	if(!occupant in occupants || !istype(occupant))
+	if(!(occupant in occupants) || !istype(occupant))
 		return
 	occupant.forceMove(new_turf ? new_turf : drop_location())
 	occupants -= occupant
@@ -193,3 +193,26 @@
 	occupant.setDir(SOUTH)
 
 #undef pet_carrier_full
+
+/obj/item/pet_carrier/xenobio //For Yog's xenobiology slime hunting
+	name = "Xenological Containment Unit"
+	desc = "A pet carrier with a warning sticker on it and a slightly more robust interior. Great for capturing alien life. Designed to be used in conjuction with a fulton extraction pack to send it and the creature straight to xenobiology!"
+	icon = 'icons/obj/pet_carrier.dmi'
+	icon_state = "xeno_carrier_open"
+	item_state = "xeno_carrier"
+	max_occupant_weight = MOB_SIZE_LARGE //This is calculated from the mob sizes of occupants
+
+/obj/item/pet_carrier/xenobio/update_icon()
+	cut_overlay("unlocked")
+	cut_overlay("locked")
+	if(open)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "xeno_carrier_[!occupants.len ? "closed" : "occupied"]"
+		add_overlay("[locked ? "" : "un"]locked")
+		
+/obj/item/pet_carrier/xenobio/load_occupant(mob/living/user, mob/living/target)
+	if(!istype(target, /mob/living/simple_animal/slime))
+		to_chat(user, "<span class='warning'>[src] is made for slimes only!</span>")
+		return
+	return ..()

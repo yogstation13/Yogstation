@@ -56,3 +56,6 @@
 	. = ..()
 	corpse.forceMove(drop_location())
 	corpse.create()
+
+/mob/living/simple_animal/hostile/zombie/mostlyinfection //yogs 25% infection zombie
+	infection_chance = 25

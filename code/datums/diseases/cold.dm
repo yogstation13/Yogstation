@@ -1,8 +1,9 @@
 /datum/disease/cold
 	name = "The Cold"
 	max_stages = 3
+	spread_text = "On contact" //Yogs
 	cure_text = "Rest & Spaceacillin"
-	cures = list("spaceacillin")
+	cures = list(/datum/reagent/medicine/spaceacillin)
 	agent = "XY-rhinovirus"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	permeability_mod = 0.5

@@ -103,6 +103,8 @@ All ShuttleMove procs go here
 
 	loc = newT
 
+	SSdemo.mark_dirty(src)
+
 	return TRUE
 
 // Called on atoms after everything has been moved
@@ -131,7 +133,7 @@ All ShuttleMove procs go here
 	var/range = throw_force * 10
 	range = CEILING(rand(range-(range*0.1), range+(range*0.1)), 10)/10
 	var/speed = range/5
-	safe_throw_at(target, range, speed)
+	safe_throw_at(target, range, speed, force = MOVE_FORCE_EXTREMELY_STRONG)
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -183,6 +185,8 @@ All ShuttleMove procs go here
 
 /obj/machinery/door/airlock/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
+	update_aac_docked(oldT)
+	update_aac_docked()
 	for(var/obj/machinery/door/airlock/A in orange(1, src))  // does not include src
 		// Cycle linking is only disabled if we are actually adjacent to another airlock
 		shuttledocked = TRUE
@@ -288,7 +292,8 @@ All ShuttleMove procs go here
 	// ignores the movement of the shuttle from the staging area on CentCom to
 	// the station as it is loaded in.
 	if (oldT && !is_centcom_level(oldT.z))
-		unlocked = TRUE
+		if(!is_station_level(src.z))
+			unlocked = TRUE
 
 /************************************Mob move procs************************************/
 

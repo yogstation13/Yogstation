@@ -106,14 +106,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishItem(obj/item/I, cold = FALSE) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
-	if(istype(I, /obj/item/electronic_assembly))
-		var/obj/item/electronic_assembly/EA = I
-		for(var/AC in EA.assembly_components)
-			if(istype(AC, /obj/item/integrated_circuit/output/light))
-				EA.remove_component(AC)
-				qdel(AC)
-				EA.visible_message("<span class='warning'>A puff of smoke rises from [EA].</span>")
-	else if(istype(I, /obj/item/flashlight))
+	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
 		if(F.on)
 			if(cold)
@@ -134,42 +127,51 @@
 	return I.luminosity
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishMob(mob/living/H, cold = FALSE)
-	var/blacklistLuminosity = 0
 	for(var/obj/item/F in H)
 		if(cold)
 			extinguishItem(F, TRUE)
-		blacklistLuminosity += extinguishItem(F)
-	H.set_light(blacklistLuminosity) //I hate lightcode for making me do it this way
+		extinguishItem(F)
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user) && !admin_override)
 		revert_cast()
 		return
 	to_chat(user, "<span class='shadowling'>You silently disable all nearby lights.</span>")
-	for(var/turf/T in view(4))
-		for(var/obj/item/F in T.contents)
-			extinguishItem(F)
-		for(var/obj/machinery/light/L in T.contents)
+	var/turf/T = get_turf(user)
+	for(var/datum/light_source/LS in T.affecting_lights)
+		var/atom/LO = LS.source_atom
+		if(isitem(LO))
+			extinguishItem(LO)
+			continue
+		if(istype(LO, /obj/machinery/light))
+			var/obj/machinery/light/L = LO
 			L.on = FALSE
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
 			L.update(0)
 			L.set_light(0)
-		for(var/obj/machinery/computer/C in T.contents)
-			C.set_light(0)
-			C.visible_message("<span class='warning'>[C] grows dim, its screen barely readable.</span>")
-		for(var/mob/living/H in T.contents)
-			extinguishMob(H)
-		for(var/mob/living/silicon/robot/borg in T.contents)
+			continue
+		if(istype(LO, /obj/machinery/computer) || istype(LO, /obj/machinery/power/apc))
+			LO.set_light(0)
+			LO.visible_message("<span class='warning'>[LO] grows dim, its screen barely readable.</span>")
+			continue
+		if(ismob(LO))
+			extinguishMob(LO)
+		if(istype(LO, /mob/living/silicon/robot))
+			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
 				borg.update_headlamp(TRUE, INFINITY)
 				to_chat(borg, "<span class='userdanger'>The lightbulb in your headlamp is fried! You'll need a human to help replace it.</span>")
-		for(var/obj/machinery/camera/cam in T.contents)
-			cam.set_light(0)
+		if(istype(LO, /obj/machinery/camera))
+			LO.set_light(0)
 			if(prob(10))
-				cam.emp_act(2)
+				LO.emp_act(2)
+			continue
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		G.visible_message("<span class='warning'>[G] withers away!</span>")
-		qdel(G)
+		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
+			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
+			S.generation = G.generation
+			G.visible_message("<span class='warning'>[G] suddenly turns dark!</span>")
+			qdel(G)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
@@ -201,9 +203,9 @@
 			M.Stun(2)
 			M.apply_damage(10, BURN)
 			if(M.bodytemperature)
-				M.bodytemperature -= 200 //Extreme amount of initial cold
+				M.adjust_bodytemperature(-200, 50)
 			if(M.reagents)
-				M.reagents.add_reagent("frostoil", 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F, TRUE)
@@ -265,7 +267,7 @@
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
 					target.Knockdown(120)
-					if(target.has_trait(TRAIT_MINDSHIELD))
+					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time...</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
 						to_chat(target, "<span class='boldannounce'>You feel your mental protection faltering!</span>")
@@ -320,7 +322,7 @@
 	var/text = stripped_input(user, "What do you want to say your thralls and fellow shadowlings?.", "Hive Chat", "")
 	if(!text)
 		return
-	var/my_message = "<span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
+	var/my_message = "<span class='shadowling command_headset'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
 	for(var/mob/M in GLOB.mob_list)
 		if(is_shadow_or_thrall(M))
 			to_chat(M, my_message)
@@ -362,6 +364,7 @@
 	var/blind_smoke_acquired = FALSE
 	var/screech_acquired = FALSE
 	var/reviveThrallAcquired = FALSE
+	var/null_charge_acquired = FALSE
 
 /obj/effect/proc_holder/spell/self/collective_mind/cast(mob/living/carbon/human/user)
 	if(!shadowling_check(user))
@@ -387,6 +390,11 @@
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Blinding Smoke</b> ability. It will create a choking cloud that will blind any non-thralls who enter. \
 			</i></span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
+	if(thralls >= CEILING(7 * SSticker.mode.thrall_ratio, 1) && !null_charge_acquired)
+		null_charge_acquired = TRUE
+		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Null Charge</b> ability. This ability will drain an APC's contents to the void, preventing it from recharging \
+		or sending power until repaired.</i></span>")
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/null_charge(null))
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
@@ -410,6 +418,52 @@
 				else
 					to_chat(M, "<span class='shadowling'><b>[user.real_name] has coalesced the strength of the thralls. You can draw upon it at any time to ascend. (Shadowling Evolution Tab)</b></span>") //Tells all the other shadowlings
 
+/obj/effect/proc_holder/spell/self/null_charge
+	name = "Null Charge"
+	desc = "Empties an APC, preventing it from recharging until fixed."
+	panel = "Shadowling Abilities"
+	charge_max = 600
+	human_req = TRUE
+	clothes_req = FALSE
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "null_charge"
+
+/obj/effect/proc_holder/spell/self/null_charge/cast(mob/living/carbon/human/user)
+	if(!shadowling_check(user))
+		revert_cast()
+		return
+
+	var/list/local_objs = view(1, user)
+	var/obj/machinery/power/apc/target_apc
+	for(var/object in local_objs)
+		if(istype(object, /obj/machinery/power/apc))
+			target_apc = object
+			break
+
+	if(!target_apc)
+		to_chat(user, "<span class='warning'>You must stand next to an APC to drain it!</span>")
+		revert_cast()
+		return
+
+	//Free veil since you have to stand next to the thing for a while to depower it.
+	target_apc.set_light(0)
+	target_apc.visible_message("<span class='warning'>The [target_apc] flickers and begins to grow dark.</span>")
+
+	to_chat(user, "<span class='shadowling'>You dim the APC's screen and carefully begin siphoning its power into the void.</span>")
+	if(!do_after(user, 200, target=target_apc))
+		//Whoops!  The APC's light turns back on
+		to_chat(user, "<span class='shadowling'>Your concentration breaks and the APC suddenly repowers!</span>")
+		target_apc.set_light(2)
+		target_apc.visible_message("<span class='warning'>The [target_apc] begins glowing brightly!</span>")
+	else
+		//We did it
+		to_chat(user, "<span class='shadowling'>You return the APC's power to the void, disabling it.</span>")
+		target_apc.cell?.charge = 0	//Sent to the shadow realm
+		target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
+		target_apc.charging = 0
+		target_apc.update_icon()
+
+
 /obj/effect/proc_holder/spell/self/blindness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to shadowlings and their allies
 	name = "Blindness Smoke"
 	desc = "Spews a cloud of smoke which will blind enemies."
@@ -430,7 +484,7 @@
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
-	B.reagents.add_reagent("blindness_smoke", 10)
+	B.reagents.add_reagent(/datum/reagent/shadowling_blindness_smoke, 10)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	S.attach(B)
 	if(S)
@@ -474,7 +528,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Knockdown(6)
+				S.Paralyze(6)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 
@@ -557,6 +611,11 @@
 					to_chat(user, "<span class='warning'>[thrallToRevive] is not dead.</span>")
 					revert_cast()
 					return
+				if(HAS_TRAIT(thrallToRevive, TRAIT_BADDNA))
+					to_chat(user, "<span class='warning'>[thrallToRevive] is too far gone.</span>")
+					revert_cast()
+					return
+
 				user.visible_message("<span class='danger'>[user] kneels over [thrallToRevive], placing their hands on \his chest.</span>", \
 									"<span class='shadowling'>You crouch over the body of your thrall and begin gathering energy...</span>")
 				thrallToRevive.notify_ghost_cloning("Your masters are resuscitating you! Re-enter your corpse if you wish to be brought to life.", source = thrallToRevive)
@@ -587,7 +646,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
-	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
+	desc = "Sacrifice a thrall to extend the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
 	human_req = TRUE
@@ -624,16 +683,146 @@
 		to_chat(user, "<span class='notice'>You project [M]'s life force toward the approaching shuttle, extending its arrival duration!</span>")
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
-		M.death()
+		M.dust()
+
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000
 			var/timer = SSshuttle.emergency.timeLeft()
 			timer += more_minutes
 			priority_announce("Major system failure aboard the emergency shuttle. This will extend its arrival time by approximately 15 minutes...", "System Failure", 'sound/misc/notice1.ogg')
 			SSshuttle.emergency.setTimer(timer)
+			SSshuttle.emergencyNoRecall = TRUE
 		user.mind.spell_list.Remove(src) //Can only be used once!
 		qdel(src)
 
+//Loosely adapted from the Nightmare's Shadow Walk, but different enough that
+//inheriting would have been more hacky code.
+//Unlike Shadow Walk, jaunting shadowlings can move through lit areas unmolested,
+//but take a constant stamina penalty while jaunting.
+/obj/effect/proc_holder/spell/targeted/void_jaunt
+	name = "Void Jaunt"
+	desc = "Move through the void for a time, avoiding mortal eyes and lights."
+	panel = "Shadowling Abilities"
+	charge_max = 800
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	phase_allowed = TRUE
+	selection_type = "range"
+	range = -1
+	include_user = TRUE
+	overlay = null
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "shadow_walk"
+
+	var/apply_damage = TRUE
+
+/obj/effect/proc_holder/spell/targeted/void_jaunt/cast(list/targets,mob/living/user = usr)
+	if(!shadowling_check(user) && !istype(user, /mob/living/simple_animal/ascendant_shadowling))
+		revert_cast()
+		return
+	var/L = user.loc
+	if(istype(user.loc, /obj/effect/dummy/phased_mob/shadowling))
+		var/obj/effect/dummy/phased_mob/shadowling/S = L
+		S.end_jaunt(FALSE)
+		return
+	else
+		playsound(get_turf(user), 'sound/magic/ethereal_enter.ogg', 50, 1, -1)
+		if(apply_damage)
+			user.visible_message("<span class='boldwarning'>[user] melts into the shadows!</span>",
+													"<span class='shadowling'>Steeling yourself, you dive into the void.</span>")
+		else
+			user.visible_message("<span class='boldwarning'>[user] melts into the shadows!</span>",
+													"<span class='shadowling'>You allow yourself to fall into the void.</span>")
+		user.SetAllImmobility(0)
+		user.setStaminaLoss(0, 0)
+		var/obj/effect/dummy/phased_mob/shadowling/S2 = new(get_turf(user.loc))
+		S2.apply_damage = apply_damage
+		user.forceMove(S2)
+		S2.jaunter = user
+		charge_counter = charge_max //Don't have to wait for cooldown to exit
+
+//Both have to be high to cancel out natural regeneration
+#define VOIDJAUNT_STAM_PENALTY_DARK 10
+#define VOIDJAUNT_STAM_PENALTY_LIGHT 35
+
+/obj/effect/dummy/phased_mob/shadowling
+	name = "darkness"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "nothing"
+	var/canmove = TRUE
+	var/mob/living/jaunter
+	density = FALSE
+	anchored = TRUE
+	invisibility = 60
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+	var/apply_damage = TRUE
+	var/move_delay = 0			//Time until next move allowed
+	var/move_speed = 2			//Deciseconds per move
+
+/obj/effect/dummy/phased_mob/shadowling/relaymove(mob/user, direction)
+	if(move_delay > world.time && apply_damage)	//Ascendants get no slowdown
+		return
+
+	move_delay = world.time + move_speed
+	var/turf/newLoc = get_step(src,direction)
+	forceMove(newLoc)
+
+/obj/effect/dummy/phased_mob/shadowling/proc/check_light_level()
+	var/turf/T = get_turf(src)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > LIGHT_DAM_THRESHOLD)	//Increased penalty
+		jaunter.apply_damage(VOIDJAUNT_STAM_PENALTY_LIGHT, STAMINA)
+	else
+		jaunter.apply_damage(VOIDJAUNT_STAM_PENALTY_DARK, STAMINA)
+
+/obj/effect/dummy/phased_mob/shadowling/proc/end_jaunt(forced = FALSE)
+	if(jaunter)
+		jaunter.forceMove(get_turf(src))
+		if(forced)
+			jaunter.visible_message("<span class='boldwarning'>A dark shape stumbles from a hole in the air and collapses!</span>",
+															"<span class='shadowling'><b>Straining, you use the last of your energy to force yourself from the void.</b></span>")
+		else
+			jaunter.visible_message("<span class='boldwarning'>A dark shape tears itself from nothingness!</span>",
+															"<span class='shadowling'>You exit the void.</span>")
+
+		playsound(get_turf(jaunter), 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+		jaunter = null
+	qdel(src)
+
+/obj/effect/dummy/phased_mob/shadowling/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/dummy/phased_mob/shadowling/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/effect/dummy/phased_mob/shadowling/process()
+	if(!jaunter)
+		qdel(src)
+	if(jaunter.loc != src)
+		qdel(src)
+
+	if(apply_damage)
+		check_light_level()
+
+		//True if jaunter entered stamcrit
+		if(jaunter.IsParalyzed())
+			end_jaunt(TRUE)
+			return
+
+/obj/effect/dummy/phased_mob/shadowling/ex_act()
+	return
+
+/obj/effect/dummy/phased_mob/shadowling/bullet_act()
+	return BULLET_ACT_FORCE_PIERCE
+
+/obj/effect/dummy/phased_mob/shadowling/singularity_act()
+	return
+
+#undef VOIDJAUNT_STAM_PENALTY_DARK
+#undef VOIDJAUNT_STAM_PENALTY_LIGHT
 
 
 // THRALL ABILITIES BEYOND THIS POINT //
@@ -711,13 +900,14 @@
 	switch(eyes.lighting_alpha)
 		if (LIGHTING_PLANE_ALPHA_VISIBLE)
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+			eyes.see_in_dark = 8
 		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 		else
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			eyes.sight_flags &= ~SEE_BLACKNESS
+			eyes.see_in_dark = 2	//default
 	user.update_sight()
 
 /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind //Lets a thrall talk with their allies
@@ -806,7 +996,7 @@
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		return
 	if(is_shadow_or_thrall(target))
-		to_chat(user, "<span class='warning'>You cannot enthrall an ally.<span>")
+		to_chat(user, "<span class='warning'>You cannot enthrall an ally.</span>")
 		revert_cast()
 		return
 	if(!target.ckey || !target.mind)
@@ -883,3 +1073,10 @@
 	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "gore"
+
+/obj/effect/proc_holder/spell/targeted/void_jaunt/ascendant
+	name = "Void Walk"
+	desc = "Move invisibly through the void between worlds, shielded from mortal eyes."
+	panel = "Ascendant"
+	charge_max = 0
+	apply_damage = FALSE

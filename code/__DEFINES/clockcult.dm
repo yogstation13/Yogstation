@@ -7,7 +7,7 @@
 
 GLOBAL_VAR_INIT(clockwork_construction_value, 0) //The total value of all structures built by the clockwork cult
 GLOBAL_VAR_INIT(clockwork_vitality, 0) //How much Vitality is stored, total
-GLOBAL_VAR_INIT(clockwork_power, 0) //How many watts of power are globally available to the clockwork cult
+GLOBAL_VAR_INIT(clockwork_power, 0) //How many joules of power are globally available to the clockwork cult
 
 GLOBAL_LIST_EMPTY(all_clockwork_objects) //All clockwork items, structures, and effects in existence
 GLOBAL_LIST_EMPTY(all_clockwork_mobs) //All clockwork SERVANTS (not creatures) in existence
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(all_scripture) //a list containing scripture instances; not us
 #define SCRIPTURE_APPLICATION "Application"
 
 //Various costs related to power.
-#define MAX_CLOCKWORK_POWER 50000 //The max power in W that the cult can stockpile
+#define MAX_CLOCKWORK_POWER 50000 //The max power in J that the cult can stockpile
 #define SCRIPT_UNLOCK_THRESHOLD 25000 //Scripts will unlock if the total power reaches this amount
 #define APPLICATION_UNLOCK_THRESHOLD 40000 //Applications will unlock if the total powre reaches this amount
 

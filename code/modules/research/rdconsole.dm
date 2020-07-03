@@ -47,6 +47,12 @@ Nothing else in the console has ID requirements.
 
 	var/research_control = TRUE
 
+	// VV this to TRUE in order to be able to drag techweb nodes around.
+	// In addition it displays the coordinates of the node in the tooltip.
+	// Use this when making new techweb nodes to determine a good position for it.
+	// It will also prevent clicking on nodes.
+	var/do_node_drag = FALSE 
+
 /obj/machinery/computer/rdconsole/production
 	circuit = /obj/item/circuitboard/computer/rdconsole/production
 	research_control = FALSE
@@ -167,7 +173,9 @@ Nothing else in the console has ID requirements.
 					var/obj/item/card/id/ID = I.GetID()
 					if(istype(ID))
 						logname = "User: [ID.registered_name]"
-			stored_research.research_logs += "[logname] researched node id [id] with cost [json_encode(price)]."
+			var/i = stored_research.research_logs.len
+			stored_research.research_logs += null
+			stored_research.research_logs[++i] = list(TN.display_name, price["General Research"], logname, "[get_area(src)] ([src.x],[src.y],[src.z])")
 			return TRUE
 		else
 			say("Failed to research node: Internal database error!")
@@ -382,7 +390,7 @@ Nothing else in the console has ID requirements.
 	l += "<div class='statusDisplay'><h3>Material Storage:</h3>"
 	for(var/mat_id in mat_container.materials)
 		var/datum/material/M = mat_container.materials[mat_id]
-		l += "* [M.amount] of [M.name]: "
+		l += "* [num2text(M.amount, 8)] of [M.name]: " // yogs - num2text
 		if(M.amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=1'>Eject</A> [RDSCREEN_NOBREAK]"
 		if(M.amount >= MINERAL_MATERIAL_AMOUNT*5) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=5'>5x</A> [RDSCREEN_NOBREAK]"
 		if(M.amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[M.id];eject_amt=50'>All</A>[RDSCREEN_NOBREAK]"
@@ -398,7 +406,7 @@ Nothing else in the console has ID requirements.
 	l += "<h3>Chemical Storage:</h3>"
 	for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 		l += "[R.name]: [R.volume]"
-		l += "<A href='?src=[REF(src)];disposeP=[R.id]'>Purge</A>"
+		l += "<A href='?src=[REF(src)];disposeP=[R]'>Purge</A>"
 	l += "</div>"
 	return l
 
@@ -501,7 +509,7 @@ Nothing else in the console has ID requirements.
 	l += "<h3>Chemical Storage:</h3>"
 	for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
 		l += "[R.name]: [R.volume]"
-		l += "<A href='?src=[REF(src)];disposeI=[R.id]'>Purge</A>"
+		l += "<A href='?src=[REF(src)];disposeI=[R]'>Purge</A>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_circuit_materials()	//Legacy code!
@@ -1039,6 +1047,10 @@ Nothing else in the console has ID requirements.
 	if(ls["view_node"])
 		selected_node_id = ls["view_node"]
 		screen = RDSCREEN_TECHWEB_NODEVIEW
+	if(ls["move_node"] && do_node_drag)
+		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(ls["move_node"])
+		node.ui_x = round(text2num(ls["ui_x"]),32)
+		node.ui_y = round(text2num(ls["ui_y"]),32)
 	if(ls["view_design"])
 		selected_design_id = ls["view_design"]
 		screen = RDSCREEN_TECHWEB_DESIGNVIEW

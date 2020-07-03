@@ -13,6 +13,7 @@
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
+	var/time_to_scewdrive = 20
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -64,20 +65,20 @@
 	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir, alpha=128)
 
 /obj/machinery/computer/power_change()
-	..()
+	. = ..()
+	if(!.)
+		return // reduce unneeded light changes
 	if(stat & NOPOWER)
 		set_light(0)
 	else
 		set_light(brightness_on)
-	update_icon()
-	return
 
 /obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(circuit && !(flags_1&NODECONSTRUCT_1))
 		to_chat(user, "<span class='notice'>You start to disconnect the monitor...</span>")
-		if(I.use_tool(src, user, 20, volume=50))
+		if(I.use_tool(src, user, time_to_scewdrive, volume=50))
 			deconstruct(TRUE, user)
 	return TRUE
 
@@ -93,12 +94,12 @@
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
 /obj/machinery/computer/obj_break(damage_flag)
-	if(circuit && !(flags_1 & NODECONSTRUCT_1)) //no circuit, no breaking
-		if(!(stat & BROKEN))
-			playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
-			stat |= BROKEN
-			update_icon()
-			set_light(0)
+	if(!circuit) //no circuit, no breaking
+		return
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
+		set_light(0)
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
@@ -136,5 +137,9 @@
 			circuit = null
 		for(var/obj/C in src)
 			C.forceMove(loc)
-
 	qdel(src)
+
+/obj/machinery/computer/CanPass(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSCOMPUTER))
+		return TRUE

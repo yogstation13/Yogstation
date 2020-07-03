@@ -9,27 +9,25 @@
 	invocation_type = "shout"
 	range = 7
 	cooldown_min = 60 //35 deciseconds reduction per rank
-
 	max_targets = 0
-
-	proj_icon_state = "magicm"
-	proj_name = "a magic missile"
-	proj_lingering = 1
-	proj_type = "/obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile"
-
-	proj_lifespan = 20
-	proj_step_delay = 5
-
-	proj_trail = TRUE
-	proj_trail_lifespan = 5
-	proj_trail_icon_state = "magicmd"
-
+	proj_type = /obj/item/projectile/magic/spell/magic_missile
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "magicm"
 	sound = 'sound/magic/magic_missile.ogg'
 
-/obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile
-	amt_knockdown = 60
-	sound = 'sound/magic/mm_hit.ogg'
+/obj/item/projectile/magic/spell/magic_missile
+	name = "a magic missile"
+	icon_state = "magicm"
+	range = 20
+	speed = 5
+	trigger_range = 0
+	linger = TRUE
+	paralyze = 60
+	hitsound = 'sound/magic/mm_hit.ogg'
+
+	trail = TRUE
+	trail_lifespan = 5
+	trail_icon_state = "magicmd"
 
 /obj/effect/proc_holder/spell/targeted/genetic/mutate
 	name = "Mutate"
@@ -47,6 +45,7 @@
 	duration = 300
 	cooldown_min = 300 //25 deciseconds reduction per rank
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mutate"
 	sound = 'sound/magic/mutate.ogg'
 
@@ -122,6 +121,7 @@
 	inner_tele_radius = 0
 	outer_tele_radius = 6
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "blink"
 	sound1 = 'sound/magic/blink.ogg'
 	sound2 = 'sound/magic/blink.ogg'
@@ -151,6 +151,13 @@
 	sound1 = 'sound/magic/teleport_diss.ogg'
 	sound2 = 'sound/magic/teleport_app.ogg'
 
+/obj/effect/proc_holder/spell/targeted/area_teleport/teleport/santa
+	name = "Santa Teleport"
+
+	invocation = "HO HO HO"
+	clothes_req = FALSE
+	say_destination = FALSE // Santa moves in mysterious ways
+
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop
 	name = "Stop Time"
 	desc = "This spell stops time for everyone except for you, allowing you to move freely while your enemies and even projectiles are frozen."
@@ -161,6 +168,7 @@
 	range = 0
 	cooldown_min = 100
 	summon_amt = 1
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "time"
 
 	summon_type = list(/obj/effect/timestop/wizard)
@@ -226,6 +234,7 @@
 
 	starting_spells = list("/obj/effect/proc_holder/spell/targeted/inflict_handler/blind","/obj/effect/proc_holder/spell/targeted/genetic/blind")
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "blind"
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature/cult
@@ -296,7 +305,7 @@
 				var/mob/living/M = AM
 				M.Paralyze(stun_amt)
 				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
-			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
+			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
 	name = "Tail Sweep"
@@ -304,6 +313,7 @@
 	sound = 'sound/magic/tail_swing.ogg'
 	charge_max = 150
 	clothes_req = FALSE
+	antimagic_allowed = TRUE
 	range = 2
 	cooldown_min = 150
 	invocation_type = "none"
@@ -331,6 +341,7 @@
 	range = 6
 	include_user = TRUE
 	selection_type = "view"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "sacredflame"
 	sound = 'sound/magic/fireball.ogg'
 
@@ -363,7 +374,7 @@
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/spellpacket/lightningbolt/throw_impact(atom/hit_atom)
+/obj/item/spellpacket/lightningbolt/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..())
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom

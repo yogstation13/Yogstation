@@ -53,14 +53,18 @@
 		icon_state = base_state
 	else
 		icon_state = "[base_state]open"
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/window/proc/open_and_close()
-	open()
+	if(!open())
+		return
+	autoclose = TRUE
 	if(check_access(null))
 		sleep(50)
 	else //secure doors close faster
 		sleep(20)
-	close()
+	if(!density && autoclose) //did someone change state while we slept?
+		close()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM)
 	if( operating || !density )
@@ -93,11 +97,12 @@
 		do_animate("deny")
 	return
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
+		return
 	if(istype(mover, /obj/structure/window))
 		var/obj/structure/window/W = mover
 		if(!valid_window_location(loc, W.ini_dir))
@@ -109,7 +114,7 @@
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
 	else
-		return 1
+		return TRUE
 
 /obj/machinery/door/window/CanAtmosPass(turf/T)
 	if(get_dir(loc, T) == dir)
@@ -217,6 +222,10 @@
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/living/user, params)
 
+	if(istype(I, /obj/item/airlock_scanner))		//yogs start
+		var/obj/item/airlock_scanner/S = I
+		S.show_access(src, user)					//yogs end
+
 	if(operating)
 		return
 
@@ -282,6 +291,10 @@
 
 /obj/machinery/door/window/interact(mob/user)		//for sillycones
 	try_to_activate_door(user)
+
+/obj/machinery/door/window/try_to_activate_door(mob/user)
+	if (..())
+		autoclose = FALSE
 
 /obj/machinery/door/window/try_to_crowbar(obj/item/I, mob/user)
 	if(!hasPower())

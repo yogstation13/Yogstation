@@ -13,6 +13,7 @@
 
 	var/obj/marked_item
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "summons"
 
 /obj/effect/proc_holder/spell/targeted/summonitem/cast(list/targets,mob/user = usr)
@@ -25,7 +26,7 @@
 			for(var/obj/item/item in hand_items)
 				if(item.item_flags & ABSTRACT)
 					continue
-				if(item.item_flags & NODROP)
+				if(HAS_TRAIT(item, TRAIT_NODROP))
 					message += "Though it feels redundant, "
 				marked_item = 		item
 				message += "You mark [item] for recall.</span>"
@@ -38,7 +39,7 @@
 				else
 					message = "<span class='notice'>You must hold the desired item in your hands to mark it for recall.</span>"
 
-		else if(marked_item && marked_item in hand_items) //unlinking item to the spell
+		else if(marked_item && (marked_item in hand_items)) //unlinking item to the spell
 			message = "<span class='notice'>You remove the mark on [marked_item] to use elsewhere.</span>"
 			name = "Instant Summons"
 			marked_item = 		null
@@ -61,6 +62,10 @@
 						organ.Remove(organ.owner)
 			else
 				while(!isturf(item_to_retrieve.loc) && infinite_recursion < 10) //if it's in something you get the whole thing.
+					if(isitem(item_to_retrieve.loc))
+						var/obj/item/I = item_to_retrieve.loc
+						if(I.item_flags & ABSTRACT) //Being able to summon abstract things because your item happened to get placed there is a no-no
+							break
 					if(ismob(item_to_retrieve.loc)) //If its on someone, properly drop it
 						var/mob/M = item_to_retrieve.loc
 
@@ -74,8 +79,10 @@
 
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
-							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)
+							//yogs start -- Yogs Vorecode
+							if(C.stomach_contents && (item_to_retrieve in C.stomach_contents))	
 								C.stomach_contents -= item_to_retrieve
+							//Yogs end
 							for(var/X in C.bodyparts)
 								var/obj/item/bodypart/part = X
 								if(item_to_retrieve in part.embedded_objects)

@@ -179,7 +179,7 @@
 
 /obj/screen/alert/disgusted
 	name = "DISGUSTED"
-	desc = "ABSOLUTELY DISGUSTIN'"
+	desc = "ABSOLUTELY DISGUSTIN'!"
 	icon_state = "gross3"
 
 /obj/screen/alert/hot
@@ -213,9 +213,25 @@ or something covering your eyes."
 	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
 	icon_state = "high"
 
-/obj/screen/alert/drunk //Not implemented
+/obj/screen/alert/hypnosis
+	name = "Hypnosis"
+	desc = "Something's hypnotizing you, but you're not sure what."
+	icon_state = "hypnosis"
+	var/phrase
+
+/obj/screen/alert/mind_control
+	name = "Mind Control"
+	desc = "Your mind has been hijacked! Click to view the mind control command."
+	icon_state = "mind_control"
+	var/command
+
+/obj/screen/alert/mind_control/Click()
+	var/mob/living/L = usr
+	to_chat(L, "<span class='mind_control'>[command]</span>")
+
+/obj/screen/alert/drunk
 	name = "Drunk"
-	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition. Make sure to act like it."
+	desc = "All that alcohol you've been drinking is impairing your speech, motor skills, and mental cognition."
 	icon_state = "drunk"
 
 /obj/screen/alert/embeddedobject
@@ -249,7 +265,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /obj/screen/alert/fire
 	name = "On Fire"
-	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
+	desc = "You're on fire. Click to stop, drop and roll to put the fire out or move to a vacuum area."
 	icon_state = "fire"
 
 /obj/screen/alert/fire/Click()
@@ -260,6 +276,29 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	if(L.mobility_flags & MOBILITY_MOVE)
 		return L.resist_fire() //I just want to start a flame in your hearrrrrrtttttt.
 
+/obj/screen/alert/give // information set when the give alert is made
+	icon_state = "default"
+	var/mob/living/carbon/giver
+	var/obj/item/receiving
+
+/obj/screen/alert/give/proc/setup(mob/living/carbon/taker, mob/living/carbon/giver, obj/item/receiving)
+	name = "[giver] is offering [receiving]"
+	desc = "[giver] is offering [receiving]. Click this alert to take it."
+	icon_state = "template"
+	cut_overlays()
+	add_overlay(receiving)
+	src.receiving = receiving
+	src.giver = giver
+	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, /obj/screen/alert/give/.proc/removeAlert)
+
+/obj/screen/alert/give/proc/removeAlert()
+	to_chat(mob_viewer, "<span class='warning'>You moved out of range of [giver]!</span>")
+	mob_viewer.clear_alert("[giver]")
+
+/obj/screen/alert/give/Click(location, control, params)
+	. = ..()
+	var/mob/living/carbon/C = mob_viewer
+	C.take(giver, receiving)
 
 //ALIENS
 
@@ -313,7 +352,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /obj/screen/alert/bloodsense/process()
 	var/atom/blood_target
-	
+
 	if(!mob_viewer.mind)
 		return
 
@@ -437,7 +476,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 				time_name = "until the Ark finishes summoning"
 			if(time_info)
 				textlist += "<b>[time_info / 60] minutes</b> [time_name].<br>"
-		textlist += "<b>[DisplayPower(get_clockwork_power())] / [DisplayPower(MAX_CLOCKWORK_POWER)]</b> power available for use."
+		textlist += "<b>[DisplayEnergy(get_clockwork_power())] / [DisplayEnergy(MAX_CLOCKWORK_POWER)]</b> power available for use."
 		desc = textlist.Join()
 	..()
 
@@ -478,6 +517,13 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 	name = "Low Charge"
 	desc = "Unit's power cell is running low. Recharging stations are available in robotics, the dormitory bathrooms, and the AI satellite."
 	icon_state = "lowcell"
+
+//Ethereal
+
+/obj/screen/alert/etherealcharge
+	name = "Low Blood Charge"
+	desc = "Your blood's electric charge is running low, find a source of charge for your blood. Use a recharging station found in robotics or the dormitory bathrooms, or eat some Ethereal-friendly food."
+	icon_state = "etherealcharge"
 
 //Need to cover all use cases - emag, illegal upgrade module, malf AI hack, traitor cyborg
 /obj/screen/alert/hacked

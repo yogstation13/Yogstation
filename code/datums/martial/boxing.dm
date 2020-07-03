@@ -1,5 +1,6 @@
 /datum/martial_art/boxing
 	name = "Boxing"
+	id = MARTIALART_BOXING
 
 /datum/martial_art/boxing/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	to_chat(A, "<span class='warning'>Can't disarm while boxing!</span>")
@@ -51,6 +52,7 @@
 	var/datum/martial_art/boxing/style = new
 
 /obj/item/clothing/gloves/boxing/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_GLOVES)
@@ -59,6 +61,7 @@
 	return
 
 /obj/item/clothing/gloves/boxing/dropped(mob/user)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user

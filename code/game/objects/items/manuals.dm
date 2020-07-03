@@ -37,7 +37,7 @@
 				</ol>
 				<p>
 				It really is that easy! Good luck!
-	
+
 				</body>
 				</html>
 				"}
@@ -241,7 +241,7 @@
 /obj/item/book/manual/wiki/attack_self()
 	if(!dat)
 		initialize_wikibook()
-	..()
+	return ..()
 
 /obj/item/book/manual/wiki/proc/initialize_wikibook()
 	var/wikiurl = CONFIG_GET(string/wikiurl)
@@ -343,15 +343,15 @@
 	icon_state = "barbook"
 	author = "Sir John Rose"
 	title = "Barman Recipes: Mixing Drinks and Changing Lives"
-	page_link = "Guide_to_food_and_drinks"
-	
+	page_link = "Guide_to_drinks"
+
 /obj/item/book/manual/wiki/robotics_cyborgs
 	name = "Robotics for Dummies"
 	icon_state = "borgbook"
 	author = "XISC"
 	title = "Robotics for Dummies"
 	page_link = "Guide_to_robotics"
-	
+
 /obj/item/book/manual/wiki/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
@@ -373,20 +373,20 @@
 	title = "Cloning techniques of the 26th century"
 	page_link = "Guide_to_genetics#Cloning"
 
+/obj/item/book/manual/wiki/medical_genetics
+	name = "Genetics of the 26th century"
+	icon_state ="bookCloning"
+	author = "Dr. Likes-The-Powers "
+	title = "Genetics of the 26th century"
+	page_link = "Guide_to_genetics"
+
 /obj/item/book/manual/wiki/cooking_to_serve_man
 	name = "To Serve Man"
 	desc = "It's a cookbook!"
 	icon_state ="cooked_book"
 	author = "the Kanamitan Empire"
 	title = "To Serve Man"
-	page_link = "Guide_to_food_and_drinks"
-
-/obj/item/book/manual/wiki/circuitry
-	name = "Circuitry for Dummies"
-	icon_state = "book1"
-	author = "Dr. Hans Asperger"
-	title = "Circuitry for Dummies"
-	page_link = "Guide_to_circuits"
+	page_link = "Guide_to_food"
 
 /obj/item/book/manual/wiki/tcomms
 	name = "Subspace Telecommunications And You"
@@ -401,7 +401,7 @@
 	author = "the City-state of Atmosia"
 	title = "Lexica Atmosia"
 	page_link = "Guide_to_Atmospherics"
-	
+
 /obj/item/book/manual/wiki/medicine
 	name = "Medical Space Compendium, Volume 638"
 	icon_state = "book8"
@@ -441,7 +441,7 @@
 			H.dropItemToGround(W)
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
-		H.add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		H.bleed_rate = 5
 		H.gib_animation()
 		sleep(3)
@@ -450,3 +450,13 @@
 		H.spill_organs()
 		H.spread_bodyparts()
 	return (BRUTELOSS)
+
+//YOGS start
+/obj/item/book/manual/wiki/supermatter
+	name = "Supermatter for Dummies"
+	icon = 'yogstation/icons/obj/library.dmi'
+	icon_state = "sm_book"
+	author = "Engineering Encyclopedia"
+	title = "Easy Guide to Setting up the Supermatter Engine"
+	page_link = "Supermatter"
+//YOGS end

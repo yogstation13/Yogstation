@@ -11,7 +11,7 @@
 
 
 /datum/saymode/changeling
-	key = "g"
+	key = MODE_KEY_CHANGELING
 	mode = MODE_CHANGELING
 
 /datum/saymode/changeling/handle_message(mob/living/user, message, datum/language/language)
@@ -27,7 +27,7 @@
 					switch(M.lingcheck())
 						if (LINGHIVE_LING)
 							var/mob/living/L = M
-							if (!L.has_trait(CHANGELING_HIVEMIND_MUTE))
+							if (!HAS_TRAIT(L, CHANGELING_HIVEMIND_MUTE))
 								to_chat(M, msg)
 						if(LINGHIVE_LINK)
 							to_chat(M, msg)
@@ -35,7 +35,7 @@
 							if(prob(40))
 								to_chat(M, "<span class='changeling'>We can faintly sense an outsider trying to communicate through the hivemind...</span>")
 		if(LINGHIVE_LING)
-			if (user.has_trait(CHANGELING_HIVEMIND_MUTE))
+			if (HAS_TRAIT(user, CHANGELING_HIVEMIND_MUTE))
 				to_chat(user, "<span class='warning'>The poison in the air hinders our ability to interact with the hivemind.</span>")
 				return FALSE
 			var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
@@ -52,7 +52,7 @@
 							to_chat(M, msg)
 						if(LINGHIVE_LING)
 							var/mob/living/L = M
-							if (!L.has_trait(CHANGELING_HIVEMIND_MUTE))
+							if (!HAS_TRAIT(L, CHANGELING_HIVEMIND_MUTE))
 								to_chat(M, msg)
 						if(LINGHIVE_OUTSIDER)
 							if(prob(40))
@@ -73,7 +73,7 @@
 
 
 /datum/saymode/vocalcords
-	key = "x"
+	key = MODE_KEY_VOCALCORDS
 	mode = MODE_VOCALCORDS
 
 /datum/saymode/vocalcords/handle_message(mob/living/user, message, datum/language/language)
@@ -87,7 +87,7 @@
 
 
 /datum/saymode/binary //everything that uses .b (silicons, drones, blobbernauts/spores, swarmers)
-	key = "b"
+	key = MODE_KEY_BINARY
 	mode = MODE_BINARY
 
 /datum/saymode/binary/handle_message(mob/living/user, message, datum/language/language)
@@ -141,3 +141,28 @@
 			if((is_monkey_leader(M.mind) || ismonkey(M)) && (M.mind in SSticker.mode.ape_infectees))
 				to_chat(M, msg)
 		return FALSE
+
+/datum/saymode/darkspawn //yogs: darkspawn
+	key = "k"
+	mode = MODE_DARKSPAWN
+
+/datum/saymode/darkspawn/handle_message(mob/living/user, message, datum/language/language)
+	var/datum/mind = user.mind
+	if(!mind)
+		return TRUE
+	if(is_darkspawn_or_veil(user))
+		user.log_talk(message, LOG_SAY, tag="darkspawn")
+		var/msg = "<span class='velvet'><b>\[Mindlink\] [user.real_name]:</b> \"[message]\"</span>"
+		for(var/mob/M in GLOB.player_list)
+			if(M in GLOB.dead_mob_list)
+				var/link = FOLLOW_LINK(M, user)
+				to_chat(M, "[link] [msg]")
+			else if(is_darkspawn_or_veil(M))
+				var/turf/receiver = get_turf(M)
+				var/turf/sender = get_turf(user)
+				if(receiver.z != sender.z)
+					if(prob(25))
+						to_chat(M, "<span class='warning'>Your mindlink trembles with words, but they are too far to make out...</span>")
+					continue
+				to_chat(M, msg)
+	return FALSE //yogs end

@@ -2,9 +2,10 @@
 #define SCRUBBING	1
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber
+	icon_state = "scrub_map-2"
+
 	name = "air scrubber"
 	desc = "Has a valve and pump attached to it."
-	icon_state = "scrub_map"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 60
@@ -28,16 +29,6 @@
 
 	pipe_state = "scrubber"
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
-
 /obj/machinery/atmospherics/components/unary/vent_scrubber/New()
 	..()
 	if(!id_tag)
@@ -47,20 +38,6 @@
 		if(istext(f))
 			filter_types -= f
 			filter_types += gas_id2path(f)
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on
-	on = TRUE
-	icon_state = "scrub_map_on"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/Destroy()
 	var/area/A = get_area(src)
@@ -92,7 +69,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)
-		add_overlay(getpipeimage(icon, "scrub_cap", initialize_directions))
+		var/image/cap = getpipeimage(icon, "scrub_cap", initialize_directions, piping_layer = piping_layer)
+		add_overlay(cap)
 
 	if(welded)
 		icon_state = "scrub_welded"
@@ -118,7 +96,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/broadcast_status()
 	if(!radio_connection)
 		return FALSE
-	
+
 	var/list/f_types = list()
 	for(var/path in GLOB.meta_gas_info)
 		var/list/gas = GLOB.meta_gas_info[path]
@@ -173,44 +151,29 @@
 		return FALSE
 	var/datum/gas_mixture/environment = tile.return_air()
 	var/datum/gas_mixture/air_contents = airs[1]
-	var/list/env_gases = environment.gases
 
 	if(air_contents.return_pressure() >= 50*ONE_ATMOSPHERE)
 		return FALSE
 
 	if(scrubbing & SCRUBBING)
-		if(length(env_gases & filter_types))
-			var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles()
+		var/transfer_moles = min(1, volume_rate/environment.return_volume())*environment.total_moles()
 
-			//Take a gas sample
-			var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
+		//Take a gas sample
+		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
 
-			//Nothing left to remove from the tile
-			if(isnull(removed))
-				return FALSE
+		//Nothing left to remove from the tile
+		if(isnull(removed))
+			return FALSE
 
-			var/list/removed_gases = removed.gases
+		removed.scrub_into(air_contents, filter_types)
 
-			//Filter it
-			var/datum/gas_mixture/filtered_out = new
-			var/list/filtered_gases = filtered_out.gases
-			filtered_out.temperature = removed.temperature
+		//Remix the resulting gases
+		tile.assume_air(removed)
+		tile.air_update_turf()
 
-			for(var/gas in filter_types & removed_gases)
-				filtered_out.add_gas(gas)
-				filtered_gases[gas][MOLES] = removed_gases[gas][MOLES]
-				removed_gases[gas][MOLES] = 0
-
-			removed.garbage_collect()
-
-			//Remix the resulting gases
-			air_contents.merge(filtered_out)
-			tile.assume_air(removed)
-			tile.air_update_turf()
-	
 	else //Just siphoning all air
 
-		var/transfer_moles = environment.total_moles()*(volume_rate/environment.volume)
+		var/transfer_moles = environment.total_moles()*(volume_rate/environment.return_volume())
 
 		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
 
@@ -240,7 +203,7 @@
 	if(!is_operational() || !signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
 		return 0
 
-	var/mob/signal_sender = signal.data["user"]
+	var/atom/signal_sender = signal.data["user"]
 
 	if("power" in signal.data)
 		on = text2num(signal.data["power"])
@@ -281,7 +244,7 @@
 	return
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/power_change()
-	..()
+	. = ..()
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/I)
@@ -298,6 +261,8 @@
 		update_icon()
 		pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 		pipe_vision_img.plane = ABOVE_HUD_PLANE
+		investigate_log("was [welded ? "welded shut" : "unwelded"] by [key_name(user)]", INVESTIGATE_ATMOS)
+		add_fingerprint(user)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
@@ -305,11 +270,11 @@
 	if(. && on && is_operational())
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
 		return FALSE
-		
+
 /obj/machinery/atmospherics/components/unary/vent_scrubber/examine(mob/user)
-	..()
+	. = ..()
 	if(welded)
-		to_chat(user, "It seems welded shut.")
+		. += "It seems welded shut."
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_crawl_through()
 	return !welded
@@ -325,6 +290,25 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer1
+	piping_layer = 1
+	icon_state = "scrub_map-1"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer3
+	piping_layer = 3
+	icon_state = "scrub_map-3"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on
+	on = TRUE
+	icon_state = "scrub_map_on-2"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1
+	piping_layer = 1
+	icon_state = "scrub_map_on-1"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3
+	piping_layer = 3
+	icon_state = "scrub_map_on-3"
 
 #undef SIPHONING
 #undef SCRUBBING

@@ -10,10 +10,13 @@
 	var/admin_notes
 
 	var/credit_cost = INFINITY
-	var/can_be_bought = TRUE
+	var/emag_buy = FALSE
+
+	var/list/movement_force // If set, overrides default movement_force on shuttle
 
 	var/port_x_offset
 	var/port_y_offset
+	var/extra_desc = ""
 
 /datum/map_template/shuttle/proc/prerequisites_met()
 	return TRUE
@@ -94,19 +97,10 @@
 					port.dwidth = port_y_offset - 1
 					port.dheight = width - port_x_offset
 
-		for(var/obj/structure/closet/closet in place)
-			if(closet.anchorable)
-				closet.anchored = TRUE
-
-		for(var/obj/structure/table/table in place)
-			table.AddComponent(/datum/component/magnetic_catch)
-
-		for(var/obj/structure/rack/rack in place)
-			rack.AddComponent(/datum/component/magnetic_catch)
-
 //Whatever special stuff you want
-/datum/map_template/shuttle/proc/on_bought()
-	return
+/datum/map_template/shuttle/proc/post_load(obj/docking_port/mobile/M)
+	if(movement_force)
+		M.movement_force = movement_force.Copy()
 
 /datum/map_template/shuttle/emergency
 	port_id = "emergency"
@@ -125,67 +119,59 @@
 
 /datum/map_template/shuttle/labour
 	port_id = "labour"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/mining
 	port_id = "mining"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/arrival
 	port_id = "arrival"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/infiltrator
 	port_id = "infiltrator"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/aux_base
 	port_id = "aux_base"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/escape_pod
 	port_id = "escape_pod"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/assault_pod
 	port_id = "assault_pod"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/pirate
 	port_id = "pirate"
-	can_be_bought = FALSE
+
+/datum/map_template/shuttle/hunter
+	port_id = "hunter"
 
 /datum/map_template/shuttle/ruin //For random shuttles in ruins
 	port_id = "ruin"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/snowdin
 	port_id = "snowdin"
-	can_be_bought = FALSE
 
 // Shuttles start here:
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
 	name = "Backup Shuttle"
-	can_be_bought = FALSE
 
-/datum/map_template/shuttle/emergency/airless
-	suffix = "airless"
+/datum/map_template/shuttle/emergency/construction
+	suffix = "construction"
 	name = "Build your own shuttle kit"
-	description = "Save money by building your own shuttle! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Interior and atmosphere not included."
-	admin_notes = "No brig, no medical facilities, no air."
-	credit_cost = -7500
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	admin_notes = "No brig, no medical facilities, no shuttle console."
+	credit_cost = 5000
 
 /datum/map_template/shuttle/emergency/airless/prerequisites_met()
 	// first 10 minutes only
 	return world.time - SSticker.round_start_time < 6000
 
-/datum/map_template/shuttle/emergency/airless/on_bought()
+/datum/map_template/shuttle/emergency/airless/post_load()
+	. = ..()
 	//enable buying engines from cargo
 	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]
 	P.special_enabled = TRUE
@@ -205,26 +191,36 @@
 	Has medical facilities."
 	credit_cost = 5000
 
+/datum/map_template/shuttle/emergency/pod
+	suffix = "pod"
+	name = "Emergency Pods"
+	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
+	admin_notes = "For player punishment."
+
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
 	description = "Dis is a high-quality shuttle, da. Many seats, lots of space, all equipment! Even includes entertainment! Such as lots to drink, and a fighting arena for drunk crew to have fun! If arena not fun enough, simply press button of releasing bears. Do not worry, bears trained not to break out of fighting pit, so totally safe so long as nobody stupid or drunk enough to leave door open. Try not to let asimov babycons ruin fun!"
 	admin_notes = "Includes a small variety of weapons. And bears. Only captain-access can release the bears. Bears won't smash the windows themselves, but they can escape if someone lets them."
 	credit_cost = 5000 // While the shuttle is rusted and poorly maintained, trained bears are costly.
+	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/meteor
 	suffix = "meteor"
 	name = "Asteroid With Engines Strapped To It"
-	description = "A hollowed out asteroid with engines strapped to it. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
+	description = "A hollowed out asteroid with engines strapped to it, the hollowing procedure makes it very difficult to hijack but is very expensive. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
 	admin_notes = "This shuttle will likely crush escape, killing anyone there."
-	credit_cost = -5000
+	credit_cost = 15000
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/luxury
 	suffix = "luxury"
 	name = "Luxury Shuttle"
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
+	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 10000
+	credit_cost = 50000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
@@ -232,6 +228,7 @@
 	description = "The glorious results of centuries of plasma research done by Nanotrasen employees. This is the reason why you are here. Get on and dance like you're on fire, burn baby burn!"
 	admin_notes = "Flaming hot. The main area has a dance machine as well as plasma floor tiles that will be ignited by players every single time."
 	credit_cost = 10000
+	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
@@ -239,11 +236,10 @@
 	description = "The crew must pass through an otherworldy arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
 	admin_notes = "RIP AND TEAR."
 	credit_cost = 10000
+	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/arena/prerequisites_met()
-	if("bubblegum" in SSshuttle.shuttle_purchase_requirements_met)
-		return TRUE
-	return FALSE
+	return SSachievements.has_achievement(/datum/achievement/bubblegum, usr.client)
 
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"
@@ -256,6 +252,13 @@
 	name = "Box Station Emergency Shuttle"
 	credit_cost = 2000
 	description = "The gold standard in emergency exfiltration, this tried and true design is equipped with everything the crew needs for a safe flight home."
+
+/datum/map_template/shuttle/emergency/donut
+	suffix = "donut"
+	name = "Donutstation Emergency Shuttle"
+	description = "The perfect spearhead for any crude joke involving the station's shape, this shuttle supports a separate containment cell for prisoners and a compact medical wing."
+	admin_notes = "Has airlocks on both sides of the shuttle and will probably intersect near the front on some stations that build past departures."
+	credit_cost = 2500
 
 /datum/map_template/shuttle/emergency/clown
 	suffix = "clown"
@@ -295,6 +298,8 @@
 	credit_cost = -1000
 	description = "Due to a lack of functional emergency shuttles, we bought this second hand from a scrapyard and pressed it into service. Please do not lean too heavily on the exterior windows, they are fragile."
 	admin_notes = "An abomination with no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight."
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/narnar
 	suffix = "narnar"
@@ -330,6 +335,8 @@
 	It does, however, still dust anything on contact, emits high levels of radiation, and induce hallucinations in anyone looking at it without protective goggles. \
 	Emitters spawn powered on, expect admin notices, they are harmless."
 	credit_cost = 100000
+	emag_buy = TRUE
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/imfedupwiththisworld
 	suffix = "imfedupwiththisworld"
@@ -337,7 +344,9 @@
 	description = "How was space work today? Oh, pretty good. We got a new space station and the company will make a lot of money. What space station? I cannot tell you; it's space confidential. \
 	Aw, come space on. Why not? No, I can't. Anyway, how is your space roleplay life?"
 	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
-	credit_cost = -5000
+	credit_cost = 7500
+	emag_buy = TRUE
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"
@@ -353,6 +362,7 @@
 	Needless to say, no engineering team wanted to go near the thing, and it's only being used as an Emergency Escape Shuttle because there is literally nothing else available."
 	admin_notes = "If the crew can solve the puzzle, they will wake the wabbajack statue. It will likely not end well. There's a reason it's boarded up. Maybe they should have just left it alone."
 	credit_cost = 15000
+	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/omega
 	suffix = "omega"
@@ -385,7 +395,7 @@
 /datum/map_template/shuttle/ferry/fancy
 	suffix = "fancy"
 	name = "fancy transport ferry"
-	description = "At some point, someone upgraded the ferry to have fancier flooring... and less seats."
+	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
 
 /datum/map_template/shuttle/whiteship/box
 	suffix = "box"
@@ -428,10 +438,12 @@
 
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
-	name = "CentCom Raven Battlecruiser"
-	description = "The CentCom Raven Battlecruiser is currently docked at the CentCom ship bay awaiting a mission, this Battlecruiser has been reassigned as an emergency escape shuttle for currently unknown reasons. The CentCom Raven Battlecruiser should comfortably fit a medium to large crew size crew and is complete with all required facitlities including a top of the range CentCom Medical Bay."
-	admin_notes = "Comes with turrets that will target any simplemob."
-	credit_cost = 12500
+	name = "CentCom Raven Cruiser"
+	description = "The CentCom Raven Cruiser is a former high-risk salvage vessel, now repurposed into an emergency escape shuttle. \
+	Once first to the scene to pick through warzones for valuable remains, it now serves as an excellent escape option for stations under heavy fire from outside forces. \
+	This escape shuttle boasts shields and numerous anti-personnel turrets guarding its perimeter to fend off meteors and enemy boarding attempts."
+	admin_notes = "Comes with turrets that will target anything without the neutral faction (nuke ops, xenos etc, but not pets)."
+	credit_cost = 30000
 
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
@@ -500,6 +512,14 @@
 /datum/map_template/shuttle/pirate/default
 	suffix = "default"
 	name = "pirate ship (Default)"
+
+/datum/map_template/shuttle/hunter/space_cop
+	suffix = "space_cop"
+	name = "Police Spacevan"
+
+/datum/map_template/shuttle/hunter/russian
+	suffix = "russian"
+	name = "Russian Cargo Ship"
 
 /datum/map_template/shuttle/ruin/caravan_victim
 	suffix = "caravan_victim"

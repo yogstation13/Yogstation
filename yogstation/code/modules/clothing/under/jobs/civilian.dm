@@ -14,6 +14,15 @@
 	item_color = "clerk"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/yogs/rank/clerk/skirt
+	desc = "Oh, look it comes with its own vest."
+	name = "clerk's skirt"
+	icon_state = "clerk_skirt"
+	item_state = "clerk_skirt"
+	item_color = "clerk_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	fitted = FEMALE_UNIFORM_TOP
+
 /obj/item/clothing/under/yogs/rank/miner/medic
 	desc = "A verstile blue and white uniform honored to hard working recovery medics in hazardous environments. It has minor protection against biohazards."
 	name = "recovery medic's jumpsuit"

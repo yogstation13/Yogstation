@@ -85,7 +85,7 @@
 	
 	var/do_gib = FALSE
 	var/emagged = obj_flags & EMAGGED
-	if(L in GLOB.antagonists)
+	if(L.mind && LAZYLEN(L.mind.antag_datums))
 		if(!emagged)
 			do_gib = TRUE
 	else
@@ -154,7 +154,7 @@
 		meatslab.throw_at(pick(nearby_turfs),i,3)
 		for (var/turfs=1 to meat_produced)
 			var/turf/gibturf = pick(nearby_turfs)
-			if (!gibturf.density && src in view(gibturf))
+			if (!gibturf.density && (src in view(gibturf)))
 				new gibtype(gibturf,i,diseases)
 
 	pixel_x = initial(pixel_x) //return to its spot after shaking

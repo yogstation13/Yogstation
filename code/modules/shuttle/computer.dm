@@ -51,9 +51,18 @@
 			to_chat(usr, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
 			return
 		if(no_destination_swap)
+			if(M.mode == SHUTTLE_RECHARGING)
+				to_chat(usr, "<span class='warning'>Shuttle engines are not ready for use.</span>")
+				return
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
 				return
+
+		if(!(href_list["move"] in params2list(possible_destinations)))
+			log_admin("[usr] attempted to forge a target location through a href exploit on [src] with target location \"[href_list["move"]]\"")
+			message_admins("[ADMIN_FULLMONTY(usr)] attempted to forge a target location through a href exploit on [src]")
+			return
+			
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
 				say("Shuttle departing. Please stand away from the doors.")

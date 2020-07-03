@@ -31,6 +31,7 @@
 #define ACCESS_CONSTRUCTION 32
 #define ACCESS_CHEMISTRY 33
 #define ACCESS_HYDROPONICS 35
+#define ACCESS_MANUFACTURING 36 // used by clerk
 #define ACCESS_LIBRARY 37
 #define ACCESS_LAWYER 38
 #define ACCESS_VIROLOGY 39
@@ -58,6 +59,10 @@
 #define ACCESS_WEAPONS 66 //Weapon authorization for secbots
 #define ACCESS_NETWORK 67 //NTnet diagnostics/monitoring software
 #define ACCESS_CLONING 68 //Cloning room and clone pod ejection
+#define ACCESS_PARAMEDIC 69 //Paramedic Office
+#define ACCESS_TCOM_ADMIN 70 // Access to the Signal Tech monitoring room
+#define ACCESS_FREEMINER 71
+#define ACCESS_FREEMINER_CAPTAIN 72
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.

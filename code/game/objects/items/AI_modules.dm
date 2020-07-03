@@ -25,7 +25,7 @@ AI MODULES
 	materials = list(MAT_GOLD=50)
 
 /obj/item/aiModule/examine(var/mob/user as mob)
-	..()
+	. = ..()
 	if(Adjacent(user))
 		show_laws(user)
 
@@ -240,7 +240,7 @@ AI MODULES
 			return
 		newpos = 15
 	lawpos = min(newpos, 50)
-	var/targName = stripped_input(user, "Please enter a new law for the AI.", "Freeform Law Entry", laws[1])
+	var/targName = stripped_input(user, "Please enter a new law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len))
 	if(!targName)
 		return
 	laws[1] = targName
@@ -338,8 +338,8 @@ AI MODULES
 /obj/item/aiModule/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums
 
-/obj/item/aiModule/core/full/New()
-	..()
+/obj/item/aiModule/core/full/Initialize()
+	. = ..()
 	if(!law_id)
 		return
 	var/datum/ai_laws/D = new
@@ -367,7 +367,7 @@ AI MODULES
 	var/subject = "human being"
 
 /obj/item/aiModule/core/full/asimov/attack_self(var/mob/user as mob)
-	var/targName = stripped_input(user, "Please enter a new subject that asimov is concerned with.", "Asimov to whom?", subject)
+	var/targName = stripped_input(user, "Please enter a new subject that asimov is concerned with.", "Asimov to whom?", subject, MAX_NAME_LEN)
 	if(!targName)
 		return
 	subject = targName
@@ -382,13 +382,17 @@ AI MODULES
 	name = "'Asimov++' Core AI Module"
 	law_id = "asimovpp"
 
+/******************** CEO ********************/
 
-/******************** Corporate ********************/
+/obj/item/aiModule/core/full/ceo
+	name = "'CEO' Core AI Module"
+	law_id = "ceo"
 
-/obj/item/aiModule/core/full/corp
-	name = "'Corporate' Core AI Module"
-	law_id = "corporate"
+/******************** Crewsimov ********************/
 
+/obj/item/aiModule/core/full/crewsimov
+	name = "'Crewsimov' Core AI Module"
+	law_id = "crewsimov"
 
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
@@ -442,6 +446,13 @@ AI MODULES
 	law_id = "antimov"
 
 
+/******************** Cowboy *********************/
+
+/obj/item/aiModule/core/full/cowboy
+	name = "'Cowboy' Core AI Module"
+	law_id = "cowboy"
+
+
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
@@ -449,7 +460,7 @@ AI MODULES
 	laws = list("")
 
 /obj/item/aiModule/core/freeformcore/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter a new core law for the AI.", "Freeform Law Entry", laws[1])
+	var/targName = stripped_input(user, "Please enter a new core law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len))
 	if(!targName)
 		return
 	laws[1] = targName
@@ -501,7 +512,7 @@ AI MODULES
 	laws = list("")
 
 /obj/item/aiModule/syndicate/attack_self(mob/user)
-	var/targName = stripped_input(user, "Please enter a new law for the AI.", "Freeform Law Entry", laws[1])
+	var/targName = stripped_input(user, "Please enter a new law for the AI.", "Freeform Law Entry", laws[1], CONFIG_GET(number/max_law_len))
 	if(!targName)
 		return
 	laws[1] = targName

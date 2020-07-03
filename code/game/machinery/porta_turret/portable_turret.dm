@@ -218,23 +218,10 @@
 		interact(usr)
 
 /obj/machinery/porta_turret/power_change()
-	if(!anchored)
+	. = ..()
+	if(!anchored || (stat & BROKEN) || !powered())
 		update_icon()
 		remove_control()
-		return
-	if(stat & BROKEN)
-		update_icon()
-		remove_control()
-	else
-		if( powered() )
-			stat &= ~NOPOWER
-			update_icon()
-		else
-			spawn(rand(0, 15))
-				stat |= NOPOWER
-				remove_control()
-				update_icon()
-
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -325,7 +312,7 @@
 
 /obj/machinery/porta_turret/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	. = ..()
-	if(.) //damage received
+	if(. && obj_integrity > 0) //damage received
 		if(prob(30))
 			spark_system.start()
 		if(on && !attacked && !(obj_flags & EMAGGED))
@@ -339,8 +326,8 @@
 	qdel(src)
 
 /obj/machinery/porta_turret/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1) && !(stat & BROKEN))
-		stat |= BROKEN	//enables the BROKEN bit
+	. = ..()
+	if(.)
 		power_change()
 		invisibility = 0
 		spark_system.start()	//creates some sparks because they look cool
@@ -372,17 +359,24 @@
 				if(SA.stat || in_faction(SA)) //don't target if dead or in faction
 					continue
 				targets += SA
-			if(issilicon(A))
-				var/mob/living/silicon/sillycone = A
-				if(sillycone.stat || in_faction(sillycone))
+				continue
+
+		if(issilicon(A))
+			var/mob/living/silicon/sillycone = A
+
+			if(ispAI(A))
+				continue
+
+			if(sillycone.stat || in_faction(sillycone))
+				continue
+
+			if(iscyborg(sillycone))
+				var/mob/living/silicon/robot/sillyconerobot = A
+				if(LAZYLEN(faction) && (ROLE_SYNDICATE in faction) && sillyconerobot.emagged == TRUE)
 					continue
 
-				if(iscyborg(sillycone))
-					var/mob/living/silicon/robot/sillyconerobot = A
-					if(LAZYLEN(faction) && (ROLE_SYNDICATE in faction) && sillyconerobot.emagged == TRUE)
-						continue
-
-				targets += sillycone
+			targets += sillycone
+			continue
 
 		if(iscarbon(A))
 			var/mob/living/carbon/C = A
@@ -408,6 +402,18 @@
 			if(Mech.occupant && !in_faction(Mech.occupant)) //If there is a user and they're not in our faction
 				if(assess_perp(Mech.occupant) >= 4)
 					targets += Mech
+	// yogs start
+	for(var/A in GLOB.spacepods_list)
+		if((get_dist(A, base) < scan_range) && can_see(base, A, scan_range))
+			var/obj/spacepod/SP = A
+			if(SP.pilot && !in_faction(SP.pilot))
+				if(assess_perp(SP.pilot) >= 4)
+					targets += SP
+	// yogs end
+
+	if(check_anomalies && GLOB.blobs.len && (mode == TURRET_LETHAL))
+		for(var/obj/structure/blob/B in view(scan_range, base))
+			targets += B
 
 	if(targets.len)
 		tryToShootAt(targets)
@@ -487,7 +493,7 @@
 			threatcount += 4
 
 	if(shoot_unloyal)
-		if (!perp.has_trait(TRAIT_MINDSHIELD))
+		if (!HAS_TRAIT(perp, TRAIT_MINDSHIELD))
 			threatcount += 4
 
 	return threatcount
@@ -551,6 +557,7 @@
 	//Shooting Code:
 	A.preparePixelProjectile(target, T)
 	A.firer = src
+	A.fired_from = src
 	A.fire()
 	return A
 
@@ -635,6 +642,7 @@
 	has_cover = 0
 	scan_range = 9
 	req_access = list(ACCESS_SYNDICATE)
+	mode = TURRET_LETHAL
 	stun_projectile = /obj/item/projectile/bullet
 	lethal_projectile = /obj/item/projectile/bullet
 	lethal_projectile_sound = 'sound/weapons/gunshot.ogg'
@@ -648,8 +656,14 @@
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
+/obj/machinery/porta_turret/syndicate/setup()
+	return
+
+/obj/machinery/porta_turret/syndicate/assess_perp(mob/living/carbon/human/perp)
+	return 10 //Syndicate turrets shoot everything not in their faction
+
 /obj/machinery/porta_turret/syndicate/energy
-	icon_state = "standard_stun"
+	icon_state = "standard_lethal"
 	base_icon_state = "standard"
 	stun_projectile = /obj/item/projectile/energy/electrode
 	stun_projectile_sound = 'sound/weapons/taser.ogg'
@@ -658,7 +672,7 @@
 	desc = "An energy blaster auto-turret."
 
 /obj/machinery/porta_turret/syndicate/energy/heavy
-	icon_state = "standard_stun"
+	icon_state = "standard_lethal"
 	base_icon_state = "standard"
 	stun_projectile = /obj/item/projectile/energy/electrode
 	stun_projectile_sound = 'sound/weapons/taser.ogg'
@@ -666,12 +680,11 @@
 	lethal_projectile_sound = 'sound/weapons/lasercannonfire.ogg'
 	desc = "An energy blaster auto-turret."
 
+/obj/machinery/porta_turret/syndicate/energy/raven
+	stun_projectile =  /obj/item/projectile/beam/laser
+	stun_projectile_sound = 'sound/weapons/laser.ogg'
+	faction = list("neutral","silicon","turret")
 
-/obj/machinery/porta_turret/syndicate/setup()
-	return
-
-/obj/machinery/porta_turret/syndicate/assess_perp(mob/living/carbon/human/perp)
-	return 10 //Syndicate turrets shoot everything not in their faction
 
 /obj/machinery/porta_turret/syndicate/pod
 	integrity_failure = 20
@@ -679,11 +692,34 @@
 	stun_projectile = /obj/item/projectile/bullet/syndicate_turret
 	lethal_projectile = /obj/item/projectile/bullet/syndicate_turret
 
+/obj/machinery/porta_turret/syndicate/shuttle
+	scan_range = 9
+	shot_delay = 3
+	stun_projectile = /obj/item/projectile/bullet/p50/penetrator/shuttle
+	lethal_projectile = /obj/item/projectile/bullet/p50/penetrator/shuttle
+	lethal_projectile_sound = 'sound/weapons/gunshot_smg.ogg'
+	stun_projectile_sound = 'sound/weapons/gunshot_smg.ogg'
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 80, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90)
+
+/obj/machinery/porta_turret/syndicate/shuttle/target(atom/movable/target)
+	if(target)
+		setDir(get_dir(base, target))//even if you can't shoot, follow the target
+		shootAt(target)
+		addtimer(CALLBACK(src, .proc/shootAt, target), 5)
+		addtimer(CALLBACK(src, .proc/shootAt, target), 10)
+		addtimer(CALLBACK(src, .proc/shootAt, target), 15)
+		return TRUE
+
 /obj/machinery/porta_turret/ai
 	faction = list("silicon")
 
 /obj/machinery/porta_turret/ai/assess_perp(mob/living/carbon/human/perp)
 	return 10 //AI turrets shoot at everything not in their faction
+
+/obj/machinery/porta_turret/ai/in_faction(mob/target)
+	. = ..()
+	if(ismouse(target))
+		return TRUE
 
 /obj/machinery/porta_turret/aux_base
 	name = "perimeter defense turret"
@@ -793,10 +829,10 @@
 		T.cp = src
 
 /obj/machinery/turretid/examine(mob/user)
-	..()
-	if(issilicon(user) && (!stat & BROKEN))
-		to_chat(user, "<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>")
-		to_chat(user, "<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>")
+	. += ..()
+	if(issilicon(user) && !(stat & BROKEN))
+		. += {"<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>
+					<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>"}
 
 /obj/machinery/turretid/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -879,26 +915,26 @@
 			to_chat(usr, "Control panel is locked!")
 			return
 	if (href_list["toggleOn"])
-		toggle_on()
+		toggle_on(usr)
 	else if (href_list["toggleLethal"])
-		toggle_lethal()
+		toggle_lethal(usr)
 	attack_hand(usr)
 
-/obj/machinery/turretid/proc/toggle_lethal()
+/obj/machinery/turretid/proc/toggle_lethal(mob/user)
 	lethal = !lethal
+	add_hiddenprint(user)
+	log_combat(user, src, "[lethal ? "enabled" : "disabled"] lethals on")
 	updateTurrets()
 
-/obj/machinery/turretid/proc/toggle_on()
+/obj/machinery/turretid/proc/toggle_on(mob/user)
 	enabled = !enabled
+	add_hiddenprint(user)
+	log_combat(user, src, "[enabled ? "enabled" : "disabled"]")
 	updateTurrets()
 
 /obj/machinery/turretid/proc/updateTurrets()
 	for (var/obj/machinery/porta_turret/aTurret in turrets)
 		aTurret.setState(enabled, lethal)
-	update_icon()
-
-/obj/machinery/turretid/power_change()
-	..()
 	update_icon()
 
 /obj/machinery/turretid/update_icon()

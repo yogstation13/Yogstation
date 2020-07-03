@@ -3,7 +3,8 @@
 /obj/mecha/proc/GrantActions(mob/living/user, human_occupant = 0)
 	if(human_occupant)
 		eject_action.Grant(user, src)
-	internals_action.Grant(user, src)
+	if(enclosed)
+		internals_action.Grant(user, src)
 	cycle_action.Grant(user, src)
 	lights_action.Grant(user, src)
 	stats_action.Grant(user, src)
@@ -43,8 +44,7 @@
 		return
 	if(!chassis || chassis.occupant != owner)
 		return
-	chassis.go_out()
-
+	chassis.container_resist(chassis.occupant)
 
 /datum/action/innate/mecha/mech_toggle_internals
 	name = "Toggle Internal Airtank Usage"
@@ -128,7 +128,7 @@
 
 
 /datum/action/innate/mecha/strafe
-	name = "Toggle Strafing"
+	name = "Toggle Strafing. Disabled when Alt is held."
 	button_icon_state = "strafe"
 
 /datum/action/innate/mecha/strafe/Activate()
@@ -191,6 +191,8 @@
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
+	if(chassis.equipment_disabled)
+		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
 	if(!isnull(forced_state))
@@ -207,7 +209,7 @@
 		chassis.occupant_message("<span class='danger'>You enable leg actuators overload.</span>")
 	else
 		chassis.leg_overload_mode = 0
-		chassis.bumpsmash = 0
+		chassis.bumpsmash = initial(chassis.bumpsmash)
 		chassis.step_in = initial(chassis.step_in)
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
 		chassis.occupant_message("<span class='notice'>You disable leg actuators overload.</span>")

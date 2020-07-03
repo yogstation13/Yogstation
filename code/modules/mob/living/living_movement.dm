@@ -1,6 +1,25 @@
 /mob/living/Moved()
 	. = ..()
 	update_turf_movespeed(loc)
+	if(is_shifted)
+		is_shifted = FALSE
+		pixel_x = get_standard_pixel_x_offset(lying)
+		pixel_y = get_standard_pixel_y_offset(lying)
+
+/mob/living/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if((mover.pass_flags & PASSMOB))
+		return TRUE
+	if(istype(mover, /obj/item/projectile))
+		var/obj/item/projectile/P = mover
+		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
+	if(mover.throwing)
+		return (!density || !(mobility_flags & MOBILITY_STAND) || (mover.throwing.thrower == src && !ismob(mover)))
+	if(buckled == mover)
+		return TRUE
+	if(ismob(mover) && (mover in buckled_mobs))
+		return TRUE
+	return (!mover.density || . || !(mobility_flags & MOBILITY_STAND))
 
 /mob/living/toggle_move_intent()
 	. = ..()
@@ -25,3 +44,9 @@
 		add_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = T.slowdown)
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD)
+
+/mob/living/can_zFall(turf/T, levels)
+	return !(movement_type & FLYING)
+
+/mob/living/canZMove(dir, turf/target)
+	return can_zTravel(target, dir) && (movement_type & FLYING)

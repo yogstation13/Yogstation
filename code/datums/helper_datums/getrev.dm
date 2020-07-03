@@ -27,7 +27,8 @@
 
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
-		msg += "Test merge active of PR #[tm.number] commit [tm.commit]"
+		msg += "Test merge active of PR #[tm.number] commit [tm.pull_request_commit]"
+		SSblackbox.record_feedback("associative", "testmerged_prs", 1, list("number" = "[tm.number]", "commit" = "[tm.pull_request_commit]", "title" = "[tm.title]", "author" = "[tm.author]"))
 
 	if(commit && commit != originmastercommit)
 		msg += "HEAD: [commit]"
@@ -43,7 +44,7 @@
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.pull_request_commit
-		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext(cm, 1, min(length(cm), 11)))
+		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
 			continue
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
@@ -76,7 +77,8 @@
 		msg += "No commit information"
 
 	if(world.TgsAvailable())
-		msg += "Server tools version: [world.TgsVersion()]"
+		var/datum/tgs_version/version = world.TgsVersion()
+		msg += "Server tools version: [version.raw_parameter]"
 
 	if(!check_rights_for(src, R_ADMIN)) //yogs
 		to_chat(src, msg.Join("<br>"))

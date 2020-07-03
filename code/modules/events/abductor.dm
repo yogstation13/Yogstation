@@ -1,7 +1,7 @@
 /datum/round_event_control/abductor
 	name = "Abductors"
 	typepath = /datum/round_event/ghost_role/abductor
-	weight = 10
+	weight = 12
 	max_occurrences = 1
 	min_players = 20
 	gamemode_blacklist = list("nuclear","wizard","revolution")
@@ -29,7 +29,6 @@
 
 	scientist.mind.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.mind.add_antag_datum(/datum/antagonist/abductor/agent, T)
-	atom_of_interest = agent
 
 	spawned_mobs += list(agent, scientist)
 

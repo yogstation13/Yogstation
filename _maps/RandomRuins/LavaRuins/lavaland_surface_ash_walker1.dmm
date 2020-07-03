@@ -177,6 +177,10 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
+/obj/structure/closet/crate/necropolis,
+/obj/item/stack/sheet/mineral/mythril{
+	amount = 50
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "aC" = (
@@ -312,7 +316,7 @@
 /turf/open/lava/smooth,
 /area/ruin/unpowered/ash_walkers)
 "aU" = (
-/mob/living/simple_animal/hostile/spawner/lavaland/ash_walker,
+/obj/structure/lavaland/ash_walker,
 /turf/open/lava/smooth,
 /area/ruin/unpowered/ash_walkers)
 "aV" = (
@@ -1316,7 +1320,8 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dw" = (
-/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket/wooden, 
+/obj/item/cultivator/rake,
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
 	},

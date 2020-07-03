@@ -81,26 +81,12 @@
 	var/hasExpanded = FALSE
 	var/obj/item/hat
 	var/hat_offset = -3
-	var/list/equippable_hats = list(/obj/item/clothing/head/caphat,
-	/obj/item/clothing/head/hardhat,
-	/obj/item/clothing/head/centhat,
-	/obj/item/clothing/head/HoS,
-	/obj/item/clothing/head/beret,
-	/obj/item/clothing/head/kitty,
-	/obj/item/clothing/head/hopcap,
-	/obj/item/clothing/head/wizard,
-	/obj/item/clothing/head/nursehat,
-	/obj/item/clothing/head/sombrero,
-	/obj/item/clothing/head/helmet/chaplain/witchunter_hat,
-	/obj/item/clothing/head/soft/, //All baseball caps
-	/obj/item/clothing/head/that, //top hat
-	/obj/item/clothing/head/collectable/tophat, //Not sure where this one is found, but it looks the same so might as well include
-	/obj/item/clothing/mask/bandana/, //All bandanas (which only work in hat mode)
-	/obj/item/clothing/head/fedora,
-	/obj/item/clothing/head/beanie/, //All beanies
-	/obj/item/clothing/ears/headphones,
-	/obj/item/clothing/head/helmet/skull,
-	/obj/item/clothing/head/crown/fancy)
+	var/list/blacklisted_hats = list( //Hats that don't really work on borgos
+	/obj/item/clothing/head/helmet/space/santahat,
+	/obj/item/clothing/head/welding,
+	/obj/item/clothing/head/mob_holder, //I am so very upset that this breaks things
+	/obj/item/clothing/head/helmet/space,
+	)
 
 	can_buckle = TRUE
 	buckle_lying = FALSE
@@ -116,6 +102,8 @@
 
 	wires = new /datum/wires/robot(src)
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+
+	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
@@ -140,6 +128,7 @@
 		builtInCamera.c_tag = real_name
 		builtInCamera.network = list("ss13")
 		builtInCamera.internal_light = FALSE
+		builtInCamera.built_in = src
 		if(wires.is_cut(WIRE_CAMERA))
 			builtInCamera.status = 0
 	module = new /obj/item/robot_module(src)
@@ -165,7 +154,7 @@
 
 	updatename()
 
-	equippable_hats = typecacheof(equippable_hats)
+	blacklisted_hats = typecacheof(blacklisted_hats)
 
 	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 	aicamera = new/obj/item/camera/siliconcam/robot_camera(src)
@@ -223,10 +212,14 @@
 	"Service" = /obj/item/robot_module/butler)
 	if(!CONFIG_GET(flag/disable_peaceborg))
 		modulelist["Peacekeeper"] = /obj/item/robot_module/peacekeeper
-	if(!CONFIG_GET(flag/disable_secborg))
-		modulelist["Security"] = /obj/item/robot_module/security
 
-	var/input_module = input("Please, select a module!", "Robot", null, null) as null|anything in modulelist
+	var/list/moduleicons = list() //yogs start
+	for(var/option in modulelist)
+		var/obj/item/robot_module/M = modulelist[option]
+		var/is = initial(M.cyborg_base_icon)
+		moduleicons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = is)
+
+	var/input_module = show_radial_menu(src, src , moduleicons, radius = 42) //yogs end
 	if(!input_module || module.type != /obj/item/robot_module)
 		return
 
@@ -312,19 +305,19 @@
 	if(thruster_button)
 		thruster_button.icon_state = "ionpulse[ionpulse_on]"
 
-/mob/living/silicon/robot/Stat()
-	..()
-	if(statpanel("Status"))
-		if(cell)
-			stat("Charge Left:", "[cell.charge]/[cell.maxcharge]")
-		else
-			stat(null, text("No Cell Inserted!"))
+/mob/living/silicon/robot/get_status_tab_items()
+	. = ..()
+	. += ""
+	if(cell)
+		. += "Charge Left: [cell.charge]/[cell.maxcharge]"
+	else
+		. += text("No Cell Inserted!")
 
-		if(module)
-			for(var/datum/robot_energy_storage/st in module.storages)
-				stat("[st.name]:", "[st.energy]/[st.max_energy]")
-		if(connected_ai)
-			stat("Master AI:", connected_ai.name)
+	if(module)
+		for(var/datum/robot_energy_storage/st in module.storages)
+			. += "[st.name]: [st.energy]/[st.max_energy]"
+	if(connected_ai)
+		. += "Master AI: [connected_ai.name]"
 
 /mob/living/silicon/robot/restrained(ignore_grab)
 	. = 0
@@ -388,9 +381,14 @@
 		if (!W.tool_start_check(user, amount=0)) //The welder has 1u of fuel consumed by it's afterattack, so we don't need to worry about taking any away.
 			return
 		if(src == user)
+			if(health > 0)
+				to_chat(user, "<span class='warning'>You have repaired what you could! Get some help to repair the remaining damage.</span>")
+				return
 			to_chat(user, "<span class='notice'>You start fixing yourself...</span>")
 			if(!W.use_tool(src, user, 50))
 				return
+			if(health > 0)
+				return //safety check to prevent spam clciking and queing
 
 		adjustBruteLoss(-30)
 		updatehealth()
@@ -450,12 +448,12 @@
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
-		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
+		to_chat(user, "<span class='notice'>The wires have been [wiresexposed ? "exposed" : "unexposed"].</span>")
 		update_icons()
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && cell)	// radio
 		if(shell)
-			to_chat(user, "You cannot seem to open the radio compartment")	//Prevent AI radio key theft
+			to_chat(user, "<span class='notice'>You cannot seem to open the radio compartment.</span>")	//Prevent AI radio key theft
 		else if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
@@ -503,15 +501,16 @@
 			to_chat(user, "<span class='warning'>Unable to locate a radio!</span>")
 
 	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
-		if(emagged)//still allow them to open the cover
-			to_chat(user, "<span class='notice'>The interface seems slightly damaged.</span>")
 		if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card!</span>")
 		else
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+				to_chat(src, "<span class='notice'>[usr] [locked ? "locks" : "unlocks"] your cover.</span>")
 				update_icons()
+				if(emagged)
+					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")
 			else
 				to_chat(user, "<span class='danger'>Access denied.</span>")
 
@@ -765,7 +764,7 @@
 		robot_suit.head.flash2.burn_out()
 		robot_suit.head.flash2 = null
 		robot_suit.head = null
-		robot_suit.updateicon()
+		robot_suit.update_icon()
 	else
 		new /obj/item/robot_suit(T)
 		new /obj/item/bodypart/l_leg/robot(T)
@@ -796,24 +795,31 @@
 
 /mob/living/silicon/robot/modules/medical
 	set_module = /obj/item/robot_module/medical
+	icon_state = "medical"
 
 /mob/living/silicon/robot/modules/engineering
 	set_module = /obj/item/robot_module/engineering
+	icon_state = "engineer"
 
 /mob/living/silicon/robot/modules/security
 	set_module = /obj/item/robot_module/security
+	icon_state = "sec"
 
 /mob/living/silicon/robot/modules/clown
 	set_module = /obj/item/robot_module/clown
+	icon_state = "clown"
 
 /mob/living/silicon/robot/modules/peacekeeper
 	set_module = /obj/item/robot_module/peacekeeper
+	icon_state = "peace"
 
 /mob/living/silicon/robot/modules/miner
 	set_module = /obj/item/robot_module/miner
+	icon_state = "miner"
 
 /mob/living/silicon/robot/modules/janitor
 	set_module = /obj/item/robot_module/janitor
+	icon_state = "janitor"
 
 /mob/living/silicon/robot/modules/syndicate
 	icon_state = "synd_sec"
@@ -905,6 +911,12 @@
 					audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: All modules OFFLINE.\"</span>")
 					to_chat(src, "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
 					playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, 1, 1)
+
+/mob/living/silicon/robot/movement_delay()
+	. = ..()
+	var/hd = maxHealth - health
+	if(hd > 50)
+		. += hd/100
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
@@ -1002,6 +1014,7 @@
 		resize = 0.5
 		hasExpanded = FALSE
 		update_transform()
+	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
 	module.transform_to(/obj/item/robot_module)
 
 	// Remove upgrades.
@@ -1154,7 +1167,7 @@
 		M.visible_message("<span class='warning'>[M] really can't seem to mount [src]...</span>")
 		return
 	var/datum/component/riding/riding_datum = LoadComponent(/datum/component/riding/cyborg)
-	if(buckled_mobs)
+	if(has_buckled_mobs())
 		if(buckled_mobs.len >= max_buckled_mobs)
 			return
 		if(M in buckled_mobs)
@@ -1179,7 +1192,7 @@
 
 /mob/living/silicon/robot/unbuckle_mob(mob/user, force=FALSE)
 	if(iscarbon(user))
-		GET_COMPONENT(riding_datum, /datum/component/riding)
+		var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 		if(istype(riding_datum))
 			riding_datum.unequip_buckle_inhands(user)
 			riding_datum.restore_position(user)
@@ -1201,3 +1214,11 @@
 			connected_ai.aicamera.stored[i] = TRUE
 		for(var/i in connected_ai.aicamera.stored)
 			aicamera.stored[i] = TRUE
+
+/mob/living/silicon/robot/proc/charge(datum/source, amount, repairs)
+	if(module)
+		module.respawn_consumable(src, amount * 0.005)
+	if(cell)
+		cell.charge = min(cell.charge + amount, cell.maxcharge)
+	if(repairs)
+		heal_bodypart_damage(repairs, repairs - 1)

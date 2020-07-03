@@ -1,4 +1,0 @@
-author: " cyclowns"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes stimulum and nitryl reagents running out too fast"

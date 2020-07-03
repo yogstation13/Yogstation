@@ -60,8 +60,10 @@
 
 	triggering = TRUE
 	if (alert_observers)
-		message_admins("Random Event triggering in 10 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
-		sleep(100)
+		//Yogs start -- 15 seconds instead of 10
+		message_admins("Random Event triggering in 15 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
+		sleep(150)
+		//Yogs end
 		var/gamemode = SSticker.mode.config_tag
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 		if(!canSpawnEvent(players_amt, gamemode))
@@ -94,7 +96,8 @@
 	testing("[time2text(world.time, "hh:mm:ss")] [E.type]")
 	if(random)
 		log_game("Random Event triggering: [name] ([typepath])")
-
+	if (alert_observers)
+		deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered!", "<b>[name]</b>") //STOP ASSUMING IT'S BADMINS!
 	return E
 
 //Special admins setup
@@ -112,7 +115,6 @@
 	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
 	var/current_players	= 0 //Amount of of alive, non-AFK human players on server at the time of event start
 	var/fakeable = TRUE		//Can be faked by fake news event.
-	var/atom/atom_of_interest = null //Used for ghosts to follow the event when it starts, if possible
 
 //Called first before processing.
 //Allows you to setup your event, such as randomly
@@ -130,15 +132,22 @@
 /datum/round_event/proc/start()
 	return
 
-//Called after start()
-//Lets the ghosts know that the event has started, and provides a follow link to a mob if possible
+//Called after something followable has been spawned by an event
+//Provides ghosts a follow link to an atom if possible
 //Only called once.
-/datum/round_event/proc/announce_to_ghosts()
+/datum/round_event/proc/announce_to_ghosts(atom/atom_of_interest)
 	if(control.alert_observers)
 		if (atom_of_interest)
-			notify_ghosts("[control.name] has just been[control.random ? " randomly" : ""] triggered!", enter_link="<a href=?src=[REF(src)];orbit=1>(Click to orbit)</a>", source=atom_of_interest, action=NOTIFY_ORBIT, header="Event Triggered")
-		else 
-			notify_ghosts("[control.name] has just been[control.random ? " randomly" : ""] triggered!", header="Event Triggered")
+			//Yogs start -- Makes this a bit more specific
+			var/typeofthing = "object"
+			if(iscarbon(atom_of_interest))
+				typeofthing = "person"
+			else if(ismob(atom_of_interest))
+				typeofthing = "mob"
+			else if(isturf(atom_of_interest))
+				typeofthing = "place"
+			//Yogs end
+			notify_ghosts("[control.name] has \a [typeofthing] of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
 	return
 
 //Called when the tick is equal to the announceWhen variable.
@@ -168,14 +177,13 @@
 //Do not override this proc, instead use the appropiate procs.
 //This proc will handle the calls to the appropiate procs.
 /datum/round_event/process()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!processing)
 		return
 
 	if(activeFor == startWhen)
 		processing = FALSE
 		start()
-		if (!istype(src, /datum/round_event/ghost_role))
-			announce_to_ghosts() //Ghost roles handle announcing after the roles have been properly spawned from the try_spawn() proc
 		processing = TRUE
 
 	if(activeFor == announceWhen)

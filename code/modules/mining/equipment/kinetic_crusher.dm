@@ -6,10 +6,11 @@
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	name = "proto-kinetic crusher"
-	desc = "An early design of the proto-kinetic accelerator, it is little more than an combination of various mining tools cobbled together, forming a high-tech club. \
+	desc = "An early design of the proto-kinetic accelerator, it is little more than a combination of various mining tools cobbled together, forming a high-tech club. \
 	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna."
 	force = 20 //As much as a bone spear, but this is significantly more annoying to carry around due to requiring the use of both hands at all times
 	w_class = WEIGHT_CLASS_BULKY
+	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 20 //It's never not wielded so these are the same
 	force_wielded = 20
@@ -37,12 +38,12 @@
 	return ..()
 
 /obj/item/twohanded/required/kinetic_crusher/examine(mob/living/user)
-	..()
-	to_chat(user, "<span class='notice'>Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>")
-	to_chat(user, "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>")
+	. = ..()
+	. += "<span class='notice'>Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
+	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
 	for(var/t in trophies)
 		var/obj/item/crusher_trophy/T = t
-		to_chat(user, "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>")
+		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
 
 /obj/item/twohanded/required/kinetic_crusher/attackby(obj/item/I, mob/living/user)
 	if(I.tool_behaviour == TOOL_CROWBAR)
@@ -164,8 +165,8 @@
 	var/denied_type = /obj/item/crusher_trophy
 
 /obj/item/crusher_trophy/examine(mob/living/user)
-	..()
-	to_chat(user, "<span class='notice'>Causes [effect_desc()] when attached to a kinetic crusher.</span>")
+	. = ..()
+	. += "<span class='notice'>Causes [effect_desc()] when attached to a kinetic crusher.</span>"
 
 /obj/item/crusher_trophy/proc/effect_desc()
 	return "errors"
@@ -233,10 +234,10 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		if(H.ranged) //briefly delay ranged attacks
-			if(H.ranged_cooldown_time >= world.time)
-				H.ranged_cooldown_time += bonus_value
+			if(H.ranged_cooldown >= world.time)
+				H.ranged_cooldown += bonus_value
 			else
-				H.ranged_cooldown_time = bonus_value + world.time
+				H.ranged_cooldown = bonus_value + world.time
 
 //magmawing watcher
 /obj/item/crusher_trophy/blaster_tubes/magma_wing
@@ -395,6 +396,11 @@
 	return "mark detonation to create a barrier you can pass"
 
 /obj/item/crusher_trophy/vortex_talisman/on_mark_detonation(mob/living/target, mob/living/user)
+	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
+	var/area/current_area = current_location.loc //yogs more location check stuff
+	if(current_area.noteleport) //yogs added noteleport
+		to_chat(user, "[src] fizzles uselessly.")
+		return
 	var/turf/T = get_turf(user)
 	new /obj/effect/temp_visual/hierophant/wall/crusher(T, user) //a wall only you can pass!
 	var/turf/otherT = get_step(T, turn(user.dir, 90))
