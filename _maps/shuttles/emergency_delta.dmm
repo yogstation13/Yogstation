@@ -30,11 +30,6 @@
 "af" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"ag" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "ah" = (
 /obj/item/clothing/suit/hazardvest{
 	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
@@ -399,9 +394,6 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1544,22 +1536,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"Fk" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "Gb" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -1739,7 +1715,7 @@ bw
 bw
 bw
 bU
-hB
+JZ
 aa
 aa
 aa
@@ -1804,7 +1780,7 @@ bU
 af
 af
 aT
-hB
+Gb
 af
 af
 "}
@@ -2031,10 +2007,10 @@ ad
 af
 af
 aq
-ag
+hB
 aF
-Fk
-ag
+aF
+hB
 aP
 af
 af
@@ -2083,7 +2059,7 @@ af
 af
 af
 aT
-hB
+pT
 af
 af
 "}
@@ -2142,7 +2118,7 @@ bC
 bJ
 ai
 bZ
-hB
+JZ
 aa
 aa
 aa

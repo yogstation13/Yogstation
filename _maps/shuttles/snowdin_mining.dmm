@@ -21,7 +21,6 @@
 /area/shuttle/snowdin/elevator2)
 "b" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -54,6 +53,16 @@
 	},
 /turf/open/floor/engine,
 /area/shuttle/snowdin/elevator2)
+"h" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/snowdin/elevator2)
 "i" = (
 /obj/machinery/light/small,
 /turf/open/floor/engine,
@@ -73,23 +82,12 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/snowdin/elevator2)
-"y" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator2)
 
 (1,1,1) = {"
 j
-y
+h
 a
-y
+h
 d
 "}
 (2,1,1) = {"
@@ -115,8 +113,8 @@ b
 "}
 (5,1,1) = {"
 d
-y
+h
 q
-y
+h
 j
 "}

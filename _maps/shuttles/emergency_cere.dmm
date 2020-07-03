@@ -511,6 +511,26 @@
 /obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"aW" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"aX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/departments/restroom{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"aY" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/escape)
 "aZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -847,13 +867,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"bL" = (
-/obj/structure/sign/nanotrasen{
-	pixel_x = -32;
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "bM" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -1059,12 +1072,6 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"cg" = (
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -2182,9 +2189,9 @@ be
 ab
 bc
 ad
-ac
-ac
-ac
+Oe
+Oe
+Oe
 ad
 bc
 bZ
@@ -2387,7 +2394,7 @@ dz
 (7,1,1) = {"
 aa
 aa
-ac
+aW
 af
 aq
 ap
@@ -2431,7 +2438,7 @@ dz
 (8,1,1) = {"
 aa
 aa
-ac
+aW
 ag
 ar
 aA
@@ -2475,7 +2482,7 @@ dz
 (9,1,1) = {"
 aa
 aa
-ac
+aW
 ah
 as
 aB
@@ -2519,7 +2526,7 @@ dz
 (10,1,1) = {"
 aa
 aa
-ac
+aW
 ai
 at
 aC
@@ -2563,7 +2570,7 @@ ad
 (11,1,1) = {"
 aa
 aa
-ac
+aW
 aj
 at
 aC
@@ -2575,7 +2582,7 @@ ac
 bn
 bn
 ac
-ad
+aY
 aZ
 bc
 bc
@@ -2594,7 +2601,7 @@ bc
 bc
 bc
 Ah
-cg
+aX
 bc
 ab
 de
@@ -2607,7 +2614,7 @@ ad
 (12,1,1) = {"
 aa
 aa
-ac
+aW
 ak
 au
 aD
@@ -2620,7 +2627,7 @@ aZ
 aZ
 aZ
 lS
-bL
+bc
 bc
 bT
 rv
@@ -2651,7 +2658,7 @@ dz
 (13,1,1) = {"
 aa
 aa
-ac
+aW
 al
 av
 aE
@@ -2695,7 +2702,7 @@ dz
 (14,1,1) = {"
 aa
 aa
-ac
+aW
 am
 aw
 ax
@@ -2931,13 +2938,13 @@ bD
 bP
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xb
+Xb
+Xb
+Xb
+Xb
+Xb
+Xb
 ab
 ab
 pf

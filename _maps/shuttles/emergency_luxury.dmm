@@ -5,12 +5,101 @@
 "ab" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/shuttle/escape/luxury)
+"ac" = (
+/obj/machinery/chem_dispenser/drinks/beer{
+	name = "aperitif fountain";
+	pixel_y = 8
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"ad" = (
+/obj/machinery/chem_dispenser/drinks{
+	name = "soda fountain";
+	pixel_y = 8
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"ae" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"af" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
 "ag" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
+"ah" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"ai" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 10;
+	pixel_y = 9
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
 "aj" = (
 /turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"ak" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/storage/box/fancy/cigarettes/cigars/havana{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -10;
+	pixel_y = 7
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"al" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "ohnopoors"
+	},
+/turf/open/floor/plating,
+/turf/closed/indestructible/opsglass{
+	desc = "A durable looking window made of an alloy of of plasma and titanium.";
+	name = "plastitanium window"
+	},
 /area/shuttle/escape/luxury)
 "ap" = (
 /obj/structure/chair/comfy/shuttle{
@@ -198,16 +287,6 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
-"bl" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "ohnopoors"
-	},
-/turf/open/floor/plating,
-/turf/closed/indestructible/opsglass{
-	desc = "A durable looking window made of an alloy of of plasma and titanium.";
-	name = "plastitanium window"
-	},
-/area/shuttle/escape/luxury)
 "bC" = (
 /obj/structure/piano{
 	icon_state = "piano"
@@ -384,18 +463,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"wG" = (
-/obj/structure/table/wood/fancy/black,
-/obj/item/storage/box/fancy/cigarettes/cigars/havana{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -10;
-	pixel_y = 7
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
 "wK" = (
 /obj/machinery/light,
 /turf/open/floor/holofloor/beach/coast_b,
@@ -442,14 +509,6 @@
 /obj/item/broken_bottle,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"Av" = (
-/obj/machinery/chem_dispenser/drinks{
-	name = "soda fountain";
-	pixel_y = 8
-	},
-/obj/structure/table/wood/fancy/black,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
 "Bs" = (
 /turf/open/floor/holofloor/beach/coast_b,
 /area/shuttle/escape/luxury)
@@ -495,18 +554,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
-"EW" = (
-/obj/structure/table/wood/fancy/black,
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = 10;
-	pixel_y = 9
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
 "Gy" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -535,18 +582,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/shuttle/escape/luxury)
-"Ks" = (
-/obj/structure/table/wood/fancy/black,
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = -1;
-	pixel_y = 4
-	},
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 7
-	},
-/turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "Lm" = (
 /obj/item/reagent_containers/food/snacks/cherrycupcake{
@@ -579,14 +614,6 @@
 	icon_state = "toilet00"
 	},
 /turf/open/floor/carpet/royalblack,
-/area/shuttle/escape/luxury)
-"MJ" = (
-/obj/machinery/chem_dispenser/drinks/beer{
-	name = "aperitif fountain";
-	pixel_y = 8
-	},
-/obj/structure/table/wood/fancy/black,
-/turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "Nr" = (
 /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry{
@@ -835,7 +862,7 @@ ab
 Cq
 hN
 Dw
-bl
+al
 aj
 aj
 ny
@@ -851,7 +878,7 @@ ab
 EE
 ag
 Gy
-bl
+al
 aj
 PE
 at
@@ -867,7 +894,7 @@ ab
 Cq
 ag
 hm
-bl
+al
 aj
 ax
 aN
@@ -883,7 +910,7 @@ ab
 Gy
 ag
 JR
-bl
+al
 aj
 ax
 aO
@@ -899,7 +926,7 @@ ab
 Aj
 EE
 Gy
-bl
+al
 aj
 ax
 aP
@@ -915,7 +942,7 @@ ab
 RW
 ag
 Cq
-bl
+al
 aj
 ax
 aQ
@@ -931,7 +958,7 @@ ab
 UI
 ag
 Dw
-bl
+al
 aj
 ax
 aR
@@ -947,7 +974,7 @@ ab
 Dw
 ag
 wa
-bl
+al
 aj
 ax
 aS
@@ -963,7 +990,7 @@ nm
 km
 ag
 Dw
-bl
+al
 aj
 ax
 aT
@@ -1024,9 +1051,9 @@ ab
 "}
 (16,1,1) = {"
 ab
-MJ
-PE
-Ks
+ac
+ae
+ah
 YV
 aj
 ax
@@ -1042,7 +1069,7 @@ ab
 ab
 pa
 PE
-EW
+ai
 YV
 aj
 ax
@@ -1056,9 +1083,9 @@ ab
 "}
 (18,1,1) = {"
 ab
-Av
-PE
-wG
+ad
+af
+ak
 YV
 aj
 ax

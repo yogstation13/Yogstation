@@ -80,8 +80,8 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "o" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "p" = (
@@ -168,13 +168,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
-"H" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "S" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
@@ -183,8 +176,8 @@
 a
 b
 o
-H
-H
+o
+o
 b
 a
 "}

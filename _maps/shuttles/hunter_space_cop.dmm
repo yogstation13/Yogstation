@@ -12,8 +12,10 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/hunter)
 "d" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/hunter)
 "e" = (
@@ -138,7 +140,7 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
-"E" = (
+"r" = (
 /obj/machinery/button/door{
 	id = "Interpolship";
 	pixel_y = 26
@@ -184,6 +186,11 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
+"x" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/hunter)
 
 (1,1,1) = {"
 a
@@ -197,7 +204,7 @@ a
 (2,1,1) = {"
 a
 c
-E
+r
 n
 g
 c
@@ -236,7 +243,7 @@ d
 t
 i
 i
-d
+x
 a
 "}
 (7,1,1) = {"
@@ -245,7 +252,7 @@ d
 u
 i
 j
-d
+x
 a
 "}
 (8,1,1) = {"

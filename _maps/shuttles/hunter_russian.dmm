@@ -120,11 +120,19 @@
 /area/shuttle/hunter)
 "v" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/hunter)
 "w" = (
 /obj/machinery/fugitive_capture,
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter)
+"x" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/shuttle/hunter)
 "y" = (
 /turf/template_noop,
@@ -456,7 +464,7 @@ k
 v
 y
 y
-v
+x
 k
 k
 K

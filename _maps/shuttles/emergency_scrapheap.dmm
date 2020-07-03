@@ -27,11 +27,14 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "ah" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced{
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "ai" = (
 /obj/machinery/computer/atmos_alert{
@@ -49,13 +52,13 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "al" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
+/obj/structure/table/wood,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "am" = (
@@ -82,7 +85,15 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "ap" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
 /obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -236,17 +247,20 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 23
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aJ" = (
-/obj/structure/window/reinforced{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/carpet,
+/area/shuttle/escape)
+"aJ" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "aK" = (
 /obj/machinery/door/airlock/titanium{
@@ -270,13 +284,11 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aM" = (
-/obj/structure/window/reinforced{
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "aN" = (
 /obj/structure/table/wood,
@@ -331,6 +343,13 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 23
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aX" = (
@@ -377,7 +396,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -428,21 +447,21 @@
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bi" = (
-/obj/machinery/door/airlock{
-	name = "Unit B"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock{
+	name = "Unit 3"
+	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bj" = (
-/obj/structure/toilet{
-	dir = 4
-	},
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
@@ -493,7 +512,43 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"cu" = (
+"bq" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"br" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bs" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bt" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -501,6 +556,18 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bu" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "er" = (
@@ -543,18 +610,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"BZ" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Cl" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -783,7 +838,7 @@ bn
 Cl
 af
 ak
-ap
+aI
 ar
 av
 ac
@@ -804,11 +859,11 @@ bm
 bn
 "}
 (8,1,1) = {"
-Cl
 ah
 al
+ap
 aa
-ac
+Cl
 ac
 aB
 bo
@@ -856,8 +911,8 @@ aa
 aa
 aa
 aa
-ac
-ac
+aJ
+aM
 aB
 aH
 Gc
@@ -883,13 +938,13 @@ aa
 aa
 aa
 ab
-aI
-aJ
-BZ
-aM
-cu
-aJ
 aW
+bq
+br
+bs
+bt
+bq
+bu
 ab
 aa
 aa

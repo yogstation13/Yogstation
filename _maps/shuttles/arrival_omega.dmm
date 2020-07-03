@@ -81,17 +81,15 @@
 /area/shuttle/arrival)
 "j" = (
 /obj/machinery/door/airlock/shuttle,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/end{
+	icon_state = "warn_end";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
@@ -244,6 +242,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
+"A" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "C" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/pill_bottle/dice{
@@ -316,7 +319,7 @@ u
 f
 f
 p
-V
+A
 "}
 (3,1,1) = {"
 c
