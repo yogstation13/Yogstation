@@ -55918,6 +55918,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qas" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "qbE" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -58350,6 +58357,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"tJW" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "tKh" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -82739,7 +82752,7 @@ foN
 hCS
 bjt
 cBp
-blU
+qas
 buB
 abI
 bxu
@@ -82996,7 +83009,7 @@ bmh
 boK
 bjr
 boK
-bjr
+tJW
 bjr
 bub
 bxu
