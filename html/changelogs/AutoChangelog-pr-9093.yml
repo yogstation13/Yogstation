@@ -1,0 +1,5 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - rscadd: "adds lavaland plasteel and wood"
+  - bugfix: "fixes a lot of turfs to match their surrounding atmos"
