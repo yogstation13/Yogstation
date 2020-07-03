@@ -211,6 +211,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 #endif
 
 /client/Destroy()
+	SHOULD_CALL_PARENT(FALSE)
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/New(TopicData)
