@@ -17,8 +17,8 @@
 /area/lavaland/surface/outdoors)
 "g" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 4
+	dir = 4;
+	icon_state = "propulsion"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
@@ -163,8 +163,8 @@
 /area/ruin/powered)
 "N" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 4
+	dir = 4;
+	icon_state = "propulsion"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)

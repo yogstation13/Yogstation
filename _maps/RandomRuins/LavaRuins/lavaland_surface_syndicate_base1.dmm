@@ -529,7 +529,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 1;
 	name = "Cargo Bay APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/closet/emcloset/anchored,
 /obj/effect/decal/cleanable/dirt,
@@ -1131,7 +1131,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 1;
 	name = "Virology APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -1163,7 +1163,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 2;
 	name = "Experimentation Lab APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -2717,7 +2717,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 2;
 	name = "Dormitories APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -2819,7 +2819,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 8;
 	name = "Primary Hallway APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3476,7 +3476,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 1;
 	name = "Engineering APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4627,7 +4627,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 1;
 	name = "Arrival Hallway APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -5078,7 +5078,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 2;
 	name = "Telecommunications APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6388,7 +6388,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 8;
 	name = "Chemistry APC";
-	pixel_x = -24
+	pixel_x = -25
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -6722,7 +6722,7 @@
 /obj/machinery/power/apc/syndicate{
 	dir = 2;
 	name = "Bar APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/item/paicard,
 /turf/open/floor/wood,

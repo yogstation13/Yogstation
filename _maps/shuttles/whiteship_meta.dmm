@@ -993,7 +993,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Salvage Ship Crew Quarters APC";
-	pixel_y = -24;
+	pixel_y = -23;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -1272,7 +1272,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Salvage Ship Bar APC";
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/bar,
@@ -1483,7 +1483,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Salvage Ship Bridge APC";
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /obj/item/camera{
@@ -2016,7 +2016,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Salvage Ship Cargo APC";
-	pixel_x = -24;
+	pixel_x = -25;
 	req_access = null
 	},
 /obj/structure/cable{
@@ -2773,7 +2773,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Salvage Ship Engineering APC";
-	pixel_y = -24;
+	pixel_y = -23;
 	req_access = null
 	},
 /obj/structure/closet/crate,

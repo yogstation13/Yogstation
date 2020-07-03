@@ -138,24 +138,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
-"E" = (
-/obj/machinery/button/door{
-	id = "Interpolship";
-	pixel_y = 26
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 8;
-	icon_state = "warningline"
-	},
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/hunter)
 "s" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/titanium/blue,
@@ -182,6 +164,24 @@
 	view_range = 7;
 	x_offset = 6
 	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/hunter)
+"E" = (
+/obj/machinery/button/door{
+	id = "Interpolship";
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 8;
+	icon_state = "warningline"
+	},
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
 

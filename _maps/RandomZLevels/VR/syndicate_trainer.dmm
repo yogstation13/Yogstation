@@ -1785,8 +1785,8 @@
 /area/awaymission/centcomAway/general)
 "kD" = (
 /obj/machinery/door/window/northright{
-	icon_state = "right";
-	dir = 2
+	dir = 2;
+	icon_state = "right"
 	},
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)

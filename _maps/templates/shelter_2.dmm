@@ -133,8 +133,8 @@
 /area/survivalpod)
 "u" = (
 /obj/machinery/door/window/survival_pod{
-	icon_state = "windoor";
-	dir = 1
+	dir = 1;
+	icon_state = "windoor"
 	},
 /turf/open/floor/carpet/black,
 /area/survivalpod)
@@ -169,8 +169,8 @@
 /area/survivalpod)
 "y" = (
 /obj/structure/sink/kitchen{
-	icon_state = "sink_alt";
 	dir = 4;
+	icon_state = "sink_alt";
 	pixel_x = -13
 	},
 /turf/open/floor/carpet/black,

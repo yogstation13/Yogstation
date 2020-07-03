@@ -215,8 +215,8 @@
 /area/crew_quarters/bar)
 "av" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion"
 	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
@@ -310,8 +310,8 @@
 /area/crew_quarters/kitchen)
 "aG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -359,8 +359,8 @@
 /area/crew_quarters/bar)
 "aK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -421,8 +421,8 @@
 /area/crew_quarters/bar)
 "aO" = (
 /obj/machinery/computer{
-	icon_state = "computer";
-	dir = 8
+	dir = 8;
+	icon_state = "computer"
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -449,8 +449,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/mineral/titanium,
@@ -476,8 +476,8 @@
 /area/crew_quarters/kitchen)
 "aT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
@@ -495,8 +495,8 @@
 /area/crew_quarters/bar)
 "aW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
@@ -509,8 +509,8 @@
 /area/crew_quarters/bar)
 "aY" = (
 /obj/machinery/computer{
-	icon_state = "computer";
-	dir = 8
+	dir = 8;
+	icon_state = "computer"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -555,8 +555,8 @@
 /area/crew_quarters/kitchen)
 "bd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -794,8 +794,8 @@
 	pixel_y = 28
 	},
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 9
+	dir = 9;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -866,8 +866,8 @@
 "bL" = (
 /obj/machinery/vending/dinnerware,
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 5
+	dir = 5;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -876,8 +876,8 @@
 	dir = 8
 	},
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 4
+	dir = 4;
+	icon_state = "heater"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -931,8 +931,8 @@
 "bR" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -953,8 +953,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
@@ -1042,8 +1042,8 @@
 /area/crew_quarters/bar)
 "cb" = (
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -1098,8 +1098,8 @@
 /area/crew_quarters/kitchen)
 "ci" = (
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -1133,8 +1133,8 @@
 /area/crew_quarters/kitchen)
 "cn" = (
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
 /obj/machinery/firealarm{
 	dir = 8;
@@ -1185,8 +1185,8 @@
 	pixel_x = 30
 	},
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
 /obj/machinery/processor,
 /turf/open/floor/plating,
@@ -1249,8 +1249,8 @@
 	pixel_y = -25
 	},
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 10
+	dir = 10;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -1288,8 +1288,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes{
-	icon_state = "warningline";
-	dir = 6
+	dir = 6;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)

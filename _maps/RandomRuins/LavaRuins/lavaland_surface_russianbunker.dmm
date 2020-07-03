@@ -76,8 +76,8 @@
 	})
 "am" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/unpowered{
@@ -223,8 +223,8 @@
 	})
 "aI" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/turretid{
@@ -1011,8 +1011,8 @@
 	})
 "OY" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/statue/sandstone/assistant,
 /turf/open/floor/wood,
