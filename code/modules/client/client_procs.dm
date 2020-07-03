@@ -210,6 +210,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 GLOBAL_LIST_EMPTY(external_rsc_urls)
 #endif
 
+/client/Destroy()
+	return QDEL_HINT_HARDDEL_NOW
+
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
 	chatOutput = new /datum/chatOutput(src)
