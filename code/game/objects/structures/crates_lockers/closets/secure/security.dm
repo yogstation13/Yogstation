@@ -197,12 +197,6 @@
 	req_access_txt = "0"
 	req_one_access_txt = list(ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS)
 
-/obj/structure/closet/secure_closet/brig/PopulateContents()
-	..()
-	new /obj/item/clothing/under/rank/prisoner( src )
-	new /obj/item/clothing/under/rank/prisoner/skirt( src )
-	new /obj/item/clothing/shoes/sneakers/orange( src )
-
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(ACCESS_COURT)
