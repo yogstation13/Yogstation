@@ -108,12 +108,18 @@ GLOBAL_LIST_EMPTY(uplinks)
 			var/path = UI.refund_path || UI.item
 			var/cost = UI.refund_amount || UI.cost
 			if(I.type == path && UI.refundable && I.check_uplink_validity())
-				telecrystals += cost
-				if(purchase_log)
-					purchase_log.total_spent -= cost
-				to_chat(user, "<span class='notice'>[I] refunded.</span>")
-				qdel(I)
+				var/obj/item/antag_spawner/S = I
+				refundAntagSpawner(cost, S, user)
 				return
+
+/datum/component/uplink/proc/refundAntagSpawner(cost, obj/item/antag_spawner/I, mob/user)
+	if (I.discountPrice)
+		cost = I.discountPrice
+	telecrystals += cost
+	if(purchase_log)
+		purchase_log.total_spent -= cost
+		to_chat(user, "<span class='notice'>[I] refunded.</span>")
+	qdel(I)
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
 	if(locked)

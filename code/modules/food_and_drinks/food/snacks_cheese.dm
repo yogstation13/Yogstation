@@ -108,6 +108,7 @@
 	tastes = list("cheddar" = 1)
 
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/attackby(obj/item/W, mob/user, params)
+	. = ..()
 	if(W.tool_behaviour == TOOL_WELDER)
 		if(W.use_tool(src, user, 0, volume=40))
 			var/obj/item/stack/sheet/cheese/new_item = new(usr.loc, 5)

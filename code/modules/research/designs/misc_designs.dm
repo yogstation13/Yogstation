@@ -266,6 +266,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/body_camera
+	name = "Bodycamera"
+	desc = "A camera worn around the neck, meant to keep you safe."
+	id = "bodycam"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000, MAT_GOLD = 500)
+	build_path = /obj/item/clothing/neck/bodycam/
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/ticket_remote
 	name = "Ticket Machine Remote"
 	desc = "A remote for operating a ticket machine (sold seperately)"
@@ -353,7 +363,6 @@
 	build_path = /obj/structure/holosign/barrier/wetsign
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
-
 
 /datum/design/holosignsec
 	name = "Security Holobarrier Projector"
