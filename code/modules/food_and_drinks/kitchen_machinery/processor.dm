@@ -206,7 +206,7 @@
 				var/atom/movable/item = new S.coretype(drop_location())
 				adjust_item_drop_location(item)
 			else
-				var/atom/movable/itemz = new /obj/item/slime_extract/bad
+				var/atom/movable/itemz = new /obj/item/slime_extract/bad(drop_location())
 				adjust_item_drop_location(itemz)
 			SSblackbox.record_feedback("tally", "slime_core_harvested", 1, S.colour)
 	..()

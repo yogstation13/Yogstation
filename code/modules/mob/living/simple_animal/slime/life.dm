@@ -22,6 +22,7 @@
 			reagents.remove_all(0.5 * REAGENTS_METABOLISM * reagents.reagent_list.len) //Slimes are such snowflakes
 			handle_targets()
 			if (!ckey)
+				handle_happiness()
 				handle_mood()
 				handle_speech()
 
@@ -45,7 +46,6 @@
 	AIproc = 1
 
 	while(AIproc && stat != DEAD && (attacked || hungry || rabid || buckled))
-		happiness -= 0.5 //a hungry or fearful slime is not a happy slime
 		if(!(mobility_flags & MOBILITY_MOVE)) //also covers buckling. Not sure why buckled is in the while condition if we're going to immediately break, honestly
 			break
 
@@ -108,48 +108,9 @@
 			sleeptime = 1
 
 		sleep(sleeptime + 2) // this is about as fast as a player slime can go
-
-	if(stat != DEAD && stat != UNCONSCIOUS && (!(attacked || rabid)))
-		if(locate(/mob/living/simple_animal/slime) in view(5, src))
-			var/stepping = FALSE
-			for(var/mob/living/simple_animal/slime/S in view(5, src))
-				if (-1*personality == S.personality)
-					happiness -= 10 //This is very very bad
-					step_away(src, S, 8)
-				else
-					var/diff = abs(personality - S.personality)
-					switch(diff)
-						if (0)//They have the same personality
-							happiness += 1 //yaaay!
-							if (!S.Adjacent(src) && !stepping)
-								MoveAtSlime(S) //time to go towards friend!
-								stepping = TRUE
-						if (1)
-							happiness += 0.5 //Adjacent slimes are still ok, I guess...
-							if (!S.Adjacent(src) && !stepping)
-								MoveAtSlime(S)
-								stepping = TRUE
-						if (3 to 5)
-							happiness -= 0.5 //No! I don't like that!
-							if (!stepping)
-								MoveAtSlime(S, FALSE)
-								stepping = TRUE
-						if (6 to 9)
-							happiness -= 1 //I DONT LIKE YOU
-							if (!stepping)
-								MoveAtSlime(S, FALSE)
-								stepping = TRUE
-						if (9 to 14)
-							happiness -= 2 //ANGEREY
-							if (!stepping)
-								MoveAtSlime(S, FALSE)
-								stepping = TRUE
-		else//No slime friends?
-			happiness -= 0.25 //I'm lonely...
-	happiness = clamp(happiness, MIN_HAPPY, MAX_HAPPY)
 	AIproc = 0
 
-/mob/living/simple_animal/slime/proc/MoveAtSlime(mob/living/simple_animal/slime/S, Towards = TRUE) //helper proc for the above.
+/mob/living/simple_animal/slime/proc/MoveAtSlime(mob/living/simple_animal/slime/S, Towards = TRUE) //helper proc
 	if(Towards)
 		step_towards(src, S, 0)
 	else
@@ -455,13 +416,56 @@
 /mob/living/simple_animal/slime/handle_automated_speech()
 	return //slime random speech is currently handled in handle_speech()
 
+/mob/living/simple_animal/slime/proc/handle_happiness()
+	if(stat != DEAD && stat != UNCONSCIOUS && (!(attacked || rabid)))
+		if(locate(/mob/living/simple_animal/slime) in view(4, src))
+			var/stepping = FALSE
+			for(var/mob/living/simple_animal/slime/S in view(4, src))
+				if (-1*personality == S.personality)
+					happiness -= 10 //This is very very bad
+					step_away(src, S, 8)
+				else
+					var/diff = abs(personality - S.personality)
+					switch(diff)
+						if (0)//They have the same personality
+							happiness += 1 //yaaay!
+							if (!S.Adjacent(src) && !stepping)
+								MoveAtSlime(S) //time to go towards friend!
+								stepping = TRUE
+						if (1)
+							happiness += 0.5 //Adjacent slimes are still ok, I guess...
+							if (!S.Adjacent(src) && !stepping)
+								MoveAtSlime(S)
+								stepping = TRUE
+						if (3 to 5)
+							happiness -= 0.5 //No! I don't like that!
+							if (!stepping)
+								MoveAtSlime(S, FALSE)
+								stepping = TRUE
+						if (6 to 9)
+							happiness -= 1 //I DONT LIKE YOU
+							if (!stepping)
+								MoveAtSlime(S, FALSE)
+								stepping = TRUE
+						if (10 to 14)
+							happiness -= 2 //ANGEREY
+							if (!stepping)
+								MoveAtSlime(S, FALSE)
+								stepping = TRUE
+		else//No slime friends?
+			happiness -= 0.25 //I'm lonely...
+
+	else if(attacked)
+		happiness -= 0.5 //Slimes don't like being attacked. If they're rabid, they do not care!
+	happiness = clamp(happiness, MIN_HAPPY, MAX_HAPPY)
+
 /mob/living/simple_animal/slime/proc/handle_mood()
 	var/newmood = ""
 	if (rabid || attacked)
 		newmood = "angry"
 	else if (happiness < 0)
 		newmood = pick("sad", "pout")
-	else if (docile)
+	else if (docile || happiness > 20 || !Discipline)
 		newmood = ":3"
 	else if (Target)
 		newmood = "mischievous"

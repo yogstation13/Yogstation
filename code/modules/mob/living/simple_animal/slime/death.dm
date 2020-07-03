@@ -4,11 +4,14 @@
 	if(!gibbed)
 		if(is_adult)
 			var/mob/living/simple_animal/slime/M = new(loc, colour)
+			M.happiness = 0
 			M.rabid = TRUE
 			M.regenerate_icons()
 
 			is_adult = FALSE
 			maxHealth = 150
+			personality = rand(-7,7) //being sliced in twain produces two new babies. New personalities!
+			happiness = 0 //a fresh start!
 			for(var/datum/action/innate/slime/reproduce/R in actions)
 				R.Remove(src)
 			var/datum/action/innate/slime/evolve/E = new
