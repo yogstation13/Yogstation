@@ -29222,6 +29222,32 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"blE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "blF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -29378,6 +29404,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
+"bma" = (
+/obj/structure/table,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/obj/item/stack/cable_coil,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "bmb" = (
 /obj/machinery/holopad,
 /obj/structure/cable{
@@ -30631,6 +30675,32 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
 "bou" = (
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
+"bov" = (
+/obj/structure/table,
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/crowbar,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bow" = (
@@ -50974,37 +51044,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
-"iCV" = (
-/obj/structure/table,
-/obj/item/assembly/prox_sensor{
-	pixel_x = -2;
-	pixel_y = 9
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -10;
-	pixel_y = 8
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -10
-	},
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 7;
-	pixel_y = 2
-	},
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/item/crowbar,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "iDv" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -57524,46 +57563,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
-"sLO" = (
-/obj/structure/table,
-/obj/item/stack/sheet/plasteel{
-	amount = 10;
-	pixel_x = -1;
-	pixel_y = 4
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = -10;
-	pixel_y = 10
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = -10;
-	pixel_y = 4
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = -10;
-	pixel_y = -1
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 9;
-	pixel_y = 11
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 9;
-	pixel_y = 5
-	},
-/obj/item/assembly/flash/handheld{
-	pixel_x = 10
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "sNe" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -60632,46 +60631,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"xYx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 29
-	},
-/obj/item/healthanalyzer{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/obj/item/storage/firstaid/regular{
-	empty = 1;
-	name = "First-Aid (empty)";
-	pixel_x = -1;
-	pixel_y = 7
-	},
-/obj/item/healthanalyzer{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/regular{
-	empty = 1;
-	name = "First-Aid (empty)";
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/healthanalyzer{
-	pixel_x = 4
-	},
-/obj/item/storage/firstaid/regular{
-	empty = 1;
-	name = "First-Aid (empty)";
-	pixel_x = -6;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "xYL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -108033,9 +107992,9 @@ bfX
 bhy
 biP
 bko
-xYx
-sLO
-iCV
+blE
+bma
+bov
 bpU
 brq
 bsW
