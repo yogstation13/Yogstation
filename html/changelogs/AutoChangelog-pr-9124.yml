@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "nuke ops now use antag_pick, antag tokens should now work for nuke ops if they didnt already"
