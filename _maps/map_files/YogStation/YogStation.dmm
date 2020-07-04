@@ -48807,6 +48807,7 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "fip" = (
