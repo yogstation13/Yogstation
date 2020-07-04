@@ -40,7 +40,7 @@
 	if(sound_only)
 		playsound(src, sound_file, 50, 0)
 		return
-	if(!file || admin)
+	if(!sound_file || admin)
 		return
 	if(sound_on)
 		playsound(src, sound_file, 50, 0)
