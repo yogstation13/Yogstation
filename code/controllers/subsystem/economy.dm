@@ -16,8 +16,8 @@ SUBSYSTEM_DEF(economy)
 	var/full_ancap = FALSE // Enables extra money charges for things that normally would be free, such as sleepers/cryo/cloning.
 							//Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.
 	var/datum/station_state/engineering_check = new /datum/station_state()
-	var/alive_humans_bounty = 90
-	var/crew_safety_bounty = 1000
+	var/alive_humans_bounty = 85
+	var/crew_safety_bounty = 1200
 	var/monster_bounty = 100
 	var/mood_bounty = 100
 	var/techweb_bounty = 25 // yogs start - nerf insane rd budget
