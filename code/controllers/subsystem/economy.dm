@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(economy)
 	init_order = INIT_ORDER_ECONOMY
 	runlevels = RUNLEVEL_GAME
 	var/roundstart_paychecks = 5
-	var/budget_pool = 35000
+	var/budget_pool = 30000
 	var/list/department_accounts = list(ACCOUNT_CIV = ACCOUNT_CIV_NAME,
 										ACCOUNT_ENG = ACCOUNT_ENG_NAME,
 										ACCOUNT_SCI = ACCOUNT_SCI_NAME,
@@ -16,9 +16,9 @@ SUBSYSTEM_DEF(economy)
 	var/full_ancap = FALSE // Enables extra money charges for things that normally would be free, such as sleepers/cryo/cloning.
 							//Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.
 	var/datum/station_state/engineering_check = new /datum/station_state()
-	var/alive_humans_bounty = 100
-	var/crew_safety_bounty = 1500
-	var/monster_bounty = 150
+	var/alive_humans_bounty = 90
+	var/crew_safety_bounty = 1000
+	var/monster_bounty = 100
 	var/mood_bounty = 100
 	var/techweb_bounty = 25 // yogs start - nerf insane rd budget
 	var/slime_bounty = list("grey" = 10,
@@ -122,6 +122,8 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/sci_payout()
 	var/science_bounty = 0
 	for(var/mob/living/simple_animal/slime/S in GLOB.mob_list)
+		if(!is_station_level(S.z)
+			continue
 		if(S.stat == DEAD)
 			continue
 		science_bounty += slime_bounty[S.colour]
