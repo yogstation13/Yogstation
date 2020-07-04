@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		var/offer = alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", "Yes", "No")
 		if(offer == "Yes" && offer_control(occupant))
 			return
-		if(!mob_occupant) //Check they still exist
+		if(!occupant) //Check they still exist
 			return
 		if(mob_occupant.client)//if they're logged in
 			addtimer(VARSET_CALLBACK(src, ready, TRUE), (time_till_despawn * 0.1)) // This gives them 30 seconds
