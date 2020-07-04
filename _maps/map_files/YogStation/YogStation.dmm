@@ -48798,6 +48798,18 @@
 /obj/machinery/rnd/production/techfab/department/cargo,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"fhv" = (
+/obj/machinery/power/smes/engineering{
+	charge = 5e+006
+	},
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "fip" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -50135,13 +50147,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"hnJ" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "hoc" = (
 /turf/closed/wall,
 /area/security/checkpoint/service)
@@ -50638,6 +50643,15 @@
 /obj/item/electronics/firelock,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hWd" = (
+/obj/machinery/power/smes/engineering{
+	charge = 5e+006
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "hWw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -51608,16 +51622,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/engine/atmos_distro)
-"jvq" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable/white{
-	icon_state = "0-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai)
 "jwH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -102467,7 +102471,7 @@ aaa
 aaa
 ekx
 tgv
-hnJ
+hWd
 pQP
 igK
 xPv
@@ -105301,7 +105305,7 @@ pEf
 cva
 cva
 cva
-jvq
+fhv
 ykL
 cva
 cva
