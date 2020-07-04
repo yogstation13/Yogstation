@@ -8,7 +8,7 @@
 	var/bloodstone_cooldown = FALSE
 
 /proc/iscultist(mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/cult)
+	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
 	for(var/datum/objective/sacrifice/sac_objective in objectives)

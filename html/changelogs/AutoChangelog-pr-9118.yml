@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "cogscarabs no longer have a random chance to spawn off of clock cult rounds"

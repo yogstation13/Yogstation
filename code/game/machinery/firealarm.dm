@@ -138,7 +138,7 @@
 		return ..()
 	add_fingerprint(user)
 	var/area/A = get_area(src)
-	if(A.fire)
+	if(A.fire || A.party)
 		reset(user)
 	else
 		alarm(user)
@@ -294,7 +294,7 @@
 		set_light(l_power = 0)
 
 /*
- * Return of Party button
+ * Return of the Return of the Party button
  */
 
 /area

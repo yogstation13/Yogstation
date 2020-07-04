@@ -22,8 +22,8 @@
 
 	if(ckey)
 		var/datum/DBQuery/query_antag_token = SSdbcore.NewQuery({"SELECT reason, denial_reason, applying_admin, denying_admin, granted_time, redeemed, round_id, id
-		FROM [format_table_name("antag_tokens")] WHERE ckey = '[sanitizeSQL(ckey(ckey))]'
-		ORDER BY granted_time DESC"})
+		FROM [format_table_name("antag_tokens")] WHERE ckey = :ckey
+		ORDER BY granted_time DESC"}, list("ckey" = ckey(ckey)))
 		if(!query_antag_token.warn_execute())
 			qdel(query_antag_token)
 			return
@@ -90,16 +90,14 @@
 		return
 
 	var/admin_key = key_name_admin(usr)
-	reason = sanitizeSQL(reason)
-	var/token = list(
-	list("granted_time" = "NOW()",
-	"ckey" = "'[sanitizeSQL(ckey(ckey))]'",
-	"round_id" = sanitizeSQL(roundid),
-	"reason" = "'[reason]'",
-	"applying_admin" = "'[sanitizeSQL(ckey(owner.ckey))]'",
-	))
 
-	if(!SSdbcore.MassInsert(format_table_name("antag_tokens"), token, warn = 1))
+	var/datum/DBQuery/add_token = SSdbcore.NewQuery(
+			"INSERT INTO [format_table_name("antag_tokens")] (granted_time, ckey, round_id, reason, applying_admin) VALUES (NOW(), :ckey, :id, :reason, :admin)",
+			list("ckey" = ckey(ckey), "id" = roundid,"reason" = reason, "admin" = ckey(owner.ckey))
+		)
+
+	if(!add_token.warn_execute())
+		qdel(add_token)
 		alert("Failed to give token!")
 		return
 
@@ -123,8 +121,8 @@
 		return
 
 	var/datum/DBQuery/query_antag_token = SSdbcore.NewQuery({"SELECT id
-		FROM [format_table_name("antag_tokens")] WHERE ckey = '[sanitizeSQL(ckey(ckey))]' AND redeemed = 0
-		ORDER BY granted_time DESC"})
+		FROM [format_table_name("antag_tokens")] WHERE ckey = :ckey AND redeemed = 0
+		ORDER BY granted_time DESC"}, list("ckey" = ckey(ckey)))
 
 	if(!query_antag_token.warn_execute())
 		qdel(query_antag_token)
@@ -132,9 +130,9 @@
 
 	if(query_antag_token.NextRow())
 		var/id = query_antag_token.item[1]
-		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] 
-		SET redeemed = 1, denying_admin = '[sanitizeSQL(ckey(owner.ckey))]'
-		WHERE id = [id]"})
+		var/datum/DBQuery/query_antag_token_redeem = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")]
+		SET redeemed = 1, denying_admin = :admin
+		WHERE id = :id"}, list("admin" = ckey(owner.ckey), "id" = id))
 		if(!query_antag_token_redeem.warn_execute())
 			alert("Failed to redeem token!")
 			qdel(query_antag_token_redeem)
@@ -152,7 +150,7 @@
 
 
 /datum/admins/proc/has_antag_token(ckey)
-	var/datum/DBQuery/query_antag_token_existing = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE ckey = '[sanitizeSQL(ckey(ckey))]' AND redeemed = 0"})
+	var/datum/DBQuery/query_antag_token_existing = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE ckey = :ckey AND redeemed = 0"}, list("ckey" = ckey(ckey)))
 
 	if(!query_antag_token_existing.warn_execute())
 		qdel(query_antag_token_existing)
@@ -178,7 +176,7 @@
 	var/number_id = text2num(id)
 
 	var/ckey
-	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = [number_id]"})
+	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = :id"}, list("id" = number_id))
 	if(!query_antag_token_exists.warn_execute())
 		qdel(query_antag_token_exists)
 		alert("Token not redeemed!")
@@ -194,7 +192,7 @@
 
 	qdel(query_antag_token_exists)
 
-	var/datum/DBQuery/query_antag_token_deny = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET redeemed = 1, denying_admin = '[sanitizeSQL(ckey(owner.ckey))]' WHERE id = [number_id]"})
+	var/datum/DBQuery/query_antag_token_deny = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET redeemed = 1, denying_admin = :admin WHERE id = :id"}, list("admin" = ckey(owner.ckey), "id" = number_id))
 
 	if(!query_antag_token_deny.warn_execute())
 		qdel(query_antag_token_deny)
@@ -227,7 +225,7 @@
 	var/number_id = text2num(id)
 
 	var/ckey
-	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = [number_id]"})
+	var/datum/DBQuery/query_antag_token_exists = SSdbcore.NewQuery({"SELECT ckey FROM [format_table_name("antag_tokens")] WHERE id = :id"}, list("id" = number_id))
 	if(!query_antag_token_exists.warn_execute())
 		qdel(query_antag_token_exists)
 		alert("Token not redeemed!")
@@ -242,8 +240,8 @@
 
 	qdel(query_antag_token_exists)
 
-	var/datum/DBQuery/query_antag_token_deny = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET denying_admin = '[sanitizeSQL(ckey(owner.ckey))]',
-	denial_reason = '[sanitizeSQL(reason)]', redeemed = 1 WHERE id = [number_id]"})
+	var/datum/DBQuery/query_antag_token_deny = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET denying_admin = :admin,
+	denial_reason = :reason, redeemed = 1 WHERE id = :id"}, list("admin" = ckey(owner.ckey), "reason" = reason, "id" = number_id))
 	if(!query_antag_token_deny.warn_execute())
 		qdel(query_antag_token_deny)
 		return
@@ -265,14 +263,14 @@
 
 	var/datum/browser/token_panel = new(usr, "redeemabletokenpanel", "Antag Token Panel", 850, 600)
 
-	
+
 
 	var/datum/DBQuery/query_antag_token = SSdbcore.NewQuery({"SELECT DISTINCT ckey FROM [format_table_name("antag_tokens")] WHERE redeemed = 0"})
 
 	if(!query_antag_token.warn_execute())
 		qdel(query_antag_token)
 		return
-		
+
 	var/list/data = list()
 	while(query_antag_token.NextRow())
 		var/ckey = query_antag_token.item[1]

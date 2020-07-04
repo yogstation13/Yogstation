@@ -67,8 +67,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		var/discount = A.get_discount()
 		var/list/disclaimer = list("Void where prohibited.", "Not recommended for children.", "Contains small parts.", "Check local laws for legality in region.", "Do not taunt.", "Not responsible for direct, indirect, incidental or consequential damages resulting from any defect, error or failure to perform.", "Keep away from fire or flames.", "Product is provided \"as is\" without any implied or expressed warranties.", "As seen on TV.", "For recreational use only.", "Use only as directed.", "16% sales tax will be charged for orders originating within Space Nebraska.")
 		A.limited_stock = limited_stock
-		I.refundable = FALSE //THIS MAN USES ONE WEIRD TRICK TO GAIN FREE TC, CODERS HATES HIM!
-		A.refundable = FALSE
 		if(A.cost >= 20) //Tough love for nuke ops
 			discount *= 0.5
 		A.category = category_name
@@ -76,7 +74,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		A.name += " ([round(((initial(A.cost)-A.cost)/initial(A.cost))*100)]% off!)"
 		A.desc += " Normally costs [initial(A.cost)] TC. All sales final. [pick(disclaimer)]"
 		A.item = I.item
-
+		if (A.refundable)
+			var/obj/item/antag_spawner/S = new A.item()
+			S.discountPrice = A.cost
+			A.item = S
 		uplink_items[category_name][A.name] = A
 
 
@@ -451,7 +452,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun. \
 			This deadly weapon has a massive 50-round magazine of devastating 7.12x82mm ammunition."
 	item = /obj/item/gun/ballistic/automatic/l6_saw
-	cost = 18
+	cost = 20
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1910,6 +1911,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	cant_discount = TRUE
 	illegal_tech = FALSE
+	
+/datum/uplink_item/badass/syndiefedora
+	name = "Syndicate Fedora"
+	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style!"
+	item = /obj/item/clothing/head/det_hat/evil
+	cost = 3
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"

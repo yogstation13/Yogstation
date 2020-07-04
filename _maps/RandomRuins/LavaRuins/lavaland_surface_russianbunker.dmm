@@ -76,8 +76,8 @@
 	})
 "am" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/unpowered{
@@ -223,8 +223,8 @@
 	})
 "aI" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/turretid{
@@ -672,6 +672,10 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
+"mQ" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
 "nj" = (
 /obj/effect/mine/stun,
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
@@ -1011,8 +1015,8 @@
 	})
 "OY" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/statue/sandstone/assistant,
 /turf/open/floor/wood,
@@ -1623,7 +1627,7 @@ ab
 ab
 ab
 aa
-ab
+aa
 aa
 aa
 aa
@@ -1959,7 +1963,7 @@ bA
 bA
 bA
 bA
-cA
+mQ
 aa
 aa
 "}

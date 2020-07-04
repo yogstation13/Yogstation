@@ -232,7 +232,7 @@
 /obj/item/stand_arrow/boss/Initialize()
 	. = ..()
 	for(var/mob/living/M in range(0,src)) //this is probably a bad way of doing this help
-		if(M && M.mind && M.mind.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking
+		if(M?.mind?.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking
 			owner = M.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)

@@ -61,3 +61,8 @@
 	item_state = "clown_broken"
 	spawner_type = /mob/living/simple_animal/hostile/retaliate/clown/mutant
 	deliveryamt = 5
+	
+/obj/item/grenade/spawnergrenade/clownbugs
+	name = "clown bug special"
+	spawner_type = /mob/living/simple_animal/cockroach/clownbug
+	deliveryamt = 6

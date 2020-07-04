@@ -168,6 +168,17 @@ Difficulty: Insanely Hard
 	move_to_delay = 3
 	loot = list(/obj/item/clothing/head/yogs/goatpope)
 
+/mob/living/simple_animal/hostile/retaliate/goat/guard/harem
+	name = "goat with a wig"
+	desc = "A very... handsome beast?"
+	icon_state = "goat_harem"
+	icon_living = "goat_harem"
+	icon_dead = "goat_harem_dead"
+	faction = list("goat_king")
+	attack_same = FALSE
+	minimum_distance = 5
+	retreat_distance = 7
+
 /mob/living/simple_animal/hostile/retaliate/goat/king/Retaliate()
 	..()
 	if(stat == CONSCIOUS && prob(5))
