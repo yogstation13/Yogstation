@@ -3376,6 +3376,7 @@
 #include "yogstation\code\modules\power\apc.dm"
 #include "yogstation\code\modules\power\hugbox.dm"
 #include "yogstation\code\modules\power\lighting.dm"
+#include "yogstation\code\modules\power\treadmill.dm"
 #include "yogstation\code\modules\power\validhunter.dm"
 #include "yogstation\code\modules\power\antimatter\containment_jar.dm"
 #include "yogstation\code\modules\power\antimatter\control.dm"
