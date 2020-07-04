@@ -58,7 +58,7 @@
 	for(var/datum/mind/M in bloods_to_blood)
 		M.add_antag_datum(/datum/antagonist/cult/agent)
 	for(var/datum/mind/M in coggers_to_cog)
-		add_servant_of_ratvar(clock, TRUE, FALSE, TRUE)
+		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
 	clock_agent_team.forge_clock_objectives()
 	blood_agent_team.forge_blood_objectives()
 	return ..()
