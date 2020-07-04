@@ -108,7 +108,7 @@
 		to_chat(user, "<span class='notice'>Cannot clear logs, the scanner is in use.</span>")
 		return
 	to_chat(user, "<span class='notice'>The scanner logs are cleared.</span>")
-	log = list()
+	log.Cut()
 
 /obj/item/detective_scanner/attack(mob/living/M, mob/user)
 	return
