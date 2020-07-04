@@ -360,5 +360,4 @@ Credit where due:
 				/obj/item/clockwork/alloy_shards/large = 15,
 				/obj/structure/destructible/clockwork/wall_gear = 20,
 				/obj/structure/table_frame/brass = 20,
-				/obj/item/stack/tile/brass/ten = 23,
-				/obj/item/clockwork/construct_chassis/cogscarab = 1)
+				/obj/item/stack/tile/brass/ten = 23)
