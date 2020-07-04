@@ -1,6 +1,0 @@
-author: "wejengin2"
-delete-after: true 
-changes: 
-  - tweak: "tweaks, additions and deletions in wizard academy"
-  - bugfix: "fixes a bunch of things in the wizard academy"
-  - rscdel: "deletes the zlevel version of the wizard academy"
