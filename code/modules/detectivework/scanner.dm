@@ -31,10 +31,10 @@
 	var/advanced = FALSE // does this scanner pull up more details on results?
 	var/can_sound = TRUE // can this scanner play sound at all?
 	var/sound_on = TRUE // is the sound currently turned on?
-	var/sound_scanner_scan = '"sound/items/scanner_scan.ogg"'
-	var/sound_scanner_positive = '"sound/items/scanner_positive.ogg"'
-	var/sound_scanner_nomatch = '"sound/items/scanner_nomatch.ogg"'
-	var/sound_scanner_match = '"sound/items/scanner_match.ogg"'
+	var/sound_scanner_scan = 'sound/items/scanner_scan.ogg'
+	var/sound_scanner_positive = 'sound/items/scanner_positive.ogg'
+	var/sound_scanner_nomatch = 'sound/items/scanner_nomatch.ogg'
+	var/sound_scanner_match = 'sound/items/scanner_match.ogg'
 
 /obj/item/detective_scanner/proc/feedback(sound_file , var/sound_only = FALSE)
 	if(sound_only)
