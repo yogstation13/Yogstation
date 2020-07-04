@@ -10,7 +10,7 @@
 		if(!new_key)
 			return
 		var/new_ckey = ckey(new_key)
-		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ckey = :new_ckey", list("ckey" = new_ckey))
+		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ckey = :new_ckey", list("new_ckey" = new_ckey))
 		if(!query_find_ckey.warn_execute())
 			qdel(query_find_ckey)
 			return
