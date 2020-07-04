@@ -42,6 +42,7 @@
 	for(var/j = 1 to team_size)
 		var/datum/mind/clock = antag_pick(possible_clocks)
 		possible_clocks -= clock
+		possible_bloods -= clock
 		antag_candidates -= clock
 		clock.restricted_roles = restricted_jobs
 		coggers_to_cog += clock
