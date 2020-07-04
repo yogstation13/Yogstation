@@ -46,7 +46,7 @@ export const Radio = (props, context) => {
                   value={frequency / 10}
                   format={value => toFixed(value, 1)}
                   onDrag={(e, value) => act('frequency', {
-                    adjust: (value - frequency / 10),
+                    adjust: value,
                   })} />
               )}
               {tunedChannel && (

@@ -1178,3 +1178,35 @@
 /datum/species/golem/soviet/proc/handle_speech(datum/source, list/speech_args)
 	playsound(source, 'sound/misc/Cyka Blyat.ogg', 25, 0)
 	speech_args[SPEECH_MESSAGE] = "Cyka Blyat"
+
+/datum/species/golem/cheese
+	name = "Cheese Golem"
+	id = "cheese golem"
+	fixed_mut_color = "F1D127"
+	meat = /obj/item/stack/sheet/cheese
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	armor = 10
+	burnmod = 1.25
+	heatmod = 1.5
+	brutemod = 0.8
+	info_text = "You are a <span class='danger'>Cheese Golem</span>, you take extra damage from heat and fire, you're resistant to brute, but people can eat you!"
+	prefix = "Cheese"
+	special_names = list("Gouda")
+	var/integrity = 40
+	punchdamagehigh = 10
+
+/datum/species/golem/cheese/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H)
+	..()
+	if(M.reagents && M != H && M.a_intent == INTENT_HARM)
+		if((M.nutrition + 10) > (600 * (1 + M.overeatduration / 2000)))
+			return
+		else
+			M.visible_message("<span class='danger'>[M] takes a bite out of [H]!</span>")
+			playsound(get_turf(H), 'sound/items/eatfood.ogg', 25, 0)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
+			if(integrity <= 0)
+				qdel(H)
+				M.visible_message("<span class='danger'>[H]'s can no longer maintain stuctural integrity and falls to pieces!</span>")
+			else
+				integrity = integrity - 0.4

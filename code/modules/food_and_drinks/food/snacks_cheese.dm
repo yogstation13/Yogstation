@@ -107,6 +107,20 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cheddar" = 1)
 
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(W.tool_behaviour == TOOL_WELDER)
+		if(W.use_tool(src, user, 0, volume=40))
+			var/obj/item/stack/sheet/cheese/new_item = new(usr.loc, 5)
+			user.visible_message("[user.name] shaped [src] into a sturdier looking cheese with [W].", \
+						 "<span class='notice'>You shape [src] into a sturdier looking cheese with [W].</span>", \
+						 "<span class='italics'>You hear welding.</span>")
+			var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/R = src
+			qdel(src)
+			var/replace = (user.get_inactive_held_item()==R)
+			if (!R && replace)
+				user.put_in_hands(new_item)
+
 /obj/item/reagent_containers/food/snacks/cheesemix/cheddar
 	name = "cheddar mix"
 	cooked_type = /obj/item/reagent_containers/food/snacks/cheesemix_heated/cheddar

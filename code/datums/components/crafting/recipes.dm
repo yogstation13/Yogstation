@@ -613,6 +613,22 @@
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/goliathshield
+	name = "Goliath shield"
+	result = /obj/item/shield/riot/goliath
+	time = 60
+	reqs = list(/obj/item/stack/sheet/bone = 4,
+				/obj/item/stack/sheet/animalhide/goliath_hide = 3)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/bonesword
+	name = "Bone Sword"
+	result = /obj/item/claymore/bone
+	time = 40
+	reqs = list(/obj/item/stack/sheet/bone = 3,
+				/obj/item/stack/sheet/sinew = 2)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/drakecloak
 	name = "Ash Drake Armour"
 	result = /obj/item/clothing/suit/hooded/cloak/drake
@@ -805,5 +821,13 @@
 	tools = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 30
+	
+/datum/crafting_recipe/woodenmug
+	name = "Wooden Mug"
+	result = /obj/item/reagent_containers/glass/woodmug
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
+	time = 20
+	category = CAT_PRIMAL
+
 
 	

@@ -56,3 +56,9 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/datum/antagonist/gang/boss/B = new()
 		M.add_antag_datum(B)
 		B.equip_gang()
+
+/proc/is_gangster(mob/M) // Gangster Checks
+	return M?.mind?.has_antag_datum(/datum/antagonist/gang)
+
+/proc/is_gang_boss(mob/M)
+	return M?.mind?.has_antag_datum(/datum/antagonist/gang/boss)

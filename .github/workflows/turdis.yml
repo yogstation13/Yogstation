@@ -30,6 +30,8 @@ jobs:
       
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
+        with:
+          default: true
 
       - name: Install Dependencies
         run: |
@@ -46,20 +48,7 @@ jobs:
           tools/travis/check_grep.sh
 
       - name: Run Linter
-        run: |
-          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-
-      - name: Annotate Errors
-        uses: yogstation13/add-annotations-github-action@master
-        with:
-          check_name: "Lints"
-          linter_output_path: 'output-annotations.txt'
-          commit_sha: ${{ github.event.pull_request.head.sha }}
-          regex: '(?<filename>.*?), line (?<lineNumber>\d+), column (?<columnNumber>\d+):\n(?<errorCode>\w+): (?<errorDesc>.*)'
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        run: ~/dreamchecker
   compile:
     name: Compile All Maps
     runs-on: ubuntu-18.04
@@ -114,7 +103,7 @@ jobs:
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
+          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libssl1.1:i386 zlib1g:i386
           
       - name: Cache BYOND
         uses: actions/cache@v1
@@ -131,13 +120,11 @@ jobs:
           echo "::set-env name=LD_LIBRARY_PATH::/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH"
           echo "::set-env name=MANPATH::/home/runner/BYOND/byond/man:$MANPATH"
           cd $GITHUB_WORKSPACE
-          tools/travis/install_libmariadb.sh
           tools/travis/install_rust_g.sh
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis_prefixed;'
           mysql -u root -h 127.0.0.1 tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
-          tools/travis/build_bsql.sh
           
       - name: Compile
         run: |

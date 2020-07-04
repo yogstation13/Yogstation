@@ -254,9 +254,9 @@
 	light_range = 4
 	light_color = LIGHT_COLOR_RED
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/myowner = null
-
-
-/obj/structure/legionnaire_bonfire/Entered(atom/movable/mover, turf/target)
+	
+	
+/obj/structure/legionnaire_bonfire/Entered(atom/movable/mover, atom/target)
 	if(isliving(mover))
 		var/mob/living/L = mover
 		L.adjust_fire_stacks(3)

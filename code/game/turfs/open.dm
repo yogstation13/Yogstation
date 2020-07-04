@@ -57,6 +57,14 @@
 /turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
+/turf/open/indestructible/plating
+	name = "plating"
+	icon_state = "plating"
+	footstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
 /turf/open/indestructible/sound
 	name = "squeaky floor"
 	footstep = null
@@ -65,10 +73,10 @@
 	heavyfootstep = null
 	var/sound
 
-/turf/open/indestructible/sound/Entered(var/mob/AM)
+/turf/open/indestructible/sound/Entered(atom/movable/AM)
 	..()
-	if(istype(AM))
-		playsound(src,sound,50,1)
+	if(ismob(AM))
+		playsound(src,sound,50,TRUE)
 
 /turf/open/indestructible/necropolis
 	name = "necropolis floor"
@@ -90,6 +98,114 @@
 
 /turf/open/indestructible/necropolis/air
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
+/turf/open/indestructible/carpet
+	name = "carpet"
+	desc = "Soft velvet carpeting. Feels good between your toes."
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	icon_state = "carpet"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/indestructible/carpet)
+	flags_1 = NONE
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET_BAREFOOT
+	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/grass
+	name = "grass patch"
+	desc = "Yep, it's grass."
+	icon_state = "grass"
+	bullet_bounce_sound = null
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	clawfootstep = FOOTSTEP_GRASS
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+
+/turf/open/indestructible/grass/sand
+	name = "sand"
+	desc = "Course, rough, irritating, gets everywhere."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "asteroid"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/dirt
+	name = "dirt"
+	desc = "Upon closer examination, it's still dirt."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dirt"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/dirt/dark
+	icon_state = "greenerdirt"
+
+/turf/open/indestructible/grass/snow
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	desc = "Looks cold."
+	icon_state = "snow"
+	slowdown = 2
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/basalt
+	name = "volcanic floor"
+	desc = "Feels hot"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "basalt"
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/indestructible/grass/water
+	name = "water"
+	desc = "Shallow water."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	slowdown = 1
+	bullet_sizzle = TRUE
+	bullet_bounce_sound = null //needs a splashing sound one day.
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	heavyfootstep = FOOTSTEP_WATER
+
+/turf/open/indestructible/grass/beach
+	name = "sand"
+	icon = 'icons/misc/beach.dmi'
+	icon_state = "sand"
+	bullet_bounce_sound = null
+
+/turf/open/indestructible/grass/beach/coast_t
+	name = "coastline"
+	icon_state = "sandwater_t"
+
+/turf/open/indestructible/grass/beach/coast_b
+	name = "coastline"
+	icon_state = "sandwater_b"
+
+/turf/open/indestructible/grass/beach/water
+	name = "water"
+	icon_state = "water"
+	slowdown = 1
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	heavyfootstep = FOOTSTEP_WATER
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
