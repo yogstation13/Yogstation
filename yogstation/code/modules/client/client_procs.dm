@@ -9,8 +9,6 @@
 	if(!query_logout.Execute())
 		log_sql("Failed: [query_logout.last_error]")
 	log_sql("SQL: [query_logout.sql]")
-	var/list/uwu = query_logout.arguments
-	log_sql("Arguments: [uwu.Join(", ")]")
 	qdel(query_logout)
 
 /client/proc/sync_login_with_db()
