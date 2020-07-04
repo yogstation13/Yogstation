@@ -70,9 +70,7 @@
 			return
 		
 		if(selection == "View results")
-			var/obj/item/detective_scanner/scanner = src
-			if(istype(scanner))
-				scanner.displayDetectiveScanResults(user)
+			displayDetectiveScanResults(user)
 			return
 		
 		if(selection == "Volume on" || selection == "Volume off")
