@@ -19,7 +19,7 @@
 				return
 			reagents.remove_all(0.5 * REAGENTS_METABOLISM * reagents.reagent_list.len) //Slimes are such snowflakes
 			handle_targets()
-			if (!ckey)
+			if (src && !ckey)
 				handle_happiness()
 				handle_mood()
 				handle_speech()
