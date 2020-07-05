@@ -97476,6 +97476,7 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/turf_decal/bot,
+/obj/item/paper/fluff/jobs/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "cRW" = (

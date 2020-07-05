@@ -75967,6 +75967,9 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/item/paper/fluff/jobs/xenobio{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "cWP" = (

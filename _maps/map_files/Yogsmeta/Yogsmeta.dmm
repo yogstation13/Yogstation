@@ -80667,6 +80667,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/item/paper/fluff/jobs/xenobio,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "dce" = (

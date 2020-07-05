@@ -46775,6 +46775,9 @@
 /obj/structure/table/glass,
 /obj/item/extinguisher,
 /obj/item/extinguisher,
+/obj/item/paper/fluff/jobs/xenobio{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bPB" = (

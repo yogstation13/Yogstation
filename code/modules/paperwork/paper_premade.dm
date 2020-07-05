@@ -101,6 +101,10 @@
 	</i>"}
 	infolang = /datum/language/common
 
+/obj/item/paper/fluff/jobs/xenobio
+	name = "Slime ranching!"
+	info = "Keeping slimes isn't easy. Slimes are social creatures, so make sure they have another slime to keep them company. Not all slimes will like each other, so make sure to observe them. Slimes that dislike each other will move away, while slimes that like each other will clump together. Good luck! <br>-John Stanley, PHD in slime sociology"
+	infolang = /datum/language/common
 
 /*
 *	Stations
@@ -132,5 +136,4 @@
 
 /obj/item/paper/fluff/stations/lavaland/slime_hunter
 	name = "Notice from Science!"
-	info = "Xenobiology wants you to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
-
+	info = "Xenobiology wants you to use these carriers to capture and fulton extract lavaland wildlife. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"

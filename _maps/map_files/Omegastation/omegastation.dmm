@@ -38211,6 +38211,7 @@
 	c_tag = "Xenobiology South";
 	dir = 1
 	},
+/obj/item/paper/fluff/jobs/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bjR" = (

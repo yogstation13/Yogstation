@@ -57623,6 +57623,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/item/paper/fluff/jobs/xenobio,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "giI" = (
