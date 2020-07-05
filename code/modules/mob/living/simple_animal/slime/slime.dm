@@ -42,7 +42,7 @@
 	var/docile = 0
 
 	var/personality = 0
-	var/const/MAX_HAPPY = 150
+	var/const/MAX_HAPPY = 90
 	var/const/MIN_HAPPY = MAX_HAPPY * -1
 	var/const/HAPPINESS_THRESHOLD = MAX_HAPPY * 0.4 //how happy does the slime need to be to make a core?
 	var/happiness = MAX_HAPPY //map spawned slimes have high happiness to give a buffer for people starting out.

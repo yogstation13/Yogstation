@@ -416,10 +416,11 @@
 
 /mob/living/simple_animal/slime/proc/handle_happiness()
 	if(stat != DEAD && stat != UNCONSCIOUS && (!(attacked || rabid)))
-		if(locate(/mob/living/simple_animal/slime) in view(4, src))
-			var/stepping = FALSE
+		var/stepping = FALSE
+		var/sCount = 0
 			for(var/mob/living/simple_animal/slime/S in view(4, src))
 				if(!(S == src))
+					sCount++
 					if (-1*personality == S.personality)
 						happiness -= 10 //This is very very bad
 						step_away(src, S, 8)
@@ -436,6 +437,8 @@
 								if (!S.Adjacent(src) && !stepping)
 									MoveAtSlime(S)
 									stepping = TRUE
+							if (2)
+							//Nothing. These are like neutral to each other.
 							if (3 to 5)
 								happiness -= 0.5 //No! I don't like that!
 								if (!stepping)
@@ -451,8 +454,8 @@
 								if (!stepping)
 									MoveAtSlime(S, FALSE)
 									stepping = TRUE
-		else//No slime friends?
-			happiness -= 0.25 //I'm lonely...
+		if(!sCount)
+			happiness -= 0.5 //I'm lonely...
 
 	else if(attacked)
 		happiness -= 0.5 //Slimes don't like being attacked. If they're rabid, they do not care!
