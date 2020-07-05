@@ -105397,14 +105397,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
-"dcT" = (
-/obj/structure/closet/secure_closet/medical1,
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/medical/chemistry)
 "dcU" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -127481,6 +127473,14 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
+"urn" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/closet/secure_closet/chemical,
+/turf/open/floor/plasteel,
+/area/medical/chemistry)
 "uNP" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line{
@@ -169094,7 +169094,7 @@ cfJ
 cXL
 cZt
 cfk
-dcT
+urn
 deq
 cCm
 dit
