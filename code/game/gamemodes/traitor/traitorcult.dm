@@ -30,7 +30,7 @@
 		restricted_jobs += "Assistant"
 
 	var/list/datum/mind/possible_clocks = get_players_for_role(ROLE_CLOCK_AGENT)
-	var/list/datum/mind/possible_bloods = possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
+	var/list/datum/mind/possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
 
 	var/asc = CONFIG_GET(number/agent_scaling_coeff)
 	var/team_size = min_team_size
