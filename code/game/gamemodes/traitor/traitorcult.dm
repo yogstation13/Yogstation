@@ -37,7 +37,7 @@
 	var/asc = CONFIG_GET(number/agent_scaling_coeff)
 	var/team_size = min_team_size
 	if(asc)
-		team_size = min(round(GLOB.joined_player_list.len / (asc * 2)) + 2, round(GLOB.joined_player_list.len / asc))
+		team_size = max(round(GLOB.joined_player_list.len / asc), 1)
 		agent_objective_scaling = max(round(num_players() / asc), 1)
 	clock_agent_team = new
 	GLOB.servants_active = TRUE //needed for scripture alerts, doesn't do much else aside from reebe stuff so :shrug:
