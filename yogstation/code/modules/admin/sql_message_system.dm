@@ -10,7 +10,7 @@
 		if(!new_key)
 			return
 		var/new_ckey = ckey(new_key)
-		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ckey = :new_ckey", list("new_key" = new_ckey))
+		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ckey = :new_ckey", list("new_ckey" = new_ckey))
 		if(!query_find_ckey.warn_execute())
 			qdel(query_find_ckey)
 			return
@@ -438,7 +438,7 @@
 		var/search
 		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
-		
+
 		switch(index)
 			if(1)
 				search = "^."
