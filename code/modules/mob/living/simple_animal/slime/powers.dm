@@ -193,7 +193,7 @@
 				if(i != 1)
 					step_away(M,src)
 				M.Friends = Friends.Copy()
-				M.happiness = 0//Babies don't get the same grace period as the mapspawned or adminspawned slimes do
+				M.happiness = HAPPINESS_THRESHOLD * 0.5 //Babies don't get the same grace period as the mapspawned or adminspawned slimes do
 				babies += M
 				M.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
 				SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
@@ -202,7 +202,7 @@
 				for (var/mob/living/simple_animal/slime/S in babies)
 					if(prob(abs(happiness)*2))//so at -20 its a 40% chance. at -50 happiness it's an 100% chance
 						S.death()
-						S.happiness = -50
+						S.happiness = MIN_HAPPY
 						S.desc += " It looks like it was a stillborn..."
 			else
 				var/mob/living/simple_animal/slime/new_slime = pick(babies)
