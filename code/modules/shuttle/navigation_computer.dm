@@ -10,7 +10,7 @@
 	var/list/jumpto_ports = list() //hashset of ports to jump to and ignore for collision purposes
 	var/obj/docking_port/stationary/my_port //the custom docking port placed by this console
 	var/obj/docking_port/mobile/shuttle_port //the mobile docking port of the connected shuttle
-	var/view_range = 7
+	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
 	var/space_turfs_only = TRUE
@@ -92,7 +92,7 @@
 			to_add += SSshuttle.hidden_shuttle_turf_images
 
 		user.client.images += to_add
-		user.client.change_view(view_range)
+		user.client.view_size.setTo(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	..()
@@ -105,7 +105,7 @@
 			to_remove += SSshuttle.hidden_shuttle_turf_images
 
 		user.client.images -= to_remove
-		user.client.change_view(CONFIG_GET(string/default_view))
+		user.client.view_size.resetToDefault()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()
 	if(designating_target_loc || !current_user)
