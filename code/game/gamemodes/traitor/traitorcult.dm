@@ -17,8 +17,6 @@
 	<span class='danger'>Traitors</span>: Accomplish your objectives.\n\
 	<span class='danger'>Cult Agents</span>: Accomplish your objectives.\n\
 	<span class='notice'>Crew</span>: Do not let the traitors or cultist agents succeed!"
-	var/list/datum/mind/possible_clocks = list()
-	var/list/datum/mind/possible_bloods = list()
 	
 	var/list/datum/mind/coggers_to_cog = list()
 	var/list/datum/mind/bloods_to_blood = list()
@@ -31,8 +29,8 @@
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	possible_clocks = get_players_for_role(ROLE_CLOCK_AGENT)
-	possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
+	var/list/datum/mind/possible_clocks = get_players_for_role(ROLE_CLOCK_AGENT)
+	var/list/datum/mind/possible_bloods = possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
 
 	var/asc = CONFIG_GET(number/agent_scaling_coeff)
 	var/team_size = min_team_size
