@@ -61,5 +61,6 @@
 	for(var/datum/mind/M in bloods_to_blood)
 		M.add_antag_datum(/datum/antagonist/cult/agent)
 	for(var/datum/mind/M in coggers_to_cog)
-		add_servant_of_ratvar(M, TRUE, FALSE, TRUE)
+		var/mob/living/L = M.current
+		add_servant_of_ratvar(L, TRUE, FALSE, TRUE)
 	return ..()
