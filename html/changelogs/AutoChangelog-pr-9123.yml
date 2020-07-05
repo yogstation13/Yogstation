@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "darkspawn now use antag_pick, antag tokens should now work for darkspawn if they didnt already"
