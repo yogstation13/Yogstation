@@ -1,4 +1,3 @@
-#define HAPPINESS_THRESHOLD		20 //how happy does the slime need to be to make a core?
 /mob/living/simple_animal/slime
 	name = "grey baby slime (123)"
 	icon = 'icons/mob/slimes.dmi'
@@ -6,10 +5,6 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	gender = NEUTER
-	var/is_adult = 0
-	var/docile = 0
-	var/personality = 0
-	var/happiness = 50 //map spawned slimes have high happiness to give a buffer for people starting out.
 	faction = list("slime","neutral")
 
 	harm_intent_damage = 5
@@ -42,6 +37,15 @@
 	status_flags = CANUNCONSCIOUS|CANPUSH
 
 	hud_type = /datum/hud/slime
+
+	var/is_adult = 0
+	var/docile = 0
+
+	var/personality = 0
+	var/const/MAX_HAPPY = 150
+	var/const/MIN_HAPPY = MAX_HAPPY * -1
+	var/const/HAPPINESS_THRESHOLD = MAX_HAPPY * 0.4 //how happy does the slime need to be to make a core?
+	var/happiness = MAX_HAPPY //map spawned slimes have high happiness to give a buffer for people starting out.
 
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
 	var/mutation_chance = 5 // Chance of mutating, very low to encourage miners hunting colored slimes

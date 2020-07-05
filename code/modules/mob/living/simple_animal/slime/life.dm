@@ -1,5 +1,3 @@
-#define MIN_HAPPY 				-50
-#define MAX_HAPPY				50
 /mob/living/simple_animal/slime
 	var/AIproc = 0 // determines if the AI loop is activated
 	var/Atkcool = 0 // attack cooldown
@@ -421,37 +419,38 @@
 		if(locate(/mob/living/simple_animal/slime) in view(4, src))
 			var/stepping = FALSE
 			for(var/mob/living/simple_animal/slime/S in view(4, src))
-				if (-1*personality == S.personality)
-					happiness -= 10 //This is very very bad
-					step_away(src, S, 8)
-				else
-					var/diff = abs(personality - S.personality)
-					switch(diff)
-						if (0)//They have the same personality
-							happiness += 1 //yaaay!
-							if (!S.Adjacent(src) && !stepping)
-								MoveAtSlime(S) //time to go towards friend!
-								stepping = TRUE
-						if (1)
-							happiness += 0.5 //Adjacent slimes are still ok, I guess...
-							if (!S.Adjacent(src) && !stepping)
-								MoveAtSlime(S)
-								stepping = TRUE
-						if (3 to 5)
-							happiness -= 0.5 //No! I don't like that!
-							if (!stepping)
-								MoveAtSlime(S, FALSE)
-								stepping = TRUE
-						if (6 to 9)
-							happiness -= 1 //I DONT LIKE YOU
-							if (!stepping)
-								MoveAtSlime(S, FALSE)
-								stepping = TRUE
-						if (10 to 14)
-							happiness -= 2 //ANGEREY
-							if (!stepping)
-								MoveAtSlime(S, FALSE)
-								stepping = TRUE
+				if(!(S == src))
+					if (-1*personality == S.personality)
+						happiness -= 10 //This is very very bad
+						step_away(src, S, 8)
+					else
+						var/diff = abs(personality - S.personality)
+						switch(diff)
+							if (0)//They have the same personality
+								happiness += 1 //yaaay!
+								if (!S.Adjacent(src) && !stepping)
+									MoveAtSlime(S) //time to go towards friend!
+									stepping = TRUE
+							if (1)
+								happiness += 0.5 //Adjacent slimes are still ok, I guess...
+								if (!S.Adjacent(src) && !stepping)
+									MoveAtSlime(S)
+									stepping = TRUE
+							if (3 to 5)
+								happiness -= 0.5 //No! I don't like that!
+								if (!stepping)
+									MoveAtSlime(S, FALSE)
+									stepping = TRUE
+							if (6 to 9)
+								happiness -= 1 //I DONT LIKE YOU
+								if (!stepping)
+									MoveAtSlime(S, FALSE)
+									stepping = TRUE
+							if (10 to 14)
+								happiness -= 2 //ANGEREY
+								if (!stepping)
+									MoveAtSlime(S, FALSE)
+									stepping = TRUE
 		else//No slime friends?
 			happiness -= 0.25 //I'm lonely...
 
@@ -465,7 +464,7 @@
 		newmood = "angry"
 	else if (happiness < 0)
 		newmood = pick("sad", "pout")
-	else if (docile || happiness > 20 || !Discipline)
+	else if (docile || happiness > HAPPINESS_THRESHOLD || !Discipline)
 		newmood = ":3"
 	else if (Target)
 		newmood = "mischievous"
