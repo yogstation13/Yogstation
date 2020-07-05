@@ -103066,24 +103066,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/medical/medbay/central)
-"cZv" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemisttop";
-	name = "Chemistry Lobby Shutters"
-	},
-/obj/item/folder/yellow,
-/obj/machinery/door/window/northleft{
-	name = "Chemistry Desk";
-	req_access_txt = "5; 33"
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/medical/medbay/central)
 "cZw" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/smartfridge/chemistry/preloaded,
@@ -127225,6 +127207,27 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"pCU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "chemisttop";
+	name = "Chemistry Lobby Shutters"
+	},
+/obj/item/folder/yellow,
+/obj/machinery/door/window/northleft{
+	name = "Chemistry Desk";
+	req_access_txt = "0"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/window/southleft{
+	req_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "pKo" = (
 /turf/closed/wall,
 /area/aisat)
@@ -168321,7 +168324,7 @@ bUw
 bVf
 cQU
 cXI
-cZv
+pCU
 dbe
 dcQ
 deo
