@@ -221,17 +221,6 @@
 	result = /obj/item/reagent_containers/food/snacks/honeybar
 	subcategory = CAT_MISCFOOD
 
-
-/datum/crafting_recipe/food/lizardwine
-	name = "Lizard Wine"
-	time = 40
-	reqs = list(
-		/obj/item/organ/tail/lizard = 1,
-		/datum/reagent/consumable/ethanol = 100
-	)
-	result = /obj/item/reagent_containers/food/drinks/bottle/lizardwine
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/loadedbakedpotato
 	name = "Loaded Baked Potato"
 	time = 40
