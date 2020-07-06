@@ -33,6 +33,7 @@
 	owner.announce_objectives()
 
 /datum/antagonist/clockcult/agent/on_removal()
+	SSticker.mode.clock_agent_team.remove_member(owner)
 	SSticker.mode.clockagents -= owner
 	. = ..()
 
