@@ -112,10 +112,10 @@
 	set_nutrition(700)
 	if (mapload)
 		if (isnull(StartingPersonality))
-			StartingPersonality = rand(-7,7)
+			StartingPersonality = rand(1,7)
 		personality = StartingPersonality
 	else
-		personality = rand(-7,7)
+		personality = rand(1,7)
 
 /mob/living/simple_animal/slime/Destroy()
 	for (var/A in actions)
