@@ -1,4 +1,4 @@
-#define BASE_HAPPINESS_VAL 1
+#define BASE_HAPPINESS_VAL 0.2
 /mob/living/simple_animal/slime
 	var/AIproc = 0 // determines if the AI loop is activated
 	var/Atkcool = 0 // attack cooldown

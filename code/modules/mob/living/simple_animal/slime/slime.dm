@@ -46,6 +46,7 @@
 	var/const/MIN_HAPPY = MAX_HAPPY * -1
 	var/const/HAPPINESS_THRESHOLD = MAX_HAPPY * 0.4 //how happy does the slime need to be to make a core?
 	var/happiness = MAX_HAPPY //map spawned slimes have high happiness to give a buffer for people starting out.
+	var/global/StartingPersonality
 
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
 	var/mutation_chance = 30 // Chance of mutating
@@ -109,7 +110,12 @@
 	set_colour(new_colour)
 	. = ..()
 	set_nutrition(700)
-	personality = rand(-7,7)
+	if (mapload)
+		if (isnull(StartingPersonality))
+			StartingPersonality = rand(-7,7)
+		personality = StartingPersonality
+	else
+		personality = rand(-7,7)
 
 /mob/living/simple_animal/slime/Destroy()
 	for (var/A in actions)
