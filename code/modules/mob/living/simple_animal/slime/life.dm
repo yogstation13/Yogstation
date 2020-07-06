@@ -455,7 +455,7 @@
 								MoveAtSlime(S, FALSE)
 								stepping = TRUE
 		if(!sCount)
-			happiness -= 0.5 //I'm lonely...
+			happiness -= 0.15 //I'm lonely...
 
 	else if(attacked)
 		happiness -= 0.5 //Slimes don't like being attacked. If they're rabid, they do not care!
