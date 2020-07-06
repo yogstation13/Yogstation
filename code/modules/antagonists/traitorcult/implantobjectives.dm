@@ -1,3 +1,6 @@
+#define CULT_TEAM_CLOCK /datum/antagonist/clockcult/agent
+#define CULT_TEAM_BLOOD /datum/antagonist/cult/agent
+
 /datum/objective/implant //implant x dudes with guvax implants
 	name = "clockcult implant"
 	explanation_text = "<span class='sevtug'>STab some dudes with these funny things</span>"
@@ -101,16 +104,16 @@
 	name = "guvax capacitor"
 	activated = FALSE
 	var/linkedantag = /datum/antagonist/cult_implanted //antag given to implantee
-	var/cult_team = "clock"
+	var/cult_team = CULT_TEAM_CLOCK
 	var/datum/team/linkedteam //team that gets points
 	var/break_sound = 'sound/magic/clockwork/anima_fragment_death.ogg' //sound when removed
 
 /obj/item/implant/cult/New()
 	..()
 	switch(cult_team)
-		if("clock")
+		if(CULT_TEAM_CLOCK)
 			linkedteam = SSticker.mode.clock_agent_team
-		if("blood")
+		if(CULT_TEAM_BLOOD)
 			linkedteam = SSticker.mode.blood_agent_team
 
 /obj/item/implant/cult/can_be_implanted_in(mob/living/target)
@@ -119,8 +122,8 @@
 	. = ..()
 
 /obj/item/implant/cult/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	if(!is_servant_of_ratvar(user))
-		return FALSE
+	if(!user.mind.has_antag_datum(cult_team)
+		return
 	. = ..()
 	if(.)
 		var/datum/mind/M = target.mind
@@ -153,3 +156,6 @@
 	linkedantag = /datum/antagonist/cult_implanted/blood
 	cult_team = "blood"
 	break_sound = 'sound/effects/glassbr2.ogg'
+
+#undef CULT_TEAM_CLOCK
+#undef CULT_TEAM_BLOOD
