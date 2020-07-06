@@ -79,7 +79,7 @@
 	if(user.mind.has_antag_datum(/datum/antagonist/cult/agent))
 		var/datum/team/T = SSticker.mode.blood_agent_team
 		for(var/datum/objective/soulshard/O in T?.objectives)
-			if(O.target == M)
+			if(O.target == M.mind)
 				O.linked_stone = src
 				to_chat(user, "<span class='cultlarge'>\"Perfect. This is the one we need. Do not lose it.\"</span>")
 				log_combat(user, M, "captured [M.name]'s soul", src)
