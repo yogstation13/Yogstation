@@ -845,7 +845,7 @@
 	return ..()
 
 /obj/item/twohanded/binoculars/wield(mob/user)
-	. ==..()
+	. = ..()
 	if(!wielded)
 		return
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)

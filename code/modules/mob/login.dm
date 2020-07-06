@@ -1,4 +1,6 @@
 /mob/Login()
+	if(!client)
+		return FALSE
 	GLOB.player_list |= src
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
@@ -42,8 +44,6 @@
 	update_client_colour()
 	update_mouse_pointer()
 	if(client)
-		client.view_size.resetToDefault() // Resets the client.view in case it was changed.
-
 		if(client.player_details.player_actions.len)
 			for(var/datum/action/A in client.player_details.player_actions)
 				A.Grant(src)
@@ -53,6 +53,7 @@
 			CB.Invoke()
 		log_played_names(client.ckey,name,real_name)
 		auto_deadmin_on_login()
+		client.view_size.resetToDefault() // Resets the client.view in case it was changed.
 
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
