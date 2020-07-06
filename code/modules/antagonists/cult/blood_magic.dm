@@ -589,7 +589,7 @@
 			else
 				to_chat(user, "<span class='warning'>You need [METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal to produce a construct shell!</span>")
 				return
-		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && (istype(target, /obj/item/implanter) || istype(target, /obj/item/implantcase))
+		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && (istype(target, /obj/item/implanter) || istype(target, /obj/item/implantcase)))
 			uses--
 			new /obj/item/implanter/cult/blood(T)
 			qdel(target)
