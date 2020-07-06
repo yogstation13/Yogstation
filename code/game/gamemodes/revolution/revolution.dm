@@ -123,6 +123,9 @@
 //Checks if the revs have won or not//
 //////////////////////////////////////
 /datum/game_mode/revolution/check_win()
+	if(victory_timer_ended && victory_timer)
+		victory_timer = null
+
 	if(check_rev_victory())
 		if(victory_timer_ended)
 			finished = 1
