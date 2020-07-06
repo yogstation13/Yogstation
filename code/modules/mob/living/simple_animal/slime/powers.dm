@@ -202,7 +202,7 @@
 				for (var/mob/living/simple_animal/slime/S in babies)
 					if(prob(abs(happiness)*2))//so at -20 its a 40% chance. at -50 happiness it's an 100% chance
 						S.death()
-						S.happiness = MIN_HAPPY
+						S.happiness = HAPPINESS_THRESHOLD + 10
 						S.stillborn = TRUE
 			else
 				var/mob/living/simple_animal/slime/new_slime = pick(babies)
