@@ -3877,23 +3877,6 @@
 	},
 /turf/closed/wall,
 /area/security/prison)
-"agO" = (
-/obj/machinery/turretid{
-	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
-	enabled = 1;
-	icon_state = "control_standby";
-	name = "Antechamber Turret Control";
-	pixel_x = 30;
-	req_access_txt = "61;65"
-	},
-/obj/machinery/ai_slipper{
-	uses = 10
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat/foyer)
 "agP" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -38690,34 +38673,6 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"bpE" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "MiniSat Maintenance";
-	req_access_txt = "32"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
 "bpF" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -38774,31 +38729,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/satellite)
-"bpJ" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "MiniSat Maintenance";
-	req_access_txt = "32"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
@@ -76223,22 +76153,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"cEN" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "MiniSat Maintenance";
-	req_access_txt = "32"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "cEO" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 6
@@ -83404,6 +83318,23 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
+"hjM" = (
+/obj/machinery/turretid{
+	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
+	enabled = 1;
+	icon_state = "control_standby";
+	name = "Antechamber Turret Control";
+	pixel_x = 30;
+	req_one_access_txt = "61;65"
+	},
+/obj/machinery/ai_slipper{
+	uses = 10
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
 "hkq" = (
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
@@ -83556,6 +83487,34 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard)
+"iKK" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "MiniSat Maintenance";
+	req_access_txt = "65"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "iLj" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -83929,6 +83888,22 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/aft)
+"mWB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "MiniSat Maintenance";
+	req_access_txt = "65"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "ndM" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -84586,6 +84561,31 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"wAF" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "MiniSat Maintenance";
+	req_access_txt = "65"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/satellite)
 "wEj" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -138625,7 +138625,7 @@ aTV
 aTV
 bjP
 blD
-agO
+hjM
 bof
 bby
 btL
@@ -140425,7 +140425,7 @@ bis
 bjQ
 bjQ
 bjQ
-bpE
+iKK
 bjQ
 btL
 bvA
@@ -141710,7 +141710,7 @@ aaa
 aRy
 bjT
 bjT
-bpJ
+wAF
 bjT
 aRy
 aaa
@@ -142995,7 +142995,7 @@ aaa
 aRy
 aRy
 aRy
-cEN
+mWB
 aRy
 aRy
 aaa
