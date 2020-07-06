@@ -456,7 +456,7 @@
 	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!")
 	if (stat == DEAD)
 		. += "<span class='deadsay'>It is limp and unresponsive.</span>"
-			if (stillborn)
+		if (stillborn)
 			. += "<span class='deadsay'> It looks like it was a stillborn...</span"
 	else
 		if (stat == UNCONSCIOUS) // Slime stasis
