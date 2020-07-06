@@ -31,7 +31,8 @@
 	owner.current.playsound_local(get_turf(owner.current),'sound/ambience/antag/assimilation.ogg' , 100, FALSE, pressure_affected = FALSE)
 	owner.announce_objectives()
 
-/datum/antagonist/cult/on_removal()
+/datum/antagonist/cult/agent/on_removal()
+	SSticker.mode.blood_agent_team.remove_member(owner)
 	SSticker.mode.bloodagents -= owner
 	. = ..()
 /datum/antagonist/cult/agent/admin_add(datum/mind/new_owner, mob/admin)
