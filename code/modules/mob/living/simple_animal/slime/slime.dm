@@ -48,7 +48,7 @@
 	var/happiness = MAX_HAPPY //map spawned slimes have high happiness to give a buffer for people starting out.
 
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
-	var/mutation_chance = 30 // Chance of mutating, very low to encourage miners hunting colored slimes
+	var/mutation_chance = 30 // Chance of mutating
 
 	var/powerlevel = 0 // 1-10 controls how much electricity they are generating
 	var/amount_grown = 0 // controls how long the slime has been overfed, if 10, grows or reproduces
