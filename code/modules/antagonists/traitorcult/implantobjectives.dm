@@ -122,7 +122,7 @@
 	. = ..()
 
 /obj/item/implant/cult/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	if(!user.mind.has_antag_datum(cult_team)
+	if(!user.mind.has_antag_datum(cult_team))
 		return
 	. = ..()
 	if(.)
