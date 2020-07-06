@@ -6,6 +6,8 @@
 // this will also check they're not a head, so it can just be called freely
 // If the game somtimes isn't registering a win properly, then SSticker.mode.check_win() isn't being called somewhere.
 
+//Timer after all heads/headrevs die, before we check again and end the round
+#define REV_VICTORY_TIMER 3000
 
 /datum/game_mode/revolution
 	name = "revolution"
@@ -31,6 +33,10 @@
 	var/datum/team/revolution/revolution
 	var/list/datum/mind/headrev_candidates = list()
 	var/end_when_heads_dead = TRUE
+
+	var/victory_timer
+
+	var/victory_timer_ended = FALSE
 
 ///////////////////////////////////////////////////////////////////////////////
 //Gets the round setup, cancelling if there's not enough players at the start//
@@ -118,9 +124,24 @@
 //////////////////////////////////////
 /datum/game_mode/revolution/check_win()
 	if(check_rev_victory())
-		finished = 1
+		if(victory_timer_ended)
+			finished = 1
+		if(!victory_timer)
+			victory_timer = addtimer(VARSET_CALLBACK(src, victory_timer_ended, TRUE), REV_VICTORY_TIMER)
+			message_admins("Revs victory timer started")
+			log_game("Revs victory timer started")
+
 	else if(check_heads_victory())
-		finished = 2
+		if(victory_timer_ended)
+			finished = 2
+		if(!victory_timer)
+			victory_timer = addtimer(VARSET_CALLBACK(src, victory_timer_ended, TRUE), REV_VICTORY_TIMER)
+			message_admins("Revs victory timer started")
+			log_game("Revs victory timer started")
+
+	if(victory_timer_ended)
+		victory_timer = null
+		victory_timer_ended = FALSE
 	return
 
 ///////////////////////////////
