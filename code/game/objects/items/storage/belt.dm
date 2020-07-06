@@ -66,7 +66,7 @@
 		/obj/item/holosign_creator/multi/CE,
 		/obj/item/airlock_painter,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
-		/obj/item/grenade/chem_grande/metalfoam,
+		/obj/item/grenade/chem_grenade/metalfoam,
 		/obj/item/storage/bag/construction,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife
