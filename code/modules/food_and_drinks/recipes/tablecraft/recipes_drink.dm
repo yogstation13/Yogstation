@@ -14,7 +14,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/candycornliquor
-	name = "candy corn liquor"
+	name = "Candy Corn Liquor"
 	result = /obj/item/reagent_containers/food/drinks/bottle/candycornliquor
 	time = 30
 	reqs = list(
