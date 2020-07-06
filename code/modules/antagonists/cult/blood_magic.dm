@@ -593,7 +593,7 @@
 			uses--
 			new /obj/item/implanter/cult/blood(T)
 			qdel(target)
-			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25)
+			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && istype(target, /obj/item/stack/sheet/rglass))
 			var/obj/item/stack/sheet/candidate = target
 			if(candidate.use(RGLASS_TO_SOULSTONE_CONVERSION))
