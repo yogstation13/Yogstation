@@ -448,13 +448,14 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "bj" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
+/obj/structure/chair/comfy/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bk" = (
 /obj/structure/chair/comfy/shuttle,
@@ -606,7 +607,7 @@ an
 an
 an
 an
-bi
+ae
 ab
 "}
 (8,1,1) = {"
@@ -622,7 +623,7 @@ an
 an
 an
 an
-bj
+af
 ab
 "}
 (9,1,1) = {"
@@ -638,7 +639,7 @@ aE
 be
 av
 av
-bk
+bj
 ac
 "}
 (10,1,1) = {"

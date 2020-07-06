@@ -134,7 +134,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "ay" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
@@ -176,7 +176,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "aF" = (
 /obj/effect/decal/cleanable/blood/gibs/down,

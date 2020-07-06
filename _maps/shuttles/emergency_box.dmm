@@ -4,7 +4,6 @@
 /area/template_noop)
 "ab" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/mineral/titanium,

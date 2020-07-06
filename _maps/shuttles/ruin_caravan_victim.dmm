@@ -147,6 +147,34 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/shuttle/caravan/freighter1)
+"ak" = (
+/obj/machinery/door/poddoor{
+	id = "caravantrade1_cargo";
+	name = "Cargo Blast Door"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating/airless,
+/area/shuttle/caravan/freighter1)
+"al" = (
+/obj/machinery/door/poddoor{
+	id = "caravantrade1_cargo";
+	name = "Cargo Blast Door"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/shuttle/caravan/freighter1)
+"am" = (
+/obj/machinery/door/poddoor{
+	id = "caravantrade1_cargo";
+	name = "Cargo Blast Door"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating/airless,
+/area/shuttle/caravan/freighter1)
 "ap" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
@@ -270,18 +298,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating/airless,
-/area/shuttle/caravan/freighter1)
-"eP" = (
-/obj/machinery/door/poddoor{
-	id = "caravantrade1_cargo";
-	name = "Cargo Blast Door"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter1)
 "fk" = (
@@ -597,20 +613,6 @@
 "vt" = (
 /obj/structure/shuttle/engine/propulsion/burst{
 	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/caravan/freighter1)
-"vO" = (
-/obj/machinery/door/poddoor{
-	id = "caravantrade1_cargo";
-	name = "Cargo Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter1)
@@ -948,20 +950,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/shuttle/caravan/freighter1)
-"NY" = (
-/obj/machinery/door/poddoor{
-	id = "caravantrade1_cargo";
-	name = "Cargo Blast Door"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating/airless{
-	icon_state = "platingdmg3"
-	},
-/area/shuttle/caravan/freighter1)
 "Od" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -1271,17 +1259,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter1)
-"Xh" = (
-/obj/machinery/door/poddoor{
-	id = "caravantrade1_cargo";
-	name = "Cargo Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating/airless,
-/area/shuttle/caravan/freighter1)
 "Xt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -1409,7 +1386,7 @@ ct
 Zk
 ai
 EZ
-eP
+ak
 "}
 (7,1,1) = {"
 Lr
@@ -1422,7 +1399,7 @@ CU
 ZZ
 hk
 RI
-NY
+al
 "}
 (8,1,1) = {"
 El
@@ -1435,7 +1412,7 @@ VT
 ot
 hk
 AX
-Xh
+am
 "}
 (9,1,1) = {"
 El
@@ -1448,7 +1425,7 @@ if
 Ax
 yn
 Su
-eP
+ak
 "}
 (10,1,1) = {"
 El
@@ -1461,7 +1438,7 @@ VN
 lx
 TP
 WX
-vO
+am
 "}
 (11,1,1) = {"
 Lr

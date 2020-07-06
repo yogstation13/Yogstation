@@ -284,7 +284,7 @@
 	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	pixel_y = -32
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -332,11 +332,10 @@
 /area/shuttle/escape)
 "aK" = (
 /obj/machinery/space_heater,
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_y = -30
-	},
 /obj/effect/turf_decal/bot,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aL" = (

@@ -586,6 +586,12 @@
 /obj/machinery/recharger,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"bh" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "bj" = (
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/escape)
@@ -916,16 +922,6 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bS" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -1823,16 +1819,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"er" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "hd" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -2626,7 +2612,7 @@ aZ
 aZ
 aZ
 aZ
-lS
+DU
 bc
 bc
 bT
@@ -2670,10 +2656,10 @@ ba
 ba
 ba
 ba
-er
-er
-bS
-jk
+Bp
+ba
+bh
+bT
 pm
 bX
 bX

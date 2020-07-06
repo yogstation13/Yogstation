@@ -6,7 +6,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
-/turf/closed/wall/mineral/titanium,
+/turf/open/floor/plating/airless,
 /area/shuttle/hunter)
 "c" = (
 /turf/closed/wall/mineral/titanium,
@@ -16,10 +16,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/shuttle/hunter)
-"e" = (
-/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/hunter)
 "f" = (
@@ -156,6 +152,9 @@
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/head/helmet/space,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/hunter)
 "s" = (
@@ -284,11 +283,11 @@ c
 "}
 (11,1,1) = {"
 a
-e
+d
 w
 q
 k
-e
+x
 a
 "}
 (12,1,1) = {"

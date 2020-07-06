@@ -458,13 +458,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
-"T" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "U" = (
 /obj/machinery/computer{
 	dir = 1;
@@ -493,13 +486,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
-"W" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "X" = (
 /obj/machinery/door/firedoor/window,
 /obj/effect/spawner/structure/window/shuttle,
@@ -513,10 +499,10 @@ f
 g
 n
 g
-T
-T
-T
-T
+X
+X
+X
+X
 z
 n
 g
@@ -665,10 +651,10 @@ f
 g
 n
 g
-W
-W
-W
-W
+X
+X
+X
+X
 z
 n
 g

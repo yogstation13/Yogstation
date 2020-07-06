@@ -15,13 +15,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
-"d" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "e" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
@@ -151,11 +144,6 @@
 "C" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
-"V" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -206,28 +194,28 @@ t
 b
 "}
 (7,1,1) = {"
-d
+m
 h
 o
 o
 f
-V
+m
 "}
 (8,1,1) = {"
-d
+m
 i
 C
 C
 f
-V
+m
 "}
 (9,1,1) = {"
-d
+m
 f
 o
 o
 f
-V
+m
 "}
 (10,1,1) = {"
 b

@@ -646,6 +646,13 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"bJ" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "bS" = (
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/item/clothing/suit/apron/surgical,
@@ -766,7 +773,7 @@ ab
 ak
 am
 am
-am
+by
 am
 am
 am
@@ -802,7 +809,7 @@ ab
 ak
 am
 am
-aM
+bz
 aM
 aM
 aM
@@ -878,7 +885,7 @@ bx
 aO
 aO
 aO
-aO
+bJ
 am
 aW
 aX
@@ -914,7 +921,7 @@ by
 am
 am
 am
-am
+aY
 am
 aW
 aX
@@ -950,7 +957,7 @@ by
 am
 am
 am
-am
+aY
 am
 aW
 aX
@@ -986,7 +993,7 @@ bz
 aM
 aM
 aM
-aM
+bA
 am
 aW
 aX
@@ -1058,7 +1065,7 @@ bx
 aO
 aO
 aO
-aO
+bJ
 am
 am
 am
@@ -1094,7 +1101,7 @@ by
 am
 am
 am
-am
+aY
 am
 am
 am
@@ -1130,7 +1137,7 @@ sp
 sp
 ad
 ak
-ak
+aV
 ak
 ad
 ab

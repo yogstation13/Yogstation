@@ -234,8 +234,18 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"aF" = (
+"aE" = (
 /obj/machinery/door/window/eastleft,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"aF" = (
+/obj/machinery/door/window/eastright,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aG" = (
@@ -313,10 +323,6 @@
 "aR" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"aS" = (
-/obj/machinery/door/window/eastright,
-/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aT" = (
 /obj/structure/table/glass,
@@ -819,11 +825,11 @@ ao
 au
 az
 ab
-aF
+aE
 Ec
 bM
 sc
-aS
+aF
 as
 aI
 aI

@@ -835,6 +835,22 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/syndicate/medical)
+"bK" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/hallway)
 "bL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1555,7 +1571,7 @@ aC
 aQ
 az
 az
-az
+bK
 az
 bE
 bL
