@@ -1,3 +1,4 @@
+#define BASE_HAPPINESS_VAL 1
 /mob/living/simple_animal/slime
 	var/AIproc = 0 // determines if the AI loop is activated
 	var/Atkcool = 0 // attack cooldown
@@ -422,43 +423,43 @@
 			if(!(S == src))
 				sCount++
 				if (-1*personality == S.personality)
-					happiness -= 10 //This is very very bad
+					happiness -= BASE_HAPPINESS_VAL*10 //This is very very bad
 					step_away(src, S, 8)
 				else
 					var/diff = abs(personality - S.personality)
 					switch(diff)
 						if (0)//They have the same personality
-							happiness += 1 //yaaay!
+							happiness += BASE_HAPPINESS_VAL //yaaay!
 							if (!S.Adjacent(src) && !stepping)
 								MoveAtSlime(S) //time to go towards friend!
 								stepping = TRUE
 						if (1)
-							happiness += 0.5 //Adjacent slimes are still ok, I guess...
+							happiness += BASE_HAPPINESS_VAL * 0.5 //Adjacent slimes are still ok, I guess...
 							if (!S.Adjacent(src) && !stepping)
 								MoveAtSlime(S)
 								stepping = TRUE
 						if (2)
 						//Nothing. These are like neutral to each other.
 						if (3 to 5)
-							happiness -= 0.5 //No! I don't like that!
+							happiness -= BASE_HAPPINESS_VAL * 0.5 //No! I don't like that!
 							if (!stepping)
 								MoveAtSlime(S, FALSE)
 								stepping = TRUE
 						if (6 to 9)
-							happiness -= 1 //I DONT LIKE YOU
+							happiness -= BASE_HAPPINESS_VAL //I DONT LIKE YOU
 							if (!stepping)
 								MoveAtSlime(S, FALSE)
 								stepping = TRUE
 						if (10 to 14)
-							happiness -= 2 //ANGEREY
+							happiness -= BASE_HAPPINESS_VAL * 2 //ANGEREY
 							if (!stepping)
 								MoveAtSlime(S, FALSE)
 								stepping = TRUE
 		if(!sCount)
-			happiness -= 0.15 //I'm lonely...
+			happiness -= BASE_HAPPINESS_VAL * 0.15 //I'm lonely...
 
 	else if(attacked)
-		happiness -= 0.5 //Slimes don't like being attacked. If they're rabid, they do not care!
+		happiness -= BASE_HAPPINESS_VAL * 0.5 //Slimes don't like being attacked. If they're rabid, they do not care!
 	happiness = clamp(happiness, MIN_HAPPY, MAX_HAPPY)
 
 /mob/living/simple_animal/slime/proc/handle_mood()
