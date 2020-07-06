@@ -7,7 +7,7 @@
 			M.happiness = 0
 			if(!ckey && happiness < 0 && prob(abs(happiness)*2))//so at -20 its a 40% chance. at -50 happiness it's an 100% chance
 				M.death()
-				M.desc += " It looks like it was a stillborn..."
+				M.stillborn = TRUE
 				M.happiness = MIN_HAPPY
 			M.rabid = TRUE
 			M.regenerate_icons()

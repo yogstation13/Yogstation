@@ -47,6 +47,7 @@
 	var/const/HAPPINESS_THRESHOLD = MAX_HAPPY * 0.4 //how happy does the slime need to be to make a core?
 	var/happiness = MAX_HAPPY //map spawned slimes have high happiness to give a buffer for people starting out.
 	var/global/StartingPersonality
+	var/stillborn = FALSE
 
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
 	var/mutation_chance = 30 // Chance of mutating
@@ -455,6 +456,8 @@
 	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!")
 	if (stat == DEAD)
 		. += "<span class='deadsay'>It is limp and unresponsive.</span>"
+			if (stillborn)
+			. += "<span class='deadsay'> It looks like it was a stillborn...</span"
 	else
 		if (stat == UNCONSCIOUS) // Slime stasis
 			. += "<span class='deadsay'>It appears to be alive but unresponsive.</span>"

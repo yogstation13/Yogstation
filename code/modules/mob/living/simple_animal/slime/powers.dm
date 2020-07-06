@@ -203,7 +203,7 @@
 					if(prob(abs(happiness)*2))//so at -20 its a 40% chance. at -50 happiness it's an 100% chance
 						S.death()
 						S.happiness = MIN_HAPPY
-						S.desc += " It looks like it was a stillborn..."
+						S.stillborn = TRUE
 			else
 				var/mob/living/simple_animal/slime/new_slime = pick(babies)
 				new_slime.a_intent = INTENT_HARM
