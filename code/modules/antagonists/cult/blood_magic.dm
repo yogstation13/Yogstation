@@ -589,14 +589,15 @@
 			else
 				to_chat(user, "<span class='warning'>You need [METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal to produce a construct shell!</span>")
 				return
-		else if(istype(target, /obj/item/implanter) || istype(target, /obj/item/implantcase)
+		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && (istype(target, /obj/item/implanter) || istype(target, /obj/item/implantcase))
+			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 			new /obj/item/implanter/cult/blood(T)
 			qdel(target)
-		else if(istype(target, /obj/item/stack/sheet/rglass))
+		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && istype(target, /obj/item/stack/sheet/rglass))
 			var/obj/item/stack/sheet/candidate = target
 			if(candidate.use(RGLASS_TO_SOULSTONE_CONVERSION))
 				uses--
-				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a construct shell!</span>")
+				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a soulstone!</span>")
 				new /obj/item/soulstone(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 			else
