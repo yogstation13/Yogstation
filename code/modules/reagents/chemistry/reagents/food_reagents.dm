@@ -785,9 +785,19 @@
 	M.heal_bodypart_damage(1,1, 0)
 	..()
 
+/datum/reagent/consumable/drippings
+	name = "meat drippings"
+	description = "Full of fat and flavor. Mix it with water and flour to make gravy."
+	nutriment_factor = 3 * REAGENTS_METABOLISM
+	color = "#85482c"
+	taste_mult = 2
+	taste_description = "meat"
+
 /datum/reagent/consumable/gravy
-	name = "Gravy"
+	name = "gravy"
 	description = "Delicious brown sauce, thickened with flour."
-	color = "#755037"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#75553a"
+	taste_mult = 1.5
 	taste_description = "gravy"
 	
