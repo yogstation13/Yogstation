@@ -1,0 +1,4 @@
+author: "wejengin2"
+delete-after: true 
+changes: 
+  - tweak: "metastation, ai sat turret control access changes"
