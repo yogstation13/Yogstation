@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - rscadd: "Revs now has a 5 minute grace timer before ending"
