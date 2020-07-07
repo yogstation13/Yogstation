@@ -135,6 +135,6 @@
 	trash = /obj/item/trash/plate
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 6
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/tomatojuice = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("grease" = 2, "crust" = 1, "pasta" = 1, "cheese" = 1, "tomato" = 1,)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("grease" = 4, "crust" = 1, "pasta" = 1, "cheese" = 1, "tomato" = 1,)
 	foodtype = GRAIN | VEGETABLES | DAIRY

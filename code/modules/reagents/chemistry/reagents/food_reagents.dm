@@ -785,3 +785,9 @@
 	M.heal_bodypart_damage(1,1, 0)
 	..()
 
+/datum/reagent/consumable/gravy
+	name = "Gravy"
+	description = "Delicious brown sauce, thickened with flour."
+	color = "#755037"
+	taste_description = "meat"
+	
