@@ -38054,18 +38054,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"bhQ" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bhR" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/bot,
-/obj/item/book/manual/wiki/cooking_to_serve_man,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "bhS" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/papersack{
@@ -126693,6 +126681,19 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/research)
+"ioK" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/dough{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "ixL" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = 32
@@ -127245,6 +127246,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research/abandoned)
+"pQJ" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/bot,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "qdJ" = (
 /obj/machinery/nanite_programmer,
 /obj/effect/turf_decal/bot,
@@ -164923,7 +164933,7 @@ bcj
 bdJ
 bfe
 bgs
-bhQ
+ioK
 aYI
 aJj
 aYD
@@ -165180,7 +165190,7 @@ aYC
 bdK
 bff
 bgt
-bhR
+pQJ
 bjG
 aJs
 bnq
