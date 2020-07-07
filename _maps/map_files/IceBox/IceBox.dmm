@@ -59128,7 +59128,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/cryopods";
 	name = "Cryogenic Crew Storage APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)

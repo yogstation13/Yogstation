@@ -88,8 +88,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 1
+	dir = 1;
+	icon_state = "warn_end"
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)

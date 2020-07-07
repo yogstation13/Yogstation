@@ -83,8 +83,8 @@
 /area/shuttle/escape)
 "ak" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 1
+	dir = 1;
+	icon_state = "sink"
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
