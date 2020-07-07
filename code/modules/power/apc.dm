@@ -58,7 +58,7 @@
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	FASTDMM_PROP(\
 		set_instance_vars(\
-			pixel_x = dir == EAST ? 24 : (dir == WEST ? -25 : INSTANCE_VAR_DEFAULT),\ 
+			pixel_x = dir == EAST ? 24 : (dir == WEST ? -25 : INSTANCE_VAR_DEFAULT),\
 			pixel_y = dir == NORTH ? 23 : (dir == SOUTH ? -23 : INSTANCE_VAR_DEFAULT)\
 		),\
 		dir_amount = 4\
