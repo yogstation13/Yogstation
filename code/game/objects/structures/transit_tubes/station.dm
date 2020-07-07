@@ -52,7 +52,11 @@
 		return
 	for(var/obj/structure/transit_tube_pod/pod in loc)
 		return //no fun allowed
-	var/obj/structure/transit_tube_pod/TP = new(loc)
+	var/obj/structure/transit_tube_pod/TP
+	if (istype(R, /obj/structure/c_transit_tube_pod/cargo))
+		TP = new /obj/structure/transit_tube_pod/cargo(loc)
+	else
+		TP = new(loc)
 	R.transfer_fingerprints_to(TP)
 	TP.add_fingerprint(user)
 	TP.setDir(turn(src.dir, -90))
