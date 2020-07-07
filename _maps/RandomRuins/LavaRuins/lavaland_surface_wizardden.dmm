@@ -167,14 +167,19 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
-"H" = (
-/turf/open/indestructible/hotelwood,
-/area/ruin/powered)
-"R" = (
+"G" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"R" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/wood/lavaland,
 /area/ruin/powered)
 "S" = (
 /mob/living/simple_animal/hostile/wizard/cloaked{
@@ -183,12 +188,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "U" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/indestructible/hotelwood,
-/area/ruin/powered)
-"W" = (
-/obj/effect/decal/remains/human,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/wood/lavaland,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -222,8 +222,8 @@ d
 k
 o
 x
-H
 U
+P
 x
 a
 "}
@@ -234,9 +234,9 @@ e
 l
 p
 x
-H
-W
+U
 R
+G
 a
 "}
 (5,1,1) = {"
@@ -246,9 +246,9 @@ f
 h
 q
 x
-H
-H
-H
+U
+U
+U
 a
 "}
 (6,1,1) = {"
