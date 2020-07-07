@@ -357,6 +357,14 @@
 	build_path = /obj/item/reagent_containers/glass/bowl
 	category = list("initial","Dinnerware")
 
+/datum/design/mixbowl
+	name = "Mixing Bowl"
+	id = "mixing_bowl"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 1000)
+	build_path = /obj/item/reagent_containers/glass/mixbowl
+	category = list("initial","Dinnerware")
+
 /datum/design/drinking_glass
 	name = "Drinking Glass"
 	id = "drinking_glass"
