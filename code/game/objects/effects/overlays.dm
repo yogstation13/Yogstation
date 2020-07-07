@@ -42,6 +42,7 @@
 /obj/effect/overlay/sparkles
 	gender = PLURAL
 	name = "sparkles"
+	desc = "Flashing lights, lights."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldsparkles"
 	anchored = TRUE
