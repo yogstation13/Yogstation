@@ -629,5 +629,8 @@
 	required_reagents  = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/gravy
+	name = "Gravy"
+	id = /datum/reagent/consumable/gravy
 	results = list(/datum/reagent/consumable/gravy = 3)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/flour = 1)
+	mix_message = "The solution begins to thicken."

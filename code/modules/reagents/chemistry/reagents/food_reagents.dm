@@ -789,5 +789,5 @@
 	name = "Gravy"
 	description = "Delicious brown sauce, thickened with flour."
 	color = "#755037"
-	taste_description = "meat"
+	taste_description = "gravy"
 	
