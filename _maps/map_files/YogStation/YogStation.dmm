@@ -46711,6 +46711,10 @@
 	},
 /turf/open/floor/plating,
 /area/medical/virology)
+"eVE" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "eVJ" = (
 /obj/structure/table,
 /obj/item/flashlight{
@@ -47772,6 +47776,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"gof" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "goD" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -53435,6 +53443,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"ndh" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "ndo" = (
 /obj/structure/transit_tube/station{
 	dir = 4
@@ -85583,7 +85595,7 @@ bkJ
 aZE
 aZE
 aZE
-aZE
+gof
 aZE
 bxu
 byD
@@ -91182,7 +91194,7 @@ ahs
 ahP
 ahP
 aiF
-agj
+mUk
 ajA
 ajG
 akQ
@@ -92303,7 +92315,7 @@ ccw
 cig
 rcg
 cSV
-cig
+fjZ
 cig
 orf
 cje
@@ -94557,7 +94569,7 @@ aLY
 aOG
 aPR
 aPR
-aPR
+ndh
 aUb
 aZs
 aTX
@@ -101256,7 +101268,7 @@ bhi
 bfK
 bfK
 bfK
-bof
+eVE
 bhh
 bsx
 btV
@@ -111023,7 +111035,7 @@ blI
 bnn
 boA
 bpZ
-boB
+vaf
 bta
 bmU
 bvJ
