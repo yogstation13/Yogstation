@@ -52493,12 +52493,6 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bOS" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bOT" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -54055,18 +54049,6 @@
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 2
-	},
-/area/crew_quarters/kitchen)
-"bRQ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
@@ -83245,6 +83227,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"fIK" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "fNE" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -84088,6 +84080,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"pLl" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 2
+	},
+/area/crew_quarters/kitchen)
 "pSG" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
@@ -118083,7 +118085,7 @@ bLJ
 bLK
 bOR
 bQB
-bRQ
+pLl
 bST
 bUf
 bVs
@@ -118338,7 +118340,7 @@ bBT
 bKf
 bLK
 bLK
-bOS
+fIK
 bQB
 bRR
 bST
