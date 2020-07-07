@@ -4,7 +4,7 @@
 	animate_movement = FORWARD_STEPS
 	anchored = TRUE
 	density = TRUE
-	var/moving = 0
+	var/moving = FALSE
 	var/datum/gas_mixture/air_contents = new()
 
 
