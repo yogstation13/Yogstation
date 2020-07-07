@@ -15,7 +15,7 @@
 	var/pod_moving = 0
 	var/cooldown_delay = 50
 	var/launch_cooldown = 0
-	var/reverse_launch = 0
+	var/reverse_launch = FALSE
 	var/base_icon = "station0"
 	var/boarding_dir //from which direction you can board the tube
 
@@ -31,12 +31,12 @@
 	return ..()
 
 /obj/structure/transit_tube/station/should_stop_pod(pod, from_dir)
-	return 1
+	return TRUE
 
 /obj/structure/transit_tube/station/Bumped(atom/movable/AM)
 	if(!pod_moving && open_status == STATION_TUBE_OPEN && ismob(AM) && AM.dir == boarding_dir)
 		for(var/obj/structure/transit_tube_pod/pod in loc)
-			if(!pod.moving)
+			if(!pod.moving && !pod.cargo)
 				AM.forceMove(pod)
 				pod.update_icon()
 				return
@@ -132,12 +132,25 @@
 /obj/structure/transit_tube/station/proc/launch_pod()
 	if(launch_cooldown >= world.time)
 		return
+
+	var/SleepTime = CLOSE_DURATION + 2
 	for(var/obj/structure/transit_tube_pod/pod in loc)
 		if(!pod.moving)
 			pod_moving = TRUE
 			close_animation()
 			if (pod.cargo)
-			sleep(CLOSE_DURATION + 2)
+				SleepTime -= 2 //Cargo pods leave the station faster.
+				var/atom/input = get_step(src, turn(boarding_dir, 180))
+				if(pod.contents.len)
+					if(!isopenturf(input)) //Check to make sure the loaded crate doesn't load into a wall
+						input = loc
+					pod.empty_pod(input)
+				else
+					for (var/obj/structure/S in input)
+						if (istype(S, /obj/structure/closet) && !S.anchored)
+							S.forceMove(pod)
+				pod.update_icon()
+			sleep(SleepTime)
 			if(open_status == STATION_TUBE_CLOSED && pod && pod.loc == loc)
 				pod.follow_tube()
 			pod_moving = FALSE
@@ -149,14 +162,16 @@
 		launch_pod()
 
 /obj/structure/transit_tube/station/pod_stopped(obj/structure/transit_tube_pod/pod, from_dir)
-	pod_moving = 1
+	pod_moving = TRUE
 	spawn(5)
 		if(reverse_launch)
 			pod.setDir(tube_dirs[1]) //turning the pod around for next launch.
 		launch_cooldown = world.time + cooldown_delay
+		if (pod.cargo)
+			launch_cooldown = cooldown_delay * 0.5 + world.time //Cargo pods spend half as long at the station
 		open_animation()
 		sleep(OPEN_DURATION + 2)
-		pod_moving = 0
+		pod_moving = FALSE
 		if(!QDELETED(pod))
 			var/datum/gas_mixture/floor_mixture = loc.return_air()
 			floor_mixture.archive()
@@ -190,7 +205,7 @@
 // Stations which will send the tube in the opposite direction after their stop.
 /obj/structure/transit_tube/station/reverse
 	tube_construction = /obj/structure/c_transit_tube/station/reverse
-	reverse_launch = 1
+	reverse_launch = TRUE
 	icon_state = "closed_terminus0"
 	base_icon = "terminus0"
 

@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 		new /datum/pipe_info/transit("Through Tube Station",		/obj/structure/c_transit_tube/station, PIPE_STRAIGHT),
 		new /datum/pipe_info/transit("Terminus Tube Station",		/obj/structure/c_transit_tube/station/reverse, PIPE_UNARY),
 		new /datum/pipe_info/transit("Transit Tube Pod",			/obj/structure/c_transit_tube_pod, PIPE_ONEDIR),
+		new /datum/pipe_info/transit("Transit Tube Cargo Pod",		/obj/structure/c_transit_tube_pod/cargo, PIPE_ONEDIR),
 	)
 ))
 
