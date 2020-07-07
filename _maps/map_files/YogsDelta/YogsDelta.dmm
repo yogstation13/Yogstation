@@ -38040,6 +38040,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"bhQ" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "bhR" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
@@ -127320,19 +127326,6 @@
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
-"sys" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/dough{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/bot,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 12;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "sFC" = (
 /obj/machinery/status_display/evac{
 	pixel_x = 32
@@ -164916,7 +164909,7 @@ bcj
 bdJ
 bfe
 bgs
-sys
+bhQ
 aYI
 aJj
 aYD
