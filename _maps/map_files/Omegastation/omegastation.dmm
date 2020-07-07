@@ -20139,6 +20139,56 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
+"aDU" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_y = 5
+	},
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"aDV" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -8
+	},
+/obj/item/kitchen/knife,
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/kitchen)
 "aDW" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -40561,34 +40611,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"kOw" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -8
-	},
-/obj/item/kitchen/knife{
-	pixel_x = 1
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = 8;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/crew_quarters/kitchen)
 "kPp" = (
 /obj/machinery/light{
 	dir = 4
@@ -40739,37 +40761,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"lAq" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/mint{
-	pixel_x = -12
-	},
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 1
-	},
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 8;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "lAs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/intercom{
@@ -88814,7 +88805,7 @@ aoS
 aCe
 aCX
 aFV
-lAq
+aDU
 aEU
 aFa
 aKi
@@ -89071,7 +89062,7 @@ asl
 aCe
 aCY
 aFU
-kOw
+aDV
 aFU
 aGU
 aCe
