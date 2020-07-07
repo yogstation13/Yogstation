@@ -672,6 +672,10 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
+"mQ" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
 "nj" = (
 /obj/effect/mine/stun,
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
@@ -1623,7 +1627,7 @@ ab
 ab
 ab
 aa
-ab
+aa
 aa
 aa
 aa
@@ -1959,7 +1963,7 @@ bA
 bA
 bA
 bA
-cA
+mQ
 aa
 aa
 "}

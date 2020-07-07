@@ -426,6 +426,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	check_ip_intel()
 	validate_key_in_db()
 
+	if (prefs.auto_fit_viewport)
+		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
+
 	send_resources()
 
 	generate_clickcatcher()

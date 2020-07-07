@@ -456,7 +456,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Mining EVA APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/structure/cable,
 /obj/machinery/recharge_station,
@@ -487,26 +487,6 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
-"bz" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Mining Station Starboard Wing APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
 "bB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4;
@@ -613,7 +593,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining Station Port Wing APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2031,10 +2011,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"iD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/mine/living_quarters)
 "jV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2275,6 +2251,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"yM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/mine/living_quarters)
 "zh" = (
 /obj/machinery/door/airlock{
 	id_tag = "miningdorm1";
@@ -2459,6 +2439,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"EN" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "ES" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Processing Area";
@@ -2620,6 +2612,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Qx" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Mining Station Starboard Wing APC";
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "QA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -2872,10 +2881,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"YY" = (
-/obj/structure/grille,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/mine/living_quarters)
 
 (1,1,1) = {"
 ab
@@ -3523,7 +3528,7 @@ ab
 ac
 ac
 ac
-ac
+ak
 bQ
 bQ
 bl
@@ -3555,9 +3560,9 @@ ab
 ab
 ac
 ac
-ac
-YY
-iD
+ak
+ak
+yM
 bZ
 AQ
 bD
@@ -3588,8 +3593,8 @@ ab
 ac
 ac
 ac
-bQ
-bQ
+ak
+ak
 bQ
 bQ
 bQ
@@ -4040,8 +4045,8 @@ SK
 jV
 aY
 lo
-bz
-bn
+Qx
+EN
 ck
 da
 aT

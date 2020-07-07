@@ -45,12 +45,9 @@
 /obj/machinery/door/poddoor{
 	id = "whiteship_windows"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
-/area/shuttle/abandoned/bar)
+/area/shuttle/abandoned/crew)
 "ag" = (
 /obj/machinery/porta_turret/centcom_shuttle/weak{
 	dir = 4
@@ -841,16 +838,25 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/bridge)
 "bq" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 4
 	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
+/obj/item/flashlight{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/welding{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/plating,
-/area/shuttle/abandoned/bridge)
+/area/shuttle/abandoned/engine)
 "br" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -949,40 +955,42 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "bA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 4
-	},
-/obj/item/flashlight{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/welding{
-	pixel_x = -2;
-	pixel_y = 1
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned/engine)
-"bB" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/abandoned/bridge)
-"bC" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
 	id = "whiteship_bridge"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
+"bB" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/abandoned/bridge)
+"bC" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -4
 	},
-/obj/machinery/door/firedoor/border_only{
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/stack/spacecash/c200{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = -4
+	},
+/obj/structure/spider/stickyweb,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/bridge)
 "bD" = (
 /obj/structure/sign/poster/official/nanotrasen_logo,
@@ -1023,12 +1031,9 @@
 /obj/machinery/door/poddoor{
 	id = "whiteship_windows"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
-/area/shuttle/abandoned/crew)
+/area/shuttle/abandoned/bar)
 "bJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
@@ -1170,10 +1175,7 @@
 	id = "whiteship_bridge"
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/bridge)
@@ -1206,33 +1208,25 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "bW" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -4
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = -4
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /obj/structure/spider/stickyweb,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/obj/machinery/light/small/built{
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
-	dir = 8
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/abandoned/bridge)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/crew)
 "bX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable{
@@ -1583,24 +1577,19 @@
 /area/shuttle/abandoned/bridge)
 "cv" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stack/cable_coil/red,
+/obj/item/stock_parts/cell/high,
+/obj/item/multitool{
+	pixel_y = -13
 	},
 /obj/machinery/firealarm{
-	dir = 4;
+	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/spider/stickyweb,
-/obj/machinery/light/small/built{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/crew)
+/turf/open/floor/plating,
+/area/shuttle/abandoned/engine)
 "cw" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned/crew)
@@ -1643,21 +1632,6 @@
 	},
 /obj/effect/decal/cleanable/oil,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/shuttle/abandoned/engine)
-"cD" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stack/cable_coil/red,
-/obj/item/stock_parts/cell/high,
-/obj/item/multitool{
-	pixel_y = -13
-	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "cE" = (
@@ -2657,6 +2631,36 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/medbay)
+"ec" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/crew)
+"ed" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/cargo)
+"ee" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/medbay)
 "iM" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned/medbay)
@@ -2690,17 +2694,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/crew)
-"GM" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_windows"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/abandoned/cargo)
 "Lm" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
@@ -2715,27 +2708,6 @@
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
 	id = "whiteship_windows"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/abandoned/medbay)
-"TD" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_windows"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned/crew)
-"VW" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_windows"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
@@ -2823,13 +2795,13 @@ ai
 aB
 dd
 bl
-bA
+bq
 bB
 bB
 bB
 bB
 bB
-cD
+cv
 cO
 dd
 dB
@@ -2844,7 +2816,7 @@ de
 bm
 bB
 bB
-bW
+bC
 ce
 cm
 bB
@@ -2900,11 +2872,11 @@ aD
 aS
 ac
 bB
-bq
+bA
 bZ
 ch
 cp
-bT
+bA
 bB
 vm
 dh
@@ -2920,9 +2892,9 @@ aT
 ac
 bE
 bv
-bC
-bC
-bC
+bT
+bT
+bT
 ci
 cE
 vm
@@ -2932,7 +2904,7 @@ dO
 vm
 "}
 (11,1,1) = {"
-bI
+Gw
 al
 aE
 oo
@@ -2948,7 +2920,7 @@ cS
 dk
 dH
 di
-VW
+SY
 "}
 (12,1,1) = {"
 ac
@@ -2961,7 +2933,7 @@ bU
 cb
 cj
 cr
-cv
+bW
 cr
 cT
 dl
@@ -2970,23 +2942,23 @@ dQ
 vm
 "}
 (13,1,1) = {"
-bI
+Gw
 am
 aF
 aV
 ac
 bH
 ac
-TD
+ec
 ac
-TD
+ec
 ac
 cF
 cR
 dm
 dP
 dR
-VW
+SY
 "}
 (14,1,1) = {"
 ac
@@ -3032,13 +3004,13 @@ ao
 aG
 aY
 bs
-Gw
+af
 aa
 aa
 aa
 aa
 aa
-SY
+ee
 DZ
 do
 dI
@@ -3103,23 +3075,23 @@ dV
 cy
 "}
 (20,1,1) = {"
-af
+Lm
 aq
 aH
 bb
 bu
 bJ
-Lm
+bI
 aa
 aa
 aa
-cz
+ed
 cH
 cY
 ds
 dL
 dW
-GM
+cz
 "}
 (21,1,1) = {"
 ae
@@ -3179,23 +3151,23 @@ cK
 cy
 "}
 (24,1,1) = {"
-af
+Lm
 av
 ae
 bg
 ae
 bN
-Lm
+bI
 aa
 aa
 aa
-cz
+ed
 cL
 cy
 dw
 cy
 dZ
-GM
+cz
 "}
 (25,1,1) = {"
 ae
