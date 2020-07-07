@@ -1,7 +1,7 @@
 /obj/structure/transit_tube_pod/cargo
 	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "pod_cargo"
-	var/cargo = TRUE
+	cargo = TRUE
 
 /obj/structure/transit_tube_pod/cargo/update_icon()
 	if(contents.len)

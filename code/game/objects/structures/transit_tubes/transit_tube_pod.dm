@@ -6,7 +6,7 @@
 	density = TRUE
 	var/moving = FALSE
 	var/datum/gas_mixture/air_contents = new()
-
+	var/cargo = FALSE
 
 /obj/structure/transit_tube_pod/Initialize()
 	. = ..()
