@@ -32,7 +32,7 @@
 		"https://www.youtube.com/watch?v=51Uw-9lNl08",						// fIREHOSE - Brave Captain
 		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords
 		"https://www.youtube.com/watch?v=xhlH91k-86E",						// J.G. Thirlwell - In a Spaceage Mood
-		"https://www.youtube.com/watch?v=Ld6TfpgJg7g"						// Tom Kane - Freeway Jazz
+		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4")						// Carpenter Brut - Escape from Midwich Valley
 
 	selected_lobby_music = pick(songs)
