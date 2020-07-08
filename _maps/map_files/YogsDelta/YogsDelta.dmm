@@ -38040,12 +38040,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"bhQ" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "bhR" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
@@ -126284,6 +126278,19 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
+"fnf" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/dough{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "fCy" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -164909,7 +164916,7 @@ bcj
 bdJ
 bfe
 bgs
-bhQ
+fnf
 aYI
 aJj
 aYD

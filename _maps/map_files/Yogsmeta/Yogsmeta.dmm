@@ -52493,12 +52493,6 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bOS" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bOT" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -54055,18 +54049,6 @@
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 2
-	},
-/area/crew_quarters/kitchen)
-"bRQ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 2
 	},
@@ -83587,6 +83569,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"jtr" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 2
+	},
+/area/crew_quarters/kitchen)
 "jtW" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance";
@@ -84277,6 +84268,16 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"rQn" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "rSL" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
@@ -118083,7 +118084,7 @@ bLJ
 bLK
 bOR
 bQB
-bRQ
+jtr
 bST
 bUf
 bVs
@@ -118338,7 +118339,7 @@ bBT
 bKf
 bLK
 bLK
-bOS
+rQn
 bQB
 bRR
 bST
