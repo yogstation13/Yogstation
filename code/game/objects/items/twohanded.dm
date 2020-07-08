@@ -837,7 +837,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/listeningTo
-	var/zoom_out_amt = 5.5
+	var/zoom_out_amt = 6
 	var/zoom_amt = 10
 
 /obj/item/twohanded/binoculars/Destroy()
@@ -849,7 +849,6 @@
 	if(!wielded)
 		return
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_walk)
 	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
 	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
@@ -858,11 +857,10 @@
 	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
 
 /obj/item/twohanded/binoculars/unwield(mob/user)
+	. = ..()
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 	listeningTo = null
-	user.visible_message("[user] lowers [src].","You lower [src].")
 	item_state = "binoculars"
 	user.regenerate_icons()
 	user.client.view_size.zoomIn()
@@ -872,6 +870,3 @@
 		var/mob/lad = thing
 		lad.regenerate_icons()
 		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
-
-/obj/item/twohanded/binoculars/proc/on_walk()
-	attack_self(listeningTo) //Yes I have sinned, why do you ask?

@@ -512,7 +512,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			views |= i
 		var/new_view = input("Choose your new view", "Modify view range", 0) as null|anything in views
 		if(new_view)
-			client.view_size.setTo(clamp(new_view, 7, max_view) - 7)
+			client.rescale_view(new_view, 0, ((max_view*2)+1) - 15)
 	else
 		client.view_size.resetToDefault()
 
