@@ -4,9 +4,10 @@
 #define CIRCULATOR_COLD 1
 
 /obj/machinery/atmospherics/components/binary/circulator
-	name = "circulator/heat exchanger"
+	name = "circulator"
 	desc = "A gas circulator pump and heat exchanger."
-	icon_state = "circ-off-0"
+	icon = 'icons/obj/atmospherics/components/teg.dmi'
+	icon_state = "circ-unassembled"
 
 	var/active = FALSE
 
@@ -73,19 +74,39 @@
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon()
-	if(!is_operational())
-		icon_state = "circ-p-[flipped]"
-	else if(last_pressure_delta > 0)
-		if(last_pressure_delta > ONE_ATMOSPHERE)
-			icon_state = "circ-run-[flipped]"
-		else
-			icon_state = "circ-slow-[flipped]"
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	set_light(0)
+
+	if(stat & (BROKEN))
+		icon_state = "circ-broken"
+		return
+
+	if(!generator || !generator.anchored)
+		icon_state = "circ-unassembled"
+		return
 	else
-		icon_state = "circ-off-[flipped]"
+		icon_state = "circ-assembled"
+
+	if(!is_operational())
+		return //broken?
+	else if(last_pressure_delta > 0)
+		set_light(1)//fix amount
+		if(last_pressure_delta > ONE_ATMOSPHERE) //add light var later
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir) //check if these need flipped states
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+		else
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir) //check if these need flipped states
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
-	if(!panel_open)
+	if(generator)
+		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
 		return
+
+	if(!panel_open)
+		to_chat(user, "<span class='warning'>Open the panel first!</span>")
+		return
+
 	anchored = !anchored
 	I.play_tool_sound(src)
 	if(generator)
@@ -139,7 +160,9 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	if(generator)
-		disconnectFromGenerator()
+		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
+		return
+
 	mode = !mode
 	to_chat(user, "<span class='notice'>You set [src] to [mode?"cold":"hot"] mode.</span>")
 	return TRUE
@@ -153,8 +176,15 @@
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
-	default_deconstruction_crowbar(I)
-	return TRUE
+	if(anchored)
+		to_chat(user, "<span class='warning'>[src] is anchored!</span>")
+		return
+	else if(!panel_open)
+		to_chat(user, "<span class='warning'>Open the panel first!</span>")
+		return
+	else
+		default_deconstruction_crowbar(I)
+		return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/on_deconstruction()
 	if(generator)
