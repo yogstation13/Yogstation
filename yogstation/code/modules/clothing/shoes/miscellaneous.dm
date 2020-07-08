@@ -43,7 +43,7 @@
 /obj/item/clothing/shoes/yogs/fire_crocs
 	name = "fire crocs"
 	desc = "You are now the coolest kid on the station."
-	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
+	icon = 'icons/obj/clothing/shoes.dmi'
 	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
 	icon_state = "fire_crocs"
 	item_state = "fire_crocs"

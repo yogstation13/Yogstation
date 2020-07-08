@@ -1,7 +1,0 @@
-author: "Jumps0"
-delete-after: true 
-changes: 
-  - rscadd: "You can now replace the scanning modules and capacitors on a mech. Just use your ID on the mech after opening the panel during maintenance procedures to remove the part you want to replace, and then insert the new part afterwards."
-  - bugfix: "Mechs removed from the game via means other than damage no longer leave a wreckage."
-  - tweak: "Refactors Mech construction"
-  - tweak: "Replacing a power cell on a mech no longer uses a screwdriver, and functions the same as the replacement steps for scanning modules and capacitors."

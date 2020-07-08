@@ -41,16 +41,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return //yogs end
 
 	// asset_cache
+	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
-		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
-		//	into letting append to a list without limit.
-		if (job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
-			completed_asset_jobs += job
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
 			return
-		else if (job in completed_asset_jobs) //byond bug ID:2256651
-			to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
-			src << browse("...", "window=asset_cache_browser")
 
 
 	if(href_list["__keydown"])
@@ -111,6 +106,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//Logs all hrefs, except chat pings
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
 
 	// Admin PM
 	if(href_list["priv_msg"])
@@ -205,6 +209,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 #if (PRELOAD_RSC == 0)
 GLOBAL_LIST_EMPTY(external_rsc_urls)
 #endif
+
+/client/Destroy()
+	SHOULD_CALL_PARENT(FALSE)
+	return QDEL_HINT_HARDDEL_NOW
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
@@ -418,6 +426,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	check_ip_intel()
 	validate_key_in_db()
 
+	if (prefs.auto_fit_viewport)
+		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
+
 	send_resources()
 
 	generate_clickcatcher()
@@ -511,16 +522,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	world.sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
-/client/Destroy()
-	return QDEL_HINT_HARDDEL_NOW
-
 /client/proc/set_client_age_from_db(connectiontopic)
 	if (IsGuestKey(src.key))
 		return
 	if(!SSdbcore.Connect())
 		return
-	var/sql_ckey = sanitizeSQL(src.ckey)
-	var/datum/DBQuery/query_get_related_ip = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ip = INET_ATON('[address]') AND ckey != '[sql_ckey]'")
+	var/datum/DBQuery/query_get_related_ip = SSdbcore.NewQuery(
+		"SELECT ckey FROM [format_table_name("player")] WHERE ip = INET_ATON(:address) AND ckey != :ckey",
+		list("address" = address, "ckey" = ckey)
+	)
 	if(!query_get_related_ip.Execute())
 		qdel(query_get_related_ip)
 		return
@@ -528,7 +538,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	while(query_get_related_ip.NextRow())
 		related_accounts_ip += "[query_get_related_ip.item[1]], "
 	qdel(query_get_related_ip)
-	var/datum/DBQuery/query_get_related_cid = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE computerid = '[computer_id]' AND ckey != '[sql_ckey]'")
+	var/datum/DBQuery/query_get_related_cid = SSdbcore.NewQuery(
+		"SELECT ckey FROM [format_table_name("player")] WHERE computerid = :computerid AND ckey != :ckey",
+		list("computerid" = computer_id, "ckey" = ckey)
+	)
 	if(!query_get_related_cid.Execute())
 		qdel(query_get_related_cid)
 		return
@@ -542,11 +555,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	else
 		if (!GLOB.deadmins[ckey] && check_randomizer(connectiontopic))
 			return
-	var/sql_ip = sanitizeSQL(address)
-	var/sql_computerid = sanitizeSQL(computer_id)
-	var/sql_admin_rank = sanitizeSQL(admin_rank)
 	var/new_player
-	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery("SELECT 1 FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery(
+		"SELECT 1 FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	if(!query_client_in_db.Execute())
 		qdel(query_client_in_db)
 		return
@@ -567,9 +580,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			return
 
 		new_player = 1
-		account_join_date = sanitizeSQL(findJoinDate())
-		var/sql_key = sanitizeSQL(key)
-		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery("INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`) VALUES ('[sql_ckey]', '[sql_key]', Now(), '[GLOB.round_id]', Now(), '[GLOB.round_id]', INET_ATON('[sql_ip]'), '[sql_computerid]', '[sql_admin_rank]', [account_join_date ? "'[account_join_date]'" : "NULL"])")
+		account_join_date = findJoinDate()
+		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery({"
+			INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`)
+			VALUES (:ckey, :key, Now(), :round_id, Now(), :round_id, INET_ATON(:ip), :computerid, :adminrank, :account_join_date)
+		"}, list("ckey" = ckey, "key" = key, "round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "adminrank" = admin_rank, "account_join_date" = account_join_date || null))
 		if(!query_add_player.Execute())
 			qdel(query_client_in_db)
 			qdel(query_add_player)
@@ -579,7 +594,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			account_join_date = "Error"
 			account_age = -1
 	qdel(query_client_in_db)
-	var/datum/DBQuery/query_get_client_age = SSdbcore.NewQuery("SELECT firstseen, DATEDIFF(Now(),firstseen), accountjoindate, DATEDIFF(Now(),accountjoindate) FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	var/datum/DBQuery/query_get_client_age = SSdbcore.NewQuery(
+		"SELECT firstseen, DATEDIFF(Now(),firstseen), accountjoindate, DATEDIFF(Now(),accountjoindate) FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	if(!query_get_client_age.Execute())
 		qdel(query_get_client_age)
 		return
@@ -590,11 +608,14 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			account_join_date = query_get_client_age.item[3]
 			account_age = text2num(query_get_client_age.item[4])
 			if(!account_age)
-				account_join_date = sanitizeSQL(findJoinDate())
+				account_join_date = findJoinDate()
 				if(!account_join_date)
 					account_age = -1
 				else
-					var/datum/DBQuery/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),'[account_join_date]')")
+					var/datum/DBQuery/query_datediff = SSdbcore.NewQuery(
+						"SELECT DATEDIFF(Now(), :account_join_date)",
+						list("account_join_date" = account_join_date)
+					)
 					if(!query_datediff.Execute())
 						qdel(query_datediff)
 						return
@@ -603,7 +624,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 					qdel(query_datediff)
 	qdel(query_get_client_age)
 	if(!new_player)
-		var/datum/DBQuery/query_log_player = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET lastseen = Now(), lastseen_round_id = '[GLOB.round_id]', ip = INET_ATON('[sql_ip]'), computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]', accountjoindate = [account_join_date ? "'[account_join_date]'" : "NULL"] WHERE ckey = '[sql_ckey]'")
+		var/datum/DBQuery/query_log_player = SSdbcore.NewQuery(
+			"UPDATE [format_table_name("player")] SET lastseen = Now(), lastseen_round_id = :round_id, ip = INET_ATON(:ip), computerid = :computerid, lastadminrank = :admin_rank, accountjoindate = :account_join_date WHERE ckey = :ckey",
+			list("round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "admin_rank" = admin_rank, "account_join_date" = account_join_date || null, "ckey" = ckey)
+		)
 		if(!query_log_player.Execute())
 			qdel(query_log_player)
 			return
@@ -630,9 +654,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			CRASH("Age check regex failed for [src.ckey]")
 
 /client/proc/validate_key_in_db()
-	var/sql_ckey = sanitizeSQL(ckey)
 	var/sql_key
-	var/datum/DBQuery/query_check_byond_key = SSdbcore.NewQuery("SELECT byond_key FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	var/datum/DBQuery/query_check_byond_key = SSdbcore.NewQuery(
+		"SELECT byond_key FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	if(!query_check_byond_key.Execute())
 		qdel(query_check_byond_key)
 		return
@@ -648,8 +674,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		if(F)
 			var/regex/R = regex("\\tkey = \"(.+)\"")
 			if(R.Find(F))
-				var/web_key = sanitizeSQL(R.group[1])
-				var/datum/DBQuery/query_update_byond_key = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET byond_key = '[web_key]' WHERE ckey = '[sql_ckey]'")
+				var/web_key = R.group[1]
+				var/datum/DBQuery/query_update_byond_key = SSdbcore.NewQuery(
+					"UPDATE [format_table_name("player")] SET byond_key = :byond_key WHERE ckey = :ckey",
+					list("byond_key" = web_key, "ckey" = ckey)
+				)
 				query_update_byond_key.Execute()
 				qdel(query_update_byond_key)
 			else
@@ -666,8 +695,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/static/tokens = list()
 	var/static/cidcheck_failedckeys = list() //to avoid spamming the admins if the same guy keeps trying.
 	var/static/cidcheck_spoofckeys = list()
-	var/sql_ckey = sanitizeSQL(ckey)
-	var/datum/DBQuery/query_cidcheck = SSdbcore.NewQuery("SELECT computerid FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	var/datum/DBQuery/query_cidcheck = SSdbcore.NewQuery(
+		"SELECT computerid FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	query_cidcheck.Execute()
 
 	var/lastcid
@@ -742,10 +773,11 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	add_system_note("CID-Error", "Detected as using a cid randomizer.")
 
 /client/proc/add_system_note(system_ckey, message)
-	var/sql_system_ckey = sanitizeSQL(system_ckey)
-	var/sql_ckey = sanitizeSQL(ckey)
 	//check to see if we noted them in the last day.
-	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
+	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery(
+		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
+		list("targetckey" = ckey, "adminckey" = system_ckey)
+	)
 	if(!query_get_notes.Execute())
 		qdel(query_get_notes)
 		return
@@ -754,7 +786,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		return
 	qdel(query_get_notes)
 	//regardless of above, make sure their last note is not from us, as no point in repeating the same note over and over.
-	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1")
+	query_get_notes = SSdbcore.NewQuery(
+		"SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = :targetckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1",
+		list("targetckey" = ckey)
+	)
 	if(!query_get_notes.Execute())
 		qdel(query_get_notes)
 		return
@@ -859,13 +894,19 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	getFiles(
 		'html/search.js',
 		'html/panels.css',
+		'html/browser/common.js',
 		'html/browser/common.css',
 		'html/browser/scannernew.css',
 		'html/browser/playeroptions.css',
 		)
 	spawn (10) //removing this spawn causes all clients to not get verbs.
+
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/getFilesSlow, src, SSassets.preload, FALSE), 5 SECONDS)
+
 		#if (PRELOAD_RSC == 0)
 		for (var/name in GLOB.vox_sounds)
 			var/file = GLOB.vox_sounds[name]

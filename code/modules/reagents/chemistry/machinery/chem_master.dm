@@ -146,7 +146,7 @@
 		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 		assets.send(user)
 
-		ui = new(user, src, ui_key, "chem_master", name, 565, 550, master_ui, state)
+		ui = new(user, src, ui_key, "ChemMaster", name, 565, 550, master_ui, state)
 		ui.open()
 
 //Insert our custom spritesheet css link into the html

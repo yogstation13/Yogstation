@@ -25,7 +25,11 @@
 	for(var/mob/living/simple_animal/hostile/clockwork/M in GLOB.all_clockwork_mobs)
 		M.ratvar_act()
 	START_PROCESSING(SSobj, src)
-	send_to_playing_players("<span class='ratvar'>[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]</span>")
+	if(prob(25))
+		send_to_playing_players("<span class='ratvar'>[text2ratvar("COGGERS")]!</span>")
+	else
+		send_to_playing_players("<span class='ratvar'>[text2ratvar("ONCE AGAIN MY LIGHT SHINES AMONG THESE PATHETIC STARS")]</span>")
+
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/clockwork_effects.dmi', "ratvar_alert")
 	notify_ghosts("The Justiciar's light calls to you! Reach out to Ratvar in [get_area_name(src)] to be granted a shell to spread his glory!", null, source = src, alert_overlay = alert_overlay)

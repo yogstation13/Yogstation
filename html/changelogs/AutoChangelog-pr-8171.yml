@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "nuke ops can land on icebox"
-  - bugfix: "planet atmos is no longer  hyperfucky on icebox"
-  - tweak: "snow doesn't slow you after being dug since there's no more snow"

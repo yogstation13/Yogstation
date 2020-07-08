@@ -91,7 +91,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_view_polls,
 	/client/proc/antag_token_panel, //Yogs -- Access Antag Token Panel
 	/client/proc/give_antag_token,
-	/client/proc/show_redeemable_antag_tokens
+	/client/proc/show_redeemable_antag_tokens,
+  /client/proc/admincryo
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -147,7 +148,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
-	/client/proc/mentor_memo, /* YOGS - something stupid about "Mentor memos" */
+	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
+	///client/proc/dump_memory_usage,
 	/client/proc/release_queue // Yogs -- Adds some queue-manipulation verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
@@ -261,7 +263,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	/client/proc/debug_huds,
+	/client/proc/admincryo
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
@@ -778,3 +781,30 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
+
+/*/client/proc/dump_memory_usage()
+	set name = "Dump Server Memory Usage"
+	set category = "Server"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+		return
+
+	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"
+
+	to_chat(world, "<span class='userdanger'>Performing a memory dump!</span>")
+	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
+	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
+
+	sleep(20)
+
+	if(!dump_memory_profile("data/logs/memory/[fname]"))
+		to_chat(usr, "<span class='warning'>Dumping memory failed at dll call.</span>")
+		return
+
+	if(!fexists("data/logs/memory/[fname]"))
+		to_chat(usr, "<span class='warning'>File creation failed. Please check to see if the data/logs/memory folder actually exists.</span>")
+	else
+		to_chat(usr, "<span class='notice'>Memory dump completed.</span>")*/

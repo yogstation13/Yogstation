@@ -94,7 +94,47 @@
 				candy_cooldown = world.time+1200
 			else
 				to_chat(user, "You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.")
+				
+/obj/item/clothing/head/det_hat/evil
+	name = "suspicious fedora"
+	icon_state = "syndicate_fedora"
+	desc = "A suspicious black fedora with a red band."
+	w_class = 4
+	throw_speed = 4
+	sharpness = IS_BLUNT
+	hitsound = 'sound/weapons/genhit.ogg'
+	attack_verb = list("poked", "tipped")
+	var/extended = 0
 
+/obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
+	extended = !extended
+	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
+	if(extended)
+		force = 15
+		throwforce = 40
+		sharpness = IS_SHARP
+		icon_state = "syndicate_fedora_sharp"
+		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
+		hitsound = 'sound/weapons/bladeslice.ogg'
+	else
+		force = 0
+		throwforce = 0
+		sharpness = IS_BLUNT
+		icon_state = "syndicate_fedora"
+		attack_verb = list("poked", "tipped")
+		hitsound = 'sound/weapons/genhit.ogg'
+		
+/obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom,)
+	if(iscarbon(src.loc))
+		return ..()
+	throw_at(thrownby, throw_range+3, throw_speed, null)
+	..()
+
+/obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+	if(iscarbon(thrower))
+		var/mob/living/carbon/C = thrower
+		C.throw_mode_on()
+	..()
 
 //Mime
 /obj/item/clothing/head/beret

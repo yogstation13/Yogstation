@@ -1,6 +1,0 @@
-author: "MenacingManatee"
-delete-after: true 
-changes: 
-  - tweak: "tweaks a vamp core ability to buff early game and make stealth more viable"
-  - rscdel: "Removed blood cost of vampire hypnotize"
-  - rscadd: "Added a long cooldown on each usage of hypnotize"

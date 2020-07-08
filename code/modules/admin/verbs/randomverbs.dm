@@ -298,7 +298,7 @@
 				continue	//we don't want to be an alium
 			if(M.client.is_afk())
 				continue	//we are afk
-			if(M.mind && M.mind.current && M.mind.current.stat != DEAD)
+			if(M?.mind?.current?.stat != DEAD)
 				continue	//we have a live body we are tied to
 			candidates += M.ckey
 		if(candidates.len)
@@ -427,7 +427,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.real_name = record_found.fields["name"]
 		new_character.gender = record_found.fields["gender"]
 		new_character.age = record_found.fields["age"]
-		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
+		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
 	else
 		var/datum/preferences/A = new()
 		A.copy_to(new_character)
@@ -1232,5 +1232,30 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /mob/living/carbon/proc/adminpie(mob/user)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
-	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW
+	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSMACHINES | PASSCOMPUTER
 	p.throw_at(user, 10, 0.5, usr)
+
+/client/proc/admincryo(mob/living/carbon/human/target as mob)
+	set category = "Admin"
+	set name = "Admin Cryo"
+	if(!check_rights(R_ADMIN))
+		return
+	var/confirm = alert(usr, "Are you Sure you want to offer them?", "Are you Sure", "Yes", "No")
+	if(confirm == "No")
+		return
+	var/offer = alert(usr, "Do you want to try to offer to ghosts first?", "Ghost Offer", "Yes", "No")
+	if(offer == "Yes" && offer_control(target))
+		return
+	for(var/obj/machinery/cryopod/cryopod in GLOB.cryopods)
+		if(cryopod.occupant)
+			continue
+		if(!istype(get_area(cryopod), /area/crew_quarters))
+			continue
+		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
+		target.forceMove(cryopod.loc)
+		var/msg = "[key_name_admin(usr)] has put [target.real_name]/[key_name(target)] into cryostorage at [ADMIN_VERBOSEJMP(target)]."
+		message_admins(msg)
+		log_admin(msg)
+		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
+		cryopod.close_machine(target)
+		return

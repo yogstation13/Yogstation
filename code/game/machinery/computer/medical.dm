@@ -600,3 +600,14 @@
 	icon_keyboard = "laptop_key"
 	clockwork = TRUE //it'd look weird
 	pass_flags = PASSTABLE
+
+/obj/machinery/computer/med_data/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(scan)
+		user.put_in_hands(scan)
+		scan = null
+	else
+		var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id)
+		if(I && user.transferItemToLoc(I, src))
+			scan = I

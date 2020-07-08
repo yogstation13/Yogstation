@@ -1,4 +1,0 @@
-author: "MacHac"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborgs can no longer exploit the alert() function to self-destruct from beyond the grave."

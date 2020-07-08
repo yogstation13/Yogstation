@@ -331,11 +331,13 @@
 	if(istype(A, /obj/effect/temp_visual/point))
 		return FALSE
 
-	var/tile = get_turf(A)
+	var/turf/tile = get_turf(A)
 	if (!tile)
 		return FALSE
 
-	new /obj/effect/temp_visual/point(A,invisibility)
+	var/turf/our_tile = get_turf(src)
+	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 
 	return TRUE
 
@@ -668,32 +670,44 @@
 	return TRUE
 
 /mob/verb/eastshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_x <= 16)
-		pixel_x++
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_x <= 16)
+        pixel_x++
+        is_shifted = TRUE
 
 /mob/verb/westshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_x >= -16)
-		pixel_x--
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_x >= -16)
+        pixel_x--
+        is_shifted = TRUE
 
 /mob/verb/northshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_y <= 16)
-		pixel_y++
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_y <= 16)
+        pixel_y++
+        is_shifted = TRUE
 
 /mob/verb/southshift()
-	set hidden = TRUE
-	if(!canface())
-		return FALSE
-	if(pixel_y >= -16)
-		pixel_y--
+    set hidden = TRUE
+    if(!canface())
+        return FALSE
+    if (istype(src,/mob/living/silicon/ai) || istype(src,/mob/camera))
+        return FALSE
+    if(pixel_y >= -16)
+        pixel_y--
+        is_shifted = TRUE
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
 	return FALSE

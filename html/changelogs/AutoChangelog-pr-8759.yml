@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscadd: "Vampire suck speed now has three different variations depending on grab strength"
-  - rscadd: "Vampires now have a sneaky way to extract blood from the unwitting if they aren't grabbing them"

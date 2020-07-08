@@ -290,7 +290,7 @@
 	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations."
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
-	pass_flags = PASSTABLE | PASSMOB
+	pass_flags = PASSTABLE | PASSMOB | PASSCOMPUTER
 	a_intent = INTENT_HARM
 	mob_biotypes = list(MOB_ROBOTIC)
 	health = 25

@@ -491,15 +491,15 @@ ROUNDS_UNTIL_HARD_RESTART 5
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 15x15
+DEFAULT_VIEW 19x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
 ## You probably shouldn't ever be changing this, but it's here if you want to.
 DEFAULT_VIEW_SQUARE 15x15
 
-##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
-#WEBHOOK_ADDRESS http://example.com
+##Used to send round data to a webhook. Can now use HTTPS thanks to rust_g
+#WEBHOOK_ADDRESS https://example.com
 #WEBHOOK_KEY webkey
 
 ## Comment this out if you want to use the SQL based mentor system, the legacy system uses mentors.txt.
