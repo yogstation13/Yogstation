@@ -1,8 +1,8 @@
 ///
 //randomly pick people from a short list
-//add ability to cure sanity instability with psychatrist
-//add sprites?
+//add ability to cure sanity instability with psychatrist?
 //add goals?
+// NOT FINISHED YET, CHECK IN DREAM DAEMON!!! <-----------------
 //xoxeyos
 
 #define FLUTE_VIS_FLICKER 1
@@ -11,27 +11,37 @@
 #define FLUTE_CHANT 4
 #define FLUTE_STARLIGHT 5
 #define FLUTE_CORRIDOR_ENCOUNTER 6
+#define NUMBER_OF_PLAYERS_AFFECTED 6
 
 /datum/round_event_control/flutes
 	name = "Flutes"
 	typepath = /datum/round_event/flutes
 	max_occurrences = 1
 	weight = 0
-	min_players = 40
+	min_players = 30
 
 /datum/round_event/flutes
+	var/chosen_players[NUMBER_OF_PLAYERS_AFFECTED]
 
-/datum/round_event/flutes/proc/sound_intro()
-	for(var/V in GLOB.player_list)
-		var/mob/M = V
-		if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.loc.z))
-			M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
+/datum/round_event/flutes/start()
+	var/N = 0
+	var/remaining_players[GLOB.player_list.len]
+	do
+		var/player = remaining_players[rand(remaining_players.len)]
+		sound_intro(player)
+		pick_flute_scene(player)
+		remaining_players.Remove(player)
+		chosen_players.Add(player)
+		N++
+	while(N <= NUMBER_OF_PLAYERS_AFFECTED)
 
-/datum/round_event/flutes/proc/pick_flute_scene(mob/living/carbon/human/M)
 
-	var/pick_flute_scene = rand(6)
+/datum/round_event/flutes/proc/sound_intro(mob/living/carbon/M)
+	if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.loc.z))
+		M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 
-	switch(pick_flute_scene)
+/datum/round_event/flutes/proc/pick_flute_scene(mob/living/carbon/M)
+	switch(rand(1, 6))
 		if(FLUTE_VIS_FLICKER)
 			to_chat(M, "<span class='warning'><b>Your vision flickers.</b></span>")
 			M.blur_eyes(15)
