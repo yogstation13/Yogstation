@@ -41,8 +41,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "h" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "i" = (
@@ -487,6 +486,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
+"X" = (
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -495,10 +499,10 @@ f
 g
 n
 g
-h
-h
-h
-h
+X
+X
+X
+X
 z
 n
 g
@@ -542,7 +546,7 @@ p
 H
 g
 g
-h
+X
 g
 "}
 (4,1,1) = {"
@@ -562,7 +566,7 @@ I
 N
 Q
 U
-h
+X
 "}
 (5,1,1) = {"
 c
@@ -581,7 +585,7 @@ J
 O
 R
 V
-h
+X
 "}
 (6,1,1) = {"
 b
@@ -600,7 +604,7 @@ K
 P
 S
 U
-h
+X
 "}
 (7,1,1) = {"
 b
@@ -618,7 +622,7 @@ p
 L
 g
 g
-h
+X
 g
 "}
 (8,1,1) = {"
@@ -647,10 +651,10 @@ f
 g
 n
 g
-h
-h
-h
-h
+X
+X
+X
+X
 z
 n
 g

@@ -3,12 +3,17 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
 	id = "escape_cockpit_windows";
 	name = "Cockpit Blast Door"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ac" = (
@@ -607,8 +612,14 @@
 	},
 /area/shuttle/escape)
 "br" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Blast Door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bs" = (
@@ -896,20 +907,18 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "bT" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
+/obj/machinery/door/poddoor/preopen{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Blast Door"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "bU" = (
 /obj/effect/turf_decal/bot,
@@ -1612,30 +1621,12 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "da" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/door/poddoor/preopen{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Blast Door"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Seating"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "db" = (
 /obj/structure/closet/crate/medical{
@@ -1672,31 +1663,18 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "de" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/door/poddoor/preopen{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Blast Door"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Seating"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
+	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "df" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2320,6 +2298,118 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
+"eq" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Blast Door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"er" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Blast Door"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"es" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"et" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"eu" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"ev" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Holding Area";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"ew" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Escape Shuttle Infirmary"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"ex" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "Emergency Shuttle Seating"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"ey" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/public/glass{
+	name = "Emergency Shuttle Seating"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
 "fJ" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -2341,18 +2431,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"oo" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "pW" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -2366,31 +2444,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"rd" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"ta" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "tR" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
@@ -2399,46 +2452,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"vV" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"wQ" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Holding Area";
-	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "yu" = (
 /obj/structure/window/reinforced{
@@ -2452,18 +2465,6 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "yC" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"zp" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Blast Door"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -2606,19 +2607,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"XW" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Blast Door"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 
 (1,1,1) = {"
 aa
@@ -2664,7 +2652,7 @@ aa
 aa
 aa
 aH
-br
+es
 ax
 ax
 bU
@@ -2673,7 +2661,7 @@ cp
 cx
 cE
 ax
-br
+es
 ax
 cT
 ce
@@ -2682,7 +2670,7 @@ cx
 bU
 ax
 ax
-br
+es
 dW
 aa
 aa
@@ -2768,7 +2756,7 @@ bu
 aY
 aZ
 bD
-br
+eu
 bW
 ch
 cr
@@ -2778,7 +2766,7 @@ fJ
 bP
 bP
 cU
-br
+eu
 dg
 dp
 dv
@@ -2793,8 +2781,8 @@ en
 (6,1,1) = {"
 aa
 ab
-ta
-ta
+eq
+eq
 ax
 ax
 aQ
@@ -2802,7 +2790,7 @@ aY
 aY
 aY
 bE
-wQ
+ev
 bX
 pW
 ci
@@ -2812,7 +2800,7 @@ zA
 bP
 bP
 bP
-da
+ex
 dh
 bP
 bP
@@ -2825,8 +2813,8 @@ el
 el
 "}
 (7,1,1) = {"
-oo
-XW
+ab
+da
 aj
 ap
 ay
@@ -2836,7 +2824,7 @@ aX
 aY
 bv
 bF
-br
+eu
 Pl
 Gv
 cj
@@ -2846,7 +2834,7 @@ yu
 PT
 PT
 cV
-br
+eu
 di
 dq
 dw
@@ -2859,7 +2847,7 @@ em
 aa
 "}
 (8,1,1) = {"
-rd
+br
 ac
 ak
 aq
@@ -2893,7 +2881,7 @@ em
 aa
 "}
 (9,1,1) = {"
-rd
+br
 ad
 al
 ar
@@ -2927,7 +2915,7 @@ el
 en
 "}
 (10,1,1) = {"
-rd
+br
 ae
 am
 as
@@ -2961,7 +2949,7 @@ el
 el
 "}
 (11,1,1) = {"
-rd
+br
 af
 al
 at
@@ -2995,7 +2983,7 @@ ax
 aa
 "}
 (12,1,1) = {"
-rd
+br
 ag
 ep
 au
@@ -3029,7 +3017,7 @@ el
 en
 "}
 (13,1,1) = {"
-rd
+br
 ah
 al
 ar
@@ -3063,7 +3051,7 @@ el
 el
 "}
 (14,1,1) = {"
-rd
+br
 ai
 an
 av
@@ -3097,8 +3085,8 @@ em
 aa
 "}
 (15,1,1) = {"
-oo
-vV
+bT
+da
 ao
 aw
 aG
@@ -3108,7 +3096,7 @@ be
 bf
 bz
 bJ
-br
+eu
 bZ
 pW
 ci
@@ -3118,7 +3106,7 @@ Cy
 PW
 PW
 bO
-br
+eu
 dg
 cr
 dx
@@ -3132,9 +3120,9 @@ aa
 "}
 (16,1,1) = {"
 aa
-ab
-zp
-zp
+de
+er
+er
 ax
 ax
 aU
@@ -3142,7 +3130,7 @@ bf
 bf
 bf
 bK
-bT
+ew
 ca
 Gv
 cj
@@ -3152,7 +3140,7 @@ yu
 bP
 bP
 bP
-de
+ey
 dn
 bP
 bP
@@ -3176,7 +3164,7 @@ bg
 bf
 bA
 bL
-br
+eu
 ca
 cl
 cs
@@ -3186,7 +3174,7 @@ fJ
 bP
 bP
 cU
-br
+eu
 do
 dt
 dy
@@ -3276,7 +3264,7 @@ aa
 aa
 aa
 aN
-br
+et
 ax
 ax
 cc
@@ -3285,7 +3273,7 @@ cv
 cD
 cE
 ax
-br
+et
 ax
 cE
 cf
@@ -3294,7 +3282,7 @@ cy
 cc
 ax
 ax
-br
+et
 ej
 aa
 aa
