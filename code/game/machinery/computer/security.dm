@@ -769,3 +769,7 @@
 		else if(prob(1))
 			qdel(R)
 			continue
+
+#undef MAIN_SCREEN
+#undef RECORD_MAINT
+#undef RECORD_VIEW
