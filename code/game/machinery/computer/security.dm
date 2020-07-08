@@ -416,6 +416,7 @@
 				qdel(R)
 			GLOB.data_core.security.Cut()
 			special_message = "All Security Records Deleted."
+			screen = MAIN_SCREEN
 		
 		if("new_record")
 			if(!logged_in)

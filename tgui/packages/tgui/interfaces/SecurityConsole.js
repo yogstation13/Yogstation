@@ -402,6 +402,7 @@ export const SecurityConsole = (props, context) => {
             <Button color="good" icon="plus" onClick={() => act("new_record_general")}>
               New Record
             </Button>
+            <Button icon="wrench" onClick={() => act("record_maint")}>Record Maintenance</Button>
             <Button color="bad" icon="sign-out-alt" onClick={() => act("log_out")}>Log Out</Button>
           </Fragment>
         )}>
