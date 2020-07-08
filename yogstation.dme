@@ -725,7 +725,6 @@
 #include "code\game\machinery\computer\prisoner.dm"
 #include "code\game\machinery\computer\robot.dm"
 #include "code\game\machinery\computer\security.dm"
-#include "code\game\machinery\computer\security_new.dm"
 #include "code\game\machinery\computer\station_alert.dm"
 #include "code\game\machinery\computer\teleporter.dm"
 #include "code\game\machinery\computer\warrant.dm"
