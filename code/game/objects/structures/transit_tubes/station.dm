@@ -166,6 +166,7 @@
 	spawn(5)
 		if(reverse_launch)
 			pod.setDir(tube_dirs[1]) //turning the pod around for next launch.
+			pod.icon = turn(pod.icon , 180)
 		launch_cooldown = world.time + cooldown_delay
 		if (pod.cargo)
 			launch_cooldown = cooldown_delay * 0.5 + world.time //Cargo pods spend half as long at the station

@@ -2,6 +2,7 @@
 	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "pod_cargo"
 	cargo = TRUE
+	name = "cargo pod"
 
 /obj/structure/transit_tube_pod/cargo/update_icon()
 	if(contents.len)
