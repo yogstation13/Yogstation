@@ -16,7 +16,7 @@
 								"Ammo",
 								"Firing Pins",
 								"Computer Parts",
-								"Spacepod Designs", // yogs
+								"Spacepod Designs", // yoggers
 								"Service"
 								)
 	production_animation = "protolathe_n"
