@@ -14742,15 +14742,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"aDa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
 "aDb" = (
 /obj/machinery/light{
 	dir = 8
@@ -16565,26 +16556,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"aGD" = (
-/obj/structure/table/wood,
-/obj/structure/mirror{
-	pixel_x = -28
-	},
-/obj/item/flashlight/lamp/bananalamp{
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/theatre)
 "aGE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
@@ -60069,6 +60040,16 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"llR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/dog/corgi/borgi,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "lni" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -63176,6 +63157,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"vth" = (
+/obj/structure/table/wood,
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/phone/banana,
+/turf/open/floor/plasteel,
+/area/crew_quarters/theatre)
 "vwi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -100154,7 +100156,7 @@ arj
 aCq
 ayz
 aFl
-aGD
+vth
 aHZ
 aCr
 cau
@@ -113295,7 +113297,7 @@ bvK
 bxi
 byp
 bzJ
-aDa
+llR
 bCg
 bvK
 bEu
