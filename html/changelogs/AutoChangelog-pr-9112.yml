@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the Banana Phone. The Clown can message the Clown Planet now."
+  - imageadd: "Adds Partheo's Banana Phones sprite"
