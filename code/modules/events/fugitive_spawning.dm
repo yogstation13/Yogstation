@@ -21,16 +21,16 @@
 		return MAP_ERROR
 	var/turf/landing_turf = pick(possible_spawns)
 	var/list/possible_backstories = list()
-	var/list/candidates = get_candidates(ROLE_TRAITOR, null, ROLE_TRAITOR)
+	var/list/candidates = get_candidates(ROLE_FUGITIVE, null, ROLE_FUGITIVE)
 	if(candidates.len >= 1) //solo refugees
 		possible_backstories.Add("waldo")
-	if(candidates.len >= 4)//group refugees
+	if(candidates.len >= 2)//group refugees
 		possible_backstories.Add("prisoner", "cultist", "synth")
 	if(!possible_backstories.len)
 		return NOT_ENOUGH_PLAYERS
 
 	var/backstory = pick(possible_backstories)
-	var/member_size = 3
+	var/member_size = min(candidates.len, 5)
 	var/leader
 	switch(backstory)
 		if("cultist" || "synth")
@@ -74,10 +74,14 @@
 			S.equipOutfit(/datum/outfit/prisoner)
 		if("cultist")
 			S.equipOutfit(/datum/outfit/yalp_cultist)
+			var/datum/action/innate/yalpcomms/comm
+			comm = new
+			comm.Grant(S)
 		if("waldo")
 			S.equipOutfit(/datum/outfit/waldo)
 		if("synth")
 			S.equipOutfit(/datum/outfit/synthetic)
+			S.set_species(/datum/species/synth)
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Fugitive by an event.")
 	log_game("[key_name(S)] was spawned as a Fugitive by an event.")
 	spawned_mobs += S
@@ -94,11 +98,7 @@
 			player_mind.assigned_role = "Yalp Elor"
 			player_mind.special_role = "Old God"
 			player_mind.add_antag_datum(/datum/antagonist/fugitive)
-		if("synth")
-			var/mob/living/carbon/human/S = gear_fugitive(leader, landing_turf, backstory)
-			var/obj/item/choice_beacon/augments/A = new(S)
-			S.put_in_hands(A)
-			new /obj/item/autosurgeon(landing_turf)
+
 
 //security team gets called in after 10 minutes of prep to find the refugees
 /datum/round_event/ghost_role/fugitives/proc/spawn_hunters()
