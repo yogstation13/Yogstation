@@ -49236,14 +49236,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"bIC" = (
-/obj/structure/table/wood,
-/obj/machinery/light/small,
-/obj/item/clothing/glasses/regular/hipster{
-	name = "Hipster Glasses"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/theatre)
 "bID" = (
 /obj/effect/landmark/start/scientist,
 /obj/effect/turf_decal/stripes/line{
@@ -84138,6 +84130,15 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
+"qgh" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small,
+/obj/item/clothing/glasses/regular/hipster{
+	name = "Hipster Glasses"
+	},
+/obj/item/phone/banana,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
 "qhe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -122447,7 +122448,7 @@ bhO
 bCc
 bkN
 blq
-bIC
+qgh
 byN
 bLR
 bnY

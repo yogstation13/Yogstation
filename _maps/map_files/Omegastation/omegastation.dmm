@@ -20768,20 +20768,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/dorms)
-"aES" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/baguette,
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/structure/sign/poster/contraband/random{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/theatre)
 "aET" = (
 /obj/structure/table/wood,
 /obj/item/storage/crayons,
@@ -40482,6 +40468,21 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"koo" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/baguette,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/item/phone/banana,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/theatre)
 "koV" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -84954,7 +84955,7 @@ aAK
 aBV
 aCP
 aDJ
-aES
+koo
 aAL
 aGJ
 aHO
