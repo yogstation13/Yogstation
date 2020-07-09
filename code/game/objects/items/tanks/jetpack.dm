@@ -60,8 +60,7 @@
 
 /obj/item/tank/jetpack/update_icon()
 	icon_state = initial(icon_state)
-	if(!classic) //does the jetpack have its own on sprite?
-		if(on)
+	if(!classic && on) //does the jetpack have its own on sprite?
 			icon_state = "[initial(icon_state)]-on"
 	else //or does it use the classic overlay
 		cut_overlays()
