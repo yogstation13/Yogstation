@@ -1,8 +1,8 @@
-///
-//randomly pick people from a short list
+//
 //add ability to cure sanity instability with psychatrist?
 //add goals?
 //xoxeyos
+//massive help from Art Prime
 
 //---------
 //UTILITIES
@@ -49,7 +49,7 @@
 		M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 
 /datum/round_event/flutes/proc/pick_flute_scene(mob/living/carbon/M)
-	var/flutes_chosen_scene
+	var/flutes_chosen_scene = "abc"
 	switch(rand(1, 6))
 		if(1)
 			flutes_chosen_scene = "flute_vis_flicker"
@@ -96,30 +96,30 @@
 
 /datum/round_event/flutes/proc/flute_starlight(mob/living/carbon/M)
 	to_chat(M, "<span class='warning'><b>As the nearest stars light your skin and your station, you can make out the faint whispers being spoken in turn with the monotone flutes playing beyond you. You feel so tired, as the struts of metal piping, the walls, the floor twist in unnatural ways, as the lights dim.</b></span>")
-	sleep(30000)
+	sleep(300)
 	M.blur_eyes(40)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 80)
 	ADD_TRAIT(M, TRAIT_UNSTABLE, M)
 	//sanity = 50
-	sleep(25000)
+	sleep(250)
 	to_chat(M, "<span class='warning'><b>Exhaustion takes you.</b></span>")
 	M.SetSleeping(70)
 	to_chat(M, "<span class='notice'><b>You see vague, inhuman forms, in the tightest corners of your alien dreams, dancing frantically to thundering drums, in tune with yellow monotone flutes.</b></span>")
-	sleep(25000)
+	sleep(200)
 	M.adjustBruteLoss(15)
 	to_chat(M, "<span class='notice'><b>You wake from your deep dreams, blood oozing from your nose, while your head beats to a familiar tune.</b></span>")
 
 /datum/round_event/flutes/proc/flute_corridor_encounter(mob/living/carbon/M)
 	to_chat(M, "<span class='notice'><b>You glance upwards, down the corridor.</b></span>")
-	sleep(5000)
+	sleep(50)
 	to_chat(M, "span class='bold large_brass'><b>A BRIGHT BLINDING LIGHT FILLS YOUR VISION!</b></span>")
 	M.eye_blind = 5
-	sleep(10000)
+	sleep(100)
 	to_chat(M, "<span class='reallybig hypnophrase'><b>Your mind oozes at what it cannot comprehend, you feel your soul snatching onto your brain, with chills rolling up your spine. You barely hang on.</b></span>")
 	if(HAS_TRAIT(M, TRAIT_UNSTABLE))
 		to_chat(M, "<span class='green'><b>Your mind shatters.</b></span>")
 		M.SetSleeping(30)
-		sleep(30000)
+		sleep(300)
 		to_chat(M, "<span class='suicide'><b>Your flesh undulates, and boils off your bones. You were blind, yet now you've seen a glimpse behind the cosmic curtain.</b></span>")
 		//sanity = 25
 		REMOVE_TRAIT(M, TRAIT_UNSTABLE, M)
@@ -128,7 +128,7 @@
 		M.adjustBruteLoss(90)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 90)
 		M.set_species(/datum/species/skeleton)
-		sleep(30000)
+		sleep(300)
 		to_chat(M, "<span class='warning'><b>Your mind.. Has been humbled. You have escaped by the skin of your teeth, but have lost your body, and much, much more. You feel.. Mirth?</b></span>")
 	else
 		to_chat(M, "span class='suicide'><b>Your mind shatters.</b></span>")
