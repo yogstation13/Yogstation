@@ -687,7 +687,7 @@
 	throwforce = 23
 	force_unwielded = 14
 	force_wielded = 20
-	
+
 /obj/item/twohanded/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
@@ -849,38 +849,24 @@
 	if(!wielded)
 		return
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
 	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
 	item_state = "binoculars_wielded"
 	user.regenerate_icons()
-	if(!user?.client)
-		return
-	var/client/C = user.client
-	var/_x = 0
-	var/_y = 0
-	switch(user.dir)
-		if(NORTH)
-			_y = zoom_amt
-		if(EAST)
-			_x = zoom_amt
-		if(SOUTH)
-			_y = -zoom_amt
-		if(WEST)
-			_x = -zoom_amt
-	C.change_view(world.view + zoom_out_amt)
-	C.pixel_x = world.icon_size*_x
-	C.pixel_y = world.icon_size*_y
+	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
 
 /obj/item/twohanded/binoculars/unwield(mob/user)
 	. = ..()
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 	listeningTo = null
-	user.visible_message("[user] lowers [src].","You lower [src].")
 	item_state = "binoculars"
 	user.regenerate_icons()
-	if(user && user.client)
-		user.regenerate_icons()
-		var/client/C = user.client
-		C.change_view(CONFIG_GET(string/default_view))
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
+	user.client.view_size.zoomIn()
+
+/obj/item/twohanded/binoculars/proc/rotate(atom/thing, old_dir, new_dir)
+	if(ismob(thing))
+		var/mob/lad = thing
+		lad.regenerate_icons()
+		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
