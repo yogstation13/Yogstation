@@ -5,6 +5,7 @@
 	icon_state = "teg-unassembled"
 	density = TRUE
 	use_power = NO_POWER_USE
+	integrity_failure = 75
 
 	var/obj/machinery/atmospherics/components/binary/circulator/cold_circ
 	var/obj/machinery/atmospherics/components/binary/circulator/hot_circ
@@ -266,3 +267,8 @@
 		cold_circ.generator = null
 		cold_circ.update_icon()
 		cold_circ = null
+
+/obj/machinery/power/generator/obj_break(damage_flag)
+	kill_circs()
+	..()
+	

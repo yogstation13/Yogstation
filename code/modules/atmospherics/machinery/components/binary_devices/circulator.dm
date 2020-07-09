@@ -8,26 +8,32 @@
 	desc = "A gas circulator pump and heat exchanger."
 	icon = 'icons/obj/atmospherics/components/teg.dmi'
 	icon_state = "circ-unassembled"
-
+	density = TRUE
+	integrity_failure = 75
 	var/active = FALSE
 
 	var/last_pressure_delta = 0
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
-	density = TRUE
-
-
 	var/flipped = 0
 	var/mode = CIRCULATOR_HOT
 	var/obj/machinery/power/generator/generator
 
-//default cold circ for mappers
+//for mappers
 /obj/machinery/atmospherics/components/binary/circulator/cold
 	mode = CIRCULATOR_COLD
+
+/obj/machinery/atmospherics/components/binary/circulator/flipped
+	flipped = 1
+
+/obj/machinery/atmospherics/components/binary/circulator/cold/flipped
+	mode = CIRCULATOR_COLD
+	flipped = 1
 
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
 	.=..()
 	component_parts = list(new /obj/item/circuitboard/machine/circulator)
+	update_icon()
 
 /obj/machinery/atmospherics/components/binary/circulator/ComponentInitialize()
 	. = ..()
@@ -71,9 +77,26 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/process_atmos()
 	..()
-	update_icon()
+	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon()
+	cut_overlays()
+	
+	if(anchored)
+		for(var/direction in GLOB.cardinals)
+			if(!(direction & initialize_directions))
+				continue
+			var/obj/machinery/atmospherics/node = findConnecting(direction)
+
+			var/image/cap
+			if(node)
+				cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer)
+
+			add_overlay(cap)
+
+	return ..()
+
+/obj/machinery/atmospherics/components/binary/circulator/update_icon_nopipes()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	set_light(0)
 
@@ -81,22 +104,31 @@
 		icon_state = "circ-broken"
 		return
 
-	if(!generator || !generator.anchored)
-		icon_state = "circ-unassembled"
+	if(!generator)
+		icon_state = "circ-unassembled-[flipped]"
 		return
-	else
-		icon_state = "circ-assembled"
+	if(!generator.anchored)
+		icon_state = "circ-unassembled-[flipped]"
+		return
+	
+	icon_state = "circ-assembled-[flipped]"
 
 	if(!is_operational())
-		return //broken?
-	else if(last_pressure_delta > 0)
-		set_light(1)//fix amount
-		if(last_pressure_delta > ONE_ATMOSPHERE) //add light var later
-			SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir) //check if these need flipped states
-			SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+		return
+	else
+		if(!last_pressure_delta)
+			set_light(1)//fix amount
+			SSvis_overlays.add_vis_overlay(src, icon, "circ-off", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			return
 		else
-			SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir) //check if these need flipped states
-			SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			if(last_pressure_delta > ONE_ATMOSPHERE) //fast
+				set_light(1) //change color and intensity
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			else	//slow
+				set_light(1) //change color and intensity
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 	if(generator)
@@ -109,10 +141,7 @@
 
 	anchored = !anchored
 	I.play_tool_sound(src)
-	if(generator)
-		disconnectFromGenerator()
 	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
-
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]
 	var/obj/machinery/atmospherics/node2 = nodes[2]
@@ -138,6 +167,8 @@
 			node2.atmosinit()
 			node2.addMember(src)
 		build_network()
+
+	update_icon()
 
 	return TRUE
 
@@ -217,4 +248,10 @@
 
 	flipped = !flipped
 	to_chat(usr, "<span class='notice'>You flip [src].</span>")
-	update_icon()
+	update_icon_nopipes()
+
+/obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
+	if(generator)
+		generator.kill_circs()
+	..()
+	
