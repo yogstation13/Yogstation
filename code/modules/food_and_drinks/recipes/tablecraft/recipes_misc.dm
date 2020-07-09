@@ -116,6 +116,16 @@
 	result = /obj/item/reagent_containers/food/snacks/cheesyfries
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/poutine
+	name = "Poutine"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/fries = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/cheddar = 1,
+		/datum/reagent/consumable/gravy = 10
+	)
+	result = /obj/item/reagent_containers/food/snacks/poutine
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/cheesynachos
 	name ="Cheesy Nachos"
 	reqs = list(

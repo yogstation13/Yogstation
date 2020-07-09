@@ -341,7 +341,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && mind.current.key[1] != "@")	//makes sure we don't accidentally kick any clients
 		to_chat(usr, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
 		return
-	client.change_view(CONFIG_GET(string/default_view))
+	client.view_size.setDefault(getScreenSize(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	mind.current.key = key
 	mind.current.oobe_client = null //yogs
@@ -358,7 +358,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/response = alert(src, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. ","Are you sure you want to stay dead?","DNR","Save Me")
 	if(response != "DNR")
-		return 
+		return
 
 	can_reenter_corpse = FALSE
 	to_chat(src, "You can no longer be brought back into your body.")
@@ -506,15 +506,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	//yogs end
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
-	if(client.view == CONFIG_GET(string/default_view))
+	if(client.view_size.getView() == client.view_size.default)
 		var/list/views = list()
 		for(var/i in 7 to max_view)
 			views |= i
-		var/new_view = input("Choose your new view", "Modify view range", 7) as null|anything in views
+		var/new_view = input("Choose your new view", "Modify view range", 0) as null|anything in views
 		if(new_view)
-			client.change_view(clamp(new_view, 7, max_view))
+			client.rescale_view(new_view, 0, ((max_view*2)+1) - 15)
 	else
-		client.change_view(CONFIG_GET(string/default_view))
+		client.view_size.resetToDefault()
 
 /mob/dead/observer/verb/add_view_range(input as num)
 	set name = "Add View Range"
@@ -940,7 +940,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/possess_mouse(mob/living/simple_animal/mouse/M)
 	if(!M)
-		return FALSE		
+		return FALSE
 
 	if(!SSticker.HasRoundStarted())
 		to_chat(usr, "<span class='warning'>The round hasn't started yet!</span>")
@@ -958,7 +958,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 
 	log_game("[key_name(src)] has became a mouse")
-	
+
 	M.key = key
 	M.faction = list("neutral")
 	M.chew_probability = 0 //so they cant pull off a big brain play by ghosting somewhere or idk
