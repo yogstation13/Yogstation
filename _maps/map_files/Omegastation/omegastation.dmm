@@ -16300,18 +16300,6 @@
 	},
 /turf/closed/wall,
 /area/quartermaster/miningdock)
-"axY" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/end{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical)
 "axZ" = (
 /obj/machinery/defibrillator_mount/loaded{
 	pixel_y = -32
@@ -41204,6 +41192,18 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall/rust,
 /area/engine/engineering)
+"nwr" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical)
 "nCc" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
@@ -83436,7 +83436,7 @@ aqx
 aru
 atk
 avB
-axY
+nwr
 aph
 awL
 aJE
