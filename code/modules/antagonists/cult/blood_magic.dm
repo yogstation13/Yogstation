@@ -591,6 +591,7 @@
 				return
 		else if(user.mind.has_antag_datum(/datum/antagonist/cult/agent) && (istype(target, /obj/item/implanter) || istype(target, /obj/item/implantcase)))
 			uses--
+			to_chat(user, "<span class='warning'>A dark cloud emanates from your hand, [target] falling into it and a small soulstone fragment falling out!</span>")
 			new /obj/item/implanter/cult/blood(T)
 			qdel(target)
 			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
