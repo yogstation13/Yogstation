@@ -36,5 +36,6 @@
 
 /icons/ @Partheo
 /sound/ @Partheo
+/code/controllers/subsystem/ticker.dm @Partheo
 
 #Multiple Owners
