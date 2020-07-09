@@ -21,7 +21,7 @@
 	name = "Flutes"
 	typepath = /datum/round_event/flutes
 	max_occurrences = 1
-	weight = 0
+	weight = 1
 	min_players = 30
 
 //--------------------
