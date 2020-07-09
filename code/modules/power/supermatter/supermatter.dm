@@ -139,7 +139,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
-	var/support_integrity = 100 //integrity of the support base, used only when emagged
+	var/support_integrity = 100 //integrity of the support base, used when antinoblium is attached
+	var/antinoblium_attached = FALSE
+	var/corruptor_attached = FALSE
 
 	var/obj/item/radio/radio
 	var/radio_key = /obj/item/encryptionkey/headset_eng
@@ -262,14 +264,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/speaking
 
-	if(obj_flags & EMAGGED)
+	if(corruptor_attached)
 		speaking = "BRRRRRRRR SUPERMATTER CRITICAL FAILURE ENGAGING FAILSAFE" //technically the failsafe is fail-danger, but whatever.
 	else
 		speaking = "[emergency_alert] The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
 	radio.talk_into(src, speaking, common_channel, language = get_selected_language())
 	for(var/i in SUPERMATTER_COUNTDOWN_TIME to 0 step -10)
 		if(damage < explosion_point) // Cutting it a bit close there engineers
-			if(obj_flags & EMAGGED)
+			if(corruptor_attached)
 				radio.talk_into(src, "Brrrrrrrrr...???",SPAN_COMMAND, common_channel)
 			else
 				radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel)
@@ -295,7 +297,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			speaking = "[i*0.1]..."
 			log_game("The supermatter crystal: [i*0.1]...") // yogs start - Logs SM chatter
 			investigate_log("The supermatter crystal: [i*0.1]...", INVESTIGATE_SUPERMATTER) // yogs end
-		if(obj_flags & EMAGGED)
+		if(corruptor_attached)
 			speaking = "COUNTDOWN GO BRRRRRRRR"
 		radio.talk_into(src, speaking, common_channel)
 		sleep(10)
@@ -324,13 +326,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
 		if(T)
 			var/obj/singularity/S = new(T)
-			if(obj_flags & EMAGGED)
+			if(antinoblium_attached)
 				S.energy = 2400
 			else
 				S.energy = 800
 			S.consume(src)
 	else
-		if(obj_flags & EMAGGED)
+		if(antinoblium_attached)
 			explosion_power = explosion_power * 2
 			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
 			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
@@ -482,7 +484,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		//Calculate how much gas to release, emagged SM produces much more gas
 
-		if(obj_flags & EMAGGED)
+		if(antinoblium_attached)
 			removed.adjust_moles(/datum/gas/plasma, max(((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
 			removed.adjust_moles(/datum/gas/oxygen, max((((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER) * (1+(100-support_integrity)/25), 0))
 		else
@@ -494,7 +496,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			air_update_turf()
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || (obj_flags & EMAGGED))
+		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || (corruptor_attached))
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
 			l.hallucination += power * config_hallucination_power * D
 			l.hallucination = clamp(0, 200, l.hallucination)
@@ -533,7 +535,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			alarm()
 
 			if(damage > emergency_point)
-				if(obj_flags & EMAGGED)
+				if(corruptor_attached)
 					radio.talk_into(src, "BRRRRRRRR-ntegri-BRRRRRRRR at [get_fake_integrity()]%!", common_channel)
 				else
 					radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity()]%", common_channel)
@@ -545,7 +547,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					message_admins("[src] has reached the emergency point [ADMIN_JMP(src)].")
 					has_reached_emergency = TRUE
 			else if(damage >= damage_archived) // The damage is still going up
-				if(obj_flags & EMAGGED)
+				if(corruptor_attached)
 					radio.talk_into(src, "BRRRRRRRR-ntegri-BRRRRRRRR at [get_fake_integrity()]%!", engineering_channel)
 				else
 					radio.talk_into(src, "[warning_alert] Integrity: [get_integrity()]%", engineering_channel)
@@ -553,7 +555,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				investigate_log("The supermatter crystal: [warning_alert] Integrity: [get_integrity()]%", INVESTIGATE_SUPERMATTER) // yogs end
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 5)
 			else	// Phew, we're safe
-				if(obj_flags & EMAGGED)
+				if(corruptor_attached)
 					radio.talk_into(src, "BRRRRRRRR-ntegri-BRRRRRRRR at [get_fake_integrity()]%!", engineering_channel)
 				else
 					radio.talk_into(src, "[safe_alert] Integrity: [get_integrity()]%", engineering_channel)
@@ -562,14 +564,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				lastwarning = REALTIMEOFDAY
 
 			if(power > POWER_PENALTY_THRESHOLD)
-				if(obj_flags & EMAGGED)
+				if(corruptor_attached)
 					radio.talk_into(src, "POWER LEVELS GO BRRRRRRRR", engineering_channel)
 				else
 					radio.talk_into(src, "Warning: Hyperstructure has reached dangerous power level.", engineering_channel)
 				log_game("The supermatter crystal: Warning: Hyperstructure has reached dangerous power level.") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: Warning: Hyperstructure has reached dangerous power level.", INVESTIGATE_SUPERMATTER) // yogs end
 				if(powerloss_inhibitor < 0.5)
-					if(obj_flags & EMAGGED)
+					if(corruptor_attached)
 						radio.talk_into(src, "CHARGE INERTIA GO BRRRRRRRR", engineering_channel)
 					else
 						radio.talk_into(src, "DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", engineering_channel)
@@ -577,7 +579,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					investigate_log("The supermatter crystal: DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", INVESTIGATE_SUPERMATTER) // yogs end
 
 			if(combined_gas > MOLE_PENALTY_THRESHOLD)
-				if(obj_flags & EMAGGED)
+				if(corruptor_attached)
 					radio.talk_into(src, "COOLANT MASS GO BRRRRRRRR", engineering_channel)
 				else
 					radio.talk_into(src, "Warning: Critical coolant mass reached.", engineering_channel)
@@ -588,8 +590,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			countdown()
 
 	//emagged SM go BRRRRRRR here
-	if(obj_flags & EMAGGED)
-		if(prob(10) & support_integrity>0)//radio chatter to make people panic
+	if(antinoblium_attached)
+		if(prob(10+round(damage/(explosion_point/20),1)*3) & support_integrity>0)//radio chatter to make people panic
 			switch(support_integrity)
 				if(100)
 					radio.talk_into(src, "CORRUPTION OF PRIMARY SUPERMATTER SUPPORT INFRASTRUCTURE DETECTED!", engineering_channel)
@@ -614,19 +616,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				if(6)
 					radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT", common_channel)
 				if(1) //after those emps, anyone who can hear this must be lucky.
-					radio.talk_into(src, "COMPLETE DESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR AT 600%, ADVICE COMPLETE EVACUATION", common_channel)  
+					radio.talk_into(src, "COMPLETE DESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR AT 600%, ADVICE COMPLETE EVACUATION", common_channel)
 			support_integrity -= 1
 			radiation_pulse(src, (100-support_integrity)*2, 4)
-			if(prob(50))
-				radio.talk_into(src, "BRRRRRRRR", engineering_channel)
-			if(support_integrity<5)
-				var/emp_power = round(explosion_power * (1+(1-(support_integrity/5))),1)
+			if(support_integrity<3)
+				var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
 				empulse(src, emp_power, emp_power*2)
 		if(support_integrity<100)
 			power += round((100-support_integrity)/2,1)
 		if(support_integrity<70)
 			if(prob(30+round(support_integrity/2,1)))
 				supermatter_zap(src, 5, min(power*2, 20000))
+				T.hotspot_expose(((100-support_integrity)*20)+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,100)
 		if(support_integrity<40)
 			if(prob(10+round(support_integrity/10,1)))
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
@@ -785,18 +786,35 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					to_chat(user, "<span class='notice'>A tiny piece of \the [W] falls off, rendering it useless!</span>")
 			else
 				to_chat(user, "<span class='notice'>You fail to extract a sliver from \The [src]. \the [W] isn't sharp enough anymore!</span>")
-	if(istype(W, /obj/item/card/emag))
-		if(obj_flags & EMAGGED)
+	if(istype(W, /obj/item/supermatter_corruptor))
+		if(corruptor_attached)
+			to_chat(user, "corruptor_attached procced for some fucking reason")
 			return
-		obj_flags |= EMAGGED
-		investigate_log("Supermatter has been emagged by [user]", INVESTIGATE_SUPERMATTER)
-		message_admins("Supermatter has been emagged and is now going BRRRRRRR")
-		to_chat(user, "<span class='danger'>You use the cryptographic sequencer on [src]'s control structure, scrambling the support systems!",\
-				"<span class='notice'>The cryptographic sequencer is suddenly pulled into the supermatter crystal and flashes into dust!</span>")
+		user.visible_message("You attach the corruptor to the support structure, disrupting the paranoblium interface and allowing the addition of the antinoblium shard.")
+		corruptor_attached = 1
+		qdel(W)
+		return
+	if(istype(W, /obj/item/hemostat/antinoblium))
+		var/obj/item/hemostat/antinoblium/cached = W
+		if(!cached.shard)
+			user.visible_message("You have nothing to attach to the supermatter!")
+			return
+		if(!corruptor_attached)
+			user.visible_message("The paranoblium interface prevents you from adding the shard!")
+			return
+		if(antinoblium_attached)
+			user.visible_message("An antinoblium shard has already been attached to the supermatter crystal!")
+			return
+		antinoblium_attached = TRUE
+		investigate_log("[user] has attached an antinoblium shard to the SM.", INVESTIGATE_SUPERMATTER)
+		message_admins("Antinoblium shard has been attached to the SM and is now going BRRRRRR.")
+		to_chat(user, "<span class='danger'>You attach the antinoblium shard to the [src], moving your hand away before a sudden gravitational wave pulls the [W] into the crystal as it flashes to ash!")
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 		radio.use_command = TRUE
-		Consume(W)
 		radiation_pulse(src, 150, 4)
+		empulse(src, 3,6)
+		qdel(W)
+		return
 	else if(user.dropItemToGround(W))
 		user.visible_message("<span class='danger'>As [user] touches \the [src] with \a [W], silence fills the room...</span>",\
 			"<span class='userdanger'>You touch \the [src] with \the [W], and everything suddenly goes silent.</span>\n<span class='notice'>\The [W] flashes into dust as you flinch away from \the [src].</span>",\
@@ -804,7 +822,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		investigate_log("has been attacked ([W]) by [key_name(user)]", INVESTIGATE_SUPERMATTER)
 		Consume(W)
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
-
 		radiation_pulse(src, 150, 4)
 
 /obj/machinery/power/supermatter_crystal/wrench_act(mob/user, obj/item/tool)
