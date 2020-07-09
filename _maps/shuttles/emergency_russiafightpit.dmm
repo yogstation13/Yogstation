@@ -539,7 +539,6 @@
 /area/shuttle/escape)
 "bC" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
 	pixel_y = 30
 	},
 /obj/effect/decal/cleanable/blood/old,

@@ -660,7 +660,7 @@
 			cargoking = TRUE
 	var/hasQM = FALSE //we only wanna update the record if there's a QM
 	for(var/mob/M in GLOB.player_list)
-		if(M.mind && M.mind.assigned_role && M.mind.assigned_role == "Quartermaster")
+		if(M.mind?.assigned_role == "Quartermaster")
 			if(ducatduke)
 				SSachievements.unlock_achievement(/datum/achievement/ducatduke, M.client)
 				if(cargoking)

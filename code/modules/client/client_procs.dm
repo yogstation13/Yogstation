@@ -210,6 +210,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 GLOBAL_LIST_EMPTY(external_rsc_urls)
 #endif
 
+/client/Destroy()
+	SHOULD_CALL_PARENT(FALSE)
+	return QDEL_HINT_HARDDEL_NOW
+
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
 	chatOutput = new /datum/chatOutput(src)
@@ -421,6 +425,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	get_message_output("watchlist entry", ckey)
 	check_ip_intel()
 	validate_key_in_db()
+
+	if (prefs.auto_fit_viewport)
+		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
 
 	send_resources()
 

@@ -1,6 +1,193 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/machinery/door/poddoor{
+	id = "caravanpirate_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"ab" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "Engineering"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"ac" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/medical/glass{
+	name = "Medbay"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
+"ad" = (
+/obj/machinery/door/poddoor{
+	id = "caravanpirate_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"ae" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 6
+	},
+/area/shuttle/caravan/pirate)
 "af" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/caravan/pirate)
+"ag" = (
+/obj/machinery/door/poddoor{
+	id = "caravanpirate_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"ah" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/turretid{
+	icon_state = "control_kill";
+	lethal = 1;
+	locked = 0;
+	pixel_y = -30;
+	req_access = null
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/pirate/ranged{
+	environment_smash = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/pirate)
+"ai" = (
+/obj/machinery/door/poddoor{
+	id = "caravanpirate_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"aj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/command{
+	name = "Bridge"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/pirate)
+"ak" = (
+/obj/machinery/door/poddoor{
+	id = "caravanpirate_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"al" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/pirate/ranged{
+	environment_smash = 0
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
+"am" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security{
+	name = "Armory"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
+"an" = (
+/obj/structure/rack,
+/obj/item/storage/bag/money/vault,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/mob/living/simple_animal/parrot{
+	faction = list("pirate");
+	name = "Pegwing"
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/pirate)
+"ao" = (
+/obj/machinery/door/poddoor{
+	id = "caravanpirate_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "aE" = (
 /obj/structure/closet{
@@ -64,35 +251,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
-"ei" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
 "eL" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	dir = 10;
 	faction = list("pirate")
 	},
 /turf/closed/wall/mineral/plastitanium,
-/area/shuttle/caravan/pirate)
-"fa" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "fh" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -246,18 +410,6 @@
 	dir = 1
 	},
 /area/shuttle/caravan/pirate)
-"ku" = (
-/obj/structure/rack,
-/obj/item/storage/bag/money/vault,
-/mob/living/simple_animal/parrot{
-	faction = list("pirate");
-	name = "Pegwing"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
 "kY" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -282,32 +434,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
-"mr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/command{
-	name = "Bridge"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -343,17 +469,6 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
-/area/shuttle/caravan/pirate)
-"nO" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "oe" = (
 /obj/structure/table,
@@ -523,22 +638,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
-"th" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
 "to" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/rum{
@@ -547,13 +646,6 @@
 	},
 /obj/item/reagent_containers/food/drinks/bottle/rum,
 /turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
-"tM" = (
-/mob/living/simple_animal/hostile/pirate/ranged{
-	environment_smash = 0
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
 "ul" = (
 /obj/structure/table,
@@ -580,17 +672,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/shuttle/caravan/pirate)
-"vq" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 6
-	},
 /area/shuttle/caravan/pirate)
 "vW" = (
 /obj/machinery/light/small{
@@ -642,20 +723,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
-"xf" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "xg" = (
 /obj/structure/table,
@@ -734,34 +801,9 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
-"Av" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Medbay"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/caravan/pirate)
 "AP" = (
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/caravan/pirate)
-"Bi" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "BI" = (
 /obj/structure/table,
@@ -801,32 +843,6 @@
 /obj/structure/closet/crate/secure/loot,
 /obj/machinery/airalarm/all_access{
 	pixel_y = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
-"EB" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/machinery/turretid{
-	icon_state = "control_kill";
-	lethal = 1;
-	locked = 0;
-	pixel_y = -30;
-	req_access = null
-	},
-/mob/living/simple_animal/hostile/pirate/ranged{
-	environment_smash = 0
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
@@ -894,23 +910,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/caravan/pirate)
-"HO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security{
-	name = "Armory"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
 "II" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
@@ -1004,15 +1003,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
-"Ok" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
 "Pc" = (
 /obj/structure/sign/departments/engineering,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -1022,20 +1012,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/caravan/pirate)
-"PG" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "Rq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1257,13 +1233,13 @@ Jv
 Jv
 af
 af
-th
+ab
 Pc
 af
 af
 af
 Pc
-th
+ab
 af
 af
 Jv
@@ -1292,7 +1268,7 @@ su
 Ag
 af
 jo
-tM
+al
 sr
 af
 af
@@ -1330,7 +1306,7 @@ oL
 "}
 (10,1,1) = {"
 Jv
-Ok
+aa
 Ld
 nD
 bH
@@ -1340,7 +1316,7 @@ iX
 vd
 GQ
 Ld
-nO
+ao
 Jv
 "}
 (11,1,1) = {"
@@ -1348,11 +1324,11 @@ Jv
 oL
 af
 AP
-Av
+ac
 af
 af
 af
-HO
+am
 af
 af
 oL
@@ -1364,7 +1340,7 @@ Jv
 af
 aE
 SF
-vq
+ae
 NM
 fS
 RC
@@ -1397,7 +1373,7 @@ xg
 qC
 pK
 Sk
-ku
+an
 af
 qo
 Jv
@@ -1411,7 +1387,7 @@ oL
 af
 af
 af
-mr
+aj
 af
 oL
 Jv
@@ -1483,11 +1459,11 @@ Jv
 Jv
 Jv
 Jv
-Ok
+aa
 oO
-EB
+ah
 bd
-nO
+ao
 Jv
 Jv
 Jv
@@ -1498,11 +1474,11 @@ Jv
 Jv
 Jv
 Jv
-Bi
-fa
+ad
+ag
 fL
-PG
-Bi
+ag
+ak
 Jv
 Jv
 Jv
@@ -1514,9 +1490,9 @@ Jv
 Jv
 Jv
 Jv
-ei
-xf
-ei
+ad
+ai
+ak
 Jv
 Jv
 Jv
