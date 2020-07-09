@@ -37,5 +37,6 @@
 /icons/ @Partheo
 /sound/ @Partheo
 /code/controllers/subsystem/ticker.dm @Partheo
+/yogstation/code/controllers/subsystem/ticker.dm @Partheo
 
 #Multiple Owners
