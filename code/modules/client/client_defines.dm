@@ -90,3 +90,4 @@
 
 	//rate limiting for the crew manifest
 	var/crew_manifest_delay
+	var/datum/viewData/view_size

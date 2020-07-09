@@ -121,8 +121,20 @@
 	name = "lasagna"
 	desc = "I hate Mondays."
 	icon = 'yogstation/icons/obj/food/food.dmi'
-	trash = /obj/item/trash/plate
 	icon_state = "lasagna"
+	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	tastes = list("pasta" = 2, "meat" = 1, "cheese" = 1)
 	foodtype = MEAT | DAIRY | GRAIN
+
+/obj/item/reagent_containers/food/snacks/pizzaghetti
+	name = "pizzaghetti"
+	desc = "A frightening combination of two classic Italian dishes, pasta and pizza. You start to sweat just looking at it."
+	icon = 'icons/obj/food/pizzaspaghetti.dmi'
+	icon_state = "pizzaghetti"
+	trash = /obj/item/trash/plate
+	w_class = WEIGHT_CLASS_NORMAL
+	bitesize = 6
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("grease" = 4, "crust" = 1, "pasta" = 1, "cheese" = 1, "tomato" = 1,)
+	foodtype = GRAIN | VEGETABLES | DAIRY
