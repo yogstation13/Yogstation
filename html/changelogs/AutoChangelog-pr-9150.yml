@@ -1,0 +1,5 @@
+author: " Partheo"
+delete-after: true 
+changes: 
+  - rscadd: "Added gravy. Start by juicing cooked meat, then add flour."
+  - rscadd: "Added new recipes to make poutine and pizzaghetti."
