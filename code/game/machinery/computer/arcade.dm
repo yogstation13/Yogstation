@@ -1171,7 +1171,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		to_chat(c_user, "<span class='notice'>You (wisely) decide against putting your hand in the machine.</span>")
 
 /obj/machinery/computer/arcade/proc/mousevend(mob/user)
-	for(var/i=0, i<3,++i)
+	for(var/i=0, i < 3, i++)
 		prizevend(user)
 	moused = 0
 	new /obj/item/computer_mouse(get_turf(src))
