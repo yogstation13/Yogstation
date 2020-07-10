@@ -899,18 +899,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cd" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "cf" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -1123,6 +1111,20 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"Aw" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "Dn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1554,7 +1556,7 @@ bw
 bD
 bD
 bJ
-cd
+Aw
 cm
 aj
 aa

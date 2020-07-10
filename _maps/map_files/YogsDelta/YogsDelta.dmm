@@ -21572,15 +21572,6 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
-"aJh" = (
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "aJi" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -127177,6 +127168,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/port)
+"qqz" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/bot,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "qUc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -164405,7 +164404,7 @@ bfd
 bgr
 bhP
 aYG
-aJh
+qqz
 bnq
 aKP
 bfR

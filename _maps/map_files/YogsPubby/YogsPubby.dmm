@@ -28271,11 +28271,6 @@
 /obj/item/reagent_containers/food/condiment/peppermill,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bbi" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bbj" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/purple,
@@ -57079,6 +57074,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"dBv" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "dBW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -92214,7 +92216,7 @@ aRC
 aRN
 aYU
 bab
-bbi
+dBv
 bbh
 bdr
 bct

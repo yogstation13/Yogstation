@@ -823,15 +823,6 @@
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"ck" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "cl" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -1048,6 +1039,17 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"rk" = (
+/obj/structure/table,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1439,7 +1441,7 @@ al
 bH
 ce
 ce
-ck
+rk
 cn
 bR
 al
