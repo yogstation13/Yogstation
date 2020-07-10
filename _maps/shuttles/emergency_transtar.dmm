@@ -76,6 +76,19 @@
 /obj/item/clothing/mask/cigarette/cigar/havana,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
+"ez" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external/glass{
+	locked = 1;
+	name = "Escape Hatch"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "eV" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -236,17 +249,6 @@
 "qd" = (
 /obj/structure/closet,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"qn" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external/glass{
-	id_tag = "starboardescapehatch";
-	locked = 1;
-	name = "Escape Hatch"
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "qo" = (
 /obj/machinery/light,
@@ -464,20 +466,24 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"AB" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"BO" = (
+"AA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/machinery/door/airlock/external/glass{
+	id_tag = "portescapehatch";
 	locked = 1;
 	name = "Escape Hatch"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"AB" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Cn" = (
 /obj/structure/table,
@@ -520,6 +526,20 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Fj" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external/glass{
+	id_tag = "starboardescapehatch";
+	locked = 1;
+	name = "Escape Hatch"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "FY" = (
 /obj/structure/closet/emcloset,
@@ -648,17 +668,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"Pc" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external/glass{
-	id_tag = "portescapehatch";
-	locked = 1;
-	name = "Escape Hatch"
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "PA" = (
 /obj/structure/table/reinforced,
@@ -866,9 +875,9 @@ uR
 uR
 vq
 uR
-BO
+ez
 uR
-Pc
+AA
 uR
 uR
 Vp
@@ -1170,9 +1179,9 @@ uR
 uR
 eV
 uR
-qn
+Fj
 uR
-qn
+Fj
 uR
 uR
 Vp
