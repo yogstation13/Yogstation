@@ -13,8 +13,7 @@
 	pass_flags = PASSTABLE
 	resistance_flags = ACID_PROOF
 	var/operating = FALSE
-	var/obj/item/reagent_containers/container = null
-	var/obj/item/reagent_containers/initial_container = /obj/item/reagent_containers/glass/beaker/large
+	var/obj/item/reagent_containers/container = /obj/item/reagent_containers/glass/beaker/large
 	var/limit = 10
 	var/speed = 1
 	var/list/holdingitems
@@ -26,12 +25,12 @@
 	var/static/radial_mix = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_mix")
 
 /obj/machinery/reagentgrinder/kitchen //starts with a mixing bowl inside instead
-	initial_container = /obj/item/reagent_containers/glass/mixbowl
+	container = /obj/item/reagent_containers/glass/mixbowl
 
 /obj/machinery/reagentgrinder/Initialize()
 	. = ..()
 	holdingitems = list()
-	container = new initial_container(src)
+	container = new container(src)
 
 /obj/machinery/reagentgrinder/constructed/Initialize()
 	. = ..()
