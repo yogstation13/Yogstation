@@ -289,6 +289,7 @@
 
 /obj/structure/closet/wardrobe/botanist/PopulateContents()
 	var/static/items_inside = list(
+		/obj/item/clothing/suit/apron/garb = 2,
 		/obj/item/storage/backpack/botany = 2,
 		/obj/item/storage/backpack/satchel/hyd = 2,
 		/obj/item/clothing/suit/hooded/wintercoat/hydro = 1,

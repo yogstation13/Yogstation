@@ -12,6 +12,12 @@
 	body_parts_covered = CHEST|GROIN
 	allowed = list(/obj/item/reagent_containers/spray/plantbgone, /obj/item/plant_analyzer, /obj/item/seeds, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/cultivator, /obj/item/reagent_containers/spray/pestspray, /obj/item/hatchet, /obj/item/storage/bag/plants)
 
+/obj/item/clothing/suit/apron/garb
+	desc = "It's a garb designed to protect against minor plant-related hazards."
+	name = "botanist's garb"
+	icon_state = "garb_botanist"
+	item_state = "garb_botanist"
+
 //Captain
 /obj/item/clothing/suit/captunic
 	name = "captain's parade tunic"
