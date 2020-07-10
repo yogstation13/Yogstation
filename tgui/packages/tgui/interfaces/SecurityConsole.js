@@ -34,20 +34,33 @@ export const SecurityConsole = (props, context) => {
     return (
       <Window resizable theme={theme}>
         <Window.Content scrollable>
-          <Section title={"Welcome " + username}
-            buttons={(
-              <Button
-                icon={logged_in ? "sign-out-alt" : "sign-in-alt"}
-                content={logged_in ? "Log Out" : "Log In"}
-                color={logged_in ? "bad" : "good"}
-                onClick={() => {
-                  act("log_in");
-                }} />
-            )}>
-            <NoticeBox color={has_access ? "good" : "bad"}>
-              {has_access ? "Access Granted" : "Access Denied"}
-            </NoticeBox>
+          <Section title="Welcome">
+            <Flex align="center" justify="center" mt="0.5rem">
+              <Flex.Item>
+                <Fragment>
+                  {data.user_image && (
+                    <img src={"photo_" + data.user_image +"_cropped.png"}
+                      width="125px" height="125px"
+                      style={`-ms-interpolation-mode: nearest-neighbor;
+                      border-radius: 50%; border: 3px solid white;`} />
+                  ) || (
+                    <Icon name="user-circle" verticalAlign="middle" size="4.5" mr="1rem" />
+                  )}
+                  <Box inline fontSize="18px" bold>{username}</Box>
+                  <NoticeBox success={has_access} danger={!has_access}
+                    textAlign="center" mt="1.5rem">
+                    {has_access ? "Access Granted" : "Access Denied"}
+                  </NoticeBox>
+                  <Box textAlign="center">
+                    <Button icon="sign-in-alt" color={has_access ? "good" : "bad"} fluid>
+                      Log In
+                    </Button>
+                  </Box>
+                </Fragment>
+              </Flex.Item>
+            </Flex>
           </Section>
+
         </Window.Content>
       </Window>
     );

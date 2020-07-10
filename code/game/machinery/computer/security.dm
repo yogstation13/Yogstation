@@ -66,7 +66,30 @@
 		data["has_access"] = TRUE
 
 	if(ishuman(user))
+		var/username = user.get_authentification_name("Unknown")
 		data["username"] = user.get_authentification_name("Unknown")
+		if(username != "Unknown")
+			var/datum/data/record/record
+			for(var/RP in GLOB.data_core.general)
+				var/datum/data/record/R = RP
+
+				if(!istype(R))
+					continue
+				if(R.fields["name"] == username)
+					record = R
+					break
+			if(record)
+				if(istype(record.fields["photo_front"], /obj/item/photo))
+					var/obj/item/photo/P1 = record.fields["photo_front"]
+					var/icon/picture = icon(P1.picture.picture_image)
+					picture.Crop(10, 32, 22, 22)
+					var/md5 = md5(fcopy_rsc(picture))
+
+					if(!SSassets.cache["photo_[md5]_cropped.png"])
+						register_asset("photo_[md5]_cropped.png", picture)
+					send_asset_list(user, list("photo_[md5]_cropped.png" = picture))
+
+					data["user_image"] = md5
 		data["has_access"] = check_access(user.get_idcard())
 
 	
