@@ -50,7 +50,7 @@
 	return NO_REACTION
 
 /datum/gas_reaction/nobliumsupression
-	priority = INFINITY
+	priority = 1000 //just make sure everything else except nobformation is lower than 1000 and we're good. Can't set to INF because that'd fuck over nob formation.
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
@@ -398,7 +398,7 @@
 		return REACTING
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
-	priority = 6
+	priority = 1001 //1 higher than nob stop because I can't really set this to infinity.
 	name = "Hyper-Noblium condensation"
 	id = "nobformation"
 
