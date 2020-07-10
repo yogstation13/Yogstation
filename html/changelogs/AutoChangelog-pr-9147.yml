@@ -1,8 +1,0 @@
-author: "MrHorizons"
-delete-after: true 
-changes: 
-  - rscadd: "RCDs can now deconstruct airlock assemblies and firelock frames."
-  - rscadd: "Biobags can carry organs, toolbelts can carry RCDs, RPDs, and inducers, and grenadier belts can carry combustible lemons and cherrybombs."
-  - tweak: "Medical belts and toolbelts can hold greater total weight."
-  - tweak: "RCDs and RPDs can be worn on the belt slot."
-  - tweak: "Liver, lungs, and stomach organs are small."
