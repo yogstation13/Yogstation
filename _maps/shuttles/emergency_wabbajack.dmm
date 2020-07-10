@@ -6,8 +6,10 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ac" = (
-/obj/structure/grille,
-/obj/structure/window/shuttle/tinted,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ad" = (
@@ -88,6 +90,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "ak" = (
@@ -112,13 +115,6 @@
 /area/shuttle/escape)
 "ao" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel/cult,
 /area/shuttle/escape)
 "ap" = (
@@ -238,8 +234,18 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"aF" = (
+"aE" = (
 /obj/machinery/door/window/eastleft,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"aF" = (
+/obj/machinery/door/window/eastright,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aG" = (
@@ -317,10 +323,6 @@
 "aR" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"aS" = (
-/obj/machinery/door/window/eastright,
-/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aT" = (
 /obj/structure/table/glass,
@@ -823,11 +825,11 @@ ao
 au
 az
 ab
-aF
+aE
 Ec
 bM
 sc
-aS
+aF
 as
 aI
 aI

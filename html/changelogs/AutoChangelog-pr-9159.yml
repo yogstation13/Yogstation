@@ -1,4 +1,4 @@
 author: "SomeguyManperson"
 delete-after: true 
 changes: 
-  - bugfix: "help"
+  - bugfix: "scarabs spawn on clock rounds again"

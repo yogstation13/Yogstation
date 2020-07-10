@@ -682,7 +682,7 @@
 	M.adjustToxLoss(-0.5, 0)
 	M.adjustOxyLoss(-0.5, 0)
 	if(M.nutrition && (M.nutrition - 2 > 0))
-		if(!(M.mind && M.mind.assigned_role == "Medical Doctor")) //Drains the nutrition of the holder. Not medical doctors though, since it's the Doctor's Delight!
+		if(!(M.mind?.assigned_role == "Medical Doctor")) //Drains the nutrition of the holder. Not medical doctors though, since it's the Doctor's Delight!
 			M.adjust_nutrition(-2)
 	..()
 	. = 1
@@ -821,7 +821,7 @@
 	color = "#FFA500"
 	taste_description = "parsnip"
 	glass_name = "glass of parsnip juice"
-	
+
 /datum/reagent/consumable/pineapplejuice
 	name = "Pineapple Juice"
 	description = "Tart, tropical, and hotly debated."
@@ -873,7 +873,7 @@
 	glass_icon_state = "red_queen"
 	glass_name = "Red Queen"
 	glass_desc = "DRINK ME."
-	
+
 /datum/reagent/consumable/red_queen/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -4*REM)
 	..()
@@ -885,7 +885,7 @@
 	color = "#fffafa"
 	taste_description = "cranberry"
 	glass_name = "glass of sprited cranberry"
-	
+
 /datum/reagent/consumable/gravedigger
 	name = "Grave-Digger"
 	description = "What happens when you mix all the sodas in the fountain? You get this monstrosity!"

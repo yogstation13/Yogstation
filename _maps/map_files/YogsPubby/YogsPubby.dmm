@@ -3018,15 +3018,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"agc" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "agd" = (
 /obj/machinery/shower{
 	dir = 8
@@ -3116,16 +3107,6 @@
 	onstation = 0
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/prison)
-"ago" = (
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 8;
-	icon_state = "right";
-	name = "Unisex Showers";
-	req_access_txt = "0"
-	},
-/turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "agp" = (
 /obj/item/soap/nanotrasen,
@@ -10941,13 +10922,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"auX" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "auY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28062,12 +28036,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"baM" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "baN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -56963,10 +56931,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"dbi" = (
-/obj/machinery/vr_sleeper,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "dci" = (
 /obj/structure/rack,
 /obj/item/gun/energy/laser/practice,
@@ -57120,6 +57084,19 @@
 /obj/structure/sign/warning/vacuum/external,
 /turf/open/floor/plating,
 /area/science/mixing)
+"dBe" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "dBW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57257,6 +57234,16 @@
 "emV" = (
 /turf/open/space,
 /area/space/nearstation)
+"epy" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/obj/machinery/computer/cryopod{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "epJ" = (
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = 32
@@ -57530,13 +57517,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"fIu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/vr_sleeper,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "fIN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -58377,6 +58357,15 @@
 /obj/item/clothing/suit/apron/chef,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
+"iFu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "iHa" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -59063,6 +59052,12 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
+"lEL" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "lGp" = (
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plasteel/dark,
@@ -59237,6 +59232,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"msc" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	icon_state = "right";
+	name = "Unisex Showers";
+	req_access_txt = "0"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "mtu" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -60016,6 +60023,12 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"pcr" = (
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "pdq" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -61816,6 +61829,15 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
+"wsS" = (
+/obj/structure/table,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "wwr" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -83657,7 +83679,7 @@ lGp
 aeU
 afI
 aeU
-aeU
+epy
 agy
 afH
 agY
@@ -83913,8 +83935,8 @@ aem
 aeW
 afr
 agy
-agc
-ago
+msc
+lEL
 agy
 agy
 agy
@@ -91422,7 +91444,7 @@ bce
 baN
 cpm
 aFK
-baM
+wsS
 bim
 cpz
 wfo
@@ -102440,13 +102462,13 @@ aaa
 apX
 apX
 apX
-auX
-fIu
-dbi
+dBe
+iFu
+pcr
 avk
 aDV
-dbi
-dbi
+avk
+avk
 aDk
 aEd
 aFb
