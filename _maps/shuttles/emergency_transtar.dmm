@@ -76,19 +76,6 @@
 /obj/item/clothing/mask/cigarette/cigar/havana,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
-"ez" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external/glass{
-	locked = 1;
-	name = "Escape Hatch"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "eV" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -146,6 +133,22 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"ik" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "starboardescapehatch";
+	name = "Escape Hatch Release";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	specialfunctions = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "iE" = (
 /obj/structure/closet/emcloset,
@@ -466,20 +469,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"AA" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external/glass{
-	id_tag = "portescapehatch";
-	locked = 1;
-	name = "Escape Hatch"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "AB" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
@@ -527,20 +516,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"Fj" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external/glass{
-	id_tag = "starboardescapehatch";
-	locked = 1;
-	name = "Escape Hatch"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "FY" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/door/firedoor/border_only{
@@ -579,6 +554,22 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"He" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "portescapehatch";
+	name = "Escape Hatch Release";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "HQ" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -595,6 +586,20 @@
 	name = "Holding Cell"
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"Jp" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external/glass{
+	id_tag = "portescapehatch";
+	locked = 1;
+	name = "Escape Hatch"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "Ke" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -639,6 +644,20 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"MS" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external/glass{
+	id_tag = "starboardescapehatch";
+	locked = 1;
+	name = "Escape Hatch"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "Nb" = (
 /obj/structure/curtain,
@@ -699,20 +718,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"RU" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/button{
-	id = "starboardescapehatch";
-	name = "Escape Hatch Release";
-	pixel_x = 30
-	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "RX" = (
@@ -824,20 +829,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"Ym" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/button{
-	id = "portescapehatch";
-	name = "Escape Hatch Release";
-	pixel_x = -30
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "YU" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/plastitanium/red/brig,
@@ -875,9 +866,9 @@ uR
 uR
 vq
 uR
-ez
+Jp
 uR
-AA
+Jp
 uR
 uR
 Vp
@@ -914,7 +905,7 @@ dp
 ry
 uG
 lQ
-Ym
+He
 lQ
 AB
 aa
@@ -1142,7 +1133,7 @@ dp
 ry
 Az
 lQ
-RU
+ik
 lQ
 bf
 aa
@@ -1179,9 +1170,9 @@ uR
 uR
 eV
 uR
-Fj
+MS
 uR
-Fj
+MS
 uR
 uR
 Vp
