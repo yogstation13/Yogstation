@@ -14,7 +14,7 @@
 	var/charge_sections = 4
 	ammo_x_offset = 2
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
-	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
+	var/old_ratio = FALSE // stores the gun's previous ammo "ratio" to see if it needs an updated icon
 	var/selfcharge = 0
 	var/charge_tick = 0
 	var/charge_delay = 4

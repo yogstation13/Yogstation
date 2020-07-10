@@ -42,7 +42,7 @@
 	var/spam_flag = 0
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
-	var/next_write_time = 0 // prevent crash exploit
+	var/next_write_time = FALSE // prevent crash exploit
 
 
 /obj/item/paper/pickup(user)

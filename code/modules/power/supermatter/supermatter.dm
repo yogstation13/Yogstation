@@ -108,7 +108,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/lastwarning = 0				// Time in 1/10th of seconds since the last sent warning
 	var/power = 0
 
-	var/n2comp = 0					// raw composition of each gas in the chamber, ranges from 0 to 1
+	var/n2comp = 0					// raw composition of each gas in the chamber, ranges from FALSE to 1
 	var/plasmacomp = 0
 	var/o2comp = 0
 	var/co2comp = 0
@@ -117,7 +117,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/tritiumcomp = 0
 	var/bzcomp = 0
 	
-	var/rps = 0 // control how many radballs to emit
+	var/rps = FALSE // control how many radballs to emit
 	var/bzmol = 0
 
 	var/combined_gas = 0
@@ -241,7 +241,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/proc/get_integrity()
 	var/integrity = damage / explosion_point
 	integrity = round(100 - integrity * 100, 0.01)
-	integrity = integrity < 0 ? 0 : integrity
+	integrity = integrity < FALSE ? FALSE : integrity
 	return integrity
 
 /obj/machinery/power/supermatter_crystal/proc/countdown()
@@ -256,7 +256,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/speaking = "[emergency_alert] The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
 	radio.talk_into(src, speaking, common_channel, language = get_selected_language())
-	for(var/i in SUPERMATTER_COUNTDOWN_TIME to 0 step -10)
+	for(var/i in SUPERMATTER_COUNTDOWN_TIME to FALSE step -10)
 		if(damage < explosion_point) // Cutting it a bit close there engineers
 			radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel)
 			log_game("The supermatter crystal:[safe_alert] Failsafe has been disengaged.") // yogs start - Logs SM chatter
@@ -264,7 +264,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			cut_overlay(causality_field, TRUE)
 			final_countdown = FALSE
 			return
-		else if((i % 50) != 0 && i > 50) // A message once every 5 seconds until the final 5 seconds which count down individualy
+		else if((i % 50) != FALSE && i > 50) // A message once every 5 seconds until the final 5 seconds which count down individualy
 			sleep(10)
 			continue
 		else if(i > 50)

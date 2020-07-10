@@ -12,12 +12,12 @@
 	light_color = LIGHT_COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
 	var/flashing_overlay = "flash-f"
-	var/times_used = 0 //Number of times it's been used.
+	var/times_used = FALSE //Number of times it's been used.
 	var/burnt_out = FALSE     //Is the flash burnt out?
 	var/burnout_resistance = 0
-	var/last_used = 0 //last world.time it was used.
+	var/last_used = FALSE //last world.time it was used.
 	var/cooldown = 0
-	var/last_trigger = 0 //Last time it was successfully triggered.
+	var/last_trigger = FALSE //Last time it was successfully triggered.
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)

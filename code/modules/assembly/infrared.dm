@@ -120,7 +120,7 @@
 			beams += I
 			I.master = src
 			I.setDir(_dir)
-			I.invisibility = visible? 0 : INVISIBILITY_ABSTRACT
+			I.invisibility = visible? FALSE : INVISIBILITY_ABSTRACT
 			T = _T
 			_T = get_step(_T, _dir)
 			CHECK_TICK

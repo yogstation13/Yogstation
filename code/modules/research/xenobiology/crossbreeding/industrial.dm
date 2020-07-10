@@ -9,7 +9,7 @@ Industrial extracts:
 	icon_state = "industrial_still"
 	var/plasmarequired = 2 //Units of plasma required to be consumed to produce item.
 	var/itempath = /obj/item //The item produced by the extract.
-	var/plasmaabsorbed = 0 //Units of plasma aborbed by the extract already. Absorbs at a rate of 2u/obj tick.
+	var/plasmaabsorbed = FALSE //Units of plasma aborbed by the extract already. Absorbs at a rate of 2u/obj tick.
 	var/itemamount = TRUE //How many items to spawn
 
 /obj/item/slimecross/industrial/examine(mob/user)

@@ -43,18 +43,18 @@
 	var/cores = TRUE // the number of /obj/item/slime_extract's the slime has left inside
 	var/mutation_chance = 5 // Chance of mutating, very low to encourage miners hunting colored slimes
 
-	var/powerlevel = 0 // 1-10 controls how much electricity they are generating
-	var/amount_grown = 0 // controls how long the slime has been overfed, if 10, grows or reproduces
+	var/powerlevel = FALSE // 1-10 controls how much electricity they are generating
+	var/amount_grown = FALSE // controls how long the slime has been overfed, if 10, grows or reproduces
 
-	var/number = 0 // Used to understand when someone is talking to it
+	var/number = FALSE // Used to understand when someone is talking to it
 
 	var/mob/living/Target = null // AI variable - tells the slime to hunt this down
 	var/mob/living/Leader = null // AI variable - tells the slime to follow this person
 
-	var/attacked = 0 // Determines if it's been attacked recently. Can be any number, is a cooloff-ish variable
-	var/rabid = 0 // If set to 1, the slime will attack and eat anything it comes in contact with
-	var/holding_still = 0 // AI variable, cooloff-ish for how long it's going to stay in one place
-	var/target_patience = 0 // AI variable, cooloff-ish for how long it's going to follow its target
+	var/attacked = FALSE // Determines if it's been attacked recently. Can be any number, is a cooloff-ish variable
+	var/rabid = FALSE // If set to 1, the slime will attack and eat anything it comes in contact with
+	var/holding_still = FALSE // AI variable, cooloff-ish for how long it's going to stay in one place
+	var/target_patience = FALSE // AI variable, cooloff-ish for how long it's going to follow its target
 
 	var/list/Friends = list() // A list of friends; they are not considered targets for feeding; passed down after splitting
 
@@ -81,7 +81,7 @@
 	///////////CORE-CROSSING CODE
 
 	var/effectmod //What core modification is being used.
-	var/applied = 0 //How many extracts of the modtype have been applied.
+	var/applied = FALSE //How many extracts of the modtype have been applied.
 
 
 /mob/living/simple_animal/slime/Initialize(mapload, new_colour="grey", new_is_adult=FALSE)
@@ -263,7 +263,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	powerlevel = 0 // oh no, the power!
+	powerlevel = FALSE // oh no, the power!
 
 /mob/living/simple_animal/slime/MouseDrop(atom/movable/A as mob|obj)
 	if(isliving(A) && A != src && usr == src)

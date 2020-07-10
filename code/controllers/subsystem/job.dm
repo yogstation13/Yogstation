@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(job)
 	var/list/datum/job/name_occupations_all = list()	//Dict of ALL JOBS, EVEN DISABLED ONES, keys are titles
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
 	var/list/unassigned = list()		//Players who need jobs
-	var/initial_players_to_assign = 0 	//used for checking against population caps
+	var/initial_players_to_assign = FALSE 	//used for checking against population caps
 
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
@@ -552,12 +552,12 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/HandleFeedbackGathering()
 	for(var/datum/job/job in occupations)
-		var/high = 0 //high
-		var/medium = 0 //medium
-		var/low = 0 //low
-		var/never = 0 //never
-		var/banned = 0 //banned
-		var/young = 0 //account too young
+		var/high = FALSE //high
+		var/medium = FALSE //medium
+		var/low = FALSE //low
+		var/never = FALSE //never
+		var/banned = FALSE //banned
+		var/young = FALSE //account too young
 		for(var/mob/dead/new_player/player in GLOB.player_list)
 			if(!(player.ready == PLAYER_READY_TO_PLAY && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready

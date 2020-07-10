@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 
 	/********************************Dynamic Gens********************************/
 
-	for(var/i in 0 to 1)
+	for(var/i in FALSE to 1)
 		if(prob(50))
 			pick = pick(subtypesof(/datum/bounty/item/slime))
 		else

@@ -14,7 +14,7 @@
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/has_fine_manipulation = 0
-	var/move_delay_add = 0 // movement delay to add
+	var/move_delay_add = FALSE // movement delay to add
 
 	status_flags = CANUNCONSCIOUS|CANPUSH
 
@@ -61,7 +61,7 @@
 	if(!on_fire) // If you're on fire, ignore local air temperature
 		if(loc_temp > bodytemperature)
 			//Place is hotter than we are
-			var/thermal_protection = heat_protection //This returns a 0 - TRUE value, which corresponds to the percentage of heat protection.
+			var/thermal_protection = heat_protection //This returns a FALSE - TRUE value, which corresponds to the percentage of heat protection.
 			if(thermal_protection < 1)
 				adjust_bodytemperature((1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR) * heat_capacity_factor)
 		else

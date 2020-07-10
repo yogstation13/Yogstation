@@ -223,7 +223,7 @@ All ShuttleMove procs go here
 
 /obj/machinery/gravity_generator/main/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
-	if(charge_count != 0 && charging_state != POWER_UP)
+	if(charge_count != FALSE && charging_state != POWER_UP)
 		on = TRUE
 	update_list()
 

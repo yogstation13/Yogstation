@@ -408,7 +408,7 @@
 	desc = "Transform into a bat!"
 	action_icon_state = "bat"
 	charge_max = 200
-	blood_used = 0 //this is only 0 so we can do our own custom checks
+	blood_used = FALSE //this is only FALSE so we can do our own custom checks
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE

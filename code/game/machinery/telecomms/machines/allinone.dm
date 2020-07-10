@@ -31,7 +31,7 @@
 
 	// Decompress the signal and mark it done
 	if (intercept)
-		signal.levels += 0  // Signal is broadcast to agents anywhere
+		signal.levels += FALSE  // Signal is broadcast to agents anywhere
 
 	signal.data["compression"] = 0
 	signal.mark_done()

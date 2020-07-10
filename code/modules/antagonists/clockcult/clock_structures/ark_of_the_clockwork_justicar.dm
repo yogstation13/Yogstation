@@ -21,7 +21,7 @@
 	can_be_repaired = FALSE
 	immune_to_servant_attacks = TRUE
 	var/active = FALSE
-	var/progress_in_seconds = 0 //Once this reaches GATEWAY_RATVAR_ARRIVAL, it's game over
+	var/progress_in_seconds = FALSE //Once this reaches GATEWAY_RATVAR_ARRIVAL, it's game over
 	var/grace_period = ARK_GRACE_PERIOD //This exists to allow the crew to gear up and prepare for the invasion
 	var/initial_activation_delay = -1 //How many seconds the Ark will have initially taken to activate
 	var/seconds_until_activation = -1 //How many seconds until the Ark activates; if it should never activate, set this to -1

@@ -108,7 +108,7 @@
 				company.borrow_brokers = list()
 				GLOB.stockExchange.generateStocks(1)
 
-			var/bailout = (effect > 0 && prob(80)) || (effect < 0 && prob(20))
+			var/bailout = (effect > FALSE && prob(80)) || (effect < FALSE && prob(20))
 			current_title = "[company.name] [bailout ? "bailed out" : "on a painful rebound"]"
 			if (bailout)
 				current_desc = "The company has been bailed out by the government. Investors are highly optimistic."
@@ -129,7 +129,7 @@
 	A.subtitle = "Investors panic, bailout pending"
 	if (prob(15))
 		A.opinion = rand(-1, 1)
-	var/article = "Another one might bite the dust: [company.current_trend > 0 ? "despite their positive trend" : "in line with their failing model"], [company.name] files for bankruptcy citing [pick(bankrupt_reason)]. The president of %country% has been asked to bail the company out, "
+	var/article = "Another one might bite the dust: [company.current_trend > FALSE ? "despite their positive trend" : "in line with their failing model"], [company.name] files for bankruptcy citing [pick(bankrupt_reason)]. The president of %country% has been asked to bail the company out, "
 	if (!A.opinion)
 		article += "but no answer has been given by the government to date. Our tip to stay safe is: %sell%"
 	else if (A.opinion > 0)
@@ -196,7 +196,7 @@
 		if (1)
 			next_phase = world.time + rand(300*TIME_MULTIPLIER, 600*TIME_MULTIPLIER) * (10*TIME_MULTIPLIER)
 			finished = 1
-			current_title = "[tname] [effect > 0 ? "acquitted" : "found guilty"]"
+			current_title = "[tname] [effect > FALSE ? "acquitted" : "found guilty"]"
 			if (effect > 0)
 				current_desc = "The accused has been acquitted of all charges. Investors optimistic."
 			else

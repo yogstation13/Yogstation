@@ -153,7 +153,7 @@
 						update_icon()
 						if(can_use())
 							GLOB.cameranet.addCamera(src)
-						emped = 0 //Resets the consecutive EMP count
+						emped = FALSE //Resets the consecutive EMP count
 						addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
 			for(var/i in GLOB.player_list)
 				var/mob/M = i

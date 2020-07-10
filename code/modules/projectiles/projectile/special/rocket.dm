@@ -34,7 +34,7 @@
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
-	ricochets_max = 0 //it's a MISSILE
+	ricochets_max = FALSE //it's a MISSILE
 
 /obj/item/projectile/bullet/a84mm_he/on_hit(atom/target, blocked=0)
 	..()
@@ -49,7 +49,7 @@
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
-	ricochets_max = 0 //it's a MISSILE
+	ricochets_max = FALSE //it's a MISSILE
 	var/sturdy = list(
 	/turf/closed,
 	/obj/mecha,

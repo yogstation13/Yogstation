@@ -94,7 +94,7 @@
 						text-decoration: none;
 						background: #40628a;
 						border: 1px solid #161616;
-						margin: 0 2px 0 0;
+						margin: FALSE 2px FALSE 0;
 						cursor:default;
 					}
 					.remove-reagent {

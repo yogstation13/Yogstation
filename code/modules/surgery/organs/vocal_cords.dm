@@ -127,7 +127,7 @@
 	var/cooldown = 0
 
 	if(!user || !user.can_speak() || user.stat)
-		return 0 //no cooldown
+		return FALSE //no cooldown
 
 	var/log_message = uppertext(message)
 	if(!forced_span)

@@ -102,7 +102,7 @@
 		return ..()
 
 /obj/machinery/hydroponics/process()
-	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
+	var/needs_update = FALSE // Checks if the icon needs updating so we don't redraw empty trays every time
 
 	if(myseed && (myseed.loc != src))
 		myseed.forceMove(src)
@@ -130,7 +130,7 @@
 				adjustNutri(-1 / rating)
 
 			// Lack of nutrients hurts non-weeds
-			if(nutrilevel <= 0 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
+			if(nutrilevel <= FALSE && !myseed.get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
 				adjustHealth(-rand(1,3))
 
 //Photosynthesis/////////////////////////////////////////////////////////
@@ -203,7 +203,7 @@
 			if(prob(5))  // On each tick, there's a 5 percent chance the pest population will increase
 				adjustPests(1 / rating)
 		else
-			if(waterlevel > 10 && nutrilevel > 0 && prob(10))  // If there's no plant, the percentage chance is 10%
+			if(waterlevel > 10 && nutrilevel > FALSE && prob(10))  // If there's no plant, the percentage chance is 10%
 				adjustWeeds(1 / rating)
 
 		// Weeeeeeeeeeeeeeedddssss
@@ -358,8 +358,8 @@
 	plant_health = myseed.endurance
 	lastcycle = world.time
 	harvest = 0
-	weedlevel = 0 // Reset
-	pestlevel = 0 // Reset
+	weedlevel = FALSE // Reset
+	pestlevel = FALSE // Reset
 	update_icon()
 	visible_message("<span class='warning'>The [oldPlantName] is overtaken by some [myseed.plantname]!</span>")
 
@@ -391,7 +391,7 @@
 	plant_health = myseed.endurance
 	lastcycle = world.time
 	harvest = 0
-	weedlevel = 0 // Reset
+	weedlevel = FALSE // Reset
 
 	sleep(5) // Wait a while
 	update_icon()
@@ -411,7 +411,7 @@
 		plant_health = myseed.endurance
 		lastcycle = world.time
 		harvest = 0
-		weedlevel = 0 // Reset
+		weedlevel = FALSE // Reset
 
 		sleep(5) // Wait a while
 		update_icon()
@@ -423,7 +423,7 @@
 /obj/machinery/hydroponics/proc/plantdies() // OH NOES!!!!! I put this all in one function to make things easier
 	plant_health = 0
 	harvest = 0
-	pestlevel = 0 // Pests die
+	pestlevel = FALSE // Pests die
 	lastproduce = 0
 	if(!dead)
 		update_icon()
@@ -826,7 +826,7 @@
 					harvest = FALSE //To make sure they can't just put in another seed and insta-harvest it
 				qdel(myseed)
 				myseed = null
-			weedlevel = 0 //Has a side effect of cleaning up those nasty weeds
+			weedlevel = FALSE //Has a side effect of cleaning up those nasty weeds
 			update_icon()
 
 	else

@@ -162,7 +162,7 @@
 
 /obj/effect/anomaly/flux/proc/mobShock(mob/living/M)
 	if(canshock && istype(M))
-		canshock = 0 //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
+		canshock = FALSE //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
 		if(iscarbon(M))
 			if(ishuman(M))
 				M.electrocute_act(shockdamage, "[name]", safety=1)

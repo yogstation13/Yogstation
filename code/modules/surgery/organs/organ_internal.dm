@@ -12,8 +12,8 @@
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
 	var/damage = 0		//total damage this organ has sustained
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
-	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
-	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
+	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to FALSE for generic organs
+	var/decay_factor 	= 0										//same as above but when without a living owner, set to FALSE for generic organs
 	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 
@@ -199,7 +199,7 @@
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
 /obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
-	damage = clamp(d, 0 ,maxHealth)
+	damage = clamp(d, FALSE ,maxHealth)
 	if(d >= maxHealth)
 		organ_flags |= ORGAN_FAILING
 	else

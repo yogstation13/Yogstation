@@ -3,7 +3,7 @@
 	icon = 'icons/obj/implants.dmi'
 	icon_state = "generic" //Shows up as the action button icon
 	actions_types = list(/datum/action/item_action/hands_free/activate)
-	var/activated = TRUE //1 for implant types that can be activated, 0 for ones that are "always on" like mindshield implants
+	var/activated = TRUE //1 for implant types that can be activated, FALSE for ones that are "always on" like mindshield implants
 	var/mob/living/imp_in = null
 	item_color = "b"
 	var/allow_multiple = FALSE
@@ -39,7 +39,7 @@
 
 //What does the implant do upon injection?
 //return TRUE if the implant injects
-//return 0 if there is no room for implant / it fails
+//return FALSE if there is no room for implant / it fails
 /obj/item/implant/proc/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	if(SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTING, args) & COMPONENT_STOP_IMPLANTING)
 		return

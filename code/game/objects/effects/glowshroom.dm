@@ -107,7 +107,7 @@
 
 			var/turf/newLoc = pick(possibleLocs)
 
-			var/shroomCount = 0 //hacky
+			var/shroomCount = FALSE //hacky
 			var/placeCount = 1
 			for(var/obj/structure/glowshroom/shroom in newLoc)
 				shroomCount++

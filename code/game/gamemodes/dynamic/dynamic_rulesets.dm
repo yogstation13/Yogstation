@@ -7,7 +7,7 @@
 	var/persistent = FALSE 
 	/// If set to TRUE, dynamic mode will be able to draft this ruleset again later on. (doesn't apply for roundstart rules)
 	var/repeatable = FALSE 
-	/// If set higher than 0 decreases weight by itself causing the ruleset to appear less often the more it is repeated.
+	/// If set higher than FALSE decreases weight by itself causing the ruleset to appear less often the more it is repeated.
 	var/repeatable_weight_decrease = 2 
 	/// List of players that are being drafted for this rule
 	var/list/mob/candidates = list() 
@@ -30,11 +30,11 @@
 	/// If enemy_roles was set, this is the amount of enemy job workers needed per threat_level range (0-10,10-20,etc) IMPORTANT: DOES NOT WORK ON ROUNDSTART RULESETS.
 	var/required_enemies = list(1,1,0,0,0,0,0,0,0,0) 
 	/// The rule needs this many candidates (post-trimming) to be executed (example: Cult needs 4 players at round start)
-	var/required_candidates = 0 
+	var/required_candidates = FALSE 
 	/// TRUE -> 9, probability for this rule to be picked against other rules
 	var/weight = 5 
 	/// Threat cost for this rule, this is decreased from the mode's threat when the rule is executed.
-	var/cost = 0 
+	var/cost = FALSE 
 	/// A flag that determines how the ruleset is handled
 	/// HIGHLANDER_RULESET are rulesets can end the round.
 	/// TRAITOR_RULESET and MINOR_RULESET can't end the round and have no difference right now.
@@ -85,11 +85,11 @@
 /// By default, a rule is acceptable if it satisfies the threat level/population requirements.
 /// If your rule has extra checks, such as counting security officers, do that in ready() instead
 /datum/dynamic_ruleset/proc/acceptable(population = 0, threat_level = 0)
-	pop_per_requirement = pop_per_requirement > 0 ? pop_per_requirement : (mode.pop_per_requirement > 0 ? mode.pop_per_requirement : 6) //sorry ike
+	pop_per_requirement = pop_per_requirement > FALSE ? pop_per_requirement : (mode.pop_per_requirement > FALSE ? mode.pop_per_requirement : 6) //sorry ike
 	
 	if(minimum_players > population)
 		return FALSE
-	if(maximum_players > 0 && population > maximum_players)
+	if(maximum_players > FALSE && population > maximum_players)
 		return FALSE
 	if (population >= GLOB.dynamic_high_pop_limit)
 		return (threat_level >= high_population_requirement)

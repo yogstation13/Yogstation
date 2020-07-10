@@ -73,7 +73,7 @@
 	else
 		shield_integrity = max(shield_integrity - LAZYLEN(current_fields), 0) //fields degrade slowly over time
 	for(var/obj/structure/projected_forcefield/F in current_fields)
-		if(shield_integrity <= 0 || get_dist(F,src) > field_distance_limit)
+		if(shield_integrity <= FALSE || get_dist(F,src) > field_distance_limit)
 			qdel(F)
 
 /obj/structure/projected_forcefield

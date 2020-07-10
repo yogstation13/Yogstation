@@ -84,6 +84,6 @@
 
 /obj/structure/bookcase/random/reference/Initialize(mapload)
 	. = ..()
-	while(book_count > 0 && prob(ref_book_prob))
+	while(book_count > FALSE && prob(ref_book_prob))
 		book_count--
 		new /obj/item/book/manual/random(src)

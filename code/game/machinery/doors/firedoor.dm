@@ -1,4 +1,4 @@
-#define CONSTRUCTION_COMPLETE 0 //No construction done - functioning as normal
+#define CONSTRUCTION_COMPLETE FALSE //No construction done - functioning as normal
 #define CONSTRUCTION_PANEL_OPEN TRUE //Maintenance panel is open, still functioning
 #define CONSTRUCTION_WIRES_EXPOSED 2 //Cover plate is removed, wires are available
 #define CONSTRUCTION_GUTTED 3 //Wires are removed, circuit ready to remove
@@ -363,7 +363,7 @@
 		for(var/T2 in T.atmos_adjacent_turfs)
 			turfs[T2] = 1
 	if(turfs.len <= 10)
-		return 0 // not big enough to matter
+		return FALSE // not big enough to matter
 	return start_point.air.return_pressure() < 20 ? -1 : 1
 
 /obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
@@ -402,7 +402,7 @@
 	glass = TRUE
 	explosion_block = 0
 	max_integrity = 50
-	resistance_flags = 0 // not fireproof
+	resistance_flags = FALSE // not fireproof
 	heat_proof = FALSE
 
 /obj/machinery/door/firedoor/window/allow_hand_open()

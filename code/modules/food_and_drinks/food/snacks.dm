@@ -48,7 +48,7 @@ All foods are distributed among various categories. Use common sense.
 	var/cooked_type = null  //for microwave cooking. path of the resulting item after microwaving
 	var/filling_color = "#FFFFFF" //color to use when added to custom food.
 	var/custom_food_type = null  //for food customizing. path of the custom food to create
-	var/junkiness = 0  //for junk food. used to lower human satiety.
+	var/junkiness = FALSE  //for junk food. used to lower human satiety.
 	var/list/bonus_reagents //the amount of reagents (usually nutriment and vitamin) added to crafted/cooked snacks, on top of the ingredients reagents.
 	var/customfoodfilling = TRUE // whether it can be used as filling in custom food
 	var/list/tastes  // for example list("crisps" = 2, "salt" = 1)
@@ -214,7 +214,7 @@ All foods are distributed among various categories. Use common sense.
 				reagents.add_reagent(r_id, amount)
 
 /obj/item/reagent_containers/food/snacks/proc/slice(accuracy, obj/item/W, mob/user)
-	if((slices_num <= 0 || !slices_num) || !slice_path) //is the food sliceable?
+	if((slices_num <= FALSE || !slices_num) || !slice_path) //is the food sliceable?
 		return FALSE
 
 	if ( \
@@ -321,7 +321,7 @@ All foods are distributed among various categories. Use common sense.
 	if(isanimal(M))
 		if(iscorgi(M))
 			var/mob/living/L = M
-			if(bitecount == 0 || prob(50))
+			if(bitecount == FALSE || prob(50))
 				M.emote("me", 1, "nibbles away at \the [src]")
 			bitecount++
 			L.taste(reagents) // why should carbons get all the fun?

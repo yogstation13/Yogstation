@@ -5,7 +5,7 @@
 	item_state = "that"
 	body_parts_covered = HEAD
 	slot_flags = ITEM_SLOT_HEAD
-	var/blockTracking = 0 //For AI tracking
+	var/blockTracking = FALSE //For AI tracking
 	var/can_toggle = null
 	dynamic_hair_suffix = "+generic"
 

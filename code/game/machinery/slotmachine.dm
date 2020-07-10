@@ -26,7 +26,7 @@
 	var/money = 3000 //How much money it has CONSUMED
 	var/plays = 0
 	var/working = 0
-	var/balance = 0 //How much money is in the machine, ready to be CONSUMED.
+	var/balance = FALSE //How much money is in the machine, ready to be CONSUMED.
 	var/jackpots = 0
 	var/paymode = HOLOCHIP //toggles between HOLOCHIP/COIN, defined above
 	var/cointype = /obj/item/coin/iron //default cointype
@@ -235,7 +235,7 @@
 		return 0
 	return 1
 
-/obj/machinery/computer/slot_machine/proc/toggle_reel_spin(value, delay = 0) //value is TRUE or 0 aka on or off
+/obj/machinery/computer/slot_machine/proc/toggle_reel_spin(value, delay = 0) //value is TRUE or FALSE aka on or off
 	for(var/list/reel in reels)
 		reels[reel] = value
 		sleep(delay)

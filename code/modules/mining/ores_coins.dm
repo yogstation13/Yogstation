@@ -14,7 +14,7 @@
 	item_state = "ore"
 	full_w_class = WEIGHT_CLASS_BULKY
 	singular_name = "ore chunk"
-	var/points = 0 //How many points this ore gets you from the ore redemption machine
+	var/points = FALSE //How many points this ore gets you from the ore redemption machine
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
@@ -23,7 +23,7 @@
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
 		return
-	else if(difference < 0 && LAZYLEN(stack_overlays))			//amount < stack_overlays, remove excess.
+	else if(difference < FALSE && LAZYLEN(stack_overlays))			//amount < stack_overlays, remove excess.
 		cut_overlays()
 		if (LAZYLEN(stack_overlays)-difference <= 0)
 			stack_overlays = null;

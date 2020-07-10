@@ -62,7 +62,7 @@
 		if(H.damage > H.high_threshold)
 			next_breath--
 
-	if((times_fired % next_breath) == 0 || failed_last_breath)
+	if((times_fired % next_breath) == FALSE || failed_last_breath)
 		breathe() //Breathe per 4 ticks if healthy, down to 2 if our lungs or heart are damaged, unless suffocating
 		if(failed_last_breath)
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
@@ -106,7 +106,7 @@
 		//Breathe from internal
 		breath = get_breath_from_internal(BREATH_VOLUME)
 
-		if(isnull(breath)) //in case of 0 pressure internals
+		if(isnull(breath)) //in case of FALSE pressure internals
 
 			if(isobj(loc)) //Breathe from loc as object
 				var/obj/loc_as_obj = loc

@@ -446,7 +446,7 @@ SUBSYSTEM_DEF(ticker)
 					next_in_line.LateChoices()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
-			queue_delay = 0 //No vacancy: restart timer
+			queue_delay = FALSE //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
 			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
 			queued_players -= next_in_line
@@ -566,7 +566,7 @@ SUBSYSTEM_DEF(ticker)
 	return timeLeft
 
 /datum/controller/subsystem/ticker/proc/SetTimeLeft(newtime)
-	if(newtime >= 0 && isnull(timeLeft))	//remember, negative means delayed
+	if(newtime >= FALSE && isnull(timeLeft))	//remember, negative means delayed
 		start_at = world.time + newtime
 	else
 		timeLeft = newtime

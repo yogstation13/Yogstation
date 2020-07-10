@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to TRUE for fewer assistants
 
-	// 0 = character settings, TRUE = game preferences
+	// FALSE = character settings, TRUE = game preferences
 	var/current_tab = 0
 
 	var/unlock_content = 0
@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/auto_fit_viewport = TRUE
 	///Should we be in the widescreen mode set by the config?
 	var/widescreenpref = TRUE
-	///What size should pixels be displayed as? 0 is strech to fit
+	///What size should pixels be displayed as? FALSE is strech to fit
 	var/pixel_size = 0
 	///What scaling method should we use?
 	var/scaling_method = "normal"
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_preview_icon()
 	var/list/dat = list("<center>")
 
-	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == FALSE ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == TRUE ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
@@ -1022,7 +1022,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				quirk_cost = "+[quirk_cost]"
 			var/font_color = "#AAAAFF"
 			if(initial(T.value) != 0)
-				font_color = initial(T.value) > 0 ? "#AAFFAA" : "#FFAAAA"
+				font_color = initial(T.value) > FALSE ? "#AAFFAA" : "#FFAAAA"
 			if(lock_reason)
 				dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
 				<font color='red'><b>LOCKED: [lock_reason]</b></font><br>"

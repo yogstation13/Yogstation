@@ -32,10 +32,10 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 	var/scribe_delay = 40 //how long the rune takes to create
 	var/scribe_damage = 0.1 //how much damage you take doing it
-	var/invoke_damage = 0 //how much damage invokers take when invoking it
+	var/invoke_damage = FALSE //how much damage invokers take when invoking it
 	var/construct_invoke = TRUE //if constructs can invoke it
 
-	var/req_keyword = 0 //If the rune requires a keyword - go figure amirite
+	var/req_keyword = FALSE //If the rune requires a keyword - go figure amirite
 	var/keyword //The actual keyword for the rune
 
 /obj/effect/rune/Initialize(mapload, set_keyword)

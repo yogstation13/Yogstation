@@ -212,7 +212,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 		var/len1 = runLens[i]
 		var/len2 = runLens[i+1]
 
-		//ASSERT(len1 > 0 && len2 > 0)
+		//ASSERT(len1 > FALSE && len2 > 0)
 		//ASSERT(base1 + len1 == base2)
 
 		//Record the legth of the combined runs. If i is the 3rd last run now, also slide over the last run
@@ -252,12 +252,12 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 		key		the element to be inserted into the sorted range
 		base	the index of the first element of the sorted range
 		len		the length of the sorted range, must be greater than 0
-		hint	the offset from base at which to begin the search, such that 0 <= hint < len; i.e. base <= hint < base+hint
+		hint	the offset from base at which to begin the search, such that FALSE <= hint < len; i.e. base <= hint < base+hint
 
 		Returns the index at which to insert element 'key'
 	*/
 	proc/gallopLeft(key, base, len, hint)
-		//ASSERT(len > 0 && hint >= 0 && hint < len)
+		//ASSERT(len > FALSE && hint >= FALSE && hint < len)
 
 		var/lastOffset = 0
 		var/offset = 1
@@ -310,13 +310,13 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	 * @param a the array in which to search
 	 * @param base the index of the first element in the range
 	 * @param len the length of the range; must be > 0
-	 * @param hint the index at which to begin the search, 0 <= hint < n.
+	 * @param hint the index at which to begin the search, FALSE <= hint < n.
 	 *	 The closer hint is to the result, the faster this method will run.
 	 * @param c the comparator used to order the range, and to search
-	 * @return the int k,  0 <= k <= n such that a[b + k - 1] <= key < a[b + k]
+	 * @return the int k,  FALSE <= k <= n such that a[b + k - 1] <= key < a[b + k]
 	 */
 	proc/gallopRight(key, base, len, hint)
-		//ASSERT(len > 0 && hint >= 0 && hint < len)
+		//ASSERT(len > FALSE && hint >= FALSE && hint < len)
 
 		var/offset = 1
 		var/lastOffset = 0
@@ -364,7 +364,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	//Merges two adjacent runs in-place in a stable fashion.
 	//For performance this method should only be called when len1 <= len2!
 	proc/mergeLo(base1, len1, base2, len2)
-		//ASSERT(len1 > 0 && len2 > 0 && base1 + len1 == base2)
+		//ASSERT(len1 > FALSE && len2 > FALSE && base1 + len1 == base2)
 
 		var/cursor1 = base1
 		var/cursor2 = base2
@@ -466,7 +466,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 
 
 	proc/mergeHi(base1, len1, base2, len2)
-		//ASSERT(len1 > 0 && len2 > 0 && base1 + len1 == base2)
+		//ASSERT(len1 > FALSE && len2 > FALSE && base1 + len1 == base2)
 
 		var/cursor1 = base1 + len1 - 1	//start at end of sublists
 		var/cursor2 = base2 + len2 - 1
@@ -490,7 +490,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 
 				//do the straightfoward thing until one run starts winning consistently
 				do
-					//ASSERT(len1 > 0 && len2 > 1)
+					//ASSERT(len1 > FALSE && len2 > 1)
 					if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1)) < 0)
 						moveElement(L, cursor1--, cursor2-- + 1)
 						--len1
@@ -514,7 +514,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 				//one run is winning consistently so galloping may provide huge benifits
 				//so try galloping, until such time as the run is no longer consistently winning
 				do
-					//ASSERT(len1 > 0 && len2 > 1)
+					//ASSERT(len1 > FALSE && len2 > 1)
 
 					count1 = len1 - gallopRight(fetchElement(L,cursor2), base1, len1, len1-1)	//should cursor1 be base1?
 					if(count1)

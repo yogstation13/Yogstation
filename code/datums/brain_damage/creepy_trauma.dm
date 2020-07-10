@@ -12,7 +12,7 @@
 	var/datum/antagonist/obsessed/antagonist
 	var/viewing = FALSE //it's a lot better to store if the owner is watching the obsession than checking it twice between two procs
 
-	var/total_time_creeping = 0 //just for roundend fun
+	var/total_time_creeping = FALSE //just for roundend fun
 	var/time_spent_away = 0
 	var/obsession_hug_count = 0
 

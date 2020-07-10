@@ -68,7 +68,7 @@
 	var/list/current_step = steps[index]
 	var/list/target_step
 
-	if(target_index > 0 && target_index <= steps.len)
+	if(target_index > FALSE && target_index <= steps.len)
 		target_step = steps[target_index]
 
 	. = TRUE

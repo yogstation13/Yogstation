@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 	if(!showpipe)
 		return //no need to update the pipes if they aren't showing
 
-	var/connected = 0 //Direction bitset
+	var/connected = FALSE //Direction bitset
 
 	for(var/i in TRUE to device_type) //adds intact pieces
 		if(nodes[i])

@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	#if LIGHTING_SOFT_THRESHOLD != 0
 	else if (mx < LIGHTING_SOFT_THRESHOLD)
-		. = 0 // 0 means soft lighting.
+		. = FALSE // FALSE means soft lighting.
 
 	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
 	cache_g  = round(lum_g * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD

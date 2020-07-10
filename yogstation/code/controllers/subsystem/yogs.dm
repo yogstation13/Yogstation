@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(Yogs)
 
 	var/list/mentortickets //less of a ticket, and more just a log of everything someone has mhelped, and the responses
 	var/endedshift = FALSE //whether or not we've announced that the shift can be ended
-	var/last_rebwoink = 0 // Last time we bwoinked all admins about unclaimed tickets
+	var/last_rebwoink = FALSE // Last time we bwoinked all admins about unclaimed tickets
 
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()

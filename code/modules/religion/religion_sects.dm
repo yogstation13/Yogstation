@@ -10,7 +10,7 @@
 	var/convert_opener // Opening message when someone gets converted
 	var/alignment = ALIGNMENT_GOOD // holder for alignments.
 	var/starter = TRUE // Does this require something before being available as an option?
-	var/favor = 0 // The Sect's 'Mana'
+	var/favor = FALSE // The Sect's 'Mana'
 	var/max_favor = 1000 // The max amount of favor the sect can have
 	var/default_item_favor = 5 // The default value for an item that can be sacrificed
 	var/list/desired_items // Turns into 'desired_items_typecache', lists the types that can be sacrificed barring optional features in can_sacrifice()

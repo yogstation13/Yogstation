@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	var/heavy = 0
 	var/meteorsound = 'sound/effects/meteorimpact.ogg'
 	var/z_original
-	var/threat = 0 // used for determining which meteors are most interesting
+	var/threat = FALSE // used for determining which meteors are most interesting
 	var/lifetime = DEFAULT_METEOR_LIFETIME
 	var/timerid = null
 	var/list/meteordrop = list(/obj/item/stack/ore/iron)

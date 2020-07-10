@@ -42,11 +42,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	//Main variables
 	var/owner = null // String name of owner
-	var/default_cartridge = 0 // Access level defined by cartridge
+	var/default_cartridge = FALSE // Access level defined by cartridge
 	var/obj/item/cartridge/cartridge = null //current cartridge
-	var/mode = 0 //Controls what menu the PDA will display. 0 is hub; the rest are either built in or based on cartridge.
+	var/mode = FALSE //Controls what menu the PDA will display. FALSE is hub; the rest are either built in or based on cartridge.
 	var/icon_alert = "pda-r" //Icon to be overlayed for message alerts. Taken from the pda icon file.
-	var/font_index = 0 //This int tells DM which font is currently selected and lets DM know when the last font has been selected so that it can cycle back to the first font when "toggle font" is pressed again.
+	var/font_index = FALSE //This int tells DM which font is currently selected and lets DM know when the last font has been selected so that it can cycle back to the first font when "toggle font" is pressed again.
 	var/font_mode = "font-family:monospace;" //The currently selected font.
 	var/background_color = "#808000" //The currently selected background color.
 
@@ -70,8 +70,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/last_everyone //No text for everyone spamming
 	var/last_noise //Also no honk spamming that's bad too
 	var/ttone = "beep" //The ringtone!
-	var/honkamt = 0 //How many honks left when infected with honk.exe
-	var/mimeamt = 0 //How many silence left when infected with mime.exe
+	var/honkamt = FALSE //How many honks left when infected with honk.exe
+	var/mimeamt = FALSE //How many silence left when infected with mime.exe
 	var/note = "Congratulations, your station has chosen the Thinktronic 5235 Personal Data Assistant!" //Current note in the notepad function
 	var/notehtml = ""
 	var/notescanned = FALSE // True if what is in the notekeeper was from a paper.

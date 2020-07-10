@@ -252,7 +252,7 @@
 */
 		Iterate(node/BlockDefinition/block, scope/scope, count)
 			RunBlock(block, scope)
-			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
+			if(MAX_ITERATIONS > FALSE && count >= MAX_ITERATIONS)
 				RaiseError(new/runtimeError/IterationLimitReached(), scope, block)
 				return 0
 			if(status & (BREAKING|RETURNING))

@@ -433,7 +433,7 @@
 	new /obj/item/ectoplasm(loc)
 	new /obj/structure/destructible/dead_bloodstone(loc)
 
-	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSticker.mode.bloodstone_cooldown && SSticker.mode.bloodstone_list.len <= 0 || anchor))
+	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSticker.mode.bloodstone_cooldown && SSticker.mode.bloodstone_list.len <= FALSE || anchor))
 		if(anchor)
 			SSticker.mode.anchor_bloodstone = null
 			SSticker.mode.cult_loss_anchor()

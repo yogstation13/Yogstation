@@ -63,7 +63,7 @@
 	new_dna.real_name = real_name
 	new_dna.mutations = mutations.Copy()
 
-//See mutation.dm for what 'class' does. 'time' is time till it removes itself in decimals. 0 for no timer
+//See mutation.dm for what 'class' does. 'time' is time till it removes itself in decimals. FALSE for no timer
 /datum/dna/proc/add_mutation(mutation, class = MUT_OTHER, time)
 	var/mutation_type = mutation
 	if(istype(mutation, /datum/mutation/human))

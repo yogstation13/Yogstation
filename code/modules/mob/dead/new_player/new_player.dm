@@ -56,7 +56,7 @@
 				isadmin = 1
 			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
 				SELECT id FROM [format_table_name("poll_question")]
-				WHERE (adminonly = 0 OR :isadmin = 1)
+				WHERE (adminonly = FALSE OR :isadmin = 1)
 				AND Now() BETWEEN starttime AND endtime
 				AND id NOT IN (
 					SELECT pollid FROM [format_table_name("poll_vote")]
@@ -473,7 +473,7 @@
 		dat += jointext(dept_dat, "")
 		dat += "</fieldset><br>"
 		column_counter++
-		if(column_counter > 0 && (column_counter % 3 == 0))
+		if(column_counter > FALSE && (column_counter % 3 == 0))
 			dat += "</td><td valign='top'>"
 
 	// Random Job Section
@@ -489,7 +489,7 @@
 	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 680, 580)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.set_content(jointext(dat, ""))
-	popup.open(FALSE) // 0 is passed to open so that it doesn't use the onclose() proc
+	popup.open(FALSE) // FALSE is passed to open so that it doesn't use the onclose() proc
 
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = 1

@@ -18,7 +18,7 @@
 	//string parsed by /datum/gas/proc/copy_from_turf
 	var/initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	//approximation of MOLES_O2STANDARD and MOLES_N2STANDARD pending byond allowing constant expressions to be embedded in constant strings
-	// If someone will place 0 of some gas there, SHIT WILL BREAK. Do not do that.
+	// If someone will place FALSE of some gas there, SHIT WILL BREAK. Do not do that.
 
 /turf/open
 	//used for spacewind
@@ -331,7 +331,7 @@
 	return ..()
 
 /turf/proc/radiate_to_spess() //Radiate excess tile heat to space
-	if(temperature > T0C) //Considering 0 degC as te break even point for radiation in and out
+	if(temperature > T0C) //Considering FALSE degC as te break even point for radiation in and out
 		var/delta_temperature = (temperature_archived - TCMB) //hardcoded space temperature
 		if((heat_capacity > 0) && (abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER))
 

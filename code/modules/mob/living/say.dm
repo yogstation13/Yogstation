@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_BINARY)
-			return ITALICS | REDUCE_RANGE //Does not return 0 since this is only reached by humans, not borgs or AIs.
+			return ITALICS | REDUCE_RANGE //Does not return FALSE since this is only reached by humans, not borgs or AIs.
 
 	return 0
 

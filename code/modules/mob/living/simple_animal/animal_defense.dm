@@ -97,7 +97,7 @@
 	else
 		temp_damage *= damage_coeff[damagetype]
 
-	if(temp_damage >= 0 && temp_damage <= force_threshold)
+	if(temp_damage >= FALSE && temp_damage <= force_threshold)
 		visible_message("<span class='warning'>[src] looks unharmed.</span>")
 		return FALSE
 	else

@@ -27,7 +27,7 @@
 		//doesn't have an object argument because this is "Stacking" with the animate call above
 		//3 billion% intentional
 
-/atom/proc/DabAnimation(speed = 1, loops = 1, direction = TRUE , hold_seconds = 0  , angle = TRUE , stay = FALSE) // Hopek 2019  
+/atom/proc/DabAnimation(speed = 1, loops = 1, direction = TRUE , hold_seconds = FALSE  , angle = TRUE , stay = FALSE) // Hopek 2019  
 	// By making this in atom/proc everything in the game can potentially dab. You have been warned.
 	if(hold_seconds > 9999) // if you need to hold a dab for more than 2 hours intentionally let me know.
 		return
@@ -131,7 +131,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 	return list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, power,power,power,0)
 
 //Changes distance hues have from grey while maintaining the overall lightness. Greys are unaffected.
-//1 is identity, 0 is greyscale, >1 oversaturates colors
+//1 is identity, FALSE is greyscale, >1 oversaturates colors
 /proc/color_matrix_saturation(value)
 	var/inv = TRUE - value
 	var/R = round(LUMA_R * inv, 0.001)
@@ -141,7 +141,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 	return list(R + value,R,R,0, G,G + value,G,0, B,B,B + value,0, 0,0,0,1, 0,0,0,0)
 
 //Changes distance colors have from rgb(127,127,127) grey
-//1 is identity. 0 makes everything grey >1 blows out colors and greys
+//1 is identity. FALSE makes everything grey >1 blows out colors and greys
 /proc/color_matrix_contrast(value)
 	var/add = (1 - value) / 2
 	return list(value,0,0,0, 0,value,0,0, 0,0,value,0, 0,0,0,1, add,add,add,0)

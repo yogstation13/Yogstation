@@ -5,7 +5,7 @@
 	var/datum/component/nanites/nanites
 	var/mob/living/host_mob
 
-	var/use_rate = 0 			//Amount of nanites used while active
+	var/use_rate = FALSE 			//Amount of nanites used while active
 	var/unique = TRUE			//If there can be more than one copy in the same nanites
 	var/can_trigger = FALSE		//If the nanites have a trigger function (used for the programming UI)
 	var/trigger_cost = 0		//Amount of nanites required to trigger
@@ -28,15 +28,15 @@
 
 	//The following vars are customizable
 	var/activated = TRUE 			//If FALSE, the program won't process, disables passive effects, can't trigger and doesn't consume nanites
-	var/activation_delay = 0 		//Seconds before the program self-activates.
-	var/timer = 0 					//Seconds before the timer effect activates. Starts counting AFTER the activation delay
+	var/activation_delay = FALSE 		//Seconds before the program self-activates.
+	var/timer = FALSE 					//Seconds before the timer effect activates. Starts counting AFTER the activation delay
 	var/timer_type = NANITE_TIMER_DEACTIVATE //What happens when the timer runs out
 
-	//Signal codes, these handle remote input to the nanites. If set to 0 they'll ignore signals.
-	var/activation_code 	= 0 	//Code that activates the program [1-9999]
-	var/deactivation_code 	= 0 	//Code that deactivates the program [1-9999]
+	//Signal codes, these handle remote input to the nanites. If set to FALSE they'll ignore signals.
+	var/activation_code 	= FALSE 	//Code that activates the program [1-9999]
+	var/deactivation_code 	= FALSE 	//Code that deactivates the program [1-9999]
 	var/kill_code 			= 0		//Code that permanently removes the program [1-9999]
-	var/trigger_code 		= 0 	//Code that triggers the program (if available) [1-9999]
+	var/trigger_code 		= FALSE 	//Code that triggers the program (if available) [1-9999]
 
 	//Extra settings
 	//Must be listed in text form, with the same title they'll be displayed in the programmer UI

@@ -232,7 +232,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	else
 		return QDEL_HINT_LETMELIVE
 
-#define STABLE 0 //The tile is stable and won't collapse/sink when crossed.
+#define STABLE FALSE //The tile is stable and won't collapse/sink when crossed.
 #define COLLAPSE_ON_CROSS TRUE //The tile is unstable and will temporary become unusable when crossed.
 #define DESTROY_ON_CROSS 2 //The tile is nearly broken and will permanently become unusable when crossed.
 #define UNIQUE_EFFECT 3 //The tile has some sort of unique effect when crossed.

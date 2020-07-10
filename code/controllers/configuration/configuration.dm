@@ -391,7 +391,7 @@ Example config:
 		if(max_pop[M.config_tag])
 			M.maximum_players = max_pop[M.config_tag]
 		if(M.required_players <= crew)
-			if(M.maximum_players >= 0 && M.maximum_players < crew)
+			if(M.maximum_players >= FALSE && M.maximum_players < crew)
 				continue
 			runnable_modes[M] = probabilities[M.config_tag]
 	return runnable_modes

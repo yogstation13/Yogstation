@@ -58,7 +58,7 @@
 		chamber_round(FALSE)
 
 /obj/item/gun/ballistic/revolver/get_ammo(countchambered = FALSE, countempties = TRUE)
-	var/boolets = 0 //mature var names for mature people
+	var/boolets = FALSE //mature var names for mature people
 	if (chambered && countchambered)
 		boolets++
 	if (magazine)

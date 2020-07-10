@@ -291,8 +291,8 @@
 			&& !(.[SPACE_KEY]) \
 			&& members.len == 2 \
 			&& members_attributes.len == 2 \
-			&& length(members_attributes[1]) == 0 \
-			&& length(members_attributes[2]) == 0 \
+			&& length(members_attributes[1]) == FALSE \
+			&& length(members_attributes[2]) == FALSE \
 			&& (world.area in members) \
 			&& (world.turf in members))
 
@@ -399,7 +399,7 @@
 
 
 //find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
-//returns 0 if reached the last delimiter
+//returns FALSE if reached the last delimiter
 /datum/parsed_map/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
 	var/next_delimiter = findtext(text,delimiter,position,0)

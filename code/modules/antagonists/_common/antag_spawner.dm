@@ -3,7 +3,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
-	var/discountPrice = 0 //if this is discounted, we keep track of that, for refund purposes
+	var/discountPrice = FALSE //if this is discounted, we keep track of that, for refund purposes
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return

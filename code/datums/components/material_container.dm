@@ -114,7 +114,7 @@
 
 //For inserting an amount of material
 /datum/component/material_container/proc/insert_amount(amt, id = null)
-	if(amt > 0 && has_space(amt))
+	if(amt > FALSE && has_space(amt))
 		var/total_amount_saved = total_amount
 		if(id)
 			var/datum/material/M = materials[id]

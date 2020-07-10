@@ -655,7 +655,7 @@ Nothing else in the console has ID requirements.
 
 		l += "<table><tr><th align='left'>Researched</th><th align='left'>Available</th><th align='left'>Future</th></tr><tr>[RDSCREEN_NOBREAK]"
 		if(max_tier)
-			for(var/tier in 0 to max_tier)
+			for(var/tier in FALSE to max_tier)
 				l += "<td valign='top'>[RDSCREEN_NOBREAK]"
 				l += columns["[tier]"]
 				l += "</td>[RDSCREEN_NOBREAK]"

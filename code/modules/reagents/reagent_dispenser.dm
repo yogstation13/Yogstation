@@ -18,7 +18,7 @@
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)
 	if(W.is_refillable())
-		return 0 //so we can refill them via their afterattack.
+		return FALSE //so we can refill them via their afterattack.
 	else
 		return ..()
 

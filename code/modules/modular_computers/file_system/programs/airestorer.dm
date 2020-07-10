@@ -79,7 +79,7 @@
 	A.adjustToxLoss(-1, 0)
 	A.adjustBruteLoss(-1, 0)
 	A.updatehealth()
-	if(A.health >= 0 && A.stat == DEAD)
+	if(A.health >= FALSE && A.stat == DEAD)
 		A.revive()
 	// Finished restoring
 	if(A.health >= 100)

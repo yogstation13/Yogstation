@@ -3,14 +3,14 @@
 	var/list/sent_assets = list() // List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
 	var/list/completed_asset_jobs = list() /// List of all completed blocking send jobs awaiting acknowledgement by send_asset
 
-	var/last_asset_job = 0 /// Last asset send job id.
+	var/last_asset_job = FALSE /// Last asset send job id.
 	var/last_completed_asset_job = 0
 
 /// Process asset cache client topic calls for "asset_cache_confirm_arrival=[INT]"
 /client/proc/asset_cache_confirm_arrival(job_id)
 	var/asset_cache_job = round(text2num(job_id))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us into letting them append to a list without limit.
-	if (asset_cache_job > 0 && asset_cache_job <= last_asset_job && !(completed_asset_jobs["[asset_cache_job]"]))
+	if (asset_cache_job > FALSE && asset_cache_job <= last_asset_job && !(completed_asset_jobs["[asset_cache_job]"]))
 		completed_asset_jobs["[asset_cache_job]"] = TRUE
 		last_completed_asset_job = max(last_completed_asset_job, asset_cache_job)
 	else

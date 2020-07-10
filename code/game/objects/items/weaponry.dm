@@ -83,10 +83,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	flags_1 = CONDUCT_1
 	item_flags = DROPDEL //If this ever happens, it's because you lost an arm
 	slot_flags = null
-	block_chance = 0 //RNG WON'T HELP YOU NOW, PANSY
+	block_chance = FALSE //RNG WON'T HELP YOU NOW, PANSY
 	light_range = 3
 	attack_verb = list("brutalized", "eviscerated", "disemboweled", "hacked", "carved", "cleaved") //ONLY THE MOST VISCERAL ATTACK VERBS
-	var/notches = 0 //HOW MANY PEOPLE HAVE BEEN SLAIN WITH THIS BLADE
+	var/notches = FALSE //HOW MANY PEOPLE HAVE BEEN SLAIN WITH THIS BLADE
 	var/obj/item/disk/nuclear/nuke_disk //OUR STORED NUKE DISK
 
 /obj/item/claymore/highlander/Initialize()
@@ -293,7 +293,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "magspear"
 	throwforce = 25 //kills regular carps in one hit
 	force = 10
-	throw_range = 0 //throwing these invalidates the speargun
+	throw_range = FALSE //throwing these invalidates the speargun
 	attack_verb = list("stabbed", "ripped", "gored", "impaled")
 	embedding = list("embedded_pain_multiplier" = 8, "embed_chance" = 100, "embedded_fall_chance" = 0, "embedded_impact_pain_multiplier" = 15) //55 damage+embed on hit
 

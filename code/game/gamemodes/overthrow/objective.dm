@@ -34,7 +34,7 @@
 	return get_points() ? TRUE : FALSE
 
 /datum/objective/overthrow/proc/get_points()
-	return 0 // int, not bool
+	return FALSE // int, not bool
 
 /datum/objective/overthrow/proc/result_points(datum/mind/the_dude, base_points) // App
 	var/initial_points = base_points
@@ -109,7 +109,7 @@
 	explanation_text = "Enslave the AIs to your team using the special AI module board in your storage implant. It is required you use said module."
 
 /datum/objective/overthrow/AI/get_points() // If you simply kill the Ai you get nothing, you need it to overthrow the heads.
-	. = 0 // Support for multiple AIs. More AIs means more control over the station.
+	. = FALSE // Support for multiple AIs. More AIs means more control over the station.
 	for(var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/AI = i
 		if(AI.mind)

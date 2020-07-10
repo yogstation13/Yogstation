@@ -26,7 +26,7 @@
 #define APC_UPOVERLAY_LOCKED		(1<<12)
 #define APC_UPOVERLAY_OPERATING		(1<<13)
 
-#define APC_ELECTRONICS_MISSING 0 // None
+#define APC_ELECTRONICS_MISSING FALSE // None
 #define APC_ELECTRONICS_INSTALLED TRUE // Installed but not secured
 #define APC_ELECTRONICS_SECURED 2 // Installed and secured
 
@@ -90,11 +90,11 @@
 	var/lastused_total = 0
 	var/main_status = 0
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
-	var/malfhack = 0 //New var for my changes to AI malf. --NeoFite
+	var/malfhack = FALSE //New var for my changes to AI malf. --NeoFite
 	var/mob/living/silicon/ai/malfai = null //See above --NeoFite
-	var/has_electronics = APC_ELECTRONICS_MISSING // 0 - none, TRUE - plugged in, 2 - secured by screwdriver
+	var/has_electronics = APC_ELECTRONICS_MISSING // FALSE - none, TRUE - plugged in, 2 - secured by screwdriver
 	var/overload = TRUE //used for the Blackout malf module
-	var/beenhit = 0 // used for counting how many times it has been hit, used for Aliens at the moment
+	var/beenhit = FALSE // used for counting how many times it has been hit, used for Aliens at the moment
 	var/mob/living/silicon/ai/occupier = null
 	var/transfer_in_progress = FALSE //Is there an AI being transferred out of us?
 	var/obj/item/clockwork/integration_cog/integration_cog //Is there a cog siphoning power?
@@ -291,7 +291,7 @@
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
-	var/update = check_updates() 		//returns 0 if no need to update icons.
+	var/update = check_updates() 		//returns FALSE if no need to update icons.
 						// TRUE if we need to update the icon_state
 						// 2 if we need to update the overlays
 	if(!update)
@@ -879,7 +879,7 @@
 		else
 			return TRUE // TRUE = APC not hacked.
 	else
-		return 0 // 0 = User is not a Malf AI
+		return FALSE // FALSE = User is not a Malf AI
 
 /obj/machinery/power/apc/proc/report()
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
@@ -1378,7 +1378,7 @@
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	if(cell && cell.charge > 0)
-		return (val==1) ? 0 : val
+		return (val==1) ? FALSE : val
 	else if(val == 3)
 		return 1
 	else

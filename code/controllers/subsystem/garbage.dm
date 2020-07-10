@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(garbage)
 	var/static/count = 0
 	if (count) //runtime last run before we could do this.
 		var/c = count
-		count = 0 //so if we runtime on the Cut, we don't try again.
+		count = FALSE //so if we runtime on the Cut, we don't try again.
 		var/list/lastqueue = queues[lastlevel]
 		lastqueue.Cut(1, c+1)
 
@@ -233,7 +233,7 @@ SUBSYSTEM_DEF(garbage)
 	var/qdels = 0			//Total number of times it's passed thru qdel.
 	var/destroy_time = 0	//Total amount of milliseconds spent processing this type's Destroy()
 	var/failures = 0		//Times it was queued for soft deletion but failed to soft delete.
-	var/hard_deletes = 0 	//Different from failures because it also includes QDEL_HINT_HARDDEL deletions
+	var/hard_deletes = FALSE 	//Different from failures because it also includes QDEL_HINT_HARDDEL deletions
 	var/hard_delete_time = 0//Total amount of milliseconds spent hard deleting this type.
 	var/no_respect_force = 0//Number of times it's not respected force=TRUE
 	var/no_hint = 0			//Number of times it's not even bother to give a qdel hint

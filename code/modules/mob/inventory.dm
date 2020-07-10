@@ -20,13 +20,13 @@
 		other_hand = active_hand_index-1 //finding the matching "left" limb
 	else
 		other_hand = active_hand_index+1 //finding the matching "right" limb
-	if(other_hand < 0 || other_hand > held_items.len)
+	if(other_hand < FALSE || other_hand > held_items.len)
 		other_hand = 0
 	return other_hand
 
 
 /mob/proc/get_item_for_held_index(i)
-	if(i > 0 && i <= held_items.len)
+	if(i > FALSE && i <= held_items.len)
 		return held_items[i]
 	return FALSE
 

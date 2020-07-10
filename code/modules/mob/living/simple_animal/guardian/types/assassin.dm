@@ -39,7 +39,7 @@
 
 /mob/living/simple_animal/hostile/guardian/assassin/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(. > 0 && toggle)
+	if(. > FALSE && toggle)
 		ToggleMode(1)
 
 /mob/living/simple_animal/hostile/guardian/assassin/Recall()

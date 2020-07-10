@@ -254,7 +254,7 @@
 	energy_drain = 250
 	range = MELEE|RANGED
 	item_flags = NO_MAT_REDEMPTION
-	var/mode = 0 //0 - deconstruct, TRUE - wall or floor, 2 - airlock.
+	var/mode = FALSE //0 - deconstruct, TRUE - wall or floor, 2 - airlock.
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Initialize()
 	. = ..()

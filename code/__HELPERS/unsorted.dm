@@ -553,7 +553,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 		return get_step(ref, base_dir)
 
 //Takes: Anything that could possibly have variables and a varname to check.
-//Returns: TRUE if found, 0 if not.
+//Returns: TRUE if found, FALSE if not.
 /proc/hasvar(datum/A, varname)
 	if(A.vars.Find(lowertext(varname)))
 		return 1
@@ -624,7 +624,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 			if(!cache[A.type])
 				continue
 			for(var/turf/T in A)
-				if(target_z == 0 || target_z == T.z)
+				if(target_z == FALSE || target_z == T.z)
 					turfs += T
 	else
 		for(var/V in GLOB.sortedAreas)
@@ -632,7 +632,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 			if(A.type != areatype)
 				continue
 			for(var/turf/T in A)
-				if(target_z == 0 || target_z == T.z)
+				if(target_z == FALSE || target_z == T.z)
 					turfs += T
 	return turfs
 
@@ -811,7 +811,7 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in locdir)
 		if(is_type_in_typecache(O, GLOB.WALLITEMS) && check_external != 2)
-			if(O.pixel_x == 0 && O.pixel_y == 0)
+			if(O.pixel_x == FALSE && O.pixel_y == 0)
 				return 1
 	return 0
 

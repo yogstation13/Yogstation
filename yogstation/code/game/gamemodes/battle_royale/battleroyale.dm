@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	light_range = 10 //light up the darkness, oh battle bus.
 	layer = 4 //Above everything
-	var/starter_z = 0 //What Z level did we start on?
+	var/starter_z = FALSE //What Z level did we start on?
 
 /obj/structure/battle_bus/attack_hand(mob/user)
 	if(!(user in contents))

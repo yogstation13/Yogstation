@@ -344,7 +344,7 @@
 /datum/action/item_action/clock/quickbind
 	name = "Quickbind"
 	desc = "If you're seeing this, file a bug report."
-	var/scripture_index = 0 //the index of the scripture we're associated with
+	var/scripture_index = FALSE //the index of the scripture we're associated with
 
 /datum/action/item_action/toggle_helmet_flashlight
 	name = "Toggle Helmet Flashlight"

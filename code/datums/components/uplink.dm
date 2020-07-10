@@ -294,7 +294,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		previous_attempts.Cut()
 		master.degrees = 0
 		interact(null, user)
-		to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to 0 degrees!</span>")
+		to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to FALSE degrees!</span>")
 
 	else if(compare_list(previous_attempts, failsafe_code))
 		failsafe()

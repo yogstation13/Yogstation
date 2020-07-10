@@ -8,8 +8,8 @@
 	desc = "A marvel of bureaucratic engineering encased in an efficient plastic shell. Click to take a number!"
 	circuit = /obj/item/circuitboard/machine/ticketmachine
 	density = TRUE
-	var/screenNum = 0 //this is the the number of the person who is up
-	var/currentNum = 0 //this is the the number someone who takes a ticket gets
+	var/screenNum = FALSE //this is the the number of the person who is up
+	var/currentNum = FALSE //this is the the number someone who takes a ticket gets
 	var/ticketNumMax = 999 //No more!
 	var/cooldown = 10
 	var/ready = TRUE
@@ -56,7 +56,7 @@
 
 	if(!(obj_flags & EMAGGED) && tickets[screenNum]) //if the ticket actually, you know, exists and all
 		tickets[screenNum].audible_message("<span class='rose'>\the [tickets[screenNum]] dings!</span>",hearing_distance=1)
-		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, 0 ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
+		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, FALSE ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
 
 /obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
 	if(obj_flags & EMAGGED)

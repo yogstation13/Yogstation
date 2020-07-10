@@ -202,7 +202,7 @@
 	height = 11
 	dir = EAST
 	port_direction = WEST
-	var/sound_played = 0 //If the launch sound has been sent to all players on the shuttle itself
+	var/sound_played = FALSE //If the launch sound has been sent to all players on the shuttle itself
 
 /obj/docking_port/mobile/emergency/canDock(obj/docking_port/stationary/S)
 	return SHUTTLE_CAN_DOCK //If the emergency shuttle can't move, the whole game breaks, so it will force itself to land even if it has to crush a few departments in the process
@@ -389,7 +389,7 @@
 					areas += E
 				hyperspace_sound(HYPERSPACE_WARMUP, areas)
 
-			if(time_left <= 0 && !SSshuttle.emergencyNoEscape)
+			if(time_left <= FALSE && !SSshuttle.emergencyNoEscape)
 				//move each escape pod (or applicable spaceship) to its corresponding transit dock
 				for(var/A in SSshuttle.mobile)
 					var/obj/docking_port/mobile/M = A

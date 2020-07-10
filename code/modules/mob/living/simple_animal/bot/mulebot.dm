@@ -328,7 +328,7 @@
 
 // returns true if the bot has power
 /mob/living/simple_animal/bot/mulebot/proc/has_power()
-	return !open && cell && cell.charge > 0 && (!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
+	return !open && cell && cell.charge > FALSE && (!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
 
 /mob/living/simple_animal/bot/mulebot/proc/buzz(type)
 	switch(type)
@@ -450,7 +450,7 @@
 		on = FALSE
 		return
 	if(on)
-		var/speed = (wires.is_cut(WIRE_MOTOR1) ? 0 : 1) + (wires.is_cut(WIRE_MOTOR2) ? 0 : 2)
+		var/speed = (wires.is_cut(WIRE_MOTOR1) ? FALSE : 1) + (wires.is_cut(WIRE_MOTOR2) ? FALSE : 2)
 		var/num_steps = 0
 		switch(speed)
 			if(0)
@@ -485,7 +485,7 @@
 				at_target()
 				return
 
-			else if(path.len > 0 && target) // valid path
+			else if(path.len > FALSE && target) // valid path
 				var/turf/next = path[1]
 				reached_target = 0
 				if(next == loc)

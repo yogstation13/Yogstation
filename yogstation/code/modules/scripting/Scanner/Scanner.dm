@@ -56,7 +56,7 @@
 */
 		codepos				 = 1
 		line				 = 1
-		linepos 			 = 0 										 //column=codepos-linepos
+		linepos 			 = FALSE 										 //column=codepos-linepos
 		n_scriptOptions/nS_Options/options
 
 /*

@@ -15,11 +15,11 @@
 	var/config_tag = null
 	var/votable = 1
 	var/probability = 0
-	var/false_report_weight = 0 //How often will this show up incorrectly in a centcom report?
+	var/false_report_weight = FALSE //How often will this show up incorrectly in a centcom report?
 	var/report_type = "invalid" //gamemodes with the same report type will not show up in the command report together.
-	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
-	var/nuke_off_station = 0 //Used for tracking where the nuke hit
-	var/round_ends_with_antag_death = 0 //flags the "one verse the station" antags as such
+	var/station_was_nuked = FALSE //see nuclearbomb.dm and malfunction.dm
+	var/nuke_off_station = FALSE //Used for tracking where the nuke hit
+	var/round_ends_with_antag_death = FALSE //flags the "one verse the station" antags as such
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
@@ -32,7 +32,7 @@
 	var/antag_flag = null //preferences flag such as BE_WIZARD that need to be turned on for players to be antag
 	var/mob/living/living_antag_player = null
 	var/datum/game_mode/replacementmode = null
-	var/round_converted = 0 //0: round not converted, 1: round going to convert, 2: round converted
+	var/round_converted = FALSE //0: round not converted, 1: round going to convert, 2: round converted
 	var/reroll_friendly 	//During mode conversion only these are in the running
 	var/continuous_sanity_checked	//Catches some cases where config options could be used to suggest that modes without antagonists should end when all antagonists die
 	var/enemy_minimum_age = 7 //How many days must players have been playing before they can play this antagonist
@@ -68,7 +68,7 @@
 		if((player.client)&&(player.ready == PLAYER_READY_TO_PLAY))
 			playerC++
 	if(!GLOB.Debug2)
-		if(playerC < required_players || (maximum_players >= 0 && playerC > maximum_players))
+		if(playerC < required_players || (maximum_players >= FALSE && playerC > maximum_players))
 			return 0
 	antag_candidates = get_players_for_role(antag_flag)
 	if(!GLOB.Debug2)
@@ -243,7 +243,7 @@
 
 
 		if(living_antag_player && living_antag_player.mind && isliving(living_antag_player) && living_antag_player.stat != DEAD && !isnewplayer(living_antag_player) &&!isbrain(living_antag_player) && (living_antag_player.mind.special_role || LAZYLEN(living_antag_player.mind.antag_datums)))
-			return 0 //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
+			return FALSE //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
 
 		for(var/mob/Player in GLOB.alive_mob_list)
 			if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client && (Player.mind.special_role || LAZYLEN(Player.mind.antag_datums))) //Someone's still antagging but is their antagonist datum important enough to skip mulligan?
@@ -278,15 +278,15 @@
 	intercepttext += "<b>Central Command has intercepted and partially decoded a Syndicate transmission with vital information regarding their movements. The following report outlines the most \
 	likely threats to appear in your sector.</b>"
 	var/list/report_weights = config.mode_false_report_weight.Copy()
-	report_weights[report_type] = 0 //Prevent the current mode from being falsely selected.
+	report_weights[report_type] = FALSE //Prevent the current mode from being falsely selected.
 	var/list/reports = list()
-	var/Count = 0 //To compensate for missing correct report
+	var/Count = FALSE //To compensate for missing correct report
 	if(prob(65)) // 65% chance the actual mode will appear on the list
 		reports += config.mode_reports[report_type]
 		Count++
 	for(var/i in Count to rand(3,5)) //Between three and five wrong entries on the list.
 		var/false_report_type = pickweightAllowZero(report_weights)
-		report_weights[false_report_type] = 0 //Make it so the same false report won't be selected twice
+		report_weights[false_report_type] = FALSE //Make it so the same false report won't be selected twice
 		reports += config.mode_reports[false_report_type]
 
 	reports = shuffle(reports) //Randomize the order, so the real one is at a random position.
@@ -552,7 +552,7 @@
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/game_mode/proc/age_check(client/C)
 	if(get_remaining_days(C) == 0)
-		return 1	//Available in 0 days = available right now = player is old enough to play.
+		return 1	//Available in FALSE days = available right now = player is old enough to play.
 	return 0
 
 
@@ -562,7 +562,7 @@
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
 	if(!isnum(C.player_age))
-		return 0 //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
+		return FALSE //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
 	if(!isnum(enemy_minimum_age))
 		return 0
 

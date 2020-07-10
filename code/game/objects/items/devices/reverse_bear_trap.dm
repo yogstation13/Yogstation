@@ -15,7 +15,7 @@
 
 	var/ticking = FALSE
 	var/time_left = 60 //seconds remaining until pop
-	var/escape_chance = 0 //chance per "fiddle" to get the trap off your head
+	var/escape_chance = FALSE //chance per "fiddle" to get the trap off your head
 	var/struggling = FALSE
 
 	var/time_since_last_beep = 0

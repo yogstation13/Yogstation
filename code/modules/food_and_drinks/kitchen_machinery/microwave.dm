@@ -16,9 +16,9 @@
 	light_power = 3
 	var/wire_disabled = FALSE // is its internal wire cut?
 	var/operating = FALSE
-	var/dirty = 0 // 0 to 100 // Does it need cleaning?
+	var/dirty = FALSE // FALSE to 100 // Does it need cleaning?
 	var/dirty_anim_playing = FALSE
-	var/broken = 0 // 0, TRUE or 2 // How broken is it???
+	var/broken = FALSE // 0, TRUE or 2 // How broken is it???
 	var/max_n_of_items = 10
 	var/efficiency = 0
 	var/datum/looping_sound/microwave/soundloop
@@ -232,7 +232,7 @@
 /obj/machinery/microwave/proc/cook()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(operating || broken > 0 || panel_open || !anchored || dirty == 100)
+	if(operating || broken > FALSE || panel_open || !anchored || dirty == 100)
 		return
 
 	if(wire_disabled)

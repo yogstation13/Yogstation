@@ -29,7 +29,7 @@
 	mob_size = MOB_SIZE_TINY
 	movement_type = FLYING
 	speak_emote = list("squeaks")
-	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
+	var/max_co2 = FALSE //to be removed once metastation map no longer use those for Sgt Araneus
 	var/min_oxy = 0
 	var/max_tox = 0
 

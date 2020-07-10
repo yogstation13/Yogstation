@@ -95,7 +95,7 @@
 //The effect that causes/repairs the damage the spectacles cause.
 /datum/status_effect/wraith_spectacles
 	id = "wraith_spectacles"
-	duration = -1 //remains until eye damage done reaches 0 while the glasses are not worn
+	duration = -1 //remains until eye damage done reaches FALSE while the glasses are not worn
 	tick_interval = 20
 	alert_type = /obj/screen/alert/status_effect/wraith_spectacles
 	var/eye_damage_done = 0

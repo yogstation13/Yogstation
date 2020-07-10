@@ -237,8 +237,8 @@
 	var/mob/living/carbon/human/O = owner.current
 	var/blood = 0
 	var/blood_coeff = TRUE //how much blood is gained as a % from the amount drained, currently changed by how dead the victim is
-	var/old_bloodtotal = 0 //used to see if we increased our blood total
-	var/old_bloodusable = 0 //used to see if we increased our blood usable
+	var/old_bloodtotal = FALSE //used to see if we increased our blood total
+	var/old_bloodusable = FALSE //used to see if we increased our blood usable
 	var/silent = FALSE //if the succ gives a message/sounds
 	var/warned = FALSE //has the vampire been warned they're about to alert a target while stealth sucking?
 	var/blood_to_take = BLOOD_SUCK_BASE //how much blood should be removed per succ? changes depending on grab state

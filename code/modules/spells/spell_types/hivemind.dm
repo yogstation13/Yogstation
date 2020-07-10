@@ -8,8 +8,8 @@
 	clothes_req = 0
 	human_req = 1
 	antimagic_allowed = TRUE
-	range = 0 //SNOWFLAKE, 0 is unlimited for target_external=0 spells
-	var/target_external = 0 //Whether or not we select targets inside or outside of the hive
+	range = FALSE //SNOWFLAKE, FALSE is unlimited for target_external=0 spells
+	var/target_external = FALSE //Whether or not we select targets inside or outside of the hive
 
 
 /obj/effect/proc_holder/spell/target_hive/choose_targets(mob/user = usr)

@@ -9,7 +9,7 @@
 	var/sanity_level = 5 //To track what stage of sanity they're on
 	var/mood_modifier = TRUE //Modifier to allow certain mobs to be less affected by moodlets
 	var/list/datum/mood_event/mood_events = list()
-	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
+	var/insanity_effect = FALSE //is the owner being punished for low mood? If so, how much?
 	var/obj/screen/mood/screen_obj
 	var/obj/screen/sanity/screen_obj_sanity
 
@@ -268,7 +268,7 @@
 		else
 			if(the_event.timeout)
 				addtimer(CALLBACK(src, .proc/clear_event, null, category), the_event.timeout, TIMER_UNIQUE|TIMER_OVERRIDE)
-			return 0 //Don't have to update the event.
+			return FALSE //Don't have to update the event.
 	the_event = new type(src, param)
 
 	mood_events[category] = the_event

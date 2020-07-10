@@ -69,7 +69,7 @@
 			var/range = rand(1, clamp(orbiting_balls.len, 3, 7))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range)
 	else
-		energy = 0 // ensure we dont have miniballs of miniballs
+		energy = FALSE // ensure we dont have miniballs of miniballs
 
 /obj/singularity/energy_ball/examine(mob/user)
 	. = ..()
@@ -80,7 +80,7 @@
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
 	//we face the last thing we zapped, so this lets us favor that direction a bit
 	var/move_bias = pick(GLOB.alldirs)
-	for(var/i in 0 to move_amount)
+	for(var/i in FALSE to move_amount)
 		var/move_dir = pick(GLOB.alldirs + move_bias) //ensures large-ball teslas don't just sit around
 		if(target && prob(10))
 			move_dir = get_dir(src,target)

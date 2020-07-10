@@ -6,7 +6,7 @@
 	var/max_nanites = 500		//maximum amount of nanites in the system
 	var/regen_rate = 0.5		//nanites generated per second
 	var/safety_threshold = 50	//how low nanites will get before they stop processing/triggering
-	var/cloud_id = 0 			//0 if not connected to the cloud, 1-100 to set a determined cloud backup to draw from
+	var/cloud_id = FALSE 			//0 if not connected to the cloud, 1-100 to set a determined cloud backup to draw from
 	var/next_sync = 0
 	var/list/datum/nanite_program/programs = list()
 	var/max_programs = NANITE_PROGRAM_LIMIT

@@ -52,7 +52,7 @@
 
 	var/pitch = 0
 	if(alert("Select a playback speed: ",,"Default","Custom...") == "Custom...")
-		pitch = input("Input a custom playback speed (preferably as a number between 0 and 2)","AI Vox Command") as num
+		pitch = input("Input a custom playback speed (preferably as a number between FALSE and 2)","AI Vox Command") as num
 		if(isnull(pitch)) pitch = 0
 
 	log_admin("[key_name(src)] made an admin AI vocal announcement with the following message: [message].")

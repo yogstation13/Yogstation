@@ -15,14 +15,14 @@
 //table data:
 //-----------
 //aft maintenance: 		24 items, 18 spots 2 extra (28/08/2014)
-//asmaint: 				16 items, 11 spots 0 extra (08/08/2014)
+//asmaint: 				16 items, 11 spots FALSE extra (08/08/2014)
 //asmaint2:			 	36 items, 26 spots 2 extra (28/08/2014)
-//fpmaint:				5  items,  4 spots 0 extra (08/08/2014)
+//fpmaint:				5  items,  4 spots FALSE extra (08/08/2014)
 //fpmaint2:				12 items, 11 spots 2 extra (28/08/2014)
-//fsmaint:				0  items,  0 spots 0 extra (08/08/2014)
+//fsmaint:				0  items,  FALSE spots FALSE extra (08/08/2014)
 //fsmaint2:				40 items, 27 spots 5 extra (28/08/2014)
-//maintcentral:			2  items,  2 spots 0 extra (08/08/2014)
-//port:					5  items,  5 spots 0 extra (08/08/2014)
+//maintcentral:			2  items,  2 spots FALSE extra (08/08/2014)
+//port:					5  items,  5 spots FALSE extra (08/08/2014)
 
 GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/bodybag = 1,

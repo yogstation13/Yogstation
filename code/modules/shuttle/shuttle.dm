@@ -46,7 +46,7 @@
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
-//returns a list(x0,y0, x1,y1) where points 0 and TRUE are bounding corners of the projected rectangle
+//returns a list(x0,y0, x1,y1) where points FALSE and TRUE are bounding corners of the projected rectangle
 /obj/docking_port/proc/return_coords(_x, _y, _dir)
 	if(_dir == null)
 		_dir = dir
@@ -101,9 +101,9 @@
 
 	. = list()
 
-	for(var/dx in 0 to width-1)
+	for(var/dx in FALSE to width-1)
 		var/compX = dx-dwidth
-		for(var/dy in 0 to height-1)
+		for(var/dy in FALSE to height-1)
 			var/compY = dy-dheight
 			// realX = _x + compX*cos - compY*sin
 			// realY = _y + compY*cos - compX*sin
@@ -268,8 +268,8 @@
 
 	var/list/ripples = list()
 	var/engine_coeff = TRUE //current engine coeff
-	var/current_engines = 0 //current engine power
-	var/initial_engines = 0 //initial engine power
+	var/current_engines = FALSE //current engine power
+	var/initial_engines = FALSE //initial engine power
 	var/list/engine_list = list()
 	var/can_move_docking_ports = FALSE //if this shuttle can move docking ports other than the one it is docked at
 	var/list/hidden_turfs = list()
@@ -624,7 +624,7 @@
 
 /obj/docking_port/mobile/proc/modTimer(multiple)
 	var/time_remaining = timer - world.time
-	if(time_remaining < 0 || !last_timer_length)
+	if(time_remaining < FALSE || !last_timer_length)
 		return
 	time_remaining *= multiple
 	last_timer_length *= multiple
@@ -799,7 +799,7 @@
 
 // Double initial engines to get to 0.5 minimum
 // Lose all initial engines to get to 2
-//For 0 engine shuttles like BYOS 5 engines to get to doublespeed
+//For FALSE engine shuttles like BYOS 5 engines to get to doublespeed
 /obj/docking_port/mobile/proc/get_engine_coeff(current,engine_mod)
 	var/new_value = max(0,current + engine_mod)
 	if(new_value == initial_engines)
@@ -812,7 +812,7 @@
 		return clamp(1 - delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
 	if(new_value < initial_engines)
 		var/delta = initial_engines - new_value
-		var/change_per_engine = TRUE //doesn't really matter should not be happening for 0 engine shuttles
+		var/change_per_engine = TRUE //doesn't really matter should not be happening for FALSE engine shuttles
 		if(initial_engines > 0)
 			change_per_engine = (ENGINE_COEFF_MAX -  1) / initial_engines //just linear drop to max delay
 		return clamp(1 + delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)

@@ -95,7 +95,7 @@
 		transfer_moles2 = min(transfer_moles2, air2_moles)
 		transfer_moles1 = 0
 	else
-		if(air1.return_temperature() <= 0 || air2.return_temperature() <= 0)
+		if(air1.return_temperature() <= FALSE || air2.return_temperature() <= 0)
 			return
 		if((transfer_moles2 <= 0) || (transfer_moles1 <= 0))
 			return

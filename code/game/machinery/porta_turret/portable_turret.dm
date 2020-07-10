@@ -731,7 +731,7 @@
 	faction = list("neutral","silicon","turret") //Minebots, medibots, etc that should not be shot.
 
 /obj/machinery/porta_turret/aux_base/assess_perp(mob/living/carbon/human/perp)
-	return 0 //Never shoot humanoids. You are on your own if Ashwalkers or the like attack!
+	return FALSE //Never shoot humanoids. You are on your own if Ashwalkers or the like attack!
 
 /obj/machinery/porta_turret/aux_base/setup()
 	return
@@ -793,7 +793,7 @@
 	var/lethal = 0
 	var/locked = TRUE
 	var/control_area = null //can be area name, path or nothing.
-	var/ailock = 0 // AI cannot use this
+	var/ailock = FALSE // AI cannot use this
 	req_access = list(ACCESS_AI_UPLOAD)
 	var/list/obj/machinery/porta_turret/turrets = list()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -803,7 +803,7 @@
 	if(built)
 		setDir(ndir)
 		locked = FALSE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 	power_change() //Checks power and initial settings
 
@@ -850,7 +850,7 @@
 	if (issilicon(user))
 		return attack_hand(user)
 
-	if ( get_dist(src, user) == 0 )		// trying to unlock the interface
+	if ( get_dist(src, user) == FALSE )		// trying to unlock the interface
 		if (allowed(usr))
 			if(obj_flags & EMAGGED)
 				to_chat(user, "<span class='notice'>The turret control is unresponsive.</span>")
@@ -885,7 +885,7 @@
 
 /obj/machinery/turretid/ui_interact(mob/user)
 	. = ..()
-	if ( get_dist(src, user) > 0 )
+	if ( get_dist(src, user) > FALSE )
 		if ( !(issilicon(user) || IsAdminGhost(user)) )
 			to_chat(user, "<span class='notice'>You are too far away.</span>")
 			user.unset_machine()

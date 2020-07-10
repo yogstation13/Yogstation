@@ -82,7 +82,7 @@
 	return
 
 /mob/living/silicon/proc/queueAlarm(message, type, incoming = 1)
-	var/in_cooldown = (alarms_to_show.len > 0 || alarms_to_clear.len > 0)
+	var/in_cooldown = (alarms_to_show.len > FALSE || alarms_to_clear.len > 0)
 	if(incoming)
 		alarms_to_show += message
 		alarm_types_show[type] += 1

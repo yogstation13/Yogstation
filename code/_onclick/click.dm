@@ -8,7 +8,7 @@
 /mob/var/next_click	= 0
 
 // THESE DO NOT EFFECT THE BASE TRUE DECISECOND DELAY OF NEXT_CLICK
-/mob/var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
+/mob/var/next_move_adjust = FALSE //Amount to adjust action/click delays by, + or -
 /mob/var/next_move_modifier = TRUE //Value to multiply action/click delays by
 
 

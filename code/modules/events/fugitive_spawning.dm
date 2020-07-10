@@ -36,7 +36,7 @@
 		if("cultist" || "synth")
 			leader = pick_n_take(candidates)
 		if("waldo")
-			member_size = 0 //solo refugees have no leader so the member_size gets bumped to one a bit later
+			member_size = FALSE //solo refugees have no leader so the member_size gets bumped to one a bit later
 	var/list/members = list()
 	var/list/spawned_mobs = list()
 	if(isnull(leader))

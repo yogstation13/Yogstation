@@ -214,7 +214,7 @@
 				return null
 			if(b)
 				return a/b
-			// If $b is 0 or Null or whatever, then the above if statement fails,
+			// If $b is FALSE or Null or whatever, then the above if statement fails,
 			// and we got a divison by zero.
 			RaiseError(new/runtimeError/DivisionByZero(), scope, node)
 			//ReleaseSingularity()

@@ -7,7 +7,7 @@
 	invocation = "GAR YOK"
 	invocation_type = "whisper"
 	range = -1
-	level_max = 0 //cannot be improved
+	level_max = FALSE //cannot be improved
 	cooldown_min = 100
 	include_user = TRUE
 
@@ -51,7 +51,7 @@
 
 		else	//Getting previously marked item
 			var/obj/item_to_retrieve = marked_item
-			var/infinite_recursion = 0 //I don't want to know how someone could put something inside itself but these are wizards so let's be safe
+			var/infinite_recursion = FALSE //I don't want to know how someone could put something inside itself but these are wizards so let's be safe
 
 			if(!item_to_retrieve.loc)
 				if(isorgan(item_to_retrieve)) // Organs are usually stored in nullspace

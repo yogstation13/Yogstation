@@ -85,7 +85,7 @@
 	var/locked = TRUE
 	var/aidisabled = 0
 	var/shorted = 0
-	var/buildstage = 2 // 2 = complete, TRUE = no wires,  0 = circuit gone
+	var/buildstage = 2 // 2 = complete, TRUE = no wires,  FALSE = circuit gone
 
 	var/frequency = FREQ_ATMOS_CONTROL
 	var/alarm_frequency = FREQ_ATMOS_ALARMS
@@ -210,7 +210,7 @@
 	if(nbuild)
 		buildstage = 0
 		panel_open = TRUE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir == TRUE ? -24 : 24) : 0
 
 	if(name == initial(name))
@@ -457,7 +457,7 @@
 	if((stat & (NOPOWER)))		// unpowered, no shock
 		return 0
 	if(!prob(prb))
-		return 0 //you lucked out, no shock for you
+		return FALSE //you lucked out, no shock for you
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start() //sparks always.
@@ -471,7 +471,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/airalarm/proc/send_signal(target, list/command, atom/user)//sends signal 'command' to 'target'. Returns 0 if no radio connection, TRUE otherwise
+/obj/machinery/airalarm/proc/send_signal(target, list/command, atom/user)//sends signal 'command' to 'target'. Returns FALSE if no radio connection, TRUE otherwise
 	if(!radio_connection)
 		return 0
 

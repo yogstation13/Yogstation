@@ -36,7 +36,7 @@
 
 /obj/structure/mecha_wreckage/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WELDER)
-		if(salvage_num <= 0 || !length(welder_salvage))
+		if(salvage_num <= FALSE || !length(welder_salvage))
 			to_chat(user, "<span class='warning'>You don't see anything that can be cut with [I]!</span>")
 			return
 

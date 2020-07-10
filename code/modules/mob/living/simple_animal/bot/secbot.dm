@@ -33,7 +33,7 @@
 	var/check_records = TRUE //Does it check security records?
 	var/arrest_type = FALSE //If true, don't handcuff
 	var/russian = FALSE // If true, it uses russian voice lines
-	var/stuncount = 0 // The securitron will stun you until it gets tired of doing it
+	var/stuncount = FALSE // The securitron will stun you until it gets tired of doing it
 	var/mob/living/carbon/lastStunned // Who was stunned last?
 
 /mob/living/simple_animal/bot/secbot/beepsky

@@ -168,7 +168,7 @@
 		speed = pixel_speed
 	set_angle(new_angle)
 
-/datum/point/vector/proc/set_angle(new_angle)		//calculations use "byond angle" where north is 0 instead of 90, and south is 180 instead of 270.
+/datum/point/vector/proc/set_angle(new_angle)		//calculations use "byond angle" where north is FALSE instead of 90, and south is 180 instead of 270.
 	if(isnull(angle))
 		return
 	angle = new_angle

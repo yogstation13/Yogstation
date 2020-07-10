@@ -42,7 +42,7 @@
 		if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len))
 			return FALSE
 		user.say(i, forced = "ritual")
-	if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len)) //because we start at 0 and not the first fraction in invocations, we still have another fraction of ritual_length to complete
+	if(!do_after(user, target = user, delay = ritual_length/ritual_invocations.len)) //because we start at FALSE and not the first fraction in invocations, we still have another fraction of ritual_length to complete
 		return FALSE
 	if(invoke_msg)
 		user.say(invoke_msg, forced = "ritual")

@@ -46,7 +46,7 @@
 		If nonzero, the signal may be partially inaudible or just complete gibberish.
 
 	@param level:
-		The list of Z levels that the sending radio is broadcasting to. Having 0 in the list broadcasts on all levels
+		The list of Z levels that the sending radio is broadcasting to. Having FALSE in the list broadcasts on all levels
 
 	@param freq
 		The frequency of the signal

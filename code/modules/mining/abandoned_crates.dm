@@ -4,7 +4,7 @@
 	name = "abandoned crate"
 	desc = "What could be inside?"
 	icon_state = "securecrate"
-	integrity_failure = 0 //no breaking open the crate
+	integrity_failure = FALSE //no breaking open the crate
 	var/code = null
 	var/lastattempt = null
 	var/attempts = 10
@@ -172,7 +172,7 @@
 				locked = FALSE
 				cut_overlays()
 				add_overlay("securecrateg")
-				tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
+				tamperproof = FALSE // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
 			else if(!input || !sanitycheck || length(sanitised) != codelen)
 				to_chat(user, "<span class='notice'>You leave the crate alone.</span>")
 			else
@@ -198,8 +198,8 @@
 			else
 				to_chat(user, "<span class='notice'>* Anti-Tamper Bomb will activate after [attempts] failed access attempts.</span>")
 			if(lastattempt != null)
-				var/bulls = 0 //right position, right number
-				var/cows = 0 //wrong position but in the puzzle
+				var/bulls = FALSE //right position, right number
+				var/cows = FALSE //wrong position but in the puzzle
 
 				var/lastattempt_char = ""
 				var/length_lastattempt = length(lastattempt)

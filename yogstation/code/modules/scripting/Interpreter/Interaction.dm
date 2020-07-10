@@ -21,15 +21,15 @@
 			ASSERT(program)
 			src.program 	= program
 			CreateGlobalScope()
-			alertadmins = 0 // reset admin alerts
+			alertadmins = FALSE // reset admin alerts
 
 /*
 	Proc: Run
 	Runs the script.
 */
 		Run()
-			cur_recursion = 0 // reset recursion
-			cur_statements = 0 // reset CPU tracking
+			cur_recursion = FALSE // reset recursion
+			cur_statements = FALSE // reset CPU tracking
 
 			ASSERT(src.program)
 			. = RunBlock(src.program)
@@ -118,8 +118,8 @@
 		CallProc(name, list/params)
 			var/datum/n_function/func = globalScope.get_var(name)
 			if(istype(func))
-				cur_recursion = 0 // reset recursion
-				cur_statements = 0 // reset CPU tracking
+				cur_recursion = FALSE // reset recursion
+				cur_statements = FALSE // reset CPU tracking
 				return func.execute(null, params, new /scope(program, null), src)
 			//CRASH("Unknown function type '[name]'.")
 

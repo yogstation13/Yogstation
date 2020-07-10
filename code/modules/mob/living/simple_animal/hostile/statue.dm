@@ -30,7 +30,7 @@
 	minbodytemp = 0
 
 	faction = list("statue")
-	move_to_delay = 0 // Very fast
+	move_to_delay = FALSE // Very fast
 
 	animate_movement = NO_STEPS // Do not animate movement, you jump around as you're a scary statue.
 	hud_possible = list(ANTAG_HUD)

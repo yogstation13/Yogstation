@@ -17,7 +17,7 @@
 	var/freq = FREQ_MAGNETS		// radio frequency
 	var/electricity_level = TRUE // intensity of the magnetic pull
 	var/magnetic_field = TRUE // the range of magnetic attraction
-	var/code = 0 // frequency code, they should be different unless you have a group of magnets working together or something
+	var/code = FALSE // frequency code, they should be different unless you have a group of magnets working together or something
 	var/turf/center // the center of magnetic attraction
 	var/on = FALSE
 	var/magneting = FALSE
@@ -200,15 +200,15 @@
 	var/code = 0
 	var/list/magnets = list()
 	var/title = "Magnetic Control Console"
-	var/autolink = 0 // if set to 1, can't probe for other magnets!
+	var/autolink = FALSE // if set to 1, can't probe for other magnets!
 
 	var/pathpos = TRUE // position in the path
 	var/path = "w;e;e;w;s;n;n;s" // text path of the magnet
 	var/speed = TRUE // lowest = 1, highest = 10
 	var/list/rpath = list() // real path of the magnet, used in iterator
 
-	var/moving = 0 // TRUE if scheduled to loop
-	var/looping = 0 // TRUE if looping
+	var/moving = FALSE // TRUE if scheduled to loop
+	var/looping = FALSE // TRUE if looping
 
 	var/datum/radio_frequency/radio_connection
 
@@ -231,7 +231,7 @@
 	return ..()
 
 /obj/machinery/magnetic_controller/process()
-	if(magnets.len == 0 && autolink)
+	if(magnets.len == FALSE && autolink)
 		for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
@@ -312,7 +312,7 @@
 			if("setpath")
 				var/newpath = stripped_input(usr, "Please define a new path!", "New Path", path, MAX_MESSAGE_LEN)
 				if(newpath && newpath != "")
-					moving = 0 // stop moving
+					moving = FALSE // stop moving
 					path = newpath
 					pathpos = TRUE // reset position
 					filter_path() // renders rpath

@@ -10,7 +10,7 @@
 
 	var/initialized = FALSE	//set to TRUE after it has been initialized, will obviously never be set if the subsystem doesn't initialize
 
-	//set to 0 to prevent fire() calls, mostly for admin use or subsystems that may be resumed later
+	//set to FALSE to prevent fire() calls, mostly for admin use or subsystems that may be resumed later
 	//	use the SS_NO_FIRE flag instead for systems that never fire to keep it from even being added to the list
 	var/can_fire = TRUE
 

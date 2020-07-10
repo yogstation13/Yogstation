@@ -20,7 +20,7 @@
 
 		if(L.pulling && isliving(L.pulling))
 			var/mob/living/M =	L.pulling
-			if(M.mob_spell_list.len != 0 || (M.mind?.spell_list.len != 0))
+			if(M.mob_spell_list.len != FALSE || (M.mind?.spell_list.len != 0))
 				for(var/obj/effect/proc_holder/spell/S in M.mob_spell_list)
 					S.charge_counter = S.charge_max
 				if(M.mind)
@@ -70,7 +70,7 @@
 				if(!C.self_recharge)
 					if(prob(80))
 						C.maxcharge -= 200
-					if(C.maxcharge <= 1) //Div by 0 protection
+					if(C.maxcharge <= 1) //Div by FALSE protection
 						C.maxcharge = 1
 						burnt_out = TRUE
 				C.charge = C.maxcharge
@@ -84,7 +84,7 @@
 						if(!C.self_recharge)
 							if(prob(80))
 								C.maxcharge -= 200
-							if(C.maxcharge <= 1) //Div by 0 protection
+							if(C.maxcharge <= 1) //Div by FALSE protection
 								C.maxcharge = 1
 								burnt_out = TRUE
 						C.charge = C.maxcharge

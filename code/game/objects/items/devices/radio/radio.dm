@@ -17,7 +17,7 @@
 	var/on = TRUE
 	var/frequency = FREQ_COMMON
 	var/canhear_range = 3  // The range around the radio in which mobs can hear what it receives.
-	var/emped = 0  // Tracks the number of EMPs currently stacked.
+	var/emped = FALSE  // Tracks the number of EMPs currently stacked.
 
 	var/broadcasting = FALSE  // Whether the radio will transmit dialogue it hears nearby.
 	var/listening = TRUE  // Whether the radio is currently receiving.

@@ -230,7 +230,7 @@
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
 
 //puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, TRUE if successful
+//returns FALSE if it cannot, TRUE if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
 	if(!istype(W))
 		return 0
@@ -461,13 +461,13 @@
 	unset_machine()
 
 //suppress the .click/dblclick macros so people can't use them to identify the location of items or aimbot
-/mob/verb/DisClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
+/mob/verb/DisClick(argu = null as anything, sec = "" as text, number1 = FALSE as num  , number2 = FALSE as num)
 	set name = ".click"
 	set hidden = TRUE
 	set category = null
 	return
 
-/mob/verb/DisDblClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
+/mob/verb/DisDblClick(argu = null as anything, sec = "" as text, number1 = FALSE as num  , number2 = FALSE as num)
 	set name = ".dblclick"
 	set hidden = TRUE
 	set category = null

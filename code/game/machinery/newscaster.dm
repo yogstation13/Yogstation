@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	. = ..()
 	if(building)
 		setDir(ndir)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -32 : 32)
 		pixel_y = (dir & 3)? (dir ==1 ? -32 : 32) : 0
 
 	GLOB.allCasters += src
@@ -598,7 +598,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				if(choice=="Confirm")
 					scan_user(usr)
 					if(input_param==1)          //If input_param == TRUE we're submitting a new wanted issue. At 2 we're just editing an existing one.
-						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, picture, 0 , 1)
+						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, picture, FALSE , 1)
 						screen = 15
 					else
 						if(GLOB.news_network.wanted_issue.isAdminMsg)

@@ -412,7 +412,7 @@
 				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor),
 				expire_timestamp
 			FROM [format_table_name("messages")]
-			WHERE type = :type AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
+			WHERE type = :type AND deleted = FALSE AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
 		"}, list("type" = type))
 		if(!query_get_type_messages.warn_execute())
 			qdel(query_get_type_messages)
@@ -461,7 +461,7 @@
 				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
 				expire_timestamp, severity
 			FROM [format_table_name("messages")]
-			WHERE type <> 'memo' AND targetckey = :targetckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
+			WHERE type <> 'memo' AND targetckey = :targetckey AND deleted = FALSE AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
 			ORDER BY timestamp DESC
 		"}, list("targetckey" = target_ckey))
 		if(!query_get_messages.warn_execute())

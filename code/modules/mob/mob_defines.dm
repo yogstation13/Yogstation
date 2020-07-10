@@ -83,11 +83,11 @@
 
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canknockdown, canstun, etc)
 
-	var/digitalcamo = 0 // Can they be tracked by the AI?
-	var/digitalinvis = 0 //Are they ivisible to the AI?
+	var/digitalcamo = FALSE // Can they be tracked by the AI?
+	var/digitalinvis = FALSE //Are they ivisible to the AI?
 	var/image/digitaldisguise = null  //what does the AI see instead of them?
 
-	var/has_unlimited_silicon_privilege = 0 // Can they interact with station electronics
+	var/has_unlimited_silicon_privilege = FALSE // Can they interact with station electronics
 
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
 	var/atom/movable/remote_control //Calls relaymove() to whatever it is

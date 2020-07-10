@@ -1,6 +1,6 @@
 //Curse you calenders...
 /proc/IsLeapYear(y)
-	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
+	return ((y) % 4 == FALSE && ((y) % 100 != FALSE || (y) % 400 == 0))
 
 //Y, eg: 2017, 2018, 2019, in num form (not string)
 //etc. Between 1583 and 4099

@@ -13,8 +13,8 @@
 	var/obj/item/modular_computer/tablet/fabricated_tablet = null
 
 	// Utility vars
-	var/state = 0 							// 0: Select device type, 1: Select loadout, 2: Payment, 3: Thankyou screen
-	var/devtype = 0 						// 0: None(unselected), 1: Laptop, 2: Tablet
+	var/state = FALSE 							// 0: Select device type, 1: Select loadout, 2: Payment, 3: Thankyou screen
+	var/devtype = FALSE 						// 0: None(unselected), 1: Laptop, 2: Tablet
 	var/total_price = 0						// Price of currently vended device.
 	var/credits = 0
 

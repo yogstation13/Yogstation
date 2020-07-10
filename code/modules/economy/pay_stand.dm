@@ -8,8 +8,8 @@
 	var/locked = FALSE
 	var/obj/item/card/id/my_card
 	var/obj/item/assembly/signaler/signaler //attached signaler, let people attach signalers that get activated if the user's transaction limit is achieved.
-	var/signaler_threshold = 0 //signaler threshold amount
-	var/amount_deposited = 0 //keep track of the amount deposited over time so you can pay multiple times to reach the signaler threshold
+	var/signaler_threshold = FALSE //signaler threshold amount
+	var/amount_deposited = FALSE //keep track of the amount deposited over time so you can pay multiple times to reach the signaler threshold
 
 /obj/machinery/paystand/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/card/id))

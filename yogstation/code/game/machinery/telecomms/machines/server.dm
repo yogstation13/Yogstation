@@ -11,7 +11,7 @@
 	var/rawcode = ""	// the code to compile (raw-ass text)
 	var/compiledcode = ""	//the last compiled code (also raw-ass text)
 	var/obj/item/radio/server/server_radio // Allows the server to talk on the radio, via broadcast() in NTSL
-	var/last_signal = 0 // Marks the last time an NTSL script called signal() from this server, to stop spam.
+	var/last_signal = FALSE // Marks the last time an NTSL script called signal() from this server, to stop spam.
 	var/list/compile_warnings = list()
 	//End-NTSL
 

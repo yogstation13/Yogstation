@@ -36,8 +36,8 @@
 	var/list/assigned_targets = list() // used as a blacklist to make sure we're not assigning targets already assigned
 
 	var/contracts_completed = 0
-	var/contract_TC_payed_out = 0 // Keeping track for roundend reporting
-	var/contract_TC_to_redeem = 0 // Used internally and roundend reporting - what TC we have available to cashout.
+	var/contract_TC_payed_out = FALSE // Keeping track for roundend reporting
+	var/contract_TC_to_redeem = FALSE // Used internally and roundend reporting - what TC we have available to cashout.
 
 /datum/contractor_hub/proc/create_hub_items()
 	for(var/path in contractor_items)
@@ -102,7 +102,7 @@
 	var/desc // description of item
 	var/item // item path, no item path means the purchase needs it's own handle_purchase()
 	var/item_icon = "broadcast-tower" // fontawesome icon to use inside the hub - https://fontawesome.com/icons/
-	var/limited = -1 // Any number above 0 for how many times it can be bought in a round for a single traitor. -1 is unlimited.
+	var/limited = -1 // Any number above FALSE for how many times it can be bought in a round for a single traitor. -1 is unlimited.
 	var/cost // Cost of the item in contract rep.
 
 /datum/contractor_item/contract_reroll

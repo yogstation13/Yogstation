@@ -186,7 +186,7 @@
 	var/this_id = current_ranging_id
 	var/list/L = list()
 	var/turf/center = get_turf(T)
-	if(amount < TRUE || range < 0 || !istype(center) || !islist(typecache))
+	if(amount < TRUE || range < FALSE || !istype(center) || !islist(typecache))
 		return
 	if(range == 0)
 		return typecache_filter_list(T.contents + T, typecache)

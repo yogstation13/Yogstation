@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 			Pewgun.chambered.forceMove(Pewgun)
 			visible_message("<span class='danger'>The <b>[src]</b> cocks itself!</span>")
 	else
-		ranged = 0 //BANZAIIII
+		ranged = FALSE //BANZAIIII
 		retreat_distance = 0
 		minimum_distance = 1
 		return

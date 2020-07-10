@@ -868,7 +868,7 @@
 	color = "#DCDCFF"
 
 /datum/reagent/medicine/mannitol/on_mob_life(mob/living/carbon/C)
-	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, (holder.has_reagent(/datum/reagent/drug/methamphetamine) ? 0 : -2)*REM)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, (holder.has_reagent(/datum/reagent/drug/methamphetamine) ? FALSE : -2)*REM)
 	..()
 
 /datum/reagent/medicine/neurine
@@ -1249,7 +1249,7 @@
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	overdose_threshold = 20 // with the random effects this might be awesome or might kill you at less than 10u (extensively tested)
 	taste_description = "salt" // it actually does taste salty
-	var/overdose_progress = 0 // to track overdose progress
+	var/overdose_progress = FALSE // to track overdose progress
 
 /datum/reagent/medicine/modafinil/on_mob_metabolize(mob/living/M)
 	ADD_TRAIT(M, TRAIT_SLEEPIMMUNE, type)
@@ -1384,14 +1384,14 @@
 /datum/reagent/medicine/burnmix/proc/start_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(!overdosed)
 		if(M.health <= M.crit_threshold)
-			heal_roll = 0 // Burnmix will not heal anyone inside of crit without epipen or morhpine
+			heal_roll = FALSE // Burnmix will not heal anyone inside of crit without epipen or morhpine
 		if(prob(10))
-			heal_roll = 0 // Burnmix has a chance not to basic heal at all
+			heal_roll = FALSE // Burnmix has a chance not to basic heal at all
 	else if(overdosed)
 		if(M.health <= M.crit_threshold)
 			heal_roll -= 0.2 // Burnmix in overdose will heal inside of crit without epipen or perfluorodecalin. Being in crit means a roll for either no base healing or half reduction to base heal.
 		if(prob(10))
-			heal_roll = 0 // Burnmix has a chance not to basic heal at all
+			heal_roll = FALSE // Burnmix has a chance not to basic heal at all
 	return
 
 /datum/reagent/medicine/burnmix/proc/base_effect(mob/living/carbon/M, heal_roll, slur, jitter)

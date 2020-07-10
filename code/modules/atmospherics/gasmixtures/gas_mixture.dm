@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	var/initial_volume = CELL_VOLUME //liters
 	var/list/reaction_results
 	var/list/analyzer_results //used for analyzer feedback - not initialized until its used
-	var/_extools_pointer_gasmixture = 0 // Contains the memory address of the shared_ptr object for this gas mixture in c++ land. Don't. Touch. This. Var.
+	var/_extools_pointer_gasmixture = FALSE // Contains the memory address of the shared_ptr object for this gas mixture in c++ land. Don't. Touch. This. Var.
 
 /datum/gas_mixture/New(volume)
 	if (!isnull(volume))
@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/proc/merge(datum/gas_mixture/giver)
 	//Merges all air from giver into self. giver is untouched.
-	//Returns: TRUE if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, FALSE otherwise
 
 /datum/gas_mixture/proc/remove(amount)
 	//Removes amount of gas from the gas_mixture
@@ -106,15 +106,15 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/proc/copy_from(datum/gas_mixture/sample)
 	//Copies variables from sample
-	//Returns: TRUE if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, FALSE otherwise
 
 /datum/gas_mixture/proc/copy_from_turf(turf/model)
 	//Copies all gas info from the turf into the gas list along with temperature
-	//Returns: TRUE if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, FALSE otherwise
 
 /datum/gas_mixture/proc/parse_gas_string(gas_string)
 	//Copies variables from a particularly formatted string.
-	//Returns: TRUE if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, FALSE otherwise
 
 /datum/gas_mixture/proc/share(datum/gas_mixture/sharer)
 	//Performs air sharing calculations between two gas_mixtures assuming only TRUE boundary length
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/proc/react(turf/open/dump_location)
 	//Performs various reactions such as combustion or fusion (LOL)
-	//Returns: TRUE if any reaction took place; 0 otherwise
+	//Returns: TRUE if any reaction took place; FALSE otherwise
 
 
 /datum/gas_mixture/proc/__remove()

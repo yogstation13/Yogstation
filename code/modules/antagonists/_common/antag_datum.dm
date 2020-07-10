@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 				objectives_complete = FALSE
 				break
 
-	if(objectives.len == 0 || objectives_complete)
+	if(objectives.len == FALSE || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 		if(istype(greentext_achieve))
 			SSachievements.unlock_achievement(greentext_achieve,owner.current)

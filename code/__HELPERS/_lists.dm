@@ -15,7 +15,7 @@
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYFIND(L, V) L ? L.Find(V) : 0
-#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
+#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > FALSE && I <= length(L) ? L[I] : null) : L[I]) : null)
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
 #define LAZYLEN(L) length(L)
 #define LAZYCLEARLIST(L) if(L) L.Cut()
@@ -226,7 +226,7 @@
 //1. Adds up the total of weights for each element
 //2. Gets a number between TRUE and that total
 //3. For each element in the list, subtracts its weighting from that number
-//4. If that makes the number 0 or less, return that element.
+//4. If that makes the number FALSE or less, return that element.
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item
@@ -254,7 +254,7 @@
 	total = rand(0, total)
 	for (item in L)
 		total -=L [item]
-		if (total <= 0 && L[item])
+		if (total <= FALSE && L[item])
 			return item
 
 	return null
@@ -280,7 +280,7 @@
 
 /proc/sorted_insert(list/L, thing, comparator)
 	var/pos = L.len
-	while(pos > 0 && call(comparator)(thing, L[pos]) > 0)
+	while(pos > FALSE && call(comparator)(thing, L[pos]) > 0)
 		pos--
 	L.Insert(pos+1, thing)
 
@@ -341,12 +341,12 @@
 
 //for sorting clients or mobs by ckey
 /proc/sortKey(list/L, order=1)
-	return sortTim(L, order >= 0 ? /proc/cmp_ckey_asc : /proc/cmp_ckey_dsc)
+	return sortTim(L, order >= FALSE ? /proc/cmp_ckey_asc : /proc/cmp_ckey_dsc)
 
 //Specifically for record datums in a list.
 /proc/sortRecord(list/L, field = "name", order = 1)
 	GLOB.cmp_field = field
-	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
+	return sortTim(L, order >= FALSE ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
 
 //any value in a list
 /proc/sortList(list/L, cmp=/proc/cmp_text_asc)
@@ -354,7 +354,7 @@
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L, order=1)
-	return sortTim(L, order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc)
+	return sortTim(L, order >= FALSE ? /proc/cmp_name_asc : /proc/cmp_name_dsc)
 
 
 //Converts a bitfield to a list of numbers (or words if a wordlist is provided)

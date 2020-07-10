@@ -177,7 +177,7 @@
 	// Unregister map objects
 	user.client.clear_map(map_name)
 	// Turn off the console
-	if(length(concurrent_users) == 0 && is_living)
+	if(length(concurrent_users) == FALSE && is_living)
 		active_camera = null
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 		use_power(0)

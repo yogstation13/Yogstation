@@ -243,7 +243,7 @@
 	if(dir)
 		setDir(dir)
 	if(building)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -30 : 30)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -30 : 30)
 		pixel_y = (dir & 3)? (dir ==1 ? -30 : 30) : 0
 
 /obj/structure/sign/painting/Destroy()

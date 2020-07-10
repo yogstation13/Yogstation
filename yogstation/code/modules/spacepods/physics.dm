@@ -115,10 +115,10 @@
 	offset_x += velocity_x * time
 	offset_y += velocity_y * time
 	// alright so now we reconcile the offsets with the in-world position.
-	while((offset_x > 0 && velocity_x > 0) || (offset_y > 0 && velocity_y > 0) || (offset_x < 0 && velocity_x < 0) || (offset_y < 0 && velocity_y < 0))
+	while((offset_x > FALSE && velocity_x > 0) || (offset_y > FALSE && velocity_y > 0) || (offset_x < FALSE && velocity_x < 0) || (offset_y < FALSE && velocity_y < 0))
 		var/failed_x = FALSE
 		var/failed_y = FALSE
-		if(offset_x > 0 && velocity_x > 0)
+		if(offset_x > FALSE && velocity_x > 0)
 			dir = EAST
 			if(!Move(get_step(src, EAST)))
 				offset_x = 0
@@ -128,7 +128,7 @@
 			else
 				offset_x--
 				last_offset_x--
-		else if(offset_x < 0 && velocity_x < 0)
+		else if(offset_x < FALSE && velocity_x < 0)
 			dir = WEST
 			if(!Move(get_step(src, WEST)))
 				offset_x = 0
@@ -140,7 +140,7 @@
 				last_offset_x++
 		else
 			failed_x = TRUE
-		if(offset_y > 0 && velocity_y > 0)
+		if(offset_y > FALSE && velocity_y > 0)
 			dir = NORTH
 			if(!Move(get_step(src, NORTH)))
 				offset_y = 0
@@ -150,7 +150,7 @@
 			else
 				offset_y--
 				last_offset_y--
-		else if(offset_y < 0 && velocity_y < 0)
+		else if(offset_y < FALSE && velocity_y < 0)
 			dir = SOUTH
 			if(!Move(get_step(src, SOUTH)))
 				offset_y = 0

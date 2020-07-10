@@ -128,7 +128,7 @@
 	icon_state = "urinal"
 	density = FALSE
 	anchored = TRUE
-	var/exposed = 0 // can you currently put an item inside
+	var/exposed = FALSE // can you currently put an item inside
 	var/obj/item/hiddenitem = null // what's in the urinal
 
 /obj/structure/urinal/Initialize()
@@ -283,7 +283,7 @@
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
 		if(B.cell)
-			if(B.cell.charge > 0 && B.status == 1)
+			if(B.cell.charge > FALSE && B.status == 1)
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
 				user.Paralyze(stunforce)

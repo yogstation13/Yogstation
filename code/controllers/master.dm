@@ -44,8 +44,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/datum/controller/subsystem/queue_head //Start of queue linked list
 	var/datum/controller/subsystem/queue_tail //End of queue linked list (used for appending to the list)
-	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
-	var/queue_priority_count_bg = 0 //Same, but for background subsystems
+	var/queue_priority_count = FALSE //Running total so that we don't have to loop thru the queue each run to split up the tick
+	var/queue_priority_count_bg = FALSE //Same, but for background subsystems
 	var/map_loading = FALSE	//Are we loading in a new map?
 
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
@@ -100,7 +100,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
-// Returns TRUE if we created a new mc, 0 if we couldn't due to a recent restart,
+// Returns TRUE if we created a new mc, FALSE if we couldn't due to a recent restart,
 //	-1 if we encountered a runtime trying to recreate it
 /proc/Recreate_MC()
 	. = -1 //so if we runtime, things know we failed
@@ -239,7 +239,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		sleep(delay)
 	testing("Master starting processing")
 	var/rtn = Loop()
-	if (rtn > 0 || processing < 0)
+	if (rtn > FALSE || processing < 0)
 		return //this was suppose to happen.
 	//loop ended, restart the mc
 	log_game("MC crashed or runtimed, restarting")
@@ -337,7 +337,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			var/datum/controller/subsystem/SS
 			SS.can_fire = 0
 
-		if (!Failsafe || (Failsafe.processing_interval > 0 && (Failsafe.lasttick+(Failsafe.processing_interval*5)) < world.time))
+		if (!Failsafe || (Failsafe.processing_interval > FALSE && (Failsafe.lasttick+(Failsafe.processing_interval*5)) < world.time))
 			new/datum/controller/failsafe() // (re)Start the failsafe.
 
 		//now do the actual stuff
@@ -398,7 +398,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 // This is what decides if something should run.
 /datum/controller/master/proc/CheckQueue(list/subsystemstocheck)
-	. = 0 //so the mc knows if we runtimed
+	. = FALSE //so the mc knows if we runtimed
 
 	//we create our variables outside of the loops to save on overhead
 	var/datum/controller/subsystem/SS
@@ -474,7 +474,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			tick_remaining = TICK_LIMIT_RUNNING - TICK_USAGE
 
-			if (current_tick_budget > 0 && queue_node_priority > 0)
+			if (current_tick_budget > FALSE && queue_node_priority > 0)
 				tick_precentage = tick_remaining / (current_tick_budget / queue_node_priority)
 			else
 				tick_precentage = tick_remaining

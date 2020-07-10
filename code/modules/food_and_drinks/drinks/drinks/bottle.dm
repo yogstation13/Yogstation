@@ -94,14 +94,14 @@
 
 	var/obj/item/bodypart/affecting = user.zone_selected //Find what the player is aiming at
 
-	var/armor_block = 0 //Get the target's armor values for normal attack damage.
-	var/armor_duration = 0 //The more force the bottle has, the longer the duration.
+	var/armor_block = FALSE //Get the target's armor values for normal attack damage.
+	var/armor_duration = FALSE //The more force the bottle has, the longer the duration.
 
 	//Calculating duration and calculating damage.
 	if(ishuman(target))
 
 		var/mob/living/carbon/human/H = target
-		var/headarmor = 0 // Target's head armor
+		var/headarmor = FALSE // Target's head armor
 		armor_block = H.run_armor_check(affecting, "melee","","",armour_penetration) // For normal attack damage
 
 		//If they have a hat/helmet and the user is targeting their head.

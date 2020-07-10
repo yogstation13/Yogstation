@@ -35,7 +35,7 @@
 
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
-	var/areasize = 0 //Size of the area in open turfs, only calculated for indoors areas.
+	var/areasize = FALSE //Size of the area in open turfs, only calculated for indoors areas.
 
 	//Bonus mood from being in this area
 	var/mood_bonus = 0

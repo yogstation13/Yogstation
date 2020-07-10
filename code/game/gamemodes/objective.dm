@@ -208,7 +208,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	admin_simple_target_pick(admin)
 
 /datum/objective/assassinate/internal
-	var/stolen = 0 		//Have we already eliminated this target?
+	var/stolen = FALSE 		//Have we already eliminated this target?
 
 /datum/objective/assassinate/internal/update_explanation_text()
 	..()
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	name = "hijack"
 	explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody."
 	team_explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody. Leave no team member behind."
-	martyr_compatible = 0 //Technically you won't get both anyway.
+	martyr_compatible = FALSE //Technically you won't get both anyway.
 
 /datum/objective/hijack/check_completion() // Requires all owners to escape.
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -594,7 +594,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 					return TRUE
 
 			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
-				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had TRUE item that didn't pass and got checked first!
+				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return FALSE if we don't though - then you could fail if you had TRUE item that didn't pass and got checked first!
 					return TRUE
 	return FALSE
 

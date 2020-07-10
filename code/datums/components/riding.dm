@@ -1,5 +1,5 @@
 /datum/component/riding
-	var/last_vehicle_move = 0 //used for move delays
+	var/last_vehicle_move = FALSE //used for move delays
 	var/last_move_diagonal = FALSE
 	var/vehicle_move_delay = 2 //tick delay between movements, lower = faster, higher = slower
 	var/keytype

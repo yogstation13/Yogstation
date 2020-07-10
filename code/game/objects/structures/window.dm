@@ -5,7 +5,7 @@
 	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE
-	anchored = TRUE //initially is 0 for tile smoothing
+	anchored = TRUE //initially is FALSE for tile smoothing
 	flags_1 = ON_BORDER_1
 	max_integrity = 25
 	can_be_unanchored = TRUE

@@ -143,7 +143,7 @@ global procs
 		ITALICS = add italics to the message
 		REDUCE_RANGE = reduce the message range to one tile.
 
-		Return 0 if no radio was spoken into.
+		Return FALSE if no radio was spoken into.
 		IMPORTANT: remember to call ..() and check for ..()'s return value properly!
 
 ============================RADIOS=============================

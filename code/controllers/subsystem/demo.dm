@@ -311,13 +311,13 @@ SUBSYSTEM_DEF(demo)
 		appearance.dir == 2 ? "" : appearance.dir,
 		appearance.color ? color_string : "",
 		appearance.alpha == 255 ? "" : appearance.alpha,
-		appearance.pixel_x == 0 ? "" : appearance.pixel_x,
-		appearance.pixel_y == 0 ? "" : appearance.pixel_y,
+		appearance.pixel_x == FALSE ? "" : appearance.pixel_x,
+		appearance.pixel_y == FALSE ? "" : appearance.pixel_y,
 		appearance.blend_mode <= TRUE ? "" : appearance.blend_mode,
 		appearance_transform_string != "i" ? appearance_transform_string : "",
-		appearance:invisibility == 0 ? "" : appearance:invisibility, // colon because dreamchecker is dumb
-		appearance.pixel_w == 0 ? "" : appearance.pixel_w,
-		appearance.pixel_z == 0 ? "" : appearance.pixel_z,
+		appearance:invisibility == FALSE ? "" : appearance:invisibility, // colon because dreamchecker is dumb
+		appearance.pixel_w == FALSE ? "" : appearance.pixel_w,
+		appearance.pixel_z == FALSE ? "" : appearance.pixel_z,
 		appearance.overlays.len ? overlays_string : "",
 		appearance.underlays.len ? underlays_string : ""
 		)

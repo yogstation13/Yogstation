@@ -121,7 +121,7 @@
 			return TRUE
 	return FALSE
 
-//get_selected_module() - Returns the slot number of the currently selected module.  Returns 0 if no modules are selected.
+//get_selected_module() - Returns the slot number of the currently selected module.  Returns FALSE if no modules are selected.
 /mob/living/silicon/robot/proc/get_selected_module()
 	if(module_active)
 		return held_items.Find(module_active)

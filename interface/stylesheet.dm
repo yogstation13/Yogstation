@@ -101,7 +101,7 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold; 
 	font-size: 3; 
 	animation: surrender 1s ease-in-out infinite alternate;
-	transform-origin: 0 0;
+	transform-origin: FALSE 0;
 	display: inline-block;
   }
   @keyframes surrender {

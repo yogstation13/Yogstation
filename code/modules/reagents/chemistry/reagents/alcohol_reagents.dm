@@ -923,7 +923,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A spicy mix of Vodka and Spice. Very hot."
 
 /datum/reagent/consumable/ethanol/sbiten/on_mob_life(mob/living/carbon/M)
-	M.adjust_bodytemperature(50 * TEMPERATURE_DAMAGE_COEFFICIENT, 0 ,BODYTEMP_HEAT_DAMAGE_LIMIT) //310.15 is the normal bodytemp.
+	M.adjust_bodytemperature(50 * TEMPERATURE_DAMAGE_COEFFICIENT, FALSE ,BODYTEMP_HEAT_DAMAGE_LIMIT) //310.15 is the normal bodytemp.
 	return ..()
 
 /datum/reagent/consumable/ethanol/red_mead
@@ -1227,7 +1227,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Atomic Bomb"
 	description = "Nuclear proliferation never tasted so good."
 	color = "#666300" // rgb: 102, 99, 0
-	boozepwr = 0 //custom drunk effect
+	boozepwr = FALSE //custom drunk effect
 	quality = DRINK_FANTASTIC
 	taste_description = "da bomb"
 	glass_icon_state = "atomicbombglass"
@@ -1256,7 +1256,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Pan-Galactic Gargle Blaster"
 	description = "Whoah, this stuff looks volatile!"
 	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 0 //custom drunk effect
+	boozepwr = FALSE //custom drunk effect
 	quality = DRINK_GOOD
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 	glass_icon_state = "gargleblasterglass"
@@ -1331,7 +1331,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	description = "You just don't get it maaaan."
 	color = "#664300" // rgb: 102, 67, 0
 	nutriment_factor = 0
-	boozepwr = 0 //custom drunk effect
+	boozepwr = FALSE //custom drunk effect
 	quality = DRINK_FANTASTIC
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "giving peace a chance"
@@ -1854,7 +1854,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	generate_data_info(data)
 
 /datum/reagent/consumable/ethanol/fruit_wine/proc/generate_data_info(list/data)
-	var/minimum_percent = 0.15 //Percentages measured between 0 and 1.
+	var/minimum_percent = 0.15 //Percentages measured between FALSE and 1.
 	var/list/primary_tastes = list()
 	var/list/secondary_tastes = list()
 	glass_name = "glass of [name]"

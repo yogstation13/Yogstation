@@ -5,7 +5,7 @@
 		pipe_astar_cost = 1.5\
 	)
 
-	var/slowdown = 0 //negative for faster, positive for slower
+	var/slowdown = FALSE //negative for faster, positive for slower
 
 	var/postdig_icon_change = FALSE
 	var/postdig_icon
@@ -361,7 +361,7 @@
 				C.accident(I)
 
 		var/olddir = C.dir
-		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
+		C.moving_diagonally = FALSE //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
 			C.Paralyze(paralyze_amount)

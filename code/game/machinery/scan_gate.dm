@@ -27,7 +27,7 @@
 	idle_power_usage = 50
 	circuit = /obj/item/circuitboard/machine/scanner_gate
 	var/scanline_timer
-	var/next_beep = 0 //avoids spam
+	var/next_beep = FALSE //avoids spam
 
 	var/locked = FALSE
 	var/scangate_mode = SCANGATE_NONE

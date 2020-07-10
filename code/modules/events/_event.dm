@@ -13,7 +13,7 @@
 
 	var/occurrences = 0				//How many times this event has occured
 	var/max_occurrences = 20		//The maximum number of times this event can occur (naturally), it can still be forced.
-									//By setting this to 0 you can effectively disable an event.
+									//By setting this to FALSE you can effectively disable an event.
 
 	var/holidayID = ""				//string which should be in the SSeventss.holidays list if you wish this event to be holiday-specific
 									//anything with a (non-null) holidayID which does not match holiday, cannot run.
@@ -113,7 +113,7 @@
 	var/endWhen			= 0	//When in the lifetime the event should end.
 
 	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
-	var/current_players	= 0 //Amount of of alive, non-AFK human players on server at the time of event start
+	var/current_players	= FALSE //Amount of of alive, non-AFK human players on server at the time of event start
 	var/fakeable = TRUE		//Can be faked by fake news event.
 
 //Called first before processing.

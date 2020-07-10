@@ -78,7 +78,7 @@ Class Procs:
       Called by the 'air subsystem' once per atmos tick for each machine that is listed in its 'atmos_machines' list.
 
    is_operational()
-		Returns 0 if the machine is unpowered, broken or undergoing maintenance, something else if not
+		Returns FALSE if the machine is unpowered, broken or undergoing maintenance, something else if not
 
 	Compiled by Aygar
 */
@@ -552,7 +552,7 @@ Class Procs:
 	if (AM == occupant)
 		occupant = null
 
-/obj/machinery/proc/adjust_item_drop_location(atom/movable/AM)	// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8
+/obj/machinery/proc/adjust_item_drop_location(atom/movable/AM)	// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from FALSE to 8
 	var/md5 = md5(AM.name)										// Oh, and it's deterministic too. A specific item will always drop from the same slot.
 	for (var/i in TRUE to 32)
 		. += hex2num(md5[i])

@@ -81,7 +81,7 @@
 	var/max_sheets = 100
 	var/sheet_name = ""
 	var/sheet_path = /obj/item/stack/sheet/mineral/plasma
-	var/sheet_left = 0 // How much is left of the sheet
+	var/sheet_left = FALSE // How much is left of the sheet
 	var/time_per_sheet = 260
 	var/current_heat = 0
 
@@ -138,7 +138,7 @@
 	sheet_left -= temp
 	sheets -= round(needed_sheets)
 	needed_sheets -= round(needed_sheets)
-	if (sheet_left <= 0 && sheets > 0)
+	if (sheet_left <= FALSE && sheets > 0)
 		sheet_left = TRUE - needed_sheets
 		sheets--
 
@@ -239,11 +239,11 @@
 	data["stack_percent"] = round(sheet_left * 100, 0.1)
 
 	data["anchored"] = anchored
-	data["connected"] = (powernet == null ? 0 : 1)
+	data["connected"] = (powernet == null ? FALSE : 1)
 	data["ready_to_boot"] = anchored && HasFuel()
 	data["power_generated"] = DisplayPower(power_gen)
 	data["power_output"] = DisplayPower(power_gen * power_output)
-	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
+	data["power_available"] = (powernet == null ? FALSE : DisplayPower(avail()))
 	data["current_heat"] = current_heat
 	. =  data
 

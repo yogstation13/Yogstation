@@ -22,7 +22,7 @@
 	if(alpha == 0) //Handle already transparent case
 		return
 	if(frames == 0)
-		frames = TRUE //We will just assume that by 0 frames, the coder meant "during one frame".
+		frames = TRUE //We will just assume that by FALSE frames, the coder meant "during one frame".
 	var/step = alpha / frames
 	for(var/i = 0, i < frames, i++)
 		alpha -= step

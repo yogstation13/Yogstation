@@ -155,7 +155,7 @@
 		if(finished)
 			SSshuttle.clearHostileEnvironment(src)
 		return ..()
-	if(finished != 0 && end_when_heads_dead)
+	if(finished != FALSE && end_when_heads_dead)
 		return TRUE
 	else
 		return ..()

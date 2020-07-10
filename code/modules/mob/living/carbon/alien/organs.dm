@@ -111,7 +111,7 @@
 	zone = BODY_ZONE_HEAD
 	slot = "hivenode"
 	w_class = WEIGHT_CLASS_TINY
-	var/recent_queen_death = 0 //Indicates if the queen died recently, aliens are heavily weakened while this is active.
+	var/recent_queen_death = FALSE //Indicates if the queen died recently, aliens are heavily weakened while this is active.
 	alien_powers = list(/obj/effect/proc_holder/alien/whisper)
 
 /obj/item/organ/alien/hivenode/Insert(mob/living/carbon/M, special = 0)

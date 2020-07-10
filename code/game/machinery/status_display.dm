@@ -7,7 +7,7 @@
 #define FONT_STYLE "Small Fonts"
 #define SCROLL_SPEED 2
 
-#define SD_BLANK 0  // 0 = Blank
+#define SD_BLANK FALSE  // FALSE = Blank
 #define SD_EMERGENCY TRUE  // TRUE = Emergency Shuttle timer
 #define SD_MESSAGE 2  // 2 = Arbitrary message(s)
 #define SD_PICTURE 3  // 3 = alert picture
@@ -32,7 +32,7 @@
 
 	var/message1 = ""	// message line 1
 	var/message2 = ""	// message line 2
-	var/index1			// display index for scrolling messages or 0 if non-scrolling
+	var/index1			// display index for scrolling messages or FALSE if non-scrolling
 	var/index2
 
 /// Immediately blank the display.

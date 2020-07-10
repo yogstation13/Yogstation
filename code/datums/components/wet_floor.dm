@@ -160,7 +160,7 @@
 
 /datum/component/wet_floor/proc/add_wet(type, duration_minimum = 0, duration_add = 0, duration_maximum = MAXIMUM_WET_TIME, _permanent = FALSE)
 	var/static/list/allowed_types = list(TURF_WET_WATER, TURF_WET_LUBE, TURF_WET_ICE, TURF_WET_PERMAFROST, TURF_WET_SUPERLUBE)
-	if(duration_minimum <= 0 || !type)
+	if(duration_minimum <= FALSE || !type)
 		return FALSE
 	if(type in allowed_types)
 		return _do_add_wet(type, duration_minimum, duration_add, duration_maximum)

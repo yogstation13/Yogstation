@@ -7,7 +7,7 @@
 		light_color_override = color
 	PB.apply_vars(angle_between_points(starting, ending), midpoint.return_px(), midpoint.return_py(), color, pixel_length_between_points(starting, ending) / world.icon_size, midpoint.return_turf(), 0)
 	. = PB
-	if(light_range > 0 && light_intensity > 0)
+	if(light_range > FALSE && light_intensity > 0)
 		var/list/turf/line = getline(starting.return_turf(), ending.return_turf())
 		tracing_line:
 			for(var/i in line)

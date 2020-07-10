@@ -346,10 +346,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		if (VM.voteweight <= 0)
 			mapvotes.Remove(map)
 			continue
-		if (VM.config_min_users > 0 && players < VM.config_min_users)
+		if (VM.config_min_users > FALSE && players < VM.config_min_users)
 			mapvotes.Remove(map)
 			continue
-		if (VM.config_max_users > 0 && players > VM.config_max_users)
+		if (VM.config_max_users > FALSE && players > VM.config_max_users)
 			mapvotes.Remove(map)
 			continue
 

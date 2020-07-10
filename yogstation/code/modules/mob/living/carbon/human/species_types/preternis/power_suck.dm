@@ -130,7 +130,7 @@
 		amount = max(cell.charge - MIN_DRAINABLE_POWER, 0)
 	cell.use(amount)
 	if(charging == 2)
-		charging = 0 //if we do not do this here, the APC can get stuck thinking it is fully charged.
+		charging = FALSE //if we do not do this here, the APC can get stuck thinking it is fully charged.
 	update()
 	return amount
 

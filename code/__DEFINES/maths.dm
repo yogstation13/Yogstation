@@ -23,7 +23,7 @@
 #define REALTIMEOFDAY (world.timeofday + (MIDNIGHT_ROLLOVER * MIDNIGHT_ROLLOVER_CHECK))
 #define MIDNIGHT_ROLLOVER_CHECK ( GLOB.rollovercheck_last_timeofday != world.timeofday ? update_midnight_rollover() : GLOB.midnight_rollovers )
 
-#define SIGN(x) ( (x)!=0 ? (x) / abs(x) : 0 )
+#define SIGN(x) ( (x)!=0 ? (x) / abs(x) : FALSE )
 
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 
@@ -45,7 +45,7 @@
 // Cosecant
 #define CSC(x) (1 / sin(x))
 
-#define ATAN2(x, y) ( !(x) && !(y) ? 0 : (y) >= 0 ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
+#define ATAN2(x, y) ( !(x) && !(y) ? FALSE : (y) >= FALSE ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
 
 // Greatest Common Divisor - Euclid's algorithm
 /proc/Gcd(a, b)
@@ -122,7 +122,7 @@
 		dec += 360
 	. = inc > dec? -dec : inc
 
-//A logarithm that converts an integer to a number scaled between 0 and 1.
+//A logarithm that converts an integer to a number scaled between FALSE and 1.
 //Currently, this is used for hydroponics-produce sprite transforming, but could be useful for other transform functions.
 #define TRANSFORM_USING_VARIABLE(input, max) ( sin((90*(input))/(max))**2 )
 

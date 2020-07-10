@@ -16,13 +16,13 @@
 	var/psi_cap = 100 //Max Psi by default
 	var/psi_regen = 20 //How much Psi will regenerate after using an ability
 	var/psi_regen_delay = 5 //How many ticks need to pass before Psi regenerates
-	var/psi_regen_ticks = 0 //When this hits 0, regenerate Psi and return to psi_regen_delay
-	var/psi_used_since_regen = 0 //How much Psi has been used since we last regenerated
+	var/psi_regen_ticks = FALSE //When this hits 0, regenerate Psi and return to psi_regen_delay
+	var/psi_used_since_regen = FALSE //How much Psi has been used since we last regenerated
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
 	//Lucidity variables
 	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
-	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
+	var/lucidity_drained = FALSE //How much lucidity has been drained from unique players
 
 	//Ability and upgrade variables
 	var/list/abilities = list() //An associative list ("id" = ability datum) containing the abilities the darkspawn has

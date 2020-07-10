@@ -209,7 +209,7 @@
 /datum/status_effect/belligerent
 	id = "belligerent"
 	duration = 70
-	tick_interval = 0 //tick as fast as possible
+	tick_interval = FALSE //tick as fast as possible
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = /obj/screen/alert/status_effect/belligerent
 	var/leg_damage_on_toggle = 2 //damage on initial application and when the owner tries to toggle to run
@@ -260,7 +260,7 @@
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = null
 	var/obj/structure/destructible/clockwork/powered/mania_motor/motor
-	var/severity = 0 //goes up to a maximum of MAX_MANIA_SEVERITY
+	var/severity = FALSE //goes up to a maximum of MAX_MANIA_SEVERITY
 	var/warned_turnoff = FALSE //if we've warned that the motor is off
 	var/warned_outofsight = FALSE //if we've warned that the target is out of sight of the motor
 	var/static/list/mania_messages = list("Go nuts.", "Take a crack at crazy.", "Make a bid for insanity.", "Get kooky.", "Move towards mania.", "Become bewildered.", "Wax wild.", \

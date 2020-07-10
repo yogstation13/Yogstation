@@ -355,7 +355,7 @@
 		"visible_message" = message, "self_message" = self_message, "examine_message" = examine_message)
 
 /mob/living/proc/absorb_stun(amount, ignoring_flag_presence)
-	if(amount < 0 || stat || ignoring_flag_presence || !islist(stun_absorption))
+	if(amount < FALSE || stat || ignoring_flag_presence || !islist(stun_absorption))
 		return FALSE
 	if(!amount)
 		amount = 0

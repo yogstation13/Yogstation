@@ -103,7 +103,7 @@
 				max_multiplier_list += "10"
 			if (max_multiplier > 25 && !disabled)
 				max_multiplier_list += "25"
-			if(max_multiplier > 0 && !disabled)
+			if(max_multiplier > FALSE && !disabled)
 				max_multiplier_list += max_multiplier
 		else
 			if(can_build(D))

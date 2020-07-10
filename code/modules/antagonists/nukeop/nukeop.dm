@@ -366,7 +366,7 @@
 	text += printplayerlist(members)
 	text += "<br>"
 	text += "(Syndicates used [TC_uses] TC) [purchases]"
-	if(TC_uses == 0 && SSticker.mode.station_was_nuked && !operatives_dead())
+	if(TC_uses == FALSE && SSticker.mode.station_was_nuked && !operatives_dead())
 		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
 
 	parts += text

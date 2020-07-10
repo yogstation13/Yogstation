@@ -459,7 +459,7 @@
 		//We did it
 		to_chat(user, "<span class='shadowling'>You return the APC's power to the void, disabling it.</span>")
 		target_apc.cell?.charge = 0	//Sent to the shadow realm
-		target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
+		target_apc.chargemode = FALSE //Won't recharge either until an engineer hits the button
 		target_apc.charging = 0
 		target_apc.update_icon()
 

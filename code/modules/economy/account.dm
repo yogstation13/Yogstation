@@ -10,7 +10,7 @@
 	var/being_dumped = FALSE //pink levels are rising
 	var/withdrawDelay = 0
 	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
-	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
+	var/bounties_claimed = FALSE // Marks how many bounties this person has successfully claimed
 
 /datum/bank_account/New(newname, job)
 	if(add_to_accounts)
@@ -45,7 +45,7 @@
 	return account_balance >= amt
 
 /datum/bank_account/proc/adjust_money(amt)
-	if((amt < 0 && has_money(-amt)) || amt > 0)
+	if((amt < FALSE && has_money(-amt)) || amt > 0)
 		_adjust_money(amt)
 		return TRUE
 	return FALSE

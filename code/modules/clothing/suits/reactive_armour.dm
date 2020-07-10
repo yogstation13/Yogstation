@@ -28,7 +28,7 @@
 	name = "reactive armor"
 	desc = "Doesn't seem to do much for some reason."
 	var/active = 0
-	var/reactivearmor_cooldown_duration = 0 //cooldown specific to reactive armor
+	var/reactivearmor_cooldown_duration = FALSE //cooldown specific to reactive armor
 	var/reactivearmor_cooldown = 0
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"

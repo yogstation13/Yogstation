@@ -16,7 +16,7 @@
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
 	var/filterToxins = TRUE //whether to filter toxins
 
-#define HAS_SILENT_TOXIN 0 //don't provide a feedback message if this is the only toxin present
+#define HAS_SILENT_TOXIN FALSE //don't provide a feedback message if this is the only toxin present
 #define HAS_NO_TOXIN 1
 #define HAS_PAINFUL_TOXIN 2
 

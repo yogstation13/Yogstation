@@ -1038,7 +1038,7 @@
 
 /obj/item/toy/cards/deck/uno/populate_deck() //RED GREEN YELLOW BLUE
 	icon_state = "deck_[deckstyle]_full"
-	for(var/i in 0 to 9)
+	for(var/i in FALSE to 9)
 		cards += "Red [i]"
 		cards += "Green [i]"
 		cards += "Yellow [i]"

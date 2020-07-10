@@ -208,7 +208,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = FALSE					// TRUE if on, 0 if off
+	var/on = FALSE					// TRUE if on, FALSE if off
 	var/on_gs = FALSE
 	var/forced_off = FALSE
 	var/static_power_used = 0
@@ -674,7 +674,7 @@
 		else
 			prot = 1
 
-		if(prot > 0 || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
+		if(prot > FALSE || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
 			to_chat(user, "<span class='notice'>You remove the light [fitting].</span>")
 		else if(istype(user) && user.dna.check_mutation(TK))
 			to_chat(user, "<span class='notice'>You telekinetically remove the light [fitting].</span>")

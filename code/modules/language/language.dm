@@ -20,7 +20,7 @@
 	var/space_chance = 55        // Likelihood of getting a space in the random scramble string
 	var/list/spans = list()
 	var/list/scramble_cache = list()
-	var/default_priority = 0          // the language that an atom knows with the highest "default_priority" is selected by default.
+	var/default_priority = FALSE          // the language that an atom knows with the highest "default_priority" is selected by default.
 
 	// if you are seeing someone speak popcorn language, then something is wrong.
 	var/icon = 'icons/misc/language.dmi'
@@ -48,7 +48,7 @@
 	var/full_name = ""
 	var/new_name = ""
 
-	for(var/i in 0 to name_count)
+	for(var/i in FALSE to name_count)
 		new_name = ""
 		var/Y = rand(FLOOR(syllable_count/syllable_divisor, 1), syllable_count)
 		for(var/x in Y to 0)

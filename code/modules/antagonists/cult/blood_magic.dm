@@ -349,7 +349,7 @@
 	throw_speed = 0
 	var/invocation
 	var/uses = 1
-	var/health_cost = 0 //The amount of health taken from the user when invoking the spell
+	var/health_cost = FALSE //The amount of health taken from the user when invoking the spell
 	var/datum/action/innate/cult/blood_spell/source
 
 /obj/item/melee/blood_magic/New(loc, spell)

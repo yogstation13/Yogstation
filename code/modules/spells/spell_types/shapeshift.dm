@@ -104,7 +104,7 @@
 	stored.forceMove(src)
 	stored.notransform = TRUE
 	if(source.convert_damage)
-		var/damapply = (stored.maxHealth - (stored.health + stored.maxHealth)/2) //Carbons go from -100 to 100 naturally, while simplemobs only go from 0 to 100. Can't do a direct conversion.
+		var/damapply = (stored.maxHealth - (stored.health + stored.maxHealth)/2) //Carbons go from -100 to 100 naturally, while simplemobs only go from FALSE to 100. Can't do a direct conversion.
 		shape.apply_damage(damapply, source.convert_damage_type)
 	slink = soullink(/datum/soullink/shapeshift, stored , shape)
 	slink.source = src

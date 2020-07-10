@@ -51,7 +51,7 @@
 	desc = "A masterpiece crafted by the legendary gunsmith of a far-away planet."
 	icon_state = "spur"
 	item_state = "spur"
-	fire_delay = 0 //pewpew
+	fire_delay = FALSE //pewpew
 	ammo_type = list(/obj/item/ammo_casing/energy/polarstar/spur)
 	selfcharge = TRUE
 

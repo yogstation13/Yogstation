@@ -88,7 +88,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	if(cost > init_cost)
 		cost = init_cost
 
-// Checks the cost. 0 cost items are skipped in export.
+// Checks the cost. FALSE cost items are skipped in export.
 /datum/export/proc/get_cost(obj/O, allowed_categories = NONE, apply_elastic = TRUE)
 	var/amount = get_amount(O)
 	if(apply_elastic)
@@ -100,7 +100,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		return round(init_cost * amount)
 
 // Checks the amount of exportable in object. Credits in the bill, sheets in the stack, etc.
-// Usually acts as a multiplier for a cost, so item that has 0 amount will be skipped in export.
+// Usually acts as a multiplier for a cost, so item that has FALSE amount will be skipped in export.
 /datum/export/proc/get_amount(obj/O)
 	return 1
 

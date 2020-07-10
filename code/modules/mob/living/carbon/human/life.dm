@@ -136,7 +136,7 @@
 
 
 /mob/living/carbon/human/proc/get_thermal_protection()
-	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures
+	var/thermal_protection = FALSE //Simple check to estimate how protected we are against multiple temperatures
 	if(wear_suit)
 		if(wear_suit.max_heat_protection_temperature >= FIRE_SUIT_MAX_TEMP_PROTECT)
 			thermal_protection += (wear_suit.max_heat_protection_temperature*0.7)

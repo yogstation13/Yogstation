@@ -7,7 +7,7 @@ field_generator power level display
    named 'Field_Gen +p[num]' where 'num' ranges from TRUE to 'num_power_levels'
 
    The power level is displayed using overlays. The current displayed power level is stored in 'powerlevel'.
-   The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to 0 means that
+   The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to FALSE means that
    no power level overlay is currently in the overlays list.
    -Aygar
 */
@@ -267,7 +267,7 @@ field_generator power level display
 	var/steps = 0
 	if(!NSEW)//Make sure its ran right
 		return 0
-	for(var/dist in 0 to 7) // checks out to 8 tiles away for another generator
+	for(var/dist in FALSE to 7) // checks out to 8 tiles away for another generator
 		T = get_step(T, NSEW)
 		if(T.density)//We cant shoot a field though this
 			return 0
@@ -292,7 +292,7 @@ field_generator power level display
 		return 0
 
 	T = loc
-	for(var/dist in 0 to steps) // creates each field tile
+	for(var/dist in FALSE to steps) // creates each field tile
 		var/field_dir = get_dir(T,get_step(G.loc, NSEW))
 		T = get_step(T, NSEW)
 		if(!locate(/obj/machinery/field/containment) in T)

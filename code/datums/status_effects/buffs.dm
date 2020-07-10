@@ -44,7 +44,7 @@
 /datum/status_effect/vanguard_shield
 	id = "vanguard"
 	duration = 200
-	tick_interval = 0 //tick as fast as possible
+	tick_interval = FALSE //tick as fast as possible
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = /obj/screen/alert/status_effect/vanguard
 	var/datum/progressbar/progbar
@@ -90,7 +90,7 @@
 	var/stuns_blocked = 0
 	if(vanguard)
 		stuns_blocked = FLOOR(min(vanguard["stuns_absorbed"] * 0.25, 400), 1)
-		vanguard["end_time"] = 0 //so it doesn't absorb the stuns we're about to apply
+		vanguard["end_time"] = FALSE //so it doesn't absorb the stuns we're about to apply
 	if(owner.stat != DEAD)
 		var/message_to_owner = "<span class='warning'>You feel your Vanguard quietly fade...</span>"
 		var/otheractiveabsorptions = FALSE
@@ -105,7 +105,7 @@
 				stuns_blocked *= 2
 				owner.Unconscious(stuns_blocked)
 		else
-			stuns_blocked = 0 //so logging is correct in cases where there were stuns blocked but we didn't stun for other reasons
+			stuns_blocked = FALSE //so logging is correct in cases where there were stuns blocked but we didn't stun for other reasons
 		owner.visible_message("<span class='warning'>[owner]'s glowing aura fades!</span>", message_to_owner)
 		owner.log_message("lost Vanguard stun immunity[stuns_blocked ? "and was stunned for [stuns_blocked]":""]", LOG_ATTACK)
 
@@ -145,7 +145,7 @@
 	id = "power_regen"
 	duration = 100
 	alert_type = /obj/screen/alert/status_effect/power_regen
-	var/power_to_give = 0 //how much power is gained each tick
+	var/power_to_give = FALSE //how much power is gained each tick
 
 /datum/status_effect/cyborg_power_regen/on_creation(mob/living/new_owner, new_power_per_tick)
 	. = ..()

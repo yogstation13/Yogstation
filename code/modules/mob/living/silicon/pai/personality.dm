@@ -29,7 +29,7 @@
 // loads the savefile corresponding to the mob's ckey
 // if silent=true, report incompatible savefiles
 // returns TRUE if loaded (or file was incompatible)
-// returns 0 if savefile did not exist
+// returns FALSE if savefile did not exist
 
 /datum/paiCandidate/proc/savefile_load(mob/user, silent = TRUE)
 	if (IsGuestKey(user.key))

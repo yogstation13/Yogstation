@@ -143,7 +143,7 @@
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
 
-			// 0  .. 9
+			// FALSE  .. 9
 			if(48 to 57)			//Numbers
 				if(last_char_group == NO_CHARS_DETECTED || !allow_numbers) //suppress at start of string
 					continue
@@ -205,7 +205,7 @@
 
 
 //html_encode helper proc that returns the smallest non null of two numbers
-//or 0 if they're both null (needed because of findtext returning 0 when a value is not present)
+//or FALSE if they're both null (needed because of findtext returning FALSE when a value is not present)
 /proc/non_zero_min(a, b)
 	if(!a)
 		return b

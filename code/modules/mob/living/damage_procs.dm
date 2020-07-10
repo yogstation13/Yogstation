@@ -6,7 +6,7 @@
 	b:damage_type - What type of damage to take, brute, burn
 	c:def_zone - Where to take the damage if its brute or burn
 	Returns
-	standard 0 if fail
+	standard FALSE if fail
 */
 /mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone)

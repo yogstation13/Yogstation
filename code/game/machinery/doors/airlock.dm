@@ -3,10 +3,10 @@
 	pulse - sends a pulse into a wire for hacking purposes
 	cut - cuts a wire and makes any necessary state changes
 	mend - mends a wire and makes any necessary state changes
-	canAIControl - TRUE if the AI can control the airlock, 0 if not (then check canAIHack to see if it can hack in)
-	canAIHack - TRUE if the AI can hack into the airlock to recover control, 0 if not. Also returns 0 if the AI does not *need* to hack it.
-	hasPower - TRUE if the main or backup power are functioning, 0 if not.
-	requiresIDs - TRUE if the airlock is requiring IDs, 0 if not
+	canAIControl - TRUE if the AI can control the airlock, FALSE if not (then check canAIHack to see if it can hack in)
+	canAIHack - TRUE if the AI can hack into the airlock to recover control, FALSE if not. Also returns FALSE if the AI does not *need* to hack it.
+	hasPower - TRUE if the main or backup power are functioning, FALSE if not.
+	requiresIDs - TRUE if the airlock is requiring IDs, FALSE if not
 	isAllPowerCut - TRUE if the main and backup power both have cut wires.
 	regainMainPower - handles the effect of main power coming back on.
 	loseMainPower - handles the effect of main power going offline. Usually (if one isn't already running) spawn a thread to count down how long it will be offline - counting down won't happen if main power was completely cut along with backup power, though, the thread will just sleep.
@@ -59,11 +59,11 @@
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 
-	var/security_level = 0 //How much are wires secured
-	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
+	var/security_level = FALSE //How much are wires secured
+	var/aiControlDisabled = FALSE //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = FALSE // if true, this door can't be hacked by the AI
-	var/secondsMainPowerLost = 0 //The number of seconds until power is restored.
-	var/secondsBackupPowerLost = 0 //The number of seconds until power is restored.
+	var/secondsMainPowerLost = FALSE //The number of seconds until power is restored.
+	var/secondsBackupPowerLost = FALSE //The number of seconds until power is restored.
 	var/spawnPowerRestoreRunning = FALSE
 	var/lights = TRUE // bolt lights show by default
 	var/aiDisabledIdScanner = FALSE
@@ -1603,9 +1603,9 @@
 	var/list/data = list()
 
 	var/list/power = list()
-	power["main"] = secondsMainPowerLost ? 0 : 2 // boolean
+	power["main"] = secondsMainPowerLost ? FALSE : 2 // boolean
 	power["main_timeleft"] = secondsMainPowerLost
-	power["backup"] = secondsBackupPowerLost ? 0 : 2 // boolean
+	power["backup"] = secondsBackupPowerLost ? FALSE : 2 // boolean
 	power["backup_timeleft"] = secondsBackupPowerLost
 	data["power"] = power
 

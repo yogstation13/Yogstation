@@ -482,7 +482,7 @@
 				update_quickbind()
 			else
 				var/target_index = input("Position of [initial(path.name)], TRUE to [maximum_quickbound]?", "Input")  as num|null
-				if(isnum(target_index) && target_index > 0 && target_index <= maximum_quickbound && !..())
+				if(isnum(target_index) && target_index > FALSE && target_index <= maximum_quickbound && !..())
 					var/datum/clockwork_scripture/S
 					if(LAZYLEN(quickbound) >= target_index)
 						S = quickbound[target_index]

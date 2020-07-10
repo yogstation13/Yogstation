@@ -103,7 +103,7 @@
 	while(total_transfered != amount)
 		if(total_transfered >= amount)
 			break
-		if(total_volume <= 0 || !cached_reagents.len)
+		if(total_volume <= FALSE || !cached_reagents.len)
 			break
 
 		if(current_list_element > cached_reagents.len)
@@ -429,7 +429,7 @@
 					if(!C.required_other)
 						matching_other = 1
 
-				if(required_temp == 0 || (is_cold_recipe && chem_temp <= required_temp) || (!is_cold_recipe && chem_temp >= required_temp))
+				if(required_temp == FALSE || (is_cold_recipe && chem_temp <= required_temp) || (!is_cold_recipe && chem_temp >= required_temp))
 					meets_temp_requirement = 1
 
 				if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other && meets_temp_requirement)

@@ -9,12 +9,12 @@
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
 	CanAtmosPass = ATMOS_PASS_PROC
-	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
+	var/point_return = FALSE //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
 	max_integrity = 30
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	var/health_regen = 2 //how much health this blob regens when pulsed
-	var/pulse_timestamp = 0 //we got pulsed when?
-	var/heal_timestamp = 0 //we got healed when?
+	var/pulse_timestamp = FALSE //we got pulsed when?
+	var/heal_timestamp = FALSE //we got healed when?
 	var/brute_resist = 0.5 //multiplies brute damage by this
 	var/fire_resist = TRUE //multiplies burn damage by this
 	var/atmosblock = TRUE //if the blob blocks atmos and heat spread
@@ -130,7 +130,7 @@
 		update_icon()
 		pulse_timestamp = world.time + 10
 		return TRUE //we did it, we were pulsed!
-	return 0 //oh no we failed
+	return FALSE //oh no we failed
 
 /obj/structure/blob/proc/ConsumeTile()
 	for(var/atom/A in loc)

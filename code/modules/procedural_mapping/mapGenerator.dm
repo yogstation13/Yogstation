@@ -92,7 +92,7 @@
 	. = 1
 
 	if(!Start || !End)
-		return 0 //Just bail
+		return FALSE //Just bail
 
 	if(Start.x > world.maxx || End.x > world.maxx)
 		. = 0

@@ -20,7 +20,7 @@
 	var/spawn_amt = 1
 	var/activate_descriptor = "reality"
 	var/rend_desc = "You should run now."
-	var/spawn_fast = 0 //if 1, ignores checking for mobs on loc before spawning
+	var/spawn_fast = FALSE //if 1, ignores checking for mobs on loc before spawning
 
 /obj/item/veilrender/Initialize()
 	. = ..()
@@ -407,7 +407,7 @@
 	desc = "One toot on this whistle will send you to a far away land!"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "whistle"
-	var/on_cooldown = 0 //0: usable, 1: in use, 2: on cooldown
+	var/on_cooldown = FALSE //0: usable, 1: in use, 2: on cooldown
 	var/mob/living/carbon/last_user
 
 /obj/item/warpwhistle/proc/interrupted(mob/living/carbon/user)

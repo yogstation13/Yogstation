@@ -57,7 +57,7 @@
 /datum/nanite_program/meltdown
 	name = "Meltdown"
 	desc = "Causes an internal meltdown inside the nanites, causing internal burns inside the host as well as rapidly destroying the nanite population.\
-			Sets the nanites' safety threshold to 0 when activated."
+			Sets the nanites' safety threshold to FALSE when activated."
 	use_rate = 10
 	rogue_types = list(/datum/nanite_program/glitch)
 
@@ -168,7 +168,7 @@
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
 	extra_settings = list("Directive")
-	var/cooldown = 0 //avoids spam when nanites are running low
+	var/cooldown = FALSE //avoids spam when nanites are running low
 	var/directive = "..."
 
 /datum/nanite_program/mind_control/set_extra_setting(user, setting)

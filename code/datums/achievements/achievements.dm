@@ -9,7 +9,7 @@
 /datum/achievement
 	var/name = "achievement"
 	var/desc = "Please make an issue on github, including this achievement's name and how you got it."
-	var/id = 0 //Should be incremented so every achievement has a unique ID
+	var/id = FALSE //Should be incremented so every achievement has a unique ID
 	var/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
 
 /datum/achievement/bubblegum

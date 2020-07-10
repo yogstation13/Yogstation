@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		if(!filtered_uplink_items[I.category])
 			filtered_uplink_items[I.category] = list()
 		filtered_uplink_items[I.category][I.name] = I
-		if(I.limited_stock < 0 && !I.cant_discount && I.item && I.cost > 1)
+		if(I.limited_stock < FALSE && !I.cant_discount && I.item && I.cost > 1)
 			sale_items += I
 	if(allow_sales)
 		var/datum/team/nuclear/nuclear_team
@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/item = null // Path to the item to spawn.
 	var/refund_path = null // Alternative path for refunds, in case the item purchased isn't what is actually refunded (ie: holoparasites).
 	var/cost = 0
-	var/refund_amount = 0 // specified refund amount in case there needs to be a TC penalty for refunds.
+	var/refund_amount = FALSE // specified refund amount in case there needs to be a TC penalty for refunds.
 	var/refundable = FALSE
 	var/surplus = 100 // Chance of being included in the surplus crate.
 	var/cant_discount = FALSE
@@ -1696,7 +1696,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
-	surplus = 0 //No fun unless you're the clown!
+	surplus = FALSE //No fun unless you're the clown!
 
 /datum/uplink_item/role_restricted/arm_medical_gun
 	name = "Arm Mounted Medical Beamgun"

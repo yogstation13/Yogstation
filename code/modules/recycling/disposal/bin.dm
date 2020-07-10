@@ -18,7 +18,7 @@
 	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
 	var/flushing = 0	// true if flushing in progress
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
-	var/flush_count = 0 //this var adds TRUE once per tick. When it reaches flush_every_ticks it resets and tries to flush.
+	var/flush_count = FALSE //this var adds TRUE once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	var/last_sound = 0
 	var/obj/structure/disposalconstruct/stored
 	// create a new disposal

@@ -21,7 +21,7 @@
 	var/landingDelay = 30 //How long the pod takes to land after launching
 	var/openingDelay = 30 //How long the pod takes to open after landing
 	var/departureDelay = 30 //How long the pod takes to leave after opening. If bluespace = TRUE, it deletes. If reversing = TRUE, it flies back to centcom.
-	var/damage = 0 //Damage that occurs to any mob under the pod when it lands.
+	var/damage = FALSE //Damage that occurs to any mob under the pod when it lands.
 	var/effectStun = FALSE //If true, stuns anyone under the pod when it launches until it lands, forcing them to get hit by the pod. Devilish!
 	var/effectLimb = FALSE //If true, pops off a limb (if applicable) from anyone caught under the pod when it lands
 	var/effectOrgans = FALSE //If true, yeets out every limb and organ from anyone caught under the pod when it lands
@@ -125,7 +125,7 @@
 			continue
 		O.forceMove(holder) //Put objects inside before we close
 	var/obj/effect/temp_visual/risingPod = new /obj/effect/DPfall(get_turf(holder), src) //Make a nice animation of flying back up
-	risingPod.pixel_z = 0 //The initial value of risingPod's pixel_z is 200 because it normally comes down from a high spot
+	risingPod.pixel_z = FALSE //The initial value of risingPod's pixel_z is 200 because it normally comes down from a high spot
 	animate(risingPod, pixel_z = 200, time = 10, easing = LINEAR_EASING) //Animate our rising pod
 	if (returntobay)
 		holder.forceMove(bay) //Move the pod back to centcom, where it belongs

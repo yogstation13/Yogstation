@@ -33,7 +33,7 @@
 	maxbodytemp = 370
 	unsuitable_atmos_damage = 10
 	do_footstep = TRUE
-	var/banana_time = 0 // If there's no time set it won't spawn.
+	var/banana_time = FALSE // If there's no time set it won't spawn.
 	var/banana_type = /obj/item/grown/bananapeel
 	var/attack_reagent
 

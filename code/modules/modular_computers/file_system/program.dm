@@ -27,7 +27,7 @@
 	var/usage_flags = PROGRAM_ALL
 	/// Optional string that describes what NTNet server/system this program connects to. Used in default logging.
 	var/network_destination = null
-	/// Whether the program can be downloaded from NTNet. Set to 0 to disable.
+	/// Whether the program can be downloaded from NTNet. Set to FALSE to disable.
 	var/available_on_ntnet = 1
 	/// Whether the program can be downloaded from SyndiNet (accessible via emagging the computer). Set to TRUE to enable.
 	var/available_on_syndinet = 0
@@ -65,7 +65,7 @@
 	if(computer)
 		computer.update_icon()
 
-// Attempts to create a log in global ntnet datum. Returns TRUE on success, 0 on fail.
+// Attempts to create a log in global ntnet datum. Returns TRUE on success, FALSE on fail.
 /datum/computer_file/program/proc/generate_network_log(text)
 	if(computer)
 		return computer.add_log(text)
@@ -140,7 +140,7 @@
 		return computer.get_header_data()
 	return list()
 
-// This is performed on program startup. May be overridden to add extra logic. Remember to include ..() call. Return TRUE on success, 0 on failure.
+// This is performed on program startup. May be overridden to add extra logic. Remember to include ..() call. Return TRUE on success, FALSE on failure.
 // When implementing new program based device, use this to run the program.
 /datum/computer_file/program/proc/run_program(mob/living/user)
 	if(can_run(user, 1))

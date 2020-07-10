@@ -97,7 +97,7 @@
 	if(istype(C, /obj/item/light/bulb)) //only for light tiles
 		if(state && user.temporarilyRemoveItemFromInventory(C))
 			qdel(C)
-			state = 0 //fixing it by bashing it with a light bulb, fun eh?
+			state = FALSE //fixing it by bashing it with a light bulb, fun eh?
 			update_icon()
 			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
 		else

@@ -3,8 +3,8 @@
 // Should probably move these up and refactor modules so these can be mixed with other ones
 
 /datum/mapGenerator/ca
-	var/list/b_rule = list() // 0 -> 1, TRUE -> 1
-	var/list/s_rule = list() // 0 -> 0, TRUE -> 1
+	var/list/b_rule = list() // FALSE -> 1, TRUE -> 1
+	var/list/s_rule = list() // FALSE -> 0, TRUE -> 1
 	var/iterations = 1
 	var/loop_edges = 0
 	var/edge_value = TRUE //if loop_edges = 0

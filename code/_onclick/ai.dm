@@ -1,7 +1,7 @@
 /*
 	AI ClickOn()
 
-	Note currently ai restrained() returns 0 in all cases,
+	Note currently ai restrained() returns FALSE in all cases,
 	therefore restrained code has been removed
 
 	The AI can double click to move the camera (this was already true but is cleaner),

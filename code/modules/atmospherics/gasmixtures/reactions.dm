@@ -246,7 +246,7 @@
 		air.analyzer_results = new
 	var/list/cached_scan_results = air.analyzer_results
 	var/old_heat_capacity = air.heat_capacity()
-	var/reaction_energy = 0 //Reaction energy can be negative or positive, for both exothermic and endothermic reactions.
+	var/reaction_energy = FALSE //Reaction energy can be negative or positive, for both exothermic and endothermic reactions.
 	var/initial_plasma = air.get_moles(/datum/gas/plasma)
 	var/initial_carbon = air.get_moles(/datum/gas/carbon_dioxide)
 	var/scale_factor = (air.return_volume())/(PI) //We scale it down by volume/Pi because for fusion conditions, moles roughly = 2*volume, but we want it to be based off something constant between reactions.
@@ -320,7 +320,7 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60),air.get_moles(/datum/gas/oxygen),air.get_moles(/datum/gas/nitrogen))
 	var/energy_used = heat_efficency*NITRYL_FORMATION_ENERGY
-	if ((air.get_moles(/datum/gas/oxygen) - heat_efficency < 0 )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
+	if ((air.get_moles(/datum/gas/oxygen) - heat_efficency < FALSE )|| (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/oxygen, -heat_efficency)
 	air.adjust_moles(/datum/gas/nitrogen, -heat_efficency)
@@ -350,7 +350,7 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/reaction_efficency = min(1/((pressure/(0.5*ONE_ATMOSPHERE))*(max(air.get_moles(/datum/gas/plasma)/air.get_moles(/datum/gas/nitrous_oxide),1))),air.get_moles(/datum/gas/nitrous_oxide),air.get_moles(/datum/gas/plasma)/2)
 	var/energy_released = 2*reaction_efficency*FIRE_CARBON_ENERGY_RELEASED
-	if ((air.get_moles(/datum/gas/nitrous_oxide) - reaction_efficency < 0 )|| (air.get_moles(/datum/gas/plasma) - (2*reaction_efficency) < 0) || energy_released <= 0) //Shouldn't produce gas from nothing.
+	if ((air.get_moles(/datum/gas/nitrous_oxide) - reaction_efficency < FALSE )|| (air.get_moles(/datum/gas/plasma) - (2*reaction_efficency) < 0) || energy_released <= 0) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	air.adjust_moles(/datum/gas/bz, reaction_efficency)
 	if(reaction_efficency == air.get_moles(/datum/gas/nitrous_oxide))

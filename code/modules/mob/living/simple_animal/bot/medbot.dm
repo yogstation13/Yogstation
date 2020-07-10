@@ -42,13 +42,13 @@
 	var/mob/living/carbon/oldpatient = null
 	var/oldloc = null
 	var/last_found = 0
-	var/last_newpatient_speak = 0 //Don't spam the "HEY I'M COMING" messages
+	var/last_newpatient_speak = FALSE //Don't spam the "HEY I'M COMING" messages
 	var/injection_amount = 15 //How much reagent do we inject at a time?
 	var/heal_threshold = 10 //Start healing when they have this much damage in a category
-	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
+	var/use_beaker = FALSE //Use reagents in beaker instead of default treatment agents.
 	var/declare_crit = TRUE //If active, the bot will transmit a critical patient alert to MedHUD users.
-	var/declare_cooldown = 0 //Prevents spam of critical patient alerts.
-	var/stationary_mode = 0 //If enabled, the Medibot will not move automatically.
+	var/declare_cooldown = FALSE //Prevents spam of critical patient alerts.
+	var/stationary_mode = FALSE //If enabled, the Medibot will not move automatically.
 	///How panicked we are about being tipped over (why would you do this?)
 	var/tipped_status = MEDBOT_PANIC_NONE
 	///The name we got when we were tipped
@@ -67,7 +67,7 @@
 	var/treatment_virus_avoid = null
 	var/treatment_virus = /datum/reagent/medicine/spaceacillin
 	var/treat_virus = TRUE //If on, the bot will attempt to treat viral infections, curing them if possible.
-	var/shut_up = 0 //self explanatory :)
+	var/shut_up = FALSE //self explanatory :)
 
 /mob/living/simple_animal/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
@@ -417,7 +417,7 @@
 		soft_reset()
 		return
 
-	if(patient && path.len == 0 && (get_dist(src,patient) > 1))
+	if(patient && path.len == FALSE && (get_dist(src,patient) > 1))
 		path = get_path_to(src, get_turf(patient), /turf/proc/Distance_cardinal, 0, 30,id=access_card)
 		mode = BOT_MOVING
 		if(!path.len) //try to get closer if you can't reach the patient directly
@@ -425,7 +425,7 @@
 			if(!path.len) //Do not chase a patient we cannot reach.
 				soft_reset()
 
-	if(path.len > 0 && patient)
+	if(path.len > FALSE && patient)
 		if(!bot_move(path[path.len]))
 			oldpatient = patient
 			soft_reset()

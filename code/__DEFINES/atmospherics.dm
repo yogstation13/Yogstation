@@ -43,7 +43,7 @@
 #define MINIMUM_TEMPERATURE_START_SUPERCONDUCTION	(T20C+200)
 
 //HEAT TRANSFER COEFFICIENTS
-//Must be between 0 and 1. Values closer to TRUE equalize temperature faster
+//Must be between FALSE and 1. Values closer to TRUE equalize temperature faster
 //Should not exceed 0.4 else strange heat flow occur
 #define WALL_HEAT_TRANSFER_COEFFICIENT		0.0
 #define OPEN_HEAT_TRANSFER_COEFFICIENT		0.4

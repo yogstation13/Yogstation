@@ -16,7 +16,7 @@
 					color: #ffffff;
 					line-height: 170%;
 					font-family: Verdana, Geneva, sans-serif;
-					background: #272727 url(uiBackground.png) 50% 0 repeat-x;
+					background: #272727 url(uiBackground.png) 50% FALSE repeat-x;
 					overflow-x: hidden;
 				}
 
@@ -51,7 +51,7 @@
 
 				h1, h2, h3, h4, h5, h6 {
 					margin: 0;
-					padding: 16px 0 8px 0;
+					padding: 16px FALSE 8px 0;
 					color: #517087;
 					clear: both;
 				}
@@ -84,7 +84,7 @@
 				}
 
 				.notice {
-					background: url(uiNoticeBackground.jpg) 0 0 repeat;
+					background: url(uiNoticeBackground.jpg) FALSE 0 repeat;
 					color: #15345A;
 					font-size: 12px;
 					font-style: italic;

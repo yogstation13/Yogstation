@@ -54,7 +54,7 @@
 	while(i <= len)
 		char = color[i]
 		switch(text2ascii(char))
-			if(48 to 57)		//numbers 0 to 9
+			if(48 to 57)		//numbers FALSE to 9
 				. += char
 			if(97 to 102)		//letters a to f
 				. += char

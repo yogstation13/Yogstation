@@ -36,7 +36,7 @@
 /datum/Heap/proc/Swim(var/index)
 	var/parent = round(index * 0.5)
 
-	while(parent > 0 && (call(cmp)(L[index],L[parent]) > 0))
+	while(parent > FALSE && (call(cmp)(L[index],L[parent]) > 0))
 		L.Swap(index,parent)
 		index = parent
 		parent = round(index * 0.5)
@@ -45,13 +45,13 @@
 /datum/Heap/proc/Sink(var/index)
 	var/g_child = GetGreaterChild(index)
 
-	while(g_child > 0 && (call(cmp)(L[index],L[g_child]) < 0))
+	while(g_child > FALSE && (call(cmp)(L[index],L[g_child]) < 0))
 		L.Swap(index,g_child)
 		index = g_child
 		g_child = GetGreaterChild(index)
 
 //Returns the greater (relative to the comparison proc) of a node children
-//or 0 if there's no child
+//or FALSE if there's no child
 /datum/Heap/proc/GetGreaterChild(var/index)
 	if(index * 2 > L.len)
 		return 0

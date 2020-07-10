@@ -338,7 +338,7 @@
 			else
 				target_candidates[player.mind] = 1
 
-	if(target_candidates.len == 0 && allow_convertable)
+	if(target_candidates.len == FALSE && allow_convertable)
 		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
 			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)

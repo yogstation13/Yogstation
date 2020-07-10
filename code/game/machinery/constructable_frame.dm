@@ -209,7 +209,7 @@
 				part_list = sortTim(part_list, /proc/cmp_rped_sort)
 
 				for(var/path in req_components)
-					while(req_components[path] > 0 && (locate(path) in part_list))
+					while(req_components[path] > FALSE && (locate(path) in part_list))
 						var/obj/item/part = (locate(path) in part_list)
 						part_list -= part
 						if(istype(part,/obj/item/stack))

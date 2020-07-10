@@ -156,7 +156,7 @@
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 25
-	throwforce = 0 //Just to be on the safe side
+	throwforce = FALSE //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -245,7 +245,7 @@
 	force = 0
 	max_charges = 1
 	fire_delay = 1
-	throwforce = 0 //Just to be on the safe side
+	throwforce = FALSE //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
 

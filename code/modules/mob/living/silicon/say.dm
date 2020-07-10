@@ -27,7 +27,7 @@
 	return 1
 
 /mob/living/silicon/lingcheck()
-	return 0 //Borged or AI'd lings can't speak on the ling channel.
+	return FALSE //Borged or AI'd lings can't speak on the ling channel.
 
 /mob/living/silicon/radio(message, message_mode, list/spans, language)
 	. = ..()

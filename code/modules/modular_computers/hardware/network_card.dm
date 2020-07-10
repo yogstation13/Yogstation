@@ -6,7 +6,7 @@
 	var/identification_id = null	// Identification ID. Technically MAC address of this device. Can't be changed by user.
 	var/identification_string = "" 	// Identification string, technically nickname seen in the network. Can be set by user.
 	var/long_range = 0
-	var/ethernet = 0 // Hard-wired, therefore always on, ignores NTNet wireless checks.
+	var/ethernet = FALSE // Hard-wired, therefore always on, ignores NTNet wireless checks.
 	malfunction_probability = 1
 	device_type = MC_NET
 	var/global/ntnet_card_uid = 1
@@ -30,7 +30,7 @@
 /obj/item/computer_hardware/network_card/proc/get_network_tag()
 	return "[identification_string] (NID [identification_id])"
 
-// 0 - No signal, TRUE - Low signal, 2 - High signal. 3 - Wired Connection
+// FALSE - No signal, TRUE - Low signal, 2 - High signal. 3 - Wired Connection
 /obj/item/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
 	if(!holder) // Hardware is not installed in anything. No signal. How did this even get called?
 		return 0
@@ -57,7 +57,7 @@
 	if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
 		return 1
 
-	return 0 // Computer is not on station and does not have upgraded network card. No signal.
+	return FALSE // Computer is not on station and does not have upgraded network card. No signal.
 
 
 /obj/item/computer_hardware/network_card/advanced

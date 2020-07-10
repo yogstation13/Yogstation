@@ -58,7 +58,7 @@
 	var/pass = TRUE
 	if(field_shape == FIELD_NO_SHAPE)	//If you're going to make a manually updated field you shouldn't be using automatic checks so don't.
 		pass = FALSE
-	if(current_range < 0 || square_height < 0 || square_width < 0 || square_depth_up < 0 || square_depth_down < 0)
+	if(current_range < FALSE || square_height < FALSE || square_width < FALSE || square_depth_up < FALSE || square_depth_down < 0)
 		pass = FALSE
 	if(!istype(host))
 		pass = FALSE

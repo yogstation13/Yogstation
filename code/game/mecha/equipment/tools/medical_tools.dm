@@ -256,7 +256,7 @@
 	var/max_volume = 75 //max reagent volume
 	var/synth_speed = 5 //[num] reagent units per cycle
 	energy_drain = 10
-	var/mode = 0 //0 - fire syringe, TRUE - analyze reagents.
+	var/mode = FALSE //0 - fire syringe, TRUE - analyze reagents.
 	range = MELEE|RANGED
 	equip_cooldown = 10
 

@@ -72,7 +72,7 @@
 			continue
 		ruins_availible[R] = R.placement_weight
 
-	while(budget > 0 && (ruins_availible.len || forced_ruins.len))
+	while(budget > FALSE && (ruins_availible.len || forced_ruins.len))
 		var/datum/map_template/ruin/current_pick
 		var/forced = FALSE
 		var/forced_z	//If set we won't pick z level and use this one instead.

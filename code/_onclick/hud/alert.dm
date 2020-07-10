@@ -5,7 +5,7 @@
 
 /mob/proc/throw_alert(category, type, severity, obj/new_master, override = FALSE)
 
-/* Proc to create or update an alert. Returns the alert if the alert is new or updated, 0 if it was thrown already
+/* Proc to create or update an alert. Returns the alert if the alert is new or updated, FALSE if it was thrown already
  category is a text string. Each mob may only have one alert per category; the previous one will be replaced
  path is a type path of the actual alert type to throw
  severity is an optional number that will be placed at the end of the icon_state for this alert
@@ -93,7 +93,7 @@
 	name = "Alert"
 	desc = "Something seems to have gone wrong with this alert, so report this bug please"
 	mouse_opacity = MOUSE_OPACITY_ICON
-	var/timeout = 0 //If set to a number, this alert will clear itself after that many deciseconds
+	var/timeout = FALSE //If set to a number, this alert will clear itself after that many deciseconds
 	var/severity = 0
 	var/alerttooltipstyle = ""
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type

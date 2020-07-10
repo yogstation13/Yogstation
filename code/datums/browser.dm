@@ -115,7 +115,7 @@
 		setup_onclose()
 
 /datum/browser/proc/setup_onclose()
-	set waitfor = 0 //winexists sleeps, so we don't need to.
+	set waitfor = FALSE //winexists sleeps, so we don't need to.
 	for (var/i in TRUE to 10)
 		if (user && winexists(user, window_id))
 			onclose(user, window_id, ref)
@@ -224,7 +224,7 @@
 		addtimer(CALLBACK(src, .proc/close), timeout)
 
 /datum/browser/modal/proc/wait()
-	while (opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
+	while (opentime && selectedbutton <= FALSE && (!timeout || opentime+timeout > world.time))
 		stoplag(1)
 
 /datum/browser/modal/listpicker

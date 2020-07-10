@@ -611,7 +611,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	if(!door_number)
-		door_number = rand(0,4) //if 0 bolts all visible doors
+		door_number = rand(0,4) //if FALSE bolts all visible doors
 	var/count = 0
 	feedback_details += "Door amount: [door_number]"
 	for(var/obj/machinery/door/airlock/A in range(7, target))

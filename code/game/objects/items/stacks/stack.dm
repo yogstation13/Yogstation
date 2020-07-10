@@ -15,7 +15,7 @@
 	var/singular_name
 	var/amount = 1
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
-	var/is_cyborg = 0 // It's TRUE if module is used by a cyborg, and uses its storage
+	var/is_cyborg = FALSE // It's TRUE if module is used by a cyborg, and uses its storage
 	var/datum/robot_energy_storage/source
 	var/cost = TRUE // How much energy from storage it costs
 	var/merge_type = null // This path and its children should merge with this stack, defaults to src.type
@@ -277,7 +277,7 @@
 					return FALSE
 	return TRUE
 
-/obj/item/stack/use(used, transfer = FALSE, check = TRUE) // return 0 = borked; return TRUE = had enough
+/obj/item/stack/use(used, transfer = FALSE, check = TRUE) // return FALSE = borked; return TRUE = had enough
 	if(check && zero_amount())
 		return FALSE
 	if (is_cyborg)
@@ -371,7 +371,7 @@
 		var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [max])") as null|num)
 		max = get_amount()
 		stackmaterial = min(max, stackmaterial)
-		if(stackmaterial == null || stackmaterial <= 0 || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		if(stackmaterial == null || stackmaterial <= FALSE || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 			return
 		else
 			change_stack(user, stackmaterial)

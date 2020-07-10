@@ -5,7 +5,7 @@
 	icon_state = "chair"
 	anchored = TRUE
 	can_buckle = 1
-	buckle_lying = 0 //you sit in a chair, not lay
+	buckle_lying = FALSE //you sit in a chair, not lay
 	resistance_flags = NONE
 	max_integrity = 250
 	integrity_failure = 25
@@ -335,7 +335,7 @@
 	icon_state = "stool_toppled"
 	item_state = "stool"
 	origin_type = /obj/structure/chair/stool
-	break_chance = 0 //It's too sturdy.
+	break_chance = FALSE //It's too sturdy.
 
 /obj/item/chair/stool/bar
 	name = "bar stool"

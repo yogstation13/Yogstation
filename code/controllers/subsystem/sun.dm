@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(sun)
 	wait = TRUE MINUTES
 	flags = SS_NO_TICK_CHECK
 
-	var/azimuth = 0 ///clockwise, top-down rotation from 0 (north) to 359
+	var/azimuth = FALSE ///clockwise, top-down rotation from FALSE (north) to 359
 	var/azimuth_mod = TRUE ///multiplier against base_rotation
 	var/base_rotation = 6 ///base rotation in degrees per fire
 

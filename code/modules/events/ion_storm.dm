@@ -12,7 +12,7 @@
 	var/removeDontImproveChance = 10 //chance the randomly created law replaces a random law instead of simply being added
 	var/shuffleLawsChance = 10 //chance the AI's laws are shuffled afterwards
 	var/botEmagChance = 10
-	var/announceEvent = ION_RANDOM // -1 means don't announce, 0 means have it randomly announce, TRUE means
+	var/announceEvent = ION_RANDOM // -1 means don't announce, FALSE means have it randomly announce, TRUE means
 	var/ionMessage = null
 	var/ionAnnounceChance = 33
 	announceWhen	= 1

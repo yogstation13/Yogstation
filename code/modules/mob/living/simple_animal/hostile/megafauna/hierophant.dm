@@ -381,7 +381,7 @@ Difficulty: Hard
 			timeout_time = initial(timeout_time)
 		else
 			timeout_time--
-		if(timeout_time <= 0 && !did_reset)
+		if(timeout_time <= FALSE && !did_reset)
 			did_reset = TRUE
 			visible_message("<span class='hierophant_warning'>\"Vixyvrmrk xs fewi...\"</span>")
 			blink(spawned_beacon)
@@ -393,7 +393,7 @@ Difficulty: Hard
 				visible_message("<span class='hierophant'>\"Vitemvw gsqtpixi. Stivexmsrep ijjmgmirgc gsqtvsqmwih.\"</span>")
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/death()
-	if(health > 0 || stat == DEAD)
+	if(health > FALSE || stat == DEAD)
 		return
 	else
 		stat = DEAD
@@ -543,7 +543,7 @@ Difficulty: Hard
 	var/moving_dir //what dir it's moving in
 	var/previous_moving_dir //what dir it was moving in before that
 	var/more_previouser_moving_dir //what dir it was moving in before THAT
-	var/moving = 0 //how many steps to move before recalculating
+	var/moving = FALSE //how many steps to move before recalculating
 	var/standard_moving_before_recalc = 4 //how many times we step before recalculating normally
 	var/tiles_per_step = TRUE //how many tiles we move each step
 	var/speed = 3 //how many deciseconds between each step

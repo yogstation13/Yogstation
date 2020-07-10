@@ -63,7 +63,7 @@
 	if(href_list["copy"])
 		if(copy)
 			for(var/i = 0, i < copies, i++)
-				if(toner > 0 && !busy && copy)
+				if(toner > FALSE && !busy && copy)
 					var/copy_as_paper = 1
 					if(istype(copy, /obj/item/paper/contract/employment))
 						var/obj/item/paper/contract/employment/E = copy

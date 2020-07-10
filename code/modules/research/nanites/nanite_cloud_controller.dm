@@ -6,7 +6,7 @@
 	icon_state = "nanite_cloud_controller"
 	var/obj/item/disk/nanite_program/disk
 	var/list/datum/nanite_cloud_backup/cloud_backups = list()
-	var/current_view = 0 //0 is the main menu, any other number is the page of the backup with that ID
+	var/current_view = FALSE //0 is the main menu, any other number is the page of the backup with that ID
 	var/new_backup_id = 1
 
 /obj/machinery/computer/nanite_cloud_controller/Destroy()

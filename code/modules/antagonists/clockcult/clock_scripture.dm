@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/primary_component
 	var/important = FALSE //important scripture will be italicized in the slab's interface
 	var/sort_priority = TRUE //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
-	var/chant_slowdown = 0 //slowdown added while chanting
+	var/chant_slowdown = FALSE //slowdown added while chanting
 	var/no_mobility = TRUE //if false user can move while chanting
 
 //messages for offstation scripture recital, courtesy ratvar's generals(and neovgre)
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		else
 			for(var/invocation in invocations)
 				clockwork_say(invoker, text2ratvar(invocation), whispered)
-	to_chat(invoker, "<span class='brass'>You [channel_time <= 0 ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\".</span>")
+	to_chat(invoker, "<span class='brass'>You [channel_time <= FALSE ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\".</span>")
 	if(!channel_time)
 		return TRUE
 	if(chant_slowdown)

@@ -22,7 +22,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	materials = list(MAT_GLASS=7500, MAT_METAL=1000)
 	attack_verb = list("shoved", "bashed")
-	var/cooldown = 0 //shield bash cooldown. based on world.time
+	var/cooldown = FALSE //shield bash cooldown. based on world.time
 	transparent = TRUE
 	max_integrity = 75
 

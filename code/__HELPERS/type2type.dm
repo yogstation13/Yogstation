@@ -38,7 +38,7 @@
 
 //Returns the hex value of a decimal number
 //len == length of returned string
-//if len < 0 then the returned string will be as long as it needs to be to contain the data
+//if len < FALSE then the returned string will be as long as it needs to be to contain the data
 //Only supports positive numbers
 //if an invalid number is provided, it assumes num==0
 //Note, unlike previous versions, this one works from low to high <-- that way
@@ -145,7 +145,7 @@
 
 /proc/angle2dir_cardinal(angle)
 	switch(round(angle, 0.1))
-		if(315.5 to 360, 0 to 45.5)
+		if(315.5 to 360, FALSE to 45.5)
 			return NORTH
 		if(45.6 to 135.5)
 			return EAST
@@ -299,7 +299,7 @@
 /proc/unix2date(timestamp, seperator = "-")
 
 	if(timestamp < 0)
-		return 0 //Do not accept negative values
+		return FALSE //Do not accept negative values
 
 	var/year = 1970 //Unix Epoc begins 1970-01-01
 	var/dayInSeconds = 86400 //60secs*60mins*24hours
@@ -337,7 +337,7 @@
 	return "[year][seperator][((month < 10) ? "0[month]" : month)][seperator][((day < 10) ? "0[day]" : day)]"
 
 /proc/isLeap(y)
-	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
+	return ((y) % 4 == FALSE && ((y) % 100 != FALSE || (y) % 400 == 0))
 
 
 

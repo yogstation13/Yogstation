@@ -146,7 +146,7 @@
 			return
 		sentence = new_sentence
 	if(setting == "Comm Code")
-		var/new_code = input(user, "Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
+		var/new_code = input(user, "Set the communication code (1-9999) or set to FALSE to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
 		comm_code = clamp(round(new_code, 1), 0, 9999)
@@ -190,7 +190,7 @@
 			return
 		message = new_message
 	if(setting == "Comm Code")
-		var/new_code = input(user, "Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
+		var/new_code = input(user, "Set the communication code (1-9999) or set to FALSE to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
 		comm_code = clamp(round(new_code, 1), 0, 9999)
@@ -266,7 +266,7 @@
 
 /datum/nanite_program/triggered/comm/hallucination/set_extra_setting(user, setting)
 	if(setting == "Comm Code")
-		var/new_code = input(user, "(Only for Message) Set the communication code (1-9999) or set to 0 to disable external signals.", name, null) as null|num
+		var/new_code = input(user, "(Only for Message) Set the communication code (1-9999) or set to FALSE to disable external signals.", name, null) as null|num
 		if(isnull(new_code))
 			return
 		comm_code = clamp(round(new_code, 1), 0, 9999)

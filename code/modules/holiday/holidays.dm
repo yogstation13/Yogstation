@@ -3,7 +3,7 @@
 
 	var/begin_day = 1
 	var/begin_month = 0
-	var/end_day = 0 // Default of 0 means the holiday lasts a single day
+	var/end_day = FALSE // Default of FALSE means the holiday lasts a single day
 	var/end_month = 0
 	var/begin_week = FALSE //If set to a number, then this holiday will begin on certain week
 	var/begin_weekday = FALSE //If set to a weekday, then this will trigger the holiday on the above week

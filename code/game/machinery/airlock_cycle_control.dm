@@ -71,11 +71,11 @@
 	var/locked = TRUE
 	var/aidisabled = 0
 	var/shorted = 0
-	var/buildstage = 2 // 2 = complete, TRUE = no wires,  0 = circuit gone
+	var/buildstage = 2 // 2 = complete, TRUE = no wires,  FALSE = circuit gone
 	var/config_error_str = "Needs Scan"
 	var/scan_on_late_init = FALSE
 	var/depressurization_margin = 10 // use a lower value to reduce cross-contamination
-	var/depressurization_target = 0 // What to target - should be lower than the depressurization margin
+	var/depressurization_target = FALSE // What to target - should be lower than the depressurization margin
 	var/overlays_hash = null
 	var/skip_delay = 300
 	var/skip_timer = 0
@@ -104,7 +104,7 @@
 	if(nbuild)
 		buildstage = 0
 		panel_open = TRUE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir == TRUE ? -24 : 24) : 0
 
 	update_icon()
@@ -202,7 +202,7 @@
 	if((stat & (NOPOWER)))		// unpowered, no shock
 		return 0
 	if(!prob(prb))
-		return 0 //you lucked out, no shock for you
+		return FALSE //you lucked out, no shock for you
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start() //sparks always.

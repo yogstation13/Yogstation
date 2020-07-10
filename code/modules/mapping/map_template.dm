@@ -3,7 +3,7 @@
 	var/width = 0
 	var/height = 0
 	var/mappath = null
-	var/loaded = 0 // Times loaded this round
+	var/loaded = FALSE // Times loaded this round
 	var/datum/parsed_map/cached_map
 	var/keep_cached_map = FALSE
 

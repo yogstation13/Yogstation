@@ -192,9 +192,9 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[map]
 					if(!VM.votable)
 						continue
-					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
+					if(VM.config_min_users > FALSE && GLOB.clients.len < VM.config_min_users)
 						continue
-					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
+					if(VM.config_max_users > FALSE && GLOB.clients.len > VM.config_max_users)
 						continue
 					choices.Add(VM.map_name)
 			if("custom")

@@ -81,14 +81,14 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	//Temperature
 	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 	//Brute
-	to_chat(user, "\t <font color='red'>*</font> Brute Damage: <font color ='orange'>[brute_damage > 100 ? "<font color='red'>Critical</font>" : brute_damage > 75 ? "Catastrophic" : brute_damage > 50 ? "Extreme" : brute_damage > 25 ? "Severe" : brute_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
+	to_chat(user, "\t <font color='red'>*</font> Brute Damage: <font color ='orange'>[brute_damage > 100 ? "<font color='red'>Critical</font>" : brute_damage > 75 ? "Catastrophic" : brute_damage > 50 ? "Extreme" : brute_damage > 25 ? "Severe" : brute_damage > FALSE ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
 	//Burn
-	to_chat(user, "\t <font color='#FF8000'>*</font> Burn damage: <font color ='orange'>[fire_damage > 100 ? "<font color='red'>Critical</font>" : fire_damage > 75 ? "Catastrophic" : fire_damage > 50 ? "Extreme" : fire_damage > 25 ? "Severe" : fire_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
+	to_chat(user, "\t <font color='#FF8000'>*</font> Burn damage: <font color ='orange'>[fire_damage > 100 ? "<font color='red'>Critical</font>" : fire_damage > 75 ? "Catastrophic" : fire_damage > 50 ? "Extreme" : fire_damage > 25 ? "Severe" : fire_damage > FALSE ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
 	//Oxygen
-	to_chat(user, "\t <font color='blue'>*</font> Blood Oxygen Concentration: <font color ='orange'>[oxy_damage > 100 ? "<font color='red'>Critical</font>" : oxy_damage > 75 ? "Dangerous" : oxy_damage > 50 ? "Low" : oxy_damage > 25 ? "Concerning" : oxy_damage > 0 ? "High" : "<font color='blue'>Full</font>"]</font></span>")
+	to_chat(user, "\t <font color='blue'>*</font> Blood Oxygen Concentration: <font color ='orange'>[oxy_damage > 100 ? "<font color='red'>Critical</font>" : oxy_damage > 75 ? "Dangerous" : oxy_damage > 50 ? "Low" : oxy_damage > 25 ? "Concerning" : oxy_damage > FALSE ? "High" : "<font color='blue'>Full</font>"]</font></span>")
 	//Toxin
-	to_chat(user, "\t <font color='green'>*</font> Blood Toxin Levels: <font color ='orange'>[tox_damage > 100 ? "<font color='red'>Critical</font>" : tox_damage > 75 ? "Catastrophic" : tox_damage > 50 ? "Extreme" : tox_damage > 25 ? "Severe" : tox_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
+	to_chat(user, "\t <font color='green'>*</font> Blood Toxin Levels: <font color ='orange'>[tox_damage > 100 ? "<font color='red'>Critical</font>" : tox_damage > 75 ? "Catastrophic" : tox_damage > 50 ? "Extreme" : tox_damage > 25 ? "Severe" : tox_damage > FALSE ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
 	//Brain
-	to_chat(user, "\t <font color='Fuchsia'>*</font> Brain Activity: <font color ='orange'>[brain_status >= 200 ? "<font color='red'>Not Detected</font>" : brain_status > 100 ? "Low" : brain_status > 0 ? "High" : "<font color='blue'>Full</font>"]</font></span>")
+	to_chat(user, "\t <font color='Fuchsia'>*</font> Brain Activity: <font color ='orange'>[brain_status >= 200 ? "<font color='red'>Not Detected</font>" : brain_status > 100 ? "Low" : brain_status > FALSE ? "High" : "<font color='blue'>Full</font>"]</font></span>")
 	//Radiation
 	to_chat(user, "\t <font color='yellow'>*</font> Radiation Levels: [M.radiation ? "<font color='red'>[M.radiation]</font>" : "<font color='blue'>None</font>"]</span>")

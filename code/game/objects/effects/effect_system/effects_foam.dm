@@ -27,7 +27,7 @@
 /obj/effect/particle_effect/foam/firefighting
 	name = "firefighting foam"
 	lifetime = 20 //doesn't last as long as normal foam
-	amount = 0 //no spread
+	amount = FALSE //no spread
 	slippery_foam = FALSE
 	var/absorbed_plasma = 0
 

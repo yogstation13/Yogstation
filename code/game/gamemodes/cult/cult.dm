@@ -201,7 +201,7 @@
 	if(SSticker.mode.anchor_bloodstone)
 		return
 	var/obj/structure/destructible/cult/bloodstone/anchor_target = bloodstone_list[1] //which bloodstone is the current cantidate for anchorship
-	var/anchor_power = 0 //anchor will be faster if there are more stones
+	var/anchor_power = FALSE //anchor will be faster if there are more stones
 	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
 		anchor_power++
 		if(B.obj_integrity > anchor_target.obj_integrity)

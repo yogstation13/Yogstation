@@ -6,8 +6,8 @@
 	pixel_y = -85
 	density = FALSE
 	current_size = 9 //It moves/eats like a max-size singulo, aside from range. --NEO
-	contained = 0 //Are we going to move around?
-	dissipate = 0 //Do we lose energy over time?
+	contained = FALSE //Are we going to move around?
+	dissipate = FALSE //Do we lose energy over time?
 	move_self = TRUE //Do we move on our own?
 	grav_pull = 5 //How many tiles out do we pull?
 	consume_range = 6 //How many tiles out do we eat

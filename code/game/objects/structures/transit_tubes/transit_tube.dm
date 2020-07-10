@@ -86,7 +86,7 @@
 
 
 // Searches for an exit direction within 45 degrees of the
-//  specified dir. Returns that direction, or 0 if none match.
+//  specified dir. Returns that direction, or FALSE if none match.
 /obj/structure/transit_tube/proc/get_exit(in_dir)
 	var/near_dir = 0
 	var/in_dir_cw = turn(in_dir, -45)

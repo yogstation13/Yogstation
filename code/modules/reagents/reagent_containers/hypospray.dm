@@ -121,7 +121,7 @@
 		return
 	..()
 	if(!iscyborg(user))
-		reagents.maximum_volume = 0 //Makes them useless afterwards
+		reagents.maximum_volume = FALSE //Makes them useless afterwards
 		reagents.flags = NONE
 	update_icon()
 	addtimer(CALLBACK(src, .proc/cyborg_recharge, user), 80)

@@ -511,13 +511,13 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if (L.len > 0 && !(L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
+		if (L.len > FALSE && !(L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
 			for (var/i in TRUE to L.len)
 				var/key = L[i]
 				var/val
 				if (IS_NORMAL_LIST(L) && !isnum(key))
 					val = L[key]
-				if (isnull(val))	// we still want to display non-null false values, such as 0 or ""
+				if (isnull(val))	// we still want to display non-null false values, such as FALSE or ""
 					val = key
 					key = i
 

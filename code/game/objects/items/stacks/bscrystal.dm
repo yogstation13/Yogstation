@@ -52,7 +52,7 @@
 	desc = "An artificially made bluespace crystal, it looks delicate."
 	materials = list(MAT_BLUESPACE=MINERAL_MATERIAL_AMOUNT*0.5)
 	blink_range = 4 // Not as good as the organic stuff!
-	points = 0 //nice try
+	points = FALSE //nice try
 	refined_type = null
 	grind_results = list(/datum/reagent/bluespace = 10, /datum/reagent/silicon = 20)
 

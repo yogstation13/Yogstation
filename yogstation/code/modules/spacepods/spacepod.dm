@@ -47,13 +47,13 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/list/passengers = list()
 	var/max_passengers = 0
 
-	var/velocity_x = 0 // tiles per second.
+	var/velocity_x = FALSE // tiles per second.
 	var/velocity_y = 0
-	var/offset_x = 0 // like pixel_x/y but in tiles
+	var/offset_x = FALSE // like pixel_x/y but in tiles
 	var/offset_y = 0
-	var/angle = 0 // degrees, clockwise
+	var/angle = FALSE // degrees, clockwise
 	var/desired_angle = null // set by pilot moving his mouse
-	var/angular_velocity = 0 // degrees per second
+	var/angular_velocity = FALSE // degrees per second
 	var/max_angular_acceleration = 360 // in degrees per second per second
 	var/last_thrust_forward = 0
 	var/last_thrust_right = 0
@@ -437,7 +437,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		right_thrusts[cdir] = 0
 	var/back_thrust = 0
 	if(last_thrust_right != 0)
-		var/tdir = last_thrust_right > 0 ? WEST : EAST
+		var/tdir = last_thrust_right > FALSE ? WEST : EAST
 		left_thrusts[tdir] = abs(last_thrust_right) / side_maxthrust
 		right_thrusts[tdir] = abs(last_thrust_right) / side_maxthrust
 	if(last_thrust_forward > 0)

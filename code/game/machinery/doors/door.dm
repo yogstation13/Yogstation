@@ -36,7 +36,7 @@
 	var/real_explosion_block	//ignore this, just use explosion_block
 	var/red_alert_access = FALSE //if TRUE, this door will always open on red alert
 	var/poddoor = FALSE
-	var/unres_sides = 0 //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
+	var/unres_sides = FALSE //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -203,7 +203,7 @@
 	// alrighty now we check for how much pressure we're holding back
 	var/min_moles = T.air.total_moles()
 	var/max_moles = min_moles
-	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
+	// okay this is a bit hacky. First, we set density to FALSE and recalculate our adjacent turfs
 	density = FALSE
 	T.ImmediateCalculateAdjacentTurfs()
 	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is

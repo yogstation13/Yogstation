@@ -25,7 +25,7 @@ var/admin_substr  = "admins=" // search for this to locate # of admins
 /datum/server
 	var/players = 0
 	var/admins = 0
-	var/weight = 0 // lower weight is good; highet weight is bad
+	var/weight = FALSE // lower weight is good; highet weight is bad
 
 	var/link = ""
 

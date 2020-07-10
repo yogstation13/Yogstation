@@ -237,7 +237,7 @@
 		if(!path.len)
 			soft_reset()
 
-	if(path.len > 0 && target_fire)
+	if(path.len > FALSE && target_fire)
 		if(!bot_move(path[path.len]))
 			old_target_fire = target_fire
 			soft_reset()

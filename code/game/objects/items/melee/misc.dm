@@ -73,7 +73,7 @@
 
 /obj/item/melee/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0 //Don't bring a sword to a gunfight
+		final_block_chance = FALSE //Don't bring a sword to a gunfight
 	return ..()
 
 /obj/item/melee/sabre/on_exit_storage(datum/component/storage/concrete/S)
@@ -171,7 +171,7 @@
 	force = 12 //9 hit crit
 	w_class = WEIGHT_CLASS_NORMAL
 
-	var/cooldown_check = 0 // Used interally, you don't want to modify
+	var/cooldown_check = FALSE // Used interally, you don't want to modify
 
 	var/cooldown = 40 // Default wait time until can stun again.
 	var/stun_time_carbon = 60 // How long we stun for - 6 seconds.

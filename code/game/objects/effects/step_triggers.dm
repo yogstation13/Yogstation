@@ -47,8 +47,8 @@
 	var/tiles = 3	// if 0: forever until atom hits a stopper
 	var/immobilize = TRUE // if nonzero: prevents mobs from moving while they're being flung
 	var/speed = 1	// delay of movement
-	var/facedir = 0 // if 1: atom faces the direction of movement
-	var/nostop = 0 // if 1: will only be stopped by teleporters
+	var/facedir = FALSE // if 1: atom faces the direction of movement
+	var/nostop = FALSE // if 1: will only be stopped by teleporters
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)
@@ -179,9 +179,9 @@
 	var/sound //eg. path to the sound, inside '' eg: 'growl.ogg'
 	var/volume = 100
 	var/freq_vary = TRUE //Should the frequency of the sound vary?
-	var/extra_range = 0 // eg World.view = 7, extra_range = 1, 7+1 = 8, 8 turfs radius
+	var/extra_range = FALSE // eg World.view = 7, extra_range = 1, 7+1 = 8, 8 turfs radius
 	var/happens_once = 0
-	var/triggerer_only = 0 //Whether the triggerer is the only person who hears this
+	var/triggerer_only = FALSE //Whether the triggerer is the only person who hears this
 
 
 /obj/effect/step_trigger/sound_effect/Trigger(atom/movable/A)

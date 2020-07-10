@@ -137,7 +137,7 @@
 	. = ..()
 
 	// This is for pulsing the UI element with radiation as part of genetic makeup
-	// If rad_pulse_index > 0 then it means we're attempting a rad pulse
+	// If rad_pulse_index > FALSE then it means we're attempting a rad pulse
 	if((rad_pulse_index > 0) && (rad_pulse_timer <= world.time))
 		rad_pulse()
 		return
@@ -551,7 +551,7 @@
 		// ---------------------------------------------------------------------- //
 		// params["mutref"] - ATOM Ref of specific mutation to create an injector of
 		// params["is_activator"] - Is this an "Activator" style injector, also
-		//  referred to as a "Research" type. Expects a string with 0 or 1, which
+		//  referred to as a "Research" type. Expects a string with FALSE or 1, which
 		//  then gets converted to a number.
 		// params["source"] - The source the request came from.
 		//	Expected results:

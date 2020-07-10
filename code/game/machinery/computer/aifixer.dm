@@ -69,7 +69,7 @@
 	occupier.adjustToxLoss(-1, 0)
 	occupier.adjustBruteLoss(-1, 0)
 	occupier.updatehealth()
-	if(occupier.health >= 0 && occupier.stat == DEAD)
+	if(occupier.health >= FALSE && occupier.stat == DEAD)
 		occupier.revive()
 	return occupier.health < 100
 

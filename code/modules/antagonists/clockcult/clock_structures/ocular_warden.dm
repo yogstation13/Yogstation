@@ -16,7 +16,7 @@
 	var/atom/movable/target
 	var/list/idle_messages = list(" sulkily glares around.", " lazily drifts from side to side.", " looks around for something to burn.", " slowly turns in circles.")
 	var/time_between_shots = 4 //yogs: slower attack speed
-	var/last_process = 0 //see above
+	var/last_process = FALSE //see above
 
 /obj/structure/destructible/clockwork/ocular_warden/Initialize()
 	. = ..()

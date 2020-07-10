@@ -342,7 +342,7 @@
 
 /obj/item/organ/lungs/proc/handle_too_little_breath(mob/living/carbon/human/H = null, breath_pp = 0, safe_breath_min = 0, true_pp = 0)
 	. = 0
-	if(!H || !safe_breath_min) //the other args are either: Ok being 0 or Specifically handled.
+	if(!H || !safe_breath_min) //the other args are either: Ok being FALSE or Specifically handled.
 		return FALSE
 
 	if(prob(20))
@@ -404,7 +404,7 @@
 	desc = "A spongy rib-shaped mass for filtering plasma from the air."
 	icon_state = "lungs-plasma"
 
-	safe_oxygen_min = 0 //We don't breath this
+	safe_oxygen_min = FALSE //We don't breath this
 	safe_toxins_min = 16 //We breath THIS!
 	safe_toxins_max = 0
 
@@ -412,7 +412,7 @@
 	name = "vacuole"
 	desc = "A large organelle designed to store oxygen and other important gasses."
 
-	safe_toxins_max = 0 //We breathe this to gain POWER.
+	safe_toxins_max = FALSE //We breathe this to gain POWER.
 
 /obj/item/organ/lungs/slime/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 	. = ..()

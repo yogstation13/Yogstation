@@ -20,7 +20,7 @@
 	var/time_coeff = TRUE //coefficient for timed mutations
 	var/datum/dna/dna
 	var/mob/living/carbon/human/owner
-	var/instability = 0 //instability the holder gets when the mutation is not native
+	var/instability = FALSE //instability the holder gets when the mutation is not native
 	var/blocks = 4 //Amount of those big blocks with gene sequences
 	var/difficulty = 8 //Amount of missing sequences. Sometimes it removes an entire pair for 2 points
 	var/timed = FALSE   //Boolean to easily check if we're going to self destruct
@@ -30,7 +30,7 @@
 	var/list/conflicts //any mutations that might conflict. put mutation typepath defines in here. make sure to enter it both ways (so that A conflicts with B, and B with A)
 	var/allow_transfer  //Do we transfer upon cloning?
 	//MUT_NORMAL - A mutation that can be activated and deactived by completing a sequence
-	//MUT_EXTRA - A mutation that is in the mutations tab, and can be given and taken away through though the DNA console. Has a 0 before it's name in the mutation section of the dna console
+	//MUT_EXTRA - A mutation that is in the mutations tab, and can be given and taken away through though the DNA console. Has a FALSE before it's name in the mutation section of the dna console
 	//MUT_OTHER Cannot be interacted with by players through normal means. I.E. wizards mutate
 
 

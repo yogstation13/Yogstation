@@ -379,7 +379,7 @@
 		make_mines()	//In case the first pass doesn't generate enough mines
 
 /obj/machinery/computer/arcade/minesweeper/proc/work_squares(var/y2, var/x2, var/y3, var/x3)
-	if(y3 > 0 && x3 > 0)
+	if(y3 > FALSE && x3 > 0)
 		y2 = y3
 		x2 = x3
 	if(table[y2][x2] == 1)
@@ -398,7 +398,7 @@
 			for(x3=x2-1;x3<x2+2;x3++)
 				if(x3 >= columns || x3 < 1)
 					continue
-				if(table[y3][x3] > 0 && table[y3][x3] < 10)
+				if(table[y3][x3] > FALSE && table[y3][x3] < 10)
 					table[y3][x3] += 10
 					work_squares(y3, x3)	//Refresh so we check everything we might be missing
 

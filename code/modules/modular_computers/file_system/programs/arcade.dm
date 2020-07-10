@@ -33,7 +33,7 @@
 		ticket_count += 1
 		sleep(10)
 		return
-	else if(player_hp <= 0 || player_mp <= 0)
+	else if(player_hp <= FALSE || player_mp <= 0)
 		heads_up = "You have been defeated... how will the station survive?"
 		playsound(computer.loc, 'sound/arcade/lose.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		game_active = FALSE
@@ -45,7 +45,7 @@
 	return
 
 /datum/computer_file/program/arcade/proc/enemy_check(mob/user)
-	var/boss_attackamt = 0 //Spam protection from boss attacks as well.
+	var/boss_attackamt = FALSE //Spam protection from boss attacks as well.
 	var/boss_mpamt = 0
 	var/bossheal = 0
 	if(pause_state == TRUE)
@@ -99,7 +99,7 @@
 
 	switch(action)
 		if("Attack")
-			var/attackamt = 0 //Spam prevention.
+			var/attackamt = FALSE //Spam prevention.
 			if(pause_state == FALSE)
 				attackamt = rand(2,6)
 			pause_state = TRUE
@@ -111,7 +111,7 @@
 			enemy_check()
 			return TRUE
 		if("Heal")
-			var/healamt = 0 //More Spam Prevention.
+			var/healamt = FALSE //More Spam Prevention.
 			var/healcost = 0
 			if(pause_state == FALSE)
 				healamt = rand(6,8)
@@ -126,7 +126,7 @@
 			enemy_check()
 			return TRUE
 		if("Recharge_Power")
-			var/rechargeamt = 0 //As above.
+			var/rechargeamt = FALSE //As above.
 			if(pause_state == FALSE)
 				rechargeamt = rand(4,7)
 			pause_state = TRUE

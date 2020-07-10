@@ -55,16 +55,16 @@
 	var/essence_regen_cap = 75 //The regeneration cap of essence (go figure); regenerates every Life() tick up to this amount.
 	var/essence_regenerating = TRUE //If the revenant regenerates essence or not
 	var/essence_regen_amount = 5 //How much essence regenerates
-	var/essence_accumulated = 0 //How much essence the revenant has stolen
-	var/essence_excess = 0 //How much stolen essence avilable for unlocks
+	var/essence_accumulated = FALSE //How much essence the revenant has stolen
+	var/essence_excess = FALSE //How much stolen essence avilable for unlocks
 	var/revealed = FALSE //If the revenant can take damage from normal sources.
-	var/unreveal_time = 0 //How long the revenant is revealed for, is about 2 seconds times this var.
-	var/unstun_time = 0 //How long the revenant is stunned for, is about 2 seconds times this var.
+	var/unreveal_time = FALSE //How long the revenant is revealed for, is about 2 seconds times this var.
+	var/unstun_time = FALSE //How long the revenant is stunned for, is about 2 seconds times this var.
 	var/inhibited = FALSE //If the revenant's abilities are blocked by a chaplain's power.
-	var/essence_drained = 0 //How much essence the revenant will drain from the corpse it's feasting on.
+	var/essence_drained = FALSE //How much essence the revenant will drain from the corpse it's feasting on.
 	var/draining = FALSE //If the revenant is draining someone.
 	var/list/drained_mobs = list() //Cannot harvest the same mob twice
-	var/perfectsouls = 0 //How many perfect, regen-cap increasing souls the revenant has. //TODO, add objective for getting a perfect soul(s?)
+	var/perfectsouls = FALSE //How many perfect, regen-cap increasing souls the revenant has. //TODO, add objective for getting a perfect soul(s?)
 	var/generated_objectives_and_spells = FALSE
 
 /mob/living/simple_animal/revenant/Initialize(mapload)

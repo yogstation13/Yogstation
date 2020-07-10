@@ -99,7 +99,7 @@
 		newName = affix.apply(src, newName)
 
 	if(quality != 0)
-		newName = "[newName] [quality > 0 ? "+" : ""][quality]"
+		newName = "[newName] [quality > FALSE ? "+" : ""][quality]"
 
 	if(canFail && prob((quality - 9)*10))
 		var/turf/place = get_turf(parent)

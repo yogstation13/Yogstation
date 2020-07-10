@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(overlays)
 	var/static/count = 0
 	if (count)
 		var/c = count
-		count = 0 //so if we runtime on the Cut, we don't try again.
+		count = FALSE //so if we runtime on the Cut, we don't try again.
 		queue.Cut(1,c+1)
 
 	for (var/thing in queue)

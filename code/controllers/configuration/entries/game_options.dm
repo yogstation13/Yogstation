@@ -128,7 +128,7 @@
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/number/midround_antag_time_check	// How late (in minutes you want the midround antag system to stay on, setting this to 0 will disable the system)
+/datum/config_entry/number/midround_antag_time_check	// How late (in minutes you want the midround antag system to stay on, setting this to FALSE will disable the system)
 	config_entry_value = 60
 	integer = FALSE
 	min_val = 0

@@ -16,7 +16,7 @@
 		to_chat(H, "<span class='notice'>You are familiar with these human's language. Use this to your advantage to communicate with those authentic with it.</span>")
 	to_chat(new_spawn, "<span class='notice'>When you are close to death you will enter a chrysalis state where you will slowly regenerate. During this state you are very vunerable.</span>")
 
-// Rebirth egg that ashwalkers regenerate in when they reach under 0 health. Takes time to regenerate.
+// Rebirth egg that ashwalkers regenerate in when they reach under FALSE health. Takes time to regenerate.
 /obj/effect/cyrogenicbubble
 	name = "cosmic egg"
 	desc = "You can see the embryo of a slowly regenerating baby-ashwalker. This one is extraordinary."

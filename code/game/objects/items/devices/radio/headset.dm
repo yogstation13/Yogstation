@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	item_state = "headset"
 	materials = list(MAT_METAL=75)
 	subspace_transmission = TRUE
-	canhear_range = 0 // can't hear headsets from very far away
+	canhear_range = FALSE // can't hear headsets from very far away
 
 	slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null

@@ -48,7 +48,7 @@
 	var/datum/data/record/securityActive2
 
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
-	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
+	var/hackprogress = 0				// Possible values: FALSE - 100, >= 100 means the hack is complete and will be reset upon next check
 
 	var/obj/item/integrated_signaler/signaler // AI's signaller
 

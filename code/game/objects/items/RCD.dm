@@ -160,7 +160,7 @@ RLD
 	var/window_type = /obj/structure/window/fulltile
 	var/advanced_airlock_setting = TRUE //Set to TRUE if you want more paintjobs available
 	var/list/conf_access = null
-	var/use_one_access = 0 //If the airlock should require ALL or only ONE of the listed accesses.
+	var/use_one_access = FALSE //If the airlock should require ALL or only ONE of the listed accesses.
 	var/delay_mod = 1
 	var/canRturf = FALSE //Variable for R walls to deconstruct them
 

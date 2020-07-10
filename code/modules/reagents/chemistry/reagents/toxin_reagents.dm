@@ -537,7 +537,7 @@
 	color = "#195096"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	toxpwr = 0
-	taste_mult = 0 // undetectable, I guess?
+	taste_mult = FALSE // undetectable, I guess?
 
 /datum/reagent/toxin/pancuronium/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 10)
@@ -810,7 +810,7 @@
 	name = "Toxin Microcapsules"
 	description = "Causes heavy toxin damage after a brief time of inactivity."
 	reagent_state = LIQUID
-	metabolization_rate = 0 //stays in the system until active.
+	metabolization_rate = FALSE //stays in the system until active.
 	var/actual_metaboliztion_rate = REAGENTS_METABOLISM
 	toxpwr = 0
 	var/actual_toxpwr = 5

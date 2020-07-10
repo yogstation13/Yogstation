@@ -14,7 +14,7 @@
 	idle_power_usage = 15
 	circuit = /obj/item/circuitboard/machine/telecomms/server
 	var/list/log_entries = list()
-	var/totaltraffic = 0 // gigabytes (if > 1024, divide by 1024 -> terrabytes)
+	var/totaltraffic = FALSE // gigabytes (if > 1024, divide by 1024 -> terrabytes)
 
 /obj/machinery/telecomms/server/Initialize()
 	. = ..()
@@ -39,7 +39,7 @@
 
 	// If the signal is still compressed, make the log entry gibberish
 	var/compression = signal.data["compression"]
-	if(compression > 0 || (obj_flags & EMAGGED))
+	if(compression > FALSE || (obj_flags & EMAGGED))
 		log.input_type = "Corrupt File"
 		log.parameters["name"] = Gibberish(signal.data["name"], compression + 50)
 		log.parameters["job"] = Gibberish(signal.data["job"], compression + 50)

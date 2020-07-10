@@ -1,4 +1,4 @@
-#define HIVEMIND_RADAR_MIN_DISTANCE 0 //Very generous, as the targets are only tracked for a few minutes.
+#define HIVEMIND_RADAR_MIN_DISTANCE FALSE //Very generous, as the targets are only tracked for a few minutes.
 #define HIVEMIND_RADAR_MAX_DISTANCE 50
 #define HIVEMIND_RADAR_PING_TIME 40 //4s update time.
 

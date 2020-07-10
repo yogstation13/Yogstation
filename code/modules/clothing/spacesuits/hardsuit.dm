@@ -402,7 +402,7 @@
 	icon_state = "carp_helm"
 	item_state = "syndicate"
 	armor = list("melee" = -20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 75, "fire" = 60, "acid" = 75)	//As whimpy as a space carp
-	brightness_on = 0 //luminosity when on
+	brightness_on = FALSE //luminosity when on
 	actions_types = list()
 
 /obj/item/clothing/head/helmet/space/hardsuit/carp/Initialize()
@@ -846,7 +846,7 @@
 	var/current_charges = 3
 	var/max_charges = 3 //How many charges total the shielding has
 	var/recharge_delay = 200 //How long after we've been shot before we can start recharging. 20 seconds here
-	var/recharge_cooldown = 0 //Time since we've last been shot
+	var/recharge_cooldown = FALSE //Time since we've last been shot
 	var/recharge_rate = TRUE //How quickly the shield recharges once it starts charging
 	var/shield_state = "shield-old"
 	var/shield_on = "shield-old"

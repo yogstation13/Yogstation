@@ -337,8 +337,8 @@
 	icon_state = "helmet_signaler"
 	item_state = "helmet"
 	created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
-	var/swordamt = 0 //If you're converting it into a grievousbot, how many swords have you attached
-	var/toyswordamt = 0 //honk
+	var/swordamt = FALSE //If you're converting it into a grievousbot, how many swords have you attached
+	var/toyswordamt = FALSE //honk
 
 /obj/item/bot_assembly/secbot/attackby(obj/item/I, mob/user, params)
 	..()
@@ -435,7 +435,7 @@
 				robot_arm = null
 				to_chat(user, "<span class='notice'>You remove [dropped_arm] from [src].</span>")
 				build_step--
-				if(toyswordamt > 0 || toyswordamt)
+				if(toyswordamt > FALSE || toyswordamt)
 					toyswordamt = 0
 					icon_state = initial(icon_state)
 					to_chat(user, "<span class='notice'>The superglue binding [src]'s toy swords to its chassis snaps!</span>")

@@ -167,7 +167,7 @@
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
 	if(available_in_days(C) == 0)
-		return TRUE	//Available in 0 days = available right now = player is old enough to play.
+		return TRUE	//Available in FALSE days = available right now = player is old enough to play.
 	return FALSE
 
 
@@ -177,7 +177,7 @@
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
 	if(!SSdbcore.Connect())
-		return 0 //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
+		return FALSE //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
 	if(!isnum(minimal_player_age))
 		return 0
 

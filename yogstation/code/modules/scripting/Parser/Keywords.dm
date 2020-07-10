@@ -3,7 +3,7 @@
 /*
 	File: Keywords
 */
-#define KW_FAIL 0 //Fatal error; stop parsing entire script.
+#define KW_FAIL FALSE //Fatal error; stop parsing entire script.
 #define KW_PASS TRUE //OK
 #define KW_ERR  2 //Non-fatal error, keyword couldn't be handled properly. Ignore keyword but continue on.
 #define KW_WARN 3 //Warning
@@ -19,7 +19,7 @@ Represents a special statement in the code triggered by a keyword.
 
 /*
 	Var: inline
-	1 if the keyword is in an expression (e.g. the new keyword in many languages), 0 otherwise (such as the if and else keywords).
+	1 if the keyword is in an expression (e.g. the new keyword in many languages), FALSE otherwise (such as the if and else keywords).
 */
 	var/inline
 

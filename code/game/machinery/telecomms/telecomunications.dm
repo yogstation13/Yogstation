@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	icon = 'icons/obj/machines/telecomms.dmi'
 	critical_machine = TRUE
 	var/list/links = list() // list of machines this machine is linked to
-	var/traffic = 0 // value increases as traffic increases
+	var/traffic = FALSE // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
 	var/net_efective = 100 //yogs percentage of netspeed aplied
 	var/list/autolinkers = list() // list of text/number values to link with
@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		else
 			machine.receive_information(signal, src)
 
-	if(send_count > 0 && is_freq_listening(signal))
+	if(send_count > FALSE && is_freq_listening(signal))
 		traffic++
 
 	return send_count

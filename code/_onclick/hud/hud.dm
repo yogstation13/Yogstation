@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
 
-//Version denotes which style should be displayed. blank or 0 means "next version"
+//Version denotes which style should be displayed. blank or FALSE means "next version"
 /datum/hud/proc/show_hud(version = 0, mob/viewmob)
 	if(!ismob(mymob))
 		return FALSE
@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	screenmob.client.apply_clickcatcher()
 
 	var/display_hud_version = version
-	if(!display_hud_version)	//If 0 or blank, display the next hud version
+	if(!display_hud_version)	//If FALSE or blank, display the next hud version
 		display_hud_version = hud_version + 1
 	if(display_hud_version > HUD_VERSIONS)	//If the requested version number is greater than the available versions, reset back to the first version
 		display_hud_version = 1

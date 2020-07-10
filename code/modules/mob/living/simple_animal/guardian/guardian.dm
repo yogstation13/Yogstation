@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	hud_type = /datum/hud/guardian
 	dextrous_hud_type = /datum/hud/dextrous/guardian //if we're set to dextrous, account for it.
 	var/list/guardian_overlays[GUARDIAN_TOTAL_LAYERS]
-	var/reset = 0 //if the summoner has reset the guardian already
+	var/reset = FALSE //if the summoner has reset the guardian already
 	var/cooldown = 0
 	var/mob/living/summoner
 	var/range = 10 //how far from the user the spirit can be

@@ -33,7 +33,7 @@
 	var/dispense_type = /obj/item/drone_shell
 
 	// The maximum number of "idle" drone shells it will make before
-	// ceasing production. Set to 0 for infinite.
+	// ceasing production. Set to FALSE for infinite.
 	var/maximum_idle = 3
 
 	var/work_sound = 'sound/items/rped.ogg'
@@ -118,7 +118,7 @@
 	metal_cost = 0
 	glass_cost = 0
 	cooldownTime = 300 //30 seconds
-	maximum_idle = 0 // Swarmers have no restraint
+	maximum_idle = FALSE // Swarmers have no restraint
 	dispense_type = /obj/effect/mob_spawn/swarmer
 	begin_create_message = "hums softly as an interface appears above it, scrolling by at unreadable speed."
 	end_create_message = "materializes a strange shell, which drops to the ground."

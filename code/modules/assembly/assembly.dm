@@ -26,7 +26,7 @@
 	var/attachable = FALSE // can this be attached to wires
 	var/datum/wires/connected = null
 
-	var/next_activate = 0 //When we're next allowed to activate - for spam control
+	var/next_activate = FALSE //When we're next allowed to activate - for spam control
 
 /obj/item/assembly/get_part_rating()
 	return 1

@@ -208,7 +208,7 @@ Consuming extracts:
 	desc = "A warm, crispy cookie, sparkling silver in the light. Smells wonderful."
 	icon_state = "silver"
 	taste = "masterful elven baking"
-	nutrition = 0 //We don't want normal nutriment
+	nutrition = FALSE //We don't want normal nutriment
 
 /obj/item/slime_cookie/silver/do_effect(mob/living/M, mob/user)
 	M.reagents.add_reagent(/datum/reagent/consumable/nutriment/stabilized,10)

@@ -29,7 +29,7 @@
 #define BLOB_REROLL_TIME 2400 //blob gets a free reroll every X time
 #define BLOB_SPREAD_COST 4
 #define BLOB_ATTACK_REFUND 2 //blob refunds this much if it attacks and doesn't spread
-#define BLOB_REFLECTOR_COST 0 //yogs - reflectors are free
+#define BLOB_REFLECTOR_COST FALSE //yogs - reflectors are free
 
 
 //ERT Types
@@ -47,7 +47,7 @@
 #define DEATHSQUAD_LEADER "ds_leader"
 
 //Shuttle hijacking
-#define HIJACK_NEUTRAL 0 //Does not stop hijacking but itself won't hijack
+#define HIJACK_NEUTRAL FALSE //Does not stop hijacking but itself won't hijack
 #define HIJACK_HIJACKER TRUE //Needs to be present for shuttle to be hijacked
 #define HIJACK_PREVENT 2 //Prevents hijacking same way as non-antags
 

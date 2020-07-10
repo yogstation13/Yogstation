@@ -264,7 +264,7 @@
 	icon_state = "h_lathe_wloop"
 	var/chosenchem
 	var/criticalReaction = is_type_in_typecache(exp_on,  critical_items_typecache)
-	var/badThingCoeffIfCrit = criticalReaction ? badThingCoeff : 0 // certain malfunctions are desirable for non-critical items
+	var/badThingCoeffIfCrit = criticalReaction ? badThingCoeff : FALSE // certain malfunctions are desirable for non-critical items
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	if(exp == SCANTYPE_POKE)
 		visible_message("[src] prods at [exp_on] with mechanical arms.")
@@ -412,7 +412,7 @@
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 			if(removed)
 				var/heat_capacity = removed.heat_capacity()
-				if(heat_capacity == 0 || heat_capacity == null)
+				if(heat_capacity == FALSE || heat_capacity == null)
 					heat_capacity = 1
 				removed.set_temperature(min((removed.return_temperature()*heat_capacity + 100000)/heat_capacity, 1000))
 			env.merge(removed)
@@ -462,7 +462,7 @@
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 			if(removed)
 				var/heat_capacity = removed.heat_capacity()
-				if(heat_capacity == 0 || heat_capacity == null)
+				if(heat_capacity == FALSE || heat_capacity == null)
 					heat_capacity = 1
 				removed.set_temperature((removed.return_temperature()*heat_capacity - 75000)/heat_capacity)
 			env.merge(removed)
@@ -521,7 +521,7 @@
 		investigate_log("Experimentor has revealed a relic with <span class='danger'>[R.realProc]</span> effect.", INVESTIGATE_EXPERIMENTOR)
 		ejectItem()
 
-	var/badThingCoeffIfSuccess = (exp == FAIL) ? 0 : badThingCoeff
+	var/badThingCoeffIfSuccess = (exp == FAIL) ? FALSE : badThingCoeff
 
 	//Global reactions
 	if(prob(EFFECT_PROB_VERYLOW-badThingCoeffIfSuccess) && prob(14) && loaded_item)

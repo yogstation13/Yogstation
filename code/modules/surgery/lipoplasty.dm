@@ -42,7 +42,7 @@
 	display_results(user, target, "<span class='notice'>You extract [target]'s fat.</span>",
 			"[user] extracts [target]'s fat!",
 			"[user] extracts [target]'s fat!")
-	target.overeatduration = 0 //patient is unfatted
+	target.overeatduration = FALSE //patient is unfatted
 	var/removednutriment = target.nutrition
 	target.set_nutrition(NUTRITION_LEVEL_WELL_FED)
 	removednutriment -= 450 //whatever was removed goes into the meat

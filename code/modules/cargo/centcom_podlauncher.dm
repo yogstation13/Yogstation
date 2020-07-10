@@ -28,12 +28,12 @@
 	var/launchClone = FALSE //If true, then we don't actually launch the thing in the bay. Instead we call duplicateObject() and send the result
 	var/launchRandomItem = FALSE //If true, lauches a single random item instead of everything on a turf.
 	var/launchChoice = TRUE //Determines if we launch all at once (0) , in order (1), or at random(2)
-	var/explosionChoice = 0 //Determines if there is no explosion (0), custom explosion (1), or just do a maxcap (2)
-	var/damageChoice = 0 //Determines if we do no damage (0), custom amnt of damage (1), or gib + 5000dmg (2)
+	var/explosionChoice = FALSE //Determines if there is no explosion (0), custom explosion (1), or just do a maxcap (2)
+	var/damageChoice = FALSE //Determines if we do no damage (0), custom amnt of damage (1), or gib + 5000dmg (2)
 	var/launcherActivated = FALSE //check if we've entered "launch mode" (when we click a pod is launched). Used for updating mouse cursor
 	var/effectBurst = FALSE //Effect that launches 5 at once in a 3x3 area centered on the target
 	var/effectAnnounce = TRUE
-	var/numTurfs = 0 //Counts the number of turfs with things we can launch in the chosen bay (in the centcom map)
+	var/numTurfs = FALSE //Counts the number of turfs with things we can launch in the chosen bay (in the centcom map)
 	var/launchCounter = TRUE //Used with the "Ordered" launch mode (launchChoice = 1) to see what item is launched
 	var/atom/specificTarget //Do we want to target a specific mob instead of where we click? Also used for smiting
 	var/list/orderedArea = list() //Contains an ordered list of turfs in an area (filled in the createOrderedArea() proc), read top-left to bottom-right. Used for the "ordered" launch mode (launchChoice = 1)
@@ -63,7 +63,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 
 /datum/centcom_podlauncher/ui_data(mob/user) //Sends info about the pod to the UI.
 	var/list/data = list() //*****NOTE*****: Many of these comments are similarly described in supplypod.dm. If you change them here, please consider doing so in the supplypod code as well!
-	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? TRUE : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : 0 //top ten THICCEST FUCKING TERNARY CONDITIONALS OF 2036
+	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? TRUE : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : FALSE //top ten THICCEST FUCKING TERNARY CONDITIONALS OF 2036
 	data["bay"] = bay //Holds the current bay the user is launching objects from. Bays are specific rooms on the centcom map.
 	data["bayNumber"] = B //Holds the bay as a number. Useful for comparisons in centcom_podlauncher.ract
 	data["oldArea"] = (oldTurf ? get_area(oldTurf) : null) //Holds the name of the area that the user was in before using the teleportCentcom action
@@ -526,7 +526,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 	return orderedArea //Return the filled list
 
 /datum/centcom_podlauncher/proc/preLaunch() //Creates a list of acceptable items,
-	numTurfs = 0 //Counts the number of turfs that can be launched (remember, supplypods either launch all at once or one turf-worth of items at a time)
+	numTurfs = FALSE //Counts the number of turfs that can be launched (remember, supplypods either launch all at once or one turf-worth of items at a time)
 	acceptableTurfs = list()
 	for (var/turf/T in orderedArea) //Go through the orderedArea list
 		if (typecache_filter_list_reverse(T.contents, ignored_atoms).len != 0) //if there is something in this turf that isnt in the blacklist, we consider this turf "acceptable" and add it to the acceptableTurfs list
@@ -605,7 +605,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			whomString += "[key_name(M)], "
 
 	var/delayString = temp_pod.landingDelay == initial(temp_pod.landingDelay) ? "" : " Delay=[temp_pod.landingDelay*0.1]s"
-	var/damageString = temp_pod.damage == 0 ? "" : " Dmg=[temp_pod.damage]"
+	var/damageString = temp_pod.damage == FALSE ? "" : " Dmg=[temp_pod.damage]"
 	var/explosionString = ""
 	var/explosion_sum = temp_pod.explosionSize[1] + temp_pod.explosionSize[2] + temp_pod.explosionSize[3] + temp_pod.explosionSize[4]
 	if (explosion_sum != 0)

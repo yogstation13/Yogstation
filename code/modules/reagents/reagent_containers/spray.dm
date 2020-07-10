@@ -13,7 +13,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 7
-	var/stream_mode = 0 //whether we use the more focused mode
+	var/stream_mode = FALSE //whether we use the more focused mode
 	var/current_range = 3 //the range of tiles the sprayer will reach.
 	var/spray_range = 3 //the range of tiles the sprayer will reach when in spray mode.
 	var/stream_range = TRUE //the range of tiles the sprayer will reach when in stream mode.
@@ -124,7 +124,7 @@
 				if(ismob(T))
 					puff_reagent_left -= 1
 
-		if(puff_reagent_left > 0 && (!stream_mode || !range_left))
+		if(puff_reagent_left > FALSE && (!stream_mode || !range_left))
 			D.reagents.reaction(get_turf(D), VAPOR)
 			puff_reagent_left -= 1
 

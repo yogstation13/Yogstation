@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghostvision = TRUE //is the ghost able to see things humans can't?
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 	var/ghost_hud_enabled = TRUE //did this ghost disable the on-screen HUD?
-	var/data_huds_on = 0 //Are data HUDs currently enabled?
+	var/data_huds_on = FALSE //Are data HUDs currently enabled?
 	var/health_scan = FALSE //Are health scans currently enabled?
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
@@ -245,7 +245,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		g_val = hex2num(copytext(input_color, 3, 5))
 		b_val = hex2num(copytext(input_color, 5, 7))
 	else
-		return 0 //If the color format is not 3 or 6, you're using an unexpected way to represent a color.
+		return FALSE //If the color format is not 3 or 6, you're using an unexpected way to represent a color.
 
 	r_val += (255 - r_val) * 0.4
 	if(r_val > 255)
@@ -961,7 +961,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	M.key = key
 	M.faction = list("neutral")
-	M.chew_probability = 0 //so they cant pull off a big brain play by ghosting somewhere or idk
+	M.chew_probability = FALSE //so they cant pull off a big brain play by ghosting somewhere or idk
 	M.layer = BELOW_OPEN_DOOR_LAYER //ENGAGE ADVANCED HIDING BRAIN FUNCTIONS
 	M.language_holder = new /datum/language_holder/mouse(M)
 	M.pass_flags |= PASSDOOR

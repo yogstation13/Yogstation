@@ -14,7 +14,7 @@
 	item_flags = NOBLUDGEON
 	var/list/signs = list()
 	var/max_signs = 10
-	var/creation_time = 0 //time to create a holosign in deciseconds.
+	var/creation_time = FALSE //time to create a holosign in deciseconds.
 	var/holosign_type = /obj/structure/holosign/wetsign
 	var/holocreator_busy = FALSE //to prevent placing multiple holo barriers at once
 

@@ -29,7 +29,7 @@
 	var/list/users = list() //for dialog updates
 	var/window_id = "bot_control"
 	var/window_name = "Protobot 1.0" //Popup title
-	var/window_width = 0 //0 for default size
+	var/window_width = FALSE //0 for default size
 	var/window_height = 0
 	var/obj/item/paicard/paicard // Inserted pai card.
 	var/allow_pai = TRUE // Are we even allowed to insert a pai card.
@@ -46,15 +46,15 @@
 	var/text_dehack = "" 	//Text shown when resetting a bots hacked status to normal.
 	var/text_dehack_fail = "" //Shown when a silicon tries to reset a bot emagged with the emag item, which cannot be reset.
 	var/declare_message = "" //What the bot will display to the HUD user.
-	var/frustration = 0 //Used by some bots for tracking failures to reach their target.
+	var/frustration = FALSE //Used by some bots for tracking failures to reach their target.
 	var/base_speed = 2 //The speed at which the bot moves, or the number of times it moves per process() tick.
 	var/turf/ai_waypoint //The end point of a bot's path, or the target location.
 	var/list/path = list() //List of turfs through which a bot 'steps' to reach the waypoint, associated with the path image, if there is one.
 	var/pathset = 0
 	var/list/ignore_list = list() //List of unreachable targets for an ignore-list enabled bot to ignore.
 	var/mode = BOT_IDLE //Standardizes the vars that indicate the bot is busy with its function.
-	var/tries = 0 //Number of times the bot tried and failed to move.
-	var/remote_disabled = 0 //If enabled, the AI cannot *Remotely* control a bot. It can still control it through cameras.
+	var/tries = FALSE //Number of times the bot tried and failed to move.
+	var/remote_disabled = FALSE //If enabled, the AI cannot *Remotely* control a bot. It can still control it through cameras.
 	var/mob/living/silicon/ai/calling_ai //Links a bot to the AI calling it.
 	var/obj/item/radio/Radio //The bot's radio, for speaking to people.
 	var/radio_key = null //which channels can the bot listen to
@@ -75,7 +75,7 @@
 
 	var/beacon_freq = FREQ_NAV_BEACON
 	var/model = "" //The type of bot it is.
-	var/bot_type = 0 //The type of bot it is, for radio control.
+	var/bot_type = FALSE //The type of bot it is, for radio control.
 	var/data_hud_type = DATA_HUD_DIAGNOSTIC_BASIC //The type of data HUD the bot uses. Diagnostic by default.
 	//This holds text for what the bot is mode doing, reported on the remote bot control interface.
 	var/list/mode_name = list("In Pursuit","Preparing to Arrest", "Arresting", \
@@ -151,7 +151,7 @@
 	if(radio_key)
 		Radio.keyslot = new radio_key
 	Radio.subspace_transmission = TRUE
-	Radio.canhear_range = 0 // anything greater will have the bot broadcast the channel as if it were saying it out loud.
+	Radio.canhear_range = FALSE // anything greater will have the bot broadcast the channel as if it were saying it out loud.
 	Radio.recalculateChannels()
 
 	bot_core = new bot_core_type(src)
@@ -639,7 +639,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 			find_patrol_target() //If it fails, look for the nearest one instead.
 		return
 
-	else if(path.len > 0 && patrol_target)		// valid path
+	else if(path.len > FALSE && patrol_target)		// valid path
 		if(path[1] == loc)
 			increment_path()
 			return
@@ -771,7 +771,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		bot_reset()
 		return
 
-	else if(path.len > 0 && summon_target)		//Proper path acquired!
+	else if(path.len > FALSE && summon_target)		//Proper path acquired!
 		if(path[1] == loc)
 			increment_path()
 			return
@@ -876,7 +876,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 /mob/living/simple_animal/bot/proc/topic_denied(mob/user) //Access check proc for bot topics! Remember to place in a bot's individual Topic if desired.
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return TRUE
-	// 0 for access, TRUE for denied.
+	// FALSE for access, TRUE for denied.
 	if(emagged == 2) //An emagged bot cannot be controlled by humans, silicons can if one hacked it.
 		if(!hacked) //Manually emagged by a human - access denied to all.
 			return TRUE

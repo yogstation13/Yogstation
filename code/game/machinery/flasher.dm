@@ -12,7 +12,7 @@
 	var/obj/item/assembly/flash/handheld/bulb
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
-	var/last_flash = 0 //Don't want it getting spammed like regular flashes
+	var/last_flash = FALSE //Don't want it getting spammed like regular flashes
 	var/strength = 100 //How knocked down targets are when flashed.
 	var/base_state = "mflash"
 
@@ -29,7 +29,7 @@
 	. = ..() // ..() is EXTREMELY IMPORTANT, never forget to add it
 	if(built)
 		setDir(ndir)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -28 : 28)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -28 : 28)
 		pixel_y = (dir & 3)? (dir ==1 ? -28 : 28) : 0
 	else
 		bulb = new(src)

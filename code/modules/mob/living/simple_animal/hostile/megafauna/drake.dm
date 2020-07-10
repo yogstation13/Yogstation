@@ -208,7 +208,7 @@ Difficulty: Medium
 		if(!any_attack)
 			for(var/obj/effect/temp_visual/drakewall/D in drakewalls)
 				qdel(D)
-			return 0 // nothing to attack in the arena time for enraged attack if we still have a target
+			return FALSE // nothing to attack in the arena time for enraged attack if we still have a target
 		for(var/turf/T in turfs)
 			if(!(T in empty))
 				new /obj/effect/temp_visual/lava_warning(T)

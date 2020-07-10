@@ -23,7 +23,7 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 	var/hopping = FALSE
-	var/hop_cooldown = 0 //Strictly for player controlled leapers
+	var/hop_cooldown = FALSE //Strictly for player controlled leapers
 	var/projectile_ready = FALSE //Stopping AI leapers from firing whenever they want, and only doing it after a hop has finished instead
 
 	do_footstep = TRUE
@@ -171,7 +171,7 @@
 
 /mob/living/simple_animal/hostile/jungle/leaper/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(prob(33) && !ckey)
-		ranged_cooldown = 0 //Keeps em on their toes instead of a constant rotation
+		ranged_cooldown = FALSE //Keeps em on their toes instead of a constant rotation
 	..()
 
 /mob/living/simple_animal/hostile/jungle/leaper/OpenFire()

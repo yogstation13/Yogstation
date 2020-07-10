@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/charge_type = "recharge" //can be recharge or charges, see charge_max and charge_counter descriptions; can also be based on the holder's vars now, use "holder_var" for that
 
 	var/charge_max = 100 //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
-	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = "recharge" or -- each cast if charge_type = "charges"
+	var/charge_counter = FALSE //can only cast spells if it equals recharge, ++ each decisecond if charge_type = "recharge" or -- each cast if charge_type = "charges"
 	var/still_recharging_msg = "<span class='notice'>The spell is still recharging.</span>"
 	var/recharging = TRUE
 
@@ -135,9 +135,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/range = 7 //the range of the spell; outer radius for aoe spells
 	var/message = "" //whatever it says to the guy affected by it
 	var/selection_type = "view" //can be "range" or "view"
-	var/spell_level = 0 //if a spell can be taken multiple times, this raises
+	var/spell_level = FALSE //if a spell can be taken multiple times, this raises
 	var/level_max = 4 //The max possible level_max is 4
-	var/cooldown_min = 0 //This defines what spell quickened four times has as a cooldown. Make sure to set this for every spell
+	var/cooldown_min = FALSE //This defines what spell quickened four times has as a cooldown. Make sure to set this for every spell
 	var/player_lock = TRUE //If it can be used by simple mobs
 
 	var/overlay = 0
@@ -146,9 +146,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/overlay_lifespan = 0
 
 	var/sparks_spread = 0
-	var/sparks_amt = 0 //cropped at 10
-	var/smoke_spread = 0 //1 - harmless, 2 - harmful
-	var/smoke_amt = 0 //cropped at 10
+	var/sparks_amt = FALSE //cropped at 10
+	var/smoke_spread = FALSE //1 - harmless, 2 - harmful
+	var/smoke_amt = FALSE //cropped at 10
 
 	var/centcom_cancast = TRUE //Whether or not the spell should be allowed on z2
 
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(!skipcharge)
 		switch(charge_type)
 			if("recharge")
-				charge_counter = 0 //doesn't start recharging until the targets selecting ends
+				charge_counter = FALSE //doesn't start recharging until the targets selecting ends
 			if("charges")
 				charge_counter-- //returns the charge if the targets selecting fails
 			if("holdervar")
@@ -404,10 +404,10 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			target.vars[type] += amount //I bear no responsibility for the runtimes that'll happen if you try to adjust non-numeric or even non-existent vars
 
 /obj/effect/proc_holder/spell/targeted //can mean aoe for mobs (limited/unlimited number) or one target mob
-	var/max_targets = TRUE //leave 0 for unlimited targets in range, TRUE for one selectable target in range, more for limited number of casts (can all target one guy, depends on target_ignore_prev) in range
+	var/max_targets = TRUE //leave FALSE for unlimited targets in range, TRUE for one selectable target in range, more for limited number of casts (can all target one guy, depends on target_ignore_prev) in range
 	var/target_ignore_prev = TRUE //only important if max_targets > 1, affects if the spell can be cast multiple times at one person from one cast
-	var/include_user = 0 //if it includes usr in the target list
-	var/random_target = 0 // chooses random viable target instead of asking the caster
+	var/include_user = FALSE //if it includes usr in the target list
+	var/random_target = FALSE // chooses random viable target instead of asking the caster
 	var/random_target_priority = TARGET_CLOSEST // if random_target is enabled how it will pick the target
 
 

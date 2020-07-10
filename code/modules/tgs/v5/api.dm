@@ -260,7 +260,7 @@
 		return	//this is valid, server may just want use to reboot
 
 	if(port == 0)
-		//to byond 0 means any port and "none" means close vOv
+		//to byond FALSE means any port and "none" means close vOv
 		port = "none"
 
 	if(!world.OpenPort(port))

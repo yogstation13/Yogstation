@@ -29,13 +29,13 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/list/blob_mobs = list()
 	var/list/resource_blobs = list()
 	var/free_strain_rerolls = TRUE //one free strain reroll
-	var/last_reroll_time = 0 //time since we last rerolled, used to give free rerolls
+	var/last_reroll_time = FALSE //time since we last rerolled, used to give free rerolls
 	var/nodes_required = TRUE //if the blob needs nodes to place resource and factory blobs
 	var/placed = 0
 	var/manualplace_min_time = 600 //in deciseconds //a minute, to get bearings
 	var/autoplace_max_time = 3600 //six minutes, as long as should be needed
 	var/list/blobs_legit = list()
-	var/max_count = 0 //The biggest it got before death
+	var/max_count = FALSE //The biggest it got before death
 	var/blobwincount = 400
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE

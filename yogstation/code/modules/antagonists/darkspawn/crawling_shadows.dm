@@ -34,7 +34,7 @@
 	deathmessage = "tremble, break form, and disperse!"
 	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
 
-	var/move_count = 0 //For spooky sound effects
+	var/move_count = FALSE //For spooky sound effects
 	var/knocking_out = FALSE
 	var/mob/living/darkspawn_mob
 

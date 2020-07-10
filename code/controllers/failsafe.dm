@@ -10,7 +10,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	name = "Failsafe"
 
 	// The length of time to check on the MC (in deciseconds).
-	// Set to 0 to disable.
+	// Set to FALSE to disable.
 	var/processing_interval = 20
 	// The alert level. For every failed poke, we drop a DEFCON level. Once we hit DEFCON 1, restart the MC.
 	var/defcon = 5
@@ -74,7 +74,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
 								to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
-							//no need to handle that specially when defcon 0 can handle it
+							//no need to handle that specially when defcon FALSE can handle it
 						if(0) //DEFCON 0! (mc failed to restart)
 							var/rtn = Recreate_MC()
 							if(rtn > 0)

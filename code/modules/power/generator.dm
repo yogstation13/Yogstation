@@ -64,7 +64,7 @@
 			var/delta_temperature = hot_air.return_temperature() - cold_air.return_temperature()
 
 
-			if(delta_temperature > 0 && cold_air_heat_capacity > 0 && hot_air_heat_capacity > 0)
+			if(delta_temperature > FALSE && cold_air_heat_capacity > FALSE && hot_air_heat_capacity > 0)
 				var/efficiency = 0.65
 
 				var/energy_transfer = delta_temperature*hot_air_heat_capacity*cold_air_heat_capacity/(hot_air_heat_capacity+cold_air_heat_capacity)
@@ -88,7 +88,7 @@
 
 		update_icon()
 
-	var/circ = "[cold_circ && cold_circ.last_pressure_delta > 0 ? "1" : "0"][hot_circ && hot_circ.last_pressure_delta > 0 ? "1" : "0"]"
+	var/circ = "[cold_circ && cold_circ.last_pressure_delta > FALSE ? "1" : "0"][hot_circ && hot_circ.last_pressure_delta > FALSE ? "1" : "0"]"
 	if(circ != lastcirc)
 		lastcirc = circ
 		update_icon()

@@ -28,7 +28,7 @@
 	var/supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
 	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 	var/pitches = FALSE //whether or not it should use "sales pitches" similar to a vendor machine
-	var/last_pitch = 0 //When did we last pitch?
+	var/last_pitch = FALSE //When did we last pitch?
 	var/pitch_delay = 2000 //How long until we can pitch again?
 	var/product_slogans = "" //String of slogans separated by semicolons, optional
 	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
@@ -91,7 +91,7 @@
 		seconds_electrified--
 
 	//Slogans and pitches.
-	if(pitches && prob(5) && last_pitch + pitch_delay <= world.time && (contents.len > 0 || slogan_list.len > 0))
+	if(pitches && prob(5) && last_pitch + pitch_delay <= world.time && (contents.len > FALSE || slogan_list.len > 0))
 		if(contents.len > 0) //if we have contents to advertise, advertise them
 			if(prob(25) && slogan_list.len > 0)
 				//Even if we have contents to advertise, 25% of the time it will use a slogan (if available)
@@ -156,7 +156,7 @@
 	else if(powered() && !power_wire_cut)
 		icon_state = startstate
 		//Capacity indication:
-		if(supports_capacity_indication && contents.len > 0 && max_n_of_items > 0)
+		if(supports_capacity_indication && contents.len > FALSE && max_n_of_items > 0)
 			var/current_capacity_percent = (contents.len/max_n_of_items)*100
 			if(current_capacity_percent <= 2)
 				icon_state = startstate

@@ -1125,9 +1125,9 @@
 	var/z_level_check = TRUE //Whether or not it checks for mining z level
 	var/cooldown_time = 20 //how long the cooldown between non-melee ranged attacks is
 	var/chaser_cooldown = 81 //how long the cooldown between firing chasers at mobs is
-	var/chaser_timer = 0 //what our current chaser cooldown is
+	var/chaser_timer = FALSE //what our current chaser cooldown is
 	var/chaser_speed = 0.8 //how fast our chasers are
-	var/timer = 0 //what our current cooldown is
+	var/timer = FALSE //what our current cooldown is
 	var/blast_range = 13 //how long the cardinal blast's walls are
 	var/obj/effect/hierophant/beacon //the associated beacon we teleport to
 	var/teleporting = FALSE //if we ARE teleporting

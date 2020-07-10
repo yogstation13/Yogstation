@@ -6,7 +6,7 @@
 	var/turf/previous_turf
 	var/dont_animate_parallax //world.time of when we can state animate()ing parallax again
 	var/last_parallax_shift //world.time of last update
-	var/parallax_throttle = 0 //ds between updates
+	var/parallax_throttle = FALSE //ds between updates
 	var/parallax_movedir = 0
 	var/parallax_layers_max = 4
 	var/parallax_animate_timer
@@ -274,7 +274,7 @@
 	var/list/new_overlays = new
 	for(var/x in -countx to countx)
 		for(var/y in -county to county)
-			if(x == 0 && y == 0)
+			if(x == FALSE && y == 0)
 				continue
 			var/mutable_appearance/texture_overlay = mutable_appearance(icon, icon_state)
 			texture_overlay.transform = matrix(1, 0, x*480, 0, 1, y*480)

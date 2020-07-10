@@ -31,7 +31,7 @@
 	light_color = "#ff3232"
 
 	var/detecting = 1
-	var/buildstage = 2 // 2 = complete, TRUE = no wires, 0 = circuit gone
+	var/buildstage = 2 // 2 = complete, TRUE = no wires, FALSE = circuit gone
 	var/last_alarm = 0
 	var/area/myarea = null
 
@@ -42,7 +42,7 @@
 	if(building)
 		buildstage = 0
 		panel_open = TRUE
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
+		pixel_x = (dir & 3)? FALSE : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 	update_icon()
 	myarea = get_area(src)
@@ -258,7 +258,7 @@
 /obj/machinery/firealarm/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(.) //damage received
-		if(obj_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
+		if(obj_integrity > FALSE && !(stat & BROKEN) && buildstage != 0)
 			if(prob(33))
 				alarm()
 

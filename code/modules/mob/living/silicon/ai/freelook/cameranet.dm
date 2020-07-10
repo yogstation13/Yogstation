@@ -139,7 +139,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 // Never access this proc directly!!!!
 // This will update the chunk and all the surrounding chunks.
 // It will also add the atom to the cameras list if you set the choice to 1.
-// Setting the choice to 0 will remove the camera from the chunks.
+// Setting the choice to FALSE will remove the camera from the chunks.
 // If you want to update the chunks around an object, without adding/removing a camera, use choice 2.
 
 /datum/cameranet/proc/majorChunkChange(atom/c, choice)

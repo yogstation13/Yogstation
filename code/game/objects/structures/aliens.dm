@@ -115,7 +115,7 @@
 	max_integrity = 15
 	canSmoothWith = list(/obj/structure/alien/weeds, /turf/closed/wall)
 	smooth = SMOOTH_MORE
-	var/last_expand = 0 //last world.time this weed expanded
+	var/last_expand = FALSE //last world.time this weed expanded
 	var/growth_cooldown_low = 150
 	var/growth_cooldown_high = 200
 	var/static/list/blacklisted_turfs

@@ -29,7 +29,7 @@
 
 	//log_admin("[key_name(src)] played sound [S]") // Yogs comment-out
 	//message_admins("[key_name_admin(src)] played sound [S]") // Yogs comment-out
-	var/count = 0 //yogs
+	var/count = FALSE //yogs
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)

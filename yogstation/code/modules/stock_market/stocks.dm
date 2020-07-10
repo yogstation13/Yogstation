@@ -21,7 +21,7 @@
 	var/last_value = 10
 	var/list/products = list()
 
-	var/performance = 0						// The current performance of the company. Tends itself to 0 when no events happen.
+	var/performance = 0						// The current performance of the company. Tends itself to FALSE when no events happen.
 
 	// These variables determine standard fluctuational patterns for this stock.
 	var/fluctuational_coefficient = 1		// How much the price fluctuates on an average daily basis
@@ -91,7 +91,7 @@
 /datum/stock/proc/frc(amt)
 	var/shares = available_shares + outside_shareholders * average_shares
 	var/fr = amt / 100 / shares * fluctuational_coefficient * fluctuation_rate * max(-(current_trend / 100), 1)
-	if ((fr < 0 && speculation < 0) || (fr > 0 && speculation > 0))
+	if ((fr < FALSE && speculation < 0) || (fr > FALSE && speculation > 0))
 		fr *= max(abs(speculation) / 5, 1)
 	else
 		fr /= max(abs(speculation) / 5, 1)
@@ -249,7 +249,7 @@
 /datum/stock/proc/modifyAccount(whose, by, force=0)
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if (D.account_balance)
-		if (by < 0 && D.account_balance + by < 0 && !force)
+		if (by < FALSE && D.account_balance + by < FALSE && !force)
 			return 0
 		D.account_balance += by
 		GLOB.stockExchange.balanceLog(whose, by)

@@ -12,7 +12,7 @@
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 
-	var/universal_translate = 0 // set to TRUE if it can translate nonhuman speech
+	var/universal_translate = FALSE // set to TRUE if it can translate nonhuman speech
 
 	req_access = list(ACCESS_TCOMSAT)
 	circuit = /obj/item/circuitboard/computer/comm_server

@@ -128,7 +128,7 @@
 	name = "destabilizing force"
 	icon_state = "pulse1"
 	nodamage = TRUE
-	damage = 0 //We're just here to mark people. This is still a melee weapon.
+	damage = FALSE //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
 	flag = "bomb"
 	range = 6

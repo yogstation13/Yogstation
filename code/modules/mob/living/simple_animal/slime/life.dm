@@ -1,10 +1,10 @@
 
 /mob/living/simple_animal/slime
-	var/AIproc = 0 // determines if the AI loop is activated
-	var/Atkcool = 0 // attack cooldown
-	var/Tempstun = 0 // temporary temperature stuns
-	var/Discipline = 0 // if a slime has been hit with a freeze gun, or wrestled/attacked off a human, they become disciplined and don't attack anymore for a while
-	var/SStun = 0 // stun variable
+	var/AIproc = FALSE // determines if the AI loop is activated
+	var/Atkcool = FALSE // attack cooldown
+	var/Tempstun = FALSE // temporary temperature stuns
+	var/Discipline = FALSE // if a slime has been hit with a freeze gun, or wrestled/attacked off a human, they become disciplined and don't attack anymore for a while
+	var/SStun = FALSE // stun variable
 
 
 /mob/living/simple_animal/slime/Life()
@@ -221,7 +221,7 @@
 	else if(isanimal(M))
 		var/mob/living/simple_animal/SA = M
 
-		var/totaldamage = 0 //total damage done to this unfortunate animal
+		var/totaldamage = FALSE //total damage done to this unfortunate animal
 		totaldamage += SA.adjustCloneLoss(rand(2,4))
 		totaldamage += SA.adjustToxLoss(rand(1,2))
 
@@ -307,14 +307,14 @@
 
 		if(Target)
 			--target_patience
-			if (target_patience <= 0 || SStun > world.time || Discipline || attacked || docile) // Tired of chasing or something draws out attention
+			if (target_patience <= FALSE || SStun > world.time || Discipline || attacked || docile) // Tired of chasing or something draws out attention
 				target_patience = 0
 				Target = null
 
 		if(AIproc && SStun > world.time)
 			return
 
-		var/hungry = 0 // determines if the slime is hungry
+		var/hungry = FALSE // determines if the slime is hungry
 
 		if (nutrition < get_starve_nutrition())
 			hungry = 2
@@ -322,7 +322,7 @@
 			hungry = 1
 
 		if(hungry == 2 && !client) // if a slime is starving, it starts losing its friends
-			if(Friends.len > 0 && prob(1))
+			if(Friends.len > FALSE && prob(1))
 				var/mob/nofriend = pick(Friends)
 				--Friends[nofriend]
 

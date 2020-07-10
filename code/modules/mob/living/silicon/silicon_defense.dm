@@ -90,7 +90,7 @@
 		for(var/mob/living/M in buckled_mobs)
 			unbuckle_mob(M)
 			M.electrocute_act(shock_damage/100, source, siemens_coeff, safety, tesla_shock, illusion, stun)	//Hard metal shell conducts!
-	return 0 //So borgs they don't die trying to fix wiring
+	return FALSE //So borgs they don't die trying to fix wiring
 
 /mob/living/silicon/emp_act(severity)
 	. = ..()

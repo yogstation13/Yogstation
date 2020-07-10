@@ -7,13 +7,13 @@
 	icon_state = "mecha_equip"
 	force = 5
 	max_integrity = 300
-	var/equip_cooldown = 0 // cooldown after use
+	var/equip_cooldown = FALSE // cooldown after use
 	var/equip_ready = TRUE //whether the equipment is ready for use. (or deactivated/activated for static stuff)
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitFflags
 	var/salvageable = 1
-	var/selectable = 1	// Set to 0 for passive equipment such as mining scanner or armor plates
+	var/selectable = 1	// Set to FALSE for passive equipment such as mining scanner or armor plates
 	var/harmful = FALSE //Controls if equipment can be used to attack by a pacifist.
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
 

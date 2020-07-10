@@ -228,7 +228,7 @@
 
 /datum/reagent/teslium/energized_jelly/on_mob_life(mob/living/carbon/M)
 	if(isjellyperson(M))
-		shock_timer = 0 //immune to shocks
+		shock_timer = FALSE //immune to shocks
 		M.AdjustAllImmobility(-40, FALSE)
 		M.adjustStaminaLoss(-2, 0)
 		if(isluminescent(M))

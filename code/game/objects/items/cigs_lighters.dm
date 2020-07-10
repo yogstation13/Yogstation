@@ -761,9 +761,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = null
 	w_class = WEIGHT_CLASS_TINY
 	var/chem_volume = 100
-	var/vapetime = 0 //this so it won't puff out clouds every tick
-	var/screw = 0 // kinky
-	var/super = 0 //for the fattest vapes dude.
+	var/vapetime = FALSE //this so it won't puff out clouds every tick
+	var/screw = FALSE // kinky
+	var/super = FALSE //for the fattest vapes dude.
 
 /obj/item/clothing/mask/vape/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is puffin hard on dat vape, [user.p_they()] trying to join the vape life on a whole notha plane!</span>")//it doesn't give you cancer, it is cancer

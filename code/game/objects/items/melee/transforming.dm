@@ -2,7 +2,7 @@
 	sharpness = IS_SHARP
 	var/active = FALSE
 	var/force_on = 30 //force when active
-	var/faction_bonus_force = 0 //Bonus force dealt against certain factions
+	var/faction_bonus_force = FALSE //Bonus force dealt against certain factions
 	var/throwforce_on = 20
 	var/icon_state_on = "axe1"
 	var/hitsound_on = 'sound/weapons/blade1.ogg'

@@ -8,7 +8,7 @@ your_list = AStar(start location, end location, moving atom, distance proc, max 
 Optional extras to add on (in order):
 Distance proc : the distance used in every A* calculation (length of path and heuristic)
 MaxNodes: The maximum number of nodes the returned path can be (0 = infinite)
-Maxnodedepth: The maximum number of nodes to search (default: 30, 0 = infinite)
+Maxnodedepth: The maximum number of nodes to search (default: 30, FALSE = infinite)
 Mintargetdist: Minimum distance to the target before path returns, could be used to get
 near a target, but not right to it - for an AI mob with a gun, for example.
 Adjacent proc : returns the turfs to consider around the actually processed node
@@ -138,7 +138,7 @@ Actual Adjacent procs :
 			break
 		//get adjacents turfs using the adjacent proc, checking for access with id
 		if((!maxnodedepth)||(cur.nt <= maxnodedepth))//if too many steps, don't process that path
-			for(var/i = 0 to 3)
+			for(var/i = FALSE to 3)
 				var/f= 1<<i //get cardinal directions.1,2,4,8
 				if(cur.bf & f)
 					var/T = get_step(cur.source,f)

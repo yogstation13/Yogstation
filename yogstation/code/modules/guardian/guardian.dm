@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/custom_name = FALSE
 	var/atk_cooldown = 10
 	var/range = 10
-	var/reset = 0 //if the summoner has reset the guardian already
+	var/reset = FALSE //if the summoner has reset the guardian already
 	var/cooldown = 0
 	var/datum/mind/summoner
 	var/toggle_button_type = /obj/screen/guardian/ToggleMode

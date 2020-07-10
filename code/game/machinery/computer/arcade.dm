@@ -443,7 +443,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 /obj/machinery/computer/arcade/orion_trail/ui_interact(mob/user)
 	. = ..()
-	if(fuel <= 0 || food <=0 || settlers.len == 0)
+	if(fuel <= FALSE || food <=0 || settlers.len == 0)
 		gameStatus = ORION_STATUS_GAMEOVER
 		event = null
 	var/dat = ""
@@ -670,7 +670,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			var/sheriff = remove_crewmember() //I shot the sheriff
 			playsound(loc,'sound/weapons/gunshot.ogg', 100, 1)
 
-			if(settlers.len == 0 || alive == 0)
+			if(settlers.len == FALSE || alive == 0)
 				say("The last crewmember [sheriff], shot themselves, GAME OVER!")
 				if(obj_flags & EMAGGED)
 					usr.death(0)
@@ -1096,7 +1096,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ship"
 	w_class = WEIGHT_CLASS_SMALL
-	var/active = 0 //if the ship is on
+	var/active = FALSE //if the ship is on
 
 /obj/item/orion_ship/examine(mob/user)
 	. = ..()

@@ -231,7 +231,7 @@
 				H.IsSleeping(3)
 			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
-		return 0 // still get all the normal effects.
+		return FALSE // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
 	..()

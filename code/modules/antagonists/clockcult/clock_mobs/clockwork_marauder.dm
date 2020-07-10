@@ -28,7 +28,7 @@
 	empower_string = "<span class='neovgre'>The Anima Bulwark's power flows through you! Your weapon will strike harder, your armor is sturdier, and your shield is more durable.</span>"
 	var/max_shield_health = 3
 	var/shield_health = 3 //Amount of projectiles that can be deflected within
-	var/shield_health_regen = 0 //When world.time equals this, shield health will regenerate
+	var/shield_health_regen = FALSE //When world.time equals this, shield health will regenerate
 
 /mob/living/simple_animal/hostile/clockwork/marauder/examine_info()
 	if(!shield_health)

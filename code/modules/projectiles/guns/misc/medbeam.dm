@@ -12,7 +12,7 @@
 	var/max_range = 8
 	var/active = 0
 	var/datum/beam/current_beam = null
-	var/mounted = 0 //Denotes if this is a handheld or mounted version
+	var/mounted = FALSE //Denotes if this is a handheld or mounted version
 
 	weapon_weight = WEAPON_MEDIUM
 

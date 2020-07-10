@@ -3,7 +3,7 @@
 	var/name = "darkspawn upgrade"
 	var/desc = "This is an upgrade."
 	var/id
-	var/lucidity_price = 0 //How much lucidity an upgrade costs to buy
+	var/lucidity_price = FALSE //How much lucidity an upgrade costs to buy
 	var/datum/antagonist/darkspawn/darkspawn //The datum buying this upgrade
 
 /datum/darkspawn_upgrade/New(darkspawn_datum)

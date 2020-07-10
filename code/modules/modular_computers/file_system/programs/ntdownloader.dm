@@ -17,7 +17,7 @@
 
 	var/datum/computer_file/program/downloaded_file = null
 	var/hacked_download = 0
-	var/download_completion = 0 //GQ of downloaded data.
+	var/download_completion = FALSE //GQ of downloaded data.
 	var/download_netspeed = 0
 	var/downloaderror = ""
 	var/obj/item/modular_computer/my_computer = null

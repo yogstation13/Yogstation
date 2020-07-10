@@ -27,7 +27,7 @@
 	var/blade_status = GUILLOTINE_BLADE_RAISED
 	var/blade_sharpness = GUILLOTINE_BLADE_MAX_SHARP // How sharp the blade is
 	var/kill_count = 0
-	var/current_action = 0 // What's currently happening to the guillotine
+	var/current_action = FALSE // What's currently happening to the guillotine
 
 /obj/structure/guillotine/Initialize()
 	LAZYINITLIST(buckled_mobs)

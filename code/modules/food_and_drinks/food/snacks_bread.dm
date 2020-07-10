@@ -13,7 +13,7 @@
 	filling_color = "#FFA500"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	slot_flags = ITEM_SLOT_HEAD
-	customfoodfilling = 0 //to avoid infinite bread-ception
+	customfoodfilling = FALSE //to avoid infinite bread-ception
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/store/bread/plain

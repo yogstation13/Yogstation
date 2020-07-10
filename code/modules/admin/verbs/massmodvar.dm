@@ -64,7 +64,7 @@
 
 	if(default == VV_NUM)
 		var/dir_text = ""
-		if(var_value > 0 && var_value < 16)
+		if(var_value > FALSE && var_value < 16)
 			if(var_value & 1)
 				dir_text += "NORTH"
 			if(var_value & 2)

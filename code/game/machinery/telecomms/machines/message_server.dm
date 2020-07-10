@@ -86,7 +86,7 @@
 	var/list/datum/data_pda_msg/pda_msgs = list()
 	var/list/datum/data_rc_msg/rc_msgs = list()
 	var/decryptkey = "password"
-	var/calibrating = 15 MINUTES //Init reads this and adds world.time, then becomes 0 when that time has passed and the machine works
+	var/calibrating = 15 MINUTES //Init reads this and adds world.time, then becomes FALSE when that time has passed and the machine works
 
 /obj/machinery/telecomms/message_server/Initialize(mapload)
 	. = ..()
@@ -217,7 +217,7 @@
 	var/recipient = "Unspecified"
 	var/message = "Blank"  // transferred message
 	var/datum/picture/picture  // attached photo
-	var/automated = 0 //automated message
+	var/automated = FALSE //automated message
 
 /datum/data_pda_msg/New(param_rec, param_sender, param_message, param_photo)
 	if(param_rec)

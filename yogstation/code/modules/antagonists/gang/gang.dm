@@ -295,7 +295,7 @@
 	var/hud_entry_num // because if you put something other than a number in GLOB.huds, god have mercy on your fucking soul friend
 	var/list/leaders = list() // bosses
 	var/max_leaders = MAX_LEADERS_GANG
-	var/members_amount = 0 // Counting members
+	var/members_amount = FALSE // Counting members
 	var/list/territories = list() // territories owned by the gang.
 	var/list/lost_territories = list() // territories lost by the gang.
 	var/list/new_territories = list() // territories captured by the gang.
@@ -303,8 +303,8 @@
 	var/domination_time = NOT_DOMINATING
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
-	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
-	var/uniform_influence = 0 // Influence gained from members wearing uniforms. Counts only to weapons.  yogs
+	var/influence = FALSE // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
+	var/uniform_influence = FALSE // Influence gained from members wearing uniforms. Counts only to weapons.  yogs
 	var/passive_uniform_income // Passive income for weapons. The more gang members  you have, the less you will get. Wear your uniform.
 	var/winner // Once the gang wins with a dominator, this becomes true. For roundend credits purposes.
 	var/list/inner_outfits = list()
@@ -436,7 +436,7 @@
 	return new_influence
 
 /datum/team/gang/proc/check_uniform_income()
-	members_amount = 0 // reset so it doesnt just add last cycles to next
+	members_amount = FALSE // reset so it doesnt just add last cycles to next
 	count_members()
 	var/new_uniform_influence = min(999,uniform_influence + passive_uniform_income + (check_clothing() * 5)) // 5 weapon supply points per uniformed gangster + free income per cycle based on members
 	return new_uniform_influence

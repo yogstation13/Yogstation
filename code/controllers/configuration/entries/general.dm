@@ -139,7 +139,7 @@
 	..()
 
 /datum/config_entry/number/ticklag/ValidateAndSet(str_val)
-	. = text2num(str_val) > 0 && ..()
+	. = text2num(str_val) > FALSE && ..()
 	if(.)
 		sync_validate = TRUE
 		var/datum/config_entry/number/fps/FPS = config.entries_by_type[/datum/config_entry/number/fps]
@@ -151,7 +151,7 @@
 
 /datum/config_entry/number/tick_limit_mc_init	//SSinitialization throttling
 	config_entry_value = TICK_LIMIT_MC_INIT_DEFAULT
-	min_val = 0 //oranges warned us
+	min_val = FALSE //oranges warned us
 	integer = FALSE
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system

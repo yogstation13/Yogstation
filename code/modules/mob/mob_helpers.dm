@@ -204,7 +204,7 @@
 	var/max = strength*world.icon_size
 	var/min = -(strength*world.icon_size)
 
-	for(var/i in 0 to duration-1)
+	for(var/i in FALSE to duration-1)
 		if (i == 0)
 			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
 		else
@@ -278,7 +278,7 @@
 	if(!istype(M))
 		return FALSE
 	if(issilicon(M))
-		if(iscyborg(M)) //For cyborgs, returns TRUE if the cyborg has a law 0 and special_role. Returns 0 if the borg is merely slaved to an AI traitor.
+		if(iscyborg(M)) //For cyborgs, returns TRUE if the cyborg has a law FALSE and special_role. Returns FALSE if the borg is merely slaved to an AI traitor.
 			return FALSE
 		else if(isAI(M))
 			var/mob/living/silicon/ai/A = M
@@ -359,7 +359,7 @@
 			dam = 1
 		else
 			dam = 0
-		if((brute_heal > 0 && affecting.brute_dam > 0) || (burn_heal > 0 && affecting.burn_dam > 0))
+		if((brute_heal > FALSE && affecting.brute_dam > 0) || (burn_heal > FALSE && affecting.burn_dam > 0))
 			if(affecting.heal_damage(brute_heal, burn_heal, 0, BODYPART_ROBOTIC))
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \

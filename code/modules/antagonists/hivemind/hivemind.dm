@@ -7,9 +7,9 @@
 	var/special_role = ROLE_HIVE
 	var/list/hivemembers = list()
 	var/hive_size = 0
-	var/threat_level = 0 // Part of what determines how strong the radar is, on a scale of 0 to 10
-	var/track_bonus = 0 // Bonus time to your tracking abilities
-	var/size_mod = 0 // Bonus size for using reclaim
+	var/threat_level = FALSE // Part of what determines how strong the radar is, on a scale of FALSE to 10
+	var/track_bonus = FALSE // Bonus time to your tracking abilities
+	var/size_mod = FALSE // Bonus size for using reclaim
 	var/list/individual_track_bonus = list() // Bonus time to tracking individual targets
 	var/unlocked_one_mind = FALSE
 	var/datum/team/hivemind/active_one_mind
@@ -287,7 +287,7 @@
 				greentext = FALSE
 				break
 
-	if(objectives.len == 0 || greentext)
+	if(objectives.len == FALSE || greentext)
 		result += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		result += "<span class='redtext big'>The [name] has failed!</span>"

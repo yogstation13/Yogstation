@@ -41,7 +41,7 @@
 		if(length(contents) == 1)
 			. += "There is one [icon_type] left."
 		else
-			. += "There are [contents.len <= 0 ? "no" : "[contents.len]"] [icon_type]s left."
+			. += "There are [contents.len <= FALSE ? "no" : "[contents.len]"] [icon_type]s left."
 
 /obj/item/storage/box/fancy/attack_self(mob/user)
 	fancy_open = !fancy_open
@@ -187,7 +187,7 @@
 		return
 	var/obj/item/clothing/mask/cigarette/cig = locate(/obj/item/clothing/mask/cigarette) in contents
 	if(cig)
-		if(M == user && contents.len > 0 && !user.wear_mask)
+		if(M == user && contents.len > FALSE && !user.wear_mask)
 			var/obj/item/clothing/mask/cigarette/W = cig
 			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, W, M)
 			M.equip_to_slot_if_possible(W, SLOT_WEAR_MASK)

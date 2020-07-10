@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 
 /mob/var/action_speed_modifier = TRUE //Value to multiply action delays by //yogs start: fuck
-/mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
+/mob/var/action_speed_adjust = FALSE //Value to add or remove to action delays //yogs end
 
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
 	if(!user || !target)
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
 	if(holding)
-		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
 
 	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
 
@@ -465,7 +465,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/static/list/mob_spawn_meancritters = list() // list of possible hostile mobs
 	var/static/list/mob_spawn_nicecritters = list() // and possible friendly mobs
 
-	if(mob_spawn_meancritters.len <= 0 || mob_spawn_nicecritters.len <= 0)
+	if(mob_spawn_meancritters.len <= FALSE || mob_spawn_nicecritters.len <= 0)
 		for(var/T in typesof(/mob/living/simple_animal))
 			var/mob/living/simple_animal/SA = T
 			switch(initial(SA.gold_core_spawnable))

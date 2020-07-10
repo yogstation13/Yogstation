@@ -19,7 +19,7 @@
 	var/body_part = null //bitflag used to check which clothes cover this bodypart
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
-	var/held_index = 0 //are we a hand? if so, which one!
+	var/held_index = FALSE //are we a hand? if so, which one!
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
 
 	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
@@ -33,7 +33,7 @@
 	var/max_stamina_damage = 0
 	var/max_damage = 0
 
-	var/brute_reduction = 0 //Subtracted to brute damage taken
+	var/brute_reduction = FALSE //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
 
 	//Coloring and proper item icon update
@@ -246,7 +246,7 @@
 	return TRUE //if there was a change.
 
 //Updates an organ's brute/burn states for use by update_damage_overlays()
-//Returns TRUE if we need to update overlays. 0 otherwise.
+//Returns TRUE if we need to update overlays. FALSE otherwise.
 /obj/item/bodypart/proc/update_bodypart_damage_state()
 	var/tbrute	= round( (brute_dam/max_damage)*3, TRUE )
 	var/tburn	= round( (burn_dam/max_damage)*3, TRUE )

@@ -5,10 +5,10 @@
 	var/max_streak_length = 6
 	var/current_target
 	var/datum/martial_art/base // The permanent style. This will be null unless the martial art is temporary
-	var/deflection_chance = 0 //Chance to deflect projectiles
+	var/deflection_chance = FALSE //Chance to deflect projectiles
 	var/reroute_deflection = FALSE //Delete the bullet, or actually deflect it in some direction?
-	var/block_chance = 0 //Chance to block melee attacks using items while on throw mode.
-	var/restraining = 0 //used in cqc's disarm_act to check if the disarmed is being restrained and so whether they should be put in a chokehold or not
+	var/block_chance = FALSE //Chance to block melee attacks using items while on throw mode.
+	var/restraining = FALSE //used in cqc's disarm_act to check if the disarmed is being restrained and so whether they should be put in a chokehold or not
 	var/help_verb
 	var/no_guns = FALSE
 	var/allow_temp_override = TRUE //if this martial art can be overridden by temporary martial arts

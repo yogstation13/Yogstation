@@ -366,7 +366,7 @@
 			if(T == loc)
 				clearInternalDamage(MECHA_INT_CONTROL_LOST)
 				occupant_message("<span class='notice'>Recalibration successful.</span>")
-				log_message("Recalibration of coordination system finished with 0 errors.", LOG_MECHA)
+				log_message("Recalibration of coordination system finished with FALSE errors.", LOG_MECHA)
 			else
 				occupant_message("<span class='warning'>Recalibration failed!</span>")
 				log_message("Recalibration of coordination system failed with TRUE error.", LOG_MECHA, color="red")

@@ -17,7 +17,7 @@
 	faction = list("illusion")
 	var/life_span = INFINITY //how long until they despawn
 	var/mob/living/parent_mob
-	var/multiply_chance = 0 //if we multiply on hit
+	var/multiply_chance = FALSE //if we multiply on hit
 	del_on_death = 1
 	deathmessage = "vanishes into thin air! It was a fake!"
 
@@ -28,7 +28,7 @@
 		death()
 
 
-/mob/living/simple_animal/hostile/illusion/proc/Copy_Parent(mob/living/original, life = 50, hp = 100, damage = 0, replicate = 0 )
+/mob/living/simple_animal/hostile/illusion/proc/Copy_Parent(mob/living/original, life = 50, hp = 100, damage = 0, replicate = FALSE )
 	appearance = original.appearance
 	parent_mob = original
 	setDir(original.dir)

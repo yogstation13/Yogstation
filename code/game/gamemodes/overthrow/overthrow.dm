@@ -56,10 +56,10 @@
 		var/datum/team/overthrow/Oteam = I.team
 		if(istype(Oteam)) // same
 			teams |= Oteam
-	var/max_points = 0 // the maximum amount of points reached
+	var/max_points = FALSE // the maximum amount of points reached
 	for(var/j in teams)
 		var/datum/team/T = j
-		var/points = 0 // Sum of points of all the objectives done
+		var/points = FALSE // Sum of points of all the objectives done
 		for(var/k in T.objectives)
 			var/datum/objective/overthrow/obj = k
 			if(istype(obj))

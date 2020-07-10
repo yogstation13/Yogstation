@@ -22,8 +22,8 @@ They *could* go in their appropriate files, but this is supposed to be modular
 	if(!S || !H || !G)
 		return INVALID_DRAIN
 
-	var/maxcapacity = 0 //Safety check for batteries
-	var/drain = 0 //Drain amount from batteries
+	var/maxcapacity = FALSE //Safety check for batteries
+	var/drain = FALSE //Drain amount from batteries
 
 	. = 0
 
@@ -31,7 +31,7 @@ They *could* go in their appropriate files, but this is supposed to be modular
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, loc)
 
-		while(G.candrain && cell.charge> 0 && !maxcapacity)
+		while(G.candrain && cell.charge> FALSE && !maxcapacity)
 			drain = rand(G.mindrain, G.maxdrain)
 
 			if(cell.charge < drain)
@@ -66,8 +66,8 @@ They *could* go in their appropriate files, but this is supposed to be modular
 	if(!S || !H || !G)
 		return INVALID_DRAIN
 
-	var/maxcapacity = 0 //Safety check for batteries
-	var/drain = 0 //Drain amount from batteries
+	var/maxcapacity = FALSE //Safety check for batteries
+	var/drain = FALSE //Drain amount from batteries
 
 	. = 0
 
@@ -75,7 +75,7 @@ They *could* go in their appropriate files, but this is supposed to be modular
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, loc)
 
-		while(G.candrain && charge > 0 && !maxcapacity)
+		while(G.candrain && charge > FALSE && !maxcapacity)
 			drain = rand(G.mindrain, G.maxdrain)
 
 			if(charge < drain)
@@ -159,8 +159,8 @@ They *could* go in their appropriate files, but this is supposed to be modular
 	if(!S || !H || !G)
 		return INVALID_DRAIN
 
-	var/maxcapacity = 0 //Safety check
-	var/drain = 0 //Drain amount
+	var/maxcapacity = FALSE //Safety check
+	var/drain = FALSE //Drain amount
 
 	. = 0
 
@@ -195,13 +195,13 @@ They *could* go in their appropriate files, but this is supposed to be modular
 	if(!S || !H || !G)
 		return INVALID_DRAIN
 
-	var/maxcapacity = 0 //Safety check
-	var/drain = 0 //Drain amount
+	var/maxcapacity = FALSE //Safety check
+	var/drain = FALSE //Drain amount
 	. = 0
 
 	occupant_message("<span class='danger'>Warning: Unauthorized access through sub-route 4, block H, detected.</span>")
 	if(get_charge())
-		while(G.candrain && cell.charge > 0 && !maxcapacity)
+		while(G.candrain && cell.charge > FALSE && !maxcapacity)
 			drain = rand(G.mindrain,G.maxdrain)
 			if(cell.charge < drain)
 				drain = cell.charge
@@ -222,14 +222,14 @@ They *could* go in their appropriate files, but this is supposed to be modular
 	if(!S || !H || !G)
 		return INVALID_DRAIN
 
-	var/maxcapacity = 0 //Safety check
-	var/drain = 0 //Drain amount
+	var/maxcapacity = FALSE //Safety check
+	var/drain = FALSE //Drain amount
 	. = 0
 
 	to_chat(src, "<span class='danger'>Warning: Unauthorized access through sub-route 12, block C, detected.</span>")
 
 	if(cell && cell.charge)
-		while(G.candrain && cell.charge > 0 && !maxcapacity)
+		while(G.candrain && cell.charge > FALSE && !maxcapacity)
 			drain = rand(G.mindrain,G.maxdrain)
 			if(cell.charge < drain)
 				drain = cell.charge

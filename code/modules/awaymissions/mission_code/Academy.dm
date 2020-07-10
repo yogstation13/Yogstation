@@ -348,7 +348,7 @@
 	invocation = "JE VES"
 	invocation_type = "whisper"
 	range = -1
-	level_max = 0 //cannot be improved
+	level_max = FALSE //cannot be improved
 	cooldown_min = 100
 	include_user = 1
 

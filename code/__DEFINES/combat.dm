@@ -148,7 +148,7 @@
 #define IS_SHARP_ACCURATE	2
 
 //His Grace.
-#define HIS_GRACE_SATIATED 0 //He hungers not. If bloodthirst is set to this, His Grace is asleep.
+#define HIS_GRACE_SATIATED FALSE //He hungers not. If bloodthirst is set to this, His Grace is asleep.
 #define HIS_GRACE_PECKISH 20 //Slightly hungry.
 #define HIS_GRACE_HUNGRY 60 //Getting closer. Increases damage up to a minimum of 20.
 #define HIS_GRACE_FAMISHED 100 //Dangerous. Increases damage up to a minimum of 25 and cannot be dropped.

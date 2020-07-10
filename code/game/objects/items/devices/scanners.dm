@@ -446,7 +446,7 @@ GENE SCANNER
 	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5)
 	var/cooldown = FALSE
 	var/cooldown_time = 250
-	var/accuracy // 0 is the best accuracy.
+	var/accuracy // FALSE is the best accuracy.
 
 /obj/item/analyzer/examine(mob/user)
 	. = ..()
@@ -776,7 +776,7 @@ GENE SCANNER
 
 		if(sequence)
 			var/display
-			for(var/i in 0 to length_char(sequence) / DNA_MUTATION_BLOCKS-1)
+			for(var/i in FALSE to length_char(sequence) / DNA_MUTATION_BLOCKS-1)
 				if(i)
 					display += "-"
 				display += copytext_char(sequence, TRUE + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)

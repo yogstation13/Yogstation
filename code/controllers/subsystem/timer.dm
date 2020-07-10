@@ -13,10 +13,10 @@ SUBSYSTEM_DEF(timer)
 	var/list/datum/timedevent/second_queue = list() //awe, yes, you've had first queue, but what about second queue?
 	var/list/hashes = list()
 
-	var/head_offset = 0 //world.time of the first entry in the the bucket.
+	var/head_offset = FALSE //world.time of the first entry in the the bucket.
 	var/practical_offset = TRUE //index of the first non-empty item in the bucket.
-	var/bucket_resolution = 0 //world.tick_lag the bucket was designed for
-	var/bucket_count = 0 //how many timers are in the buckets
+	var/bucket_resolution = FALSE //world.tick_lag the bucket was designed for
+	var/bucket_count = FALSE //how many timers are in the buckets
 
 	var/list/bucket_list = list() //list of buckets, each bucket holds every timer that has to run that byond tick.
 
@@ -317,7 +317,7 @@ SUBSYSTEM_DEF(timer)
 	var/wait
 	var/hash
 	var/list/flags
-	var/spent = 0 //time we ran the timer.
+	var/spent = FALSE //time we ran the timer.
 	var/name //for easy debugging.
 	//cicular doublely linked list
 	var/datum/timedevent/next
@@ -462,7 +462,7 @@ SUBSYSTEM_DEF(timer)
 		stack_trace("addtimer called with a negative wait. Converting to [world.tick_lag]")
 
 	if (callback.object != GLOBAL_PROC && QDELETED(callback.object) && !QDESTROYING(callback.object))
-		stack_trace("addtimer called with a callback assigned to a qdeleted object. In the future such timers will not be supported and may refuse to run or run with a 0 wait")
+		stack_trace("addtimer called with a callback assigned to a qdeleted object. In the future such timers will not be supported and may refuse to run or run with a FALSE wait")
 
 	wait = max(CEILING(wait, world.tick_lag), world.tick_lag)
 

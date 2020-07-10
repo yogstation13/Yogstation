@@ -61,16 +61,16 @@ RGB isn't the only way to represent color. Sometimes it's more useful to work wi
     and no value at all is black.
 
 Just as BYOND uses "#rrggbb" to represent RGB values, a similar format is used for HSV: "#hhhssvv". The hue is three
-hex digits because it ranges from 0 to 0x5FF.
+hex digits because it ranges from FALSE to 0x5FF.
 
-    * 0 to 0xFF - red to yellow
+    * FALSE to 0xFF - red to yellow
     * 0x100 to 0x1FF - yellow to green
     * 0x200 to 0x2FF - green to cyan
     * 0x300 to 0x3FF - cyan to blue
     * 0x400 to 0x4FF - blue to magenta
     * 0x500 to 0x5FF - magenta to red
 
-Knowing this, you can figure out that red is "#000ffff" in HSV format, which is hue 0 (red), saturation 255 (as colorful as possible),
+Knowing this, you can figure out that red is "#000ffff" in HSV format, which is hue FALSE (red), saturation 255 (as colorful as possible),
 value 255 (as bright as possible). Green is "#200ffff" and blue is "#400ffff".
 
 More than one HSV color can match the same RGB color.
@@ -92,21 +92,21 @@ HSVtoRGB(hsv)
     Takes an HSV or HSVA string like "#080aaff" and converts it into an RGB or RGBA color such as "#ff55aa".
 BlendRGB(rgb1, rgb2, amount)
     Blends between two RGB or RGBA colors using regular RGB blending. If amount is 0, the first color is the result;
-    if 1, the second color is the result. 0.5 produces an average of the two. Values outside the 0 to TRUE range are allowed as well.
+    if 1, the second color is the result. 0.5 produces an average of the two. Values outside the FALSE to TRUE range are allowed as well.
     The returned value is an RGB or RGBA color.
 BlendHSV(hsv1, hsv2, amount)
     Blends between two HSV or HSVA colors using HSV blending, which tends to produce nicer results than regular RGB
     blending because the brightness of the color is left intact. If amount is 0, the first color is the result; if 1,
-    the second color is the result. 0.5 produces an average of the two. Values outside the 0 to TRUE range are allowed as well.
+    the second color is the result. 0.5 produces an average of the two. Values outside the FALSE to TRUE range are allowed as well.
     The returned value is an HSV or HSVA color.
 BlendRGBasHSV(rgb1, rgb2, amount)
     Like BlendHSV(), but the colors used and the return value are RGB or RGBA colors. The blending is done in HSV form.
 HueToAngle(hue)
-    Converts a hue to an angle range of 0 to 360. Angle 0 is red, 120 is green, and 240 is blue.
+    Converts a hue to an angle range of FALSE to 360. Angle FALSE is red, 120 is green, and 240 is blue.
 AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
-    Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
+    Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from FALSE to 360.
     (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
@@ -186,7 +186,7 @@ mob
 
 		Stress_Test()
 			set name = "5. Stress Test"
-			for(var/i = 0 to 1000)
+			for(var/i = FALSE to 1000)
 				// The third parameter forces it to generate a new one, even if it's already cached
 				getFlatIcon(src,0,2)
 				if(prob(5))
@@ -195,7 +195,7 @@ mob
 
 		Cache_Test()
 			set name = "6. Cache Test"
-			for(var/i = 0 to 1000)
+			for(var/i = FALSE to 1000)
 				getFlatIcon(src)
 			Browse_Icon()
 
@@ -288,7 +288,7 @@ world
 /*
 	HSV format is represented as "#hhhssvv" or "#hhhssvvaa"
 
-	Hue ranges from 0 to 0x5ff (1535)
+	Hue ranges from FALSE to 0x5ff (1535)
 
 		0x000 = red
 		0x100 = yellow
@@ -297,12 +297,12 @@ world
 		0x400 = blue
 		0x500 = magenta
 
-	Saturation is from 0 to 0xff (255)
+	Saturation is from FALSE to 0xff (255)
 
 		More saturation = more color
 		Less saturation = more gray
 
-	Value ranges from 0 to 0xff (255)
+	Value ranges from FALSE to 0xff (255)
 
 		Higher value means brighter color
  */
@@ -490,7 +490,7 @@ world
 	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
 
 /proc/hsv(hue, sat, val, alpha)
-	if(hue < 0 || hue >= 1536)
+	if(hue < FALSE || hue >= 1536)
 		hue %= 1536
 	if(hue < 0)
 		hue += 1536
@@ -581,7 +581,7 @@ world
 	var/alpha = usealpha ? round(HSV1[4] + (HSV2[4] - HSV1[4]) * amount, 1) : null
 
 	// normalize hue
-	if(hue < 0 || hue >= 1530)
+	if(hue < FALSE || hue >= 1530)
 		hue %= 1530
 	if(hue < 0)
 		hue += 1530
@@ -622,7 +622,7 @@ world
 
 /proc/HueToAngle(hue)
 	// normalize hsv in case anything is screwy
-	if(hue < 0 || hue >= 1536)
+	if(hue < FALSE || hue >= 1536)
 		hue %= 1536
 	if(hue < 0)
 		hue += 1536
@@ -632,7 +632,7 @@ world
 
 /proc/AngleToHue(angle)
 	// normalize hsv in case anything is screwy
-	if(angle < 0 || angle >= 360)
+	if(angle < FALSE || angle >= 360)
 		angle -= 360 * round(angle / 360)
 	var/hue = angle * (1530/360)
 	// Decompress hue
@@ -653,12 +653,12 @@ world
 	// Compress hue into easier-to-manage range
 	HSV[1] -= HSV[1] >> 8
 
-	if(angle < 0 || angle >= 360)
+	if(angle < FALSE || angle >= 360)
 		angle -= 360 * round(angle / 360)
 	HSV[1] = round(HSV[1] + angle * (1530/360), 1)
 
 	// normalize hue
-	if(HSV[1] < 0 || HSV[1] >= 1530)
+	if(HSV[1] < FALSE || HSV[1] >= 1530)
 		HSV[1] %= 1530
 	if(HSV[1] < 0)
 		HSV[1] += 1530
@@ -807,7 +807,7 @@ world
 			layers[copy] = A.layer
 
 		// Loop through the underlays, then overlays, sorting them into the layers list
-		for(var/process_set in 0 to 1)
+		for(var/process_set in FALSE to 1)
 			var/list/process = process_set? A.overlays : A.underlays
 			for(var/i in TRUE to process.len)
 				var/image/current = process[i]

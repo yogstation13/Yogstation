@@ -12,7 +12,7 @@
 	light_color = "#EF078E"
 	var/time_remaining = 300 //Amount of seconds left to vote on whether or not to activate the beacon
 	var/list/voters  //People who have voted to activate the beacon
-	var/votes_needed = 0 //How many votes are needed to activate the beacon
+	var/votes_needed = FALSE //How many votes are needed to activate the beacon
 	var/available = FALSE //If the beacon can be used
 
 /obj/structure/destructible/clockwork/heralds_beacon/Initialize()

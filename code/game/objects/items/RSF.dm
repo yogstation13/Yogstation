@@ -18,10 +18,10 @@ RSF
 	anchored = FALSE
 	item_flags = NOBLUDGEON
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	var/matter = 0 	///The current matter count
+	var/matter = FALSE 	///The current matter count
 	var/max_matter = 30 	///The max amount of matter in the device
 	var/to_dispense 	///The type of the object we are going to dispense
-	var/dispense_cost = 0 	///The cost of the object we are going to dispense
+	var/dispense_cost = FALSE 	///The cost of the object we are going to dispense
 	w_class = WEIGHT_CLASS_NORMAL
 	///An associated list of atoms and charge costs. This can contain a seperate list, as long as it's associated item is an object
 	var/list/cost_by_item = list(/obj/item/reagent_containers/food/drinks/drinkingglass = 20,
@@ -145,7 +145,7 @@ RSF
 	action_type = "Fabricating"
 	///Tracks whether or not the cookiesynth is about to print a poisoned cookie
 	var/toxin = FALSE //This might be better suited to some initialize fuckery, but I don't have a good "poisoned" sprite
-	var/cooldown = 0 	///Holds a copy of world.time taken the last time the synth gained a charge. Used with cooldowndelay to track when the next charge should be gained
+	var/cooldown = FALSE 	///Holds a copy of world.time taken the last time the synth gained a charge. Used with cooldowndelay to track when the next charge should be gained
 	var/cooldowndelay = 10 	///The period between recharges
 
 /obj/item/rsf/cookiesynth/Initialize()

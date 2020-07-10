@@ -109,7 +109,7 @@
 				if(removed)
 
 					var/heat_capacity = removed.heat_capacity()
-					if(heat_capacity == 0 || heat_capacity == null)
+					if(heat_capacity == FALSE || heat_capacity == null)
 						heat_capacity = 1
 					removed.set_temperature(min((removed.return_temperature()*heat_capacity + heating_power)/heat_capacity, 1000))
 

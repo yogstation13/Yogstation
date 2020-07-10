@@ -31,9 +31,9 @@
 
 	var/confused = 0	//Makes the mob move in random directions.
 
-	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
+	var/hallucination = FALSE //Directly affects how long a mob will hallucinate for
 
-	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	var/last_special = FALSE //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
@@ -50,43 +50,43 @@
 
 	var/tod = null // Time of death
 
-	var/on_fire = 0 //The "Are we on fire?" var
-	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is usually 20
+	var/on_fire = FALSE //The "Are we on fire?" var
+	var/fire_stacks = FALSE //Tracks how many stacks of fire we have on, max is usually 20
 
-	var/bloodcrawl = 0 //0 No blood crawling, BLOODCRAWL for bloodcrawling, BLOODCRAWL_EAT for crawling+mob devour
+	var/bloodcrawl = FALSE //0 No blood crawling, BLOODCRAWL for bloodcrawling, BLOODCRAWL_EAT for crawling+mob devour
 	var/holder = null //The holder for blood crawling
-	var/ventcrawler = 0 //0 No vent crawling, TRUE vent crawling in the nude, 2 vent crawling always
-	var/limb_destroyer = 0 //1 Sets AI behavior that allows mobs to target and dismember limbs with their basic attack.
+	var/ventcrawler = FALSE //0 No vent crawling, TRUE vent crawling in the nude, 2 vent crawling always
+	var/limb_destroyer = FALSE //1 Sets AI behavior that allows mobs to target and dismember limbs with their basic attack.
 
 	var/mob_size = MOB_SIZE_HUMAN
 	var/list/mob_biotypes = list(MOB_ORGANIC)
 	var/metabolism_efficiency = TRUE //more or less efficiency to metabolize helpful/harmful reagents and regulate body temperature..
-	var/has_limbs = 0 //does the mob have distinct limbs?(arms,legs, chest,head)
+	var/has_limbs = FALSE //does the mob have distinct limbs?(arms,legs, chest,head)
 
 	var/list/pipes_shown = list()
 	var/last_played_vent
 
-	var/smoke_delay = 0 //used to prevent spam with smoke reagent reaction on mob.
+	var/smoke_delay = FALSE //used to prevent spam with smoke reagent reaction on mob.
 
 	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 
 	var/last_bumped = 0
-	var/unique_name = 0 //if a mob's name should be appended with an id when created e.g. Mob (666)
+	var/unique_name = FALSE //if a mob's name should be appended with an id when created e.g. Mob (666)
 
 	var/list/butcher_results = null //these will be yielded from butchering with a probability chance equal to the butcher item's effectiveness
 	var/list/guaranteed_butcher_results = null //these will always be yielded from butchering
-	var/butcher_difficulty = 0 //effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
+	var/butcher_difficulty = FALSE //effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
 
-	var/hellbound = 0 //People who've signed infernal contracts are unrevivable.
+	var/hellbound = FALSE //People who've signed infernal contracts are unrevivable.
 
 	var/list/weather_immunities = list()
 
 	var/stun_absorption = null //converted to a list of stun absorption sources this mob has when one is added
 
-	var/blood_volume = 0 //how much blood the mob has
+	var/blood_volume = FALSE //how much blood the mob has
 	var/obj/effect/proc_holder/ranged_ability //Any ranged ability the mob has, as a click override
 
-	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
+	var/see_override = FALSE //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/list/status_effects //a list of all status effects the mob has
 	var/druggy = 0
@@ -107,7 +107,7 @@
 
 	var/can_be_held = FALSE	//whether this can be picked up and held.
 
-	var/radiation = 0 //If the mob is irradiated.
+	var/radiation = FALSE //If the mob is irradiated.
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 	var/losebreath = 0
 

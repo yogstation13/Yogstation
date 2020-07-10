@@ -6,7 +6,7 @@
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "coinpress0"
 	density = TRUE
-	var/newCoins = 0   //how many coins the machine made in it's last load
+	var/newCoins = FALSE   //how many coins the machine made in it's last load
 	var/processing = FALSE
 	var/chosen = MAT_METAL //which material will be used to make coins
 	var/coinsToProduce = 10
@@ -81,7 +81,7 @@
 			updateUsrDialog()
 			return
 
-		while(coinsToProduce > 0 && materials.use_amount_type(coin_mat, chosen))
+		while(coinsToProduce > FALSE && materials.use_amount_type(coin_mat, chosen))
 			create_coins(M.coin_type)
 			coinsToProduce--
 			newCoins++

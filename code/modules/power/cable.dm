@@ -23,12 +23,12 @@ GLOBAL_LIST_INIT(cable_colors, list(
 
   9   TRUE   5
 	\ | /
-  8 - 0 - 4
+  8 - FALSE - 4
 	/ | \
   10  2   6
 
-If d1 = 0 and d2 = 0, there's no cable
-If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to dir (knot cable)
+If d1 = FALSE and d2 = 0, there's no cable
+If d1 = FALSE and d2 = dir, it's a O-X cable, getting from the center of the tile to dir (knot cable)
 If d1 = dir1 and d2 = dir2, it's a full X-X cable, getting from dir1 to dir2
 By design, d1 is the smallest direction and d2 is the highest
 */
@@ -42,7 +42,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	var/d1 = 0   // cable direction TRUE (see above)
+	var/d1 = FALSE   // cable direction TRUE (see above)
 	var/d2 = TRUE   // cable direction 2 (see above)
 	var/datum/powernet/powernet
 	//Cables no longer keep a copy of the cable to be dropped in nullspace
@@ -290,7 +290,7 @@ By design, d1 is the smallest direction and d2 is the highest
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(direction)
 
-	var/fdir = (!direction)? 0 : turn(direction, 180) //flip the direction, to match with the source position on its turf
+	var/fdir = (!direction)? FALSE : turn(direction, 180) //flip the direction, to match with the source position on its turf
 
 	if(!(d1 == direction || d2 == direction)) //if the cable is not pointed in this direction, do nothing
 		return
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	var/obj/structure/cable/C = get_new_cable(T)
 
 	//set up the new cable
-	C.d1 = 0 //it's a O-X node cable
+	C.d1 = FALSE //it's a O-X node cable
 	C.d2 = dirn
 	C.add_fingerprint(user)
 	C.update_icon()

@@ -8,11 +8,11 @@
 	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
 	var/needs_button = TRUE//for passive abilities like hivemind that dont need a button
 	var/helptext = "" // Details
-	var/chemical_cost = 0 // negative chemical cost is for passive abilities (chemical glands)
-	var/dna_cost = -1 //cost of the sting in dna points. 0 = auto-purchase (see changeling.dm), -1 = cannot be purchased
-	var/req_dna = 0  //amount of dna needed to use this ability. Changelings always have atleast 1
-	var/req_human = 0 //if you need to be human to use this ability
-	var/req_absorbs = 0 //similar to req_dna, but only gained from absorbing, not DNA sting
+	var/chemical_cost = FALSE // negative chemical cost is for passive abilities (chemical glands)
+	var/dna_cost = -1 //cost of the sting in dna points. FALSE = auto-purchase (see changeling.dm), -1 = cannot be purchased
+	var/req_dna = FALSE  //amount of dna needed to use this ability. Changelings always have atleast 1
+	var/req_human = FALSE //if you need to be human to use this ability
+	var/req_absorbs = FALSE //similar to req_dna, but only gained from absorbing, not DNA sting
 	var/req_stat = CONSCIOUS // CONSCIOUS, UNCONSCIOUS or DEAD
 	var/ignores_fakedeath = FALSE // usable with the FAKEDEATH flag
 	var/active = FALSE//used by a few powers that toggle

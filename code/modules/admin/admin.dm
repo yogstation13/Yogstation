@@ -852,7 +852,7 @@
 		var/J_title = html_encode(job.title)
 		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))
 		var/J_totPos = html_encode(job.total_positions)
-		dat += "<tr><td>[J_title]:</td> <td>[J_opPos]/[job.total_positions < 0 ? " (unlimited)" : J_totPos]"
+		dat += "<tr><td>[J_title]:</td> <td>[J_opPos]/[job.total_positions < FALSE ? " (unlimited)" : J_totPos]"
 
 		dat += "</td>"
 		dat += "<td>"
@@ -940,7 +940,7 @@
 	return kicked_client_names
 
 //returns TRUE to let the dragdrop code know we are trapping this event
-//returns 0 if we don't plan to trap the event
+//returns FALSE if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(mob/dead/observer/frommob, mob/tomob)
 
 	//this is the exact two check rights checks required to edit a ckey with vv.

@@ -280,7 +280,7 @@
 			var/obj/item/radio/r = I
 			r.listening = 0
 			if(!istype(I, /obj/item/radio/headset))
-				r.broadcasting = 0 //goddamned headset hacks
+				r.broadcasting = FALSE //goddamned headset hacks
 
 /obj/item/abductor/mind_device
 	name = "mental interface device"

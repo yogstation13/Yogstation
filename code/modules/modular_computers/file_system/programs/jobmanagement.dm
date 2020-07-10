@@ -131,7 +131,7 @@
 		))
 	data["slots"] = pos
 	var/delta = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
-	data["cooldown"] = delta < 0 ? 0 : delta
+	data["cooldown"] = delta < FALSE ? FALSE : delta
 	var/list/priority = list()
 	for(var/j in SSjob.prioritized_jobs)
 		var/datum/job/job = j

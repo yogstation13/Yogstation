@@ -9,7 +9,7 @@
 	chemical_cost = 0
 	dna_cost = 1
 	req_human = 1
-	var/stacks = 0 //Increments every 5 seconds; damage increases over time
+	var/stacks = FALSE //Increments every 5 seconds; damage increases over time
 	active = FALSE //Whether or not you are a hedgehog
 
 /datum/action/changeling/strained_muscles/sting_action(mob/living/carbon/user)

@@ -704,7 +704,7 @@
 
 
 /mob/proc/resist_grab(moving_resist)
-	return TRUE //returning 0 means we successfully broke free
+	return TRUE //returning FALSE means we successfully broke free
 
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
@@ -1005,7 +1005,7 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	if(fire_stacks > 0 && !on_fire)
+	if(fire_stacks > FALSE && !on_fire)
 		on_fire = 1
 		src.visible_message("<span class='warning'>[src] catches fire!</span>", \
 						"<span class='userdanger'>You're set on fire!</span>")

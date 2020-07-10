@@ -31,8 +31,8 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	icon_state = "req_comp0"
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/messages = list() //List of all messages
-	var/departmentType = 0 //bitflag
-		// 0 = none (not listed, can only replied to)
+	var/departmentType = FALSE //bitflag
+		// FALSE = none (not listed, can only replied to)
 		// assistance 	= 1
 		// supplies 	= 2
 		// info 		= 4
@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		// assistance + supplies + info = 7
 	var/newmessagepriority = REQ_NO_NEW_MESSAGE
 	var/screen = REQ_SCREEN_MAIN
-		// 0 = main menu,
+		// FALSE = main menu,
 		// TRUE = req. assistance,
 		// 2 = req. supplies
 		// 3 = relay information

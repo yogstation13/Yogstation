@@ -6,7 +6,7 @@
 	hidden = TRUE
 
 	var/obj/machinery/computer/holodeck/linked
-	var/restricted = 0 // if true, program goes on emag list
+	var/restricted = FALSE // if true, program goes on emag list
 	var/minimum_sec_level = SEC_LEVEL_GREEN //override this var if you want the program to be locked to a different alert-level (eg. SEC_LEVEL_BLUE, SEC_LEVEL_RED, SEC_LEVEL_DELTA)
 
 /*

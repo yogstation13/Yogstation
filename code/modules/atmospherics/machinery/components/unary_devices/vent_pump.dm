@@ -127,7 +127,7 @@
 	var/environment_pressure = environment.return_pressure()
 	var/environment_moles = environment.total_moles()
 	var/last_moles_real_added = environment_moles - last_moles
-	if(last_moles_added > 0 && environment_moles == 0 && space_detection)
+	if(last_moles_added > FALSE && environment_moles == FALSE && space_detection)
 		// looks like we have a S P A C E problem.
 		last_moles_added = 0
 		on = FALSE
@@ -141,9 +141,9 @@
 		if(pressure_checks&EXT_BOUND)
 			var/multiplier = TRUE // fast_fill multiplier
 			if(fast_fill)
-				if(last_moles_added > 0 && last_moles_real_added > 0)
+				if(last_moles_added > FALSE && last_moles_real_added > 0)
 					multiplier = clamp(last_moles_added / last_moles_real_added * 0.25, 1, 100)
-				else if(last_moles_added > 0 && last_moles_real_added < 0 && environment_moles != 0)
+				else if(last_moles_added > FALSE && last_moles_real_added < FALSE && environment_moles != 0)
 					multiplier = 10 // pressure is going down, but let's fight it anyways
 			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure) * multiplier)
 		if(pressure_checks&INT_BOUND)

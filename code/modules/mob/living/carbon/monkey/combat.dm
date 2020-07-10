@@ -52,7 +52,7 @@
 /mob/living/carbon/monkey/proc/IsDeadOrIncap(checkDead = TRUE)
 	if(!(mobility_flags & MOBILITY_FLAGS_INTERACTION))
 		return 1
-	if(health <= 0 && checkDead)
+	if(health <= FALSE && checkDead)
 		return 1
 	if(IsUnconscious())
 		return 1

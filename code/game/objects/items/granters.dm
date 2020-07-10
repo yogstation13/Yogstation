@@ -2,12 +2,12 @@
 ///books that teach things (intrinsic actions like bar flinging, spells like fireball or smoke, or martial arts)///
 
 /obj/item/book/granter
-	due_date = 0 // Game time in deciseconds
-	unique = TRUE   // 0  Normal book, TRUE  Should not be treated as normal book, unable to be copied, unable to be modified
+	due_date = FALSE // Game time in deciseconds
+	unique = TRUE   // FALSE  Normal book, TRUE  Should not be treated as normal book, unable to be copied, unable to be modified
 	var/list/remarks = list() //things to read about while learning.
 	var/pages_to_mastery = 3 //Essentially controls how long a mob must keep the book in his hand to actually successfully learn
 	var/reading = FALSE //sanity
-	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
+	var/oneuse = TRUE //default this is true, but admins can var this to FALSE if we wanna all have a pass around of the rod form book
 	var/used = FALSE //only really matters if oneuse but it might be nice to know if someone's used it for admin investigations perhaps
 
 /obj/item/book/granter/proc/turn_page(mob/user)

@@ -29,7 +29,7 @@ effective or pretty fucking useless.
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 
-	var/times_used = 0 //Number of times it's been used.
+	var/times_used = FALSE //Number of times it's been used.
 	var/max_uses = 2
 
 

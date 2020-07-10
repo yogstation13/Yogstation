@@ -12,7 +12,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	var/obj/item/gun/ballistic/minigun/gun
-	var/armed = 0 //whether the gun is attached, 0 is attached, TRUE is the gun is wielded.
+	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
 	var/overheat_max = 40
 	var/heat_diffusion = 1

@@ -28,7 +28,7 @@
 	to_chat(user, "NT-NFS File Table Status: [stored_files.len]/999")
 	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
 
-// Use this proc to add file to the drive. Returns TRUE on success and 0 on failure. Contains necessary sanity checks.
+// Use this proc to add file to the drive. Returns TRUE on success and FALSE on failure. Contains necessary sanity checks.
 /obj/item/computer_hardware/hard_drive/proc/store_file(var/datum/computer_file/F)
 	if(!F || !istype(F))
 		return 0
@@ -51,7 +51,7 @@
 	recalculate_size()
 	return 1
 
-// Use this proc to remove file from the drive. Returns TRUE on success and 0 on failure. Contains necessary sanity checks.
+// Use this proc to remove file from the drive. Returns TRUE on success and FALSE on failure. Contains necessary sanity checks.
 /obj/item/computer_hardware/hard_drive/proc/remove_file(var/datum/computer_file/F)
 	if(!F || !istype(F))
 		return 0

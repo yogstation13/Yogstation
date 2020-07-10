@@ -62,7 +62,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
 	cell_type = "/obj/item/stock_parts/cell/potato"
-	clumsy_check = 0 // Yogs Might as well let clowns use it.
+	clumsy_check = FALSE // Yogs Might as well let clowns use it.
 	/*selfcharge = 1*/ // Yogs Not admeme only anymore
 
 /obj/item/gun/energy/meteorgun/pen
@@ -148,7 +148,7 @@
 		. += "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>"
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
-	var/charge_multiplier = 0 //2 = Refined stack, TRUE = Ore
+	var/charge_multiplier = FALSE //2 = Refined stack, TRUE = Ore
 	if(istype(I, /obj/item/stack/sheet/mineral/plasma))
 		charge_multiplier = 2
 	if(istype(I, /obj/item/stack/ore/plasma))
@@ -171,7 +171,7 @@
 		user.flash_act(light_intensity)
 
 // Can we weld? Plasma cutter does not use charge continuously.
-// Amount cannot be defaulted to 1: most of the code specifies 0 in the call.
+// Amount cannot be defaulted to 1: most of the code specifies FALSE in the call.
 /obj/item/gun/energy/plasmacutter/tool_use_check(mob/living/user, amount)
 	if(QDELETED(cell))
 		to_chat(user, "<span class='warning'>[src] does not have a cell, and cannot be used!</span>")

@@ -101,7 +101,7 @@
 	var/drowsy = 0
 	var/stamina = 0
 	var/jitter = 0
-	var/dismemberment = 0 //The higher the number, the greater the bonus to dismembering. 0 will not dismember at all.
+	var/dismemberment = FALSE //The higher the number, the greater the bonus to dismembering. FALSE will not dismember at all.
 	var/impact_effect_type //what type of impact effect to show when hitting something
 	var/log_override = FALSE //is this type spammed enough to not log? (KAs)
 
@@ -114,7 +114,7 @@
 
 /obj/item/projectile/proc/Range()
 	range--
-	if(range <= 0 && loc)
+	if(range <= FALSE && loc)
 		on_range()
 
 /obj/item/projectile/proc/on_range() //if we want there to be effects when they reach the end of their range
@@ -359,7 +359,7 @@
 		return
 	var/elapsed_time_deciseconds = (world.time - last_projectile_move) + time_offset
 	time_offset = 0
-	var/required_moves = speed > 0? FLOOR(elapsed_time_deciseconds / speed, 1) : MOVES_HITSCAN			//Would be better if a 0 speed made hitscan but everyone hates those so I can't make it a universal system :<
+	var/required_moves = speed > 0? FLOOR(elapsed_time_deciseconds / speed, 1) : MOVES_HITSCAN			//Would be better if a FALSE speed made hitscan but everyone hates those so I can't make it a universal system :<
 	if(required_moves == MOVES_HITSCAN)
 		required_moves = SSprojectiles.global_max_tick_moves
 	else

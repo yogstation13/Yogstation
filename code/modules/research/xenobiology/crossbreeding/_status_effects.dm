@@ -598,7 +598,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	colour = "dark blue"
 
 /datum/status_effect/stabilized/darkblue/tick()
-	if(owner.fire_stacks > 0 && prob(80))
+	if(owner.fire_stacks > FALSE && prob(80))
 		owner.fire_stacks--
 		if(owner.fire_stacks <= 0)
 			to_chat(owner, "<span class='notice'>[linked_extract] coats you in a watery goo, extinguishing the flames.</span>")
@@ -691,7 +691,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(mod < 1)
 		mod++
-		// yeah a value of 0 does nothing but replacing the trait in place is cheaper than removing and adding repeatedly
+		// yeah a value of FALSE does nothing but replacing the trait in place is cheaper than removing and adding repeatedly
 		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown=0, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
@@ -905,7 +905,7 @@ datum/status_effect/stabilized/blue/on_remove()
 
 /datum/status_effect/stabilized/lightpink/tick()
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
-		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
+		if(H != owner && H.stat != DEAD && H.health <= FALSE && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
 			to_chat(owner, "[linked_extract] pulses in sync with [H]'s heartbeat, trying to keep [H.p_them()] alive.")
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
 			if(H.health <= -40 && !H.reagents.has_reagent(/datum/reagent/medicine/regen_jelly))

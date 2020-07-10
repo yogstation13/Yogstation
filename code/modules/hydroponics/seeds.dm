@@ -129,7 +129,7 @@
 	var/obj/machinery/hydroponics/parent = loc
 	if(istype(loc, /obj/machinery/hydroponics))
 		if(parent.yieldmod == 0)
-			return_yield = min(return_yield, 1)//1 if above zero, 0 otherwise
+			return_yield = min(return_yield, 1)//1 if above zero, FALSE otherwise
 		else
 			return_yield *= (parent.yieldmod)
 
@@ -180,7 +180,7 @@
 	if(yield != -1) // Unharvestable shouldn't suddenly turn harvestable
 		yield = clamp(yield + adjustamt, 0, 10)
 
-		if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
+		if(yield <= FALSE && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 			yield = TRUE // Mushrooms always have a minimum yield of 1.
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
 		if(C)
@@ -230,7 +230,7 @@
 	if(yield != -1) // Unharvestable shouldn't suddenly turn harvestable
 		yield = clamp(adjustamt, 0, 10)
 
-		if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
+		if(yield <= FALSE && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 			yield = TRUE // Mushrooms always have a minimum yield of 1.
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
 		if(C)
