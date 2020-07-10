@@ -1,4 +1,7 @@
-"ae" = (/obj/structure/table/reinforced,/obj/item/storage/firstaid/regular{pixel_x = 2; pixel_y = 3},/obj/structure/table/reinforced,/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
+"aa" = (/turf/closed/wall/mineral/titanium/nodiagonal,/area/shuttle/escape)
+"ab" = (/obj/structure/table/reinforced,/obj/item/storage/firstaid/regular{pixel_x = 2; pixel_y = 3},/obj/structure/table/reinforced,/obj/machinery/light{dir = 4},/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
+"ac" = (/obj/machinery/light{dir = 4},/turf/open/floor/mineral/titanium/yellow,/area/shuttle/escape)
+"ad" = (/mob/living/simple_animal/hostile/alien/maid{name = "lusty flight attendant"},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
 "aw" = (/obj/structure/curtain,/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
 "bf" = (/obj/structure/table,/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
 "bE" = (/obj/structure/shuttle/engine/large,/turf/template_noop,/area/shuttle/escape)
@@ -93,13 +96,13 @@ VpVpnzVpVpVpVpVpVp
 nzVpnzVpVpwsihyfVp
 nzVpnzVpdpKeyxihdp
 nzVpnzVpvqtXGilQeV
-nzdpdpdpdpSgGiaedp
+nzdpdpdpaaSgGiabdp
 dpdpgZdpUnGiGiZPdp
-dpqdIGdpHQGiGkWcdp
+dpqdacdpHQGiGkWcdp
 dpIGIGdpHQDSxnEXdp
 dpdpMNdpRrdpdpdpdp
 GGHQHQksHQIforXVdp
-uRRpGiGiHQtvGiNwuR
+uRRpGiGiHQtvadNwuR
 xcHQqoHQHQztPAvCuR
 uRdpdpdpawdpdpdpuR
 vqdFbOIAKKWQXYYUeV
@@ -108,16 +111,16 @@ vqrtzCKyHQSKsWQneV
 vqdFJAIAHQpSJAdFeV
 uRBMGiWBHQGiGiyguR
 vqlQzOgmHQtXzOlQeV
-uRdpdpdpNbdpdpdpuR
+uRdpdpaaNbaadpdpuR
 uRtGwKmmHQmmwKDhuR
-uRdpdpdpNbdpdpdpuR
+uRdpdpaaNbaadpdpuR
 vqrytXXtHQXttXryeV
 uRuGtXtXHQtXtXAzuR
 vqlQtXtXHQtXtXlQeV
 uRlqtXtXHQtXtXNwuR
 vqlQtXtXHQtXtXlQeV
 uRHiPKPKHQBXPKbfuR
-uRuRvwtXHQtXZkuRuR
+uRaavwtXHQtXZkaauR
 VpuRtXtXHQtXtXuRVp
 VpuRtXtXHQtXtXuRVp
 VpuRnYtXHQtXwduRVp
