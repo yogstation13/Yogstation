@@ -1464,6 +1464,14 @@
 	contains = list(/obj/item/vending_refill/wallgene)
 	crate_name = "Genetics Crate"
 
+/datum/supply_pack/science/monkey_helmets
+	name = "Monkey Mind Magnification Helmet crate"
+	desc = "Some research is best done with monkeys, yet sometimes they're just too dumb to complete more complicated tasks. These helmets should help."
+	cost = 1500
+	contains = list(/obj/item/clothing/head/helmet/monkey_sentience,
+					/obj/item/clothing/head/helmet/monkey_sentience)
+	crate_name = "monkey mind magnification crate"
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// Service //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
