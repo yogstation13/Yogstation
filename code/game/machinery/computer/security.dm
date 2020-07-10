@@ -56,9 +56,20 @@
 
 	data["logged_in"] = logged_in
 
-	data["username"] = user.get_authentification_name("Unknown")
+	if(issilicon(user))
+		var/mob/living/silicon/borg = usr
+		data["username"] = borg.name
+		data["has_access"] = TRUE
 
-	data["has_access"] = check_access(user.get_idcard())
+	if(IsAdminGhost(user))
+		data["username"] = user.client.holder.admin_signature
+		data["has_access"] = TRUE
+
+	if(ishuman(user))
+		data["username"] = user.get_authentification_name("Unknown")
+		data["has_access"] = check_access(user.get_idcard())
+
+	
 
 	if(!logged_in)
 		return data
