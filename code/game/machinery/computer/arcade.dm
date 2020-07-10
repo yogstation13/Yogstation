@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
 		return
 	if(istype(O, /obj/item/computer_mouse))
-		to_chat(user, "<span class='notice'>You attach the mouse onto the [src] to overload the prize circuits!</span>")
+		to_chat(user, "<span class='notice'>You attach the mouse onto [src] to overload the prize circuits!</span>")
 		moused = 1
 		qdel(O)
 
