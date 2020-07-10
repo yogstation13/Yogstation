@@ -45,8 +45,7 @@
 			if(W.reagents.total_volume >= W.reagents.maximum_volume)
 				to_chat(user, "<span class='notice'>[W] is full!</span>")
 				return
-			user.visible_message("<span class='notice'>[user] shamefully begins gathering up all [src]...</span>", \
-									"<span class='notice'>You shamefully begin gathering up all [src] into [W]...</span>")
+			user.visible_message("<span class='notice'>[user] shamefully begins gathering up all [src]...</span>", "<span class='notice'>You shamefully begin gathering up all [src] into [W]...</span>")
 			var/scoop_time
 			scoop_time = min((W.reagents.maximum_volume - W.reagents.total_volume), src.reagents.total_volume) * 2 //don't spill your flour
 			if(do_mob(user, user, scoop_time))
