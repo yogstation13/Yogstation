@@ -1744,6 +1744,7 @@
 #include "code\modules\events\spider_infestation.dm"
 #include "code\modules\events\spontaneous_appendicitis.dm"
 #include "code\modules\events\stray_cargo.dm"
+#include "code\modules\events\time_traveler.dm"
 #include "code\modules\events\vent_clog.dm"
 #include "code\modules\events\wormholes.dm"
 #include "code\modules\events\zombie_infection.dm"

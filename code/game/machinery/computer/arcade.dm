@@ -57,6 +57,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	clockwork = TRUE //it'd look weird
 	var/list/prize_override
 	light_color = LIGHT_COLOR_GREEN
+	var/moused = 1
 
 /obj/machinery/computer/arcade/proc/Reset()
 	return
@@ -131,6 +132,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		O = T
 		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
 		return
+	if(istype(O, /obj/item/computer_mouse))
+		to_chat(user, "<span class='notice'>You attach the mouse onto the [src] to overload the prize circuits!</span>")
+		moused = 1
+		qdel(O)
 
 // ** BATTLE ** //
 
@@ -267,7 +272,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				Reset()
 				obj_flags &= ~EMAGGED
 			else
-				prizevend(user)
+				if(moused)
+					mousevend(user)
+				else
+					prizevend(user)
 			SSblackbox.record_feedback("nested tally", "arcade_results", 1, list("win", (obj_flags & EMAGGED ? "emagged":"normal")))
 
 
@@ -1069,7 +1077,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		message_admins("[ADMIN_LOOKUPFLW(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 		log_game("[key_name(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
-		prizevend(user)
+		if(moused)
+			mousevend(user)
+		else
+			prizevend(user)
 	obj_flags &= ~EMAGGED
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
@@ -1158,6 +1169,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			prizevend(user)
 	else
 		to_chat(c_user, "<span class='notice'>You (wisely) decide against putting your hand in the machine.</span>")
+
+/obj/machinery/computer/arcade/proc/mousevend(mob/user)
+	for(var/i=0, i<3,++i)
+		prizevend(user)
+	moused = 0
+	new /obj/item/computer_mouse(get_turf(src))
+	to_chat(user, "<span class='notice'>A Gamer Mouse falls out of the [src]</span>")
 
 #undef ORION_TRAIL_WINTURN
 #undef ORION_TRAIL_RAIDERS

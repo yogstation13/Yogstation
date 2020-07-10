@@ -288,4 +288,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /obj/item/reagent_containers/food/snacks/deadmouse/on_grind()
 	reagents.clear_reagents()
 
+/obj/item/computer_mouse
+    name = "Gamer Mouse"
+    icon = 'icons/mob/animal.dmi'
+    icon_state = "mouse_gray_dead_arcade"
+    desc = "Seems like the mouse didn't hold up well in the bluespace transfiguration. Looks like it will fit in an arcade machine."
 
