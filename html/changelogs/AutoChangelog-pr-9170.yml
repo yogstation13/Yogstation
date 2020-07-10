@@ -1,0 +1,5 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - bugfix: "hierophant temp walls now function correctly"
+  - bugfix: "hierophant crusher trophy now functions correctly"

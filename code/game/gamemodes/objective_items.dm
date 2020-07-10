@@ -176,9 +176,9 @@
 	if(E.Uses > 0)
 		return 1
 	return 0
-	
+
 /datum/objective_item/steal/blackbox
-	name = "The Blackbox."
+	name = "the telecommunications blackbox."
 	targetitem = /obj/item/blackbox
 	difficulty = 10
 	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")

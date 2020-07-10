@@ -88,7 +88,7 @@
 	return TRUE
 
 /proc/is_vampire(mob/living/M)
-	return M && M.mind && M.mind.has_antag_datum(/datum/antagonist/vampire)
+	return M?.mind?.has_antag_datum(/datum/antagonist/vampire)
 
 /datum/game_mode/proc/update_vampire_icons_added(datum/mind/traitor_mind)
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]

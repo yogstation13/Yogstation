@@ -45,7 +45,7 @@ Credit where due:
 ///////////
 
 /proc/is_servant_of_ratvar(mob/M)
-	return istype(M) && !isobserver(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult)
+	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
 
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
@@ -184,8 +184,8 @@ Credit where due:
 		equip_servant(L)
 		add_servant_of_ratvar(L, TRUE)
 	var/list/cog_spawns = GLOB.servant_spawns_scarabs.Copy()
-	for(var/obj/effect/landmark/L in cog_spawns)
-		new /obj/item/clockwork/construct_chassis/cogscarab(get_turf(L))
+	for(var/turf/T in cog_spawns)
+		new /obj/item/clockwork/construct_chassis/cogscarab(T)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
 	G.final_countdown(ark_time)
 	..()
@@ -237,7 +237,7 @@ Credit where due:
 	..()
 	if(GLOB.clockwork_gateway_activated)
 		SSticker.news_report = CLOCK_SUMMON
-		SSticker.mode_result = ( prob(1) ? "Coggers" : "win - servants completed their objective (summon ratvar)")
+		SSticker.mode_result = ("win - servants completed their objective (summon ratvar)")
 	else
 		SSticker.news_report = CULT_FAILURE
 		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"
@@ -360,5 +360,4 @@ Credit where due:
 				/obj/item/clockwork/alloy_shards/large = 15,
 				/obj/structure/destructible/clockwork/wall_gear = 20,
 				/obj/structure/table_frame/brass = 20,
-				/obj/item/stack/tile/brass/ten = 23,
-				/obj/item/clockwork/construct_chassis/cogscarab = 1)
+				/obj/item/stack/tile/brass/ten = 23)

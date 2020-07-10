@@ -22,6 +22,8 @@
 				if("*Arrest*")
 					background = "background-color:#990000;"
 					notice = "<br>**REPORT TO THE BRIG**"
+				if("Search")
+					background = "background-color:#5C4949;"
 				if("Incarcerated")
 					background = "background-color:#CD6500;"
 				if("Paroled")
