@@ -28,6 +28,10 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 
 /datum/game_mode/changeling/pre_setup()
 
+	if(num_players() <= lowpop_amount)
+		if(!prob((2*1.14**num_players())-2)) //exponential equation, chance of restriction goes up as pop goes down.
+			protected_jobs += GLOB.command_positions
+
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
@@ -95,6 +99,9 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			codenamed \"Thing\", and it was highly adaptive and extremely dangerous. We have reason to believe that the Thing has allied with the Syndicate, and you should note that likelihood \
 			of the Thing being sent to a station in this sector is highly likely. It may be in the guise of any crew member. Trust nobody - suspect everybody. Do not announce this to the crew, \
 			as paranoia may spread and inhibit workplace efficiency."
+
+/proc/is_changeling(mob/M) //Usefull check changeling
+	return M?.mind?.has_antag_datum(/datum/antagonist/changeling)
 
 /proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
 	var/datum/dna/chosen_dna = chosen_prof.dna

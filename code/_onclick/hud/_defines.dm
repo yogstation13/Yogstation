@@ -85,12 +85,10 @@
 #define ui_acti_alt "EAST-1:28,SOUTH:5"	//alternative intent switcher for when the interface is hidden (F12)
 #define ui_crafting	"EAST-4:22,SOUTH:5"
 #define ui_building "EAST-4:22,SOUTH:21"
-#define ui_language_menu "EAST-4:6,SOUTH:21"
-#define ui_ghost_pai "EAST-4:6,SOUTH:6"
-
 #define ui_borg_pull "EAST-2:26,SOUTH+1:7"
 #define ui_borg_radio "EAST-1:28,SOUTH+1:7"
 #define ui_borg_intents "EAST-2:26,SOUTH:5"
+#define ui_language_menu "EAST-4:6,SOUTH:21"
 
 
 //Upper-middle right (alerts)
@@ -173,8 +171,10 @@
 
 //Ghosts
 
-#define ui_ghost_jumptomob "SOUTH:6,CENTER-2:24"
-#define ui_ghost_orbit "SOUTH:6,CENTER-1:24"
-#define ui_ghost_reenter_corpse "SOUTH:6,CENTER:24"
-#define ui_ghost_teleport "SOUTH:6,CENTER+1:24"
-#define ui_ghost_spawners "SOUTH: 6, CENTER+2:24"
+#define ui_ghost_jumptomob "SOUTH:6,CENTER-3:24"
+#define ui_ghost_orbit "SOUTH:6,CENTER-2:24"
+#define ui_ghost_reenter_corpse "SOUTH:6,CENTER-1:24"
+#define ui_ghost_teleport "SOUTH:6,CENTER:24"
+#define ui_ghost_spawners "SOUTH: 6, CENTER+1:24"
+#define ui_ghost_language_menu "SOUTH: 22,CENTER+2:8"
+#define ui_ghost_pai "SOUTH: 6,CENTER+2:8"

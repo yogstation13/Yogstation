@@ -339,3 +339,10 @@ datum/chemical_reaction/american
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/cheesemix/swiss(location)
+
+/datum/chemical_reaction/gravy
+	name = "Gravy"
+	id = /datum/reagent/consumable/gravy
+	results = list(/datum/reagent/consumable/gravy = 2)
+	required_reagents = list(/datum/reagent/consumable/drippings = 1, /datum/reagent/consumable/flour = 1)
+	mix_message = "The solution begins to thicken."

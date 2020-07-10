@@ -81,17 +81,15 @@
 /area/shuttle/arrival)
 "j" = (
 /obj/machinery/door/airlock/shuttle,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/end{
+	icon_state = "warn_end";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
@@ -148,10 +146,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/arrival)
-"p" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
 /area/shuttle/arrival)
 "q" = (
 /obj/structure/chair/comfy/shuttle{
@@ -244,6 +238,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
+"A" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "C" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/pill_bottle/dice{
@@ -262,25 +261,6 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
-"J" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
-"T" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
-"V" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -288,11 +268,11 @@ d
 f
 j
 f
-J
-J
+A
+A
 d
-J
-J
+A
+A
 j
 F
 f
@@ -315,8 +295,8 @@ k
 u
 f
 f
-p
-V
+A
+A
 "}
 (3,1,1) = {"
 c
@@ -334,7 +314,7 @@ v
 x
 y
 z
-V
+A
 "}
 (4,1,1) = {"
 b
@@ -351,8 +331,8 @@ t
 w
 f
 f
-p
-V
+A
+A
 "}
 (5,1,1) = {"
 a
@@ -360,11 +340,11 @@ d
 f
 f
 f
-T
-T
+A
+A
 d
-T
-T
+A
+A
 f
 F
 f
