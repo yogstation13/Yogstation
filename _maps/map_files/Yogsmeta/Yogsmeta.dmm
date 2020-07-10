@@ -82352,22 +82352,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/supermatter)
-"djz" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/external{
-	name = "Arrival Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
-"djC" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "Arrival Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "djM" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -83982,6 +83966,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"orh" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "oub" = (
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
@@ -84651,6 +84648,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"wTi" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "xdW" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
@@ -95443,9 +95451,9 @@ aDb
 aDb
 aVu
 aWU
-djz
+wTi
 aZZ
-djC
+orh
 aaa
 aaa
 aaa
@@ -95453,9 +95461,9 @@ aaa
 aaa
 aaa
 aaa
-djz
+wTi
 bsk
-djC
+orh
 aVu
 bxu
 aRA
@@ -97242,9 +97250,9 @@ aSL
 aDb
 aGW
 aSK
-djz
+wTi
 aZZ
-djC
+orh
 aaa
 aaa
 aaa
@@ -97252,9 +97260,9 @@ aaa
 aaa
 aaa
 aaa
-djz
+wTi
 bsk
-djC
+orh
 aVu
 buD
 aRA
