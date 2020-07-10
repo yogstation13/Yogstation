@@ -91,3 +91,12 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/spesslaw
 	subcategory = CAT_SPAGHETTI
+
+/datum/crafting_recipe/food/pizzaghetti
+	name = "Pizzaghetti"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pizzaslice/margherita = 3,
+		/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato  = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/pizzaghetti
+	subcategory = CAT_SPAGHETTI

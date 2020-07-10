@@ -217,7 +217,7 @@
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user)
 	interact(user)
 
-/obj/machinery/power/port_gen/pacman/CtrlClick(mob/user)
+/obj/machinery/power/port_gen/pacman/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(anchored)

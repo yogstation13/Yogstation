@@ -27,7 +27,7 @@
 	var/n_agents = min(round(num_players() / 10), antag_candidates.len, agents_possible)
 	if(n_agents >= required_enemies)
 		for(var/i = 0, i < n_agents, ++i)
-			var/datum/mind/new_op = pick_n_take(antag_candidates)
+			var/datum/mind/new_op = antag_pick(antag_candidates)
 			pre_nukeops += new_op
 			new_op.assigned_role = "Nuclear Operative"
 			new_op.special_role = "Nuclear Operative"
@@ -108,7 +108,7 @@
 			can activate this explosive is on your station. Ensure that it is protected at all times, and remain alert for possible intruders."
 
 /proc/is_nuclear_operative(mob/M)
-	return M && istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/nukeop)
+	return M?.mind?.has_antag_datum(/datum/antagonist/nukeop)
 
 /datum/outfit/syndicate
 	name = "Syndicate Operative - Basic"
