@@ -234,7 +234,7 @@
 /obj/item/organ/tongue/snail/handle_speech(datum/source, list/speech_args)
 	var/new_message
 	var/message = speech_args[SPEECH_MESSAGE]
-	for(var/i in 1 to length(message))
+	for(var/i in TRUE to length(message))
 		if(findtext("ABCDEFGHIJKLMNOPWRSTUVWXYZabcdefghijklmnopqrstuvwxyz", message[i])) //Im open to suggestions
 			new_message += message[i] + message[i] + message[i] //aaalllsssooo ooopppeeennn tttooo sssuuuggggggeeessstttiiiooonsss
 		else

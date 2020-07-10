@@ -67,7 +67,7 @@
 /datum/round_event_control/meteor_wave/catastrophic
 	name = "Meteor Wave: Catastrophic"
 	typepath = /datum/round_event/meteor_wave/catastrophic
-	weight = 1 //yogs
+	weight = TRUE //yogs
 	min_players = 25
 	max_occurrences = 3
 	//earliest_start = 45 MINUTES //yogs

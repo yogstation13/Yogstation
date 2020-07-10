@@ -375,7 +375,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 	var/list/names = list()
-	for (var/i in 1 to L.len)
+	for (var/i in TRUE to L.len)
 		var/key = L[i]
 		var/value
 		if (IS_NORMAL_LIST(L) && !isnum(key))

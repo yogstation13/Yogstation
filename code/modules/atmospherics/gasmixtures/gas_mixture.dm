@@ -82,11 +82,11 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/proc/archive()
 	//Update archived versions of variables
-	//Returns: 1 in all cases
+	//Returns: TRUE in all cases
 
 /datum/gas_mixture/proc/merge(datum/gas_mixture/giver)
 	//Merges all air from giver into self. giver is untouched.
-	//Returns: 1 if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/remove(amount)
 	//Removes amount of gas from the gas_mixture
@@ -106,22 +106,22 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/proc/copy_from(datum/gas_mixture/sample)
 	//Copies variables from sample
-	//Returns: 1 if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/copy_from_turf(turf/model)
 	//Copies all gas info from the turf into the gas list along with temperature
-	//Returns: 1 if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/parse_gas_string(gas_string)
 	//Copies variables from a particularly formatted string.
-	//Returns: 1 if we are mutable, 0 otherwise
+	//Returns: TRUE if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/share(datum/gas_mixture/sharer)
-	//Performs air sharing calculations between two gas_mixtures assuming only 1 boundary length
+	//Performs air sharing calculations between two gas_mixtures assuming only TRUE boundary length
 	//Returns: amount of gas exchanged (+ if sharer received)
 
 /datum/gas_mixture/proc/temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
-	//Performs temperature sharing calculations (via conduction) between two gas_mixtures assuming only 1 boundary length
+	//Performs temperature sharing calculations (via conduction) between two gas_mixtures assuming only TRUE boundary length
 	//Returns: new temperature of the sharer
 
 /datum/gas_mixture/proc/compare(datum/gas_mixture/sample)
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/proc/react(turf/open/dump_location)
 	//Performs various reactions such as combustion or fusion (LOL)
-	//Returns: 1 if any reaction took place; 0 otherwise
+	//Returns: TRUE if any reaction took place; 0 otherwise
 
 
 /datum/gas_mixture/proc/__remove()
@@ -241,7 +241,7 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 	var/pa
 	var/pb
 	pa = world.tick_usage
-	for(var/I in 1 to 100000)
+	for(var/I in TRUE to 100000)
 		B.transfer_to(A, 1)
 		A.transfer_to(B, 1)
 	pb = world.tick_usage
@@ -249,14 +249,14 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 	to_chat(src, "Total time (gas transfer): [total_time]ms")
 	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
 	pa = world.tick_usage
-	for(var/I in 1 to 100000)
+	for(var/I in TRUE to 100000)
 		B.total_moles();
 	pb = world.tick_usage
 	total_time = (pb-pa) * world.tick_lag
 	to_chat(src, "Total time (total_moles): [total_time]ms")
 	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
 	pa = world.tick_usage
-	for(var/I in 1 to 100000)
+	for(var/I in TRUE to 100000)
 		new /datum/gas_mixture
 	pb = world.tick_usage
 	total_time = (pb-pa) * world.tick_lag

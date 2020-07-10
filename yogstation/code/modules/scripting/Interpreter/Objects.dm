@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 		if(!isnum(index) || (index <= L.len && index >= 1))
 			return L[index]
 	else if(istext(object))
-		if(isnum(index) && index >= 1 && index <= length(object))
+		if(isnum(index) && index >= TRUE && index <= length(object))
 			return object[index]
 	RaiseError(new/runtimeError/IndexOutOfRange(object, index), scope, node)
 
@@ -174,12 +174,12 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_function/list_copy
 	name = "Copy"
 /datum/n_function/list_copy/execute(list/this_obj, list/params)
-	return this_obj.Copy(params.len >= 1 ? params[1] : 1, params.len >= 2 ? params[2] : 0)
+	return this_obj.Copy(params.len >= TRUE ? params[1] : 1, params.len >= 2 ? params[2] : 0)
 
 /datum/n_function/list_cut
 	name = "Cut"
 /datum/n_function/list_cut/execute(list/this_obj, list/params)
-	this_obj.Cut(params.len >= 1 ? params[1] : 1, params.len >= 2 ? params[2] : 0)
+	this_obj.Cut(params.len >= TRUE ? params[1] : 1, params.len >= 2 ? params[2] : 0)
 
 /datum/n_function/list_find
 	name = "Find"

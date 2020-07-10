@@ -26,7 +26,7 @@
 	melee_damage_upper = 20
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	vision_range = 1 // Only attack when target is close
+	vision_range = TRUE // Only attack when target is close
 	wander = FALSE
 	attacktext = "glomps"
 	attack_sound = 'sound/effects/blobattack.ogg'

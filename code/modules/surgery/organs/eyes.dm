@@ -315,7 +315,7 @@
 	var/turf/scanning = scanfrom
 	var/stop = FALSE
 	on_mob.forceMove(scanning)
-	for(var/i in 1 to light_beam_distance)
+	for(var/i in TRUE to light_beam_distance)
 		scanning = get_step(scanning, scandir)
 		if(scanning.opacity || scanning.has_opaque_atom)
 			stop = TRUE
@@ -351,7 +351,7 @@
 /obj/item/organ/eyes/robotic/glow/proc/regenerate_light_effects()
 	clear_visuals(TRUE)
 	on_mob = new(src)
-	for(var/i in 1 to light_beam_distance)
+	for(var/i in TRUE to light_beam_distance)
 		LAZYADD(eye_lighting,new /obj/effect/abstract/eye_lighting(src))
 	sync_light_effects()
 

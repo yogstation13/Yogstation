@@ -165,7 +165,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	//Natural runs shorter than this will be extended with binarySort
 	proc/minRunLength(n)
 		//ASSERT(n >= 0)
-		var/r = 0	//becomes 1 if any bits are shifted off
+		var/r = 0	//becomes TRUE if any bits are shifted off
 		while(n >= MIN_MERGE)
 			r |= (n & 1)
 			n >>= 1
@@ -179,7 +179,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	proc/mergeCollapse()
 		while(runBases.len >= 2)
 			var/n = runBases.len - 1
-			if(n > 1 && runLens[n-1] <= runLens[n] + runLens[n+1])
+			if(n > TRUE && runLens[n-1] <= runLens[n] + runLens[n+1])
 				if(runLens[n-1] < runLens[n+1])
 					--n
 				mergeAt(n)
@@ -194,7 +194,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	proc/mergeForceCollapse()
 		while(runBases.len >= 2)
 			var/n = runBases.len - 1
-			if(n > 1 && runLens[n-1] < runLens[n+1])
+			if(n > TRUE && runLens[n-1] < runLens[n+1])
 				--n
 			mergeAt(n)
 
@@ -205,7 +205,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	proc/mergeAt(i)
 		//ASSERT(runBases.len >= 2)
 		//ASSERT(i >= 1)
-		//ASSERT(i == runBases.len - 1 || i == runBases.len - 2)
+		//ASSERT(i == runBases.len - TRUE || i == runBases.len - 2)
 
 		var/base1 = runBases[i]
 		var/base2 = runBases[i+1]
@@ -391,7 +391,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 				//do the straightfoward thin until one run starts winning consistently
 
 				do
-					//ASSERT(len1 > 1 && len2 > 0)
+					//ASSERT(len1 > TRUE && len2 > 0)
 					if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1)) < 0)
 						moveElement(L, cursor2++, cursor1++)
 						--len2
@@ -416,7 +416,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 				//one run is winning consistently so galloping may provide huge benifits
 				//so try galloping, until such time as the run is no longer consistently winning
 				do
-					//ASSERT(len1 > 1 && len2 > 0)
+					//ASSERT(len1 > TRUE && len2 > 0)
 
 					count1 = gallopRight(fetchElement(L,cursor2), cursor1, len1, 0)
 					if(count1)
@@ -592,7 +592,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 
 		while(runBases.len >= 2)
 			var/n = runBases.len - 1
-			if(n > 1 && runLens[n-1] <= runLens[n] + runLens[n+1])
+			if(n > TRUE && runLens[n-1] <= runLens[n] + runLens[n+1])
 				if(runLens[n-1] < runLens[n+1])
 					--n
 				mergeAt2(n)
@@ -603,7 +603,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 
 		while(runBases.len >= 2)
 			var/n = runBases.len - 1
-			if(n > 1 && runLens[n-1] < runLens[n+1])
+			if(n > TRUE && runLens[n-1] < runLens[n+1])
 				--n
 			mergeAt2(n)
 

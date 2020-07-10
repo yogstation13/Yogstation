@@ -458,7 +458,7 @@
 	on_cooldown = 0
 
 /obj/item/warpwhistle/Destroy()
-	if(on_cooldown == 1 && last_user) //Flute got dunked somewhere in the teleport
+	if(on_cooldown == TRUE && last_user) //Flute got dunked somewhere in the teleport
 		end_effect(last_user)
 	return ..()
 

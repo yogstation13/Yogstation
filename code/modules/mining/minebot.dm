@@ -305,7 +305,7 @@
 	icon = 'icons/obj/module.dmi'
 	sentience_type = SENTIENCE_MINEBOT
 	var/base_health_add = 5 //sentient minebots are penalized for beign sentient; they have their stats reset to normal plus these values
-	var/base_damage_add = 1 //this thus disables other minebot upgrades
+	var/base_damage_add = TRUE //this thus disables other minebot upgrades
 	var/base_speed_add = 1
 	var/base_cooldown_add = 10 //base cooldown isn't reset to normal, it's just added on, since it's not practical to disable the cooldown module
 

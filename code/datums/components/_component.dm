@@ -36,7 +36,7 @@
 				components_of_type = test
 			if(I == our_type)	//exact match, take priority
 				var/inserted = FALSE
-				for(var/J in 1 to components_of_type.len)
+				for(var/J in TRUE to components_of_type.len)
 					var/datum/component/C = components_of_type[J]
 					if(C.type != our_type) //but not over other exact matches
 						components_of_type.Insert(J, I)
@@ -73,7 +73,7 @@
 		var/list/components_of_type = dc[I]
 		if(length(components_of_type))	//
 			var/list/subtracted = components_of_type - src
-			if(subtracted.len == 1)	//only 1 guy left
+			if(subtracted.len == 1)	//only TRUE guy left
 				dc[I] = subtracted[1]	//make him special
 			else
 				dc[I] = subtracted

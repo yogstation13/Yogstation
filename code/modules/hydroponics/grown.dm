@@ -10,7 +10,7 @@
 	var/plantname = ""
 	var/bitesize_mod = 0
 	var/splat_type = /obj/effect/decal/cleanable/food/plant_smudge
-	// If set, bitesize = 1 + round(reagents.total_volume / bitesize_mod)
+	// If set, bitesize = TRUE + round(reagents.total_volume / bitesize_mod)
 	dried_type = -1
 	// Saves us from having to define each stupid grown's dried_type as itself.
 	// If you don't want a plant to be driable (watermelons) set this to null in the time definition.
@@ -51,7 +51,7 @@
 /obj/item/reagent_containers/food/snacks/grown/proc/add_juice()
 	if(reagents)
 		if(bitesize_mod)
-			bitesize = 1 + round(reagents.total_volume / bitesize_mod)
+			bitesize = TRUE + round(reagents.total_volume / bitesize_mod)
 		return 1
 	return 0
 
@@ -147,7 +147,7 @@
 /obj/item/reagent_containers/food/snacks/grown/on_grind()
 	var/nutriment = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 	if(grind_results&&grind_results.len)
-		for(var/i in 1 to grind_results.len)
+		for(var/i in TRUE to grind_results.len)
 			grind_results[grind_results[i]] = nutriment
 		reagents.del_reagent(/datum/reagent/consumable/nutriment)
 		reagents.del_reagent(/datum/reagent/consumable/nutriment/vitamin)
@@ -155,7 +155,7 @@
 /obj/item/reagent_containers/food/snacks/grown/on_juice()
 	var/nutriment = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 	if(juice_results&&juice_results.len)
-		for(var/i in 1 to juice_results.len)
+		for(var/i in TRUE to juice_results.len)
 			juice_results[juice_results[i]] = nutriment
 		reagents.del_reagent(/datum/reagent/consumable/nutriment)
 		reagents.del_reagent(/datum/reagent/consumable/nutriment/vitamin)

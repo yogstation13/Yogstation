@@ -52,7 +52,7 @@
 /obj/item/bodybag/bluespace/examine(mob/user)
 	. = ..()
 	if(contents.len)
-		var/s = contents.len == 1 ? "" : "s"
+		var/s = contents.len == TRUE ? "" : "s"
 		. += "<span class='notice'>You can make out the shape[s] of [contents.len] object[s] through the fabric.</span>"
 
 /obj/item/bodybag/bluespace/Destroy()

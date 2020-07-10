@@ -6,7 +6,7 @@
 	//should be text, like list("/mob/living/simple_animal/bot/ed209")
 
 	var/summon_lifespan = 0 // 0=permanent, any other time in deciseconds
-	var/summon_amt = 1 //amount of objects summoned
+	var/summon_amt = TRUE //amount of objects summoned
 	var/summon_ignore_density = FALSE //if set to TRUE, adds dense tiles to possible spawn places
 	var/summon_ignore_prev_spawn_points = TRUE //if set to TRUE, each new object is summoned on a new spawn point
 

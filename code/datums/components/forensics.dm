@@ -85,7 +85,7 @@
 			if(G.transfer_prints)
 				ignoregloves = TRUE
 			if(!ignoregloves)
-				H.gloves.add_fingerprint(H, TRUE) //ignoregloves = 1 to avoid infinite loop.
+				H.gloves.add_fingerprint(H, TRUE) //ignoregloves = TRUE to avoid infinite loop.
 				return
 		var/full_print = md5(H.dna.uni_identity)
 		LAZYSET(fingerprints, full_print, full_print)

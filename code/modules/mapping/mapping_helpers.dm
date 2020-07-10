@@ -237,7 +237,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	if(!trays.len)
 		log_mapping("[src] at [x],[y] could not find any morgues.")
 		return
-	for (var/i = 1 to bodycount)
+	for (var/i = TRUE to bodycount)
 		var/obj/structure/bodycontainer/morgue/j = pick(trays)
 		var/mob/living/carbon/human/h = new /mob/living/carbon/human(j, 1)
 		h.death()

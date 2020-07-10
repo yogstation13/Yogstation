@@ -241,7 +241,7 @@
 	qdel(query_antag_token_exists)
 
 	var/datum/DBQuery/query_antag_token_deny = SSdbcore.NewQuery({"UPDATE [format_table_name("antag_tokens")] SET denying_admin = :admin,
-	denial_reason = :reason, redeemed = 1 WHERE id = :id"}, list("admin" = ckey(owner.ckey), "reason" = reason, "id" = number_id))
+	denial_reason = :reason, redeemed = TRUE WHERE id = :id"}, list("admin" = ckey(owner.ckey), "reason" = reason, "id" = number_id))
 	if(!query_antag_token_deny.warn_execute())
 		qdel(query_antag_token_deny)
 		return

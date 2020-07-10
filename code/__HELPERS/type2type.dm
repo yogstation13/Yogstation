@@ -16,7 +16,7 @@
 /proc/hex2num(hex, safe=FALSE)
 	. = 0
 	var/place = 1
-	for(var/i in length(hex) to 1 step -1)
+	for(var/i in length(hex) to TRUE step -1)
 		var/num = text2ascii(hex, i)
 		switch(num)
 			if(48 to 57)
@@ -306,9 +306,9 @@
 	var/daysInYear = 365 //Non Leap Year
 	var/daysInLYear = daysInYear + 1//Leap year
 	var/days = round(timestamp / dayInSeconds) //Days passed since UNIX Epoc
-	var/tmpDays = days + 1 //If passed (timestamp < dayInSeconds), it will return 0, so add 1
+	var/tmpDays = days + TRUE //If passed (timestamp < dayInSeconds), it will return 0, so add 1
 	var/monthsInDays = list() //Months will be in here ***Taken from the PHP source code***
-	var/month = 1 //This will be the returned MONTH NUMBER.
+	var/month = TRUE //This will be the returned MONTH NUMBER.
 	var/day //This will be the returned day number.
 
 	while(tmpDays > daysInYear) //Start adding years to 1970

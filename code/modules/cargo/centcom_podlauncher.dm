@@ -27,14 +27,14 @@
 	var/area/bay //What bay we're using to launch shit from.
 	var/launchClone = FALSE //If true, then we don't actually launch the thing in the bay. Instead we call duplicateObject() and send the result
 	var/launchRandomItem = FALSE //If true, lauches a single random item instead of everything on a turf.
-	var/launchChoice = 1 //Determines if we launch all at once (0) , in order (1), or at random(2)
+	var/launchChoice = TRUE //Determines if we launch all at once (0) , in order (1), or at random(2)
 	var/explosionChoice = 0 //Determines if there is no explosion (0), custom explosion (1), or just do a maxcap (2)
 	var/damageChoice = 0 //Determines if we do no damage (0), custom amnt of damage (1), or gib + 5000dmg (2)
 	var/launcherActivated = FALSE //check if we've entered "launch mode" (when we click a pod is launched). Used for updating mouse cursor
 	var/effectBurst = FALSE //Effect that launches 5 at once in a 3x3 area centered on the target
 	var/effectAnnounce = TRUE
 	var/numTurfs = 0 //Counts the number of turfs with things we can launch in the chosen bay (in the centcom map)
-	var/launchCounter = 1 //Used with the "Ordered" launch mode (launchChoice = 1) to see what item is launched
+	var/launchCounter = TRUE //Used with the "Ordered" launch mode (launchChoice = 1) to see what item is launched
 	var/atom/specificTarget //Do we want to target a specific mob instead of where we click? Also used for smiting
 	var/list/orderedArea = list() //Contains an ordered list of turfs in an area (filled in the createOrderedArea() proc), read top-left to bottom-right. Used for the "ordered" launch mode (launchChoice = 1)
 	var/list/turf/acceptableTurfs = list() //Contians a list of turfs (in the "bay" area on centcom) that have items that can be launched. Taken from orderedArea
@@ -63,7 +63,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 
 /datum/centcom_podlauncher/ui_data(mob/user) //Sends info about the pod to the UI.
 	var/list/data = list() //*****NOTE*****: Many of these comments are similarly described in supplypod.dm. If you change them here, please consider doing so in the supplypod code as well!
-	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? 1 : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : 0 //top ten THICCEST FUCKING TERNARY CONDITIONALS OF 2036
+	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? TRUE : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : 0 //top ten THICCEST FUCKING TERNARY CONDITIONALS OF 2036
 	data["bay"] = bay //Holds the current bay the user is launching objects from. Bays are specific rooms on the centcom map.
 	data["bayNumber"] = B //Holds the bay as a number. Useful for comparisons in centcom_podlauncher.ract
 	data["oldArea"] = (oldTurf ? get_area(oldTurf) : null) //Holds the name of the area that the user was in before using the teleportCentcom action
@@ -157,7 +157,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			launchRandomItem = !launchRandomItem
 			. = TRUE
 		if("launchOrdered") //Launch turfs (from the orderedArea list) one at a time in order, from the supplypod bay at centcom
-			if (launchChoice == 1) //launchChoice 1 represents ordered. If we push "ordered" and it already is, then we go to default value
+			if (launchChoice == 1) //launchChoice TRUE represents ordered. If we push "ordered" and it already is, then we go to default value
 				launchChoice = 0
 				updateSelector() //Move the selector effect to the next object that will be launched. See variable declarations for more info on the selector effect.
 				return
@@ -381,7 +381,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			if (temp_pod.soundVolume != initial(temp_pod.soundVolume))
 				temp_pod.soundVolume = initial(temp_pod.soundVolume)
 				return
-			var/soundInput = input(holder, "Please pick a volume. Default is between 1 and 100 with 50 being average, but pick whatever. I'm a notification, not a cop. If you still cant hear your sound, consider turning on the Quiet effect. It will silence all pod sounds except for the custom admin ones set by the previous three buttons.", "Pick Admin Sound Volume") as null|num
+			var/soundInput = input(holder, "Please pick a volume. Default is between TRUE and 100 with 50 being average, but pick whatever. I'm a notification, not a cop. If you still cant hear your sound, consider turning on the Quiet effect. It will silence all pod sounds except for the custom admin ones set by the previous three buttons.", "Pick Admin Sound Volume") as null|num
 			if (isnull(soundInput))
 				return
 			temp_pod.soundVolume = soundInput
@@ -486,7 +486,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			if (!effectBurst) //If we're not using burst mode, just launch normally.
 				launch(target)
 			else
-				for (var/i in 1 to 5) //If we're using burst mode, launch 5 pods
+				for (var/i in TRUE to 5) //If we're using burst mode, launch 5 pods
 					if (isnull(target))
 						break //if our target gets deleted during this, we stop the show
 					preLaunch() //Same as above
@@ -541,7 +541,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 					launchList |= typecache_filter_list_reverse(T.contents, ignored_atoms) //We filter any blacklisted atoms and add the rest to the launchList
 			if(1) //If we are launching one at a time
 				if (launchCounter > acceptableTurfs.len) //Check if the launchCounter, which acts as an index, is too high. If it is, reset it to 1
-					launchCounter = 1 //Note that the launchCounter index is incremented in the launch() proc
+					launchCounter = TRUE //Note that the launchCounter index is incremented in the launch() proc
 				for (var/atom/movable/O in acceptableTurfs[launchCounter].contents) //Go through the acceptableTurfs list based on the launchCounter index
 					launchList |= typecache_filter_list_reverse(acceptableTurfs[launchCounter].contents, ignored_atoms) //Filter the specicic turf chosen from acceptableTurfs, and add it to the launchList
 			if(2) //If we are launching randomly
@@ -577,8 +577,8 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 		//If we aren't cloning objects, taking and removing the first item each time from the acceptableTurfs list will inherently iterate through the list in order
 
 /datum/centcom_podlauncher/proc/updateSelector() //Ensures that the selector effect will showcase the next item if needed
-	if (launchChoice == 1 && !isemptylist(acceptableTurfs) && !temp_pod.reversing && !temp_pod.effectMissile) //We only show the selector if we are taking items from the bay
-		var/index = launchCounter + 1 //launchCounter acts as an index to the ordered acceptableTurfs list, so adding one will show the next item in the list
+	if (launchChoice == TRUE && !isemptylist(acceptableTurfs) && !temp_pod.reversing && !temp_pod.effectMissile) //We only show the selector if we are taking items from the bay
+		var/index = launchCounter + TRUE //launchCounter acts as an index to the ordered acceptableTurfs list, so adding one will show the next item in the list
 		if (index > acceptableTurfs.len) //out of bounds check
 			index = 1
 		selector.forceMove(acceptableTurfs[index]) //forceMove the selector to the next turf in the ordered acceptableTurfs list

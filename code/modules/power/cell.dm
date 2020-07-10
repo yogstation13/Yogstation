@@ -317,7 +317,7 @@
 	icon_state = "yellow slime extract"
 	materials = list()
 	rating = 5 //self-recharge makes these desirable
-	self_recharge = 1 // Infused slime cores self-recharge, over time
+	self_recharge = TRUE // Infused slime cores self-recharge, over time
 
 /obj/item/stock_parts/cell/emproof
 	name = "\improper EMP-proof cell"

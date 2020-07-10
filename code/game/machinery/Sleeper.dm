@@ -45,7 +45,7 @@
 	efficiency = initial(efficiency)* E
 	min_health = initial(min_health) * E
 	available_chems = list()
-	for(var/i in 1 to I)
+	for(var/i in TRUE to I)
 		available_chems |= possible_chems[i]
 	reset_chem_buttons()
 
@@ -289,7 +289,7 @@
 
 /obj/machinery/sleeper/ui_data()
 	var/list/data = list()
-	data["occupied"] = occupant ? 1 : 0
+	data["occupied"] = occupant ? TRUE : 0
 	data["open"] = state_open
 
 	data["chems"] = list()

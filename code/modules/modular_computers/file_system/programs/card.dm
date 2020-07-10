@@ -298,7 +298,7 @@
 			data["jobs"][department] = department_jobs
 
 	var/list/regions = list()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		if((minor || target_dept) && !(i in region_access))
 			continue
 

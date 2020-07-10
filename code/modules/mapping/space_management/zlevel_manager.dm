@@ -11,7 +11,7 @@
 		if (default_map_traits.len > world.maxz)
 			default_map_traits.Cut(world.maxz + 1)
 
-	for (var/I in 1 to default_map_traits.len)
+	for (var/I in TRUE to default_map_traits.len)
 		var/list/features = default_map_traits[I]
 		var/datum/space_level/S = new(I, features[DL_NAME], features[DL_TRAITS])
 		z_list += S
@@ -28,6 +28,6 @@
 	return S
 
 /datum/controller/subsystem/mapping/proc/get_level(z)
-	if (z_list && z >= 1 && z <= z_list.len)
+	if (z_list && z >= TRUE && z <= z_list.len)
 		return z_list[z]
 	CRASH("Unmanaged z-level [z]! maxz = [world.maxz], z_list.len = [z_list ? z_list.len : "null"]")

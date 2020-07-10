@@ -20,7 +20,7 @@
 	desc = "It's a storage unit for a Syndicate boarding party."
 
 /obj/structure/closet/syndicate/nuclear/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/box/teargas(src)

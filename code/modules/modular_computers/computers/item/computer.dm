@@ -308,7 +308,7 @@
 	else
 		data["PC_batteryicon"] = "batt_5.gif"
 		data["PC_batterypercent"] = "N/C"
-		data["PC_showbatteryicon"] = battery_module ? 1 : 0
+		data["PC_showbatteryicon"] = battery_module ? TRUE : 0
 
 	if(recharger && recharger.enabled && recharger.check_functionality() && recharger.use_power(0))
 		data["PC_apclinkicon"] = "charging.gif"
@@ -337,7 +337,7 @@
 
 	data["PC_stationtime"] = station_time_timestamp()
 	data["PC_hasheader"] = 1
-	data["PC_showexitprogram"] = active_program ? 1 : 0 // Hides "Exit Program" button on mainscreen
+	data["PC_showexitprogram"] = active_program ? TRUE : 0 // Hides "Exit Program" button on mainscreen
 	return data
 
 // Relays kill program request to currently active program. Use this to quit current program.
@@ -350,7 +350,7 @@
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
 	update_icon()
 
-// Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
+// Returns 0 for No Signal, TRUE for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
 	var/obj/item/computer_hardware/network_card/network_card = all_components[MC_NET]
 	if(network_card)

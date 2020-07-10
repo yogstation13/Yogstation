@@ -100,7 +100,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
-// Returns 1 if we created a new mc, 0 if we couldn't due to a recent restart,
+// Returns TRUE if we created a new mc, 0 if we couldn't due to a recent restart,
 //	-1 if we encountered a runtime trying to recreate it
 /proc/Recreate_MC()
 	. = -1 //so if we runtime, things know we failed
@@ -192,7 +192,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
-	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
+	var/msg = "Initializations complete within [time] second[time == TRUE ? "" : "s"]!"
 	to_chat(world, "<span class='boldannounce'>[msg]</span>")
 	log_world(msg)
 	//yogs start - webhook support
@@ -276,7 +276,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		var/ss_runlevels = SS.runlevels
 		var/added_to_any = FALSE
-		for(var/I in 1 to GLOB.bitflags.len)
+		for(var/I in TRUE to GLOB.bitflags.len)
 			if(ss_runlevels & GLOB.bitflags[I])
 				while(runlevel_sorted_subsystems.len < I)
 					runlevel_sorted_subsystems += list(list())

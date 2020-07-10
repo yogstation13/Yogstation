@@ -66,7 +66,7 @@
 		var/how_many_legs = user.get_num_legs()
 		if(how_many_legs < legs_required)
 			if(message_cooldown < world.time)
-				to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_legs ? " your leg[how_many_legs > 1 ? "s" : null]" : "out legs"]...</span>")
+				to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_legs ? " your leg[how_many_legs > TRUE ? "s" : null]" : "out legs"]...</span>")
 				message_cooldown = world.time + 5 SECONDS
 			return FALSE
 	if(arms_required)
@@ -82,7 +82,7 @@
 				return FALSE
 
 			if(message_cooldown < world.time)
-				to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_arms ? " your arm[how_many_arms > 1 ? "s" : null]" : "out arms"]...</span>")
+				to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_arms ? " your arm[how_many_arms > TRUE ? "s" : null]" : "out arms"]...</span>")
 				message_cooldown = world.time + 5 SECONDS
 			return FALSE
 	var/datum/component/riding/R = GetComponent(/datum/component/riding)

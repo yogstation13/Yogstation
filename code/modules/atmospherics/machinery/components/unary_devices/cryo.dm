@@ -299,7 +299,7 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/glass))
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into [src]!</span>")
 			return

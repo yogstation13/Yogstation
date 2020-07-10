@@ -35,7 +35,7 @@
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/list/split_message = splittext(message, " ") //List each word in the message
 	var/applied = 0
-	for (var/i in 1 to length(split_message))
+	for (var/i in TRUE to length(split_message))
 		if(prob(3 * stage)) //Stage 1: 3% Stage 2: 6% Stage 3: 9% Stage 4: 12%
 			if(findtext(split_message[i], "*") || findtext(split_message[i], ";") || findtext(split_message[i], ":"))
 				continue

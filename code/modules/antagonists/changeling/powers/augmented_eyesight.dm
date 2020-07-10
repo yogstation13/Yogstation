@@ -7,7 +7,7 @@
 	helptext = "Grants us x-ray vision or flash protection. We will become a lot more vulnerable to flash-based devices while x-ray vision is active."
 	button_icon_state = "augmented_eyesight"
 	chemical_cost = 0
-	dna_cost = 2 //Would be 1 without thermal vision
+	dna_cost = 2 //Would be TRUE without thermal vision
 	active = FALSE
 
 /datum/action/changeling/augmented_eyesight/on_purchase(mob/user) //The ability starts inactive, so we should be protected from flashes.

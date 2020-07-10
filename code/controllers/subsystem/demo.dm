@@ -70,12 +70,12 @@ SUBSYSTEM_DEF(demo)
 	log_world("Writing turfs...")
 	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "init [world.maxx] [world.maxy] [world.maxz]\n")
 	marked_turfs.Cut()
-	for(var/z in 1 to world.maxz)
+	for(var/z in TRUE to world.maxz)
 		var/row_list = list()
 		var/last_appearance
 		var/rle_count = 1
-		for(var/y in 1 to world.maxy)
-			for(var/x in 1 to world.maxx)
+		for(var/y in TRUE to world.maxy)
+			for(var/x in TRUE to world.maxx)
 				var/turf/T = locate(x,y,z)
 				T.demo_last_appearance = T.appearance
 				var/this_appearance
@@ -107,11 +107,11 @@ SUBSYSTEM_DEF(demo)
 	log_world("Writing objects")
 	marked_new.Cut()
 	marked_dirty.Cut()
-	for(var/z in 1 to world.maxz)
+	for(var/z in TRUE to world.maxz)
 		var/spacing = 0
 		var/row_list = list()
-		for(var/y in 1 to world.maxy)
-			for(var/x in 1 to world.maxx)
+		for(var/y in TRUE to world.maxy)
+			for(var/x in TRUE to world.maxx)
 				var/turf/T = locate(x,y,z)
 				var/list/turf_list = list()
 				for(var/C in T.contents)
@@ -276,13 +276,13 @@ SUBSYSTEM_DEF(demo)
 		var/list/old_list = appearance.color
 		var/list/inted = list()
 		inted.len = old_list.len
-		for(var/i in 1 to old_list.len)
+		for(var/i in TRUE to old_list.len)
 			inted[i] += round(old_list[i] * 255)
 		color_string = jointext(inted, ",")
 	var/overlays_string = "\[]"
 	if(appearance.overlays.len)
 		var/list/overlays_list = list()
-		for(var/i in 1 to appearance.overlays.len)
+		for(var/i in TRUE to appearance.overlays.len)
 			var/image/overlay = appearance.overlays[i]
 			overlays_list += encode_appearance(overlay, appearance, TRUE)
 		overlays_string = "\[[jointext(overlays_list, ",")]]"
@@ -290,7 +290,7 @@ SUBSYSTEM_DEF(demo)
 	var/underlays_string = "\[]"
 	if(appearance.underlays.len)
 		var/list/underlays_list = list()
-		for(var/i in 1 to appearance.underlays.len)
+		for(var/i in TRUE to appearance.underlays.len)
 			var/image/underlay = appearance.underlays[i]
 			underlays_list += encode_appearance(underlay, appearance, TRUE)
 		underlays_string = "\[[jointext(underlays_list, ",")]]"
@@ -313,7 +313,7 @@ SUBSYSTEM_DEF(demo)
 		appearance.alpha == 255 ? "" : appearance.alpha,
 		appearance.pixel_x == 0 ? "" : appearance.pixel_x,
 		appearance.pixel_y == 0 ? "" : appearance.pixel_y,
-		appearance.blend_mode <= 1 ? "" : appearance.blend_mode,
+		appearance.blend_mode <= TRUE ? "" : appearance.blend_mode,
 		appearance_transform_string != "i" ? appearance_transform_string : "",
 		appearance:invisibility == 0 ? "" : appearance:invisibility, // colon because dreamchecker is dumb
 		appearance.pixel_w == 0 ? "" : appearance.pixel_w,
@@ -333,7 +333,7 @@ SUBSYSTEM_DEF(demo)
 		else if(appearance.overlays.len != diff_appearance.overlays.len)
 			overlays_identical = FALSE
 		else
-			for(var/i in 1 to appearance.overlays.len)
+			for(var/i in TRUE to appearance.overlays.len)
 				if(appearance.overlays[i] != diff_appearance.overlays[i])
 					overlays_identical = FALSE
 					break
@@ -344,7 +344,7 @@ SUBSYSTEM_DEF(demo)
 		else if(appearance.underlays.len != diff_appearance.underlays.len)
 			underlays_identical = FALSE
 		else
-			for(var/i in 1 to appearance.underlays.len)
+			for(var/i in TRUE to appearance.underlays.len)
 				if(appearance.underlays[i] != diff_appearance.underlays[i])
 					underlays_identical = FALSE
 					break

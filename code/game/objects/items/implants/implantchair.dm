@@ -36,7 +36,7 @@
 
 /obj/machinery/implantchair/ui_data()
 	var/list/data = list()
-	data["occupied"] = occupant ? 1 : 0
+	data["occupied"] = occupant ? TRUE : 0
 	data["open"] = state_open
 
 	data["occupant"] = list()

@@ -299,7 +299,7 @@
 	var/steps = 0
 	var/opposite_direction = turn(direction, 180)
 
-	for(var/i in 1 to shield_range) //checks out to 8 tiles away for another generator
+	for(var/i in TRUE to shield_range) //checks out to 8 tiles away for another generator
 		T = get_step(T, direction)
 		G = (locate(/obj/machinery/shieldwallgen) in T)
 		if(G)
@@ -313,7 +313,7 @@
 	if(!G || !steps) //no shield gen or no tiles between us and the gen
 		return
 
-	for(var/i in 1 to steps) //creates each field tile
+	for(var/i in TRUE to steps) //creates each field tile
 		T = get_step(T, opposite_direction)
 		new/obj/machinery/shieldwall(T, src, G)
 	return TRUE
@@ -323,7 +323,7 @@
 	var/obj/machinery/shieldwallgen/G
 	var/turf/T = loc
 
-	for(var/i in 1 to shield_range)
+	for(var/i in TRUE to shield_range)
 		T = get_step(T, direction)
 
 		G = (locate(/obj/machinery/shieldwallgen) in T)

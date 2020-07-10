@@ -136,14 +136,14 @@ GLOBAL_PROTECT(href_token)
 
 /datum/admins/proc/check_if_greater_rights_than_holder(datum/admins/other)
 	if(!other)
-		return 1 //they have no rights
+		return TRUE //they have no rights
 	if(rank.rights == R_EVERYTHING)
-		return 1 //we have all the rights
+		return TRUE //we have all the rights
 	if(src == other)
-		return 1 //you always have more rights than yourself
+		return TRUE //you always have more rights than yourself
 	if(rank.rights != other.rank.rights)
 		if( (rank.rights & other.rank.rights) == other.rank.rights )
-			return 1 //we have all the rights they have and more
+			return TRUE //we have all the rights they have and more
 	return 0
 
 /datum/admins/vv_edit_var(var_name, var_value)
@@ -152,7 +152,7 @@ GLOBAL_PROTECT(href_token)
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
 if rights_required == 0, then it simply checks if they are an admin.
-if it doesn't return 1 and show_msg=1 it will prints a message explaining why the check has failed
+if it doesn't return TRUE and show_msg=1 it will prints a message explaining why the check has failed
 generally it would be used like so:
 
 /proc/admin_proc()
@@ -189,7 +189,7 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 
 /proc/GenerateToken()
 	. = ""
-	for(var/I in 1 to 32)
+	for(var/I in TRUE to 32)
 		. += "[rand(10)]"
 
 /proc/RawHrefToken(forceGlobal = FALSE)

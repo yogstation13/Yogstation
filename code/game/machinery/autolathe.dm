@@ -242,7 +242,7 @@
 	T=1.2
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T -= M.rating*0.2
-	prod_coeff = min(1,max(0,T)) // Coeff going 1 -> 0,8 -> 0,6 -> 0,4
+	prod_coeff = min(1,max(0,T)) // Coeff going TRUE -> 0,8 -> 0,6 -> 0,4
 
 /obj/machinery/autolathe/examine(mob/user)
 	. += ..()
@@ -261,7 +261,7 @@
 /obj/machinery/autolathe/proc/can_build(datum/design/D, amount = 1)
 	if(D.make_reagents.len)
 		return FALSE
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
+	var/coeff = (ispath(D.build_path, /obj/item/stack) ? TRUE : prod_coeff)
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(D.materials[MAT_METAL] && (materials.amount(MAT_METAL) < (D.materials[MAT_METAL] * coeff * amount)))
 		return FALSE
@@ -273,7 +273,7 @@
 	return TRUE
 
 /obj/machinery/autolathe/proc/get_design_cost_metal(datum/design/D)
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
+	var/coeff = (ispath(D.build_path, /obj/item/stack) ? TRUE : prod_coeff)
 	var/dat
 	if(D.materials[MAT_METAL])
 		dat = D.materials[MAT_METAL] * coeff
@@ -282,7 +282,7 @@
 	return dat
 
 /obj/machinery/autolathe/proc/get_design_cost_glass(datum/design/D)
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
+	var/coeff = (ispath(D.build_path, /obj/item/stack) ? TRUE : prod_coeff)
 	var/dat
 	if(D.materials[MAT_GLASS])
 		dat = D.materials[MAT_GLASS] * coeff
@@ -336,7 +336,7 @@
 
 /obj/machinery/autolathe/proc/make_item(datum/design/D, multiplier)
 	var/is_stack = ispath(request.build_path, /obj/item/stack)
-	var/coeff = (is_stack ? 1 : prod_coeff) //stacks are unaffected by production coefficient
+	var/coeff = (is_stack ? TRUE : prod_coeff) //stacks are unaffected by production coefficient
 	var/metal_cost = request.materials[MAT_METAL]
 	var/glass_cost = request.materials[MAT_GLASS]
 	var/power = max(2000, (metal_cost + glass_cost) * multiplier / 5)

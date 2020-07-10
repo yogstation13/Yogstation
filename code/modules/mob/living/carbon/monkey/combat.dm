@@ -1,7 +1,7 @@
 #define MAX_RANGE_FIND 32
 
 /mob/living/carbon/monkey
-	var/aggressive=0 // set to 1 using VV for an angry monkey
+	var/aggressive=0 // set to TRUE using VV for an angry monkey
 	var/frustration=0
 	var/pickupTimer=0
 	var/list/enemies = list()

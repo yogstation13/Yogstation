@@ -105,7 +105,7 @@
 	var/datum/antagonist/vampire/V = U.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V) //sanity check
 		return
-	for(var/i = 1 to 5)
+	for(var/i = TRUE to 5)
 		U.adjustStaminaLoss(-50)
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
@@ -218,7 +218,7 @@
 		L.visible_message("<span class='warning'>[L] disintergrates into dust!</span>", "<span class='userdanger'>Holy energy seeps into our very being, disintergrating us instantly!</span>", "You hear sizzling.")
 		new /obj/effect/decal/remains/human(L.loc)
 		L.dust()
-	to_chat(L, "<span class='notice'>We begin to reanimate... this will take 1 minute.</span>")
+	to_chat(L, "<span class='notice'>We begin to reanimate... this will take TRUE minute.</span>")
 	addtimer(CALLBACK(src, /obj/effect/proc_holder/spell/self/revive.proc/revive, L), 600)
 
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
@@ -301,7 +301,7 @@
 			locs += T
 
 	// pad with player location
-	for(var/i = locs.len + 1 to num_bats)
+	for(var/i = locs.len + TRUE to num_bats)
 		locs += user.loc
 
 	perform(locs, user = user)
@@ -396,7 +396,7 @@
 		return
 	if(QDELETED(V.coat) || !V.coat)
 		V.coat = new /obj/item/clothing/suit/draculacoat(user.loc)
-	else if(get_dist(V.coat, user) > 1 || !(V.coat in user.GetAllContents()))
+	else if(get_dist(V.coat, user) > TRUE || !(V.coat in user.GetAllContents()))
 		V.coat.forceMove(user.loc)
 	user.put_in_hands(V.coat)
 	to_chat(user, "<span class='notice'>You summon your dracula coat.</span>")

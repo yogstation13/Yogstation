@@ -476,7 +476,7 @@
 	drug_instance = new drug_container_type(current_turf)
 	if (istype(drug_instance, /obj/item/storage/pill_bottle))
 		var/pill_state = "pill[rand(1,20)]"
-		for(var/i in 1 to 7)
+		for(var/i in TRUE to 7)
 			var/obj/item/reagent_containers/pill/P = new(drug_instance)
 			P.icon_state = pill_state
 			P.reagents.add_reagent(reagent_id, 1)
@@ -598,7 +598,7 @@
 									/datum/reagent/medicine/bicaridine,
 									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
 	var/reagent_id
-	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
+	var/cooldown_time = TRUE MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE
 
 /datum/quirk/allergic/on_spawn()

@@ -52,9 +52,9 @@
 
 /obj/structure/closet/secure_closet/engineering_welding/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/welding(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/weldingtool(src)
 
 /obj/structure/closet/secure_closet/engineering_personal

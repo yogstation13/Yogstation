@@ -1,7 +1,7 @@
 /*ALL DEFINES RELATED TO INVENTORY OBJECTS, MANAGEMENT, ETC, GO HERE*/
 
 //ITEM INVENTORY WEIGHT, FOR w_class
-#define WEIGHT_CLASS_TINY     1 //Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
+#define WEIGHT_CLASS_TINY     TRUE //Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
 #define WEIGHT_CLASS_SMALL    2 //Pockets can hold small and tiny items, (e.g. flashlight, multitool, grenades, GPS device)
 #define WEIGHT_CLASS_NORMAL   3 //Standard backpacks can carry tiny, small & normal items, (e.g. fire extinguisher, stun baton, gas mask, metal sheets)
 #define WEIGHT_CLASS_BULKY    4 //Items that can be weilded or equipped but not stored in an inventory, (e.g. defibrillator, backpack, space suits)

@@ -1,10 +1,10 @@
 SUBSYSTEM_DEF(sun)
 	name = "Sun"
-	wait = 1 MINUTES
+	wait = TRUE MINUTES
 	flags = SS_NO_TICK_CHECK
 
 	var/azimuth = 0 ///clockwise, top-down rotation from 0 (north) to 359
-	var/azimuth_mod = 1 ///multiplier against base_rotation
+	var/azimuth_mod = TRUE ///multiplier against base_rotation
 	var/base_rotation = 6 ///base rotation in degrees per fire
 
 /datum/controller/subsystem/sun/Initialize(start_timeofday)

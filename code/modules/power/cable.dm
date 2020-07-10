@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 /* Cable directions (d1 and d2)
 
 
-  9   1   5
+  9   TRUE   5
 	\ | /
   8 - 0 - 4
 	/ | \
@@ -38,12 +38,12 @@ By design, d1 is the smallest direction and d2 is the highest
 	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond/cables.dmi'
 	icon_state = "0-1"
-	level = 1 //is underfloor
+	level = TRUE //is underfloor
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	var/d1 = 0   // cable direction 1 (see above)
-	var/d2 = 1   // cable direction 2 (see above)
+	var/d1 = 0   // cable direction TRUE (see above)
+	var/d2 = TRUE   // cable direction 2 (see above)
 	var/datum/powernet/powernet
 	//Cables no longer keep a copy of the cable to be dropped in nullspace
 
@@ -126,7 +126,7 @@ By design, d1 is the smallest direction and d2 is the highest
 //If underfloor, hide the cable
 /obj/structure/cable/hide(i)
 
-	if(level == 1 && isturf(loc))
+	if(level == TRUE && isturf(loc))
 		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 

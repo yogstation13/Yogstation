@@ -22,8 +22,8 @@
 /obj/item/reagent_containers/food/snacks/candy_corn/prison
 	name = "desiccated candy corn"
 	desc = "If this candy corn were any harder Security would confiscate it for being a potential shiv."
-	force = 1 // the description isn't lying
-	throwforce = 1 // if someone manages to bust out of jail with candy corn god bless them
+	force = TRUE // the description isn't lying
+	throwforce = TRUE // if someone manages to bust out of jail with candy corn god bless them
 	tastes = list("bitter wax" = 1)
 	foodtype = GROSS
 

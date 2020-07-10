@@ -1,4 +1,4 @@
-#define DEFER_MOVE 1 //Let /client/Move() handle the movement
+#define DEFER_MOVE TRUE //Let /client/Move() handle the movement
 #define MOVE_ALLOWED 2 //Allow mob to pass through
 #define MOVE_NOT_ALLOWED 3 //Do not let the mob through
 

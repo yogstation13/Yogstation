@@ -210,7 +210,7 @@
 	force = 30 //Normal attacks deal esword damage
 	hitsound = 'sound/weapons/blade1.ogg'
 	active = 1
-	throwforce = 1 //Throwing or dropping the item deletes it.
+	throwforce = TRUE //Throwing or dropping the item deletes it.
 	throw_speed = 3
 	throw_range = 1
 	w_class = WEIGHT_CLASS_BULKY//So you can't hide it in your pocket or some such.

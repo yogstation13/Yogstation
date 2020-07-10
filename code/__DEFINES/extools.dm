@@ -21,7 +21,7 @@
 	var/datum/promise/P = call_async("sample.dll", "do_work", "arg1")
 	... do something else ...
 	var/result = P.resolve()
-	 - Calls do_work with 1 argument. Returns a promise object. Runs some other code before calling P.resolve() to obtain the result.
+	 - Calls do_work with TRUE argument. Returns a promise object. Runs some other code before calling P.resolve() to obtain the result.
 	/proc/print_result(result)
 		world << result
 	call_cb("sample.dll", "do_work", /proc/print_result, "arg1", "arg2")

@@ -23,7 +23,7 @@
 		update_icon()
 
 /obj/machinery/chem_heater/update_icon()
-	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
+	icon_state = "mixer[beaker ? TRUE : 0][on ? "a" : "b"]"
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -102,7 +102,7 @@
 	var/data = list()
 	data["targetTemp"] = target_temperature
 	data["isActive"] = on
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : 0
 
 	data["currentTemp"] = beaker ? beaker.reagents.chem_temp : null
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null

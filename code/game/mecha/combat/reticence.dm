@@ -3,7 +3,7 @@
 	name = "\improper reticence"
 	icon_state = "reticence"
 	step_in = 2
-	dir_in = 1 //Facing North.
+	dir_in = TRUE //Facing North.
 	max_integrity = 100
 	deflect_chance = 3
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 30, "energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)

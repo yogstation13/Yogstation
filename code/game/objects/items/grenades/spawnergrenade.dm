@@ -5,7 +5,7 @@
 	icon_state = "delivery"
 	item_state = "flashbang"
 	var/spawner_type = null // must be an object path
-	var/deliveryamt = 1 // amount of type to deliver
+	var/deliveryamt = TRUE // amount of type to deliver
 
 /obj/item/grenade/spawnergrenade/prime()			// Prime now just handles the two loops that query for people in lockers and people who can see it.
 	update_mob()

@@ -15,9 +15,9 @@
 	var/singular_name
 	var/amount = 1
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
-	var/is_cyborg = 0 // It's 1 if module is used by a cyborg, and uses its storage
+	var/is_cyborg = 0 // It's TRUE if module is used by a cyborg, and uses its storage
 	var/datum/robot_energy_storage/source
-	var/cost = 1 // How much energy from storage it costs
+	var/cost = TRUE // How much energy from storage it costs
 	var/merge_type = null // This path and its children should merge with this stack, defaults to src.type
 	var/full_w_class = WEIGHT_CLASS_NORMAL //The weight class the stack should have at amount > 2/3rds max_amount
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
@@ -25,7 +25,7 @@
 	var/obj/structure/table/tableVariant // we tables now (stores table variant to be built from this stack)
 
 /obj/item/stack/on_grind()
-	for(var/i in 1 to grind_results.len) //This should only call if it's ground, so no need to check if grind_results exists
+	for(var/i in TRUE to grind_results.len) //This should only call if it's ground, so no need to check if grind_results exists
 		grind_results[grind_results[i]] *= get_amount() //Gets the key at position i, then the reagent amount of that key, then multiplies it by stack size
 
 /obj/item/stack/grind_requirements()
@@ -118,7 +118,7 @@
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
 	var/t1 = "Amount Left: [get_amount()]<br>"
-	for(var/i in 1 to length(recipe_list))
+	for(var/i in TRUE to length(recipe_list))
 		var/E = recipe_list[i]
 		if (isnull(E))
 			t1 += "<hr>"
@@ -169,7 +169,7 @@
 	if (href_list["sublist"] && !href_list["make"])
 		interact(usr, text2num(href_list["sublist"]))
 	if (href_list["make"])
-		if (get_amount() < 1 && !is_cyborg)
+		if (get_amount() < TRUE && !is_cyborg)
 			qdel(src)
 
 		var/list/recipes_list = recipes
@@ -277,7 +277,7 @@
 					return FALSE
 	return TRUE
 
-/obj/item/stack/use(used, transfer = FALSE, check = TRUE) // return 0 = borked; return 1 = had enough
+/obj/item/stack/use(used, transfer = FALSE, check = TRUE) // return 0 = borked; return TRUE = had enough
 	if(check && zero_amount())
 		return FALSE
 	if (is_cyborg)

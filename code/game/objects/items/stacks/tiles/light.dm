@@ -15,7 +15,7 @@
 	else if(prob(5))
 		state = 2 //breaking
 	else if(prob(10))
-		state = 1 //flickering occasionally
+		state = TRUE //flickering occasionally
 	else
 		state = 0 //fine
 

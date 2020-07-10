@@ -373,7 +373,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 									dat+="[MESSAGE.caption]<BR>"
 								dat+="<BR>"
 							dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(-1)] </FONT>\] - ([MESSAGE.time_stamp])</FONT><BR>"
-							dat+="<b><font size=1>[MESSAGE.comments.len] comment[MESSAGE.comments.len > 1 ? "s" : ""]</font></b><br>"
+							dat+="<b><font size=1>[MESSAGE.comments.len] comment[MESSAGE.comments.len > TRUE ? "s" : ""]</font></b><br>"
 							for(var/datum/newscaster/feed_comment/comment in MESSAGE.comments)
 								dat+="<font size=1><small>[comment.body]</font><br><font size=1><small><small><small>[comment.author] [comment.time_stamp]</small></small></small></small></font><br>"
 							if(MESSAGE.locked)
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 					for(var/datum/newscaster/feed_message/MESSAGE in viewing_channel.messages)
 						dat+="-[MESSAGE.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(-1)]</FONT>\]</FONT><BR>"
 						dat+="<FONT SIZE=2><A href='?src=[REF(src)];censor_channel_story_body=[REF(MESSAGE)]'>[(MESSAGE.bodyCensor) ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='?src=[REF(src)];censor_channel_story_author=[REF(MESSAGE)]'>[(MESSAGE.authorCensor) ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>"
-						dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > 1 ? "s" : ""]: <a href='?src=[REF(src)];lock_comment=[REF(MESSAGE)]'>[MESSAGE.locked ? "Unlock" : "Lock"]</a><br>"
+						dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > TRUE ? "s" : ""]: <a href='?src=[REF(src)];lock_comment=[REF(MESSAGE)]'>[MESSAGE.locked ? "Unlock" : "Lock"]</a><br>"
 						for(var/datum/newscaster/feed_comment/comment in MESSAGE.comments)
 							dat+="[comment.body] <a href='?src=[REF(src)];del_comment=[REF(comment)];del_comment_msg=[REF(MESSAGE)]'>X</a><br><font size=1>[comment.author] [comment.time_stamp]</font><br>"
 				dat+="<BR><A href='?src=[REF(src)];setScreen=[10]'>Back</A>"
@@ -597,7 +597,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				var/choice = alert("Please confirm Wanted Issue [(input_param==1) ? ("creation.") : ("edit.")]","Network Security Handler","Confirm","Cancel")
 				if(choice=="Confirm")
 					scan_user(usr)
-					if(input_param==1)          //If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one.
+					if(input_param==1)          //If input_param == TRUE we're submitting a new wanted issue. At 2 we're just editing an existing one.
 						GLOB.news_network.submitWanted(channel_name, msg, scanned_user, picture, 0 , 1)
 						screen = 15
 					else

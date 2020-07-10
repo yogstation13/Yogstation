@@ -41,7 +41,7 @@
 /datum/fantasy_affix/tactical
 	placement = AFFIX_PREFIX
 	alignment = AFFIX_GOOD
-	weight = 1 // Very powerful, no one should have such power
+	weight = TRUE // Very powerful, no one should have such power
 
 /datum/fantasy_affix/tactical/apply(datum/component/fantasy/comp, newName)
 	var/obj/item/master = comp.parent

@@ -59,7 +59,7 @@ Slimecrossing Weapons
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	slot_flags = ITEM_SLOT_BACK
 	block_chance = 75
-	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
+	throw_range = TRUE //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
 	force = 15 //Heavy, but hard to wield.
 	attack_verb = list("bashed","pounded","slammed")
@@ -77,7 +77,7 @@ Slimecrossing Weapons
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
-	max_charges = 1 //Recharging costs blood.
+	max_charges = TRUE //Recharging costs blood.
 	recharge_rate = 1
 	ammo_type = /obj/item/ammo_casing/magic/bloodchill
 	fire_sound = 'sound/effects/attackblob.ogg'

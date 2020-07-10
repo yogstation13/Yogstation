@@ -18,7 +18,7 @@
 	var/operating = FALSE
 	var/dirty = 0 // 0 to 100 // Does it need cleaning?
 	var/dirty_anim_playing = FALSE
-	var/broken = 0 // 0, 1 or 2 // How broken is it???
+	var/broken = 0 // 0, TRUE or 2 // How broken is it???
 	var/max_n_of_items = 10
 	var/efficiency = 0
 	var/datum/looping_sound/microwave/soundloop
@@ -121,8 +121,8 @@
 			user.visible_message("[user] starts to fix part of \the [src].", "<span class='notice'>You start to fix part of \the [src]...</span>")
 			if(O.use_tool(src, user, 20))
 				user.visible_message("[user] fixes part of \the [src].", "<span class='notice'>You fix part of \the [src].</span>")
-				broken = 1 // Fix it a bit
-		else if(broken == 1 && O.tool_behaviour == TOOL_WELDER) // If it's broken and they're doing the wrench
+				broken = TRUE // Fix it a bit
+		else if(broken == TRUE && O.tool_behaviour == TOOL_WELDER) // If it's broken and they're doing the wrench
 			user.visible_message("[user] starts to fix part of \the [src].", "<span class='notice'>You start to fix part of \the [src]...</span>")
 			if(O.use_tool(src, user, 20))
 				user.visible_message("[user] fixes \the [src].", "<span class='notice'>You fix \the [src].</span>")

@@ -199,7 +199,7 @@
 
 		if(M.client && ishuman(M))
 			if(prob(85))
-				rabid = 1 //we go rabid after finishing to feed on a human with a client.
+				rabid = TRUE //we go rabid after finishing to feed on a human with a client.
 
 		Feedstop()
 		return

@@ -134,7 +134,7 @@
 		hacked = TRUE
 		mind.special_role = "hacked drone"
 		ventcrawler = VENTCRAWLER_NONE //Again, balance
-		speed = 1 //gotta go slow
+		speed = TRUE //gotta go slow
 		message_admins("[ADMIN_LOOKUPFLW(src)] became a hacked drone hellbent on [clockwork ? "serving Ratvar" : "destroying the station"]!")
 	else
 		if(!hacked)

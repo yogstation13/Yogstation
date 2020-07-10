@@ -78,7 +78,7 @@ other types of metals and chemistry for reagents).
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
-	for(var/i in 1 to max_blueprints)
+	for(var/i in TRUE to max_blueprints)
 		blueprints += null
 
 /obj/item/disk/design_disk/adv

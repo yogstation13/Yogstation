@@ -225,7 +225,7 @@
 		child = new(src)
 	if(status == GROWING)
 		addtimer(CALLBACK(src, .proc/Grow), rand(MIN_GROWTH_TIME, MAX_GROWTH_TIME))
-	proximity_monitor = new(src, status == GROWN ? 1 : 0)
+	proximity_monitor = new(src, status == GROWN ? TRUE : 0)
 	if(status == BURST)
 		obj_integrity = integrity_failure
 

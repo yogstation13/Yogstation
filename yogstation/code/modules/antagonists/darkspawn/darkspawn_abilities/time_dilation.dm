@@ -2,7 +2,7 @@
 /datum/action/innate/darkspawn/time_dilation
 	name = "Time Dilation"
 	id = "time_dilation"
-	desc = "Greatly increases reaction times and action speed, and provides immunity to slowdown. This lasts for 1 minute. Costs 75 Psi."
+	desc = "Greatly increases reaction times and action speed, and provides immunity to slowdown. This lasts for TRUE minute. Costs 75 Psi."
 	button_icon_state = "time_dilation"
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 75

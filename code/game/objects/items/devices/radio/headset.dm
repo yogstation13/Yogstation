@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		if(translate_binary)
 			avail_chans += "use [MODE_TOKEN_BINARY] for [MODE_BINARY]"
 		if(length(channels))
-			for(var/i in 1 to length(channels))
+			for(var/i in TRUE to length(channels))
 				if(i == 1)
 					avail_chans += "use [MODE_TOKEN_DEPARTMENT] or [GLOB.channel_tokens[channels[i]]] for [lowertext(channels[i])]"
 				else

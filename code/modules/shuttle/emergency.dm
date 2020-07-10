@@ -48,7 +48,7 @@
 	data["authorizations"] = A
 
 	data["enabled"] = (IS_DOCKED && !ENGINES_STARTED)
-	data["emagged"] = obj_flags & EMAGGED ? 1 : 0
+	data["emagged"] = obj_flags & EMAGGED ? TRUE : 0
 	return data
 
 /obj/machinery/computer/emergency_shuttle/ui_act(action, params, datum/tgui/ui)
@@ -169,7 +169,7 @@
 	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	SSshuttle.emergency.movement_force = list("KNOCKDOWN" = 60, "THROW" = 20)//YOUR PUNY SEATBELTS can SAVE YOU NOW, MORTAL
 	var/datum/species/S = new
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		// the shuttle system doesn't know who these people are, but they
 		// must be important, surely
 		var/obj/item/card/id/ID = new(src)
@@ -383,7 +383,7 @@
 				setTimer(ENGINES_START_TIME)
 
 			if(time_left <= 50 && !sound_played) //4 seconds left:REV UP THOSE ENGINES BOYS. - should sync up with the launch
-				sound_played = 1 //Only rev them up once.
+				sound_played = TRUE //Only rev them up once.
 				var/list/areas = list()
 				for(var/area/shuttle/escape/E in GLOB.sortedAreas)
 					areas += E

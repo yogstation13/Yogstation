@@ -34,7 +34,7 @@
 	var/list/area_to_color = list()
 	for(var/turf/T in block(locate(x1,y1,z),locate(x2,y2,z)))
 		var/area/A = T.loc
-		var/img_x = T.x - x1 + 1 // arrays start at 1
+		var/img_x = T.x - x1 + TRUE // arrays start at 1
 		var/img_y = T.y - y1 + 1
 		if(!istype(A, /area/space) || istype(T, /turf/closed/wall))
 			crop_x1 = min(crop_x1, T.x)
@@ -107,7 +107,7 @@
 	var/datum/minimap/first_map = minimaps[1]
 	var/info = ""
 	var/datas = list();
-	for(var/I in 1 to minimaps.len)
+	for(var/I in TRUE to minimaps.len)
 		var/datum/minimap/map = minimaps[I]
 		map.send(user)
 		info += "<img src='minimap-[map.id].png' id='map-[I]'><img src='minimap-[map.id]-meta.png' style='display: none' id='map-[I]-meta'><div id='label-[I]'></div>"

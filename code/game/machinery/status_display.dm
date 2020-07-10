@@ -8,11 +8,11 @@
 #define SCROLL_SPEED 2
 
 #define SD_BLANK 0  // 0 = Blank
-#define SD_EMERGENCY 1  // 1 = Emergency Shuttle timer
+#define SD_EMERGENCY TRUE  // TRUE = Emergency Shuttle timer
 #define SD_MESSAGE 2  // 2 = Arbitrary message(s)
 #define SD_PICTURE 3  // 3 = alert picture
 
-#define SD_AI_EMOTE 1  // 1 = AI emoticon
+#define SD_AI_EMOTE TRUE  // TRUE = AI emoticon
 #define SD_AI_BSOD 2  // 2 = Blue screen of death
 
 /// Status display which can show images and scrolling text.

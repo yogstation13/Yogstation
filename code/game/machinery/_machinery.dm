@@ -492,7 +492,7 @@ Class Procs:
 							SEND_SIGNAL(W, COMSIG_TRY_STORAGE_INSERT, A, null, null, TRUE)
 							component_parts -= A
 							to_chat(user, "<span class='notice'>[capitalize(A.name)] replaced with [B.name].</span>")
-							shouldplaysound = 1 //Only play the sound when parts are actually replaced!
+							shouldplaysound = TRUE //Only play the sound when parts are actually replaced!
 							break
 			RefreshParts()
 		else
@@ -554,7 +554,7 @@ Class Procs:
 
 /obj/machinery/proc/adjust_item_drop_location(atom/movable/AM)	// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8
 	var/md5 = md5(AM.name)										// Oh, and it's deterministic too. A specific item will always drop from the same slot.
-	for (var/i in 1 to 32)
+	for (var/i in TRUE to 32)
 		. += hex2num(md5[i])
 	. = . % 9
 	AM.pixel_x = -8 + ((.%3)*8)

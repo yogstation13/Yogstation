@@ -80,7 +80,7 @@
 		var/prereaction_pressure = temp.return_pressure()
 		if(prereaction_pressure < TANK_FRAGMENT_PRESSURE)
 			return 0
-	for(var/i in 1 to reaction_cycles)
+	for(var/i in TRUE to reaction_cycles)
 		temp.react(src)
 	var/pressure = temp.return_pressure()
 	qdel(temp)

@@ -16,7 +16,7 @@
 	var/mutable_appearance/glow
 
 	var/list/upgrade_tiers = list(
-		//Tier 1 - Roundstart powers
+		//Tier TRUE - Roundstart powers
 		/obj/effect/proc_holder/spell/target_hive/hive_add = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_remove = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_see = 0,

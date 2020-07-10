@@ -137,7 +137,7 @@
 
 /obj/machinery/door_timer/proc/set_timer(value)
 	var/new_time = clamp(value,0,MAX_TIMER)
-	. = new_time == timer_duration //return 1 on no change
+	. = new_time == timer_duration //return TRUE on no change
 	timer_duration = new_time
 
 /obj/machinery/door_timer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
@@ -181,7 +181,7 @@
 	add_overlay(mutable_appearance('icons/obj/status_display.dmi', state))
 
 
-//Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
+//Checks to see if there's TRUE line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
 /obj/machinery/door_timer/proc/update_display(line1, line2)
 	line1 = uppertext(line1)

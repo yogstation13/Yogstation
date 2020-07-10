@@ -23,7 +23,7 @@
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
 
 	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
-	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
+	var/body_damage_coeff = TRUE //Multiplier of the limb's damage that gets applied to the mob
 	var/stam_damage_coeff = 0.75
 	var/brutestate = 0
 	var/burnstate = 0
@@ -47,7 +47,7 @@
 	var/no_update = 0
 
 	var/animal_origin = null //for nonhuman bodypart (e.g. monkey)
-	var/dismemberable = 1 //whether it can be dismembered with a weapon.
+	var/dismemberable = TRUE //whether it can be dismembered with a weapon.
 
 	var/px_x = 0
 	var/px_y = 0
@@ -141,7 +141,7 @@
 		heal_damage(0, 0, INFINITY, null, FALSE)
 		. |= BODYPART_LIFE_UPDATE_HEALTH
 
-//Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
+//Applies brute and burn damage to the organ. Returns TRUE if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
 /obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null)
@@ -196,7 +196,7 @@
 	update_disabled()
 	return update_bodypart_damage_state() || .
 
-//Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
+//Heals brute and burn damage for the organ. Returns TRUE if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
 /obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
@@ -246,10 +246,10 @@
 	return TRUE //if there was a change.
 
 //Updates an organ's brute/burn states for use by update_damage_overlays()
-//Returns 1 if we need to update overlays. 0 otherwise.
+//Returns TRUE if we need to update overlays. 0 otherwise.
 /obj/item/bodypart/proc/update_bodypart_damage_state()
-	var/tbrute	= round( (brute_dam/max_damage)*3, 1 )
-	var/tburn	= round( (burn_dam/max_damage)*3, 1 )
+	var/tbrute	= round( (brute_dam/max_damage)*3, TRUE )
+	var/tburn	= round( (burn_dam/max_damage)*3, TRUE )
 	if((tbrute != brutestate) || (tburn != burnstate))
 		brutestate = tbrute
 		burnstate = tburn

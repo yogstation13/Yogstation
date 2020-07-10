@@ -396,7 +396,7 @@
 	P.say("Ratvar?!")
 	var/obj/item/toy/plush/a_winnar_is
 	var/victory_chance = 10
-	for(var/i in 1 to 10) //We only fight ten times max
+	for(var/i in TRUE to 10) //We only fight ten times max
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return

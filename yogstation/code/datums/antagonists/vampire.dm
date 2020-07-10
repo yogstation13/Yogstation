@@ -198,13 +198,13 @@
 	var/ax = C.x
 	var/ay = C.y
 
-	for(var/i = 1 to 20)
+	for(var/i = TRUE to 20)
 		ax += round(sin(SSsun.azimuth), 0.01)
 		ay += round(cos(SSsun.azimuth), 0.01)
 
 		var/turf/T = locate(round(ax, 0.5), round(ay, 0.5), C.z)
 
-		if(T.x == 1 || T.x == world.maxx || T.y == 1 || T.y == world.maxy)
+		if(T.x == TRUE || T.x == world.maxx || T.y == TRUE || T.y == world.maxy)
 			break
 
 		if(T.density)
@@ -236,7 +236,7 @@
 	draining = H
 	var/mob/living/carbon/human/O = owner.current
 	var/blood = 0
-	var/blood_coeff = 1 //how much blood is gained as a % from the amount drained, currently changed by how dead the victim is
+	var/blood_coeff = TRUE //how much blood is gained as a % from the amount drained, currently changed by how dead the victim is
 	var/old_bloodtotal = 0 //used to see if we increased our blood total
 	var/old_bloodusable = 0 //used to see if we increased our blood usable
 	var/silent = FALSE //if the succ gives a message/sounds
@@ -286,7 +286,7 @@
 		usable_blood += blood * 0.75	//75% usable blood since it's actually used for stuff
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
-			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
+			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > TRUE ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
 		H.blood_volume = max(H.blood_volume - blood_to_take, 0)
 		if(silent && !warned && (H.blood_volume <= (BLOOD_VOLUME_SAFE(H) + 20)))
 			to_chat(O, "<span class='boldwarning'>Their blood is at a dangerously low level, they will likely begin to feel the effects if you continue...</span>")

@@ -78,7 +78,7 @@
 			visible_message("<span class='danger'>[src] breaks into tiny pieces and collapses!</span>")
 			qdel(src)
 		var/image/bullet_hole = image('icons/effects/effects.dmi', "scorch", OBJ_LAYER + 0.5)
-		bullet_hole.pixel_x = p_x - 1 //offset correction
+		bullet_hole.pixel_x = p_x - TRUE //offset correction
 		bullet_hole.pixel_y = p_y - 1
 		if(decaltype == DECALTYPE_SCORCH)
 			bullet_hole.setDir(pick(NORTH,SOUTH,EAST,WEST))// random scorch design

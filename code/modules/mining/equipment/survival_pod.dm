@@ -208,7 +208,7 @@
 	. = ..()
 	if(empty)
 		return
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		var/obj/item/reagent_containers/food/snacks/donkpocket/warm/W = new(src)
 		load(W)
 	if(prob(50))

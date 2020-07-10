@@ -74,7 +74,7 @@
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
-			pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : INSTANCE_VAR_DEFAULT\
+			pixel_y = (dir & 3)? (dir == TRUE ? -24 : 24) : INSTANCE_VAR_DEFAULT\
         ),\
 		dir_amount = 4\
     )
@@ -85,7 +85,7 @@
 	var/locked = TRUE
 	var/aidisabled = 0
 	var/shorted = 0
-	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
+	var/buildstage = 2 // 2 = complete, TRUE = no wires,  0 = circuit gone
 
 	var/frequency = FREQ_ATMOS_CONTROL
 	var/alarm_frequency = FREQ_ATMOS_ALARMS
@@ -211,7 +211,7 @@
 		buildstage = 0
 		panel_open = TRUE
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : 0
+		pixel_y = (dir & 3)? (dir == TRUE ? -24 : 24) : 0
 
 	if(name == initial(name))
 		name = "[get_area_name(src)] Air Alarm"
@@ -256,7 +256,7 @@
 	var/data = list(
 		"locked" = locked,
 		"siliconUser" = user.has_unlimited_silicon_privilege,
-		"emagged" = (obj_flags & EMAGGED ? 1 : 0),
+		"emagged" = (obj_flags & EMAGGED ? TRUE : 0),
 		"danger_level" = danger_level,
 	)
 
@@ -471,7 +471,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/airalarm/proc/send_signal(target, list/command, atom/user)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+/obj/machinery/airalarm/proc/send_signal(target, list/command, atom/user)//sends signal 'command' to 'target'. Returns 0 if no radio connection, TRUE otherwise
 	if(!radio_connection)
 		return 0
 

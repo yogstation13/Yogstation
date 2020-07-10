@@ -14,7 +14,7 @@
 
 	var/list/possible_changelings = list()
 	var/list/changelings = list()
-	var/const/changeling_amount = 1 //hard limit on changelings if scaling is turned off
+	var/const/changeling_amount = TRUE //hard limit on changelings if scaling is turned off
 
 /datum/game_mode/traitor/changeling/can_start()
 	if(!..())

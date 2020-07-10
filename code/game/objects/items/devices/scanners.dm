@@ -395,7 +395,7 @@ GENE SCANNER
 			if(M.reagents.reagent_list.len)
 				to_chat(user, "<span class='notice'>Subject contains the following reagents:</span>")
 				for(var/datum/reagent/R in M.reagents.reagent_list)
-					to_chat(user, "<span class='notice'>[round(R.volume, 0.001)] units of [R.name][R.overdosed == 1 ? "</span> - <span class='boldannounce'>OVERDOSING</span>" : ".</span>"]")
+					to_chat(user, "<span class='notice'>[round(R.volume, 0.001)] units of [R.name][R.overdosed == TRUE ? "</span> - <span class='boldannounce'>OVERDOSING</span>" : ".</span>"]")
 			else
 				to_chat(user, "<span class='notice'>Subject contains no reagents.</span>")
 			if(M.reagents.addiction_list.len)
@@ -779,7 +779,7 @@ GENE SCANNER
 			for(var/i in 0 to length_char(sequence) / DNA_MUTATION_BLOCKS-1)
 				if(i)
 					display += "-"
-				display += copytext_char(sequence, 1 + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)
+				display += copytext_char(sequence, TRUE + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)
 
 			to_chat(user, "<span class='boldnotice'>[display]</span><br>")
 

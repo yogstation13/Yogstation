@@ -70,7 +70,7 @@
 	return 0
 
 /mob/living/carbon/alien/larva/get_arm_ignore()
-	return 1 //so we can still handcuff larvas.
+	return TRUE //so we can still handcuff larvas.
 
 
 /mob/proc/get_num_legs(check_disabled = TRUE)

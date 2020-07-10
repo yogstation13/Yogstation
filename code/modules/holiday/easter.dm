@@ -195,7 +195,7 @@
 		/datum/reagent/consumable/sodiumchloride = 1,
 		/datum/reagent/consumable/blackpepper = 1,
 		/obj/item/reagent_containers/food/snacks/boiledegg = 1,
-		/obj/item/reagent_containers/food/snacks/meatball = 1  //YOGS - Bigotry rule
+		/obj/item/reagent_containers/food/snacks/meatball = TRUE  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/scotchegg
 	subcategory = CAT_MISCFOOD

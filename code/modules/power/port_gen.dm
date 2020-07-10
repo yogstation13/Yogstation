@@ -122,7 +122,7 @@
 		. += "<span class='notice'>The status display reads: Fuel efficiency increased by <b>[(consumption*100)-100]%</b>.<span>"
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
-	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
+	if(sheets >= TRUE / (time_per_sheet / power_output) - sheet_left)
 		return TRUE
 	return FALSE
 
@@ -132,14 +132,14 @@
 		sheets = 0
 
 /obj/machinery/power/port_gen/pacman/UseFuel()
-	var/needed_sheets = 1 / (time_per_sheet * consumption / power_output)
+	var/needed_sheets = TRUE / (time_per_sheet * consumption / power_output)
 	var/temp = min(needed_sheets, sheet_left)
 	needed_sheets -= temp
 	sheet_left -= temp
 	sheets -= round(needed_sheets)
 	needed_sheets -= round(needed_sheets)
 	if (sheet_left <= 0 && sheets > 0)
-		sheet_left = 1 - needed_sheets
+		sheet_left = TRUE - needed_sheets
 		sheets--
 
 	var/lower_limit = 56 + power_output * 10

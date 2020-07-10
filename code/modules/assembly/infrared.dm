@@ -104,7 +104,7 @@
 	var/_dir = dir
 	var/turf/_T = get_step(T, _dir)
 	if(_T)
-		for(var/i in 1 to maxlength)
+		for(var/i in TRUE to maxlength)
 			var/obj/effect/beam/i_beam/I = new(T)
 			if(istype(holder, /obj/item/assembly_holder))
 				var/obj/item/assembly_holder/assembly_holder = holder

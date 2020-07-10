@@ -46,7 +46,7 @@ GLOBAL_LIST(labor_sheet_values)
 	var/list/data = list()
 	var/can_go_home = FALSE
 
-	data["emagged"] = (obj_flags & EMAGGED) ? 1 : 0
+	data["emagged"] = (obj_flags & EMAGGED) ? TRUE : 0
 	if(obj_flags & EMAGGED)
 		can_go_home = TRUE
 

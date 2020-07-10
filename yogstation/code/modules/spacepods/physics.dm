@@ -52,16 +52,16 @@
 			var/datum/gas_mixture/env = T.return_air()
 			if(env)
 				var/pressure = env.return_pressure()
-				drag += velocity_mag * pressure * 0.0001 // 1 atmosphere should shave off 1% of velocity per tile
+				drag += velocity_mag * pressure * 0.0001 // TRUE atmosphere should shave off 1% of velocity per tile
 		if(velocity_mag > 20)
 			drag = max(drag, (velocity_mag - 20) / time)
 		if(drag)
 			if(velocity_mag)
-				var/drag_factor = 1 - clamp(drag * time / velocity_mag, 0, 1)
+				var/drag_factor = TRUE - clamp(drag * time / velocity_mag, 0, 1)
 				velocity_x *= drag_factor
 				velocity_y *= drag_factor
 			if(angular_velocity != 0)
-				var/drag_factor_spin = 1 - clamp(drag * 30 * time / abs(angular_velocity), 0, 1)
+				var/drag_factor_spin = TRUE - clamp(drag * 30 * time / abs(angular_velocity), 0, 1)
 				angular_velocity *= drag_factor_spin
 
 	// Alright now calculate the THRUST

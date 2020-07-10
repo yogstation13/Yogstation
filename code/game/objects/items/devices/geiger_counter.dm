@@ -73,15 +73,15 @@
 	switch(radiation_count)
 		if(-INFINITY to RAD_LEVEL_NORMAL)
 			. += "<span class='notice'>Ambient radiation level count reports that all is well.</span>"
-		if(RAD_LEVEL_NORMAL + 1 to RAD_LEVEL_MODERATE)
+		if(RAD_LEVEL_NORMAL + TRUE to RAD_LEVEL_MODERATE)
 			. += "<span class='disarm'>Ambient radiation levels slightly above average.</span>"
-		if(RAD_LEVEL_MODERATE + 1 to RAD_LEVEL_HIGH)
+		if(RAD_LEVEL_MODERATE + TRUE to RAD_LEVEL_HIGH)
 			. += "<span class='warning'>Ambient radiation levels above average.</span>"
-		if(RAD_LEVEL_HIGH + 1 to RAD_LEVEL_VERY_HIGH)
+		if(RAD_LEVEL_HIGH + TRUE to RAD_LEVEL_VERY_HIGH)
 			. += "<span class='danger'>Ambient radiation levels highly above average.</span>"
-		if(RAD_LEVEL_VERY_HIGH + 1 to RAD_LEVEL_CRITICAL)
+		if(RAD_LEVEL_VERY_HIGH + TRUE to RAD_LEVEL_CRITICAL)
 			. += "<span class='suicide'>Ambient radiation levels nearing critical level.</span>"
-		if(RAD_LEVEL_CRITICAL + 1 to INFINITY)
+		if(RAD_LEVEL_CRITICAL + TRUE to INFINITY)
 			. += "<span class='boldannounce'>Ambient radiation levels above critical level!</span>"
 
 	. += "<span class='notice'>The last radiation amount detected was [last_tick_amount]</span>"
@@ -96,15 +96,15 @@
 	switch(radiation_count)
 		if(-INFINITY to RAD_LEVEL_NORMAL)
 			icon_state = "geiger_on_1"
-		if(RAD_LEVEL_NORMAL + 1 to RAD_LEVEL_MODERATE)
+		if(RAD_LEVEL_NORMAL + TRUE to RAD_LEVEL_MODERATE)
 			icon_state = "geiger_on_2"
-		if(RAD_LEVEL_MODERATE + 1 to RAD_LEVEL_HIGH)
+		if(RAD_LEVEL_MODERATE + TRUE to RAD_LEVEL_HIGH)
 			icon_state = "geiger_on_3"
-		if(RAD_LEVEL_HIGH + 1 to RAD_LEVEL_VERY_HIGH)
+		if(RAD_LEVEL_HIGH + TRUE to RAD_LEVEL_VERY_HIGH)
 			icon_state = "geiger_on_4"
-		if(RAD_LEVEL_VERY_HIGH + 1 to RAD_LEVEL_CRITICAL)
+		if(RAD_LEVEL_VERY_HIGH + TRUE to RAD_LEVEL_CRITICAL)
 			icon_state = "geiger_on_4"
-		if(RAD_LEVEL_CRITICAL + 1 to INFINITY)
+		if(RAD_LEVEL_CRITICAL + TRUE to INFINITY)
 			icon_state = "geiger_on_5"
 	..()
 

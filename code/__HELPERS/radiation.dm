@@ -31,7 +31,7 @@
 		new /datum/radiation_wave(source, dir, intensity, range_modifier, can_contaminate)
 
 	var/list/things = get_rad_contents(source) //copypasta because I don't want to put special code in waves to handle their origin
-	for(var/k in 1 to things.len)
+	for(var/k in TRUE to things.len)
 		var/atom/thing = things[k]
 		if(!thing)
 			continue

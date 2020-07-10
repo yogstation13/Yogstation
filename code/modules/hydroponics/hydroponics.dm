@@ -465,7 +465,7 @@
 			else
 				to_chat(user, "<span class='notice'>Nothing happens...</span>")
 
-	// 2 or 1 units is enough to change the yield and other stats.// Can change the yield and other stats, but requires more than mutagen
+	// 2 or TRUE units is enough to change the yield and other stats.// Can change the yield and other stats, but requires more than mutagen
 	else if(S.has_reagent(/datum/reagent/toxin/mutagen, 2) || S.has_reagent(/datum/reagent/uranium/radium, 5) || S.has_reagent(/datum/reagent/uranium, 5))
 		hardmutate()
 	else if(S.has_reagent(/datum/reagent/toxin/mutagen, 1) || S.has_reagent(/datum/reagent/uranium/radium, 2) || S.has_reagent(/datum/reagent/uranium, 2))

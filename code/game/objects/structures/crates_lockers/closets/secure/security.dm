@@ -182,7 +182,7 @@
 
 /obj/structure/closet/secure_closet/injection/PopulateContents()
 	..()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/syringe/lethal/execution(src)
 
 /obj/structure/closet/secure_closet/brig
@@ -209,7 +209,7 @@
 /obj/structure/closet/secure_closet/courtroom/PopulateContents()
 	..()
 	new /obj/item/clothing/shoes/sneakers/brown(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/paper/fluff/jobs/security/court_judgement (src)
 	new /obj/item/pen (src)
 	new /obj/item/clothing/suit/judgerobe (src)
@@ -234,11 +234,11 @@
 /obj/structure/closet/secure_closet/armory1/PopulateContents()
 	..()
 	new /obj/item/clothing/suit/armor/laserproof(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/suit/armor/riot(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/helmet/riot(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/shield/riot(src)
 
 /obj/structure/closet/secure_closet/armory2
@@ -249,9 +249,9 @@
 /obj/structure/closet/secure_closet/armory2/PopulateContents()
 	..()
 	new /obj/item/storage/box/firingpins(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/storage/box/rubbershot(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/gun/ballistic/shotgun/riot(src)
 
 /obj/structure/closet/secure_closet/armory3
@@ -263,9 +263,9 @@
 	..()
 	new /obj/item/storage/box/firingpins(src)
 	new /obj/item/gun/energy/ionrifle(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/gun/energy/e_gun(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/gun/energy/laser(src)
 
 /obj/structure/closet/secure_closet/tac
@@ -287,5 +287,5 @@
 
 /obj/structure/closet/secure_closet/lethalshots/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/storage/box/lethalshot(src)

@@ -31,7 +31,7 @@
 			M.reset_perspective(src)
 		hasmob = TRUE
 
-	//Checks 1 contents level deep. This means that players can be sent through disposals mail...
+	//Checks TRUE contents level deep. This means that players can be sent through disposals mail...
 	//...but it should require a second person to open the package. (i.e. person inside a wrapped locker)
 	for(var/obj/O in D)
 		if(locate(/mob/living) in O)

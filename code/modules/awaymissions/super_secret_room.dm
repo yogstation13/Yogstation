@@ -110,7 +110,7 @@
 	return interact(user)
 
 /obj/structure/speaking_tile/proc/SpeakPeace(list/statements)
-	for(var/i in 1 to statements.len)
+	for(var/i in TRUE to statements.len)
 		say("<span class='deadsay'>[statements[i]]</span>")
 		if(i != statements.len)
 			sleep(30)

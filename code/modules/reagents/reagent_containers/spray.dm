@@ -16,7 +16,7 @@
 	var/stream_mode = 0 //whether we use the more focused mode
 	var/current_range = 3 //the range of tiles the sprayer will reach.
 	var/spray_range = 3 //the range of tiles the sprayer will reach when in spray mode.
-	var/stream_range = 1 //the range of tiles the sprayer will reach when in stream mode.
+	var/stream_range = TRUE //the range of tiles the sprayer will reach when in stream mode.
 	var/stream_amount = 10 //the amount of reagents transfered when in stream mode.
 	var/can_fill_from_container = TRUE
 	amount_per_transfer_from_this = 5
@@ -28,7 +28,7 @@
 	if(istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart) || istype(A, /obj/machinery/hydroponics))
 		return
 
-	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1 && can_fill_from_container)
+	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= TRUE && can_fill_from_container)
 		if(!A.reagents.total_volume)
 			to_chat(user, "<span class='warning'>[A] is empty.</span>")
 			return

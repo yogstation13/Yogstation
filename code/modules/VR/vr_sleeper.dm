@@ -14,7 +14,7 @@
 	var/datum/effect_system/spark_spread/sparks
 	var/mob/living/carbon/human/virtual_reality/vr_human
 	var/vr_category = "default" //Specific category of spawn points to pick from
-	var/allow_creating_vr_humans = TRUE //So you can have vr_sleepers that always spawn you as a specific person or 1 life/chance vr games
+	var/allow_creating_vr_humans = TRUE //So you can have vr_sleepers that always spawn you as a specific person or TRUE life/chance vr games
 	var/only_current_user_can_interact = FALSE
 
 /obj/machinery/vr_sleeper/Initialize()

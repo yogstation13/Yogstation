@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(dbcore)
 	name = "Database"
 	flags = SS_BACKGROUND
-	wait = 1 MINUTES
+	wait = TRUE MINUTES
 	init_order = INIT_ORDER_DBCORE
 	var/const/FAILED_DB_CONNECTION_CUTOFF = 5
 	var/failed_connection_timeout = 0
@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(dbcore)
 				db_major = text2num(query_db_version.item[1])
 				db_minor = text2num(query_db_version.item[2])
 				if(db_major != DB_MAJOR_VERSION || db_minor != DB_MINOR_VERSION)
-					schema_mismatch = 1 // flag admin message about mismatch
+					schema_mismatch = TRUE // flag admin message about mismatch
 					log_sql("Database schema ([db_major].[db_minor]) doesn't match the latest schema version ([DB_MAJOR_VERSION].[DB_MINOR_VERSION]), this may lead to undefined behaviour or errors")
 			else
 				schema_mismatch = 2 //flag admin message about no schema version

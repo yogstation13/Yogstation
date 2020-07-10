@@ -168,7 +168,7 @@ obj/machinery/holopad/secure/Initialize()
 /obj/machinery/holopad/RefreshParts()
 	var/holograph_range = 4
 	for(var/obj/item/stock_parts/capacitor/B in component_parts)
-		holograph_range += 1 * B.rating
+		holograph_range += TRUE * B.rating
 	holo_range = holograph_range
 
 /obj/machinery/holopad/examine(mob/user)
@@ -271,7 +271,7 @@ obj/machinery/holopad/secure/Initialize()
 					return
 				if(usr.loc == loc)
 					var/input = text2num(params["headcall"])
-					var/headcall = input == 1 ? TRUE : FALSE
+					var/headcall = input == TRUE ? TRUE : FALSE
 					new /datum/holocall(usr, src, callnames[result], headcall)
 					calling = TRUE
 					return TRUE

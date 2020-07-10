@@ -21,9 +21,9 @@
 	var/autotraitor_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 
 /datum/dynamic_ruleset/roundstart/traitor/pre_execute()
-	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
+	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by TRUE for every 10 levels
 	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
-	for (var/i = 1 to num_traitors)
+	for (var/i = TRUE to num_traitors)
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
@@ -67,12 +67,12 @@
 	if(bsc)
 		num_teams = max(1, round(mode.roundstart_pop_ready / bsc))
 
-	for(var/j = 1 to num_teams)
+	for(var/j = TRUE to num_teams)
 		if(candidates.len < min_team_size || candidates.len < required_candidates)
 			break
 		var/datum/team/brother_team/team = new
 		var/team_size = prob(10) ? min(3, candidates.len) : 2
-		for(var/k = 1 to team_size)
+		for(var/k = TRUE to team_size)
 			var/mob/bro = pick_n_take(candidates)
 			assigned += bro.mind
 			team.add_member(bro.mind)
@@ -112,7 +112,7 @@
 
 /datum/dynamic_ruleset/roundstart/changeling/pre_execute()
 	var/num_changelings = min(round(mode.candidates.len / 10) + 1, candidates.len)
-	for (var/i = 1 to num_changelings)
+	for (var/i = TRUE to num_changelings)
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
@@ -213,7 +213,7 @@
 /datum/dynamic_ruleset/roundstart/bloodcult/pre_execute()
 	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/cultists = cultist_cap[indice_pop]
-	for(var/cultists_number = 1 to cultists)
+	for(var/cultists_number = TRUE to cultists)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick_n_take(candidates)
@@ -273,7 +273,7 @@
 
 	var/indice_pop = min(10,round(mode.roundstart_pop_ready/5)+1)
 	var/operatives = operative_cap[indice_pop]
-	for(var/operatives_number = 1 to operatives)
+	for(var/operatives_number = TRUE to operatives)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick_n_take(candidates)
@@ -355,7 +355,7 @@
 
 /datum/dynamic_ruleset/roundstart/revs/pre_execute()
 	var/max_canditates = 3
-	for(var/i = 1 to max_canditates)
+	for(var/i = TRUE to max_canditates)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick_n_take(candidates)
@@ -481,7 +481,7 @@
 		number_players -= 30
 		starter_servants += round(number_players / 10)
 	starter_servants = min(starter_servants, 8)
-	for (var/i in 1 to starter_servants)
+	for (var/i in TRUE to starter_servants)
 		var/mob/servant = pick_n_take(candidates)
 		assigned += servant.mind
 		servant.mind.assigned_role = ROLE_SERVANT_OF_RATVAR
@@ -620,7 +620,7 @@
 /datum/dynamic_ruleset/roundstart/devil/proc/add_devil_objectives(datum/mind/devil_mind, quantity)
 	var/list/validtypes = list(/datum/objective/devil/soulquantity, /datum/objective/devil/soulquality, /datum/objective/devil/sintouch, /datum/objective/devil/buy_target)
 	var/datum/antagonist/devil/D = devil_mind.has_antag_datum(/datum/antagonist/devil)
-	for(var/i = 1 to quantity)
+	for(var/i = TRUE to quantity)
 		var/type = pick(validtypes)
 		var/datum/objective/devil/objective = new type(null)
 		objective.owner = devil_mind
@@ -749,7 +749,7 @@
 /datum/dynamic_ruleset/roundstart/shadowling/pre_execute()
 	var/indice_pop = min(60,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/shadowlings = shadowling_cap[indice_pop]
-	for(var/shadowling_number = 1 to shadowlings)
+	for(var/shadowling_number = TRUE to shadowlings)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick_n_take(candidates)
@@ -786,9 +786,9 @@
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
 	
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute()
-	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
+	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by TRUE for every 10 levels
 	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
-	for (var/i = 1 to num_traitors)
+	for (var/i = TRUE to num_traitors)
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_VAMPIRE
@@ -876,7 +876,7 @@
 /datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/pre_execute()
 	var/indice_pop = min(45,round(mode.roundstart_pop_ready/2)+1)
 	var/mages = mage_cap[indice_pop]
-	for(var/mages_number = 1 to mages)
+	for(var/mages_number = TRUE to mages)
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 
@@ -917,7 +917,7 @@
 /datum/dynamic_ruleset/roundstart/darkspawn/pre_execute()
 	var/indice_pop = min(30,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/darkspawns = darkspawn_cap[indice_pop]
-	for(var/darkspawn_number = 1 to darkspawns)
+	for(var/darkspawn_number = TRUE to darkspawns)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick_n_take(candidates)

@@ -74,7 +74,7 @@
 
 /obj/effect/proc_holder/spell/aimed/proc/fire_projectile(mob/living/user, atom/target)
 	current_amount--
-	for(var/i in 1 to projectiles_per_fire)
+	for(var/i in TRUE to projectiles_per_fire)
 		var/obj/item/projectile/P = new projectile_type(user.loc)
 		P.firer = user
 		P.preparePixelProjectile(target, user)

@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 /datum/TCS_Compiler
 	var/n_Interpreter/TCS_Interpreter/interpreter
 	var/obj/machinery/telecomms/server/Holder	// the server that is running the code
-	var/ready = 1 // 1 if ready to run code
+	var/ready = TRUE // TRUE if ready to run code
 
 	/* -- Set ourselves to Garbage Collect -- */
 
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	name = "mem"
 	interp_type = /n_Interpreter/TCS_Interpreter
 /datum/n_function/default/mem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
-	var/address = params.len >= 1 ? params[1] : null
+	var/address = params.len >= TRUE ? params[1] : null
 	var/value = params.len >= 2 ? params[2] : null
 	if(istext(address))
 		var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	name = "remote_signal"
 	interp_type = /n_Interpreter/TCS_Interpreter
 /datum/n_function/default/remote_signal/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
-	var/freq = params.len >= 1 ? params[1] : 1459
+	var/freq = params.len >= TRUE ? params[1] : 1459
 	var/code = params.len >= 2 ? params[2] : 30
 
 	if(isnum(freq) && isnum(code))

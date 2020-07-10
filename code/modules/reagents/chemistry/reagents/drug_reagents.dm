@@ -221,7 +221,7 @@
 
 /datum/reagent/drug/methamphetamine/overdose_process(mob/living/M)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
-		for(var/i in 1 to 4)
+		for(var/i in TRUE to 4)
 			step(M, pick(GLOB.cardinals))
 	if(prob(20))
 		M.emote("laugh")
@@ -310,7 +310,7 @@
 /datum/reagent/drug/bath_salts/overdose_process(mob/living/M)
 	M.hallucination += 5
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
-		for(var/i in 1 to 8)
+		for(var/i in TRUE to 8)
 			step(M, pick(GLOB.cardinals))
 	if(prob(20))
 		M.emote(pick("twitch","drool","moan"))

@@ -590,11 +590,11 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(istype(I, steal_target))
 				if(!targetinfo) //If there's no targetinfo, then that means it was a custom objective. At this point, we know you have the item, so return 1.
 					return TRUE
-				else if(targetinfo.check_special_completion(I))//Returns 1 by default. Items with special checks will return 1 if the conditions are fulfilled.
+				else if(targetinfo.check_special_completion(I))//Returns TRUE by default. Items with special checks will return TRUE if the conditions are fulfilled.
 					return TRUE
 
 			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
-				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
+				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had TRUE item that didn't pass and got checked first!
 					return TRUE
 	return FALSE
 
@@ -753,7 +753,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
 	target_amount = rand (lowbound,highbound)
-	var/n_p = 1 //autowin
+	var/n_p = TRUE //autowin
 	var/list/datum/mind/owners = get_owners()
 	if (SSticker.current_state == GAME_STATE_SETTING_UP)
 		for(var/mob/dead/new_player/P in GLOB.player_list)

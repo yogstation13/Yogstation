@@ -353,7 +353,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Grab(mob/living/carbon/human/H)
 	to_chat(H, "<span class='userdanger'>You feel a cold, gloved hand clamp down on your ankle!</span>")
-	for(var/I in 1 to get_dist(src, H))
+	for(var/I in TRUE to get_dist(src, H))
 		if(do_after(src, 5, target = H))
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)

@@ -331,7 +331,7 @@
 
 /obj/item/twohanded/required/kirbyplants/random/proc/generate_states()
 	states = list()
-	for(var/i in 1 to 34) //yogs changed 25 plants to 34
+	for(var/i in TRUE to 34) //yogs changed 25 plants to 34
 		var/number
 		if(i < 10)
 			number = "0[i]"

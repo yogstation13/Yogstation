@@ -189,7 +189,7 @@
 	else
 		dat += "<BR><B>Mask:</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_MASK]'>[(wear_mask && !(wear_mask.item_flags & ABSTRACT))	? wear_mask	: "Nothing"]</a>"
 
-	for(var/i in 1 to held_items.len)
+	for(var/i in TRUE to held_items.len)
 		var/obj/item/I = get_item_for_held_index(i)
 		dat += "<BR><B>[get_held_index_name(i)]:</B> </td><td><A href='?src=[REF(src)];item=[SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "Nothing"]</a>"
 
@@ -485,7 +485,7 @@
 	return 1
 
 /mob/living/carbon/proc/spew_organ(power = 5, amt = 1)
-	for(var/i in 1 to amt)
+	for(var/i in TRUE to amt)
 		if(!internal_organs.len)
 			break //Guess we're out of organs!
 		var/obj/item/organ/guts = pick(internal_organs)
@@ -567,7 +567,7 @@
 
 	if(client.eye != src)
 		var/atom/A = client.eye
-		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
+		if(A.update_remote_sight(src)) //returns TRUE if we override all other sight updates.
 			return
 
 	if(glasses)

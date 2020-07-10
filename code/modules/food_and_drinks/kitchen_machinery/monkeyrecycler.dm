@@ -87,12 +87,12 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	if(stored_matter >= 1)
 		to_chat(user, "<span class='notice'>The machine hisses loudly as it condenses the ground monkey meat. After a moment, it dispenses a brand new monkey cube.</span>")
 		playsound(src.loc, 'sound/machines/hiss.ogg', 50, 1)
-		for(var/i in 1 to FLOOR(stored_matter, 1))
+		for(var/i in TRUE to FLOOR(stored_matter, 1))
 			new /obj/item/reagent_containers/food/snacks/monkeycube(src.loc)
 			stored_matter--
 		to_chat(user, "<span class='notice'>The machine's display flashes that it has [stored_matter] monkeys worth of material left.</span>")
 	else
-		to_chat(user, "<span class='danger'>The machine needs at least 1 monkey worth of material to produce a monkey cube. It currently has [stored_matter].</span>")
+		to_chat(user, "<span class='danger'>The machine needs at least TRUE monkey worth of material to produce a monkey cube. It currently has [stored_matter].</span>")
 
 /obj/machinery/monkey_recycler/multitool_act(mob/living/user, obj/item/multitool/I)
 	if(istype(I))

@@ -547,7 +547,7 @@ Nothing else in the console has ID requirements.
 	RDSCREEN_UI_DDISK_CHECK
 	var/list/l = list()
 	l += "Disk Operations: <A href='?src=[REF(src)];clear_design=0'>Clear Disk</A><A href='?src=[REF(src)];updt_design=0'>Upload All</A><A href='?src=[REF(src)];eject_design=1'>Eject Disk</A>"
-	for(var/i in 1 to d_disk.max_blueprints)
+	for(var/i in TRUE to d_disk.max_blueprints)
 		l += "<div class='statusDisplay'>"
 		if(d_disk.blueprints[i])
 			var/datum/design/D = d_disk.blueprints[i]
@@ -840,7 +840,7 @@ Nothing else in the console has ID requirements.
 				ui += ui_settings()
 			if(RDSCREEN_DEVICE_LINKING)
 				ui += ui_device_linking()
-	for(var/i in 1 to length(ui))
+	for(var/i in TRUE to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
 		ui[i] = replacetextEx(ui[i], RDSCREEN_NOBREAK, "")
@@ -992,7 +992,7 @@ Nothing else in the console has ID requirements.
 			return
 		var/n = text2num(ls["clear_design"])
 		if(!n)
-			for(var/i in 1 to d_disk.max_blueprints)
+			for(var/i in TRUE to d_disk.max_blueprints)
 				d_disk.blueprints[i] = null
 				say("Wiping design disk.")
 		else

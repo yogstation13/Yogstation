@@ -79,7 +79,7 @@
 	var/old_checkers_used = min(turfs_len, old_checkers_len)
 
 	//reuse what we can
-	for(var/I in 1 to old_checkers_len)
+	for(var/I in TRUE to old_checkers_len)
 		if(I <= old_checkers_used)
 			var/obj/effect/abstract/proximity_checker/pc = checkers_local[I]
 			pc.forceMove(turfs[I])

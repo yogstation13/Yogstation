@@ -40,7 +40,7 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
 	movement_type = FLYING
 	gold_core_spawnable = HOSTILE_SPAWN
-	search_objects = 1 //have to find those plant trays!
+	search_objects = TRUE //have to find those plant trays!
 	ventcrawler = VENTCRAWLER_ALWAYS
 
 	//Spaceborn beings don't get hurt by space

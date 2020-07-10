@@ -99,7 +99,7 @@
 	ranged_cooldown = world.time + 50
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	var/turf/T = get_step(get_turf(src), dir_to_target)
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		new /obj/effect/temp_visual/dragon_swoop/legionnaire(T)
 		T = get_step(T, dir_to_target)
 	playsound(src,'sound/magic/demon_attack1.ogg', 200, 1)

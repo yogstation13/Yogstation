@@ -137,7 +137,7 @@
 	qdel(query_find_del_message)
 
 	var/datum/DBQuery/query_del_message = SSdbcore.NewQuery(
-		"UPDATE [format_table_name("messages")] SET deleted = 1 WHERE id = :id",
+		"UPDATE [format_table_name("messages")] SET deleted = TRUE WHERE id = :id",
 		list("id" = message_id)
 	)
 

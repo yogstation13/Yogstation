@@ -235,7 +235,7 @@
 		return 0
 	return 1
 
-/obj/machinery/computer/slot_machine/proc/toggle_reel_spin(value, delay = 0) //value is 1 or 0 aka on or off
+/obj/machinery/computer/slot_machine/proc/toggle_reel_spin(value, delay = 0) //value is TRUE or 0 aka on or off
 	for(var/list/reel in reels)
 		reels[reel] = value
 		sleep(delay)

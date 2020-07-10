@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 /datum/action/innate/ai/proc/adjust_uses(amt, silent)
 	uses += amt
 	if(!silent && uses)
-		to_chat(owner, "<span class='notice'>[name] now has <b>[uses]</b> use[uses > 1 ? "s" : ""] remaining.</span>")
+		to_chat(owner, "<span class='notice'>[name] now has <b>[uses]</b> use[uses > TRUE ? "s" : ""] remaining.</span>")
 	if(!uses)
 		if(initial(uses) > 1) //no need to tell 'em if it was one-use anyway!
 			to_chat(owner, "<span class='warning'>[name] has run out of uses!</span>")
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 /datum/action/innate/ai/ranged/adjust_uses(amt, silent)
 	uses += amt
 	if(!silent && uses)
-		to_chat(owner, "<span class='notice'>[name] now has <b>[uses]</b> use[uses > 1 ? "s" : ""] remaining.</span>")
+		to_chat(owner, "<span class='notice'>[name] now has <b>[uses]</b> use[uses > TRUE ? "s" : ""] remaining.</span>")
 	if(!uses)
 		if(initial(uses) > 1) //no need to tell 'em if it was one-use anyway!
 			to_chat(owner, "<span class='warning'>[name] has run out of uses!</span>")
@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	owner.playsound_local(owner, 'sound/misc/bloblarm.ogg', 50, 0)
 	to_chat(owner, "<span class='userdanger'>!!! UNAUTHORIZED SELF-DESTRUCT ACCESS !!!</span>")
 	to_chat(owner, "<span class='boldannounce'>This is a class-3 security violation. This incident will be reported to Central Command.</span>")
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		sleep(20)
 		if(!owner || QDELETED(owner))
 			return
@@ -555,7 +555,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 
 /datum/action/innate/ai/place_transformer/New()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		var/image/I = image("icon"='icons/turf/overlays.dmi')
 		LAZYADD(turfOverlays, I)
 
@@ -588,7 +588,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/list/turfs = list(middle, locate(middle.x - 1, middle.y, middle.z), locate(middle.x + 1, middle.y, middle.z))
 	var/alert_msg = "There isn't enough room! Make sure you are placing the machine in a clear area and on a floor."
 	var/success = TRUE
-	for(var/n in 1 to 3) //We have to do this instead of iterating normally because of how overlay images are handled
+	for(var/n in TRUE to 3) //We have to do this instead of iterating normally because of how overlay images are handled
 		var/turf/T = turfs[n]
 		if(!isfloorturf(T))
 			success = FALSE

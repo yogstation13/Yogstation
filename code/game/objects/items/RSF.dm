@@ -118,7 +118,7 @@ RSF
 		R.cell.charge = end_charge
 		return TRUE
 	else
-		if(matter - 1 < 0)
+		if(matter - TRUE < 0)
 			to_chat(user, "<span class='warning'>\The [src] doesn't have enough [discriptor] left.</span>")
 			icon_state = spent_icon_state
 			return FALSE
@@ -179,7 +179,7 @@ RSF
 		to_chat(user, "Cookie Synthesizer Reset")
 
 /obj/item/rsf/cookiesynth/process()
-	matter = min(matter + 1, max_matter) //We add 1 up to a point
+	matter = min(matter + 1, max_matter) //We add TRUE up to a point
 	if(matter >= max_matter)
 		STOP_PROCESSING(SSprocessing, src)
 

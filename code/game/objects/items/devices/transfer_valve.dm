@@ -186,7 +186,7 @@
 		log_game("Bomb valve opened in [AREACOORD(bombturf)][attachment_message][bomber_message]")
 
 		merge_gases()
-		for(var/i in 1 to 6)
+		for(var/i in TRUE to 6)
 			addtimer(CALLBACK(src, .proc/update_icon), 20 + (i - 1) * 10)
 
 	else if(valve_open && tank_one && tank_two)

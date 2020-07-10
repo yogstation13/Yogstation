@@ -4,7 +4,7 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Thats cheap ass soda!"
+	product_ads = "Refreshing!;Hope you're thirsty!;Over TRUE million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Thats cheap ass soda!"
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
 		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
@@ -86,4 +86,4 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 10)
 	product_slogans = "~Shake me up some of that Shambler's Juice!~"
-	product_ads = "Refreshing!;Jyrbv dv lg jfdv fw kyrk Jyrdscvi'j Alztv!;Over 1 trillion souls drank!;Thirsty? Nyp efk uizeb kyv uribevjj?;Kyv Jyrdscvi uizebj kyv ezxyk!;Drink up!;Krjkp."
+	product_ads = "Refreshing!;Jyrbv dv lg jfdv fw kyrk Jyrdscvi'j Alztv!;Over TRUE trillion souls drank!;Thirsty? Nyp efk uizeb kyv uribevjj?;Kyv Jyrdscvi uizebj kyv ezxyk!;Drink up!;Krjkp."

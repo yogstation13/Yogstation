@@ -82,7 +82,7 @@
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
-		if(type & 1 && eye_blind )//Vision related
+		if(type & TRUE && eye_blind )//Vision related
 			if(!alt_msg)
 				return
 			else
@@ -95,7 +95,7 @@
 			else
 				msg = alt_msg
 				type = alt_type
-				if(type & 1 && eye_blind)
+				if(type & TRUE && eye_blind)
 					return
 	// voice muffling
 	if(stat == UNCONSCIOUS)
@@ -230,7 +230,7 @@
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
 
 //puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, 1 if successful
+//returns 0 if it cannot, TRUE if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
 	if(!istype(W))
 		return 0

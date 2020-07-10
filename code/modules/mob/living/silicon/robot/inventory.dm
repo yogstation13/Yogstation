@@ -113,7 +113,7 @@
 
 //module_active(module) - Checks whether there is a module active in the slot specified by "module".
 /mob/living/silicon/robot/proc/module_active(module) //Module is 1-3
-	if(module < 1 || module > 3)
+	if(module < TRUE || module > 3)
 		return FALSE
 
 	if(LAZYLEN(held_items) >= module)
@@ -130,7 +130,7 @@
 
 //select_module(module) - Selects the module slot specified by "module"
 /mob/living/silicon/robot/proc/select_module(module) //Module is 1-3
-	if(module < 1 || module > 3)
+	if(module < TRUE || module > 3)
 		return
 
 	if(!module_active(module))
@@ -156,7 +156,7 @@
 
 //deselect_module(module) - Deselects the module slot specified by "module"
 /mob/living/silicon/robot/proc/deselect_module(module) //Module is 1-3
-	if(module < 1 || module > 3)
+	if(module < TRUE || module > 3)
 		return
 
 	if(!module_active(module))
@@ -176,7 +176,7 @@
 
 //toggle_module(module) - Toggles the selection of the module slot specified by "module".
 /mob/living/silicon/robot/proc/toggle_module(module) //Module is 1-3
-	if(module < 1 || module > 3)
+	if(module < TRUE || module > 3)
 		return
 
 	if(module_selected(module))
@@ -207,7 +207,7 @@
 			return
 		slot_num++
 		if(slot_num > 4) // not >3 otherwise cycling with just one item on module 3 wouldn't work
-			slot_num = 1 //Wrap around.
+			slot_num = TRUE //Wrap around.
 
 
 

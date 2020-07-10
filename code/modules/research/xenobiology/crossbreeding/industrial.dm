@@ -10,7 +10,7 @@ Industrial extracts:
 	var/plasmarequired = 2 //Units of plasma required to be consumed to produce item.
 	var/itempath = /obj/item //The item produced by the extract.
 	var/plasmaabsorbed = 0 //Units of plasma aborbed by the extract already. Absorbs at a rate of 2u/obj tick.
-	var/itemamount = 1 //How many items to spawn
+	var/itemamount = TRUE //How many items to spawn
 
 /obj/item/slimecross/industrial/examine(mob/user)
 	. = ..()

@@ -46,7 +46,7 @@
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
-//returns a list(x0,y0, x1,y1) where points 0 and 1 are bounding corners of the projected rectangle
+//returns a list(x0,y0, x1,y1) where points 0 and TRUE are bounding corners of the projected rectangle
 /obj/docking_port/proc/return_coords(_x, _y, _dir)
 	if(_dir == null)
 		_dir = dir
@@ -267,7 +267,7 @@
 	var/list/movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/list/ripples = list()
-	var/engine_coeff = 1 //current engine coeff
+	var/engine_coeff = TRUE //current engine coeff
 	var/current_engines = 0 //current engine power
 	var/initial_engines = 0 //initial engine power
 	var/list/engine_list = list()
@@ -297,7 +297,7 @@
 
 	shuttle_areas = list()
 	var/list/all_turfs = return_ordered_turfs(x, y, z, dir)
-	for(var/i in 1 to all_turfs.len)
+	for(var/i in TRUE to all_turfs.len)
 		var/turf/curT = all_turfs[i]
 		var/area/cur_area = curT.loc
 		if(istype(cur_area, area_type))
@@ -454,7 +454,7 @@
 	if(!underlying_area)
 		underlying_area = new underlying_area_type(null)
 
-	for(var/i in 1 to old_turfs.len)
+	for(var/i in TRUE to old_turfs.len)
 		var/turf/oldT = old_turfs[i]
 		if(!oldT || !istype(oldT.loc, area_type))
 			continue
@@ -465,7 +465,7 @@
 
 		// Here we locate the bottomost shuttle boundary and remove all turfs above it
 		var/list/baseturf_cache = oldT.baseturfs
-		for(var/k in 1 to length(baseturf_cache))
+		for(var/k in TRUE to length(baseturf_cache))
 			if(ispath(baseturf_cache[k], /turf/baseturf_skipover/shuttle))
 				oldT.ScrapeAway(baseturf_cache.len - k + 1)
 				break
@@ -502,7 +502,7 @@
 
 	var/list/ripple_turfs = list()
 
-	for(var/i in 1 to L0.len)
+	for(var/i in TRUE to L0.len)
 		var/turf/T0 = L0[i]
 		var/turf/T1 = L1[i]
 		if(!T0 || !T1)
@@ -678,7 +678,7 @@
 		return "--:--"
 
 	var/timeleft = timeLeft()
-	if(timeleft > 1 HOURS)
+	if(timeleft > TRUE HOURS)
 		return "--:--"
 	else if(timeleft > 0)
 		return "[add_leading(num2text((timeleft / 60) % 60), 2, "0")]:[add_leading(num2text(timeleft % 60), 2, "0")]"
@@ -690,7 +690,7 @@
 	var/obj/docking_port/stationary/dockedAt = get_docked()
 	var/docked_at = dockedAt?.name || "unknown"
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
-		if (timeLeft() > 1 HOURS)
+		if (timeLeft() > TRUE HOURS)
 			return "hyperspace"
 		else
 			var/obj/docking_port/stationary/dst
@@ -812,7 +812,7 @@
 		return clamp(1 - delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
 	if(new_value < initial_engines)
 		var/delta = initial_engines - new_value
-		var/change_per_engine = 1 //doesn't really matter should not be happening for 0 engine shuttles
+		var/change_per_engine = TRUE //doesn't really matter should not be happening for 0 engine shuttles
 		if(initial_engines > 0)
 			change_per_engine = (ENGINE_COEFF_MAX -  1) / initial_engines //just linear drop to max delay
 		return clamp(1 + delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)

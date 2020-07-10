@@ -11,7 +11,7 @@
 	var/sender = TRUE //If this gateway is made for sending, not receiving
 	var/both_ways = FALSE
 	var/lifetime = 25 //How many deciseconds this portal will last
-	var/uses = 1 //How many objects or mobs can go through the portal
+	var/uses = TRUE //How many objects or mobs can go through the portal
 	var/obj/effect/clockwork/spatial_gateway/linked_gateway //The gateway linked to this one
 	var/timerid
 
@@ -97,7 +97,7 @@
 	return ..()
 
 /obj/effect/clockwork/spatial_gateway/ex_act(severity)
-	if(severity == 1 && uses)
+	if(severity == TRUE && uses)
 		uses = 0
 		visible_message("<span class='warning'>[src] is disrupted!</span>")
 		animate(src, alpha = 0, transform = matrix()*2, time = 10, flags = ANIMATION_END_NOW)
@@ -223,7 +223,7 @@
 		time_duration = round(time_duration * (2 * efficiency), 1)
 		CO.active = TRUE //you'd be active in a second but you should update immediately
 	invoker.visible_message("<span class='warning'>The air in front of [invoker] ripples before suddenly tearing open!</span>", \
-	"<span class='brass'>With a word, you rip open a [two_way ? "two-way":"one-way"] rift to [input_target_key]. It will last for [DisplayTimeText(time_duration)] and has [gateway_uses] use[gateway_uses > 1 ? "s" : ""].</span>")
+	"<span class='brass'>With a word, you rip open a [two_way ? "two-way":"one-way"] rift to [input_target_key]. It will last for [DisplayTimeText(time_duration)] and has [gateway_uses] use[gateway_uses > TRUE ? "s" : ""].</span>")
 	var/obj/effect/clockwork/spatial_gateway/S1 = new(issrcobelisk ? get_turf(src) : get_step(get_turf(invoker), invoker.dir))
 	var/obj/effect/clockwork/spatial_gateway/S2 = new(istargetobelisk ? get_turf(target) : get_step(get_turf(target), target.dir))
 

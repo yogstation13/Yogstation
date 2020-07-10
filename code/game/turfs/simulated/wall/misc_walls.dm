@@ -91,11 +91,11 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
 /turf/closed/wall/clockwork/devastate_wall()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new/obj/item/clockwork/alloy_shards/large(src)
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new/obj/item/clockwork/alloy_shards/medium(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new/obj/item/clockwork/alloy_shards/small(src)
 
 /turf/closed/wall/clockwork/attack_hulk(mob/living/user, does_attack_animation = 0)

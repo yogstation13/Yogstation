@@ -171,7 +171,7 @@
 
 /obj/item/toy/gun/examine(mob/user)
 	. = ..()
-	. += "There [bullets == 1 ? "is" : "are"] [bullets] cap\s left."
+	. += "There [bullets == TRUE ? "is" : "are"] [bullets] cap\s left."
 
 /obj/item/toy/gun/attackby(obj/item/toy/ammo/gun/A, mob/user, params)
 
@@ -227,7 +227,7 @@
 
 /obj/item/toy/ammo/gun/examine(mob/user)
 	. = ..()
-	. += "There [amount_left == 1 ? "is" : "are"] [amount_left] cap\s left."
+	. += "There [amount_left == TRUE ? "is" : "are"] [amount_left] cap\s left."
 
 /*
  * Toy swords
@@ -912,7 +912,7 @@
 	cut_overlays()
 	var/overlay_cards = currenthand.len
 
-	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
+	var/k = overlay_cards == 2 ? TRUE : overlay_cards - 2
 	for(var/i = k; i <= overlay_cards; i++)
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
 		add_overlay(card_overlay)
@@ -1043,7 +1043,7 @@
 		cards += "Green [i]"
 		cards += "Yellow [i]"
 		cards += "Blue [i]"
-	for(var/k in 1 to 9) //there is only 1 zero, but 2 of each other card, yes this is shitcode :(
+	for(var/k in TRUE to 9) //there is only TRUE zero, but 2 of each other card, yes this is shitcode :(
 		cards += "Red [k]"
 		cards += "Green [k]"
 		cards += "Yellow [k]"
@@ -1142,7 +1142,7 @@
 		for(var/mob/M in urange(10, src)) // Checks range
 			if(!M.stat && !isAI(M)) // Checks to make sure whoever's getting shaken is alive/not the AI
 				sleep(8) // Short delay to match up with the explosion sound
-				shake_camera(M, 2, 1) // Shakes player camera 2 squares for 1 second.
+				shake_camera(M, 2, 1) // Shakes player camera 2 squares for TRUE second.
 
 	else
 		to_chat(user, "<span class='alert'>Nothing happens.</span>")

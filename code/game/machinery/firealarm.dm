@@ -31,7 +31,7 @@
 	light_color = "#ff3232"
 
 	var/detecting = 1
-	var/buildstage = 2 // 2 = complete, 1 = no wires, 0 = circuit gone
+	var/buildstage = 2 // 2 = complete, TRUE = no wires, 0 = circuit gone
 	var/last_alarm = 0
 	var/area/myarea = null
 

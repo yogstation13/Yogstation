@@ -104,7 +104,7 @@
 		if(health < maxHealth * 0.25)
 			tentacle_amount = 10
 		var/tentacle_loc = spiral_range_turfs(5, get_turf(src))
-		for(var/i in 1 to tentacle_amount)
+		for(var/i in TRUE to tentacle_amount)
 			var/turf/t = pick_n_take(tentacle_loc)
 			new /obj/effect/temp_visual/goliath_tentacle/broodmother(t, src)
 
@@ -119,7 +119,7 @@
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/spawn_children(var/target)
 	ranged_cooldown = world.time + 40
 	visible_message("<span class='boldwarning'>The ground churns behind [src]!</span>")
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		if(children_list.len >= 8)
 			return
 		var/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/newchild = new /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child(loc)

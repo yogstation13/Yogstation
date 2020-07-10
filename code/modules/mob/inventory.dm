@@ -97,7 +97,7 @@
 
 /mob/proc/get_empty_held_indexes()
 	var/list/L
-	for(var/i in 1 to held_items.len)
+	for(var/i in TRUE to held_items.len)
 		if(!held_items[i])
 			if(!L)
 				L = list()
@@ -191,11 +191,11 @@
 		return hand_index || TRUE
 	return FALSE
 
-//Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns 1 on success.
+//Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns TRUE on success.
 /mob/proc/put_in_l_hand(obj/item/I)
 	return put_in_hand(I, get_empty_held_index_for_side("l"))
 
-//Puts the item into the first available right hand if possible and calls all necessary triggers/updates. returns 1 on success.
+//Puts the item into the first available right hand if possible and calls all necessary triggers/updates. returns TRUE on success.
 /mob/proc/put_in_r_hand(obj/item/I)
 	return put_in_hand(I, get_empty_held_index_for_side("r"))
 

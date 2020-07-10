@@ -9,7 +9,7 @@
 	if(!clockwise)
 		segment = -segment
 	var/list/matrices = list()
-	for(var/i in 1 to segments-1)
+	for(var/i in TRUE to segments-1)
 		var/matrix/M = matrix(transform)
 		M.Turn(segment*i)
 		matrices += M
@@ -22,12 +22,12 @@
 		animate(src, transform = matrices[1], time = speed, loops , flags = ANIMATION_PARALLEL)
 	else
 		animate(src, transform = matrices[1], time = speed, loops)
-	for(var/i in 2 to segments) //2 because 1 is covered above
+	for(var/i in 2 to segments) //2 because TRUE is covered above
 		animate(transform = matrices[i], time = speed)
 		//doesn't have an object argument because this is "Stacking" with the animate call above
 		//3 billion% intentional
 
-/atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1 , hold_seconds = 0  , angle = 1 , stay = FALSE) // Hopek 2019  
+/atom/proc/DabAnimation(speed = 1, loops = 1, direction = TRUE , hold_seconds = 0  , angle = TRUE , stay = FALSE) // Hopek 2019  
 	// By making this in atom/proc everything in the game can potentially dab. You have been warned.
 	if(hold_seconds > 9999) // if you need to hold a dab for more than 2 hours intentionally let me know.
 		return
@@ -35,11 +35,11 @@
 		hold_seconds = hold_seconds * 10 // Converts seconds to deciseconds 
 	if(angle == 1) //if angle is 1: random angle. Else take angle
 		angle = rand(25,50)
-	if(direction == 1) // direciton:: 1 for random pick, 2 for clockwise , 3 for anti-clockwise
+	if(direction == 1) // direciton:: TRUE for random pick, 2 for clockwise , 3 for anti-clockwise
 		direction = pick(2,3)
 	if(direction == 3) // if 3 then counter clockwise
 		angle = angle * -1
-	if(speed == 1) // if speed is 1 choose random speed from list
+	if(speed == 1) // if speed is TRUE choose random speed from list
 		speed = rand(3,5)
 
 	// dab matrix here
@@ -126,14 +126,14 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 	return list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0)
 
 //Adds/subtracts overall lightness
-//0 is identity, 1 makes everything white, -1 makes everything black
+//0 is identity, TRUE makes everything white, -1 makes everything black
 /proc/color_matrix_lightness(power)
 	return list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, power,power,power,0)
 
 //Changes distance hues have from grey while maintaining the overall lightness. Greys are unaffected.
 //1 is identity, 0 is greyscale, >1 oversaturates colors
 /proc/color_matrix_saturation(value)
-	var/inv = 1 - value
+	var/inv = TRUE - value
 	var/R = round(LUMA_R * inv, 0.001)
 	var/G = round(LUMA_G * inv, 0.001)
 	var/B = round(LUMA_B * inv, 0.001)
@@ -183,7 +183,7 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 		return color_matrix_identity()
 	var/list/output = list()
 	output.len = 20
-	for(var/value in 1 to 20)
+	for(var/value in TRUE to 20)
 		output[value] = A[value] + B[value]
 	return output
 
@@ -198,8 +198,8 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 	var/x = 1
 	var/y = 1
 	var/offset = 0
-	for(y in 1 to 5)
+	for(y in TRUE to 5)
 		offset = (y-1)*4
-		for(x in 1 to 4)
+		for(x in TRUE to 4)
 			output[offset+x] = round(A[offset+1]*B[x] + A[offset+2]*B[x+4] + A[offset+3]*B[x+8] + A[offset+4]*B[x+12]+(y==5?B[x+16]:0), 0.001)
 	return output

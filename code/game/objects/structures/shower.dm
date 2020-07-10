@@ -40,7 +40,7 @@
 		soundloop.stop()
 		if(isopenturf(loc))
 			var/turf/open/tile = loc
-			tile.MakeSlippery(TURF_WET_WATER, min_wet_time = 5 SECONDS, wet_time_to_add = 1 SECONDS)
+			tile.MakeSlippery(TURF_WET_WATER, min_wet_time = 5 SECONDS, wet_time_to_add = TRUE SECONDS)
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)

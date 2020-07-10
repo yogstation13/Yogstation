@@ -42,7 +42,7 @@
 	return new /datum/tgs_version("3.2.1.0")
 
 /datum/tgs_api/v3210/proc/trim_left(text)
-	for (var/i = 1 to length(text))
+	for (var/i = TRUE to length(text))
 		if (text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""

@@ -1471,7 +1471,7 @@
 /datum/reagent/medicine/burnmix/proc/combined_effect(mob/living/carbon/M, heal_roll, slur, jitter)
 	if(holder.has_reagent(holder.has_reagent(/datum/reagent/medicine/epinephrine) && /datum/reagent/medicine/perfluorodecalin))
 		if(overdosed)
-			if(prob(0.5)) // Should be 1 in 200 chance of a 1 in 3 chance to roll for faint if both epinephrine and perfluorodecalin are present
+			if(prob(0.5)) // Should be TRUE in 200 chance of a TRUE in 3 chance to roll for faint if both epinephrine and perfluorodecalin are present
 				M.emote((pick("scream","faint","gasp")))
 			if(prob(60)) // Original edit did too much brain damage. Moved to both drug effects. Was default OD effect
 				M.adjustOrganLoss(ORGAN_SLOT_BRAIN,pick(1,-1))

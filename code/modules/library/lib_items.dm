@@ -193,7 +193,7 @@
 	var/dat				//Actual page content
 	var/due_date = 0	//Game time in 1/10th seconds
 	var/author			//Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	var/unique = 0		//0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
+	var/unique = 0		//0 - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 	var/title			//The real name of the book.
 	var/window_size = null // Specific window size for the book, i.e: "1920x1080", Size x Width
 
@@ -322,9 +322,9 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	var/obj/machinery/computer/libraryconsole/bookmanagement/computer	//Associated computer - Modes 1 to 3 use this
+	var/obj/machinery/computer/libraryconsole/bookmanagement/computer	//Associated computer - Modes TRUE to 3 use this
 	var/obj/item/book/book			//Currently scanned book
-	var/mode = 0							//0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
+	var/mode = 0							//0 - Scan only, TRUE - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
 /obj/item/barcodescanner/attack_self(mob/user)
 	mode += 1

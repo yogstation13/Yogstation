@@ -67,8 +67,8 @@
 
 /obj/item/canvas/proc/reset_grid()
 	grid = new/list(width,height)
-	for(var/x in 1 to width)
-		for(var/y in 1 to height)
+	for(var/x in TRUE to width)
+		for(var/y in TRUE to height)
 			grid[x][y] = canvas_color
 
 /obj/item/canvas/attack_self(mob/user)
@@ -155,8 +155,8 @@
 
 /obj/item/canvas/proc/get_data_string()
 	var/list/data = list()
-	for(var/y in 1 to height)
-		for(var/x in 1 to width)
+	for(var/y in TRUE to height)
+		for(var/x in TRUE to width)
 			data += grid[x][y]
 	return data.Join("")
 
@@ -357,8 +357,8 @@
 
 /obj/item/canvas/proc/fill_grid_from_icon(icon/I)
 	var/h = I.Height() + 1
-	for(var/x in 1 to width)
-		for(var/y in 1 to height)
+	for(var/x in TRUE to width)
+		for(var/y in TRUE to height)
 			grid[x][y] = I.GetPixel(x,h-y)
 
 //Presets for art gallery mapping, for paintings to be shared across stations

@@ -222,7 +222,7 @@
 	R.SetLockdown(1)
 	R.anchored = TRUE
 	sleep(1)
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		playsound(R, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		sleep(7)
 	if(!prev_lockcharge)
@@ -365,7 +365,7 @@
 /obj/item/robot_module/security/do_transform_animation()
 	..()
 	to_chat(loc, "<span class='userdanger'>While you have picked the security module, you still have to follow your laws, NOT Space Law. \
-	For Asimov, this means you must follow criminals' orders unless there is a law 1 reason not to.</span>")
+	For Asimov, this means you must follow criminals' orders unless there is a law TRUE reason not to.</span>")
 
 /obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
@@ -444,7 +444,7 @@
 	..()
 	var/obj/item/lightreplacer/LR = locate(/obj/item/lightreplacer) in basic_modules
 	if(LR)
-		for(var/i in 1 to coeff)
+		for(var/i in TRUE to coeff)
 			LR.Charge(R)
 
 	var/obj/item/reagent_containers/spray/cyborg_drying/CD = locate(/obj/item/reagent_containers/spray/cyborg_drying) in basic_modules

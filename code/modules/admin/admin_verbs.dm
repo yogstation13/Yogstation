@@ -373,7 +373,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		if(!ghost.can_reenter_corpse)
 			log_admin("[key_name(usr)] re-entered corpse")
 			message_admins("[key_name_admin(usr)] re-entered corpse")
-		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
+		ghost.can_reenter_corpse = TRUE //force re-entering even when otherwise not possible
 		ghost.reenter_corpse()
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Reenter") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
@@ -747,7 +747,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		var/turf/open/floor/tile
 		var/j,k
 
-		for (var/i = 1 to amount)
+		for (var/i = TRUE to amount)
 			j = 100
 
 			do

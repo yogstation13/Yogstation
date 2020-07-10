@@ -15,7 +15,7 @@
 
 /obj/item/holochip/examine(mob/user)
 	. = ..()
-	. += {"<span class='notice'>It's loaded with [credits] credit[( credits > 1 ) ? "s" : ""]</span>\n
+	. += {"<span class='notice'>It's loaded with [credits] credit[( credits > TRUE ) ? "s" : ""]</span>\n
 	<span class='notice'>Alt-Click to split.</span>"}
 
 /obj/item/holochip/get_item_credit_value()

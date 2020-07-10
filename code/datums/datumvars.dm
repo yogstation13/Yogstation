@@ -152,7 +152,7 @@
 	var/list/variable_html = list()
 	if (islist)
 		var/list/L = D
-		for (var/i in 1 to L.len)
+		for (var/i in TRUE to L.len)
 			var/key = L[i]
 			var/value
 			if (IS_NORMAL_LIST(L) && !isnum(key))
@@ -512,7 +512,7 @@
 		var/list/items = list()
 
 		if (L.len > 0 && !(L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
-			for (var/i in 1 to L.len)
+			for (var/i in TRUE to L.len)
 				var/key = L[i]
 				var/val
 				if (IS_NORMAL_LIST(L) && !isnum(key))

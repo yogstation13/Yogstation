@@ -61,7 +61,7 @@
 	message = "of plasteel"
 	export_types = list(/obj/item/stack/sheet/plasteel)
 
-// 1 glass + 0.5 metal, cost is rounded up.
+// TRUE glass + 0.5 metal, cost is rounded up.
 /datum/export/stack/rglass
 	cost = 8
 	message = "of reinforced glass"

@@ -840,7 +840,7 @@
 	item_color = "lampskirt_male"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
-	var/brightness_on = 1 //luminosity when the light is on
+	var/brightness_on = TRUE //luminosity when the light is on
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 

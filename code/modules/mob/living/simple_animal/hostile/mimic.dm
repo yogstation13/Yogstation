@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 		obj_damage = 0
 		environment_smash = ENVIRONMENT_SMASH_NONE //needed? seems weird for them to do so
 		ranged = 1
-		retreat_distance = 1 //just enough to shoot
+		retreat_distance = TRUE //just enough to shoot
 		minimum_distance = 6
 		var/obj/item/gun/G = O
 		melee_damage_upper = G.force

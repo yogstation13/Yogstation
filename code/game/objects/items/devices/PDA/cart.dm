@@ -547,7 +547,7 @@ Code:
 			var/i = 1
 			for(var/datum/newscaster/feed_message/msg in current.messages)
 				menu +="-[msg.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[msg.returnAuthor(-1)]</FONT>\]</FONT><BR>"
-				menu +="<b><font size=1>[msg.comments.len] comment[msg.comments.len > 1 ? "s" : ""]</font></b><br>"
+				menu +="<b><font size=1>[msg.comments.len] comment[msg.comments.len > TRUE ? "s" : ""]</font></b><br>"
 				if(msg.img)
 					user << browse_rsc(msg.img, "tmp_photo[i].png")
 					menu +="<img src='tmp_photo[i].png' width = '180'><BR>"

@@ -76,7 +76,7 @@
 	if(direct)
 		S.channel = open_sound_channel()
 		S.volume = volume
-	for(var/i in 1 to atoms_cache.len)
+	for(var/i in TRUE to atoms_cache.len)
 		var/atom/thing = atoms_cache[i]
 		if(direct)
 			SEND_SOUND(thing, S)

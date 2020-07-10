@@ -2,7 +2,7 @@
 
 // Syndicate mutineer agents. They're agents selected by the Syndicate to take control of stations when assault teams like nuclear operatives cannot be sent.
 // They sent teams made of 3 agents, of which only one is woke up at round start. The others are, lore-wise, sleeping agents and must be implanted with the converter to wake up.
-// Mechanics wise, it's just 1 dude per team and he can convert maximum 2 more people of his choice, based on the implanter use var, Upon converting, the newly made guys are given access
+// Mechanics wise, it's just TRUE dude per team and he can convert maximum 2 more people of his choice, based on the implanter use var, Upon converting, the newly made guys are given access
 // to a storage implant they came with when the Syndicate sent them aboard, with one random low-cost traitor item. The initial agent also has this. The only difference between
 // initial agents and converted ones is that the initial agent has the items required to convert people and the AI.
 /datum/antagonist/overthrow
@@ -90,7 +90,7 @@
 	var/datum/atom_hud/antag/overthrowhud = GLOB.huds[team.hud_entry_num]
 	if(!overthrowhud)
 		overthrowhud = new()
-		team.hud_entry_num = GLOB.huds.len + 1 // the index of the hud inside huds list
+		team.hud_entry_num = GLOB.huds.len + TRUE // the index of the hud inside huds list
 		GLOB.huds += overthrowhud
 	overthrowhud.join_hud(owner.current)
 	set_antag_hud(owner.current, "traitor")

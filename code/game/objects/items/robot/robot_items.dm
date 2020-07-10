@@ -36,7 +36,7 @@
 	name = "hugging module"
 	icon_state = "hugmodule"
 	desc = "For when a someone really needs a hug."
-	var/mode = 0 //0 = Hugs 1 = "Hug" 2 = Shock 3 = CRUSH
+	var/mode = 0 //0 = Hugs TRUE = "Hug" 2 = Shock 3 = CRUSH
 	var/ccooldown = 0
 	var/scooldown = 0
 	var/shockallowed = FALSE//Can it be a stunarm when emagged. Only PK borgs get this by default.

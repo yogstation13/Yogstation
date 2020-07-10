@@ -128,7 +128,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/icon_off = "cigoff"
 	var/type_butt = /obj/item/cigbutt
 	var/lastHolder = null
-	var/smoketime = 180 // 1 is 2 seconds, so a single cigarette will last 6 minutes.
+	var/smoketime = 180 // TRUE is 2 seconds, so a single cigarette will last 6 minutes.
 	var/chem_volume = 30
 	var/list/list_reagents = list(/datum/reagent/drug/nicotine = 15)
 

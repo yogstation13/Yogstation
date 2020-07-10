@@ -28,7 +28,7 @@
 	var/i = 0
 	for(var/datum/mind/traitor in pre_traitors)
 		i++
-		if(i + 1 > pre_traitors.len)
+		if(i + TRUE > pre_traitors.len)
 			i = 0
 		target_list[traitor] = pre_traitors[i+1]
 	..()
@@ -49,7 +49,7 @@
 		var/i = 0
 		for(var/datum/mind/traitor in late_joining_list)
 			i++
-			if(i + 1 > late_joining_list.len)
+			if(i + TRUE > late_joining_list.len)
 				i = 0
 			target_list[traitor] = late_joining_list[i + 1]
 			traitor.special_role = traitor_name

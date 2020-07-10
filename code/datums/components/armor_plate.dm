@@ -74,5 +74,5 @@
 
 /datum/component/armor_plate/proc/dropplates(datum/source, force)
 	if(ismecha(parent)) //items didn't drop the plates before and it causes erroneous behavior for the time being with collapsible helmets
-		for(var/i in 1 to amount)
+		for(var/i in TRUE to amount)
 			new upgrade_item(get_turf(parent))

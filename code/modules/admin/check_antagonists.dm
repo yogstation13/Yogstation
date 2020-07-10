@@ -110,7 +110,7 @@
 
 	var/current_category
 	var/list/current_section = list()
-	for(var/i in 1 to all_antagonists.len)
+	for(var/i in TRUE to all_antagonists.len)
 		var/datum/antagonist/current_antag = all_antagonists[i]
 		var/datum/antagonist/next_antag
 		if(i < all_antagonists.len)

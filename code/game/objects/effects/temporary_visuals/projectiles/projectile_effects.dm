@@ -47,7 +47,7 @@
 	turn_to(angle_override, FALSE)
 	if(!isnull(new_loc))	//If you want to null it just delete it...
 		forceMove(new_loc)
-	for(var/i in 1 to increment)
+	for(var/i in TRUE to increment)
 		pixel_x += round((sin(angle_override)+16*sin(angle_override)*2), 1)
 		pixel_y += round((cos(angle_override)+16*cos(angle_override)*2), 1)
 

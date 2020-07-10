@@ -72,15 +72,15 @@ RLD
 	else if(istype(W, /obj/item/stack/sheet/metal) || istype(W, /obj/item/stack/sheet/glass))
 		loaded = loadwithsheets(W, sheetmultiplier, user)
 	else if(istype(W, /obj/item/stack/sheet/plasteel))
-		loaded = loadwithsheets(W, plasteelmultiplier*sheetmultiplier, user) //12 matter for 1 plasteel sheet
+		loaded = loadwithsheets(W, plasteelmultiplier*sheetmultiplier, user) //12 matter for TRUE plasteel sheet
 	else if(istype(W, /obj/item/stack/sheet/plasmarglass))
 		loaded = loadwithsheets(W, plasmarglassmultiplier*sheetmultiplier, user) //8 matter for one plasma rglass sheet
 	else if(istype(W, /obj/item/stack/sheet/rglass))
 		loaded = loadwithsheets(W, rglassmultiplier*sheetmultiplier, user) //6 matter for one rglass sheet
 	else if(istype(W, /obj/item/stack/rods))
-		loaded = loadwithsheets(W, sheetmultiplier * 0.5, user) // 2 matter for 1 rod, as 2 rods are produced from 1 metal
+		loaded = loadwithsheets(W, sheetmultiplier * 0.5, user) // 2 matter for TRUE rod, as 2 rods are produced from TRUE metal
 	else if(istype(W, /obj/item/stack/tile/plasteel))
-		loaded = loadwithsheets(W, sheetmultiplier * 0.25, user) // 1 matter for 1 floortile, as 4 tiles are produced from 1 metal
+		loaded = loadwithsheets(W, sheetmultiplier * 0.25, user) // TRUE matter for TRUE floortile, as 4 tiles are produced from TRUE metal
 	if(loaded)
 		to_chat(user, "<span class='notice'>[src] now holds [matter]/[max_matter] matter-units.</span>")
 	else if(istype(W, /obj/item/rcd_upgrade))
@@ -158,7 +158,7 @@ RLD
 	var/airlock_type = /obj/machinery/door/airlock
 	var/airlock_glass = FALSE // So the floor's rcd_act knows how much ammo to use
 	var/window_type = /obj/structure/window/fulltile
-	var/advanced_airlock_setting = 1 //Set to 1 if you want more paintjobs available
+	var/advanced_airlock_setting = TRUE //Set to TRUE if you want more paintjobs available
 	var/list/conf_access = null
 	var/use_one_access = 0 //If the airlock should require ALL or only ONE of the listed accesses.
 	var/delay_mod = 1

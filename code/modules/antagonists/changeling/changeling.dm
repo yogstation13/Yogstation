@@ -401,7 +401,7 @@
 			other_changelings_exist = TRUE
 			break
 
-	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
+	var/changeling_objective = other_changelings_exist ? pick(1,3) : TRUE //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new

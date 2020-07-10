@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/mob/living/invoker //The slab's holder
 	var/whispered = FALSE //If the invocation is whispered rather than spoken aloud
 	var/usage_tip = "This piece seems to serve no purpose and is a waste of components." //A generalized tip that gives advice on a certain scripture
-	var/invokers_required = 1 //How many people are required, assuming that a scripture requires multiple
+	var/invokers_required = TRUE //How many people are required, assuming that a scripture requires multiple
 	var/multiple_invokers_used = FALSE //If scripture requires more than one invoker
 	var/multiple_invokers_optional = FALSE //If scripture can have multiple invokers to bolster its effects
 	var/tier = SCRIPTURE_PERIPHERAL //The scripture's tier
@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/quickbind_desc = "This shouldn't be quickbindable. File a bug report!"
 	var/primary_component
 	var/important = FALSE //important scripture will be italicized in the slab's interface
-	var/sort_priority = 1 //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
+	var/sort_priority = TRUE //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
 	var/chant_slowdown = 0 //slowdown added while chanting
 	var/no_mobility = TRUE //if false user can move while chanting
 
@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		chant_interval *= 2
 
 /datum/clockwork_scripture/channeled/scripture_effects()
-	for(var/i in 1 to chant_amount)
+	for(var/i in TRUE to chant_amount)
 		if(!do_after(invoker, chant_interval, target = invoker, extra_checks = CALLBACK(src, .proc/can_recite)))
 			break
 		clockwork_say(invoker, text2ratvar(pick(chant_invocations)), whispered)
@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 /datum/clockwork_scripture/create_object/construct
 	put_object_in_hands = FALSE
 	var/construct_type //The type of construct that the scripture is made to create, even if not directly
-	var/construct_limit = 1 //How many constructs of this type can exist
+	var/construct_limit = TRUE //How many constructs of this type can exist
 	var/combat_construct = FALSE //If this construct is meant for fighting and shouldn't be at the base before the assault phase
 	var/confirmed = FALSE //If we've confirmed that we want to make this construct outside of the station Z
 

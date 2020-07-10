@@ -11,7 +11,7 @@
 	endurance = 8
 	maturation = 10
 	production = 1
-	yield = 1 //seeds if there isn't a dna inside
+	yield = TRUE //seeds if there isn't a dna inside
 	potency = 30
 	var/volume = 5
 	var/ckey = null

@@ -1,4 +1,4 @@
-#define ALCOHOL_THRESHOLD_MODIFIER 1 //Greater numbers mean that less alcohol has greater intoxication potential
+#define ALCOHOL_THRESHOLD_MODIFIER TRUE //Greater numbers mean that less alcohol has greater intoxication potential
 #define ALCOHOL_RATE 0.005 //The rate at which alcohol affects you
 #define ALCOHOL_EXPONENT 1.6 //The exponent applied to boozepwr to make higher volume alcohol at least a little bit damaging to the liver
 
@@ -81,7 +81,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. Still popular today."
 	color = "#664300" // rgb: 102, 67, 0
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	boozepwr = 25
 	taste_description = "piss water"
 	glass_name = "glass of beer"
@@ -146,7 +146,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Thirteen Loko"
 	description = "A potent mixture of caffeine and alcohol."
 	color = "#102000" // rgb: 16, 32, 0
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	boozepwr = 80
 	quality = DRINK_GOOD
 	overdose_threshold = 60
@@ -941,7 +941,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Mead"
 	description = "A Viking drink, though a cheap one."
 	color = "#664300" // rgb: 102, 67, 0
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	boozepwr = 30
 	quality = DRINK_NICE
 	taste_description = "sweet, sweet alcohol"
@@ -967,7 +967,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Grog"
 	description = "Watered down rum, Nanotrasen approves!"
 	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 1 //Basically nothing
+	boozepwr = TRUE //Basically nothing
 	taste_description = "a poor excuse for alcohol"
 	glass_icon_state = "grogglass"
 	glass_name = "Grog"
@@ -1089,7 +1089,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/driestmartini
 	name = "Driest Martini"
 	description = "Only for the experienced. You think you see sand floating in the glass."
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 65
 	quality = DRINK_GOOD
@@ -1101,7 +1101,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bananahonk
 	name = "Banana Honk"
 	description = "A drink from Clown Heaven."
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	color = "#FFFF91" // rgb: 255, 255, 140
 	boozepwr = 60
 	quality = DRINK_GOOD
@@ -1119,7 +1119,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/silencer
 	name = "Silencer"
 	description = "A drink from Mime Heaven."
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 59 //Proof that clowns are better than mimes right here
 	quality = DRINK_GOOD
@@ -1161,7 +1161,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Hard Cider"
 	description = "Apple juice, for adults."
 	color = "#CD6839"
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	boozepwr = 25
 	taste_description = "the season that <i>falls</i> between summer and winter"
 	glass_icon_state = "whiskeyglass"
@@ -1287,7 +1287,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 50
 	quality = DRINK_VERYGOOD
 	taste_description = "a numbing sensation"
-	metabolization_rate = 1 * REAGENTS_METABOLISM
+	metabolization_rate = TRUE * REAGENTS_METABOLISM
 	glass_icon_state = "neurotoxinglass"
 	glass_name = "Neurotoxin"
 	glass_desc = "A drink that is guaranteed to knock you silly."
@@ -1520,7 +1520,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	var/heal_points = 10
 	if(L.health <= 0)
 		heal_points = 20 //heal more if we're in softcrit
-	for(var/i in 1 to min(volume, heal_points)) //only heals 1 point of damage per unit on add, for balance reasons
+	for(var/i in TRUE to min(volume, heal_points)) //only heals TRUE point of damage per unit on add, for balance reasons
 		L.adjustBruteLoss(-1)
 		L.adjustFireLoss(-1)
 		L.adjustToxLoss(-1)
@@ -1797,7 +1797,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/blank_paper
 	name = "Blank Paper"
 	description = "A bubbling glass of blank paper. Just looking at it makes you feel fresh."
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = TRUE * REAGENTS_METABOLISM
 	color = "#DCDCDC" // rgb: 220, 220, 220
 	boozepwr = 20
 	quality = DRINK_GOOD
@@ -1900,7 +1900,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(names_in_order.len <= 3)
 		fruits = names_in_order
 	else
-		for(var/i in 1 to 3)
+		for(var/i in TRUE to 3)
 			fruits += names_in_order[i]
 		fruits += "other plants"
 	var/fruit_list = english_list(fruits)

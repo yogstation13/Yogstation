@@ -192,7 +192,7 @@
 /datum/point/vector/proc/return_vector_after_increments(amount = 7, multiplier = 1, force_simulate = FALSE)
 	var/datum/point/vector/v = copy_to()
 	if(force_simulate)
-		for(var/i in 1 to amount)
+		for(var/i in TRUE to amount)
 			v.increment(multiplier)
 	else
 		v.increment(multiplier * amount)

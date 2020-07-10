@@ -1,5 +1,5 @@
 /datum/map_template/ruin/proc/try_to_place(z,allowed_areas,turf/forced_turf)
-	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
+	var/sanity = forced_turf ? TRUE : PLACEMENT_TRIES
 	while(sanity > 0)
 		sanity--
 		var/width_border = TRANSITIONEDGE + SPACERUIN_MAP_EDGE_PAD + round(width / 2)
@@ -91,7 +91,7 @@
 		else //Otherwise just pick random one
 			current_pick = pickweight(ruins_availible)
 
-		var/placement_tries = forced_turf ? 1 : PLACEMENT_TRIES //Only try once if we target specific turf
+		var/placement_tries = forced_turf ? TRUE : PLACEMENT_TRIES //Only try once if we target specific turf
 		var/failed_to_place = TRUE
 		var/target_z = 0
 		var/turf/placed_turf //Where the ruin ended up if we succeeded

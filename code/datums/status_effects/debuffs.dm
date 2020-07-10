@@ -242,9 +242,9 @@
 				owner.apply_damage(leg_damage_on_toggle * 0.5, BURN, BODY_ZONE_R_LEG)
 		if(owner.m_intent != MOVE_INTENT_WALK)
 			if(!iscultist(owner))
-				to_chat(owner, "<span class='warning'>Your leg[number_legs > 1 ? "s shiver":" shivers"] with pain!</span>")
+				to_chat(owner, "<span class='warning'>Your leg[number_legs > TRUE ? "s shiver":" shivers"] with pain!</span>")
 			else //Cultists take extra burn damage
-				to_chat(owner, "<span class='warning'>Your leg[number_legs > 1 ? "s burn":" burns"] with pain!</span>")
+				to_chat(owner, "<span class='warning'>Your leg[number_legs > TRUE ? "s burn":" burns"] with pain!</span>")
 			owner.toggle_move_intent()
 		return TRUE
 	return FALSE
@@ -581,7 +581,7 @@
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
-//Kindle: Used by servants of Ratvar. 10-second knockdown, reduced by 1 second per 5 damage taken while the effect is active.
+//Kindle: Used by servants of Ratvar. 10-second knockdown, reduced by TRUE second per 5 damage taken while the effect is active.
 /datum/status_effect/kindle
 	id = "kindle"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -815,7 +815,7 @@
 	desc = "I must go, my people need me!"
 	icon_state = "high"
 
-//Broken Will: Applied by Devour Will, and functions similarly to Kindle. Induces sleep for 30 seconds, going down by 1 second for every point of damage the target takes. //yogs start: darkspawn
+//Broken Will: Applied by Devour Will, and functions similarly to Kindle. Induces sleep for 30 seconds, going down by TRUE second for every point of damage the target takes. //yogs start: darkspawn
 /datum/status_effect/broken_will
 	id = "broken_will"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -834,7 +834,7 @@
 		return
 	owner.visible_message("<span class='warning'>[owner] jerks in their sleep as they're harmed!</span>")
 	to_chat(owner, "<span class='boldannounce'>Something hits you, pulling you towards wakefulness!</span>")
-	health_difference *= 10 //1 point of damage = 1 second = 10 deciseconds
+	health_difference *= 10 //1 point of damage = TRUE second = 10 deciseconds
 	duration -= health_difference
 	old_health = owner.health
 

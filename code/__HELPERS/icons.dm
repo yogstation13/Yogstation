@@ -92,12 +92,12 @@ HSVtoRGB(hsv)
     Takes an HSV or HSVA string like "#080aaff" and converts it into an RGB or RGBA color such as "#ff55aa".
 BlendRGB(rgb1, rgb2, amount)
     Blends between two RGB or RGBA colors using regular RGB blending. If amount is 0, the first color is the result;
-    if 1, the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
+    if 1, the second color is the result. 0.5 produces an average of the two. Values outside the 0 to TRUE range are allowed as well.
     The returned value is an RGB or RGBA color.
 BlendHSV(hsv1, hsv2, amount)
     Blends between two HSV or HSVA colors using HSV blending, which tends to produce nicer results than regular RGB
     blending because the brightness of the color is left intact. If amount is 0, the first color is the result; if 1,
-    the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
+    the second color is the result. 0.5 produces an average of the two. Values outside the 0 to TRUE range are allowed as well.
     The returned value is an HSV or HSVA color.
 BlendRGBasHSV(rgb1, rgb2, amount)
     Like BlendHSV(), but the colors used and the return value are RGB or RGBA colors. The blending is done in HSV form.
@@ -809,7 +809,7 @@ world
 		// Loop through the underlays, then overlays, sorting them into the layers list
 		for(var/process_set in 0 to 1)
 			var/list/process = process_set? A.overlays : A.underlays
-			for(var/i in 1 to process.len)
+			for(var/i in TRUE to process.len)
 				var/image/current = process[i]
 				if(!current)
 					continue
@@ -821,7 +821,7 @@ world
 						return flat
 					current_layer = process_set + A.layer + current_layer / 1000
 
-				for(var/p in 1 to layers.len)
+				for(var/p in TRUE to layers.len)
 					var/image/cmp = layers[p]
 					if(current_layer < layers[cmp])
 						layers.Insert(p, current)
@@ -1014,7 +1014,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 	final_image.text = initial(SA.name)
 	return final_image
 
-//Interface for using DrawBox() to draw 1 pixel on a coordinate.
+//Interface for using DrawBox() to draw TRUE pixel on a coordinate.
 //Returns the same icon specifed in the argument, but with the pixel drawn
 /proc/DrawPixel(icon/I,colour,drawX,drawY)
 	if(!I)

@@ -195,7 +195,7 @@
 		var/turf/T = get_turf(src)
 		T.visible_message("<span class='userdanger'>[src] flares briefly.</span>")
 
-		addtimer(CALLBACK(src, .proc/effect, user, .), 1 SECONDS)
+		addtimer(CALLBACK(src, .proc/effect, user, .), TRUE SECONDS)
 
 /obj/item/dice/d20/fate/equipped(mob/user, slot)
 	. = ..()
@@ -276,7 +276,7 @@
 					new /obj/item/stack/spacecash/c1000(dirturf)
 				else
 					var/obj/item/storage/bag/money/M = new(dirturf)
-					for(var/i in 1 to rand(5,50))
+					for(var/i in TRUE to rand(5,50))
 						new /obj/item/coin/gold(M)
 		if(14)
 			//Free Gun

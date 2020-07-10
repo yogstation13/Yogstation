@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(mapping)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 	// and one level with no ruins
-	for (var/i in 1 to config.space_empty_levels)
+	for (var/i in TRUE to config.space_empty_levels)
 		++space_levels_so_far
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
 
@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(mapping)
 		total_z += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
 
 	if (!length(traits))  // null or empty - default
-		for (var/i in 1 to total_z)
+		for (var/i in TRUE to total_z)
 			traits += list(default_traits)
 	else if (total_z != traits.len)  // mismatch
 		INIT_ANNOUNCE("WARNING: [traits.len] trait sets specified for [total_z] z-levels in [path]!")

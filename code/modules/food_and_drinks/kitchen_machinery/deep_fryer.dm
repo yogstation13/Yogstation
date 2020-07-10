@@ -32,7 +32,7 @@ God bless America.
 	var/obj/item/reagent_containers/food/snacks/deepfryholder/frying	//What's being fried RIGHT NOW?
 	var/cook_time = 0
 	var/oil_use = 0.05 //How much cooking oil is used per tick
-	var/fry_speed = 1 //How quickly we fry food
+	var/fry_speed = TRUE //How quickly we fry food
 	var/superfry = 0
 	var/frying_fried //If the object has been fried; used for messages
 	var/frying_burnt //If the object has been burnt
@@ -189,7 +189,7 @@ God bless America.
 			return
 		user.visible_message("<span class = 'danger'>[user] dunks [C]'s face in [src]!</span>")
 		reagents.reaction(C, TOUCH)
-		var/permeability = 1 - C.get_permeability_protection(list(HEAD))
+		var/permeability = TRUE - C.get_permeability_protection(list(HEAD))
 		C.apply_damage(min(30 * permeability, reagents.total_volume), BURN, BODY_ZONE_HEAD)
 		reagents.remove_any((reagents.total_volume/2))
 		C.Paralyze(60)

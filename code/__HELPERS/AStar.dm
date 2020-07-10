@@ -163,7 +163,7 @@ Actual Adjacent procs :
 		CHECK_TICK
 	//reverse the path to get it from start to finish
 	if(path)
-		for(var/i = 1 to round(0.5*path.len))
+		for(var/i = TRUE to round(0.5*path.len))
 			path.Swap(i,path.len-i+1)
 	openc = null
 	//cleaning after us
@@ -177,7 +177,7 @@ Actual Adjacent procs :
 	var/turf/T
 	var/static/space_type_cache = typecacheof(/turf/open/space)
 
-	for(var/k in 1 to GLOB.cardinals.len)
+	for(var/k in TRUE to GLOB.cardinals.len)
 		T = get_step(src,GLOB.cardinals[k])
 		if(!T || (simulated_only && space_type_cache[T.type]))
 			continue

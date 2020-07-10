@@ -22,7 +22,7 @@
 	if(prob(getYield() * 20))
 		seed_count++
 		var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc
-		for(var/i in 1 to seed_count)
+		for(var/i in TRUE to seed_count)
 			var/obj/item/seeds/starthistle/harvestseeds = Copy()
 			harvestseeds.forceMove(output_loc)
 

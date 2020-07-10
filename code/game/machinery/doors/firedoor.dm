@@ -1,5 +1,5 @@
 #define CONSTRUCTION_COMPLETE 0 //No construction done - functioning as normal
-#define CONSTRUCTION_PANEL_OPEN 1 //Maintenance panel is open, still functioning
+#define CONSTRUCTION_PANEL_OPEN TRUE //Maintenance panel is open, still functioning
 #define CONSTRUCTION_WIRES_EXPOSED 2 //Cover plate is removed, wires are available
 #define CONSTRUCTION_GUTTED 3 //Wires are removed, circuit ready to remove
 #define CONSTRUCTION_NOCIRCUIT 4 //Circuit board removed, can safely weld apart
@@ -348,7 +348,7 @@
 		return
 	var/status1 = check_door_side(T)
 	var/status2 = check_door_side(T2)
-	if((status1 == 1 && status2 == -1) || (status1 == -1 && status2 == 1))
+	if((status1 == TRUE && status2 == -1) || (status1 == -1 && status2 == 1))
 		to_chat(user, "<span class='warning'>Access denied. Try closing another firedoor to minimize decompression, or using a crowbar.</span>")
 		return FALSE
 	return TRUE

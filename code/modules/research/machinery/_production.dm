@@ -85,7 +85,7 @@
 	if(notify_admins)
 		investigate_log("[key_name(usr)] built [amount] of [path] at [src]([type]).", INVESTIGATE_RESEARCH)
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has built [amount] of [path] at \a [src]([type]).")
-	for(var/i in 1 to amount)
+	for(var/i in TRUE to amount)
 		var/obj/item/I = new path(get_turf(src))
 		if(efficient_with(I.type))
 			I.materials = matlist.Copy()
@@ -182,7 +182,7 @@
 			ui += ui_screen_category_view()
 		else
 			ui += ui_screen_main()
-	for(var/i in 1 to length(ui))
+	for(var/i in TRUE to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
 		ui[i] = replacetextEx(ui[i], RDSCREEN_NOBREAK, "")

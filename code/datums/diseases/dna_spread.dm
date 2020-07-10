@@ -59,7 +59,7 @@
 				affected_mob.domutcheck()
 
 				transformed = 1
-				carrier = 1 //Just chill out at stage 4
+				carrier = TRUE //Just chill out at stage 4
 
 	return
 

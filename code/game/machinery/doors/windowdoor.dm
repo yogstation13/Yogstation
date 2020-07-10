@@ -29,7 +29,7 @@
 	if(req_access && req_access.len)
 		icon_state = "[icon_state]"
 		base_state = icon_state
-	for(var/i in 1 to shards)
+	for(var/i in TRUE to shards)
 		debris += new /obj/item/shard(src)
 	if(rods)
 		debris += new /obj/item/stack/rods(src, rods)
@@ -374,7 +374,7 @@
 
 /obj/machinery/door/window/clockwork/Initialize(mapload, set_dir)
 	. = ..()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		debris += new/obj/item/clockwork/alloy_shards/medium/gear_bit/large(src)
 	change_construction_value(2)
 

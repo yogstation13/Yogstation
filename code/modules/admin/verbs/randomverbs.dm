@@ -523,7 +523,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]")
 
 	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
+	var/announce_ion_laws = (show_log == "Yes" ? TRUE : -1)
 
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
 	ion.announceEvent = announce_ion_laws

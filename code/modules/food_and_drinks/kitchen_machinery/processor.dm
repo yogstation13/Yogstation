@@ -201,7 +201,7 @@
 			S.forceMove(drop_location())
 			S.visible_message("<span class='notice'>[C] crawls free of the processor!</span>")
 			return
-		for(var/i in 1 to (C+rating_amount-1))
+		for(var/i in TRUE to (C+rating_amount-1))
 			var/atom/movable/item = new S.coretype(drop_location())
 			adjust_item_drop_location(item)
 			SSblackbox.record_feedback("tally", "slime_core_harvested", 1, S.colour)

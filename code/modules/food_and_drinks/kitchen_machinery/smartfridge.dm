@@ -46,7 +46,7 @@
 			var/amount = initial_contents[typekey]
 			if(isnull(amount))
 				amount = 1
-			for(var/i in 1 to amount)
+			for(var/i in TRUE to amount)
 				load(new typekey(src))
 
 	//Slogan pitches work almost identically to the vendor code:
@@ -112,7 +112,7 @@
 	if(contents.len > 0)
 		var/selected_item1 = pick(contents)
 		var/selected_item2 = pick(contents)
-		if(contents.len > 1 && selected_item1 == selected_item2)
+		if(contents.len > TRUE && selected_item1 == selected_item2)
 			//make an attempt to choose another item for the advertisement.
 			selected_item2 = pick(contents)
 		speak("This unit contains [contents.len] items, such as [(selected_item1 != selected_item2) ? "\"[selected_item1]\" and \"[selected_item2]\"!" : "\"[selected_item1]\"!"]")
@@ -358,7 +358,7 @@
 				return FALSE
 
 			//Retrieving a single item into your hand
-			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
+			if(desired == TRUE && Adjacent(usr) && !issilicon(usr))
 				for(var/obj/item/O in src)
 					if(O.name == params["name"])
 						dispense(O, usr)

@@ -1,5 +1,5 @@
 /proc/random_unique_gorilla_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i in TRUE to attempts_to_find_unique_name)
 		. = capitalize(gorilla_name(gender))
 
 		if(!findname(.))

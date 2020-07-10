@@ -383,15 +383,15 @@
 
 /obj/machinery/portable_atmospherics/canister/ui_data()
 	var/data = list()
-	data["portConnected"] = connected_port ? 1 : 0
+	data["portConnected"] = connected_port ? TRUE : 0
 	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
 	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
 	data["defaultReleasePressure"] = round(CAN_DEFAULT_RELEASE_PRESSURE)
 	data["minReleasePressure"] = round(can_min_release_pressure)
 	data["maxReleasePressure"] = round(can_max_release_pressure)
-	data["valveOpen"] = valve_open ? 1 : 0
+	data["valveOpen"] = valve_open ? TRUE : 0
 
-	data["isPrototype"] = prototype ? 1 : 0
+	data["isPrototype"] = prototype ? TRUE : 0
 	if (prototype)
 		data["restricted"] = restricted
 		data["timing"] = timing
@@ -401,7 +401,7 @@
 		data["timer_is_not_min"] = timer_set != minimum_timer_set
 		data["timer_is_not_max"] = timer_set != maximum_timer_set
 
-	data["hasHoldingTank"] = holding ? 1 : 0
+	data["hasHoldingTank"] = holding ? TRUE : 0
 	if (holding)
 		data["holdingTank"] = list()
 		data["holdingTank"]["name"] = holding.name

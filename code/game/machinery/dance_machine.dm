@@ -214,14 +214,14 @@
 	FOR_DVIEW_END
 
 /obj/machinery/jukebox/disco/proc/hierofunk()
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		spawn_atom_to_turf(/obj/effect/temp_visual/hierophant/telegraph/edge, src, 1, FALSE)
 		sleep(5)
 
 #define DISCO_INFENO_RANGE (rand(85, 115)*0.01)
 
 /obj/machinery/jukebox/disco/proc/lights_spin()
-	for(var/i in 1 to 25)
+	for(var/i in TRUE to 25)
 		if(QDELETED(src) || !active)
 			return
 		var/obj/effect/overlay/sparkles/S = new /obj/effect/overlay/sparkles(src)
@@ -321,7 +321,7 @@
 
 /obj/machinery/jukebox/disco/proc/dance3(var/mob/living/M)
 	var/matrix/initial_matrix = matrix(M.transform)
-	for (var/i in 1 to 75)
+	for (var/i in TRUE to 75)
 		if (!M)
 			return
 		switch(i)
@@ -373,7 +373,7 @@
 	var/time = 30
 	while(time)
 		sleep(speed)
-		for(var/i in 1 to speed)
+		for(var/i in TRUE to speed)
 			M.setDir(pick(GLOB.cardinals))
 			for(var/mob/living/carbon/NS in rangers)
 				NS.set_resting(!NS.resting, TRUE)
@@ -382,7 +382,7 @@
 /obj/machinery/jukebox/disco/proc/dance5(var/mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
-	for (var/i in 1 to 60)
+	for (var/i in TRUE to 60)
 		if (!M)
 			return
 		if (i<31)

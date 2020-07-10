@@ -71,7 +71,7 @@
 		/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 3,
 		/datum/reagent/blood = 30,
 		/obj/item/reagent_containers/food/snacks/egg = 12,
-		/datum/reagent/teslium = 1 //To shock the whole thing into life
+		/datum/reagent/teslium = TRUE //To shock the whole thing into life
 	)
 	result = /mob/living/simple_animal/pet/eggdog
 	subcategory = CAT_EGG

@@ -33,7 +33,7 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/grey/do_effect(mob/user)
 	user.visible_message("<span class='notice'>[src] produces a few small, grey cubes</span>")
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/barriercube(get_turf(user))
 	..()
 
@@ -134,7 +134,7 @@ Chilling extracts:
 /obj/item/slimecross/chilling/silver/do_effect(mob/user)
 	user.visible_message("<span class='notice'>[src] crumbles into icy powder, leaving behind several emergency food supplies!</span>")
 	var/amount = rand(5, 10)
-	for(var/i in 1 to amount)
+	for(var/i in TRUE to amount)
 		new /obj/item/reagent_containers/food/snacks/rationpack(get_turf(user))
 	..()
 

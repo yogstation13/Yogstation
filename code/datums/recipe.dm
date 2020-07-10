@@ -95,7 +95,7 @@
 	container.reagents.clear_reagents()
 	return result_obj
 
-/proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj, exact = 1 as num)
+/proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj, exact = TRUE as num)
 	if (!exact)
 		exact = -1
 	var/list/datum/recipe/possible_recipes = new

@@ -1,4 +1,4 @@
-#define ACCESS_SECURITY 1 // Security equipment, security records, gulag item storage, secbots
+#define ACCESS_SECURITY TRUE // Security equipment, security records, gulag item storage, secbots
 #define ACCESS_BRIG 2 // Brig cells+timers, permabrig, gulag+gulag shuttle, prisoner management console
 #define ACCESS_ARMORY 3 // Armory, gulag teleporter, execution chamber
 #define ACCESS_FORENSICS_LOCKERS 4 //Detective's office, forensics lockers, security+medical records

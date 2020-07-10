@@ -241,7 +241,7 @@
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for (var/i = 1 to length(text))
+	for (var/i = TRUE to length(text))
 		if (text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
@@ -266,7 +266,7 @@
 
 	if(t)
 		. = t[1]
-		return uppertext(.) + copytext(t, 1 + length(.))
+		return uppertext(.) + copytext(t, TRUE + length(.))
 
 
 /proc/stringmerge(text,compare,replace = "*")
@@ -274,7 +274,7 @@
 //is in the other string at the same spot (assuming it is not a replace char).
 //This is used for fingerprints
 	var/newtext = text
-	var/text_it = 1 //iterators
+	var/text_it = TRUE //iterators
 	var/comp_it = 1
 	var/newtext_it = 1
 	var/text_length = length(text)
@@ -437,7 +437,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		for(var/i = 1, i <= tlistlen, i++)
 			var/line = tlist[i]
 			var/count_asterisk = length(replacetext(line, regex("\[^\\*\]+", "g"), ""))
-			if(count_asterisk % 2 == 1 && findtext(line, regex("^\\s*\\*", "g"))) // there is an extra asterisk in the beggining
+			if(count_asterisk % 2 == TRUE && findtext(line, regex("^\\s*\\*", "g"))) // there is an extra asterisk in the beggining
 
 				var/count_w = length(replacetext(line, regex("^( *)\\*.*$", "g"), "$1")) // whitespace before asterisk
 				line = replacetext(line, regex("^ *(\\*.*)$", "g"), "$1")
@@ -690,7 +690,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	if(!next_space)	//trailing bs
 		return string
 
-	var/base = next_backslash == 1 ? "" : copytext(string, 1, next_backslash)
+	var/base = next_backslash == TRUE ? "" : copytext(string, 1, next_backslash)
 	var/macro = lowertext(copytext(string, next_backslash + length(string[next_backslash]), next_space))
 	var/rest = next_backslash > leng ? "" : copytext(string, next_space + length(string[next_space]))
 
@@ -771,7 +771,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	var/regex/word_boundaries = regex(@"\b[\S]+\b", "g")
 	var/prefix = message[1]
 	if(prefix == ";")
-		message = copytext(message, 1 + length(prefix))
+		message = copytext(message, TRUE + length(prefix))
 	else if(prefix in list(":", "#"))
 		prefix += message[1 + length(prefix)]
 		message = copytext(message, length(prefix))

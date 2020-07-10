@@ -75,7 +75,7 @@
 	energy_drain = 100
 	range = MELEE|RANGED
 	var/atom/movable/locked
-	var/mode = 1 //1 - gravsling 2 - gravpush
+	var/mode = TRUE //1 - gravsling 2 - gravpush
 
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target)

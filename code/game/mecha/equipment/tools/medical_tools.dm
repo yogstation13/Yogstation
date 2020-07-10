@@ -102,7 +102,7 @@
 	if(output)
 		var/temp = ""
 		if(patient)
-			temp = "<br />\[Occupant: [patient] ([patient.stat > 1 ? "*DECEASED*" : "Health: [patient.health]%"])\]<br /><a href='?src=[REF(src)];view_stats=1'>View stats</a>|<a href='?src=[REF(src)];eject=1'>Eject</a>"
+			temp = "<br />\[Occupant: [patient] ([patient.stat > TRUE ? "*DECEASED*" : "Health: [patient.health]%"])\]<br /><a href='?src=[REF(src)];view_stats=1'>View stats</a>|<a href='?src=[REF(src)];eject=1'>Eject</a>"
 		return "[output] [temp]"
 	return
 
@@ -162,7 +162,7 @@
 			t1 = "*dead*"
 		else
 			t1 = "Unknown"
-	return {"<font color="[patient.health > 50 ? "#3d5bc3" : "#c51e1e"]"><b>Health:</b> [patient.stat > 1 ? "[t1]" : "[patient.health]% ([t1])"]</font><br />
+	return {"<font color="[patient.health > 50 ? "#3d5bc3" : "#c51e1e"]"><b>Health:</b> [patient.stat > TRUE ? "[t1]" : "[patient.health]% ([t1])"]</font><br />
 				<font color="[patient.bodytemperature > 50 ? "#3d5bc3" : "#c51e1e"]"><b>Core Temperature:</b> [patient.bodytemperature-T0C]&deg;C ([patient.bodytemperature*1.8-459.67]&deg;F)</font><br />
 				<font color="[patient.getBruteLoss() < 60 ? "#3d5bc3" : "#c51e1e"]"><b>Brute Damage:</b> [patient.getBruteLoss()]%</font><br />
 				<font color="[patient.getOxyLoss() < 60 ? "#3d5bc3" : "#c51e1e"]"><b>Respiratory Damage:</b> [patient.getOxyLoss()]%</font><br />
@@ -256,7 +256,7 @@
 	var/max_volume = 75 //max reagent volume
 	var/synth_speed = 5 //[num] reagent units per cycle
 	energy_drain = 10
-	var/mode = 0 //0 - fire syringe, 1 - analyze reagents.
+	var/mode = 0 //0 - fire syringe, TRUE - analyze reagents.
 	range = MELEE|RANGED
 	equip_cooldown = 10
 

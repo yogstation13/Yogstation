@@ -509,7 +509,7 @@
 /obj/item/circuitboard/machine/smartfridge/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		var/position = fridges_name_paths.Find(build_path, fridges_name_paths)
-		position = (position == fridges_name_paths.len) ? 1 : (position + 1)
+		position = (position == fridges_name_paths.len) ? TRUE : (position + 1)
 		build_path = fridges_name_paths[position]
 		to_chat(user, "<span class='notice'>You set the board to [fridges_name_paths[build_path]].</span>")
 	else

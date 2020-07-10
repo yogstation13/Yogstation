@@ -105,10 +105,10 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	ui += "</div><div class='statusDisplay'><h2>Access Logs:</h2>"
 	var/list/logs = GLOB.silo_access_logs[REF(src)]
 	var/len = LAZYLEN(logs)
-	var/num_pages = 1 + round((len - 1) / 30)
+	var/num_pages = TRUE + round((len - 1) / 30)
 	var/page = clamp(log_page, 1, num_pages)
 	if(num_pages > 1)
-		for(var/i in 1 to num_pages)
+		for(var/i in TRUE to num_pages)
 			if(i == page)
 				ui += "<span class='linkOff'>[i]</span>"
 			else
@@ -116,9 +116,9 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 
 	ui += "<ol>"
 	any = FALSE
-	for(var/i in (page - 1) * 30 + 1 to min(page * 30, len))
+	for(var/i in (page - 1) * 30 + TRUE to min(page * 30, len))
 		var/datum/ore_silo_log/entry = logs[i]
-		ui += "<li value=[len + 1 - i]>[entry.formatted]</li>"
+		ui += "<li value=[len + TRUE - i]>[entry.formatted]</li>"
 		any = TRUE
 	if (!any)
 		ui += "<li>Nothing!</li>"

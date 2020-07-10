@@ -31,7 +31,7 @@
 
 /obj/item/clothing/suit/armor/vest/old
 	name = "degrading armor vest"
-	desc = "Older generation Type 1 armored vest. Due to degradation over time the vest is far less maneuverable to move in."
+	desc = "Older generation Type TRUE armored vest. Due to degradation over time the vest is far less maneuverable to move in."
 	icon_state = "armor"
 	item_state = "armor"
 	slowdown = 1

@@ -53,7 +53,7 @@
 		note++
 
 	// check octave, C is allowed to go to 9
-	if(oct < 1 || (note == 3 ? oct > 9 : oct > 8))
+	if(oct < TRUE || (note == 3 ? oct > 9 : oct > 8))
 		return
 
 	// now generate name
@@ -95,7 +95,7 @@
 	while(repeat >= 0)
 		var/cur_oct[7]
 		var/cur_acc[7]
-		for(var/i = 1 to 7)
+		for(var/i = TRUE to 7)
 			cur_oct[i] = 3
 			cur_acc[i] = "n"
 
@@ -110,7 +110,7 @@
 					if(!length(note))
 						continue
 					var/cur_note = text2ascii(note) - 96
-					if(cur_note < 1 || cur_note > 7)
+					if(cur_note < TRUE || cur_note > 7)
 						continue
 					var/notelen = length(note)
 					var/ni = ""

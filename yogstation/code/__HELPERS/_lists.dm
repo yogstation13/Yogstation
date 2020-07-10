@@ -3,7 +3,7 @@
 		return FALSE
 	if(a.len != b.len)
 		return FALSE
-	for(var/i = 1 to a.len)
+	for(var/i = TRUE to a.len)
 		if(a[i] != b[i])
 			return FALSE
 	return TRUE

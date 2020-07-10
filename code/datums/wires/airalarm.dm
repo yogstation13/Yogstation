@@ -43,7 +43,7 @@
 				if(A.mode == 1) // AALARM_MODE_SCRUB
 					A.mode = 3 // AALARM_MODE_PANIC
 				else
-					A.mode = 1 // AALARM_MODE_SCRUB
+					A.mode = TRUE // AALARM_MODE_SCRUB
 				A.apply_mode(usr)
 		if(WIRE_ALARM) // Clear alarms.
 			var/area/AA = get_area(A)

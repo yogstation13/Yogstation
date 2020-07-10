@@ -22,7 +22,7 @@
 	var/i = 0
 	for(var/datum/mind/devil in devils)
 		i++
-		if(i + 1 > devils.len)
+		if(i + TRUE > devils.len)
 			i = 0
 		devil_target_list[devil] = devils[i + 1]
 	..()

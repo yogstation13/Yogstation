@@ -24,7 +24,7 @@
 			again++
 			numspawned--
 
-	for(var/loop in 1 to again)
+	for(var/loop in TRUE to again)
 		new /obj/item/grenade/clusterbuster/segment(drop_location(), src)//Creates 'segments' that launches a few more payloads
 
 	new payload_spawner(drop_location(), payload, numspawned)//Launches payload
@@ -55,7 +55,7 @@
 	icon_state = "[base_state]_active"
 	active = TRUE
 	var/steps = rand(1,4)
-	for(var/i in 1 to steps)
+	for(var/i in TRUE to steps)
 		step_away(src,loc)
 	addtimer(CALLBACK(src, .proc/prime), rand(15,60))
 
@@ -73,13 +73,13 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/payload_spawner/proc/spawn_payload(type, numspawned)
-	for(var/loop in 1 to numspawned)
+	for(var/loop in TRUE to numspawned)
 		var/obj/item/grenade/P = new type(loc)
 		if(istype(P))
 			P.active = TRUE
 			addtimer(CALLBACK(P, /obj/item/grenade/proc/prime), rand(15,60))
 		var/steps = rand(1,4)
-		for(var/i in 1 to steps)
+		for(var/i in TRUE to steps)
 			step_away(src,loc)
 
 /obj/effect/payload_spawner/random_slime
@@ -108,7 +108,7 @@
 		if(volatile)
 			addtimer(CALLBACK(P, /obj/item/slime_extract/proc/activate_slime), rand(15,60))
 		var/steps = rand(1,4)
-		for(var/i in 1 to steps)
+		for(var/i in TRUE to steps)
 			step_away(src,loc)
 
 //////////////////////////////////

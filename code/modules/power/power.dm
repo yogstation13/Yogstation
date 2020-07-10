@@ -309,7 +309,7 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //siemens_coeff - layman's terms, conductivity
-//dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
+//dist_check - set to only shock mobs within TRUE of source (vendors, airlocks, etc.)
 //No animations will be performed by this proc.
 /proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE)
 	if(!M || ismecha(M.loc))

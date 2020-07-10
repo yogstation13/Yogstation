@@ -19,9 +19,9 @@
 
 /obj/structure/tank_dispenser/Initialize()
 	. = ..()
-	for(var/i in 1 to oxygentanks)
+	for(var/i in TRUE to oxygentanks)
 		new /obj/item/tank/internals/oxygen(src)
-	for(var/i in 1 to plasmatanks)
+	for(var/i in TRUE to plasmatanks)
 		new /obj/item/tank/internals/plasma(src)
 	update_icon()
 

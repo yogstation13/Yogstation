@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /atom/movable/lighting_object))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
-	for(var/i in 1 to allowed_contents.len)
+	for(var/i in TRUE to allowed_contents.len)
 		var/thing = allowed_contents[i]
 		qdel(thing, force=TRUE)
 
@@ -262,7 +262,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		if(length(copytarget.baseturfs))
 			// with default inputs this would be Copy(clamp(2, -INFINITY, baseturfs.len))
 			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
-			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, TRUE + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
 		else if(!ignore_bottom)
 			target_baseturfs = list(copytarget.baseturfs)
 		if(target_baseturfs)

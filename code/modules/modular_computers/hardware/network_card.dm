@@ -30,7 +30,7 @@
 /obj/item/computer_hardware/network_card/proc/get_network_tag()
 	return "[identification_string] (NID [identification_id])"
 
-// 0 - No signal, 1 - Low signal, 2 - High signal. 3 - Wired Connection
+// 0 - No signal, TRUE - Low signal, 2 - High signal. 3 - Wired Connection
 /obj/item/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
 	if(!holder) // Hardware is not installed in anything. No signal. How did this even get called?
 		return 0

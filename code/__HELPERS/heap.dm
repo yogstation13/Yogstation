@@ -56,7 +56,7 @@
 	if(index * 2 > L.len)
 		return 0
 
-	if(index * 2 + 1 > L.len)
+	if(index * 2 + TRUE > L.len)
 		return index * 2
 
 	if(call(cmp)(L[index * 2],L[index * 2 + 1]) < 0)

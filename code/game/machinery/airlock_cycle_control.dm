@@ -59,7 +59,7 @@
 	FASTDMM_PROP(\
 		set_instance_vars(\
 			pixel_x = (dir & 3)? INSTANCE_VAR_DEFAULT : (dir == 4 ? -24 : 24),\
-			pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : INSTANCE_VAR_DEFAULT\
+			pixel_y = (dir & 3)? (dir == TRUE ? -24 : 24) : INSTANCE_VAR_DEFAULT\
         ),\
 		dir_amount = 4\
     )
@@ -71,7 +71,7 @@
 	var/locked = TRUE
 	var/aidisabled = 0
 	var/shorted = 0
-	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
+	var/buildstage = 2 // 2 = complete, TRUE = no wires,  0 = circuit gone
 	var/config_error_str = "Needs Scan"
 	var/scan_on_late_init = FALSE
 	var/depressurization_margin = 10 // use a lower value to reduce cross-contamination
@@ -105,7 +105,7 @@
 		buildstage = 0
 		panel_open = TRUE
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : 0
+		pixel_y = (dir & 3)? (dir == TRUE ? -24 : 24) : 0
 
 	update_icon()
 
@@ -608,7 +608,7 @@
 	var/data = list(
 		"locked" = locked,
 		"siliconUser" = user.has_unlimited_silicon_privilege,
-		"emagged" = (obj_flags & EMAGGED ? 1 : 0),
+		"emagged" = (obj_flags & EMAGGED ? TRUE : 0),
 		"cyclestate" = cyclestate,
 		"pressure" = pressure,
 		"maxpressure" = (exterior_pressure && (cyclestate == AIRLOCK_CYCLESTATE_OUTCLOSING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPENING || cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)) ? exterior_pressure : interior_pressure,
@@ -641,14 +641,14 @@
 		var/access_str = "None"
 		airlock.gen_access()
 		if(islist(airlock.req_access) && airlock.req_access.len)
-			access_str = airlock.req_access.len > 1 ? "All of " : ""
-			for(var/I in 1 to airlock.req_access.len)
+			access_str = airlock.req_access.len > TRUE ? "All of " : ""
+			for(var/I in TRUE to airlock.req_access.len)
 				if(I != 1)
 					access_str += ", "
 				access_str += get_access_desc(airlock.req_access[I])
 		if(islist(airlock.req_one_access) && airlock.req_one_access.len)
-			access_str = airlock.req_one_access.len > 1 ? "One of " : ""
-			for(var/I in 1 to airlock.req_one_access.len)
+			access_str = airlock.req_one_access.len > TRUE ? "One of " : ""
+			for(var/I in TRUE to airlock.req_one_access.len)
 				if(I != 1)
 					access_str += ", "
 				access_str += get_access_desc(airlock.req_one_access[I])

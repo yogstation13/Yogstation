@@ -43,7 +43,7 @@
 	..()
 
 /obj/machinery/atmospherics/pipe/hide(i)
-	if(level == 1 && isturf(loc))
+	if(level == TRUE && isturf(loc))
 		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
@@ -103,7 +103,7 @@
 	alpha = invisibility ? 64 : 255
 
 /obj/machinery/atmospherics/pipe/proc/update_node_icon()
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		if(nodes[i])
 			var/obj/machinery/atmospherics/N = nodes[i]
 			N.update_icon()

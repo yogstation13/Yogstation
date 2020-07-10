@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/paged = max_elements < choices.len
 	if(elements.len < max_elements)
 		var/elements_to_add = max_elements - elements.len
-		for(var/i in 1 to elements_to_add) //Create all elements
+		for(var/i in TRUE to elements_to_add) //Create all elements
 			var/obj/screen/radial/slice/new_element = new /obj/screen/radial/slice
 			new_element.tooltips = use_tooltips
 			new_element.parent = src
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/proc/update_screen_objects(anim = FALSE)
 	var/list/page_choices = page_data[current_page]
 	var/angle_per_element = round(zone / page_choices.len)
-	for(var/i in 1 to elements.len)
+	for(var/i in TRUE to elements.len)
 		var/obj/screen/radial/E = elements[i]
 		var/angle = WRAP(starting_angle + (i - 1) * angle_per_element,0,360)
 		if(i > page_choices.len)

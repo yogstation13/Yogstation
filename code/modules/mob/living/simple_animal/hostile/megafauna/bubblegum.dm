@@ -161,7 +161,7 @@ Difficulty: Hard
 		SetRecoveryTime(20)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/surround_with_hallucinations()
-	for(var/i = 1 to 5)
+	for(var/i = TRUE to 5)
 		INVOKE_ASYNC(src, .proc/hallucination_charge_around, 2, 8, 2, 0, 4)
 		if(ismob(target))
 			charge(delay = 6)
@@ -326,7 +326,7 @@ Difficulty: Hard
 	return (be_aggressive() ? null : initial(retreat_distance))
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/get_minimum_distance()
-	return (be_aggressive() ? 1 : initial(minimum_distance))
+	return (be_aggressive() ? TRUE : initial(minimum_distance))
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/update_approach()
 	retreat_distance = get_retreat_distance()
@@ -373,7 +373,7 @@ Difficulty: Hard
 	var/srcplaced = FALSE
 	if(!radius)
 		radius = times
-	for(var/i = 1 to times)
+	for(var/i = TRUE to times)
 		var/ang = (startingangle + 360/times * i)
 		if(!chargeat)
 			return

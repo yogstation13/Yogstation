@@ -93,7 +93,7 @@
 			return pick(GLOB.facial_hair_styles_list)
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i in TRUE to attempts_to_find_unique_name)
 		if(gender==FEMALE)
 			. = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
@@ -103,28 +103,28 @@
 			break
 
 /proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i in TRUE to attempts_to_find_unique_name)
 		. = capitalize(lizard_name(gender))
 
 		if(!findname(.))
 			break
 
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i in TRUE to attempts_to_find_unique_name)
 		. = capitalize(plasmaman_name())
 
 		if(!findname(.))
 			break
 
 /proc/random_unique_ethereal_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i in TRUE to attempts_to_find_unique_name)
 		. = capitalize(ethereal_name())
 
 		if(!findname(.))
 			break
 
 /proc/random_unique_moth_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
+	for(var/i in TRUE to attempts_to_find_unique_name)
 		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
 
 		if(!findname(.))
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			return "unknown"
 
 
-/mob/var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
+/mob/var/action_speed_modifier = TRUE //Value to multiply action delays by //yogs start: fuck
 /mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
 
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/holding = user.get_active_held_item()
 
-	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
+	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
 
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(extra_args)
 		new_args += extra_args
 	var/atom/X
-	for(var/j in 1 to amount)
+	for(var/j in TRUE to amount)
 		X = new spawn_type(arglist(new_args))
 		if (admin_spawn)
 			X.flags_1 |= ADMIN_SPAWNED_1
@@ -384,7 +384,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/list/spawned_mobs = new(amount)
 
-	for(var/j in 1 to amount)
+	for(var/j in TRUE to amount)
 		var/atom/movable/X
 
 		if (istype(spawn_type, /list))
@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			else
 				step_count = rand(1, max_walk)
 
-			for(var/i in 1 to step_count)
+			for(var/i in TRUE to step_count)
 				step(X, pick(NORTH, SOUTH, EAST, WEST))
 
 	return spawned_mobs

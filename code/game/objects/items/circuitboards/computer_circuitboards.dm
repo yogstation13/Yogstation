@@ -31,7 +31,7 @@
 
 /obj/item/circuitboard/computer/card/minor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		target_dept = (target_dept == dept_list.len) ? 1 : (target_dept + 1)
+		target_dept = (target_dept == dept_list.len) ? TRUE : (target_dept + 1)
 		to_chat(user, "<span class='notice'>You set the board to \"[dept_list[target_dept]]\".</span>")
 	else
 		return ..()

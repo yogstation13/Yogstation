@@ -10,7 +10,7 @@
 	supervisors = "NanoTrasen officers and Space law" //Changed to officer to separate from CentCom officials being their superior.
 	selection_color = "#ccccff"
 	req_admin_notify = 1
-	space_law_notify = 1 //Yogs
+	space_law_notify = TRUE //Yogs
 	minimal_player_age = 14
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW

@@ -8,7 +8,7 @@
 	roundend_category = "darkspawn"
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
-	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
+	var/darkspawn_state = MUNDANE //0 for normal crew, TRUE for divulged, and 2 for progenitor
 	antag_moodlet = /datum/mood_event/sling
 
 	//Psi variables
@@ -237,7 +237,7 @@
 		return
 	psi_regenerating = TRUE
 	var/total_regen = min(psi_regen, psi_used_since_regen)
-	for(var/i in 1 to psi_cap) //tick it up very quickly instead of just increasing it by the regen; also include a failsafe to avoid infinite loops
+	for(var/i in TRUE to psi_cap) //tick it up very quickly instead of just increasing it by the regen; also include a failsafe to avoid infinite loops
 		if(!total_regen || psi >= psi_cap)
 			break
 		psi = min(psi + 1, psi_cap)

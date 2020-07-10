@@ -32,7 +32,7 @@
 	var/direction = pick(GLOB.cardinals)
 	var/t_range = rand(2,max(throw_range/2, 2))
 	var/turf/target_turf = get_turf(src)
-	for(var/i in 1 to t_range-1)
+	for(var/i in TRUE to t_range-1)
 		var/turf/new_turf = get_step(target_turf, direction)
 		if(!new_turf)
 			break

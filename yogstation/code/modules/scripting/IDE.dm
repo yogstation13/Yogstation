@@ -65,7 +65,7 @@
 							if(M.client)
 								M << output(null, "tcserror")
 								M << output("<b>Compile Errors</b>", "tcserror")
-								i = 1 //. Still using var/i from above
+								i = TRUE //. Still using var/i from above
 								for(var/scriptError/e in compileerrors)
 									if(i)
 										M << output("<font color = red>\t><b>[e.message]</b></font color>", "tcserror")

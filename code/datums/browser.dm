@@ -116,7 +116,7 @@
 
 /datum/browser/proc/setup_onclose()
 	set waitfor = 0 //winexists sleeps, so we don't need to.
-	for (var/i in 1 to 10)
+	for (var/i in TRUE to 10)
 		if (user && winexists(user, window_id))
 			onclose(user, window_id, ref)
 			break
@@ -213,7 +213,7 @@
 
 		//waits for the window to show up client side before attempting to un-focus it
 		//winexists sleeps until it gets a reply from the client, so we don't need to bother sleeping
-		for (var/i in 1 to 10)
+		for (var/i in TRUE to 10)
 			if (user && winexists(user, window_id))
 				if (focusedwindow)
 					winset(user, focusedwindow, "focus=true")

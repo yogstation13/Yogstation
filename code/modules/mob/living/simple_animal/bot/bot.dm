@@ -32,7 +32,7 @@
 	var/window_width = 0 //0 for default size
 	var/window_height = 0
 	var/obj/item/paicard/paicard // Inserted pai card.
-	var/allow_pai = 1 // Are we even allowed to insert a pai card.
+	var/allow_pai = TRUE // Are we even allowed to insert a pai card.
 	var/bot_name
 
 	var/list/player_access = list() //Additonal access the bots gets when player controlled
@@ -88,7 +88,7 @@
 	var/path_image_icon_state = "path_indicator"
 	var/path_image_color = "#FFFFFF"
 	var/reset_access_timer_id
-	var/ignorelistcleanuptimer = 1 // This ticks up every automated action, at 300 we clean the ignore list
+	var/ignorelistcleanuptimer = TRUE // This ticks up every automated action, at 300 we clean the ignore list
 	var/robot_arm = /obj/item/bodypart/r_arm/robot
 	
 	var/commissioned = FALSE // Will other (noncommissioned) bots salute this bot?
@@ -207,7 +207,7 @@
 		return
 	if(!locked && open) //Bot panel is unlocked by ID or emag, and the panel is screwed open. Ready for emagging.
 		emagged = 2
-		remote_disabled = 1 //Manually emagging the bot locks out the AI built in panel.
+		remote_disabled = TRUE //Manually emagging the bot locks out the AI built in panel.
 		locked = TRUE //Access denied forever!
 		bot_reset()
 		turn_on() //The bot automatically turns on when emagged, unless recently hit with EMP.
@@ -500,7 +500,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		return FALSE
 	var/step_count = move_speed ? move_speed : base_speed //If a value is passed into move_speed, use that instead of the default speed var.
 
-	if(step_count >= 1 && tries < BOT_STEP_MAX_RETRIES)
+	if(step_count >= TRUE && tries < BOT_STEP_MAX_RETRIES)
 		for(var/step_number = 0, step_number < step_count,step_number++)
 			spawn(BOT_STEP_DELAY*step_number)
 				bot_step(dest)
@@ -876,7 +876,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 /mob/living/simple_animal/bot/proc/topic_denied(mob/user) //Access check proc for bot topics! Remember to place in a bot's individual Topic if desired.
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return TRUE
-	// 0 for access, 1 for denied.
+	// 0 for access, TRUE for denied.
 	if(emagged == 2) //An emagged bot cannot be controlled by humans, silicons can if one hacked it.
 		if(!hacked) //Manually emagged by a human - access denied to all.
 			return TRUE
@@ -997,7 +997,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	var/list/path_images = hud_list[DIAG_PATH_HUD]
 	QDEL_LIST(path_images)
 	if(newpath)
-		for(var/i in 1 to newpath.len)
+		for(var/i in TRUE to newpath.len)
 			var/turf/T = newpath[i]
 			if(T == loc) //don't bother putting an image if it's where we already exist.
 				continue

@@ -6,7 +6,7 @@
 	floor_tile = /obj/item/stack/tile/light
 	broken_states = list("light_broken")
 	var/on = TRUE
-	var/state = 0//0 = fine, 1 = flickering, 2 = breaking, 3 = broken
+	var/state = 0//0 = fine, TRUE = flickering, 2 = breaking, 3 = broken
 	var/list/coloredlights = list("r", "o", "y", "g", "b", "i", "v", "w", "s", "z")
 	var/currentcolor = "b"
 	var/can_modify_colour = TRUE

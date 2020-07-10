@@ -18,8 +18,8 @@
 			new /obj/item/clothing/mask/chameleon(src) // Goes with above
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/clothing/shoes/chameleon/noslip(src) // 2 tc
-			new /obj/item/camera_bug(src) // 1 tc
-			new /obj/item/multitool/ai_detect(src) // 1 tc
+			new /obj/item/camera_bug(src) // TRUE tc
+			new /obj/item/multitool/ai_detect(src) // TRUE tc
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
 			new /obj/item/reagent_containers/syringe/mulligan(src) // 4 tc
 			new /obj/item/switchblade(src) //I'll count this as 2 tc
@@ -115,8 +115,8 @@
 			new /obj/item/implanter/explosive(src) // 2 tc
 			new /obj/item/ammo_box/magazine/m12g(src) // 2 tc
 			new /obj/item/ammo_box/magazine/m12g(src) // 2 tc
-			new /obj/item/grenade/plastic/c4 (src) // 1 tc
-			new /obj/item/grenade/plastic/c4 (src) // 1 tc
+			new /obj/item/grenade/plastic/c4 (src) // TRUE tc
+			new /obj/item/grenade/plastic/c4 (src) // TRUE tc
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
@@ -134,7 +134,7 @@
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?
 			new /obj/item/implanter/adrenalin(src) // 8 tc
-			for(var/i in 1 to 6)
+			for(var/i in TRUE to 6)
 				new /obj/item/throwing_star(src) // ~5 tc for all 6
 			new /obj/item/storage/belt/chameleon(src) // Unique but worth at least 2 tc
 			new /obj/item/card/id/syndicate(src) // 2 tc
@@ -167,7 +167,7 @@
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
-			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
+			new /obj/item/storage/toolbox/syndicate(src) // TRUE tc
 			new /obj/item/pen/edagger(src)
 			new /obj/item/gun/energy/wormhole_projector(src) //mooorttyyyy
 			new /obj/item/gun/energy/decloner/unrestricted(src)
@@ -367,7 +367,7 @@
 
 /obj/item/storage/box/syndie_kit/origami_bundle/PopulateContents()
 	new /obj/item/book/granter/action/origami(src)
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/paper(src)
 
 /obj/item/storage/box/syndie_kit/imp_freedom
@@ -398,7 +398,7 @@
 	name = "bioterror syringe box"
 
 /obj/item/storage/box/syndie_kit/bioterror/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
 /obj/item/storage/box/syndie_kit/imp_adrenal
@@ -453,7 +453,7 @@
 	name = "EMP kit"
 
 /obj/item/storage/box/syndie_kit/emp/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/grenade/empgrenade(src)
 	new /obj/item/implanter/emp(src)
 
@@ -503,7 +503,7 @@
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
 	new /obj/item/grenade/chem_grenade/tuberculosis(src)
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure(src)
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/tuberculosiscure(src)
@@ -527,15 +527,15 @@
 //5*(2*4) = 5*8 = 45, 45 damage if you hit one person with all 5 stars.
 //Not counting the damage it will do while embedded (2*4 = 8, at 15% chance)
 /obj/item/storage/box/syndie_kit/throwing_weapons/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/throwing_star(src)
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/paperplane/syndicate(src)
 	new /obj/item/restraints/legcuffs/bola/tactical(src)
 	new /obj/item/restraints/legcuffs/bola/tactical(src)
 
 /obj/item/storage/box/syndie_kit/cutouts/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new/obj/item/cardboard_cutout/adaptive(src)
 	new/obj/item/toy/crayon/rainbow(src)
 
@@ -545,7 +545,7 @@
 	new /obj/item/reagent_containers/dropper(src)
 
 /obj/item/storage/box/syndie_kit/ez_clean/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new/obj/item/grenade/chem_grenade/ez_clean(src)
 
 /obj/item/storage/box/hug/reverse_revolver/PopulateContents()
@@ -586,5 +586,5 @@
 	desc = "A sleek, sturdy box with a buzzing noise coming from the inside. Uh oh."
 
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)

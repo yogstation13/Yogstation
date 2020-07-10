@@ -91,7 +91,7 @@
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
-					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
+					H.heal_overall_damage(1 * light_heal_multiplier, TRUE * light_heal_multiplier)
 			if (0.76 to 1)
 				//super high light
 				light_level = 5

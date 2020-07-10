@@ -84,7 +84,7 @@
 /mob/proc/movespeed_modifier_identical_check(list/mod1, list/mod2)
 	if(!islist(mod1) || !islist(mod2) || mod1.len < MOVESPEED_DATA_INDEX_MAX || mod2.len < MOVESPEED_DATA_INDEX_MAX)
 		return FALSE
-	for(var/i in 1 to MOVESPEED_DATA_INDEX_MAX)
+	for(var/i in TRUE to MOVESPEED_DATA_INDEX_MAX)
 		if(mod1[i] != mod2[i])
 			return FALSE
 	return TRUE

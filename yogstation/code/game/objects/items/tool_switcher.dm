@@ -64,7 +64,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	programs += new /datum/tool_switcher_program/default
-	for(var/I in 1 to 3)
+	for(var/I in TRUE to 3)
 		var/datum/tool_switcher_program/program = new
 		program.name = "Program #[I]"
 		programs += program
@@ -131,20 +131,20 @@
 /obj/item/storage/belt/tool_switcher/ui_interact(mob/living/user)
 	. = ..()
 	var/dat = "<b>Programs:</b> <div>"
-	for(var/I in 1 to programs.len)
+	for(var/I in TRUE to programs.len)
 		var/datum/tool_switcher_program/program = programs[I]
 		dat += "<a href='?src=[REF(src)];change_program=[I]' class='[program == current_program ? "linkOn" : ""]'>[program.name]</a>"
 	dat += "</div><hr>"
 	if(current_program)
 		dat += "<table>"
-		for(var/I in 1 to current_program.tools_list.len)
+		for(var/I in TRUE to current_program.tools_list.len)
 			var/obj/item/tool_type = current_program.tools_list[I]
 			var/no_tool = (locate(tool_type) in src) == null
 			dat += "<tr><td><a href='?src=[REF(src)];change_tool=[I]' style='[no_tool ? "color:red" : ""]' class='[I == current_program.current_index ? "linkOn" : ""]'>[initial(tool_type.name)]</a></td>"
 			dat += "<td><a href='?src=[REF(src)];remove_tool=[I]'>X</a></td>"
 			if(current_program.can_edit)
 				dat += "<td><a href='?src=[REF(src)];move_tool=[I];move_tool_dir=1' class='[I == current_program.tools_list.len ? "linkOff" : ""]'>&#8595</a></td>"
-				dat += "<td><a href='?src=[REF(src)];move_tool=[I];move_tool_dir=0' class='[I == 1 ? "linkOff" : ""]'>&#8593</a></td>"
+				dat += "<td><a href='?src=[REF(src)];move_tool=[I];move_tool_dir=0' class='[I == TRUE ? "linkOff" : ""]'>&#8593</a></td>"
 			dat += "</tr>"
 		dat += "</table>"
 		if(current_program.can_edit)
@@ -170,8 +170,8 @@
 	if(href_list["move_tool"])
 		var/idx = text2num(href_list["move_tool"])
 		var/tdir = text2num(href_list["move_tool_dir"])
-		tdir = tdir ? 1 : -1
-		if(!current_program || (tdir == -1 && idx == 1) || (tdir == 1 && idx == current_program.tools_list.len))
+		tdir = tdir ? TRUE : -1
+		if(!current_program || (tdir == -1 && idx == 1) || (tdir == TRUE && idx == current_program.tools_list.len))
 			return
 		current_program.tools_list.Swap(idx, idx + tdir)
 		if(current_program.current_index == idx)

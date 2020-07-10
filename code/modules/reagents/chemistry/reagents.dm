@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/description = ""
 	var/specific_heat = SPECIFIC_HEAT_DEFAULT		//J/(K*mol)
 	var/taste_description = "metaphorical salt"
-	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
+	var/taste_mult = TRUE //how this taste compares to others. Higher values means it is more noticable
 	var/glass_name = "glass of ...what?" // use for specialty drinks.
 	var/glass_desc = "You can't really tell what this is."
 	var/glass_icon_state = null // Otherwise just sets the icon to a normal glass with the mixture of the reagents in the glass.
@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_stage = 0
 	var/overdosed = 0 // You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/self_consuming = FALSE
-	var/reagent_weight = 1 //affects how far it travels when sprayed
+	var/reagent_weight = TRUE //affects how far it travels when sprayed
 	var/metabolizing = FALSE
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references

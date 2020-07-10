@@ -180,14 +180,14 @@
 
 				<h2>Example recipes:</h2>
 				<b>Vanilla Cake</b>: Microwave cake batter.<br>
-				<b>Burger:</b> 1 bun + 1 meat steak<br>
+				<b>Burger:</b> TRUE bun + TRUE meat steak<br>
 				<b>Bread:</b> Microwave dough.<br>
 				<b>Waffles:</b> 2 pastry base<br>
 				<b>Popcorn:</b> Microwave corn.<br>
 				<b>Meat Steak:</b> Microwave meat.<br>
-				<b>Meat Pie:</b> 1 plain pie + 1u black pepper + 1u salt + 2 meat cutlets<br>
+				<b>Meat Pie:</b> TRUE plain pie + 1u black pepper + 1u salt + 2 meat cutlets<br>
 				<b>Boiled Spagetti:</b> Microwave spaghetti.<br>
-				<b>Donuts:</b> 1u sugar + 1 pastry base<br>
+				<b>Donuts:</b> 1u sugar + TRUE pastry base<br>
 				<b>Fries:</b> Process potato.
 
 				<h2>Sharing your food:</h2>

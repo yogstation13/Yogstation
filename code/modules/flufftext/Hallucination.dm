@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	switch(battle_type)
 		if("laser")
 			var/hits = 0
-			for(var/i in 1 to rand(5, 10))
+			for(var/i in TRUE to rand(5, 10))
 				target.playsound_local(source, 'sound/weapons/laser.ogg', 25, 1)
 				if(prob(50))
 					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/sear.ogg', 25, 1), rand(5,10))
@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 					break
 		if("disabler")
 			var/hits = 0
-			for(var/i in 1 to rand(5, 10))
+			for(var/i in TRUE to rand(5, 10))
 				target.playsound_local(source, 'sound/weapons/taser2.ogg', 25, 1)
 				if(prob(50))
 					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/tap.ogg', 25, 1), rand(5,10))
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 					break
 		if("esword")
 			target.playsound_local(source, 'sound/weapons/saberon.ogg',15, 1)
-			for(var/i in 1 to rand(4, 8))
+			for(var/i in TRUE to rand(4, 8))
 				target.playsound_local(source, 'sound/weapons/blade1.ogg', 50, 1)
 				if(i == 4)
 					target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, 'sound/weapons/saberoff.ogg', 15, 1)
 		if("gun")
 			var/hits = 0
-			for(var/i in 1 to rand(3, 6))
+			for(var/i in TRUE to rand(3, 6))
 				target.playsound_local(source, "sound/weapons/gunshot.ogg", 25, TRUE)
 				if(prob(60))
 					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/pierce.ogg', 25, 1), rand(5,10))
@@ -396,11 +396,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, 'sound/weapons/egloves.ogg', 40, 1)
 			target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
 			sleep(20)
-			for(var/i in 1 to rand(5, 12))
+			for(var/i in TRUE to rand(5, 12))
 				target.playsound_local(source, "swing_hit", 50, 1)
 				sleep(rand(CLICK_CD_MELEE, CLICK_CD_MELEE + 4))
 		if("bomb") // Tick Tock
-			for(var/i in 1 to rand(3, 11))
+			for(var/i in TRUE to rand(3, 11))
 				target.playsound_local(source, 'sound/items/timer.ogg', 25, 0)
 				sleep(15)
 	qdel(src)
@@ -634,7 +634,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /obj/effect/hallucination/fake_door_lock
-	layer = CLOSED_DOOR_LAYER + 1 //for Bump priority
+	layer = CLOSED_DOOR_LAYER + TRUE //for Bump priority
 	var/image/bolt_light
 	var/obj/machinery/door/airlock/airlock
 
@@ -735,11 +735,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/list/message_pool = list()
 	if(other)
 		if(close_other) //increase the odds
-			for(var/i in 1 to 5)
+			for(var/i in TRUE to 5)
 				message_pool.Add("<span class='warning'>You feel a tiny prick!</span>")
 		var/obj/item/storage/equipped_backpack = other.get_item_by_slot(SLOT_BACK)
 		if(istype(equipped_backpack))
-			for(var/i in 1 to 5) //increase the odds
+			for(var/i in TRUE to 5) //increase the odds
 				message_pool.Add("<span class='notice'>[other] puts the [pick(\
 					"revolver","energy sword","cryptographic sequencer","power sink","energy bow",\
 					"hybrid taser","stun baton","flash","syringe gun","circular saw","tank transfer valve",\
@@ -803,7 +803,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, 'sound/voice/beepsky/freeze.ogg', 35, 0)
 		if("mech")
 			var/mech_dir = pick(GLOB.cardinals)
-			for(var/i in 1 to rand(4,9))
+			for(var/i in TRUE to rand(4,9))
 				if(prob(75))
 					target.playsound_local(source, 'sound/mecha/mechstep.ogg', 40, 1)
 					source = get_step(source, mech_dir)
@@ -1178,14 +1178,14 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	to_chat(target, "<span class='userdanger'>You're set on fire!</span>")
 	target.throw_alert("fire", /obj/screen/alert/fire, override = TRUE)
 	sleep(20)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		if(target.fire_stacks <= 0)
 			clear_fire()
 			return
 		stage++
 		update_temp()
 		sleep(30)
-	for(var/i in 1 to rand(5, 10))
+	for(var/i in TRUE to rand(5, 10))
 		if(target.fire_stacks <= 0)
 			clear_fire()
 			return

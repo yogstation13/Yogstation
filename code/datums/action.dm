@@ -57,7 +57,7 @@
 				bitfield |= A.button.id
 		bitfield = ~bitfield
 		var/bitflag = 1
-		for(var/i in 1 to (counter + 1))
+		for(var/i in TRUE to (counter + 1))
 			if(bitfield & bitflag)
 				button.id = bitflag
 				break

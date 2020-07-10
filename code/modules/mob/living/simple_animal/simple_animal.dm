@@ -22,7 +22,7 @@
 	var/turns_since_move = 0
 	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
 	var/wander = 1	// Does the mob wander around when idle?
-	var/stop_automated_movement_when_pulled = 1 //When set to 1 this stops the animal from moving when someone is pulling it.
+	var/stop_automated_movement_when_pulled = TRUE //When set to TRUE this stops the animal from moving when someone is pulling it.
 
 	//Interaction
 	var/response_help   = "pokes"
@@ -48,13 +48,13 @@
 	var/obj_damage = 0 //how much damage this simple animal does to objects, if any
 	var/armour_penetration = 0 //How much armour they ignore, as a flat reduction from the targets armour value
 	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
-	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // 1 for full damage , 0 for none , -1 for 1:1 heal from that source
+	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // TRUE for full damage , 0 for none , -1 for 1:1 heal from that source
 	var/attacktext = "attacks"
 	var/attack_sound = null
 	var/friendly = "nuzzles" //If the mob does no damage with it's attack
-	var/environment_smash = ENVIRONMENT_SMASH_NONE //Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls
+	var/environment_smash = ENVIRONMENT_SMASH_NONE //Set to TRUE to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls
 
-	var/speed = 1 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
+	var/speed = TRUE //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
 
 	//Hot simple_animal baby making vars
 	var/list/childtype = null
@@ -268,7 +268,7 @@
 	if(butcher_results)
 		var/atom/Tsec = drop_location()
 		for(var/path in butcher_results)
-			for(var/i in 1 to butcher_results[path])
+			for(var/i in TRUE to butcher_results[path])
 				new path(Tsec)
 	..()
 
@@ -471,7 +471,7 @@
 
 	if(client.eye != src)
 		var/atom/A = client.eye
-		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
+		if(A.update_remote_sight(src)) //returns TRUE if we override all other sight updates.
 			return
 	sync_lighting_plane_alpha()
 

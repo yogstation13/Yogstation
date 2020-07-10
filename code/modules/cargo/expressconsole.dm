@@ -205,7 +205,7 @@
 						D.adjust_money(-(SO.pack.cost * (0.72*MAX_EMAG_ROCKETS)))
 
 						SO.generateRequisition(get_turf(src))
-						for(var/i in 1 to MAX_EMAG_ROCKETS)
+						for(var/i in TRUE to MAX_EMAG_ROCKETS)
 							LZ = pick(empty_turfs)
 							LAZYREMOVE(empty_turfs, LZ)
 							new /obj/effect/DPtarget(LZ, podType, SO)

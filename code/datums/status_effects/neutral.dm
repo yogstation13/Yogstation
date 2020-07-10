@@ -147,7 +147,7 @@
 /datum/status_effect/tagalong //applied to darkspawns while they accompany someone //yogs start: darkspawn
 	id = "tagalong"
 	duration = 3000
-	tick_interval = 1 //as fast as possible
+	tick_interval = TRUE //as fast as possible
 	alert_type = /obj/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
 	var/turf/cached_location //we store this so if the mob is somehow gibbed we aren't put into nullspace

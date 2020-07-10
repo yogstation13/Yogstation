@@ -78,7 +78,7 @@
 	amount_per_transfer_from_this = 10
 	icon_state = "combat_hypo"
 	volume = 90
-	ignore_flags = 1 // So they can heal their comrades.
+	ignore_flags = TRUE // So they can heal their comrades.
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 30, /datum/reagent/medicine/omnizine = 30, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/atropine = 15)
 
 /obj/item/reagent_containers/hypospray/combat/nanites
@@ -105,7 +105,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	amount_per_transfer_from_this = 10
 	volume = 10
-	ignore_flags = 1 //so you can medipen through hardsuits
+	ignore_flags = TRUE //so you can medipen through hardsuits
 	reagent_flags = DRAWABLE
 	flags_1 = null
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 10)

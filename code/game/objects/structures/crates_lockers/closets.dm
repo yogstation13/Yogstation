@@ -229,7 +229,7 @@
 	if(user in src)
 		return
 	if(src.tool_interact(W,user))
-		return 1 // No afterattack
+		return TRUE // No afterattack
 	else
 		return ..()
 

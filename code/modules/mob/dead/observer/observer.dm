@@ -20,16 +20,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
-	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
+	var/started_as_observer //This variable is set to TRUE when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 	var/atom/movable/following = null
 	var/fun_verbs = 0
 	var/image/ghostimage_default = null //this mobs ghost image without accessories and dirs
 	var/image/ghostimage_simple = null //this mob with the simple white ghost sprite
-	var/ghostvision = 1 //is the ghost able to see things humans can't?
+	var/ghostvision = TRUE //is the ghost able to see things humans can't?
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
-	var/ghost_hud_enabled = 1 //did this ghost disable the on-screen HUD?
+	var/ghost_hud_enabled = TRUE //did this ghost disable the on-screen HUD?
 	var/data_huds_on = 0 //Are data HUDs currently enabled?
 	var/health_scan = FALSE //Are health scans currently enabled?
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.

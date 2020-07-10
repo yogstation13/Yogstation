@@ -148,7 +148,7 @@
 		. += "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>"
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
-	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
+	var/charge_multiplier = 0 //2 = Refined stack, TRUE = Ore
 	if(istype(I, /obj/item/stack/sheet/mineral/plasma))
 		charge_multiplier = 2
 	if(istype(I, /obj/item/stack/ore/plasma))
@@ -238,7 +238,7 @@
 
 /obj/item/gun/energy/wormhole_projector/update_ammo_types()
 	. = ..()
-	for(var/i in 1 to ammo_type.len)
+	for(var/i in TRUE to ammo_type.len)
 		var/obj/item/ammo_casing/energy/wormhole/W = ammo_type[i]
 		if(istype(W))
 			W.gun = src

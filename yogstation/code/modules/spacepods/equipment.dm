@@ -55,7 +55,7 @@
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 30, TRUE)
 		return
 	spacepod.next_firetime = world.time + fire_delay
-	for(var/I in 1 to shots_per)
+	for(var/I in TRUE to shots_per)
 		spacepod.fire_projectiles(projectile_type, target)
 		playsound(src, fire_sound, 50, TRUE)
 		sleep(2)

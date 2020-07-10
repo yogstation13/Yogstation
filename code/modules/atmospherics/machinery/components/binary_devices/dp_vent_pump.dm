@@ -19,7 +19,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-	var/pump_direction = 1 //0 = siphoning, 1 = releasing
+	var/pump_direction = TRUE //0 = siphoning, TRUE = releasing
 
 	var/external_pressure_bound = ONE_ATMOSPHERE
 	var/input_pressure_min = 0

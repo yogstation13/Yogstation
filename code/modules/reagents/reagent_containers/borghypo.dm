@@ -74,7 +74,7 @@ Borg Hypospray
 	reagent_names -= initial(reagent.name)
 	var/datum/reagents/RG
 	var/datum/reagents/TRG
-	for(var/i in 1 to reagent_ids.len)
+	for(var/i in TRUE to reagent_ids.len)
 		TRG = reagent_list[i]
 		if (TRG.has_reagent(reagent))
 			RG = TRG
@@ -89,7 +89,7 @@ Borg Hypospray
 	if(iscyborg(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
-			for(var/i in 1 to reagent_ids.len)
+			for(var/i in TRUE to reagent_ids.len)
 				var/datum/reagents/RG = reagent_list[i]
 				if(RG.total_volume < RG.maximum_volume) 	//Don't recharge reagents and drain power if the storage is full.
 					R.cell.use(charge_cost) 					//Take power from borg...

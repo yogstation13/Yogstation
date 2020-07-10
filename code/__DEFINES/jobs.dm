@@ -54,7 +54,7 @@
 
 #define JOB_DISPLAY_ORDER_DEFAULT 0
 
-#define JOB_DISPLAY_ORDER_ASSISTANT 1 //yogs start - this list has been changed to include the yogs jobs.
+#define JOB_DISPLAY_ORDER_ASSISTANT TRUE //yogs start - this list has been changed to include the yogs jobs.
 #define JOB_DISPLAY_ORDER_CAPTAIN 2
 #define JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL 3
 #define JOB_DISPLAY_ORDER_QUARTERMASTER 4

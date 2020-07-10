@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	SetInitDirections()
 
 /obj/machinery/atmospherics/Destroy()
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		nullifyNode(i)
 
 	SSair.atmos_machinery -= src
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	var/list/node_connects = list()
 	node_connects.len = device_type
 
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		for(var/D in GLOB.cardinals)
 			if(D & GetInitDirections())
 				if(D in node_connects)
@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	if(!node_connects) //for pipes where order of nodes doesn't matter
 		node_connects = getNodeConnects()
 
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[i]))
 			if(can_be_node(target, i))
 				nodes[i] = target
@@ -313,7 +313,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		user.forceMove(loc)
 		user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
 
-	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
+	//PLACEHOLDER COMMENT FOR ME TO READD THE TRUE (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
 
 /obj/machinery/atmospherics/AltClick(mob/living/L)
 	if(istype(L) && is_type_in_list(src, GLOB.ventcrawl_machinery))

@@ -25,9 +25,9 @@
 	var/safe_co2_max = 10 // Yes it's an arbitrary value who cares?
 	var/safe_toxins_min = 0
 	var/safe_toxins_max = 0.05
-	var/SA_para_min = 1 //Sleeping agent
+	var/SA_para_min = TRUE //Sleeping agent
 	var/SA_sleep_min = 5 //Sleeping agent
-	var/BZ_trip_balls_min = 1 //BZ gas
+	var/BZ_trip_balls_min = TRUE //BZ gas
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
 
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
@@ -284,7 +284,7 @@
 		gas_breathed = breath.get_moles(/datum/gas/stimulum)
 		if (gas_breathed > gas_stimulation_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/stimulum)
-			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, 1 - existing))
+			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, TRUE - existing))
 		breath.adjust_moles(/datum/gas/stimulum, -gas_breathed)
 
 	// Miasma
@@ -296,7 +296,7 @@
 				var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(min(round(max(miasma_pp/2, 1), 1), 6), min(round(max(miasma_pp, 1), 1), 8))
 				if(owner.CanContractDisease(miasma_disease))
 					//tl;dr the first argument chooses the smaller of miasma_pp/2 or 6(typical max virus symptoms), the second chooses the smaller of miasma_pp or 8(max virus symptom level) //
-					miasma_disease.name = "Unknown"//^each argument has a minimum of 1 and rounds to the nearest value. Feel free to change the pp scaling I couldn't decide on good numbers for it.
+					miasma_disease.name = "Unknown"//^each argument has a minimum of TRUE and rounds to the nearest value. Feel free to change the pp scaling I couldn't decide on good numbers for it.
 					miasma_disease.try_infect(owner)
 
 			// Miasma side effects

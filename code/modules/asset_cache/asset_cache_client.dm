@@ -43,7 +43,7 @@
 	src << browse(json_encode(new_assets|sent_assets), "file=asset_data.json&display=0")
 
 /// Blocks until all currently sending browser assets have been sent.
-/// Due to byond limitations, this proc will sleep for 1 client round trip even if the client has no pending asset sends.
+/// Due to byond limitations, this proc will sleep for TRUE client round trip even if the client has no pending asset sends.
 /// This proc will return an untrue value if it had to return before confirming the send, such as timeout or the client going away.
 /client/proc/asset_flush(timeout = 50)
 	var/job = ++last_asset_job

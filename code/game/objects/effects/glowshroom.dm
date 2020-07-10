@@ -85,7 +85,7 @@
 /obj/structure/glowshroom/proc/Spread()
 	var/turf/ownturf = get_turf(src)
 	var/shrooms_planted = 0
-	for(var/i in 1 to myseed.yield)
+	for(var/i in TRUE to myseed.yield)
 		if(prob(1/(generation * generation) * 100))//This formula gives you diminishing returns based on generation. 100% with 1st gen, decreasing to 25%, 11%, 6, 4, 2...
 			var/list/possibleLocs = list()
 			var/spreadsIntoAdjacent = FALSE

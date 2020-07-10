@@ -344,7 +344,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
-	for (var/i in 1 to 10)
+	for (var/i in TRUE to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
 	update_icon()
@@ -384,7 +384,7 @@
 	new /obj/item/paper/paperwork/item_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
-	for (var/i in 1 to 10)
+	for (var/i in TRUE to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
 	update_icon()
@@ -417,9 +417,9 @@
 
 /obj/item/clipboard/yog/paperwork/security/Initialize()
 	. = ..()
-	for (var/i in 1 to 10)
+	for (var/i in TRUE to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
-	for (var/i in 1 to 10)
+	for (var/i in TRUE to 10)
 		new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
 	update_icon()

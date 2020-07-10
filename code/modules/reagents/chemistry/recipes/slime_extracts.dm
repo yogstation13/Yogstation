@@ -41,7 +41,7 @@
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/slimemonkey/on_reaction(datum/reagents/holder)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
 	..()
 
@@ -163,7 +163,7 @@
 	for(var/mob/living/carbon/C in viewers(T, null))
 		C.flash_act()
 
-	for(var/i in 1 to 4 + rand(1,2))
+	for(var/i in TRUE to 4 + rand(1,2))
 		var/chosen = getbork()
 		var/obj/B = new chosen(T)
 		if(prob(5))//Fry it!
@@ -172,7 +172,7 @@
 			fried.fry() // actually set the name and colour it
 			B = fried
 		if(prob(50))
-			for(var/j in 1 to rand(1, 3))
+			for(var/j in TRUE to rand(1, 3))
 				step(B, pick(NORTH,SOUTH,EAST,WEST))
 	..()
 
@@ -399,7 +399,7 @@
 // yogs start
 /datum/chemical_reaction/slime/slimespeed/on_reaction(datum/reagents/holder)
 	if(prob(1))
-		explosion(get_turf(holder.my_atom), 1 ,3, 6)
+		explosion(get_turf(holder.my_atom), TRUE ,3, 6)
 		return
 	if(prob(50))
 		new /mob/living/simple_animal/pet/gondola/gondolapod(get_turf(holder.my_atom))
@@ -467,7 +467,7 @@
 
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
 	if(holder && holder.my_atom)
-		explosion(get_turf(holder.my_atom), 1 ,3, 6)
+		explosion(get_turf(holder.my_atom), TRUE ,3, 6)
 
 
 /datum/chemical_reaction/slime/slimecornoil

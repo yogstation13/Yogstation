@@ -302,7 +302,7 @@
 							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
 							dat+="<img src='tmp_photo[i].png' width = '180'><BR><BR>"
 						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(-1)]</FONT>\]</FONT><BR>"
-						dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > 1 ? "s" : ""]:<br>"
+						dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > TRUE ? "s" : ""]:<br>"
 						for(var/datum/newscaster/feed_comment/comment in MESSAGE.comments)
 							dat+="[comment.body]<br><font size=1>[comment.author] [comment.time_stamp]</font><br>"
 						dat+="<br>"
@@ -341,7 +341,7 @@
 				for(var/datum/newscaster/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 					dat+="-[MESSAGE.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(-1)]</FONT>\]</FONT><BR>"
 					dat+="<FONT SIZE=2><A href='?src=[REF(src)];[HrefToken()];ac_censor_channel_story_body=[REF(MESSAGE)]'>[(MESSAGE.bodyCensor) ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='?src=[REF(src)];[HrefToken()];ac_censor_channel_story_author=[REF(MESSAGE)]'>[(MESSAGE.authorCensor) ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>"
-					dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > 1 ? "s" : ""]: <a href='?src=[REF(src)];[HrefToken()];ac_lock_comment=[REF(MESSAGE)]'>[MESSAGE.locked ? "Unlock" : "Lock"]</a><br>"
+					dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > TRUE ? "s" : ""]: <a href='?src=[REF(src)];[HrefToken()];ac_lock_comment=[REF(MESSAGE)]'>[MESSAGE.locked ? "Unlock" : "Lock"]</a><br>"
 					for(var/datum/newscaster/feed_comment/comment in MESSAGE.comments)
 						dat+="[comment.body] <a href='?src=[REF(src)];[HrefToken()];ac_del_comment=[REF(comment)];ac_del_comment_msg=[REF(MESSAGE)]'>X</a><br><font size=1>[comment.author] [comment.time_stamp]</font><br>"
 			dat+="<BR><A href='?src=[REF(src)];[HrefToken()];ac_setScreen=[10]'>Back</A>"
@@ -939,7 +939,7 @@
 			qdel(C)
 	return kicked_client_names
 
-//returns 1 to let the dragdrop code know we are trapping this event
+//returns TRUE to let the dragdrop code know we are trapping this event
 //returns 0 if we don't plan to trap the event
 /datum/admins/proc/cmd_ghost_drag(mob/dead/observer/frommob, mob/tomob)
 

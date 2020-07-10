@@ -585,7 +585,7 @@
 	var/turf/T = loc
 	. = ..()
 
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > TRUE && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 	else
 		if(isliving(pulledby))
@@ -704,13 +704,13 @@
 
 
 /mob/proc/resist_grab(moving_resist)
-	return 1 //returning 0 means we successfully broke free
+	return TRUE //returning 0 means we successfully broke free
 
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
 	if(pulledby.grab_state || resting)
 		var/altered_grab_state = pulledby.grab_state
-		if(resting && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to 1 grab state higher. wont make the grab state exceed the normal max, however
+		if(resting && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to TRUE grab state higher. wont make the grab state exceed the normal max, however
 			altered_grab_state++
 		var/resist_chance = BASE_GRAB_RESIST_CHANCE // see defines/combat.dm
 		resist_chance = max((resist_chance/altered_grab_state)-sqrt((getBruteLoss()+getFireLoss()+getOxyLoss()+getToxLoss()+getCloneLoss())*0.5+getStaminaLoss()), 0) //stamina loss is weighted twice as heavily as the other damage types in this calculation
@@ -944,7 +944,7 @@
 /mob/living/proc/check_weakness(obj/item/weapon, mob/living/attacker)
 	if(mind && mind.has_antag_datum(/datum/antagonist/devil))
 		return check_devil_bane_multiplier(weapon, attacker)
-	return 1 //This is not a boolean, it's the multiplier for the damage the weapon does.
+	return TRUE //This is not a boolean, it's the multiplier for the damage the weapon does.
 
 /mob/living/proc/check_acedia()
 	if(mind && mind.has_objective(/datum/objective/sintouched/acedia))
@@ -978,7 +978,7 @@
 	if(!amount || (amount < RAD_MOB_SKIN_PROTECTION) || HAS_TRAIT(src, TRAIT_RADIMMUNE))
 		return
 
-	amount -= RAD_BACKGROUND_RADIATION // This will always be at least 1 because of how skin protection is calculated
+	amount -= RAD_BACKGROUND_RADIATION // This will always be at least TRUE because of how skin protection is calculated
 
 	var/blocked = getarmor(null, "rad")
 
@@ -1201,7 +1201,7 @@
 		if (client)
 			if (new_z)
 				SSmobs.clients_by_zlevel[new_z] += src
-				for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to 1 step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
+				for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to TRUE step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
 					var/mob/living/simple_animal/SA = SSidlenpcpool.idle_mobs_by_zlevel[new_z][I]
 					if (SA)
 						SA.toggle_ai(AI_ON) // Guarantees responsiveness for when appearing right next to mobs

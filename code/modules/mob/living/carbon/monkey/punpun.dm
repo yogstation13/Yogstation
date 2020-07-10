@@ -70,7 +70,7 @@
 		file_data["relic_mask"] = null
 	else
 		file_data["ancestor_name"] = ancestor_name ? ancestor_name : name
-		file_data["ancestor_chain"] = dead ? ancestor_chain + 1 : ancestor_chain
+		file_data["ancestor_chain"] = dead ? ancestor_chain + TRUE : ancestor_chain
 		file_data["relic_hat"] = head ? head.type : null
 		file_data["relic_mask"] = wear_mask ? wear_mask.type : null
 	fdel(json_file)

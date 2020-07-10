@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/cult_req = FALSE //SPECIAL SNOWFLAKE clothes required for cult only spells
 	var/human_req = FALSE //spell can only be cast by humans
 	var/nonabstract_req = FALSE //spell can only be cast by mobs that are physical entities
-	var/stat_allowed = FALSE //see if it requires being conscious/alive, need to set to 1 for ghostpells
+	var/stat_allowed = FALSE //see if it requires being conscious/alive, need to set to TRUE for ghostpells
 	var/phase_allowed = FALSE // If true, the spell can be cast while phased, eg. blood crawling, ethereal jaunting
 	var/antimagic_allowed = FALSE // If false, the spell cannot be cast while under the effect of antimagic
 	var/invocation = "HURP DURP" //what is uttered when the wizard casts the spell
@@ -404,8 +404,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			target.vars[type] += amount //I bear no responsibility for the runtimes that'll happen if you try to adjust non-numeric or even non-existent vars
 
 /obj/effect/proc_holder/spell/targeted //can mean aoe for mobs (limited/unlimited number) or one target mob
-	var/max_targets = 1 //leave 0 for unlimited targets in range, 1 for one selectable target in range, more for limited number of casts (can all target one guy, depends on target_ignore_prev) in range
-	var/target_ignore_prev = 1 //only important if max_targets > 1, affects if the spell can be cast multiple times at one person from one cast
+	var/max_targets = TRUE //leave 0 for unlimited targets in range, TRUE for one selectable target in range, more for limited number of casts (can all target one guy, depends on target_ignore_prev) in range
+	var/target_ignore_prev = TRUE //only important if max_targets > 1, affects if the spell can be cast multiple times at one person from one cast
 	var/include_user = 0 //if it includes usr in the target list
 	var/random_target = 0 // chooses random viable target instead of asking the caster
 	var/random_target_priority = TARGET_CLOSEST // if random_target is enabled how it will pick the target

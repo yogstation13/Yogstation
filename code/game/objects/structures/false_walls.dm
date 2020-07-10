@@ -133,7 +133,7 @@
 		if(disassembled)
 			new girder_type(loc)
 		if(mineral_amount)
-			for(var/i in 1 to mineral_amount)
+			for(var/i in TRUE to mineral_amount)
 				new mineral(loc)
 	qdel(src)
 

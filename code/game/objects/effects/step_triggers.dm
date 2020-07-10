@@ -2,7 +2,7 @@
 
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
-	var/stopper = 1 // stops throwers
+	var/stopper = TRUE // stops throwers
 	var/mobs_only = FALSE
 	invisibility = INVISIBILITY_ABSTRACT // nope cant see this shit
 	anchored = TRUE
@@ -45,7 +45,7 @@
 /obj/effect/step_trigger/thrower
 	var/direction = SOUTH // the direction of throw
 	var/tiles = 3	// if 0: forever until atom hits a stopper
-	var/immobilize = 1 // if nonzero: prevents mobs from moving while they're being flung
+	var/immobilize = TRUE // if nonzero: prevents mobs from moving while they're being flung
 	var/speed = 1	// delay of movement
 	var/facedir = 0 // if 1: atom faces the direction of movement
 	var/nostop = 0 // if 1: will only be stopped by teleporters
@@ -178,7 +178,7 @@
 /obj/effect/step_trigger/sound_effect
 	var/sound //eg. path to the sound, inside '' eg: 'growl.ogg'
 	var/volume = 100
-	var/freq_vary = 1 //Should the frequency of the sound vary?
+	var/freq_vary = TRUE //Should the frequency of the sound vary?
 	var/extra_range = 0 // eg World.view = 7, extra_range = 1, 7+1 = 8, 8 turfs radius
 	var/happens_once = 0
 	var/triggerer_only = 0 //Whether the triggerer is the only person who hears this

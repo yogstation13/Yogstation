@@ -92,10 +92,10 @@ global procs
 		Composes the job and the end tag for tracking hrefs. Returns "" for all mobs except AIs.
 
 	hivecheck()
-		Returns 1 if the mob can hear and talk in the alien hivemind.
+		Returns TRUE if the mob can hear and talk in the alien hivemind.
 
 	lingcheck()
-		Returns 1 if the mob can hear and talk in the changeling hivemind.
+		Returns TRUE if the mob can hear and talk in the changeling hivemind.
 
 /mob/living
 	say(message)
@@ -128,7 +128,7 @@ global procs
 
 	handle_inherent_channels(message, message_mode)
 		If message_mode is MODE_BINARY, MODE_ALIEN or MODE_CHANGELING (or, for AIs, MODE_HOLOPAD), this will
-		handle speaking in those modes. Return 1 to exit say().
+		handle speaking in those modes. Return TRUE to exit say().
 
 	treat_message(message)
 		What it says on the tin. Treats the message according to masks, mutantraces, mutations, etc.

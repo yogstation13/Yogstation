@@ -200,7 +200,7 @@
 		return FALSE
 	var/list/results = world.SDQL2_query(query_text, key_name_admin(usr), "[key_name(usr)]")
 	if(length(results) == 3)
-		for(var/I in 1 to 3)
+		for(var/I in TRUE to 3)
 			to_chat(usr, results[I], confidential=TRUE)
 	SSblackbox.record_feedback("nested tally", "SDQL query", 1, list(ckey, query_text))
 
@@ -364,7 +364,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 /proc/recursive_list_print(list/output = list(), list/input, datum/callback/datum_handler, datum/callback/atom_handler)
 	output += "\[ "
-	for(var/i in 1 to input.len)
+	for(var/i in TRUE to input.len)
 		var/final = i == input.len
 		var/key = input[i]
 
@@ -556,14 +556,14 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	SDQL2_TICK_CHECK
 	SDQL2_HALT_CHECK
 
-	// 1 and 2 are type and FROM.
+	// TRUE and 2 are type and FROM.
 	var/i = 3
 	while (i <= tree.len)
 		var/key = tree[i++]
 		var/list/expression = tree[i++]
 		switch (key)
 			if ("map")
-				for(var/j = 1 to objs.len)
+				for(var/j = TRUE to objs.len)
 					var/x = objs[j]
 					objs[j] = SDQL_expression(x, expression)
 					SDQL2_TICK_CHECK

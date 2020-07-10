@@ -6,7 +6,7 @@
 			return facing_modifiers[SIDE_ARMOUR]
 		if(225, 180, 135)
 			return facing_modifiers[FRONT_ARMOUR]
-	return 1 //always return non-0
+	return TRUE //always return non-0
 
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()

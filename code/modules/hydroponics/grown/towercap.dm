@@ -57,7 +57,7 @@
 		var/seed_modifier = 0
 		if(seed)
 			seed_modifier = round(seed.potency / 25)
-		var/obj/item/stack/plank = new plank_type(user.loc, 1 + seed_modifier)
+		var/obj/item/stack/plank = new plank_type(user.loc, TRUE + seed_modifier)
 		var/old_plank_amount = plank.amount
 		for(var/obj/item/stack/ST in user.loc)
 			if(ST != plank && istype(ST, plank_type) && ST.amount < ST.max_amount)
@@ -218,7 +218,7 @@
 		to_chat(user, "<span class='warning'>You need to extinguish [src] before removing the logs!</span>")
 		return
 	if(!has_buckled_mobs() && do_after(user, 50, target = src))
-		for(var/I in 1 to 5)
+		for(var/I in TRUE to 5)
 			var/obj/item/grown/log/L = new /obj/item/grown/log(src.loc)
 			L.pixel_x += rand(1,4)
 			L.pixel_y += rand(1,4)

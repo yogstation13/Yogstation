@@ -476,7 +476,7 @@
 					dat += "<BR>\[ <A HREF='?src=[REF(src)];operation=announce'>Make a Captain's Announcement</A> \]"
 					var/cross_servers_count = length(CONFIG_GET(keyed_list/cross_server))
 					if(cross_servers_count)
-						dat += "<BR>\[ <A HREF='?src=[REF(src)];operation=crossserver'>Send a message to [cross_servers_count == 1 ? "an " : ""]allied station[cross_servers_count > 1 ? "s" : ""]</A> \]"
+						dat += "<BR>\[ <A HREF='?src=[REF(src)];operation=crossserver'>Send a message to [cross_servers_count == TRUE ? "an " : ""]allied station[cross_servers_count > TRUE ? "s" : ""]</A> \]"
 					if(SSmapping.config.allow_custom_shuttles)
 						dat += "<BR>\[ <A HREF='?src=[REF(src)];operation=purchase_menu'>Purchase Shuttle</A> \]"
 					dat += "<BR>\[ <A HREF='?src=[REF(src)];operation=changeseclevel'>Change Alert Level</A> \]"
@@ -497,7 +497,7 @@
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i in 1 to messages.len)
+			for(var/i in TRUE to messages.len)
 				var/datum/comm_message/M = messages[i]
 				dat += "<BR><A HREF='?src=[REF(src)];operation=viewmessage;message-num=[i]'>[M.title]</A>"
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
@@ -505,7 +505,7 @@
 			if (currmsg)
 				dat += "<B>[currmsg.title]</B><BR><BR>[currmsg.content]"
 				if(!currmsg.answered && currmsg.possible_answers.len)
-					for(var/i in 1 to currmsg.possible_answers.len)
+					for(var/i in TRUE to currmsg.possible_answers.len)
 						var/answer = currmsg.possible_answers[i]
 						dat += "<br>\[ <A HREF='?src=[REF(src)];operation=respond;answer=[i]'>Answer : [answer]</A> \]"
 				else if(currmsg.answered)
@@ -642,14 +642,14 @@
 			dat += get_call_shuttle_form(1)
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i in 1 to messages.len)
+			for(var/i in TRUE to messages.len)
 				var/datum/comm_message/M = messages[i]
 				dat += "<BR><A HREF='?src=[REF(src)];operation=ai-viewmessage;message-num=[i]'>[M.title]</A>"
 		if(STATE_VIEWMESSAGE)
 			if (aicurrmsg)
 				dat += "<B>[aicurrmsg.title]</B><BR><BR>[aicurrmsg.content]"
 				if(!aicurrmsg.answered && aicurrmsg.possible_answers.len)
-					for(var/i in 1 to aicurrmsg.possible_answers.len)
+					for(var/i in TRUE to aicurrmsg.possible_answers.len)
 						var/answer = aicurrmsg.possible_answers[i]
 						dat += "<br>\[ <A HREF='?src=[REF(src)];operation=ai-respond;answer=[i]'>Answer : [answer]</A> \]"
 				else if(aicurrmsg.answered)

@@ -15,14 +15,14 @@
 	animate_movement = 0
 	var/amount = 4
 	var/lifetime = 5
-	var/opaque = 1 //whether the smoke can block the view when in enough amount
+	var/opaque = TRUE //whether the smoke can block the view when in enough amount
 
 
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
 	if(alpha == 0) //Handle already transparent case
 		return
 	if(frames == 0)
-		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
+		frames = TRUE //We will just assume that by 0 frames, the coder meant "during one frame".
 	var/step = alpha / frames
 	for(var/i = 0, i < frames, i++)
 		alpha -= step
@@ -302,7 +302,7 @@
 		location = get_turf(holder)
 	var/obj/effect/particle_effect/smoke/chem/S = new effect_type(location)
 
-	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
+	if(chemholder.reagents.total_volume > 1) // can't split TRUE very well
 		chemholder.reagents.copy_to(S, chemholder.reagents.total_volume)
 
 	if(mixcolor)

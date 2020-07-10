@@ -198,7 +198,7 @@
 	return ..()
 
 /obj/structure/chrono_field/update_icon()
-	var/ttk_frame = 1 - (tickstokill / initial(tickstokill))
+	var/ttk_frame = TRUE - (tickstokill / initial(tickstokill))
 	ttk_frame = clamp(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
 	if(ttk_frame != RPpos)
 		RPpos = ttk_frame

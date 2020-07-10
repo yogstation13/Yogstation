@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(!client)
 				return
 
-			if(iscarbon(src) && ventcrawler < 2)//It must have atleast been 1 to get this far
+			if(iscarbon(src) && ventcrawler < 2)//It must have atleast been TRUE to get this far
 				var/failed = 0
 				var/list/items_list = get_equipped_items(include_pockets = TRUE)
 				if(items_list.len)

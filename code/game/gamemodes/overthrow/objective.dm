@@ -1,5 +1,5 @@
 // This is a point based objective. You can only lose if you fail to even handle one single command personnel, else you win. But, if you win, you're given a certain number of points,
-// based on the role of the head (Captain, HoP/HoS, other heads, warden, security officers) and whether you converted them, exiled or just killed (applying a modifier of 1.5, 1 and 0.5 respectively)
+// based on the role of the head (Captain, HoP/HoS, other heads, warden, security officers) and whether you converted them, exiled or just killed (applying a modifier of 1.5, TRUE and 0.5 respectively)
 // because this is meant for the overthrow gamemode, which is a bloodless coup, unlike revs.
 
 // Point system:
@@ -9,7 +9,7 @@
 // Chief Engineer, Chief Medical Officer, Research Director = 3;
 
 // Modifiers:
-// Converting: 1.5 for the converting team, 1 for all the other ones;
+// Converting: 1.5 for the converting team, TRUE for all the other ones;
 // Exiling: 1;
 // Killing: 0.5
 
@@ -56,7 +56,7 @@
 
 // Heads overthrow objective. This targets the heads only, assigning points based on the rank of the head, captain being the highest target.
 /datum/objective/overthrow/heads
-	var/list/targets = list()	// We want one objective for all the heads, instead of 1 objective per head like how it's done for revs, because you don't lose if you get atleast one head.
+	var/list/targets = list()	// We want one objective for all the heads, instead of TRUE objective per head like how it's done for revs, because you don't lose if you get atleast one head.
 								// Also, this is an associative list, target = role. Modifiers (defines) are applied on points calculation at round end.
 
 /datum/objective/overthrow/heads/proc/find_targets()

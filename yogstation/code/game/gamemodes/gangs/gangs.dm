@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		gangs_to_create++
 	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
 
-	for(var/i in 1 to gangs_to_create)
+	for(var/i in TRUE to gangs_to_create)
 		if(!antag_candidates.len)
 			break
 

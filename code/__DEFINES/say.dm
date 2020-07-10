@@ -63,7 +63,7 @@
 #define NOPASS 4
 
 //Eavesdropping
-#define EAVESDROP_EXTRA_RANGE 1 //how much past the specified message_range does the message get starred, whispering only
+#define EAVESDROP_EXTRA_RANGE TRUE //how much past the specified message_range does the message get starred, whispering only
 
 // A link given to ghost alice to follow bob
 #define FOLLOW_LINK(alice, bob) "<a href=?src=[REF(alice)];follow=[REF(bob)]>(F)</a>"

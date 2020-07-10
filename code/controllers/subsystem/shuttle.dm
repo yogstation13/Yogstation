@@ -565,7 +565,7 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/proc/get_containing_shuttle(atom/A)
 	var/list/mobile_cache = mobile
-	for(var/i in 1 to mobile_cache.len)
+	for(var/i in TRUE to mobile_cache.len)
 		var/obj/docking_port/port = mobile_cache[i]
 		if(port.is_in_shuttle_bounds(A))
 			return port
@@ -573,7 +573,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/get_containing_dock(atom/A)
 	. = list()
 	var/list/stationary_cache = stationary
-	for(var/i in 1 to stationary_cache.len)
+	for(var/i in TRUE to stationary_cache.len)
 		var/obj/docking_port/port = stationary_cache[i]
 		if(port.is_in_shuttle_bounds(A))
 			. += port
@@ -581,7 +581,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/get_dock_overlap(x0, y0, x1, y1, z)
 	. = list()
 	var/list/stationary_cache = stationary
-	for(var/i in 1 to stationary_cache.len)
+	for(var/i in TRUE to stationary_cache.len)
 		var/obj/docking_port/port = stationary_cache[i]
 		if(!port || port.z != z)
 			continue
@@ -810,7 +810,7 @@ SUBSYSTEM_DEF(shuttle)
 		L["id"] = M.id
 		L["timer"] = M.timer
 		L["timeleft"] = M.getTimerStr()
-		if (timeleft > 1 HOURS)
+		if (timeleft > TRUE HOURS)
 			L["timeleft"] = "Infinity"
 		L["can_fast_travel"] = M.timer && timeleft >= 50
 		L["can_fly"] = TRUE

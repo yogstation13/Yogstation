@@ -40,7 +40,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 
 	var/random_color = TRUE //if the carp uses random coloring
-	var/rarechance = 1 //chance for rare color variant
+	var/rarechance = TRUE //chance for rare color variant
 
 	var/static/list/carp_colors = list(\
 	"lightpurple" = "#c3b9f1", \

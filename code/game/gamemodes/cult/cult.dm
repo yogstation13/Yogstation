@@ -70,13 +70,13 @@
 		restricted_jobs += "Assistant"
 
 	//cult scaling goes here
-	recommended_enemies = 1 + round(num_players()/CULT_SCALING_COEFFICIENT)
+	recommended_enemies = TRUE + round(num_players()/CULT_SCALING_COEFFICIENT)
 	var/remaining = (num_players() % CULT_SCALING_COEFFICIENT) * 10 //Basically the % of how close the population is toward adding another cultis
 	if(prob(remaining))
 		recommended_enemies++
 
 
-	for(var/cultists_number = 1 to recommended_enemies)
+	for(var/cultists_number = TRUE to recommended_enemies)
 		if(!antag_candidates.len)
 			break
 		var/datum/mind/cultist = antag_pick(antag_candidates)
@@ -107,7 +107,7 @@
 	if (..())
 		return TRUE
 
-	return 1 - main_cult.check_sacrifice_status()
+	return TRUE - main_cult.check_sacrifice_status()
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
@@ -212,7 +212,7 @@
 	anchor_target.anchor = TRUE
 	anchor_target.max_integrity = 1200
 	anchor_target.obj_integrity = 1200
-	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
+	anchor_time2kill -= anchor_power * TRUE MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
 	anchor_target.set_animate()
 	var/area/A = get_area(anchor_target)
 	addtimer(CALLBACK(anchor_target, /obj/structure/destructible/cult/bloodstone.proc/summon), anchor_time2kill)

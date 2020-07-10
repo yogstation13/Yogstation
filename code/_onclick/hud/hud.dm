@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			static_inventory -= H
 	hand_slots = list()
 	var/obj/screen/inventory/hand/hand_box
-	for(var/i in 1 to mymob.held_items.len)
+	for(var/i in TRUE to mymob.held_items.len)
 		hand_box = new /obj/screen/inventory/hand()
 		hand_box.name = mymob.get_held_index_name(i)
 		hand_box.icon = ui_style

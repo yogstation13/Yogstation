@@ -27,7 +27,7 @@
 #define APC_UPOVERLAY_OPERATING		(1<<13)
 
 #define APC_ELECTRONICS_MISSING 0 // None
-#define APC_ELECTRONICS_INSTALLED 1 // Installed but not secured
+#define APC_ELECTRONICS_INSTALLED TRUE // Installed but not secured
 #define APC_ELECTRONICS_SECURED 2 // Installed and secured
 
 #define APC_COVER_CLOSED 0
@@ -92,8 +92,8 @@
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/malfhack = 0 //New var for my changes to AI malf. --NeoFite
 	var/mob/living/silicon/ai/malfai = null //See above --NeoFite
-	var/has_electronics = APC_ELECTRONICS_MISSING // 0 - none, 1 - plugged in, 2 - secured by screwdriver
-	var/overload = 1 //used for the Blackout malf module
+	var/has_electronics = APC_ELECTRONICS_MISSING // 0 - none, TRUE - plugged in, 2 - secured by screwdriver
+	var/overload = TRUE //used for the Blackout malf module
 	var/beenhit = 0 // used for counting how many times it has been hit, used for Aliens at the moment
 	var/mob/living/silicon/ai/occupier = null
 	var/transfer_in_progress = FALSE //Is there an AI being transferred out of us?
@@ -292,7 +292,7 @@
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
 	var/update = check_updates() 		//returns 0 if no need to update icons.
-						// 1 if we need to update the icon_state
+						// TRUE if we need to update the icon_state
 						// 2 if we need to update the overlays
 	if(!update)
 		icon_update_needed = FALSE
@@ -813,7 +813,7 @@
 		ui = new(user, src, ui_key, "Apc", name, 535, 515, master_ui, state)
 		ui.open()
 	if(ui)
-		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
+		ui.set_autoupdate(state = (failure_timer ? TRUE : 0))
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
@@ -877,7 +877,7 @@
 			else
 				return 2 // 2 = APC hacked by user, and user is in its core.
 		else
-			return 1 // 1 = APC not hacked.
+			return TRUE // TRUE = APC not hacked.
 	else
 		return 0 // 0 = User is not a Malf AI
 

@@ -27,7 +27,7 @@
 		chargesound = 'yogstation/sound/weapons/spur_chargehigh.ogg'
 		recoil = 1
 		fire_sound = 'yogstation/sound/weapons/spur_high.ogg'
-	else if(charge >= ((maxcharge/3) * 1)) // 1 third charged
+	else if(charge >= ((maxcharge/3) * 1)) // TRUE third charged
 		chargesound = 'yogstation/sound/weapons/spur_chargemed.ogg'
 		recoil = 0
 		fire_sound = 'yogstation/sound/weapons/spur_medium.ogg'
@@ -95,7 +95,7 @@
 		icon_state = "spur_high"
 		damage = 20
 		range = 20
-	else if(charge >= ((maxcharge/3) * 1)) // 1 third charged
+	else if(charge >= ((maxcharge/3) * 1)) // TRUE third charged
 		icon_state = "spur_medium"
 		damage = 15
 		range = 13
@@ -165,7 +165,7 @@
 		icon_state = "spur_high"
 		damage = 40
 		range = 20
-	else if(charge >= ((maxcharge/3) * 1)) // 1 third charged
+	else if(charge >= ((maxcharge/3) * 1)) // TRUE third charged
 		icon_state = "spur_medium"
 		damage = 30
 		range = 13

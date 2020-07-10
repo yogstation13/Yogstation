@@ -25,7 +25,7 @@
 	ready = FALSE
 	var/list/turf_steps = list()
 	var/length = round(turfs.len * 0.5)
-	for(var/i in 1 to length)
+	for(var/i in TRUE to length)
 		turf_steps[pick_n_take(turfs)] = pick_n_take(turfs)
 	if(turfs.len > 0)
 		var/turf/loner = pick(turfs)

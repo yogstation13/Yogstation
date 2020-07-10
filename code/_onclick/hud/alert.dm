@@ -9,7 +9,7 @@
  category is a text string. Each mob may only have one alert per category; the previous one will be replaced
  path is a type path of the actual alert type to throw
  severity is an optional number that will be placed at the end of the icon_state for this alert
- For example, high pressure's icon_state is "highpressure" and can be serverity 1 or 2 to get "highpressure1" or "highpressure2"
+ For example, high pressure's icon_state is "highpressure" and can be serverity TRUE or 2 to get "highpressure1" or "highpressure2"
  new_master is optional and sets the alert's icon state to "template" in the ui_style icons with the master as an overlay.
  Clicks are forwarded to master
  Override makes it so the alert is not replaced until cleared by a clear_alert with clear_override, and it's used for hallucinations.
@@ -460,7 +460,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		var/datum/antagonist/clockcult/C = mob_viewer.mind.has_antag_datum(/datum/antagonist/clockcult,TRUE)
 		if(C && C.clock_team)
 			textlist += "[C.clock_team.eminence ? "There is an Eminence." : "<b>There is no Eminence! Get one ASAP!</b>"]<br>"
-		textlist += "There are currently <b>[servants]</b> servant[servants > 1 ? "s" : ""] of Ratvar.<br>"
+		textlist += "There are currently <b>[servants]</b> servant[servants > TRUE ? "s" : ""] of Ratvar.<br>"
 		for(var/i in GLOB.scripture_states)
 			if(i != SCRIPTURE_DRIVER) //ignore the always-unlocked stuff
 				textlist += "[i] Scripture: <b>[GLOB.scripture_states[i] ? "UNLOCKED":"LOCKED"]</b><br>"

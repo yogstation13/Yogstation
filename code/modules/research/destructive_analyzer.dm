@@ -86,7 +86,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		M.death()
 	if(istype(thing, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = thing
-		if(S.amount > 1 && !innermode)
+		if(S.amount > TRUE && !innermode)
 			S.amount--
 			loaded_item = S
 		else

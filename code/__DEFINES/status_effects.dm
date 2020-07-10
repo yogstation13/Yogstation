@@ -3,7 +3,7 @@
 
 #define STATUS_EFFECT_MULTIPLE 0 //if it allows multiple instances of the effect
 
-#define STATUS_EFFECT_UNIQUE 1 //if it allows only one, preventing new instances
+#define STATUS_EFFECT_UNIQUE TRUE //if it allows only one, preventing new instances
 
 #define STATUS_EFFECT_REPLACE 2 //if it allows only one, but new instances replace
 
@@ -89,7 +89,7 @@
 #define CURSE_WASTING	4 //causes gradual damage
 #define CURSE_GRASPING	8 //hands reach out from the sides of the screen, doing damage and stunning if they hit the target
 
-#define STATUS_EFFECT_KINDLE /datum/status_effect/kindle //A knockdown reduced by 1 second for every 3 points of damage the target takes.
+#define STATUS_EFFECT_KINDLE /datum/status_effect/kindle //A knockdown reduced by TRUE second for every 3 points of damage the target takes.
 
 #define STATUS_EFFECT_ICHORIAL_STAIN /datum/status_effect/ichorial_stain //Prevents a servant from being revived by vitality matrices for one minute.
 
@@ -103,7 +103,7 @@
 
 #define STATUS_EFFECT_STASIS /datum/status_effect/incapacitating/stasis //Halts biological functions like bleeding, chemical processing, blood regeneration, walking, etc
 
-#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point of damage the target takes. //Yogs
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by TRUE second for every point of damage the target takes. //Yogs
 
 /////////////
 // NEUTRAL //

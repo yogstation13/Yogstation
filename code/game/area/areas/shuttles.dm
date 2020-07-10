@@ -19,7 +19,7 @@
 
 /area/shuttle/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	. = ..()
-	if(length(new_baseturfs) > 1 || fake_turf_type)
+	if(length(new_baseturfs) > TRUE || fake_turf_type)
 		return // More complicated larger changes indicate this isn't a player
 	if(ispath(new_baseturfs[1], /turf/open/floor/plating))
 		new_baseturfs.Insert(1, /turf/baseturf_skipover/shuttle)

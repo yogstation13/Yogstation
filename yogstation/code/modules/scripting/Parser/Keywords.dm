@@ -4,7 +4,7 @@
 	File: Keywords
 */
 #define KW_FAIL 0 //Fatal error; stop parsing entire script.
-#define KW_PASS 1 //OK
+#define KW_PASS TRUE //OK
 #define KW_ERR  2 //Non-fatal error, keyword couldn't be handled properly. Ignore keyword but continue on.
 #define KW_WARN 3 //Warning
 

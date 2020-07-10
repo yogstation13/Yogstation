@@ -9,7 +9,7 @@
 		if(!(flags_1 & NODECONSTRUCT_1))
 			if(islist(debris))
 				for(var/I in debris)
-					for(var/i in 1 to debris[I])
+					for(var/i in TRUE to debris[I])
 						new I (get_turf(src))
 		if(break_message)
 			visible_message(break_message)

@@ -61,7 +61,7 @@
 
 	//Hands
 	var/active_hand_index = 1
-	var/list/held_items = list() //len = number of hands, eg: 2 nulls is 2 empty hands, 1 item and 1 null is 1 full hand and 1 empty hand.
+	var/list/held_items = list() //len = number of hands, eg: 2 nulls is 2 empty hands, TRUE item and TRUE null is TRUE full hand and TRUE empty hand.
 	//held_items[active_hand_index] is the actively held item, but please use get_active_held_item() instead, because OOP
 
 	//HUD things
@@ -74,7 +74,7 @@
 	var/job = null//Living
 
 	var/list/faction = list("neutral") //A list of factions that this mob is currently in, for hostile mob targetting, amongst other things
-	var/move_on_shuttle = 1 // Can move on the shuttle.
+	var/move_on_shuttle = TRUE // Can move on the shuttle.
 
 //The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/carbon/LAssailant = null

@@ -14,7 +14,7 @@
 	desc = "Malarky The Mad, former space wizard who was recently disbanded from the wizards federation. He uses unholy magic to preserve his body trapped up in his bubble made of magic slowly decaying. Now he spends his days hallucinating in his old abandoned wizard den plotting his revenge."
 	stat_attack = 1
 	robust_searching = 1
-	speed = 1 // they are slow
+	speed = TRUE // they are slow
 	unsuitable_atmos_damage = 0
 	minbodytemp = 0
 	maxbodytemp = INFINITY

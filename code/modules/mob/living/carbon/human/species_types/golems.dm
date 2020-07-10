@@ -255,7 +255,7 @@
 	fixed_mut_color = "333"
 	meat = /obj/item/stack/sheet/mineral/abductor
 	mutanttongue = /obj/item/organ/tongue/abductor
-	speedmod = 1 //faster
+	speedmod = TRUE //faster
 	info_text = "As an <span class='danger'>Alloy Golem</span>, you are made of advanced alien materials: you are faster and regenerate over time. You are, however, only able to be heard by other alloy golems."
 	prefix = "Alien"
 	special_names = list("Outsider", "Technology", "Watcher", "Stranger") //ominous and unknown
@@ -679,7 +679,7 @@
 		var/turf/T = get_turf(H)
 		H.visible_message("<span class='warning'>[H]'s exoskeleton shatters, collapsing into a heap of scrap!</span>")
 		playsound(H, 'sound/magic/clockwork/anima_fragment_death.ogg', 62, TRUE)
-		for(var/i in 1 to rand(3, 5))
+		for(var/i in TRUE to rand(3, 5))
 			new/obj/item/clockwork/alloy_shards/small(T)
 		new/obj/item/clockwork/alloy_shards/clockgolem_remains(T)
 		qdel(H)
@@ -705,7 +705,7 @@
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	armor = 15 //feels no pain, but not too resistant
 	burnmod = 2 // don't get burned
-	speedmod = 1 // not as heavy as stone
+	speedmod = TRUE // not as heavy as stone
 	punchdamagelow = 4
 	punchstunthreshold = 7
 	punchdamagehigh = 8 // not as heavy as stone

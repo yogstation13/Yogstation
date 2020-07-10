@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 	var/i = 0
-	for (i in 1 to GLOB.lighting_update_lights.len)
+	for (i in TRUE to GLOB.lighting_update_lights.len)
 		var/datum/light_source/L = GLOB.lighting_update_lights[i]
 
 		L.update_corners()
@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for (i in 1 to GLOB.lighting_update_corners.len)
+	for (i in TRUE to GLOB.lighting_update_corners.len)
 		var/datum/lighting_corner/C = GLOB.lighting_update_corners[i]
 
 		C.update_objects()
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for (i in 1 to GLOB.lighting_update_objects.len)
+	for (i in TRUE to GLOB.lighting_update_objects.len)
 		var/atom/movable/lighting_object/O = GLOB.lighting_update_objects[i]
 
 		if (QDELETED(O))

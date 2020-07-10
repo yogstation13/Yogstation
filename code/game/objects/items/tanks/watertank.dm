@@ -332,7 +332,7 @@
 
 	var/on = FALSE
 	volume = 300
-	var/usage_ratio = 5 //5 unit added per 1 removed
+	var/usage_ratio = 5 //5 unit added per TRUE removed
 	var/injection_amount = 1
 	amount_per_transfer_from_this = 5
 	reagent_flags = OPENCONTAINER

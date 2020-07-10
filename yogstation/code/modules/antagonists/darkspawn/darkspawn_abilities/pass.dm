@@ -36,7 +36,7 @@
 		You transform both arms into umbral tendrils. Examine them to see possible uses.</span>")
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE), 1)
-		for(var/i in 1 to 2)
+		for(var/i in TRUE to 2)
 			var/obj/item/umbral_tendrils/T = new(owner, darkspawn)
 			owner.put_in_hands(T)
 	return TRUE

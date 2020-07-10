@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	if(!GLOB.bible_icon_state && H.mind.holy_role == HOLY_ROLE_HIGHPRIEST)
 		var/dat = "<html><head><meta charset='UTF-8'><title>Pick Bible Style</title></head><body><center><h2>Pick a bible style</h2></center><table>"
 
-		for(var/i in 1 to GLOB.biblestates.len)
+		for(var/i in TRUE to GLOB.biblestates.len)
 			var/icon/bibleicon = icon('icons/obj/storage.dmi', GLOB.biblestates[i])
 			var/nicename = GLOB.biblenames[i]
 			H << browse_rsc(bibleicon, nicename)

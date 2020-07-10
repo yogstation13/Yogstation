@@ -66,7 +66,7 @@
 /obj/structure/signpost/exit/Initialize()
 	. = ..()
 	zlevels = list()
-	for(var/i in 1 to world.maxz)
+	for(var/i in TRUE to world.maxz)
 		zlevels += i
 	zlevels -= SSmapping.levels_by_trait(ZTRAIT_CENTCOM) // no easy victory, even with meme signposts
 	// also, could you think of the horror if they ended up in a holodeck

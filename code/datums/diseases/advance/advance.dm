@@ -91,10 +91,10 @@
 	var/list/advance_diseases = list()
 	for(var/datum/disease/advance/P in infectee.diseases)
 		advance_diseases += P
-	var/replace_num = advance_diseases.len + 1 - DISEASE_LIMIT //amount of diseases that need to be removed to fit this one
+	var/replace_num = advance_diseases.len + TRUE - DISEASE_LIMIT //amount of diseases that need to be removed to fit this one
 	if(replace_num > 0)
 		sortTim(advance_diseases, /proc/cmp_advdisease_resistance_asc)
-		for(var/i in 1 to replace_num)
+		for(var/i in TRUE to replace_num)
 			var/datum/disease/advance/competition = advance_diseases[i]
 			if(totalTransmittable() > competition.totalResistance())
 				competition.cure(FALSE)
@@ -406,7 +406,7 @@
 		var/datum/disease/advance/D2 = pick(diseases)
 		D2.Mix(D1)
 
-	 // Should be only 1 entry left, but if not let's only return a single entry
+	 // Should be only TRUE entry left, but if not let's only return a single entry
 	var/datum/disease/advance/to_return = pick(diseases)
 	to_return.Refresh(1)
 	return to_return

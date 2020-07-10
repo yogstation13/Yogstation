@@ -377,7 +377,7 @@
 						if(48)
 							newcolor += "0"
 						if(49 to 57)
-							newcolor += ascii2text(ascii-1)	//numbers 1 to 9
+							newcolor += ascii2text(ascii-1)	//numbers TRUE to 9
 						if(97)
 							newcolor += "9"
 						if(98 to 102)
@@ -401,7 +401,7 @@
 
 
 /datum/reagent/spraytan/overdose_process(mob/living/M)
-	metabolization_rate = 1 * REAGENTS_METABOLISM
+	metabolization_rate = TRUE * REAGENTS_METABOLISM
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/N = M

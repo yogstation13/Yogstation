@@ -5,11 +5,11 @@
 
 /obj/structure/closet/wardrobe/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/blue(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/blue(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/brown(src)
 	return
 
@@ -18,11 +18,11 @@
 	icon_door = "pink"
 
 /obj/structure/closet/wardrobe/pink/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/pink(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/pink(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/brown(src)
 	return
 
@@ -31,19 +31,19 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/black/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/black(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/black(src)
 	if(prob(25))
 		new /obj/item/clothing/suit/jacket/leather(src)
 	if(prob(20))
 		new /obj/item/clothing/suit/jacket/leather/overcoat(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/black(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/that(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/soft/black(src)
 	new /obj/item/clothing/mask/bandana/black(src)
 	new /obj/item/clothing/mask/bandana/black(src)
@@ -57,11 +57,11 @@
 	icon_door = "green"
 
 /obj/structure/closet/wardrobe/green/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/green(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/green(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/mask/bandana/green(src)
 	new /obj/item/clothing/mask/bandana/green(src)
@@ -74,11 +74,11 @@
 	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/orange/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/rank/prisoner(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/rank/prisoner/skirt(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/orange(src)
 	return
 
@@ -88,11 +88,11 @@
 	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/yellow(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/yellow(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/orange(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
@@ -104,13 +104,13 @@
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/white/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/white(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/white(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/white(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/soft/mime(src)
 	return
 
@@ -123,7 +123,7 @@
 	new /obj/item/clothing/under/pj/red(src)
 	new /obj/item/clothing/under/pj/blue(src)
 	new /obj/item/clothing/under/pj/blue(src)
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		new /obj/item/clothing/shoes/sneakers/white(src)
 	return
 
@@ -133,13 +133,13 @@
 	icon_door = "grey"
 
 /obj/structure/closet/wardrobe/grey/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/color/grey(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/under/skirt/color/grey(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/shoes/sneakers/black(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/soft/grey(src)
 	if(prob(50))
 		new /obj/item/storage/backpack/duffelbag(src)

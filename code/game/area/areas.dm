@@ -31,7 +31,7 @@
 	var/vacuum = null //yogs- yellow vacuum lights
 
 	var/requires_power = TRUE
-	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
+	var/always_unpowered = FALSE	// This gets overridden to TRUE for space in area/Initialize().
 
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/list/areas_in_z = SSmapping.areas_in_z
 		var/z
 		update_areasize()
-		for(var/i in 1 to contents.len)
+		for(var/i in TRUE to contents.len)
 			var/atom/thing = contents[i]
 			if(!thing)
 				continue
@@ -330,7 +330,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	for (var/i in GLOB.silicon_mobs)
 		var/mob/living/silicon/SILICON = i
 		if(SILICON.triggerAlarm("Burglar", src, cameras, trigger))
-			//Cancel silicon alert after 1 minute
+			//Cancel silicon alert after TRUE minute
 			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
 
 /area/proc/set_fire_alarm_effect()

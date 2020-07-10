@@ -24,14 +24,14 @@
 	for(var/V in meat.butcher_results)
 		var/obj/bones = V
 		var/amount = meat.butcher_results[bones]
-		for(var/_i in 1 to amount)
+		for(var/_i in TRUE to amount)
 			if(!prob(final_effectiveness))
 				if(butcher)
 					to_chat(butcher, "<span class='warning'>You fail to harvest some of the [initial(bones.name)] from [meat].</span>")
 			else if(prob(bonus_chance))
 				if(butcher)
 					to_chat(butcher, "<span class='info'>You harvest some extra [initial(bones.name)] from [meat]!</span>")
-				for(var/i in 1 to 2)
+				for(var/i in TRUE to 2)
 					new bones (T)
 			else
 				new bones (T)
@@ -39,7 +39,7 @@
 	for(var/V in meat.guaranteed_butcher_results)
 		var/obj/sinew = V
 		var/amount = meat.guaranteed_butcher_results[sinew]
-		for(var/i in 1 to amount)
+		for(var/i in TRUE to amount)
 			new sinew (T)
 		meat.guaranteed_butcher_results.Remove(sinew)
 	if(butcher)

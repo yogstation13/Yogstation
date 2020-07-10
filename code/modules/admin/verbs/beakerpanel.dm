@@ -24,7 +24,7 @@
 			var/obj/item/grenade/chem_grenade/grenade = new(get_turf(usr))
 			var/containersdata = json_decode(href_list["containers"])
 			var/reagent_string
-			for (var/i in 1 to 2)
+			for (var/i in TRUE to 2)
 				grenade.beakers += beaker_panel_create_container(containersdata[i], grenade)
 				reagent_string += " ([grenade.beakers[i].name] [i] : " + pretty_string_from_reagent_list(grenade.beakers[i].reagents.reagent_list) + ");"
 			grenade.stage_change(GRENADE_READY)
@@ -247,7 +247,7 @@
 <small>note: beakers recommended, other containers may have issues</small>
 		</div>
 	"}
-	for (var/i in 1 to 2 )
+	for (var/i in TRUE to 2 )
 		dat += {"
 			<div class="container-control">
 			<h4>

@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(input)
 	name = "Input"
-	wait = 1 //SS_TICKER means this runs every tick
+	wait = TRUE //SS_TICKER means this runs every tick
 	init_order = INIT_ORDER_INPUT
 	flags = SS_TICKER
 	priority = FIRE_PRIORITY_INPUT
@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(input)
 		"F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
 		)
 
-	for(var/i in 1 to oldmode_keys.len)
+	for(var/i in TRUE to oldmode_keys.len)
 		var/key = oldmode_keys[i]
 		old_default[key] = "\"KeyDown [key]\""
 		old_default["[key]+UP"] = "\"KeyUp [key]\""
@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(input)
 		"Z" = "Z", // activate item
 		)
 
-	for(var/i in 1 to oldmode_ctrl_override_keys.len)
+	for(var/i in TRUE to oldmode_ctrl_override_keys.len)
 		var/key = oldmode_ctrl_override_keys[i]
 		var/override = oldmode_ctrl_override_keys[key]
 		old_default["Ctrl+[key]"] = "\"KeyDown [override]\""
@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(input)
 		"North", "East", "South", "West",
 		"W", "A", "S", "D"
 		)
-	for(var/i in 1 to ctrl_sensitive_keys.len)
+	for(var/i in TRUE to ctrl_sensitive_keys.len)
 		var/key = ctrl_sensitive_keys[i]
 		old_hotkeys["Ctrl+[key]"] = "\"KeyDown Ctrl\""
 		old_hotkeys["[key]"] = "\"KeyUp Ctrl\""
@@ -107,6 +107,6 @@ SUBSYSTEM_DEF(input)
 
 /datum/controller/subsystem/input/fire()
 	var/list/clients = GLOB.clients // Let's sing the list cache song
-	for(var/i in 1 to clients.len)
+	for(var/i in TRUE to clients.len)
 		var/client/C = clients[i]
 		C.keyLoop()

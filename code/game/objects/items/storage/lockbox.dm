@@ -81,7 +81,7 @@
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/implantcase/mindshield(src)
 	new /obj/item/implanter/mindshield(src)
 
@@ -134,7 +134,7 @@
 	new /obj/item/clothing/accessory/medal/bronze_heart(src)
 	new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 	new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/accessory/medal/conduct(src)
 
 /obj/item/storage/lockbox/medal/update_icon()
@@ -150,10 +150,10 @@
 		if(broken)
 			icon_state += "+b"
 		if(contents && open)
-			for (var/i in 1 to contents.len)
+			for (var/i in TRUE to contents.len)
 				var/obj/item/clothing/accessory/medal/M = contents[i]
 				var/mutable_appearance/medalicon = mutable_appearance(initial(icon), M.medaltype)
-				if(i > 1 && i <= 5)
+				if(i > TRUE && i <= 5)
 					medalicon.pixel_x += ((i-1)*3)
 				else if(i > 5)
 					medalicon.pixel_y -= 7
@@ -167,7 +167,7 @@
 	req_access = list(ACCESS_HOS)
 
 /obj/item/storage/lockbox/medal/sec/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/accessory/medal/silver/security(src)
 
 /obj/item/storage/lockbox/medal/cargo
@@ -192,5 +192,5 @@
 	req_access = list(ACCESS_RD)
 
 /obj/item/storage/lockbox/medal/sci/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)

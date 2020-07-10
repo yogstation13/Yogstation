@@ -174,7 +174,7 @@
 		if(prob(20))
 			emote("gasp")
 		if(O2_partialpressure > 0)
-			var/ratio = 1 - O2_partialpressure/safe_oxy_min
+			var/ratio = TRUE - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
 			failed_last_breath = 1
 			oxygen_used = breath.get_moles(/datum/gas/oxygen)*ratio
@@ -432,13 +432,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 												"Best idea ever: Disposal pipes instead of hallways.",
 												"We should store bank records in a webscale datastore, like /dev/null.",
 												"You ever wonder if /dev/null supports sharding?",
-												"What if we use a language that was written on a napkin and created over 1 weekend for all of our servers?"))
+												"What if we use a language that was written on a napkin and created over TRUE weekend for all of our servers?"))
 
 //this updates all special effects: stun, sleeping, knockdown, druggy, stuttering, etc..
 /mob/living/carbon/handle_status_effects()
 	..()
 
-	var/restingpwr = 1 + 4 * resting
+	var/restingpwr = TRUE + 4 * resting
 
 	//Dizziness
 	if(dizziness)

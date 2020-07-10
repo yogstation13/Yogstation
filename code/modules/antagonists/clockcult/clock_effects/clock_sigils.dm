@@ -197,7 +197,7 @@
 		for(var/obj/structure/destructible/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
 			structure_number++
 		. += {"<span class='[get_clockwork_power() ? "brass":"alloy"]'>It is storing <b>[DisplayEnergy(get_clockwork_power())]</b> of shared power,
-		and <b>[structure_number]</b> clockwork structure[structure_number == 1 ? " is":"s are"] in range.</span>"}
+		and <b>[structure_number]</b> clockwork structure[structure_number == TRUE ? " is":"s are"] in range.</span>"}
 		if(iscyborg(user))
 			. += "<span class='brass'>You can recharge from the [sigil_name] by crossing it.</span>"
 

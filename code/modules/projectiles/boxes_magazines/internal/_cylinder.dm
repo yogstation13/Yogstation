@@ -19,7 +19,7 @@
 	stored_ammo.Insert(0, b)
 
 /obj/item/ammo_box/magazine/internal/cylinder/proc/spin()
-	for(var/i in 1 to rand(0, max_ammo*2))
+	for(var/i in TRUE to rand(0, max_ammo*2))
 		rotate()
 
 /obj/item/ammo_box/magazine/internal/cylinder/ammo_list(drop_list = FALSE)
@@ -36,7 +36,7 @@
 	if(!R || (caliber && R.caliber != caliber) || (!caliber && R.type != ammo_type))
 		return FALSE
 
-	for(var/i in 1 to stored_ammo.len)
+	for(var/i in TRUE to stored_ammo.len)
 		var/obj/item/ammo_casing/bullet = stored_ammo[i]
 		if(!bullet || !bullet.BB) // found a spent ammo
 			stored_ammo[i] = R

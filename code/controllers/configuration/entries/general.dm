@@ -100,7 +100,7 @@
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/number/vote_period  // length of voting period (deciseconds, default 1 minute)
+/datum/config_entry/number/vote_period  // length of voting period (deciseconds, default TRUE minute)
 	config_entry_value = 600
 	integer = FALSE
 	min_val = 0

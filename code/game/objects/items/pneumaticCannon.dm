@@ -19,7 +19,7 @@
 	var/obj/item/tank/internals/tank = null //The gas tank that is drawn from to fire things
 	var/gasPerThrow = 3 //How much gas is drawn from a tank's pressure to fire
 	var/list/loadedItems = list() //The items loaded into the cannon that will be fired out
-	var/pressureSetting = 1 //How powerful the cannon is - higher pressure = more gas but more powerful throws
+	var/pressureSetting = TRUE //How powerful the cannon is - higher pressure = more gas but more powerful throws
 	var/checktank = TRUE
 	var/range_multiplier = 1
 	var/throw_amount = 20	//How many items to throw per fire
@@ -180,7 +180,7 @@
 			if(!throw_item(target, ITD, user))
 				break
 	else
-		for(var/i in 1 to throw_amount)
+		for(var/i in TRUE to throw_amount)
 			if(!loadedItems.len)
 				break
 			var/obj/item/I
@@ -254,7 +254,7 @@
 	if(!ispath(type, /obj) && !ispath(type, /mob))
 		return FALSE
 	var/loaded = 0
-	for(var/i in 1 to amount)
+	for(var/i in TRUE to amount)
 		var/obj/item/I = new type
 		if(!load_item(I, null))
 			qdel(I)
@@ -337,5 +337,5 @@
 		))
 
 /obj/item/storage/backpack/magspear_quiver/PopulateContents()
-	for(var/i in 1 to 20)
+	for(var/i in TRUE to 20)
 		new /obj/item/throwing_star/magspear(src)

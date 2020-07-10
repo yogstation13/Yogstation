@@ -127,7 +127,7 @@
 	if (!corners)
 		corners = list(null, null, null, null)
 
-	for (var/i = 1 to 4)
+	for (var/i = TRUE to 4)
 		if (corners[i]) // Already have a corner on this direction.
 			continue
 

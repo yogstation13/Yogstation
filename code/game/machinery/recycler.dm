@@ -140,7 +140,7 @@
 		var/seed_modifier = 0
 		if(L.seed)
 			seed_modifier = round(L.seed.potency / 25)
-		new L.plank_type(src.loc, 1 + seed_modifier)
+		new L.plank_type(src.loc, TRUE + seed_modifier)
 		qdel(L)
 		return
 	else

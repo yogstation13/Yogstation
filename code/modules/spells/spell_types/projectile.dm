@@ -83,7 +83,7 @@
 	var/proj_insubstantial = FALSE //if it can pass through dense objects or not
 	var/proj_trigger_range = 0 //the range from target at which the projectile triggers cast(target)
 	var/proj_lifespan = 15 //in deciseconds * proj_step_delay
-	var/proj_step_delay = 1 //lower = faster
+	var/proj_step_delay = TRUE //lower = faster
 	var/list/ignore_factions = list() //Faction types that will be ignored
 	var/check_antimagic = TRUE
 	var/check_holy = FALSE

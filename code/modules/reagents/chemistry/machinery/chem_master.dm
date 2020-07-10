@@ -28,7 +28,7 @@
 	//Calculate the span tags and ids fo all the available pill icons
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pillStyles = list()
-	for (var/x in 1 to PILL_STYLE_COUNT)
+	for (var/x in TRUE to PILL_STYLE_COUNT)
 		var/list/SL = list()
 		SL["id"] = x
 		SL["className"] = assets.icon_class_name("pill[x]")
@@ -156,7 +156,7 @@
 
 /obj/machinery/chem_master/ui_data(mob/user)
 	var/list/data = list()
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : 0
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null
 	data["beakerMaxVolume"] = beaker ? beaker.volume : null
 	data["mode"] = mode
@@ -164,7 +164,7 @@
 	data["screen"] = screen
 	data["analyzeVars"] = analyzeVars
 	data["chosenPillStyle"] = chosenPillStyle
-	data["isPillBottleLoaded"] = bottle ? 1 : 0
+	data["isPillBottleLoaded"] = bottle ? TRUE : 0
 	if(bottle)
 		var/datum/component/storage/STRB = bottle.GetComponent(/datum/component/storage)
 		data["pillBottleCurrentAmount"] = bottle.contents.len
@@ -396,7 +396,7 @@
 		return null
 	else
 		var/md5 = md5(AM.name)
-		for (var/i in 1 to 32)
+		for (var/i in TRUE to 32)
 			. += hex2num(md5[i])
 		. = . % 9
 		AM.pixel_x = ((.%3)*6)

@@ -425,7 +425,7 @@
 
 	occupant.forceMove(T)
 	icon_state = "pod_0"
-	mob_occupant.domutcheck(1) //Waiting until they're out before possible monkeyizing. The 1 argument forces powers to manifest.
+	mob_occupant.domutcheck(1) //Waiting until they're out before possible monkeyizing. The TRUE argument forces powers to manifest.
 	for(var/fl in unattached_flesh)
 		qdel(fl)
 	unattached_flesh.Cut()
@@ -480,7 +480,7 @@
 		countdown.stop()
 
 /obj/machinery/clonepod/proc/horrifyingsound()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		playsound(src,pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 100, rand(0.95,1.05))
 		sleep(1)
 	sleep(10)

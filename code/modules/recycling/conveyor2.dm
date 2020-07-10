@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	name = "conveyor belt"
 	desc = "A conveyor belt."
 	layer = BELOW_OPEN_DOOR_LAYER
-	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
+	var/operating = 0	// TRUE if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon_state = "switch-off"
 	speed_process = TRUE
 
-	var/position = 0			// 0 off, -1 reverse, 1 forward
+	var/position = 0			// 0 off, -1 reverse, TRUE forward
 	var/last_pos = -1			// last direction setting
 	var/operated = 1			// true if just operated
 	var/oneway = FALSE			// if the switch only operates the conveyor belts in a single direction.

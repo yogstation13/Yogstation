@@ -206,7 +206,7 @@
 			for(var/turf/T in block(locate(center.x-square_width,center.y-square_height,center.z-square_depth_down),locate(center.x+square_width, center.y+square_height,center.z+square_depth_up)))
 				field_turfs_new += T
 			edge_turfs_new = field_turfs_new.Copy()
-			if(square_height >= 1 && square_width >= 1)
+			if(square_height >= TRUE && square_width >= 1)
 				var/list/turf/center_turfs = list()
 				for(var/turf/T in block(locate(center.x-square_width+1,center.y-square_height+1,center.z-square_depth_down),locate(center.x+square_width-1, center.y+square_height-1,center.z+square_depth_up)))
 					center_turfs += T

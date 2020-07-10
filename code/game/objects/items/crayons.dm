@@ -50,7 +50,7 @@
 
 	var/charges = 30 //-1 or less for unlimited uses
 	var/charges_left
-	var/volume_multiplier = 1 // Increases reagent effect
+	var/volume_multiplier = TRUE // Increases reagent effect
 
 	var/actually_paints = TRUE
 

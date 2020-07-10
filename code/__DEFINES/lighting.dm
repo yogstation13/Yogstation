@@ -3,9 +3,9 @@
 
 #define MINIMUM_USEFUL_LIGHT_RANGE 1.4
 
-#define LIGHTING_FALLOFF        1 // type of falloff to use for lighting; 1 for circular, 2 for square
+#define LIGHTING_FALLOFF        TRUE // type of falloff to use for lighting; TRUE for circular, 2 for square
 #define LIGHTING_LAMBERTIAN     0 // use lambertian shading for light sources
-#define LIGHTING_HEIGHT         1 // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
+#define LIGHTING_HEIGHT         TRUE // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
 #define LIGHTING_ROUND_VALUE    (1 / 64) //Value used to round lumcounts, values smaller than 1/129 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
 
 #define LIGHTING_ICON 'icons/effects/lighting_object.dmi' // icon used for lighting shading effects
@@ -22,7 +22,7 @@
 		1, 1, 1, 0, \
 		1, 1, 1, 0, \
 		1, 1, 1, 0, \
-		0, 0, 0, 1           \
+		0, 0, 0, TRUE           \
 	)                        \
 
 
@@ -65,7 +65,7 @@
 
 //lighting area defines
 #define DYNAMIC_LIGHTING_DISABLED 0 //dynamic lighting disabled (area stays at full brightness)
-#define DYNAMIC_LIGHTING_ENABLED 1 //dynamic lighting enabled
+#define DYNAMIC_LIGHTING_ENABLED TRUE //dynamic lighting enabled
 #define DYNAMIC_LIGHTING_FORCED 2 //dynamic lighting enabled even if the area doesn't require power
 #define DYNAMIC_LIGHTING_IFSTARLIGHT 3 //dynamic lighting enabled only if starlight is.
 #define IS_DYNAMIC_LIGHTING(A) A.dynamic_lighting

@@ -108,7 +108,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/silver/do_effect(mob/user)
 	new /obj/item/reagent_containers/food/snacks/store/cake/slimecake(get_turf(user))
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		var/drink_type = get_random_drink()
 		new drink_type(get_turf(user))
 	user.visible_message("<span class='notice'>[src] produces a party's worth of cake and drinks!</span>")
@@ -271,7 +271,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/rainbow/do_effect(mob/user)
 	user.visible_message("<span class='warning'>[src] swells and splits into three new slimes!</span>")
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		var/mob/living/simple_animal/slime/S = new(get_turf(user))
 		S.random_colour()
 	..()

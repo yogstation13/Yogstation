@@ -148,7 +148,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	to_chat(user, "<span class='danger'>[src] thrums and points to the [dir2text(get_dir(user, closest_victim))].</span>")
 
 /obj/item/claymore/highlander/IsReflect()
-	return 1 //YOU THINK YOUR PUNY LASERS CAN STOP ME?
+	return TRUE //YOU THINK YOUR PUNY LASERS CAN STOP ME?
 
 /obj/item/claymore/highlander/proc/add_notch(mob/living/user) //DYNAMIC CLAYMORE PROGRESSION SYSTEM - THIS IS THE FUTURE
 	notches++
@@ -521,7 +521,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "For the beating to death of lizards with their own tails."
 	icon_state = "tailclub"
 	force = 14
-	throwforce = 1 // why are you throwing a club do you even weapon
+	throwforce = TRUE // why are you throwing a club do you even weapon
 	throw_speed = 1
 	throw_range = 1
 	attack_verb = list("clubbed", "bludgeoned")

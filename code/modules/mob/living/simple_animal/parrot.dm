@@ -44,7 +44,7 @@
 	emote_hear = list("squawks.","bawks!")
 	emote_see = list("flutters its wings.")
 
-	speak_chance = 1 //1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
+	speak_chance = TRUE //1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/cracker/ = 1)
 	melee_damage_upper = 10
@@ -940,13 +940,13 @@
 	if(dead)
 		file_data["roundssurvived"] = min(rounds_survived - 1, 0)
 		file_data["longestsurvival"] = longest_survival
-		if(rounds_survived - 1 < longest_deathstreak)
+		if(rounds_survived - TRUE < longest_deathstreak)
 			file_data["longestdeathstreak"] = rounds_survived - 1
 		else
 			file_data["longestdeathstreak"] = longest_deathstreak
 	else
 		file_data["roundssurvived"] = rounds_survived + 1
-		if(rounds_survived + 1 > longest_survival)
+		if(rounds_survived + TRUE > longest_survival)
 			file_data["longestsurvival"] = rounds_survived + 1
 		else
 			file_data["longestsurvival"] = longest_survival

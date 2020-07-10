@@ -369,7 +369,7 @@
 			time_offset += overrun * speed
 		time_offset += MODULUS(elapsed_time_deciseconds, speed)
 
-	for(var/i in 1 to required_moves)
+	for(var/i in TRUE to required_moves)
 		pixel_move(1, FALSE)
 
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
@@ -489,7 +489,7 @@
 	if(homing)
 		process_homing()
 	var/forcemoved = FALSE
-	for(var/i in 1 to SSprojectiles.global_iterations_per_move)
+	for(var/i in TRUE to SSprojectiles.global_iterations_per_move)
 		if(QDELETED(src))
 			return
 		trajectory.increment(trajectory_multiplier)

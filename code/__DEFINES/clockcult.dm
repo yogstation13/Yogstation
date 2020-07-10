@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(all_scripture) //a list containing scripture instances; not us
 #define POWER_PLASTEEL (CLOCKCULT_POWER_UNIT*0.05) //how much power is in one sheet of plasteel
 
 //Ark defines
-#define GATEWAY_SUMMON_RATE 1 //the time amount the Gateway to the Celestial Derelict gets each process tick; defaults to 1 per tick
+#define GATEWAY_SUMMON_RATE TRUE //the time amount the Gateway to the Celestial Derelict gets each process tick; defaults to TRUE per tick
 
 #define GATEWAY_REEBE_FOUND 240 //when progress is at or above this, the gateway finds reebe and begins drawing power
 

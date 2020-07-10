@@ -102,7 +102,7 @@
 		else
 			zlevels = SSmapping.levels_by_trait(ZTRAIT_STATION)
 	var/cycles = 1000
-	for(var/cycle in 1 to cycles)
+	for(var/cycle in TRUE to cycles)
 		// DRUNK DIALLING WOOOOOOOOO
 		var/x = rand(1, world.maxx)
 		var/y = rand(1, world.maxy)

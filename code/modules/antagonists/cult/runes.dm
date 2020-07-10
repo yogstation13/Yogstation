@@ -26,7 +26,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	color = RUNE_COLOR_RED
 
 	var/invocation = "Aiy ele-mayo!" //This is said by cultists when the rune is invoked.
-	var/req_cultists = 1 //The amount of cultists required around the rune to invoke it. If only 1, any cultist can invoke it.
+	var/req_cultists = TRUE //The amount of cultists required around the rune to invoke it. If only 1, any cultist can invoke it.
 	var/req_cultists_text //if we have a description override for required cultists to invoke
 	var/rune_in_use = FALSE // Used for some runes, this is for when you want a rune to not be usable when in use.
 
@@ -115,7 +115,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/list/invokers = list() //people eligible to invoke the rune
 	if(user)
 		invokers += user
-	if(req_cultists > 1 || istype(src, /obj/effect/rune/convert))
+	if(req_cultists > TRUE || istype(src, /obj/effect/rune/convert))
 		var/list/things_in_range = range(1, src)
 		//Yogs start -- Preserves nar-nar plushies being able to invoke
 		var/obj/item/toy/plush/narplush/plushsie = locate() in things_in_range

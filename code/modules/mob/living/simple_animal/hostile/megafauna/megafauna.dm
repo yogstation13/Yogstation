@@ -36,7 +36,7 @@
 	var/recovery_time = 0
 	var/true_spawn = TRUE // if this is a megafauna that should grant achievements, or have a gps signal
 	var/nest_range = 10
-	var/chosen_attack = 1 // chosen attack num
+	var/chosen_attack = TRUE // chosen attack num
 	var/list/attack_action_types = list()
 	var/small_sprite_type
 
@@ -60,7 +60,7 @@
 /mob/living/simple_animal/hostile/megafauna/Moved()
 	if(nest && nest.parent && get_dist(nest.parent, src) > nest_range)
 		var/turf/closest = get_turf(nest.parent)
-		for(var/i = 1 to nest_range)
+		for(var/i = TRUE to nest_range)
 			closest = get_step(closest, get_dir(closest, src))
 		forceMove(closest) // someone teleported out probably and the megafauna kept chasing them
 		target = null

@@ -113,7 +113,7 @@
 		return
 	if(space_shutoff_ticks > 0)
 		space_shutoff_ticks--
-		if(space_shutoff_ticks <= 1 && !on)
+		if(space_shutoff_ticks <= TRUE && !on)
 			on = TRUE
 			update_icon()
 	if(!nodes[1])
@@ -139,7 +139,7 @@
 		var/pressure_delta = 10000
 
 		if(pressure_checks&EXT_BOUND)
-			var/multiplier = 1 // fast_fill multiplier
+			var/multiplier = TRUE // fast_fill multiplier
 			if(fast_fill)
 				if(last_moles_added > 0 && last_moles_real_added > 0)
 					multiplier = clamp(last_moles_added / last_moles_real_added * 0.25, 1, 100)

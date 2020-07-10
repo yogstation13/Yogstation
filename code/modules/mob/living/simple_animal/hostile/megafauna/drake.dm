@@ -163,11 +163,11 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/mass_fire(var/spiral_count = 12, var/range = 15, var/times = 3)
 	SLEEP_CHECK_DEATH(0)
-	for(var/i = 1 to times)
+	for(var/i = TRUE to times)
 		SetRecoveryTime(50)
 		playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
 		var/increment = 360 / spiral_count
-		for(var/j = 1 to spiral_count)
+		for(var/j = TRUE to spiral_count)
 			var/list/turfs = line_target(j * increment + i * increment / 2, range, src)
 			INVOKE_ASYNC(src, .proc/fire_line, turfs)
 		SLEEP_CHECK_DEATH(25)
@@ -216,7 +216,7 @@ Difficulty: Medium
 				new /obj/effect/temp_visual/lava_safe(T)
 		amount--
 		SLEEP_CHECK_DEATH(24)
-	return 1 // attack finished completely
+	return TRUE // attack finished completely
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/arena_escape_enrage() // you ran somehow / teleported away from my arena attack now i'm mad fucker
 	SLEEP_CHECK_DEATH(0)
@@ -251,7 +251,7 @@ Difficulty: Medium
 		return
 	var/angle = ATAN2(at.x - src.x, at.y - src.y) + offset
 	var/turf/T = get_turf(src)
-	for(var/i in 1 to range)
+	for(var/i in TRUE to range)
 		var/turf/check = locate(src.x + cos(angle) * i, src.y + sin(angle) * i, src.z)
 		if(!check)
 			break
@@ -313,7 +313,7 @@ Difficulty: Medium
 	var/oldtransform = transform
 	alpha = 255
 	animate(src, alpha = 204, transform = matrix()*0.9, time = 3, easing = BOUNCE_EASING)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		sleep(1)
 		if(QDELETED(src) || stat == DEAD) //we got hit and died, rip us
 			qdel(F)

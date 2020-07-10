@@ -40,7 +40,7 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	var/mob/living/carbon/human/target = user.pulling
 	changeling.islinking = 1
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		switch(i)
 			if(1)
 				to_chat(user, "<span class='notice'>This creature is compatible. We must hold still...</span>")

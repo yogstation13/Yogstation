@@ -3,11 +3,11 @@
 	pulse - sends a pulse into a wire for hacking purposes
 	cut - cuts a wire and makes any necessary state changes
 	mend - mends a wire and makes any necessary state changes
-	canAIControl - 1 if the AI can control the airlock, 0 if not (then check canAIHack to see if it can hack in)
-	canAIHack - 1 if the AI can hack into the airlock to recover control, 0 if not. Also returns 0 if the AI does not *need* to hack it.
-	hasPower - 1 if the main or backup power are functioning, 0 if not.
-	requiresIDs - 1 if the airlock is requiring IDs, 0 if not
-	isAllPowerCut - 1 if the main and backup power both have cut wires.
+	canAIControl - TRUE if the AI can control the airlock, 0 if not (then check canAIHack to see if it can hack in)
+	canAIHack - TRUE if the AI can hack into the airlock to recover control, 0 if not. Also returns 0 if the AI does not *need* to hack it.
+	hasPower - TRUE if the main or backup power are functioning, 0 if not.
+	requiresIDs - TRUE if the airlock is requiring IDs, 0 if not
+	isAllPowerCut - TRUE if the main and backup power both have cut wires.
 	regainMainPower - handles the effect of main power coming back on.
 	loseMainPower - handles the effect of main power going offline. Usually (if one isn't already running) spawn a thread to count down how long it will be offline - counting down won't happen if main power was completely cut along with backup power, though, the thread will just sleep.
 	loseBackupPower - handles the effect of backup power going offline.

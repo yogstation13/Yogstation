@@ -44,7 +44,7 @@
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
-	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
+	var/tracking = FALSE //this is TRUE if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system//So they can initialize sparks whenever/N
 
 	//MALFUNCTION
@@ -53,7 +53,7 @@
 	var/can_dominate_mechs = FALSE
 	var/shunted = FALSE	//1 if the AI is currently shunted. Used to differentiate between shunted and ghosted/braindead
 
-	var/control_disabled = FALSE	// Set to 1 to stop AI from interacting via Click()
+	var/control_disabled = FALSE	// Set to TRUE to stop AI from interacting via Click()
 	var/malfhacking = FALSE		// More or less a copy of the above var, so that malf AIs can hack and still get new cyborgs -- NeoFite
 	var/malf_cooldown = 0		//Cooldown var for malf modules, stores a worldtime + cooldown
 

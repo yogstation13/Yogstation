@@ -6,7 +6,7 @@
 /obj/machinery/telecomms/server
 	//NTSL-related stuffs
 	var/datum/TCS_Compiler/Compiler	// the compiler that compiles and runs the code
-	var/autoruncode = FALSE		// 1 if the code is set to run every time a signal is picked up
+	var/autoruncode = FALSE		// TRUE if the code is set to run every time a signal is picked up
 	var/list/memory = list()	// stored memory, for mem() in NTSL
 	var/rawcode = ""	// the code to compile (raw-ass text)
 	var/compiledcode = ""	//the last compiled code (also raw-ass text)

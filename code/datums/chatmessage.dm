@@ -202,8 +202,8 @@
   *
   * Arguments:
   * * name - The name to generate a color for
-  * * sat_shift - A value between 0 and 1 that will be multiplied against the saturation
-  * * lum_shift - A value between 0 and 1 that will be multiplied against the luminescence
+  * * sat_shift - A value between 0 and TRUE that will be multiplied against the saturation
+  * * lum_shift - A value between 0 and TRUE that will be multiplied against the luminescence
   */
 /datum/chatmessage/proc/colorize_string(name, sat_shift = 1, lum_shift = 1)
 	// seed to help randomness

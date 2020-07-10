@@ -557,7 +557,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			return
 	var/new_player
 	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery(
-		"SELECT 1 FROM [format_table_name("player")] WHERE ckey = :ckey",
+		"SELECT TRUE FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
 	if(!query_client_in_db.Execute())
@@ -775,7 +775,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/add_system_note(system_ckey, message)
 	//check to see if we noted them in the last day.
 	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery(
-		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
+		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL TRUE DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
 		list("targetckey" = ckey, "adminckey" = system_ckey)
 	)
 	if(!query_get_notes.Execute())

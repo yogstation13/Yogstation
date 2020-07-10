@@ -73,7 +73,7 @@
 		if(is_living)
 			concurrent_users += user_ref
 		// Turn on the console
-		if(length(concurrent_users) == 1 && is_living)
+		if(length(concurrent_users) == TRUE && is_living)
 			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
 			use_power(active_power_usage)
 		// Register map objects

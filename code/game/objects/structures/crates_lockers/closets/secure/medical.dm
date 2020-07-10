@@ -25,9 +25,9 @@
 
 /obj/structure/closet/secure_closet/medical2/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/tank/internals/anesthetic(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/mask/breath/medical(src)
 
 /obj/structure/closet/secure_closet/medical3
@@ -149,7 +149,7 @@
 /obj/structure/closet/secure_closet/animal/PopulateContents()
 	..()
 	new /obj/item/assembly/signaler(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/electropack(src)
 
 /obj/structure/closet/secure_closet/chemical

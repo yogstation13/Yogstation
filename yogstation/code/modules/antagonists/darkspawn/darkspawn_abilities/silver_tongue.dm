@@ -6,7 +6,7 @@
 	button_icon_state = "silver_tongue"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_STUN
 	psi_cost = 60
-	lucidity_price = 1 //Very niche, so low cost
+	lucidity_price = TRUE //Very niche, so low cost
 
 /datum/action/innate/darkspawn/silver_tongue/IsAvailable()
 	if(SSshuttle.emergency.mode != SHUTTLE_CALL)
@@ -43,7 +43,7 @@
 
 /datum/action/innate/darkspawn/silver_tongue/proc/play_recall_sounds(obj/machinery/C) //neato sound effects
 	set waitfor = FALSE
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		sleep(10)
 		if(!C || C.stat)
 			return

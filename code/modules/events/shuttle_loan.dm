@@ -147,7 +147,7 @@
 				new /obj/item/clothing/shoes/space_ninja(T)
 				new /obj/item/clothing/mask/balaclava(T)
 
-				for(var/i in 1 to 5)
+				for(var/i in TRUE to 5)
 					T = pick_n_take(empty_shuttle_turfs)
 					new /obj/structure/spider/stickyweb(T)
 
@@ -183,13 +183,13 @@
 					var/datum/supply_pack/pack = SSshuttle.supply_packs[crate]
 					pack.generate(pick_n_take(empty_shuttle_turfs))
 
-				for(var/i in 1 to 5)
+				for(var/i in TRUE to 5)
 					var/decal = pick(/obj/effect/decal/cleanable/food/flour, /obj/effect/decal/cleanable/robot_debris, /obj/effect/decal/cleanable/oil)
 					new decal(pick_n_take(empty_shuttle_turfs))
 			if(PIZZA_DELIVERY)
 				var/naughtypizza = list(/obj/item/pizzabox/bomb,/obj/item/pizzabox/margherita/robo) //oh look another blaklist, for pizza nonetheless!
 				var/nicepizza = list(/obj/item/pizzabox/margherita, /obj/item/pizzabox/meat, /obj/item/pizzabox/vegetable, /obj/item/pizzabox/mushroom)
-				for(var/i in 1 to 6)
+				for(var/i in TRUE to 6)
 					shuttle_spawns.Add(pick(prob(5) ? naughtypizza : nicepizza))
 			if(ITS_HIP_TO)
 				var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/organic/hydroponics/beekeeping_fullkit]
@@ -208,14 +208,14 @@
 				shuttle_spawns.Add(/obj/item/queen_bee/bought)
 				shuttle_spawns.Add(/obj/structure/closet/crate/hydroponics)
 
-				for(var/i in 1 to 8)
+				for(var/i in TRUE to 8)
 					shuttle_spawns.Add(/mob/living/simple_animal/hostile/poison/bees/toxin)
 
-				for(var/i in 1 to 5)
+				for(var/i in TRUE to 5)
 					var/decal = pick(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/insectguts)
 					new decal(pick_n_take(empty_shuttle_turfs))
 
-				for(var/i in 1 to 10)
+				for(var/i in TRUE to 10)
 					var/casing = /obj/item/ammo_casing/spent
 					new casing(pick_n_take(empty_shuttle_turfs))
 

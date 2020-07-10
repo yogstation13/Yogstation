@@ -493,7 +493,7 @@
 			gloves_siemens_coeff = G.siemens_coefficient
 		siemens_coeff = gloves_siemens_coeff
 	if(undergoing_cardiac_arrest() && !illusion)
-		if(shock_damage * siemens_coeff >= 1 && prob(25))
+		if(shock_damage * siemens_coeff >= TRUE && prob(25))
 			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 			heart.beating = TRUE
 			if(stat == CONSCIOUS)
@@ -641,7 +641,7 @@
 
 
 	//DAMAGE//
-	var/damagemod = (dna && dna.species) ? dna.species.acidmod : 1 // yogs - Old Plant People
+	var/damagemod = (dna && dna.species) ? dna.species.acidmod : TRUE // yogs - Old Plant People
 	for(var/obj/item/bodypart/affecting in damaged)
 		affecting.receive_damage(acidity, 2*acidity)
 

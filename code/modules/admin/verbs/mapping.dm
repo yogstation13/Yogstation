@@ -313,8 +313,8 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 				final.Insert(I, JB.title)
 	qdel(D)
 	//Also add the x
-	for(var/x_number in 1 to 4)
-		final.Insert(icon('icons/mob/screen_gen.dmi', "x[x_number == 1 ? "" : x_number]"), "x[x_number == 1 ? "" : x_number]")
+	for(var/x_number in TRUE to 4)
+		final.Insert(icon('icons/mob/screen_gen.dmi', "x[x_number == TRUE ? "" : x_number]"), "x[x_number == TRUE ? "" : x_number]")
 	fcopy(final, "icons/mob/landmarks.dmi")
 
 /client/proc/debug_z_levels()
@@ -331,7 +331,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 	var/max_x = -INFINITY
 	var/max_y = -INFINITY
 
-	for(var/z in 1 to max(world.maxz, z_list.len))
+	for(var/z in TRUE to max(world.maxz, z_list.len))
 		if (z > z_list.len)
 			messages += "<b>[z]</b>: Unmanaged (out of bounds)<br>"
 			continue

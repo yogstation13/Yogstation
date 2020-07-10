@@ -20,7 +20,7 @@
 		light()
 
 /obj/item/candle/update_icon()
-	icon_state = "candle[(wax > 400) ? ((wax > 750) ? 1 : 2) : 3][lit ? "_lit" : ""]"
+	icon_state = "candle[(wax > 400) ? ((wax > 750) ? TRUE : 2) : 3][lit ? "_lit" : ""]"
 
 /obj/item/candle/attackby(obj/item/W, mob/user, params)
 	var/msg = W.ignition_effect(src, user)

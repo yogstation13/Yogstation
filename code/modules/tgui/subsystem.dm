@@ -211,7 +211,7 @@
 		if(!uiobj.len)
 			open_uis.Remove(src_object_key)
 
-	return 1 // Let the caller know we did it.
+	return TRUE // Let the caller know we did it.
 
 /**
  * private
@@ -247,4 +247,4 @@
 		target.open_uis.Add(ui) // Transfer all the UIs.
 
 	source.open_uis.Cut() // Clear the old list.
-	return 1 // Let the caller know we did it.
+	return TRUE // Let the caller know we did it.

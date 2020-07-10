@@ -102,7 +102,7 @@
 	var/heat_g = heat2colour_g(temperature)
 	var/heat_b = heat2colour_b(temperature)
 	var/heat_a = 255
-	var/greyscale_fire = 1 //This determines how greyscaled the fire is.
+	var/greyscale_fire = TRUE //This determines how greyscaled the fire is.
 
 	if(temperature < 5000) //This is where fire is very orange, we turn it into the normal fire texture here.
 		var/normal_amt = gauss_lerp(temperature, 1000, 3000)

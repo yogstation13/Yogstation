@@ -204,7 +204,7 @@
 
 			if (SSdbcore.Connect())
 				var/datum/DBQuery/query_exempt_stickyban_alt = SSdbcore.NewQuery(
-					"UPDATE [format_table_name("stickyban_matched_ckey")] SET exempt = 1 WHERE stickyban = :ckey AND matched_ckey = :alt",
+					"UPDATE [format_table_name("stickyban_matched_ckey")] SET exempt = TRUE WHERE stickyban = :ckey AND matched_ckey = :alt",
 					list("ckey" = ckey, "alt" = alt)
 				)
 				query_exempt_stickyban_alt.warn_execute()

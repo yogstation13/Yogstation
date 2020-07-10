@@ -54,7 +54,7 @@
 	pass_flags = LETPASSTHROW
 	density = TRUE
 	max_integrity = 20
-	var/allow_walk = 1 //can we pass through it on walk intent
+	var/allow_walk = TRUE //can we pass through it on walk intent
 
 /obj/structure/holosign/barrier/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

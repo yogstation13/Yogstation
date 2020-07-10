@@ -169,7 +169,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 /obj/machinery/computer/libraryconsole/bookmanagement
 	name = "book inventory management console"
 	desc = "Librarian's command station."
-	screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
+	screenstate = 0 // 0 - Main Menu, TRUE - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
@@ -194,7 +194,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		return
 	libcomp_menu = list("")
 
-	for(var/i in 1 to GLOB.cachedbooks.len)
+	for(var/i in TRUE to GLOB.cachedbooks.len)
 		var/datum/cachedbook/C = GLOB.cachedbooks[i]
 		var/page = round(i/250)+1
 		if (libcomp_menu.len < page)

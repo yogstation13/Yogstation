@@ -44,7 +44,7 @@
 			continue
 		if(item_set == "catgirls2015") //Wizard code means never having to say you're sorry
 			H.gender = FEMALE
-		for(var/i in 1 to loadout.len)
+		for(var/i in TRUE to loadout.len)
 			if(loadout[i])
 				var/obj/item/J = loadout[i]
 				var/obj/item/I = new J //dumb but required because of byond throwing a fit anytime new gets too close to a list

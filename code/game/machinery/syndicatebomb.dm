@@ -369,7 +369,7 @@
 	desc = "An explosive payload designed to spread chemicals, dangerous or otherwise, across a large area. Properties of the core may vary with grenade casing type, and must be loaded before use."
 	icon_state = "chemcore"
 	var/list/beakers = list()
-	var/max_beakers = 1 // Read on about grenade casing properties below
+	var/max_beakers = TRUE // Read on about grenade casing properties below
 	var/spread_range = 5
 	var/temp_boost = 50
 	var/time_release = 0
@@ -455,7 +455,7 @@
 
 		if(istype(G, /obj/item/grenade/chem_grenade/large))
 			var/obj/item/grenade/chem_grenade/large/LG = G
-			max_beakers += 1 // Adding two large grenades only allows for a maximum of 7 beakers.
+			max_beakers += TRUE // Adding two large grenades only allows for a maximum of 7 beakers.
 			spread_range += 2 // Extra range, reduced density.
 			temp_boost += 50 // maximum of +150K blast using only large beakers. Not enough to self ignite.
 			for(var/obj/item/slime_extract/S in LG.beakers) // And slime cores.
@@ -466,7 +466,7 @@
 					S.forceMove(drop_location())
 
 		if(istype(G, /obj/item/grenade/chem_grenade/cryo))
-			spread_range -= 1 // Reduced range, but increased density.
+			spread_range -= TRUE // Reduced range, but increased density.
 			temp_boost -= 100 // minimum of -150K blast.
 
 		if(istype(G, /obj/item/grenade/chem_grenade/pyro))

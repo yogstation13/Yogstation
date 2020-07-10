@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 
 /obj/effect/portal/permanent/one_way/recall/pit_faller/proc/game_start_countdown(wait_seconds = 10)
 	game_starting = TRUE
-	for(var/seconds_remaining = wait_seconds to 1 step -1)
+	for(var/seconds_remaining = wait_seconds to TRUE step -1)
 		if(!GLOB.vr_runner_players.len)
 			game_starting = FALSE
 			return FALSE

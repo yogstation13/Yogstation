@@ -5,7 +5,7 @@
 
 SUBSYSTEM_DEF(timer)
 	name = "Timer"
-	wait = 1 //SS_TICKER subsystem, so wait is in ticks
+	wait = TRUE //SS_TICKER subsystem, so wait is in ticks
 	init_order = INIT_ORDER_TIMER
 
 	flags = SS_TICKER|SS_NO_INIT
@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(timer)
 	var/list/hashes = list()
 
 	var/head_offset = 0 //world.time of the first entry in the the bucket.
-	var/practical_offset = 1 //index of the first non-empty item in the bucket.
+	var/practical_offset = TRUE //index of the first non-empty item in the bucket.
 	var/bucket_resolution = 0 //world.tick_lag the bucket was designed for
 	var/bucket_count = 0 //how many timers are in the buckets
 
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(timer)
 			bucket_resolution = 0
 
 		log_world("Timer bucket reset. world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
-		for (var/i in 1 to length(bucket_list))
+		for (var/i in TRUE to length(bucket_list))
 			var/datum/timedevent/bucket_head = bucket_list[i]
 			if (!bucket_head)
 				continue
@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(timer)
 	var/next_clienttime_timer_index = 0
 	var/len = length(clienttime_timers)
 
-	for (next_clienttime_timer_index in 1 to len)
+	for (next_clienttime_timer_index in TRUE to len)
 		if (MC_TICK_CHECK)
 			next_clienttime_timer_index--
 			break
@@ -151,7 +151,7 @@ SUBSYSTEM_DEF(timer)
 		//we freed up a bucket, lets see if anything in second_queue needs to be shifted to that bucket.
 		var/i = 0
 		var/L = length(second_queue)
-		for (i in 1 to L)
+		for (i in TRUE to L)
 			timer = second_queue[i]
 			if (timer.timeToRun >= TIMER_MAX)
 				i--
@@ -267,7 +267,7 @@ SUBSYSTEM_DEF(timer)
 
 	var/new_bucket_count
 	var/i = 1
-	for (i in 1 to length(alltimers))
+	for (i in TRUE to length(alltimers))
 		var/datum/timedevent/timer = alltimers[i]
 		if (!timer)
 			continue

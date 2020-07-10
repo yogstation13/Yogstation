@@ -46,7 +46,7 @@
 		returnVal
 
 		cur_statements=0    // current amount of statements called
-		alertadmins=0		// set to 1 if the admins shouldn't be notified of anymore issues
+		alertadmins=0		// set to TRUE if the admins shouldn't be notified of anymore issues
 		cur_recursion=0	   	// current amount of recursion
 /*
 	Var: persist

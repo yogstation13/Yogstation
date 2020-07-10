@@ -231,7 +231,7 @@
 	desc = "Contains pills used to counter toxins."
 
 /obj/item/storage/pill_bottle/charcoal/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/charcoal(src)
 
 /obj/item/storage/pill_bottle/epinephrine
@@ -239,7 +239,7 @@
 	desc = "Contains pills used to stabilize patients."
 
 /obj/item/storage/pill_bottle/epinephrine/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/epinephrine(src)
 
 /obj/item/storage/pill_bottle/mutadone
@@ -247,7 +247,7 @@
 	desc = "Contains pills used to treat genetic abnormalities."
 
 /obj/item/storage/pill_bottle/mutadone/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/mutadone(src)
 
 /obj/item/storage/pill_bottle/mannitol
@@ -255,7 +255,7 @@
 	desc = "Contains pills used to treat brain damage."
 
 /obj/item/storage/pill_bottle/mannitol/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/mannitol(src)
 
 /obj/item/storage/pill_bottle/stimulant
@@ -263,7 +263,7 @@
 	desc = "Guaranteed to give you that extra burst of energy during a long shift!"
 
 /obj/item/storage/pill_bottle/stimulant/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/stimulant(src)
 
 /obj/item/storage/pill_bottle/mining
@@ -272,7 +272,7 @@
 
 /obj/item/storage/pill_bottle/mining/PopulateContents()
 	new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/pill/patch/styptic(src)
 
 /obj/item/storage/pill_bottle/zoom
@@ -280,7 +280,7 @@
 	desc = "The label is pretty old and almost unreadable, you recognize some chemical compounds."
 
 /obj/item/storage/pill_bottle/zoom/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/zoom(src)
 
 /obj/item/storage/pill_bottle/happy
@@ -288,7 +288,7 @@
 	desc = "There is a smiley on the top."
 
 /obj/item/storage/pill_bottle/happy/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/happy(src)
 
 /obj/item/storage/pill_bottle/lsd
@@ -296,7 +296,7 @@
 	desc = "There is a crude drawing which could be either a mushroom, or a deformed moon."
 
 /obj/item/storage/pill_bottle/lsd/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/lsd(src)
 
 /obj/item/storage/pill_bottle/aranesp
@@ -304,7 +304,7 @@
 	desc = "The label has 'fuck disablers' hastily scrawled in black marker."
 
 /obj/item/storage/pill_bottle/aranesp/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/aranesp(src)
 
 /obj/item/storage/pill_bottle/psicodine
@@ -312,7 +312,7 @@
 	desc = "Contains pills used to treat mental distress and traumas."
 
 /obj/item/storage/pill_bottle/psicodine/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/psicodine(src)
 
 /obj/item/storage/pill_bottle/happiness
@@ -320,7 +320,7 @@
 	desc = "The label is long gone, in its place an 'H' written with a marker."
 
 /obj/item/storage/pill_bottle/happiness/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/happiness(src)
 
 /obj/item/storage/pill_bottle/penacid
@@ -328,7 +328,7 @@
 	desc = "Contains pills to expunge radiation and toxins."
 
 /obj/item/storage/pill_bottle/penacid/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/pill/penacid(src)
 
 
@@ -337,7 +337,7 @@
 	desc = "Contains pills to treat non-severe mental traumas."
 
 /obj/item/storage/pill_bottle/neurine/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/pill/neurine(src)
 
 /obj/item/storage/pill_bottle/floorpill
@@ -350,9 +350,9 @@
 	name = "bottle of [P.name]s"
 
 /obj/item/storage/pill_bottle/floorpill/PopulateContents()
-	for(var/i in 1 to rand(1,7))
+	for(var/i in TRUE to rand(1,7))
 		new /obj/item/reagent_containers/pill/floorpill(src)
 
 /obj/item/storage/pill_bottle/floorpill/full/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/floorpill(src)

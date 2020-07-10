@@ -72,11 +72,11 @@
 	bees += queen_bee
 	queen_bee.assign_reagent(R)
 
-	for(var/i in 1 to BEEBOX_MAX_FRAMES)
+	for(var/i in TRUE to BEEBOX_MAX_FRAMES)
 		var/obj/item/honey_frame/HF = new(src)
 		honey_frames += HF
 
-	for(var/i in 1 to get_max_bees())
+	for(var/i in TRUE to get_max_bees())
 		var/mob/living/simple_animal/hostile/poison/bees/B = new(src)
 		bees += B
 		B.beehome = src

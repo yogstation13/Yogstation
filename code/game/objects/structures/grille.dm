@@ -230,7 +230,7 @@
 
 
 // shock user with probability prb (if all connections & power are working)
-// returns 1 if shocked, 0 otherwise
+// returns TRUE if shocked, 0 otherwise
 
 /obj/structure/grille/proc/shock(mob/user, prb)
 	if(!anchored || broken)		// anchored/broken grilles are never connected

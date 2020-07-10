@@ -25,7 +25,7 @@
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 
 	var/sterile = FALSE
-	var/real = TRUE //0 for the toy, 1 for real. Sure I could istype, but fuck that.
+	var/real = TRUE //0 for the toy, TRUE for real. Sure I could istype, but fuck that.
 	var/strength = 5
 
 	var/attached = 0

@@ -327,11 +327,11 @@
 		))
 
 /obj/item/storage/belt/soulstone/full/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/soulstone(src)
 
 /obj/item/storage/belt/soulstone/full/chappy/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/soulstone/anybody/chaplain(src)
 
 /obj/item/storage/belt/champion

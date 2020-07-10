@@ -42,7 +42,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	var/list/data = list()
 	data["waiting"] = waiting
 	data["auth_required"] = event_source ? event_source.event : 0
-	data["red_alert"] = (seclevel2num(get_security_level()) >= SEC_LEVEL_RED) ? 1 : 0
+	data["red_alert"] = (seclevel2num(get_security_level()) >= SEC_LEVEL_RED) ? TRUE : 0
 	data["emergency_maint"] = GLOB.emergency_access
 	data["bsa_unlock"] = GLOB.bsa_unlock
 	return data

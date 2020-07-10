@@ -17,9 +17,9 @@
 	var/extended_desc = "N/A"
 	/// Program-specific screen icon state
 	var/program_icon_state = null
-	/// Set to 1 for program to require nonstop NTNet connection to run. If NTNet connection is lost program crashes.
+	/// Set to TRUE for program to require nonstop NTNet connection to run. If NTNet connection is lost program crashes.
 	var/requires_ntnet = FALSE
-	/// Optional, if above is set to 1 checks for specific function of NTNet (currently NTNET_SOFTWAREDOWNLOAD, NTNET_PEERTOPEER, NTNET_SYSTEMCONTROL and NTNET_COMMUNICATION)
+	/// Optional, if above is set to TRUE checks for specific function of NTNet (currently NTNET_SOFTWAREDOWNLOAD, NTNET_PEERTOPEER, NTNET_SYSTEMCONTROL and NTNET_COMMUNICATION)
 	var/requires_ntnet_feature = 0
 	/// NTNet status, updated every tick by computer running this program. Don't use this for checks if NTNet works, computers do that. Use this for calculations, etc.
 	var/ntnet_status = 1
@@ -29,7 +29,7 @@
 	var/network_destination = null
 	/// Whether the program can be downloaded from NTNet. Set to 0 to disable.
 	var/available_on_ntnet = 1
-	/// Whether the program can be downloaded from SyndiNet (accessible via emagging the computer). Set to 1 to enable.
+	/// Whether the program can be downloaded from SyndiNet (accessible via emagging the computer). Set to TRUE to enable.
 	var/available_on_syndinet = 0
 	/// ID of TGUI interface
 	var/tgui_id
@@ -65,7 +65,7 @@
 	if(computer)
 		computer.update_icon()
 
-// Attempts to create a log in global ntnet datum. Returns 1 on success, 0 on fail.
+// Attempts to create a log in global ntnet datum. Returns TRUE on success, 0 on fail.
 /datum/computer_file/program/proc/generate_network_log(text)
 	if(computer)
 		return computer.add_log(text)
@@ -140,7 +140,7 @@
 		return computer.get_header_data()
 	return list()
 
-// This is performed on program startup. May be overridden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
+// This is performed on program startup. May be overridden to add extra logic. Remember to include ..() call. Return TRUE on success, 0 on failure.
 // When implementing new program based device, use this to run the program.
 /datum/computer_file/program/proc/run_program(mob/living/user)
 	if(can_run(user, 1))

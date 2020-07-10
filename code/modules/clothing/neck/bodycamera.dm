@@ -10,7 +10,7 @@
 	icon_state = "sec_bodycam_off"
 	item_state = "sec_bodycam"
 	var/prefix = "sec"//used for sprites, miner etc
-	strip_delay = 1 SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
+	strip_delay = TRUE SECONDS //takes one second to strip, so a downed officer can be un-cammed quickly
 	actions_types = list(/datum/action/item_action/toggle_bodycam)
 	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/machinery/camera/bodcam = null

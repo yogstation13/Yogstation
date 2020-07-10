@@ -95,7 +95,7 @@
 				//Ninja status
 				stat("Fingerprints:", "[md5(dna.uni_identity)]")
 				stat("Unique Identity:", "[dna.unique_enzymes]")
-				stat("Overall Status:", "[stat > 1 ? "dead" : "[health]% healthy"]")
+				stat("Overall Status:", "[stat > TRUE ? "dead" : "[health]% healthy"]")
 				stat("Nutrition Status:", "[nutrition]")
 				stat("Oxygen Loss:", "[getOxyLoss()]")
 				stat("Toxin Levels:", "[getToxLoss()]")
@@ -119,7 +119,7 @@
 	var/list/dat = list()
 
 	dat += "<table>"
-	for(var/i in 1 to held_items.len)
+	for(var/i in TRUE to held_items.len)
 		var/obj/item/I = get_item_for_held_index(i)
 		dat += "<tr><td><B>[get_held_index_name(i)]:</B></td><td><A href='?src=[REF(src)];item=[SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "<font color=grey>Empty</font>"]</a></td></tr>"
 	dat += "<tr><td>&nbsp;</td></tr>"
@@ -500,7 +500,7 @@
 	return (mobility_flags & MOBILITY_USE)
 
 /mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone, var/penetrate_thick = 0)
-	. = 1 // Default to returning true.
+	. = TRUE // Default to returning true.
 	if(user && !target_zone)
 		target_zone = user.zone_selected
 	if(HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))

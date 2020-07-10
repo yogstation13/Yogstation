@@ -46,7 +46,7 @@
 	var/injection_amount = 15 //How much reagent do we inject at a time?
 	var/heal_threshold = 10 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
-	var/declare_crit = 1 //If active, the bot will transmit a critical patient alert to MedHUD users.
+	var/declare_crit = TRUE //If active, the bot will transmit a critical patient alert to MedHUD users.
 	var/declare_cooldown = 0 //Prevents spam of critical patient alerts.
 	var/stationary_mode = 0 //If enabled, the Medibot will not move automatically.
 	///How panicked we are about being tipped over (why would you do this?)
@@ -66,7 +66,7 @@
 	var/treatment_tox = /datum/reagent/medicine/charcoal
 	var/treatment_virus_avoid = null
 	var/treatment_virus = /datum/reagent/medicine/spaceacillin
-	var/treat_virus = 1 //If on, the bot will attempt to treat viral infections, curing them if possible.
+	var/treat_virus = TRUE //If on, the bot will attempt to treat viral infections, curing them if possible.
 	var/shut_up = 0 //self explanatory :)
 
 /mob/living/simple_animal/bot/medbot/mysterious
@@ -232,7 +232,7 @@
 
 /mob/living/simple_animal/bot/medbot/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/reagent_containers/glass))
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
 		if(locked)
 			to_chat(user, "<span class='warning'>You cannot insert a beaker because the panel is locked!</span>")
 			return
@@ -395,7 +395,7 @@
 				speak(message)
 				playsound(src, messagevoice[message], 50)
 
-		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
+		var/scan_range = (stationary_mode ? TRUE : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
 		patient = scan(/mob/living/carbon/human, oldpatient, scan_range)
 		oldpatient = patient
 
@@ -497,7 +497,7 @@
 			//the medibot can't detect viruses that are undetectable to Health Analyzers or Pandemic machines.
 			if(!(D.visibility_flags & HIDDEN_SCANNER || D.visibility_flags & HIDDEN_PANDEMIC) \
 			&& D.severity != DISEASE_SEVERITY_POSITIVE \
-			&& (D.stage > 1 || (D.spread_flags & DISEASE_SPREAD_AIRBORNE))) // medibot can't detect a virus in its initial stage unless it spreads airborne.
+			&& (D.stage > TRUE || (D.spread_flags & DISEASE_SPREAD_AIRBORNE))) // medibot can't detect a virus in its initial stage unless it spreads airborne.
 				return TRUE //STOP DISEASE FOREVER
 
 	return FALSE

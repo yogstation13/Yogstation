@@ -62,7 +62,7 @@
 	var/low_power_mode = 0 //whether the robot has no charge left.
 	var/datum/effect_system/spark_spread/spark_system // So they can initialize sparks whenever/N
 
-	var/lawupdate = 1 //Cyborgs will sync their laws with their AI by default
+	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/lockcharge //Boolean of whether the borg is locked down or not
 
@@ -934,7 +934,7 @@
 
 	if(client.eye != src)
 		var/atom/A = client.eye
-		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
+		if(A.update_remote_sight(src)) //returns TRUE if we override all other sight updates.
 			return
 
 	if(sight_mode & BORGMESON)

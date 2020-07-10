@@ -43,7 +43,7 @@
 	if(!istext(color))
 		color = ""
 
-	var/start = 1 + (text2ascii(color, 1) == 35)
+	var/start = TRUE + (text2ascii(color, 1) == 35)
 	var/len = length(color)
 	var/char = ""
 	// RRGGBB -> RGB but awful

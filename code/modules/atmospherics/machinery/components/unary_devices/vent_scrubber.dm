@@ -15,7 +15,7 @@
 	layer = GAS_SCRUBBER_LAYER
 
 	var/id_tag = null
-	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
+	var/scrubbing = SCRUBBING //0 = siphoning, TRUE = scrubbing
 
 	var/filter_types = list(/datum/gas/carbon_dioxide)
 	var/volume_rate = 200

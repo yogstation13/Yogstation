@@ -230,7 +230,7 @@ All ShuttleMove procs go here
 /obj/machinery/atmospherics/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	var/missing_nodes = FALSE
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		if(nodes[i])
 			var/obj/machinery/atmospherics/node = nodes[i]
 			var/connected = FALSE

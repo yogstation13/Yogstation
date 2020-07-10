@@ -163,7 +163,7 @@
 
 /obj/structure/window/attackby(obj/item/I, mob/living/user, params)
 	if(!can_be_reached(user))
-		return 1 //skip the afterattack
+		return TRUE //skip the afterattack
 
 	add_fingerprint(user)
 
@@ -632,7 +632,7 @@
 /obj/structure/window/reinforced/clockwork/spawnDebris(location)
 	. = list()
 	var/gearcount = fulltile ? 4 : 2
-	for(var/i in 1 to gearcount)
+	for(var/i in TRUE to gearcount)
 		. += new /obj/item/clockwork/alloy_shards/medium/gear_bit(location)
 
 /obj/structure/window/reinforced/clockwork/setDir(direct)
@@ -675,7 +675,7 @@
 
 /obj/structure/window/reinforced/clockwork/spawnDebris(location)
 	. = list()
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		. += new /obj/item/clockwork/alloy_shards/medium/gear_bit(location)
 
 /obj/structure/window/reinforced/clockwork/Initialize(mapload, direct)
@@ -722,7 +722,7 @@
 
 /obj/structure/window/paperframe/spawnDebris(location)
 	. = list(new /obj/item/stack/sheet/mineral/wood(location))
-	for (var/i in 1 to rand(1,4))
+	for (var/i in TRUE to rand(1,4))
 		. += new /obj/item/paper/natural(location)
 
 /obj/structure/window/paperframe/attack_hand(mob/user)

@@ -8,7 +8,7 @@
 	force = 5
 	max_integrity = 300
 	var/equip_cooldown = 0 // cooldown after use
-	var/equip_ready = 1 //whether the equipment is ready for use. (or deactivated/activated for static stuff)
+	var/equip_ready = TRUE //whether the equipment is ready for use. (or deactivated/activated for static stuff)
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitFflags

@@ -57,7 +57,7 @@
 	if(obsessionmind.assigned_role && obsessionmind.assigned_role != "Captain")
 		objectives_left += "jealous"//if they have no coworkers, jealousy will pick someone else on the station. this will never be a free objective, nice.
 
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		var/chosen_objective = pick(objectives_left)
 		objectives_left.Remove(chosen_objective)
 		switch(chosen_objective)

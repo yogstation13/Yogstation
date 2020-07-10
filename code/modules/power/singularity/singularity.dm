@@ -13,13 +13,13 @@
 	appearance_flags = LONG_GLIDE
 	var/current_size = 1
 	var/allowed_size = 1
-	var/contained = 1 //Are we going to move around?
+	var/contained = TRUE //Are we going to move around?
 	var/energy = 100 //How strong are we?
-	var/dissipate = 1 //Do we lose energy over time?
+	var/dissipate = TRUE //Do we lose energy over time?
 	var/dissipate_delay = 10
 	var/dissipate_track = 0
-	var/dissipate_strength = 1 //How much energy do we lose?
-	var/move_self = 1 //Do we move on our own?
+	var/dissipate_strength = TRUE //How much energy do we lose?
+	var/move_self = TRUE //Do we move on our own?
 	var/grav_pull = 4 //How many tiles out do we pull?
 	var/consume_range = 0 //How many tiles out do we eat
 	var/event_chance = 10 //Prob for event each tick
@@ -87,7 +87,7 @@
 		var/mob/living/carbon/C = user
 		C.visible_message("<span class='danger'>[C]'s head begins to collapse in on itself!</span>", "<span class='userdanger'>Your head feels like it's collapsing in on itself! This was really not a good idea!</span>", "<span class='italics'>You hear something crack and explode in gore.</span>")
 		var/turf/T = get_turf(C)
-		for(var/i in 1 to 3)
+		for(var/i in TRUE to 3)
 			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 			new /obj/effect/gibspawner/generic(T, C)
 			sleep(1)
@@ -353,7 +353,7 @@
 		steps = step
 	var/list/turfs = list()
 	var/turf/T = src.loc
-	for(var/i = 1 to steps)
+	for(var/i = TRUE to steps)
 		T = get_step(T,direction)
 	if(!isturf(T))
 		return 0
@@ -368,12 +368,12 @@
 			dir2 = 1
 			dir3 = 2
 	var/turf/T2 = T
-	for(var/j = 1 to steps-1)
+	for(var/j = TRUE to steps-1)
 		T2 = get_step(T2,dir2)
 		if(!isturf(T2))
 			return 0
 		turfs.Add(T2)
-	for(var/k = 1 to steps-1)
+	for(var/k = TRUE to steps-1)
 		T = get_step(T,dir3)
 		if(!isturf(T))
 			return 0

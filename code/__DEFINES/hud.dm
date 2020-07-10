@@ -1,5 +1,5 @@
 //HUD styles.  Index order defines how they are cycled in F12.
-#define HUD_STYLE_STANDARD 1 //Standard hud
+#define HUD_STYLE_STANDARD TRUE //Standard hud
 #define HUD_STYLE_REDUCED 2 //Reduced hud (just hands and intent switcher)
 #define HUD_STYLE_NOHUD 3 //No hud (for screenshots)
 

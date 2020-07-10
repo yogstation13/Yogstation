@@ -233,7 +233,7 @@
 		openhelp(usr)
 		return
 	if(href_list["write"])
-		next_write_time = world.time + 1 SECONDS //possible paper exploit		
+		next_write_time = world.time + TRUE SECONDS //possible paper exploit		
 		var/t =  stripped_multiline_input("Enter what you want to write:", "Write", no_trim=TRUE)
 		if(!t || !usr.canUseTopic(src, BE_CLOSE, literate))
 			return

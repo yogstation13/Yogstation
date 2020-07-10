@@ -30,9 +30,9 @@
 	// A list of reagents to add to product.
 	// Format: "reagent_id" = potency multiplier
 	// Stronger reagents must always come first to avoid being displaced by weaker ones.
-	// Total amount of any reagent in plant is calculated by formula: 1 + round(potency * multiplier)
+	// Total amount of any reagent in plant is calculated by formula: TRUE + round(potency * multiplier)
 
-	var/weed_rate = 1 //If the chance below passes, then this many weeds sprout during growth
+	var/weed_rate = TRUE //If the chance below passes, then this many weeds sprout during growth
 	var/weed_chance = 5 //Percentage chance per tray update to grow weeds
 
 /obj/item/seeds/Initialize(loc, nogenes = 0)
@@ -116,7 +116,7 @@
 
 		if(yield == 0)//Oh god don't divide by zero you'll doom us all.
 			adjust_yield(1 * rating)
-		else if(prob(1/(yield * yield) * 100))//This formula gives you diminishing returns based on yield. 100% with 1 yield, decreasing to 25%, 11%, 6, 4, 2...
+		else if(prob(1/(yield * yield) * 100))//This formula gives you diminishing returns based on yield. 100% with TRUE yield, decreasing to 25%, 11%, 6, 4, 2...
 			adjust_yield(1 * rating)
 	else
 		return ..()
@@ -161,7 +161,7 @@
 		CRASH("[T] has no reagents.")
 
 	for(var/rid in reagents_add)
-		var/amount = 1 + round(potency * reagents_add[rid], 1)
+		var/amount = TRUE + round(potency * reagents_add[rid], 1)
 
 		var/list/data = null
 		if(rid == /datum/reagent/blood) // Hack to make blood in plants always O-
@@ -181,7 +181,7 @@
 		yield = clamp(yield + adjustamt, 0, 10)
 
 		if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
-			yield = 1 // Mushrooms always have a minimum yield of 1.
+			yield = TRUE // Mushrooms always have a minimum yield of 1.
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
 		if(C)
 			C.value = yield
@@ -231,7 +231,7 @@
 		yield = clamp(adjustamt, 0, 10)
 
 		if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
-			yield = 1 // Mushrooms always have a minimum yield of 1.
+			yield = TRUE // Mushrooms always have a minimum yield of 1.
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
 		if(C)
 			C.value = yield
@@ -341,7 +341,7 @@
 	for(var/seedpath in paths)
 		var/obj/item/seeds/seed = new seedpath
 
-		for(var/i in 1 to seed.growthstages)
+		for(var/i in TRUE to seed.growthstages)
 			if("[seed.icon_grow][i]" in states)
 				continue
 			to_chat(world, "[seed.name] ([seed.type]) lacks the [seed.icon_grow][i] icon!")
@@ -365,7 +365,7 @@
 
 /obj/item/seeds/proc/add_random_reagents(lower = 0, upper = 2)
 	var/amount_random_reagents = rand(lower, upper)
-	for(var/i in 1 to amount_random_reagents)
+	for(var/i in TRUE to amount_random_reagents)
 		var/random_amount = rand(4, 15) * 0.01 // this must be multiplied by 0.01, otherwise, it will not properly associate
 		var/datum/plant_gene/reagent/R = new(get_random_reagent_id(), random_amount)
 		if(R.can_add(src))
@@ -376,7 +376,7 @@
 
 /obj/item/seeds/proc/add_random_traits(lower = 0, upper = 2)
 	var/amount_random_traits = rand(lower, upper)
-	for(var/i in 1 to amount_random_traits)
+	for(var/i in TRUE to amount_random_traits)
 		var/random_trait = pick((subtypesof(/datum/plant_gene/trait)-typesof(/datum/plant_gene/trait/plant_type)))
 		var/datum/plant_gene/trait/T = new random_trait
 		if(T.can_add(src))

@@ -14,7 +14,7 @@
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "mixer"
 
-	//node 3 is the outlet, nodes 1 & 2 are intakes
+	//node 3 is the outlet, nodes TRUE & 2 are intakes
 
 /obj/machinery/atmospherics/components/trinary/mixer/CtrlClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
@@ -164,7 +164,7 @@
 		if("node1")
 			var/value = text2num(params["concentration"])
 			adjust_node1_value(value)
-			investigate_log("was set to [node1_concentration] % on node 1 by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was set to [node1_concentration] % on node TRUE by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("node2")
 			var/value = text2num(params["concentration"])
@@ -175,7 +175,7 @@
 
 /obj/machinery/atmospherics/components/trinary/mixer/proc/adjust_node1_value(newValue)
 	node1_concentration = newValue / 100
-	node2_concentration = 1 - node1_concentration
+	node2_concentration = TRUE - node1_concentration
 
 /obj/machinery/atmospherics/components/trinary/mixer/can_unwrench(mob/user)
 	. = ..()

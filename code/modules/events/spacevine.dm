@@ -447,7 +447,7 @@
 
 	var/length = 0
 
-	length = min( spread_cap , max( 1 , vines.len / spread_multiplier ) )
+	length = min( spread_cap , max( TRUE , vines.len / spread_multiplier ) )
 	var/i = 0
 	var/list/obj/structure/spacevine/queue_end = list()
 

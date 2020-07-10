@@ -243,7 +243,7 @@
 				X.monkeys = round(X.monkeys, 0.1)		//Prevents rounding errors
 				to_chat(owner, "[X] now has [X.monkeys] monkeys stored.")
 		else
-			to_chat(owner, "[X] needs to have at least 1 monkey stored. Currently has [X.monkeys] monkeys stored.")
+			to_chat(owner, "[X] needs to have at least TRUE monkey stored. Currently has [X.monkeys] monkeys stored.")
 	else 
 		to_chat(owner, "<span class='notice'>Target is not near a camera. Cannot proceed.</span>")
 
@@ -445,7 +445,7 @@
 				X.monkeys = round(X.monkeys, 0.1)		//Prevents rounding errors
 				to_chat(C, "[X] now has [X.monkeys] monkeys stored.")
 		else
-			to_chat(C, "[X] needs to have at least 1 monkey stored. Currently has [X.monkeys] monkeys stored.")
+			to_chat(C, "[X] needs to have at least TRUE monkey stored. Currently has [X.monkeys] monkeys stored.")
 
 //Pick up monkey
 /obj/machinery/computer/camera_advanced/xenobio/proc/XenoMonkeyClickCtrl(mob/living/user, mob/living/carbon/monkey/M)

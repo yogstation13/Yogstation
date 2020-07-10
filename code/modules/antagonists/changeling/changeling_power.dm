@@ -50,7 +50,7 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 /datum/action/changeling/proc/sting_feedback(mob/user, mob/target)
 	return 0
 
-//Fairly important to remember to return 1 on success >.<
+//Fairly important to remember to return TRUE on success >.<
 
 /datum/action/changeling/proc/can_sting(mob/living/user, mob/target)
 	if(!ishuman(user) && !ismonkey(user)) //typecast everything from mob to carbon from this point onwards

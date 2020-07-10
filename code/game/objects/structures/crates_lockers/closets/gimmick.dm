@@ -22,9 +22,9 @@
 
 /obj/structure/closet/gimmick/russian/PopulateContents()
 	..()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/clothing/head/ushanka(src)
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/clothing/under/soviet(src)
 
 /obj/structure/closet/gimmick/tacticool
@@ -60,17 +60,17 @@
 
 /obj/structure/closet/thunderdome/tdred/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/suit/armor/tdome/red(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/melee/transforming/energy/sword/saber(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/gun/energy/laser(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/melee/baton/loaded(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/storage/box/flashbangs(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/helmet/thunderdome(src)
 
 /obj/structure/closet/thunderdome/tdgreen
@@ -79,17 +79,17 @@
 
 /obj/structure/closet/thunderdome/tdgreen/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/suit/armor/tdome/green(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/melee/transforming/energy/sword/saber(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/gun/energy/laser(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/melee/baton/loaded(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/storage/box/flashbangs(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/clothing/head/helmet/thunderdome(src)
 
 /obj/structure/closet/malf/suits

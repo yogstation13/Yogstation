@@ -119,7 +119,7 @@
 /obj/item/paper_bin/examine(mob/user)
 	. = ..()
 	if(total_paper)
-		. += "It contains [total_paper > 1 ? "[total_paper] papers" : " one paper"]."
+		. += "It contains [total_paper > TRUE ? "[total_paper] papers" : " one paper"]."
 	else
 		. += "It doesn't contain anything."
 

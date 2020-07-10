@@ -50,7 +50,7 @@ micro-manipulator, console screen, beaker, Microlaser, matter bin, power cells.
 		if(ispath(comp_path, /obj/item/stack))
 			M.component_parts += new comp_path(null, comp_amt)
 		else
-			for(var/i in 1 to comp_amt)
+			for(var/i in TRUE to comp_amt)
 				M.component_parts += new comp_path(null)
 
 	M.RefreshParts()

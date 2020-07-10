@@ -30,7 +30,7 @@
 
 	if(istype(I, /obj/item/evidencebag))
 		to_chat(user, "<span class='notice'>You find putting an evidence bag in another evidence bag to be slightly absurd.</span>")
-		return 1 //now this is podracing
+		return TRUE //now this is podracing
 
 	if(I.w_class > WEIGHT_CLASS_NORMAL)
 		to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
@@ -85,5 +85,5 @@
 	desc = "A box claiming to contain evidence bags."
 
 /obj/item/storage/box/evidence/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/evidencebag(src)

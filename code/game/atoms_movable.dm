@@ -26,7 +26,7 @@
 	var/pass_flags = NONE
 	/// If false makes CanPass call CanPassThrough on this type instead of using default behaviour
 	var/generic_canpass = TRUE
-	var/moving_diagonally = 0 //0: not doing a diagonal move. 1 and 2: doing the first/second step of the diagonal move
+	var/moving_diagonally = 0 //0: not doing a diagonal move. TRUE and 2: doing the first/second step of the diagonal move
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/list/client_mobs_in_contents // This contains all the client mobs within this container
 	var/list/acted_explosions	//for explosion dodging
@@ -364,7 +364,7 @@
 		else
 			var/pull_dir = get_dir(src, pulling)
 			//puller and pullee more than one tile away or in diagonal position
-			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+			if(get_dist(src, pulling) > TRUE || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
 				pulling.moving_from_pull = src
 				pulling.Move(T, get_dir(pulling, T), glide_size) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
@@ -522,8 +522,8 @@
 
 //Called whenever an object moves and by mobs when they attempt to move themselves through space
 //And when an object or action applies a force on src, see newtonian_move() below
-//Return 0 to have src start/keep drifting in a no-grav area and 1 to stop/not start drifting
-//Mobs should return 1 if they should be able to move of their own volition, see client/Move() in mob_movement.dm
+//Return 0 to have src start/keep drifting in a no-grav area and TRUE to stop/not start drifting
+//Mobs should return TRUE if they should be able to move of their own volition, see client/Move() in mob_movement.dm
 //movement_dir == 0 when stopping or any dir when trying to move
 /atom/movable/proc/Process_Spacemove(movement_dir = 0)
 	if(has_gravity(src))
@@ -588,7 +588,7 @@
 		if (!user_momentum) //no movement_delay, this means they move once per byond tick, lets calculate from that instead.
 			user_momentum = world.tick_lag
 
-		user_momentum = 1 / user_momentum // convert from ds to the tiles per ds that throw_at uses.
+		user_momentum = TRUE / user_momentum // convert from ds to the tiles per ds that throw_at uses.
 
 		if (get_dir(thrower, target) & last_move)
 			user_momentum = user_momentum //basically a noop, but needed

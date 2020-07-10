@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 
 	var/connected = 0 //Direction bitset
 
-	for(var/i in 1 to device_type) //adds intact pieces
+	for(var/i in TRUE to device_type) //adds intact pieces
 		if(nodes[i])
 			var/obj/machinery/atmospherics/node = nodes[i]
 			var/image/img = get_pipe_underlay("pipe_intact", get_dir(src, node), node.pipe_color)

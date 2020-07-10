@@ -26,7 +26,7 @@
 	var/i = findtext(name, " ")
 	return copytext(name, 1, i)
 
-// Return 1 if this holidy should be celebrated today
+// Return TRUE if this holidy should be celebrated today
 /datum/holiday/proc/shouldCelebrate(dd, mm, yy, ww, ddd)
 	if(always_celebrate)
 		return TRUE
@@ -596,7 +596,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 /datum/holiday/easter
 	name = EASTER
 	drone_hat = /obj/item/clothing/head/rabbitears
-	var/const/days_early = 1 //to make editing the holiday easier
+	var/const/days_early = TRUE //to make editing the holiday easier
 	var/const/days_extra = 1
 
 /datum/holiday/easter/shouldCelebrate(dd, mm, yy, ww, ddd)

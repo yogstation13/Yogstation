@@ -75,7 +75,7 @@
 
 		var/turfs = 0
 		var/areas = 0
-		for(var/i in 1 to members.len)
+		for(var/i in TRUE to members.len)
 			var/atom/path = members[i]
 
 			turfs += ispath(path, /turf)

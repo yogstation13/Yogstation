@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(food_reagents, build_reagents_to_food()) //reagentid = related 
 		results = list()
 		var/list/remaining_possible_results = GetPossibleReagents(RNGCHEM_OUTPUT)
 		var/out_reagent_count = min(rand(min_result_reagents,max_result_reagents),remaining_possible_results.len)
-		for(var/i in 1 to out_reagent_count)
+		for(var/i in TRUE to out_reagent_count)
 			var/r_id = pick_n_take(remaining_possible_results)
 			results[r_id] = rand(min_output_reagent_amount,max_output_reagent_amount)
 
@@ -83,14 +83,14 @@ GLOBAL_LIST_INIT(food_reagents, build_reagents_to_food()) //reagentid = related 
 			return FALSE
 
 		required_reagents = list()
-		for(var/i in 1 to in_reagent_count)
+		for(var/i in TRUE to in_reagent_count)
 			var/r_id = pick_n_take(remaining_possible_reagents)
 			required_reagents[r_id] = rand(min_input_reagent_amount,max_input_reagent_amount)
 			remaining_possible_catalysts -= r_id //Can't have same reagents both as catalyst and reagent. Or can we ?
 
 		required_catalysts = list()
 		var/in_catalyst_count = min(rand(min_catalysts,max_catalysts),remaining_possible_catalysts.len)
-		for(var/i in 1 to in_catalyst_count)
+		for(var/i in TRUE to in_catalyst_count)
 			var/r_id = pick_n_take(remaining_possible_catalysts)
 			required_catalysts[r_id] = rand(min_input_reagent_amount,max_input_reagent_amount)
 

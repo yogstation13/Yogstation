@@ -208,7 +208,7 @@
 		external_origin_prev = external_origin_prev_prev
 	cut_overlays()
 	var/glide_dir = 0
-	if(external_origin_prev && external_origin_prev.z != external_origin && abs(external_origin.x - external_origin_prev.x) <= 1 && abs(external_origin.y - external_origin_prev.y) <= 1)
+	if(external_origin_prev && external_origin_prev.z != external_origin && abs(external_origin.x - external_origin_prev.x) <= TRUE && abs(external_origin.y - external_origin_prev.y) <= 1)
 		glide_dir = get_dir(external_origin_prev, external_origin)
 	var/turf/target_turf = locate(external_origin.x + x - internal_origin.x, external_origin.y + y - internal_origin.y, external_origin.z)
 	if(!target_turf || (turf_whitelist && !turf_whitelist[target_turf]))

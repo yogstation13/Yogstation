@@ -17,7 +17,7 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
+	opacity = TRUE ///opaque. Menacing.
 	anchored = TRUE //no pulling around.
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	layer = BELOW_MOB_LAYER//icon draw layer
@@ -50,7 +50,7 @@
 	var/datum/effect_system/spark_spread/spark_system = new
 	var/lights = FALSE
 	var/lights_power = 6
-	var/last_user_hud = 1 // used to show/hide the mecha hud while preserving previous preference
+	var/last_user_hud = TRUE // used to show/hide the mecha hud while preserving previous preference
 	var/completely_disabled = FALSE //stops the mech from doing anything
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.

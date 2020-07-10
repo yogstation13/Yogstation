@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	var/newmessagepriority = REQ_NO_NEW_MESSAGE
 	var/screen = REQ_SCREEN_MAIN
 		// 0 = main menu,
-		// 1 = req. assistance,
+		// TRUE = req. assistance,
 		// 2 = req. supplies
 		// 3 = relay information
 		// 4 = write msg - not used
@@ -53,11 +53,11 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		// 8 = view messages
 		// 9 = authentication before sending
 		// 10 = send announcement
-	var/silent = FALSE // set to 1 for it not to beep all the time
+	var/silent = FALSE // set to TRUE for it not to beep all the time
 	var/hackState = FALSE
 	var/announcementConsole = FALSE // FALSE = This console cannot be used to send department announcements, TRUE = This console can send department announcements
 	var/open = FALSE // TRUE if open
-	var/announceAuth = FALSE //Will be set to 1 when you authenticate yourself for announcements
+	var/announceAuth = FALSE //Will be set to TRUE when you authenticate yourself for announcements
 	var/msgVerified = "" //Will contain the name of the person who verified it
 	var/msgStamped = "" //If a message is stamped, this will contain the stamp name
 	var/message = ""

@@ -639,14 +639,14 @@
 	name = "Fringe Weaver"
 	id = /datum/reagent/consumable/ethanol/fringe_weaver
 	results = list(/datum/reagent/consumable/ethanol/fringe_weaver = 10)
-	required_reagents = list(/datum/reagent/consumable/ethanol = 9, /datum/reagent/consumable/sugar = 1) //9 karmotrine, 1 adelhyde
+	required_reagents = list(/datum/reagent/consumable/ethanol = 9, /datum/reagent/consumable/sugar = 1) //9 karmotrine, TRUE adelhyde
 	mix_message = "The mix turns a pleasant cream color and foams up."
 
 /datum/chemical_reaction/sugar_rush
 	name = "Sugar Rush"
 	id = /datum/reagent/consumable/ethanol/sugar_rush
 	results = list(/datum/reagent/consumable/ethanol/sugar_rush = 4)
-	required_reagents = list(/datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/wine = 1) //2 adelhyde (sweet), 1 powdered delta (sour), 1 karmotrine (alcohol)
+	required_reagents = list(/datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/wine = 1) //2 adelhyde (sweet), TRUE powdered delta (sour), TRUE karmotrine (alcohol)
 	mix_message = "The mixture bubbles and brightens into a girly pink."
 
 /datum/chemical_reaction/crevice_spike

@@ -21,7 +21,7 @@
 	SSmapping.reserve_turfs(v)
 
 /datum/turf_reservation/proc/Reserve(width, height, zlevel)
-	if(width > world.maxx || height > world.maxy || width < 1 || height < 1)
+	if(width > world.maxx || height > world.maxy || width < TRUE || height < 1)
 		return FALSE
 	var/list/avail = SSmapping.unused_turfs["[zlevel]"]
 	var/turf/BL

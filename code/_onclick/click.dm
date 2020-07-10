@@ -3,19 +3,19 @@
 	~Sayu
 */
 
-// 1 decisecond click delay (above and beyond mob/next_move)
+// TRUE decisecond click delay (above and beyond mob/next_move)
 //This is mainly modified by click code, to modify click delays elsewhere, use next_move and changeNext_move()
 /mob/var/next_click	= 0
 
-// THESE DO NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+// THESE DO NOT EFFECT THE BASE TRUE DECISECOND DELAY OF NEXT_CLICK
 /mob/var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
-/mob/var/next_move_modifier = 1 //Value to multiply action/click delays by
+/mob/var/next_move_modifier = TRUE //Value to multiply action/click delays by
 
 
 //Delays the mob's next click/action by num deciseconds
 // eg: 10-3 = 7 deciseconds of delay
 // eg: 10*0.5 = 5 deciseconds of delay
-// DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+// DOES NOT EFFECT THE BASE TRUE DECISECOND DELAY OF NEXT_CLICK
 
 /mob/proc/changeNext_move(num)
 	next_move = world.time + ((num+next_move_adjust)*next_move_modifier)
@@ -181,7 +181,7 @@
 	// A backwards depth-limited breadth-first-search to see if the target is
 	// logically "in" anything adjacent to us.
 	var/list/direct_access = DirectAccess()
-	var/depth = 1 + (view_only ? STORAGE_VIEW_DEPTH : INVENTORY_DEPTH)
+	var/depth = TRUE + (view_only ? STORAGE_VIEW_DEPTH : INVENTORY_DEPTH)
 
 	var/list/closed = list()
 	var/list/checking = list(ultimate_target)
@@ -233,7 +233,7 @@
 			var/obj/dummy = new(get_turf(here))
 			dummy.pass_flags |= PASSTABLE
 			dummy.invisibility = INVISIBILITY_ABSTRACT
-			for(var/i in 1 to reach) //Limit it to that many tries
+			for(var/i in TRUE to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
 				if(dummy.CanReach(there))
 					qdel(dummy)

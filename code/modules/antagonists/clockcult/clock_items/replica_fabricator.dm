@@ -9,7 +9,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 5
 	item_flags = NOBLUDGEON
-	var/speed_multiplier = 1 //The speed ratio the fabricator operates at
+	var/speed_multiplier = TRUE //The speed ratio the fabricator operates at
 	var/uses_power = TRUE
 	var/repairing = null //what we're currently repairing, if anything
 

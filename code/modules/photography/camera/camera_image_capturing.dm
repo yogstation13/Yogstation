@@ -52,7 +52,7 @@
 
 	var/list/sorted = list()
 	var/j
-	for(var/i in 1 to atoms.len)
+	for(var/i in TRUE to atoms.len)
 		var/atom/c = atoms[i]
 		for(j = sorted.len, j > 0, --j)
 			var/atom/c2 = sorted[j]

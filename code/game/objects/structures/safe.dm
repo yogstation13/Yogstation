@@ -116,7 +116,7 @@ FLOOR SAFES
 
 	if(href_list["decrement"])
 		dial = decrement(dial)
-		if(dial == tumbler_1_pos + 1 || dial == tumbler_1_pos - 71)
+		if(dial == tumbler_1_pos + TRUE || dial == tumbler_1_pos - 71)
 			tumbler_1_pos = decrement(tumbler_1_pos)
 			if(canhear)
 				to_chat(user, "<span class='italics'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>")
@@ -130,7 +130,7 @@ FLOOR SAFES
 
 	if(href_list["increment"])
 		dial = increment(dial)
-		if(dial == tumbler_1_pos - 1 || dial == tumbler_1_pos + 71)
+		if(dial == tumbler_1_pos - TRUE || dial == tumbler_1_pos + 71)
 			tumbler_1_pos = increment(tumbler_1_pos)
 			if(canhear)
 				to_chat(user, "<span class='italics'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>")
@@ -155,7 +155,7 @@ FLOOR SAFES
 
 /obj/structure/safe/attackby(obj/item/I, mob/user, params)
 	if(open)
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
 			if(!user.transferItemToLoc(I, src))

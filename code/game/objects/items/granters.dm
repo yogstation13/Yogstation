@@ -3,7 +3,7 @@
 
 /obj/item/book/granter
 	due_date = 0 // Game time in deciseconds
-	unique = 1   // 0  Normal book, 1  Should not be treated as normal book, unable to be copied, unable to be modified
+	unique = TRUE   // 0  Normal book, TRUE  Should not be treated as normal book, unable to be copied, unable to be modified
 	var/list/remarks = list() //things to read about while learning.
 	var/pages_to_mastery = 3 //Essentially controls how long a mob must keep the book in his hand to actually successfully learn
 	var/reading = FALSE //sanity

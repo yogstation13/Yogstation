@@ -4,7 +4,7 @@
 
 /datum/design/basic_cell
 	name = "Basic Power Cell"
-	desc = "A basic power cell that holds 1 MJ of energy."
+	desc = "A basic power cell that holds TRUE MJ of energy."
 	id = "basic_cell"
 	build_type = PROTOLATHE | AUTOLATHE |MECHFAB
 	materials = list(MAT_METAL = 700, MAT_GLASS = 50)

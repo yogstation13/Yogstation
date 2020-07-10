@@ -610,7 +610,7 @@
 	time = 50
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 				/obj/item/stack/sheet/sinew = 2,
-				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
+				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make TRUE cloak if the plates are skinned
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/goliathshield

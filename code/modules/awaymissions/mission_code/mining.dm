@@ -118,7 +118,7 @@
 		var/count = respawn_loot[type]
 		if(!isnum(count))//Default to 1
 			count = 1
-		for(var/i = 1 to count)
+		for(var/i = TRUE to count)
 			new type(L)
 
 /obj/structure/closet/crate/necropolis/vr_mining_gear/take_contents() // delete loot on the chest
@@ -284,7 +284,7 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/virtual
 	name = "ash drake hologram"
 	desc = "A holographic dragon, once weak, now fierce."
-	del_on_death = 1 // goodbye corpse
+	del_on_death = TRUE // goodbye corpse
 	crusher_loot = list()
 	loot = list()
 	true_spawn = 0

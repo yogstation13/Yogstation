@@ -33,7 +33,7 @@ Consuming extracts:
 			user.visible_message("<span class='notice'>[src] swells up and produces a small pile of cookies!</span>")
 			playsound(src, 'sound/effects/splat.ogg', 40, 1)
 			last_produced = world.time
-			for(var/i in 1 to cookies)
+			for(var/i in TRUE to cookies)
 				var/obj/item/S = spawncookie()
 				S.pixel_x = rand(-5, 5)
 				S.pixel_y = rand(-5, 5)

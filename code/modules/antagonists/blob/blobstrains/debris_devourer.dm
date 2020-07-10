@@ -18,7 +18,7 @@
 		debris_attack(L, blob)
 
 /datum/blobstrain/debris_devourer/on_sporedeath(mob/living/spore)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		var/obj/item/I = locate() in overmind.blob_core
 		if (I && !QDELETED(I))
 			I.forceMove(get_turf(spore))

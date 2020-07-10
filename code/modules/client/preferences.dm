@@ -80,9 +80,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/job_preferences = list()
 
 		// Want randomjob if preferences already filled - Donkie
-	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
+	var/joblessrole = BERANDOMJOB  //defaults to TRUE for fewer assistants
 
-	// 0 = character settings, 1 = game preferences
+	// 0 = character settings, TRUE = game preferences
 	var/current_tab = 0
 
 	var/unlock_content = 0
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/dat = list("<center>")
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == TRUE ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
 	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Keybindings</a>" // yogs - Custom keybindings
@@ -1526,7 +1526,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pda_color = pickedPDAColor
 
 				if ("max_chat_length")
-					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is TRUE to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 			// yogs start - Custom keybindings

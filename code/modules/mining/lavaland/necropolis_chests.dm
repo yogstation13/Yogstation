@@ -654,7 +654,7 @@
 	var/ladder_y = T.y
 	to_chat(user, "<span class='notice'>You unfold the ladder. It extends much farther than you were expecting.</span>")
 	var/last_ladder = null
-	for(var/i in 1 to world.maxz)
+	for(var/i in TRUE to world.maxz)
 		if(is_centcom_level(i) || is_reserved_level(i) || is_reebe(i) || is_away_level(i))
 			continue
 		var/turf/T2 = locate(ladder_x, ladder_y, i)
@@ -1358,7 +1358,7 @@
 	var/range = blast_range
 	var/turf/previousturf = T
 	var/turf/J = get_step(previousturf, dir)
-	for(var/i in 1 to range)
+	for(var/i in TRUE to range)
 		if(!J)
 			return
 		var/obj/effect/temp_visual/hierophant/blast/B = new(J, user, friendly_fire_check)

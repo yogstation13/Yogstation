@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	if(!uplink_items[category_name])
 		uplink_items[category_name] = list()
 
-	for (var/i in 1 to num)
+	for (var/i in TRUE to num)
 		var/datum/uplink_item/I = pick_n_take(sale_items)
 		var/datum/uplink_item/A = new I.type
 		var/discount = A.get_discount()
@@ -1781,7 +1781,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/toy/eightball/haunted
 	cost = 2
 	restricted_roles = list("Chaplain","Curator")
-	limited_stock = 1 //please don't spam deadchat
+	limited_stock = TRUE //please don't spam deadchat
 
 /datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"

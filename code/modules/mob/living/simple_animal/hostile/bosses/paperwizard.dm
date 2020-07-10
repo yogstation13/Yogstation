@@ -47,7 +47,7 @@
 		/mob/living/simple_animal/hostile/stickman/ranged,
 		/mob/living/simple_animal/hostile/stickman/dog)
 		var/list/directions = GLOB.cardinals.Copy()
-		for(var/i in 1 to 3)
+		for(var/i in TRUE to 3)
 			var/minions_chosen = pick_n_take(minions)
 			new minions_chosen (get_step(boss,pick_n_take(directions)), 1)
 		summoned_minions += 3;
@@ -78,14 +78,14 @@
 		if(target)
 			var/mob/living/simple_animal/hostile/boss/paper_wizard/wiz = boss
 			var/directions = GLOB.cardinals.Copy()
-			for(var/i in 1 to 3)
+			for(var/i in TRUE to 3)
 				var/mob/living/simple_animal/hostile/boss/paper_wizard/copy/C = new (get_step(target,pick_n_take(directions)))
 				wiz.copies += C
 				C.original = wiz
 				C.say("My craft defines me, you could even say it IS me!")
 			wiz.say("My craft defines me, you could even say it IS me!")
 			wiz.forceMove(get_step(target,pick_n_take(directions)))
-			wiz.minimum_distance = 1 //so he doesn't run away and ruin everything
+			wiz.minimum_distance = TRUE //so he doesn't run away and ruin everything
 			wiz.retreat_distance = 0
 		else
 			boss.atb.refund(boss_cost)

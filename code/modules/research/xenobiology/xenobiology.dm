@@ -11,7 +11,7 @@
 	throw_speed = 3
 	throw_range = 6
 	grind_results = list()
-	var/Uses = 1 // uses before it goes inert
+	var/Uses = TRUE // uses before it goes inert
 	var/qdel_timer = null // deletion timer, for delayed reactions
 	var/effectmod
 	var/list/activate_reagents = list() //Reagents required for activation
@@ -68,7 +68,7 @@
 
 	M.applied++
 	qdel(src)
-	to_chat(user, "<span class='notice'>You feed the slime [src], [M.applied == 1 ? "starting to mutate its core." : "further mutating its core."]</span>")
+	to_chat(user, "<span class='notice'>You feed the slime [src], [M.applied == TRUE ? "starting to mutate its core." : "further mutating its core."]</span>")
 	playsound(M, 'sound/effects/attackblob.ogg', 50, 1)
 
 	if(M.applied >= SLIME_EXTRACT_CROSSING_REQUIRED)
@@ -444,7 +444,7 @@
 			user.visible_message("<span class='warning'>[user]'s skin starts pulsing and glowing ominously...</span>", "<span class='userdanger'>You feel unstable...</span>")
 			if(do_after(user, 60, target = user))
 				to_chat(user, "<span class='userdanger'>You explode!</span>")
-				explosion(get_turf(user), 1 ,3, 6)
+				explosion(get_turf(user), TRUE ,3, 6)
 				user.gib()
 				return
 			to_chat(user, "<span class='notice'>You stop feeding [src], and the feeling passes.</span>")

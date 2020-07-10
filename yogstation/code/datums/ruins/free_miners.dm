@@ -129,7 +129,7 @@
 	illustration = "id"
 
 /obj/item/storage/box/ids/free_miners/PopulateContents()
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		new /obj/item/card/id/freeminer(src)
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/card/id/freeminer/captain(src)

@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	for(var/c in recipes)
 		var/list/cat = recipes[c]
 		var/list/r = list()
-		for(var/i in 1 to cat.len)
+		for(var/i in TRUE to cat.len)
 			var/datum/pipe_info/info = cat[i]
 			r += list(list("pipe_name" = info.name, "pipe_index" = i, "selected" = (info == recipe)))
 		data["categories"] += list(list("cat_name" = c, "recipes" = r))

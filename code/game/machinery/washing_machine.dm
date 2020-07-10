@@ -235,7 +235,7 @@
 	else if(bloody_mess)
 		icon_state = "wm_[state_open]_blood"
 	else
-		var/full = contents.len ? 1 : 0
+		var/full = contents.len ? TRUE : 0
 		icon_state = "wm_[state_open]_[full]"
 	if(panel_open)
 		add_overlay("wm_panel")

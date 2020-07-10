@@ -217,7 +217,7 @@
 	charge_max = 0
 	human_req = TRUE
 	clothes_req = FALSE
-	range = 1 //Adjacent to user
+	range = TRUE //Adjacent to user
 	action_icon_state = "enthrall"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	var/enthralling = FALSE

@@ -286,7 +286,7 @@
 		if(initial(S.level) <= 0) //unobtainable symptoms
 			continue
 		possible_symptoms += S
-	for(var/i in 1 to max_symptoms)
+	for(var/i in TRUE to max_symptoms)
 		var/datum/symptom/chosen_symptom = pick_n_take(possible_symptoms)
 		if(chosen_symptom)
 			var/datum/symptom/S = new chosen_symptom

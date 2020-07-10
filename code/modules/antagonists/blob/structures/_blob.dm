@@ -4,7 +4,7 @@
 	icon = 'icons/mob/blob.dmi'
 	light_range = 2
 	desc = "A thick wall of writhing tendrils."
-	density = FALSE //this being false causes two bugs, being able to attack blob tiles behind other blobs and being unable to move on blob tiles in no gravity, but turning it to 1 causes the blob mobs to be unable to path through blobs, which is probably worse.
+	density = FALSE //this being false causes two bugs, being able to attack blob tiles behind other blobs and being unable to move on blob tiles in no gravity, but turning it to TRUE causes the blob mobs to be unable to path through blobs, which is probably worse.
 	opacity = 0
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
@@ -16,7 +16,7 @@
 	var/pulse_timestamp = 0 //we got pulsed when?
 	var/heal_timestamp = 0 //we got healed when?
 	var/brute_resist = 0.5 //multiplies brute damage by this
-	var/fire_resist = 1 //multiplies burn damage by this
+	var/fire_resist = TRUE //multiplies burn damage by this
 	var/atmosblock = TRUE //if the blob blocks atmos and heat spread
 	var/mob/camera/blob/overmind
 
@@ -129,7 +129,7 @@
 			heal_timestamp = world.time + 20
 		update_icon()
 		pulse_timestamp = world.time + 10
-		return 1 //we did it, we were pulsed!
+		return TRUE //we did it, we were pulsed!
 	return 0 //oh no we failed
 
 /obj/structure/blob/proc/ConsumeTile()
@@ -154,7 +154,7 @@
 /obj/structure/blob/proc/expand(turf/T = null, controller = null, expand_reaction = 1)
 	if(!T)
 		var/list/dirs = list(1,2,4,8)
-		for(var/i = 1 to 4)
+		for(var/i = TRUE to 4)
 			var/dirn = pick(dirs)
 			dirs.Remove(dirn)
 			T = get_step(src, dirn)

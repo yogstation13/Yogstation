@@ -33,7 +33,7 @@
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_name][fill_icon_thresholds[1]]")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
-		for(var/i in 1 to fill_icon_thresholds.len)
+		for(var/i in TRUE to fill_icon_thresholds.len)
 			var/threshold = fill_icon_thresholds[i]
 			var/threshold_end = (i == fill_icon_thresholds.len)? INFINITY : fill_icon_thresholds[i+1]
 			if(threshold <= percent && percent < threshold_end)

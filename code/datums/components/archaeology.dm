@@ -50,7 +50,7 @@
 		var/turf/open/OT = get_turf(parent)
 		for(var/thing in archdrops)
 			var/maxtodrop = archdrops[thing][ARCH_MAXDROP]
-			for(var/i in 1 to maxtodrop)
+			for(var/i in TRUE to maxtodrop)
 				if(prob(archdrops[thing][ARCH_PROB])) // can't win them all!
 					new thing(OT)
 

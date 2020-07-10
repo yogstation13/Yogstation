@@ -19,7 +19,7 @@
 	var/tempname = null
 	//Sorting Variables
 	var/sortBy = "name"
-	var/order = 1 // -1 = Descending - 1 = Ascending
+	var/order = TRUE // -1 = Descending - TRUE = Ascending
 	var/maxFine = 1000
 
 	light_color = LIGHT_COLOR_RED

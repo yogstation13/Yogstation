@@ -96,7 +96,7 @@
 				var/number = backpack_contents[path]
 				if(!isnum(number))//Default to 1
 					number = 1
-				for(var/i in 1 to number)
+				for(var/i in TRUE to number)
 					H.equip_to_slot_or_del(new path(H),SLOT_IN_BACKPACK)
 
 	if(!H.head && toggle_helmet && istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit))
@@ -122,7 +122,7 @@
 	if(!istype(H))
 		return
 	if(H.back)
-		H.back.add_fingerprint(H,1)	//The 1 sets a flag to ignore gloves
+		H.back.add_fingerprint(H,1)	//The TRUE sets a flag to ignore gloves
 		for(var/obj/item/I in H.back.contents)
 			I.add_fingerprint(H,1)
 	if(H.wear_id)

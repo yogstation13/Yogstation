@@ -36,7 +36,7 @@
 	var/seed_modifier = 0
 	if(seed)
 		seed_modifier = round(seed.potency / 25)
-	var/obj/item/stack/cotton = new cotton_type(user.loc, 1 + seed_modifier)
+	var/obj/item/stack/cotton = new cotton_type(user.loc, TRUE + seed_modifier)
 	var/old_cotton_amount = cotton.amount
 	for(var/obj/item/stack/ST in user.loc)
 		if(ST != cotton && istype(ST, cotton_type) && ST.amount < ST.max_amount)

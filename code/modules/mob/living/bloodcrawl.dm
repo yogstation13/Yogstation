@@ -98,7 +98,7 @@
 	else
 		sound = 'sound/magic/demon_consume.ogg'
 
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		playsound(get_turf(src),sound, 50, 1)
 		sleep(30)
 

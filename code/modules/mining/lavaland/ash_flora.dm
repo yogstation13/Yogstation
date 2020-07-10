@@ -41,7 +41,7 @@
 			else if(rand_harvested == harvest_amount_high)
 				msg = harvest_message_high
 			to_chat(user, "<span class='notice'>[msg]</span>")
-		for(var/i in 1 to rand_harvested)
+		for(var/i in TRUE to rand_harvested)
 			new harvest(get_turf(src))
 
 	icon_state = "[base_icon]p"

@@ -263,7 +263,7 @@
 		firing_burst = FALSE
 		return FALSE
 	if(!issilicon(user))
-		if(iteration > 1 && !(user.is_holding(src))) //for burst firing
+		if(iteration > TRUE && !(user.is_holding(src))) //for burst firing
 			firing_burst = FALSE
 			return FALSE
 	if(chambered && chambered.BB)
@@ -315,7 +315,7 @@
 
 	if(burst_size > 1)
 		firing_burst = TRUE
-		for(var/i = 1 to burst_size)
+		for(var/i = TRUE to burst_size)
 			addtimer(CALLBACK(src, .proc/process_burst, user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
 		if(chambered)

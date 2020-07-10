@@ -108,7 +108,7 @@
 	if (!istype(pipe, /obj/structure/disposalconstruct) && !istype(pipe, /obj/structure/c_transit_tube) && !istype(pipe, /obj/structure/c_transit_tube_pod))
 		return
 
-	if (get_dist(usr, src) > 1 || get_dist(src,pipe) > 1 )
+	if (get_dist(usr, src) > TRUE || get_dist(src,pipe) > TRUE )
 		return
 
 	if (pipe.anchored)

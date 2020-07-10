@@ -3,7 +3,7 @@
 	var/turf/master_turf //The center of the wave
 	var/steps=0 //How far we've moved
 	var/intensity //How strong it was originaly
-	var/range_modifier //Higher than 1 makes it drop off faster, 0.5 makes it drop off half etc
+	var/range_modifier //Higher than TRUE makes it drop off faster, 0.5 makes it drop off half etc
 	var/move_dir //The direction of movement
 	var/list/__dirs //The directions to the side of the wave, stored for easy looping
 	var/can_contaminate
@@ -66,7 +66,7 @@
 	var/turf/place
 	for(var/dir in __dirs) //There should be just 2 dirs in here, left and right of the direction of movement
 		place = cmaster_turf
-		for(var/i in 1 to distance)
+		for(var/i in TRUE to distance)
 			place = get_step(place, dir)
 			atoms += get_rad_contents(place)
 
@@ -79,7 +79,7 @@
 		width--
 	width = 1+(2*width)
 
-	for(var/k in 1 to atoms.len)
+	for(var/k in TRUE to atoms.len)
 		var/atom/thing = atoms[k]
 		if(!thing)
 			continue
@@ -90,7 +90,7 @@
 
 /datum/radiation_wave/proc/radiate(list/atoms, strength)
 	var/contamination_chance = (strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_CHANCE_COEFFICIENT * min(1, 1/(steps*range_modifier))
-	for(var/k in 1 to atoms.len)
+	for(var/k in TRUE to atoms.len)
 		var/atom/thing = atoms[k]
 		if(!thing)
 			continue

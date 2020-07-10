@@ -17,7 +17,7 @@
 /turf/open/indestructible/reebe_void/spawning/Initialize(mapload)
 	. = ..()
 	if(mapload)
-		for(var/i in 1 to 3)
+		for(var/i in TRUE to 3)
 			if(prob(1))
 				new /obj/item/clockwork/alloy_shards/large(src)
 			if(prob(2))

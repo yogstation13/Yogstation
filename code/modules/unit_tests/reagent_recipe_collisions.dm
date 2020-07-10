@@ -7,7 +7,7 @@
 	var/list/reactions = list()
 	for(var/V in GLOB.chemical_reactions_list)
 		reactions += GLOB.chemical_reactions_list[V]
-	for(var/i in 1 to (reactions.len-1))
+	for(var/i in TRUE to (reactions.len-1))
 		for(var/i2 in (i+1) to reactions.len)
 			var/datum/chemical_reaction/r1 = reactions[i]
 			var/datum/chemical_reaction/r2 = reactions[i2]

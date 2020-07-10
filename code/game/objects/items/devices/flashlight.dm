@@ -14,7 +14,7 @@
 	actions_types = list(/datum/action/item_action/toggle_light)
 	var/on = FALSE
 	var/brightness_on = 4 //range of light when on
-	var/flashlight_power = 1 //strength of the light when on
+	var/flashlight_power = TRUE //strength of the light when on
 
 /obj/item/flashlight/Initialize()
 	. = ..()
@@ -108,7 +108,7 @@
 				var/organ_list = ""
 				var/organ_count = LAZYLEN(mouth_organs)
 				if(organ_count)
-					for(var/I in 1 to organ_count)
+					for(var/I in TRUE to organ_count)
 						if(I > 1)
 							if(I == mouth_organs.len)
 								organ_list += ", and "
@@ -142,21 +142,21 @@
 						to_chat(user, "<span class='notice'>You can't see anything without a mirror.</span>")
 						return
 					if(organ_count)
-						to_chat(user, "<span class='notice'>Inside your mouth [organ_count > 1 ? "are" : "is"] [organ_list].</span>")
+						to_chat(user, "<span class='notice'>Inside your mouth [organ_count > TRUE ? "are" : "is"] [organ_list].</span>")
 					else
 						to_chat(user, "<span class='notice'>There's nothing inside your mouth.</span>")
 					if(pill_count)
-						to_chat(user, "<span class='notice'>You have [pill_count] implanted pill[pill_count > 1 ? "s" : ""].</span>")
+						to_chat(user, "<span class='notice'>You have [pill_count] implanted pill[pill_count > TRUE ? "s" : ""].</span>")
 
 				else
 					user.visible_message("<span class='notice'>[user] directs [src] to [M]'s mouth.</span>",\
 										 "<span class='notice'>You direct [src] to [M]'s mouth.</span>")
 					if(organ_count)
-						to_chat(user, "<span class='notice'>Inside [their] mouth [organ_count > 1 ? "are" : "is"] [organ_list].</span>")
+						to_chat(user, "<span class='notice'>Inside [their] mouth [organ_count > TRUE ? "are" : "is"] [organ_list].</span>")
 					else
 						to_chat(user, "<span class='notice'>[M] doesn't have any organs in [their] mouth.</span>")
 					if(pill_count)
-						to_chat(user, "<span class='notice'>[M] has [pill_count] pill[pill_count > 1 ? "s" : ""] implanted in [their] teeth.</span>")
+						to_chat(user, "<span class='notice'>[M] has [pill_count] pill[pill_count > TRUE ? "s" : ""] implanted in [their] teeth.</span>")
 
 	else
 		return ..()

@@ -11,7 +11,7 @@
 	name = "Consumable"
 	taste_description = "generic food"
 	taste_mult = 4
-	var/nutriment_factor = 1 * REAGENTS_METABOLISM
+	var/nutriment_factor = TRUE * REAGENTS_METABOLISM
 	var/quality = 0	//affects mood, typically higher for mixed drinks with more complex recipes
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
@@ -130,7 +130,7 @@
 		return TRUE
 	var/oil_damage = ((holder.chem_temp / fry_temperature) * 0.33) //Damage taken per unit
 	if(method == TOUCH)
-		oil_damage *= 1 - M.get_permeability_protection()
+		oil_damage *= TRUE - M.get_permeability_protection()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
 		M.visible_message("<span class='warning'>The boiling oil sizzles as it covers [M]!</span>", \
@@ -559,7 +559,7 @@
 	description = "Sweet sweet honey that decays into sugar. Has antibacterial and natural healing properties."
 	color = "#d3a308"
 	nutriment_factor = 15 * REAGENTS_METABOLISM
-	metabolization_rate = 1 * REAGENTS_METABOLISM
+	metabolization_rate = TRUE * REAGENTS_METABOLISM
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/honey/on_mob_life(mob/living/carbon/M)

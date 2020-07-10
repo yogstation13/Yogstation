@@ -135,7 +135,7 @@
 				continue
 			beeagents += R
 		var/bee_amount = round(created_volume * 0.2)
-		for(var/i in 1 to bee_amount)
+		for(var/i in TRUE to bee_amount)
 			var/mob/living/simple_animal/hostile/poison/bees/short/new_bee = new(location)
 			if(LAZYLEN(beeagents))
 				new_bee.assign_reagent(pick(beeagents))
@@ -235,7 +235,7 @@
 	name = "Flash powder"
 	id = /datum/reagent/flash_powder
 	results = list(/datum/reagent/flash_powder = 3)
-	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1 )
+	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = TRUE )
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
@@ -360,7 +360,7 @@
 	name = "Napalm"
 	id = /datum/reagent/napalm
 	results = list(/datum/reagent/napalm = 3)
-	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol = 1 )
+	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol = TRUE )
 
 /datum/chemical_reaction/cryostylane
 	name = /datum/reagent/cryostylane

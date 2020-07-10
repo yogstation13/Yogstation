@@ -612,7 +612,7 @@
 	crate_name = "surplus military crate"
 
 /datum/supply_pack/security/armory/russian/fill(obj/structure/closet/crate/C)
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		var/item = pick(contains)
 		new item(C)
 
@@ -1268,7 +1268,7 @@
 	crate_name = "medical supplies crate"
 
 /datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		var/item = pick(contains)
 		new item(C)
 
@@ -1705,7 +1705,7 @@
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/randomized/chef/fill(obj/structure/closet/crate/C)
-	for(var/i in 1 to 15)
+	for(var/i in TRUE to 15)
 		var/item = pick(contains)
 		new item(C)
 
@@ -1904,7 +1904,7 @@
 
 /datum/supply_pack/critter/parrot/generate()
 	. = ..()
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		new /mob/living/simple_animal/parrot(.)
 	if(prob(1))
 		new /mob/living/simple_animal/parrot/clock_hawk(.)
@@ -1919,7 +1919,7 @@
 
 /datum/supply_pack/critter/butterfly/generate()
 	. = ..()
-	for(var/i in 1 to 49)
+	for(var/i in TRUE to 49)
 		new /mob/living/simple_animal/butterfly(.)
 
 /datum/supply_pack/critter/cat
@@ -1978,7 +1978,7 @@
 
 /datum/supply_pack/critter/crab/generate()
 	. = ..()
-	for(var/i in 1 to 49)
+	for(var/i in TRUE to 49)
 		new /mob/living/simple_animal/crab(.)
 
 /datum/supply_pack/critter/corgis/exotic
@@ -2260,7 +2260,7 @@
 /datum/supply_pack/costumes_toys/randomised/toys/generate()
 	. = ..()
 	var/the_toy
-	for(var/i in 1 to num_contained)
+	for(var/i in TRUE to num_contained)
 		if(prob(50))
 			the_toy = pickweight(GLOB.arcade_prize_pool)
 		else
@@ -2280,7 +2280,7 @@
 
 /datum/supply_pack/costumes_toys/randomised/fill(obj/structure/closet/crate/C)
 	var/list/L = contains.Copy()
-	for(var/i in 1 to num_contained)
+	for(var/i in TRUE to num_contained)
 		var/item = pick_n_take(L)
 		new item(C)
 

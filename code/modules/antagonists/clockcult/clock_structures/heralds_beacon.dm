@@ -55,7 +55,7 @@
 			else
 				. += "<span class='bold neovgre_small'>It has been activated!</span>"
 		else
-			. += "<span class='brass'>There are <b>[time_remaining]</b> second[time_remaining != 1 ? "s" : ""] remaining to vote.</span>"
+			. += "<span class='brass'>There are <b>[time_remaining]</b> second[time_remaining != TRUE ? "s" : ""] remaining to vote.</span>"
 			. += "<span class='big brass'>There are <b>[voters.len]/[votes_needed]</b> votes to activate the beacon!</span>"
 
 /obj/structure/destructible/clockwork/heralds_beacon/attack_hand(mob/living/user)

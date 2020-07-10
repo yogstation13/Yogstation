@@ -69,7 +69,7 @@
 	set desc = "Move your camera to a selected node."
 	if(GLOB.blob_nodes.len)
 		var/list/nodes = list()
-		for(var/i in 1 to GLOB.blob_nodes.len)
+		for(var/i in TRUE to GLOB.blob_nodes.len)
 			var/obj/structure/blob/node/B = GLOB.blob_nodes[i]
 			nodes["Blob Node #[i] ([get_area_name(B)])"] = B
 		var/node_name = input(src, "Choose a node to jump to.", "Node Jump") in nodes

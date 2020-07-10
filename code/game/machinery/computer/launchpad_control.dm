@@ -62,7 +62,7 @@
 /obj/machinery/computer/launchpad/ui_data(mob/user)
 	var/list/data = list()
 	var/list/pad_list = list()
-	for(var/i in 1 to LAZYLEN(launchpads))
+	for(var/i in TRUE to LAZYLEN(launchpads))
 		if(pad_exists(i))
 			var/obj/machinery/launchpad/pad = get_pad(i)
 			var/list/this_pad = list()

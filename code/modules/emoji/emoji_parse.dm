@@ -20,7 +20,7 @@
 				var/tag = sheet.icon_tag("emoji-[emoji]")
 				if(emoji in yogmojis) //yogs start -yogmoji
 					parsed += icon2html('yogstation/icons/emoji.dmi', world, emoji)
-					pos = search + 1 
+					pos = search + TRUE 
 				else if(tag)//yogs end - yogmoji
 					parsed += tag
 					pos = search + length(text[pos])

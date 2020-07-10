@@ -13,7 +13,7 @@
 	ui_y = 300
 	var/datum/ntnet/NTNet = null // This is mostly for backwards reference and to allow varedit modifications from ingame.
 	var/enabled = 1				// Set to 0 if the relay was turned off
-	var/dos_failure = 0			// Set to 1 if the relay failed due to (D)DoS attack
+	var/dos_failure = 0			// Set to TRUE if the relay failed due to (D)DoS attack
 	var/list/dos_sources = list()	// Backwards reference for qdel() stuff
 	var/uid
 	var/static/gl_uid = 1

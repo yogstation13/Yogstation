@@ -31,7 +31,7 @@
 
 /mob/living/simple_animal/hostile/blob/blob_act(obj/structure/blob/B)
 	if(stat != DEAD && health < maxHealth)
-		for(var/i in 1 to 2)
+		for(var/i in TRUE to 2)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(src)) //hello yes you are being healed
 			if(overmind)
 				H.color = overmind.blobstrain.complementary_color
@@ -90,7 +90,7 @@
 	movement_type = FLYING
 	del_on_death = 1
 	deathmessage = "explodes into a cloud of gas!"
-	var/death_cloud_size = 1 //size of cloud produced from a dying spore
+	var/death_cloud_size = TRUE //size of cloud produced from a dying spore
 	var/mob/living/carbon/human/oldguy
 	var/is_zombie = 0
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -251,7 +251,7 @@
 				else
 					H.color = "#000000"
 		if(damagesources)
-			for(var/i in 1 to damagesources)
+			for(var/i in TRUE to damagesources)
 				adjustHealth(maxHealth*0.025) //take 2.5% of max health as damage when not near the blob or if the naut has no factory, 5% if both
 			var/image/I = new('icons/mob/blob.dmi', src, "nautdamage", MOB_LAYER+0.01)
 			I.appearance_flags = RESET_COLOR

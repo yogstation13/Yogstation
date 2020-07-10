@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	config_tag = "battleroyale"
 	report_type = "battleroyale"
 	false_report_weight = 0
-	required_players = 1 //Everyone is an antag in this mode
+	required_players = TRUE //Everyone is an antag in this mode
 	required_enemies = 1
 	recommended_enemies = 1
 	antag_flag = ROLE_BATTLEROYALE
@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
-	for(var/i = 1 to queued.len)
+	for(var/i = TRUE to queued.len)
 		var/datum/mind/virgin = queued[i]
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.add_antag_datum(antag_datum_type)

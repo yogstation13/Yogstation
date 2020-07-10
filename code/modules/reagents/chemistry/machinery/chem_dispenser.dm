@@ -174,7 +174,7 @@
 	data["amount"] = amount
 	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
 	data["maxEnergy"] = cell.maxcharge * powerefficiency
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : 0
 
 	var/beakerContents[0]
 	var/beakerCurrentVolume = 0
@@ -342,7 +342,7 @@
 	var/datum/reagents/Q = new(total*10)
 	if(beaker && beaker.reagents)
 		R += beaker.reagents
-	for(var/i in 1 to total)
+	for(var/i in TRUE to total)
 		Q.add_reagent(pick(dispensable_reagents), 10)
 	R += Q
 	chem_splash(get_turf(src), 3, R)
@@ -365,7 +365,7 @@
 		recharge_amount *= C.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		if (M.rating > 1)
-			macroresolution -= M.rating		//5 for t1, 3 for t2, 2 for t3, 1 for t4
+			macroresolution -= M.rating		//5 for t1, 3 for t2, 2 for t3, TRUE for t4
 		if (M.rating > 3)
 			dispensable_reagents |= upgrade_reagents
 	powerefficiency = round(newpowereff, 0.01)

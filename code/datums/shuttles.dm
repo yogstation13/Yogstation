@@ -48,7 +48,7 @@
 		var/ycrd = gset.ycrd
 		for(var/line in gset.gridLines)
 			var/xcrd = gset.xcrd
-			for(var/j in 1 to length(line) step cached_map.key_len)
+			for(var/j in TRUE to length(line) step cached_map.key_len)
 				if(key == copytext(line, j, j + cached_map.key_len))
 					port_x_offset = xcrd
 					port_y_offset = ycrd
@@ -62,7 +62,7 @@
 		return
 	var/list/turfs = block(	locate(.[MAP_MINX], .[MAP_MINY], .[MAP_MINZ]),
 							locate(.[MAP_MAXX], .[MAP_MAXY], .[MAP_MAXZ]))
-	for(var/i in 1 to turfs.len)
+	for(var/i in TRUE to turfs.len)
 		var/turf/place = turfs[i]
 		if(istype(place, /turf/open/space)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
 			continue

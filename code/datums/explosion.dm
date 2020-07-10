@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(explosions)
 	if(reactionary)
 		cached_exp_block = CaculateExplosionBlock(affected_turfs)
 
-	//lists are guaranteed to contain at least 1 turf at this point
+	//lists are guaranteed to contain at least TRUE turf at this point
 
 	var/iteration = 0
 	var/affTurfLen = affected_turfs.len
@@ -416,4 +416,4 @@ GLOBAL_LIST_EMPTY(explosions)
 // 25 explosion power is a (2, 5, 10) explosion.
 // 10 explosion power is a (1, 3, 6) explosion.
 // 5 explosion power is a (0, 1, 3) explosion.
-// 1 explosion power is a (0, 0, 1) explosion.
+// TRUE explosion power is a (0, 0, 1) explosion.

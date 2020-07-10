@@ -232,7 +232,7 @@
 
 	if(dancefloor_exists)
 		dancefloor_exists = FALSE
-		for(var/i in 1 to dancefloor_turfs.len)
+		for(var/i in TRUE to dancefloor_turfs.len)
 			var/turf/T = dancefloor_turfs[i]
 			T.ChangeTurf(dancefloor_turfs_types[i], flags = CHANGETURF_INHERIT_AIR)
 	else

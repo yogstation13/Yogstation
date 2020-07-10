@@ -572,7 +572,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		update_playercounts()
 
 	for (var/datum/dynamic_ruleset/rule in current_rules)
-		if(rule.rule_process() == RULESET_STOP_PROCESSING) // If rule_process() returns 1 (RULESET_STOP_PROCESSING), stop processing.
+		if(rule.rule_process() == RULESET_STOP_PROCESSING) // If rule_process() returns TRUE (RULESET_STOP_PROCESSING), stop processing.
 			current_rules -= rule
 
 	if (midround_injection_cooldown < world.time)

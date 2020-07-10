@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engin
 		to_chat(creator, "<span class='warning'>The room you're in is too big. It is [turfs.len >= BP_MAX_ROOM_SIZE *2 ? "more than 100" : ((turfs.len / BP_MAX_ROOM_SIZE)-1)*100]% larger than allowed.</span>")
 		return
 	var/list/areas = list("New Area" = /area)
-	for(var/i in 1 to turfs.len)
+	for(var/i in TRUE to turfs.len)
 		var/area/place = get_area(turfs[i])
 		if(blacklisted_areas[place.type])
 			continue
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engin
 	else
 		newA = area_choice
 
-	for(var/i in 1 to turfs.len)
+	for(var/i in TRUE to turfs.len)
 		var/turf/thing = turfs[i]
 		var/area/old_area = thing.loc
 		newA.contents += thing

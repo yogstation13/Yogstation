@@ -267,9 +267,9 @@ the new instance inside the host to be updated to the template's stats.
 	var/index = hosts.Find(following_host)
 	if(index)
 		if(reverse)
-			index = index == 1 ? hosts.len : index - 1
+			index = index == TRUE ? hosts.len : index - 1
 		else
-			index = index == hosts.len ? 1 : index + 1
+			index = index == hosts.len ? TRUE : index + 1
 		set_following(hosts[index])
 
 /mob/camera/disease/proc/follow_mob(datum/source, newloc, dir)

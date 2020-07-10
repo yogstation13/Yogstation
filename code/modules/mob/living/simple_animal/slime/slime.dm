@@ -40,7 +40,7 @@
 
 	hud_type = /datum/hud/slime
 
-	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
+	var/cores = TRUE // the number of /obj/item/slime_extract's the slime has left inside
 	var/mutation_chance = 5 // Chance of mutating, very low to encourage miners hunting colored slimes
 
 	var/powerlevel = 0 // 1-10 controls how much electricity they are generating

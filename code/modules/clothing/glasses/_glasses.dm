@@ -164,7 +164,7 @@
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state = "glasses"
-	vision_correction = 1 //corrects nearsightedness
+	vision_correction = TRUE //corrects nearsightedness
 
 /obj/item/clothing/glasses/regular/jamjar
 	name = "jamjar glasses"

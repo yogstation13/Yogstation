@@ -69,7 +69,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/OpenFire()
 	check_enraged()
-	projectile_speed_multiplier = 1 + enraged / 2 // ranges from normal to 2x speed
+	projectile_speed_multiplier = TRUE + enraged / 2 // ranges from normal to 2x speed
 	SetRecoveryTime(100, 100)
 
 	if(client)
@@ -158,7 +158,7 @@ Difficulty: Extremely Hard
 		. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/frost_orbs(added_delay = 10, shoot_times = 8)
-	for(var/i in 1 to shoot_times)
+	for(var/i in TRUE to shoot_times)
 		var/turf/startloc = get_turf(src)
 		var/turf/endloc = get_turf(target)
 		if(!endloc)
@@ -191,7 +191,7 @@ Difficulty: Extremely Hard
 	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/snowball_machine_gun(shots = 60, spread = 45)
-	for(var/i in 1 to shots)
+	for(var/i in TRUE to shots)
 		var/turf/startloc = get_turf(src)
 		var/turf/endloc = get_turf(target)
 		if(!endloc)
@@ -207,7 +207,7 @@ Difficulty: Extremely Hard
 	SetRecoveryTime(15, 15)
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/ice_shotgun(shots = 5, list/patterns = list(list(-40, -20, 0, 20, 40), list(-30, -10, 10, 30)))
-	for(var/i in 1 to shots)
+	for(var/i in TRUE to shots)
 		var/list/pattern = patterns[i % length(patterns) + 1] // alternating patterns
 		for(var/spread in pattern)
 			var/turf/startloc = get_turf(src)

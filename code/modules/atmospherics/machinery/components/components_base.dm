@@ -15,7 +15,7 @@
 
 	..()
 
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		var/datum/gas_mixture/A = new(200)
 		airs[i] = A
 
@@ -42,7 +42,7 @@
 
 	var/connected = 0 //Direction bitset
 
-	for(var/i in 1 to device_type) //adds intact pieces
+	for(var/i in TRUE to device_type) //adds intact pieces
 		if(nodes[i])
 			var/obj/machinery/atmospherics/node = nodes[i]
 			var/image/img = get_pipe_underlay("pipe_intact", get_dir(src, node), node.pipe_color)
@@ -75,7 +75,7 @@
 	update_parents()
 
 /obj/machinery/atmospherics/components/build_network()
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		if(!parents[i])
 			parents[i] = new /datum/pipeline()
 			var/datum/pipeline/P = parents[i]
@@ -115,14 +115,14 @@
 		var/datum/gas_mixture/environment = T.return_air()
 		var/lost = null
 		var/times_lost = 0
-		for(var/i in 1 to device_type)
+		for(var/i in TRUE to device_type)
 			var/datum/gas_mixture/air = airs[i]
 			lost += pressures*environment.return_volume()/(air.return_temperature() * R_IDEAL_GAS_EQUATION)
 			times_lost++
 		var/shared_loss = lost/times_lost
 
 		var/datum/gas_mixture/to_release
-		for(var/i in 1 to device_type)
+		for(var/i in TRUE to device_type)
 			var/datum/gas_mixture/air = airs[i]
 			if(!to_release)
 				to_release = air.remove(shared_loss)
@@ -140,7 +140,7 @@
 // Helpers
 
 /obj/machinery/atmospherics/components/proc/update_parents()
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
 			WARNING("Component is missing a pipenet! Rebuilding...")
@@ -149,7 +149,7 @@
 
 /obj/machinery/atmospherics/components/returnPipenets()
 	. = list()
-	for(var/i in 1 to device_type)
+	for(var/i in TRUE to device_type)
 		. += returnPipenet(nodes[i])
 
 // UI Stuff

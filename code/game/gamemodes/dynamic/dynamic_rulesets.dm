@@ -31,7 +31,7 @@
 	var/required_enemies = list(1,1,0,0,0,0,0,0,0,0) 
 	/// The rule needs this many candidates (post-trimming) to be executed (example: Cult needs 4 players at round start)
 	var/required_candidates = 0 
-	/// 1 -> 9, probability for this rule to be picked against other rules
+	/// TRUE -> 9, probability for this rule to be picked against other rules
 	var/weight = 5 
 	/// Threat cost for this rule, this is decreased from the mode's threat when the rule is executed.
 	var/cost = 0 
@@ -126,7 +126,7 @@
 /// Note that this decreases weight if repeatable is TRUE and repeatable_weight_decrease is higher than 0
 /// Note: If you don't want repeatable rulesets to decrease their weight use the weight variable directly
 /datum/dynamic_ruleset/proc/get_weight()
-	if(repeatable && weight > 1 && repeatable_weight_decrease > 0)
+	if(repeatable && weight > TRUE && repeatable_weight_decrease > 0)
 		for(var/datum/dynamic_ruleset/DR in mode.executed_rules)
 			if(istype(DR, type))
 				weight = max(weight-repeatable_weight_decrease,1)

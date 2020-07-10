@@ -142,13 +142,13 @@
 	var/y_hit = y
 	var/turf/hit
 
-	for(var/run in 1 to distance)
+	for(var/run in TRUE to distance)
 		x_hit += target_x
 		y_hit += target_y
 		hit = locate(round(x_hit, 1), round(y_hit, 1), z)
 		if(hit.opacity)
 			return
-		if(hit.x == 1 || hit.x == world.maxx || hit.y == 1 || hit.y == world.maxy) //edge of the map
+		if(hit.x == TRUE || hit.x == world.maxx || hit.y == TRUE || hit.y == world.maxy) //edge of the map
 			break
 	obscured = FALSE
 
@@ -290,7 +290,7 @@
 	var/gen = 0
 	var/lastgen = 0
 	var/azimuth_target = 0
-	var/azimuth_rate = 1 ///degree change per minute
+	var/azimuth_rate = TRUE ///degree change per minute
 
 	var/track = SOLAR_TRACK_OFF ///SOLAR_TRACK_OFF, SOLAR_TRACK_TIMED, SOLAR_TRACK_AUTO
 

@@ -130,7 +130,7 @@
 	new /obj/item/reagent_containers/blood/lizard(src)
 	new /obj/item/reagent_containers/blood/gorilla(src) // yogs -- gorilla people
 	new /obj/item/reagent_containers/blood/ethereal(src)
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/blood/random(src)
 
 /obj/structure/closet/crate/freezer/surplus_limbs
@@ -172,7 +172,7 @@
 
 /obj/structure/closet/crate/rcd/PopulateContents()
 	..()
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		new /obj/item/rcd_ammo(src)
 	new /obj/item/construction/rcd(src)
 
@@ -187,7 +187,7 @@
 
 /obj/structure/closet/crate/solarpanel_small/PopulateContents()
 	..()
-	for(var/i in 1 to 13)
+	for(var/i in TRUE to 13)
 		new /obj/item/solar_assembly(src)
 	new /obj/item/circuitboard/computer/solar_control(src)
 	new /obj/item/paper/guides/jobs/engi/solars(src)
@@ -198,7 +198,7 @@
 
 /obj/structure/closet/crate/goldcrate/PopulateContents()
 	..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/stack/sheet/mineral/gold(src, 1, FALSE)
 	new /obj/item/storage/belt/champion(src)
 
@@ -207,7 +207,7 @@
 
 /obj/structure/closet/crate/silvercrate/PopulateContents()
 	..()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/coin/silver(src)
 
 /obj/structure/closet/crate/magic

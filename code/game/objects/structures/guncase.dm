@@ -26,7 +26,7 @@
 	cut_overlays()
 	if(case_type && LAZYLEN(contents))
 		var/mutable_appearance/gun_overlay = mutable_appearance(icon, case_type)
-		for(var/i in 1 to contents.len)
+		for(var/i in TRUE to contents.len)
 			gun_overlay.pixel_x = 3 * (i - 1)
 			add_overlay(gun_overlay)
 	if(open)
@@ -70,7 +70,7 @@
 				<h3>Stored Guns</h3>
 				<table align='center'>"}
 	if(LAZYLEN(contents))
-		for(var/i in 1 to contents.len)
+		for(var/i in TRUE to contents.len)
 			var/obj/item/I = contents[i]
 			dat += "<tr><A href='?src=[REF(src)];retrieve=[REF(I)]'>[I.name]</A><br>"
 	dat += "</table></div>"

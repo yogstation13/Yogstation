@@ -41,7 +41,7 @@
 	soundloop = new(GLOB.player_list, TRUE, TRUE)
 	for(var/turf/T in RANGE_TURFS(2, user))
 		new/obj/structure/psionic_barrier(T, 340)
-	for(var/stage in 1 to 2)
+	for(var/stage in TRUE to 2)
 		soundloop.stage = stage
 		switch(stage)
 			if(1)

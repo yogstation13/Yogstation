@@ -99,7 +99,7 @@
 	metal_cost = 0
 	glass_cost = 0
 	power_used = 0
-	cooldownTime = 10 //Only 1 second - hivebots are extremely weak
+	cooldownTime = 10 //Only TRUE second - hivebots are extremely weak
 	dispense_type = /mob/living/simple_animal/hostile/hivebot
 	begin_create_message = "closes and begins fabricating something within."
 	end_create_message = "slams open, revealing a hivebot!"

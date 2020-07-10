@@ -101,7 +101,7 @@
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/disk/data(src)
 
 
@@ -110,7 +110,7 @@
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks_plantgene/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/disk/plantgene(src)
 
 /obj/item/storage/box/disks_nanite
@@ -118,7 +118,7 @@
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks_nanite/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/disk/nanite_program(src)
 
 // Ordinary survival box
@@ -184,7 +184,7 @@
 	illustration = "latex"
 
 /obj/item/storage/box/gloves/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/clothing/gloves/color/latex(src)
 
 /obj/item/storage/box/masks
@@ -193,7 +193,7 @@
 	illustration = "sterile"
 
 /obj/item/storage/box/masks/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/clothing/mask/surgical(src)
 
 /obj/item/storage/box/syringes
@@ -202,7 +202,7 @@
 	illustration = "syringe"
 
 /obj/item/storage/box/syringes/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syringes/variety
@@ -221,7 +221,7 @@
 	illustration = "syringe"
 
 /obj/item/storage/box/medipens/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/medipens/utility
@@ -231,7 +231,7 @@
 
 /obj/item/storage/box/medipens/utility/PopulateContents()
 	..() // includes regular medipens.
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/reagent_containers/hypospray/medipen/stimpack(src)
 
 /obj/item/storage/box/beakers
@@ -239,7 +239,7 @@
 	illustration = "beaker"
 
 /obj/item/storage/box/beakers/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/glass/beaker( src )
 
 /obj/item/storage/box/beakers/bluespace
@@ -247,7 +247,7 @@
 	illustration = "beaker"
 
 /obj/item/storage/box/beakers/bluespace/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
 /obj/item/storage/box/beakers/variety
@@ -266,7 +266,7 @@
 	desc = "A box full of medical sprayers, with unscrewable caps and precision spray heads."
 
 /obj/item/storage/box/medsprays/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/medspray( src )
 
 /obj/item/storage/box/injectors
@@ -286,7 +286,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/flashbangs/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/grenade/flashbang(src)
 
 /obj/item/storage/box/flashes
@@ -296,7 +296,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/flashes/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/assembly/flash/handheld(src)
 
 /obj/item/storage/box/wall_flash
@@ -324,7 +324,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/teargas/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/grenade/chem_grenade/teargas(src)
 
 /obj/item/storage/box/emps
@@ -333,7 +333,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/emps/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/grenade/empgrenade(src)
 
 /obj/item/storage/box/trackimp
@@ -392,7 +392,7 @@
 
 /obj/item/storage/box/bodybags/PopulateContents()
 	..()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/bodybag(src)
 
 /obj/item/storage/box/rxglasses
@@ -401,7 +401,7 @@
 	illustration = "glasses"
 
 /obj/item/storage/box/rxglasses/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/clothing/glasses/regular(src)
 
 /obj/item/storage/box/drinkingglasses
@@ -409,7 +409,7 @@
 	desc = "It has a picture of drinking glasses on it."
 
 /obj/item/storage/box/drinkingglasses/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/reagent_containers/food/drinks/drinkingglass(src)
 
 /obj/item/storage/box/condimentbottles
@@ -417,7 +417,7 @@
 	desc = "It has a large ketchup smear on it."
 
 /obj/item/storage/box/condimentbottles/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/reagent_containers/food/condiment(src)
 
 /obj/item/storage/box/cups
@@ -425,7 +425,7 @@
 	desc = "It has pictures of paper cups on the front."
 
 /obj/item/storage/box/cups/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/food/drinks/sillycup( src )
 
 /obj/item/storage/box/donkpockets
@@ -440,7 +440,7 @@
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
 
 /obj/item/storage/box/donkpockets/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/reagent_containers/food/snacks/donkpocket(src)
 
 /obj/item/storage/box/monkeycubes
@@ -457,7 +457,7 @@
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/monkeycubes/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new cube_type(src)
 
 /obj/item/storage/box/monkeycubes/syndicate
@@ -477,7 +477,7 @@
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/gorillacubes/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/gorilla(src)
 
 /obj/item/storage/box/mixedcubes
@@ -493,7 +493,7 @@
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/mixedcubes/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
@@ -504,7 +504,7 @@
 	illustration = "id"
 
 /obj/item/storage/box/ids/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/card/id(src)
 
 //Some spare PDAs in a box
@@ -514,7 +514,7 @@
 	illustration = "pda"
 
 /obj/item/storage/box/PDAs/PopulateContents()
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		new /obj/item/pda(src)
 	new /obj/item/cartridge/head(src)
 
@@ -531,7 +531,7 @@
 	illustration = "id"
 
 /obj/item/storage/box/silver_ids/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/card/id/silver(src)
 
 /obj/item/storage/box/prisoner
@@ -556,7 +556,7 @@
 
 /obj/item/storage/box/seccarts/PopulateContents()
 	new /obj/item/cartridge/detective(src)
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/cartridge/security(src)
 
 /obj/item/storage/box/firingpins
@@ -565,7 +565,7 @@
 	illustration = "id"
 
 /obj/item/storage/box/firingpins/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		new /obj/item/firing_pin(src)
 
 /obj/item/storage/box/lasertagpins
@@ -574,7 +574,7 @@
 	illustration = "id"
 
 /obj/item/storage/box/lasertagpins/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/firing_pin/tag/red(src)
 		new /obj/item/firing_pin/tag/blue(src)
 
@@ -585,7 +585,7 @@
 	illustration = "handcuff"
 
 /obj/item/storage/box/handcuffs/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/restraints/handcuffs(src)
 
 /obj/item/storage/box/zipties
@@ -595,7 +595,7 @@
 	illustration = "handcuff"
 
 /obj/item/storage/box/zipties/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/restraints/handcuffs/cable/zipties(src)
 
 /obj/item/storage/box/alienhandcuffs
@@ -605,7 +605,7 @@
 	illustration = "handcuff"
 
 /obj/item/storage/box/alienhandcuffs/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new	/obj/item/restraints/handcuffs/alien(src)
 
 /obj/item/storage/box/fakesyndiesuit
@@ -623,7 +623,7 @@
 	illustration = "mousetrap"
 
 /obj/item/storage/box/mousetraps/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/assembly/mousetrap(src)
 
 /obj/item/storage/box/pillbottles
@@ -632,7 +632,7 @@
 	illustration = "pillbox"
 
 /obj/item/storage/box/pillbottles/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/storage/pill_bottle(src)
 
 /obj/item/storage/box/snappops
@@ -691,7 +691,7 @@
 	STR.click_gather = FALSE //temp workaround to re-enable filling the light replacer with the box
 
 /obj/item/storage/box/lights/bulbs/PopulateContents()
-	for(var/i in 1 to 21)
+	for(var/i in TRUE to 21)
 		new /obj/item/light/bulb(src)
 
 /obj/item/storage/box/lights/tubes
@@ -699,7 +699,7 @@
 	illustration = "lighttube"
 
 /obj/item/storage/box/lights/tubes/PopulateContents()
-	for(var/i in 1 to 21)
+	for(var/i in TRUE to 21)
 		new /obj/item/light/tube(src)
 
 /obj/item/storage/box/lights/mixed
@@ -707,9 +707,9 @@
 	illustration = "lightmixed"
 
 /obj/item/storage/box/lights/mixed/PopulateContents()
-	for(var/i in 1 to 14)
+	for(var/i in TRUE to 14)
 		new /obj/item/light/tube(src)
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/light/bulb(src)
 
 
@@ -718,7 +718,7 @@
 	desc = "To be issued to those authorized to act as deputy of security."
 
 /obj/item/storage/box/deputy/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/clothing/accessory/armband/deputy(src)
 
 /obj/item/storage/box/metalfoam
@@ -727,7 +727,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/metalfoam/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/grenade/chem_grenade/metalfoam(src)
 
 /obj/item/storage/box/smart_metal_foam
@@ -736,7 +736,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/smart_metal_foam/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new/obj/item/grenade/chem_grenade/smart_metal_foam(src)
 
 /obj/item/storage/box/hug
@@ -795,7 +795,7 @@
 	illustration = null
 
 /obj/item/storage/box/rubbershot/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/ammo_casing/shotgun/rubbershot(src)
 
 /obj/item/storage/box/lethalshot
@@ -805,7 +805,7 @@
 	illustration = null
 
 /obj/item/storage/box/lethalshot/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
 
 /obj/item/storage/box/breacherslug
@@ -815,7 +815,7 @@
 	illustration = null
 
 /obj/item/storage/box/breacherslug/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/ammo_casing/shotgun/breacher(src)
 
 /obj/item/storage/box/beanbag
@@ -825,7 +825,7 @@
 	illustration = null
 
 /obj/item/storage/box/beanbag/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
 /obj/item/storage/box/actionfigure
@@ -834,7 +834,7 @@
 	icon_state = "box"
 
 /obj/item/storage/box/actionfigure/PopulateContents()
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		var/randomFigure = pick(subtypesof(/obj/item/toy/figure))
 		new randomFigure(src)
 
@@ -924,7 +924,7 @@
 	theme_name = "wildcard"
 
 /obj/item/storage/box/ingredients/wildcard/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		var/randomFood = pick(/obj/item/reagent_containers/food/snacks/grown/chili,
 							  /obj/item/reagent_containers/food/snacks/grown/tomato,
 							  /obj/item/reagent_containers/food/snacks/grown/carrot,
@@ -946,7 +946,7 @@
 
 /obj/item/storage/box/ingredients/fiesta/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/tortilla(src)
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/corn(src)
 		new /obj/item/reagent_containers/food/snacks/grown/soybeans(src)
 		new /obj/item/reagent_containers/food/snacks/grown/chili(src)
@@ -955,7 +955,7 @@
 	theme_name = "italian"
 
 /obj/item/storage/box/ingredients/italian/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
 		new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
 	new /obj/item/reagent_containers/food/drinks/bottle/wine(src)
@@ -964,7 +964,7 @@
 	theme_name = "vegetarian"
 
 /obj/item/storage/box/ingredients/vegetarian/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/carrot(src)
 	new /obj/item/reagent_containers/food/snacks/grown/eggplant(src)
 	new /obj/item/reagent_containers/food/snacks/grown/potato(src)
@@ -976,7 +976,7 @@
 	theme_name = "american"
 
 /obj/item/storage/box/ingredients/american/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/potato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/corn(src)
@@ -986,7 +986,7 @@
 	theme_name = "fruity"
 
 /obj/item/storage/box/ingredients/fruity/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/apple(src)
 		new /obj/item/reagent_containers/food/snacks/grown/citrus/orange(src)
 	new /obj/item/reagent_containers/food/snacks/grown/citrus/lemon(src)
@@ -997,7 +997,7 @@
 	theme_name = "sweets"
 
 /obj/item/storage/box/ingredients/sweets/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/cherries(src)
 		new /obj/item/reagent_containers/food/snacks/grown/banana(src)
 	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
@@ -1008,7 +1008,7 @@
 	theme_name = "delights"
 
 /obj/item/storage/box/ingredients/delights/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/potato/sweet(src)
 		new /obj/item/reagent_containers/food/snacks/grown/bluecherries(src)
 	new /obj/item/reagent_containers/food/snacks/grown/vanillapod(src)
@@ -1019,7 +1019,7 @@
 	theme_name = "grains"
 
 /obj/item/storage/box/ingredients/grains/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/reagent_containers/food/snacks/grown/oat(src)
 	new /obj/item/reagent_containers/food/snacks/grown/wheat(src)
 	new /obj/item/reagent_containers/food/snacks/grown/cocoapod(src)
@@ -1042,7 +1042,7 @@
 	theme_name = "exotic"
 
 /obj/item/storage/box/ingredients/exotic/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		new /obj/item/reagent_containers/food/snacks/carpmeat(src)
 		new /obj/item/reagent_containers/food/snacks/grown/soybeans(src)
 		new /obj/item/reagent_containers/food/snacks/grown/cabbage(src)
@@ -1061,7 +1061,7 @@
 	name = "box of empty sandbags"
 
 /obj/item/storage/box/emptysandbags/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/emptysandbag(src)
 
 /obj/item/storage/box/rndboards
@@ -1079,14 +1079,14 @@
 	desc = "Contains patches used to treat burns."
 
 /obj/item/storage/box/silver_sulf/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
 
 /obj/item/storage/box/fountainpens
 	name = "box of fountain pens"
 
 /obj/item/storage/box/fountainpens/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new /obj/item/pen/fountain(src)
 
 /obj/item/storage/box/holy_grenades
@@ -1095,7 +1095,7 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/holy_grenades/PopulateContents()
-	for(var/i in 1 to 7)
+	for(var/i in TRUE to 7)
 		new/obj/item/grenade/chem_grenade/holy(src)
 
 /obj/item/storage/box/stockparts/basic //for ruins where it's a bad idea to give access to an autolathe/protolathe, but still want to make stock parts accessible

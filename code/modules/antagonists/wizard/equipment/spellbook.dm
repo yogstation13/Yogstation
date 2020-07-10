@@ -418,7 +418,7 @@
 		damaging. The crew's reaction to the other hand could be very \
 		destructive."
 	item_path = /obj/item/antag_spawner/slaughter_demon/laughter
-	cost = 1 //non-destructive; it's just a jape, sibling!
+	cost = TRUE //non-destructive; it's just a jape, sibling!
 	limit = 3
 	category = "Assistance"
 

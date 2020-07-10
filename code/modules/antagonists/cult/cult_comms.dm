@@ -151,7 +151,7 @@
 	var/datum/antagonist/cult/antag = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!antag)
 		return
-	for(var/i in 1 to 4)
+	for(var/i in TRUE to 4)
 		chant(i)
 		var/list/destinations = list()
 		for(var/turf/T in orange(1, owner))

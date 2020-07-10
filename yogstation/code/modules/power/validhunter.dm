@@ -122,7 +122,7 @@
 		else if(isalien(C))
 			typeofskin = /obj/item/stack/sheet/animalhide/xeno
 
-	for (var/i = 1 to meat_produced)
+	for (var/i = TRUE to meat_produced)
 		var/obj/item/reagent_containers/food/snacks/meat/slab/newmeat = new typeofmeat
 		newmeat.name = "[sourcename] [newmeat.name]"
 		if(istype(newmeat))
@@ -148,7 +148,7 @@
 		skin.forceMove(loc)
 		skin.throw_at(pick(nearby_turfs), meat_produced, 3)
 
-	for (var/i = 1 to meat_produced)
+	for (var/i = TRUE to meat_produced)
 		var/obj/item/meatslab = allmeat[i]
 		meatslab.forceMove(loc)
 		meatslab.throw_at(pick(nearby_turfs),i,3)

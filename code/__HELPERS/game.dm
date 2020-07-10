@@ -301,7 +301,7 @@
 	var/turf/T
 	if(X1==X2)
 		if(Y1==Y2)
-			return 1 //Light cannot be blocked on same tile
+			return TRUE //Light cannot be blocked on same tile
 		else
 			var/s = SIGN(Y2-Y1)
 			Y1+=s

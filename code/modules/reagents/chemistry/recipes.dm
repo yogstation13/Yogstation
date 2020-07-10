@@ -12,7 +12,7 @@
 	var/mob_react = TRUE //Determines if a chemical reaction can occur inside a mob
 
 	var/required_temp = 0
-	var/is_cold_recipe = 0 // Set to 1 if you want the recipe to only react when it's BELOW the required temp.
+	var/is_cold_recipe = 0 // Set to TRUE if you want the recipe to only react when it's BELOW the required temp.
 	var/mix_message = "The solution begins to bubble." //The message shown to nearby people upon mixing, if applicable
 	var/mix_sound = 'sound/effects/bubbles.ogg' //The sound played upon mixing, if applicable
 
@@ -41,7 +41,7 @@
 		for(var/mob/living/carbon/C in viewers(get_turf(holder.my_atom), null))
 			C.flash_act()
 
-		for(var/i in 1 to amount_to_spawn)
+		for(var/i in TRUE to amount_to_spawn)
 			var/mob/living/simple_animal/S
 			if(random)
 				S = create_random_mob(get_turf(holder.my_atom), mob_class)

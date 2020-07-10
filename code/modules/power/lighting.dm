@@ -208,7 +208,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = FALSE					// 1 if on, 0 if off
+	var/on = FALSE					// TRUE if on, 0 if off
 	var/on_gs = FALSE
 	var/forced_off = FALSE
 	var/static_power_used = 0

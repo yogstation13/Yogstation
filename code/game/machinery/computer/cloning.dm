@@ -12,7 +12,7 @@
 	var/temp = "Inactive"
 	var/scantemp_ckey
 	var/scantemp = "Ready to Scan"
-	var/menu = 1 //Which menu screen to display
+	var/menu = TRUE //Which menu screen to display
 	var/list/records = list()
 	var/datum/data/record/active_record
 	var/obj/item/disk/data/diskette //Incompatible format to genetics machine

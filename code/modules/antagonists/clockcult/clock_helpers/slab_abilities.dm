@@ -113,8 +113,8 @@
 		to_chat(ranged_ability_user, "<span class='brass'>You bathe [L == ranged_ability_user ? "yourself":"[L]"] in Inath-neq's power!</span>")
 		var/targetturf = get_turf(L)
 		var/has_holy_water = (L.reagents && L.reagents.has_reagent(/datum/reagent/water/holywater))
-		var/healseverity = max(round(totaldamage*0.05, 1), 1) //shows the general severity of the damage you just healed, 1 glow per 20
-		for(var/i in 1 to healseverity)
+		var/healseverity = max(round(totaldamage*0.05, 1), 1) //shows the general severity of the damage you just healed, TRUE glow per 20
+		for(var/i in TRUE to healseverity)
 			new /obj/effect/temp_visual/heal(targetturf, "#1E8CE1")
 		if(totaldamage)
 			L.adjustBruteLoss(-brutedamage, TRUE, TRUE)

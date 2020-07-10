@@ -25,7 +25,7 @@
 	var/list/locations = list("Earth", "Luna", "Mars", "Saturn", "Jupiter", "Uranus", "Pluto", "Europa", "Io", "Phobos", "Deimos", "Space", "Venus", "Neptune", "Mercury", "Kalliope", "Ganymede", "Callisto", "Amalthea", "Himalia", "Sybil", "Basil", "Badger", "Terry", "Artyom")
 	var/list/first = list("The", "First", "Premier", "Finest", "Prime")
 	var/list/company = list("Investments", "Securities", "Corporation", "Bank", "Brokerage", "& Co.", "Brothers", "& Sons", "Investement Firm", "Union", "Partners", "Capital", "Trade", "Holdings")
-	for(var/i in 1 to 5)
+	for(var/i in TRUE to 5)
 		var/pname = ""
 		switch (rand(1,5))
 			if (1)
@@ -49,7 +49,7 @@
 	var/list/w = splittext(name, " ")
 	if (w.len >= 2)
 		var/d = ""
-		for(var/i in 1 to min(5, w.len))
+		for(var/i in TRUE to min(5, w.len))
 			d += uppertext(ascii2text(text2ascii(w[i], 1)))
 		return d
 	else

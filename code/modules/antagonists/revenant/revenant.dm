@@ -170,7 +170,7 @@
 //Immunities
 
 /mob/living/simple_animal/revenant/ex_act(severity, target)
-	return 1 //Immune to the effects of explosions.
+	return TRUE //Immune to the effects of explosions.
 
 /mob/living/simple_animal/revenant/blob_act(obj/structure/blob/B)
 	return //blah blah blobs aren't in tune with the spirit world, or something.
@@ -405,7 +405,7 @@
 	if(QDELETED(src) || QDELETED(revenant) || inert)
 		return
 	var/key_of_revenant
-	message_admins("Revenant ectoplasm was left undestroyed for 1 minute and is reforming into a new revenant.")
+	message_admins("Revenant ectoplasm was left undestroyed for TRUE minute and is reforming into a new revenant.")
 	forceMove(drop_location()) //In case it's in a backpack or someone's hand
 	revenant.forceMove(loc)
 	if(old_key)

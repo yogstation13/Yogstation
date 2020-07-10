@@ -114,7 +114,7 @@
 				gridLines.Cut(gridLines.len) // Remove only one blank line at the end.
 
 			bounds[MAP_MINY] = min(bounds[MAP_MINY], clamp(gridSet.ycrd, y_lower, y_upper))
-			gridSet.ycrd += gridLines.len - 1 // Start at the top and work down
+			gridSet.ycrd += gridLines.len - TRUE // Start at the top and work down
 			bounds[MAP_MAXY] = max(bounds[MAP_MAXY], clamp(gridSet.ycrd, y_lower, y_upper))
 
 			var/maxx = gridSet.xcrd
@@ -170,7 +170,7 @@
 				continue
 			if(ycrd <= world.maxy && ycrd >= 1)
 				var/xcrd = gset.xcrd + x_offset - 1
-				for(var/tpos = 1 to length(line) - key_len + 1 step key_len)
+				for(var/tpos = TRUE to length(line) - key_len + TRUE step key_len)
 					if((xcrd - x_offset + 1) < x_lower || (xcrd - x_offset + 1) > x_upper)			//Same as above.
 						++xcrd
 						continue								//X cropping.
@@ -352,7 +352,7 @@
 			index++
 
 	//finally instance all remainings objects/mobs
-	for(index in 1 to first_turf_index-1)
+	for(index in TRUE to first_turf_index-1)
 		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)
 	//Restore initialization to the previous value
 	SSatoms.map_loader_stop()

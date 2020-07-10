@@ -263,7 +263,7 @@
 		return
 	return ..()
 
-// Simplified payment processing, returns 1 on success.
+// Simplified payment processing, returns TRUE on success.
 /obj/machinery/lapvend/proc/process_payment()
 	if(total_price > credits)
 		say("Insufficient credits.")
@@ -284,7 +284,7 @@
 		data["hw_nanoprint"] = dev_printer
 		data["hw_card"] = dev_card
 		data["hw_cpu"] = dev_cpu
-	if(state == 1 || state == 2)
+	if(state == TRUE || state == 2)
 		data["totalprice"] = total_price
 		data["credits"] = credits
 

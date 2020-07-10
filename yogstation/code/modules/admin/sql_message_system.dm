@@ -121,7 +121,7 @@
 		target_key = query_find_del_message.item[2]
 		text = query_find_del_message.item[3]
 	qdel(query_find_del_message)
-	var/datum/DBQuery/query_del_message = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET deleted = 1 WHERE id = :message_id", list("message_id" = message_id))
+	var/datum/DBQuery/query_del_message = SSdbcore.NewQuery("UPDATE [format_table_name("messages")] SET deleted = TRUE WHERE id = :message_id", list("message_id" = message_id))
 	if(!query_del_message.warn_execute())
 		qdel(query_del_message)
 		return

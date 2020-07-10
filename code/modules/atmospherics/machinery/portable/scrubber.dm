@@ -71,7 +71,7 @@
 /obj/machinery/portable_atmospherics/scrubber/ui_data()
 	var/data = list()
 	data["on"] = on
-	data["connected"] = connected_port ? 1 : 0
+	data["connected"] = connected_port ? TRUE : 0
 	data["pressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
 
 	data["id_tag"] = -1 //must be defined in order to reuse code between portable and vent scrubbers

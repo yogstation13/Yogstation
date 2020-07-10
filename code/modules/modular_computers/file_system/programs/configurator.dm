@@ -35,7 +35,7 @@
 	data["disk_size"] = hard_drive.max_capacity
 	data["disk_used"] = hard_drive.used_capacity
 	data["power_usage"] = movable.last_power_usage
-	data["battery_exists"] = battery_module ? 1 : 0
+	data["battery_exists"] = battery_module ? TRUE : 0
 	if(battery_module && battery_module.battery)
 		data["battery_rating"] = battery_module.battery.maxcharge
 		data["battery_percent"] = round(battery_module.battery.percent())

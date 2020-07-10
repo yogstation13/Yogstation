@@ -25,7 +25,7 @@
 
 	var/sleeping_agents = required_enemies + round(num_players()*0.05) // At 100 players, it'd be 2 + 5 = 7 teams existing.
 
-	for (var/i in 1 to sleeping_agents)
+	for (var/i in TRUE to sleeping_agents)
 		if (!antag_candidates.len)
 			break
 		var/datum/mind/sleeping_agent = antag_pick(antag_candidates)
@@ -74,4 +74,4 @@
 		var/datum/team/Tagain = l
 		if(teams[Tagain] == max_points)
 			winners += Tagain.name
-	return "<span class='greentext big'>The [english_list(winners)] team[winners.len > 1 ? "s tied" : " won"] with [max_points] points!</span>"
+	return "<span class='greentext big'>The [english_list(winners)] team[winners.len > TRUE ? "s tied" : " won"] with [max_points] points!</span>"

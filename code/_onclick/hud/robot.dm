@@ -254,7 +254,7 @@
 
 	if(screenmob.hud_used)
 		if(screenmob.hud_used.hud_shown)
-			for(var/i in 1 to R.held_items.len)
+			for(var/i in TRUE to R.held_items.len)
 				var/obj/item/I = R.held_items[i]
 				if(I)
 					switch(i)

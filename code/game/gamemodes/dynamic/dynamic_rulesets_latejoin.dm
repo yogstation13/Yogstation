@@ -111,7 +111,7 @@
 	new_head.give_hud = TRUE
 	new_head.remove_clumsy = TRUE
 	new_head = M.mind.add_antag_datum(new_head)
-	new_head.rev_team.max_headrevs = 1 // Only one revhead if it is latejoin.
+	new_head.rev_team.max_headrevs = TRUE // Only one revhead if it is latejoin.
 	return TRUE
 
 

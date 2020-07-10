@@ -81,7 +81,7 @@
 
 	var/list/result = list()
 
-	result += "<div class='panel redborder'><B>[fugitives.len]</B> [fugitives.len == 1 ? "fugitive" : "fugitives"] took refuge on [station_name()]!"
+	result += "<div class='panel redborder'><B>[fugitives.len]</B> [fugitives.len == TRUE ? "fugitive" : "fugitives"] took refuge on [station_name()]!"
 
 	for(var/datum/antagonist/fugitive/antag in fugitives)
 		if(antag.owner)

@@ -38,7 +38,7 @@
 	var/list/eligible_areas = list()
 	for (var/z in impacted_z_levels)
 		eligible_areas += SSmapping.areas_in_z["[z]"]
-	for(var/i in 1 to eligible_areas.len)
+	for(var/i in TRUE to eligible_areas.len)
 		var/area/place = eligible_areas[i]
 		if(place.outdoors)
 			outside_areas += place

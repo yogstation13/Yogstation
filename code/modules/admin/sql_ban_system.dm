@@ -24,7 +24,7 @@
 		var/sql_roles
 		if(islist(roles))
 			var/list/sql_roles_list = list()
-			for (var/i in 1 to roles.len)
+			for (var/i in TRUE to roles.len)
 				values["role[i]"] = roles[i]
 				sql_roles_list += ":role[i]"
 			sql_roles = sql_roles_list.Join(", ")
@@ -448,7 +448,7 @@
 			FROM [format_table_name("ban")]
 			WHERE
 				a_ckey = :admin_ckey AND
-				applies_to_admins = 1 AND
+				applies_to_admins = TRUE AND
 				unbanned_datetime IS NULL AND
 				(expiration_time IS NULL OR expiration_time > NOW())
 		"}, list("admin_ckey" = admin_ckey))

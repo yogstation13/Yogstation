@@ -14,7 +14,7 @@
 
 	var/busy //If the slab is currently being used by something
 	var/no_cost = FALSE //If the slab is admin-only and needs no components and has no scripture locks
-	var/speed_multiplier = 1 //multiples how fast this slab recites scripture
+	var/speed_multiplier = TRUE //multiples how fast this slab recites scripture
 	var/selected_scripture = SCRIPTURE_DRIVER
 	var/obj/effect/proc_holder/slab/slab_ability //the slab's current bound ability, for certain scripture
 
@@ -123,7 +123,7 @@
 	. = ..()
 	if(is_servant_of_ratvar(user) || isobserver(user))
 		if(LAZYLEN(quickbound))
-			for(var/i in 1 to quickbound.len)
+			for(var/i in TRUE to quickbound.len)
 				if(!quickbound[i])
 					continue
 				var/datum/clockwork_scripture/quickbind_slot = quickbound[i]
@@ -201,7 +201,7 @@
 	var/list/textlist = list("If you're seeing this, file a bug report.")
 	if(GLOB.ratvar_awakens)
 		textlist = list("<font color=#BE8700 size=3><b>")
-		for(var/i in 1 to 100)
+		for(var/i in TRUE to 100)
 			textlist += "HONOR RATVAR "
 		textlist += "</b></font>"
 	else
@@ -393,7 +393,7 @@
 	dat += "<font color=#BE8700 size=3>Quickbound Scripture</font><br>\
 	<i>You can have up to five scriptures bound to action buttons for easy use.</i><br><br>"
 	if(LAZYLEN(quickbound))
-		for(var/i in 1 to maximum_quickbound)
+		for(var/i in TRUE to maximum_quickbound)
 			if(LAZYLEN(quickbound) < i || !quickbound[i])
 				dat += "A <b>Quickbind</b> slot, currently set to <b><font color=#BE8700>Nothing</font></b>.<br>"
 			else
@@ -481,7 +481,7 @@
 					quickbound[found_index] = null //otherwise, leave it as a null so the scripture maintains position
 				update_quickbind()
 			else
-				var/target_index = input("Position of [initial(path.name)], 1 to [maximum_quickbound]?", "Input")  as num|null
+				var/target_index = input("Position of [initial(path.name)], TRUE to [maximum_quickbound]?", "Input")  as num|null
 				if(isnum(target_index) && target_index > 0 && target_index <= maximum_quickbound && !..())
 					var/datum/clockwork_scripture/S
 					if(LAZYLEN(quickbound) >= target_index)
@@ -508,7 +508,7 @@
 	for(var/datum/action/item_action/clock/quickbind/Q in actions)
 		qdel(Q) //regenerate all our quickbound scriptures
 	if(LAZYLEN(quickbound))
-		for(var/i in 1 to quickbound.len)
+		for(var/i in TRUE to quickbound.len)
 			if(!quickbound[i])
 				continue
 			var/datum/action/item_action/clock/quickbind/Q = new /datum/action/item_action/clock/quickbind(src)

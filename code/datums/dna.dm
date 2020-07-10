@@ -147,7 +147,7 @@
 /proc/generate_gene_sequence(length=4)
 	var/static/list/active_sequences = list("AT","TA","GC","CG")
 	var/sequence
-	for(var/i in 1 to length*DNA_SEQUENCE_LENGTH)
+	for(var/i in TRUE to length*DNA_SEQUENCE_LENGTH)
 		sequence += pick(active_sequences)
 	return sequence
 
@@ -562,7 +562,7 @@
 		M.updateappearance(mutations_overlay_update=1)
 	return 1
 
-//value in range 1 to values. values must be greater than 0
+//value in range TRUE to values. values must be greater than 0
 //all arguments assumed to be positive integers
 /proc/construct_block(value, values, blocksize=DNA_BLOCK_SIZE)
 	var/width = round((16**blocksize)/values)

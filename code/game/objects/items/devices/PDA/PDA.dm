@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "<h4>Medical Functions</h4>"
 						dat += "<ul>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=44'>[PDAIMG(medical)]Medical Records</a></li>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Medical Scan'>[PDAIMG(scanner)][scanmode == 1 ? "Disable" : "Enable"] Medical Scanner</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Medical Scan'>[PDAIMG(scanner)][scanmode == TRUE ? "Disable" : "Enable"] Medical Scanner</a></li>"
 						dat += "</ul>"
 					if (cartridge.access & CART_SECURITY)
 						dat += "<h4>Security Functions</h4>"
@@ -323,8 +323,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 			if (2)
 				dat += "<h4>[PDAIMG(mail)] SpaceMessenger V3.9.6</h4>"
-				dat += "<a href='byond://?src=[REF(src)];choice=Toggle Ringer'>[PDAIMG(bell)]Ringer: [silent == 1 ? "Off" : "On"]</a> | "
-				dat += "<a href='byond://?src=[REF(src)];choice=Toggle Messenger'>[PDAIMG(mail)]Send / Receive: [toff == 1 ? "Off" : "On"]</a> | "
+				dat += "<a href='byond://?src=[REF(src)];choice=Toggle Ringer'>[PDAIMG(bell)]Ringer: [silent == TRUE ? "Off" : "On"]</a> | "
+				dat += "<a href='byond://?src=[REF(src)];choice=Toggle Messenger'>[PDAIMG(mail)]Send / Receive: [toff == TRUE ? "Off" : "On"]</a> | "
 				dat += "<a href='byond://?src=[REF(src)];choice=Ringtone'>[PDAIMG(bell)]Set Ringtone</a> | "
 				dat += "<a href='byond://?src=[REF(src)];choice=21'>[PDAIMG(mail)]Messages</a><br>"
 
@@ -539,7 +539,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if ("Edit")
 				var/n = stripped_multiline_input(U, "Please enter message", name, note)
 				if (in_range(src, U) && loc == U)
-					if (mode == 1 && n)
+					if (mode == TRUE && n)
 						note = n
 						notehtml = parsemarkdown(n, U)
 						notescanned = FALSE
@@ -953,7 +953,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if(!isnull(A.reagents))
 				if(A.reagents.reagent_list.len > 0)
 					var/reagents_length = A.reagents.reagent_list.len
-					to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>")
+					to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > TRUE ? "s" : ""] found.</span>")
 					for (var/re in A.reagents.reagent_list)
 						to_chat(user, "<span class='notice'>\t [re]</span>")
 				else

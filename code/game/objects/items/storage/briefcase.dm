@@ -24,7 +24,7 @@
 /obj/item/storage/briefcase/PopulateContents()
 	new /obj/item/pen(src)
 	var/obj/item/folder/folder = new folder_path(src)
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/paper(folder)
 
 /obj/item/storage/briefcase/lawyer

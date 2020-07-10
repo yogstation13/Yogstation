@@ -470,7 +470,7 @@
 	id = "Good Music"
 	alert_type = null
 	duration = 6 SECONDS
-	tick_interval = 1 SECONDS
+	tick_interval = TRUE SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 
 /datum/status_effect/good_music/tick()
@@ -487,7 +487,7 @@
 
 /datum/status_effect/regenerative_core
 	id = "Regenerative Core"
-	duration = 1 MINUTES
+	duration = TRUE MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = /obj/screen/alert/status_effect/regenerative_core
 
@@ -543,7 +543,7 @@
 
 /obj/screen/alert/status_effect/creep
 	name = "Creep"
-	desc = "You are immune to lightburn. Drains 1 Psi per second."
+	desc = "You are immune to lightburn. Drains TRUE Psi per second."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	icon_state = "creep"
 

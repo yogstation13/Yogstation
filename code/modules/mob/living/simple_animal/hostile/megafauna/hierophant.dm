@@ -117,8 +117,8 @@ Difficulty: Hard
 		return
 
 	calculate_rage()
-	var/blink_counter = 1 + round(anger_modifier * 0.08)
-	var/cross_counter = 1 + round(anger_modifier * 0.12)
+	var/blink_counter = TRUE + round(anger_modifier * 0.08)
+	var/cross_counter = TRUE + round(anger_modifier * 0.12)
 
 	arena_trap(target)
 	ranged_cooldown = world.time + max(5, ranged_cooldown_time - anger_modifier * 0.75) //scale cooldown lower with high anger.
@@ -281,7 +281,7 @@ Difficulty: Hard
 	var/range = beam_range
 	var/turf/previousturf = T
 	var/turf/J = get_step(previousturf, set_dir)
-	for(var/i in 1 to range)
+	for(var/i in TRUE to range)
 		new /obj/effect/temp_visual/hierophant/blast(J, src, FALSE)
 		previousturf = J
 		J = get_step(previousturf, set_dir)
@@ -305,7 +305,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/arena_squares(turf/T, set_dir) //make a fancy effect extending from the arena target
 	var/turf/previousturf = T
 	var/turf/J = get_step(previousturf, set_dir)
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		var/obj/effect/temp_visual/hierophant/squares/HS = new(J)
 		HS.setDir(set_dir)
 		previousturf = J
@@ -545,7 +545,7 @@ Difficulty: Hard
 	var/more_previouser_moving_dir //what dir it was moving in before THAT
 	var/moving = 0 //how many steps to move before recalculating
 	var/standard_moving_before_recalc = 4 //how many times we step before recalculating normally
-	var/tiles_per_step = 1 //how many tiles we move each step
+	var/tiles_per_step = TRUE //how many tiles we move each step
 	var/speed = 3 //how many deciseconds between each step
 	var/currently_seeking = FALSE
 	var/friendly_fire_check = FALSE //if blasts produced apply friendly fire
@@ -578,12 +578,12 @@ Difficulty: Hard
 				moving_dir = get_target_dir()
 				var/standard_target_dir = get_cardinal_dir(src, targetturf)
 				if((standard_target_dir != previous_moving_dir && standard_target_dir == more_previouser_moving_dir) || standard_target_dir == 0)
-					moving = 1 //we would be repeating, only move a tile before checking
+					moving = TRUE //we would be repeating, only move a tile before checking
 				else
 					moving = standard_moving_before_recalc
 			if(moving) //move in the dir we're moving in right now
 				var/turf/T = get_turf(src)
-				for(var/i in 1 to tiles_per_step)
+				for(var/i in TRUE to tiles_per_step)
 					var/maybe_new_turf = get_step(T, moving_dir)
 					if(maybe_new_turf)
 						T = maybe_new_turf

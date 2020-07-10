@@ -319,7 +319,7 @@
 
 /obj/item/storage/backpack/satchel/flat/PopulateContents()
 	var/datum/supply_pack/costumes_toys/randomised/contraband/C = new
-	for(var/i in 1 to 2)
+	for(var/i in TRUE to 2)
 		var/ctype = pick(C.contains)
 		new ctype(src)
 
@@ -423,7 +423,7 @@
 	item_state = "duffel-clown"
 
 /obj/item/storage/backpack/duffelbag/clown/cream_pie/PopulateContents()
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		new /obj/item/reagent_containers/food/snacks/pie/cream(src)
 
 /obj/item/storage/backpack/fireproof
@@ -490,7 +490,7 @@
 	desc = "A large duffel bag, packed to the brim with Bulldog shotgun magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in TRUE to 6)
 		new /obj/item/ammo_box/magazine/m12g(src)
 	new /obj/item/ammo_box/magazine/m12g/slug(src)
 	new /obj/item/ammo_box/magazine/m12g/slug(src)
@@ -500,7 +500,7 @@
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/PopulateContents()
-	for(var/i in 1 to 9)
+	for(var/i in TRUE to 9)
 		new /obj/item/ammo_box/magazine/smgm45(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
@@ -579,11 +579,11 @@
 		new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/c4/PopulateContents()
-	for(var/i in 1 to 10)
+	for(var/i in TRUE to 10)
 		new /obj/item/grenade/plastic/c4(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/x4/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/grenade/plastic/x4(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/firestarter

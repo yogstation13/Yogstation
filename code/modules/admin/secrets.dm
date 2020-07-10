@@ -437,7 +437,7 @@
 						tail.Insert(H, drop_if_replaced=FALSE)
 					var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san"), "[PLURAL]" = list("san")) //John Robust -> Robust-kun
 					var/list/names = splittext(H.real_name," ")
-					var/forename = names.len > 1 ? names[2] : names[1]
+					var/forename = names.len > TRUE ? names[2] : names[1]
 					var/newname = "[forename]-[pick(honorifics["[H.gender]"])]"
 					H.fully_replace_character_name(H.real_name,newname)
 					H.update_mutant_bodyparts()
@@ -584,7 +584,7 @@
 			if(alert("Flip all movement controls?","Confirm","Yes","Cancel") == "Cancel")
 				return
 			var/list/movement_keys = SSinput.movement_keys
-			for(var/i in 1 to movement_keys.len)
+			for(var/i in TRUE to movement_keys.len)
 				var/key = movement_keys[i]
 				movement_keys[key] = turn(movement_keys[key], 180)
 			message_admins("[key_name_admin(usr)] has flipped all movement directions.")
@@ -596,7 +596,7 @@
 			if(alert("Randomize all movement controls?","Confirm","Yes","Cancel") == "Cancel")
 				return
 			var/list/movement_keys = SSinput.movement_keys
-			for(var/i in 1 to movement_keys.len)
+			for(var/i in TRUE to movement_keys.len)
 				var/key = movement_keys[i]
 				movement_keys[key] = turn(movement_keys[key], 45 * rand(1, 8))
 			message_admins("[key_name_admin(usr)] has randomized all movement directions.")
@@ -609,7 +609,7 @@
 				return
 			var/list/movement_keys = SSinput.movement_keys
 			var/list/new_movement = list()
-			for(var/i in 1 to movement_keys.len)
+			for(var/i in TRUE to movement_keys.len)
 				var/key = movement_keys[i]
 
 				var/msg = "Please input the new movement direction when the user presses [key]. Ex. northeast"

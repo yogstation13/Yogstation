@@ -114,7 +114,7 @@
 				A.bolt()
 		if(WIRE_AI) // Cut to disable WIRE_AI control, mend to re-enable.
 			if(mend)
-				if(A.aiControlDisabled == 1) // 0 = normal, 1 = locked out, 2 = overridden by WIRE_AI, -1 = previously overridden by WIRE_AI
+				if(A.aiControlDisabled == 1) // 0 = normal, TRUE = locked out, 2 = overridden by WIRE_AI, -1 = previously overridden by WIRE_AI
 					A.aiControlDisabled = 0
 				else if(A.aiControlDisabled == 2)
 					A.aiControlDisabled = -1

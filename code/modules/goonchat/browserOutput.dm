@@ -174,7 +174,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		if (connData && islist(connData) && connData.len > 0 && connData["connData"])
 			connectionHistory = connData["connData"] //lol fuck
 			var/list/found = new()
-			for(var/i in connectionHistory.len to 1 step -1)
+			for(var/i in connectionHistory.len to TRUE step -1)
 				var/list/row = src.connectionHistory[i]
 				if (!row || row.len < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
 					return

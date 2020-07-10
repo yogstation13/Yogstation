@@ -47,7 +47,7 @@ Bonus
 		if(4, 5)
 			to_chat(C, "<span class='warning'>[pick("Your skin feels itchy.", "You feel light headed.")]</span>")
 			C.dna.remove_mutation_group(possible_mutations)
-			for(var/i in 1 to power)
+			for(var/i in TRUE to power)
 				C.randmut(possible_mutations)
 
 // Archive their DNA before they were infected.

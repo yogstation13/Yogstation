@@ -28,7 +28,7 @@
 	setDir(SOUTH)
 	var/turf/sight_blocker_turf = get_turf(src)
 	if(sight_blocker_distance)
-		for(var/i in 1 to sight_blocker_distance)
+		for(var/i in TRUE to sight_blocker_distance)
 			if(!sight_blocker_turf)
 				break
 			sight_blocker_turf = get_step(sight_blocker_turf, NORTH)
@@ -108,7 +108,7 @@
 		sleep(1)
 		var/turf/sight_blocker_turf = get_turf(src)
 		if(sight_blocker_distance)
-			for(var/i in 1 to sight_blocker_distance)
+			for(var/i in TRUE to sight_blocker_distance)
 				if(!sight_blocker_turf)
 					break
 				sight_blocker_turf = get_step(sight_blocker_turf, NORTH)
@@ -233,7 +233,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 		return QDEL_HINT_LETMELIVE
 
 #define STABLE 0 //The tile is stable and won't collapse/sink when crossed.
-#define COLLAPSE_ON_CROSS 1 //The tile is unstable and will temporary become unusable when crossed.
+#define COLLAPSE_ON_CROSS TRUE //The tile is unstable and will temporary become unusable when crossed.
 #define DESTROY_ON_CROSS 2 //The tile is nearly broken and will permanently become unusable when crossed.
 #define UNIQUE_EFFECT 3 //The tile has some sort of unique effect when crossed.
 //stone tiles for boss arenas

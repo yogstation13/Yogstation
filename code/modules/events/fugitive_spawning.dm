@@ -42,7 +42,7 @@
 	if(isnull(leader))
 		member_size++ //if there is no leader role, then the would be leader is a normal member of the team.
 
-	for(var/i in 1 to member_size)
+	for(var/i in TRUE to member_size)
 		members += pick_n_take(candidates)
 
 	for(var/mob/dead/selected in members)

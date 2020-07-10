@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(cursed_minds)
 				var/list/valid_jobs = list()
 				for(var/random_job in subtypesof(/datum/job))
 					var/datum/job/J = new random_job()
-					if(J.total_positions == 1 || J.spawn_positions == 1)
+					if(J.total_positions == TRUE || J.spawn_positions == 1)
 						continue
 					if(J.minimal_player_age > 0)
 						continue

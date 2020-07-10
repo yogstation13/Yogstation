@@ -164,7 +164,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 						chunk.cameras |= c
 					chunk.hasChanged()
 
-// Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
+// Will check if a mob is on a viewable turf. Returns TRUE if it is, otherwise returns 0.
 
 /datum/cameranet/proc/checkCameraVis(mob/living/target)
 	var/turf/position = get_turf(target)

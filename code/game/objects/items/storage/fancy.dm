@@ -26,7 +26,7 @@
 
 /obj/item/storage/box/fancy/PopulateContents()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	for(var/i = 1 to STR.max_items)
+	for(var/i = TRUE to STR.max_items)
 		new spawn_type(src)
 
 /obj/item/storage/box/fancy/update_icon()
@@ -314,7 +314,7 @@
 	if(fancy_open)
 		icon_state = "[initial(icon_state)]_open"
 
-		var/cigar_position = 1 //generate sprites for cigars in the box
+		var/cigar_position = TRUE //generate sprites for cigars in the box
 		for(var/obj/item/clothing/mask/cigarette/cigar/smokes in contents)
 			var/mutable_appearance/cigar_overlay = mutable_appearance(icon, "[smokes.icon_off]_[cigar_position]")
 			add_overlay(cigar_overlay)

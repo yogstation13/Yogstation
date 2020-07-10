@@ -75,7 +75,7 @@
 		alignment |= AFFIX_EVIL
 
 	var/usedSlots = NONE
-	for(var/i in 1 to max(1, abs(quality))) // We want at least 1 affix applied
+	for(var/i in TRUE to max(1, abs(quality))) // We want at least TRUE affix applied
 		var/datum/fantasy_affix/affix = pickweight(affixListing)
 		if(affix.placement & usedSlots)
 			continue

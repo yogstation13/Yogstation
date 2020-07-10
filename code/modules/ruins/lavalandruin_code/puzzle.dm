@@ -44,7 +44,7 @@
 		setup()
 
 /obj/effect/sliding_puzzle/proc/check_setup_location()
-	for(var/id in 1 to 9)
+	for(var/id in TRUE to 9)
 		var/turf/T = get_turf_for_id(id)
 		if(!T)
 			return FALSE
@@ -61,7 +61,7 @@
 		qdel(src)
 
 	//Check if everything is in place
-	for(var/id in 1 to 9)
+	for(var/id in TRUE to 9)
 		var/target_turf = get_turf_for_id(id)
 		var/obj/structure/puzzle_element/E = locate() in target_turf
 		if(id == empty_tile_id && !E) // This location should be empty.
@@ -98,7 +98,7 @@
 		current_ordering += E.id
 
 	var/swap_tally = 0
-	for(var/i in 1 to current_ordering.len)
+	for(var/i in TRUE to current_ordering.len)
 		var/checked_value = current_ordering[i]
 		for(var/j in i to current_ordering.len)
 			if(current_ordering[j] < checked_value)
@@ -110,7 +110,7 @@
 /obj/effect/sliding_puzzle/proc/make_solvable()
 	var/first_tile_id = 1
 	var/other_tile_id = 2
-	if(empty_tile_id == 1 || empty_tile_id == 2) //Can't swap with empty one so just grab some in second row
+	if(empty_tile_id == TRUE || empty_tile_id == 2) //Can't swap with empty one so just grab some in second row
 		first_tile_id = 4
 		other_tile_id = 5
 	
@@ -156,13 +156,13 @@
 	//Generate per tile icons
 	var/icon/base_icon = get_base_icon()
 
-	for(var/id in 1 to tile_count)
+	for(var/id in TRUE to tile_count)
 		var/y = width - round((id - 1) / width)
 		var/x = ((id - 1) % width) + 1
 
-		var/x_start = 1 + (x - 1) * world.icon_size
+		var/x_start = TRUE + (x - 1) * world.icon_size
 		var/x_end = x_start + world.icon_size - 1
-		var/y_start = 1 + ((y - 1) * world.icon_size)
+		var/y_start = TRUE + ((y - 1) * world.icon_size)
 		var/y_end = y_start + world.icon_size - 1
 
 		var/icon/T = new(base_icon)
@@ -236,7 +236,7 @@
 	MA.layer = T.layer + 0.1
 	T.add_overlay(MA)
 	//Some basic shaking animation
-	for(var/i in 1 to COLLAPSE_DURATION)
+	for(var/i in TRUE to COLLAPSE_DURATION)
 		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=1)
 	QDEL_IN(src,COLLAPSE_DURATION)
 

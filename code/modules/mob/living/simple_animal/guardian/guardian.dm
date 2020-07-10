@@ -443,7 +443,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			else
 				to_chat(src, "<span class='holoparasite'>There were no ghosts willing to take control of <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>. Looks like you're stuck with it for now.</span>")
 		else
-			to_chat(src, "<span class='holoparasite'>You decide not to reset [guardians.len > 1 ? "any of your guardians":"your guardian"].</span>")
+			to_chat(src, "<span class='holoparasite'>You decide not to reset [guardians.len > TRUE ? "any of your guardians":"your guardian"].</span>")
 	else
 		verbs -= /mob/living/proc/guardian_reset
 
@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(G.summoner == src)
 			. += G
 
-/mob/living/simple_animal/hostile/guardian/proc/hasmatchingsummoner(mob/living/simple_animal/hostile/guardian/G) //returns 1 if the summoner matches the target's summoner
+/mob/living/simple_animal/hostile/guardian/proc/hasmatchingsummoner(mob/living/simple_animal/hostile/guardian/G) //returns TRUE if the summoner matches the target's summoner
 	return (istype(G) && G.summoner == summoner)
 
 

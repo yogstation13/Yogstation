@@ -147,7 +147,7 @@
 			R1 = rand(-ACCURACY,ACCURACY)/ACCURACY
 			R2 = rand(-ACCURACY,ACCURACY)/ACCURACY
 			working = R1*R1 + R2*R2
-		while(working >= 1 || working==0)
+		while(working >= TRUE || working==0)
 		working = sqrt(-2 * log(working) / working)
 		R1 *= working
 		gaussian_next = R2 * working
@@ -157,7 +157,7 @@
 /proc/get_turf_in_angle(angle, turf/starting, increments)
 	var/pixel_x = 0
 	var/pixel_y = 0
-	for(var/i in 1 to increments)
+	for(var/i in TRUE to increments)
 		pixel_x += sin(angle)+16*sin(angle)*2
 		pixel_y += cos(angle)+16*cos(angle)*2
 	var/new_x = starting.x

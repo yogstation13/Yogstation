@@ -12,7 +12,7 @@
 #define BZ_HEAT_PENALTY 5
 #define NITROGEN_HEAT_PENALTY -1.5
 
-//All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
+//All of these get divided by 10-bzcomp * 5 before having TRUE added and being multiplied with power to determine rads
 //Keep the negative values here above -10 and we won't get negative rads
 #define OXYGEN_TRANSMIT_MODIFIER 1.5   //Higher == Bigger bonus to power generation.
 #define PLASMA_TRANSMIT_MODIFIER 4
@@ -294,7 +294,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				//Hilariously enough, running into a closet should make you get hit the hardest.
 				var/mob/living/carbon/human/H = mob
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
-			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
+			var/rads = DETONATION_RADS * sqrt( TRUE / (get_dist(L, src) + 1) )
 			L.rad_act(rads)
 
 	var/turf/T = get_turf(src)
@@ -432,7 +432,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()	// Start to emit radballs at a maximum of 50% chance per tick
 			rps = round((bzmol/150), 1) // Cause more radballs to be spawned
-			for(var/i = 1 to rps)
+			for(var/i = TRUE to rps)
 				if(prob(80))
 					src.fire_nuclear_particle()		// Spawn more radballs at 90% chance each
 
@@ -465,7 +465,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			l.hallucination = clamp(0, 200, l.hallucination)
 
 	for(var/mob/living/l in range(src, round((power / 100) ** 0.25)))
-		var/rads = (power / 10) * sqrt( 1 / max(get_dist(l, src),1) )
+		var/rads = (power / 10) * sqrt( TRUE / max(get_dist(l, src),1) )
 		l.rad_act(rads)
 
 	power -= ((power/500)**3) * powerloss_inhibitor

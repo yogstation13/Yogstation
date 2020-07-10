@@ -246,7 +246,7 @@ Burning extracts:
 
 /obj/item/slimecross/burning/gold/do_effect(mob/user)
 	user.visible_message("<span class='danger'>[src] shudders violently, and summons an army for [user]!</span>")
-	for(var/i in 1 to 3) //Less than gold normally does, since it's safer and faster.
+	for(var/i in TRUE to 3) //Less than gold normally does, since it's safer and faster.
 		var/mob/living/simple_animal/S = create_random_mob(get_turf(user), HOSTILE_SPAWN)
 		S.faction |= "[REF(user)]"
 		if(prob(50))

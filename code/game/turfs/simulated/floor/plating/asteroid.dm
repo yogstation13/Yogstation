@@ -279,7 +279,7 @@
 		// Expand the edges of our tunnel
 		for(var/edge_angle in L)
 			var/turf/closed/mineral/edge = tunnel
-			for(var/current_tunnel_width = 1 to tunnel_width)
+			for(var/current_tunnel_width = TRUE to tunnel_width)
 				edge = get_step(edge, angle2dir(dir2angle(dir) + edge_angle))
 				if(istype(edge))
 					SpawnFloor(edge)

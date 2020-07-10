@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
 #define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
-#define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
+#define STANDARD_GRAVITY TRUE //Anything above this is high gravity, anything below no grav
 #define GRAVITY_DAMAGE_TRESHOLD 3 //Starting with this value gravity will start to damage mobs
 
 #define CAMERA_NO_GHOSTS 0
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 //Religion
 
-#define HOLY_ROLE_PRIEST 1 //default priestly role
+#define HOLY_ROLE_PRIEST TRUE //default priestly role
 #define HOLY_ROLE_HIGHPRIEST 2 //the one who designates the religion
 
 #define ALIGNMENT_GOOD "good"

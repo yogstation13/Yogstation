@@ -21,7 +21,7 @@
 	announceWhen = rand(50, 60)
 	endWhen = rand(20, 30)
 	severity = rand(1,3)
-	for(var/i in 1 to severity)
+	for(var/i in TRUE to severity)
 		var/picked_area = pick_n_take(potential_areas)
 		for(var/area/A in world)
 			if(istype(A, picked_area))

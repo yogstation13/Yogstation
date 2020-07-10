@@ -17,7 +17,7 @@
 	var/list/species_allowed = list() //to restrict mutation to only certain species
 	var/health_req //minimum health required to acquire the mutation
 	var/limb_req //required limbs to acquire this mutation
-	var/time_coeff = 1 //coefficient for timed mutations
+	var/time_coeff = TRUE //coefficient for timed mutations
 	var/datum/dna/dna
 	var/mob/living/carbon/human/owner
 	var/instability = 0 //instability the holder gets when the mutation is not native
@@ -40,7 +40,7 @@
 	var/mutadone_proof = FALSE
 
 	//Chromosome stuff - set to -1 to prevent people from changing it. Example: It'd be a waste to decrease cooldown on mutism
-	var/stabilizer_coeff = 1 //genetic stability coeff
+	var/stabilizer_coeff = TRUE //genetic stability coeff
 	var/synchronizer_coeff = -1 //makes the mutation hurt the user less
 	var/power_coeff = -1 //boosts mutation strength
 	var/energy_coeff = -1 //lowers mutation cooldown

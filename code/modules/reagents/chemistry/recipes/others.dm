@@ -619,7 +619,7 @@
 
 /datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/i in 1 to created_volume)
+	for(var/i in TRUE to created_volume)
 		new /obj/item/stack/sheet/plastic(location)
 
 /datum/chemical_reaction/pax

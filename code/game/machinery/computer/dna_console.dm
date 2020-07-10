@@ -1947,7 +1947,7 @@
 		return
 
 	var/len = length_char(scanner_occupant.dna.uni_identity)
-	var/num = randomize_radiation_accuracy(rad_pulse_index, radduration + (connected_scanner.precision_coeff ** 2), len) //Each manipulator level above 1 makes randomization as accurate as selected time + manipulator lvl^2																																																		 //Value is this high for the same reason as with laser - not worth the hassle of upgrading if the bonus is low
+	var/num = randomize_radiation_accuracy(rad_pulse_index, radduration + (connected_scanner.precision_coeff ** 2), len) //Each manipulator level above TRUE makes randomization as accurate as selected time + manipulator lvl^2																																																		 //Value is this high for the same reason as with laser - not worth the hassle of upgrading if the bonus is low
 	var/hex = copytext_char(scanner_occupant.dna.uni_identity, num, num+1)
 	hex = scramble(hex, radstrength, radduration)
 

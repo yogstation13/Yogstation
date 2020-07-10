@@ -30,7 +30,7 @@
 	bomb_result.set_volume(bomb_1.return_volume() + bomb_2.return_volume())
 	bomb_result.merge(bomb_1)
 	bomb_result.merge(bomb_2)
-	for(var/I in 1 to 10)
+	for(var/I in TRUE to 10)
 		bomb_result.react()
 		if(bomb_result.return_pressure() >= TANK_FRAGMENT_PRESSURE)
 			// Explosion!
@@ -45,7 +45,7 @@
 	. = ..()
 	var/dat
 	dat += "<b>Mode:</b>"
-	for(var/i in 1 to ATMOS_SIM_MODE_COUNT)
+	for(var/i in TRUE to ATMOS_SIM_MODE_COUNT)
 		var/mode_name = null
 		switch(i)
 			if(1)

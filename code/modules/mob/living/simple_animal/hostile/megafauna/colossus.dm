@@ -152,7 +152,7 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
 	var/counter = counter_start
-	for(var/i in 1 to 80)
+	for(var/i in TRUE to 80)
 		if(negative)
 			counter--
 		else

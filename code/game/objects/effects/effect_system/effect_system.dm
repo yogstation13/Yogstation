@@ -53,7 +53,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system/proc/start()
 	if(QDELETED(src))
 		return
-	for(var/i in 1 to number)
+	for(var/i in TRUE to number)
 		if(total_effects > 20)
 			return
 		INVOKE_ASYNC(src, .proc/generate_effect)
@@ -69,7 +69,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	else
 		direction = pick(GLOB.alldirs)
 	var/steps_amt = pick(1,2,3)
-	for(var/j in 1 to steps_amt)
+	for(var/j in TRUE to steps_amt)
 		sleep(5)
 		step(E,direction)
 	if(!QDELETED(src))

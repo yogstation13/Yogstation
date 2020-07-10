@@ -37,7 +37,7 @@
 /mob/living/simple_animal/hostile/clockwork/marauder/Life()
 	..()
 	if(!GLOB.ratvar_awakens && health / maxHealth <= MARAUDER_SLOWDOWN_PERCENTAGE)
-		speed = initial(speed) + 1 //Yes, this slows them down
+		speed = initial(speed) + TRUE //Yes, this slows them down
 	else
 		speed = initial(speed)
 	if(shield_health < max_shield_health && world.time >= shield_health_regen)

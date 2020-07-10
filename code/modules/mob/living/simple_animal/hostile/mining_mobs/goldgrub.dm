@@ -62,7 +62,7 @@
 	for(var/obj/item/stack/ore/O in get_turf(targeted_ore))
 		if(length(loot) < 10)
 			var/using = min(10 - length(loot), O.amount)
-			for(var/i in 1 to using)
+			for(var/i in TRUE to using)
 				loot += O.type
 			O.use(using)
 	visible_message("<span class='notice'>The ore was swallowed whole!</span>")

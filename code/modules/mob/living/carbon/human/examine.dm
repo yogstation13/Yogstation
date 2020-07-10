@@ -53,7 +53,7 @@
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms(FALSE)
 		if(hand_number)
-			. += "<span class='warning'>[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!</span>"
+			. += "<span class='warning'>[t_He] [t_has] [hand_number > TRUE ? "" : "a"] blood-stained hand[hand_number > TRUE ? "s" : ""]!</span>"
 
 	//handcuffed?
 

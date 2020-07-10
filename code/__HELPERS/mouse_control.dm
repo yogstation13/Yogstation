@@ -44,8 +44,8 @@
 		var/svy = screenview[2]
 		var/cox = round((svx - 1) / 2)
 		var/coy = round((svy - 1) / 2)
-		x = cx + (sx - 1 - cox)
-		y = cy + (sy - 1 - coy)
+		x = cx + (sx - TRUE - cox)
+		y = cy + (sy - TRUE - coy)
 		z = cz
 		p_x = text2num(screen_loc_X[2])
 		p_y = text2num(screen_loc_Y[2])

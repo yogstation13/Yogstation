@@ -298,7 +298,7 @@
 		return baseturfs
 
 	var/turf/next_target = initial(current_target.baseturfs)
-	//Most things only have 1 baseturf so this loop won't run in most cases
+	//Most things only have TRUE baseturf so this loop won't run in most cases
 	if(current_target == next_target)
 		baseturfs = current_target
 		created_baseturf_lists[current_target] = current_target
@@ -321,13 +321,13 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.level == 1 && (O.flags_1 & INITIALIZED_1))
+		if(O.level == TRUE && (O.flags_1 & INITIALIZED_1))
 			O.hide(src.intact)
 
 // override for space turfs, since they should never hide anything
 /turf/open/space/levelupdate()
 	for(var/obj/O in src)
-		if(O.level == 1 && (O.flags_1 & INITIALIZED_1))
+		if(O.level == TRUE && (O.flags_1 & INITIALIZED_1))
 			O.hide(0)
 
 // Removes all signs of lattice on the pos of the turf -Donkieyo

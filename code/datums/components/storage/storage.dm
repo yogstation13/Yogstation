@@ -577,7 +577,7 @@
 				if(!SEND_SIGNAL(I, COMSIG_CONTAINS_STORAGE) && can_be_inserted(I, FALSE))	//If it has storage it should be trying to dump, not insert.
 					handle_item_insertion(I, FALSE, L)
 
-//This proc return 1 if the item can be picked up and 0 if it can't.
+//This proc return TRUE if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
 /datum/component/storage/proc/can_be_inserted(obj/item/I, stop_messages = FALSE, mob/M)
 	if(!istype(I) || (I.item_flags & ABSTRACT))
@@ -717,7 +717,7 @@
 	var/atom/real_location = real_location()
 	if(!force)
 		amount = min(remaining_space_items(), amount)
-	for(var/i in 1 to amount)
+	for(var/i in TRUE to amount)
 		handle_item_insertion(new type(real_location), TRUE)
 		CHECK_TICK
 	return TRUE

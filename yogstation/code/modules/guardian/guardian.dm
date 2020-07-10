@@ -98,12 +98,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/setup_barriers()
 	cut_barriers()
-	if(!summoner?.current || !client || !is_deployed() || (range <= 1 || (stats && stats.range <= 1)) || get_dist_euclidian(summoner.current, src) < (range - world.view))
+	if(!summoner?.current || !client || !is_deployed() || (range <= TRUE || (stats && stats.range <= 1)) || get_dist_euclidian(summoner.current, src) < (range - world.view))
 		return
 	var/sx = summoner.current.x
 	var/sy = summoner.current.y
 	var/sz = summoner.current.z
-	if(sx - range - 1 < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
+	if(sx - range - TRUE < TRUE || sx + range + TRUE > world.maxx || sy - range - TRUE < TRUE || sy + range + TRUE > world.maxy)
 		return
 	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
 	for(var/turf/T in getline(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, WEST)
-	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
+	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - TRUE , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHWEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
@@ -254,7 +254,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	pixel_y = initial(pixel_y)
 	layer = initial(layer)
 	if(summoner?.current)
-		if(stats && stats.range == 1 && range != 255 && is_deployed())
+		if(stats && stats.range == TRUE && range != 255 && is_deployed())
 			if(istype(summoner.current.loc, /obj/effect))
 				Recall(TRUE)
 			else
@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		nullspace()
 		return
 	if(summoner?.current)
-		if(stats && stats.range == 1 && range != 255 && is_deployed())
+		if(stats && stats.range == TRUE && range != 255 && is_deployed())
 			if(istype(summoner.current.loc, /obj/effect))
 				Recall(TRUE)
 			else
@@ -648,7 +648,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			else
 				to_chat(src, "<span class='holoparasite'>There were no ghosts willing to take control of <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>. Looks like you're stuck with it for now.</span>")
 		else
-			to_chat(src, "<span class='holoparasite'>You decide not to reset [guardians.len > 1 ? "any of your guardians":"your guardian"].</span>")
+			to_chat(src, "<span class='holoparasite'>You decide not to reset [guardians.len > TRUE ? "any of your guardians":"your guardian"].</span>")
 	else
 		verbs -= /mob/living/proc/guardian_reset
 
@@ -661,7 +661,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(G.summoner == mind)
 			. += G
 
-/mob/living/simple_animal/hostile/guardian/proc/hasmatchingsummoner(mob/living/simple_animal/hostile/guardian/G) //returns 1 if the summoner matches the target's summoner
+/mob/living/simple_animal/hostile/guardian/proc/hasmatchingsummoner(mob/living/simple_animal/hostile/guardian/G) //returns TRUE if the summoner matches the target's summoner
 	return (istype(G) && G.summoner == summoner)
 
 

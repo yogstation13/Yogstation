@@ -58,7 +58,7 @@
 
 				var/damage_mod = 0
 				for(var/T in list(BRUTELOSS, FIRELOSS, TOXLOSS, OXYLOSS))
-					damage_mod += (T & damagetype) ? 1 : 0
+					damage_mod += (T & damagetype) ? TRUE : 0
 				damage_mod = max(1, damage_mod)
 
 				//Do 200 damage divided by the number of damage types applied.

@@ -194,7 +194,7 @@
 	// We extinguished our target or it was deleted
 	if(QDELETED(target_fire) || !is_burning(target_fire) || isdead(target_fire))
 		target_fire = null
-		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE)
+		var/scan_range = (stationary_mode ? TRUE : DEFAULT_SCAN_RANGE)
 
 		if(extinguish_people)
 			target_fire = scan(/mob/living, old_target_fire, scan_range) // Scan for burning humans first
@@ -205,7 +205,7 @@
 		old_target_fire = target_fire
 
 	// Target reached ENGAGE WATER CANNON
-	if(target_fire && (get_dist(src, target_fire) <= (emagged == 2 ? 1 : 2))) // Make the bot spray water from afar when not emagged
+	if(target_fire && (get_dist(src, target_fire) <= (emagged == 2 ? TRUE : 2))) // Make the bot spray water from afar when not emagged
 		if((speech_cooldown + SPEECH_INTERVAL) < world.time)
 			if(ishuman(target_fire))
 				speak("Stop, drop and roll!")

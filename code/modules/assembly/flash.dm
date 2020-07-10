@@ -62,7 +62,7 @@
 
 /obj/item/assembly/flash/proc/flash_recharge(interval = 10)
 	var/deciseconds_passed = world.time - last_used
-	for(var/seconds = deciseconds_passed / 10, seconds >= interval, seconds -= interval) //get 1 charge every interval
+	for(var/seconds = deciseconds_passed / 10, seconds >= interval, seconds -= interval) //get TRUE charge every interval
 		times_used--
 	last_used = world.time
 	times_used = max(0, times_used) //sanity

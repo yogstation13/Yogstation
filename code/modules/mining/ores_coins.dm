@@ -31,7 +31,7 @@
 			stack_overlays.len += difference
 	else if(difference > 0)			//amount > stack_overlays, add some.
 		cut_overlays()
-		for(var/i in 1 to difference)
+		for(var/i in TRUE to difference)
 			var/mutable_appearance/newore = mutable_appearance(icon, icon_state)
 			newore.pixel_x = rand(-8,8)
 			newore.pixel_y = rand(-8,8)

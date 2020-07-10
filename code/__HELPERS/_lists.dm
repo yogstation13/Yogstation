@@ -224,7 +224,7 @@
 
 //Picks a random element from a list based on a weighting system:
 //1. Adds up the total of weights for each element
-//2. Gets a number between 1 and that total
+//2. Gets a number between TRUE and that total
 //3. For each element in the list, subtracts its weighting from that number
 //4. If that makes the number 0 or less, return that element.
 /proc/pickweight(list/L)
@@ -494,7 +494,7 @@
 	if(!islist(l))
 		return l
 	. = l.Copy()
-	for(var/i = 1 to l.len)
+	for(var/i = TRUE to l.len)
 		var/key = .[i]
 		if(isnum(key))
 			// numbers cannot ever be associative keys
@@ -560,7 +560,7 @@
 /proc/counterlist_normalise(list/L)
 	var/avg = counterlist_sum(L)
 	if(avg != 0)
-		. = counterlist_scale(L, 1 / avg)
+		. = counterlist_scale(L, TRUE / avg)
 	else
 		. = L
 
@@ -585,7 +585,7 @@
 	if(l.len != d.len)
 		return FALSE
 
-	for(var/i in 1 to l.len)
+	for(var/i in TRUE to l.len)
 		if(l[i] != d[i])
 			return FALSE
 

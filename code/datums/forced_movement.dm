@@ -40,7 +40,7 @@
 		return
 	var/steps_to_take = round(steps_per_tick * (world.time - last_processed))
 	if(steps_to_take)
-		for(var/i in 1 to steps_to_take)
+		for(var/i in TRUE to steps_to_take)
 			if(TryMove())
 				moved_at_all = TRUE
 				if(on_step)

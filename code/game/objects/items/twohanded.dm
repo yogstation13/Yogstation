@@ -300,7 +300,7 @@
 		var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
 		B.organ_flags &= ~ORGAN_VITAL	//this cant possibly be a good idea
 		var/randdir
-		for(var/i in 1 to 24)//like a headless chicken!
+		for(var/i in TRUE to 24)//like a headless chicken!
 			if(user.is_holding(src))
 				randdir = pick(GLOB.alldirs)
 				user.Move(get_step(user, randdir),randdir)

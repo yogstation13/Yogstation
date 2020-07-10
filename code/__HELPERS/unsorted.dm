@@ -369,10 +369,10 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 // Format an energy value measured in Power Cell units.
 /proc/DisplayEnergy(units)
-	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
+	// APCs process every (SSmachines.wait * 0.1) seconds, and turn TRUE W of
 	// excess power into GLOB.CELLRATE energy units when charging cells.
 	// With the current configuration of wait=20 and CELLRATE=0.002, this
-	// means that one unit is 1 kJ.
+	// means that one unit is TRUE kJ.
 	return DisplayJoules(units * SSmachines.wait * 0.1 / GLOB.CELLRATE)
 
 /proc/get_mob_by_ckey(key)
@@ -553,7 +553,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 		return get_step(ref, base_dir)
 
 //Takes: Anything that could possibly have variables and a varname to check.
-//Returns: 1 if found, 0 if not.
+//Returns: TRUE if found, 0 if not.
 /proc/hasvar(datum/A, varname)
 	if(A.vars.Find(lowertext(varname)))
 		return 1
@@ -847,7 +847,7 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 			living_player_count += 1
 	return living_player_count
 
-/proc/randomColor(mode = 0)	//if 1 it doesn't pick white, black or gray
+/proc/randomColor(mode = 0)	//if TRUE it doesn't pick white, black or gray
 	switch(mode)
 		if(0)
 			return pick("white","black","gray","red","green","blue","brown","yellow","orange","darkred",
@@ -1525,7 +1525,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			. |= i
 /proc/generate_items_inside(list/items_list,var/where_to)
 	for(var/each_item in items_list)
-		for(var/i in 1 to items_list[each_item])
+		for(var/i in TRUE to items_list[each_item])
 			new each_item(where_to)
 
 //sends a message to chat

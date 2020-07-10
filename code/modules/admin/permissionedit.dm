@@ -217,7 +217,7 @@
 	if(use_db)
 		//if an admin exists without a datum they won't be caught by the above
 		var/datum/DBQuery/query_admin_in_db = SSdbcore.NewQuery(
-			"SELECT 1 FROM [format_table_name("admin")] WHERE ckey = :ckey",
+			"SELECT TRUE FROM [format_table_name("admin")] WHERE ckey = :ckey",
 			list("ckey" = .)
 		)
 		if(!query_admin_in_db.warn_execute())
@@ -337,7 +337,7 @@
 		//similarly if a temp rank is created it won't be in the db if someone is permanently changed to it
 
 		var/datum/DBQuery/query_rank_in_db = SSdbcore.NewQuery(
-			"SELECT 1 FROM [format_table_name("admin_ranks")] WHERE `rank` = :new_rank",
+			"SELECT TRUE FROM [format_table_name("admin_ranks")] WHERE `rank` = :new_rank",
 			list("new_rank" = new_rank)
 		)
 		if(!query_rank_in_db.warn_execute())
@@ -481,7 +481,7 @@
 		to_chat(usr, "<span class='admin prefix'>Rank deletion not permitted while database rank loading is disabled.</span>", confidential=TRUE)
 		return
 	var/datum/DBQuery/query_admins_with_rank = SSdbcore.NewQuery(
-		"SELECT 1 FROM [format_table_name("admin")] WHERE `rank` = :admin_rank",
+		"SELECT TRUE FROM [format_table_name("admin")] WHERE `rank` = :admin_rank",
 		list("admin_rank" = admin_rank)
 	)
 	if(!query_admins_with_rank.warn_execute())

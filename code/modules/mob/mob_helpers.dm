@@ -189,7 +189,7 @@
 		if(prob(chance))
 			if(replace_characters)
 				letter = ""
-			for(var/j in 1 to rand(0, 2))
+			for(var/j in TRUE to rand(0, 2))
 				letter += pick("#", "@", "*", "&", "%", "$", "/", "<", ">", ";", "*", "*", "*", "*", "*", "*", "*")
 		. += letter
 	return sanitize(.)
@@ -272,13 +272,13 @@
 /mob/proc/hallucinating()
 	return FALSE
 
-/proc/is_special_character(mob/M) // returns 1 for special characters and 2 for heroes of gamemode //moved out of admins.dm because things other than admin procs were calling this.
+/proc/is_special_character(mob/M) // returns TRUE for special characters and 2 for heroes of gamemode //moved out of admins.dm because things other than admin procs were calling this.
 	if(!SSticker.HasRoundStarted())
 		return FALSE
 	if(!istype(M))
 		return FALSE
 	if(issilicon(M))
-		if(iscyborg(M)) //For cyborgs, returns 1 if the cyborg has a law 0 and special_role. Returns 0 if the borg is merely slaved to an AI traitor.
+		if(iscyborg(M)) //For cyborgs, returns TRUE if the cyborg has a law 0 and special_role. Returns 0 if the borg is merely slaved to an AI traitor.
 			return FALSE
 		else if(isAI(M))
 			var/mob/living/silicon/ai/A = M
@@ -364,7 +364,7 @@
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \
 			"<span class='notice'>You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name].</span>")
-			return 1 //successful heal
+			return TRUE //successful heal
 		else
 			to_chat(user, "<span class='warning'>[affecting] is already in good condition!</span>")
 

@@ -231,7 +231,7 @@ Auto Patrol[]"},
 			continue
 
 		var/dst = get_dist(src, C)
-		if(dst <= 1 || dst > 7)
+		if(dst <= TRUE || dst > 7)
 			continue
 
 		targets += C

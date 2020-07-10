@@ -101,5 +101,5 @@
 	var/mob/living/simple_animal/hostile/guardian/G = owner
 	if(!G.stats || !G.stats.ability || !istype(G.stats.ability, /datum/guardian_ability/major/predator))
 		return
-	range_fuzz_factor = (10 / G.stats.potential) - 1 // at potential F, you'll just be able to tell what room they're in. At potential A, you'll know whether you're standing next to them or not.
+	range_fuzz_factor = (10 / G.stats.potential) - TRUE // at potential F, you'll just be able to tell what room they're in. At potential A, you'll know whether you're standing next to them or not.
 	return ..()

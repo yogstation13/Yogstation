@@ -36,13 +36,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/burnmod = 1		// multiplier for burn damage
 	var/coldmod = 1		// multiplier for cold damage
 	var/heatmod = 1		// multiplier for heat damage
-	var/acidmod = 1     // multiplier for acid damage // yogs - Old Plant People
+	var/acidmod = TRUE     // multiplier for acid damage // yogs - Old Plant People
 	var/stunmod = 1		// multiplier for stun duration
 	var/attack_type = BRUTE //Type of damage attack does
-	var/punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
+	var/punchdamagelow = TRUE       //lowest possible punch damage. if this is set to 0, punches will always miss
 	var/punchdamagehigh = 10      //highest possible punch damage
 	var/punchstunthreshold = 10//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
-	var/siemens_coeff = 1 //base electrocution coefficient
+	var/siemens_coeff = TRUE //base electrocution coefficient
 	var/damage_overlay_type = "human" //what kind of damage overlays (if any) appear on our species when wounded?
 	var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	var/inert_mutation 	= DWARFISM //special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
@@ -1019,7 +1019,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/hunger_rate = HUNGER_FACTOR
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
-			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
+			hunger_rate *= max(0.5, TRUE - 0.002 * mood.sanity) //0.85 to 0.75
 		// Whether we cap off our satiety or move it towards 0
 		if(H.satiety > MAX_SATIETY)
 			H.satiety = MAX_SATIETY
@@ -1152,7 +1152,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)
 			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
-			. += 1 + grav_force
+			. += TRUE + grav_force
 
 		if(HAS_TRAIT(H, TRAIT_FAT))
 			. += (1.5 - flight)
@@ -1545,7 +1545,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			natural = H.natural_bodytemperature_stabilization()
 		var/thermal_protection = 1
 		if(loc_temp < H.bodytemperature) //Place is colder than we are
-			thermal_protection -= H.get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			thermal_protection -= H.get_cold_protection(loc_temp) //This returns a 0 - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			thermal_protection *= heat_capacity_factor
 			if(H.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
 				H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
@@ -1556,7 +1556,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(H.stat != DEAD)
 			natural = H.natural_bodytemperature_stabilization()
 		var/thermal_protection = 1
-		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - TRUE value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 		thermal_protection *= heat_capacity_factor
 		if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
 			H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))

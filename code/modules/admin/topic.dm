@@ -656,7 +656,7 @@
 		if(alert(usr, "This will end the round, are you SURE you want to do this?", "Confirmation", "Yes", "No") == "Yes")
 			if(alert(usr, "Final Confirmation: End the round NOW?", "Confirmation", "Yes", "No") == "Yes")
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] has ended the round.</span>")
-				SSticker.force_ending = 1 //Yeah there we go APC destroyed mission accomplished
+				SSticker.force_ending = TRUE //Yeah there we go APC destroyed mission accomplished
 				return
 			else
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] decided against ending the round.</span>")
@@ -1949,7 +1949,7 @@
 		var/list/offset = splittext(href_list["offset"],",")
 		var/number = clamp(text2num(href_list["object_count"]), 1, 100)
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
+		var/Y = offset.len > TRUE ? text2num(offset[2]) : 0
 		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
 		var/obj_dir = text2num(href_list["object_dir"])
 		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
@@ -2171,7 +2171,7 @@
 		else
 			var/choice = alert("Please confirm Wanted Issue [(input_param==1) ? ("creation.") : ("edit.")]","Network Security Handler","Confirm","Cancel")
 			if(choice=="Confirm")
-				if(input_param==1)          //If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
+				if(input_param==1)          //If input_param == TRUE we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
 					GLOB.news_network.submitWanted(admincaster_wanted_message.criminal, admincaster_wanted_message.body, admin_signature, null, 1, 1)
 					src.admincaster_screen = 15
 				else

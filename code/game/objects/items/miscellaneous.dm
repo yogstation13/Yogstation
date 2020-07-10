@@ -47,7 +47,7 @@
 	if(!uses)
 		qdel(src)
 	else
-		to_chat(M, "<span class='notice'>[uses] use[uses > 1 ? "s" : ""] remaining on the [src].</span>")
+		to_chat(M, "<span class='notice'>[uses] use[uses > TRUE ? "s" : ""] remaining on the [src].</span>")
 
 /obj/item/choice_beacon/proc/spawn_option(obj/choice,mob/living/M)
 	var/obj/new_item = new choice()

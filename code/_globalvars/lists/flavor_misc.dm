@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(scarySounds, list('sound/weapons/thudswoosh.ogg','sound/weapons
 */
 
 //The whole system for the sorttype var is determined based on the order of this list,
-//disposals must always be 1, since anything that's untagged will automatically go to disposals, or sorttype = 1 --Superxpdude
+//disposals must always be 1, since anything that's untagged will automatically go to disposals, or sorttype = TRUE --Superxpdude
 
 //If you don't want to fuck up disposals, add to this list, and don't change the order.
 //If you insist on changing the order, you'll have to change every sort junction to reflect the new order. --Pete
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(numbers_as_words, world.file2list("strings/numbers_as_words.txt
 
 /proc/generate_number_strings()
 	var/list/L[198]
-	for(var/i in 1 to 99)
+	for(var/i in TRUE to 99)
 		L += "[i]"
 		L += "\Roman[i]"
 	return L

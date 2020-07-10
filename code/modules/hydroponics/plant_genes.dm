@@ -94,7 +94,7 @@
 	S.weed_chance = value
 
 
-// Reagent genes store reagent ID and reagent ratio. Amount of reagent in the plant = 1 + (potency * rate)
+// Reagent genes store reagent ID and reagent ratio. Amount of reagent in the plant = TRUE + (potency * rate)
 /datum/plant_gene/reagent
 	name = "Nutriment"
 	var/reagent_id = /datum/reagent/consumable/nutriment
@@ -246,7 +246,7 @@
 
 /datum/plant_gene/trait/glow
 	// Makes plant glow. Makes plant in tray glow too.
-	// Adds 1 + potency*rate light range and potency*(rate + 0.01) light_power to products.
+	// Adds TRUE + potency*rate light range and potency*(rate + 0.01) light_power to products.
 	name = "Bioluminescence"
 	rate = 0.03
 	examine_line = "<span class='info'>It emits a soft glow.</span>"

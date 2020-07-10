@@ -14,7 +14,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	circuit = /obj/item/circuitboard/machine/telecomms/processor
-	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
+	var/process_mode = TRUE // TRUE = Uncompress Signals, 0 = Compress Signals
 
 /obj/machinery/telecomms/processor/receive_information(datum/signal/subspace/signal, obj/machinery/telecomms/machine_from)
 	if(!is_freq_listening(signal))

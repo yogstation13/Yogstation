@@ -352,14 +352,14 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			var/throwtarget = get_edge_target_turf(user, get_dir(user, get_step_away(L, user)))
-			L.throw_at(throwtarget, 3 * power_multiplier, 1 * power_multiplier)
+			L.throw_at(throwtarget, 3 * power_multiplier, TRUE * power_multiplier)
 
 	//ATTRACT
 	else if((findtext(message, attract_words)))
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.throw_at(get_step_towards(user,L), 3 * power_multiplier, 1 * power_multiplier)
+			L.throw_at(get_step_towards(user,L), 3 * power_multiplier, TRUE * power_multiplier)
 
 	//WHO ARE YOU?
 	else if((findtext(message, whoareyou_words)))
@@ -409,7 +409,7 @@
 			direction = WEST
 		else if(findtext(message, right_words))
 			direction = EAST
-		for(var/iter in 1 to 5 * power_multiplier)
+		for(var/iter in TRUE to 5 * power_multiplier)
 			for(var/V in listeners)
 				var/mob/living/L = V
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, L, direction? direction : pick(GLOB.cardinals)), 10 * (iter - 1))

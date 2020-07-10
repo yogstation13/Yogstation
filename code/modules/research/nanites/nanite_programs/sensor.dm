@@ -51,7 +51,7 @@
 		var/new_delay = input(user, "Set the delay in seconds:", name, null) as null|num
 		if(isnull(new_delay))
 			return
-		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
+		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max TRUE hour
 
 /datum/nanite_program/sensor/repeat/get_extra_setting(setting)
 	if(setting == "Sent Code")
@@ -94,7 +94,7 @@
 		var/new_delay = input(user, "Set the delay in seconds:", name, null) as null|num
 		if(isnull(new_delay))
 			return
-		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max 1 hour
+		delay = (clamp(round(new_delay, 1), 0, 3600)) * 10 //max TRUE hour
 
 /datum/nanite_program/sensor/relay_repeat/get_extra_setting(setting)
 	if(setting == "Sent Code")

@@ -847,7 +847,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/blood_beam/proc/charge(mob/user)
 	var/obj/O
 	playsound(src, 'sound/magic/lightning_chargeup.ogg', 100, 1)
-	for(var/i in 1 to 12)
+	for(var/i in TRUE to 12)
 		if(!charging)
 			break
 		if(i > 1)
@@ -865,7 +865,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	var/spread = 40
 	var/second = FALSE
 	var/set_angle = angle
-	for(var/i in 1 to 12)
+	for(var/i in TRUE to 12)
 		if(second)
 			set_angle = angle - spread
 			spread -= 8

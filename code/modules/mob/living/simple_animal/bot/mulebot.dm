@@ -42,11 +42,11 @@
 	var/loaddir = 0				// this the direction to unload onto/load from
 	var/home_destination = "" 	// tag of home beacon
 
-	var/reached_target = 1 	//true if already reached the target
+	var/reached_target = TRUE 	//true if already reached the target
 
 	var/auto_return = 1		// true if auto return to home beacon after unload
-	var/auto_pickup = 1 	// true if auto-pickup at beacon
-	var/report_delivery = 1 // true if bot will announce an arrival to a location.
+	var/auto_pickup = TRUE 	// true if auto-pickup at beacon
+	var/report_delivery = TRUE // true if bot will announce an arrival to a location.
 
 	var/obj/item/stock_parts/cell/cell
 	var/bloodiness = 0
@@ -442,7 +442,7 @@
 	if(path && path.len)
 		target = ai_waypoint //Target is the end point of the path, the waypoint set by the AI.
 		destination = get_area_name(target, TRUE)
-		pathset = 1 //Indicates the AI's custom path is initialized.
+		pathset = TRUE //Indicates the AI's custom path is initialized.
 		start()
 
 /mob/living/simple_animal/bot/mulebot/handle_automated_action()

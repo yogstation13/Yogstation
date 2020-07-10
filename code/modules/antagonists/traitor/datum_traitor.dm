@@ -105,7 +105,7 @@
 			return
 
 
-	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
+	var/martyr_compatibility = TRUE //You can't succeed in stealing if you're dead.
 	for(var/datum/objective/O in objectives)
 		if(!O.martyr_compatible)
 			martyr_compatibility = 0

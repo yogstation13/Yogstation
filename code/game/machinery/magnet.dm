@@ -15,8 +15,8 @@
 	idle_power_usage = 50
 
 	var/freq = FREQ_MAGNETS		// radio frequency
-	var/electricity_level = 1 // intensity of the magnetic pull
-	var/magnetic_field = 1 // the range of magnetic attraction
+	var/electricity_level = TRUE // intensity of the magnetic pull
+	var/magnetic_field = TRUE // the range of magnetic attraction
 	var/code = 0 // frequency code, they should be different unless you have a group of magnets working together or something
 	var/turf/center // the center of magnetic attraction
 	var/on = FALSE
@@ -202,13 +202,13 @@
 	var/title = "Magnetic Control Console"
 	var/autolink = 0 // if set to 1, can't probe for other magnets!
 
-	var/pathpos = 1 // position in the path
+	var/pathpos = TRUE // position in the path
 	var/path = "w;e;e;w;s;n;n;s" // text path of the magnet
-	var/speed = 1 // lowest = 1, highest = 10
+	var/speed = TRUE // lowest = 1, highest = 10
 	var/list/rpath = list() // real path of the magnet, used in iterator
 
-	var/moving = 0 // 1 if scheduled to loop
-	var/looping = 0 // 1 if looping
+	var/moving = 0 // TRUE if scheduled to loop
+	var/looping = 0 // TRUE if looping
 
 	var/datum/radio_frequency/radio_connection
 
@@ -314,7 +314,7 @@
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath
-					pathpos = 1 // reset position
+					pathpos = TRUE // reset position
 					filter_path() // renders rpath
 
 			if("togglemoving")

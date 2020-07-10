@@ -1,7 +1,7 @@
 
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
 	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
-		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+		// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
 		var/resolved = target.attackby(src, user, params)
 		if(!resolved && target && !QDELETED(src))
 			afterattack(target, user, 1, params) // 1: clicking something Adjacent
@@ -123,7 +123,7 @@
 	else
 		return ..()
 
-// Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
+// Proximity_flag is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)

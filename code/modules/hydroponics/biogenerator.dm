@@ -86,7 +86,7 @@
 		return
 
 	if(istype(O, /obj/item/reagent_containers/glass))
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
 		if(!panel_open)
 			if(beaker)
 				to_chat(user, "<span class='warning'>A container is already loaded into the machine.</span>")
@@ -169,7 +169,7 @@
 	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
 		S += 5
 		if(I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) < 0.1)
-			points += 1 * productivity
+			points += TRUE * productivity
 		else
 			points += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 10 * productivity
 		qdel(I)
@@ -183,7 +183,7 @@
 		update_icon()
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
-	if(materials.len != 1 || materials[1] != MAT_BIOMASS)
+	if(materials.len != TRUE || materials[1] != MAT_BIOMASS)
 		return FALSE
 	if (materials[MAT_BIOMASS]*multiplier/efficiency > points)
 		return FALSE

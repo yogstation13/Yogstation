@@ -3,11 +3,11 @@
 // Should probably move these up and refactor modules so these can be mixed with other ones
 
 /datum/mapGenerator/ca
-	var/list/b_rule = list() // 0 -> 1, 1 -> 1
-	var/list/s_rule = list() // 0 -> 0, 1 -> 1
+	var/list/b_rule = list() // 0 -> 1, TRUE -> 1
+	var/list/s_rule = list() // 0 -> 0, TRUE -> 1
 	var/iterations = 1
 	var/loop_edges = 0
-	var/edge_value = 1 //if loop_edges = 0
+	var/edge_value = TRUE //if loop_edges = 0
 	var/list/old_state
 	var/list/current_state
 	var/width = 10
@@ -61,7 +61,7 @@
 		for(var/dy=-1,dy<=1,dy++)
 			var/n_x = i+dx
 			var/n_y = j+dy
-			if(n_x < 1 || n_x > width || n_y <1 || n_y > height)
+			if(n_x < TRUE || n_x > width || n_y <1 || n_y > height)
 				if(loop_edges)
 					if(n_x < 1)
 						n_x = width

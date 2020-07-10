@@ -74,7 +74,7 @@
 /////////////////
 // MULTISHARER //
 /////////////////
-//Abstract soullink for use with 1 Owner -> Many Sharer setups
+//Abstract soullink for use with TRUE Owner -> Many Sharer setups
 /datum/soullink/multisharer
 	var/list/soulsharers
 

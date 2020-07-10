@@ -27,7 +27,7 @@
 	var/defaultmsg = "<span class='notice'>Welcome. Please select an option.</span>"
 	var/rebootmsg = "<span class='warning'>%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!</span>"
 	//Computer properties
-	var/screen = MSG_MON_SCREEN_MAIN 		// 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
+	var/screen = MSG_MON_SCREEN_MAIN 		// 0 = Main menu, TRUE = Message Logs, 2 = Hacked screen, 3 = Custom Message
 	var/hacking = FALSE		// Is it being hacked into by the AI/Cyborg
 	var/message = "<span class='notice'>System bootup complete. Please select an option.</span>"	// The message that shows on the main menu.
 	var/auth = FALSE // Are they authenticated?

@@ -33,7 +33,7 @@
 	<HR>
 	<span class='big bold'>[name]</span>
 	<HR>"}
-	for(var/i in 1 to held_items.len)
+	for(var/i in TRUE to held_items.len)
 		var/obj/item/I = get_item_for_held_index(i)
 		dat += "<BR><B>[get_held_index_name(i)]:</B><A href='?src=[REF(src)];item=[SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "<font color=grey>Empty</font>"]</a>"
 	dat += "<BR><A href='?src=[REF(src)];pouches=1'>Empty Pouches</A>"

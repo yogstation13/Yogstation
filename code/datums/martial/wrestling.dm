@@ -380,7 +380,7 @@
 	if (A && D)
 		// These are necessary because of the sleep call.
 
-		if ((falling == 0 && get_dist(A, D) > 1) || (falling == 1 && get_dist(A, D) > 2)) // We climbed onto stuff.
+		if ((falling == 0 && get_dist(A, D) > 1) || (falling == TRUE && get_dist(A, D) > 2)) // We climbed onto stuff.
 			A.pixel_y = 0
 			if (falling == 1)
 				A.visible_message("<span class = 'danger'><B>...and dives head-first into the ground, ouch!</b></span>")

@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return sanitize_frequency(rand(MIN_FREQ, MAX_FREQ))
 	else if(istype(parent,/obj/item/pen))
 		var/list/L = list()
-		for(var/i in 1 to PEN_ROTATIONS)
+		for(var/i in TRUE to PEN_ROTATIONS)
 			L += rand(1, 360)
 		return L
 

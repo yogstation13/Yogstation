@@ -26,7 +26,7 @@
 		playsound(src.loc, 'sound/weapons/slashmiss.ogg', 75, 1)
 
 		var/turf/T = get_turf(src)
-		for(var/i in 1 to material_drop_amount)
+		for(var/i in TRUE to material_drop_amount)
 			new material_drop(src)
 		for(var/atom/movable/AM in contents)
 			AM.forceMove(T)

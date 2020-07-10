@@ -139,7 +139,7 @@
 						A.cell.charge = max(0, A.cell.charge - 50)
 						power_drained += 50
 						if(A.charging == 2) // If the cell was full
-							A.charging = 1 // It's no longer full
+							A.charging = TRUE // It's no longer full
 				if(drained >= drain_rate)
 					break
 

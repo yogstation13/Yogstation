@@ -6,10 +6,10 @@
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
 
-	var/stabilizer_coeff = 1 //lower is better, affects genetic stability
-	var/synchronizer_coeff = 1 //lower is better, affects chance to backfire
-	var/power_coeff = 1 //higher is better, affects "strength"
-	var/energy_coeff = 1 //lower is better. affects recharge time
+	var/stabilizer_coeff = TRUE //lower is better, affects genetic stability
+	var/synchronizer_coeff = TRUE //lower is better, affects chance to backfire
+	var/power_coeff = TRUE //higher is better, affects "strength"
+	var/energy_coeff = TRUE //lower is better. affects recharge time
 
 	var/weight = 5
 

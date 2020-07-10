@@ -34,13 +34,13 @@
 		var/hasContent = 0
 		var/requires = "It requires"
 
-		for(var/i = 1 to req_components.len)
+		for(var/i = TRUE to req_components.len)
 			var/tname = req_components[i]
 			var/amt = req_components[tname]
 			if(amt == 0)
 				continue
 			var/use_and = i == req_components.len
-			requires += "[(hasContent ? (use_and ? ", and" : ",") : "")] [amt] [amt == 1 ? req_component_names[tname] : "[req_component_names[tname]]\s"]"
+			requires += "[(hasContent ? (use_and ? ", and" : ",") : "")] [amt] [amt == TRUE ? req_component_names[tname] : "[req_component_names[tname]]\s"]"
 			hasContent = 1
 
 		if(hasContent)

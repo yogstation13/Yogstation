@@ -37,7 +37,7 @@
 		user.dropItemToGround(I)
 	for(var/turf/T in RANGE_TURFS(1, user))
 		new/obj/structure/psionic_barrier(T, 500)
-	for(var/stage in 1 to 3)
+	for(var/stage in TRUE to 3)
 		switch(stage)
 			if(1)
 				user.visible_message("<span class='userdanger'>Vibrations pass through the air. [user]'s eyes begin to glow a deep violet.</span>", \
@@ -63,7 +63,7 @@
 	animate(user, pixel_y = user.pixel_y + 8, time = 60)
 	sleep(45)
 	user.Shake(5, 5, 110)
-	for(var/i in 1 to 20)
+	for(var/i in TRUE to 20)
 		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-")]</span>")
 		sleep(1.1) //Spooky flavor message spam
 	user.visible_message("<span class='userdanger'>A tremendous shockwave emanates from [user]!</span>", "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")

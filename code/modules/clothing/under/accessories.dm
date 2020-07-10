@@ -334,7 +334,7 @@
 
 /obj/item/clothing/accessory/pocketprotector/cosmetology/Initialize()
 	. = ..()
-	for(var/i in 1 to 3)
+	for(var/i in TRUE to 3)
 		new /obj/item/lipstick/random(src)
 
 ////////////////

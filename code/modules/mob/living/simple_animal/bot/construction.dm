@@ -150,7 +150,7 @@
 					return
 				to_chat(user, "<span class='notice'>You start to wire [src]...</span>")
 				if(do_after(user, 40, target = src))
-					if(coil.get_amount() >= 1 && build_step == 6)
+					if(coil.get_amount() >= TRUE && build_step == 6)
 						coil.use(1)
 						to_chat(user, "<span class='notice'>You wire [src].</span>")
 						name = "wired ED-209 assembly"
@@ -439,7 +439,7 @@
 					toyswordamt = 0
 					icon_state = initial(icon_state)
 					to_chat(user, "<span class='notice'>The superglue binding [src]'s toy swords to its chassis snaps!</span>")
-					for(var/IS in 1 to toyswordamt)
+					for(var/IS in TRUE to toyswordamt)
 						new /obj/item/toy/sword(Tsec)
 
 		if(ASSEMBLY_FIFTH_STEP)
@@ -467,7 +467,7 @@
 				swordamt = 0
 				icon_state = initial(icon_state)
 				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords from the chassis.</span>")
-				for(var/IS in 1 to swordamt)
+				for(var/IS in TRUE to swordamt)
 					new /obj/item/melee/transforming/energy/sword/saber(Tsec)
 
 
