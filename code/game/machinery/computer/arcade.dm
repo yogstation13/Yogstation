@@ -1173,7 +1173,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 /obj/machinery/computer/arcade/proc/mousevend(mob/user)
 	for(var/i=0, i < 3, i++)
 		prizevend(user)
-	moused = 0
+	moused = FALSE
 	new /obj/item/computer_mouse(get_turf(src))
 	to_chat(user, "<span class='notice'>A Gamer Mouse falls out of the [src]</span>")
 
