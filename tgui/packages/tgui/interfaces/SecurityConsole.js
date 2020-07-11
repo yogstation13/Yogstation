@@ -46,7 +46,7 @@ export const SecurityConsole = (props, context) => {
                   ) || (
                     <Icon name="user-circle" verticalAlign="middle" size="4.5" mr="1rem" />
                   )}
-                  <Box inline fontSize="18px" bold>{username}</Box>
+                  <Box inline fontSize="18px" bold>{username ? username : "Unknown"}</Box>
                   <NoticeBox success={has_access} danger={!has_access}
                     textAlign="center" mt="1.5rem">
                     {has_access ? "Access Granted" : "Access Denied"}

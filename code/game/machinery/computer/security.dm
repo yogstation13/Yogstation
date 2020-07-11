@@ -57,7 +57,7 @@
 	data["logged_in"] = logged_in
 
 	if(issilicon(user))
-		var/mob/living/silicon/borg = usr
+		var/mob/living/silicon/borg = user
 		data["username"] = borg.name
 		data["has_access"] = TRUE
 
