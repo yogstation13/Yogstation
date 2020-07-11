@@ -210,7 +210,7 @@
 		if(advanced)
 			var/area/location_of_scan = get_area(A)
 			add_log("<B>Location of scan:</B> [location_of_scan.map_name].")
-			add_log("<B>GPS coordinate of scan:</B> [location_of_scan.x],[location_of_scan.y]")
+			add_log("<B>GPS coordinate of scan:</B> [get_turf(A).x],[get_turf(A).y]")
 
 		// Fingerprints
 		feedback(sound_scanner_scan)
