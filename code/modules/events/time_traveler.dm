@@ -25,9 +25,11 @@
 	P.color = "#00ff00"
 	sleep(100)
 	qdel(P)
+	return
 
 /datum/round_event/ghost_role/time_traveler/announce(fake)
 	priority_announce("Bluespace-time distortions have been detected aboard the station.")
+
 /datum/round_event/ghost_role/time_traveler/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
 	if(!candidates.len)
