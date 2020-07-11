@@ -98,35 +98,45 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon_nopipes()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	set_light(0)
+
 
 	if(stat & (BROKEN))
 		icon_state = "circ-broken"
+		set_light(0)
 		return
 
 	if(!generator)
 		icon_state = "circ-unassembled-[flipped]"
+		set_light(0)
 		return
 	if(!generator.anchored)
 		icon_state = "circ-unassembled-[flipped]"
+		set_light(0)
 		return
 	
 	icon_state = "circ-assembled-[flipped]"
 
 	if(!is_operational())
+		set_light(0)
 		return
 	else
 		if(!last_pressure_delta)
-			set_light(1)//fix amount
+			set_light(1)
 			SSvis_overlays.add_vis_overlay(src, icon, "circ-off", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 			return
 		else
 			if(last_pressure_delta > ONE_ATMOSPHERE) //fast
-				set_light(1) //change color and intensity
+				if(mode)
+					set_light(3,2,"#4F82FF")
+				else
+					set_light(3,2,"#FF3232")
 				SSvis_overlays.add_vis_overlay(src, icon, "circ-ex[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 				SSvis_overlays.add_vis_overlay(src, icon, "circ-run", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 			else	//slow
-				set_light(1) //change color and intensity
+				if(mode)
+					set_light(2,1,"#4F82FF")
+				else
+					set_light(2,1,"#FF3232")
 				SSvis_overlays.add_vis_overlay(src, icon, "circ-[mode?"cold":"hot"]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
@@ -253,5 +263,6 @@
 /obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
 	if(generator)
 		generator.kill_circs()
+		generator.update_icon()
 	..()
 	
