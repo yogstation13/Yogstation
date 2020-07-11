@@ -52,7 +52,10 @@ export const SecurityConsole = (props, context) => {
                     {has_access ? "Access Granted" : "Access Denied"}
                   </NoticeBox>
                   <Box textAlign="center">
-                    <Button icon="sign-in-alt" color={has_access ? "good" : "bad"} fluid>
+                    <Button icon="sign-in-alt" color={has_access ? "good" : "bad"} fluid
+                      onClick={() => {
+                        act("log_in");
+                      }} >
                       Log In
                     </Button>
                   </Box>
