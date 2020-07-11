@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return
 	if(istype(O, /obj/item/computer_mouse))
 		to_chat(user, "<span class='notice'>You attach the mouse onto [src] to overload the prize circuits!</span>")
-		moused = 1
+		moused = TRUE
 		qdel(O)
 
 // ** BATTLE ** //
