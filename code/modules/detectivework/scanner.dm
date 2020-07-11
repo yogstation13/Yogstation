@@ -115,7 +115,7 @@
 
 /obj/item/detective_scanner/proc/scan_animation()
 	if(scan_icon)
-		icon_state = (scanning ? icon_state_scanning : icon_state_neutral)
+		icon_state = (scanning ? icon_state_scanning : initial(icon_state))
 
 /obj/item/detective_scanner/proc/radial_generate() // generate option menu in order to show context sensitive menu
 	icons_available = list()
