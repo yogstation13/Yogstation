@@ -229,6 +229,7 @@ GLOBAL_VAR(restart_counter)
 
 	for(var/boi in GLOB.clients)
 		var/client/C = boi
+		if(!istype(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
 		sync_logout_with_db(C.connection_number)
 
 	TgsReboot()
