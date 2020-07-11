@@ -154,7 +154,7 @@
 /obj/item/implant/cult/blood
 	name = "soulshard"
 	linkedantag = /datum/antagonist/cult_implanted/blood
-	cult_team = "blood"
+	cult_team = CULT_TEAM_BLOOD
 	break_sound = 'sound/effects/glassbr2.ogg'
 
 #undef CULT_TEAM_CLOCK
