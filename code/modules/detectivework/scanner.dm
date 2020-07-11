@@ -74,7 +74,7 @@
 			return
 		
 		if(selection == "Volume on" || selection == "Volume off")
-			to_chat(user, (sound_on ? "<span class='notice'>You mute the volume.</span>" : "<span class='notice'>You turn up the volume.</span>"))
+			to_chat(user, "<span class='notice'>You turn the volume [sound_on ? "down":"up"].</span>")
 			sound_on = !sound_on
 			return
 
