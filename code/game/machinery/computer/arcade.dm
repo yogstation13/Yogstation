@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	clockwork = TRUE //it'd look weird
 	var/list/prize_override
 	light_color = LIGHT_COLOR_GREEN
-	var/moused = 1
+	var/moused = FALSE
 
 /obj/machinery/computer/arcade/proc/Reset()
 	return
