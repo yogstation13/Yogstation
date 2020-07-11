@@ -23,7 +23,6 @@
 	var/range = 8
 	var/view_check = TRUE
 	var/forensicPrintCount = 0
-	var/icon_state_neutral // stores the neutral icon state
 	var/scan_icon = TRUE // does the forensic scanner have a scanning icon state?
 	var/icon_state_scanning =  "forensicnew_scan" // icon state for scanning
 	var/scan_speed = 4 // the speed between scans. The delay is this value x2 . Total scan time  = scan_speed * 10 for minimum , scan_speed * 18 if results for each catagory are found
@@ -48,7 +47,6 @@
 
 /obj/item/detective_scanner/Initialize()
 	. = ..()
-	icon_state_neutral = icon_state
 	sound_on = (can_sound ? sound_on : FALSE)
 
 /datum/action/item_action/displayDetectiveScanResults
