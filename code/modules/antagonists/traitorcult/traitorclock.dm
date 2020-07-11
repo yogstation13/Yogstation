@@ -9,7 +9,7 @@
 /datum/antagonist/clockcult/agent/on_gain()
 	SSticker.mode.clockagents += owner
 	SSticker.mode.update_servant_icons_added(owner)
-	equip_clock_agent(owner)
+	equip_clock_agent()
 	owner.special_role = ROLE_CLOCK_AGENT
 	agent_team = SSticker.mode.clock_agent_team //only one agent team can exist for each side
 	if(!agent_team)
@@ -48,7 +48,8 @@
 	log_admin("[key_name(user)] has removed clockwork agent status from [key_name(owner)].")
 	remove_servant_of_ratvar(owner.current, TRUE)
 
-/datum/antagonist/clockcult/agent/proc/equip_clock_agent(mob/living/M)
+/datum/antagonist/clockcult/agent/proc/equip_clock_agent()
+	var/mob/living/M = owner.current
 	if(!M || !ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/L = M
