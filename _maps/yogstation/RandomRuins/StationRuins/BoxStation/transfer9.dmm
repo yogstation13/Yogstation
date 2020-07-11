@@ -143,15 +143,21 @@
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "t" = (
-/obj/structure/bed,
-/obj/machinery/flasher{
-	id = "executionflash";
-	pixel_y = 25
-	},
-/obj/effect/turf_decal/stripes/line{
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/healthanalyzer{
+	pixel_y = 18
+	},
+/obj/item/soap/nanotrasen,
+/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "v" = (
 /obj/structure/chair{
@@ -274,6 +280,17 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"H" = (
+/obj/machinery/flasher{
+	id = "executionflash";
+	pixel_y = 25
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/chair,
+/turf/open/floor/plating,
+/area/security/execution/transfer)
 "I" = (
 /obj/structure/table,
 /obj/item/folder/red{
@@ -308,17 +325,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"O" = (
-/obj/structure/closet/secure_closet/injection,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
@@ -364,20 +370,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"U" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/syringe/lethal/execution,
+"W" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
+/obj/effect/turf_decal/tile/red,
+/obj/structure/rack,
+/obj/item/gun/ballistic/shotgun/riot,
+/obj/item/ammo_casing/shotgun{
+	pixel_x = 2;
+	pixel_y = -7
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/healthanalyzer{
-	pixel_y = 18
+/obj/item/ammo_casing/shotgun{
+	pixel_x = 9;
+	pixel_y = -8
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
@@ -415,8 +424,8 @@ a
 a
 M
 s
-U
-O
+t
+W
 M
 "}
 (3,1,1) = {"
@@ -442,7 +451,7 @@ m
 T
 "}
 (5,1,1) = {"
-t
+H
 R
 G
 E

@@ -2,6 +2,13 @@
 "a" = (
 /turf/template_noop,
 /area/space)
+"b" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/reagent_containers/glass/bucket/wooden,
+/turf/open/floor/plating,
+/area/security/execution/transfer)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -53,11 +60,45 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"i" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/healthanalyzer{
+	pixel_y = 18
+	},
+/obj/item/clothing/gloves/color/black{
+	pixel_y = 5
+	},
+/obj/item/clothing/mask/balaclava,
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
 "m" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"n" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/structure/rack,
+/obj/item/melee/sabre{
+	name = "execution sabre"
+	},
+/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "o" = (
 /obj/structure/chair{
@@ -287,12 +328,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"K" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/security/execution/transfer)
 "M" = (
 /turf/closed/wall,
 /area/security/execution/transfer)
@@ -308,17 +343,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"O" = (
-/obj/structure/closet/secure_closet/injection,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
@@ -364,23 +388,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"U" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/syringe/lethal/execution,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/healthanalyzer{
-	pixel_y = 18
-	},
-/turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
 "Y" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -415,8 +422,8 @@ a
 a
 M
 s
-U
-O
+i
+n
 M
 "}
 (3,1,1) = {"
@@ -432,7 +439,7 @@ M
 "}
 (4,1,1) = {"
 Z
-K
+b
 y
 v
 C

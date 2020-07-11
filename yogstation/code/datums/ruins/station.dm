@@ -260,12 +260,3 @@
 	suffix = "transfer9.dmm"
 	name = "Transfer 9"
 
-/datum/map_template/ruin/station/box/transfer/transfer10
-	id = "transfer10"
-	suffix = "transfer10.dmm"
-	name = "Transfer 10"
-
-/datum/map_template/ruin/station/box/transfer/transfer11
-	id = "transfer11"
-	suffix = "transfer11.dmm"
-	name = "Transfer 11"

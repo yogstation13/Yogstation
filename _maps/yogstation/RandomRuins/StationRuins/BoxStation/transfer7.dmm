@@ -2,6 +2,24 @@
 "a" = (
 /turf/template_noop,
 /area/space)
+"b" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/healthanalyzer{
+	pixel_y = 18
+	},
+/obj/item/storage/firstaid/fire,
+/obj/item/wrench,
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -53,49 +71,75 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"m" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"o" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "executionfireblast";
-	name = "Transfer Area Lockdown";
-	pixel_x = 25;
-	pixel_y = -5;
-	req_access_txt = "2"
-	},
-/obj/machinery/button/flasher{
-	id = "executionflash";
-	pixel_x = 24;
-	pixel_y = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
+"j" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/space_heater,
+/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"p" = (
-/obj/effect/turf_decal/tile/red{
+"l" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "executionfireblast";
+	name = "blast door"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Transfer Chamber";
+	req_access_txt = "2"
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"m" = (
+/obj/structure/bed,
+/obj/machinery/flasher{
+	id = "executionflash";
+	pixel_y = 25
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"n" = (
 /obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
+"p" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
 "q" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "r" = (
@@ -142,14 +186,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"t" = (
-/obj/structure/bed,
-/obj/machinery/flasher{
-	id = "executionflash";
-	pixel_y = 25
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+"u" = (
+/obj/structure/grille,
+/obj/machinery/door/poddoor{
+	id = "executionspaceblast";
+	name = "blast door"
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
@@ -189,27 +230,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"y" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
+"A" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "0-2"
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
 	},
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/security/execution/transfer)
-"z" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "B" = (
 /obj/structure/chair{
@@ -241,10 +272,33 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "D" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/plasteel/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/igniter{
+	id = "transfer"
+	},
+/turf/open/floor/plating,
 /area/security/execution/transfer)
 "E" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "executionfireblast";
+	name = "blast door"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"F" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -254,25 +308,52 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"G" = (
-/obj/machinery/door/poddoor/preopen{
+"H" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/button/door{
 	id = "executionfireblast";
-	name = "blast door"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 1
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Transfer Chamber";
+	name = "Transfer Area Lockdown";
+	pixel_x = 25;
+	pixel_y = -5;
 	req_access_txt = "2"
 	},
-/turf/open/floor/plating,
+/obj/machinery/button/flasher{
+	id = "executionflash";
+	pixel_x = 24;
+	pixel_y = 5
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/button/ignition{
+	id = "transfer";
+	pixel_x = 24;
+	pixel_y = 15
+	},
+/obj/machinery/button/door{
+	id = "executionspaceblast";
+	name = "Vent to Space";
+	pixel_x = 25;
+	pixel_y = -15;
+	req_access_txt = "2"
+	},
+/turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "I" = (
 /obj/structure/table,
@@ -285,6 +366,19 @@
 	pixel_y = 2
 	},
 /obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"J" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "K" = (
@@ -310,7 +404,24 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "O" = (
-/obj/structure/closet/secure_closet/injection,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"R" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"S" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -318,32 +429,11 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
-"Q" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"R" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/security/execution/transfer)
-"S" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/light/small{
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "T" = (
 /obj/structure/table,
@@ -364,35 +454,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"U" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/syringe/lethal/execution,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/healthanalyzer{
-	pixel_y = 18
-	},
-/turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
-"Y" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"Z" = (
+"W" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/igniter{
+	id = "transfer"
+	},
 /obj/machinery/light/small{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
@@ -415,48 +485,48 @@ a
 a
 M
 s
-U
-O
+b
+S
 M
 "}
 (3,1,1) = {"
-M
-M
+u
+u
 M
 d
 M
-p
+j
 x
-z
+n
 M
 "}
 (4,1,1) = {"
-Z
+W
 K
-y
+E
 v
 C
 w
 g
-m
+q
 T
 "}
 (5,1,1) = {"
-t
+m
+O
+l
+F
 R
-G
-E
-D
-Y
-Q
-q
+A
+J
+p
 h
 "}
 (6,1,1) = {"
-S
+D
 f
-y
-o
+E
+H
 B
 c
 r
