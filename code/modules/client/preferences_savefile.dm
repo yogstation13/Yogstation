@@ -157,6 +157,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["ignoring"]			>> ignoring
 	S["ghost_hud"]			>> ghost_hud
 	S["inquisitive_ghost"]	>> inquisitive_ghost
+	S["seeSoaps"] 			>> seeSoaps
 	S["uses_glasses_colour"]>> uses_glasses_colour
 	S["clientfps"]			>> clientfps
 	S["parallax"]			>> parallax
@@ -265,6 +266,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["ignoring"], ignoring)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["inquisitive_ghost"], inquisitive_ghost)
+	WRITE_FILE(S["seeSoaps"], seeSoaps)
 	WRITE_FILE(S["uses_glasses_colour"], uses_glasses_colour)
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["parallax"], parallax)

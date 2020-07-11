@@ -16,3 +16,15 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, ghost_ckey)()
 	usr.client.prefs.chat_toggles ^= GHOST_CKEY
 	usr.client.prefs.save_preferences()
 	to_chat(usr, "Your ckey is [(usr.client.prefs.chat_toggles & GHOST_CKEY) ? "no longer" : "now"] visible in deadchat.")
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, seeSoaps)()
+	set name = "Show/Hide soapstones"
+	set category = "Preferences"
+	set desc = "Toggle soapstones"
+	usr.client.prefs.seeSoaps = !usr.client.prefs.seeSoaps
+	usr.client.prefs.save_preferences()
+	for(var/datum/atom_hud/alternate_appearance/basic/soapstone/AA in GLOB.active_alternate_appearances)
+		if(!AA)
+			continue
+		AA.onNewMob(usr)
+	to_chat(usr, "You will no[usr.client.prefs.seeSoaps ? "w" : " longer"] see soapstones on the station.")

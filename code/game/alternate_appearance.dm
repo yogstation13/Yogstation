@@ -36,6 +36,8 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/proc/onNewMob(mob/M)
 	if(mobShouldSee(M))
 		add_hud_to(M)
+	else
+		remove_hud_from(M)
 
 /datum/atom_hud/alternate_appearance/proc/mobShouldSee(mob/M)
 	return FALSE
@@ -60,6 +62,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	var/image/theImage
 	var/add_ghost_version = FALSE
 	var/ghost_appearance
+	var/deleteIfNone = TRUE
 
 /datum/atom_hud/alternate_appearance/basic/New(key, image/I, options = AA_TARGET_SEE_APPEARANCE)
 	..()
@@ -92,7 +95,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/basic/remove_from_hud(atom/A)
 	. = ..()
 	A.hud_list -= appearance_key
-	if(. && !QDELETED(src))
+	if(. && !QDELETED(src) && deleteIfNone)
 		qdel(src)
 
 /datum/atom_hud/alternate_appearance/basic/copy_overlays(atom/other, cut_old)
@@ -190,3 +193,11 @@ datum/atom_hud/alternate_appearance/basic/onePerson
 	..(key, I, FALSE)
 	seer = M
 	add_hud_to(seer)
+
+/datum/atom_hud/alternate_appearance/basic/soapstone
+	deleteIfNone = FALSE
+
+/datum/atom_hud/alternate_appearance/basic/soapstone/mobShouldSee(mob/M)
+	if(M.client.prefs.seeSoaps)
+		return FALSE
+	return TRUE

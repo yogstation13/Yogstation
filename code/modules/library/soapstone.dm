@@ -1,3 +1,4 @@
+GLOBAL_VAR_INIT(soapstones, 0)
 /obj/item/soapstone
 	name = "soapstone"
 	desc = "Leave informative messages for the crew, including the crew of future shifts!\nEven if out of uses, it can still be used to remove messages.\n(Not suitable for engraving on shuttles, off station or on cats. Side effects may include prompt beatings, psychotic clown incursions, and/or orbital bombardment.)"
@@ -138,6 +139,15 @@
 	if(!good_chisel_message_location(T))
 		persists = FALSE
 		return INITIALIZE_HINT_QDEL
+	var/image/I = image('icons/effects/effects.dmi', src, "nothing")
+	I.override = TRUE
+	GLOB.soapstones++
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/soapstone, "soapstone[GLOB.soapstones]", I)
+	var/datum/atom_hud/alternate_appearance/AA = GLOB.active_alternate_appearances[GLOB.soapstones]
+	for(var/mob/M in GLOB.player_list)
+		AA.onNewMob(M)
+
+	
 
 /obj/structure/chisel_message/proc/register(mob/user, newmessage)
 	hidden_message = newmessage
@@ -200,6 +210,13 @@
 	if(persists)
 		SSpersistence.SaveChiselMessage(src)
 	SSpersistence.chisel_messages -= src
+	for(var/v in GLOB.active_alternate_appearances)
+		if(!v || !istype(v, /datum/atom_hud/alternate_appearance/basic))
+			continue
+		var/datum/atom_hud/alternate_appearance/basic/AA = v
+		if(AA.target != src)
+			continue
+		qdel(AA)
 	. = ..()
 
 /obj/structure/chisel_message/interact()
