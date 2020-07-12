@@ -55,6 +55,7 @@
 	var/recent_rack = 0
 	var/tac_reloads = TRUE //Snowflake mechanic no more.
 	var/can_be_sawn_off  = FALSE
+	var/tac_reload_say = null
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -185,6 +186,8 @@
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
+			if(tac_reload_say)
+				user.say(tac_reload_speech, forced = "tactical reload")
 		else
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
 			magazine = null
@@ -343,6 +346,15 @@
 		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
 		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
+
+/obj/item/gun/ballistic/verb/set_tac_reload()
+	set name = "Set Tactical Reload Speech"
+	set category = "Object"
+	set desc = "Activate to set what is said with the gun when tactically reloading."
+	if(usr.incapacitated())
+		return
+	tac_reload_say = stripped_input(usr,"What do you want to say when tactically reloading with [src]? Cancel to disable tactical reload speech", ,tac_reload_say, MAX_NAME_LEN)
+	log_game([usr] has set the tactical reload speech on [src] to [tac_reload_say])
 
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
 	var/boolets = 0 //mature var names for mature people
