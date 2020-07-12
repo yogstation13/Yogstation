@@ -55,7 +55,7 @@
 	var/recent_rack = 0
 	var/tac_reloads = TRUE //Snowflake mechanic no more.
 	var/can_be_sawn_off  = FALSE
-	var/tac_reload_say = null
+	var/reload_say = null
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -162,6 +162,8 @@
 		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
+		if(reload_say && AM.ammo_count() && !get_ammo(FALSE))
+			user.say(reload_say, forced = "reloading")
 		magazine = AM
 		if (display_message)
 			to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
@@ -175,7 +177,6 @@
 		return FALSE
 
 /obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
-	var/can_tac_reload_say = FALSE
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if (magazine.ammo_count())
@@ -183,14 +184,10 @@
 	else
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 	magazine.forceMove(drop_location())
-	if(get_ammo(FALSE))
-		can_tac_reload_say = TRUE
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
-			if(can_tac_reload_say && tac_reload_say && get_ammo(FALSE)) //can only tactically reload if you're ACTUALLY tactically reloading
-				user.say(tac_reload_say, forced = "tactical reload")
 		else
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
 			magazine = null
@@ -359,8 +356,8 @@
 	if(!tac_reloads)
 		to_chat(usr, "<span class= 'notice'>This gun cannot tactically reload!</span>")
 		return
-	tac_reload_say = stripped_input(usr,"What do you want to say when tactically reloading with [src]? Cancel to disable tactical reload speech", ,tac_reload_say, MAX_NAME_LEN)
-	log_game("[usr] has set the tactical reload speech on [src] to [tac_reload_say]")
+	reload_say = stripped_input(usr,"What do you want to say when reloading with [src]? Cancel to disable reload speech.", ,reload_say, MAX_NAME_LEN)
+	log_game("[usr] has set the reload speech on [src] to [reload_say]")
 
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
 	var/boolets = 0 //mature var names for mature people
