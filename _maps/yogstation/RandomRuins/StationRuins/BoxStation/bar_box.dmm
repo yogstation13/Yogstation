@@ -1141,16 +1141,6 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"cJ" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "cK" = (
 /obj/structure/chair{
 	dir = 1
@@ -1385,6 +1375,18 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Ol" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "QH" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1781,7 +1783,7 @@ bS
 ce
 ce
 cg
-cJ
+Ol
 cT
 al
 aa

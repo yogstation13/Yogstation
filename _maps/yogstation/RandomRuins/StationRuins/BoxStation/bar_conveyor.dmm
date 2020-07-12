@@ -815,16 +815,6 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"ci" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
 "cj" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -1142,6 +1132,18 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"up" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "wt" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -1556,7 +1558,7 @@ bJ
 bN
 bN
 cg
-ci
+up
 cn
 al
 aa
