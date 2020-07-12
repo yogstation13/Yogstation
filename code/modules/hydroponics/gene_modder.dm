@@ -429,6 +429,7 @@
 
 /obj/item/disk/plantgene/Initialize()
 	. = ..()
+	update_icon()
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
