@@ -839,16 +839,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cN" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "cP" = (
 /mob/living/simple_animal/hostile/retaliate/dolphin/bouncer{
 	desc = "A bouncer in space."
@@ -953,6 +943,18 @@
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
 	pixel_y = 4
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"vH" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -1367,7 +1369,7 @@ bL
 cy
 cy
 bT
-cN
+vH
 cX
 ak
 aa

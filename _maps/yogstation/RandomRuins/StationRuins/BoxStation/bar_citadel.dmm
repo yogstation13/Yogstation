@@ -204,6 +204,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"aW" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bf" = (
 /obj/structure/table/wood,
 /obj/item/instrument/guitar{
@@ -601,16 +613,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"sf" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "sr" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -1828,7 +1830,7 @@ Iq
 Lq
 Lq
 ao
-sf
+aW
 Be
 tx
 uY

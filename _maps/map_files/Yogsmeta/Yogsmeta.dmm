@@ -54076,16 +54076,6 @@
 	dir = 2
 	},
 /area/crew_quarters/kitchen)
-"bRT" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bRU" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -83135,6 +83125,18 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"eTc" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "fdr" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -119121,7 +119123,7 @@ bLN
 dDe
 bOV
 bpl
-bRT
+eTc
 bST
 bUj
 bVu

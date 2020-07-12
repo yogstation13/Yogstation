@@ -863,16 +863,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cG" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "cI" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -981,6 +971,18 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"UT" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1361,7 +1363,7 @@ aX
 co
 co
 cb
-cG
+UT
 bH
 am
 aa
