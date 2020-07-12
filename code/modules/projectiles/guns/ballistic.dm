@@ -356,9 +356,6 @@
 	set desc = "Activate to set what is said with the gun when tactically reloading."
 	if(usr.incapacitated())
 		return
-	if(!tac_reloads)
-		to_chat(usr, "<span class= 'notice'>This gun cannot tactically reload!</span>")
-		return
 	reload_say = stripped_input(usr,"What do you want to say when reloading with [src]? Cancel to disable reload speech.", ,reload_say, MAX_NAME_LEN)
 	log_game("[usr] has set the reload speech on [src] to [reload_say]")
 
