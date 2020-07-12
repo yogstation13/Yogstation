@@ -187,7 +187,7 @@
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
 			if(tac_reload_say)
-				user.say(tac_reload_speech, forced = "tactical reload")
+				user.say(tac_reload_say, forced = "tactical reload")
 		else
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
 			magazine = null
@@ -353,7 +353,7 @@
 	set desc = "Activate to set what is said with the gun when tactically reloading."
 	if(usr.incapacitated())
 		return
-	if(!tac_reload)
+	if(!tac_reloads)
 		to_chat(usr, "<span class= 'notice'>This gun cannot tactically reload!</span>")
 		return
 	tac_reload_say = stripped_input(usr,"What do you want to say when tactically reloading with [src]? Cancel to disable tactical reload speech", ,tac_reload_say, MAX_NAME_LEN)
