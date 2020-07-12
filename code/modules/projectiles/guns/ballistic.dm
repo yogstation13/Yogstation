@@ -175,6 +175,7 @@
 		return FALSE
 
 /obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
+	var/can_tac_reload_say = FALSE
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if (magazine.ammo_count())
@@ -182,11 +183,13 @@
 	else
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 	magazine.forceMove(drop_location())
+	if(get_ammo(FALSE))
+		can_tac_reload_say = TRUE
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
-			if(tac_reload_say)
+			if(can_tac_reload_say && tac_reload_say && get_ammo(FALSE)) //can only tactically reload if you're ACTUALLY tactically reloading
 				user.say(tac_reload_say, forced = "tactical reload")
 		else
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
