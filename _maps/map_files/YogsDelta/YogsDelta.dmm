@@ -106252,18 +106252,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"deF" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/end{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical/medbay/central)
 "deG" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
@@ -127635,6 +127623,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/bridge/showroom/corporate)
+"wyO" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "wAA" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/r_wall,
@@ -175257,7 +175257,7 @@ cRe
 cZK
 dbu
 ddg
-deF
+wyO
 cNz
 cPv
 cmP

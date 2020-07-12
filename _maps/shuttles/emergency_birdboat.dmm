@@ -34,10 +34,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"ah" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "ai" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -497,6 +493,12 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"eR" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 aa
@@ -719,7 +721,7 @@ aD
 ax
 ai
 ai
-ah
+eR
 ab
 "}
 (15,1,1) = {"
