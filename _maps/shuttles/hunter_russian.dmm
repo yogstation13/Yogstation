@@ -43,7 +43,6 @@
 "i" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/structure/fans/tiny,
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
 "j" = (
@@ -120,11 +119,19 @@
 /area/shuttle/hunter)
 "v" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/hunter)
 "w" = (
 /obj/machinery/fugitive_capture,
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter)
+"x" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/shuttle/hunter)
 "y" = (
 /turf/template_noop,
@@ -220,15 +227,26 @@
 	rechargeTime = 1800;
 	width = 15
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
 "L" = (
 /obj/effect/mob_spawn/human/fugitive/russian{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/shuttle/hunter)
+"M" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter)
+"N" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/table/reinforced,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
 /turf/open/floor/plating,
 /area/shuttle/hunter)
 "P" = (
@@ -347,7 +365,7 @@ b
 p
 t
 P
-B
+N
 B
 F
 b
@@ -440,7 +458,7 @@ y
 y
 b
 k
-q
+M
 b
 b
 b
@@ -456,7 +474,7 @@ k
 v
 y
 y
-v
+x
 k
 k
 K

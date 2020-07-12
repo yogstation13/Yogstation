@@ -227,6 +227,10 @@ GLOBAL_VAR(restart_counter)
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown()	//run SS shutdowns
 
+	for(var/boi in GLOB.clients)
+		var/client/C = boi
+		sync_logout_with_db(C.connection_number)
+
 	TgsReboot()
 
 	if(TEST_RUN_PARAMETER in params)
@@ -253,10 +257,6 @@ GLOBAL_VAR(restart_counter)
 			log_world("World hard rebooted at [time_stamp()]")
 			shutdown_logging() // See comment below.
 			TgsEndProcess()
-	
-	for(var/boi in GLOB.clients)
-		var/client/C = boi
-		sync_logout_with_db(C.connection_number)
 
 	log_world("World rebooted at [time_stamp()]")
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
