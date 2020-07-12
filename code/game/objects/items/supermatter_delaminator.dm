@@ -3,10 +3,10 @@
 	<ul>\
 	<li>Approach an active supermatter crystal with radiation shielded personal protective equipment. DO NOT MAKE PHYSICAL CONTACT.</li>\
 	<li>Magnetically attach the data corruptor (also provided) into the supermatter control infrastructure to allow attaching the antinoblium.</li>\
-	<li>Open the provided antinoblium container (provided).</li>\
-	<li>Use antinoblium extraction tongs (also provided) and apply it to the crystal.</li>\
+	<li>Open the antinoblium container (provided).</li>\
+	<li>Use antinoblium extraction tongs (also provided) and apply the shard to the crystal. Take note that an EMP pulse will be emitted upon attachment. Prepare accordingly. </li>\
 	<li>Physical contact of any object with the antinoblium shard will fracture the shard and cause a spontaneous energy release.</li>\
-	<li>Extricate yourself immediately. You have 5 minutes before the infrastructure fails completely.</li>\
+	<li>Extricate yourself immediately. You have approximately 5 minutes before the infrastructure fails completely.</li>\
 	<li>Upon complete infrastructure failure, the crystal well will destabilize and emit electromagnetic waves that span the entire station.</li>\
 	<li>Nanotresen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
 	</ul>"
@@ -87,8 +87,8 @@
 	T.shard.forceMove(src)
 	shard = T.shard
 	T.shard = null
-	T.icon_state = "supermatter_tongs"
-	icon_state = "antinoblium_container_loaded"
+	T.update_icon()
+	update_icon()
 	to_chat(user, "<span class='warning'>Container is resealing...</span>")
 	addtimer(CALLBACK(src, .proc/seal), 50)
 	return TRUE
@@ -99,8 +99,8 @@
 	src.shard.forceMove(T)
 	T.shard = shard
 	shard = null
-	T.icon_state = "antinoblium_tongs_loaded"
-	icon_state = "antinoblium_container_empty"
+	T.update_icon()
+	update_icon()
 	to_chat(user, "<span class='warning'>[user] gingerly takes out the antinoblium shard with the tongs...</span>")
 	return TRUE
 
@@ -109,17 +109,17 @@
 		return
 	if(istype(shard) && !sealed)
 		STOP_PROCESSING(SSobj, shard)
-		icon_state = "antinoblium_container_sealed"
 		playsound(src, 'sound/items/Deconstruct.ogg', 60, 1)
 		sealed = TRUE
+		update_icon()
 		if(ismob(loc))
 			to_chat(loc, "<span class='warning'>[src] is temporarily resealed, [shard] is safely contained.</span>")
 
 /obj/item/antinoblium_container/proc/unseal()
 	if(!sealed)
 		return
-	icon_state = "antinoblium_container_loaded"
 	sealed = FALSE
+	update_icon()
 	if(ismob(loc))
 		to_chat(loc, "<span class='warning'>[src] is unsealed, the [shard] can now be removed.</span>")
 
@@ -134,13 +134,22 @@
 
 /obj/item/antinoblium_container/attack_self(mob/user)
 	if(sealed && shard)
-		if(do_after(user, 100, unseal()))
-			if(ismob(loc))
-				to_chat(loc, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
+		unseal()
+		if(ismob(loc))
+			to_chat(loc, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
 	else if(!sealed && shard)
-		if(do_after(user, 100, seal()))
-			if(ismob(loc))
-				to_chat(loc, "<span class='warning'>[user] seals the [src].</span>")
+		seal()
+		if(ismob(loc))
+			to_chat(loc, "<span class='warning'>[user] seals the [src].</span>")
+
+/obj/item/antinoblium_container/update_icon()
+	if(sealed)
+		icon_state = "antinoblium_container_sealed"
+	else if (shard)
+		icon_state = "antinoblium_container_loaded"
+	else
+		icon_state = "antinoblium_container_empty"
+	
 
 /obj/item/hemostat/antinoblium
 	name = "antinoblium extraction tongs"
