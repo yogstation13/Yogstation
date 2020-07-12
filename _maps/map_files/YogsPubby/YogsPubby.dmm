@@ -43761,22 +43761,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
-"bCj" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "bCk" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Gravity Generator";
@@ -58224,6 +58208,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
+"ifT" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "igE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -88896,7 +88896,7 @@ brg
 aPl
 byo
 bkk
-bCj
+ifT
 bCi
 bDr
 bEv

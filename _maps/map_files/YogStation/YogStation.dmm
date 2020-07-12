@@ -56851,15 +56851,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"rFs" = (
-/obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
-	dir = 8;
-	network = list("ss13","medbay")
-	},
-/obj/machinery/stasis,
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "rFv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57417,6 +57408,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"sAu" = (
+/obj/machinery/camera{
+	c_tag = "Medbay Treatment Center";
+	dir = 8;
+	network = list("ss13","medbay")
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "sAW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -99116,7 +99118,7 @@ bvh
 bwD
 bDR
 bDR
-rFs
+sAu
 bvj
 bCQ
 bqQ

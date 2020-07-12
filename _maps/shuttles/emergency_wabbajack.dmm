@@ -279,13 +279,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"aK" = (
-/obj/machinery/stasis,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "aL" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/mineral/titanium,
@@ -612,6 +605,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"sE" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "yZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -665,9 +665,13 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"WP" = (
-/obj/machinery/stasis,
-/obj/machinery/door/firedoor/border_only,
+"Wh" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 
@@ -778,9 +782,9 @@ ab
 ab
 ab
 aq
-aK
+Wh
 aN
-WP
+sE
 aq
 ab
 ji
