@@ -354,7 +354,7 @@
 	if(usr.incapacitated())
 		return
 	if(!tac_reload)
-		to_chat(usr, "<span class= 'notice'>This gun cannot tactically reload!</span>"
+		to_chat(usr, "<span class= 'notice'>This gun cannot tactically reload!</span>")
 		return
 	tac_reload_say = stripped_input(usr,"What do you want to say when tactically reloading with [src]? Cancel to disable tactical reload speech", ,tac_reload_say, MAX_NAME_LEN)
 	log_game("[usr] has set the tactical reload speech on [src] to [tac_reload_say]")
