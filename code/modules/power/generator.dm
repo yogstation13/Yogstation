@@ -1,7 +1,7 @@
 /obj/machinery/power/generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
-	icon = 'icons/obj/atmospherics/components/teg.dmi'
+	icon = 'icons/obj/machines/thermoelectric.dmi'
 	icon_state = "teg-unassembled"
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -12,8 +12,6 @@
 
 	var/lastgen = 0
 	var/lastgenlev = -1
-//	var/lastcirc = "00"	//used for old display panel
-
 
 /obj/machinery/power/generator/Initialize(mapload)
 	. = ..()
@@ -33,6 +31,7 @@
 	return ..()
 
 /obj/machinery/power/generator/update_icon()
+	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
 	if(stat & (BROKEN))
@@ -42,12 +41,14 @@
 		icon_state = "teg-assembled"
 	else
 		icon_state = "teg-unassembled"
+		if(panel_open)
+			add_overlay("teg-panel")
 		return
 		
 	if(stat & (NOPOWER))
 		return 
 	else
-		var/L = min(round(lastgenlev/100000),11) //add light var later
+		var/L = min(round(lastgenlev/100000),11)
 		if(L != 0)
 			SSvis_overlays.add_vis_overlay(src, icon, "teg-op[L]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
@@ -163,20 +164,20 @@
 	var/circpath = /obj/machinery/atmospherics/components/binary/circulator
 	if(dir == NORTH || dir == SOUTH)
 		C = locate(circpath) in get_step(src, EAST)
-		if(C && C.dir == WEST && C.anchored && !(C.stat &(BROKEN)))
+		if(C && C.dir == WEST && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 		C = locate(circpath) in get_step(src, WEST)
-		if(C && C.dir == EAST && C.anchored && !(C.stat &(BROKEN)))
+		if(C && C.dir == EAST && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 	else
 		C = locate(circpath) in get_step(src, NORTH)
-		if(C && C.dir == SOUTH && C.anchored && !(C.stat &(BROKEN)))
+		if(C && C.dir == SOUTH && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 		C = locate(circpath) in get_step(src, SOUTH)
-		if(C && C.dir == NORTH && C.anchored && !(C.stat &(BROKEN)))
+		if(C && C.dir == NORTH && C.anchored && !(C.stat &(BROKEN)) && !C.panel_open)
 			circs += C
 
 	if(circs.len == 2)
@@ -193,9 +194,38 @@
 	return circs.len
 
 /obj/machinery/power/generator/wrench_act(mob/living/user, obj/item/I)
-	if(!panel_open)
-		to_chat(user, "<span class='warning'>Open the panel first!</span>")
+	if(user.a_intent == INTENT_HARM)
 		return
+
+	if(!panel_open) //connect/disconnect circulators
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Anchor [src] before trying to connect the circulators!</span>")
+			return TRUE
+		else
+			if(hot_circ && cold_circ)
+				to_chat(user, "<span class='notice'>You start removing the circulators...</span>")
+				if(I.use_tool(src, user, 30, volume=50))
+					kill_circs()
+					update_icon()
+					to_chat(user, "<span class='notice'>You disconnect [src]'s circulator links.</span>")
+					playsound(src, 'sound/misc/box_deploy.ogg', 50)
+				return TRUE
+
+			to_chat(user, "<span class='notice'>You attempt to attach the circulators...</span>")
+			if(I.use_tool(src, user, 30, volume=50))
+				switch(find_circs())
+					if(0)
+						to_chat(user, "<span class='warning'>No circulators found!</span>")
+					if(1)
+						to_chat(user, "<span class='warning'>Only one circulator found!</span>")
+					if(2)
+						to_chat(user, "<span class='notice'>You connect [src]'s circulator links.</span>")
+						playsound(src, 'sound/misc/box_deploy.ogg', 50)
+						return TRUE
+					if(3)
+						to_chat(user, "<span class='warning'>Both circulators are the same mode!</span>")
+				return TRUE
+
 	anchored = !anchored
 	I.play_tool_sound(src)
 	if(!anchored)
@@ -205,52 +235,31 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/power/generator/multitool_act(mob/living/user, obj/item/I)
-	if(!anchored)
-		to_chat(user, "<span class='warning'>[src] isn't anchored!</span>")
+/obj/machinery/power/generator/screwdriver_act(mob/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(user.a_intent == INTENT_HARM)
 		return
 
 	if(hot_circ && cold_circ)
-		kill_circs()
-		update_icon()
-		to_chat(user, "<span class='notice'>You disconnect [src]'s circulator links.</span>")
-		return TRUE
-
-	switch(find_circs())
-		if(0)
-			to_chat(user, "<span class='warning'>No circulators found!</span>")
-		if(1)
-			to_chat(user, "<span class='warning'>Only one circulator found!</span>")
-		if(2)
-			to_chat(user, "<span class='notice'>You connect [src]'s circulator links.</span>")
-			update_icon()
-			update_adjacent_icons()
-			return TRUE
-		if(3)
-			to_chat(user, "<span class='warning'>Both circulators are the same mode!</span>")
-
-/obj/machinery/power/generator/proc/update_adjacent_icons()
-	if(!hot_circ || !cold_circ)
-		return
-	else
-		hot_circ.update_icon()
-		cold_circ.update_icon()
-
-/obj/machinery/power/generator/screwdriver_act(mob/user, obj/item/I)
-	if(..())
+		to_chat(user, "<span class='warning'>Disconnect the circulators first!</span>")
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
 	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	update_icon()
 	return TRUE
 
 /obj/machinery/power/generator/crowbar_act(mob/user, obj/item/I)
+	if(user.a_intent == INTENT_HARM)
+		return
+
 	if(anchored)
 		to_chat(user, "<span class='warning'>[src] is anchored!</span>")
-		return
+		return TRUE
 	else if(!panel_open)
 		to_chat(user, "<span class='warning'>Open the panel first!</span>")
-		return
+		return TRUE
 	else
 		default_deconstruction_crowbar(I)
 		return TRUE

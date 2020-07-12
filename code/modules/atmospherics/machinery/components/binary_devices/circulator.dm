@@ -5,11 +5,12 @@
 
 /obj/machinery/atmospherics/components/binary/circulator
 	name = "circulator"
-	desc = "A gas circulator pump and heat exchanger."
-	icon = 'icons/obj/atmospherics/components/teg.dmi'
-	icon_state = "circ-unassembled"
+	desc = "A gas circulating turbine and heat exchanger."
+	icon = 'icons/obj/machines/thermoelectric.dmi'
+	icon_state = "circ-unassembled-0"
 	density = TRUE
 	integrity_failure = 75
+	move_resist = MOVE_RESIST_DEFAULT //can be pushed around like a regular machine
 	var/active = FALSE
 
 	var/last_pressure_delta = 0
@@ -25,6 +26,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/flipped
 	flipped = 1
+	icon_state = "circ-unassembled-1"
 
 /obj/machinery/atmospherics/components/binary/circulator/cold/flipped
 	mode = CIRCULATOR_COLD
@@ -97,8 +99,8 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon_nopipes()
+	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
 
 	if(stat & (BROKEN))
 		icon_state = "circ-broken"
@@ -107,10 +109,14 @@
 
 	if(!generator)
 		icon_state = "circ-unassembled-[flipped]"
+		if(panel_open)
+			add_overlay("circ-panel")
 		set_light(0)
 		return
 	if(!generator.anchored)
 		icon_state = "circ-unassembled-[flipped]"
+		if(panel_open)
+			add_overlay("circ-panel")
 		set_light(0)
 		return
 	
@@ -141,13 +147,16 @@
 				SSvis_overlays.add_vis_overlay(src, icon, "circ-slow", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
-	if(generator)
-		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
+	if(user.a_intent == INTENT_HARM)
 		return
-
+		
 	if(!panel_open)
 		to_chat(user, "<span class='warning'>Open the panel first!</span>")
-		return
+		return TRUE
+
+	if(generator)
+		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
+		return TRUE
 
 	anchored = !anchored
 	I.play_tool_sound(src)
@@ -200,9 +209,11 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
+	if(user.a_intent == INTENT_HARM)
+		return 
 	if(generator)
 		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
-		return
+		return TRUE
 
 	mode = !mode
 	to_chat(user, "<span class='notice'>You set [src] to [mode?"cold":"hot"] mode.</span>")
@@ -211,18 +222,27 @@
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
+	if(user.a_intent == INTENT_HARM)
+		return
+	if(generator)
+		to_chat(user, "<span class='warning'>Disconnect the generator first!</span>")
+		return TRUE
+
 	panel_open = !panel_open
 	I.play_tool_sound(src)
 	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	update_icon_nopipes()
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
+	if(user.a_intent == INTENT_HARM)
+		return
 	if(anchored)
 		to_chat(user, "<span class='warning'>[src] is anchored!</span>")
-		return
-	else if(!panel_open)
-		to_chat(user, "<span class='warning'>Open the panel first!</span>")
-		return
+		return TRUE
+	if(!panel_open)
+		circulator_flip()
+		return TRUE
 	else
 		default_deconstruction_crowbar(I)
 		return TRUE
@@ -252,12 +272,9 @@
 	if(!ishuman(usr))
 		return
 
-	if(anchored)
-		to_chat(usr, "<span class='danger'>[src] is anchored!</span>")
-		return
-
 	flipped = !flipped
 	to_chat(usr, "<span class='notice'>You flip [src].</span>")
+	playsound(src, 'sound/items/change_drill.ogg', 50)
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
