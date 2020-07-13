@@ -133,10 +133,10 @@
 		return
 	if(sealed)
 		unseal()
-		to_chat(loc, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
+		to_chat(user, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
 	else 
 		seal()
-		to_chat(loc, "<span class='warning'>[user] seals the [src].</span>")
+		to_chat(user, "<span class='warning'>[user] seals the [src].</span>")
 
 /obj/item/antinoblium_container/update_icon()
 	if(sealed)
