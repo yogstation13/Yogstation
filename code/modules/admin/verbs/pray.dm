@@ -73,3 +73,10 @@
 	to_chat(GLOB.admins, msg, confidential=TRUE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)
 		C.overrideCooldown()
+
+/proc/Clown_announce(text , mob/Sender)
+	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
+	msg = "<span class='adminnotice'><b><font color=violet>CLOWN PLANET:</font>[ADMIN_FULLMONTY(Sender)] [ADMIN_SYNDICATE_REPLY(Sender)]:</b> [msg]</span>"
+	to_chat(GLOB.admins, msg, confidential=TRUE)
+	for(var/obj/machinery/computer/communications/C in GLOB.machines)
+		C.overrideCooldown()

@@ -107,7 +107,18 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	filling_color = "#FFD700"
 	tastes = list("fries" = 3, "cheese" = 1)
-	foodtype = VEGETABLES | GRAIN
+	foodtype = VEGETABLES | GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/poutine
+	name = "poutine"
+	desc = "Fries, cheese, and gravy. Une maudite poutine!"
+	icon_state = "poutine"
+	trash = /obj/item/trash/plate
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/gravy = 6)
+	filling_color = "#5e4b39"
+	tastes = list("gravy" = 3, "cheese" = 1, "fries" = 1)
+	foodtype = VEGETABLES | GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/badrecipe
 	name = "burned mess"

@@ -1,4 +1,6 @@
 /mob/Login()
+	if(!client)
+		return FALSE
 	GLOB.player_list |= src
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
@@ -42,8 +44,7 @@
 	update_client_colour()
 	update_mouse_pointer()
 	if(client)
-		client.change_view(CONFIG_GET(string/default_view)) // Resets the client.view in case it was changed.
-
+		client.change_view(getScreenSize(client.prefs.widescreenpref))
 		if(client.player_details.player_actions.len)
 			for(var/datum/action/A in client.player_details.player_actions)
 				A.Grant(src)
