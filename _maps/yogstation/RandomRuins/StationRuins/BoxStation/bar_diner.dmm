@@ -199,8 +199,8 @@
 /area/crew_quarters/bar)
 "aB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/end_right,
@@ -208,8 +208,8 @@
 /area/crew_quarters/bar)
 "aC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
@@ -230,8 +230,8 @@
 /obj/effect/landmark/start/assistant,
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/end_right{
-	icon_state = "ameribooth-end2";
-	dir = 4
+	dir = 4;
+	icon_state = "ameribooth-end2"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -246,8 +246,8 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -264,8 +264,8 @@
 /area/crew_quarters/bar)
 "aI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -385,8 +385,8 @@
 /area/crew_quarters/kitchen)
 "aY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel{
@@ -420,8 +420,8 @@
 	},
 /obj/item/reagent_containers/food/snacks/burger/plain,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -433,8 +433,8 @@
 "bc" = (
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/end_left{
-	icon_state = "ameribooth-end1";
-	dir = 1
+	dir = 1;
+	icon_state = "ameribooth-end1"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -496,8 +496,8 @@
 "bk" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -644,8 +644,8 @@
 /obj/structure/table/american,
 /obj/item/clothing/head/that,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
@@ -692,8 +692,8 @@
 /area/crew_quarters/kitchen)
 "bE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -718,8 +718,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -761,8 +761,8 @@
 /obj/structure/table/american,
 /obj/item/reagent_containers/food/snacks/burger/plain,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -803,13 +803,6 @@
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bQ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/baseball,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "bR" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel{
@@ -819,8 +812,8 @@
 "bS" = (
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/end_right{
-	icon_state = "ameribooth-end2";
-	dir = 1
+	dir = 1;
+	icon_state = "ameribooth-end2"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -828,8 +821,8 @@
 /obj/structure/table/american,
 /obj/item/reagent_containers/food/snacks/burger/superbite,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -847,8 +840,8 @@
 "bV" = (
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/single{
-	icon_state = "ameribooth_single";
-	dir = 1
+	dir = 1;
+	icon_state = "ameribooth_single"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -875,8 +868,8 @@
 /obj/structure/table/american/end,
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -906,18 +899,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cd" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "cf" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -1086,6 +1067,20 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"ko" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/burger/baseball{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = -10;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "mc" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -1116,6 +1111,20 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"Aw" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "Dn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1513,7 +1522,7 @@ aZ
 aj
 bt
 bH
-bQ
+ko
 bD
 bD
 bD
@@ -1547,7 +1556,7 @@ bw
 bD
 bD
 bJ
-cd
+Aw
 cm
 aj
 aa

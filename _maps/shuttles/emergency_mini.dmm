@@ -799,6 +799,18 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"TK" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Ug" = (
 /obj/structure/table,
 /obj/item/storage/box/fancy/donut_box,
@@ -963,7 +975,7 @@ UW
 sc
 uE
 UI
-uE
+TK
 rI
 pH
 rh

@@ -177,6 +177,12 @@
 	P.special_enabled = TRUE
 
 
+/datum/map_template/shuttle/emergency/transtar
+	suffix = "transtar"
+	name = "Transtar 800-C"
+	description = "A brand-new passenger transit vessel featuring a Centcom exclusion aftermarket kit for securely holding prisoners en-route to Centcom. Features First Class and business, in-flight beverages and snacks, and video screens for entertainment during the voyage!"
+	credit_cost = 3000
+
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
 	name = "Asteroid Station Emergency Shuttle"

@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "antag_pick used on gang, antag tokens should now work on gang if they didn't already"

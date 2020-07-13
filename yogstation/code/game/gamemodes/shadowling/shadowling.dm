@@ -56,7 +56,7 @@ Made by Xhuis
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer")
 
 /datum/game_mode/shadowling/announce()
 	to_chat(world, "<b>The current game mode is - Shadowling!</b>")
@@ -151,6 +151,9 @@ Made by Xhuis
 	var/mutable_appearance/eyes_overlay
 	var/shadow_charges = 3
 	var/last_charge = 0
+
+/datum/species/shadow/ling/negates_gravity(mob/living/carbon/human/H)
+	return TRUE
 
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_yogs_parts(TRUE)
