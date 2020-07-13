@@ -350,14 +350,17 @@
 	if (suppressed)
 		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
-/obj/item/gun/ballistic/verb/set_tac_reload()
-	set name = "Set Tactical Reload Speech"
+/obj/item/gun/ballistic/verb/set_reload()
+	set name = "Set Reload Speech"
 	set category = "Object"
 	set desc = "Activate to set what is said with the gun when tactically reloading."
 	if(usr.incapacitated())
 		return
-	reload_say = stripped_input(usr,"What do you want to say when reloading with [src]? Cancel to disable reload speech.", ,reload_say, MAX_NAME_LEN)
-	log_game("[usr] has set the reload speech on [src] to [reload_say]")
+	var/input = stripped_input(usr,"What do you want to say when reloading with [src]? Cancel to disable reload speech.", ,reload_say, MAX_NAME_LEN)
+	input = replacetext(input, "*", "")
+	if(input)
+		reload_say = input
+		log_game("[usr] has set the reload speech on [src] to [reload_say]")
 
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
 	var/boolets = 0 //mature var names for mature people
