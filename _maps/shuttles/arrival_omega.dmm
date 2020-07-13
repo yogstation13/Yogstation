@@ -88,8 +88,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 1
+	dir = 1;
+	icon_state = "warn_end"
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
@@ -145,6 +145,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/machinery/status_display/ai{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "q" = (
@@ -181,6 +184,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -261,6 +267,11 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
+"Q" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -306,7 +317,7 @@ l
 l
 l
 l
-l
+Q
 l
 l
 l
