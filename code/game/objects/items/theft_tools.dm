@@ -246,11 +246,11 @@
 /obj/item/hemostat/supermatter/proc/Consume(atom/movable/AM, mob/user)
 	if(ismob(AM))
 		var/mob/victim = AM
-		victim.dust()
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
 		message_admins("[ADMIN_LOOKUPFLW(user)] has used a supermatter sliver to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
 		investigate_log("[key_name(user)] has used a supermatter sliver to commit dual suicide with [key_name(victim)].", "supermatter")
+		victim.dust()
 	else
 		investigate_log("has consumed [AM].", "supermatter")
 		qdel(AM)

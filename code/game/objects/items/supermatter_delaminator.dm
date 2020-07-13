@@ -184,11 +184,11 @@
 /obj/item/hemostat/antinoblium/proc/Consume(atom/movable/AM, mob/user)
 	if(ismob(AM))
 		var/mob/victim = AM
-		victim.dust()
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
 		message_admins("[ADMIN_LOOKUPFLW(user)] has used an antinoblium shard to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
 		investigate_log("[key_name(user)] has used an antinoblium shard to commit dual suicide with [key_name(victim)].", "supermatter")
+		victim.dust()
 	else
 		investigate_log("has consumed [AM].", "supermatter")
 		qdel(AM)
@@ -196,9 +196,9 @@
 		user.visible_message("<span class='danger'>As [user] touches [AM] with \the [src], both flash into dust and silence fills the room...</span>",\
 			"<span class='userdanger'>You touch [AM] with [src], and everything suddenly goes silent.\n[AM] and [shard] flash into dust, and soon as you can register this, you do as well.</span>",\
 			"<span class='italics'>Everything suddenly goes silent.</span>")
-		user.dust()
 		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(user)].", "supermatter")
+		user.dust()
 	radiation_pulse(src, 500, 2)
 	empulse(src, 5, 10)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
