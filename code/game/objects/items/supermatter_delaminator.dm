@@ -41,7 +41,7 @@
 		tongs.shard = src
 		tongs.update_icon()
 		to_chat(user, "<span class='notice'>You carefully pick up [src] with [tongs].</span>")
-	else if(istype(W, /obj/item/scalpel/supermatter) || istype(W, /obj/item/nuke_core_container/supermatter/)) // we don't want it to dust
+	else if(istype(W, /obj/item/antinoblium_container/)) // we don't want it to dust
 		return
 	else
 		to_chat(user, "<span class='notice'>As it touches \the [src], both \the [src] and \the [W] burst into dust!</span>")
@@ -67,9 +67,6 @@
 	desc = "A small cube that houses a stable antinoblium shard  to be safely stored."
 	icon = 'icons/obj/supermatter_delaminator.dmi'
 	icon_state = "antinoblium_container_sealed"
-	//item_state = "tile"
-	//lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
-	//righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
 	var/obj/item/supermatter_delaminator/antinoblium_shard/shard
 	var/sealed = TRUE
 
@@ -94,9 +91,9 @@
 	return TRUE
 
 /obj/item/antinoblium_container/proc/unload(obj/item/hemostat/antinoblium/T, mob/user)
-	if(!istype(T) || T.shard || !shard || sealed)
+	if(!istype(T) || T.shard || !istype(shard) || sealed)
 		return FALSE
-	src.shard.forceMove(T)
+	shard.forceMove(T)
 	T.shard = shard
 	shard = null
 	T.update_icon()
@@ -105,42 +102,41 @@
 	return TRUE
 
 /obj/item/antinoblium_container/proc/seal()
-	if(sealed)
+	if(sealed || !istype(shard))
 		return
-	if(istype(shard) && !sealed)
-		STOP_PROCESSING(SSobj, shard)
-		playsound(src, 'sound/items/Deconstruct.ogg', 60, 1)
-		sealed = TRUE
-		update_icon()
-		if(ismob(loc))
-			to_chat(loc, "<span class='warning'>[src] is temporarily resealed, [shard] is safely contained.</span>")
+	STOP_PROCESSING(SSobj, shard)
+	playsound(src, 'sound/items/deconstruct.ogg', 60, 1)
+	sealed = TRUE
+	update_icon()
+	say("Hermetic locks re-engaged; [shard] is safely recontained.")
 
 /obj/item/antinoblium_container/proc/unseal()
 	if(!sealed)
 		return
 	sealed = FALSE
 	update_icon()
-	if(ismob(loc))
-		to_chat(loc, "<span class='warning'>[src] is unsealed, the [shard] can now be removed.</span>")
+	say("Hermetic locks disengaged; [shard] is available for use.")
 
 /obj/item/antinoblium_container/attackby(obj/item/hemostat/antinoblium/tongs, mob/user)
 	if(istype(tongs))
 		if(!tongs.shard)
 			unload(tongs, user)
+			return TRUE
 		else
 			load(tongs, user)
+			return TRUE
 	else
 		return ..()
 
 /obj/item/antinoblium_container/attack_self(mob/user)
-	if(sealed && shard)
+	if(!shard)
+		return
+	if(sealed)
 		unseal()
-		if(ismob(loc))
-			to_chat(loc, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
-	else if(!sealed && shard)
+		to_chat(loc, "<span class='warning'>[user] opens the [src] revealing the [shard] contained inside!</span>")
+	else 
 		seal()
-		if(ismob(loc))
-			to_chat(loc, "<span class='warning'>[user] seals the [src].</span>")
+		to_chat(loc, "<span class='warning'>[user] seals the [src].</span>")
 
 /obj/item/antinoblium_container/update_icon()
 	if(sealed)
@@ -190,7 +186,9 @@
 		var/mob/victim = AM
 		victim.dust()
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
+		message_admins("[key_name_admin(user)] has used an antinoblium shard to commit dual suicide with [key_name_admin(victim)]. This may be grief.")
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
+		investigate_log("[key_name(user)] has used an antinoblium shard to commit dual suicide with [key_name(victim)]. This may be grief.", "supermatter")
 	else
 		investigate_log("has consumed [AM].", "supermatter")
 		qdel(AM)
@@ -199,6 +197,8 @@
 			"<span class='userdanger'>You touch [AM] with [src], and everything suddenly goes silent.\n[AM] and [shard] flash into dust, and soon as you can register this, you do as well.</span>",\
 			"<span class='italics'>Everything suddenly goes silent.</span>")
 		user.dust()
+		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
+		investigate_log("has consumed [key_name(user)].", "supermatter")
 	radiation_pulse(src, 500, 2)
 	empulse(src, 5, 10)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)

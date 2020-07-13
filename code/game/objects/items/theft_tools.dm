@@ -69,8 +69,7 @@
 		STOP_PROCESSING(SSobj, core)
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/deconstruct.ogg', 60, 1)
-		if(ismob(loc))
-			to_chat(loc, "<span class='warning'>[src] is permanently sealed, [core]'s radiation is contained.</span>")
+		say("<span class='warning'>[src] is permanently sealed, [core]'s radiation is contained.</span>")
 
 /obj/item/nuke_core_container/attackby(obj/item/nuke_core/core, mob/user)
 	if(istype(core))
@@ -178,7 +177,7 @@
 	T.sliver = null
 	T.icon_state = "supermatter_tongs"
 	icon_state = "core_container_loaded"
-	to_chat(user, "<span class='warning'>Container is sealing...</span>")
+	say("<span class='warning'>Container is sealing...</span>")
 	addtimer(CALLBACK(src, .proc/seal), 50)
 	return TRUE
 
@@ -187,8 +186,7 @@
 		STOP_PROCESSING(SSobj, sliver)
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/Deconstruct.ogg', 60, 1)
-		if(ismob(loc))
-			to_chat(loc, "<span class='warning'>[src] is permanently sealed, [sliver] is safely contained.</span>")
+		say("<span class='warning'>[src] is permanently sealed, [sliver] is safely contained.</span>")
 
 /obj/item/nuke_core_container/supermatter/attackby(obj/item/hemostat/supermatter/tongs, mob/user)
 	if(istype(tongs))
@@ -250,7 +248,9 @@
 		var/mob/victim = AM
 		victim.dust()
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
+		message_admins("[key_name_admin(user)] has used a supermatter sliver to commit dual suicide with [key_name_admin(victim)]. This may be grief.")
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
+		investigate_log("[key_name(user)] has used a supermatter sliver to commit dual suicide with [key_name(victim)]. This may be grief.", "supermatter")
 	else
 		investigate_log("has consumed [AM].", "supermatter")
 		qdel(AM)
