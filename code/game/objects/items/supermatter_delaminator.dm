@@ -186,9 +186,9 @@
 		var/mob/victim = AM
 		victim.dust()
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
-		message_admins("[key_name_admin(user)] has used an antinoblium shard to commit dual suicide with [key_name_admin(victim)]. This may be grief.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] has used an antinoblium shard to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
-		investigate_log("[key_name(user)] has used an antinoblium shard to commit dual suicide with [key_name(victim)]. This may be grief.", "supermatter")
+		investigate_log("[key_name(user)] has used an antinoblium shard to commit dual suicide with [key_name(victim)].", "supermatter")
 	else
 		investigate_log("has consumed [AM].", "supermatter")
 		qdel(AM)
