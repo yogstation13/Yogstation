@@ -8051,7 +8051,8 @@
 /area/construction/mining/aux_base)
 "apK" = (
 /obj/structure/sign/departments/minsky/supply/janitorial{
-	step_y = 32
+	pixel_y = 32;
+	step_y = 0
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
