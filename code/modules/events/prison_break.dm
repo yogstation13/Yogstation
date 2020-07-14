@@ -82,7 +82,6 @@
 			// If we hit 2 keycard auths we'll open maint unless it's already open
 			// If we opened maint, we'll red alert at 4 keycard auths
 			else if(istype(O, /obj/machinery/keycard_auth))
-				var/obj/machinery/keycard_auth/temp = O
 				keycard_auths_found++
 				// Simulate the confirmation requirement
 				if(!(keycard_auths_found % 2) || keycard_auths_found > 4)
