@@ -63,24 +63,20 @@
 				// 75% chance we just leave it be, to not kill the AI/CE's joy *too much*
 				if(prob(75))
 					continue
-				var/option = pick(list(1, 2, 3, 4))
+				var/option = rand(1, 3)
 				switch(option)
-					// As if a multitool was used on it
-					if(1)
-						temp.setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-
 					// As if EMPed
-					if(2)
+					if(1)
 						temp.emp_act(2)
 					
 					// EMP-proof it, but with a 50/50 chance we don't tell them
-					if(3)
+					if(2)
 						var/secret = prob(50)
 						temp.upgradeEmpProof(secret)
 
 					// Give it a proximity alarm, can be either a boon or a curse depending on which camera gets it.
 					// Either way, the CE/Engineers can always just take the camera down and replace it.
-					if(4)
+					if(3)
 						temp.upgradeMotion()
 			
 			// If we hit 2 keycard auths we'll open maint unless it's already open
