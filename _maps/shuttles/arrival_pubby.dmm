@@ -20,9 +20,6 @@
 /area/shuttle/arrival)
 "e" = (
 /obj/item/storage/toolbox/emergency,
-/obj/item/storage/firstaid/regular{
-	pixel_y = 4
-	},
 /obj/machinery/status_display/ai{
 	pixel_x = -32
 	},
@@ -36,8 +33,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/sign/poster/official/enlist{
-	pixel_y = 32
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = 32;
+	use_power = 0
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -139,9 +138,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/clothing/mask/breath,
 /obj/machinery/status_display/evac{
@@ -205,14 +201,6 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
-"X" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_y = 32;
-	use_power = 0
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -225,7 +213,7 @@ a
 (2,1,1) = {"
 a
 b
-X
+f
 q
 b
 a

@@ -23,13 +23,12 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
 "e" = (
-/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 5
+	},
 /obj/item/storage/toolbox/emergency,
 /obj/machinery/status_display/ai{
 	pixel_x = -32
-	},
-/obj/item/storage/firstaid/regular{
-	pixel_y = 4
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/mineral/titanium/blue,
@@ -41,8 +40,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/sign/poster/official/enlist{
-	pixel_y = 32
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = 32;
+	use_power = 0
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -135,7 +136,13 @@
 /area/shuttle/arrival)
 "u" = (
 /obj/docking_port/mobile/arrivals,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "v" = (
 /obj/structure/chair/comfy/shuttle{
@@ -163,9 +170,6 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/clothing/mask/breath,
 /obj/machinery/status_display/evac{
@@ -197,17 +201,25 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
-"D" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_x = 32;
-	use_power = 0
-	},
-/turf/open/floor/mineral/titanium/white,
+"F" = (
+/obj/structure/sign/poster/official/no_erp,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "H" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"N" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "O" = (
 /obj/machinery/door/airlock/titanium{
@@ -229,6 +241,10 @@
 "U" = (
 /obj/structure/closet/wardrobe/white,
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"V" = (
+/obj/structure/sign/poster/official/random,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 
 (1,1,1) = {"
@@ -261,9 +277,9 @@ a
 (4,1,1) = {"
 b
 b
-b
+F
 t
-b
+V
 b
 b
 "}
@@ -343,7 +359,7 @@ b
 c
 f
 S
-D
+S
 S
 f
 O
@@ -352,7 +368,7 @@ O
 b
 m
 m
-Q
+N
 m
 m
 b

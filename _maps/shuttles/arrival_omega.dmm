@@ -52,8 +52,12 @@
 /obj/machinery/vending/wallmed{
 	pixel_y = 32
 	},
-/obj/item/storage/toolbox/emergency,
-/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = -2
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 2
+	},
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
@@ -120,14 +124,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/enlist{
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
