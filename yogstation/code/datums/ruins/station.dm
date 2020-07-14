@@ -9,7 +9,7 @@
 	id = "maint_surgery"
 	suffix = "maint_surgery.dmm"
 	name = "Maintenance Surgery"
-/*
+
 /datum/map_template/ruin/station/box/bar
 	id = "bar_box"
 	suffix = "bar_box.dmm"
@@ -69,7 +69,7 @@
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
 	name = "Bar Clock"
-*/
+
 /datum/map_template/ruin/station/box/bar/clerk
 	id = "bar_clerk"
 	suffix = "bar_clerk.dmm"
