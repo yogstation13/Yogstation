@@ -254,7 +254,8 @@
 	return data
 
 /obj/machinery/computer/secure_data/ui_act(action, list/params)
-	. = ..()
+	if(..())
+		return
 	
 	switch(action)
 		if("back")
