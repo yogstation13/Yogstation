@@ -64,11 +64,16 @@
 	id = "bar_cheese"
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
-	
+
 /datum/map_template/ruin/station/box/bar/clock
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
 	name = "Bar Clock"
+
+/datum/map_template/ruin/station/box/bar/clerk
+	id = "bar_clerk"
+	suffix = "bar_clerk.dmm"
+	name = "Clerk Bar"
 
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
@@ -139,7 +144,7 @@
 	id = "medbay_morgue5"
 	suffix = "medbay_morgue5.dmm"
 	name = "Morgue 5"
-	
+
 /datum/map_template/ruin/station/box/dorms_edoor
 	id = "dorms_edoor1"
 	suffix = "dorms_edoor1.dmm"
