@@ -12529,13 +12529,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"aBg" = (
-/obj/structure/closet/crate,
-/obj/item/target/syndicate,
-/obj/item/target,
-/obj/item/target/alien,
-/turf/open/floor/plasteel,
-/area/clerk)
 "aBh" = (
 /obj/machinery/camera{
 	c_tag = "EVA Maintenance";
@@ -46977,6 +46970,16 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /turf/open/floor/plasteel/white,
 /area/maintenance/department/tcoms)
+"ell" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 3;
+	name = "3maintenance loot spawner"
+	},
+/obj/item/a_gift/anything,
+/obj/item/a_gift/anything,
+/turf/open/floor/plasteel,
+/area/clerk)
 "ema" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -47494,20 +47497,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"eYf" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel,
-/area/clerk)
 "eYG" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/tile/neutral{
@@ -49712,6 +49701,21 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space/basic,
 /area/space/nearstation)
+"idW" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/landmark/start/yogs/clerk,
+/turf/open/floor/plasteel,
+/area/clerk)
 "ieh" = (
 /obj/item/trash/candy,
 /obj/item/clothing/neck/stethoscope,
@@ -51604,6 +51608,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
+"kJp" = (
+/obj/structure/rack,
+/obj/item/a_gift/anything,
+/obj/item/a_gift/anything,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/turf/open/floor/plasteel,
+/area/clerk)
 "kJy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 9
@@ -56283,14 +56294,6 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"rpT" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 3;
-	name = "3maintenance loot spawner"
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "rqq" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Corridor West";
@@ -56935,6 +56938,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"soL" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/lootdrop/two_percent_xeno_egg_spawner,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "ssY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -57819,13 +57828,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/security/main)
-"tyo" = (
-/obj/structure/rack,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "typ" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Input Port Pump"
@@ -60283,6 +60285,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/space/basic,
 /area/space)
+"xfI" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 3;
+	name = "3maintenance loot spawner"
+	},
+/obj/item/a_gift/anything,
+/obj/item/a_gift/anything,
+/obj/item/a_gift/anything,
+/turf/open/floor/plasteel,
+/area/clerk)
 "xgh" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -60455,6 +60468,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"xwm" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/costume,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xwL" = (
 /obj/machinery/camera{
 	c_tag = "MiniSat Teleporter Room";
@@ -60687,6 +60705,16 @@
 /obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"xTS" = (
+/obj/structure/closet/crate,
+/obj/item/target/syndicate,
+/obj/item/target,
+/obj/item/target/alien,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "xUn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -90430,10 +90458,10 @@ iGx
 kOt
 xxL
 aDj
-eYf
+idW
 sYG
 aLX
-jez
+soL
 gXl
 aJq
 aJq
@@ -90682,9 +90710,9 @@ aoG
 apd
 epe
 ayG
-rpT
+xfI
 fEv
-rpT
+ell
 ayG
 cwJ
 aDw
@@ -90940,14 +90968,14 @@ apd
 avt
 ayG
 aci
-aBg
-tyo
+xTS
+kJp
 ayG
 tog
 aDw
 lcg
 aLX
-gXl
+xwm
 jez
 aMa
 aNw
