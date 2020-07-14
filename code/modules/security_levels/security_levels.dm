@@ -61,7 +61,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 		if(level >= SEC_LEVEL_RED)
 			for(var/obj/machinery/computer/shuttle/pod/pod in GLOB.machines)
-					pod.admin_controlled = FALSE
+				pod.admin_controlled = FALSE
 			for(var/obj/machinery/door/D in GLOB.machines)
 				if(D.red_alert_access)
 					D.visible_message("<span class='notice'>[D] whirrs as it automatically lifts access requirements!</span>")
@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 			SSshuttle.emergency.modTimer(modTimer)
-			
+
 		SSblackbox.record_feedback("tally", "security_level_changes", 1, get_security_level())
 		SSnightshift.check_nightshift()
 	else
