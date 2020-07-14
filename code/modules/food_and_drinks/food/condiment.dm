@@ -237,24 +237,23 @@
 /obj/item/reagent_containers/food/condiment/flour/on_reagent_change(changetype) //born of intense hatred
 	if(!reagents.has_reagent(/datum/reagent/water, 10))
 		return ..()
-	else
-		var/target
-		var/L
-		for(var/obj/structure/table/S in src.loc)
-			target = S
-			L = S.loc
-		if(!target)
-			var/turf/T = get_turf(src)
-			target = T
-			L = target
-
-		var/list/seen = viewers(7, get_turf(src))
-		for(var/mob/M in seen)
-			to_chat(M, "<span class='warning'>The water soaks through the sack, and its contents spill all over [target]!</span>")
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
-		reagents.reaction(target, TOUCH)
-		new /obj/item/trash/floursack(L)
-		qdel(src)
+	
+	var/target
+	var/L
+	for(var/obj/structure/table/S in loc)
+		target = S
+		L = S.loc
+	if(!target)
+		var/turf/T = get_turf(src)
+		target = T
+		L = target
+	var/list/seen = viewers(7, target)
+	for(var/mob/M in seen)
+		to_chat(M, "<span class='warning'>The water soaks through the sack, and its contents spill all over [target]!</span>")
+	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+	reagents.reaction(target, TOUCH)
+	new /obj/item/trash/floursack(L)
+	qdel(src)
 
 /obj/item/reagent_containers/food/condiment/soymilk
 	name = "soy milk"
