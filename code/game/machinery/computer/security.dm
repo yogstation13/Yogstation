@@ -153,17 +153,21 @@
 		if(!istype(active_general_record, /datum/data/record) || !GLOB.data_core.general.Find(active_general_record))
 			screen = MAIN_SCREEN
 			return 
+		var/list/assets = list()
 		data["active_general_record"] = TRUE
 		if(istype(active_general_record.fields["photo_front"], /obj/item/photo))
 			var/obj/item/photo/P1 = active_general_record.fields["photo_front"]
 			if(!SSassets.cache["photo_front_[active_general_record.fields["id"]].png"])
 				register_asset("photo_front_[active_general_record.fields["id"]].png", P1.picture.picture_image)
-			send_asset_list(user, list("photo_front_[active_general_record.fields["id"]].png" = P1.picture.picture_image))
+			assets[photo_front_[active_general_record.fields["id"]].png] = P1.picture_image
+
 		if(istype(active_general_record.fields["photo_side"], /obj/item/photo))
 			var/obj/item/photo/P2 = active_general_record.fields["photo_side"]
 			if(!SSassets.cache["photo_side_[active_general_record.fields["id"]].png"])
 				register_asset("photo_side_[active_general_record.fields["id"]].png", P2.picture.picture_image)
-			send_asset_list(user, list("photo_side_[active_general_record.fields["id"]].png" = P2.picture.picture_image))
+			assets[photo_side_[active_general_record.fields["id"]].png] = P2.picture_image
+			
+		send_asset_list(user, assets)
 		
 
 		record["name"] = active_general_record.fields["name"]
