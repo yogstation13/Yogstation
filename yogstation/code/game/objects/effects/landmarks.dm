@@ -96,9 +96,12 @@
 
 /obj/effect/landmark/stationroom/box/medbay/morgue
 	template_names = list("Morgue", "Morgue 2", "Morgue 3", "Morgue 4", "Morgue 5")
-	
+
 /obj/effect/landmark/stationroom/box/dorm_edoor
 	template_names = list("Dorm east door 1", "Dorm east door 2", "Dorm east door 3", "Dorm east door 4", "Dorm east door 5", "Dorm east door 6", "Dorm east door 7", "Dorm east door 8", "Dorm east door 9")
 
 /obj/effect/landmark/stationroom/box/hydroponics
 	template_names = list("Hydroponics 1", "Hydroponics 2", "Hydroponics 3", "Hydroponics 4", "Hydroponics 5", "Hydroponics 6")
+
+/obj/effect/landmark/stationroom/eclipse/bar
+	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Diner", "Eclipse Bar Disco", "Eclipse Bar Casino")

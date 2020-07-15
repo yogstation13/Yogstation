@@ -64,7 +64,7 @@
 	id = "bar_cheese"
 	suffix = "bar_cheese.dmm"
 	name = "Bar Cheese"
-	
+
 /datum/map_template/ruin/station/box/bar/clock
 	id = "bar_clock"
 	suffix = "bar_clock.dmm"
@@ -139,7 +139,7 @@
 	id = "medbay_morgue5"
 	suffix = "medbay_morgue5.dmm"
 	name = "Morgue 5"
-	
+
 /datum/map_template/ruin/station/box/dorms_edoor
 	id = "dorms_edoor1"
 	suffix = "dorms_edoor1.dmm"
@@ -214,3 +214,41 @@
 	id = "hydro6"
 	suffix = "hydro6.dmm"
 	name = "Hydroponics 6"
+
+/datum/map_template/ruin/station/eclipse
+    prefix = "_maps/yogstation/RandomRuins/StationRuins/EclipseStation/"
+
+/datum/map_template/ruin/station/eclipse/bar
+	id = "ebar_eclipse"
+	suffix = "ebar_eclipse.dmm"
+	name = "Eclipse Bar Default"
+
+/datum/map_template/ruin/station/eclipse/bar/beach
+	id = "ebar_beach"
+	suffix = "ebar_beach.dmm"
+	name = "Eclipse Bar Beach"
+
+/datum/map_template/ruin/station/eclipse/bar/saloon
+	id = "ebar_saloon"
+	suffix = "ebar_saloon.dmm"
+	name = "Eclipse Bar Western"
+
+/datum/map_template/ruin/station/eclipse/bar/clock
+	id = "ebar_clock"
+	suffix = "ebar_clock.dmm"
+	name = "Eclipse Bar Clock"
+
+/datum/map_template/ruin/station/eclipse/bar/diner
+	id = "ebar_diner"
+	suffix = "ebar_diner.dmm"
+	name = "Eclipse Bar Diner"
+
+/datum/map_template/ruin/station/eclipse/bar/disco
+	id = "ebar_disco"
+	suffix = "ebar_disco.dmm"
+	name = "Eclipse Bar Disco"
+
+/datum/map_template/ruin/station/eclipse/bar/casino
+	id = "ebar_casino"
+	suffix = "ebar_casino.dmm"
+	name = "Eclipse Bar Casino"
