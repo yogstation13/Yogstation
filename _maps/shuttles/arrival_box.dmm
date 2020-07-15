@@ -201,10 +201,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
-"F" = (
-/obj/structure/sign/poster/official/no_erp,
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/arrival)
 "H" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
@@ -277,7 +273,7 @@ a
 (4,1,1) = {"
 b
 b
-F
+V
 t
 V
 b
