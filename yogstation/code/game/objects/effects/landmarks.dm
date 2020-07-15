@@ -69,7 +69,7 @@
 	return safepick(template_names)
 
 /obj/effect/landmark/stationroom/box/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock")
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Clerk")
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
 
@@ -96,7 +96,7 @@
 
 /obj/effect/landmark/stationroom/box/medbay/morgue
 	template_names = list("Morgue", "Morgue 2", "Morgue 3", "Morgue 4", "Morgue 5")
-	
+
 /obj/effect/landmark/stationroom/box/dorm_edoor
 	template_names = list("Dorm east door 1", "Dorm east door 2", "Dorm east door 3", "Dorm east door 4", "Dorm east door 5", "Dorm east door 6", "Dorm east door 7", "Dorm east door 8", "Dorm east door 9")
 

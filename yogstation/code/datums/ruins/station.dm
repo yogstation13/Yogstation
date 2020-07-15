@@ -73,7 +73,7 @@
 /datum/map_template/ruin/station/box/bar/clerk
 	id = "bar_clerk"
 	suffix = "bar_clerk.dmm"
-	name = "Clerk Bar"
+	name = "Bar Clerk"
 
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
