@@ -42,13 +42,11 @@ export const SecurityConsole = (props, context) => {
                     <Fragment style={`position:relative`}>
                       <img src={"photo_" + data.user_image +"_cropped.png"} width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
-                        border-radius: 50%; border: 3px solid white;
-                        position:relative;top:0;left:0;margin-right:-125px`}/>
+                        border-radius: 50%; border: 3px solid white;margin-right:-125px`}/>
                       <img src="scanlines.png"
                         width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
-                        border-radius: 50%; border: 3px solid white;opacity: 0.3;
-                        position:relative;top:0;left:0;`}/>
+                        border-radius: 50%; border: 3px solid white;opacity: 0.3;`}/>
                     </Fragment>
                   ) || (
                     <Icon name="user-circle" verticalAlign="middle" size="4.5" mr="1rem" />
