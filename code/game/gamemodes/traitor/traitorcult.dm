@@ -3,7 +3,7 @@
 	var/datum/team/clock_agents/clock_agent_team//clock team for tracking objectives
 	var/list/datum/mind/bloodagents = list()	//ditto for blood
 	var/datum/team/blood_agents/blood_agent_team //same
-	var/agent_objective_scaling = 1
+	var/agent_scaling = 1
 
 /datum/game_mode/traitor/traitorcult
 	name = "traitor+cultagents"
@@ -35,11 +35,10 @@
 	var/asc = CONFIG_GET(number/agent_scaling_coeff)
 	var/team_size = min_team_size
 	if(asc)
-		team_size = max(round(GLOB.joined_player_list.len / asc), 1)
-		agent_objective_scaling = max(round(num_players() / asc), 1)
+		agent_scaling = max(round(num_players() / asc), 1)
 	clock_agent_team = new
 	GLOB.servants_active = TRUE //needed for scripture alerts, doesn't do much else aside from reebe stuff so :shrug:
-	for(var/j = 1 to team_size)
+	for(var/j = 1 to agent_scaling)
 		var/datum/mind/clock = antag_pick(possible_clocks)
 		possible_clocks -= clock
 		possible_bloods -= clock
@@ -47,7 +46,7 @@
 		clock.restricted_roles = restricted_jobs
 		coggers_to_cog += clock
 	blood_agent_team = new
-	for(var/k = 1 to team_size)
+	for(var/k = 1 to agent_scaling)
 		var/datum/mind/blood = antag_pick(possible_bloods)
 		possible_bloods -= blood
 		antag_candidates -= blood
