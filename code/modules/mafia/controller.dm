@@ -13,7 +13,8 @@
 	var/phase = MAFIA_PHASE_SETUP
 	///how long the game has gone on for, changes with every sunrise. day one, night one, day two, etc.
 	var/turn = 0
-
+	///for debugging and testing a 12 player game, or adminbuse. If this is not null, it will use this as a setup. clears when game is over
+	var/list/custom_setup = list()
 	///first day has no voting, and thus is shorter
 	var/first_day_phase_period = 20 SECONDS
 	///talk with others about the last night
@@ -264,12 +265,12 @@
 		if(R.game_status == MAFIA_ALIVE)
 			switch(R.team)
 				if(MAFIA_TEAM_MAFIA)
-					alive_mafia++
+					alive_mafia += R.vote_power
 				if(MAFIA_TEAM_TOWN)
-					alive_town++
+					alive_town += R.vote_power
 				if(MAFIA_TEAM_SOLO)
 					if(R.solo_counts_as_town)
-						alive_town++
+						alive_town += R.vote_power
 					solos_to_ask += R
 
 	///PHASE TWO: SEND STATS TO SOLO ANTAGS, SEE IF THEY WON OR TEAMS CANNOT WIN
@@ -324,6 +325,8 @@
 	map_deleter.generate() //remove the map, it will be loaded at the start of the next one
 
 	QDEL_LIST(all_roles)
+	current_setup_text = null
+	custom_setup = list()
 	turn = 0
 	votes = list()
 	phase = MAFIA_PHASE_SETUP
@@ -441,9 +444,9 @@
   */
 /datum/mafia_controller/proc/get_vote_count(role,vt)
 	. = 0
-	for(var/votee in votes[vt])
-		if(votes[vt][votee] == role)
-			. += 1
+	for(var/v in votes[vt])
+		var/datum/mafia_role/votee = v
+			. += votee.vote_power
 
 /**
   * Returns whichever role got the most votes, in whatever vote (day vote, night kill vote)
@@ -592,10 +595,35 @@
 						continue
 					player.body.forceMove(get_turf(player.assigned_landmark))
 				if(failed.len)
-					to_chat(usr, "List of players who no longer had a body (if you see this, the game is runtiming anyway so just hit \"New Game\" to end it")
+					to_chat(usr, "List of players who no longer had a body (if you see this, the game is runtiming anyway so just hit \"New Game\" to end it)")
 					for(var/i in failed)
 						var/datum/mafia_role/fail = i
 						to_chat(usr, fail.player_key)
+			if("debug_setup")
+				var/list/debug_setup = list()
+				var/list/rolelist_dict = list()
+				var/done = FALSE
+				var/cancelled = FALSE
+				for(var/p in subtypesof(/datum/mafia_role))
+					var/datum/mafia_role/path = p
+					rolelist_dict[initial(path.name) + " ([uppertext(initial(path.team))])"] = path
+				rolelist_dict = list("CANCEL", "FINISH") + list("Assistant (TOWN)" = /datum/mafia_role) + rolelist_dict
+				while(!done)
+					to_chat(usr, "You have a total player count of [assoc_value_sum(debug_setup)] in this setup.")
+					var/chosen_role_name = input(usr,"Select a role!","Custom Setup Creation",rolelist_dict[1]) as null|anything in rolelist_dict
+					if(chosen_role_name == "CANCEL")
+						cancelled = TRUE
+						break
+					if(chosen_role_name == "FINISH")
+						break
+					var/found_path = rolelist_dict[chosen_role_name]
+					var/role_count = input(usr,"How many? Zero to cancel.","Custom Setup Creation",0) as null|num
+					if(role_count > 0)
+						debug_setup[found_path] = role_count
+				if(!cancelled)
+					custom_setup = debug_setup
+			if("cancel_setup")
+				custom_setup = list()
 	switch(action)
 		if("mf_lookup")
 			var/role_lookup = params["atype"]
@@ -664,31 +692,81 @@
 		. += L[key]
 
 /**
-  * Returns all setups that the amount of players signed up could support (so fill each role)
-  * Arguments:
-  * * ready_count: the amount of players signed up (not sane, so some players may have disconnected or rejoined ss13).
+  * Returns a semirandom setup, with...
+  * Town, Two invest roles, one protect role, sometimes a misc role, and the rest assistants for town.
+  * Mafia, 2 normal mafia and one special.
+  * Neutral, two disruption roles, sometimes one is a killing.
+  *
+  * Assistants must be filled in their own list before merging the two because of how byond dicts work
+  * See _defines.dm in the mafia folder for a rundown on what these groups of roles include.
   */
-/datum/mafia_controller/proc/find_best_setup(ready_count)
-	var/list/all_setups = GLOB.mafia_setups
-	var/valid_setups = list()
-	for(var/S in all_setups)
-		var/req_players = assoc_value_sum(S)
-		if(req_players <= ready_count)
-			valid_setups += list(S)
-	return length(valid_setups) > 0 ? pick(valid_setups) : null
+/datum/mafia_controller/proc/generate_random_setup()
+	var/invests_left = 2
+	var/protects_left = 1
+	var/miscs_left = prob(35) ? 1 : 0
+	var/mafiareg_left = 2
+	var/mafiaspe_left = 1
+	var/killing_role = prob(50) ? 1 : 0
+	var/disruptors = killing_role ? 1 : 2 //still required to calculate overflow
+
+	var/overflow = 12 - (invests_left + protects_left + miscs_left + mafiareg_left + mafiaspe_left + killing_role + disruptors)
+	var/list/assistants = list(/datum/mafia_role = overflow) //amount of people who are not any of the special roles
+	var/list/random_setup = list()
+	for(var/i in 1 to (12 - overflow)) //should match the number of roles to add
+		if(invests_left)
+			add_setup_role(random_setup, TOWN_INVEST)
+			invests_left--
+		else if(protects_left)
+			add_setup_role(random_setup, TOWN_PROTECT)
+			protects_left--
+		else if(miscs_left)
+			add_setup_role(random_setup, TOWN_MISC)
+			miscs_left--
+		else if(mafiareg_left)
+			add_setup_role(random_setup, MAFIA_REGULAR)
+			mafiareg_left--
+		else if(mafiaspe_left)
+			add_setup_role(random_setup, MAFIA_SPECIAL)
+			mafiaspe_left--
+		else if(killing_role)
+			add_setup_role(random_setup, NEUTRAL_KILL)
+			killing_role--
+		else
+			add_setup_role(random_setup, NEUTRAL_DISRUPT)
+	return assistants + random_setup
+
+/**
+  * Helper proc that adds a random role of a type to a setup. if it doesn't exist in the setup, it adds the path to the list and otherwise bumps the path in the list up one
+  * Don't put overflow roles through here, for the moment. byond will not treat it kindly.
+  */
+/datum/mafia_controller/proc/add_setup_role(setup_list, wanted_role_type)
+	var/list/role_type_paths = list()
+	for(var/path in typesof(/datum/mafia_role))
+		var/datum/mafia_role/instance = path
+		if(initial(instance.role_type) == wanted_role_type)
+			role_type_paths += instance
+
+	var/mafia_path = pick(role_type_paths)
+	var/found_role = locate(mafia_path) in setup_list
+	if(found_role)
+		setup_list[found_role] += 1
+		return
+	setup_list[mafia_path] = 1
 
 /**
   * Called when enough players have signed up to fill a setup. DOESN'T NECESSARILY MEAN THE GAME WILL START.
   *
+  * Checks for a custom setup, if so gets the required players from that and if not it sets the player requirement to 12 and generates one IF basic setup starts a game.
   * Checks if everyone signed up is an observer, and is still connected. If people aren't, they're removed from the list.
   * If there aren't enough players post sanity, it aborts. otherwise, it selects enough people for the game and starts preparing the game for real.
   */
 /datum/mafia_controller/proc/basic_setup()
-	var/ready_count = length(GLOB.mafia_signup)
-	var/list/setup = find_best_setup(ready_count)
-	if(!setup)
-		return
-	var/req_players = assoc_value_sum(setup) //12
+	var/req_players
+	var/list/setup = custom_setup
+	if(!setup.len)
+		req_players = 12
+	else
+		req_players = assoc_value_sum(setup)
 
 	//final list for all the players who will be in this game
 	var/list/filtered_keys = list()
@@ -716,8 +794,10 @@
 	for(var/unpicked in possible_keys)
 		var/client/unpicked_client = GLOB.directory[unpicked]
 		to_chat(unpicked_client, "<span class='danger'>Sorry, the starting mafia game has too many players and you were not picked.</span>")
-		to_chat(unpicked_client, "<span class='warning'>You're still signed up, and have another chance to join when the one starting now finishes.</span>")
+		to_chat(unpicked_client, "<span class='warning'>You're still signed up, getting messages from the current round, and have another chance to join when the one starting now finishes.</span>")
 
+	if(!setup.len) //don't actually have one yet, so generate a 12 player one. it's good to do this here instead of above so it doesn't generate one every time a game could possibly start.
+		setup = generate_random_setup()
 	prepare_game(setup,filtered_keys)
 	start_game()
 
@@ -729,10 +809,7 @@
 /datum/mafia_controller/proc/try_autostart()
 	if(phase != MAFIA_PHASE_SETUP)
 		return
-	var/min_players = INFINITY // fairly sure mmo mafia is not a thing and i'm lazy
-	for(var/setup in GLOB.mafia_setups)
-		min_players = min(min_players,assoc_value_sum(setup))
-	if(GLOB.mafia_signup.len >= min_players)//enough people to try and make something
+	if(GLOB.mafia_signup.len >= 12 || custom_setup.len)//enough people to try and make something (or debug mode)
 		basic_setup()
 
 /datum/action/innate/mafia_panel
