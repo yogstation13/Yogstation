@@ -7,8 +7,12 @@
 	var/dudes_to_stab = 0						//list of people who need to be implanted to win
 	var/list/datum/mind/dudes_stabbed = list()  //list of people with the implants
 
-/datum/objective/implant/update_explanation_text()
+
+/datum/objective/implant/get_target()
 	dudes_to_stab = SSticker.mode.agent_scaling * rand(1,5) //1 to 5 implantees per agent
+	update_explanation_text()
+
+/datum/objective/implant/update_explanation_text()
 	explanation_text = "<span class='sevtug'>Implant at least [dudes_to_stab] of these heretics with guvax capacitors, I'll need them later. Use a replica fabricator on an implanter to make one, and try to keep them alive please and thank you.</span>"
 
 /datum/objective/implant/check_completion()
@@ -24,7 +28,6 @@
 	name = "bloodcult implant"
 
 /datum/objective/implant/blood/update_explanation_text()
-	dudes_to_stab = SSticker.mode.agent_scaling * rand(1,5) //1 to 5 implantees per agent
 	explanation_text = "<span class='cultbold'>Implant at least [dudes_to_stab] of the nonbelievers with soulshards created from using twisted construction on implanters. Keeping them alive is preferable.</span>"
 
 /datum/antagonist/cult_implanted //used for guvax implanted gamers to stop them from being twits
