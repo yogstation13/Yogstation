@@ -17096,6 +17096,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
+"Ki" = (
+/obj/effect/landmark/mafia_game_area,
+/turf/open/space/basic,
+/area/space)
 "Kj" = (
 /obj/machinery/door/airlock/external{
 	name = "Backup Emergency Escape Shuttle"
@@ -54607,7 +54611,7 @@ aa
 aa
 aa
 aa
-aa
+Ki
 aa
 aa
 aa
