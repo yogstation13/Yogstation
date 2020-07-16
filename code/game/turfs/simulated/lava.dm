@@ -40,7 +40,9 @@
 	. = ..()
 	if(isliving(Obj))
 		var/mob/living/L = Obj
-		if(!islava(newloc) && !L.on_fire)
+		if(!islava(newloc))
+			REMOVE_TRAIT(L, TRAIT_PERMANENTLY_ONFIRE, TURF_TRAIT)
+		if(!L.on_fire)
 			L.update_fire()
 
 /turf/open/lava/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
@@ -137,9 +139,6 @@
 				if("lava" in live.weather_immunities)
 					continue
 
-			if(!L.on_fire)
-				L.update_fire()
-
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
 				var/obj/item/clothing/S = C.get_item_by_slot(SLOT_WEAR_SUIT)
@@ -150,6 +149,9 @@
 
 			if("lava" in L.weather_immunities)
 				continue
+				
+			ADD_TRAIT(L, TRAIT_PERMANENTLY_ONFIRE,TURF_TRAIT)
+			L.update_fire()
 
 			L.adjustFireLoss(20)
 			if(L) //mobs turning into object corpses could get deleted here.

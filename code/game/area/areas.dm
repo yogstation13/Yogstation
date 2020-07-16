@@ -58,6 +58,8 @@
 	var/safe = FALSE 				//Is the area teleport-safe: no space / radiation / aggresive mobs / other dangers
 	/// If false, loading multiple maps with this area type will create multiple instances.
 	var/unique = TRUE
+	/// If people are allowed to suicide in it. Mostly for OOC stuff like minigames
+	var/block_suicide = FALSE
 
 	var/no_air = null
 

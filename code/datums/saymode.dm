@@ -166,3 +166,14 @@
 					continue
 				to_chat(M, msg)
 	return FALSE //yogs end
+	
+/datum/saymode/mafia
+	key = "j"
+
+/datum/saymode/mafia/handle_message(mob/living/user, message, datum/language/language)
+	var/datum/mafia_controller/MF = GLOB.mafia_game
+	var/datum/mafia_role/R = MF.player_role_lookup[user]
+	if(!R || R.team != "mafia")
+		return TRUE
+	MF.send_message("<span class='changeling'><b>[R.body.real_name]:</b> [message]</span>","mafia")
+	return FALSE

@@ -43,6 +43,14 @@
 /obj/screen/ghost/spawners/Click()
 	var/mob/dead/observer/G = usr
 	G.open_spawners_menu()
+	
+/obj/screen/ghost/mafia
+	name = "Mafia Signup"
+	icon_state = "mafia"
+
+/obj/screen/ghost/mafia/Click()
+	var/mob/dead/observer/G = usr
+	G.mafia_signup()
 
 /datum/hud/ghost/New(mob/owner)
 	..()
@@ -71,10 +79,16 @@
 	using = new /obj/screen/ghost/pai()
 	using.screen_loc = ui_ghost_pai
 	static_inventory += using
+	
+	using = new /obj/screen/ghost/mafia()
+	using.screen_loc = ui_ghost_mafia
+	using.hud = src
+	static_inventory += using
 
 	using = new /obj/screen/language_menu/ghost
 	using.icon = ui_style
 	static_inventory += using
+
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
