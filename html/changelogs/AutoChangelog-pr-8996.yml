@@ -1,0 +1,4 @@
+author: "Xoxeyos"
+delete-after: true 
+changes: 
+  - tweak: "Dynamic now stacks round enders."
