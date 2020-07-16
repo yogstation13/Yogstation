@@ -186,11 +186,6 @@
 
 	return FALSE
 	
-/atom/proc/update_overlays()
-	SHOULD_CALL_PARENT(1)
-	. = list()
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
-
 /atom/proc/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	SEND_SIGNAL(src, COMSIG_ATOM_HULK_ATTACK, user)
 	if(does_attack_animation)
