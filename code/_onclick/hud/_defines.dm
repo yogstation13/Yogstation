@@ -178,3 +178,4 @@
 #define ui_ghost_spawners "SOUTH: 6, CENTER+1:24"
 #define ui_ghost_language_menu "SOUTH: 22,CENTER+2:8"
 #define ui_ghost_pai "SOUTH: 6,CENTER+2:8"
+#define ui_ghost_mafia "SOUTH: 6, CENTER+2:24"
