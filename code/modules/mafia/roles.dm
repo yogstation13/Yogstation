@@ -51,6 +51,7 @@
 			to_chat(body,"<span class='danger'>You are a crewmember. Find out and lynch the changelings!</span>")
 		if(MAFIA_TEAM_SOLO)
 			to_chat(body,"<span class='danger'>You are not aligned to town or mafia. Accomplish your own objectives!</span>")
+	to_chat(body, "<b>Be sure to read <a href="wiki.yogstation.net/wiki/Mafia">the wiki page</a> to learn more about Mafia!</b>")
 
 //please take care with this, they can break shit with their equipment unless you specifically disallow them (aka stun at the end of the game)
 /datum/mafia_role/proc/reveal_role(datum/mafia_controller/game, verbose = FALSE)
