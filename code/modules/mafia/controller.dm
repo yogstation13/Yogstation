@@ -265,12 +265,12 @@
 		if(R.game_status == MAFIA_ALIVE)
 			switch(R.team)
 				if(MAFIA_TEAM_MAFIA)
-					alive_mafia += R.vote_power
+					alive_mafia++
 				if(MAFIA_TEAM_TOWN)
-					alive_town += R.vote_power
+					alive_town++
 				if(MAFIA_TEAM_SOLO)
 					if(R.solo_counts_as_town)
-						alive_town += R.vote_power
+						alive_town++
 					solos_to_ask += R
 
 	///PHASE TWO: SEND STATS TO SOLO ANTAGS, SEE IF THEY WON OR TEAMS CANNOT WIN
