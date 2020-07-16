@@ -265,12 +265,12 @@
 		if(R.game_status == MAFIA_ALIVE)
 			switch(R.team)
 				if(MAFIA_TEAM_MAFIA)
-					alive_mafia++
+					alive_mafia += R.vote_power
 				if(MAFIA_TEAM_TOWN)
-					alive_town++
+					alive_town += R.vote_power
 				if(MAFIA_TEAM_SOLO)
 					if(R.solo_counts_as_town)
-						alive_town++
+						alive_town += R.vote_power
 					solos_to_ask += R
 
 	///PHASE TWO: SEND STATS TO SOLO ANTAGS, SEE IF THEY WON OR TEAMS CANNOT WIN
@@ -446,7 +446,8 @@
 	. = 0
 	for(var/v in votes[vt])
 		var/datum/mafia_role/votee = v
-			. += 1
+		if(votes[vt][votee] == role)
+			. += votee.vote_power
 
 /**
   * Returns whichever role got the most votes, in whatever vote (day vote, night kill vote)
