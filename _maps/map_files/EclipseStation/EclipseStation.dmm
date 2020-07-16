@@ -9002,16 +9002,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
-"asf" = (
-/obj/structure/table/wood,
-/obj/structure/mirror{
-	pixel_x = -28
-	},
-/obj/item/flashlight/lamp/bananalamp{
-	pixel_y = 3
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/theatre)
 "asg" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -84424,6 +84414,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"iiH" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "ilY" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -88969,6 +88965,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"wDl" = (
+/obj/structure/table/wood,
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_y = 3
+	},
+/obj/item/phone/banana{
+	layer = 2.9
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
 "wDN" = (
 /obj/structure/window/spawner{
 	dir = 1;
@@ -98738,7 +98747,7 @@ brD
 bfS
 bgq
 bgo
-biX
+iiH
 bgo
 biX
 bvS
@@ -135945,7 +135954,7 @@ alM
 anV
 aqI
 alM
-asf
+wDl
 atZ
 avR
 alM

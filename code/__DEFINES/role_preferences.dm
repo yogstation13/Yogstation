@@ -36,6 +36,7 @@
 #define ROLE_DEATHSQUAD			"Deathsquad"
 #define ROLE_LAVALAND			"Lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
+#define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_BATTLEROYALE		"Battle Royale Contestant" //Yogs - Battle Royale Mode
@@ -79,6 +80,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_CLOCK_AGENT = /datum/game_mode/traitor/traitorcult,
 	ROLE_BLOOD_AGENT = /datum/game_mode/traitor/traitorcult,
 	ROLE_SENTIENCE,
+	ROLE_FUGITIVE,
 	ROLE_ZOMBIE
 ))
 

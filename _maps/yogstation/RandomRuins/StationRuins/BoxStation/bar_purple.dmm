@@ -561,10 +561,6 @@
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/bar)
-"bi" = (
-/obj/structure/table,
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
 "bj" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = -31
@@ -1289,24 +1285,6 @@
 "db" = (
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
-"dd" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "df" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4;
@@ -1462,6 +1440,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"rs" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "vE" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
@@ -1488,6 +1473,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"ER" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "EX" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
@@ -1844,7 +1849,7 @@ bf
 ak
 bU
 cp
-bi
+rs
 db
 db
 do
@@ -1878,7 +1883,7 @@ bW
 cr
 cr
 ci
-dd
+ER
 ds
 ak
 aa

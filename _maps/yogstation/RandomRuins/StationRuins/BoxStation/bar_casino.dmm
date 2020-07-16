@@ -224,8 +224,8 @@
 /area/crew_quarters/bar)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
@@ -268,8 +268,8 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
@@ -286,8 +286,8 @@
 /area/crew_quarters/bar)
 "aM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
@@ -333,8 +333,8 @@
 "aS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks{
-	icon_state = "soda_dispenser";
-	dir = 4
+	dir = 4;
+	icon_state = "soda_dispenser"
 	},
 /obj/machinery/door/window/westright,
 /turf/open/floor/wood,
@@ -388,8 +388,8 @@
 /area/crew_quarters/kitchen)
 "aZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel{
@@ -497,8 +497,8 @@
 "bk" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -517,10 +517,6 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"bn" = (
-/obj/structure/table,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bo" = (
@@ -738,8 +734,8 @@
 /area/crew_quarters/bar)
 "bQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -754,8 +750,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -867,16 +863,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cG" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "cI" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -963,11 +949,19 @@
 /area/crew_quarters/bar)
 "Sb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"Sc" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "SW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 9
@@ -977,6 +971,18 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"UT" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1323,7 +1329,7 @@ aQ
 am
 aU
 bT
-bn
+Sc
 cq
 co
 co
@@ -1357,7 +1363,7 @@ aX
 co
 co
 cb
-cG
+UT
 bH
 am
 aa

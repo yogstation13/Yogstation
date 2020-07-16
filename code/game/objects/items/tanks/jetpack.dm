@@ -12,6 +12,7 @@
 	var/on = FALSE
 	var/stabilizers = FALSE
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
+	var/classic = TRUE // If the jetpack uses the classic two-tank sprite. False if it has its own special sprite (syndicate jetpack, or void jetpack)
 	var/datum/effect_system/trail_follow/ion/ion_trail
 
 /obj/item/tank/jetpack/Initialize()
@@ -51,16 +52,25 @@
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
-	icon_state = "[initial(icon_state)]-on"
+	update_icon()
 	ion_trail.start()
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
+/obj/item/tank/jetpack/update_icon()
+	icon_state = initial(icon_state)
+	if(!classic && on) //does the jetpack have its own on sprite?
+		icon_state = "[initial(icon_state)]-on"
+	else //or does it use the classic overlay
+		cut_overlays()
+		if(on)
+			add_overlay("on_overlay")
+
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	on = FALSE
 	stabilizers = FALSE
-	icon_state = initial(icon_state)
+	update_icon()
 	ion_trail.stop()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
@@ -129,6 +139,7 @@
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
 	item_state =  "jetpack-void"
+	classic = FALSE //uses its own custom sprite
 
 /obj/item/tank/jetpack/oxygen
 	name = "jetpack (oxygen)"
@@ -144,6 +155,7 @@
 	volume = 40
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
+	classic = FALSE //uses its own custom sprite
 
 /obj/item/tank/jetpack/oxygen/captain
 	name = "\improper Captain's jetpack"
