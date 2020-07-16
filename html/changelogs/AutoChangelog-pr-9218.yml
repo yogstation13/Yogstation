@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "Greytide Event now only affects stuff the AI can control."
