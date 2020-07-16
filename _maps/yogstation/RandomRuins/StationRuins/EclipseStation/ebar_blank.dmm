@@ -57,6 +57,7 @@
 "wA" = (/obj/machinery/airalarm{dir = 1; pixel_y = -24},/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "wC" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/structure/disposalpipe/segment,/turf/open/floor/plasteel/showroomfloor,/area/crew_quarters/kitchen/coldroom)
 "wG" = (/obj/effect/turf_decal/loading_area,/obj/machinery/airalarm{dir = 8; pixel_x = 24},/turf/open/floor/plasteel/showroomfloor,/area/crew_quarters/kitchen/coldroom)
+"xn" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 1},/obj/structure/disposalpipe/segment{dir = 5},/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "xE" = (/obj/machinery/vending/dinnerware{contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/kitchen)
 "xJ" = (/obj/machinery/icecream_vat,/turf/open/floor/plasteel/showroomfloor,/area/crew_quarters/kitchen/coldroom)
 "xK" = (/obj/structure/table,/obj/machinery/chem_dispenser/drinks/beer{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/bar)
@@ -80,7 +81,7 @@
 "Ga" = (/obj/structure/table/reinforced,/obj/item/lighter,/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "Gc" = (/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/kitchen)
 "Gq" = (/obj/structure/disposalpipe/segment,/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/kitchen)
-"GK" = (/obj/machinery/door/airlock/maintenance{name = "Bar Maintenance"; req_access_txt = "12"},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 1},/turf/open/floor/plating,/area/maintenance/department/crew_quarters/bar)
+"GK" = (/obj/machinery/door/airlock/maintenance{name = "Bar Maintenance"; req_access_txt = "12"},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 1},/obj/structure/disposalpipe/segment,/turf/open/floor/plating,/area/maintenance/department/crew_quarters/bar)
 "GN" = (/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced,/turf/open/floor/plasteel,/area/crew_quarters/theatre)
 "GZ" = (/obj/machinery/door/airlock{name = "Theatre Backstage"; req_access_txt = "46"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/plasteel,/area/crew_quarters/theatre)
 "Hh" = (/turf/closed/wall,/area/crew_quarters/dorms/a)
@@ -97,7 +98,7 @@
 "OH" = (/obj/machinery/light{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "Pn" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 1},/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "PG" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/structure/disposalpipe/segment,/turf/open/floor/plasteel/showroomfloor,/area/crew_quarters/kitchen/coldroom)
-"PL" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/plasteel,/area/crew_quarters/bar)
+"PL" = (/obj/machinery/light/small{dir = 4},/obj/machinery/disposal/bin,/obj/structure/disposalpipe/trunk{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "PX" = (/obj/machinery/vending/boozeomat,/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "Qd" = (/obj/structure/disposalpipe/segment,/turf/open/floor/plasteel,/area/crew_quarters/bar)
 "QC" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/theatre)
@@ -135,7 +136,7 @@
 
 (1,1,1) = {"
 HhFzFzFzFzFzGZFzrVGKrVrVzNzNzNzNzNzNzNzNzNzNzNzNzN
-HhteUXtKlUhDUXNvVtPnPLrVzNzNzNzNzNzNzNzNzNzNzNzNzN
+HhteUXtKlUhDUXNvVtxnPLrVzNzNzNzNzNzNzNzNzNzNzNzNzN
 HhSgUXpBmuFgQCpEVKbvVtlezNzNzNzNzNzNzNzNzNzNzNzNzN
 HhFZGNGNYXYXYXnvVtPntYrVrVrVrVrVzNzNzNzNzNzNzNzNzN
 rVVtVtVtVtVtVtVtVtPnVtCDYGeGxKrVrVqwSdrVczboczXDcz
