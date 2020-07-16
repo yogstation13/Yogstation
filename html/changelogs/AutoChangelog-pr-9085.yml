@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "transcendent olfaction can now smell people through lockers since another two inches of metal shouldn't stop it any more than the 5 walls it's already working through"
+  - tweak: "transcendent olfaction now will only obliterate the user's nose if the miasma mole count is 0.1 or over"
