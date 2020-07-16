@@ -33,7 +33,7 @@
 	///template picked when the game starts. used for the name and desc reading
 	var/datum/map_template/mafia/current_map
 	///map generation tool that deletes the current map after the game finishes
-	var/datum/mapGeneratorModule/bottomLayer/massdelete/map_deleter
+	var/datum/mapGenerator/massdelete/map_deleter
 
 	///Readable list of roles in current game, sent to the tgui panel for roles list > list("Psychologist x1", "Clown x2")
 	var/list/current_setup_text
