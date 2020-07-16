@@ -321,7 +321,7 @@
 
 //in regards to trey being a lizard
 /obj/item/paper/yogs/ruins/academy/trey_wizard_lizard
-	name = "New Hire: Trey of the Shattered Voice"
+	name = "RE: Trey of the Shattered Voice"
 
 /obj/item/paper/yogs/ruins/academy/trey_wizard_lizard/New()
 	. = ..()
