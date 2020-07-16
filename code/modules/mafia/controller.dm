@@ -446,7 +446,7 @@
 	. = 0
 	for(var/v in votes[vt])
 		var/datum/mafia_role/votee = v
-			. += votee.vote_power
+			. += 1
 
 /**
   * Returns whichever role got the most votes, in whatever vote (day vote, night kill vote)
