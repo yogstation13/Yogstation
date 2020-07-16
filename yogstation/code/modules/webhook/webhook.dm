@@ -2,7 +2,7 @@
 	if(!CONFIG_GET(string/webhook_address) || !CONFIG_GET(string/webhook_key))
 		return
 
-	var/url = "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=[method]&data=[json_encode(data)]&server=[CONFIG_GET(string/cross_comms_name)]"
+	var/url = "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=[method]&data=[json_encode(data)]"
 	var/datum/http_request/req = new()
 	req.prepare(RUSTG_HTTP_METHOD_GET, url, "", list())
 	req.begin_async() //why would we ever want to track the results of the request, meme made by yogstation gang
