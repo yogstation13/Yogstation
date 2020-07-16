@@ -14,7 +14,7 @@
 /datum/objective/implant/check_completion()
 	var/successful_stabs = 0
 	for(var/datum/mind/M in dudes_stabbed)
-		if(M.current && considered_alive(M.current))
+		if(considered_alive(M))
 			successful_stabs++
 		else
 			successful_stabs += 0.5 //still get points if they're dead
