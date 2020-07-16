@@ -339,7 +339,8 @@
 	if(!createtype)
 		return
 	var/mob/newswarmer = Fabricate(createtype, 20)
-	add_drone(newswarmer)
+	LAZYADD(dronelist, newswarmer)
+	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, .proc/remove_drone, newswarmer)
 	playsound(loc,'sound/items/poster_being_created.ogg', 20, TRUE, -1)
 
 /**
@@ -398,12 +399,12 @@
 /mob/living/simple_animal/hostile/swarmer/proc/swarmer_chat(msg)
 	var/rendered = "<B>Swarm communication - [src]</b> [say_quote(msg)]"
 	for(var/i in GLOB.mob_list)
-		var/mob/listener = i
-		if(isswarmer(listener))
-			to_chat(listener, rendered)
-		else if(isobserver(listener))
-			var/link = FOLLOW_LINK(listener, src)
-			to_chat(listener, "[link] [rendered]")
+		var/mob/M = i
+		if(isswarmer(M))
+			to_chat(M, rendered)
+		else if(isobserver(M))
+			var/link = FOLLOW_LINK(M, src)
+			to_chat(M, "[link] [rendered]")
 
 /**
   * Proc which is used for inputting a swarmer message
@@ -415,14 +416,7 @@
 	// TODO get swarmers their own colour rather than just boldtext
 	if(message)
 		swarmer_chat(message)
-
-
-///Adds a drone to the swarmer list and keeps track of it in case it's deleted and requires cleanup.
-/mob/living/simple_animal/hostile/swarmer/proc/add_drone(mob/drone)
-	LAZYADD(dronelist, newswarmer)
-	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, .proc/remove_drone, newswarmer)
-
-
+		
 /**
   * Removes a drone from the swarmer's list.
   *
@@ -431,8 +425,7 @@
   * Arguments:
   * * mob/drone - The drone to be removed from the list.
   */
-/mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
-	UnregisterSignal(drone, COMSIG_PARENT_QDELETING)
+mob/living/simple_animal/hostile/swarmer/proc/remove_drone(mob/drone, force)
 	dronelist -= drone
 
 /**
@@ -447,7 +440,7 @@
 	AIStatus = AI_ON
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-
+	
 /obj/item/projectile/beam/disabler/swarmer/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(!.)

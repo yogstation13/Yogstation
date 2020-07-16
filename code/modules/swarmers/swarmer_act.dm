@@ -9,18 +9,17 @@
 	actor.dis_integrate(src)
 	return TRUE //return TRUE/FALSE whether or not an AI swarmer should try this swarmer_act() again, NOT whether it succeeded.
 
-/obj/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
+/obj/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return FALSE
 	for(var/mob/living/living_content in contents)
-		if(issilicon(living_content) || isbrain(living_content))
-			continue
-		to_chat(actor, "<span class='warning'>An organism has been detected inside this object. Aborting.</span>")
-		return FALSE
+		if(!issilicon(living_content) && !isbrain(living_content))
+			to_chat(S, "<span class='warning'>An organism has been detected inside this object. Aborting.</span>")
+			return FALSE
 	return ..()
 
-/obj/item/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	return actor.Integrate(src)
+/obj/item/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	return S.Integrate(src)
 
 /**
   * Return used to determine how many resources a swarmer gains when consuming an object
@@ -77,14 +76,14 @@
 	actor.dismantle_machine(src)
 	return TRUE
 
-/obj/machinery/light/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	actor.dis_integrate(src)
+/obj/machinery/light/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	S.dis_integrate(src)
 	return TRUE
 
-/obj/machinery/door/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
+/obj/machinery/door/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	var/isonshuttle = istype(get_area(src), /area/shuttle)
-	for(var/turf/turf_in_range in range(1, src))
-		var/area/turf_area = get_area(T)
+	for(var/turf/T in range(1, src))
+		var/area/A = get_area(T)
 		if(isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
 			to_chat(S, "<span class='warning'>Destroying this object has the potential to cause a hull breach. Aborting.</span>")
 			S.target = null
@@ -102,70 +101,70 @@
 		toggle_cam(actor, FALSE)
 	return TRUE
 
-/obj/machinery/particle_accelerator/control_box/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	actor.dis_integrate(src)
+/obj/machinery/particle_accelerator/control_box/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	S.dis_integrate(src)
 	return TRUE
 
-/obj/machinery/field/generator/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	actor.dis_integrate(src)
+/obj/machinery/field/generator/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	S.dis_integrate(src)
 	return TRUE
 
-/obj/machinery/gravity_generator/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	actor.dis_integrate(src)
+/obj/machinery/gravity_generator/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	S.dis_integrate(src)
 	return TRUE
 
-/obj/machinery/vending/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)//It's more visually interesting than dismantling the machine
-	actor.dis_integrate(src)
+/obj/machinery/vending/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)//It's more visually interesting than dismantling the machine
+	S.dis_integrate(src)
 	return TRUE
 
-/obj/machinery/turretid/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	actor.dis_integrate(src)
+/obj/machinery/turretid/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	S.dis_integrate(src)
 	return TRUE
 
-/obj/machinery/chem_dispenser/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>The volatile chemicals in this machine would destroy us. Aborting.</span>")
+/obj/machinery/chem_dispenser/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>The volatile chemicals in this machine would destroy us. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/nuclearbomb/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>This device's destruction would result in the extermination of everything in the area. Aborting.</span>")
+/obj/machinery/nuclearbomb/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>This device's destruction would result in the extermination of everything in the area. Aborting.</span>")
 	return FALSE
 
-/obj/effect/rune/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>Searching... sensor malfunction! Target lost. Aborting.</span>")
+/obj/effect/rune/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>Searching... sensor malfunction! Target lost. Aborting.</span>")
 	return FALSE
 
-/obj/structure/reagent_dispensers/fueltank/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>Destroying this object could cause a chain reaction. Aborting.</span>")
+/obj/structure/reagent_dispensers/fueltank/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>Destroying this object could cause a chain reaction. Aborting.</span>")
 	return FALSE
 
-/obj/structure/cable/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>Disrupting the power grid would bring no benefit to us. Aborting.</span>")
+/obj/structure/cable/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>Disrupting the power grid would bring no benefit to us. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/portable_atmospherics/canister/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>An inhospitable area may be created as a result of destroying this object. Aborting.</span>")
+/obj/machinery/portable_atmospherics/canister/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>An inhospitable area may be created as a result of destroying this object. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/telecomms/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>This communications relay should be preserved, it will be a useful resource to our masters in the future. Aborting.</span>")
+/obj/machinery/telecomms/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>This communications relay should be preserved, it will be a useful resource to our masters in the future. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/deepfryer/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>This kitchen appliance should be preserved, it will make delicious unhealthy snacks for our masters in the future. Aborting.</span>")
+/obj/machinery/deepfryer/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>This kitchen appliance should be preserved, it will make delicious unhealthy snacks for our masters in the future. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/power/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>Disrupting the power grid would bring no benefit to us. Aborting.</span>")
+/obj/machinery/power/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>Disrupting the power grid would bring no benefit to us. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/gateway/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
-	to_chat(actor, "<span class='warning'>This bluespace source will be important to us later. Aborting.</span>")
+/obj/machinery/gateway/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, "<span class='warning'>This bluespace source will be important to us later. Aborting.</span>")
 	return FALSE
 
-/turf/closed/wall/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
+/turf/closed/wall/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	var/isonshuttle = istype(loc, /area/shuttle)
-	for(var/turf/turf_in_range in range(1, src))
-		var/area/turf_area = get_area(T)
+	for(var/turf/T in range(1, src))
+		var/area/A = get_area(T)
 		if(isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
 			to_chat(S, "<span class='warning'>Destroying this object has the potential to cause a hull breach. Aborting.</span>")
 			S.target = null
