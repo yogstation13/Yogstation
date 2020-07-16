@@ -60,6 +60,7 @@ SUBSYSTEM_DEF(economy)
 	sci_payout() // Payout based on slimes.
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
+	car_payout() // Cargo's natural gain in the cash moneys.
 	for(var/A in bank_accounts)
 		var/datum/bank_account/B = A
 		B.payday(1)
@@ -79,6 +80,12 @@ SUBSYSTEM_DEF(economy)
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
 	if(D)
 		D.adjust_money(engineering_cash)
+
+
+/datum/controller/subsystem/economy/proc/car_payout()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(500)
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
 	var/crew

@@ -646,30 +646,6 @@ update_label("John Doe", "Clowny")
 	SSeconomy.dep_cards -= src
 	return ..()
 
-/obj/item/card/id/departmental_budget/civ
-	department_ID = ACCOUNT_CIV
-	department_name = ACCOUNT_CIV_NAME
-
-/obj/item/card/id/departmental_budget/eng
-	department_ID = ACCOUNT_ENG
-	department_name = ACCOUNT_ENG_NAME
-
-/obj/item/card/id/departmental_budget/sci
-	department_ID = ACCOUNT_SCI
-	department_name = ACCOUNT_SCI_NAME
-
-/obj/item/card/id/departmental_budget/med
-	department_ID = ACCOUNT_MED
-	department_name = ACCOUNT_MED_NAME
-
-/obj/item/card/id/departmental_budget/srv
-	department_ID = ACCOUNT_SRV
-	department_name = ACCOUNT_SRV_NAME
-
 /obj/item/card/id/departmental_budget/car
 	department_ID = ACCOUNT_CAR
 	department_name = ACCOUNT_CAR_NAME
-
-/obj/item/card/id/departmental_budget/sec
-	department_ID = ACCOUNT_SEC
-	department_name = ACCOUNT_SEC_NAME
