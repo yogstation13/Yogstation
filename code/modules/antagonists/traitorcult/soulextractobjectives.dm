@@ -4,6 +4,7 @@
 	explanation_text = "<span class='nezbere'>tear out some fucker's brain hahaha</span>"
 
 /datum/objective/soul_extraction/New()
+	..()
 	target = find_target_by_role(role = ROLE_CLOCK_AGENT, role_type = TRUE, invert = TRUE)
 	update_explanation_text()
 
@@ -109,6 +110,7 @@
 	explanation_text = "<span class='cultbold'>FETCH ME THEIR SOULSSSSSSSS</span>"
 
 /datum/objective/soulshard/New()
+	..()
 	target = find_target_by_role(role = ROLE_BLOOD_AGENT, role_type = TRUE, invert = TRUE)
 	update_explanation_text()
 
