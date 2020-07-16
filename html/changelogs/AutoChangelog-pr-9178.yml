@@ -1,0 +1,5 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - tweak: "Clock cult armor no longer increases laser damage taken."
+  - tweak: "The bronze suit now no longer amplifies laser damage as well."
