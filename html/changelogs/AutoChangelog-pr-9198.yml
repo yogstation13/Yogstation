@@ -1,0 +1,5 @@
+author: " MrHorizons"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new sprites for the plant DNA manipulator."
+  - tweak: "The plant data disk has an overlay for when it contains a gene."
