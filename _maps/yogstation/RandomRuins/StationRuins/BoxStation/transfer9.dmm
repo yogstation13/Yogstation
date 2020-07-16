@@ -2,6 +2,12 @@
 "a" = (
 /turf/template_noop,
 /area/space)
+"b" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/security/execution/transfer)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -17,24 +23,14 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"f" = (
+"e" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 6
+	dir = 5
 	},
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating,
-/area/security/execution/transfer)
-"g" = (
-/obj/structure/cable{
-	icon_state = "1-4"
+/obj/machinery/light/small{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/security/execution/transfer)
 "h" = (
 /obj/structure/table,
@@ -53,11 +49,43 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"m" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+"i" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "executionfireblast";
+	name = "blast door"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Transfer Chamber";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/security/execution/transfer)
+"l" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
+"n" = (
+/obj/machinery/flasher{
+	id = "executionflash";
+	pixel_y = 25
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/chair,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/security/execution/transfer)
 "o" = (
 /obj/structure/chair{
@@ -85,15 +113,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"p" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "q" = (
 /turf/open/floor/plasteel/dark,
@@ -180,21 +199,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"w" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"x" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
 "y" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
@@ -209,13 +213,6 @@
 	},
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/security/execution/transfer)
-"z" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "B" = (
 /obj/structure/chair{
@@ -262,34 +259,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"G" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "executionfireblast";
-	name = "blast door"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 1
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Transfer Chamber";
-	req_access_txt = "2"
-	},
-/turf/open/floor/plating,
-/area/security/execution/transfer)
 "H" = (
-/obj/machinery/flasher{
-	id = "executionflash";
-	pixel_y = 25
-	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 9
 	},
-/obj/structure/chair,
-/turf/open/floor/plating,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/security/execution/transfer)
 "I" = (
 /obj/structure/table,
@@ -304,11 +281,30 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"K" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
+"J" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
+"K" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "M" = (
 /turf/closed/wall,
@@ -326,6 +322,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"O" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -337,19 +337,6 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"R" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/security/execution/transfer)
-"S" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/security/execution/transfer)
 "T" = (
 /obj/structure/table,
@@ -367,6 +354,21 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"U" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
+"V" = (
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
@@ -390,20 +392,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
+"X" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/security/execution/transfer)
 "Y" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"Z" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/security/execution/transfer)
 
 (1,1,1) = {"
@@ -434,26 +434,26 @@ M
 M
 d
 M
-p
-x
-z
+J
+l
+K
 M
 "}
 (4,1,1) = {"
-Z
-K
+H
+b
 y
 v
 C
-w
-g
-m
+V
+U
+q
 T
 "}
 (5,1,1) = {"
-H
-R
-G
+n
+O
+i
 E
 D
 Y
@@ -462,8 +462,8 @@ q
 h
 "}
 (6,1,1) = {"
-S
-f
+e
+X
 y
 o
 B

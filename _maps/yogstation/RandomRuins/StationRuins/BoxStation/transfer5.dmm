@@ -24,18 +24,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"g" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
 "h" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
@@ -86,12 +74,6 @@
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"m" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
 "o" = (
 /obj/structure/chair{
 	dir = 1
@@ -118,15 +100,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"p" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "q" = (
 /turf/open/floor/plasteel/dark,
@@ -175,6 +148,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
+"u" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
 "v" = (
 /obj/structure/chair{
 	dir = 1
@@ -197,19 +179,25 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "w" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
+"x" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
-"x" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "y" = (
 /obj/machinery/door/poddoor/preopen{
@@ -225,13 +213,6 @@
 	},
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/security/execution/transfer)
-"z" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "B" = (
 /obj/structure/chair{
@@ -333,6 +314,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"P" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -400,6 +391,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"Y" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
 "Z" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -438,9 +438,9 @@ M
 M
 d
 M
-p
-x
-z
+w
+Y
+P
 M
 "}
 (4,1,1) = {"
@@ -449,9 +449,9 @@ K
 y
 v
 H
-w
-g
-m
+x
+u
+q
 T
 "}
 (5,1,1) = {"
