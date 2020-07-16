@@ -21,8 +21,6 @@
 	var/list/datum/mind/coggers_to_cog = list()
 	var/list/datum/mind/bloods_to_blood = list()
 
-	var/const/min_team_size = 1
-
 /datum/game_mode/traitor/traitorcult/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -33,7 +31,6 @@
 	var/list/datum/mind/possible_bloods = get_players_for_role(ROLE_BLOOD_AGENT)
 
 	var/asc = CONFIG_GET(number/agent_scaling_coeff)
-	var/team_size = min_team_size
 	if(asc)
 		agent_scaling = max(round(num_players() / asc), 1)
 	clock_agent_team = new
