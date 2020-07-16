@@ -14,8 +14,7 @@
 
 /datum/outfit/mafia/detective
 	name = "Mafia Detective"
-
-	uniform = /obj/item/clothing/under/rank/security/detective
+	uniform = /obj/item/clothing/under/rank/det
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/det_suit
@@ -25,28 +24,28 @@
 
 /datum/outfit/mafia/psychologist
 	name = "Mafia Psychologist"
-	uniform = /obj/item/clothing/under/suit/black
+	uniform = /obj/item/clothing/under/yogs/harveyflint
 	shoes = /obj/item/clothing/shoes/laceup
 
 /datum/outfit/mafia/md
 	name = "Mafia Medical Doctor"
-	uniform = /obj/item/clothing/under/rank/medical/doctor
+	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat
 
 /datum/outfit/mafia/chaplain
 	name = "Mafia Chaplain"
-	uniform = /obj/item/clothing/under/rank/civilian/chaplain
+	uniform = /obj/item/clothing/under/rank/chaplain
 
 /datum/outfit/mafia/lawyer
 	name = "Mafia Lawyer"
-	uniform = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit
+	uniform = /obj/item/clothing/under/lawyer
 	suit = /obj/item/clothing/suit/toggle/lawyer
 	shoes = /obj/item/clothing/shoes/laceup
 
 /datum/outfit/mafia/hop
 	name = "Mafia Head of Personnel"
-	uniform = /obj/item/clothing/under/rank/civilian/head_of_personnel
+	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/hopcap
@@ -68,7 +67,7 @@
 
 /datum/outfit/mafia/obsessed
 	name = "Mafia Obsessed"
-	uniform = /obj/item/clothing/under/misc/overalls
+	uniform = /obj/item/clothing/under/overalls
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	gloves = /obj/item/clothing/gloves/color/latex
 	mask = /obj/item/clothing/mask/surgical
@@ -81,7 +80,7 @@
 	
 /datum/outfit/mafia/clown
 	name = "Mafia Clown"
-	uniform = /obj/item/clothing/under/rank/civilian/clown
+	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat
 
