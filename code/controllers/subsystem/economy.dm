@@ -83,10 +83,9 @@ SUBSYSTEM_DEF(economy)
 
 
 /datum/controller/subsystem/economy/proc/car_payout()
-	var/cargo_cash = 500
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(cargo_cash)
+		D.adjust_money(500)
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
 	var/crew
