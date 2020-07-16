@@ -315,15 +315,15 @@
 	update_icon()
 
 //academy ruin paper
-/obj/item/paper/yogs/ruins/academy
+/obj/item/paper/yog/ruins/academy
 	name = "Debug Paper"
 	desc = "Official Wizard Academy Mail"
 
 //in regards to trey being a lizard
-/obj/item/paper/yogs/ruins/academy/trey_wizard_lizard
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard
 	name = "RE: Trey of the Shattered Voice"
 
-/obj/item/paper/yogs/ruins/academy/trey_wizard_lizard/New()
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard/New()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Wizard Academy Official Mail</h3></center><hr>",/datum/language/common)
