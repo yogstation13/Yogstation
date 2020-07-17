@@ -28271,11 +28271,6 @@
 /obj/item/reagent_containers/food/condiment/peppermill,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bbi" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bbj" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/purple,
@@ -43761,22 +43756,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
-"bCj" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "bCk" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Gravity Generator";
@@ -57079,6 +57058,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"dBv" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "dBW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -58224,6 +58210,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
+"ifT" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "igE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -88896,7 +88898,7 @@ brg
 aPl
 byo
 bkk
-bCj
+ifT
 bCi
 bDr
 bEv
@@ -92214,7 +92216,7 @@ aRC
 aRN
 aYU
 bab
-bbi
+dBv
 bbh
 bdr
 bct

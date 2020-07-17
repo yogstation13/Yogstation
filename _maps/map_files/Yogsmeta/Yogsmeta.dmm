@@ -54076,16 +54076,6 @@
 	dir = 2
 	},
 /area/crew_quarters/kitchen)
-"bRT" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bRU" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -65450,22 +65440,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"cld" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "cle" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -82352,22 +82326,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/supermatter)
-"djz" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/external{
-	name = "Arrival Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
-"djC" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "Arrival Airlock"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "djM" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -83167,6 +83125,18 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"eTc" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "fdr" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -83680,6 +83650,22 @@
 "kwT" = (
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"kwY" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "kyR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
 	dir = 4
@@ -83982,6 +83968,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"orh" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "oub" = (
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
@@ -84651,6 +84650,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"wTi" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "xdW" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
@@ -95443,9 +95453,9 @@ aDb
 aDb
 aVu
 aWU
-djz
+wTi
 aZZ
-djC
+orh
 aaa
 aaa
 aaa
@@ -95453,9 +95463,9 @@ aaa
 aaa
 aaa
 aaa
-djz
+wTi
 bsk
-djC
+orh
 aVu
 bxu
 aRA
@@ -97242,9 +97252,9 @@ aSL
 aDb
 aGW
 aSK
-djz
+wTi
 aZZ
-djC
+orh
 aaa
 aaa
 aaa
@@ -97252,9 +97262,9 @@ aaa
 aaa
 aaa
 aaa
-djz
+wTi
 bsk
-djC
+orh
 aVu
 buD
 aRA
@@ -105764,7 +105774,7 @@ cfG
 byc
 bXc
 cbV
-cld
+kwY
 cev
 ccB
 bSv
@@ -119113,7 +119123,7 @@ bLN
 dDe
 bOV
 bpl
-bRT
+eTc
 bST
 bUj
 bVu

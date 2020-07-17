@@ -84414,6 +84414,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"iiH" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "ilY" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -98741,7 +98747,7 @@ brD
 bfS
 bgq
 bgo
-biX
+iiH
 bgo
 biX
 bvS

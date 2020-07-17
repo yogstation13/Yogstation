@@ -16300,18 +16300,6 @@
 	},
 /turf/closed/wall,
 /area/quartermaster/miningdock)
-"axY" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/end{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical)
 "axZ" = (
 /obj/machinery/defibrillator_mount/loaded{
 	pixel_y = -32
@@ -19452,24 +19440,6 @@
 	},
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
-"aDa" = (
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 5
-	},
-/obj/structure/sign/warning/nosmoking{
-	pixel_y = 32
-	},
-/obj/structure/sign/nanotrasen{
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -41204,6 +41174,18 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall/rust,
 /area/engine/engineering)
+"nwr" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical)
 "nCc" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
@@ -41965,6 +41947,23 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"rnq" = (
+/obj/structure/table/reinforced,
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 32
+	},
+/obj/structure/sign/nanotrasen{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "rwU" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -83436,7 +83435,7 @@ aqx
 aru
 atk
 avB
-axY
+nwr
 aph
 awL
 aJE
@@ -89579,7 +89578,7 @@ ayS
 ayK
 azN
 aCe
-aDa
+rnq
 aDR
 aAX
 aFW

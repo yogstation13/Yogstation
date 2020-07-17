@@ -548,11 +548,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"bD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/stasis,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "bF" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute,
@@ -692,6 +687,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
+"pC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/stasis{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "qv" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -740,6 +742,13 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"UX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "VK" = (
 /obj/machinery/door/firedoor/border_only{
@@ -998,7 +1007,7 @@ ax
 ax
 ad
 bA
-bD
+UX
 bA
 bK
 bL
@@ -1071,7 +1080,7 @@ ax
 ac
 bB
 bB
-bD
+pC
 ad
 ad
 "}
