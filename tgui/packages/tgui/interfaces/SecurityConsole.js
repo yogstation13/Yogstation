@@ -40,16 +40,19 @@ export const SecurityConsole = (props, context) => {
                 <Fragment>
                   {data.user_image && (
                     <Fragment style={`position:relative`}>
-                      <img src={"photo_" + data.user_image +"_cropped.png"} width="125px" height="125px"
+                      <img src={"photo_" + data.user_image +"_cropped.png"}
+                        width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
-                        border-radius: 50%; border: 3px solid white;margin-right:-125px`}/>
+                        border-radius: 50%; border: 3px solid white;
+                        margin-right:-125px`}/>
                       <img src="scanlines.png"
                         width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
                         border-radius: 50%; border: 3px solid white;opacity: 0.3;`}/>
                     </Fragment>
                   ) || (
-                    <Icon name="user-circle" verticalAlign="middle" size="4.5" mr="1rem" />
+                    <Icon name="user-circle"
+                      verticalAlign="middle" size="4.5" mr="1rem" />
                   )}
                   <Box inline fontSize="18px" bold>{username ? username : "Unknown"}</Box>
                   <NoticeBox success={has_access} danger={!has_access}
