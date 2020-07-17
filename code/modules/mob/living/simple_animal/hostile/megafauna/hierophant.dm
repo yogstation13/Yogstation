@@ -396,9 +396,9 @@ Difficulty: Hard
 	if(health > 0 || stat == DEAD)
 		return
 	else
-		var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
-			D.adjust_money(maxhealth)
+			D.adjust_money(maxHealth)
 		stat = DEAD
 		blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
 		visible_message("<span class='hierophant'>\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\"</span>")
