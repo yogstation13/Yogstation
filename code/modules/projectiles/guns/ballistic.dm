@@ -162,7 +162,7 @@
 		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
-		if(reload_say && AM.ammo_count() && !magazine?.ammo_count(FALSE))
+		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
 			user.say(reload_say, forced = "reloading")
 		magazine = AM
 		if (display_message)
@@ -221,7 +221,7 @@
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
 				chambered = null
-			var/can_reload_say = !magazine?.ammo_count(FALSE)
+			var/can_reload_say = !ammo_count(FALSE, FALSE)
 			var/num_loaded = magazine.attackby(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, "<span class='notice'>You load [num_loaded] [cartridge_wording]\s into \the [src].</span>")
@@ -362,12 +362,12 @@
 		reload_say = input
 		log_game("[usr] has set the reload speech on [src] to [reload_say]")
 
-/obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
+/obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE, countempties = TRUE)
 	var/boolets = 0 //mature var names for mature people
 	if (chambered && countchambered)
 		boolets++
 	if (magazine)
-		boolets += magazine.ammo_count()
+		boolets += magazine.ammo_count(countempties)
 	return boolets
 
 /obj/item/gun/ballistic/proc/get_ammo_list(countchambered = TRUE, drop_all = FALSE)
