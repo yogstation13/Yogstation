@@ -6,8 +6,8 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
-	can_buckle = 1
-	buckle_lying = 0
+	can_buckle = TRUE
+	buckle_lying = FALSE
 
 	var/power_per_hug = 1000000
 
@@ -71,15 +71,15 @@
 			add_avail(power_per_hug*50) //5 MW
 			crunched.Stun(20)
 			sleep(20)
-		else if(crunched.health <= 25)
+		else
 			crunched.visible_message("<span class='danger'>[src] hugs [crunched] tighter!</span>", "<span class='userdanger'>[src] starts hugging you tighter!</span>")
 			crunched.Stun(30)
-			crunched.adjustBruteLoss(4)
+			crunched.adjustBruteLoss(5)
 			sleep(30)
 			if(crunched.buckled) //Are they still buckled?
 				crunched.visible_message("<span class='danger'>[src] hugs [crunched] tighter!</span>", "<span class='userdanger'>WAY TOO TIGHT.</span>")
 				crunched.Stun(40)
-				crunched.adjustBruteLoss(4)
+				crunched.adjustBruteLoss(5)
 				sleep(40)
 			if(crunched.buckled)
 				crunched.visible_message("<span class='danger'>You hear a loud crunch coming from [crunched]!</span>", "<span class='colossus'>CRUNCH</span>")
@@ -91,8 +91,6 @@
 				playsound(src, "sound/magic/demon_consume.ogg", 60, 1)
 				crunched.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic, TRAUMA_RESILIENCE_SURGERY)
 				sleep(30)
-			unbuckle_mob(crunched, TRUE)
-		else
 			unbuckle_mob(crunched, TRUE)
 
 	crunched.notransform = FALSE
