@@ -44,11 +44,11 @@ export const SecurityConsole = (props, context) => {
                         width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
                         border-radius: 50%; border: 3px solid white;
-                        margin-right:-125px` }/>
+                        margin-right:-125px`} />
                       <img src="scanlines.png"
                         width="125px" height="125px"
                         style={`-ms-interpolation-mode: nearest-neighbor;
-                        border-radius: 50%; border: 3px solid white;opacity: 0.3;` }/>
+                        border-radius: 50%; border: 3px solid white;opacity: 0.3;`} />
                     </Fragment>
                   ) || (
                     <Icon name="user-circle"
