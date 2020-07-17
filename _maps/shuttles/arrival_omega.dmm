@@ -91,9 +91,11 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/end{
-	dir = 1;
-	icon_state = "warn_end"
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
@@ -276,6 +278,15 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
+"R" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/obj/effect/turf_decal/stripes/end{
+	dir = 1;
+	icon_state = "warn_end"
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -283,7 +294,7 @@ d
 f
 j
 f
-A
+R
 A
 d
 A

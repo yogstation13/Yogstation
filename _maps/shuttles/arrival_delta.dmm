@@ -172,7 +172,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plating,
 /area/shuttle/arrival)
 "o" = (
 /obj/effect/turf_decal/tile/neutral{

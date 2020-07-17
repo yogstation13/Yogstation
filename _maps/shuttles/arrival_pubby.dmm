@@ -13,8 +13,11 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/stripes/end{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
@@ -175,17 +178,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
-"D" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Arrivals Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/stripes/end,
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "F" = (
 /obj/structure/closet/wardrobe/white,
 /turf/open/floor/mineral/titanium/blue,
@@ -240,7 +232,7 @@ f
 o
 o
 f
-D
+c
 "}
 (6,1,1) = {"
 b
@@ -288,7 +280,7 @@ f
 o
 o
 f
-D
+c
 "}
 (12,1,1) = {"
 b
