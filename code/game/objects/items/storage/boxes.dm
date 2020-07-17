@@ -196,6 +196,14 @@
 	for(var/i in 1 to 7)
 		new /obj/item/clothing/mask/surgical(src)
 
+/obj/item/storage/box/rollingbeds
+	name = "box of rolling beds"
+	desc = "This box contains rolling beds."
+
+/obj/item/storage/box/rollingbeds/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/roller(src)
+
 /obj/item/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
