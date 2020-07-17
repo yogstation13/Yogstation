@@ -50,7 +50,6 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	mob_biotypes = list(MOB_ROBOTIC)
 	internal_type = /obj/item/gps/internal/swarmer_beacon
 	faction = list("mining", "boss", "swarmer")
-	weather_immunities = list("lava","ash")
 	stop_automated_movement = TRUE
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
@@ -86,6 +85,11 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 		call_help_cooldown = world.time + call_help_cooldown_amt
 		summon_backup(25) //long range, only called max once per 15 seconds, so it's not deathlag
 
+/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/death()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxhealth)
+	. = ..()
 
 /obj/item/gps/internal/swarmer_beacon
 	icon_state = null
