@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	mob_biotypes = list(MOB_ROBOTIC)
 	internal_type = /obj/item/gps/internal/swarmer_beacon
 	faction = list("mining", "boss", "swarmer")
+	weather_immunities = list("lava","ash")
 	stop_automated_movement = TRUE
 	wander = FALSE
 	layer = BELOW_MOB_LAYER
