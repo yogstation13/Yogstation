@@ -123,6 +123,9 @@ Difficulty: Medium
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/death()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxhealth)
 	. = ..()
 	if(.)
 		new /obj/effect/temp_visual/dir_setting/miner_death(loc, dir)
