@@ -1,6 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - rscadd: "Added a feedback system for forensic scanners. (Animations + sounds)"
-  - rscadd: "Expanded the interaction system for forensic scanners via context-sensitive radials"
-  - rscadd: "Added 2 new scanners (Advanced + badmin)"
