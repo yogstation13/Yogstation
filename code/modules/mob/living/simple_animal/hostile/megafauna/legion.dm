@@ -127,6 +127,9 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/legion/death()
 	if(health > 0)
 		return
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxhealth)
 	if(size > 1)
 		adjustHealth(-maxHealth) //heal ourself to full in prep for splitting
 		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
