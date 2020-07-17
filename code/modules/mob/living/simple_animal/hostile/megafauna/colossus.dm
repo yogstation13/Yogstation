@@ -212,9 +212,9 @@ Difficulty: Very Hard
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/death()
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(maxhealth)
+		D.adjust_money(maxHealth)
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
