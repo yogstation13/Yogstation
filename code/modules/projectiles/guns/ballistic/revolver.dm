@@ -57,14 +57,6 @@
 		C.spin()
 		chamber_round(FALSE)
 
-/obj/item/gun/ballistic/revolver/get_ammo(countchambered = FALSE, countempties = TRUE)
-	var/boolets = 0 //mature var names for mature people
-	if (chambered && countchambered)
-		boolets++
-	if (magazine)
-		boolets += magazine.ammo_count(countempties)
-	return boolets
-
 /obj/item/gun/ballistic/revolver/examine(mob/user)
 	. = ..()
 	var/live_ammo = get_ammo(FALSE, FALSE)
