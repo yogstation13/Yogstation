@@ -162,7 +162,7 @@
 		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
-		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
+		if(reload_say && AM.ammo_count() && !magazine?.ammo_count(FALSE))
 			user.say(reload_say, forced = "reloading")
 		magazine = AM
 		if (display_message)
