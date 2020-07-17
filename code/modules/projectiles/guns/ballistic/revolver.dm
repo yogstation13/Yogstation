@@ -164,7 +164,7 @@
 
 /obj/item/gun/ballistic/revolver/russian/attackby(obj/item/A, mob/user, params)
 	..()
-	if(get_ammo() > 0)
+	if(get_ammo(FALSE) > 0)
 		spin()
 	update_icon()
 	A.update_icon()
