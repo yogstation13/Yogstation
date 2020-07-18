@@ -6889,6 +6889,14 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"pA" = (
+/obj/mecha/combat/marauder/loaded,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
+"pC" = (
+/obj/machinery/door/poddoor/deathsquad,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "pD" = (
 /obj/structure/destructible/cult/tome,
 /obj/item/shuttle_curse,
@@ -12524,22 +12532,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Bu" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Bv" = (
 /obj/machinery/computer/card/centcom{
 	dir = 1
@@ -12880,22 +12872,6 @@
 /obj/item/toy/figure/syndie,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"BZ" = (
-/obj/structure/table/wood,
-/obj/item/clipboard,
-/obj/item/radio/headset/headset_cent,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Ca" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -15583,6 +15559,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Hl" = (
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Hm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -18006,6 +17988,12 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"Mo" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "Mp" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -18317,6 +18305,10 @@
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
+"Nj" = (
+/obj/mecha/combat/marauder/seraph,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Nk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome";
@@ -19068,6 +19060,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"Pp" = (
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Pq" = (
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -21070,6 +21069,10 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Vw" = (
+/obj/machinery/firealarm,
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "Vx" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien12";
@@ -21802,6 +21805,10 @@
 /obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"XF" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "XI" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /turf/open/space/basic,
@@ -57472,13 +57479,13 @@ xd
 oe
 yn
 mD
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+mD
+Vw
+mD
+Mo
+mD
+mD
+mD
 aa
 aa
 aa
@@ -57729,13 +57736,13 @@ Xy
 oe
 vB
 mD
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+XF
+zA
+zA
+Pp
+Hl
+XF
+mD
 aa
 aa
 aa
@@ -57986,13 +57993,13 @@ xe
 wr
 yo
 nU
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+pA
+zA
+zA
+zA
+zA
+Nj
+mD
 aa
 aa
 aa
@@ -58243,13 +58250,13 @@ xf
 ws
 yp
 Tw
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+XF
+zA
+zA
+zA
+zA
+XF
+mD
 aa
 aa
 aa
@@ -58500,13 +58507,13 @@ xg
 wt
 yq
 mD
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+pA
+zA
+zA
+zA
+zA
+Nj
+mD
 aa
 aa
 aa
@@ -58757,12 +58764,12 @@ xh
 wu
 mD
 mD
-Tw
-Tw
-nU
-Tw
-Tw
-mD
+rz
+pC
+pC
+pC
+pC
+rz
 mD
 aa
 aa
@@ -59015,10 +59022,10 @@ wv
 mD
 yY
 zz
-oA
-uV
-Bu
-BZ
+sw
+sw
+sw
+sw
 Cq
 mD
 aa
