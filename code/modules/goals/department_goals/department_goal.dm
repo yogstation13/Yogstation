@@ -13,13 +13,13 @@
 /datum/department_goal/New()
 	SSYogs.department_goals += src
 	if(SSticker.current_state == GAME_STATE_PLAYING)
-		message_players()
+		message_players("new")
 	return ..()
 
 /datum/department_goal/Destroy()
 	SSYogs.department_goals -= src
 	if(SSticker.current_state == GAME_STATE_PLAYING)
-		message_players()
+		message_players("ded")
 	return ..()
 
 // Should contain the conditions for completing it, not just checking whether the objective has *already* been completed
@@ -30,6 +30,8 @@
 /datum/department_goal/proc/on_complete(endOfRound = FALSE)
 	if(!continuous || endOfRound)
 		completed = TRUE
+		if(!endOfRound)
+			message_players("complet")
 	else
 		SSYogs.department_goals[src] = world.time + continuous
 
@@ -38,8 +40,16 @@
 		on_complete(TRUE)
 	return "<li>[name] : <span class='[completed ? "greentext'>Complet" : "redtext'>Fail"]ed</span></li>"
 
-/datum/department_goal/proc/message_players()
+/datum/department_goal/proc/message_players(message)
 	var/string = "Your department's goals have been updated, please have another look at them."
+	switch(message)
+		if("ded")
+			string = "Your department no longer has the goal: " + name
+		if("new")
+			string = "Your department now has the goal: " + name
+		if("complet")
+			string = "Your department completed the goal: " + name
+			
 	var/list/occupationsToSendTo = list()
 	for(var/datum/job/j in SSjob.occupations)
 		if(j.paycheck_department == account)
