@@ -51,14 +51,14 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
 					
 			if(SEC_LEVEL_GAMMA)
-				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", sound = 'sound/misc/gamma_alert.ogg', TRUE)
+				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
 				if(GLOB.security_level == SEC_LEVEL_GREEN)
 					modTimer = 0.25
 				else
 					modTimer = 0.5
 						
 			if(SEC_LEVEL_EPSILON)
-				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", sound = 'sound/misc/epsilon_alert.ogg', TRUE)
+				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
 
 			if(SEC_LEVEL_DELTA)
 				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE)
