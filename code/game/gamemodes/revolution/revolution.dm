@@ -7,7 +7,7 @@
 // If the game somtimes isn't registering a win properly, then SSticker.mode.check_win() isn't being called somewhere.
 
 //Timer after all heads/headrevs die, before we check again and end the round
-#define REV_VICTORY_TIMER 3000
+#define REV_VICTORY_TIMER (2.5 MINUTES)
 
 /datum/game_mode/revolution
 	name = "revolution"
