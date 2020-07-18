@@ -176,12 +176,10 @@
 
 	missiondesc += "<BR><B>Your Mission</B>: [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ertincoming.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/ert/amber/greet()
 	. = ..()
 	to_chat(owner,"You also have a combat knife inside your boots.")
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/amberincoming.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/ert/deathsquad/greet()
 	if(!ert_team)
@@ -197,7 +195,6 @@
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/amberincoming.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/ert/clown/greet()
 	if(!ert_team)
