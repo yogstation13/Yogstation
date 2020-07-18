@@ -59,7 +59,9 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 				SEND_SOUND(world, 'sound/misc/gamma_alert.ogg')
 				if(GLOB.security_level == SEC_LEVEL_GREEN)
 					modTimer = 0.25
-				else
+				else if(GLOB.security_level == SEC_LEVEL_BLUE)
+					modTimer = 0.50
+				else if(GLOB.security_level == SEC_LEVEL_RED)
 					modTimer = 0.75
 						
 			if(SEC_LEVEL_EPSILON)
