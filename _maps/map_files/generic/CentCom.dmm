@@ -6890,8 +6890,8 @@
 	},
 /area/centcom/holding)
 "pB" = (
-/obj/machinery/door/poddoor/deathsquad,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/firealarm,
+/turf/closed/indestructible/riveted,
 /area/centcom/ferry)
 "pD" = (
 /obj/structure/destructible/cult/tome,
@@ -8180,6 +8180,12 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"sd" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "se" = (
 /obj/machinery/light{
 	dir = 8
@@ -10545,6 +10551,13 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"wT" = (
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "wV" = (
 /obj/structure/table/wood,
 /obj/item/paicard,
@@ -13445,6 +13458,10 @@
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"CW" = (
+/obj/mecha/combat/marauder/seraph,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "CX" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
@@ -13639,10 +13656,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Dm" = (
-/obj/machinery/firealarm,
-/turf/closed/indestructible/riveted,
-/area/centcom/ferry)
 "Dn" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien17";
@@ -18203,10 +18216,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"MS" = (
-/obj/mecha/combat/marauder/loaded,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "MT" = (
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
@@ -18238,6 +18247,10 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"MY" = (
+/obj/mecha/combat/marauder/loaded,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "MZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -18987,12 +19000,6 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Pf" = (
-/obj/structure/sign/nanotrasen{
-	pixel_y = 32
-	},
-/turf/closed/indestructible/riveted,
-/area/centcom/ferry)
 "Pg" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/dualsaber/purple{
@@ -19146,6 +19153,10 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"PG" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "PI" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
@@ -19767,13 +19778,8 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Rq" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
-/obj/machinery/light{
-	dir = 8
-	},
+"Rr" = (
+/obj/machinery/door/poddoor/deathsquad,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "Rt" = (
@@ -19839,13 +19845,6 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"RE" = (
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "RF" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20801,10 +20800,6 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UG" = (
-/obj/machinery/mech_bay_recharge_port,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "UH" = (
 /obj/machinery/light{
 	dir = 8
@@ -21106,6 +21101,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"VB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "VE" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21362,12 +21363,6 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"Wr" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Wt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -21651,10 +21646,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"Xm" = (
-/obj/mecha/combat/marauder/seraph,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
@@ -22278,6 +22269,15 @@
 /obj/item/gun/grenadelauncher,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Ze" = (
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Zf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -57489,9 +57489,9 @@ oe
 yn
 mD
 mD
-Dm
+pB
 mD
-Pf
+sd
 mD
 mD
 mD
@@ -57745,12 +57745,12 @@ Xy
 oe
 vB
 mD
-UG
-Wr
+PG
+VB
 zA
-RE
-Rq
-UG
+wT
+Ze
+PG
 mD
 aa
 aa
@@ -58002,12 +58002,12 @@ xe
 wr
 yo
 nU
-MS
+MY
 zA
 zA
 zA
 zA
-Xm
+CW
 mD
 aa
 aa
@@ -58258,13 +58258,13 @@ ws
 xf
 ws
 yp
-Tw
-UG
+mD
+PG
 zA
 zA
 zA
 zA
-UG
+PG
 mD
 aa
 aa
@@ -58516,12 +58516,12 @@ xg
 wt
 yq
 mD
-MS
+MY
 zA
 zA
 zA
 zA
-Xm
+CW
 mD
 aa
 aa
@@ -58774,10 +58774,10 @@ wu
 mD
 mD
 rz
-pB
-pB
-pB
-pB
+Rr
+Rr
+Rr
+Rr
 rz
 mD
 aa
