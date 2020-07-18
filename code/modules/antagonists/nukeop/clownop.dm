@@ -5,6 +5,9 @@
 	antagpanel_category = "ClownOp"
 	nukeop_outfit = /datum/outfit/syndicate/clownop
 
+/datum/antagonist/nukeop/clownop/greet()
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)
+
 /datum/antagonist/nukeop/leader/clownop
 	name = "Clown Operative Leader"
 	roundend_category = "clown operatives"
