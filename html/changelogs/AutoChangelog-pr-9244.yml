@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Gamma and Epsilon alert"
+  - soundadd: "Adds gamma and epsilon alert sounds"
