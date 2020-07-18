@@ -329,6 +329,10 @@
 	custom_setup = list()
 	turn = 0
 	votes = list()
+	//map gen does not deal with landmarks
+	for(var/i in landmarks)
+		qdel(i)
+	qdel(town_center_landmark)
 	phase = MAFIA_PHASE_SETUP
 
 /**
