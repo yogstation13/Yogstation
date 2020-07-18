@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/death()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(maxHealth)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	. = ..()
 
 /obj/item/gps/internal/swarmer_beacon

@@ -214,7 +214,7 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/megafauna/colossus/death()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(maxHealth)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)

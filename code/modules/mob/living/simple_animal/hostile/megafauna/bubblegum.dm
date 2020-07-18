@@ -108,7 +108,7 @@ Difficulty: Hard
 	if(!(flags_1 & ADMIN_SPAWNED_1))
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
-			D.adjust_money(maxHealth)
+			D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
 				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)

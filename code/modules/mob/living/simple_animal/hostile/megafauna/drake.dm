@@ -381,7 +381,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/death()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
-		D.adjust_money(maxHealth)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	QDEL_NULL(internal) // so drake corpses don't have a gps signal
 	. = ..()
 
