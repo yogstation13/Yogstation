@@ -498,7 +498,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			air_update_turf()
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || (corruptor_attached))
+		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || corruptor_attached)
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
 			l.hallucination += power * config_hallucination_power * D
 			l.hallucination = clamp(0, 200, l.hallucination)
@@ -626,8 +626,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(prob(10+round(support_integrity/10,1)))
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
-					src.fire_nuclear_particle()
-		if(support_integrity<10)
+					fire_nuclear_particle()
+		if(support_integrity<MOLE_SPACE_THRESHOLD)
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < 10)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
@@ -781,20 +781,20 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(corruptor_attached)
 			to_chat(user, "A corruptor is already attached!")
 			return
-		user.visible_message("You attach the corruptor to the support structure, disrupting the paranoblium interface and allowing the addition of the antinoblium shard.")
+		to_chat(user, "You attach the corruptor to the support structure, disrupting the paranoblium interface and allowing the addition of the antinoblium shard.")
 		corruptor_attached = TRUE
 		qdel(W)
 		return
 	if(istype(W, /obj/item/hemostat/antinoblium))
 		var/obj/item/hemostat/antinoblium/cached = W
 		if(!cached.shard)
-			user.visible_message("You have nothing to attach to the supermatter!")
+			to_chat(user, "You have nothing to attach to the supermatter!")
 			return
 		if(!corruptor_attached)
-			user.visible_message("The paranoblium interface prevents you from adding the shard!")
+			to_chat(user, "The paranoblium interface prevents you from adding the shard! Attach a corruptor to disrupt it!")
 			return
 		if(antinoblium_attached)
-			user.visible_message("An antinoblium shard has already been attached to the supermatter crystal!")
+			to_chat(user, "An antinoblium shard has already been attached to the supermatter crystal!")
 			return
 		antinoblium_attached = TRUE
 		investigate_log("[user] has attached an antinoblium shard to the SM.", INVESTIGATE_SUPERMATTER)

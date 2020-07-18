@@ -2,8 +2,8 @@
 	info = "Antinoblium Shard User's Manual<br>\
 	<ul>\
 	<li>Approach an active supermatter crystal with radiation shielded personal protective equipment. DO NOT MAKE PHYSICAL CONTACT.</li>\
-	<li>Magnetically attach the data corruptor (also provided) into the supermatter control infrastructure to allow attaching the antinoblium.</li>\
-	<li>Open the antinoblium container (provided).</li>\
+	<li>Attach the data corruptor (provided) to the supermatter control infrastructure to allow the attachment of the antinoblium shard.</li>\
+	<li>Open the antinoblium container (also provided).</li>\
 	<li>Use antinoblium extraction tongs (also provided) and apply the shard to the crystal. Take note that an EMP pulse will be emitted upon attachment. Prepare accordingly. </li>\
 	<li>Physical contact of any object with the antinoblium shard will fracture the shard and cause a spontaneous energy release.</li>\
 	<li>Extricate yourself immediately. You have approximately 5 minutes before the infrastructure fails completely.</li>\
@@ -98,7 +98,7 @@
 	shard = null
 	T.update_icon()
 	update_icon()
-	to_chat(user, "<span class='warning'>[user] gingerly takes out the antinoblium shard with the tongs...</span>")
+	visible_message("<span class='warning'>[user] gingerly takes out the antinoblium shard with the tongs...</span>")
 	return TRUE
 
 /obj/item/antinoblium_container/proc/seal()
