@@ -6889,11 +6889,7 @@
 	smooth = 1
 	},
 /area/centcom/holding)
-"pA" = (
-/obj/mecha/combat/marauder/loaded,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
-"pC" = (
+"pB" = (
 /obj/machinery/door/poddoor/deathsquad,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
@@ -13643,6 +13639,10 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Dm" = (
+/obj/machinery/firealarm,
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "Dn" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien17";
@@ -15559,12 +15559,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Hl" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Hm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -17988,12 +17982,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"Mo" = (
-/obj/structure/sign/nanotrasen{
-	pixel_y = 32
-	},
-/turf/closed/indestructible/riveted,
-/area/centcom/ferry)
 "Mp" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -18215,6 +18203,10 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"MS" = (
+/obj/mecha/combat/marauder/loaded,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "MT" = (
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
@@ -18305,10 +18297,6 @@
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"Nj" = (
-/obj/mecha/combat/marauder/seraph,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Nk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome";
@@ -18999,6 +18987,12 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"Pf" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "Pg" = (
 /obj/structure/table/wood,
 /obj/item/twohanded/dualsaber/purple{
@@ -19060,13 +19054,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"Pp" = (
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Pq" = (
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -19780,6 +19767,15 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Rq" = (
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Rt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19843,6 +19839,13 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"RE" = (
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "RF" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20798,6 +20801,10 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UG" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "UH" = (
 /obj/machinery/light{
 	dir = 8
@@ -21069,10 +21076,6 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"Vw" = (
-/obj/machinery/firealarm,
-/turf/closed/indestructible/riveted,
-/area/centcom/ferry)
 "Vx" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien12";
@@ -21359,6 +21362,12 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"Wr" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Wt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -21642,6 +21651,10 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"Xm" = (
+/obj/mecha/combat/marauder/seraph,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
@@ -21805,10 +21818,6 @@
 /obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"XF" = (
-/obj/machinery/mech_bay_recharge_port,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "XI" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /turf/open/space/basic,
@@ -57480,9 +57489,9 @@ oe
 yn
 mD
 mD
-Vw
+Dm
 mD
-Mo
+Pf
 mD
 mD
 mD
@@ -57736,12 +57745,12 @@ Xy
 oe
 vB
 mD
-XF
+UG
+Wr
 zA
-zA
-Pp
-Hl
-XF
+RE
+Rq
+UG
 mD
 aa
 aa
@@ -57993,12 +58002,12 @@ xe
 wr
 yo
 nU
-pA
+MS
 zA
 zA
 zA
 zA
-Nj
+Xm
 mD
 aa
 aa
@@ -58250,12 +58259,12 @@ xf
 ws
 yp
 Tw
-XF
+UG
 zA
 zA
 zA
 zA
-XF
+UG
 mD
 aa
 aa
@@ -58507,12 +58516,12 @@ xg
 wt
 yq
 mD
-pA
+MS
 zA
 zA
 zA
 zA
-Nj
+Xm
 mD
 aa
 aa
@@ -58765,10 +58774,10 @@ wu
 mD
 mD
 rz
-pC
-pC
-pC
-pC
+pB
+pB
+pB
+pB
 rz
 mD
 aa
