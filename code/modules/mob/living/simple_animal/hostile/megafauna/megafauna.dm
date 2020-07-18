@@ -1,3 +1,5 @@
+#define MEGAFAUNA_CASH_SCALE 5
+
 /mob/living/simple_animal/hostile/megafauna
 	name = "boss of this gym"
 	desc = "Attack the weak point for massive damage."
