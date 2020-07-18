@@ -10,6 +10,8 @@ SUBSYSTEM_DEF(Yogs)
 	var/endedshift = FALSE //whether or not we've announced that the shift can be ended
 	var/last_rebwoink = 0 // Last time we bwoinked all admins about unclaimed tickets
 
+	var/list/datum/department_goal/department_goals = list()
+
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()
 	
@@ -59,6 +61,25 @@ SUBSYSTEM_DEF(Yogs)
 				accent_lists[3][regex(reg,"gi")] = accent_regex2replace[original_reg]
 		GLOB.accents_name2regexes[accent] = accent_lists
 
+	// Picking department goals
+	// Engineering first
+	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/eng)
+	
+	// Then security
+	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/sec)
+
+	// Then medical
+	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/med)
+
+	// Then cargo
+	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/car)
+
+	// Then service
+	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/srv)
+
+	// Then science
+	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/sci)
+
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
@@ -73,4 +94,18 @@ SUBSYSTEM_DEF(Yogs)
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
-	return
+	
+	// Department goal checker
+	if(department_goals.len && SSticker.current_state == GAME_STATE_PLAYING)
+		for(var/datum/department_goal/dg in department_goals)
+			if(dg.completed || dg.endround || (department_goals[dg] && world.time < department_goals[dg]))
+				continue
+			if(dg.check_complete())
+				dg.on_complete()
+
+/datum/controller/subsystem/Yogs/proc/asvToldMeToRenameThisProcSoHereWeAre(datum/d)
+	var/list/goals = subtypesof(d)
+	var/five = goals.len >= 5 ? 5 : goals.len
+	for(var/i in 1 to five)
+		var/datum/f = pick_n_take(goals)
+		new f
