@@ -49,6 +49,8 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 						modTimer = 0.5
 				else
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
+					if(GLOB.security_level == SEC_LEVEL_GAMMA)
+						modTimer = 2
           
 			if(SEC_LEVEL_GAMMA)
 				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
