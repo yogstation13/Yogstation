@@ -2,6 +2,7 @@
 	var/mobtype = /mob/living/carbon/human
 	var/team = /datum/team/ert
 	var/opendoors = TRUE
+	var/openmech = FALSE
 	var/leader_role = /datum/antagonist/ert/commander
 	var/enforce_human = TRUE
 	var/roles = list(/datum/antagonist/ert/security, /datum/antagonist/ert/medic, /datum/antagonist/ert/engineer) //List of possible roles to be assigned to ERT members.
