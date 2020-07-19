@@ -38,6 +38,7 @@ obj/item/energy_harvester/Initialize()
 /obj/item/energy_harvester/attack_hand(user, params)
 	ui_interact(user)
 	. = ..()
+	//figure out how to stop it from popping up the ui when clicked and not set up
 
 /obj/item/energy_harvester/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -109,8 +110,9 @@ obj/item/energy_harvester/Initialize()
 
 /obj/item/energy_harvester/ui_data(mob/user)
 	var/list/data = list(
-	"inputEnergy" = DisplayPower(input_energy),
+	"manualSwitch" = manual_switch,
 	"manualPowerSetting" = DisplayPower(manual_power_setting),
+	"inputEnergy" = DisplayPower(input_energy),
 	"accumulatedPower" = DisplayJoules(accumulated_power),
 	"projectedIncome" = calculateMoney(),
 	"lastPayout" = last_payout,
