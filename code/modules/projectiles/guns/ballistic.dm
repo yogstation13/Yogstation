@@ -221,7 +221,7 @@
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
 				chambered = null
-			var/can_reload_say = !ammo_count(FALSE, FALSE)
+			var/can_reload_say = !get_ammo(FALSE, FALSE)
 			var/num_loaded = magazine.attackby(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, "<span class='notice'>You load [num_loaded] [cartridge_wording]\s into \the [src].</span>")
