@@ -39,6 +39,7 @@
 	roles = list(/datum/antagonist/ert/deathsquad)
 	leader_role = /datum/antagonist/ert/deathsquad/leader
 	rename_team = "Deathsquad"
+	openmech = TRUE
 	code = "Delta"
 	mission = "Leave no witnesses."
 	polldesc = "an elite Nanotrasen Strike Team"
