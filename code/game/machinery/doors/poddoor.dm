@@ -1,4 +1,4 @@
-/obj/machinery/door/poddoor
+/obj/machinery/door/poddoo
 	name = "blast door"
 	desc = "A heavy duty blast door that opens mechanically."
 	icon = 'icons/obj/doors/blastdoor.dmi'
