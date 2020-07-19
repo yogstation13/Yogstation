@@ -288,7 +288,7 @@
 	.["mainsettings"]["mission"]["value"] = newtemplate.mission
 	.["mainsettings"]["polldesc"]["value"] = newtemplate.polldesc
 	.["mainsettings"]["open_armory"]["value"] = newtemplate.opendoors ? "Yes" : "No"
-	.["mainsettings"]["open_mechbay"]["value"] = newtemplate.openmech ? "Yes" : "No"
+	.["mainsettings"]["open_mechbay"]["value"] = newtemplate.openmechbay ? "Yes" : "No"
 
 
 /datum/admins/proc/equipAntagOnDummy(mob/living/carbon/human/dummy/mannequin, datum/antagonist/antag)
