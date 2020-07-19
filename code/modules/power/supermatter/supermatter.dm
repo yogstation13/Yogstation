@@ -501,7 +501,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || corruptor_attached)
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
 			l.hallucination += power * config_hallucination_power * D
-			l.hallucination = clamp(0, 200, l.hallucination)
+			l.hallucination = clamp(l.hallucination, 0, 200)
 
 	for(var/mob/living/l in range(src, round((power / 100) ** 0.25)))
 		var/rads = (power / 10) * sqrt( 1 / max(get_dist(l, src),1) )
