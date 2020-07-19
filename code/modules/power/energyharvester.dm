@@ -17,14 +17,27 @@
 	throw_speed = 1
 	throw_range = 1
 	materials = list(MAT_METAL=750)
-	var/stored_energy = 0
+	var/accumulated_power = 0
 	var/obj/structure/cable/attached
 	var/datum/powernet/PN = null //cached when found
-	var/power_avaliable
+	var/manual_power_setting = MAXIMUM_POWER_LIMIT
+	var/manual_switch = FALSE
+	var/input_energy = 0
+
+	//archived data for the UI, extra information always helps
+	var/last_payout
+	var/last_accumulated_power
+
+	var/ui_x = 300
+	var/ui_y = 300
 
 obj/item/energy_harvester/Initialize()
 	. = ..()
 	SSeconomy.moneysink = src
+
+/obj/item/energy_harvester/attack_hand(user, params)
+	ui_interact(user)
+	. = ..()
 
 /obj/item/energy_harvester/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -36,7 +49,7 @@ obj/item/energy_harvester/Initialize()
 					to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
 				else
 					START_PROCESSING(SSobj, src)
-					if(!SSeconomy.monkeysink)
+					if(!SSeconomy.moneysink)
 						SSeconomy.moneysink = src
 					PN = attached.powernet
 					anchored = 1
@@ -57,46 +70,81 @@ obj/item/energy_harvester/Initialize()
 				"<span class='italics'>You hear some wires being disconnected from something.</span>")
 
 /obj/item/energy_harvester/process()
-	if(!attached || !anchored)
+	if(!attached || !anchored || !manual_switch)
 		return PROCESS_KILL
 
 	if(PN)
 		set_light(5)
-		if(power_avaliable <= PN.netexcess)
+		if(PN.netexcess <= 0)
 			return
-		power_avaliable = min(power_avaliable, MAXIMUM_POWER_LIMIT)
-		attached.add_delayedload(power_avaliable)
-		stored_energy += power_avaliable
+		input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)
+		attached.add_delayedload(input_energy)
+		accumulated_power += input_energy
 
 /obj/item/energy_harvester/proc/calculateMoney()
 	var/potential_payout = 0
-	if(stored_energy<POWER_SOFTCAP)
-		potential_payout = BELOW_SOFTCAP_MULTIPLIER * MONEYSCALE * (stored_energy / POWER_SOFTCAP)
+	if(accumulated_power<POWER_SOFTCAP)
+		potential_payout = BELOW_SOFTCAP_MULTIPLIER * MONEYSCALE * (accumulated_power / POWER_SOFTCAP)
 	else
-		potential_payout = MONEYSCALE * ((log(10, stored_energy) - log(10, POWER_SOFTCAP)) + BELOW_SOFTCAP_MULTIPLIER)
+		potential_payout = MONEYSCALE * ((log(10, accumulated_power) - log(10, POWER_SOFTCAP)) + BELOW_SOFTCAP_MULTIPLIER)
 	potential_payout = round(potential_payout,1)
 	return potential_payout
 
 /obj/item/energy_harvester/proc/payout()
-	if(stored_energy = 0)
+	if(accumulated_power == 0)
 		return 0
 	var/payout = calculateMoney()
-	stored_energy = 0
+	last_payout = payout
+	last_accumulated_power = accumulated_power
+	accumulated_power = 0
 	say("Payout for energy exports received! Payout valued at [payout]!")
 	return payout
 
-
-/obj/item/energy_harvester/ui_interact(mob/user, ui_key = "", datum/tgui/ui = null, force_open = "0", datum/tgui/master_ui = null, datum/ui_state/state = default_state)
+/obj/item/energy_harvester/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, 
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "energy_harvester", name, 300, 300, master_ui, state)
+		ui = new(user, src, ui_key, "EnergyHarvester", name, 300, 300, master_ui, state)
 		ui.open()
 
 /obj/item/energy_harvester/ui_data(mob/user)
-	var/list/data = list()
-	data["input_energy"] = DisplayPower(power_avaliable)
-	data["stored_energy"] = DisplayJoules(stored_energy)
-	data["projected_income"] = calculateMoney()
+	var/list/data = list(
+	"inputEnergy" = DisplayPower(input_energy),
+	"manualPowerSetting" = DisplayPower(manual_power_setting),
+	"accumulatedPower" = DisplayJoules(accumulated_power),
+	"projectedIncome" = calculateMoney(),
+	"lastPayout" = last_payout,
+	"lastAccumulatedPower" = DisplayJoules(last_accumulated_power)
+	)
+	return data
+
+/obj/item/energy_harvester/ui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("switch")
+			manual_switch = !manual_switch
+			if(manual_switch)
+				START_PROCESSING(SSobj, src)
+			. = TRUE
+		if("setinput")
+			var/target = params["target"]
+			if(target == "input")
+				//target = input("New input target (0-[MAXIMUM_POWER_LIMIT]):", name, input_level) as num|null
+				if(!isnull(target) && !..())
+					. = TRUE
+			else if(target == "min")
+				target = 0
+				. = TRUE
+			else if(target == "max")
+				target = MAXIMUM_POWER_LIMIT
+				. = TRUE
+			else if(text2num(target) != null)
+				target = text2num(target)
+				. = TRUE
+			if(.)
+				manual_power_setting = clamp(target, 0, MAXIMUM_POWER_LIMIT)
 
 #undef MONEYSCALE
 #undef MAXIMUM_POWER_LIMIT
+#undef POWER_SOFTCAP
