@@ -62,7 +62,7 @@
 	name = "Chainsaw"
 	description = "A CMO at CentCom is having trouble operating on golems. She requests one chainsaw, please."
 	reward = 2500
-	wanted_types = list(/obj/item/chainsaw)
+	wanted_types = list(/obj/item/twohanded/required/chainsaw)
 
 /datum/bounty/item/medical/tail_whip //Like the cat tail bounties, with more processing.
 	name = "Nine Tails whip"

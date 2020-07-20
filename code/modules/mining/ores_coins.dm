@@ -478,7 +478,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	return TRUE//did the coin flip? useful for suicide_act
 	
 /obj/item/coin/gold/debug
-	custom_materials = list(/datum/material/gold = 400)
+	materials = list(MAT_GOLD = 400)
 	desc = "If you got this somehow, be aware that it will dust you. Almost certainly."
 
 /obj/item/coin/gold/debug/attack_self(mob/user)

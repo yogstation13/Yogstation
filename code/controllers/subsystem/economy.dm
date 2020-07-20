@@ -163,8 +163,6 @@ SUBSYSTEM_DEF(economy)
   **/
 /datum/controller/subsystem/economy/proc/price_update()
 	for(var/obj/machinery/vending/V in GLOB.machines)
-		if(istype(V, /obj/machinery/vending/custom))
-			continue
 		if(!is_station_level(V.z))
 			continue
 		V.reset_prices(V.product_records, V.coin_records)

@@ -312,6 +312,12 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
 	materials = list(MAT_METAL=50)
+	
+/obj/item/stock_parts/card_reader
+	name = "card reader"
+	icon_state = "card_reader"
+	desc = "A small magnetic card reader, used for devices that take and transmit holocredits."
+	materials = list(MAT_METAL=50, MAT_GLASS=10)
 
 /obj/item/research//Makes testing much less of a pain -Sieve
 	name = "research"

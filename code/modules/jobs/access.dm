@@ -34,6 +34,12 @@
 
 /obj/item/proc/GetID()
 	return null
+	
+/obj/item/proc/RemoveID()
+	return null
+
+/obj/item/proc/InsertID()
+	return FALSE
 
 /obj/proc/text2access(access_text)
 	. = list()

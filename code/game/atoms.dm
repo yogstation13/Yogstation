@@ -671,6 +671,8 @@
 			log_comment(log_text)
 		if(LOG_TELECOMMS)
 			log_telecomms(log_text)
+		if(LOG_ECON)
+			log_econ(log_text)
 		if(LOG_NTSL)
 			log_ntsl(log_text)
 		if(LOG_OOC)

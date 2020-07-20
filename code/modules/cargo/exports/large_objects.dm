@@ -130,10 +130,10 @@
 	var/obj/machinery/portable_atmospherics/canister/C = O
 	var/worth = 10
 
-	worth += gases[/datum/gas/hypernoblium][MOLES]*1000
-	worth += gases[/datum/gas/stimulum][MOLES]*100
-	worth += gases[/datum/gas/tritium][MOLES]*5
-	worth += gases[/datum/gas/pluoxium][MOLES]*5
-	worth += gases[/datum/gas/bz][MOLES]*4
-	worth += gases[/datum/gas/miasma][MOLES]*2
+	worth += C.air_contents.get_moles(/datum/gas/bz)*4
+	worth += C.air_contents.get_moles(/datum/gas/stimulum)*100
+	worth += C.air_contents.get_moles(/datum/gas/hypernoblium)*1000
+	worth += C.air_contents.get_moles(/datum/gas/miasma)*2
+	worth += C.air_contents.get_moles(/datum/gas/tritium)*5
+	worth += C.air_contents.get_moles(/datum/gas/pluoxium)*5
 	return worth
