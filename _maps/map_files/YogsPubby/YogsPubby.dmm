@@ -57934,6 +57934,13 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"gWv" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "gXg" = (
 /obj/item/extinguisher,
 /obj/structure/closet/crate{
@@ -61498,6 +61505,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"uUj" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "uVf" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
@@ -99407,7 +99419,7 @@ lAs
 aGQ
 aSr
 aPY
-aWu
+uUj
 aPW
 aYq
 aVp
@@ -99664,7 +99676,7 @@ aSf
 aSc
 aSr
 aPY
-aWu
+gWv
 aPW
 aWN
 aYA

@@ -39604,18 +39604,6 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
-"bjO" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "bjP" = (
 /obj/effect/turf_decal/loading_area,
 /obj/effect/turf_decal/tile/neutral{
@@ -40715,33 +40703,6 @@
 "blE" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
-/area/hallway/primary/fore)
-"blF" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/clipboard,
-/obj/item/stack/packageWrap,
-/obj/item/hand_labeler,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
-"blG" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "blH" = (
 /obj/effect/turf_decal/tile/brown,
@@ -126609,6 +126570,18 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"kfS" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "kwx" = (
 /obj/effect/turf_decal/loading_area,
 /obj/effect/turf_decal/tile/purple,
@@ -127607,6 +127580,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wnU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "wsF" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -167487,8 +167474,8 @@ bdO
 bfl
 aFS
 aVJ
-bjO
-blF
+kfS
+wnU
 bfk
 aKT
 bho
@@ -167745,7 +167732,7 @@ aFt
 aFX
 aVW
 bfo
-blG
+blH
 bfk
 aKT
 cbZ
