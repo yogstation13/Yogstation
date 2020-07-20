@@ -1,4 +1,4 @@
-#define STARTING_PAYCHECKS 
+#define STARTING_PAYCHECKS 7
 
 //Experimental change: These are subject to tweaking based on the /tg/ economy overhaul.
 #define PAYCHECK_PRISONER 25
