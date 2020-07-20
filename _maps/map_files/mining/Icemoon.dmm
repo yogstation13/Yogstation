@@ -691,9 +691,6 @@
 /turf/open/floor/plasteel,
 /area/mine/production)
 "fj" = (
-/obj/machinery/mineral/mint{
-	input_dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/mine/production)
 "fk" = (

@@ -884,7 +884,6 @@
 /turf/open/floor/carpet,
 /area/awaymission/wildwest/gov)
 "di" = (
-/obj/machinery/mineral/mint,
 /turf/open/floor/plating,
 /area/awaymission/wildwest/refine)
 "dj" = (
@@ -1282,7 +1281,6 @@
 	},
 /area/awaymission/wildwest/gov)
 "eA" = (
-/obj/machinery/mineral/mint,
 /turf/open/floor/plasteel,
 /area/awaymission/wildwest/refine)
 "eC" = (
