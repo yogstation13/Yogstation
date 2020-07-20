@@ -829,5 +829,12 @@
 	time = 20
 	category = CAT_PRIMAL
 
-
-	
+/datum/crafting_recipe/dogbed
+	name = "Dog Bed"
+	result = /obj/structure/bed/dogbed
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5,
+				/obj/item/grown/cotton = 5,
+				/obj/item/stack/tile/carpet/ = 1)
+	tools = list(TOOL_SCREWDRIVER)
+	category = CAT_MISC
+	time = 30
