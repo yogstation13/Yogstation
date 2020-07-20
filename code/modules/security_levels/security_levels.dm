@@ -67,6 +67,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			if(SEC_LEVEL_EPSILON)
 				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
 				SEND_SOUND(world, 'sound/misc/epsilon_alert.ogg')
+				to_chat(world, "<span class='notice'>You get a bad feeling as you hear the Epsilon alert siren.</span>")
 				if(GLOB.security_level < SEC_LEVEL_EPSILON)
 					modTimer = 1
 
