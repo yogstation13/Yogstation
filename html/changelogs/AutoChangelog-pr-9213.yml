@@ -1,5 +1,0 @@
-author: "MrHorizons"
-delete-after: true 
-changes: 
-  - rscadd: "The arrivals shuttles for Box, Pubby, and Omega have now been fitted with emergency NanoMeds, toolboxes, and status displays, as well as additional NanoTrasen branding."
-  - rscdel: "Removed the public medkits in all of the arrivals shuttles."
