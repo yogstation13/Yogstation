@@ -1,7 +1,9 @@
-#define MONEYSCALE 300 //change to nerf/buff the money this thing makes
 #define MAXIMUM_POWER_LIMIT 1000000000000000 //1 Petawatt, same as PTL
-#define POWER_SOFTCAP 300000000 //300MJ, or 1MW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
-#define BELOW_SOFTCAP_MULTIPLIER 10 //multiplied by MONEYSCALE
+#define POWER_SOFTCAP_1 75000000 //75MJ, or 250KW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
+#define POWER_SOFTCAP_2 3000000000 //3GJ or 10MW/s for 300s
+#define SOFTCAP_BUDGET_1 2000 //reward for reaching the first softcap
+#define SOFTCAP_BUDGET_2 3000 //extra money added on top of the first softcap for going beyond it, until softcap 2
+#define HARDCAP_BUDGET 5000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
 
 /obj/item/energy_harvester
 	desc = "A Device which upon connection to a node, will harvest the energy and send it to engineerless stations in return for credits, derived from a syndicate powersink model."
@@ -35,10 +37,14 @@ obj/item/energy_harvester/Initialize()
 	. = ..()
 	SSeconomy.moneysink = src
 
-/obj/item/energy_harvester/attack_hand(user, params)
-	ui_interact(user)
-	. = ..()
-	//figure out how to stop it from popping up the ui when clicked and not set up
+/obj/item/energy_harvester/attack_hand(mob/user, params)
+	say("attack_hand() proc called with intent: ")
+	say(user.a_intent)
+	say("attached = " + isnull(attached))
+	say("anchored = " + anchored)
+	if(anchored && !isnull(attached) && user.a_intent == INTENT_HELP)
+		ui_interact(user)
+	return ..()
 
 /obj/item/energy_harvester/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -83,12 +89,10 @@ obj/item/energy_harvester/Initialize()
 		accumulated_power += input_energy
 
 /obj/item/energy_harvester/proc/calculateMoney()
-	var/potential_payout = 0
-	if(accumulated_power<POWER_SOFTCAP)
-		potential_payout = BELOW_SOFTCAP_MULTIPLIER * MONEYSCALE * (accumulated_power / POWER_SOFTCAP)
-	else
-		potential_payout = MONEYSCALE * ((log(10, accumulated_power) - log(10, POWER_SOFTCAP)) + BELOW_SOFTCAP_MULTIPLIER)
-	potential_payout = round(potential_payout,1)
+	var/softcap_1_payout = clamp(SOFTCAP_BUDGET_1 * (accumulated_power/POWER_SOFTCAP_1), 0, SOFTCAP_BUDGET_1)
+	var/softcap_2_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_1)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2) 
+	var/hardcap_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_2)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2) 
+	var/potential_payout = softcap_1_payout + softcap_2_payout + hardcap_payout
 	return potential_payout
 
 /obj/item/energy_harvester/proc/payout()
@@ -147,6 +151,5 @@ obj/item/energy_harvester/Initialize()
 			if(.)
 				manual_power_setting = clamp(target, 0, MAXIMUM_POWER_LIMIT)
 
-#undef MONEYSCALE
 #undef MAXIMUM_POWER_LIMIT
 #undef POWER_SOFTCAP
