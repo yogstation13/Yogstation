@@ -322,7 +322,7 @@
 	desc = "A small magnetic card reader, used for devices that take and transmit holocredits."
 	id = "c-reader"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron=50, /datum/material/glass=10)
+	materials = list(MAT_METAL = 50, MAT_GLASS = 10)
 	build_path = /obj/item/stock_parts/card_reader
 	category = list("Stock Parts")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
