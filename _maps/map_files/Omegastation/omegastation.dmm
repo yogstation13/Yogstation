@@ -37933,27 +37933,6 @@
 /obj/machinery/meter/atmos,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"brM" = (
-/obj/structure/table/reinforced,
-/obj/machinery/paystand/register{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "bsk" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -38819,18 +38798,6 @@
 "diG" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"dlz" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "dmn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -39274,6 +39241,27 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard)
+"fdi" = (
+/obj/structure/table/reinforced,
+/obj/machinery/paystand/register{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "fdP" = (
 /obj/item/stack/ore/silver,
 /obj/item/stack/ore/iron,
@@ -39352,24 +39340,6 @@
 /obj/machinery/air_sensor/atmos/nitrous_tank,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
-"foe" = (
-/obj/machinery/light,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "fom" = (
 /obj/structure/lattice/catwalk,
 /obj/item/wrench,
@@ -40166,7 +40136,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"ihX" = (
+"idM" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -40177,14 +40159,28 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/vending/autodrobe{
-	req_access = 0
+/obj/machinery/door/airlock/maintenance{
+	name = "Gift Shop maintenance access";
+	req_access_txt = "36"
 	},
 /turf/open/floor/plasteel,
-/area/clerk)
+/area/maintenance/starboard)
+"igh" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/closet/crate,
+/obj/item/key,
+/obj/item/target/alien,
+/obj/item/target/clown,
+/obj/item/target/syndicate,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"ihJ" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/lounge)
 "ikf" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -40534,6 +40530,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"kck" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/vending/autodrobe{
+	req_access = 0
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "kit" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/light/small{
@@ -41003,6 +41018,23 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine/air,
 /area/engine/atmos)
+"lUM" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start/yogs/clerk,
+/turf/open/floor/plasteel,
+/area/clerk)
 "lVC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -41518,21 +41550,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"orz" = (
-/obj/structure/table,
-/obj/item/bikehorn/rubberducky,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "otn" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 6
@@ -42299,15 +42316,21 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"rFB" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/closet/crate,
-/obj/item/key,
-/obj/item/target/alien,
-/obj/item/target/clown,
-/obj/item/target/syndicate,
-/turf/open/floor/plating,
-/area/maintenance/starboard)
+"rSc" = (
+/obj/structure/table,
+/obj/item/bikehorn/rubberducky,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "rVj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/atmos/air_output{
 	dir = 1
@@ -42453,6 +42476,18 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"shE" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-22"
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "slp" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -42628,34 +42663,6 @@
 "sDl" = (
 /turf/closed/wall/rust,
 /area/crew_quarters/dorms)
-"sDC" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "36"
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/starboard)
 "sDP" = (
 /turf/closed/wall/rust,
 /area/hallway/secondary/exit)
@@ -42842,6 +42849,24 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"sJg" = (
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "sJq" = (
 /obj/structure/sign/directions/engineering{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
@@ -44454,13 +44479,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard)
-"tKF" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel/grimy,
-/area/crew_quarters/lounge)
 "tKM" = (
 /turf/closed/wall,
 /area/hallway/primary/fore)
@@ -45556,23 +45574,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard)
-"xRy" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/landmark/start/yogs/clerk,
-/turf/open/floor/plasteel,
-/area/clerk)
 "xZO" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass{
@@ -87961,7 +87962,7 @@ aQu
 amk
 uuU
 aTC
-tKF
+ihJ
 aQQ
 qlf
 aWT
@@ -91788,11 +91789,11 @@ akc
 alD
 aki
 sqz
-dlz
+shE
 jdb
 vSI
 uqI
-brM
+fdi
 wsz
 vSI
 sqz
@@ -92049,8 +92050,8 @@ oYD
 jdb
 dOt
 wdQ
-xRy
-foe
+lUM
+sJg
 vSI
 aYt
 bdu
@@ -92305,9 +92306,9 @@ sqz
 ayP
 hly
 vSI
-ihX
+kck
 fja
-orz
+rSc
 vSI
 akH
 aSD
@@ -92820,7 +92821,7 @@ asr
 sRH
 vSI
 vSI
-sDC
+idM
 vSI
 vSI
 akH
@@ -93846,7 +93847,7 @@ aqq
 ark
 auy
 amC
-rFB
+igh
 uwH
 fSC
 pZy
