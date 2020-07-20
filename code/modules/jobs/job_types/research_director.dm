@@ -32,6 +32,7 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
+	bounty_types = CIV_JOB_SCI
 
 	changed_maps = list("OmegaStation")
 

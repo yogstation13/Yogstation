@@ -79,8 +79,14 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	return TRUE
 
 // Returns a new bounty of random type, but does not add it to GLOB.bounties_list.
-/proc/random_bounty()
-	switch(rand(1, 13))
+// Guided determines what specific catagory of bounty should be chosen.
+/proc/random_bounty(var/guided = 0)
+	var/bounty_num
+	if(guided)
+		bounty_num = guided
+	else
+		bounty_num = rand(1,13)
+	switch(bounty_num)
 		if(1)
 			var/subtype = pick(subtypesof(/datum/bounty/item/assistant))
 			return new subtype
@@ -105,21 +111,21 @@ GLOBAL_LIST_EMPTY(bounties_list)
 			var/subtype = pick(subtypesof(/datum/bounty/virus))
 			return new subtype
 		if(8)
-			var/subtype = pick(subtypesof(/datum/bounty/item/science))
-			return new subtype
-		if(9)
+			if(rand(2) == 1)
+				var/subtype = pick(subtypesof(/datum/bounty/item/science))
+				return new subtype
 			var/subtype = pick(subtypesof(/datum/bounty/item/slime))
 			return new subtype
-		if(10)
+		if(9)
 			var/subtype = pick(subtypesof(/datum/bounty/item/engineering))
 			return new subtype
-		if(11)
+		if(10)
 			var/subtype = pick(subtypesof(/datum/bounty/item/mining))
 			return new subtype
-		if(12)
+		if(11)
 			var/subtype = pick(subtypesof(/datum/bounty/item/medical))
 			return new subtype
-		if(13)
+		if(12)
 			var/subtype = pick(subtypesof(/datum/bounty/item/botany))
 			return new subtype
 

@@ -16,6 +16,7 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
+	bounty_types = CIV_JOB_MED
 
 	changed_maps = list("OmegaStation")
 

@@ -11,6 +11,8 @@
 	var/withdrawDelay = 0
 	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
+	var/datum/bounty/civilian_bounty
+	var/bounty_timer = 0
 
 /datum/bank_account/New(newname, job)
 	if(add_to_accounts)
@@ -60,7 +62,10 @@
 /datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
 	var/money_to_transfer = account_job.paycheck * amt_of_paychecks
 	if(free)
-		adjust_money(money_to_transfer*10)
+		adjust_money(money_to_transfer)
+		SSblackbox.record_feedback("amount", "free_income", money_to_transfer)
+		SSeconomy.station_target += money_to_transfer
+		log_econ("[money_to_transfer] credits were given to [src.account_holder]'s account from income.")
 	else
 		var/datum/bank_account/D = SSeconomy.get_dep_account(account_job.paycheck_department)
 		if(D)
@@ -99,6 +104,47 @@
 				M.playsound_local(get_turf(M), 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				if(M.can_hear())
 					to_chat(M, "[icon2html(A, M)] *[message]*")
+					
+/**
+  * Returns a string with the civilian bounty's description on it.
+  */
+/datum/bank_account/proc/bounty_text()
+	if(!civilian_bounty)
+		return FALSE
+	if(istype(civilian_bounty, /datum/bounty/item))
+		var/datum/bounty/item/item = civilian_bounty
+		return item.description
+	if(istype(civilian_bounty, /datum/bounty/reagent))
+		var/datum/bounty/reagent/chemical = civilian_bounty
+		return chemical.description
+
+/**
+  * Returns the required item count, or required chemical units required to submit a bounty.
+  */
+/datum/bank_account/proc/bounty_num()
+	if(!civilian_bounty)
+		return FALSE
+	if(istype(civilian_bounty, /datum/bounty/item))
+		var/datum/bounty/item/item = civilian_bounty
+		return "[item.shipped_count]/[item.required_count]"
+	if(istype(civilian_bounty, /datum/bounty/reagent))
+		var/datum/bounty/reagent/chemical = civilian_bounty
+		return "[chemical.shipped_volume]/[chemical.required_volume] u"
+
+/**
+  * Produces the value of the account's civilian bounty reward, if able.
+  */
+/datum/bank_account/proc/bounty_value()
+	if(!civilian_bounty)
+		return FALSE
+	return civilian_bounty.reward
+
+/**
+  * Performs house-cleaning on variables when a civilian bounty is replaced, or, when a bounty is claimed.
+  */
+/datum/bank_account/proc/reset_bounty()
+	civilian_bounty = null
+	bounty_timer = 0
 
 /datum/bank_account/department
 	account_holder = "Guild Credit Agency"

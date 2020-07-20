@@ -96,6 +96,7 @@ h1.alert, h2.alert		{color: #000000;}
 .hierophant_warning		{color: #660099; font-style: italic;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
+.bounty					{color: #ab6613;	font-style: italic;}
 .surrender				{
 	color: #1235d1;
 	font-weight: bold; 
