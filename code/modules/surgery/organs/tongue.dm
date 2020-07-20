@@ -21,6 +21,7 @@
 		/datum/language/piratespeak,
 		/datum/language/sylvan,
 		/datum/language/japanese,
+		/datum/language/apidite,
 		/datum/language/machine, //yogs
 		/datum/language/darkspawn //also yogs
 	))
@@ -220,6 +221,13 @@
 	attack_verb = list("beeped", "booped")
 	modifies_speech = TRUE
 	taste_sensitivity = 25 // not as good as an organic tongue
+	
+/obj/item/organ/tongue/bee
+	name = "proboscis"
+	desc = "A freakish looking meat tube that apparently can take in liquids, this one smells slighlty like flowers."
+	icon_state = "tonguefly"
+	say_mod = "buzzes"
+	taste_sensitivity = 5
 
 /obj/item/organ/tongue/robot/can_speak_language(language)
 	return TRUE // THE MAGIC OF ELECTRONICS

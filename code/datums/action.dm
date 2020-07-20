@@ -667,6 +667,12 @@
 	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
+	
+/datum/action/item_action/bhop/apid
+	name = "Apid Dash"
+	desc = "Uses your wings to dash forward 6 tiles."
+	icon_icon = 'icons/mob/neck.dmi'
+	button_icon_state = "apid_wings"
 
 /datum/action/language_menu
 	name = "Language Menu"

@@ -139,6 +139,13 @@
 	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3)
 	tastes = list("pure electrictiy" = 2, "meat" = 1)
 	foodtype = RAW | MEAT | TOXIC
+	
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/apid
+	icon_state = "apidmeat"
+	desc = "Smells like flowers, hopefully doesn't taste like them."
+	filling_color = "#BEAD07"
+	tastes = list("honey" = 1, "flowers" = 1, "meat" = 2)
+	foodtype = MEAT | RAW
 
 ////////////////////////////////////// OTHER MEATS ////////////////////////////////////////////////////////
 

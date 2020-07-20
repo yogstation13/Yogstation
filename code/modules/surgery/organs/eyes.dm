@@ -382,3 +382,7 @@
 	eye_icon_state = "snail_eyes"
 	icon_state = "snail_eyeballs"
 
+/obj/item/organ/eyes/apid
+	name = "apid eyes"
+	desc = "Designed for navigating dark hives, these eyes have improvement to low light vision."
+	see_in_dark = 8
