@@ -17747,12 +17747,6 @@
 /area/hallway/primary/port)
 "aMR" = (
 /obj/machinery/chem_heater,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -20127,6 +20121,9 @@
 	},
 /obj/structure/mirror{
 	pixel_x = -28
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/exam_room)
@@ -25162,7 +25159,7 @@
 "bev" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/blue{
-	dir = 8
+	dir = 0
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -26055,12 +26052,13 @@
 /area/maintenance/disposal)
 "bgy" = (
 /obj/structure/table,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/roller,
-/obj/item/roller,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
+/obj/item/storage/box/rollingbeds{
+	pixel_y = 4
+	},
+/obj/item/clothing/glasses/hud/health,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
 "bgz" = (
@@ -26387,9 +26385,6 @@
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -26811,7 +26806,7 @@
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
 	pixel_x = 1;
-	pixel_y = 9
+	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -27798,9 +27793,6 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/dropper,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
@@ -27852,10 +27844,6 @@
 	req_one_access_txt = "5; 33"
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
@@ -27890,7 +27878,6 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
@@ -29200,9 +29187,6 @@
 /area/quartermaster/storage)
 "bmI" = (
 /obj/machinery/chem_master,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
@@ -30015,6 +29999,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "boc" = (
@@ -32823,13 +32808,17 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "btv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/chair/office/light{
 	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/exam_room)
@@ -33006,6 +32995,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/exam_room)
@@ -41040,26 +41032,11 @@
 	},
 /area/space/nearstation)
 "bOk" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
 /obj/structure/bed,
 /obj/item/bedsheet/medical/virology,
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/exam_room)
-"bOl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/exam_room)
@@ -41094,20 +41071,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bOo" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/medical/virology,
-/turf/open/floor/plasteel/white,
-/area/medical/exam_room)
 "bOp" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
@@ -41183,9 +41146,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bOy" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/table,
 /obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/white,
@@ -47134,7 +47094,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "daW" = (
-/obj/structure/table/glass,
 /obj/item/book/manual/wiki/grenades,
 /obj/item/book/manual/wiki/chemistry{
 	pixel_x = 3;
@@ -47144,6 +47103,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow,
+/obj/structure/table,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "dbp" = (
@@ -48675,6 +48635,18 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"fvD" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "fvJ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	name = "Waste Ejector"
@@ -55684,6 +55656,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "ppd" = (
@@ -61120,11 +61093,12 @@
 /area/engine/engineering)
 "wTX" = (
 /obj/machinery/power/apc{
-	areastring = "/area/medical/psych";
-	name = "Psychiatrist Office APC";
+	areastring = "/area/medical/examroom";
+	name = "Infirmary APC";
 	pixel_y = -24
 	},
 /obj/structure/cable,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/exam_room)
 "wUo" = (
@@ -100488,7 +100462,7 @@ rFM
 bxR
 bxR
 bxR
-bvj
+rFM
 bvj
 bzV
 bqY
@@ -100729,7 +100703,7 @@ qQV
 qQV
 aYV
 aYV
-bfH
+fvD
 arb
 bku
 aBS
@@ -102294,7 +102268,7 @@ fBY
 aPr
 aYY
 btv
-bOl
+wzt
 wzt
 wTX
 bNd
@@ -102551,7 +102525,7 @@ fBY
 aPr
 bcW
 btK
-bOo
+oZO
 bOy
 oZO
 bNd
