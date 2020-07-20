@@ -1,12 +1,13 @@
-#define STARTING_PAYCHECKS 5
+#define STARTING_PAYCHECKS 7
 
-///these defines are the % of budget they get on payday
-#define PAYCHECK_ASSISTANT 1
-#define PAYCHECK_MINIMAL 1
-#define PAYCHECK_EASY 2
-#define PAYCHECK_MEDIUM 3
-#define PAYCHECK_HARD 4
-#define PAYCHECK_COMMAND 10
+//Experimental change: These are subject to tweaking based on the /tg/ economy overhaul.
+#define PAYCHECK_PRISONER 25
+#define PAYCHECK_ASSISTANT 50
+#define PAYCHECK_MINIMAL 55
+#define PAYCHECK_EASY 60
+#define PAYCHECK_MEDIUM 75
+#define PAYCHECK_HARD 100
+#define PAYCHECK_COMMAND 200
 
 
 #define MAX_GRANT_CIV 2500
@@ -30,3 +31,17 @@
 #define ACCOUNT_SEC_NAME "Defense Budget"
 
 #define NO_FREEBIES "commies go home"
+
+//Defines that set what kind of civilian bounties should be applied mid-round.
+#define CIV_JOB_BASIC 1
+#define CIV_JOB_ROBO 2
+#define CIV_JOB_CHEF 3
+#define CIV_JOB_SEC 4
+#define CIV_JOB_DRINK 5
+#define CIV_JOB_CHEM 6
+#define CIV_JOB_VIRO 7
+#define CIV_JOB_SCI 8
+#define CIV_JOB_ENG 9
+#define CIV_JOB_MINE 10
+#define CIV_JOB_MED 11
+#define CIV_JOB_GROW 12
