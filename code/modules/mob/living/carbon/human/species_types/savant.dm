@@ -17,7 +17,7 @@
 	//meat = /obj/item/reagent_containers/food/snacks/meat/slab/human //What the species drops on gibbing
 	//skinned_type
 	liked_food = VEGETABLES | FRUIT
-	disliked_food = GROSS | RAW
+	disliked_food = GROSS | RAW | MEAT
 	toxic_food = TOXIC
 	//list/no_equip = list()	// slots the race can't equip stuff to
 	//nojumpsuit = 0	// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
