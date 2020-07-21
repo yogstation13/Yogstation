@@ -6,6 +6,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aw" = (
@@ -14,13 +15,6 @@
 /area/crew_quarters/bar)
 "aO" = (
 /obj/machinery/vending/snack,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"bg" = (
-/obj/machinery/holopad{
-	pixel_x = -16;
-	pixel_y = 16
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bj" = (
@@ -319,12 +313,17 @@
 /area/crew_quarters/kitchen/coldroom)
 "lO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
 	},
 /obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "mh" = (
@@ -369,10 +368,15 @@
 /area/crew_quarters/kitchen/coldroom)
 "nF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -408,6 +412,9 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -454,18 +461,16 @@
 /area/crew_quarters/bar)
 "qO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"rb" = (
-/obj/effect/spawner/structure/window,
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "rk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -571,12 +576,15 @@
 /area/crew_quarters/dorms/a)
 "wo" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
 /obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "wR" = (
@@ -743,15 +751,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
-"Ck" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Cw" = (
 /obj/machinery/vending/cola/sodie,
 /turf/open/floor/wood,
@@ -1070,12 +1069,17 @@
 /area/crew_quarters/bar)
 "Od" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
 	},
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -1494,7 +1498,7 @@ Ip
 gu
 Ip
 Ip
-rb
+gu
 Ip
 Ip
 gu
@@ -1633,7 +1637,7 @@ TZ
 bS
 mi
 KS
-bg
+KS
 TZ
 OM
 mi
@@ -1898,7 +1902,7 @@ nV
 yV
 Rr
 XE
-Ck
+qO
 kh
 "}
 (22,1,1) = {"
@@ -1918,7 +1922,7 @@ Pa
 Pa
 dU
 XE
-Ck
+qO
 kh
 "}
 (23,1,1) = {"

@@ -133,10 +133,15 @@
 /area/crew_quarters/bar)
 "iP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -711,20 +716,6 @@
 /obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"IP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"Kb" = (
-/obj/effect/spawner/structure/window,
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "KA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -910,11 +901,14 @@
 /area/crew_quarters/bar)
 "Tk" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Tw" = (
@@ -932,12 +926,15 @@
 /area/crew_quarters/kitchen/coldroom)
 "Un" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
 /obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Ut" = (
@@ -959,12 +956,17 @@
 /area/crew_quarters/bar)
 "UP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
 	},
 /obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "UX" = (
@@ -1058,7 +1060,7 @@ rV
 Bx
 rV
 rV
-Kb
+Bx
 rV
 rV
 Bx
@@ -1462,7 +1464,7 @@ nd
 ui
 sf
 CP
-IP
+Tk
 zN
 "}
 (22,1,1) = {"
@@ -1482,7 +1484,7 @@ OB
 OB
 CP
 CP
-IP
+Tk
 zN
 "}
 (23,1,1) = {"

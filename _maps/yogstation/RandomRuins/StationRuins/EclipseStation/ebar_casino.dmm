@@ -107,6 +107,12 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"fn" = (
+/obj/effect/spawner/xmastree{
+	pixel_x = -16
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
 "gi" = (
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/wood,
@@ -177,10 +183,15 @@
 /area/crew_quarters/bar)
 "iP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -634,11 +645,6 @@
 	icon_state = "r_wall"
 	},
 /area/crew_quarters/bar)
-"AV" = (
-/obj/effect/landmark/event_spawn,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "Bt" = (
 /obj/machinery/door/airlock{
 	name = "Teller's desk";
@@ -683,6 +689,9 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -747,13 +756,18 @@
 /area/crew_quarters/kitchen)
 "Fy" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -844,15 +858,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
-"IP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Jm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
@@ -1010,13 +1015,6 @@
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"Sf" = (
-/obj/effect/landmark/event_spawn,
-/obj/effect/spawner/xmastree{
-	pixel_x = -16
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/bar)
 "Ss" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -1044,10 +1042,13 @@
 /area/crew_quarters/bar)
 "Tk" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1086,12 +1087,15 @@
 /area/crew_quarters/kitchen/coldroom)
 "Un" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
 /obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Ut" = (
@@ -1112,12 +1116,17 @@
 /area/crew_quarters/bar)
 "UP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
 	},
 /obj/item/storage/box/fancy/donut_box,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Vn" = (
@@ -1202,7 +1211,7 @@ rV
 tn
 rV
 rV
-AV
+tn
 rV
 rV
 rV
@@ -1365,8 +1374,8 @@ Fg
 su
 YX
 YX
-Sf
 YX
+fn
 YX
 tn
 "}
@@ -1607,7 +1616,7 @@ nd
 ui
 sf
 JP
-IP
+Tk
 zN
 "}
 (22,1,1) = {"
@@ -1627,7 +1636,7 @@ OB
 OB
 CP
 JP
-IP
+Tk
 zN
 "}
 (23,1,1) = {"

@@ -238,11 +238,6 @@
 	suffix = "ebar_clock.dmm"
 	name = "Eclipse Bar Clock"
 
-/datum/map_template/ruin/station/eclipse/bar/diner
-	id = "ebar_diner"
-	suffix = "ebar_diner.dmm"
-	name = "Eclipse Bar Diner"
-
 /datum/map_template/ruin/station/eclipse/bar/disco
 	id = "ebar_disco"
 	suffix = "ebar_disco.dmm"
