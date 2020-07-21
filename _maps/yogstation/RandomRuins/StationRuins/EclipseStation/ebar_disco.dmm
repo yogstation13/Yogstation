@@ -66,12 +66,9 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "bp" = (
-/obj/structure/window{
-	dir = 8
-	},
 /obj/item/instrument/saxophone,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "bY" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -168,11 +165,8 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
-/obj/structure/window{
-	dir = 4
-	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "iu" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -263,12 +257,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/window{
-	dir = 8
-	},
 /obj/item/clothing/under/shorts/purple,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "mH" = (
 /obj/machinery/button/door{
 	id = "kitchenwindow";
@@ -449,7 +440,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "tY" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
@@ -501,6 +492,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"vN" = (
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/theatre)
 "wk" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
@@ -783,13 +777,10 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "HK" = (
-/obj/structure/window,
-/obj/machinery/door/window{
-	dir = 4;
-	name = "pole"
-	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "KA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -823,12 +814,10 @@
 /obj/structure/festivus{
 	pixel_y = 16
 	},
-/obj/structure/window,
-/obj/structure/window{
-	dir = 8
-	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "LQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
@@ -858,12 +847,9 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "NL" = (
-/obj/structure/window{
-	dir = 4
-	},
 /obj/item/instrument/accordion,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "OB" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -905,7 +891,7 @@
 /area/crew_quarters/kitchen/coldroom)
 "PK" = (
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "PL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -928,19 +914,28 @@
 /obj/structure/festivus{
 	pixel_y = 16
 	},
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/window,
 /obj/item/clothing/under/pants/jeans,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "QG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"QK" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/crew_quarters/theatre)
 "QR" = (
 /obj/machinery/light/small,
 /obj/effect/landmark/xeno_spawn,
@@ -987,14 +982,11 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "Sg" = (
-/obj/structure/window,
-/obj/machinery/door/window{
-	dir = 4;
-	name = "pole"
-	},
 /obj/item/instrument/recorder,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "Ss" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -1046,19 +1038,24 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "TV" = (
-/obj/structure/window{
+/obj/machinery/door/window{
+	dir = 4;
+	name = "Theatre Stage"
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "Ui" = (
 /obj/structure/festivus{
 	pixel_y = 16
 	},
 /obj/item/clothing/under/schoolgirl,
-/obj/structure/window,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "Uj" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1092,6 +1089,11 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"UC" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/theatre)
 "UK" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1262,7 +1264,7 @@ rV
 (4,1,1) = {"
 Fz
 tK
-VK
+UC
 VK
 VK
 Do
@@ -1321,8 +1323,8 @@ tn
 "}
 (7,1,1) = {"
 GZ
-VK
-VK
+vN
+UC
 VK
 Zc
 jt
@@ -1360,9 +1362,9 @@ VK
 Bx
 "}
 (9,1,1) = {"
-rV
+Fz
 TV
-HK
+QK
 VK
 eL
 jt
