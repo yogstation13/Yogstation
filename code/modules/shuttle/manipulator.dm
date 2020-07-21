@@ -8,6 +8,7 @@
 
 	icon = 'icons/obj/machines/shuttle_manipulator.dmi'
 	icon_state = "holograph_on"
+	layer = OBJ_LAYER
 
 	density = TRUE
 	
