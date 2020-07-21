@@ -823,13 +823,13 @@
 	var/datum/DBQuery/query_edit_ban = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("ban")]
 		SET
-			expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
-			applies_to_admins = :applies_to_admins,
-			reason = :reason,
-			ckey = :ckey,
-			ip = INET_ATON(:ip),
-			computerid = :ci
-			edits = CONCAT(IFNULL(edits,''), :change_message)
+			[format_table_name("ban")].expiration_time = IF(:duration IS NULL, NULL, bantime + INTERVAL :duration [interval])
+			[format_table_name("ban")].applies_to_admins = :applies_to_admins,
+			[format_table_name("ban")].reason = :reason,
+			[format_table_name("ban")].ckey = :ckey,
+			[format_table_name("ban")].ip = INET_ATON(:ip),
+			[format_table_name("ban")].computerid = :ci
+			[format_table_name("ban")].edits = CONCAT(IFNULL(edits,''), :change_message)
 		WHERE [where]
 	"}, arguments)
 	if(!query_edit_ban.warn_execute())
