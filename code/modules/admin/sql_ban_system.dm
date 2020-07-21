@@ -571,10 +571,10 @@
 			SELECT COUNT(id)
 			FROM [format_table_name("ban")]
 			WHERE
-				(:player_key IS NULL OR ckey = :player_key) AND
-				(:admin_key IS NULL OR a_ckey = :admin_key) AND
-				(:player_ip IS NULL OR ip = INET_ATON(:player_ip)) AND
-				(:player_cid IS NULL OR computerid = :player_cid)
+				(:player_key IS NULL OR [format_table_name("ban")].ckey = :player_key) AND
+				(:admin_key IS NULL OR [format_table_name("ban")].a_ckey = :admin_key) AND
+				(:player_ip IS NULL OR [format_table_name("ban")].ip = INET_ATON(:player_ip)) AND
+				(:player_cid IS NULL OR [format_table_name("ban")].computerid = :player_cid)
 		"}, list(
 			"player_key" = ckey(player_key),
 			"admin_key" = ckey(admin_key),
@@ -629,10 +629,10 @@
 				unbanned_round_id
 			FROM [format_table_name("ban")]
 			WHERE
-				(:player_key IS NULL OR ckey = :player_key) AND
-				(:admin_key IS NULL OR a_ckey = :admin_key) AND
-				(:player_ip IS NULL OR ip = INET_ATON(:player_ip)) AND
-				(:player_cid IS NULL OR computerid = :player_cid)
+				(:player_key IS NULL OR [format_table_name("ban")].ckey = :player_key) AND
+				(:admin_key IS NULL OR [format_table_name("ban")].a_ckey = :admin_key) AND
+				(:player_ip IS NULL OR [format_table_name("ban")].ip = INET_ATON(:player_ip)) AND
+				(:player_cid IS NULL OR [format_table_name("ban")].computerid = :player_cid)
 			ORDER BY id DESC
 			LIMIT :skip, :take
 		"}, list(
@@ -830,7 +830,7 @@
 			[format_table_name("ban")].ip = INET_ATON(:ip),
 			[format_table_name("ban")].computerid = :ci
 			[format_table_name("ban")].edits = CONCAT(IFNULL(edits,''), :change_message)
-		WHERE [where]
+		WHERE [format_table_name("ban")].[where]
 	"}, arguments)
 	if(!query_edit_ban.warn_execute())
 		qdel(query_edit_ban)
