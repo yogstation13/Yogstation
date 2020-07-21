@@ -126570,18 +126570,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"kfS" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/computer/piratepad_control/civilian{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "kwx" = (
 /obj/effect/turf_decal/loading_area,
 /obj/effect/turf_decal/tile/purple,
@@ -126776,6 +126764,22 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"mRU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "ncP" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/engine,
@@ -127359,6 +127363,16 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
+"uoU" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "urn" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/stripes/line{
@@ -127580,20 +127594,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"wnU" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/piratepad/civilian,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "wsF" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -167474,8 +167474,8 @@ bdO
 bfl
 aFS
 aVJ
-kfS
-wnU
+uoU
+mRU
 bfk
 aKT
 bho

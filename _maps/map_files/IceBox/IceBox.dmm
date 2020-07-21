@@ -59103,12 +59103,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
-"inc" = (
-/obj/machinery/computer/piratepad_control/civilian{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "inE" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -59580,6 +59574,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jON" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "jPU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -60647,6 +60645,15 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"nlW" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "npR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -63379,13 +63386,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"wbp" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/machinery/piratepad/civilian,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "wca" = (
 /obj/machinery/advanced_airlock_controller/lavaland{
 	dir = 1;
@@ -89910,8 +89910,8 @@ bfR
 bgW
 bNH
 aZK
-wbp
-inc
+nlW
+jON
 bbR
 bbR
 bty
