@@ -61,11 +61,9 @@
 
 /obj/machinery/computer/aifixer/proc/Fix()
 	use_power(1000)
-	occupier.adjustOxyLoss(-2, 0)
-	occupier.adjustFireLoss(-2, 0)
-	occupier.adjustToxLoss(-2, 0)
-	occupier.adjustBruteLoss(-2, 0)
-	occupier.updatehealth()
+	occupier.adjustOxyLoss(-5, 0, FALSE)
+	occupier.adjustFireLoss(-5, 0, FALSE)
+	occupier.adjustBruteLoss(-5, 0)
 	if(occupier.health >= 0 && occupier.stat == DEAD)
 		occupier.revive()
 	return occupier.health < 100
