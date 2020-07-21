@@ -27800,12 +27800,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnk" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -46772,6 +46766,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"eYn" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "eYG" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/tile/neutral{
@@ -61653,6 +61656,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"xkw" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "xls" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -88139,8 +88146,8 @@ bfR
 bgW
 bNH
 aZK
-bnj
-bbR
+eYn
+xkw
 bbR
 bbR
 bty
