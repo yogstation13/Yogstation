@@ -1,12 +1,11 @@
-/datum/species/savant
+/datum/species/savant //sa'vän(t). This is the suitless one. Not for roundstart use.
 	id = "savant"
-	//limbs_id		//this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
 	name = "Savant"
 	default_color = "#FFF"	// if alien colors are disabled, this is the color that will be used by that race
 
 	sexes = FALSE
 
-	//list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
+	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 
 	//hair_color	// this allows races to have specific hair colors... if null, it uses the H's hair/facial hair colors. if "mutcolor", it uses the H's mutant_color
 	hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
@@ -26,8 +25,7 @@
 	//list/default_features = list() // Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
 	//list/mutant_bodyparts = list() 	// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.	list/mutant_organs = list()		//Internal organs that are unique to this race.
 	speedmod = 1	// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
-	armor = -50	// overall defense for the race... or less defense, if it's negative.
-	attack_type = BRUTE //Type of damage attack does
+	armor = -20	// overall defense for the race... or less defense, if it's negative.
 	punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
 	punchdamagehigh = 5      //highest possible punch damage
 	//punchstunthreshold = 10//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
@@ -54,7 +52,7 @@
 	//mob/living/ignored_by = list()	// list of mobs that will ignore this species
 	//Breathing!
 	//obj/item/organ/lungs/mutantlungs = null
-	breathid = "o2"
+//	breathid = "o2"
 
 	obj/item/organ/brain/mutant_brain = /obj/item/organ/brain
 	obj/item/organ/heart/mutant_heart = /obj/item/organ/heart
@@ -68,9 +66,47 @@
 	//obj/item/organ/stomach/mutantstomach
 	override_float = FALSE
 
-	//Bitflag that controls what in game ways can select this species as a spawnable source
-	//Think magic mirror and pride mirror, slime extract, ERT etc, see defines
-	//in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
+/datum/species/savant/suit //THIS IS THE DEFAULT ONE YOU SHOULD SPAWN IN FOR PLAYERS
+	id = "savantsuit"
+	name = "Savant"
+	no_equip = list(SLOT_W_UNIFORM)
+	speedmod = 0
+	armor = -10
+	punchdamagelow = 1
+	punchdamagehigh = 10
+	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
+	inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
+	species_traits = list(NOTRANSSTING)
+	var/suitFailHealth = 50
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
-/datum/species/savant/suited
+/datum/species/savant/suit/on_species_gain(mob/living/carbon/C)
+	. = ..()
+	if(C.dna)
+		C.dna.species = /datum/species/savant //this is so when you get cloned, or whatever, it clones you sans suit, lol
+	if((C.getFireLoss() + C.getBruteLoss()) > suitFailHealth)//This part heals suitFailHealth points total, starting in brute, and any leftovers go to burn.
+		if(C.getBruteLoss() > suitFailHealth)
+			C.adjustBruteLoss(-suitFailHealth, 0)
+		else
+			var/BruteHeal = C.getBruteLoss()
+			C.adjustBruteLoss(-BruteHeal, 0)
+			var/BurnHeal = -(suitFailHealth - BruteHeal)
+			C.adjustFireLoss(BurnHeal)
+
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/O = X
+		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))
+			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, TRUE)
+
+/datum/species/savant/suit/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/O = X
+		O.change_bodypart_status(BODYPART_ORGANIC,FALSE, TRUE)
+
+/datum/species/savant/suit/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+	. = ..()
+	if((H.getFireLoss() + H.getBruteLoss()) > suitFailHealth)
+		H.set_species(/datum/species/savant, icon_update=0)
+		H.update_body_parts()
+		explosion(H, 0, 2, 0)
