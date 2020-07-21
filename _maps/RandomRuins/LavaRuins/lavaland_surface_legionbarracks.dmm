@@ -88,7 +88,7 @@
 	name = "Ancient Sword"
 	},
 /obj/item/shield/riot/roman{
-	block_chance = 25;
+	block_power = 25;
 	desc = "Bears an inscription on the inside: <i>\"Necropolis venio domus\"</i>.";
 	name = "battered shield"
 	},
