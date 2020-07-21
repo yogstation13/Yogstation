@@ -27799,12 +27799,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnk" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -44422,6 +44416,15 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
+"cHr" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "cHL" = (
 /obj/machinery/mech_bay_recharge_port{
 	dir = 2
@@ -56563,6 +56566,10 @@
 "qLZ" = (
 /turf/closed/wall,
 /area/hallway/primary/port)
+"qMw" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "qMD" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -88103,8 +88110,8 @@ bfR
 bgW
 bNH
 aZK
-bnj
-bbR
+cHr
+qMw
 bbR
 bbR
 bty
