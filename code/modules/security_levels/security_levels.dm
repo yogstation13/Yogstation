@@ -2,6 +2,8 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 //SEC_LEVEL_GREEN = code green
 //SEC_LEVEL_BLUE = code blue
 //SEC_LEVEL_RED = code red
+//SEC_LEVEL_GAMMA = code gamma
+//SEC_LEVEL_EPSILON = code epsilon
 //SEC_LEVEL_DELTA = code delta
 
 //config.alert_desc_blue_downto
@@ -14,6 +16,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			level = SEC_LEVEL_BLUE
 		if("red")
 			level = SEC_LEVEL_RED
+		if("gamma")
+			level = SEC_LEVEL_GAMMA
+		if("epsilon")
+			level = SEC_LEVEL_EPSILON
 		if("delta")
 			level = SEC_LEVEL_DELTA
 
@@ -45,6 +51,25 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 						modTimer = 0.5
 				else
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
+					if(GLOB.security_level == SEC_LEVEL_GAMMA)
+						modTimer = 2
+          
+			if(SEC_LEVEL_GAMMA)
+				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
+				SEND_SOUND(world, 'sound/misc/gamma_alert.ogg')
+				if(GLOB.security_level == SEC_LEVEL_GREEN)
+					modTimer = 0.25
+				else if(GLOB.security_level == SEC_LEVEL_BLUE)
+					modTimer = 0.50
+				else if(GLOB.security_level == SEC_LEVEL_RED)
+					modTimer = 0.75
+						
+			if(SEC_LEVEL_EPSILON)
+				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
+				SEND_SOUND(world, 'sound/misc/epsilon_alert.ogg')
+				to_chat(world, "<span class='notice'>You get a bad feeling as you hear the Epsilon alert siren.</span>")
+				if(GLOB.security_level < SEC_LEVEL_EPSILON)
+					modTimer = 1
 
 			if(SEC_LEVEL_DELTA)
 				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!", TRUE)
@@ -83,6 +108,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return "blue"
 		if(SEC_LEVEL_RED)
 			return "red"
+		if(SEC_LEVEL_GAMMA)
+			return "gamma"
+		if(SEC_LEVEL_EPSILON)
+			return "epsilon"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -94,6 +123,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return "blue"
 		if(SEC_LEVEL_RED)
 			return "red"
+		if(SEC_LEVEL_GAMMA)
+			return "gamma"
+		if(SEC_LEVEL_EPSILON)
+			return "epsilon"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -105,5 +138,9 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return SEC_LEVEL_BLUE
 		if("red")
 			return SEC_LEVEL_RED
+		if("gamma")
+			return SEC_LEVEL_GAMMA
+		if("epsilon")
+			return SEC_LEVEL_EPSILON
 		if("delta")
 			return SEC_LEVEL_DELTA

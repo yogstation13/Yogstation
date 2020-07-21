@@ -314,10 +314,30 @@
 	written += new/datum/langtext("",/datum/language/common)
 	update_icon()
 
+//academy ruin paper
+/obj/item/paper/yog/ruins/academy
+	name = "Debug Paper"
+	desc = "Official Wizard Academy Mail"
+
+//in regards to trey being a lizard
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard
+	name = "RE: Trey of the Shattered Voice"
+
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("<center><h3>Wizard Academy Official Mail</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>From: Archmage Daniel the Great</b><br>",/datum/language/common)
+	written += new/datum/langtext("<b>To: Recruiter Billy the Lame</b><hr>",/datum/language/common)
+	written += new/datum/langtext("Bill, where the heck did you find this guy? Are you sure he's wizard material..? He st--te-s a-lot. He's a -tink-ng l-zard--<br>",/datum/language/common)
+	written += new/datum/langtext("<i><b>The rest of the paper is charred...</i></b>",/datum/language/common)
+	update_icon()
+
+
+
 //clipboards
 /obj/item/clipboard/yog/paperwork
 	name = "Paperwork"
-
 
 /obj/item/clipboard/yog/paperwork/rd/Initialize()
 	. = ..()
