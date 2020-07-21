@@ -10,3 +10,12 @@
 	icon_state = "holograph_on"
 
 	density = TRUE
+	
+/obj/machinery/shuttle_manipulator/update_icon()	
+	cut_overlays()	
+	var/mutable_appearance/hologram_projection = mutable_appearance(icon, "hologram_on")	
+	hologram_projection.pixel_y = 22	
+	var/mutable_appearance/hologram_ship = mutable_appearance(icon, "hologram_whiteship")	
+	hologram_ship.pixel_y = 27	
+	add_overlay(hologram_projection)	
+	add_overlay(hologram_ship)
