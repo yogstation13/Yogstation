@@ -27800,12 +27800,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnk" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -45738,6 +45732,10 @@
 	},
 /turf/open/space,
 /area/solar/starboard/fore)
+"dJJ" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "dMP" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/stripes/line{
@@ -52044,6 +52042,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"lnG" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "lnM" = (
 /obj/structure/table,
 /obj/item/key,
@@ -88139,8 +88146,8 @@ bfR
 bgW
 bNH
 aZK
-bnj
-bbR
+lnG
+dJJ
 bbR
 bbR
 bty
