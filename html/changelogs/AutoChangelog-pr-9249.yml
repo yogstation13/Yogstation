@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Votes make sounds"
+  - soundadd: "Vote sound"
