@@ -47770,6 +47770,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"eWO" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "eXY" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -50618,13 +50627,6 @@
 /obj/item/multitool,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
-"jlF" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/machinery/piratepad/civilian,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "jlM" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 8
@@ -53863,6 +53865,10 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"nPE" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "nQG" = (
 /obj/machinery/button/door{
 	id = "Dorm2";
@@ -58077,12 +58083,6 @@
 /obj/effect/spawner/lootdrop/techstorage/service,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
-"tWn" = (
-/obj/machinery/computer/piratepad_control/civilian{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "tXh" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Port Bow Solar Access";
@@ -86646,8 +86646,8 @@ bfR
 bgW
 bNH
 aZK
-jlF
-tWn
+eWO
+nPE
 bbR
 bbR
 bty
