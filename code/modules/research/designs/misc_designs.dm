@@ -442,6 +442,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/detective_scanner_advanced
+	name = "Advanced Forensic Scanner"
+	desc = "Processes data much quicker at the cost of not being able to scan far remotely. Gives more detailed reports. Scan from 2 tiles away to avoid leaving prints on the scene of the crime!"
+	id = "detective_scanner_advanced"
+	build_type = PROTOLATHE
+	materials = list(MAT_TITANIUM = 5000, MAT_GLASS = 1000, MAT_GOLD = 2500, MAT_SILVER = 3000) // made of titanium instead of metal + extra silver
+	build_path = /obj/item/detective_scanner/advanced
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/pepperspray
 	name = "Pepper Spray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Printed pepper sprays do not contain reagents."
@@ -481,4 +491,5 @@
 	build_path = /obj/item/evidencebag
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 

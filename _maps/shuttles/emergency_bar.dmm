@@ -497,10 +497,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"br" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "bs" = (
 /obj/machinery/door/airlock{
 	name = "Unit 1"
@@ -745,13 +741,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"cb" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "hn" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -847,6 +836,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"AX" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "EQ" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -871,6 +866,15 @@
 /area/shuttle/escape)
 "Nt" = (
 /obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"Os" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Uc" = (
@@ -1129,8 +1133,8 @@ be
 bT
 bk
 ac
-br
-cb
+AX
+Os
 bU
 ab
 ab

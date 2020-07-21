@@ -516,16 +516,6 @@
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"aQ" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/stasis,
-/turf/open/floor/plasteel/white,
-/area/shuttle/escape)
 "aR" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -1536,6 +1526,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"Ba" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Gb" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -1594,6 +1596,18 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/escape)
+"Na" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "OE" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -2042,7 +2056,7 @@ ay
 aE
 aE
 aL
-aQ
+Ba
 af
 aS
 ba
@@ -2135,7 +2149,7 @@ aB
 aG
 aJ
 aN
-aQ
+Na
 aP
 aZ
 bd

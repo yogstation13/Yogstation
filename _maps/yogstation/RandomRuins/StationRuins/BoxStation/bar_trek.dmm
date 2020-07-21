@@ -1096,11 +1096,6 @@
 /obj/item/stack/packageWrap,
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
-"cl" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/mineral/titanium,
-/area/crew_quarters/kitchen)
 "cm" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/mineral/titanium,
@@ -1508,6 +1503,13 @@
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
+"ST" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1839,7 +1841,7 @@ al
 bH
 bT
 MN
-cl
+ST
 bQ
 cy
 cK

@@ -83,8 +83,8 @@
 /area/shuttle/escape)
 "ak" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 1
+	dir = 1;
+	icon_state = "sink"
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -497,10 +497,6 @@
 "bk" = (
 /obj/machinery/shower,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"bl" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "bm" = (
 /obj/structure/rack,
@@ -1016,6 +1012,12 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"Np" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "Ps" = (
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -1309,8 +1311,8 @@ Zu
 EF
 tb
 ac
-bl
-bl
+Np
+Np
 Vs
 bK
 ad
