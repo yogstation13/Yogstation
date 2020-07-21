@@ -876,9 +876,6 @@
 	spirits = current_spirits
 	force = clamp((length(spirits) * 4), 0, 75)
 	block_power += clamp((length(spirits) * 5), 0, 75)
-	block_level = 1
-	if(length(spirits) > SPIRIT_BLOCK_BUFF)
-		block_level = 2
 	return length(spirits)
 
 /obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
