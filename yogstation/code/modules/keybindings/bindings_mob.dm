@@ -65,6 +65,17 @@
 			if(O)
 				O.give()
 			return
+		if(ACTION_WALK)
+			toggle_move_intent()
+			return
+
+	return ..()
+
+/mob/key_up(datum/keyinfo/I, client/user)
+	switch(I.action)
+		if(ACTION_WALK)
+			toggle_move_intent()
+			return
 
 	return ..()
 

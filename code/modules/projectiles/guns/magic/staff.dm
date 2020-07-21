@@ -3,6 +3,9 @@
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	item_flags = NEEDS_PERMIT | NO_MAT_REDEMPTION
+	block_power = 20 //staffs can block shit if you're walking
+	block_upgrade_walk = 1
+	block_level = 1
 
 /obj/item/gun/magic/staff/change
 	name = "staff of change"
@@ -83,19 +86,14 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	force = 20
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
 	armour_penetration = 75
-	block_chance = 50
 	sharpness = IS_SHARP
 	max_charges = 4
 
 /obj/item/gun/magic/staff/spellblade/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 15, 125, 0, hitsound)
-
-/obj/item/gun/magic/staff/spellblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		final_block_chance = 0
-	return ..()
 
 /obj/item/gun/magic/staff/locker
 	name = "staff of the locker"

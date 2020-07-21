@@ -3,6 +3,9 @@
 	name = "umbral tendrils"
 	desc = "A mass of pulsing, chitonous tendrils with exposed violet flesh."
 	force = 15
+	block_upgrade_walk = 1
+	block_level = 1
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"

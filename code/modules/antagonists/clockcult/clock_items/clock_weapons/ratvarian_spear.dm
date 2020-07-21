@@ -6,6 +6,8 @@
 	icon_state = "ratvarian_spear"
 	item_state = "ratvarian_spear"
 	force = 15 //Extra damage is dealt to targets in attack()
+	block_upgrade_walk = 1
+	block_level = 1
 	throwforce = 25
 	armour_penetration = 10
 	sharpness = IS_SHARP_ACCURATE

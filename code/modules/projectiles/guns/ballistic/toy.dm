@@ -12,6 +12,7 @@
 	clumsy_check = 0
 	item_flags = NONE
 	casing_ejector = FALSE
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/toy/update_icon()
 	. = ..()

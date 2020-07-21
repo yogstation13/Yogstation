@@ -1,7 +1,7 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
 
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
-
+#define SPIRIT_BLOCK_BUFF 7
 
 /obj/structure/closet/crate/necropolis
 	name = "necropolis chest"
@@ -155,6 +155,10 @@
 	icon_state = "asclepius_dormant"
 	var/activated = FALSE
 	var/usedHand
+	block_upgrade_walk = 1
+	block_level = 2
+	block_power = 40 //blocks very well to encourage using it. Just because you're a pacifist doesn't mean you can't defend yourself
+	block_flags = null //not active, so it's null
 
 /obj/item/rod_of_asclepius/attack_self(mob/user)
 	if(activated)
@@ -407,6 +411,7 @@
 	max_charges = 1
 	item_flags = NEEDS_PERMIT | NOBLUDGEON
 	force = 18
+	attack_weight = 2
 
 /obj/item/ammo_casing/magic/hook
 	name = "hook"
@@ -675,6 +680,7 @@
 	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
 	force = 12
 	force_on = 20 //force when active
+	block_upgrade_walk = 1
 	throwforce = 20
 	throwforce_on = 20
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -797,6 +803,10 @@
 	sharpness = IS_SHARP
 	w_class = WEIGHT_CLASS_BULKY
 	force = 1
+	block_upgrade_walk = 1
+	block_level = 1
+	block_power = 20
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
 	throwforce = 1
 	hitsound = 'sound/effects/ghost2.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
@@ -864,19 +874,21 @@
 		G.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	spirits = current_spirits
+	force = clamp((length(spirits) * 4), 0, 75)
+	block_power += clamp((length(spirits) * 5), 0, 75)
+	block_level = 1
+	if(length(spirits) > SPIRIT_BLOCK_BUFF)
+		block_level = 2
 	return length(spirits)
 
 /obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	force = 0
 	var/ghost_counter = ghost_check()
-
-	force = clamp((ghost_counter * 4), 0, 75)
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
 	..()
 
-/obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	var/ghost_counter = ghost_check()
-	final_block_chance += clamp((ghost_counter * 5), 0, 75)
 	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
 	return ..()
 
@@ -1379,7 +1391,7 @@
 
 /obj/item/hierophant_antenna
 	name = "hierophant's antenna"
-	icon = 'icons/obj/lavaland/artefacts.dmi' 
+	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "hierophant_antenna"
 	item_state = "hierophant_antenna"
 	desc = "Extends the range of the herald's power."

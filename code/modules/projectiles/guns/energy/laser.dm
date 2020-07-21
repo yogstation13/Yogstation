@@ -8,6 +8,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun)
 	ammo_x_offset = 1
 	shaded_charge = 1
+	block_upgrade_walk = 1
 
 /obj/item/gun/energy/laser/practice
 	name = "practice laser gun"
@@ -140,7 +141,7 @@
 
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
-	
+
 /obj/item/gun/energy/laser/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
@@ -173,4 +174,4 @@
 
 /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
 	name = "weak laser"
-	damage = 5 
+	damage = 5

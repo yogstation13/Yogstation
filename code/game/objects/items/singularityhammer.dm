@@ -9,6 +9,8 @@
 	force = 5
 	force_unwielded = 5
 	force_wielded = 20
+	attack_weight = 3
+	block_upgrade_walk = 1
 	throwforce = 15
 	throw_range = 1
 	w_class = WEIGHT_CLASS_HUGE
@@ -81,6 +83,8 @@
 	force = 5
 	force_unwielded = 5
 	force_wielded = 25
+	block_upgrade_walk = 1
+	attack_weight = 3
 	throwforce = 30
 	throw_range = 7
 	w_class = WEIGHT_CLASS_HUGE

@@ -8,6 +8,7 @@
 	selfcharge = 1
 	can_flashlight = FALSE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses neural signals instead
+	block_upgrade_walk = 1
 
 /obj/item/gun/energy/e_gun/advtaser/mounted/dropped()//if somebody manages to drop this somehow...
 	..()

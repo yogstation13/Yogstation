@@ -99,14 +99,18 @@
 	sharpness = IS_SHARP
 	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
 	armour_penetration = 35
-	block_chance = 50
+	block_level = 1
+	block_upgrade_walk = 1
+	block_power = 35
+	block_sound = 'sound/weapons/genhit.ogg'
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
 	if(. && active && item_color)
 		icon_state = "sword[item_color]"
 
-/obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
 		return ..()
 	return 0
@@ -144,7 +148,7 @@
 		return
 	transform_weapon(user, TRUE)
 
-/obj/item/melee/transforming/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/transforming/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
 /obj/item/melee/transforming/energy/sword/saber

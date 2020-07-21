@@ -14,6 +14,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 20 //It's never not wielded so these are the same
 	force_wielded = 20
+	block_upgrade_walk = 1
 	throwforce = 5
 	throw_speed = 4
 	light_range = 5

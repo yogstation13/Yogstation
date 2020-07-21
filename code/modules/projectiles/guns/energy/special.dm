@@ -11,6 +11,7 @@
 	ammo_x_offset = 3
 	flight_x_offset = 17
 	flight_y_offset = 9
+	block_upgrade_walk = 1
 
 /obj/item/gun/energy/ionrifle/emp_act(severity)
 	return
@@ -99,6 +100,7 @@
 	unique_frequency = TRUE
 	can_flashlight = FALSE
 	max_mod_capacity = 0
+	block_upgrade_walk = 0
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow/halloween
 	name = "candy corn crossbow"
@@ -116,6 +118,7 @@
 	suppressed = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
 	pin = null
+	block_upgrade_walk = 1
 
 
 /obj/item/gun/energy/plasmacutter
@@ -127,6 +130,7 @@
 	flags_1 = CONDUCT_1
 	attack_verb = list("attacked", "slashed", "cut", "sliced")
 	force = 12
+	block_upgrade_walk = 1
 	sharpness = IS_SHARP
 	can_charge = FALSE
 
@@ -231,6 +235,7 @@
 	var/obj/effect/portal/p_blue
 	var/obj/effect/portal/p_orange
 	var/atmos_link = FALSE
+	block_upgrade_walk = 1
 
 /obj/item/gun/energy/wormhole_projector/update_icon()
 	icon_state = "[initial(icon_state)][select]"
@@ -314,6 +319,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot)
 	cell_type = "/obj/item/stock_parts/cell/high"
 	pin = null
+	block_upgrade_walk = 1
 
 /obj/item/gun/energy/temperature/security
 	name = "security temperature gun"
@@ -327,6 +333,7 @@
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit."
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill)
 	force = 60
+	block_upgrade_walk = 1
 
 /obj/item/gun/energy/laser/instakill/red
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a red design."
@@ -350,3 +357,4 @@
 	item_state = "gravity_gun"
 	icon_state = "gravity_gun"
 	var/power = 4
+	block_upgrade_walk = 1

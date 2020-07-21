@@ -17,7 +17,7 @@
 /obj/item/banhammer/suicide_act(mob/user)
 		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to ban [user.p_them()]self from life.</span>")
 		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
-/* 
+/*
 oranges says: This is a meme relating to the english translation of the ss13 russian wiki page on lurkmore.
 mrdoombringer sez: and remember kids, if you try and PR a fix for this item's grammar, you are admitting that you are, indeed, a newfriend.
 for further reading, please see: https://github.com/tgstation/tgstation/pull/30173 and https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=%2F%2Flurkmore.to%2FSS13&edit-text=&act=url
@@ -40,6 +40,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	force = 2
+	block_level = 1
+	block_upgrade_walk = 1
 	throwforce = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -49,6 +51,14 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	user.visible_message("<span class='suicide'>[user] is trying to impale [user.p_them()]self with [src]! It might be a suicide attempt if it weren't so shitty.</span>", \
 	"<span class='suicide'>You try to impale yourself with [src], but it's USELESS...</span>")
 	return SHAME
+
+/obj/item/sord/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+	if(isitem(hitby))
+		var/obj/item/I = hitby
+		owner.attackby(src)
+		owner.attackby(src, owner)
+		owner.visible_message("<span class='danger'>[owner] can't get a grip, and stabs himself with both the [I] and the[src] while trying to parry the [I]!</span>")
+	return ..()
 
 /obj/item/claymore
 	name = "claymore"
@@ -61,10 +71,14 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 40
+	attack_weight = 1
+	block_power = 40
+	block_upgrade_walk = 1
+	block_level = 1
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 50
 	sharpness = IS_SHARP
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
@@ -81,9 +95,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
 	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
 	flags_1 = CONDUCT_1
-	item_flags = DROPDEL //If this ever happens, it's because you lost an arm
+	item_flags = DROPDEL //IF THIS EVER HAPPENS, IT'S BECAUSE YOUR ARM'S GONE. GET OVER IT.
 	slot_flags = null
-	block_chance = 0 //RNG WON'T HELP YOU NOW, PANSY
 	light_range = 3
 	attack_verb = list("brutalized", "eviscerated", "disemboweled", "hacked", "carved", "cleaved") //ONLY THE MOST VISCERAL ATTACK VERBS
 	var/notches = 0 //HOW MANY PEOPLE HAVE BEEN SLAIN WITH THIS BLADE
@@ -217,7 +230,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 50
+	block_power = 50
+	block_level = 1
+	block_upgrade_walk = 1
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
 	sharpness = IS_SHARP
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
@@ -237,6 +253,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	item_state = "rods"
 	flags_1 = CONDUCT_1
 	force = 9
+	block_upgrade_walk = 1
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(MAT_METAL=1150, MAT_GLASS=75)
@@ -358,7 +375,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	else
 		user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
-	
+
 /obj/item/phone/real
 	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication is monitored by Nanotrasen Officials."
 
@@ -371,7 +388,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	to_chat(usr, "<span class='danger'>Message sent. Pray you made the right choice.</span>")
 	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
 	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
-	
+
 /obj/item/phone/banana
 	name = "banana phone"
 	desc = "Direct telecommunications line to the Clown Planet. Use for emergencies only!"
@@ -384,7 +401,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/items/bikehorn.ogg'
-	
+
 /obj/item/phone/banana/attack_self(mob/user)
 	var/input = stripped_input(usr, "Please choose a message to send. If you are unsure, you can still turn back.", "Send a message to the Clown Planet.", "")
 	if(!input || !(usr in view(1,src)))
@@ -394,7 +411,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	to_chat(usr, "<span class='danger'>Message sent. The Clown Planet will judge your message.</span>")
 	usr.log_talk(input, LOG_SAY, tag="Clown Planet announcement")
 	deadchat_broadcast(" has messaged the Clown Planet using the banana phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
-	
+
 /obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentleman. Or a clown."
@@ -404,6 +421,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 5
+	block_upgrade_walk = 1
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(MAT_METAL=50)
@@ -417,6 +435,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	force = 3
+	block_upgrade_walk = 1
 	throwforce = 5
 	throw_speed = 2
 	throw_range = 5
@@ -441,6 +460,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 3
+	block_upgrade_walk = 1
 	throwforce = 5
 	throw_speed = 2
 	throw_range = 5
@@ -471,6 +491,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 24
+	block_upgrade_walk = 2
+	block_power = 20
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
+	attack_weight = 1
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
@@ -500,6 +524,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "bust"
 	force = 15
+	attack_weight = 2
 	throwforce = 10
 	throw_speed = 5
 	throw_range = 2
@@ -521,6 +546,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "For the beating to death of lizards with their own tails."
 	icon_state = "tailclub"
 	force = 14
+	attack_weight = 2
+	block_upgrade_walk = 1
 	throwforce = 1 // why are you throwing a club do you even weapon
 	throw_speed = 1
 	throw_range = 1
@@ -543,6 +570,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "skateboard"
 	item_state = "skateboard"
 	force = 12
+	block_level = 1
+	block_upgrade_walk = 1 //yes, you can use this to fend off attackers
 	throwforce = 4
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("smacked", "whacked", "slammed", "smashed")
@@ -585,6 +614,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 10
+	block_upgrade_walk = 1
+	attack_weight = 2
 	throwforce = 12
 	attack_verb = list("beat", "smacked")
 	w_class = WEIGHT_CLASS_HUGE
@@ -630,6 +661,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
 	force = 12
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
+	block_level = 1
 	throwforce = 15
 
 /obj/item/melee/baseball_bat/ablative/IsReflect()//some day this will reflect thrown items instead of lasers

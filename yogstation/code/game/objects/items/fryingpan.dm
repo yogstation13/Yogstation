@@ -11,7 +11,10 @@
 	throw_range = 5
 	var/bonkpower = 15
 	var/pantrify = FALSE
-	block_chance = 10
+	block_flags = BLOCKING_PROJECTILE //yes
+	block_level = 1
+	block_power = 20
+	attack_weight = 2
 	materials = list(MAT_METAL=75)
 	attack_verb = list("BONKED", "panned")
 	hitsound = 'yogstation/sound/weapons/pan.ogg'
@@ -27,7 +30,10 @@
 	throwforce = 15
 	bonkpower = 50
 	pantrify = TRUE
-	block_chance = 25
+	block_flags = BLOCKING_PROJECTILE
+	block_level = 3
+	block_power = 60
+	attack_weight = 3
 	materials = list(MAT_BANANIUM=75)
 	attack_verb = list("BONKED", "panned", "flexes on")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100) //honkzo bananium frying pan folded over 1000 times, your mime explosives are no match.

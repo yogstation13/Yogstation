@@ -26,6 +26,8 @@
 	var/wielded = 0
 	var/force_unwielded = 0
 	var/force_wielded = 0
+	var/block_power_wielded = 0
+	var/block_power_unwielded = 0
 	var/wieldsound = null
 	var/unwieldsound = null
 
@@ -35,6 +37,8 @@
 	wielded = 0
 	if(force_unwielded)
 		force = force_unwielded
+	if(block_power_unwielded)
+		block_power = block_power_unwielded
 	var/sf = findtext(name, " (Wielded)", -10)//10 == length(" (Wielded)")
 	if(sf)
 		name = copytext(name, 1, sf)
@@ -72,6 +76,8 @@
 	wielded = 1
 	if(force_wielded)
 		force = force_wielded
+	if(block_power_wielded)
+		block_power = block_power_wielded
 	name = "[name] (Wielded)"
 	update_icon()
 	if(iscyborg(user))
@@ -223,6 +229,10 @@
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	force = 5
+	attack_weight = 2
+	block_power_wielded = 25
+	block_level = 1
+	block_upgrade_walk = 1
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
@@ -277,6 +287,11 @@
 	var/w_class_on = WEIGHT_CLASS_BULKY
 	force_unwielded = 3
 	force_wielded = 34
+	block_level = 2
+	block_upgrade_walk = 1
+	block_power = 70
+	block_sound = 'sound/weapons/genhit.ogg'
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
@@ -284,7 +299,6 @@
 	item_color = "green"
 	light_color = "#00ff00"//green
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 75
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70)
 	resistance_flags = FIRE_PROOF
@@ -369,7 +383,7 @@
 	else
 		user.adjustStaminaLoss(25)
 
-/obj/item/twohanded/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/twohanded/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	if(wielded)
 		return ..()
 	return 0
@@ -463,6 +477,8 @@
 	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 10
 	force_wielded = 18
+	block_power_wielded = 25
+	block_upgrade_walk = 1
 	throwforce = 20
 	throw_speed = 4
 	embedding = list("embedded_impact_pain_multiplier" = 3)
@@ -571,6 +587,10 @@
 	flags_1 = CONDUCT_1
 	force = 13
 	var/force_on = 24
+	block_power = 20
+	block_upgrade_walk = 2
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
+	attack_weight = 2
 	w_class = WEIGHT_CLASS_HUGE
 	throwforce = 13
 	throw_speed = 2
@@ -627,8 +647,11 @@
 	desc = "<span class='warning'>VRRRRRRR!!!</span>"
 	armour_penetration = 100
 	force_on = 30
+	block_power = 75
+	block_level = 1
+	attack_weight = 3 //fear him
 
-/obj/item/twohanded/required/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/twohanded/required/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		owner.visible_message("<span class='danger'>Ranged attacks just make [owner] angrier!</span>")
 		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
@@ -668,6 +691,9 @@
 	name = "pitchfork"
 	desc = "A simple tool used for moving hay."
 	force = 7
+	block_power_wielded = 25
+	block_level = 1
+	block_upgrade_walk = 1
 	throwforce = 15
 	w_class = WEIGHT_CLASS_BULKY
 	force_unwielded = 7
@@ -760,7 +786,11 @@
 	force_unwielded = 20
 	force_wielded = 40
 	armour_penetration = 100
-	block_chance = 40
+	block_power_wielded = 40
+	block_level = 1
+	block_upgrade_walk = 2
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE
+	block_sound = 'sound/weapons/genhit.ogg'
 	throwforce = 20
 	throw_speed = 4
 	sharpness = IS_SHARP
@@ -772,20 +802,6 @@
 /obj/item/twohanded/vibro_weapon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 20, 105)
-
-/obj/item/twohanded/vibro_weapon/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		final_block_chance *= 2
-	if(wielded || attack_type != PROJECTILE_ATTACK)
-		if(prob(final_block_chance))
-			if(attack_type == PROJECTILE_ATTACK)
-				owner.visible_message("<span class='danger'>[owner] deflects [attack_text] with [src]!</span>")
-				playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
-				return 1
-			else
-				owner.visible_message("<span class='danger'>[owner] parries [attack_text] with [src]!</span>")
-				return 1
-	return 0
 
 /obj/item/twohanded/vibro_weapon/update_icon()
 	icon_state = "hfrequency[wielded]"
@@ -815,6 +831,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 11
+	block_power_wielded = 25
+	block_upgrade_walk = 1
 	force_wielded = 20					//I have no idea how to balance
 	throwforce = 22
 	throw_speed = 4

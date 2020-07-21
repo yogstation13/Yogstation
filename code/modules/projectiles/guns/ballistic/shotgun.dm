@@ -20,6 +20,7 @@
 	bolt_wording = "pump"
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
 	. = 0
@@ -209,7 +210,7 @@
 	..()
 	if(slung)
 		icon_state = "ishotgunsling"
-	
+
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawoff(mob/user)
 	. = ..()

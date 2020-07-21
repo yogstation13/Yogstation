@@ -11,6 +11,11 @@ Slimecrossing Weapons
 	force = 15
 	force_string = "painful"
 
+/obj/item/melee/arm_blade/slime/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, damage, attack_type)
+	if(prob(20))
+		owner.emote("scream")
+	return ..()
+
 /obj/item/melee/arm_blade/slime/attack(mob/living/L, mob/user)
 	. = ..()
 	if(prob(20))
@@ -58,7 +63,11 @@ Slimecrossing Weapons
 	w_class = WEIGHT_CLASS_HUGE
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	slot_flags = ITEM_SLOT_BACK
-	block_chance = 75
+	attack_weight = 2
+	block_power = 75
+	block_level = 3
+	block_upgrade_walk = 1
+	block_flags = BLOCKING_PROJECTILE
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
 	force = 15 //Heavy, but hard to wield.

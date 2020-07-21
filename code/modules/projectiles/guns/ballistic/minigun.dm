@@ -119,6 +119,7 @@
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	var/obj/item/minigunbackpack/ammo_pack
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/minigunosprey/Initialize()
 	if(istype(loc, /obj/item/minigunbackpack)) //We should spawn inside an ammo pack so let's use that one.

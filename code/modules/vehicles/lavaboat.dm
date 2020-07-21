@@ -28,6 +28,8 @@
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	block_level = 1
+	block_upgrade_walk = 1
 
 /datum/crafting_recipe/oar
 	name = "Goliath Bone Oar"

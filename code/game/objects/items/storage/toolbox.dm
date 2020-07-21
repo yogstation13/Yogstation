@@ -7,6 +7,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
 	force = 12
+	block_upgrade_walk = 1
 	throwforce = 12
 	throw_speed = 2
 	throw_range = 7

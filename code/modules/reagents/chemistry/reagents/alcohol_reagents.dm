@@ -1642,7 +1642,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		var/mob/living/carbon/human/thehuman = L
 		for(var/obj/item/shield/theshield in thehuman.contents)
 			mighty_shield = theshield
-			mighty_shield.block_chance += 10
+			mighty_shield.block_power += 15
 			to_chat(thehuman, "<span class='notice'>[theshield] appears polished, although you don't recall polishing it.</span>")
 			return TRUE
 
@@ -1653,7 +1653,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/alexander/on_mob_end_metabolize(mob/living/L)
 	if(mighty_shield)
-		mighty_shield.block_chance -= 10
+		mighty_shield.block_power -= 15
 		to_chat(L,"<span class='notice'>You notice [mighty_shield] looks worn again. Weird.</span>")
 	..()
 
@@ -2163,7 +2163,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "flaming_moe2"
 	glass_name = "Flaming Moe"
 	glass_desc = "an amazing concoction of various different bar drinks and a secret ingredient"
-	
+
 /datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(M.drowsyness-5, 0)
 	M.AdjustStun(-20, FALSE)

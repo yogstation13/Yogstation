@@ -12,6 +12,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 	force = 15 //Smashing bottles over someone's head hurts.
+	block_upgrade_walk = 1
 	throwforce = 15
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
@@ -21,6 +22,14 @@
 	isGlass = TRUE
 	foodtype = ALCOHOL
 	age_restricted = TRUE
+
+/obj/item/reagent_containers/food/drinks/bottle/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, damage, attack_type)
+	if(isliving(hitby))
+		var/mob/living/L = hitby
+		smash(L)
+	else
+		smash()
+	return TRUE
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
 	update_icon()
@@ -478,7 +487,7 @@
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
-	
+
 /obj/item/reagent_containers/food/drinks/bottle/nukacola
 	name = "Nuka Cola"
 	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."

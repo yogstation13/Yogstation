@@ -69,6 +69,7 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
@@ -93,6 +94,7 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
@@ -118,6 +120,7 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 	mag_display = TRUE
 	empty_indicator = TRUE
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/m90/Initialize()
 	. = ..()
@@ -190,6 +193,7 @@
 	burst_size = 4
 	fire_delay = 1
 	bolt_type = BOLT_TYPE_OPEN
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/ar
 	name = "\improper NT-ARG 'Boarder'"
@@ -202,6 +206,7 @@
 	can_suppress = FALSE
 	burst_size = 3
 	fire_delay = 1
+	block_upgrade_walk = 1
 
 
 // L6 SAW //
@@ -227,6 +232,7 @@
 	tac_reloads = FALSE
 	fire_sound = 'sound/weapons/rifleshot.ogg'
 	rack_sound = 'sound/weapons/chunkyrack.ogg'
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/l6_saw/unrestricted
 	pin = /obj/item/firing_pin
@@ -304,6 +310,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE
+	block_upgrade_walk = 1
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	name = "syndicate sniper rifle"
@@ -329,6 +336,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE
+	block_upgrade_walk = 1
 
 // Laser rifle (rechargeable magazine) //
 
@@ -344,3 +352,4 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+	block_upgrade_walk = 1

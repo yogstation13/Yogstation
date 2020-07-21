@@ -14,6 +14,7 @@
 	rack_sound = "sound/weapons/mosinboltout.ogg"
 	bolt_drop_sound = "sound/weapons/mosinboltin.ogg"
 	tac_reloads = FALSE
+	block_upgrade_walk = 1
 
 obj/item/gun/ballistic/rifle/update_icon()
 	..()

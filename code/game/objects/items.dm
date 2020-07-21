@@ -79,11 +79,22 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/flags_cover = 0 //for flags such as GLASSESCOVERSEYES
 	var/heat = 0
 	var/sharpness = IS_BLUNT
+	//this multiplies an attacks force for secondary effects like attacking blocking implements, dismemberment, and knocking a target silly
+	var/attack_weight = 1
 
 	var/tool_behaviour = NONE
 	var/toolspeed = 1
 
-	var/block_chance = 0
+	var/block_level = 0
+	//does the item block better if walking?
+	var/block_upgrade_walk = 0
+	//blocking flags
+	var/block_flags = BLOCKING_ACTIVE
+	//reduces stamina damage taken whilst blocking. block power of 0 means it takes the full force of the attacking weapon
+	var/block_power = 0
+	//what sound does blocking make
+	var/block_sound = 'sound/weapons/parry.ogg'
+	//if a mob hits this barehanded, are they in trouble?
 	var/hit_reaction_chance = 0 //If you want to have something unrelated to blocking/armour piercing etc. Maybe not needed, but trying to think ahead/allow more freedom
 	var/reach = 1 //In tiles, how far this weapon can reach; 1 for adjacent, which is default
 
@@ -186,10 +197,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	. = ..()
 
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weightclass2text(w_class)] item."
-	
+
 	if(HAS_TRAIT(src, TRAIT_NO_STORAGE))
 		. += "[gender == PLURAL ? "They are" : "It is"] too bulky, fragile, or cumbersome to fit in a container."
-	
+
 	if(resistance_flags & INDESTRUCTIBLE)
 		. += "[src] seems extremely robust! It'll probably withstand anything that could happen to it!"
 	else
@@ -360,12 +371,96 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
-/obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
-	if(prob(final_block_chance))
-		owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
-		return 1
+	var/relative_dir = (dir2angle(get_dir(hitby, owner)) - dir2angle(owner.dir)) //shamelessly stolen from mech code
+	var/final_block_level = block_level
+	var/obj/item/bodypart/blockhand = null
+	if(owner.stat) //can't block if you're dead
+		return 0
+	if(owner.get_active_held_item() == src) //copypaste of this code for an edgecase-nodrops
+		if(owner.active_hand_index == 1)
+			blockhand = (locate(/obj/item/bodypart/l_arm) in owner.bodyparts)
+		else
+			blockhand = (locate(/obj/item/bodypart/r_arm) in owner.bodyparts)
+	else
+		if(owner.active_hand_index == 1)
+			blockhand = (locate(/obj/item/bodypart/r_arm) in owner.bodyparts)
+		else
+			blockhand = (locate(/obj/item/bodypart/l_arm) in owner.bodyparts)
+	if(blockhand.is_disabled())
+		to_chat(owner, "<span_class='danger'>You're too exausted to block the attack<!/span>")
+		return 0
+	if(owner.a_intent == INTENT_HARM) //you can choose not to block an attack
+		return 0
+	if((block_flags & BLOCKING_ACTIVE) && !owner.get_active_held_item() == src)
+		return 0
+	if((!block_flags & BLOCKING_PROJECTILE) && attack_type == PROJECTILE_ATTACK)
+		return 0
+	if(owner.m_intent == MOVE_INTENT_WALK)
+		final_block_level += block_upgrade_walk
+	switch(relative_dir)
+		if(180, -180)
+			if(final_block_level >= 1)
+				playsound(src, block_sound, 50, 1)
+				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
+				return 1
+		if(135, 225, -135, -225)
+			if(final_block_level >= 2)
+				playsound(src, block_sound, 50, 1)
+				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
+				return 1
+		if(90, 270, -90, -270)
+			if(final_block_level >= 3)
+				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
+				playsound(src, block_sound, 50, 1)
+				return 1
+		if(45, 315, -45, -315)
+			if(final_block_level >= 4)
+				playsound(src, block_sound, 50, 1)
+				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
+				return 1
 	return 0
+
+/obj/item/proc/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+	var/blockhand = 0
+	var/attackforce = 0
+	if(owner.get_active_held_item() == src) //this feels so hacky...
+		if(owner.active_hand_index == 1)
+			blockhand = BODY_ZONE_L_ARM
+		else
+			blockhand = BODY_ZONE_R_ARM
+	else
+		if(owner.active_hand_index == 1)
+			blockhand = BODY_ZONE_R_ARM
+		else
+			blockhand = BODY_ZONE_L_ARM
+	if(isprojectile(hitby))
+		var/obj/item/projectile/P = hitby
+		if(P.damtype != STAMINA)// disablers dont do shit to shields
+			attackforce = (P.damage / 2)
+	else if(isitem(hitby))
+		var/obj/item/I = hitby
+		attackforce = damage
+		if(I.sharpness)
+			attackforce = (attackforce / 2)//sharp weapons get much of their force by virtue of being sharp, not physical power
+		if(!I.damtype == BRUTE)
+			attackforce = (attackforce / 2)//as above, burning weapons, or weapons that deal other damage type probably dont get force from physical power
+		attackforce = (attackforce * I.attack_weight)
+	else if(attack_type == UNARMED_ATTACK && isliving(hitby))
+		var/mob/living/L = hitby
+		attackforce = damage
+		if(block_flags & BLOCKING_NASTY)
+			L.attackby(src, owner)
+			owner.visible_message("<span class='danger'>[L] injures themselves on [owner]'s [src]!</span>")
+	else if(isliving(hitby))
+		var/mob/living/L = hitby
+		attackforce = (damage * 2)//simplemobs have an advantage here because of how much these blocking mechanics put them at a disadvantage
+		if(block_flags & BLOCKING_NASTY)
+			L.attackby(src, owner)
+			owner.visible_message("<span class='danger'>[L] injures themselves on [owner]'s [src]!</span>")
+	owner.apply_damage(attackforce, STAMINA, blockhand, block_power)
+	return TRUE
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE

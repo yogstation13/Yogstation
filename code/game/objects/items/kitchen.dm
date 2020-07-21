@@ -70,6 +70,8 @@
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 10
+	block_upgrade_walk = 1
+	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	throw_speed = 3
 	throw_range = 6
