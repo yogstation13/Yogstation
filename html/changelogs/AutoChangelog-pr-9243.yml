@@ -1,0 +1,5 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - rscadd: "Service gets paid between 400 and 2400 credits per Economic Cycle"
+  - bugfix: "Slimes not on the station no longer generate money for Science"
