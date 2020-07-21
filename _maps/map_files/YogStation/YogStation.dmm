@@ -27800,12 +27800,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnk" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -42831,6 +42825,15 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"cjQ" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "cjU" = (
 /obj/machinery/computer/station_alert{
 	dir = 4
@@ -44180,6 +44183,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cBP" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "cBU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset,
@@ -88139,8 +88146,8 @@ bfR
 bgW
 bNH
 aZK
-bnj
-bbR
+cjQ
+cBP
 bbR
 bbR
 bty
