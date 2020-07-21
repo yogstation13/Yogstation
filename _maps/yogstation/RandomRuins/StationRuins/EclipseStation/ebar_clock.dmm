@@ -153,6 +153,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"el" = (
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen/coldroom)
 "fw" = (
 /obj/machinery/camera{
 	c_tag = "Theatre Stage";
@@ -246,6 +250,14 @@
 /obj/machinery/smartfridge,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"iZ" = (
+/obj/item/clothing/head/bronze,
+/obj/item/clothing/shoes/bronze,
+/obj/item/clothing/suit/bronze,
+/obj/item/toy/clockwork_watch,
+/obj/structure/table/bronze,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "jb" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
@@ -282,10 +294,6 @@
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "kB" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/bronze,
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -298,6 +306,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -328,13 +340,13 @@
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "lp" = (
-/obj/machinery/reagentgrinder,
 /obj/structure/table,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
 	pixel_x = 30
 	},
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
 "lu" = (
@@ -483,16 +495,16 @@
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "tt" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/bronze,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -551,6 +563,11 @@
 "wm" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/bronze,
+/obj/machinery/airalarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -24
+	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "wx" = (
@@ -571,6 +588,10 @@
 	name = "Kitchen Cold Room";
 	req_access_txt = "28"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "xi" = (
@@ -665,10 +686,6 @@
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
 "Bm" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/item/storage/box/fancy/donut_box,
 /obj/structure/table/bronze,
 /obj/machinery/door/firedoor/border_only{
@@ -676,6 +693,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -840,10 +861,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"Hz" = (
-/obj/structure/reagent_dispensers/cooking_oil,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/kitchen)
 "HF" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/bronze,
@@ -904,7 +921,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
 "Jp" = (
 /obj/machinery/light,
@@ -940,12 +957,6 @@
 /obj/item/clockwork/alloy_shards/medium,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"Kr" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
 "KL" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
@@ -971,6 +982,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"Lq" = (
+/obj/machinery/computer/slot_machine,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "LD" = (
 /obj/machinery/airalarm{
 	dir = 2;
@@ -1004,9 +1022,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"Mj" = (
-/turf/closed/wall/mineral/bronze,
-/area/crew_quarters/theatre)
 "Mn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -1057,9 +1072,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"ND" = (
-/turf/closed/wall/mineral/bronze,
-/area/crew_quarters/dorms/a)
 "OA" = (
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plating,
@@ -1077,14 +1089,13 @@
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "Pf" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
 "Pw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1332,10 +1343,10 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-ND
-ND
-ND
-ND
+aC
+aC
+aC
+aC
 aC
 ai
 ai
@@ -1352,7 +1363,7 @@ aC
 aC
 "}
 (2,1,1) = {"
-Mj
+aC
 Ka
 dm
 wx
@@ -1364,15 +1375,15 @@ cs
 mf
 vt
 Xq
-Kr
-Xw
+ms
+Lq
 kN
 mf
 MU
 aC
 "}
 (3,1,1) = {"
-Mj
+aC
 EU
 DT
 CL
@@ -1392,7 +1403,7 @@ xi
 aC
 "}
 (4,1,1) = {"
-Mj
+aC
 LD
 Wo
 zf
@@ -1412,7 +1423,7 @@ xi
 aC
 "}
 (5,1,1) = {"
-Mj
+aC
 aZ
 JQ
 CL
@@ -1432,7 +1443,7 @@ gE
 aC
 "}
 (6,1,1) = {"
-Mj
+aC
 fw
 fR
 CL
@@ -1460,7 +1471,7 @@ xi
 OU
 kZ
 pb
-Ny
+iZ
 Ny
 xi
 OU
@@ -1472,7 +1483,7 @@ ms
 ie
 "}
 (8,1,1) = {"
-Mj
+aC
 oj
 My
 Wj
@@ -1485,7 +1496,7 @@ EJ
 ms
 OU
 pb
-Ny
+iZ
 xi
 OU
 ms
@@ -1682,7 +1693,7 @@ El
 cr
 RB
 UT
-Hz
+yz
 Vq
 yk
 yk
@@ -1740,7 +1751,7 @@ bm
 Fq
 VV
 SY
-SY
+el
 PP
 Av
 Bv

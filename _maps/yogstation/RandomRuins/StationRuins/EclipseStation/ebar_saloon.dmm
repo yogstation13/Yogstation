@@ -308,13 +308,13 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "lp" = (
-/obj/machinery/reagentgrinder,
 /obj/structure/table,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
 	pixel_x = 30
 	},
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
 "lu" = (
@@ -411,6 +411,7 @@
 /obj/structure/chair/wood/wings{
 	dir = 8
 	},
+/obj/item/wrench,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "px" = (
@@ -487,16 +488,16 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "tt" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/wood,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
@@ -531,6 +532,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"vY" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "we" = (
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
@@ -541,6 +551,11 @@
 "wm" = (
 /obj/structure/table/wood,
 /obj/machinery/reagentgrinder,
+/obj/machinery/airalarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -24
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "wx" = (
@@ -558,10 +573,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "wD" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/wood,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -571,6 +582,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
@@ -585,6 +600,10 @@
 	name = "Kitchen Cold Room";
 	req_access_txt = "28"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "xi" = (
@@ -693,6 +712,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Bs" = (
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen/coldroom)
 "Bv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -836,10 +859,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "GH" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/beans{
 	pixel_x = -2
@@ -853,16 +872,16 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
 "Hb" = (
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
 	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
-"Hz" = (
-/obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
 "HF" = (
@@ -927,7 +946,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/wood,
 /area/crew_quarters/kitchen)
 "Jp" = (
 /obj/machinery/light,
@@ -966,22 +985,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"Kr" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	dir = 1;
-	pixel_x = 3;
-	pixel_y = 9
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1047,9 +1050,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/crew_quarters/bar)
-"Mj" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/theatre)
 "Mm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -1098,9 +1098,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"ND" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/dorms/a)
 "NE" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
@@ -1136,14 +1133,13 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Pf" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
 "Pw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1377,10 +1373,10 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-ND
-ND
-ND
-ND
+Uk
+Uk
+Uk
+Uk
 Uk
 ai
 ai
@@ -1397,7 +1393,7 @@ Uk
 Uk
 "}
 (2,1,1) = {"
-Mj
+Uk
 Ka
 dm
 wx
@@ -1409,15 +1405,15 @@ cs
 ad
 cd
 cE
-Kr
-cd
+ad
+vY
 nP
 ad
 cd
 Uk
 "}
 (3,1,1) = {"
-Mj
+Uk
 pb
 EU
 CL
@@ -1437,7 +1433,7 @@ UM
 Uk
 "}
 (4,1,1) = {"
-Mj
+Uk
 LD
 Wo
 CL
@@ -1457,7 +1453,7 @@ OU
 Uk
 "}
 (5,1,1) = {"
-Mj
+Uk
 aZ
 JQ
 CL
@@ -1477,7 +1473,7 @@ gE
 Uk
 "}
 (6,1,1) = {"
-Mj
+Uk
 fw
 fR
 CL
@@ -1517,7 +1513,7 @@ OU
 ie
 "}
 (8,1,1) = {"
-Mj
+Uk
 oj
 My
 Wj
@@ -1727,7 +1723,7 @@ El
 cr
 RB
 Ta
-Hz
+Vq
 Vq
 yk
 yk
@@ -1785,7 +1781,7 @@ bm
 Fq
 VV
 SY
-SY
+Bs
 PP
 Av
 Bv

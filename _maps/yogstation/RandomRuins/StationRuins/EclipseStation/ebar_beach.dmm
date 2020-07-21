@@ -80,10 +80,6 @@
 /turf/closed/wall,
 /area/crew_quarters/kitchen/coldroom)
 "bW" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -93,6 +89,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -311,13 +311,13 @@
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
 "lp" = (
-/obj/machinery/reagentgrinder,
 /obj/structure/table,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
 	pixel_x = 30
 	},
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "ls" = (
@@ -365,9 +365,6 @@
 /obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/caution{
 	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -444,7 +441,6 @@
 	req_one_access_txt = "25;28"
 	},
 /obj/effect/turf_decal/stripes/asteroid/line,
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -480,16 +476,16 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "tt" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -513,14 +509,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/maintenance/department/crew_quarters/bar)
-"uz" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "vh" = (
 /obj/structure/disposalpipe/segment,
 /mob/living/carbon/monkey/punpun,
@@ -547,6 +535,11 @@
 "wm" = (
 /obj/structure/table/wood,
 /obj/machinery/reagentgrinder,
+/obj/machinery/airalarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -24
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "wx" = (
@@ -579,6 +572,10 @@
 	name = "Kitchen Cold Room";
 	req_access_txt = "28"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "xK" = (
@@ -676,10 +673,6 @@
 	},
 /area/crew_quarters/bar)
 "Bm" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/item/storage/box/fancy/donut_box,
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -687,6 +680,10 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -726,6 +723,9 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
+"Dv" = (
+/turf/closed/wall/mineral/sandstone,
+/area/crew_quarters/kitchen)
 "DU" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
@@ -823,10 +823,6 @@
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
 	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"Hz" = (
-/obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "HF" = (
@@ -945,14 +941,6 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
-"Kr" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/sand,
-/obj/structure/table/wood,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "Kt" = (
 /obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/light/colour_cycle,
@@ -1000,6 +988,18 @@
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"LZ" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/americandiner{
+	dir = 1;
+	icon_state = "americhair";
+	tag = ""
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "Me" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1014,9 +1014,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
-"Mj" = (
-/turf/closed/wall/mineral/sandstone,
-/area/crew_quarters/theatre)
 "Mn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -1052,9 +1049,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"ND" = (
-/turf/closed/wall/mineral/sandstone,
-/area/crew_quarters/dorms/a)
 "OA" = (
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plasteel{
@@ -1081,7 +1075,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "Pf" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Ph" = (
@@ -1092,7 +1086,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1154,8 +1147,9 @@
 "Ty" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/landmark/start/assistant,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1197,6 +1191,10 @@
 "Wp" = (
 /turf/open/floor/plating/beach/water,
 /area/crew_quarters/bar)
+"Wr" = (
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen/coldroom)
 "Ws" = (
 /obj/structure/plasticflaps{
 	opacity = 1
@@ -1293,10 +1291,10 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-ND
-ND
-ND
-ND
+Js
+Js
+Js
+Js
 Js
 ai
 ai
@@ -1313,7 +1311,7 @@ Js
 Js
 "}
 (2,1,1) = {"
-Mj
+Js
 Ka
 dm
 wx
@@ -1325,15 +1323,15 @@ cs
 wl
 xT
 EJ
-Kr
-xT
+wl
+LZ
 gP
 wl
 xT
 Js
 "}
 (3,1,1) = {"
-Mj
+Js
 OU
 CL
 CL
@@ -1353,7 +1351,7 @@ OU
 Js
 "}
 (4,1,1) = {"
-Mj
+Js
 LD
 Wo
 yx
@@ -1373,7 +1371,7 @@ OU
 Js
 "}
 (5,1,1) = {"
-Mj
+Js
 aZ
 JQ
 Ph
@@ -1393,7 +1391,7 @@ gE
 Js
 "}
 (6,1,1) = {"
-Mj
+Js
 fw
 fR
 Wj
@@ -1433,7 +1431,7 @@ OU
 ie
 "}
 (8,1,1) = {"
-Mj
+Js
 OU
 My
 Wj
@@ -1545,7 +1543,7 @@ pk
 dy
 sW
 OU
-uz
+OU
 In
 LM
 OU
@@ -1610,7 +1608,7 @@ Bm
 tt
 bW
 PP
-PP
+Dv
 "}
 (17,1,1) = {"
 ip
@@ -1643,7 +1641,7 @@ El
 cr
 RB
 PP
-Hz
+Vq
 Vq
 yk
 yk
@@ -1701,7 +1699,7 @@ bm
 Fq
 VV
 SY
-SY
+Wr
 PP
 Av
 Bv

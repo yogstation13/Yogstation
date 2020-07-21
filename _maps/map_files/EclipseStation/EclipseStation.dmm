@@ -7818,9 +7818,6 @@
 	dir = 4
 	},
 /obj/structure/table/wood/fancy/royalblue,
-/obj/item/flashlight/lamp/bananalamp{
-	pixel_y = 3
-	},
 /obj/structure/mirror{
 	pixel_x = 28
 	},
@@ -7829,6 +7826,10 @@
 	name = "Common Channel";
 	pixel_y = -27
 	},
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_y = 3
+	},
+/obj/item/phone/banana,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "apP" = (
@@ -85772,6 +85773,7 @@
 "mPA" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/theatre";
+	dir = 8;
 	name = "Theatre Backstage APC";
 	pixel_x = -26
 	},
@@ -88692,7 +88694,7 @@
 	charges = 5
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/department/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "vkq" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/ywflowers,
@@ -88950,7 +88952,7 @@
 	},
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel,
-/area/maintenance/department/crew_quarters/bar)
+/area/crew_quarters/theatre)
 "vWp" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /mob/living/simple_animal/butterfly,

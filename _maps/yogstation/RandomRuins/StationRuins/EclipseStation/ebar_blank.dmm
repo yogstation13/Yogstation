@@ -24,6 +24,11 @@
 "aC" = (
 /obj/structure/table/wood,
 /obj/machinery/reagentgrinder,
+/obj/machinery/airalarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -24
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aH" = (
@@ -133,15 +138,15 @@
 /area/crew_quarters/bar)
 "iP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -218,6 +223,9 @@
 	req_access_txt = "28"
 	},
 /obj/machinery/light,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "mV" = (
@@ -334,10 +342,16 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"qt" = (
-/obj/structure/reagent_dispensers/cooking_oil,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
+"qq" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "qw" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -353,9 +367,6 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "rc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
 /obj/machinery/button/door{
 	id = "kitchen";
 	name = "Kitchen Shutters Control";
@@ -363,12 +374,21 @@
 	pixel_y = -24;
 	req_access_txt = "28"
 	},
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 1
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "rz" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"rP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "rV" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -406,13 +426,13 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "tu" = (
-/obj/machinery/reagentgrinder,
 /obj/structure/table,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	departmentType = 2;
 	pixel_x = 30
 	},
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "tK" = (
@@ -488,7 +508,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
@@ -536,6 +555,10 @@
 	name = "Kitchen Cold Room";
 	req_access_txt = "28"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "zN" = (
@@ -577,6 +600,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "CP" = (
@@ -597,6 +623,12 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Eq" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "EE" = (
 /obj/structure/table,
@@ -629,9 +661,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Fz" = (
-/turf/closed/wall,
-/area/crew_quarters/theatre)
 "FV" = (
 /obj/machinery/camera{
 	c_tag = "Kitchen Cold Room"
@@ -697,9 +726,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"Hh" = (
-/turf/closed/wall,
-/area/crew_quarters/dorms/a)
 "Hv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4;
@@ -787,6 +813,23 @@
 /obj/structure/table,
 /obj/machinery/microwave{
 	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"OD" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -956,10 +999,6 @@
 /area/crew_quarters/bar)
 "UP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "kitchenwindow";
-	name = "kitchen shutters"
-	},
 /obj/item/storage/box/fancy/donut_box,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -967,11 +1006,19 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenwindow";
+	name = "kitchen shutters"
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "UX" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"Vm" = (
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen/coldroom)
 "Vt" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -1018,7 +1065,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "YF" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "YG" = (
@@ -1048,10 +1095,10 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-Hh
-Hh
-Hh
-Hh
+rV
+rV
+rV
+rV
 rV
 iu
 iu
@@ -1068,7 +1115,7 @@ rV
 rV
 "}
 (2,1,1) = {"
-Fz
+rV
 te
 Sg
 FZ
@@ -1080,15 +1127,15 @@ UK
 Vt
 Vt
 Ah
-OH
 Vt
+OH
 Vt
 Vt
 Vt
 rV
 "}
 (3,1,1) = {"
-Fz
+rV
 UX
 UX
 GN
@@ -1108,7 +1155,7 @@ Vt
 rV
 "}
 (4,1,1) = {"
-Fz
+rV
 tK
 pB
 GN
@@ -1128,7 +1175,7 @@ Vt
 rV
 "}
 (5,1,1) = {"
-Fz
+rV
 lU
 mu
 YX
@@ -1148,7 +1195,7 @@ mV
 rV
 "}
 (6,1,1) = {"
-Fz
+rV
 hD
 Fg
 YX
@@ -1188,7 +1235,7 @@ Vt
 nJ
 "}
 (8,1,1) = {"
-Fz
+rV
 Nv
 pE
 nv
@@ -1343,8 +1390,8 @@ Vt
 Vt
 Vt
 Vt
-Vt
-tY
+Eq
+qq
 rV
 "}
 (16,1,1) = {"
@@ -1363,7 +1410,7 @@ iP
 iP
 UP
 iP
-iP
+OD
 Wv
 Wv
 "}
@@ -1398,12 +1445,12 @@ Ms
 Tw
 QR
 rV
-qt
+CP
 CP
 uw
 uw
 CP
-CP
+rP
 Tk
 zN
 "}
@@ -1423,7 +1470,7 @@ Hv
 EE
 vb
 CP
-CP
+rP
 Tk
 zN
 "}
@@ -1443,7 +1490,7 @@ QG
 qc
 HJ
 hw
-CP
+rP
 Un
 zN
 "}
@@ -1456,14 +1503,14 @@ cz
 Rb
 xJ
 Uj
-Uj
+Vm
 cz
 wk
 BJ
 nd
 ui
 sf
-CP
+rP
 Tk
 zN
 "}
@@ -1483,7 +1530,7 @@ Fx
 OB
 OB
 CP
-CP
+rP
 Tk
 zN
 "}
