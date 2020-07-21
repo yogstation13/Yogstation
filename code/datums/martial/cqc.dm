@@ -8,7 +8,7 @@
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_power = 75
+	block_chance = 75
 	var/just_a_cook = FALSE
 	var/old_grab_state = null
 
