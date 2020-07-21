@@ -48,6 +48,15 @@
 	if(user == O && iscarbon(O))
 		var/mob/living/carbon/C = O
 		if(C.mobility_flags & MOBILITY_MOVE)
+			if(HAS_TRAIT(C, TRAIT_SHORT))
+				var/turf/T = get_turf(C)
+				var/stepStool = FALSE
+				for(var/obj/structure/chair/S in T)
+					if(S)
+						stepStool = TRUE
+				if(!stepStool)
+					to_chat(user, "<span class='warning'>You can't reach [src]! You need a boost!</span>")
+					return
 			climb_structure(user)
 			return
 	if(!istype(O, /obj/item) || user.get_active_held_item() != O)

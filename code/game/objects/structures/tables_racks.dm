@@ -33,7 +33,7 @@
 	integrity_failure = 30
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
-	
+
 /obj/structure/table/Bumped(mob/living/carbon/human/H)
 	. = ..()
 	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || istype(H.dna.species, /datum/species/shadow/ling))
@@ -106,7 +106,7 @@
 
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
 		return TRUE
-		
+
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
 		var/obj/item/tank/jetpack/jetpacktable = C.get_jetpack()

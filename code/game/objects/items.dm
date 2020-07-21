@@ -186,10 +186,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	. = ..()
 
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weightclass2text(w_class)] item."
-	
+
 	if(HAS_TRAIT(src, TRAIT_NO_STORAGE))
 		. += "[gender == PLURAL ? "They are" : "It is"] too bulky, fragile, or cumbersome to fit in a container."
-	
+
 	if(resistance_flags & INDESTRUCTIBLE)
 		. += "[src] seems extremely robust! It'll probably withstand anything that could happen to it!"
 	else
@@ -255,6 +255,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	if(anchored)
 		return
+	if(HAS_TRAIT(user, TRAIT_SHORT))
+		var/turf/T = get_turf(src)
+		var/turf/Z = get_turf(user)
+		for(var/obj/structure/table/S in T)
+			if (S)
+				for(var/obj/structure/table/Y in Z)
+					if (Y)
+						to_chat(user, "<span class='warning'>You can't reach [src]! It's too high up!</span>")
+						return
 
 	if(resistance_flags & ON_FIRE)
 		var/mob/living/carbon/C = user
