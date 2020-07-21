@@ -1,7 +1,6 @@
 #define STARTING_PAYCHECKS 7
 
 //Experimental change: These are subject to tweaking based on the /tg/ economy overhaul.
-#define PAYCHECK_PRISONER 25
 #define PAYCHECK_ASSISTANT 50
 #define PAYCHECK_MINIMAL 55
 #define PAYCHECK_EASY 60
