@@ -212,6 +212,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			. += "[src] is made of cold-resistant materials."
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
+	if(block_level)
+		. += "It looks like you could use [src] to defend against attacks."
+	if(block_upgrade_walk)
+		. += "[src] appears strong enough you'd be able to block [block level ? "better " : ""] with it if you were walking."
 
 	if(!user.research_scanner)
 		return
