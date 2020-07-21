@@ -215,7 +215,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(block_level)
 		. += "It looks like you could use [src] to defend against attacks."
 	if(block_upgrade_walk)
-		. += "[src] appears strong enough you'd be able to block [block level ? "better " : ""] with it if you were walking."
+		. += "[src] appears strong enough you'd be able to block [block_level ? "better " : ""] with it if you were walking."
 
 	if(!user.research_scanner)
 		return
