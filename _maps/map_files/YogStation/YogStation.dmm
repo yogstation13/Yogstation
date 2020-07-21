@@ -27800,12 +27800,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnk" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -53953,6 +53947,15 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
+"nHn" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "nJB" = (
 /obj/structure/table/wood,
 /obj/structure/mirror{
@@ -62185,6 +62188,10 @@
 "yeb" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/department/tcoms)
+"yey" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "yeT" = (
 /obj/machinery/status_display/ai{
 	pixel_x = 32
@@ -88139,8 +88146,8 @@ bfR
 bgW
 bNH
 aZK
-bnj
-bbR
+nHn
+yey
 bbR
 bbR
 bty
