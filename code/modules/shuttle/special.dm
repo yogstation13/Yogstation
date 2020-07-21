@@ -210,7 +210,7 @@
 	density = FALSE //allows shuttle airlocks to close, nothing but an approved passenger gets past CanPass
 	locked = TRUE
 	use_power = FALSE
-	var/threshold = 500
+	var/threshold = 1500
 	var/static/list/approved_passengers = list()
 	var/static/list/check_times = list()
 	var/list/payees = list()
