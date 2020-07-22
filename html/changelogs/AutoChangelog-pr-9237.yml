@@ -1,4 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes the forensic scanner sound not being synced with the animation."
