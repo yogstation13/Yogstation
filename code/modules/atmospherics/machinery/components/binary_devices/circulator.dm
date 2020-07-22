@@ -31,6 +31,7 @@
 /obj/machinery/atmospherics/components/binary/circulator/cold/flipped
 	mode = CIRCULATOR_COLD
 	flipped = 1
+	icon_state = "circ-unassembled-1"
 
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
 	.=..()
