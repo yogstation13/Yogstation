@@ -20,7 +20,6 @@
 	throw_range = 1
 	materials = list(MAT_METAL=750)
 	var/accumulated_power = 0
-	var/obj/structure/cable/attached
 	var/datum/powernet/PN = null //cached when found
 	var/manual_power_setting = MAXIMUM_POWER_LIMIT
 	var/manual_switch = FALSE
@@ -36,57 +35,68 @@
 obj/item/energy_harvester/Initialize()
 	. = ..()
 	SSeconomy.moneysink = src
+	//for when a mapper connects it to the power room roundstart
+	if(anchored)
+		connect_to_network()
+
+/obj/item/energy_harvester/proc/connect_to_network()
+	var/turf/T = src.loc
+	if(!T || !istype(T))
+		return FALSE
+
+	var/obj/structure/cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
+	if(!C || !C.powernet)
+		return FALSE
+	PN = C.powernet
+	set_light(5)
+	START_PROCESSING(SSobj, src)
+	say("successfully connected to network")
+	return TRUE
+
+/obj/item/energy_harvester/proc/disconnect_from_network()
+	if(!PN)
+		return FALSE
+	PN = null
+	STOP_PROCESSING(SSobj, src)
+	say("electricity ded")
+	set_light(0)
 
 /obj/item/energy_harvester/attack_hand(mob/user, params)
-	say("attack_hand() proc called with intent: ")
-	say(user.a_intent)
-	say("attached = " + isnull(attached))
-	say("anchored = " + anchored)
-	if(anchored && !isnull(attached) && user.a_intent == INTENT_HELP)
+	if(anchored && user.a_intent != INTENT_HARM)
 		ui_interact(user)
 	return ..()
 
 /obj/item/energy_harvester/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+	if(I.tool_behaviour == TOOL_SCREWDRIVER && I.use_tool(src, user, 20, volume=50))
 		if(!anchored)
-			var/turf/T = loc
-			if(isturf(T) && !T.intact)
-				attached = locate() in T
-				if(!attached)
-					to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
-				else
-					START_PROCESSING(SSobj, src)
-					if(!SSeconomy.moneysink)
-						SSeconomy.moneysink = src
-					PN = attached.powernet
-					anchored = 1
-					density = 1
-					user.visible_message( \
-						"[user] attaches \the [src] to the cable.", \
-						"<span class='notice'>You attach \the [src] to the cable.</span>",
-						"<span class='italics'>You hear some wires being connected to something.</span>")
+			if(connect_to_network())
+				if(isnull(SSeconomy.moneysink))
+					SSeconomy.moneysink = src
+				anchored = 1
+				density = 1
+				user.visible_message( \
+					"[user] attaches \the [src] to the cable.", \
+					"<span class='notice'>You attach \the [src] to the cable.</span>",
+					"<span class='italics'>You hear some wires being connected to something.</span>")
 			else
 				to_chat(user, "<span class='warning'>This device must be placed over an exposed, powered cable node!</span>")
 		else
-			STOP_PROCESSING(SSobj, src)
 			anchored = 0
 			density = 0
+			disconnect_from_network()
 			user.visible_message( \
 				"[user] detaches \the [src] from the cable.", \
 				"<span class='notice'>You detach \the [src] from the cable.</span>",
 				"<span class='italics'>You hear some wires being disconnected from something.</span>")
 
 /obj/item/energy_harvester/process()
-	if(!attached || !anchored || !manual_switch)
+	if(!anchored || !manual_switch ||!PN)
 		return PROCESS_KILL
-
-	if(PN)
-		set_light(5)
-		if(PN.netexcess <= 0)
-			return
-		input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)
-		attached.add_delayedload(input_energy)
-		accumulated_power += input_energy
+	if(PN.netexcess <= 0)
+		return
+	input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)
+	PN.delayedload += input_energy
+	accumulated_power += input_energy
 
 /obj/item/energy_harvester/proc/calculateMoney()
 	var/softcap_1_payout = clamp(SOFTCAP_BUDGET_1 * (accumulated_power/POWER_SOFTCAP_1), 0, SOFTCAP_BUDGET_1)
@@ -152,4 +162,3 @@ obj/item/energy_harvester/Initialize()
 				manual_power_setting = clamp(target, 0, MAXIMUM_POWER_LIMIT)
 
 #undef MAXIMUM_POWER_LIMIT
-#undef POWER_SOFTCAP
