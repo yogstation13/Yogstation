@@ -233,7 +233,7 @@
 /obj/structure/grille/deconstruct(disassembled = TRUE)
 	if(!loc) //if already qdel'd somehow, we do nothing
 		return
-	if(!(flags_1&NODECONSTRUCT_1))
+	if(!(flags_1 & NODECONSTRUCT_1))
 		var/obj/R = new rods_type(drop_location(), rods_amount)
 		transfer_fingerprints_to(R)
 		qdel(src)
@@ -241,10 +241,10 @@
 
 /obj/structure/grille/obj_break()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
-		filters += filter(type="alpha", icon = icon('icons/obj/smooth_structures/grille.dmi', "broken_full"), flags = MASK_INVERSE)
 		density = FALSE
 		broken = TRUE
-		new rods_type(drop_location(), rods_broken)
+		var/obj/R = new rods_type(drop_location(), rods_broken)
+		transfer_fingerprints_to(R)
 		rods_amount = 1
 		rods_broken = FALSE
 		grille_type = /obj/structure/grille
