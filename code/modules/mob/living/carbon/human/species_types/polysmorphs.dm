@@ -18,7 +18,7 @@
 	//var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(AGENDER, NOEYESPRITES, NO_UNDERWEAR)
+	species_traits = list(AGENDER, NOEYESPRITES)
 	inherent_traits = list(TRAIT_THERMAL_VISION)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "slash"
