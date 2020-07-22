@@ -240,3 +240,20 @@
 		else
 			new_message += message[i]
 	speech_args[SPEECH_MESSAGE] = new_message
+
+/obj/item/organ/tongue/polysmorph
+	name = "forked tongue"
+	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
+	icon_state = "tonguelizard"
+	say_mod = "hisses"
+	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
+	modifies_speech = TRUE
+
+/obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
+	var/static/regex/polysmorph_hiss = new("s+", "g")
+	var/static/regex/polysmorph_hiSS = new("S+", "g")
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = polysmorph_hiss.Replace(message, "ssssss")
+		message = polysmorph_hiSS.Replace(message, "SSSSSS")
+	speech_args[SPEECH_MESSAGE] = message

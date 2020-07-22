@@ -12,6 +12,7 @@
 #define SCANGATE_FELINID		"felinid"
 #define SCANGATE_FLY			"fly"
 #define SCANGATE_PLASMAMAN		"plasma"
+#define SCANGATE_POLYSMORPH		"polysmorph"
 #define SCANGATE_MOTH			"moth"
 #define SCANGATE_JELLY			"jelly"
 #define SCANGATE_POD			"pod"
@@ -130,6 +131,8 @@
 						scan_species = /datum/species/human/felinid
 					if(SCANGATE_PLASMAMAN)
 						scan_species = /datum/species/plasmaman
+					if(SCANGATE_POLYSMORPH)
+						scan_species = /datum/species/polysmorph
 					if(SCANGATE_MOTH)
 						scan_species = /datum/species/moth
 					if(SCANGATE_JELLY)

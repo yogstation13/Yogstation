@@ -63,3 +63,26 @@
 		tail_type = H.dna.features["tail_lizard"]
 		spines = H.dna.features["spines"]
 		H.update_body()
+
+/obj/item/organ/tail/polysmorph
+	name = "polysmorph tail"
+	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
+	tail_type = "polysmorph"
+
+/obj/item/organ/tail/polysmorph/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
+	..()
+	if(istype(H))
+		// Checks here are necessary so it wouldn't overwrite the tail of a lizard it spawned in
+		if(!("tail_polysmorph" in H.dna.species.mutant_bodyparts))
+			H.dna.features["tail_polysmorph"] = tail_type
+			H.dna.species.mutant_bodyparts |= "tail_polysmorph"
+
+		H.update_body()
+
+/obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
+	..()
+	if(istype(H))
+		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
+		tail_type = H.dna.features["tail_polysmorph"]
+		H.update_body()
+
