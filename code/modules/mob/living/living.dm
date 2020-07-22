@@ -166,16 +166,16 @@
 		return TRUE
 	if(isliving(M))
 		var/mob/living/L = M
-		if(L.has_trait(TRAIT_PUSHIMMUNE))
+		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
 			return TRUE
-	//If they're a human, and they're not in help intent, block pushing
+	/*//If they're a human, and they're not in help intent, block pushing //yogs start: disarmn't rework
 	if(ishuman(M) && (M.a_intent != INTENT_HELP))
-		return TRUE
+		return TRUE*/ //yogs end
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
 			if(prob(I.block_chance*2))
-				return 
+				return
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/mob_details = list()
