@@ -1,12 +1,10 @@
 /datum/species/polysmorph
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
-	id = "polysmorph"	// if the game needs to manually check your race to do something not included in a proc here, it will use this
+	id = "polysmorph"
 	sexes = 0
-
-	//exotic_blood = "..."96BB00?	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
-
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno //What the species drops on gibbing
+	exotic_blood = "/datum/reagent/polysmorphblood"
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	no_equip = list(SLOT_SHOES)
