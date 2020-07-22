@@ -242,11 +242,9 @@
 	speech_args[SPEECH_MESSAGE] = new_message
 
 /obj/item/organ/tongue/polysmorph
-	name = "forked tongue"
-	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
-	icon_state = "tonguelizard"
+	name = "polysmorphtongue"
+	desc = "A polysmorph tongue."
 	say_mod = "hisses"
-	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
 	modifies_speech = TRUE
 
 /obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
