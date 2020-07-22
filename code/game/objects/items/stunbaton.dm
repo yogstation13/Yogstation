@@ -7,6 +7,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	force = 10
+	block_upgrade_walk = 1
+	block_flags = BLOCKING_ACTIVE
 	throwforce = 7
 	block_upgrade_walk = 1
 	block_flags = BLOCKING_ACTIVE
@@ -143,19 +145,15 @@
 
 	if(user.a_intent != INTENT_HARM)
 		if(status)
-			if(cooldown_check <= world.time)
-				if(baton_stun(M, user))
-					user.do_attack_animation(M)
-					return
-			else
-				to_chat(user, "<span class='danger'>The baton is still charging!</span>")
+			if(baton_stun(M, user))
+				user.do_attack_animation(M)
+				return
 		else
 			M.visible_message("<span class='warning'>[user] has prodded [M] with [src]. Luckily it was off.</span>", \
 							"<span class='warning'>[user] has prodded you with [src]. Luckily it was off.</span>")
 	else
 		if(status)
-			if(cooldown_check <= world.time)
-				baton_stun(M, user)
+			baton_stun(M, user)
 		..()
 
 
@@ -173,14 +171,9 @@
 		if(!deductcharge(hitcost))
 			return 0
 
-	/// After a target is hit, we do a chunk of stamina damage, along with other effects.
-	/// After a period of time, we then check to see what stun duration we give.
-	L.Jitter(20)
-	L.confused = max(8, L.confused)
+	L.Paralyze(stunforce)
 	L.apply_effect(EFFECT_STUTTER, stunforce)
-	L.adjustStaminaLoss(60)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, L), 2.5 SECONDS)
 	if(user)
 		L.lastattacker = user.real_name
 		L.lastattackerckey = user.ckey
@@ -194,19 +187,11 @@
 		var/mob/living/carbon/human/H = L
 		H.forcesay(GLOB.hit_appends)
 
-	cooldown_check = world.time + cooldown
 
 	return 1
 
-/// After the initial stun period, we check to see if the target needs to have the stun applied.
-/obj/item/melee/baton/proc/apply_stun_effect_end(mob/living/target)
-	var/trait_check = HAS_TRAIT(target, TRAIT_STUNRESISTANCE) //var since we check it in out to_chat as well as determine stun duration
-	if(!target.IsParalyzed())
-		to_chat(target, "<span class='warning'>You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]</span>")
-	if(trait_check)
-		target.Paralyze(stunforce * 0.1)
-	else
-		target.Paralyze(stunforce)
+
+
 
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
