@@ -45,7 +45,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "bf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -89,9 +89,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"cz" = (
-/turf/closed/wall,
-/area/crew_quarters/kitchen/coldroom)
 "de" = (
 /obj/structure/chair/americandiner/booth/end_right,
 /turf/open/floor/plasteel/dark,
@@ -172,6 +169,9 @@
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
+"ir" = (
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "iu" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -205,7 +205,7 @@
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "jt" = (
 /obj/machinery/computer/slot_machine/casino,
 /turf/open/floor/carpet/black,
@@ -235,7 +235,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "kY" = (
 /obj/machinery/smartfridge/drinks,
 /turf/open/floor/wood,
@@ -325,6 +325,9 @@
 /obj/item/grenade/chem_grenade/glitter/white,
 /obj/item/grenade/chem_grenade/glitter/pink,
 /obj/item/grenade/chem_grenade/glitter/blue,
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "qc" = (
@@ -432,7 +435,15 @@
 	departmentType = 2;
 	pixel_x = 30
 	},
-/obj/machinery/reagentgrinder/kitchen,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"tz" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "tK" = (
@@ -517,7 +528,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "wG" = (
 /obj/effect/turf_decal/loading_area,
 /obj/machinery/airalarm{
@@ -525,17 +536,21 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "xE" = (
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
+	},
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "xJ" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "xK" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer{
@@ -562,7 +577,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "zv" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -599,7 +614,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Aq" = (
 /obj/structure/chair/americandiner/booth/single{
 	dir = 1;
@@ -631,7 +646,7 @@
 /area/crew_quarters/bar)
 "CA" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "CD" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -704,7 +719,7 @@
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Ga" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright,
@@ -791,7 +806,7 @@
 	location = "Kitchen"
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "KH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4;
@@ -803,11 +818,11 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "LK" = (
-/obj/structure/festivus{
-	pixel_y = 16
-	},
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced,
+/obj/structure/festivus/erp{
+	pixel_y = 16
+	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
 "LQ" = (
@@ -841,7 +856,7 @@
 "MO" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "NL" = (
 /obj/item/instrument/accordion,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
@@ -877,7 +892,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "PK" = (
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
@@ -900,12 +915,12 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "QC" = (
-/obj/structure/festivus{
-	pixel_y = 16
-	},
 /obj/item/clothing/under/pants/jeans,
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced,
+/obj/structure/festivus/erp{
+	pixel_y = 16
+	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
 "QG" = (
@@ -935,11 +950,11 @@
 /obj/item/storage/box/mixedcubes,
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Rr" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Rt" = (
 /obj/structure/noticeboard{
 	desc = "A board for pinning important notices upon.";
@@ -1037,18 +1052,18 @@
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
 "Ui" = (
-/obj/structure/festivus{
-	pixel_y = 16
-	},
 /obj/item/clothing/under/schoolgirl,
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced,
+/obj/structure/festivus/erp{
+	pixel_y = 16
+	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/crew_quarters/theatre)
 "Uj" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Uk" = (
 /obj/structure/chair/americandiner/booth/single{
 	dir = 1;
@@ -1147,7 +1162,7 @@
 	opacity = 1
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Yb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -1156,7 +1171,7 @@
 /area/crew_quarters/kitchen)
 "Yc" = (
 /obj/machinery/smartfridge,
-/turf/open/floor/plasteel/cafeteria,
+/turf/closed/wall,
 /area/crew_quarters/kitchen)
 "YF" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -1201,9 +1216,9 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-rV
-rV
-rV
+ir
+ir
+ir
 rV
 rV
 iu
@@ -1221,7 +1236,7 @@ rV
 rV
 "}
 (2,1,1) = {"
-rV
+ir
 PK
 Ui
 YX
@@ -1241,7 +1256,7 @@ Aq
 rV
 "}
 (3,1,1) = {"
-rV
+ir
 NL
 HK
 VK
@@ -1261,7 +1276,7 @@ VK
 rV
 "}
 (4,1,1) = {"
-rV
+ir
 tK
 UC
 VK
@@ -1281,7 +1296,7 @@ VK
 rV
 "}
 (5,1,1) = {"
-rV
+ir
 lU
 LK
 VK
@@ -1301,7 +1316,7 @@ mV
 rV
 "}
 (6,1,1) = {"
-rV
+ir
 hD
 Sg
 VK
@@ -1341,7 +1356,7 @@ VK
 nJ
 "}
 (8,1,1) = {"
-rV
+ir
 bp
 QC
 VK
@@ -1361,7 +1376,7 @@ VK
 Bx
 "}
 (9,1,1) = {"
-rV
+ir
 TV
 QK
 VK
@@ -1530,7 +1545,7 @@ pG
 aC
 KH
 Ss
-rV
+Wv
 CP
 CP
 CP
@@ -1550,8 +1565,8 @@ WQ
 Ms
 Tw
 QR
-rV
-CP
+Wv
+tz
 CP
 uw
 uw
@@ -1570,7 +1585,7 @@ ad
 Fn
 ab
 rz
-rV
+Wv
 xE
 Hv
 EE
@@ -1590,7 +1605,7 @@ rV
 rV
 rV
 rV
-rV
+Wv
 jJ
 QG
 qc
@@ -1605,12 +1620,12 @@ zN
 zN
 zN
 zN
-cz
+Wv
 Rb
 xJ
 Uj
 MO
-cz
+Wv
 wk
 BJ
 nd
@@ -1645,12 +1660,12 @@ zN
 zN
 zN
 zN
-cz
+Wv
 FV
 CA
 zW
 jn
-cz
+Wv
 Rz
 Yb
 Gq
@@ -1670,7 +1685,7 @@ KA
 wG
 kw
 Rr
-cz
+Wv
 YF
 CP
 CP
@@ -1685,12 +1700,12 @@ zN
 zN
 zN
 zN
-cz
-cz
-cz
-cz
-cz
-cz
+Wv
+Wv
+Wv
+Wv
+Wv
+Wv
 Wv
 Yc
 LQ

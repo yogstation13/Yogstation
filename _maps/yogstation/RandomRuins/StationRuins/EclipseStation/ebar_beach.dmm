@@ -76,9 +76,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bm" = (
-/turf/closed/wall,
-/area/crew_quarters/kitchen/coldroom)
 "bW" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -127,14 +124,14 @@
 	freq = 1400;
 	location = "Kitchen"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "cW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "cY" = (
 /obj/item/reagent_containers/spray/spraytan,
 /turf/open/floor/plating/beach/sand,
@@ -160,8 +157,7 @@
 /area/crew_quarters/kitchen)
 "fw" = (
 /obj/machinery/camera{
-	c_tag = "Theatre Stage";
-	dir = 2
+	c_tag = "Bar North"
 	},
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -207,7 +203,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "gP" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/americandiner,
@@ -230,7 +226,7 @@
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "hH" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -251,7 +247,7 @@
 /area/template_noop)
 "iO" = (
 /obj/machinery/smartfridge,
-/turf/open/floor/plasteel/cafeteria,
+/turf/closed/wall,
 /area/crew_quarters/kitchen)
 "jb" = (
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -290,7 +286,7 @@
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "km" = (
 /obj/effect/turf_decal/stripes/asteroid/line,
 /obj/machinery/smartfridge/drinks,
@@ -317,7 +313,9 @@
 	departmentType = 2;
 	pixel_x = 30
 	},
-/obj/machinery/reagentgrinder/kitchen,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "ls" = (
@@ -419,11 +417,11 @@
 	location = "Kitchen"
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "py" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "qq" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -507,7 +505,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "vh" = (
 /obj/structure/disposalpipe/segment,
@@ -549,7 +547,7 @@
 /area/crew_quarters/bar)
 "wJ" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "wR" = (
 /obj/structure/noticeboard{
 	desc = "A board for pinning important notices upon.";
@@ -718,7 +716,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "CL" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
@@ -736,7 +734,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Ea" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/stripes/asteroid/line{
@@ -799,7 +797,13 @@
 /obj/item/storage/box/mixedcubes,
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
+"Gf" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Gr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4;
@@ -822,6 +826,10 @@
 "Hb" = (
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
+	},
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1089,7 +1097,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "PK" = (
 /obj/effect/overlay/palmtree_r,
 /turf/open/floor/plating/beach/coastline_t/sandwater_inner{
@@ -1133,17 +1141,20 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "SH" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/stack/spacecash/c100,
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "SY" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Ty" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/landmark/start/assistant,
@@ -1176,7 +1187,7 @@
 "VV" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Wj" = (
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
@@ -1194,7 +1205,7 @@
 "Wr" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Ws" = (
 /obj/structure/plasticflaps{
 	opacity = 1
@@ -1202,7 +1213,7 @@
 /turf/open/floor/plasteel{
 	dir = 2
 	},
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Wu" = (
 /obj/machinery/button/door{
 	id = "kitchenwindow";
@@ -1600,7 +1611,7 @@ Yn
 Yn
 EA
 Yn
-PP
+Yn
 xR
 tt
 tt
@@ -1641,7 +1652,7 @@ El
 cr
 RB
 PP
-Vq
+Gf
 Vq
 yk
 yk
@@ -1695,7 +1706,7 @@ ip
 ip
 ip
 ip
-bm
+PP
 Fq
 VV
 SY
@@ -1735,7 +1746,7 @@ ip
 ip
 ip
 ip
-bm
+PP
 hh
 wJ
 DV
@@ -1775,11 +1786,11 @@ ip
 ip
 ip
 ip
-bm
-bm
-bm
-bm
-bm
+PP
+PP
+PP
+PP
+PP
 PP
 PP
 iO

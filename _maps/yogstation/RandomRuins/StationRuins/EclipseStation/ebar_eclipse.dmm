@@ -42,6 +42,10 @@
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
 	},
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "cE" = (
@@ -51,7 +55,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "dj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
@@ -117,11 +121,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "eX" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "fm" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Kitchen";
@@ -290,7 +294,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "kR" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
@@ -317,7 +321,7 @@
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "lO" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/fancy/donut_box,
@@ -386,7 +390,7 @@
 	opacity = 1
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "nF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -470,7 +474,10 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
+"qd" = (
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "qk" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -519,7 +526,7 @@
 	location = "Kitchen"
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "rZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4;
@@ -533,7 +540,7 @@
 /obj/item/storage/box/mixedcubes,
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "sB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -580,13 +587,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"tG" = (
-/turf/closed/wall,
-/area/crew_quarters/kitchen/coldroom)
 "up" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "uP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -711,7 +715,7 @@
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "zU" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -744,7 +748,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "AC" = (
 /obj/structure/table/reinforced,
 /obj/item/lighter,
@@ -782,7 +786,7 @@
 "CH" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "CV" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic{
@@ -913,7 +917,9 @@
 	departmentType = 2;
 	pixel_x = 30
 	},
-/obj/machinery/reagentgrinder/kitchen,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "FO" = (
@@ -978,6 +984,9 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/stack/spacecash/c100,
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "HE" = (
@@ -1145,7 +1154,7 @@
 "Pl" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "PR" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1245,7 +1254,7 @@
 /area/crew_quarters/kitchen)
 "Rt" = (
 /obj/machinery/smartfridge,
-/turf/open/floor/plasteel/cafeteria,
+/turf/closed/wall,
 /area/crew_quarters/kitchen)
 "Ru" = (
 /obj/structure/table,
@@ -1335,6 +1344,12 @@
 /obj/structure/chair/comfy/brown,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Uo" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Ur" = (
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
@@ -1398,10 +1413,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Wo" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Wz" = (
 /obj/machinery/door/window/southleft{
 	dir = 8;
@@ -1534,10 +1549,10 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-Ip
-Ip
-Ip
-Ip
+qd
+qd
+qd
+qd
 Ip
 gS
 gS
@@ -1554,7 +1569,7 @@ Ip
 Ip
 "}
 (2,1,1) = {"
-Ip
+qd
 Nf
 QB
 Hr
@@ -1574,7 +1589,7 @@ wR
 Ip
 "}
 (3,1,1) = {"
-Ip
+qd
 Uz
 Rc
 Ko
@@ -1594,7 +1609,7 @@ JD
 Ip
 "}
 (4,1,1) = {"
-Ip
+qd
 iO
 ch
 Ko
@@ -1614,7 +1629,7 @@ YI
 Ip
 "}
 (5,1,1) = {"
-Ip
+qd
 Sh
 Ql
 PR
@@ -1634,7 +1649,7 @@ KB
 Ip
 "}
 (6,1,1) = {"
-Ip
+qd
 RV
 sP
 PR
@@ -1674,7 +1689,7 @@ KS
 ii
 "}
 (8,1,1) = {"
-Ip
+qd
 SY
 dD
 Eh
@@ -1843,7 +1858,7 @@ Ip
 Ip
 yg
 Ip
-EE
+Ip
 fm
 nF
 nF
@@ -1884,7 +1899,7 @@ De
 xu
 Jk
 EE
-dU
+Uo
 dU
 lA
 lA
@@ -1938,7 +1953,7 @@ kh
 kh
 kh
 kh
-tG
+EE
 su
 Pl
 up
@@ -1978,7 +1993,7 @@ kh
 kh
 kh
 kh
-tG
+EE
 zI
 Wo
 Az
@@ -2018,11 +2033,11 @@ kh
 kh
 kh
 kh
-tG
-tG
-tG
-tG
-tG
+EE
+EE
+EE
+EE
+EE
 EE
 EE
 Rt

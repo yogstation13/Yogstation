@@ -3721,20 +3721,8 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/white{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/white{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/crew_quarters/theatre)
 "ahQ" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -9092,9 +9080,6 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "asM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -9103,6 +9088,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 1
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
@@ -84118,9 +84106,6 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "ibI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
@@ -84941,12 +84926,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "kCd" = (
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/bar";
-	name = "Bar APC";
-	pixel_y = -24
-	},
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -85713,6 +85692,21 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"mCd" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "mDd" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -85780,13 +85774,11 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "mSs" = (
@@ -85995,24 +85987,12 @@
 	name = "Theatre Maintenance";
 	req_access_txt = "46"
 	},
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/crew_quarters/theatre)
 "noz" = (
 /obj/machinery/door/airlock/public/glass{
@@ -86925,6 +86905,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "qdj" = (
@@ -87504,10 +87485,7 @@
 /obj/machinery/light/small/broken{
 	dir = 4
 	},
-/obj/structure/bed/dogbed{
-	desc = "A comfy-looking, but extremely messy dog bed.";
-	name = "Birdboat's Bed"
-	},
+/obj/structure/bed/dogbed/birdboat,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "rKm" = (
@@ -87562,11 +87540,6 @@
 	},
 /obj/effect/turf_decal/tile/black{
 	dir = 1
-	},
-/obj/machinery/requests_console{
-	department = "Theatre";
-	name = "theatre RC";
-	pixel_y = 32
 	},
 /obj/structure/table/wood/fancy/black,
 /obj/item/toy/crayon/spraycan/mimecan{
@@ -88908,14 +88881,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
-"vSf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/two,
-/turf/open/floor/plating,
-/area/maintenance/department/crew_quarters/bar)
 "vUo" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -88941,7 +88906,7 @@
 /area/security/prison)
 "vWl" = (
 /obj/machinery/camera{
-	c_tag = "Theatre Storage"
+	c_tag = "Theatre Backstage"
 	},
 /obj/machinery/airalarm{
 	dir = 2;
@@ -89121,9 +89086,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
@@ -138355,7 +138317,7 @@ akT
 rdY
 ahX
 mPA
-ahX
+akQ
 apV
 auD
 auD
@@ -138612,7 +138574,7 @@ akT
 rEN
 poJ
 wpo
-poJ
+foa
 kCd
 auD
 auD
@@ -138868,7 +138830,7 @@ aaa
 akT
 hBj
 fhZ
-vSf
+ahS
 ibI
 qUY
 auD
@@ -140673,7 +140635,7 @@ aaa
 aaa
 akT
 asL
-ahS
+aac
 auD
 auD
 auD
@@ -140930,7 +140892,7 @@ aaa
 aaa
 akT
 asL
-aIr
+ahS
 auD
 auD
 auD
@@ -141443,7 +141405,7 @@ aaa
 aaa
 aaa
 akT
-asM
+mCd
 qcX
 auD
 auD

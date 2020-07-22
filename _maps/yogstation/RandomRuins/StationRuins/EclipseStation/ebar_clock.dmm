@@ -55,7 +55,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/bronze/reebe,
+/turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "aZ" = (
 /obj/machinery/light{
@@ -74,9 +74,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
-"bm" = (
-/turf/closed/wall,
-/area/crew_quarters/kitchen/coldroom)
 "cn" = (
 /obj/machinery/computer/arcade/minesweeper,
 /turf/open/floor/bronze,
@@ -114,14 +111,14 @@
 	location = "Bar"
 	},
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/bronze/reebe,
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "cW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "cY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -156,7 +153,7 @@
 "el" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "fw" = (
 /obj/machinery/camera{
 	c_tag = "Theatre Stage";
@@ -215,7 +212,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "hh" = (
 /obj/machinery/camera{
 	c_tag = "Kitchen Cold Room"
@@ -224,12 +221,7 @@
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
-"ht" = (
-/obj/structure/window/reinforced/fulltile/bronze,
-/obj/structure/grille/ratvar,
-/turf/open/space/basic,
-/area/crew_quarters/bar)
+/area/crew_quarters/kitchen)
 "hH" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -241,14 +233,14 @@
 /obj/structure/sign/barsign,
 /obj/structure/window/reinforced/fulltile/bronze,
 /obj/structure/grille/ratvar,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "ip" = (
 /turf/template_noop,
 /area/template_noop)
 "iO" = (
 /obj/machinery/smartfridge,
-/turf/open/floor/plasteel/cafeteria,
+/turf/closed/wall,
 /area/crew_quarters/kitchen)
 "iZ" = (
 /obj/item/clothing/head/bronze,
@@ -288,7 +280,7 @@
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "km" = (
 /obj/machinery/smartfridge/drinks,
 /turf/open/floor/bronze/reebe,
@@ -346,7 +338,9 @@
 	departmentType = 2;
 	pixel_x = 30
 	},
-/obj/machinery/reagentgrinder/kitchen,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
 "lu" = (
@@ -437,11 +431,11 @@
 	location = "Kitchen"
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "py" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "pW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
@@ -514,6 +508,9 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"tU" = (
+/turf/closed/wall/mineral/bronze,
+/area/crew_quarters/theatre)
 "ui" = (
 /obj/structure/chair/bronze{
 	dir = 4
@@ -533,7 +530,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/bronze/reebe,
+/turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "vh" = (
 /obj/structure/disposalpipe/segment,
@@ -579,7 +576,7 @@
 /area/crew_quarters/theatre)
 "wJ" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "wX" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -744,7 +741,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "CL" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/window/reinforced/bronze,
@@ -772,7 +769,7 @@
 	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Ea" = (
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
@@ -790,6 +787,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"Ev" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/kitchen)
 "EA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -834,7 +837,7 @@
 /obj/item/storage/box/mixedcubes,
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Gp" = (
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
 /turf/open/floor/bronze,
@@ -852,6 +855,10 @@
 "Hb" = (
 /obj/machinery/vending/dinnerware{
 	contraband = list(/obj/item/kitchen/rollingpin = 2, /obj/item/kitchen/knife/butcher = 2, /obj/item/reagent_containers/food/condiment/flour = 4)
+	},
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/kitchen)
@@ -1074,7 +1081,7 @@
 /area/crew_quarters/bar)
 "OA" = (
 /obj/structure/plasticflaps/opaque,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "OI" = (
 /obj/structure/table/bronze,
@@ -1099,7 +1106,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "PP" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
@@ -1150,7 +1157,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "SH" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/stack/spacecash/c10,
@@ -1160,6 +1167,9 @@
 /obj/item/clothing/suit/bronze,
 /obj/item/toy/clockwork_watch,
 /obj/structure/table/bronze,
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "SI" = (
@@ -1169,7 +1179,7 @@
 "SY" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Ub" = (
 /obj/structure/chair/bronze{
 	dir = 8
@@ -1202,7 +1212,7 @@
 "VV" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/coldroom)
+/area/crew_quarters/kitchen)
 "Wj" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -1225,8 +1235,8 @@
 /obj/structure/plasticflaps{
 	opacity = 1
 	},
-/turf/open/floor/plating,
-/area/crew_quarters/kitchen/coldroom)
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "Wu" = (
 /obj/machinery/button/door{
 	id = "kitchenwindow";
@@ -1343,10 +1353,10 @@
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-aC
-aC
-aC
-aC
+tU
+tU
+tU
+tU
 aC
 ai
 ai
@@ -1363,7 +1373,7 @@ aC
 aC
 "}
 (2,1,1) = {"
-aC
+tU
 Ka
 dm
 wx
@@ -1383,7 +1393,7 @@ MU
 aC
 "}
 (3,1,1) = {"
-aC
+tU
 EU
 DT
 CL
@@ -1403,7 +1413,7 @@ xi
 aC
 "}
 (4,1,1) = {"
-aC
+tU
 LD
 Wo
 zf
@@ -1423,7 +1433,7 @@ xi
 aC
 "}
 (5,1,1) = {"
-aC
+tU
 aZ
 JQ
 CL
@@ -1443,7 +1453,7 @@ gE
 aC
 "}
 (6,1,1) = {"
-aC
+tU
 fw
 fR
 CL
@@ -1483,7 +1493,7 @@ ms
 ie
 "}
 (8,1,1) = {"
-aC
+tU
 oj
 My
 Wj
@@ -1500,7 +1510,7 @@ iZ
 xi
 OU
 ms
-ht
+WK
 "}
 (9,1,1) = {"
 aC
@@ -1652,7 +1662,7 @@ aC
 aC
 EA
 aC
-UT
+aC
 xR
 tt
 tt
@@ -1693,7 +1703,7 @@ El
 cr
 RB
 UT
-yz
+Ev
 Vq
 yk
 yk
@@ -1747,7 +1757,7 @@ ip
 ip
 ip
 ip
-bm
+PP
 Fq
 VV
 SY
@@ -1787,7 +1797,7 @@ ip
 ip
 ip
 ip
-bm
+PP
 hh
 wJ
 DV
@@ -1827,11 +1837,11 @@ ip
 ip
 ip
 ip
-bm
-bm
-bm
-bm
-bm
+PP
+PP
+PP
+PP
+PP
 PP
 PP
 iO
