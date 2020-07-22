@@ -1,6 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "The Inchat notice for PDA messages will now have a language, like normal messages."
-  - bugfix: "Fixes the Clear Messages button disabling PDAs."
-  - bugfix: "Fixes people speaking non-common not being able to understand their own language."

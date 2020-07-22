@@ -70,23 +70,25 @@
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
-	if(panel_open || operating || welded)
+	if(panel_open || operating || welded || (stat & NOPOWER))
 		return
 	if(ismob(AM))
 		var/mob/user = AM
-		if(density && !welded && !operating && !(stat & NOPOWER) && (!density || allow_hand_open(user)))
+		if(allow_hand_open(user))
 			add_fingerprint(user)
+			open()
+			return TRUE
+	if(ismecha(AM))
+		var/obj/mecha/M = AM
+		if(M.occupant && allow_hand_open(M.occupant))
 			open()
 			return TRUE
 	return FALSE
 
 
 /obj/machinery/door/firedoor/power_change()
-	if(powered(power_channel))
-		stat &= ~NOPOWER
-		latetoggle()
-	else
-		stat |= NOPOWER
+	. = ..()
+	latetoggle()
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
@@ -158,7 +160,7 @@
 		if(is_holding_pressure())
 			// tell the user that this is a bad idea, and have a do_after as well
 			to_chat(user, "<span class='warning'>As you begin crowbarring \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
-			if(!do_after(user, 30, TRUE, src)) // give them a few seconds to reconsider their decision.
+			if(!do_after(user, 15, TRUE, src)) // give them a few seconds to reconsider their decision.
 				return
 			log_game("[key_name_admin(user)] has opened a firelock with a pressure difference at [AREACOORD(loc)]") // there bibby I made it logged just for you. Enjoy.
 			// since we have high-pressure-ness, close all other firedoors on the tile
@@ -311,11 +313,33 @@
 	opacity = TRUE
 	density = TRUE
 
+/obj/machinery/door/firedoor/border_only/close()
+	if(density)
+		return TRUE
+	if(operating || welded)
+		return
+	var/turf/T1 = get_turf(src)
+	var/turf/T2 = get_step(T1, dir)
+	for(var/mob/living/M in T1)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T2 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+				M.pulling.forceMove(T1)
+				M.start_pulling(M2)
+
+	for(var/mob/living/M in T2)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+				M.pulling.forceMove(T2)
+				M.start_pulling(M2)
+	. = ..()
+
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
-	if(A && A.fire)
-		return FALSE
-	if(!is_holding_pressure())
+	if((!A || !A.fire) && !is_holding_pressure())
 		return TRUE
 	whack_a_mole(TRUE) // WOOP WOOP SIDE EFFECTS
 	var/turf/T = loc
@@ -342,12 +366,11 @@
 		return 0 // not big enough to matter
 	return start_point.air.return_pressure() < 20 ? -1 : 1
 
-/obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
-	else
+	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
 		return TRUE
 
 /obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
@@ -382,6 +405,9 @@
 	resistance_flags = 0 // not fireproof
 	heat_proof = FALSE
 
+/obj/machinery/door/firedoor/window/allow_hand_open()
+	return TRUE
+
 /obj/item/electronics/firelock
 	name = "firelock circuitry"
 	custom_price = 5
@@ -415,6 +441,18 @@
 /obj/structure/firelock_frame/update_icon()
 	..()
 	icon_state = "frame[constructionStep]"
+
+/obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if(the_rcd.mode == RCD_DECONSTRUCT)
+		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
+	return FALSE
+
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	if(passed_mode == RCD_DECONSTRUCT)
+		to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
+		qdel(src)
+		return TRUE
+	return FALSE
 
 /obj/structure/firelock_frame/attackby(obj/item/C, mob/user)
 	switch(constructionStep)

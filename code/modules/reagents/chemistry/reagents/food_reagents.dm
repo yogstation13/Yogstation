@@ -268,13 +268,14 @@
 		if(isopenturf(T))
 			var/turf/open/OT = T
 			OT.MakeSlippery(wet_setting=TURF_WET_ICE, min_wet_time=100, wet_time_to_add=reac_volume SECONDS) // Is less effective in high pressure/high heat capacity environments. More effective in low pressure.
-			OT.air.temperature -= MOLES_CELLSTANDARD*100*reac_volume/OT.air.heat_capacity() // reduces environment temperature by 5K per unit.
+			OT.air.set_temperature(OT.air.return_temperature() - MOLES_CELLSTANDARD*100*reac_volume/OT.air.heat_capacity()) // reduces environment temperature by 5K per unit.
 
 /datum/reagent/consumable/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	description = "A chemical agent used for self-defense and in police work."
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
+	metabolization_rate = 4 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(!ishuman(M) && !ismonkey(M))
@@ -313,8 +314,12 @@
 		victim.update_damage_hud()
 
 /datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
-	if(prob(5))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
+	if(prob(10))
+		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
+	if(prob(15))
+		M.emote("cough")
+
+	M.adjustStaminaLoss(3)
 	..()
 
 /datum/reagent/consumable/sodiumchloride
@@ -443,7 +448,7 @@
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot)
 		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles())
-		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
+		lowertemp.set_temperature(max( min(lowertemp.return_temperature()-2000,lowertemp.return_temperature() / 2) ,0))
 		lowertemp.react(src)
 		T.assume_air(lowertemp)
 		qdel(hotspot)
@@ -780,3 +785,19 @@
 	M.heal_bodypart_damage(1,1, 0)
 	..()
 
+/datum/reagent/consumable/drippings
+	name = "meat drippings"
+	description = "Full of fat and flavor. Mix it with water and flour to make gravy."
+	nutriment_factor = 3 * REAGENTS_METABOLISM
+	color = "#85482c"
+	taste_mult = 2
+	taste_description = "meat"
+
+/datum/reagent/consumable/gravy
+	name = "gravy"
+	description = "Delicious brown sauce, thickened with flour."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#75553a"
+	taste_mult = 1.5
+	taste_description = "gravy"
+	

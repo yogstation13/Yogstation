@@ -58,7 +58,6 @@
 				holder.shutdown_computer()
 
 		return TRUE
-	return FALSE
 
 
 

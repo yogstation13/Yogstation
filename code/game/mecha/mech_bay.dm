@@ -11,6 +11,9 @@
 	icon_state = "recharge_floor_asteroid"
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/mech_bay_recharge_floor/dark
+	icon_state = "recharge_floor_dark"
+
 /obj/machinery/mech_bay_recharge_port
 	name = "mech bay power port"
 	desc = "This port recharges a mech's internal power cell."
@@ -92,7 +95,7 @@
 /obj/machinery/computer/mech_bay_power_console/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "mech_bay_power_console", "Mech Bay Power Control Console", 400, 200, master_ui, state)
+		ui = new(user, src, ui_key, "MechBayPowerConsole", "Mech Bay Power Control Console", 400, 200, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/mech_bay_power_console/ui_act(action, params)

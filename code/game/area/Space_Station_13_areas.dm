@@ -358,6 +358,27 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	safe = TRUE
 	minimap_color = "#b0e1ff"
 
+/area/crew_quarters/cryopods
+	name = "Cryopod Room"
+	safe = TRUE
+	icon_state = "cryopod"
+
+//Minsky Specific Areas
+
+/area/crew_quarters/dorms/a
+	name = "Dormitories"
+	icon_state = "Sleep"
+	safe = TRUE
+	minimap_color = "#b0e1ff"
+
+/area/crew_quarters/dorms/b
+	name = "Dormitories"
+	icon_state = "Sleep"
+	safe = TRUE
+	minimap_color = "#b0e1ff"
+
+//End Minsky Specific Areas
+
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
 	icon_state = "toilet"
@@ -415,6 +436,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Bar"
 	icon_state = "bar"
 	minimap_color = "#5ac866"
+	mood_bonus = 5
+	mood_message = "<span class='nicegreen'>I love being in the bar!\n</span>"
 
 /area/crew_quarters/bar/atrium
 	name = "Atrium"
@@ -533,8 +556,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Supermatter Engine"
 	icon_state = "engine_sm"
 
-/area/engine/break_room
+/area/engine/foyer
 	name = "Engineering Foyer"
+	icon_state = "engine_foyer"
+
+/area/engine/break_room
+	name = "Engineering Break Room"
 	icon_state = "engine_foyer"
 
 /area/engine/gravity_generator
@@ -645,6 +672,47 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "teleporter"
 	ambientsounds = ENGINEERING
 	minimap_color = "#6b6b6b"
+
+//Minsky Specific Teleporters
+
+/area/teleporter/hub
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "For safety reasons, warping here is disallowed; The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
+	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambitech.ogg',\
+											'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambimystery.ogg')
+
+/area/teleporter/hub/bridge
+	name = "Bridge Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
+/area/teleporter/hub/engineering
+	name = "Engineering Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
+/area/teleporter/hub/medical
+	name = "Medical Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
+/area/teleporter/hub/science
+	name = "R&D Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
+/area/teleporter/hub/security
+	name = "Security Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
+/area/teleporter/hub/evac
+	name = "Evac Quantum Hub"
+	icon_state = "teleporter"
+	minimap_color = "#6b6b6b"
+
+
+//End Minsky specific teleporters
 
 /area/gateway
 	name = "Gateway"
@@ -818,6 +886,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "checkpoint_aux"
 
 /area/security/checkpoint/escape
+	name = "Security Post - Escape"
 	icon_state = "checkpoint_esc"
 
 /area/security/checkpoint/supply
@@ -839,6 +908,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/checkpoint/science/research
 	name = "Security Post - Research Division"
 	icon_state = "checkpoint_res"
+
+/area/security/checkpoint/service
+	name = "Security Post - Service"
+	icon_state = "checkpoint_srv"
 
 /area/security/checkpoint/customs
 	name = "Customs"

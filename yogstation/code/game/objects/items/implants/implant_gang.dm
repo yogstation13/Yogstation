@@ -20,7 +20,6 @@
 				<HR>
 				<b>Implant Details:</b><BR>
 				<b>Function:</b> Contains a small pod of nanobots that change the host's brain to be loyal to a certain organization.<BR>
-				<b>Special Features:</b> This device will also emit a small EMP pulse, destroying any other implants within the host's brain.<BR>
 				<b>Integrity:</b> Implant's EMP function will destroy itself in the process."}
 	return dat
 
@@ -31,11 +30,8 @@
 	if(G && G.gang == G)
 		return FALSE // it's pointless
 	if(..())
-		for(var/obj/item/implant/I in target.implants)
-			if(I != src)
-				qdel(I)
-
 		if(ishuman(target))
+
 			var/success
 			if(G)
 				if(!istype(G, /datum/antagonist/gang/boss))
@@ -43,12 +39,17 @@
 					target.mind.remove_antag_datum(/datum/antagonist/gang)
 			else
 				success = TRUE
+			
+			if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+				success = FALSE
+			
 			if(!success)
 				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
 				return FALSE
-		target.mind.add_antag_datum(/datum/antagonist/gang, gang)
-		qdel(src)
-		return TRUE
+			else
+				target.mind.add_antag_datum(/datum/antagonist/gang, gang)
+				qdel(src)
+				return TRUE
 
 /obj/item/implanter/gang
 	name = "implanter (gang)"

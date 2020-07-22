@@ -54,6 +54,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	var/destination
 	var/notify = TRUE
 	var/atom/special_target
+	var/notdebris = FALSE
 
 /obj/effect/immovablerod/New(atom/start, atom/end, aimed_at)
 	..()
@@ -62,6 +63,8 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	destination = end
 	special_target = aimed_at
 	GLOB.poi_list += src
+	if(notdebris)
+		SSaugury.unregister_doom(src)
 
 	var/special_target_valid = FALSE
 	if(special_target)

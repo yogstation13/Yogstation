@@ -6,7 +6,6 @@
 	tastes = list("bread" = 10)
 	foodtype = GRAIN
 
-
 /obj/item/reagent_containers/food/snacks/breadslice
 	icon = 'icons/obj/food/burgerbread.dmi'
 	bitesize = 2
@@ -36,7 +35,7 @@
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/store/bread/meat
-	name = "meatbread loaf"
+	name = "meat bread"
 	desc = "The culinary base of every self-respecting eloquent gentleman."
 	icon_state = "meatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/meat
@@ -46,13 +45,13 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/breadslice/meat
-	name = "meatbread slice"
-	desc = "A slice of delicious meatbread."
+	name = "meat bread slice"
+	desc = "A slice of delicious meat bread."
 	icon_state = "meatbreadslice"
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/store/bread/xenomeat
-	name = "xenomeatbread loaf"
+	name = "xenomeat bread"
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra heretical."
 	icon_state = "xenomeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
@@ -62,15 +61,15 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
-	name = "xenomeatbread slice"
-	desc = "A slice of delicious meatbread. Extra heretical."
+	name = "xenomeat bread slice"
+	desc = "A slice of delicious meat bread. Extra heretical."
 	icon_state = "xenobreadslice"
 	filling_color = "#32CD32"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/store/bread/spidermeat
-	name = "spider meat loaf"
+	name = "spidermeat bread"
 	desc = "Reassuringly green meatloaf made from spider meat."
 	icon_state = "spidermeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/spidermeat
@@ -97,7 +96,6 @@
 	tastes = list("bread" = 10) // bananjuice will also flavour
 	foodtype = GRAIN | FRUIT
 
-
 /obj/item/reagent_containers/food/snacks/breadslice/banana
 	name = "banana-nut bread slice"
 	desc = "A slice of delicious banana bread."
@@ -107,8 +105,8 @@
 	foodtype = GRAIN | FRUIT
 
 /obj/item/reagent_containers/food/snacks/store/bread/tofu
-	name = "Tofubread"
-	desc = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
+	name = "tofu bread"
+	desc = "Like meat bread but for vegetarians. Not guaranteed to give superpowers."
 	icon_state = "tofubread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/tofu
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
@@ -117,8 +115,8 @@
 	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/breadslice/tofu
-	name = "tofubread slice"
-	desc = "A slice of delicious tofubread."
+	name = "tofu bread slice"
+	desc = "A slice of delicious tofu bread."
 	icon_state = "tofubreadslice"
 	filling_color = "#FF8C00"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -192,6 +190,41 @@
 	tastes = list("bread" = 1, "garlic" = 1, "butter" = 1)
 	foodtype = GRAIN
 
+/obj/item/reagent_containers/food/snacks/butterbiscuit
+	name = "butter biscuit"
+	desc = "Well butter my biscuit!"
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "butterbiscuit"
+	filling_color = "#F0E68C"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("butter" = 1, "biscuit" = 1)
+	foodtype = GRAIN | BREAKFAST
+
+/obj/item/reagent_containers/food/snacks/butterdog
+	name = "butterdog"
+	desc = "Made from exotic butters."
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "butterdog"
+	bitesize = 1
+	filling_color = "#F1F49A"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("butter", "exotic butter")
+
+/obj/item/reagent_containers/food/snacks/butterdog/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 80)
+
+/obj/item/reagent_containers/food/snacks/frenchtoast
+	name = "french toast"
+	desc = "This toast looks like it'll surrender at any moment!"
+	icon = 'yogstation/icons/obj/food/burgerbread.dmi'
+	icon_state = "frenchtoast"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
+	tastes = list("cinnamon" = 1, "toast" = 1)
+
+//DEEP FRYER
 /obj/item/reagent_containers/food/snacks/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
 	desc = "If you can see this description the code for the deep fryer fucked up."
@@ -255,29 +288,3 @@
 			desc = "A heavily-fried...something. Who can tell anymore?"
 	filling_color = color
 	foodtype |= FRIED
-
-/obj/item/reagent_containers/food/snacks/butterbiscuit
-	name = "butter biscuit"
-	desc = "Well butter my biscuit!"
-	icon = 'yogstation/icons/obj/food/food.dmi'
-	icon_state = "butterbiscuit"
-	filling_color = "#F0E68C"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("butter" = 1, "biscuit" = 1)
-	foodtype = GRAIN | BREAKFAST
-
-/obj/item/reagent_containers/food/snacks/butterdog
-	name = "butterdog"
-	desc = "Made from exotic butters."
-	icon = 'yogstation/icons/obj/food/food.dmi'
-	icon_state = "butterdog"
-	bitesize = 1
-	filling_color = "#F1F49A"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("butter", "exotic butter")
-
-/obj/item/reagent_containers/food/snacks/butterdog/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/slippery, 80)

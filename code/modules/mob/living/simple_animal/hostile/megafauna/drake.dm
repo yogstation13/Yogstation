@@ -98,7 +98,7 @@ Difficulty: Medium
 	if(swooping)
 		return
 
-	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 	if(client)
@@ -619,6 +619,7 @@ obj/effect/temp_visual/fireball
 	move_force = MOVE_FORCE_NORMAL
 	move_resist = MOVE_FORCE_NORMAL
 	pull_force = MOVE_FORCE_NORMAL
+	environment_smash = ENVIRONMENT_SMASH_WALLS
 	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
 	attack_action_types = list()
 	small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
@@ -647,11 +648,11 @@ obj/effect/temp_visual/fireball
 	name = "Tail Sweep"
 	desc = "Throw back attackers with a sweep of your tail."
 	sound = 'sound/magic/tail_swing.ogg'
-	charge_max = 150
+	charge_max = 200
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 1
-	cooldown_min = 150
+	cooldown_min = 200
 	invocation_type = "none"
 	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
 	action_icon = 'icons/mob/actions/actions_xeno.dmi'

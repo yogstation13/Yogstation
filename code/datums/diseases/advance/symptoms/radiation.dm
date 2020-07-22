@@ -11,8 +11,10 @@
 	symptom_delay_max = 30
 	var/fastrads = FALSE
 	var/radothers = FALSE
-	threshold_desc = "<b>Transmission 12:</b> Makes the host irradiate others around them as well.<br>\
-					  <b>Speed 8:</b> Host takes radiation damage faster."
+	threshold_descs = list(
+		"Transmission 12" = "Makes the host irradiate others around them as well.",
+		"Speed 8" = "Host takes radiation damage faster."
+	)
 
 /datum/symptom/radiation/Start(datum/disease/advance/A)
 	if(!..())

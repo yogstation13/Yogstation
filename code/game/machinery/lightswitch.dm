@@ -4,6 +4,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	desc = "Make dark."
+	power_channel = LIGHT
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.
 	var/area/area = null
@@ -34,8 +35,12 @@
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
 	. += "It is [area.lightswitch ? "on" : "off"]."
+	if((obj_flags & EMAGGED) && user.can_hear())
+		. += "<span class='danger'>You hear a faint hum coming from the switch.</span>"
 
 /obj/machinery/light_switch/interact(mob/user)
+	if(obj_flags & EMAGGED)
+		shock(user)
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
@@ -48,12 +53,7 @@
 
 /obj/machinery/light_switch/power_change()
 	if(area == get_area(src))
-		if(powered(LIGHT))
-			stat &= ~NOPOWER
-		else
-			stat |= NOPOWER
-
-		update_icon()
+		return ..()
 
 /obj/machinery/light_switch/emp_act(severity)
 	. = ..()
@@ -61,3 +61,21 @@
 		return
 	if(!(stat & (BROKEN|NOPOWER)))
 		power_change()
+
+/obj/machinery/light_switch/proc/shock(mob/user)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	electrocute_mob(user, get_area(src), src, 0.7, TRUE)
+
+
+/obj/machinery/light_switch/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
+		return
+	to_chat(user, "<span class='notice'>You swipe the emag on the light switch. </span>")
+	if(user.can_hear())
+		to_chat(user, "<span class='notice'>The light switch gives off a soft hum.</span>")
+	obj_flags |= EMAGGED

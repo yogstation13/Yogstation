@@ -187,6 +187,38 @@
 "p" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"q" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"r" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"s" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"t" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "O" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only,
@@ -314,9 +346,9 @@ f
 f
 e
 e
-h
-h
-h
+W
+W
+q
 a
 "}
 (5,1,1) = {"
@@ -345,7 +377,7 @@ f
 f
 f
 h
-O
+s
 "}
 (6,1,1) = {"
 b
@@ -513,7 +545,7 @@ f
 f
 f
 h
-O
+t
 "}
 (12,1,1) = {"
 c
@@ -538,9 +570,9 @@ f
 f
 e
 e
-h
-h
-h
+Y
+Y
+r
 a
 "}
 (13,1,1) = {"

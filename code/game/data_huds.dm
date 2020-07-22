@@ -149,7 +149,6 @@
 			return "health-85"
 		else
 			return "health-100"
-	return "0"
 
 //HOOKS
 
@@ -262,6 +261,9 @@
 				if("*Arrest*")
 					holder.icon_state = "hudwanted"
 					return
+				if("Search")
+					holder.icon_state = "hudsearch"
+					return
 				if("Incarcerated")
 					holder.icon_state = "hudincarcerated"
 					return
@@ -302,7 +304,6 @@
 			return "crit"
 		else
 			return "dead"
-	return "dead"
 
 //Sillycone hooks
 /mob/living/silicon/proc/diag_hud_set_health()

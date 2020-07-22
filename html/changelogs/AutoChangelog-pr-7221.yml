@@ -1,5 +1,0 @@
-author: "Ktlwjec"
-delete-after: true 
-changes: 
-  - rscadd: "Boxstation Psychiatrist office has its own APC."
-  - bugfix: "Boxstation signal technicians have access to the engineering escape pod."

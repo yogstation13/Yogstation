@@ -56,7 +56,7 @@
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
 
-
+//Remember to update _globalvars/traits.dm if you're adding/removing/renaming traits.
 
 //mob traits
 #define TRAIT_BLIND 			"blind"
@@ -139,7 +139,9 @@
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
 #define TRAIT_SHELTERED			"sheltered"
-
+#define TRAIT_RANDOM_ACCENT		"random_accent"
+#define TRAIT_MEDICALIGNORE     "medical_ignore"
+#define TRAIT_PASSTABLE			"passtable"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
@@ -148,6 +150,7 @@
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
+#define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -168,6 +171,8 @@
 #define TRAIT_LIGHT_DRINKER		"light_drinker"
 #define TRAIT_EMPATH			"empath"
 #define TRAIT_FRIENDLY			"friendly"
+#define TRAIT_ALLERGIC			"allergic"
+#define TRAIT_KLEPTOMANIAC		"kleptomaniac"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -189,6 +194,8 @@
 #define ABSTRACT_ITEM_TRAIT "abstract-item"
 #define STATUS_EFFECT_TRAIT "status-effect"
 #define CLOTHING_TRAIT "clothing"
+#define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
+#define INNATE_TRAIT "innate"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -228,3 +235,4 @@
 #define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
 #define HIVEMIND_ONE_MIND_TRAIT "one_mind"
 #define VR_ZONE_TRAIT "vr_zone_trait"
+#define GUARDIAN_TRAIT "guardian_trait"

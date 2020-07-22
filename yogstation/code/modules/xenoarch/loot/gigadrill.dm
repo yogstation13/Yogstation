@@ -45,7 +45,7 @@
 		return FALSE
 	if(!over)
 		return FALSE
-	if(!ismob(usr))
+	if(!isliving(usr))
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
@@ -80,6 +80,9 @@
 
 /obj/vehicle/ridden/gigadrill/MouseDrop_T(atom/movable/AM, mob/user)
 	. = ..()
+	
+	if(!isliving(user))
+		return FALSE
 	if(OB)
 		return FALSE
 	if(!istype(AM,/obj/structure/ore_box))

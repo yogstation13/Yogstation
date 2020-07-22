@@ -220,8 +220,7 @@ The Chaplain can bless any container with water by hitting it with their bible. 
 The Chaplain's holy weapon will kill clockwork marauders in two hits.
 As a Wizard, you can turn people to stone, then animate the resulting statue with a staff of animation to create an extremely powerful minion, for all of 5 minutes at least.
 As a Wizard, the fireball spell performs very poorly at close range, as it can easily catch you in the blast. It is best used as a form of artillery down long hallways.
-As a Wizard, summoning guns will turn a large portion of the crew against themselves, but will also give everyone anything from a floral somatoray to a pulse rifle. Use at your own risk!
-As a Wizard, the staff of chaos can fire any type of bolts from the magical wands. This can range from bolts of instant death to healing or reviving someone.
+As a Wizard, the staff of chaos can fire any type of bolts from the magical wands. This can range from bolts of fireball to healing or reviving someone.
 As a Wizard, most spells become unusable if you are not wearing your robe, hat, and sandals.
 As an Abductor, you can select where your victims will be sent on the ship control console.
 As an Abductor Agent, the combat mode vest has much higher resistance to every kind of weapon, and your helmet prevents the AI from tracking you.
@@ -249,3 +248,13 @@ When crafting most items, you can either manually combine parts or use the craft
 Suit storage units not only remove blood and dirt from clothing, but also radiation!
 Remote devices will work when used through cameras. For example: Bluespace RPEDs and door remotes.
 You can light a cigar on a supermatter crystal.
+YOU CAN SUCK BLOOD AS A VAMPIRE BY HARM INTENTING THE HEAD
+Click the ‘resist’ button to get out of a chair.
+Using a multitool on a flux-wave anomaly does not fix it. Stop shocking yourself on it.
+Normal analysers can determine a blob's type, the code to neutralize an anomaly, and the composition of gas in both the atmosphere or a tank/canister.
+Use chromosomes in genetics, reinforcement chromosome prevents mutadone from removing powers.
+The round isn't all about you. If you try to help others have a good time you'll make friends very easily in this game.
+Just because someone attacks you doesn't mean they're trying to kill you, people make mistakes.
+Questions? Consult the Wiki: https://wiki.yogstation.net/wiki/Main_Page
+Questions? Consult the Mentors using the 'MHelp' system.
+Starving makes you move slower. Be sure to keep fed!

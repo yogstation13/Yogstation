@@ -54,7 +54,19 @@
 			var/isadmin = 0
 			if(src.client && src.client.holder)
 				isadmin = 1
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(ckey)]\")")
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
+				SELECT id FROM [format_table_name("poll_question")]
+				WHERE (adminonly = 0 OR :isadmin = 1)
+				AND Now() BETWEEN starttime AND endtime
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_vote")]
+					WHERE ckey = :ckey
+				)
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_textreply")]
+					WHERE ckey = :ckey
+				)
+			"}, list("isadmin" = isadmin, "ckey" = ckey))
 			var/rs = REF(src)
 			if(query_get_new_polls.Execute())
 				var/newpoll = 0
@@ -77,6 +89,7 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
+// List of possible actions user has chosen on the New Players menus
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
 		return 0
@@ -161,12 +174,17 @@
 				to_chat(usr, "<span class='warning'>Server is full.</span>")
 				return
 
+		// Check if random role is requested
+		if(href_list["SelectedJob"] == "Random")
+			var/datum/job/job = SSjob.GetRandomJob(src)
+			if(!job)
+				to_chat(usr, "<span class='warning'>There is no randomly assignable Job at this time. Please manually choose one of the other possible options.</span>")
+				return
+			href_list["SelectedJob"] = job.title
+
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
 
-	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
 
@@ -393,7 +411,7 @@
 		if(GLOB.highlander)
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
-	
+
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
@@ -457,6 +475,15 @@
 		column_counter++
 		if(column_counter > 0 && (column_counter % 3 == 0))
 			dat += "</td><td valign='top'>"
+
+	// Random Job Section
+	dat += "<fieldset style='width: 185px; border: 2px solid #f0ebe2; display: inline'>"
+	dat += "<legend align='center' style='color: #f0ebe2'>Random</legend>"
+	dat += "<a class='job' href='byond://?src=[REF(src)];SelectedJob=Random'>Random Job</a>"
+	// TODO could add random job selection to be based on player preferences too
+	dat += "</fieldset><br>"
+
+	// Table end
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"
 	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 680, 580)
@@ -484,6 +511,8 @@
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = 0					//we wish to transfer the key manually
+		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
+			mind.accent_name = client.prefs.accent
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 
 	H.name = real_name
@@ -502,9 +531,15 @@
 		qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
+	if(!client)
+		return
+	if(world.time < client.crew_manifest_delay)
+		return
+	client.crew_manifest_delay = world.time + (1 SECONDS)
+	var/dat = "<html><HEAD><meta charset='UTF-8'></HEAD><body>"
 	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest(OOC = 1)
+	dat += GLOB.data_core.get_manifest_html()
+	dat += "</BODY></HTML>"
 
 	src << browse(dat, "window=manifest;size=387x420;can_close=1")
 

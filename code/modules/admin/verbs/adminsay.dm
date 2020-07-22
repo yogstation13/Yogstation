@@ -5,8 +5,9 @@
 	set hidden = 1
 	if(!check_rights(0))
 		return
+	msg = to_utf8(msg, src)
 
-	msg = emoji_parse(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return
 
@@ -20,4 +21,5 @@
 
 /client/proc/get_admin_say()
 	var/msg = input(src, null, "asay \"text\"") as text|null
+	msg = to_utf8(msg, src)
 	cmd_admin_say(msg)

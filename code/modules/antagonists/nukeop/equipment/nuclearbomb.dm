@@ -7,7 +7,6 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-	var/ui_style = "nanotrasen"
 
 	var/timer_set = 90
 	var/default_timer_set = 90
@@ -32,6 +31,7 @@
 	var/interior = ""
 	var/proper_bomb = TRUE //Please
 	var/obj/effect/countdown/nuclearbomb/countdown
+
 
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
@@ -263,8 +263,7 @@
 /obj/machinery/nuclearbomb/ui_interact(mob/user, ui_key="main", datum/tgui/ui=null, force_open=0, datum/tgui/master_ui=null, datum/ui_state/state=GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "nuclear_bomb", name, 350, 442, master_ui, state)
-		ui.set_style(ui_style)
+		ui = new(user, src, ui_key, "NuclearBomb", name, 350, 442, master_ui, state)
 		ui.open()
 
 /obj/machinery/nuclearbomb/ui_data(mob/user)
@@ -360,7 +359,7 @@
 							if(NUKEUI_AWAIT_TIMER)
 								var/number_value = text2num(numeric_input)
 								if(number_value)
-									timer_set = CLAMP(number_value, minimum_timer_set, maximum_timer_set)
+									timer_set = clamp(number_value, minimum_timer_set, maximum_timer_set)
 									playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 									set_safety()
 									. = TRUE

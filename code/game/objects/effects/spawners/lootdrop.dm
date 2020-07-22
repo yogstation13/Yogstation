@@ -71,6 +71,20 @@
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
+/obj/effect/spawner/lootdrop/trashbin
+	name = "trash spawner"
+	loot = list(/obj/item/cigbutt = 1,
+			/obj/item/trash/cheesie = 1,
+			/obj/item/trash/candy = 1,
+			/obj/item/trash/chips = 1,
+			/obj/item/reagent_containers/food/snacks/deadmouse = 1,
+			/obj/item/trash/pistachios = 1,
+			/obj/item/trash/plate = 1,
+			/obj/item/trash/popcorn = 1,
+			/obj/item/trash/raisins = 1,
+			/obj/item/trash/sosjerky = 1,
+			/obj/item/trash/syndi_cakes = 1)
+
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
@@ -214,6 +228,7 @@
 	loot = list(
 				/obj/item/aiModule/core/full/asimov,
 				/obj/item/aiModule/core/full/asimovpp,
+				/obj/item/aiModule/core/full/crewsimov,
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
 				/obj/item/aiModule/core/full/paladin
@@ -222,14 +237,15 @@
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
 	name = "neutral AI module spawner"
 	loot = list(
-				/obj/item/aiModule/core/full/corp,
+				/obj/item/aiModule/core/full/ceo,
 				/obj/item/aiModule/core/full/maintain,
 				/obj/item/aiModule/core/full/drone,
 				/obj/item/aiModule/core/full/peacekeeper,
 				/obj/item/aiModule/core/full/reporter,
 				/obj/item/aiModule/core/full/robocop,
 				/obj/item/aiModule/core/full/liveandletlive,
-				/obj/item/aiModule/core/full/hulkamania
+				/obj/item/aiModule/core/full/hulkamania,
+				/obj/item/aiModule/core/full/cowboy
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called

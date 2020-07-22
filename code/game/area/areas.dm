@@ -18,11 +18,17 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
+	var/tunnel_allowed = FALSE // if tunnels can be created on this area for mining generation
+	var/flora_allowed = FALSE // if plants may spawn in this area
+	var/mob_spawn_allowed = FALSE // if mobs can be spawned by natural generation
+	var/megafauna_spawn_allowed = FALSE // if megafauna can be spawned by natural generation in this area
+
 	var/fire = null
 	var/atmos = TRUE
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
+	var/vacuum = null //yogs- yellow vacuum lights
 
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
@@ -30,6 +36,11 @@
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
 	var/areasize = 0 //Size of the area in open turfs, only calculated for indoors areas.
+
+	//Bonus mood from being in this area
+	var/mood_bonus = 0
+	//Mood message for being here, only shows up if mood_bonus != 0
+	var/mood_message = "<span class='nicegreen'>This area is pretty nice!\n</span>"
 
 	var/power_equip = TRUE
 	var/power_light = TRUE
@@ -337,6 +348,18 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
+	for(var/obj/machinery/light/L in src)
+		L.update()
+
+/area/proc/set_vacuum_alarm_effect() //Just like fire alarm but blue
+	vacuum = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	for(var/obj/machinery/light/L in src)
+		L.update()
+
+/area/proc/unset_vacuum_alarm_effect()
+	vacuum = FALSE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/obj/machinery/light/L in src)
 		L.update()
 

@@ -20,7 +20,6 @@
 /area/ruin/space/has_grav/deepstorage/kitchen)
 "ae" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
@@ -41,11 +40,9 @@
 /area/ruin/space/has_grav/deepstorage/kitchen)
 "aj" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/plasteel/freezer,
@@ -148,7 +145,7 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /obj/machinery/airalarm/away{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -189,7 +186,7 @@
 /obj/machinery/power/apc/away{
 	dir = 2;
 	name = "Recycling APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/crusher)
@@ -233,7 +230,7 @@
 /obj/item/stack/packageWrap,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/airalarm/away{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -319,7 +316,6 @@
 "aN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -461,7 +457,7 @@
 "bb" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/airalarm/away{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /turf/open/floor/light,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
@@ -494,7 +490,6 @@
 "bg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -521,7 +516,6 @@
 "bk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -534,11 +528,9 @@
 "bm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -553,21 +545,18 @@
 "bo" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
 "bp" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/hydroponics)
 "bq" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -602,11 +591,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -616,11 +603,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -649,11 +634,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -682,11 +665,9 @@
 "bD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
@@ -708,11 +689,9 @@
 	name = "Hydroponics"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -736,11 +715,9 @@
 /area/ruin/space/has_grav/deepstorage/kitchen)
 "bJ" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -767,7 +744,7 @@
 /obj/machinery/power/apc/away{
 	dir = 2;
 	name = "Kitchen APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/deepstorage/kitchen)
@@ -789,11 +766,9 @@
 /area/ruin/space/has_grav/deepstorage)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -909,14 +884,13 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage)
 "bY" = (
 /obj/machinery/airalarm/away{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/freezer,
@@ -924,14 +898,13 @@
 "bZ" = (
 /obj/structure/table,
 /obj/machinery/airalarm/away{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -957,7 +930,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -982,7 +954,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -992,7 +963,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1018,7 +988,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1047,11 +1016,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
@@ -1066,11 +1033,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1081,11 +1046,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1099,11 +1062,9 @@
 "co" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -1271,7 +1232,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -1326,7 +1286,6 @@
 "cL" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 10
 	},
 /turf/open/floor/plasteel/freezer,
@@ -1362,7 +1321,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage)
 "cR" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -1555,11 +1513,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
@@ -1574,11 +1530,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1595,11 +1549,9 @@
 "dq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1634,11 +1586,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1736,16 +1686,14 @@
 /obj/machinery/power/apc/away{
 	dir = 2;
 	name = "Main Area APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1754,11 +1702,9 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -1785,11 +1731,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1800,11 +1744,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1818,11 +1760,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -1843,11 +1783,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1900,11 +1838,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -1914,11 +1850,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -1928,11 +1862,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
@@ -1967,27 +1899,10 @@
 /area/ruin/space/has_grav/deepstorage/airlock)
 "dR" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/deepstorage/dorm)
-"dS" = (
-/obj/machinery/door/airlock{
-	name = "Personal Dorm"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/deepstorage/dorm)
@@ -1997,11 +1912,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /obj/machinery/firealarm{
@@ -2032,7 +1945,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -2099,14 +2011,12 @@
 /area/ruin/space/has_grav/deepstorage/power)
 "eb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/closed/wall/mineral/iron,
 /area/ruin/space/has_grav/deepstorage/armory)
 "ec" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/closed/wall/mineral/iron,
@@ -2178,11 +2088,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2247,14 +2155,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/dorm)
 "et" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/closed/wall/mineral/iron,
@@ -2285,11 +2191,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -2323,7 +2227,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2341,7 +2244,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2398,7 +2300,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/plasteel,
@@ -2417,11 +2318,9 @@
 	name = "Personal Dorm"
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -2433,7 +2332,7 @@
 /obj/machinery/power/apc/away{
 	dir = 1;
 	name = "Airlock Control APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2441,11 +2340,9 @@
 "eJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -2528,11 +2425,9 @@
 "eQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/supplymain/visible/layer1{
-	icon_state = "manifold-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2544,7 +2439,7 @@
 /area/ruin/space/has_grav/deepstorage)
 "eS" = (
 /obj/machinery/airalarm/away{
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3,
@@ -2584,8 +2479,7 @@
 /obj/machinery/power/apc/away{
 	dir = 8;
 	name = "Power and Atmospherics APC";
-	pixel_x = -25;
-	pixel_y = 1
+	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -2594,7 +2488,6 @@
 "eW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3,
@@ -2739,7 +2632,6 @@
 "fn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2763,7 +2655,6 @@
 "fr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -2806,7 +2697,6 @@
 /obj/machinery/door/firedoor,
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
-	icon_state = "pipe11-3";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -2823,7 +2713,6 @@
 /obj/machinery/door/firedoor,
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -2870,7 +2759,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -2903,7 +2791,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2968,7 +2855,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -2976,7 +2862,6 @@
 "fQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -2990,7 +2875,6 @@
 /obj/item/storage/toolbox/electrical,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -3011,7 +2895,6 @@
 "fU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
@@ -3025,7 +2908,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3,
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3033,7 +2915,6 @@
 "fX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3042,7 +2923,6 @@
 /obj/machinery/door/firedoor,
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible/layer1{
-	icon_state = "pipe11-1";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -4129,10 +4009,10 @@ hU
 hU
 dB
 dB
-dS
+eH
 dB
 dB
-dS
+eH
 dB
 dB
 eH

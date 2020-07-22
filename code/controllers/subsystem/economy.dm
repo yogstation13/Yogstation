@@ -60,6 +60,7 @@ SUBSYSTEM_DEF(economy)
 	sci_payout() // Payout based on slimes.
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
+	car_payout() // Cargo's natural gain in the cash moneys.
 	for(var/A in bank_accounts)
 		var/datum/bank_account/B = A
 		B.payday(1)
@@ -79,6 +80,12 @@ SUBSYSTEM_DEF(economy)
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
 	if(D)
 		D.adjust_money(engineering_cash)
+
+
+/datum/controller/subsystem/economy/proc/car_payout()
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(500)
 
 /datum/controller/subsystem/economy/proc/secmedsrv_payout()
 	var/crew
@@ -110,7 +117,7 @@ SUBSYSTEM_DEF(economy)
 						D.adjust_money(medical_cash)
 		if(ishostile(m))
 			var/mob/living/simple_animal/hostile/H = m
-			if(H.stat == DEAD && H.z in SSmapping.levels_by_trait(ZTRAIT_STATION))
+			if(H.stat == DEAD && (H.z in SSmapping.levels_by_trait(ZTRAIT_STATION)))
 				dead_monsters++
 		CHECK_TICK
 	var/living_ratio = alive_crew / crew
@@ -119,10 +126,17 @@ SUBSYSTEM_DEF(economy)
 	if(D)
 		D.adjust_money(min(cash_to_grant, MAX_GRANT_SECMEDSRV))
 
+	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400
+	var/datum/bank_account/SRV = get_dep_account(ACCOUNT_SRV)
+	if(SRV)
+		SRV.adjust_money(service_passive_income)
+
 /datum/controller/subsystem/economy/proc/sci_payout()
 	var/science_bounty = 0
 	for(var/mob/living/simple_animal/slime/S in GLOB.mob_list)
 		if(S.stat == DEAD)
+			continue
+		if(!is_station_level(S.z))
 			continue
 		science_bounty += slime_bounty[S.colour]
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_SCI)

@@ -185,6 +185,8 @@ All ShuttleMove procs go here
 
 /obj/machinery/door/airlock/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
+	update_aac_docked(oldT)
+	update_aac_docked()
 	for(var/obj/machinery/door/airlock/A in orange(1, src))  // does not include src
 		// Cycle linking is only disabled if we are actually adjacent to another airlock
 		shuttledocked = TRUE

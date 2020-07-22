@@ -21,7 +21,7 @@
 
 	if(istype(object,/turf) && left_click && !alt_click && !ctrl_click)
 		var/turf/T = object
-		if(isspaceturf(object))
+		if(isspaceturf(object) || ischasm(object) || islava(object))
 			T.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 		else if(isplatingturf(object))
 			T.PlaceOnTop(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)

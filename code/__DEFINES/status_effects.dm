@@ -80,6 +80,8 @@
 
 #define STATUS_EFFECT_SAWBLEED /datum/status_effect/saw_bleed //if the bleed builds up enough, takes a ton of damage
 
+#define STATUS_EFFECT_BLOODLETTING /datum/status_effect/saw_bleed/bloodletting //same but smaller
+
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
 #define STATUS_EFFECT_HIVEMIND_CURSE /datum/status_effect/necropolis_curse/hivemind
 #define CURSE_BLINDING	1 //makes the edges of the target's screen obscured
@@ -130,6 +132,8 @@
 #define STATUS_EFFECT_NOTSCARED /datum/status_effect/notscared // you have had a gun pointed at you and are not startled about this fact for a minute
 
 #define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Yogs
+
+#define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
 
 /////////////
 //  SLIME  //

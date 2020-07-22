@@ -16,6 +16,7 @@
 
 	var/port_x_offset
 	var/port_y_offset
+	var/extra_desc = ""
 
 /datum/map_template/shuttle/proc/prerequisites_met()
 	return TRUE
@@ -176,6 +177,12 @@
 	P.special_enabled = TRUE
 
 
+/datum/map_template/shuttle/emergency/transtar
+	suffix = "transtar"
+	name = "Transtar 800-C"
+	description = "A brand-new passenger transit vessel featuring a Centcom exclusion aftermarket kit for securely holding prisoners en-route to Centcom. Features First Class and business, in-flight beverages and snacks, and video screens for entertainment during the voyage!"
+	credit_cost = 3000
+
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
 	name = "Asteroid Station Emergency Shuttle"
@@ -217,8 +224,9 @@
 	suffix = "luxury"
 	name = "Luxury Shuttle"
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
+	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 10000
+	credit_cost = 50000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"

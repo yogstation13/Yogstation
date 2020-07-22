@@ -11,6 +11,7 @@
 	cooldown_min = 60 //35 deciseconds reduction per rank
 	max_targets = 0
 	proj_type = /obj/item/projectile/magic/spell/magic_missile
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "magicm"
 	sound = 'sound/magic/magic_missile.ogg'
 
@@ -44,6 +45,7 @@
 	duration = 300
 	cooldown_min = 300 //25 deciseconds reduction per rank
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mutate"
 	sound = 'sound/magic/mutate.ogg'
 
@@ -119,6 +121,7 @@
 	inner_tele_radius = 0
 	outer_tele_radius = 6
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "blink"
 	sound1 = 'sound/magic/blink.ogg'
 	sound2 = 'sound/magic/blink.ogg'
@@ -165,6 +168,7 @@
 	range = 0
 	cooldown_min = 100
 	summon_amt = 1
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "time"
 
 	summon_type = list(/obj/effect/timestop/wizard)
@@ -230,6 +234,7 @@
 
 	starting_spells = list("/obj/effect/proc_holder/spell/targeted/inflict_handler/blind","/obj/effect/proc_holder/spell/targeted/genetic/blind")
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "blind"
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature/cult
@@ -300,7 +305,7 @@
 				var/mob/living/M = AM
 				M.Paralyze(stun_amt)
 				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
-			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
+			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
 	name = "Tail Sweep"
@@ -336,6 +341,7 @@
 	range = 6
 	include_user = TRUE
 	selection_type = "view"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "sacredflame"
 	sound = 'sound/magic/fireball.ogg'
 

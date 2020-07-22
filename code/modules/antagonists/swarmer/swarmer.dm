@@ -123,10 +123,9 @@
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "hudstat"
 
-/mob/living/simple_animal/hostile/swarmer/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Resources:",resources)
+/mob/living/simple_animal/hostile/swarmer/get_status_tab_items()
+	. = ..()
+	. += "Resources: [resources]"
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
 	. = ..()
@@ -137,12 +136,12 @@
 	else
 		death()
 
-/mob/living/simple_animal/hostile/swarmer/CanPass(atom/movable/O)
+/mob/living/simple_animal/hostile/swarmer/CanAllowThrough(atom/movable/O)
+	. = ..()
 	if(istype(O, /obj/item/projectile/beam/disabler))//Allows for swarmers to fight as a group without wasting their shots hitting each other
-		return 1
+		return TRUE
 	if(isswarmer(O))
-		return 1
-	..()
+		return TRUE
 
 ////CTRL CLICK FOR SWARMERS AND SWARMER_ACT()'S////
 /mob/living/simple_animal/hostile/swarmer/AttackingTarget()
@@ -270,6 +269,10 @@
 			to_chat(S, "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>")
 			S.target = null
 			return FALSE
+		else if(istype(A, /area/tcommsat/server))
+			to_chat(S, "<span class ='warning'>Destroying this object has the potential to cause a temperature imbalance.</span>")
+			S.target = null
+			return TRUE
 	S.DisIntegrate(src)
 	return TRUE
 
@@ -350,6 +353,10 @@
 			to_chat(S, "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>")
 			S.target = null
 			return TRUE
+		else if(istype(A, /area/tcommsat/server))
+			to_chat(S, "<span class ='warning'>Destroying this object has the potential to cause a temperature imbalance.</span>")
+			S.target = null
+			return TRUE
 	return ..()
 
 /obj/structure/window/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
@@ -362,6 +369,10 @@
 			return TRUE
 		else if(istype(A, /area/engine/supermatter))
 			to_chat(S, "<span class='warning'>Disrupting the containment of a supermatter crystal would not be to our benefit. Aborting.</span>")
+			S.target = null
+			return TRUE
+		else if(istype(A, /area/tcommsat/server))
+			to_chat(S, "<span class ='warning'>Destroying this object has the potential to cause a temperature imbalance.</span>")
 			S.target = null
 			return TRUE
 	return ..()
@@ -632,7 +643,8 @@
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	max_integrity = 50
 
-/obj/structure/swarmer/blockade/CanPass(atom/movable/O)
+/obj/structure/swarmer/blockade/CanAllowThrough(atom/movable/O)
+	. = ..()
 	if(isswarmer(O))
 		return 1
 	if(istype(O, /obj/item/projectile/beam/disabler))

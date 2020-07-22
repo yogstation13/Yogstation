@@ -192,7 +192,7 @@
 	desc = "A cactus fruit covered in a thick, reddish skin. And some ash."
 	icon_state = "cactus_fruit"
 	seed = /obj/item/seeds/lavaland/cactus
-	wine_power = 50
+	distill_reagent = /datum/reagent/consumable/ethanol/cactuscooler
 
 //SEEDS
 
@@ -243,7 +243,6 @@
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.06, /datum/reagent/consumable/vitfro = 0.04, /datum/reagent/drug/nicotine = 0.04)
-
 
 /obj/item/seeds/lavaland/inocybe
 	name = "pack of inocybe mycelium"

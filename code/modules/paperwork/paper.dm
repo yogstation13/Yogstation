@@ -32,8 +32,9 @@
 	dog_fashion = /datum/dog_fashion/head
 
 	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
+	var/coloroverride // A hexadecimal as a string that, if set, overrides the font color of the whole document. Used by photocopiers
 	var/datum/language/infolang // The language info is written in. If left NULL, info will default to being omnilingual and readable by all.
-	var/list/written//What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
+	var/list/written //What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
 	var/stamps		//The (text for the) stamps on the paper.
 	var/fields = 0	//Amount of user created fields
 	var/list/stamped
@@ -41,6 +42,7 @@
 	var/spam_flag = 0
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
+	var/next_write_time = 0 // prevent crash exploit
 
 
 /obj/item/paper/pickup(user)
@@ -66,7 +68,7 @@
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
 		return
-	if(info)
+	if(info || length(written))
 		icon_state = "paper_words"
 		return
 	icon_state = "paper"
@@ -79,10 +81,10 @@
 
 	if(in_range(user, src) || isobserver(user))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
 		. += "<span class='warning'>You're too far away to read it!</span>"
@@ -131,14 +133,17 @@
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	else
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 
 /obj/item/paper/proc/render_body(mob/user,links = FALSE)
-	var/text = info // The actual text displayed. Starts with & defaults to $info.
+	var/text = ""// The actual text displayed. Starts with & defaults to $info.
+	if(coloroverride)
+		text = "<font color='#[coloroverride]'>"
+	text += info
 	if(istype(infolang) && !user.has_language(infolang))
 		var/datum/language/paperlang = GLOB.language_datum_instances[infolang]
 		text = paperlang.scramble_HTML(text)
@@ -156,6 +161,8 @@
 			text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "</span>"
 	if(links)
 		text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "</span>"
+	if(coloroverride)
+		text += "</font>"
 	return text
 
 /obj/item/paper/proc/clearpaper()
@@ -193,7 +200,7 @@
 
 
 /obj/item/paper/proc/openhelp(mob/user)
-	user << browse({"<HTML><HEAD><TITLE>Paper Help</TITLE></HEAD>
+	user << browse({"<HTML><HEAD><meta charset='UTF-8'><TITLE>Paper Help</TITLE></HEAD>
 	<BODY>
 		You can use backslash (\\) to escape special characters.<br>
 		<br>
@@ -216,16 +223,17 @@
 
 
 /obj/item/paper/Topic(href, href_list)
+	if(next_write_time > world.time) //Nsv13 possible paper exploit
+		return
 	..()
 	var/literate = usr.is_literate()
 	if(!usr.canUseTopic(src, BE_CLOSE, literate))
 		return
-
 	if(href_list["help"])
 		openhelp(usr)
 		return
 	if(href_list["write"])
-		
+		next_write_time = world.time + 1 SECONDS //possible paper exploit		
 		var/t =  stripped_multiline_input("Enter what you want to write:", "Write", no_trim=TRUE)
 		if(!t || !usr.canUseTopic(src, BE_CLOSE, literate))
 			return
@@ -247,14 +255,14 @@
 				if(text == PAPER_FIELD)
 					templist += text
 				else
-					var/datum/langtext/L = new(text,usr.get_default_language())
+					var/datum/langtext/L = new(text,usr.get_selected_language())
 					templist += L
 			var/id = href_list["write"]
 			if(id == "end")
 				written += templist
 			else
-				written.Insert(id,templist)
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
+				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
+			usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
 			update_icon()
 
 
@@ -269,7 +277,7 @@
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
 			return
 		else
 			to_chat(user, "<span class='notice'>You don't know how to read or write.</span>")

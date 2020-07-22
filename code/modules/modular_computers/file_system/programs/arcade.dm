@@ -6,7 +6,7 @@
 	requires_ntnet = FALSE
 	network_destination = "arcade network"
 	size = 6
-	tgui_id = "ntos_arcade"
+	tgui_id = "NtosArcade"
 	ui_x = 450
 	ui_y = 350
 
@@ -59,25 +59,18 @@
 		playsound(computer.loc, 'sound/arcade/steal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		player_mp -= boss_mpamt
 		boss_mp += boss_mpamt
-		pause_state = FALSE
-		game_check()
-		return
 	else if(boss_mp > 5 && boss_hp <12)
 		heads_up = "[boss_name] heals for [bossheal] health!"
 		playsound(computer.loc, 'sound/arcade/heal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		boss_hp += bossheal
 		boss_mp -= boss_mpamt
-		pause_state = FALSE
-		game_check()
-		return
 	else
 		heads_up = "[boss_name] attacks you for [boss_attackamt] damage!"
 		playsound(computer.loc, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 		player_hp -= boss_attackamt
-		pause_state = FALSE
-		game_check()
-		return
-	return
+
+	pause_state = FALSE
+	game_check()
 
 /datum/computer_file/program/arcade/ui_interact(mob/user, ui_key, datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state)
 	. = ..()
@@ -97,7 +90,7 @@
 	data["BossID"] = "boss[boss_id].gif"
 	return data
 
-/datum/computer_file/program/arcade/ui_act(action, params, mob/user)
+/datum/computer_file/program/arcade/ui_act(action, list/params, mob/user)
 	if(..())
 		return TRUE
 	var/obj/item/computer_hardware/printer/printer

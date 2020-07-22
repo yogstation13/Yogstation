@@ -289,7 +289,7 @@
 			user << browse(null, "window=AMcontrol")
 			return
 
-	var/dat = ""
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += "AntiMatter Control Panel<BR>"
 	dat += "<A href='?src=[REF(src)];close=1'>Close</A><BR>"
 	dat += "<A href='?src=[REF(src)];refresh=1'>Refresh</A><BR>"
@@ -314,6 +314,7 @@
 		dat += "- Injecting: [fuel_injection] units<BR>"
 		dat += "- <A href='?src=[REF(src)];strengthdown=1'>--</A>|<A href='?src=[REF(src)];strengthup=1'>++</A><BR><BR>"
 
+	dat += "</BODY></HTML>"
 
 	user << browse(dat, "window=AMcontrol;size=420x500")
 	onclose(user, "AMcontrol")

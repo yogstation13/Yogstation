@@ -8,7 +8,7 @@
 	blacklisted = TRUE //baseline
 
 /datum/action/innate/darkspawn/pass/IsAvailable()
-	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows) || !owner.get_empty_held_indexes() && !active)
+	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows) || istype(owner, /mob/living/simple_animal/hostile/darkspawn_progenitor) || !owner.get_empty_held_indexes() && !active)
 		return
 	return ..()
 

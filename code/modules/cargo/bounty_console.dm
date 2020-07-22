@@ -88,7 +88,7 @@
 		if("Claim")
 			var/datum/bounty/B = locate(href_list["d_rec"]) in GLOB.bounties_list
 			if(B)
-				B.claim()
+				B.claim(usr)
 
 	if(href_list["refresh"])
 		playsound(src, "terminal_type", 25, 0)

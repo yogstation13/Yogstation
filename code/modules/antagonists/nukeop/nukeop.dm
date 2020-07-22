@@ -4,6 +4,7 @@
 	antagpanel_category = "NukeOp"
 	job_rank = ROLE_OPERATIVE
 	antag_moodlet = /datum/mood_event/focused
+	show_to_ghosts = TRUE
 	var/datum/team/nuclear/nuke_team
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
@@ -380,8 +381,12 @@
 					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
 		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				if(is_nuclear_operative(H))
-					SSachievements.unlock_achievement(/datum/achievement/nukewin, H.client)
+				var/datum/mind/M = H.mind
+				if(M && M.has_antag_datum(/datum/antagonist/nukeop))
+					if(M.has_antag_datum(/datum/antagonist/nukeop/clownop) || M.has_antag_datum(/datum/antagonist/nukeop/leader/clownop))
+						SSachievements.unlock_achievement(/datum/achievement/greentext/clownop, H.client)
+					else
+						SSachievements.unlock_achievement(/datum/achievement/greentext/nukewin, H.client)
 
 
 /datum/team/nuclear/antag_listing_name()

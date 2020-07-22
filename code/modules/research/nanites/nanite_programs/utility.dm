@@ -42,7 +42,7 @@
 				if(isnull(new_cloud))
 					return
 				overwrite_cloud = TRUE
-				set_cloud = CLAMP(round(new_cloud, 1), 1, 100)
+				set_cloud = clamp(round(new_cloud, 1), 1, 100)
 
 /datum/nanite_program/viral/get_extra_setting(setting)
 	if(setting == "Program Overwrite")
@@ -155,7 +155,7 @@
 		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
 		if(isnull(new_channel))
 			return
-		relay_channel = CLAMP(round(new_channel, 1), 1, 9999)
+		relay_channel = clamp(round(new_channel, 1), 1, 9999)
 
 /datum/nanite_program/relay/get_extra_setting(setting)
 	if(setting == "Relay Channel")

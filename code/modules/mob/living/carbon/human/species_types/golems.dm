@@ -405,7 +405,7 @@
 				var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
 				// redirect the projectile
 				P.firer = H
-				P.preparePixelProjectile(locate(CLAMP(new_x, 1, world.maxx), CLAMP(new_y, 1, world.maxy), H.z), H)
+				P.preparePixelProjectile(locate(clamp(new_x, 1, world.maxx), clamp(new_y, 1, world.maxy), H.z), H)
 			return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
@@ -655,6 +655,7 @@
 	damage_overlay_type = "synth"
 	prefix = "Clockwork"
 	special_names = list("Remnant", "Relic", "Scrap", "Vestige") //RIP Ratvar
+	species_language_holder = /datum/language_holder/clockwork
 	var/has_corpse
 
 /datum/species/golem/clockwork/on_species_gain(mob/living/carbon/human/H)
@@ -870,21 +871,21 @@
 		if(M == H)
 			H.show_message("<span class='narsiesmall'>You cringe with pain as your body rings around you!</span>", 2)
 			H.playsound_local(H, 'sound/effects/gong.ogg', 100, TRUE)
-			H.soundbang_act(2, 0, 100, 1)
+			H.soundbang_act(2, 0, 10, 1)
 			H.jitteriness += 7
 		var/distance = max(0,get_dist(get_turf(H),get_turf(M)))
 		switch(distance)
 			if(0 to 1)
 				M.show_message("<span class='narsiesmall'>GONG!</span>", 2)
 				M.playsound_local(H, 'sound/effects/gong.ogg', 100, TRUE)
-				M.soundbang_act(1, 0, 30, 3)
+				M.soundbang_act(1, 0, 10, 3)
 				M.confused += 10
 				M.jitteriness += 4
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "gonged", /datum/mood_event/loud_gong)
 			if(2 to 3)
 				M.show_message("<span class='cult'>GONG!</span>", 2)
 				M.playsound_local(H, 'sound/effects/gong.ogg', 75, TRUE)
-				M.soundbang_act(1, 0, 15, 2)
+				M.soundbang_act(1, 0, 5, 2)
 				M.jitteriness += 3
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "gonged", /datum/mood_event/loud_gong)
 			else
@@ -1049,7 +1050,7 @@
 	name = "Bone Chill"
 	desc = "Rattle your bones and strike fear into your enemies!"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "bonechill"
 	var/cooldown = 600
 	var/last_use
@@ -1177,3 +1178,35 @@
 /datum/species/golem/soviet/proc/handle_speech(datum/source, list/speech_args)
 	playsound(source, 'sound/misc/Cyka Blyat.ogg', 25, 0)
 	speech_args[SPEECH_MESSAGE] = "Cyka Blyat"
+
+/datum/species/golem/cheese
+	name = "Cheese Golem"
+	id = "cheese golem"
+	fixed_mut_color = "F1D127"
+	meat = /obj/item/stack/sheet/cheese
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	armor = 10
+	burnmod = 1.25
+	heatmod = 1.5
+	brutemod = 0.8
+	info_text = "You are a <span class='danger'>Cheese Golem</span>, you take extra damage from heat and fire, you're resistant to brute, but people can eat you!"
+	prefix = "Cheese"
+	special_names = list("Gouda")
+	var/integrity = 40
+	punchdamagehigh = 10
+
+/datum/species/golem/cheese/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H)
+	..()
+	if(M.reagents && M != H && M.a_intent == INTENT_HARM)
+		if((M.nutrition + 10) > (600 * (1 + M.overeatduration / 2000)))
+			return
+		else
+			M.visible_message("<span class='danger'>[M] takes a bite out of [H]!</span>")
+			playsound(get_turf(H), 'sound/items/eatfood.ogg', 25, 0)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
+			if(integrity <= 0)
+				qdel(H)
+				M.visible_message("<span class='danger'>[H]'s can no longer maintain stuctural integrity and falls to pieces!</span>")
+			else
+				integrity = integrity - 0.4

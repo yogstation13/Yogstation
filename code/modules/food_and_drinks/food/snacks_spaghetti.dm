@@ -56,7 +56,7 @@
 
 /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti
 	name = "spaghetti and meatballs"
-	desc = "Now that's a nic'e meatball!"
+	desc = "Now that's a nice meatball!"
 	icon_state = "meatballspaghetti"
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/food/snacks/spaghetti/spesslaw
 	name = "spesslaw"
-	desc = "A lawyers favourite."
+	desc = "A lawyer's favorite."
 	icon_state = "spesslaw"
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
@@ -104,3 +104,37 @@
 	cooked_type = null
 	tastes = list("noodle" = 1, "butter" = 1)
 	foodtype = GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/spaghetti/falfredo
+	name = "fettuccine alfredo"
+	desc = "A dish of fresh fettuccine tossed with creamy butter and parmesan cheese. The proportions are huge."
+	icon_state = "falfredo"
+	bitesize = 8
+	trash = /obj/item/trash/plate
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
+	cooked_type = null
+	filling_color = "#DC143C"
+	tastes = list("fettuccine" = 1, "alfredo" = 1, "italy" = 1, "creamy goodness" = 1)
+	foodtype = GRAIN | DAIRY | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/lasagna
+	name = "lasagna"
+	desc = "I hate Mondays."
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "lasagna"
+	trash = /obj/item/trash/plate
+	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
+	tastes = list("pasta" = 2, "meat" = 1, "cheese" = 1)
+	foodtype = MEAT | DAIRY | GRAIN
+
+/obj/item/reagent_containers/food/snacks/pizzaghetti
+	name = "pizzaghetti"
+	desc = "A frightening combination of two classic Italian dishes, pasta and pizza. You start to sweat just looking at it."
+	icon = 'icons/obj/food/pizzaspaghetti.dmi'
+	icon_state = "pizzaghetti"
+	trash = /obj/item/trash/plate
+	w_class = WEIGHT_CLASS_NORMAL
+	bitesize = 6
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("grease" = 4, "crust" = 1, "pasta" = 1, "cheese" = 1, "tomato" = 1,)
+	foodtype = GRAIN | VEGETABLES | DAIRY

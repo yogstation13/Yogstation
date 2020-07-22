@@ -9,7 +9,7 @@
 	id = "handdrill"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 3500, MAT_SILVER = 1500, MAT_TITANIUM = 2500)
-	build_path = /obj/item/screwdriver/power
+	build_path = /obj/item/handdrill
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
@@ -17,7 +17,7 @@
 	name = "Jaws of Life"
 	desc = "A small, compact Jaws of Life with an interchangeable pry jaws and cutting jaws"
 	id = "jawsoflife" // added one more requirment since the Jaws of Life are a bit OP
-	build_path = /obj/item/crowbar/power
+	build_path = /obj/item/jawsoflife
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 4500, MAT_SILVER = 2500, MAT_TITANIUM = 3500)
 	category = list("Tool Designs")
@@ -35,7 +35,7 @@
 
 /datum/design/rcd_upgrade
 	name = "Advanced RCD designs upgrade"
-	desc = "Adds the computer frame and machine frame to the RCD."
+	desc = "Adds computer and machine frame designs to the RCD."
 	id = "rcd_upgrade"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 5000, MAT_GLASS = 2500, MAT_SILVER = 1500, MAT_TITANIUM = 2000)

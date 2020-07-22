@@ -68,6 +68,8 @@
 	new /obj/item/shard((get_turf(src)))
 
 /obj/item/shield/riot/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+	if(!damage)
+		return ..()
 	if (obj_integrity <= damage)
 		var/turf/T = get_turf(owner)
 		T.visible_message("<span class='warning'>[hitby] destroys [src]!</span>")
@@ -115,6 +117,25 @@
 /obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
+
+/obj/item/shield/riot/goliath
+	name = "Goliath shield"
+	desc = "A shield made from interwoven plates of goliath hide."
+	icon_state = "goliath_shield"
+	item_state = "goliath_shield"
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	materials = list ()
+	transparent = FALSE
+	block_chance = 25
+	max_integrity = 70
+	w_class = WEIGHT_CLASS_BULKY
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
+
+/obj/item/shield/riot/goliath/shatter(mob/living/carbon/human/owner)
+	playsound(owner, 'sound/effects/bang.ogg', 50)
+	new /obj/item/stack/sheet/animalhide/goliath_hide(get_turf(src))
+	qdel(src)
 
 /obj/item/shield/riot/flash
 	name = "strobe shield"

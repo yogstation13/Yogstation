@@ -102,13 +102,15 @@
 	else
 		..(FULLTILE_WINDOW_DIR)
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return 1
 	if(dir == FULLTILE_WINDOW_DIR)
 		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
-		return !density
+	var/attempted_dir = get_dir(loc, target)
+	if(attempted_dir == dir)
+		return
 	if(istype(mover, /obj/structure/window))
 		var/obj/structure/window/W = mover
 		if(!valid_window_location(loc, W.ini_dir))
@@ -119,7 +121,8 @@
 			return FALSE
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
-	return 1
+	else if(attempted_dir != dir)
+		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && (O.pass_flags & PASSGLASS))
@@ -388,6 +391,13 @@
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
 
+/obj/structure/window/reinforced/bronze
+	name = "bronze window"
+	desc = "A paper-thin pane of translucent yet reinforced bronze."
+	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window_single"
+	glass_type = /obj/item/stack/tile/bronze
+
 /obj/structure/window/reinforced/spawner/east
 	dir = EAST
 
@@ -540,6 +550,13 @@
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	level = 3
 	glass_amount = 2
+
+/obj/structure/window/reinforced/fulltile/bronze
+	name = "bronze window"
+	desc = "A pane of translucent yet reinforced bronze."
+	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window"
+	glass_type = /obj/item/stack/tile/bronze
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
@@ -753,3 +770,87 @@
 			return
 	..()
 	update_icon()
+
+
+
+
+
+/obj/structure/cloth_curtain
+	name = "curtain"
+	desc = "Beta brand soft sheets"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "curtain_open"
+	color = "#af439d" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.
+	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
+	layer = SIGN_LAYER
+	anchored = TRUE
+	opacity = FALSE
+	density = FALSE
+	var/open = TRUE
+
+/obj/structure/cloth_curtain/proc/toggle()
+	open = !open
+	update_icon()
+
+/obj/structure/cloth_curtain/update_icon()
+	if(!open)
+		icon_state = "curtain_closed"
+		layer = WALL_OBJ_LAYER
+		density = TRUE
+		open = FALSE
+		opacity = TRUE
+
+	else
+		icon_state = "curtain_open"
+		layer = SIGN_LAYER
+		density = FALSE
+		open = TRUE
+		opacity = FALSE
+
+/obj/structure/cloth_curtain/attackby(obj/item/W, mob/user)
+	if (istype(W, /obj/item/toy/crayon))
+		color = input(user,"","Choose Color",color) as color
+		return TRUE
+	else
+		return ..()
+
+/obj/structure/cloth_curtain/wrench_act(mob/living/user, obj/item/I)
+	default_unfasten_wrench(user, I, 50)
+	return TRUE
+
+/obj/structure/cloth_curtain/wirecutter_act(mob/living/user, obj/item/I)
+	if(anchored)
+		return TRUE
+
+	user.visible_message("<span class='warning'>[user] starts cuttting apart [src].</span>",
+		"<span class='notice'>You start to cut apart [src].</span>", "You hear cutting.")
+	if(I.use_tool(src, user, 50, volume=100) && !anchored)
+		to_chat(user, "<span class='notice'>You cut apart [src].</span>")
+		deconstruct()
+
+	return TRUE
+
+
+/obj/structure/cloth_curtain/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	playsound(loc, 'sound/effects/curtain.ogg', 50, 1)
+	toggle()
+
+/obj/structure/cloth_curtain/deconstruct(disassembled = TRUE)
+	if(QDELETED(src))
+		return
+	new /obj/item/stack/sheet/cloth(loc, 2)
+	new /obj/item/stack/rods(loc, 1)
+	qdel(src)
+
+/obj/structure/cloth_curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	if(damage_amount)
+		switch(damage_type)
+			if(BRUTE)
+				playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+			if(BURN)
+				playsound(loc, 'sound/items/welder.ogg', 80, 1)
+	else
+		playsound(loc, 'sound/weapons/tap.ogg', 50, 1)

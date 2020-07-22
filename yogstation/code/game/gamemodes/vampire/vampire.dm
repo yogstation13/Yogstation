@@ -1,12 +1,12 @@
 /datum/game_mode
 	var/list/datum/mind/vampires = list()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 	var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
-	if(vamp && statpanel("Status"))
-		stat("Total Blood", vamp.total_blood)
-		stat("Usable Blood", vamp.usable_blood)
+	if(vamp)
+		. += "Total Blood: [vamp.total_blood]"
+		. += "Usable Blood: [vamp.usable_blood]"
 
 /mob/living/carbon/human/Life()
 	. = ..()
@@ -70,11 +70,15 @@
 	..()
 	return TRUE
 
-/proc/add_vampire(mob/living/L)
-	if(!L || !L.mind || is_vampire(L))
-		return FALSE
-	var/datum/antagonist/vampire/vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
-	return vamp
+/proc/add_vampire(mob/living/L, full_vampire = TRUE)
+    if(!L || !L.mind || is_vampire(L))
+        return FALSE
+    var/datum/antagonist/vampire/vamp
+    if(full_vampire == TRUE)
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
+    else
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire/new_blood)
+    return vamp
 
 /proc/remove_vampire(mob/living/L)
 	if(!L || !L.mind || !is_vampire(L))
@@ -84,7 +88,7 @@
 	return TRUE
 
 /proc/is_vampire(mob/living/M)
-	return M && M.mind && M.mind.has_antag_datum(/datum/antagonist/vampire)
+	return M?.mind?.has_antag_datum(/datum/antagonist/vampire)
 
 /datum/game_mode/proc/update_vampire_icons_added(datum/mind/traitor_mind)
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]

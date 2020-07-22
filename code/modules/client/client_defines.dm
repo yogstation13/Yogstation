@@ -1,4 +1,3 @@
-
 /client
 		//////////////////////
 		//BLACK MAGIC THINGS//
@@ -26,6 +25,11 @@
 	var/last_turn = 0
 	var/move_delay = 0
 	var/area			= null
+	var/cryo_warned = -3000		//when was the last time we warned them about not cryoing without an ahelp, set to -5 minutes so that rounstart cryo still warns
+
+		/////////
+		//OTHER//
+
 
 		///////////////
 		//SOUND STUFF//
@@ -80,3 +84,10 @@
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
 
 	var/encoding = "1252" // yogs - LibVG
+
+	var/list/seen_messages // Messages currently seen by this client
+	var/list/spell_tabs = list()
+
+	//rate limiting for the crew manifest
+	var/crew_manifest_delay
+	var/datum/viewData/view_size

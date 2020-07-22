@@ -33,6 +33,7 @@
 	. = ..()
 	SpinAnimation(24,-1)
 
+
 /obj/effect/immovablerod/duck/Bump(atom/clong)
 	if(prob(90))
 		playsound(src, 'yogstation/sound/misc/quack.ogg', 50, 1)

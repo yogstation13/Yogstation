@@ -425,7 +425,7 @@
 							"name" = "[customsender]",
 							"job" = "[customjob]",
 							"message" = custommessage,
-							"language" = usr.get_default_language(), // PDAs now use the language system!
+							"language" = usr.get_selected_language(), // PDAs now use the language system!
 							"targets" = list("[customrecepient.owner] ([customrecepient.ownjob])")
 						))
 						// this will log the signal and transmit it to the target

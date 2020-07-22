@@ -18,7 +18,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 
-	changed_maps = list("MinskyStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
 /datum/job/mining/proc/OmegaStationChanges()
 	total_positions = 2
@@ -28,9 +28,9 @@
 	supervisors = "the head of personnel"
 
 
-/datum/job/mining/proc/MinskyStationChanges()
+/datum/job/mining/proc/EclipseStationChanges()
 	total_positions = 6
-	spawn_positions = 5
+	spawn_positions = 4
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"
@@ -41,6 +41,7 @@
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	neck = /obj/item/clothing/neck/bodycam/miner
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/flashlight/seclite
 	backpack_contents = list(

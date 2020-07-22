@@ -12,6 +12,57 @@
 	var/subcategory = CAT_NONE
 	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
+//Antag recipes - see granters.dm - at the top for easy viewing
+/datum/crafting_recipe/baseball_bat
+	name = "Baseball Bat"
+	result = /obj/item/melee/baseball_bat
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 30
+				)
+	tools = list(TOOL_HATCHET) //to carve the wood into shape
+	time = 30
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/lance
+	name = "Explosive Lance (Grenade)"
+	result = /obj/item/twohanded/spear
+	reqs = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	blacklist = list(/obj/item/twohanded/spear/explosive,
+					/obj/item/grenade/flashbang)
+	parts = list(/obj/item/twohanded/spear = 1,
+				/obj/item/grenade = 1)
+	time = 15
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+	
+/datum/crafting_recipe/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	result = /obj/item/gun/energy/laser/makeshiftlasrifle
+	reqs = list(/obj/item/stack/cable_coil = 15,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/pipe = 1,
+				/obj/item/light/bulb = 1,
+				/obj/item/stock_parts/cell = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/knifeboxing
+	name = "Knife-boxing Gloves"
+	result = /obj/item/clothing/gloves/knifeboxing
+	reqs = list(/obj/item/clothing/gloves/boxing = 1,
+				/obj/item/kitchen/knife = 2)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+//Normal recipes
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
@@ -33,21 +84,6 @@
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
-/* - yogs change: removes explosive lance for being stupid
-/datum/crafting_recipe/lance
-	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive,
-					/obj/item/grenade/flashbang) //yogs change - removes flashbangs from explosive lances for being even stupider
-	parts = list(/obj/item/twohanded/spear = 1,
-				/obj/item/grenade = 1)
-	time = 15
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-*/
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
@@ -457,16 +493,51 @@
 	result = /obj/item/stack/tile/carpet/black/fifty
 	category = CAT_MISC
 
+/datum/crafting_recipe/garbage_bin
+	name = "Garbage Bin"
+	reqs = 	list(/obj/item/stack/sheet/metal = 3)
+	result = /obj/structure/closet/crate/bin
+	category = CAT_MISC
+
 /datum/crafting_recipe/showercurtain
 	name = "Shower Curtains"
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/plastic = 2, /obj/item/stack/rods = 1)
 	result = /obj/structure/curtain
 	category = CAT_MISC
 
+/datum/crafting_recipe/shower
+	name = "Shower"
+	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
+	result = /obj/machinery/shower
+	category = CAT_MISC
+
+/datum/crafting_recipe/sink
+	name = "Sink"
+	reqs = 	list(/obj/item/stack/rods = 1, /obj/item/stack/sheet/metal = 4)
+	result = /obj/structure/sink
+	category = CAT_MISC
+
+/datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
+	name = "Toilet"
+	reqs = 	list(/obj/item/stack/sheet/metal = 5, /obj/item/reagent_containers/glass/bucket = 1)
+	result = /obj/structure/toilet
+	category = CAT_MISC
+
 /datum/crafting_recipe/extendohand
 	name = "Extendo-Hand"
 	reqs = list(/obj/item/bodypart/r_arm/robot = 1, /obj/item/clothing/gloves/boxing = 1)
 	result = /obj/item/extendohand
+	category = CAT_MISC
+
+/datum/crafting_recipe/cloth_curtain
+	name = "Curtains"
+	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
+	result = /obj/structure/cloth_curtain
+	category = CAT_MISC
+/datum/crafting_recipe/personal_closet
+	name = "Personal Closet"
+	reqs = list(/obj/item/stack/sheet/metal = 5, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
+	result = /obj/structure/closet/secure_closet/personal
 	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
@@ -540,6 +611,22 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 				/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/goliathshield
+	name = "Goliath shield"
+	result = /obj/item/shield/riot/goliath
+	time = 60
+	reqs = list(/obj/item/stack/sheet/bone = 4,
+				/obj/item/stack/sheet/animalhide/goliath_hide = 3)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/bonesword
+	name = "Bone Sword"
+	result = /obj/item/claymore/bone
+	time = 40
+	reqs = list(/obj/item/stack/sheet/bone = 3,
+				/obj/item/stack/sheet/sinew = 2)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/drakecloak
@@ -706,3 +793,41 @@
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
+
+/datum/crafting_recipe/urinal
+	name = "Urinal"
+	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
+	result = /obj/structure/urinal
+	category = CAT_MISC
+	
+/datum/crafting_recipe/paint/crayon
+	name = "Paint"
+	result = /obj/item/paint/anycolor
+	reqs = list(/obj/item/toy/crayon = 1,
+				/datum/reagent/water = 5,
+				/datum/reagent/consumable/milk = 5,
+				/obj/item/reagent_containers/glass/bucket = 1)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+	time = 30
+
+/datum/crafting_recipe/paint/spraycan
+	name = "Paint"
+	result = /obj/item/paint/anycolor
+	reqs = list(/obj/item/toy/crayon/spraycan = 1,
+				/datum/reagent/water = 5,
+				/datum/reagent/consumable/milk = 5,
+				/obj/item/reagent_containers/glass/bucket = 1)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+	time = 30
+	
+/datum/crafting_recipe/woodenmug
+	name = "Wooden Mug"
+	result = /obj/item/reagent_containers/glass/woodmug
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
+	time = 20
+	category = CAT_PRIMAL
+
+
+	

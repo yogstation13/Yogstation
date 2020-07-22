@@ -822,9 +822,10 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/pink/tick()
 	for(var/mob/living/simple_animal/M in view(7,get_turf(owner)))
 		if(!(M in mobs))
-			mobs += M
-			M.apply_status_effect(/datum/status_effect/pinkdamagetracker)
-			M.faction |= faction_name
+			if(M.sentience_type != SENTIENCE_BOSS)
+				mobs += M
+				M.apply_status_effect(/datum/status_effect/pinkdamagetracker)
+				M.faction |= faction_name
 	for(var/mob/living/simple_animal/M in mobs)
 		if(!(M in view(7,get_turf(owner))))
 			M.remove_status_effect(/datum/status_effect/pinkdamagetracker)
@@ -857,7 +858,7 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/oil
 	id = "stabilizedoil"
 	colour = "oil"
-	examine_text = "<span class='warning'>SUBJECTPRONOUN smells of sulfer and oil!</span>"
+	examine_text = "<span class='warning'>SUBJECTPRONOUN smells of sulfur and oil!</span>"
 
 /datum/status_effect/stabilized/oil/tick()
 	if(owner.stat == DEAD)
@@ -928,9 +929,10 @@ datum/status_effect/stabilized/blue/on_remove()
 		familiar = new linked.mob_type(get_turf(owner.loc))
 		familiar.name = linked.mob_name
 		familiar.del_on_death = TRUE
-		familiar.copy_known_languages_from(owner, FALSE)
+		familiar.copy_languages(owner, LANGUAGE_MASTER)
 		if(linked.saved_mind)
 			linked.saved_mind.transfer_to(familiar)
+			familiar.update_atom_languages()
 			familiar.ckey = linked.saved_mind.key
 	else
 		if(familiar.mind)

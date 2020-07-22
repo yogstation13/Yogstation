@@ -38,6 +38,8 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
+	var/obj/machinery/advanced_airlock_controller/aac = null
+
 	pipe_state = "uvent"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/New()
@@ -45,7 +47,7 @@
 	if(!id_tag)
 		id_tag = assign_uid_vents()
 	var/datum/gas_mixture/N = airs[1]
-	N.volume = 1000 // Increase the volume of the air vent's node.
+	N.set_volume(1000) // Increase the volume of the air vent's node.
 	// Allows it to pump much faster.
 
 /obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
@@ -53,6 +55,8 @@
 	if (A)
 		A.air_vent_names -= id_tag
 		A.air_vent_info -= id_tag
+	if(aac)
+		aac.vents -= src
 
 	SSradio.remove_object(src,frequency)
 	radio_connection = null
@@ -138,7 +142,7 @@
 			var/multiplier = 1 // fast_fill multiplier
 			if(fast_fill)
 				if(last_moles_added > 0 && last_moles_real_added > 0)
-					multiplier = CLAMP(last_moles_added / last_moles_real_added * 0.25, 1, 100)
+					multiplier = clamp(last_moles_added / last_moles_real_added * 0.25, 1, 100)
 				else if(last_moles_added > 0 && last_moles_real_added < 0 && environment_moles != 0)
 					multiplier = 10 // pressure is going down, but let's fight it anyways
 			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure) * multiplier)
@@ -148,9 +152,9 @@
 			pressure_delta = min(pressure_delta, 10)
 
 		if(pressure_delta > 0)
-			if(air_contents.temperature > 0)
+			if(air_contents.return_temperature() > 0)
 
-				var/transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 				last_moles_added = transfer_moles
 
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
@@ -160,21 +164,21 @@
 
 	else // external -> internal
 		last_moles_added = 0
-		var/pressure_delta = 10000
-		if(pressure_checks&EXT_BOUND)
-			pressure_delta = min(pressure_delta, (environment_pressure - external_pressure_bound))
-		if(pressure_checks&INT_BOUND)
-			pressure_delta = min(pressure_delta, (internal_pressure_bound - air_contents.return_pressure()))
+		if(environment.return_pressure() > 0)
+			var/our_multiplier = air_contents.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION)
+			var/moles_delta = 10000 * our_multiplier
+			if(pressure_checks&EXT_BOUND)
+				moles_delta = min(moles_delta, (environment_pressure - external_pressure_bound) * environment.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION))
+			if(pressure_checks&INT_BOUND)
+				moles_delta = min(moles_delta, (internal_pressure_bound - air_contents.return_pressure()) * our_multiplier)
+		
+			if(moles_delta > 0)
+				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
+				if (isnull(removed)) // in space
+					return
 
-		if(pressure_delta > 0 && environment.temperature > 0)
-			var/transfer_moles = pressure_delta * air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
-
-			var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
-			if (isnull(removed)) // in space
-				return
-
-			air_contents.merge(removed)
-			air_update_turf()
+				air_contents.merge(removed)
+				air_update_turf()
 	last_moles = environment_moles
 	update_parents()
 
@@ -200,7 +204,8 @@
 		"checks" = pressure_checks,
 		"internal" = internal_pressure_bound,
 		"external" = external_pressure_bound,
-		"sigtype" = "status"
+		"sigtype" = "status",
+		"has_aac" = aac != null
 	))
 
 	var/area/A = get_area(src)
@@ -260,13 +265,13 @@
 
 	if("set_internal_pressure" in signal.data)
 		var/old_pressure = internal_pressure_bound
-		internal_pressure_bound = CLAMP(text2num(signal.data["set_internal_pressure"]),0,ONE_ATMOSPHERE*50)
+		internal_pressure_bound = clamp(text2num(signal.data["set_internal_pressure"]),0,ONE_ATMOSPHERE*50)
 		if(old_pressure != internal_pressure_bound)
 			investigate_log(" internal pressure was set to [internal_pressure_bound] by [key_name(signal_sender)]",INVESTIGATE_ATMOS)
 
 	if("set_external_pressure" in signal.data)
 		var/old_pressure = external_pressure_bound
-		external_pressure_bound = CLAMP(text2num(signal.data["set_external_pressure"]),0,ONE_ATMOSPHERE*50)
+		external_pressure_bound = clamp(text2num(signal.data["set_external_pressure"]),0,ONE_ATMOSPHERE*50)
 		if(old_pressure != external_pressure_bound)
 			investigate_log(" external pressure was set to [external_pressure_bound] by [key_name(signal_sender)]",INVESTIGATE_ATMOS)
 
@@ -277,10 +282,10 @@
 		internal_pressure_bound = 0
 
 	if("adjust_internal_pressure" in signal.data)
-		internal_pressure_bound = CLAMP(internal_pressure_bound + text2num(signal.data["adjust_internal_pressure"]),0,ONE_ATMOSPHERE*50)
+		internal_pressure_bound = clamp(internal_pressure_bound + text2num(signal.data["adjust_internal_pressure"]),0,ONE_ATMOSPHERE*50)
 
 	if("adjust_external_pressure" in signal.data)
-		external_pressure_bound = CLAMP(external_pressure_bound + text2num(signal.data["adjust_external_pressure"]),0,ONE_ATMOSPHERE*50)
+		external_pressure_bound = clamp(external_pressure_bound + text2num(signal.data["adjust_external_pressure"]),0,ONE_ATMOSPHERE*50)
 
 	if("init" in signal.data)
 		name = signal.data["init"]
@@ -324,7 +329,7 @@
 		. += "It seems welded shut."
 
 /obj/machinery/atmospherics/components/unary/vent_pump/power_change()
-	..()
+	. = ..()
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_crawl_through()
@@ -347,7 +352,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/New()
 	..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.volume = 1000
+	air_contents.set_volume(1000)
 
 // mapping
 
@@ -435,7 +440,7 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer3
 	piping_layer = 3
-	icon_state = "map_vent-3"
+	icon_state = "vent_map-3"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/on
 	on = TRUE

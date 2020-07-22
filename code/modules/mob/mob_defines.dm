@@ -39,6 +39,7 @@
 	var/eye_blind = 0		//Carbon
 	var/eye_blurry = 0		//Carbon
 	var/real_name = null
+	var/is_shifted = FALSE
 	var/spacewalk = FALSE
 
 	var/name_archive //For admin things like possession
@@ -106,3 +107,8 @@
 	var/registered_z
 	
 	var/memory_amt = 0
+
+	var/list/emotes_used /// Used for tracking last uses of emotes for cooldown purposes
+
+	///Whether the mob is updating glide size when movespeed updates or not
+	var/updating_glide_size = TRUE

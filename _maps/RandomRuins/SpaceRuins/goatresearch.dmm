@@ -40,7 +40,6 @@
 /area/ruin/powered)
 "ak" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "al" = (
@@ -91,22 +90,20 @@
 /turf/open/floor/grass,
 /area/ruin/powered)
 "ax" = (
-/obj/machinery/atmospherics/pipe/simple{
-	icon_state = "pipe11-2";
+/obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "ay" = (
-/obj/machinery/atmospherics/pipe/manifold,
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "az" = (
-/obj/machinery/atmospherics/pipe/simple{
-	icon_state = "pipe11-2";
+/obj/item/wrench/medical,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
-/obj/item/wrench/medical,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "aA" = (

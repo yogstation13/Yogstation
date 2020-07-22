@@ -7,6 +7,18 @@
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	strip_delay = 80
 
+/obj/item/clothing/head/centhat/admiral
+	name = "\improper CentCom admiral hat"
+	icon_state = "admiral"
+	desc = "It's good to be a god."
+	item_state = "admiral"
+
+/obj/item/clothing/head/centhat/admiral/grand
+	name = "\improper CentCom grand admiral hat"
+	icon_state = "grand_admiral"
+	desc = "It's good to be a Q."
+	item_state = "grand_admiral"
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."
@@ -132,21 +144,24 @@
 	var/datum/language/piratespeak/L = new
 
 /obj/item/clothing/head/pirate/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_HEAD)
-		user.grant_language(/datum/language/piratespeak/)
+		user.grant_language(/datum/language/piratespeak/, TRUE, TRUE, LANGUAGE_HAT)
 		to_chat(user, "You suddenly know how to speak like a pirate!")
 
 /obj/item/clothing/head/pirate/dropped(mob/user)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.get_item_by_slot(SLOT_HEAD) == src)
-		user.remove_language(/datum/language/piratespeak/)
+		user.remove_language(/datum/language/piratespeak/, TRUE, TRUE, LANGUAGE_HAT)
 		to_chat(user, "You can no longer speak like a pirate.")
 
 /obj/item/clothing/head/pirate/captain
+	name = "pirate captain"
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
 

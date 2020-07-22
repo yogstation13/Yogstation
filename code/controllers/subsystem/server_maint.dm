@@ -55,6 +55,7 @@ SUBSYSTEM_DEF(server_maint)
 
 	var/kick_inactive = CONFIG_GET(flag/kick_inactive)
 	var/afk_period
+
 	if(kick_inactive)
 		afk_period = CONFIG_GET(number/afk_period)
 	for(var/I in currentrun)

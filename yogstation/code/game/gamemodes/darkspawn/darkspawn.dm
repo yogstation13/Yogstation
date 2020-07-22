@@ -27,14 +27,14 @@
 		restricted_jobs += "Assistant"
 	var/darkbois = max(required_enemies, round(num_players()/14))
 	while(darkbois)
-		var/datum/mind/darkboi = pick(antag_candidates)
+		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		darkspawn += darkboi
 		antag_candidates -= darkboi
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 	var/succ_scaling = round(num_players() / 3)
-	required_succs = CLAMP(succ_scaling, 15, 30)
+	required_succs = clamp(succ_scaling, 15, 30)
 	succ_ratio = required_succs / 15
 	return TRUE
 

@@ -21,9 +21,9 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
-	changed_maps = list("MinskyStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation")
 
-/datum/job/scientist/proc/MinskyStationChanges()
+/datum/job/scientist/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
 

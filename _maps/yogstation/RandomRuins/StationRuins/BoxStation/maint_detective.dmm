@@ -1,0 +1,115 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/r_wall,
+/area/engine/atmos_distro)
+"b" = (
+/turf/closed/wall,
+/area/maintenance/aft)
+"c" = (
+/obj/item/book/manual/wiki/detective,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/maintenance/aft)
+"d" = (
+/obj/item/clothing/head/fedora/det_hat,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"e" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"f" = (
+/obj/item/cigbutt,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"g" = (
+/obj/structure/rack,
+/obj/item/detective_scanner,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"h" = (
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"i" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/obj/item/cigbutt,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"j" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/reagent_containers/food/drinks/flask/det,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"k" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/aft)
+"l" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"m" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+b
+c
+h
+h
+a
+"}
+(3,1,1) = {"
+b
+d
+i
+k
+a
+"}
+(4,1,1) = {"
+b
+e
+j
+h
+a
+"}
+(5,1,1) = {"
+b
+f
+k
+f
+a
+"}
+(6,1,1) = {"
+b
+g
+h
+m
+a
+"}
+(7,1,1) = {"
+b
+b
+l
+b
+a
+"}

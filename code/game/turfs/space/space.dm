@@ -8,6 +8,10 @@
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 700000
 
+	FASTDMM_PROP(\
+		pipe_astar_cost = 3\
+	)
+
 	var/destination_z
 	var/destination_x
 	var/destination_y
@@ -24,8 +28,10 @@
 	return
 
 /turf/open/space/Initialize()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = SPACE_ICON_STATE
 	air = space_gas
+	update_air_ref()
 	vis_contents.Cut() //removes inherited overlays
 	visibilityChanged()
 

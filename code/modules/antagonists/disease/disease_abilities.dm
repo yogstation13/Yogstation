@@ -59,7 +59,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 	var/short_desc = ""
 	var/long_desc = ""
 	var/stat_block = ""
-	var/threshold_block = ""
+	var/threshold_block = list()
 	var/category = ""
 
 	var/list/symptoms
@@ -78,7 +78,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 			resistance += initial(S.resistance)
 			stage_speed += initial(S.stage_speed)
 			transmittable += initial(S.transmittable)
-			threshold_block += "<br><br>[initial(S.threshold_desc)]"
+			threshold_block += initial(S.threshold_descs) 
 			stat_block = "Resistance: [resistance]<br>Stealth: [stealth]<br>Stage Speed: [stage_speed]<br>Transmissibility: [transmittable]<br><br>"
 			if(symptoms.len == 1) //lazy boy's dream
 				name = initial(S.name)

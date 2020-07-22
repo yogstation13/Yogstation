@@ -172,7 +172,7 @@
 
 	if(total_reagent_weight && amount_of_reagents) //don't bother if the container is empty - DIV/0
 		var/average_reagent_weight = total_reagent_weight / amount_of_reagents
-		spray_range = CLAMP(round((initial(spray_range) / average_reagent_weight) - ((amount_of_reagents - 1) * 1)), 3, 5) //spray distance between 3 and 5 tiles rounded down; extra reagents lose a tile
+		spray_range = clamp(round((initial(spray_range) / average_reagent_weight) - ((amount_of_reagents - 1) * 1)), 3, 5) //spray distance between 3 and 5 tiles rounded down; extra reagents lose a tile
 	else
 		spray_range = initial(spray_range)
 	if(stream_mode == 0)
@@ -212,16 +212,16 @@
 //pepperspray
 /obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
+	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Now contains red dye to mark fleeing suspects!"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	volume = 40
+	volume = 60
 	stream_range = 4
 	amount_per_transfer_from_this = 5
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40)
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40, /datum/reagent/colorful_reagent/crayonpowder/red = 20) //red dye)
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null
@@ -359,6 +359,14 @@
 		return
 	last_generate = world.time
 	reagents.add_reagent(generate_type, generate_amount)
+
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clown
+	name = "lubinator 8000"
+	desc = "A modified industrial cleaning sprayer capable of coating entire hallways in a high-performance lubricant, honk!"
+	icon_state = "chemsprayer"
+	item_state = "chemsprayer"
+	list_reagents = list(/datum/reagent/lube = 1000)
+	generate_type = /datum/reagent/lube
 
 // Plant-B-Gone
 /obj/item/reagent_containers/spray/plantbgone // -- Skie

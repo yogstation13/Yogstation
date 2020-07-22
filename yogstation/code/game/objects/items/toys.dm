@@ -90,7 +90,7 @@
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "toyglock"
 	item_state = "toyglock"
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	materials = list(MAT_METAL=10, MAT_GLASS=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 
@@ -100,6 +100,6 @@
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "toyflaregun"
 	item_state = "toyflaregun"
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	materials = list(MAT_METAL=10, MAT_GLASS=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")

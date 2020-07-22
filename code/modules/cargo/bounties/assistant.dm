@@ -143,7 +143,7 @@
 	name = "Shady Jim's"
 	description = "There's an irate officer at CentCom demanding that he receive a box of Shady Jim's cigarettes. Please ship one. He's starting to make threats."
 	reward = 500
-	wanted_types = list(/obj/item/storage/fancy/cigarettes/cigpack_shadyjims)
+	wanted_types = list(/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims)
 
 /datum/bounty/item/assistant/potted_plants
 	name = "Potted Plants"

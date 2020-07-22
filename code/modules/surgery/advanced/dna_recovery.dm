@@ -15,10 +15,9 @@
 	if(!..())
 		return FALSE
 
-	if(!HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
+	if(!HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN) && !HAS_TRAIT(target, TRAIT_HUSK))
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /datum/surgery_step/dna_recovery
 	name = "recover DNA"
@@ -37,4 +36,5 @@
 		"[user] successfully repairs some of [target]'s DNA",
 		"[user] completes the surgery on [target]'s brain.")
 	REMOVE_TRAIT(target, TRAIT_BADDNA, CHANGELING_DRAIN)
+	target.cure_husk()
 	return TRUE

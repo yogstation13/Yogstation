@@ -78,3 +78,17 @@
 	input = replacetext(input, "*", "")
 	if(input)
 		warcry = input
+
+/obj/item/clothing/gloves/rapid/hug
+	name = "Gloves of Hugging"
+	desc = "Just looking at these fills you with an urge to hug the shit out of people."
+
+/obj/item/clothing/gloves/rapid/hug/Touch(mob/living/target,proximity = TRUE)
+	var/mob/living/M = loc
+
+	if(M.a_intent == INTENT_HELP)
+		M.changeNext_move(CLICK_CD_RAPID)
+	else
+		to_chat(M, "<span class='warning'>You don't want to hurt anyone, just give them hugs!</span>")
+		M.a_intent = INTENT_HELP
+	.= FALSE

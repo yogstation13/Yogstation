@@ -77,7 +77,7 @@
 	value = -1
 	gain_text = "<span class='danger'>You start feeling depressed.</span>"
 	lose_text = "<span class='notice'>You no longer feel depressed.</span>" //if only it were that easy!
-	medical_record_text = "Patient has a severe mood disorder, causing them to experience acute episodes of depression."
+	medical_record_text = "Patient has a mild mood disorder, causing them to experience episodes of depression."
 	mood_quirk = TRUE
 
 /datum/quirk/family_heirloom
@@ -103,11 +103,13 @@
 			if("Mime")
 				heirloom_type = /obj/item/reagent_containers/food/snacks/baguette
 			if("Janitor")
-				heirloom_type = pick(/obj/item/mop, /obj/item/clothing/suit/caution, /obj/item/reagent_containers/glass/bucket)
+				heirloom_type = pick(/obj/item/mop, /obj/item/clothing/suit/caution, /obj/item/reagent_containers/glass/bucket/wooden)
 			if("Cook")
 				heirloom_type = pick(/obj/item/reagent_containers/food/condiment/saltshaker, /obj/item/kitchen/rollingpin, /obj/item/clothing/head/chefhat)
+			if("Clerk")
+				heirloom_type = pick(/obj/item/coin, /obj/item/coin/gold, /obj/item/coin/iron, /obj/item/coin/silver)
 			if("Botanist")
-				heirloom_type = pick(/obj/item/cultivator, /obj/item/reagent_containers/glass/bucket, /obj/item/storage/bag/plants, /obj/item/toy/plush/beeplushie)
+				heirloom_type = pick(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/reagent_containers/glass/bucket/wooden, /obj/item/toy/plush/beeplushie, /obj/item/clothing/mask/cigarette/pipe, /obj/item/clothing/mask/cigarette/pipe/cobpipe)
 			if("Bartender")
 				heirloom_type = pick(/obj/item/reagent_containers/glass/rag, /obj/item/clothing/head/that, /obj/item/reagent_containers/food/drinks/shaker)
 			if("Curator")
@@ -124,7 +126,7 @@
 			if("Security Officer")
 				heirloom_type = pick(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec)
 			if("Detective")
-				heirloom_type = /obj/item/reagent_containers/food/drinks/bottle/whiskey
+				heirloom_type = pick(/obj/item/reagent_containers/food/drinks/bottle/whiskey, /obj/item/taperecorder/empty)
 			if("Lawyer")
 				heirloom_type = pick(/obj/item/gavelhammer, /obj/item/book/manual/wiki/security_space_law)
 			//RnD
@@ -140,7 +142,7 @@
 			if("Medical Doctor")
 				heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
 			if("Chemist")
-				heirloom_type = /obj/item/book/manual/wiki/chemistry
+				heirloom_type = pick(/obj/item/book/manual/wiki/chemistry, /obj/item/clothing/mask/vape)
 			if("Virologist")
 				heirloom_type = /obj/item/reagent_containers/syringe
 			//Engineering
@@ -261,7 +263,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if((H.dna.species.id in list("shadow", "nightmare")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING)))) //yogs - thrall & sling check
+	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING) || H.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN) || H.mind.has_antag_datum(ANTAG_DATUM_VEIL)))) //yogs - thrall & sling check
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -519,6 +521,7 @@
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
 	value = -1
+	mood_quirk = TRUE
 	gain_text = "<span class='danger'>You could really go for a smoke right about now.</span>"
 	lose_text = "<span class='notice'>You feel like you should quit smoking.</span>"
 	medical_record_text = "Patient is a current smoker."
@@ -526,15 +529,15 @@
 	accessory_type = /obj/item/lighter/greyscale
 
 /datum/quirk/junkie/smoker/on_spawn()
-	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
-		/obj/item/storage/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/fancy/cigarettes/cigars,
-		/obj/item/storage/fancy/cigarettes/cigars/cohiba,
-		/obj/item/storage/fancy/cigarettes/cigars/havana)
+	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+		/obj/item/storage/box/fancy/cigarettes/cigars,
+		/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
+		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -546,7 +549,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/fancy/cigarettes/C = drug_instance
+		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
 		if(istype(I, C.spawn_type))
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
@@ -555,7 +558,8 @@
 /datum/quirk/unstable
 	name = "Unstable"
 	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
-	value = 0 // yogs - haha no free points for you
+	value = -2
+	mood_quirk = TRUE
 	mob_trait = TRAIT_UNSTABLE
 	gain_text = "<span class='danger'>There's a lot on your mind right now.</span>"
 	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
@@ -574,5 +578,63 @@
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
-	if(!H.can_speak_in_language(/datum/language/draconic) && !H.can_speak_in_language(/datum/language/machine))
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
+
+/datum/quirk/allergic
+	name = "Allergic Reaction"
+	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
+	value = -1
+	mob_trait = TRAIT_ALLERGIC
+	gain_text = "<span class='danger'>You remember your allergic reaction to a common medicine.</span>"
+	lose_text = "<span class='notice'>You no longer are allergic to medicine.</span>"
+	medical_record_text = "Patient has a severe allergic reaction to a common medicine."
+	var/allergy_chem_list = list(	/datum/reagent/medicine/inacusiate,
+									/datum/reagent/medicine/silver_sulfadiazine,
+									/datum/reagent/medicine/styptic_powder,
+									/datum/reagent/medicine/omnizine,
+									/datum/reagent/medicine/oculine,
+									/datum/reagent/medicine/neurine,
+									/datum/reagent/medicine/bicaridine,
+									/datum/reagent/medicine/kelotane) //Everything in the list can be healed from another source round-start
+	var/reagent_id
+	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
+	var/cooldown = FALSE
+
+/datum/quirk/allergic/on_spawn()
+	reagent_id = pick(allergy_chem_list)
+	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
+	to_chat(quirk_holder, "<span class='danger'>You remember you are allergic to [allergy.name].</span>")
+	quirk_holder.allergies += allergy
+
+/datum/quirk/allergic/on_process()
+	var/mob/living/carbon/H = quirk_holder
+	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
+	if(cooldown == FALSE && H.reagents.has_reagent(reagent_id))
+		to_chat(quirk_holder, "<span class='danger'>You forgot you were allergic to [allergy.name]!</span>")
+		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
+
+/datum/quirk/kleptomaniac
+	name = "Kleptomaniac"
+	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
+	value = -1
+	mob_trait = TRAIT_KLEPTOMANIAC
+	gain_text = "<span class='danger'>You have an unmistakeable urge to grab nearby objects.</span>"
+	lose_text = "<span class='notice'>You no feel the urge to steal.</span>"
+	medical_record_text = "Patient has an uncontrollable urge to steal."
+
+/datum/quirk/kleptomaniac/on_process()
+	if(prob(3))
+		var/mob/living/carbon/H = quirk_holder
+		var/obj/item/I = locate(/obj/item/) in oview(1, H)
+		if(!I || I.anchored || H.incapacitated() || !I.Adjacent(H))
+			return
+		if(isliving(quirk_holder))
+			var/mob/living/L = quirk_holder
+			if(!(L.mobility_flags & MOBILITY_PICKUP))
+				return
+		if(!H.get_active_held_item())
+			to_chat(quirk_holder, "<span class='danger'>You can't keep your eyes off [I.name].</span>")
+			H.UnarmedAttack(I)

@@ -20,7 +20,6 @@
 		            /obj/item/clothing/head/beanie/stripedred = 3,
 		            /obj/item/clothing/head/beanie/stripedblue = 3,
 		            /obj/item/clothing/head/beanie/stripedgreen = 3,
-					/obj/item/clothing/head/beanie/rasta = 3,
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/head/taqiyahred = 3,
 		            /obj/item/clothing/gloves/fingerless = 2,
@@ -36,9 +35,9 @@
 		            /obj/item/clothing/neck/scarf/black = 3,
 		            /obj/item/clothing/neck/scarf/zebra = 3,
 		            /obj/item/clothing/neck/scarf/christmas = 3,
-		            //obj/item/clothing/neck/stripedredscarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
-		            //obj/item/clothing/neck/stripedbluescarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
-		            //obj/item/clothing/neck/stripedgreenscarf = 3, //yogs -- commented out to be replaced by yog-brand scarves
+		            /obj/item/clothing/neck/stripedredscarf = 3,
+		            /obj/item/clothing/neck/stripedbluescarf = 3,
+		            /obj/item/clothing/neck/stripedgreenscarf = 3,
 		            /obj/item/clothing/neck/tie/blue = 3,
 		            /obj/item/clothing/neck/tie/red = 3,
 		            /obj/item/clothing/neck/tie/black = 3,
@@ -164,6 +163,7 @@
 		            /obj/item/clothing/glasses/sunglasses/cheap = 2,
 		            /obj/item/clothing/glasses/yogs/threed = 2,
 		            /obj/item/clothing/shoes/sneakers/black = 3,
+		            /obj/item/clothing/shoes/yogs/fire_crocs = 1,
 		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
@@ -181,7 +181,6 @@
 		           /obj/item/clothing/suit/jacket/leather = 1,
 		           /obj/item/clothing/suit/jacket/leather/overcoat = 1,
 		           /obj/item/clothing/under/pants/mustangjeans = 1,
-		           /obj/item/clothing/neck/necklace/dope = 3,
 		           /obj/item/clothing/suit/jacket/letterman_nanotrasen = 1, //yogs added a ,
 		           /obj/item/clothing/head/yogs/formalhat = 1, //yogs start
 		           /obj/item/clothing/suit/yogs/trainman = 1,

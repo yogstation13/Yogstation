@@ -128,7 +128,7 @@
 	if (smooth & SMOOTH_DIAGONAL)
 		for (var/O in overlays)
 			var/image/I = O
-			if (copytext(I.icon_state, 1, 3) == "d-")
+			if(copytext(I.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
 				return
 
 	var/stuff_on_wall = 0
@@ -649,6 +649,11 @@
 	name = "High-Class Martini"
 	desc = "I told you to shake it, no stirring."
 	icon_state = "poster32_legit"
+
+/obj/structure/sign/poster/official/marvin
+	name = "Marvin"
+	desc = "WANTED: Marvin is an escaped martian from Space Station 8. Please report any sighting of him to centcom officials."
+	icon_state = "bsposter5"
 
 /obj/structure/sign/poster/official/the_owl
 	name = "The Owl"

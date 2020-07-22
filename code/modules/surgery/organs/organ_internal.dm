@@ -199,7 +199,7 @@
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
 /obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
-	damage = CLAMP(d, 0 ,maxHealth)
+	damage = clamp(d, 0 ,maxHealth)
 	if(d >= maxHealth)
 		organ_flags |= ORGAN_FAILING
 	else

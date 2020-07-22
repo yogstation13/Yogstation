@@ -10,7 +10,6 @@
 	name = "Theatre Backstage";
 	req_access_txt = "46"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/ameritard,
@@ -200,8 +199,8 @@
 /area/crew_quarters/bar)
 "aB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/end_right,
@@ -209,8 +208,8 @@
 /area/crew_quarters/bar)
 "aC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
@@ -231,8 +230,8 @@
 /obj/effect/landmark/start/assistant,
 /obj/effect/turf_decal/ameritard,
 /obj/structure/chair/americandiner/booth/end_right{
-	icon_state = "ameribooth-end2";
-	dir = 4
+	dir = 4;
+	icon_state = "ameribooth-end2"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -240,15 +239,15 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/light/small{
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -256,19 +255,17 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -315,7 +312,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -388,12 +385,10 @@
 /area/crew_quarters/kitchen)
 "aY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
-/mob/living/simple_animal/cow{
-	name = "Betsy"
-	},
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
@@ -425,8 +420,8 @@
 	},
 /obj/item/reagent_containers/food/snacks/burger/plain,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -436,12 +431,11 @@
 	},
 /area/crew_quarters/bar)
 "bc" = (
-/obj/structure/chair/americandiner/booth{
-	dir = 1;
-	icon_state = "ameribooth";
-	tag = ""
-	},
 /obj/effect/turf_decal/ameritard,
+/obj/structure/chair/americandiner/booth/end_left{
+	dir = 1;
+	icon_state = "ameribooth-end1"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bd" = (
@@ -493,7 +487,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -503,8 +496,8 @@
 "bk" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -551,12 +544,14 @@
 	},
 /area/crew_quarters/kitchen)
 "bq" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -649,8 +644,8 @@
 /obj/structure/table/american,
 /obj/item/clothing/head/that,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
@@ -697,8 +692,8 @@
 /area/crew_quarters/kitchen)
 "bE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -706,11 +701,9 @@
 /area/crew_quarters/kitchen)
 "bF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -725,8 +718,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -752,8 +745,7 @@
 /obj/machinery/processor,
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
@@ -769,8 +761,8 @@
 /obj/structure/table/american,
 /obj/item/reagent_containers/food/snacks/burger/plain,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -811,25 +803,26 @@
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bQ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/baseball,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "bR" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"bS" = (
+/obj/effect/turf_decal/ameritard,
+/obj/structure/chair/americandiner/booth/end_right{
+	dir = 1;
+	icon_state = "ameribooth-end2"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "bT" = (
 /obj/structure/table/american,
 /obj/item/reagent_containers/food/snacks/burger/superbite,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -844,12 +837,39 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"bV" = (
+/obj/effect/turf_decal/ameritard,
+/obj/structure/chair/americandiner/booth/single{
+	dir = 1;
+	icon_state = "ameribooth_single"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"bW" = (
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/camera{
+	c_tag = "Bar";
+	dir = 8;
+	network = list("SS13")
+	},
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
 "bX" = (
 /obj/structure/table/american/end,
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/stripes/red/line{
-	icon_state = "warningline_red";
-	dir = 8
+	dir = 8;
+	icon_state = "warningline_red"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -879,19 +899,6 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cd" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
-	},
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "cf" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -919,24 +926,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"ci" = (
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8;
-	network = list("SS13")
-	},
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/bar)
 "cj" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel{
@@ -1050,7 +1039,7 @@
 /obj/machinery/airalarm{
 	dir = 1;
 	icon_state = "alarm0";
-	pixel_y = -22
+	pixel_y = -24
 	},
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
@@ -1069,7 +1058,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -1078,6 +1067,20 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"ko" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/burger/baseball{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = -10;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "mc" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -1096,11 +1099,9 @@
 /area/crew_quarters/kitchen)
 "vO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/effect/turf_decal/ameritard,
@@ -1110,6 +1111,20 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"Aw" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "Dn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1136,7 +1151,6 @@
 "Ns" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1217,7 +1231,7 @@ az
 aB
 aO
 aO
-bc
+bS
 az
 az
 ca
@@ -1280,13 +1294,13 @@ ab
 am
 aD
 aO
-bc
+bS
 aD
 aO
-bc
+bS
 aD
 aO
-bc
+bS
 az
 az
 cp
@@ -1328,7 +1342,7 @@ ab
 as
 aA
 aO
-bc
+bV
 az
 bu
 bA
@@ -1396,7 +1410,7 @@ ab
 bq
 by
 cv
-ci
+bW
 cv
 bZ
 az
@@ -1508,7 +1522,7 @@ aZ
 aj
 bt
 bH
-bQ
+ko
 bD
 bD
 bD
@@ -1542,7 +1556,7 @@ bw
 bD
 bD
 bJ
-cd
+Aw
 cm
 aj
 aa

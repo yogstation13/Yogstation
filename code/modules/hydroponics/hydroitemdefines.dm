@@ -85,6 +85,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	flags_1 = CONDUCT_1
 	force = 12
+	tool_behaviour = TOOL_HATCHET
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	throw_speed = 3

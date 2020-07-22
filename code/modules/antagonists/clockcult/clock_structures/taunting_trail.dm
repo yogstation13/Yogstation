@@ -37,6 +37,7 @@
 	playsound(src, 'sound/items/welder.ogg', 50, 1)
 
 /obj/structure/destructible/clockwork/taunting_trail/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
 /obj/structure/destructible/clockwork/taunting_trail/Crossed(atom/movable/AM)

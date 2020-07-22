@@ -68,6 +68,11 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
 	icon_state = "scisecurecrate"
 
+/obj/structure/closet/crate/secure/medical
+	name = "secure medical crate"
+	desc = "A crate with a lock on it, painted in the scheme of the station's doctors."
+	icon_state = "medsecurecrate"
+
 /obj/structure/closet/crate/secure/owned
 	name = "private crate"
 	desc = "A crate cover designed to only open for who purchased its contents."

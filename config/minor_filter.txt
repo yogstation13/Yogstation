@@ -16,17 +16,27 @@
 # \b[f]+[u]+\b=fun you
 #    This would make any word with combinations of "f" followed by "u" be replaced with fun you. So "ffffffffuuuuuuuuuuu" becomes "fun you".
 
-wtf=what the fuck
+#hahas
 lmao=haha
-lol =haha 
-brb=be right back
+\blol\b=haha 
 kek=haha
 rofl=haha
-lel=haha
-wbu=what about you
-idk=I don't know
-idc=I don't care
-hbu=how about you
-brt=be right there
+\blel\b=haha
 xd=haha
+
+#general netspeak
+\btbh\b=to be honest
+\bsmh\b=shaking my head
+wtf=what the fuck
+\bbrb\b=be right back
+nvm=nevermind
+wbu=what about you
+\bidk\b=I don't know
+idfk=I don't fucking know
+\bidc\b=I don't care
+idfc=I don't fucking care
+hbu=how about you
+\bbrt\b=be right there
+\bffs\b=for fuck's sake
+\bur\b=your
 btw=by the way

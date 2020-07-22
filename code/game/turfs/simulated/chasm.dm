@@ -76,9 +76,6 @@
 		else
 			to_chat(user, "<span class='warning'>The plating is going to need some support! Place metal rods first.</span>")
 
-/turf/open/chasm/CanPass(atom/movable/mover, turf/target)
-	return 1
-
 // Chasms for Lavaland, with planetary atmos and lava glow
 /turf/open/chasm/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -88,6 +85,15 @@
 	light_power = 0.65 //less bright, too
 	light_color = LIGHT_COLOR_LAVA //let's just say you're falling into lava, that makes sense right
 
+// Chasms for Ice moon, with planetary atmos and glow
+/turf/open/chasm/icemoon
+	icon = 'icons/turf/floors/icechasms.dmi'
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/chasm/icemoon
+	light_range = 1.9
+	light_power = 0.65
+	light_color = LIGHT_COLOR_PURPLE
 
 // Chasms for the jungle, with planetary atmos and a different icon
 /turf/open/chasm/jungle
@@ -110,6 +116,7 @@
 	baseturfs = /turf/open/chasm/magic
 	light_range = 1.9
 	light_power = 0.65
+	CanAtmosPass = ATMOS_PASS_NO
 
 /turf/open/chasm/magic/Initialize()
 	. = ..()

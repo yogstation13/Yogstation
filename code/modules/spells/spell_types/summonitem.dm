@@ -13,6 +13,7 @@
 
 	var/obj/marked_item
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "summons"
 
 /obj/effect/proc_holder/spell/targeted/summonitem/cast(list/targets,mob/user = usr)
@@ -38,7 +39,7 @@
 				else
 					message = "<span class='notice'>You must hold the desired item in your hands to mark it for recall.</span>"
 
-		else if(marked_item && marked_item in hand_items) //unlinking item to the spell
+		else if(marked_item && (marked_item in hand_items)) //unlinking item to the spell
 			message = "<span class='notice'>You remove the mark on [marked_item] to use elsewhere.</span>"
 			name = "Instant Summons"
 			marked_item = 		null
@@ -79,7 +80,7 @@
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
 							//yogs start -- Yogs Vorecode
-							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)	
+							if(C.stomach_contents && (item_to_retrieve in C.stomach_contents))	
 								C.stomach_contents -= item_to_retrieve
 							//Yogs end
 							for(var/X in C.bodyparts)
