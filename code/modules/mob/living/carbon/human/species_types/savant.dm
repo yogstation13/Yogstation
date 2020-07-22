@@ -24,7 +24,7 @@
 	//species_language_holder = /datum/language_holder
 	//list/default_features = list() // Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
 	//list/mutant_bodyparts = list() 	// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.	list/mutant_organs = list()		//Internal organs that are unique to this race.
-	speedmod = 1	// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
+	speedmod = 1	//Small legs!
 	armor = -20	// overall defense for the race... or less defense, if it's negative.
 	punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
 	punchdamagehigh = 5      //highest possible punch damage
@@ -42,7 +42,7 @@
 	//wings_icon = "Angel" //the icon used for the wings
 
 	// species-only traits. Can be found in DNA.dm
-	species_traits = list(AGENDER, NO_UNDERWEAR)
+	species_traits = list(AGENDER, NO_UNDERWEAR, NOEYESPRITES)
 	// generic traits tied to having the species
 	inherent_traits = list(TRAIT_SMALL_HANDS, TRAIT_SHORT)
 	attack_verb = "punch"	// punch-specific attack verb
@@ -65,6 +65,21 @@
 	//obj/item/organ/liver/mutantliver
 	//obj/item/organ/stomach/mutantstomach
 	override_float = FALSE
+	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform
+
+/datum/species/savant/proc/suitUp(mob/living/carbon/human/C)
+	var/datum/species/savant/suit/S
+	var/sfh = S.suitFailHealth
+	if((C.getFireLoss() + C.getBruteLoss()) > sfh)//This part heals suitFailHealth points total, starting in brute, and any leftovers go to burn.
+		if(C.getBruteLoss() > sfh)
+			C.adjustBruteLoss(-sfh, 0)
+		else
+			var/BruteHeal = C.getBruteLoss()
+			C.adjustBruteLoss(-BruteHeal, 0)
+			var/BurnHeal = -(sfh - BruteHeal)
+			C.adjustFireLoss(BurnHeal)
+	C.dna.species = /datum/species/savant/suit
+
 
 /datum/species/savant/suit //THIS IS THE DEFAULT ONE YOU SHOULD SPAWN IN FOR PLAYERS
 	id = "savantsuit"
@@ -76,26 +91,15 @@
 	punchdamagehigh = 10
 	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
-	species_traits = list(NOTRANSSTING)
+	species_traits = list(AGENDER, NO_UNDERWEAR, NOTRANSSTING, NO_DNA_COPY)
 	var/suitFailHealth = 50
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
 /datum/species/savant/suit/on_species_gain(mob/living/carbon/C)
 	. = ..()
-	if(C.dna)
-		C.dna.species = /datum/species/savant //this is so when you get cloned, or whatever, it clones you sans suit, lol
-	if((C.getFireLoss() + C.getBruteLoss()) > suitFailHealth)//This part heals suitFailHealth points total, starting in brute, and any leftovers go to burn.
-		if(C.getBruteLoss() > suitFailHealth)
-			C.adjustBruteLoss(-suitFailHealth, 0)
-		else
-			var/BruteHeal = C.getBruteLoss()
-			C.adjustBruteLoss(-BruteHeal, 0)
-			var/BurnHeal = -(suitFailHealth - BruteHeal)
-			C.adjustFireLoss(BurnHeal)
-
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
-		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))
+		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))//Head and chest are organic. Only the limbs are augmented
 			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, TRUE)
 
 /datum/species/savant/suit/on_species_loss(mob/living/carbon/C)
@@ -110,3 +114,7 @@
 		H.set_species(/datum/species/savant, icon_update=0)
 		H.update_body_parts()
 		explosion(H, 0, 2, 0)
+
+/datum/species/savant/spec_fully_heal(mob/living/carbon/human/H)
+	H.dna.species =  /datum/species/savant/suit
+	. = ..()
