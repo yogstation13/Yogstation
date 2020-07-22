@@ -2,9 +2,6 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"	// if the game needs to manually check your race to do something not included in a proc here, it will use this
-
-	//limbs_id		//this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
-
 	sexes = 0
 
 	//exotic_blood = "..."96BB00?	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
@@ -39,3 +36,4 @@
 	mutanteyes = /obj/item/organ/eyes/polysmorph
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
