@@ -14,7 +14,7 @@
 	coldmod = 0.75
 	heatmod = 2
 	acidmod = 0.90
-	damage_overlay_type = "polysmorph"
+	damage_overlay_type = ""
 	//var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
