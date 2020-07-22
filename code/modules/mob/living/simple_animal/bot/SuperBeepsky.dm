@@ -8,7 +8,7 @@
 	baton_type = /obj/item/melee/transforming/energy/sword/saber
 	base_speed = 4 //he's a fast fucker
 	var/obj/item/weapon
-	var/block_chancer = 50
+	var/block_chance = 50
 
 
 /mob/living/simple_animal/bot/secbot/grievous/toy //A toy version of general beepsky!
