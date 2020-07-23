@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum.html#var">Var Details</a> - <a href="datum.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/datums/datum.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum.html#var/tgui_shared_states">tgui_shared_states</a></th><td>global</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum.html#proc/ui_act">ui_act</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_base_html">ui_base_html</a></th><td></td></tr>
+            <tr><th><a href="datum.html#proc/ui_close">ui_close</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_data">ui_data</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_host">ui_host</a></th><td>private</td></tr>
+            <tr><th><a href="datum.html#proc/ui_interact">ui_interact</a></th><td>tgui external</td></tr>
+            <tr><th><a href="datum.html#proc/ui_static_data">ui_static_data</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_status">ui_status</a></th><td>tgui states</td></tr>
+            <tr><th><a href="datum.html#proc/update_static_data">update_static_data</a></th><td>public</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/tgui_shared_states"><aside class="declaration">var </aside>tgui_shared_states
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 119"/></a></h3>
+        <p>global</p>
+<p>Associative list of JSON-encoded shared states that were set by
+tgui clients.</p><h2 id="proc">Proc Details</h2><h3 id="proc/ui_act"><aside class="declaration">proc </aside>ui_act<aside>(action, /list/params, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 82"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Called on a UI when the UI receieves a href.
+Think of this as Topic().</p>
+<p>required action string The action/button that has been invoked by the user.
+required params list A list of parameters attached to the button.</p>
+<p>return bool If the UI should be updated or not.</p><h3 id="proc/ui_base_html"><aside class="declaration">proc </aside>ui_base_html<aside>(html) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 100"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>public</p>
+</li>
+<li>
+<p>Called on an object when a tgui object is being created, allowing you to</p>
+</li>
+<li>
+<p>customise the html</p>
+</li>
+<li>
+<p>For example: inserting a custom stylesheet that you need in the head</p>
+</li>
+<li>
+<p>For this purpose, some tags are available in the html, to be parsed out
+^ with replacetext</p>
+</li>
+<li>
+<p>(customheadhtml) - Additions to the head tag</p>
+</li>
+<li>
+<p>required html the html base text</p>
+</li>
+</ul><h3 id="proc/ui_close"><aside class="declaration">proc </aside>ui_close<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 133"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Called on a UI's object when the UI is closed, not to be confused with
+client/verb/uiclose(), which closes the ui window</p><h3 id="proc/ui_data"><aside class="declaration">proc </aside>ui_data<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 36"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Data to be sent to the UI.
+This must be implemented for a UI to work.</p>
+<p>required user mob The mob interacting with the UI.</p>
+<p>return list Data to be sent to the UI.</p><h3 id="proc/ui_host"><aside class="declaration">proc </aside>ui_host<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 110"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>The UI's host object (usually src_object).
+This allows modules/datums to have the UI attached to them,
+and be a part of another object.</p><h3 id="proc/ui_interact"><aside class="declaration">proc </aside>ui_interact<aside>(/<a href="mob.html">mob</a>/user, ui_key, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, force_open, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/master_ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 23"/></a></aside>
+        </h3>
+        <p>tgui external</p>
+<p>Contains all external tgui declarations.</p>
+<p>Copyright (c) 2020 Aleksej Komarov
+SPDX-License-Identifier: MIT</p>
+<p>public</p>
+<p>Used to open and update UIs.
+If this proc is not implemented properly, the UI will not update correctly.</p>
+<p>required user mob The mob who opened/is using the UI.
+optional ui_key string The ui_key of the UI.
+optional ui datum/tgui The UI to be updated, if it exists.
+optional force_open bool If the UI should be re-opened instead of updated.
+optional master_ui datum/tgui The parent UI.
+optional state datum/ui_state The state used to determine status.</p><h3 id="proc/ui_static_data"><aside class="declaration">proc </aside>ui_static_data<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 52"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Static Data to be sent to the UI.
+Static data differs from normal data in that it's large data that should be sent infrequently
+This is implemented optionally for heavy uis that would be sending a lot of redundant data
+frequently.
+Gets squished into one object on the frontend side, but the static part is cached.</p>
+<p>required user mob The mob interacting with the UI.</p>
+<p>return list Statuic Data to be sent to the UI.</p><h3 id="proc/ui_status"><aside class="declaration">proc </aside>ui_status<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/states.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states.dm 21"/></a></aside>
+        </h3>
+        <p>tgui states</p>
+<p>Base state and helpers for states. Just does some sanity checks, implement
+a state for in-depth checks.</p>
+<p>Copyright (c) 2020 Aleksej Komarov
+SPDX-License-Identifier: MIT</p>
+<p>public</p>
+<p>Checks the UI state for a mob.</p>
+<p>required user mob The mob who opened/is using the UI.
+required state datum/ui_state The state to check.</p>
+<p>return UI_state The state of the UI.</p><h3 id="proc/update_static_data"><aside class="declaration">proc </aside>update_static_data<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, ui_key) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/external.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 64"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Forces an update on static data. Should be done manually whenever something happens to change static data.</p>
+<p>required user the mob currently interacting with the ui
+optional ui ui to be updated
+optional ui_key ui key of ui to be updated</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/468c9262577e2d959e2ad450a73464327318b087">468c926</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>

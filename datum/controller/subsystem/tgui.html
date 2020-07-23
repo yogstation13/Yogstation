@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;tgui - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/tgui.html#proc">Proc Details</a></header>
+<main>
+<h1>tgui <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/tgui.html">tgui</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/controllers/subsystem/tgui.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tgui.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/close_all_uis">close_all_uis</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/close_uis">close_uis</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/close_user_uis">close_user_uis</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/get_open_ui">get_open_ui</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/on_close">on_close</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/on_logout">on_logout</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/on_open">on_open</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/on_transfer">on_transfer</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/try_update_ui">try_update_ui</a></th><td>tgui subsystem</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/update_uis">update_uis</a></th><td>private</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tgui.html#proc/update_user_uis">update_user_uis</a></th><td>private</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/close_all_uis"><aside class="declaration">proc </aside>close_all_uis<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 112"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Close <em>ALL</em> UIs</p>
+<p>return int The number of UIs closed.</p><h3 id="proc/close_uis"><aside class="declaration">proc </aside>close_uis<aside>(/<a href="datum.html">datum</a>/src_object) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 92"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Close all UIs attached to src_object.</p>
+<p>required src_object datum The object/datum which owns the UIs.</p>
+<p>return int The number of UIs closed.</p><h3 id="proc/close_user_uis"><aside class="declaration">proc </aside>close_user_uis<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/src_object, ui_key) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 155"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Close all UIs belonging to a user.</p>
+<p>required user mob The mob who opened/is using the UI.
+optional src_object datum If provided, only close UIs belonging this src_object.
+optional ui_key string If provided, only close UIs with this UI key.</p>
+<p>return int The number of UIs closed.</p><h3 id="proc/get_open_ui"><aside class="declaration">proc </aside>get_open_ui<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/src_object, ui_key) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 48"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Get a open UI given a user, src_object, and ui_key.</p>
+<p>required user mob The mob who opened/is using the UI.
+required src_object datum The object/datum which owns the UI.
+required ui_key string The ui_key of the UI.</p>
+<p>return datum/tgui The found UI.</p><h3 id="proc/on_close"><aside class="declaration">proc </aside>on_close<aside>(/<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 195"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Remove a UI from the list of open UIs.</p>
+<p>required ui datum/tgui The UI to be removed.</p>
+<p>return bool If the UI was removed or not.</p><h3 id="proc/on_logout"><aside class="declaration">proc </aside>on_logout<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 225"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Handle client logout, by closing all their UIs.</p>
+<p>required user mob The mob which logged out.</p>
+<p>return int The number of UIs closed.</p><h3 id="proc/on_open"><aside class="declaration">proc </aside>on_open<aside>(/<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 173"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Add a UI to the list of open UIs.</p>
+<p>required ui datum/tgui The UI to be added.</p><h3 id="proc/on_transfer"><aside class="declaration">proc </aside>on_transfer<aside>(/<a href="mob.html">mob</a>/source, /<a href="mob.html">mob</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 238"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Handle clients switching mobs, by transferring their UIs.</p>
+<p>required user source The client's original mob.
+required user target The client's new mob.</p>
+<p>return bool If the UIs were transferred.</p><h3 id="proc/try_update_ui"><aside class="declaration">proc </aside>try_update_ui<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/src_object, ui_key, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, force_open) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 23"/></a></aside>
+        </h3>
+        <p>tgui subsystem</p>
+<p>Contains all tgui state and subsystem code.</p>
+<p>Copyright (c) 2020 Aleksej Komarov
+SPDX-License-Identifier: MIT</p>
+<p>public</p>
+<p>Get a open UI given a user, src_object, and ui_key and try to update it with data.</p>
+<p>required user mob The mob who opened/is using the UI.
+required src_object datum The object/datum which owns the UI.
+required ui_key string The ui_key of the UI.
+optional ui datum/tgui The UI to be updated, if it exists.
+optional force_open bool If the UI should be re-opened instead of updated.</p>
+<p>return datum/tgui The found UI.</p><h3 id="proc/update_uis"><aside class="declaration">proc </aside>update_uis<aside>(/<a href="datum.html">datum</a>/src_object) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 70"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Update all UIs attached to src_object.</p>
+<p>required src_object datum The object/datum which owns the UIs.</p>
+<p>return int The number of UIs updated.</p><h3 id="proc/update_user_uis"><aside class="declaration">proc </aside>update_user_uis<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/src_object, ui_key) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/tgui/subsystem.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;subsystem.dm 133"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>Update all UIs belonging to a user.</p>
+<p>required user mob The mob who opened/is using the UI.
+optional src_object datum If provided, only update UIs belonging this src_object.
+optional ui_key string If provided, only update UIs with this UI key.</p>
+<p>return int The number of UIs updated.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/468c9262577e2d959e2ad450a73464327318b087">468c926</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>

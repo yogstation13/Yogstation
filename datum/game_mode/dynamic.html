@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;game_mode&#x2F;dynamic - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/game_mode/dynamic.html#var">Var Details</a> - <a href="datum/game_mode/dynamic.html#proc">Proc Details</a></header>
+<main>
+<h1>dynamic mode <aside>/<a href="datum.html">datum</a>/<a href="datum/game_mode.html">game_mode</a>/<a href="datum/game_mode/dynamic.html">dynamic</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 44"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/candidates">candidates</a></th><td>List of candidates used on roundstart rulesets.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/current_players">current_players</a></th><td>Associative list of current players, in order: living players, living antagonists, dead players and observers.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/current_rules">current_rules</a></th><td>Rules that are processed, rule_process is called on the rules in this list.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/discountedcrates">discountedcrates</a></th><td>CRATE DISCOUNT</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/executed_rules">executed_rules</a></th><td>List of executed rulesets.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/forced_injection">forced_injection</a></th><td>When TRUE GetInjectionChance returns 100.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/forced_latejoin_rule">forced_latejoin_rule</a></th><td>Forced ruleset to be executed for the next latejoin.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/high_pop_second_rule_req">high_pop_second_rule_req</a></th><td>Threat requirement for a second ruleset when high pop override is in effect.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/high_pop_third_rule_req">high_pop_third_rule_req</a></th><td>Threat requirement for a third ruleset when high pop override is in effect.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/highlander_executed">highlander_executed</a></th><td>If a highlander executed.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/latejoin_injection_cooldown">latejoin_injection_cooldown</a></th><td>When world.time is over this number the mode tries to inject a latejoin ruleset.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/latejoin_rules">latejoin_rules</a></th><td>List of latejoin rules used for selecting the rules.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/midround_injection_cooldown">midround_injection_cooldown</a></th><td>When world.time is over this number the mode tries to inject a midround ruleset.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/midround_rules">midround_rules</a></th><td>List of midround rules used for selecting the rules.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/only_ruleset_executed">only_ruleset_executed</a></th><td>If a only ruleset has been executed.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/peaceful_percentage">peaceful_percentage</a></th><td>How many percent of the rounds are more peaceful.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/pop_last_updated">pop_last_updated</a></th><td>When current_players was updated last time.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/pop_per_requirement">pop_per_requirement</a></th><td></td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/roundstart_pop_ready">roundstart_pop_ready</a></th><td>Number of players who were ready on roundstart.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/roundstart_rules">roundstart_rules</a></th><td>List of roundstart rules used for selecting the rules.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/second_rule_req">second_rule_req</a></th><td>The requirement used for checking if a second rule should be selected.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/third_rule_req">third_rule_req</a></th><td>The requirement used for checking if a third rule should be selected.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/threat">threat</a></th><td>Set at the beginning of the round. Spent by the mode to &quot;purchase&quot; rules.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/threat_level">threat_level</a></th><td>The &quot;threat cap&quot;, threat shouldn't normally go above this and is used in ruleset calculations</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#var/threat_log">threat_log</a></th><td>Running information about the threat. Can store text or datum entries.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/check_age">check_age</a></th><td>Checks if client age is age or older.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/check_blocking">check_blocking</a></th><td>Checks if a type in blocking_list is in rule_list.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/create_threat">create_threat</a></th><td>Generate threat and increase the threat_level if it goes beyond, capped at 100</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/generate_threat">generate_threat</a></th><td>Generates the threat level using lorentz distribution and assigns peaceful_percentage.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/get_injection_chance">get_injection_chance</a></th><td>Gets the chance for latejoin and midround injection, the dry_run argument is only used for forced injection.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/lorentz_to_threat">lorentz_to_threat</a></th><td>Turns the value generated by lorentz distribution to threat value between 0 and 100.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/picking_midround_latejoin_rule">picking_midround_latejoin_rule</a></th><td>Picks a random midround OR latejoin rule from the list given as an argument and executes it.
+Also this could be named better.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/picking_roundstart_rule">picking_roundstart_rule</a></th><td>Picks a random roundstart rule from the list given as an argument and executes it.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/picking_specific_rule">picking_specific_rule</a></th><td>An experimental proc to allow admins to call rules on the fly or have rules call other rules.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/refund_threat">refund_threat</a></th><td>Refund threat, but no more than threat_level.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/remove_from_list">remove_from_list</a></th><td>Removes type from the list</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/rigged_roundstart">rigged_roundstart</a></th><td>A simple roundstart proc used when dynamic_forced_roundstart_ruleset has rules in it.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/spend_threat">spend_threat</a></th><td>Expend threat, can't fall under 0.</td></tr>
+            <tr><th><a href="datum/game_mode/dynamic.html#proc/update_playercounts">update_playercounts</a></th><td>Updates current_players.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/candidates"><aside class="declaration">var </aside>candidates
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 87"/></a></h3>
+        <p>List of candidates used on roundstart rulesets.</p><h3 id="var/current_players"><aside class="declaration">var </aside>current_players
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 93"/></a></h3>
+        <p>Associative list of current players, in order: living players, living antagonists, dead players and observers.</p><h3 id="var/current_rules"><aside class="declaration">var </aside>current_rules
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 89"/></a></h3>
+        <p>Rules that are processed, rule_process is called on the rules in this list.</p><h3 id="var/discountedcrates"><aside class="declaration">var </aside>discountedcrates
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 111"/></a></h3>
+        <p>CRATE DISCOUNT</p><h3 id="var/executed_rules"><aside class="declaration">var </aside>executed_rules
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 91"/></a></h3>
+        <p>List of executed rulesets.</p><h3 id="var/forced_injection"><aside class="declaration">var </aside>forced_injection
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 99"/></a></h3>
+        <p>When TRUE GetInjectionChance returns 100.</p><h3 id="var/forced_latejoin_rule"><aside class="declaration">var </aside>forced_latejoin_rule
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/dynamic_ruleset.html">dynamic_ruleset</a>/latejoin</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 101"/></a></h3>
+        <p>Forced ruleset to be executed for the next latejoin.</p><h3 id="var/high_pop_second_rule_req"><aside class="declaration">var </aside>high_pop_second_rule_req
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 81"/></a></h3>
+        <p>Threat requirement for a second ruleset when high pop override is in effect.</p><h3 id="var/high_pop_third_rule_req"><aside class="declaration">var </aside>high_pop_third_rule_req
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 83"/></a></h3>
+        <p>Threat requirement for a third ruleset when high pop override is in effect.</p><h3 id="var/highlander_executed"><aside class="declaration">var </aside>highlander_executed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 107"/></a></h3>
+        <p>If a highlander executed.</p><h3 id="var/latejoin_injection_cooldown"><aside class="declaration">var </aside>latejoin_injection_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 95"/></a></h3>
+        <p>When world.time is over this number the mode tries to inject a latejoin ruleset.</p><h3 id="var/latejoin_rules"><aside class="declaration">var </aside>latejoin_rules
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 64"/></a></h3>
+        <p>List of latejoin rules used for selecting the rules.</p><h3 id="var/midround_injection_cooldown"><aside class="declaration">var </aside>midround_injection_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 97"/></a></h3>
+        <p>When world.time is over this number the mode tries to inject a midround ruleset.</p><h3 id="var/midround_rules"><aside class="declaration">var </aside>midround_rules
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 66"/></a></h3>
+        <p>List of midround rules used for selecting the rules.</p><h3 id="var/only_ruleset_executed"><aside class="declaration">var </aside>only_ruleset_executed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 109"/></a></h3>
+        <p>If a only ruleset has been executed.</p><h3 id="var/peaceful_percentage"><aside class="declaration">var </aside>peaceful_percentage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 105"/></a></h3>
+        <p>How many percent of the rounds are more peaceful.</p><h3 id="var/pop_last_updated"><aside class="declaration">var </aside>pop_last_updated
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 103"/></a></h3>
+        <p>When current_players was updated last time.</p><h3 id="var/pop_per_requirement"><aside class="declaration">var </aside>pop_per_requirement
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 75"/></a></h3>
+        <ul>
+<li><h1 id="pop-range-per-requirement">Pop range per requirement.</h1>
+<pre><code>* If the value is five the range is:
+* 0-4, 5-9, 10-14, 15-19, 20-24, 25-29, 30-34, 35-39, 40-54, 45+
+* If it is six the range is:
+* 0-5, 6-11, 12-17, 18-23, 24-29, 30-35, 36-41, 42-47, 48-53, 54+
+* If it is seven the range is:
+* 0-6, 7-13, 14-20, 21-27, 28-34, 35-41, 42-48, 49-55, 56-62, 63+
+</code></pre>
+</li>
+</ul><h3 id="var/roundstart_pop_ready"><aside class="declaration">var </aside>roundstart_pop_ready
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 85"/></a></h3>
+        <p>Number of players who were ready on roundstart.</p><h3 id="var/roundstart_rules"><aside class="declaration">var </aside>roundstart_rules
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 62"/></a></h3>
+        <p>List of roundstart rules used for selecting the rules.</p><h3 id="var/second_rule_req"><aside class="declaration">var </aside>second_rule_req
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 77"/></a></h3>
+        <p>The requirement used for checking if a second rule should be selected.</p><h3 id="var/third_rule_req"><aside class="declaration">var </aside>third_rule_req
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 79"/></a></h3>
+        <p>The requirement used for checking if a third rule should be selected.</p><h3 id="var/threat"><aside class="declaration">var </aside>threat
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 58"/></a></h3>
+        <p>Set at the beginning of the round. Spent by the mode to &quot;purchase&quot; rules.</p><h3 id="var/threat_level"><aside class="declaration">var </aside>threat_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 56"/></a></h3>
+        <p>The &quot;threat cap&quot;, threat shouldn't normally go above this and is used in ruleset calculations</p><h3 id="var/threat_log"><aside class="declaration">var </aside>threat_log
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 60"/></a></h3>
+        <p>Running information about the threat. Can store text or datum entries.</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_age"><aside class="declaration">proc </aside>check_age<aside>(/<a href="client.html">client</a>/C, age) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L671">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 671"/></a></aside>
+        </h3>
+        <p>Checks if client age is age or older.</p><h3 id="proc/check_blocking"><aside class="declaration">proc </aside>check_blocking<aside>(/list/blocking_list, /list/rule_list) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L662">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 662"/></a></aside>
+        </h3>
+        <p>Checks if a type in blocking_list is in rule_list.</p><h3 id="proc/create_threat"><aside class="declaration">proc </aside>create_threat<aside>(gain) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L721">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 721"/></a></aside>
+        </h3>
+        <p>Generate threat and increase the threat_level if it goes beyond, capped at 100</p><h3 id="proc/generate_threat"><aside class="declaration">proc </aside>generate_threat<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 281"/></a></aside>
+        </h3>
+        <p>Generates the threat level using lorentz distribution and assigns peaceful_percentage.</p><h3 id="proc/get_injection_chance"><aside class="declaration">proc </aside>get_injection_chance<aside>(dry_run) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L630">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 630"/></a></aside>
+        </h3>
+        <p>Gets the chance for latejoin and midround injection, the dry_run argument is only used for forced injection.</p><h3 id="proc/lorentz_to_threat"><aside class="declaration">proc </aside>lorentz_to_threat<aside>(x) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L731">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 731"/></a></aside>
+        </h3>
+        <p>Turns the value generated by lorentz distribution to threat value between 0 and 100.</p><h3 id="proc/picking_midround_latejoin_rule"><aside class="declaration">proc </aside>picking_midround_latejoin_rule<aside>(/list/drafted_rules, forced) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L474">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 474"/></a></aside>
+        </h3>
+        <p>Picks a random midround OR latejoin rule from the list given as an argument and executes it.
+Also this could be named better.</p><h3 id="proc/picking_roundstart_rule"><aside class="declaration">proc </aside>picking_roundstart_rule<aside>(/list/drafted_rules, forced) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L418">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 418"/></a></aside>
+        </h3>
+        <p>Picks a random roundstart rule from the list given as an argument and executes it.</p><h3 id="proc/picking_specific_rule"><aside class="declaration">proc </aside>picking_specific_rule<aside>(ruletype, forced) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L525">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 525"/></a></aside>
+        </h3>
+        <p>An experimental proc to allow admins to call rules on the fly or have rules call other rules.</p><h3 id="proc/refund_threat"><aside class="declaration">proc </aside>refund_threat<aside>(regain) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L717">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 717"/></a></aside>
+        </h3>
+        <p>Refund threat, but no more than threat_level.</p><h3 id="proc/remove_from_list"><aside class="declaration">proc </aside>remove_from_list<aside>(/list/type_list, type) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L655">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 655"/></a></aside>
+        </h3>
+        <p>Removes type from the list</p><h3 id="proc/rigged_roundstart"><aside class="declaration">proc </aside>rigged_roundstart<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 359"/></a></aside>
+        </h3>
+        <p>A simple roundstart proc used when dynamic_forced_roundstart_ruleset has rules in it.</p><h3 id="proc/spend_threat"><aside class="declaration">proc </aside>spend_threat<aside>(cost) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L727">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 727"/></a></aside>
+        </h3>
+        <p>Expend threat, can't fall under 0.</p><h3 id="proc/update_playercounts"><aside class="declaration">proc </aside>update_playercounts<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/dynamic.dm#L609">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;dynamic.dm 609"/></a></aside>
+        </h3>
+        <p>Updates current_players.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/468c9262577e2d959e2ad450a73464327318b087">468c926</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>

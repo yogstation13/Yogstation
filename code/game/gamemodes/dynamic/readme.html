@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;readme.md - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>DYNAMIC <aside>code/game/gamemodes/dynamic/readme.md</aside> 
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/game/gamemodes/dynamic/readme.md">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;dynamic&#x2F;readme.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><h2 id="roundstart">ROUNDSTART</h2>
+<p>Dynamic rolls threat based on a special sauce formula:
+&quot;dynamic_curve_width * tan((3.1416 * (rand() - 0.5) * 57.2957795)) + dynamic_curve_centre&quot;</p>
+<p>Latejoin and midround injection cooldowns are set using exponential distribution between
+5 minutes and 25 for latejoin
+15 minutes and 35 for midround
+this value is then added to world.time and assigned to the injection cooldown variables.</p>
+<p>rigged_roundstart() is called instead if there are forced rules (an admin set the mode)</p>
+<p>can_start() -&gt; pre_setup() -&gt; roundstart() OR rigged_roundstart() -&gt; picking_roundstart_rule(drafted_rules) -&gt; post_setup()</p>
+<h2 id="process">PROCESS</h2>
+<p>Calls rule_process on every rule which is in the current_rules list.
+Every sixty seconds, update_playercounts()
+Midround injection time is checked against world.time to see if an injection should happen.
+If midround injection time is lower than world.time, it updates playercounts again, then tries to inject and generates a new cooldown regardless of whether a rule is picked.</p>
+<h2 id="latejoin">LATEJOIN</h2>
+<p>make_antag_chance(newPlayer) -&gt; [For each latespawn rule...]
+-&gt; acceptable(living players, threat_level) -&gt; trim_candidates() -&gt; ready(forced=FALSE)
+**If true, add to drafted rules
+**NOTE that acceptable uses threat_level not threat!
+**NOTE Latejoin timer is ONLY reset if at least one rule was drafted.
+**NOTE the new_player.dm AttemptLateSpawn() calls OnPostSetup for all roles (unless assigned role is MODE)</p>
+<p>[After collecting all draftble rules...]
+-&gt; picking_latejoin_ruleset(drafted_rules) -&gt; spend threat -&gt; ruleset.execute()</p>
+<h2 id="midround">MIDROUND</h2>
+<p>process() -&gt; [For each midround rule...]
+-&gt; acceptable(living players, threat_level) -&gt; trim_candidates() -&gt; ready(forced=FALSE)
+[After collecting all draftble rules...]
+-&gt; picking_midround_ruleset(drafted_rules) -&gt; spend threat -&gt; ruleset.execute()</p>
+<h2 id="forced">FORCED</h2>
+<p>For latejoin, it simply sets forced_latejoin_rule
+make_antag_chance(newPlayer) -&gt; trim_candidates() -&gt; ready(forced=TRUE) **NOTE no acceptable() call</p>
+<p>For midround, calls the below proc with forced = TRUE
+picking_specific_rule(ruletype,forced) -&gt; forced OR acceptable(living_players, threat_level) -&gt; trim_candidates() -&gt; ready(forced) -&gt; spend threat -&gt; execute()
+**NOTE specific rule can be called by RS traitor-&gt;MR autotraitor w/ forced=FALSE
+**NOTE that due to short circuiting acceptable() need not be called if forced.</p>
+<h2 id="ruleset">RULESET</h2>
+<p>acceptable(population,threat) just checks if enough threat_level for population indice.
+**NOTE that we currently only send threat_level as the second arg, not threat.
+ready(forced) checks if enough candidates and calls the map's map_ruleset(dynamic_ruleset) at the parent level</p>
+<p>trim_candidates() varies significantly according to the ruleset type
+Roundstart: All candidates are new_player mobs. Check them for standard stuff: connected, desire role, not banned, etc.
+**NOTE Roundstart deals with both candidates (trimmed list of valid players) and mode.candidates (everyone readied up). Don't confuse them!
+Latejoin: Only one candidate, the latejoiner. Standard checks.
+Midround: Instead of building a single list candidates, candidates contains four lists: living, dead, observing, and living antags. Standard checks in trim_list(list).</p>
+<p>Midround - Rulesets have additional types
+/from_ghosts: execute() -&gt; send_applications() -&gt; review_applications() -&gt; finish_setup(mob/newcharacter, index) -&gt; setup_role(role)
+**NOTE: execute() here adds dead players and observers to candidates list</p></td></tr></table></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/468c9262577e2d959e2ad450a73464327318b087">468c926</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>

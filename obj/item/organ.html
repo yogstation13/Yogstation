@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;organ - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/organ.html#var">Var Details</a> - <a href="obj/item/organ.html#proc">Proc Details</a></header>
+<main>
+<h1>organ <aside>/<a href="obj.html">obj</a>/<a href="obj/item/organ.html">item/organ</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/surgery/organs/organ_internal.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;organ_internal.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/organ.html#var/healing_factor">healing_factor</a></th><td>Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/prev_damage">prev_damage</a></th><td>Organ variables for determining what we alert the owner with when they pass/clear the damage thresholds</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/applyOrganDamage">applyOrganDamage</a></th><td>Adjusts an organ's damage by the amount &quot;d&quot;, up to a maximum amount, which is by default max damage</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/check_damage_thresholds">check_damage_thresholds</a></th><td>Damage decrements by a percent of its maxhealth
+Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/setOrganDamage">setOrganDamage</a></th><td>SETS an organ's damage to the amount &quot;d&quot;, and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/healing_factor"><aside class="declaration">var </aside>healing_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/surgery/organs/organ_internal.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;organ_internal.dm 15"/></a></h3>
+        <p>Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick</p><h3 id="var/prev_damage"><aside class="declaration">var </aside>prev_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/surgery/organs/organ_internal.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;organ_internal.dm 21"/></a></h3>
+        <p>Organ variables for determining what we alert the owner with when they pass/clear the damage thresholds</p><h2 id="proc">Proc Details</h2><h3 id="proc/applyOrganDamage"><aside class="declaration">proc </aside>applyOrganDamage<aside>(d, maximum) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/surgery/organs/organ_internal.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;organ_internal.dm 195"/></a></aside>
+        </h3>
+        <p>Adjusts an organ's damage by the amount &quot;d&quot;, up to a maximum amount, which is by default max damage</p><h3 id="proc/check_damage_thresholds"><aside class="declaration">proc </aside>check_damage_thresholds<aside>(M) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/surgery/organs/organ_internal.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;organ_internal.dm 113"/></a></aside>
+        </h3>
+        <p>Damage decrements by a percent of its maxhealth
+Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health</p>
+<ul>
+<li>check_damage_thresholds
+<ul>
+<li>input: M (a mob, the owner of the organ we call the proc on)</li>
+<li>output:</li>
+<li>description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.</li>
+<li>
+<pre><code>		 If we have, send the corresponding threshold message to the owner, if such a message exists.
+</code></pre>
+</li>
+</ul>
+</li>
+</ul><h3 id="proc/setOrganDamage"><aside class="declaration">proc </aside>setOrganDamage<aside>(d) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/468c9262577e2d959e2ad450a73464327318b087/code/modules/surgery/organs/organ_internal.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;organ_internal.dm 201"/></a></aside>
+        </h3>
+        <p>SETS an organ's damage to the amount &quot;d&quot;, and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/468c9262577e2d959e2ad450a73464327318b087">468c926</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>
