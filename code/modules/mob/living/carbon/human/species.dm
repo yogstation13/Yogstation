@@ -1302,6 +1302,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
+		var/randomized_zone = ran_zone(user.zone_selected)
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 		var/obj/item/bodypart/affecting = target.get_bodypart(randomized_zone)
 
