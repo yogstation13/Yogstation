@@ -1324,6 +1324,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				shove_blocked = TRUE
 			
 		if(target.IsKnockdown() && !target.IsParalyzed())
+			var/obj/item/bodypart/affecting = target.get_bodypart(randomized_zone)
 			var/armor_block = target.run_armor_check(affecting, "melee", "Your armor prevents your fall!", "Your armor softens your fall!")
 			target.apply_effect(SHOVE_CHAIN_PARALYZE, EFFECT_PARALYZE, armor_block)
 			target.visible_message("<span class='danger'>[user.name] kicks [target.name] onto their side!</span>",
