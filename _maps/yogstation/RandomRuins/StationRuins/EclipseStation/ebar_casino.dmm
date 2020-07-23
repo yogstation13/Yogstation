@@ -917,15 +917,13 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Ko" = (
-/obj/structure/table/reinforced{
-	desc = "Contrary to what the plaque beneath it says, you doubt you can win this from here.";
-	icon = 'icons/obj/bike.dmi';
-	icon_state = "speedbike_blue";
-	name = "speedbike";
-	pixel_y = -10
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/vehicle/ridden/space/speedbike{
+	anchored = 1;
+	desc = "Contrary to what the plaque beneath states, you highly doubt you can win this speedbike here.";
+	pixel_y = -12
 	},
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
