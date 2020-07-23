@@ -14,7 +14,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        tools/travis/install_spaceman_dmm.sh dreamchecker
+        tools/travis/install_spaceman_dmm.sh dmdoc
     
     - name: Generate
       run: |
