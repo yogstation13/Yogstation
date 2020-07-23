@@ -38,7 +38,7 @@
 /datum/department_goal/proc/get_result()
 	if(!completed && check_complete())
 		on_complete(TRUE)
-	return "<li>[name] : <span class='[completed ? "greentext'>Complet" : "redtext'>Fail"]ed</span></li>"
+	return "<li>[name] : <span class='[completed ? "greentext'>C" : "redtext'>Not c"]ompleted</span></li>"
 
 /datum/department_goal/proc/message_players(message)
 	var/string = "Your department's goals have been updated, please have another look at them."

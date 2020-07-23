@@ -412,7 +412,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					mode = 0
 					return
 				var/dep_account = SSeconomy.get_dep_account(id.registered_account.account_job.paycheck_department)
-				dat += "<h4>Department Goals for your department:</h4><ul>"
+				dat += "<h4>Department Goals for the [SSYogs.getDepartmentFromAccount(dep_account)] department:</h4><ul>"
 				for(var/datum/department_goal/dg in SSYogs.department_goals)
 					if(dg.account == dep_account)
 						dat += "<li>[dg.name]: [dg.completed ? "<span class='greentext'>" : "<span class='redtext'>not "]completed</span>.</li>"

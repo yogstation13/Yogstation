@@ -80,6 +80,59 @@ SUBSYSTEM_DEF(Yogs)
 	// Then science
 	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/sci)
 
+	// Then spawn the papers with the goals on em on the heads' (and QM's) computers
+	for(var/obj/machinery/computer/C in GLOB.machines)
+		var/account
+
+		if(istype(C, /obj/machinery/computer/card/minor/ce))
+			account = ACCOUNT_ENG
+		
+		else if(istype(C, /obj/machinery/computer/cargo))
+			account = ACCOUNT_CAR
+		
+		else if(istype(C, /obj/machinery/computer/card/minor/cmo))
+			account = ACCOUNT_MED
+		
+		else if(istype(C, /obj/machinery/computer/card/minor/rd))
+			account = ACCOUNT_SCI
+		
+		else if(istype(C, /obj/machinery/computer/card) && !istype(C, /obj/machinery/computer/card/minor))
+			account = ACCOUNT_SRV
+		
+		else if(istype(C, /obj/machinery/computer/card/minor/hos))
+			account = ACCOUNT_SEC
+		
+		else if(istype(C, /obj/machinery/computer/communications))
+			account = "all" // Special case, we'll give em all the objectives
+		
+		if(account)
+			if(account == "all")
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "paper - 'department goals'"
+				P.info = ""
+				var/list/listOfGoals = list()
+				for(var/datum/department_goal/d in SSYogs.department_goals)
+					if(!listOfGoals[d.account])
+						listOfGoals[d.account] = list()
+					listOfGoals[d.account] += d
+				for(account in listOfGoals)
+					P.info += "Goals for the [getDepartmentFromAccount(account)] department:<ul>"
+					for(var/datum/department_goal/d in listOfGoals[account])
+						P.info += d.get_result()
+					P.info += "<ul><br>"
+				P.update_icon()
+
+			else
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "paper - '[getDepartmentFromAccount(account)] department goals'"
+				P.info = "<ul>"
+				for(var/datum/department_goal/d in SSYogs.department_goals)
+					if(d.account == account)
+						P.info += d.get_result()
+				P.info += "</ul>"
+				P.update_icon()
+
+
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
@@ -109,3 +162,22 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/i in 1 to five)
 		var/datum/f = pick_n_take(goals)
 		new f
+
+/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
+	switch(account)
+		if(ACCOUNT_CIV)
+			return "Civilian"
+		if(ACCOUNT_ENG)
+			return "Engineering"
+		if(ACCOUNT_SCI)
+			return "Science"
+		if(ACCOUNT_MED)
+			return "Medical"
+		if(ACCOUNT_SRV)
+			return "Service"
+		if(ACCOUNT_CAR)
+			return "Cargo"
+		if(ACCOUNT_SEC)
+			return "Security"
+		else
+			return "N/A report this to coders, see .proc/getDepartmentFromAccount"
