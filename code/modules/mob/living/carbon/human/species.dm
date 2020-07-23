@@ -1303,6 +1303,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
+		var/obj/item/bodypart/affecting = target.get_bodypart(randomized_zone)
 
 		var/turf/target_oldturf = target.loc
 		var/shove_dir = get_dir(user.loc, target_oldturf)
@@ -1322,9 +1323,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				target_table = locate(/obj/structure/table) in target_shove_turf.contents
 				target_disposal_bin = locate(/obj/machinery/disposal/bin) in target_shove_turf.contents
 				shove_blocked = TRUE
-			
+
 		if(target.IsKnockdown() && !target.IsParalyzed())
-			var/obj/item/bodypart/affecting = target.get_bodypart(randomized_zone)
 			var/armor_block = target.run_armor_check(affecting, "melee", "Your armor prevents your fall!", "Your armor softens your fall!")
 			target.apply_effect(SHOVE_CHAIN_PARALYZE, EFFECT_PARALYZE, armor_block)
 			target.visible_message("<span class='danger'>[user.name] kicks [target.name] onto their side!</span>",
