@@ -58224,6 +58224,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"sPo" = (
+/obj/machinery/ticket_machine,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "sQT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -89431,7 +89435,7 @@ ehN
 vZM
 cmg
 bwg
-aJw
+sPo
 aJq
 aJq
 xbP
