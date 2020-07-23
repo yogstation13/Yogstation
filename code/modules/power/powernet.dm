@@ -77,7 +77,7 @@
 	nodes[M] = M
 
 //handles the power changes in the powernet
-//called every ticks by the powernet controller
+//called every tick by the powernet controller
 /datum/powernet/proc/reset()
 	//see if there's a surplus of power remaining in the powernet and stores unused power in the SMES
 	netexcess = avail - load

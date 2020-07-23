@@ -125,12 +125,12 @@ obj/item/energy_harvester/Initialize()
 /obj/item/energy_harvester/ui_data(mob/user)
 	var/list/data = list(
 	"manualSwitch" = manual_switch,
-	"manualPowerSetting" = DisplayPower(manual_power_setting),
-	"inputEnergy" = DisplayPower(input_energy),
-	"accumulatedPower" = DisplayJoules(accumulated_power),
+	"manualPowerSetting" = manual_power_setting,
+	"inputEnergy" = input_energy,
+	"accumulatedPower" = accumulated_power,
 	"projectedIncome" = calculateMoney(),
 	"lastPayout" = last_payout,
-	"lastAccumulatedPower" = DisplayJoules(last_accumulated_power)
+	"lastAccumulatedPower" = last_accumulated_power
 	)
 	return data
 
