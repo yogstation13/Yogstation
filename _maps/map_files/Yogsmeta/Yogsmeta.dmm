@@ -10856,19 +10856,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/main)
-"asP" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "asQ" = (
 /obj/structure/table,
 /obj/item/folder/red,
@@ -82663,6 +82650,10 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"dwB" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/security/brig)
 "dwL" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/starboard/secondary)
@@ -83359,6 +83350,10 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/aisat)
+"hxq" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "hyP" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Two"
@@ -84506,6 +84501,10 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard/secondary)
+"uZX" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/storage)
 "vgd" = (
 /obj/item/taperecorder,
 /obj/item/camera,
@@ -84564,6 +84563,16 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"wdN" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "wiZ" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -84588,6 +84597,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
+"wAv" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "wEj" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -84645,6 +84658,10 @@
 "wQA" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
+"wSs" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/research)
 "wSv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -103679,7 +103696,7 @@ aPC
 aRb
 aYM
 aYP
-bat
+hxq
 dmF
 dmF
 dmF
@@ -107314,7 +107331,7 @@ bvi
 cdr
 cew
 cfL
-bXK
+uZX
 byP
 cop
 clj
@@ -115799,7 +115816,7 @@ chp
 cgo
 cgo
 cgo
-cgo
+wSs
 bDm
 bSM
 bEN
@@ -116250,7 +116267,7 @@ ast
 atT
 aqi
 aHs
-asP
+wdN
 ayF
 auf
 auY
@@ -116507,7 +116524,7 @@ asL
 aqa
 ajm
 aHS
-ajm
+dwB
 ayF
 azV
 aBp
@@ -126282,7 +126299,7 @@ deh
 aGn
 aCZ
 deM
-axY
+wAv
 aCZ
 aMg
 aCZ
