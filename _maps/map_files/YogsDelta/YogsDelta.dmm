@@ -106986,10 +106986,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
-"dfH" = (
-/obj/structure/sign/nanotrasen,
-/turf/closed/wall,
-/area/medical/medbay/central)
 "dfI" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -126619,6 +126615,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/vacant_room/commissary)
+"kJj" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/hallway/secondary/service)
 "kJq" = (
 /obj/machinery/light{
 	dir = 8
@@ -126804,6 +126804,10 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"naG" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/xenobiology)
 "ncP" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/engine,
@@ -126914,6 +126918,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"ohH" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "olS" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -127089,6 +127097,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"pFE" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/captain)
 "pKo" = (
 /turf/closed/wall,
 /area/aisat)
@@ -127109,6 +127121,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research/abandoned)
+"pZz" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "qdJ" = (
 /obj/machinery/nanite_programmer,
 /obj/effect/turf_decal/bot,
@@ -127608,6 +127624,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"wsp" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/foyer)
 "wsF" = (
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -151822,7 +151842,7 @@ cJQ
 cJT
 acR
 aSZ
-aUl
+wsp
 aZA
 bdC
 aZA
@@ -160609,7 +160629,7 @@ cMY
 cMY
 cMY
 cMY
-cMY
+naG
 dgv
 cgv
 ceS
@@ -161815,7 +161835,7 @@ dqh
 aDI
 aDI
 auN
-aDI
+kJj
 aDI
 ehG
 cJE
@@ -168274,7 +168294,7 @@ bBM
 bjk
 bzP
 bGU
-bIV
+pFE
 bIV
 bMG
 bOP
@@ -173973,7 +173993,7 @@ cNz
 dbr
 dbr
 cNz
-dfH
+pZz
 cPv
 coa
 cUl
@@ -178552,7 +178572,7 @@ bnG
 bCc
 bnG
 bnG
-bnG
+ohH
 biy
 bEF
 bmc

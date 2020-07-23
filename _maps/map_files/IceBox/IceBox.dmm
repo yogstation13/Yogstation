@@ -55916,6 +55916,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"col" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "cou" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -60854,6 +60858,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"ogn" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "ogO" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -61410,6 +61418,10 @@
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"qiV" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/engineering)
 "qkv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -61911,6 +61923,10 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"rKx" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "rKA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -63027,6 +63043,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"uUz" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "uUM" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -63406,6 +63426,10 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
+"whO" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/lab)
 "wil" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -87339,7 +87363,7 @@ bkJ
 aZE
 aZE
 aZE
-aZE
+col
 aZE
 bxu
 byD
@@ -92938,7 +92962,7 @@ ahs
 ahP
 ahP
 aiF
-agj
+rKx
 ajA
 ajG
 akQ
@@ -94059,7 +94083,7 @@ ccw
 cig
 cSR
 cSV
-cig
+qiV
 cig
 cTf
 cgR
@@ -96313,7 +96337,7 @@ aLY
 aOG
 aPR
 aPR
-aPR
+uUz
 aUb
 aZs
 aTX
@@ -103012,7 +103036,7 @@ bhi
 bfK
 bfK
 bfK
-bof
+ogn
 bhh
 bsx
 btV
@@ -112779,7 +112803,7 @@ blI
 bnn
 boA
 bpZ
-boB
+whO
 bta
 bmU
 bvJ

@@ -83447,6 +83447,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"fEo" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/lobby)
 "fEB" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/five,
@@ -83783,6 +83787,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"gwC" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/research)
 "gzm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -86307,6 +86315,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
+"olT" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/main)
 "onN" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -86933,6 +86945,10 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/bridge)
+"qvZ" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/explab)
 "qxt" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
@@ -87924,6 +87940,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"tCX" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "tHu" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -89263,6 +89283,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"xPC" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/captain)
 "xUN" = (
 /obj/structure/rack,
 /obj/machinery/light/small,
@@ -100550,7 +100574,7 @@ atM
 bkZ
 atM
 atM
-atM
+fEo
 atM
 atM
 atM
@@ -122198,7 +122222,7 @@ chY
 cly
 cly
 cly
-aoL
+qvZ
 aoL
 ioi
 cqy
@@ -123102,7 +123126,7 @@ aks
 aor
 akD
 ajp
-ajp
+olT
 ajp
 ajp
 ahw
@@ -126048,7 +126072,7 @@ cdd
 cTp
 cib
 bgK
-aop
+gwC
 aoF
 cmj
 cmK
@@ -127788,7 +127812,7 @@ bcq
 bdX
 bfo
 bgR
-aWH
+xPC
 bjT
 blJ
 bmT
@@ -143243,7 +143267,7 @@ aYe
 aYe
 bqr
 brU
-aYe
+tCX
 buB
 bsO
 bxd
