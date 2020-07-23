@@ -41627,6 +41627,10 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/mineral/random/labormineral,
 /area/asteroid/nearstation)
+"pyo" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "pAu" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -41999,6 +42003,10 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"rKq" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "rPY" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/cable/white{
@@ -44159,6 +44167,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/research)
+"tpl" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/research)
 "ttA" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/turf_decal/bot,
@@ -44741,6 +44753,10 @@
 	},
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
+"vXo" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical)
 "wbV" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/hydroponics/soil,
@@ -44978,6 +44994,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"xgl" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "xlz" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -78793,7 +78813,7 @@ aGr
 aHx
 aIs
 aEt
-aEt
+pyo
 aVM
 aEt
 aEt
@@ -80826,7 +80846,7 @@ akV
 ala
 amI
 akV
-ala
+rKq
 aoy
 apD
 aoZ
@@ -83173,7 +83193,7 @@ aph
 aph
 aph
 aRs
-aph
+vXo
 aph
 aph
 aVz
@@ -90624,7 +90644,7 @@ pUR
 sJL
 hMx
 sJL
-aVA
+tpl
 mKa
 pGE
 aVA
@@ -91101,7 +91121,7 @@ adn
 adn
 swL
 adn
-adn
+xgl
 ado
 adn
 ado
