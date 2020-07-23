@@ -10,8 +10,6 @@
 	block_upgrade_walk = 1
 	block_flags = BLOCKING_ACTIVE
 	throwforce = 7
-	block_upgrade_walk = 1
-	block_flags = BLOCKING_ACTIVE
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("beaten")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
