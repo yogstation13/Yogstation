@@ -461,11 +461,11 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "rW" = (
-/obj/effect/turf_decal/sand,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8;
 	icon_state = "vent_map_on-1"
 	},
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "sW" = (
@@ -774,7 +774,6 @@
 "EJ" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/americandiner,
-/obj/effect/landmark/start/assistant,
 /obj/machinery/camera{
 	c_tag = "Bar West";
 	dir = 4;
@@ -949,10 +948,6 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
-"Kt" = (
-/obj/machinery/jukebox/disco/indestructible,
-/turf/open/floor/light/colour_cycle,
-/area/crew_quarters/bar)
 "KL" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
@@ -1057,6 +1052,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Nx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "OA" = (
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plasteel{
@@ -1283,6 +1285,10 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"YI" = (
+/obj/machinery/jukebox/disco,
+/turf/open/floor/light/colour_cycle,
+/area/crew_quarters/bar)
 "Zg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -1514,8 +1520,8 @@ sW
 sW
 OU
 OU
-Ty
-nY
+Nx
+OU
 rW
 OU
 Bw
@@ -1534,9 +1540,9 @@ Ea
 OQ
 sW
 OU
-mv
-Kt
-mk
+Ty
+nY
+OU
 OU
 OU
 Js
@@ -1554,9 +1560,9 @@ pk
 dy
 sW
 OU
-OU
-In
-LM
+mv
+YI
+mk
 OU
 zf
 Js
@@ -1575,8 +1581,8 @@ km
 OU
 OU
 OU
-OU
-OU
+In
+LM
 OU
 Jp
 Js

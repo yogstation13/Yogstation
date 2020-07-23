@@ -60,6 +60,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"bs" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
 "bv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
@@ -89,6 +94,11 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"cr" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "dO" = (
 /obj/machinery/requests_console{
 	department = "Bar";
@@ -332,6 +342,12 @@
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"nD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "nJ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -526,11 +542,23 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"uT" = (
+/obj/structure/table/wood/poker,
+/obj/item/clothing/glasses/sunglasses/cheap,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "vb" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"vh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "vx" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -582,6 +610,12 @@
 "wX" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/carpet,
+/area/crew_quarters/bar)
+"xC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
 "xE" = (
 /obj/machinery/vending/dinnerware{
@@ -691,6 +725,7 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "CD" = (
@@ -850,6 +885,11 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"HE" = (
+/obj/structure/table/wood/poker,
+/obj/item/clothing/glasses/sunglasses/cheap,
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "HJ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -876,6 +916,19 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Ko" = (
+/obj/structure/table/reinforced{
+	desc = "Contrary to what the plaque beneath it says, you doubt you can win this from here.";
+	icon = 'icons/obj/bike.dmi';
+	icon_state = "speedbike_blue";
+	name = "speedbike";
+	pixel_y = -10
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "KA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -946,7 +999,12 @@
 "Om" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck{
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = 2;
+	pixel_y = 9
 	},
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
@@ -1007,6 +1065,12 @@
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"Rg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "Rr" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1070,6 +1134,12 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/rockvault,
+/area/crew_quarters/bar)
+"TP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
 "TU" = (
 /obj/structure/table/reinforced,
@@ -1288,7 +1358,7 @@ YX
 su
 Fg
 Yl
-Fg
+cr
 su
 YX
 tn
@@ -1305,8 +1375,8 @@ VK
 VK
 YX
 YX
-su
-Fg
+bs
+cr
 Fg
 Fg
 su
@@ -1368,12 +1438,12 @@ YX
 su
 Fg
 Om
-Fg
+HE
 su
 YX
-YX
-YX
-YX
+nD
+Ko
+xC
 YX
 Bx
 "}
@@ -1386,14 +1456,14 @@ VK
 YX
 YX
 su
+uT
 Fg
-Fg
-Fg
-su
+cr
+bs
 YX
-YX
-YX
-YX
+Rg
+TP
+vh
 YX
 tn
 "}
