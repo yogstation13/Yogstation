@@ -1,0 +1,30 @@
+name: Autodocs
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  autodoc:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        tools/travis/install_spaceman_dmm.sh dreamchecker
+    
+    - name: Generate
+      run: |
+        ~/dmdoc
+        touch dmdoc/.nojekyll
+      
+    - name: Deploy
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        keep_history: true
+        build_dir: dmdoc
+        jekyll: false
+        fqdn: codedocs.yogstation.net
