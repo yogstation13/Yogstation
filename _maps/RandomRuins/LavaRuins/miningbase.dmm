@@ -255,9 +255,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"aL" = (
-/turf/open/lava/smooth,
-/area/lavaland/surface/outdoors)
 "aM" = (
 /obj/structure/tank_dispenser/oxygen,
 /obj/effect/turf_decal/tile/purple,
@@ -288,10 +285,6 @@
 "aT" = (
 /turf/open/floor/plasteel,
 /area/mine/production)
-"aU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "aW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -429,10 +422,6 @@
 	},
 /turf/closed/wall,
 /area/mine/living_quarters)
-"bm" = (
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "bn" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -498,26 +487,6 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
-"bz" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Mining Station Starboard Wing APC";
-	pixel_x = -24
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
 "bB" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4;
@@ -2282,6 +2251,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"yM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/mine/living_quarters)
 "zh" = (
 /obj/machinery/door/airlock{
 	id_tag = "miningdorm1";
@@ -2466,6 +2439,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"EN" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "ES" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Processing Area";
@@ -2552,21 +2537,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"Gs" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "GP" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 4
@@ -2642,6 +2612,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Qx" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Mining Station Starboard Wing APC";
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "QA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -3199,7 +3186,7 @@ Bx
 iy
 cU
 dl
-Gs
+cZ
 dL
 cY
 aD
@@ -3318,7 +3305,7 @@ ab
 ab
 ac
 ac
-aL
+ac
 ac
 bP
 bQ
@@ -3348,9 +3335,9 @@ ab
 ab
 ab
 ab
-aL
-aL
-aL
+ac
+ac
+ac
 ac
 ak
 bQ
@@ -3380,8 +3367,8 @@ ab
 ab
 ab
 ab
-aL
-aL
+ac
+ac
 ac
 ak
 Kc
@@ -3411,9 +3398,9 @@ ab
 ab
 ab
 ab
-aL
-aL
-aL
+ac
+ac
+ac
 bQ
 bQ
 ba
@@ -3443,9 +3430,9 @@ ab
 ab
 ab
 ab
-aL
-aL
-aL
+ac
+ac
+ac
 bQ
 aO
 bb
@@ -3475,9 +3462,9 @@ ak
 ab
 ab
 ab
-aL
-aL
-aL
+ac
+ac
+ac
 bQ
 bQ
 WW
@@ -3506,10 +3493,10 @@ bI
 (20,1,1) = {"
 ab
 ab
-aL
-aL
-aL
-aL
+ac
+ac
+ac
+ac
 bQ
 aQ
 bb
@@ -3538,10 +3525,10 @@ ak
 (21,1,1) = {"
 ab
 ab
-aL
-aL
-aL
-aL
+ac
+ac
+ac
+ak
 bQ
 bQ
 bl
@@ -3571,11 +3558,11 @@ ab
 ab
 ab
 ab
-aL
 ac
 ac
-bm
-aU
+ak
+ak
+yM
 bZ
 AQ
 bD
@@ -3606,8 +3593,8 @@ ab
 ac
 ac
 ac
-bQ
-bQ
+ak
+ak
 bQ
 bQ
 bQ
@@ -3669,7 +3656,7 @@ ab
 ab
 ac
 ac
-ak
+ac
 ac
 ac
 ac
@@ -4058,8 +4045,8 @@ SK
 jV
 aY
 lo
-bz
-bn
+Qx
+EN
 ck
 da
 aT

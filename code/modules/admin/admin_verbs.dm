@@ -91,7 +91,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_view_polls,
 	/client/proc/antag_token_panel, //Yogs -- Access Antag Token Panel
 	/client/proc/give_antag_token,
-	/client/proc/show_redeemable_antag_tokens
+	/client/proc/show_redeemable_antag_tokens,
+  /client/proc/admincryo
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -262,7 +263,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	/client/proc/debug_huds,
+	/client/proc/admincryo
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 

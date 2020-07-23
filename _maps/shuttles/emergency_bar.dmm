@@ -134,6 +134,22 @@
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape)
+"av" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/shuttle/escape)
+"aw" = (
+/obj/structure/table/wood/bar,
+/obj/item/toy/cards/deck/uno{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/shuttle/escape)
 "az" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Emergency Shuttle Cockpit";
@@ -481,10 +497,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"br" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "bs" = (
 /obj/machinery/door/airlock{
 	name = "Unit 1"
@@ -524,15 +536,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"bx" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/shuttle/escape)
 "by" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light/small{
@@ -560,10 +563,6 @@
 "bE" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"bF" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bG" = (
 /obj/item/twohanded/required/kirbyplants{
@@ -607,10 +606,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/plasteel/grimy,
-/area/shuttle/escape)
-"bL" = (
-/obj/structure/table/wood/bar,
 /turf/open/floor/plasteel/grimy,
 /area/shuttle/escape)
 "bM" = (
@@ -746,13 +741,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"cb" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "hn" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -848,6 +836,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"AX" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "EQ" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -872,6 +866,15 @@
 /area/shuttle/escape)
 "Nt" = (
 /obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"Os" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Uc" = (
@@ -940,7 +943,7 @@ bZ
 ab
 bp
 bs
-bx
+av
 ab
 ab
 "}
@@ -957,7 +960,7 @@ ab
 aE
 aW
 ba
-bL
+aw
 bO
 bQ
 bR
@@ -988,7 +991,7 @@ aE
 ab
 ak
 bu
-bx
+av
 bC
 bE
 "}
@@ -1129,9 +1132,9 @@ bN
 be
 bT
 bk
-bF
-br
-cb
+ac
+AX
+Os
 bU
 ab
 ab

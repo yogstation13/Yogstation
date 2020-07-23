@@ -327,7 +327,7 @@
 				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 				M.pulling.forceMove(T1)
 				M.start_pulling(M2)
-				
+
 	for(var/mob/living/M in T2)
 		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && M.pulling.move_resist <= M.move_force)
 			var/mob/living/M2 = M.pulling
@@ -441,6 +441,18 @@
 /obj/structure/firelock_frame/update_icon()
 	..()
 	icon_state = "frame[constructionStep]"
+
+/obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if(the_rcd.mode == RCD_DECONSTRUCT)
+		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
+	return FALSE
+
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	if(passed_mode == RCD_DECONSTRUCT)
+		to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
+		qdel(src)
+		return TRUE
+	return FALSE
 
 /obj/structure/firelock_frame/attackby(obj/item/C, mob/user)
 	switch(constructionStep)

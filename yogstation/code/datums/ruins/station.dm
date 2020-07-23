@@ -214,3 +214,49 @@
 	id = "hydro6"
 	suffix = "hydro6.dmm"
 	name = "Hydroponics 6"
+
+/datum/map_template/ruin/station/box/transfer/transfer1
+	id = "transfer1"
+	suffix = "transfer1.dmm"
+	name = "Transfer 1"
+
+/datum/map_template/ruin/station/box/transfer/transfer2
+	id = "transfer2"
+	suffix = "transfer2.dmm"
+	name = "Transfer 2"
+	
+/datum/map_template/ruin/station/box/transfer/transfer3
+	id = "transfer3"
+	suffix = "transfer3.dmm"
+	name = "Transfer 3"
+
+/datum/map_template/ruin/station/box/transfer/transfer4
+	id = "transfer4"
+	suffix = "transfer4.dmm"
+	name = "Transfer 4"
+
+/datum/map_template/ruin/station/box/transfer/transfer5
+	id = "transfer5"
+	suffix = "transfer5.dmm"
+	name = "Transfer 5"
+
+/datum/map_template/ruin/station/box/transfer/transfer6
+	id = "transfer6"
+	suffix = "transfer6.dmm"
+	name = "Transfer 6"
+
+/datum/map_template/ruin/station/box/transfer/transfer7
+	id = "transfer7"
+	suffix = "transfer7.dmm"
+	name = "Transfer 7"
+
+/datum/map_template/ruin/station/box/transfer/transfer8
+	id = "transfer8"
+	suffix = "transfer8.dmm"
+	name = "Transfer 8"
+
+/datum/map_template/ruin/station/box/transfer/transfer9
+	id = "transfer9"
+	suffix = "transfer9.dmm"
+	name = "Transfer 9"
+
