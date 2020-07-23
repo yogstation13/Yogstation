@@ -691,6 +691,14 @@
 	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
 	build_path = /obj/item/wallframe/newscaster
 	category = list("initial", "Construction")
+	
+/datum/design/bounty_board_frame
+	name = "Bounty Board Frame"
+	id = "bountyboard_frame"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
+	build_path = /obj/item/wallframe/bounty_board
+	category = list("initial", "Construction")
 
 /datum/design/syringe
 	name = "Syringe"
