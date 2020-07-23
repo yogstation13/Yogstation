@@ -1324,10 +1324,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				shove_blocked = TRUE
 			
 		if(target.IsKnockdown() && !target.IsParalyzed())
-			target.Paralyze(SHOVE_CHAIN_PARALYZE)
+			var/armor_block = target.run_armor_check(affecting, "melee", "Your armor prevents your fall!", "Your armor softens your fall!")
+			target.apply_effect(SHOVE_CHAIN_PARALYZE, EFFECT_PARALYZE, armor_block)
 			target.visible_message("<span class='danger'>[user.name] kicks [target.name] onto their side!</span>",
 				"<span class='danger'>[user.name] kicks you onto your side!</span>", null, COMBAT_MESSAGE_RANGE)
-			addtimer(CALLBACK(target, /mob/living/proc/SetKnockdown, 0), SHOVE_CHAIN_PARALYZE)
+			var/reset_timer = SHOVE_CHAIN_PARALYZE * (100-armor_block)/100
+			addtimer(CALLBACK(target, /mob/living/proc/SetKnockdown, 0), reset_timer)
 			log_combat(user, target, "kicks", "onto their side (paralyzing)")
 
 		if(shove_blocked && !target.is_shove_knockdown_blocked() && !target.buckled)
