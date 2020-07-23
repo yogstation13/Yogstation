@@ -33,10 +33,6 @@ map yogsmeta
 	votable
 endmap
 
-map yogspubby
-	votable
-endmap
-
 map yogsdelta
 	minplayers 50
 	votable
