@@ -2206,6 +2206,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"adz" = (
+/obj/structure/rack,
+/obj/item/gun/energy/ionrifle,
+/obj/item/clothing/suit/armor/laserproof,
+/obj/item/gun/energy/temperature/security,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "adA" = (
 /obj/structure/closet/secure_closet/detective,
 /obj/effect/turf_decal/tile/neutral{
@@ -5936,21 +5952,6 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/security/brig)
-"aiX" = (
-/obj/structure/rack,
-/obj/item/gun/energy/ionrifle,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/gun/energy/temperature/security,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aiY" = (
 /obj/effect/turf_decal/tile/red,
@@ -40196,10 +40197,6 @@
 /obj/machinery/meter/atmos,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"iRR" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall,
-/area/security/brig)
 "iTc" = (
 /obj/structure/tank_dispenser,
 /obj/structure/sign/directions/engineering{
@@ -41167,10 +41164,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"nkz" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall,
-/area/science/research)
 "nmN" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41527,10 +41520,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"pbp" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall,
-/area/medical)
 "pcl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
 	dir = 2
@@ -41990,10 +41979,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ryi" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall/r_wall,
-/area/engine/engineering)
 "rzn" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall,
@@ -42057,10 +42042,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/research)
-"rWD" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall,
-/area/quartermaster/storage)
 "rWK" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -78812,7 +78793,7 @@ aGr
 aHx
 aIs
 aEt
-ryi
+aEt
 aVM
 aEt
 aEt
@@ -79041,7 +79022,7 @@ afM
 aaV
 agF
 aio
-aiX
+adz
 ajX
 akT
 lHG
@@ -80845,7 +80826,7 @@ akV
 ala
 amI
 akV
-iRR
+ala
 aoy
 apD
 aoZ
@@ -83192,7 +83173,7 @@ aph
 aph
 aph
 aRs
-pbp
+aph
 aph
 aph
 aVz
@@ -90643,7 +90624,7 @@ pUR
 sJL
 hMx
 sJL
-nkz
+aVA
 mKa
 pGE
 aVA
@@ -91120,7 +91101,7 @@ adn
 adn
 swL
 adn
-rWD
+adn
 ado
 adn
 ado
