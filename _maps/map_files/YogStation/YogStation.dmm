@@ -44709,6 +44709,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"cMK" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/lab)
 "cNh" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -45946,6 +45950,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"dXT" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "dZL" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -49506,6 +49514,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"itN" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "itO" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/toilet";
@@ -50523,6 +50535,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jEJ" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/engineering)
 "jFA" = (
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_x = 32
@@ -51986,6 +52002,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/maintenance/department/tcoms)
+"ljC" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "llg" = (
 /obj/structure/urinal{
 	dir = 8;
@@ -55061,6 +55081,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"oXX" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "oZQ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -85574,7 +85598,7 @@ bkJ
 aZE
 aZE
 aZE
-aZE
+ljC
 aZE
 bxu
 byD
@@ -91173,7 +91197,7 @@ ahs
 ahP
 ahP
 aiF
-agj
+itN
 ajA
 ajG
 akQ
@@ -92294,7 +92318,7 @@ ccw
 cig
 rcg
 cSV
-cig
+jEJ
 cig
 orf
 cje
@@ -94548,7 +94572,7 @@ aLY
 aOG
 aPR
 aPR
-aPR
+oXX
 aUb
 aZs
 aTX
@@ -101247,7 +101271,7 @@ bhi
 bfK
 bfK
 bfK
-bof
+dXT
 bhh
 bsx
 btV
@@ -111014,7 +111038,7 @@ blI
 bnn
 boA
 bpZ
-boB
+cMK
 bta
 bmU
 bvJ
