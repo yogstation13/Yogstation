@@ -60083,6 +60083,10 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/exit/departure_lounge)
+"prM" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "prQ" = (
 /obj/machinery/field/generator{
 	anchored = 1;
@@ -60134,6 +60138,10 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"pKq" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/sleeper)
 "pNy" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/camera{
@@ -60881,6 +60889,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard)
+"svg" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/hor)
 "svN" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/sign/departments/restroom{
@@ -61587,6 +61599,10 @@
 	luminosity = 2
 	},
 /area/maintenance/department/science)
+"vri" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "vtl" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -62114,6 +62130,10 @@
 	luminosity = 2
 	},
 /area/maintenance/department/science)
+"xvJ" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "xxw" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 2
@@ -62235,6 +62255,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"xUm" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "xWl" = (
 /obj/item/pen,
 /obj/item/paper_bin{
@@ -82673,7 +82697,7 @@ ajM
 aol
 aoP
 apG
-ajM
+prM
 arj
 ajM
 ajM
@@ -90182,7 +90206,7 @@ bsA
 bua
 brK
 bsA
-bsA
+pKq
 byo
 btA
 byo
@@ -93039,7 +93063,7 @@ bdO
 bei
 bCf
 cdN
-bXk
+vri
 ccd
 ccX
 cdS
@@ -94757,7 +94781,7 @@ aaa
 arA
 arA
 arA
-arA
+xvJ
 arA
 azh
 arA
@@ -95580,7 +95604,7 @@ bfG
 byF
 cCt
 aQH
-bBp
+svg
 bBp
 bBp
 bBp
@@ -99923,7 +99947,7 @@ aSc
 aSr
 aCl
 aWu
-aLf
+xUm
 aYs
 aYV
 aPY
