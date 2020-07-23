@@ -51476,7 +51476,7 @@
 /area/maintenance/department/tcoms)
 "kJx" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Holodeck Maintenance";
+	name = "Holodeck Maintenance";
 	req_access_txt = "12"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -62287,7 +62287,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "MiniSat  Antechamber";
+	c_tag = "MiniSat  Antechamber";
 	dir = 8;
 	network = list("minisat","ss13")
 	},
