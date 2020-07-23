@@ -30228,4 +30228,4 @@
 /area/maintenance/starboard)
 "baT" = (
 /obj/structure/cable/yellow{
-	icon_state 
+	icon_state )
