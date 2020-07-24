@@ -67,19 +67,19 @@
 /obj/item/organ/tail/polysmorph
 	name = "polysmorph tail"
 	desc = "A severed polysmorph tail."
-	tail_type = "Poly"
+	tail_type = "Polys"
 
 /obj/item/organ/tail/polysmorph/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = FALSE)
 	..()
 	if(istype(H))
 		if(!("tail_polysmorph" in H.dna.species.mutant_bodyparts))
-			H.dna.features["tail_polysmorph"] = tail_type
 			H.dna.species.mutant_bodyparts |= "tail_polysmorph"
+			H.dna.features["tail_polysmorph"] = tail_type
 			H.update_body()
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
 	if(istype(H))
-		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		H.dna.features["tail_polysmorph"] = "None"
+		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
 		H.update_body()

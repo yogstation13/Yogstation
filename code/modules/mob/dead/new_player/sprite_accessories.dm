@@ -1906,3 +1906,11 @@
 /datum/sprite_accessory/moth_wings/snow
 	name = "Snow"
 	icon_state = "snow"
+
+/datum/sprite_accessory/tails/polysmorph/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/tails/polysmorph/polys
+	name = "Polys"
+	icon_state = "polys"

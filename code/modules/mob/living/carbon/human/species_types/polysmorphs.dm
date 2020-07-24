@@ -23,8 +23,8 @@
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	mutant_bodyparts = list("tail_polysmorph")
-	default_features = list("tail_polysmorph" = "Poly")
+	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth")
+	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "1", "dome" = "None", "dorsal_tubes" = "None", "teeth" = "None")
 	//mutanteyes = /obj/item/organ/eyes/polysmorph //no work
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph

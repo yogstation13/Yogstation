@@ -213,6 +213,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		tail = new mutanttail()
 		if(iscatperson(C))
 			tail.tail_type = C.dna.features["tail_human"]
+		if(ispolysmorph(C))
+			tail.tail_type = C.dna.features["tail_polysmorph"]
 		if(islizard(C))
 			var/obj/item/organ/tail/lizard/T = tail
 			T.tail_type = C.dna.features["tail_lizard"]
@@ -574,12 +576,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "tail_human"
 
-
 	if("waggingtail_human" in mutant_bodyparts)
 		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "waggingtail_human"
 		else if ("tail_human" in mutant_bodyparts)
 			bodyparts_to_add -= "waggingtail_human"
+
+	if("tail_polysmorph" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "tail_polysmorph"
 
 	if("spines" in mutant_bodyparts)
 		if(!H.dna.features["spines"] || H.dna.features["spines"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
@@ -658,6 +663,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.animated_tails_list_lizard[H.dna.features["tail_lizard"]]
 				if("tail_human")
 					S = GLOB.tails_list_human[H.dna.features["tail_human"]]
+				if("tail_polysmorph")
+					S = GLOB.tails_list_polysmorph[H.dna.features["tail_polysmorph"]]
 				if("waggingtail_human")
 					S = GLOB.animated_tails_list_human[H.dna.features["tail_human"]]
 				if("spines")
@@ -690,7 +697,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-			if(bodypart == "tail_lizard" || bodypart == "tail_human")
+			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph")
 				bodypart = "tail"
 			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human")
 				bodypart = "waggingtail"
