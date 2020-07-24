@@ -1478,6 +1478,7 @@
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/bot_red,
+/obj/item/card/id/departmental_budget/sec,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "adl" = (
