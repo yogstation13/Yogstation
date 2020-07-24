@@ -1,7 +1,6 @@
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, ProgressBar, Section, NumberInput } from '../components';
-import { formatPower } from '../format';
-import { toFixed } from 'common/math';
+import { Box, Button, Flex, LabeledList, Section, NumberInput } from '../components';
+import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
 export const EnergyHarvester = (props, context) => {
@@ -9,6 +8,7 @@ export const EnergyHarvester = (props, context) => {
   const {
     inputEnergy,
     manualPowerSetting,
+    manualSwitch,
     accumulatedPower,
     projectedIncome,
     lastPayout,
@@ -24,30 +24,82 @@ export const EnergyHarvester = (props, context) => {
               label="Input Energy"
               buttons={
                 <Button
-                  icon={manualPowerSetting ? 'power-off' : 'times'}
-                  selected={manualPowerSetting}
+                  color={manualSwitch ? 'green' : 'default'}
+                  icon={manualSwitch ? 'power-off' : 'times'}
                   onClick={() => act('switch')}>
-                  {manualPowerSetting ? 'On' : 'Off'}
+                  {manualSwitch ? 'On' : 'Off'}
                 </Button>
               }>
               <Box color="lightgreen">
-                {inputEnergy}
+                {formatSiUnit(inputEnergy, 0, 'W')}
               </Box>
             </LabeledList.Item>
-            <LabeledList.Item label="Manual Input">
-              <NumberInput
-                animate
-                minValue={0}
-                maxValue={1000000000000000}
-                value={manualPowerSetting}
-                format={value => toFixed(value, 1)}
-                width="160px"
-              />
+            <LabeledList.Item label="Input Limit">
+              <Flex inline width="100%">
+                <Flex.Item>
+                  <Button
+                    icon="fast-backward"
+                    disabled={manualPowerSetting === 0}
+                    onClick={() => act('setinput', {
+                      target: 'min',
+                    })} />
+                </Flex.Item>
+                <Flex.Item>
+                  <NumberInput
+                    animate
+                    minValue={0}
+                    maxValue={1000000000000000}
+                    value={manualPowerSetting}
+                    format={value => formatSiUnit(value, 0, 'W')}
+                    width="120px"
+                    onChange={(e, value) => act('setinput', {
+                      target: value,
+                    })}
+                  />
+                </Flex.Item>
+                <Flex.Item>
+                  <Button
+                    disabled={manualPowerSetting === 1000000000000000}
+                    icon="fast-forward"
+                    onClick={() => act('setinput', {
+                      target: 'max',
+                    })} />
+                </Flex.Item>
+              </Flex>
             </LabeledList.Item>
           </LabeledList>
-
-
         </Section>
+        <Section title="Metrics">
+          <LabeledList>
+            <LabeledList.Item label="Power Transmitted">
+              <Box color={accumulatedPower ? "good":"bad"}>
+                {formatSiUnit(accumulatedPower, 0, 'J')}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Estimated Income">
+              <Box color={projectedIncome ? "good":"bad"}>
+                {projectedIncome}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Last Transmitted">
+              <Box color={lastAccumulatedPower ? "good":"bad"}>
+                {formatSiUnit(lastAccumulatedPower, 0, 'J')}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Last Payout">
+              <Box color={lastPayout ? "good":"bad"}>
+                {lastPayout}
+              </Box>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+
+      </Window.Content>
+    </Window>
+  );
+};
+
+/* Debug section if needed remove on final commit
 
         <Section title="Debug data">
           <ul>
@@ -57,10 +109,7 @@ export const EnergyHarvester = (props, context) => {
             <li>projectedIncome = {projectedIncome}</li>
             <li>lastPayout = {lastPayout}</li>
             <li>lastAccumulatedPower ={lastAccumulatedPower}</li>
+            <li>manualSwitch ={manualSwitch}</li>
           </ul>
         </Section>
-      </Window.Content>
-    </Window>
-  );
-};
-
+*/

@@ -1,6 +1,6 @@
-#define MAXIMUM_POWER_LIMIT 1000000000000000 //1 Petawatt, same as PTL
-#define POWER_SOFTCAP_1 75000000 //75MJ, or 250KW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
-#define POWER_SOFTCAP_2 3000000000 //3GJ or 10MW/s for 300s
+#define MAXIMUM_POWER_LIMIT 1000000000000000.0 //1 Petawatt, same as PTL
+#define POWER_SOFTCAP_1 75000000.0 //75MJ, or 250KW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
+#define POWER_SOFTCAP_2 3000000000.0 //3GJ or 10MW/s for 300s
 #define SOFTCAP_BUDGET_1 2000 //reward for reaching the first softcap
 #define SOFTCAP_BUDGET_2 3000 //extra money added on top of the first softcap for going beyond it, until softcap 2
 #define HARDCAP_BUDGET 5000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
@@ -21,13 +21,13 @@
 	materials = list(MAT_METAL=750)
 	var/accumulated_power = 0
 	var/datum/powernet/PN = null //cached when found
-	var/manual_power_setting = MAXIMUM_POWER_LIMIT
+	var/manual_power_setting = MAXIMUM_POWER_LIMIT 
 	var/manual_switch = FALSE
 	var/input_energy = 0
 
 	//archived data for the UI, extra information always helps
-	var/last_payout
-	var/last_accumulated_power
+	var/last_payout = 0
+	var/last_accumulated_power = 0
 
 	var/ui_x = 300
 	var/ui_y = 300
@@ -50,7 +50,6 @@ obj/item/energy_harvester/Initialize()
 	PN = C.powernet
 	set_light(5)
 	START_PROCESSING(SSobj, src)
-	say("successfully connected to network")
 	return TRUE
 
 /obj/item/energy_harvester/proc/disconnect_from_network()
@@ -58,7 +57,6 @@ obj/item/energy_harvester/Initialize()
 		return FALSE
 	PN = null
 	STOP_PROCESSING(SSobj, src)
-	say("electricity ded")
 	set_light(0)
 
 /obj/item/energy_harvester/attack_hand(mob/user, params)
@@ -99,6 +97,8 @@ obj/item/energy_harvester/Initialize()
 	accumulated_power += input_energy
 
 /obj/item/energy_harvester/proc/calculateMoney()
+	if(accumulated_power == 0 || !accumulated_power)
+		return 0
 	var/softcap_1_payout = clamp(SOFTCAP_BUDGET_1 * (accumulated_power/POWER_SOFTCAP_1), 0, SOFTCAP_BUDGET_1)
 	var/softcap_2_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_1)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2) 
 	var/hardcap_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_2)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2) 
@@ -142,11 +142,13 @@ obj/item/energy_harvester/Initialize()
 			manual_switch = !manual_switch
 			if(manual_switch)
 				START_PROCESSING(SSobj, src)
+			else
+				STOP_PROCESSING(SSobj, src)
 			. = TRUE
 		if("setinput")
 			var/target = params["target"]
 			if(target == "input")
-				//target = input("New input target (0-[MAXIMUM_POWER_LIMIT]):", name, input_level) as num|null
+				target = input("New input target (0-[MAXIMUM_POWER_LIMIT]):", name, manual_power_setting) as num|null
 				if(!isnull(target) && !..())
 					. = TRUE
 			else if(target == "min")
@@ -157,6 +159,8 @@ obj/item/energy_harvester/Initialize()
 				. = TRUE
 			else if(text2num(target) != null)
 				target = text2num(target)
+				. = TRUE
+			else if(isnum(target))
 				. = TRUE
 			if(.)
 				manual_power_setting = clamp(target, 0, MAXIMUM_POWER_LIMIT)
