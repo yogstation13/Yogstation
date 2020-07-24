@@ -126,10 +126,6 @@ SUBSYSTEM_DEF(economy)
 	if(D)
 		D.adjust_money(min(cash_to_grant, MAX_GRANT_SECMEDSRV))
 
-	var/service_passive_income = (rand(1, 6) * 400) //min 400, max 2400
-	var/datum/bank_account/SRV = get_dep_account(ACCOUNT_SRV)
-	if(SRV)
-		SRV.adjust_money(service_passive_income)
 
 /datum/controller/subsystem/economy/proc/sci_payout()
 	var/science_bounty = 0
