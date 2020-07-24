@@ -84,6 +84,7 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/obj/machinery/computer/C in GLOB.machines)
 		var/account
 
+
 		if(istype(C, /obj/machinery/computer/card/minor/ce))
 			account = ACCOUNT_ENG
 		
@@ -106,6 +107,8 @@ SUBSYSTEM_DEF(Yogs)
 			account = "all" // Special case, we'll give em all the objectives
 		
 		if(account)
+			if(!is_station_level(C.z))
+				continue
 			if(account == "all")
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
 				P.name = "paper - 'department goals'"
@@ -118,7 +121,7 @@ SUBSYSTEM_DEF(Yogs)
 				for(account in listOfGoals)
 					P.info += "Goals for the [getDepartmentFromAccount(account)] department:<ul>"
 					for(var/datum/department_goal/d in listOfGoals[account])
-						P.info += d.get_result()
+						P.info += d.get_name()
 					P.info += "<ul><br>"
 				P.update_icon()
 

@@ -411,12 +411,12 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if(!id || !id.registered_account || !id.registered_account.account_job.paycheck_department)
 					mode = 0
 					return
-				var/dep_account = SSeconomy.get_dep_account(id.registered_account.account_job.paycheck_department)
+				var/dep_account = id.registered_account.account_job.paycheck_department
 				dat += "<h4>Department Goals for the [SSYogs.getDepartmentFromAccount(dep_account)] department:</h4><ul>"
 				for(var/datum/department_goal/dg in SSYogs.department_goals)
 					if(dg.account == dep_account)
-						dat += "<li>[dg.name]: [dg.completed ? "<span class='greentext'>" : "<span class='redtext'>not "]completed</span>.</li>"
-						dat += "<li>[dg.desc]</li>"
+						dat += "<li>[dg.name]:</li>"
+						dat += "<li>[dg.desc]</li><br>"
 				dat += "</ul>"
 
 			else//Else it links to the cart menu proc. Although, it really uses menu hub 4--menu 4 doesn't really exist as it simply redirects to hub.

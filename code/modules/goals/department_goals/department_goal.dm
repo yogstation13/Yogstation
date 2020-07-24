@@ -2,13 +2,14 @@
 /datum/department_goal
 	var/name = "Be nice."
 	var/desc = "Be nice to each other for once."
-	var/endround = TRUE // Whether it's only accomplished at the end of the round, or if it's something you complete midround
+	var/endround = FALSE // Whether it's only accomplished at the end of the round, or if it's something you complete midround
 	var/completed = FALSE
 
 	// Whether it ends once completed, or is an on-going thing with on-going payouts.
 	var/continuous = 0 // If on-going, this will be the minimum time required between completions
 
 	var/account // See code/__DEFINES/economy.dm
+	var/reward // should be a number, if it's defined then it will just be given as a cash reward on on_complete()
 
 /datum/department_goal/New()
 	SSYogs.department_goals += src
@@ -34,11 +35,17 @@
 			message_players("complet")
 	else
 		SSYogs.department_goals[src] = world.time + continuous
+	if(reward && account)
+		var/datum/bank_account/D = SSeconomy.get_dep_account(account)
+		D.adjust_money(reward)
 
 /datum/department_goal/proc/get_result()
 	if(!completed && check_complete())
 		on_complete(TRUE)
 	return "<li>[name] : <span class='[completed ? "greentext'>C" : "redtext'>Not c"]ompleted</span></li>"
+
+/datum/department_goal/proc/get_name()
+	return "<li>[name] : [desc]</li>"
 
 /datum/department_goal/proc/message_players(message)
 	var/string = "Your department's goals have been updated, please have another look at them."
