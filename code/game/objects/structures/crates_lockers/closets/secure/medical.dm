@@ -69,7 +69,6 @@
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
 	new /obj/item/clipboard/yog/paperwork/cmo(src)
-	new /obj/item/card/id/departmental_budget/med(src)
 	new /obj/item/storage/backpack/duffelbag/med/chief/clothing(src)
 
 
