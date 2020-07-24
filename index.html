@@ -79,7 +79,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(123 detailed/555 documented/21555 total, 2.6%)</aside></h3>
+<aside>(125 detailed/557 documented/21557 total, 2.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">Space</a><ul class="index-tree">
@@ -343,9 +343,9 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     <li><a href="datum/religion_sect.html" title="&#x2F;datum&#x2F;religion_sect">Religious Sect Base Type</a></li>
     <li><span class="no-substance">round_event&#x2F;</span><a href="datum/round_event/stray_cargo.html" title="&#x2F;datum&#x2F;round_event&#x2F;stray_cargo">stray_cargo</a> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control">round_event_control</span><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;stray_cargo">Stray Cargo Pod</span> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;vent_clog">Clogged Vents: Normal</span> - Places that shouldn't explode
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;spawn_swarmer">Spawn Swarmer Beacon</span> - Places that shouldn't explode
 Subtypes from the above that actually should explode.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;stray_cargo">Stray Cargo Pod</span> - Spawns a cargo pod containing a random cargo supply pack on a random area of the station</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;round_event_control&#x2F;zombie">Spawn Zombie</span> - You will appear adjacent to the beacon</li>
     </ul></li>
     <li><span class="no-substance">signal&#x2F;</span><a href="datum/signal/subspace.html" title="&#x2F;datum&#x2F;signal&#x2F;subspace">subspace</a> - Here is the big, bad function that broadcasts a message given the appropriate
@@ -456,7 +456,9 @@ It's attacks are as follows:</li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance">illusion&#x2F;</span><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;illusion&#x2F;escape">escape</span> - Actual Types</li>
-    <li><a href="mob/living/simple_animal/hostile/swarmer.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer">Swarmer</a> - The Mob itself</li>
+    <li class="has-children"><a href="mob/living/simple_animal/hostile/swarmer.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer">Swarmer</a> - Tiny machines made by an ancient civilization, they seek only to consume materials and replicate.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer&#x2F;melee">Swarmer Drone</span> - Melee subtype of swarmers, always AI-controlled under normal circumstances.  Cannot fire projectiles, but does double stamina damage on melee</li>
+    </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;syndicate">syndicate</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;syndicate&#x2F;civilian">civilian</span> - Misc</li>
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;syndicate&#x2F;ranged">ranged</span> - Guns</li>
@@ -588,7 +590,6 @@ It's attacks are as follows:</li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;coin">coin</span> - Coin</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;deactivated_swarmer">deactivated swarmer</span> - Deactivated swarmer shell</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade">grenade</span><ul class="index-tree">
     <li><span class="no-substance">chem_grenade&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;chem_grenade&#x2F;metalfoam">metal foam grenade</span> - PREMADE GRENADES</li>
     <li><span class="no-substance">plastic&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;plastic&#x2F;c4">C4</span> - The Explosives</li>
@@ -851,6 +852,8 @@ you want to show on the map, which you usually attach to &quot;vis_contents&quot
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;statue&#x2F;uranium">uranium</span> - //////////////STATUES//////////////////////////
 uranium</li>
     </ul></li>
+    <li><a href="obj/structure/swarmer.html" title="&#x2F;obj&#x2F;structure&#x2F;swarmer">swarmer ui</a></li>
+    <li><a href="obj/structure/swarmer_beacon.html" title="&#x2F;obj&#x2F;structure&#x2F;swarmer_beacon">Swarmer Beacon</a> - Beacon which creates sentient player swarmers.</li>
     </ul></li>
     <li><span class="no-substance">vehicle&#x2F;ridden&#x2F;scooter&#x2F;</span><a href="obj/vehicle/ridden/scooter/skateboard.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard">improvised skateboard</a></li>
     </ul></li>
@@ -879,7 +882,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/50b0dc999f8025ce34ffb8d841e438010558dd26">50b0dc9</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/0b9edebc6f2373b82939829664b361928ab76f5a">0b9edeb</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>

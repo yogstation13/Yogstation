@@ -16,30 +16,31 @@
 <h1>/<a href="atom.html">atom</a><aside> inherits /<a href="datum.html">datum</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/50b0dc999f8025ce34ffb8d841e438010558dd26/code/datums/wires/_wires.dm#L14">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0b9edebc6f2373b82939829664b361928ab76f5a/code/datums/wires/_wires.dm#L14">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wires&#x2F;_wires.dm 14"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="atom.html#var/age_restricted">age_restricted</a></th><td>Whether spessmen with an ID with an age below AGE_MINOR (21 by default) can buy this item</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="atom.html#proc/CanAllowThrough">CanAllowThrough</a></th><td>Returns true or false to allow the mover to move through src</td></tr>
             <tr><th><a href="atom.html#proc/contents_ui_distance">contents_ui_distance</a></th><td>public</td></tr>
-            <tr><th><a href="atom.html#proc/shuttleRotate">shuttleRotate</a></th><td>Base proc</td></tr></table>
+            <tr><th><a href="atom.html#proc/shuttleRotate">shuttleRotate</a></th><td>Base proc</td></tr>
+            <tr><th><a href="atom.html#proc/swarmer_act">swarmer_act</a></th><td>Determines what happens to an atom when a swarmer interacts with it</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/age_restricted"><aside class="declaration">var </aside>age_restricted
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/50b0dc999f8025ce34ffb8d841e438010558dd26/code/game/atoms.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0b9edebc6f2373b82939829664b361928ab76f5a/code/game/atoms.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 37"/></a></h3>
         <p>Whether spessmen with an ID with an age below AGE_MINOR (21 by default) can buy this item</p><h2 id="proc">Proc Details</h2><h3 id="proc/CanAllowThrough"><aside class="declaration">proc </aside>CanAllowThrough<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, /<a href="turf.html">turf</a>/target) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/50b0dc999f8025ce34ffb8d841e438010558dd26/code/game/atoms.dm#L141">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0b9edebc6f2373b82939829664b361928ab76f5a/code/game/atoms.dm#L141">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 141"/></a></aside>
         </h3>
         <p>Returns true or false to allow the mover to move through src</p><h3 id="proc/contents_ui_distance"><aside class="declaration">proc </aside>contents_ui_distance<aside>(src_object, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/50b0dc999f8025ce34ffb8d841e438010558dd26/code/modules/tgui/states.dm#L98">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0b9edebc6f2373b82939829664b361928ab76f5a/code/modules/tgui/states.dm#L98">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states.dm 98"/></a></aside>
         </h3>
         <p>public</p>
@@ -51,13 +52,24 @@ required user mob The mob who opened/is using the UI.</p>
 <p>return UI_state The state of the UI.</p><h3 id="proc/shuttleRotate"><aside class="declaration">proc </aside>shuttleRotate<aside>(rotation, params) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/50b0dc999f8025ce34ffb8d841e438010558dd26/code/modules/shuttle/shuttle_rotate.dm#L9">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0b9edebc6f2373b82939829664b361928ab76f5a/code/modules/shuttle/shuttle_rotate.dm#L9">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle_rotate.dm 9"/></a></aside>
         </h3>
-        <p>Base proc</p></main>
+        <p>Base proc</p><h3 id="proc/swarmer_act"><aside class="declaration">proc </aside>swarmer_act<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/simple_animal/hostile.html">simple_animal/hostile</a>/<a href="mob/living/simple_animal/hostile/swarmer.html">swarmer</a>/actor) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/0b9edebc6f2373b82939829664b361928ab76f5a/code/modules/swarmers/swarmer_act.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;swarmers&#x2F;swarmer_act.dm 8"/></a></aside>
+        </h3>
+        <p>Determines what happens to an atom when a swarmer interacts with it</p>
+<p>Determines behavior upon being interacted on by a swarmer.
+Arguments:</p>
+<ul>
+<li>S - A reference to the swarmer doing the interaction</li>
+</ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/50b0dc999f8025ce34ffb8d841e438010558dd26">50b0dc9</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/0b9edebc6f2373b82939829664b361928ab76f5a">0b9edeb</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>
