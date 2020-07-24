@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(Yogs)
 					P.info += "Goals for the [getDepartmentFromAccount(account)] department:<ul>"
 					for(var/datum/department_goal/d in listOfGoals[account])
 						P.info += d.get_name()
-					P.info += "<ul><br>"
+					P.info += "</ul><br>"
 				P.update_icon()
 
 			else
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(Yogs)
 				P.info = "<ul>"
 				for(var/datum/department_goal/d in SSYogs.department_goals)
 					if(d.account == account)
-						P.info += d.get_result()
+						P.info += d.get_name()
 				P.info += "</ul>"
 				P.update_icon()
 
