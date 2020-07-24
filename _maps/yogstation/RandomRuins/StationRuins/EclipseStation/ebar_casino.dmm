@@ -923,6 +923,7 @@
 /obj/vehicle/ridden/space/speedbike{
 	anchored = 1;
 	desc = "Contrary to what the plaque beneath states, you highly doubt you can win this speedbike here.";
+	max_drivers = 0;
 	pixel_y = -12
 	},
 /turf/open/floor/carpet/black,
