@@ -19,26 +19,39 @@
 	throw_speed = 1
 	throw_range = 1
 	materials = list(MAT_METAL=750)
+	///amount of power consumed by the harvester, incremented every tick and reset every budget cycle
 	var/accumulated_power = 0
-	var/datum/powernet/PN = null //cached when found
-	var/manual_power_setting = MAXIMUM_POWER_LIMIT 
+	///cached powernet, assigned when attached to a wirenet with a powernet
+	var/datum/powernet/PN = null
+	///manual power setting to limit the maximum draw of the machine
+	var/manual_power_setting = MAXIMUM_POWER_LIMIT
+	///manual on/off switch
 	var/manual_switch = FALSE
+	///energy inputted into machine
 	var/input_energy = 0
 
 	//archived data for the UI, extra information always helps
+	///last payout recieved, so CE can gleefully rub his hands every time the paycheck comes in
 	var/last_payout = 0
+	///last amount of energy transmitted before being reset by budget cycle, so CE can check if his engine modifications are making more power
 	var/last_accumulated_power = 0
 
+	///tgui width
 	var/ui_x = 300
+	///tgui height
 	var/ui_y = 300
 
 obj/item/energy_harvester/Initialize()
 	. = ..()
+	///links this to SSeconomy so it can be added to the budget cycle calculations
 	SSeconomy.moneysink = src
-	//for when a mapper connects it to the power room roundstart
+	///for when a mapper connects it to the power room roundstart
 	if(anchored)
 		connect_to_network()
 
+/** Locates a power node on the turf the harvester is on, then caches a reference to its powernet and queues up in processing
+  * Taken from obj/machinery/power which has it natively, but this is an obj/item
+  */
 /obj/item/energy_harvester/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
@@ -52,6 +65,9 @@ obj/item/energy_harvester/Initialize()
 	START_PROCESSING(SSobj, src)
 	return TRUE
 
+/** Disconnects from the powernet and sets cached powernet reference to null, then takes it out of processing queue
+  * Taken from obj/machinery/power which has it natively, but this is an obj/item
+  */
 /obj/item/energy_harvester/proc/disconnect_from_network()
 	if(!PN)
 		return FALSE
@@ -64,6 +80,8 @@ obj/item/energy_harvester/Initialize()
 		ui_interact(user)
 	return ..()
 
+/** Standard checks for connecting a machine to an open cable node
+  */
 /obj/item/energy_harvester/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER && I.use_tool(src, user, 20, volume=50))
 		if(!anchored)
@@ -87,6 +105,9 @@ obj/item/energy_harvester/Initialize()
 				"<span class='notice'>You detach \the [src] from the cable.</span>",
 				"<span class='italics'>You hear some wires being disconnected from something.</span>")
 
+/** Checks if machine works or is still attached to a power node, shuts itself down if nonfunctional and takes itself out of processing queue
+  * If functional, sucks up all the excess power from the powernet and adds it to the accumulated_power var
+  */
 /obj/item/energy_harvester/process()
 	if(!anchored || !manual_switch ||!PN)
 		return PROCESS_KILL
@@ -96,6 +117,11 @@ obj/item/energy_harvester/Initialize()
 	PN.delayedload += input_energy
 	accumulated_power += input_energy
 
+/** Computes money reward for power transmitted. Balancing goes here.
+  * Uses a piecewise function with three defined thresholds and three separate formulas. First linear formula instead of logarithmic so that you don't make 
+  * a not insignificant amount of money by charging it with 300W. The other two formulas scale logarithmically and are designed to be balanced against extreme
+  * engine setups such as rad-dupe SMs and fusion TEGs.
+  */
 /obj/item/energy_harvester/proc/calculateMoney()
 	if(accumulated_power == 0 || !accumulated_power)
 		return 0
@@ -105,6 +131,9 @@ obj/item/energy_harvester/Initialize()
 	var/potential_payout = softcap_1_payout + softcap_2_payout + hardcap_payout
 	return potential_payout
 
+/** Actually sends money to the engineering budget. Called exclusively by the SSEconomy subsystem in [economy.dm][/code/controllers/subsystem/economy.dm].
+  * Resets accumulated power to 0 and archives payout received and power generated.
+  */
 /obj/item/energy_harvester/proc/payout()
 	if(accumulated_power == 0)
 		return 0
