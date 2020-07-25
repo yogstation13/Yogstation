@@ -114,7 +114,7 @@
 		M.adjustBruteLoss(90)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 90)
 		M.set_species(/datum/species/skeleton)
-		sleep(300)
+		sleep(30 SECONDS)
 		to_chat(M, "<span class='warning'><b>Your mind.. Has been humbled. You have escaped by the skin of your teeth, but have lost your body, and much, much more. You feel.. Mirth?</b></span>")
 	else
 		to_chat(M, "<span class='suicide'><b>Your mind shatters.</b></span>")
