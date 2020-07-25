@@ -29,7 +29,7 @@
   * 
   * A complaint form for tattling against coworkers
   *
-  * That's literally all it is. Tattling against coworkers form.
+  * A complaint form for tattling against coworkers. Tattling against coworkers form.
   *
   */
 /obj/item/paper/paperwork/complaint_form
@@ -175,7 +175,7 @@
   * 
   * A form for requesting an item.
   *
-  * That's literally all it is. Use this to request an item from somewhere. (I should give assistants access to this)
+  * A form for requesting an item. Use this to request an item from somewhere. (I should give assistants access to this)
   *
   */
 /obj/item/paper/paperwork/item_form
@@ -209,7 +209,7 @@
   * 
   * A form signifying the signer consents to being borged.
   *
-  * That's literally all it is.
+  * See short description.
   *
   */
 /obj/item/paper/paperwork/cyborg_request_form
@@ -243,7 +243,7 @@
   * 
   * A form for requesting more access
   *
-  * That's literally all it is. The bane of assistants and annoying chaplains.
+  * A form for requesting more access. The bane of assistants and annoying chaplains.
   *
   */
 /obj/item/paper/paperwork/hopaccessrequestform
@@ -273,7 +273,7 @@
   * 
   * A form for requesting a job change
   *
-  * That's literally all it is. The bane of assistants.
+  * A form for requesting a job change. The bane of assistants.
   *
   */
 /obj/item/paper/paperwork/hop_job_change_form
@@ -339,7 +339,7 @@
   * 
   * A form for requesting a mech.
   *
-  * That's literally all it is. The bane of powergamers.
+  * A form for requesting a mech. The bane of powergamers.
   *
   */
 /obj/item/paper/paperwork/mech_form
@@ -363,7 +363,7 @@
   * 
   * A form for signifying someone got a job change.
   *
-  * That's literally all it is. Muh RP.
+  * A form for signifying someone got a job change. Muh RP.
   *
   */
 /obj/item/paper/paperwork/jobchangecert
