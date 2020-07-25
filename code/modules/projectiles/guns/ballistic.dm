@@ -87,6 +87,7 @@
 	var/tac_reloads = TRUE //Snowflake mechanic no more.
 	///Whether the gun can be sawn off by sawing tools
 	var/can_be_sawn_off  = FALSE
+	var/reload_say = null
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -197,6 +198,8 @@
 		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
+		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
+			user.say(reload_say, forced = "reloading")
 		magazine = AM
 		if (display_message)
 			to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
@@ -255,10 +258,13 @@
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
 				chambered = null
+			var/can_reload_say = !get_ammo(FALSE, FALSE)
 			var/num_loaded = magazine.attackby(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, "<span class='notice'>You load [num_loaded] [cartridge_wording]\s into \the [src].</span>")
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)
+				if(can_reload_say)
+					user.say(reload_say, forced = "reloading")
 				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
 					chamber_round()
 				A.update_icon()
@@ -382,13 +388,24 @@
 	if (suppressed)
 		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
-///Gets the number of bullets in the gun
-/obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
+/obj/item/gun/ballistic/verb/set_reload()
+	set name = "Set Reload Speech"
+	set category = "Object"
+	set desc = "Activate to set what is said with the gun when tactically reloading."
+	if(usr.incapacitated())
+		return
+	var/input = stripped_input(usr,"What do you want to say when reloading with [src]? Cancel to disable reload speech.", ,reload_say, MAX_NAME_LEN)
+	input = replacetext(input, "*", "")
+	if(input)
+		reload_say = input
+		log_game("[usr] has set the reload speech on [src] to [reload_say]")
+
+/obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE, countempties = TRUE)
 	var/boolets = 0 //mature var names for mature people
 	if (chambered && countchambered)
 		boolets++
 	if (magazine)
-		boolets += magazine.ammo_count()
+		boolets += magazine.ammo_count(countempties)
 	return boolets
 
 ///gets a list of every bullet in the gun
