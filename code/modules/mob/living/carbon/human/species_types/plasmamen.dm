@@ -175,8 +175,8 @@
 	H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/oxygen))
-	H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-	H.adjustOxyLoss(1)
+	H.adjustFireLoss(3*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+	H.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL + 40) //310.15 is the normal bodytemp.
 
 
 	return FALSE
