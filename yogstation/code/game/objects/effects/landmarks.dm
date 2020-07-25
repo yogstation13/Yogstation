@@ -105,3 +105,6 @@
 
 /obj/effect/landmark/stationroom/box/execution
 	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9")
+
+/obj/effect/landmark/stationroom/eclipse/bar
+	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
