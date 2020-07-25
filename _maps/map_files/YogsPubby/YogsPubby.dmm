@@ -3018,6 +3018,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"agc" = (
+/obj/structure/table,
+/obj/item/storage/box/flashbangs{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/lockbox/loyalty{
+	layer = 4
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "agd" = (
 /obj/machinery/shower{
 	dir = 8
@@ -4400,21 +4416,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aiL" = (
-/obj/structure/table,
-/obj/item/storage/box/flashbangs{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/lockbox/loyalty{
-	layer = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "aiM" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -84729,7 +84730,7 @@ abI
 abI
 ahL
 aii
-aiL
+agc
 ajg
 agV
 akL

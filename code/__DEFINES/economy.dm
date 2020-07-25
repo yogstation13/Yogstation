@@ -1,6 +1,5 @@
 #define STARTING_PAYCHECKS 7
 
-//Experimental change: These are subject to tweaking based on the /tg/ economy overhaul.
 #define PAYCHECK_ASSISTANT 50
 #define PAYCHECK_MINIMAL 55
 #define PAYCHECK_EASY 60
@@ -45,3 +44,7 @@
 #define CIV_JOB_MINE 10
 #define CIV_JOB_MED 11
 #define CIV_JOB_GROW 12
+
+#define MEGAFAUNA_CASH_SCALE 5
+
+#define NO_FREEBIES "commies go home"
