@@ -100,7 +100,7 @@
 	sleep(5 SECONDS)
 	to_chat(M, "<span class='bold large_brass'><b>A BRIGHT BLINDING LIGHT FILLS YOUR VISION!</b></span>")
 	M.eye_blind = 5
-	sleep(100)
+	sleep(10 SECONDS)
 	to_chat(M, "<span class='reallybig hypnophrase'><b>Your mind oozes at what it cannot comprehend, you feel your soul snatching onto your brain, with chills rolling up your spine. You barely hang on.</b></span>")
 	if(HAS_TRAIT(M, TRAIT_UNSTABLE))
 		to_chat(M, "<span class='green'><b>Your mind shatters.</b></span>")
