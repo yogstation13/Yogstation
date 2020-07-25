@@ -1,7 +1,7 @@
 /**
   * # Savant
   *
-  * A race of small blue people who wear big suits to fit in with general society.
+  * A race of small blue people who wear big suits to fit in with general society. Pronounced Sa'vän(t)
   *
   * Basically, the Savants wear these suits so they can do standard ss13 jobs. The suited savants are /datum/species/savant/suit.
   * Meanwhile, the 'naked' ones are /datum/species/savant. They are slower, weaker, and have tiny arms and legs.
@@ -117,7 +117,7 @@
 	var/mob/living/carbon/human/H = owner
 	var/datum/species/savant/suit/SS
 
-	if(is_species(H, /datum/species/savant/suit))
+	if(isSuitedSavant(H))
 		to_chat(H, "<span class='warning'>You begin to take off your suit...</span>")
 		if(do_after(owner, 20, TRUE))
 			H.set_species(/datum/species/savant)
@@ -197,7 +197,7 @@
 /datum/species/savant/suit/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
 	. = ..()
 	if((H.getFireLoss() + H.getBruteLoss()) > suitFailHealth)
-		H.set_species(/datum/species/savant, icon_update=0)
+		H.set_species(/datum/species/savant)
 		H.update_body_parts()
 		explosion(H, 0, 2, 0)
 

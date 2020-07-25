@@ -69,6 +69,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define iscatperson(A) (ishumanbasic(A) && istype(A.dna.species, /datum/species/human/felinid) )
 #define isethereal(A) (is_species(A, /datum/species/ethereal))
 #define isvampire(A) (is_species(A,/datum/species/vampire))
+#define isSavant(A) (is_species(A, /datum/species/savant))
+#define isSuitedSavant(A) (is_species(A, /datum/species/savant/suit))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
