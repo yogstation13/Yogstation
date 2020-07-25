@@ -1230,6 +1230,12 @@
 /obj/machinery/power/tracker,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/solar/starboard/fore)
+"acz" = (
+/obj/structure/rack,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "acA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -8769,11 +8775,6 @@
 "arf" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
-"arg" = (
-/obj/structure/rack,
-/obj/item/storage/lockbox/loyalty,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "arh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Dormitories Maintenance";
@@ -94464,7 +94465,7 @@ aae
 aag
 aae
 aaZ
-arg
+acz
 adl
 awX
 adl

@@ -6889,6 +6889,10 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"pB" = (
+/obj/machinery/firealarm,
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "pD" = (
 /obj/structure/destructible/cult/tome,
 /obj/item/shuttle_curse,
@@ -8176,6 +8180,12 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"sd" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/closed/indestructible/riveted,
+/area/centcom/ferry)
 "se" = (
 /obj/machinery/light{
 	dir = 8
@@ -10988,6 +10998,11 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"yc" = (
+/obj/machinery/door/poddoor/deathsquad,
+/obj/effect/turf_decal/delivery/red,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "yd" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -11937,21 +11952,6 @@
 /obj/item/lighter,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
-"Ad" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/secure/briefcase,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Ae" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular,
@@ -12524,32 +12524,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Bu" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Bv" = (
 /obj/machinery/computer/card/centcom{
 	dir = 1
 	},
-/turf/open/floor/plasteel/grimy,
-/area/centcom/ferry)
-"Bw" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/taperecorder,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "Bx" = (
@@ -12880,22 +12858,6 @@
 /obj/item/toy/figure/syndie,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"BZ" = (
-/obj/structure/table/wood,
-/obj/item/clipboard,
-/obj/item/radio/headset/headset_cent,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "Ca" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -13053,25 +13015,6 @@
 /obj/item/book/manual/wiki/security_space_law,
 /obj/item/restraints/handcuffs,
 /obj/item/assembly/flash/handheld,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
-"Cr" = (
-/obj/structure/table/wood,
-/obj/item/folder/red,
-/obj/item/lighter,
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -13701,6 +13644,13 @@
 /obj/item/ammo_box/magazine/sniper_rounds/soporific,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Dp" = (
+/obj/effect/turf_decal/arrows/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot_red,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Dq" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/turf_decal/stripes/line{
@@ -14571,6 +14521,17 @@
 "Ff" = (
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
+"Fg" = (
+/obj/effect/turf_decal/loading_area/red,
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Fh" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
@@ -14878,6 +14839,10 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"FU" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/circuit/green,
+/area/centcom/ferry)
 "FW" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -15748,6 +15713,10 @@
 /obj/machinery/vending/magivend,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Hz" = (
+/obj/effect/turf_decal/caution/red,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "HA" = (
 /obj/structure/sink{
 	dir = 8;
@@ -19120,6 +19089,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"PB" = (
+/obj/effect/turf_decal/loading_area/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot_red,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "PC" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -19340,6 +19316,10 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/grass,
 /area/centcom/holding)
+"Ql" = (
+/obj/mecha/combat/marauder/loaded,
+/turf/open/floor/mech_bay_recharge_floor/dark,
+/area/centcom/ferry)
 "Qm" = (
 /obj/singularity/wizard/mapped,
 /turf/open/indestructible/binary,
@@ -19626,6 +19606,14 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"QU" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/taperecorder,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/turf/open/floor/plasteel/grimy,
+/area/centcom/ferry)
 "QV" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien13";
@@ -19638,6 +19626,26 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"QX" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/secure/briefcase,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/storage/briefcase{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/secure/briefcase,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "Ra" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20053,6 +20061,10 @@
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sk" = (
+/obj/mecha/combat/marauder/seraph,
+/turf/open/floor/mech_bay_recharge_floor/dark,
+/area/centcom/ferry)
 "So" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -20522,6 +20534,12 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"TH" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit,
+/area/centcom/ferry)
 "TI" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21015,6 +21033,9 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"Vp" = (
+/turf/open/floor/circuit,
+/area/centcom/ferry)
 "Vq" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21802,6 +21823,26 @@
 /obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"XH" = (
+/obj/structure/table/wood,
+/obj/item/folder/red,
+/obj/item/lighter,
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/radio/headset/headset_cent,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "XI" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /turf/open/space/basic,
@@ -22219,6 +22260,15 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"YX" = (
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit,
+/area/centcom/ferry)
 "YY" = (
 /obj/structure/table/reinforced,
 /obj/item/modular_computer/laptop/preset/civillian,
@@ -57472,13 +57522,13 @@ xd
 oe
 yn
 mD
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+mD
+pB
+mD
+sd
+mD
+mD
+mD
 aa
 aa
 aa
@@ -57729,13 +57779,13 @@ Xy
 oe
 vB
 mD
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FU
+TH
+Vp
+Vp
+YX
+FU
+mD
 aa
 aa
 aa
@@ -57986,13 +58036,13 @@ xe
 wr
 yo
 nU
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ql
+Fg
+Dp
+Dp
+PB
+Sk
+mD
 aa
 aa
 aa
@@ -58242,14 +58292,14 @@ ws
 xf
 ws
 yp
-Tw
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+mD
+FU
+Hz
+Dp
+Dp
+Hz
+FU
+mD
 aa
 aa
 aa
@@ -58500,13 +58550,13 @@ xg
 wt
 yq
 mD
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ql
+Fg
+Dp
+Dp
+PB
+Sk
+mD
 aa
 aa
 aa
@@ -58757,12 +58807,12 @@ xh
 wu
 mD
 mD
-Tw
-Tw
-nU
-Tw
-Tw
-mD
+rz
+yc
+yc
+yc
+yc
+rz
 mD
 aa
 aa
@@ -59015,10 +59065,10 @@ wv
 mD
 yY
 zz
-oA
-uV
-Bu
-BZ
+sw
+sw
+sw
+sw
 Cq
 mD
 aa
@@ -59276,7 +59326,7 @@ pg
 pg
 pg
 pg
-Cr
+XH
 mD
 aa
 aa
@@ -59788,7 +59838,7 @@ zb
 pg
 Ac
 AK
-Bw
+QU
 pg
 Ct
 nT
@@ -60300,7 +60350,7 @@ wB
 yr
 sw
 Vl
-Ad
+QX
 AL
 Bx
 Vl
