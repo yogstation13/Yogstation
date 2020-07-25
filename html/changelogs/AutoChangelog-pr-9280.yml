@@ -1,0 +1,4 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the gamemode to display on the round end report"
