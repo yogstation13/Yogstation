@@ -3,7 +3,7 @@
 	name = "Polysmorph"
 	id = "polysmorph"
 	default_color = "96BB00"
-	exotic_blood = /datum/reagent/polysmorphblood //no work
+	exotic_blood = /datum/reagent/polysmorphblood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
@@ -13,7 +13,7 @@
 	coldmod = 0.75
 	heatmod = 2
 	acidmod = 0.90
-	damage_overlay_type = ""
+	damage_overlay_type = "" //need to add
 	//var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
@@ -25,7 +25,6 @@
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth")
 	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "1", "dome" = "None", "dorsal_tubes" = "None", "teeth" = "None")
-	//mutanteyes = /obj/item/organ/eyes/polysmorph //no work
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
