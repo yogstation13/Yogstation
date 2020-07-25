@@ -27800,12 +27800,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"bnj" = (
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bnk" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -61692,6 +61686,15 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"xpu" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "xpA" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -62103,6 +62106,10 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
+"xZj" = (
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "xZE" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -88148,8 +88155,8 @@ bfR
 bgW
 bNH
 aZK
-bnj
-bbR
+xpu
+xZj
 bbR
 bbR
 bty
