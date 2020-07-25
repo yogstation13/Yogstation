@@ -86,6 +86,7 @@ Slimecrossing Potions
 	to_chat(user, "<span class='notice'>You feed [M] the slime empathy potion!</span>")
 	to_chat(M, "<span class='notice'>You feel like you can understand slimes better!.</span>")
 	M.grant_language(/datum/language/slime, TRUE, TRUE, LANGUAGE_ATOM)
+	ADD_TRAIT(M, TRAIT_SLIME_EMPATHY, TRAIT_GENERIC)
 	qdel(src)
 
 //Pressure potion - Charged Dark Blue
