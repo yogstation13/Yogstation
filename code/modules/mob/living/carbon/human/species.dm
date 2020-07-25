@@ -1306,12 +1306,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 		var/obj/item/bodypart/affecting = target.get_bodypart(randomized_zone)
 
-		var/turf/target_oldturf = target.loc
-		var/shove_dir = get_dir(user.loc, target_oldturf)
+		var/shove_dir = get_dir(user.loc, target.loc)
 		var/turf/target_shove_turf = get_step(target.loc, shove_dir)
 		var/mob/living/carbon/human/target_collateral_human
-		var/obj/structure/table/target_table
-		var/obj/machinery/disposal/bin/target_disposal_bin
 		var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
 
 		//Thank you based whoneedsspace
@@ -1320,9 +1317,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			shove_blocked = TRUE
 		else
 			target.Move(target_shove_turf, shove_dir)
-			if(get_turf(target) == target_oldturf)
-				target_table = locate(/obj/structure/table) in target_shove_turf.contents
-				target_disposal_bin = locate(/obj/machinery/disposal/bin) in target_shove_turf.contents
+			if(get_turf(target) != target_shove_turf)
 				shove_blocked = TRUE
 
 		if(target.IsKnockdown() && !target.IsParalyzed())
@@ -1347,29 +1342,18 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						if(O.flags_1 & ON_BORDER_1 && O.dir == turn(shove_dir, 180) && O.density)
 							directional_blocked = TRUE
 							break
-			if((!target_table && !target_collateral_human) || directional_blocked)
-				target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
-				user.visible_message("<span class='danger'>[user.name] shoves [target.name], knocking them down!</span>",
-					"<span class='danger'>You shove [target.name], knocking them down!</span>", null, COMBAT_MESSAGE_RANGE)
-				log_combat(user, target, "shoved", "knocking them down")
-			else if(target_table)
-				target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
-				user.visible_message("<span class='danger'>[user.name] shoves [target.name] onto \the [target_table]!</span>",
-					"<span class='danger'>You shove [target.name] onto \the [target_table]!</span>", null, COMBAT_MESSAGE_RANGE)
-				target.throw_at(target_table, 1, 1, null, FALSE) //1 speed throws with no spin are basically just forcemoves with a hard collision check
-				log_combat(user, target, "shoved", "onto [target_table] (table)")
+			if(!target_collateral_human || directional_blocked)
+				var/obj/item/I = target.get_active_held_item()
+				if(target.dropItemToGround(I))
+					user.visible_message("<span class='danger'>[user.name] shoves [target.name], disarming them!</span>",
+						"<span class='danger'>You shove [target.name], disarming them!</span>", null, COMBAT_MESSAGE_RANGE)
+					log_combat(user, target, "shoved", "knocking them down")
 			else if(target_collateral_human)
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
-				target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_COLLATERAL)
+				target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				user.visible_message("<span class='danger'>[user.name] shoves [target.name] into [target_collateral_human.name]!</span>",
 					"<span class='danger'>You shove [target.name] into [target_collateral_human.name]!</span>", null, COMBAT_MESSAGE_RANGE)
 				log_combat(user, target, "shoved", "into [target_collateral_human.name]")
-			else if(target_disposal_bin)
-				target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
-				target.forceMove(target_disposal_bin)
-				user.visible_message("<span class='danger'>[user.name] shoves [target.name] into \the [target_disposal_bin]!</span>",
-					"<span class='danger'>You shove [target.name] into \the [target_disposal_bin]!</span>", null, COMBAT_MESSAGE_RANGE)
-				log_combat(user, target, "shoved", "into [target_disposal_bin] (disposal bin)")
 		else
 			user.visible_message("<span class='danger'>[user.name] shoves [target.name]!</span>",
 				"<span class='danger'>You shove [target.name]!</span>", null, COMBAT_MESSAGE_RANGE)
