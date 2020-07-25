@@ -390,7 +390,6 @@
 	new /obj/item/paper/paperwork/complaint_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/hop_job_change_form(src)
-	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
 	update_icon()
