@@ -4,16 +4,6 @@
 //xoxeyos
 //massive help from Art Prime
 
-//---------
-//UTILITIES
-//---------
-/proc/list_intersection(var/list/A, var/list/B)
-	var/intersection[0]
-	for(var/item in A)
-		if(item in B)
-			intersection.Add(item)
-	return intersection
-
 //----------------------------
 //ROUND EVENT CONTROL "FLUTES"
 //----------------------------
@@ -29,45 +19,41 @@
 //--------------------
 //OBJECT DEF
 /datum/round_event/flutes
-	var/chosen_players[0]
+	var/list/mob/living/carbon/chosen_players = list()
 
-//ROUND START PROC
-//This gets executed at the start of the round
+//EVENT START PROC
+//This gets executed at the start of the event
 /datum/round_event/flutes/start()
-	var/list/remaining_players = list_intersection(GLOB.player_list, GLOB.alive_mob_list)
-	var/number_of_players_to_select = round((remaining_players.len / 10), 1)
-	for(var/i; i<=(number_of_players_to_select == 0 ? 1 : number_of_players_to_select); i++)
-		var/player = remaining_players[rand(1, remaining_players.len)]
-		sound_intro(player)
-		pick_flute_scene(player)
-		remaining_players.Remove(player)
-		chosen_players.Add(player)
+	var/list/mob/living/carbon/avail_players = list()
+	for(var/mob/living/carbon/M in GLOB.player_list)
+		if(M.stat)
+			continue
+		avail_players.Add(M)
+	var/target_amount = (round((avail_players.len / 10), 1) == 0 ? 1 : round((avail_players.len / 10), 1))
+	for(var/mob/living/carbon/C in avail_players)
+		sound_intro(C)
+		pick_flute_scene(C)
+		chosen_players.Add(C)
+		if(chosen_players.len >= target_amount)
+			break
 
 //EVENT PROCS
 /datum/round_event/flutes/proc/sound_intro(mob/living/carbon/M)
-	if((M.client.prefs.toggles & SOUND_MIDI) && is_station_level(M.loc.z))
-		M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
+	M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 
 /datum/round_event/flutes/proc/pick_flute_scene(mob/living/carbon/M)
-	var/flutes_chosen_scene = "abc"
 	switch(rand(1, 6))
 		if(1)
-			flutes_chosen_scene = "flute_vis_flicker"
 			flute_vis_flicker(M)
 		if(2)
-			flutes_chosen_scene = "flute_headache"
 			flute_headache(M)
 		if(3)
-			flutes_chosen_scene = "flute_tremble"
 			flute_tremble(M)
 		if(4)
-			flutes_chosen_scene = "flute_chanting"
 			flute_chanting(M)
 		if(5)
-			flutes_chosen_scene = "flute_starlight"
 			flute_starlight(M)
 		if(6)
-			flutes_chosen_scene = "flute_corridor_encounter"
 			flute_corridor_encounter(M)
 
 /datum/round_event/flutes/proc/flute_vis_flicker(mob/living/carbon/M)
@@ -112,7 +98,7 @@
 /datum/round_event/flutes/proc/flute_corridor_encounter(mob/living/carbon/M)
 	to_chat(M, "<span class='notice'><b>You glance upwards, down the corridor.</b></span>")
 	sleep(50)
-	to_chat(M, "span class='bold large_brass'><b>A BRIGHT BLINDING LIGHT FILLS YOUR VISION!</b></span>")
+	to_chat(M, "<span class='bold large_brass'><b>A BRIGHT BLINDING LIGHT FILLS YOUR VISION!</b></span>")
 	M.eye_blind = 5
 	sleep(100)
 	to_chat(M, "<span class='reallybig hypnophrase'><b>Your mind oozes at what it cannot comprehend, you feel your soul snatching onto your brain, with chills rolling up your spine. You barely hang on.</b></span>")
@@ -131,7 +117,7 @@
 		sleep(300)
 		to_chat(M, "<span class='warning'><b>Your mind.. Has been humbled. You have escaped by the skin of your teeth, but have lost your body, and much, much more. You feel.. Mirth?</b></span>")
 	else
-		to_chat(M, "span class='suicide'><b>Your mind shatters.</b></span>")
+		to_chat(M, "<span class='suicide'><b>Your mind shatters.</b></span>")
 		ADD_TRAIT(M, TRAIT_UNSTABLE, M)
 		//sanity = 1
 		M.SetSleeping(30)
