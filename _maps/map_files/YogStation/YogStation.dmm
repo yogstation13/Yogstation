@@ -55908,6 +55908,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qaq" = (
+/obj/machinery/ticket_machine,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "qas" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 9
@@ -58224,10 +58232,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"sPo" = (
-/obj/machinery/ticket_machine,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "sQT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -89435,7 +89439,7 @@ ehN
 vZM
 cmg
 bwg
-sPo
+qaq
 aJq
 aJq
 xbP
