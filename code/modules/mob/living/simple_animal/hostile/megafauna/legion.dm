@@ -127,6 +127,9 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/legion/death()
 	if(health > 0)
 		return
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	if(size > 1)
 		adjustHealth(-maxHealth) //heal ourself to full in prep for splitting
 		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
@@ -223,7 +226,7 @@ Difficulty: Medium
 		A = new storm_type(list(user_turf.z))
 		A.name = "staff storm"
 		log_admin("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
-		message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)]")		
+		message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)]")
 		A.area_type = user_area.type
 		A.telegraph_duration = 100
 		A.end_duration = 100
