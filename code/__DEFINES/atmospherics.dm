@@ -230,8 +230,6 @@
 #define TCOMMS_ATMOS				"n2=100;TEMP=80"
 /// space
 #define AIRLESS_ATMOS				"TEMP=2.7"
-///used in the holodeck burn test program
-#define BURNMIX_ATMOS				"o2=100;plasma=200;TEMP=370"
 /// -93.15°C snow and ice turfs
 #define FROZEN_ATMOS				"o2=22;n2=82;TEMP=180"
 /// -80°C kitchen coldroom; higher amount of mol to reach about 101.3 kpA
