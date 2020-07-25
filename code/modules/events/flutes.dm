@@ -87,7 +87,7 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 80)
 	ADD_TRAIT(M, TRAIT_UNSTABLE, M)
 	//sanity = 50
-	sleep(250)
+	sleep(25 SECONDS)
 	to_chat(M, "<span class='warning'><b>Exhaustion takes you.</b></span>")
 	M.SetSleeping(70)
 	to_chat(M, "<span class='notice'><b>You see vague, inhuman forms, in the tightest corners of your alien dreams, dancing frantically to thundering drums, in tune with yellow monotone flutes.</b></span>")
