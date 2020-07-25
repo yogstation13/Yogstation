@@ -162,3 +162,21 @@
 		randname += " [lastname]"
 
 	return randname
+
+/datum/species/plasmaman/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+
+	if(H.reagents.has_reagent(/datum/reagent/plasma))
+	H.adjustOxyLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
+	H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
+	H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/stable_plasma))
+	H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/oxygen))
+	H.adjustFireLoss(2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+	H.adjustOxyLoss(1)
+
+
+	return FALSE
