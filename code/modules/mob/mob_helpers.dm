@@ -200,7 +200,7 @@
 /**
   * Turn text into complete gibberish!
   *
-  * t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
+  * text is the inputted message, and any value higher than 70 for chance will cause letters to be replaced instead of added
   */
 /proc/Gibberish(text, replace_characters = FALSE, chance = 50)
 	text = html_decode(text)
