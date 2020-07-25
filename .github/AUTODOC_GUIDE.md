@@ -13,7 +13,7 @@ We use **dmdoc** to generate [DOCUMENTATION] for our code, and that documentatio
 is automatically generated and built on every new commit to the master branch
 
 This gives new developers a clickable reference [DOCUMENTATION] they can browse to better help
-gain understanding of the /tg/station codebase structure and api reference.
+gain understanding of the yogstation codebase structure and api reference.
 
 ## Documenting code on yogstation
 We use block comments to document procs and classes, and we use `///` line comments
@@ -84,7 +84,7 @@ var/suit = null
 Modules are the best way to describe the structure/intent of a package of code
 where you don't want to be tied to the formal layout of the class structure.
 
-On /tg/station we do this by adding markdown files inside the `code` directory
+On yogstation we do this by adding markdown files inside the `code` directory
 that will also be rendered and added to the modules tree. The structure for
 these is deliberately not defined, so you can be as freeform and as wheeling as
 you would like.
