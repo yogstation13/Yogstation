@@ -21,6 +21,8 @@
 	materials = list(MAT_METAL=750)
 	///amount of power consumed by the harvester, incremented every tick and reset every budget cycle
 	var/accumulated_power = 0
+	///stores last REALTIMEOFDAY tick. SSEconomy runs off of that, don't see why this one shouldn't too
+	var/last_tick = 0
 	///cached powernet, assigned when attached to a wirenet with a powernet
 	var/datum/powernet/PN = null
 	///manual power setting to limit the maximum draw of the machine
@@ -72,6 +74,7 @@ obj/item/energy_harvester/Initialize()
 	if(!PN)
 		return FALSE
 	PN = null
+	last_tick = 0
 	STOP_PROCESSING(SSobj, src)
 	set_light(0)
 
@@ -107,13 +110,18 @@ obj/item/energy_harvester/Initialize()
 
 /** Checks if machine works or is still attached to a power node, shuts itself down if nonfunctional and takes itself out of processing queue
   * If functional, sucks up all the excess power from the powernet and adds it to the accumulated_power var
+  * Uses REALTIMEOFDAY since that's what SSEconomy runs off. If using regular tick time, a lag spike will slow down the rate of power absorption and thus the money output.
   */
 /obj/item/energy_harvester/process()
 	if(!anchored || !manual_switch ||!PN)
+		disconnect_from_network()
 		return PROCESS_KILL
 	if(PN.netexcess <= 0)
 		return
-	input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)
+	if(last_tick == 0)
+		last_tick = REALTIMEOFDAY
+	input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)*(REALTIMEOFDAY-last_tick)
+	last_tick = REALTIMEOFDAY
 	PN.delayedload += input_energy
 	accumulated_power += input_energy
 
