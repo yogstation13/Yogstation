@@ -14,29 +14,109 @@
  &mdash; <a href="code/__DEFINES/components.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/components.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/f3b1d3d6728e89174ea3a5971e6b95ded68208df/code/__DEFINES/components.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/components.html#define/ELEMENT_INCOMPATIBLE">ELEMENT_INCOMPATIBLE</a></th><td>Return value to cancel attaching</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/ELEMENT_DETACH">ELEMENT_DETACH</a></th><td>datum/element flags</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMPONENT_DUPE_HIGHLANDER">COMPONENT_DUPE_HIGHLANDER</a></th><td>old component is deleted (default)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMPONENT_DUPE_ALLOWED">COMPONENT_DUPE_ALLOWED</a></th><td>duplicates allowed</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMPONENT_DUPE_UNIQUE">COMPONENT_DUPE_UNIQUE</a></th><td>new component is deleted</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMPONENT_DUPE_UNIQUE_PASSARGS">COMPONENT_DUPE_UNIQUE_PASSARGS</a></th><td>old component is given the initialization args of the new</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_GLOB_NEW_Z">COMSIG_GLOB_NEW_Z</a></th><td>from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_GLOB_VAR_EDIT">COMSIG_GLOB_VAR_EDIT</a></th><td>called after a successful var edit somewhere in the world: (list/args)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_GLOB_MOB_CREATED">COMSIG_GLOB_MOB_CREATED</a></th><td>mob was created somewhere : (mob)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_GLOB_MOB_DEATH">COMSIG_GLOB_MOB_DEATH</a></th><td>mob died somewhere : (mob , gibbed)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_GLOB_LIVING_SAY_SPECIAL">COMSIG_GLOB_LIVING_SAY_SPECIAL</a></th><td>global living say plug - use sparingly: (mob/speaker , message)</td></tr>
         <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_SUN_MOVED">COMSIG_SUN_MOVED</a></th><td>from SSsun when the sun changes position : (azimuth)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_COMPONENT_ADDED">COMSIG_COMPONENT_ADDED</a></th><td>when a component is added to a datum: (/datum/component)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_COMPONENT_REMOVING">COMSIG_COMPONENT_REMOVING</a></th><td>before a component is removed from a datum because of RemoveComponent: (/datum/component)</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_PARENT_PREQDELETED">COMSIG_PARENT_PREQDELETED</a></th><td>before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_PARENT_QDELETING">COMSIG_PARENT_QDELETING</a></th><td>just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called</td></tr>
+        <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_TOPIC">COMSIG_TOPIC</a></th><td>generic topic handler (usr, href_list)</td></tr>
         <tr><th><a href="code/__DEFINES/components.html#define/COMSIG_TURF_IS_WET">COMSIG_TURF_IS_WET</a></th><td>Component Specific Signals</td></tr>
         <tr><th><a href="code/__DEFINES/components.html#define/REDIRECT_TRANSFER_WITH_TURF">REDIRECT_TRANSFER_WITH_TURF</a></th><td>Non-Signal Component Related Defines</td></tr></table><h2 id="define">Define Details</h2>
-<h3 id="define/COMSIG_SUN_MOVED"><aside class="declaration">#define </aside>COMSIG_SUN_MOVED
-            <a href="https://github.com/yogstation13/Yogstation/blob/f3b1d3d6728e89174ea3a5971e6b95ded68208df/code/__DEFINES/components.dm#L35">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 35"/></a>
+<h3 id="define/COMPONENT_DUPE_ALLOWED"><aside class="declaration">#define </aside>COMPONENT_DUPE_ALLOWED
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 18"/></a>
     </h3>
-    <p>from SSsun when the sun changes position : (azimuth)</p><h3 id="define/COMSIG_TURF_IS_WET"><aside class="declaration">#define </aside>COMSIG_TURF_IS_WET
-            <a href="https://github.com/yogstation13/Yogstation/blob/f3b1d3d6728e89174ea3a5971e6b95ded68208df/code/__DEFINES/components.dm#L274">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 274"/></a>
+    <p>duplicates allowed</p><h3 id="define/COMPONENT_DUPE_HIGHLANDER"><aside class="declaration">#define </aside>COMPONENT_DUPE_HIGHLANDER
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 16"/></a>
     </h3>
-    <p>Component Specific Signals</p><h3 id="define/REDIRECT_TRANSFER_WITH_TURF"><aside class="declaration">#define </aside>REDIRECT_TRANSFER_WITH_TURF
-            <a href="https://github.com/yogstation13/Yogstation/blob/f3b1d3d6728e89174ea3a5971e6b95ded68208df/code/__DEFINES/components.dm#L331">
-        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 331"/></a>
+    <p>old component is deleted (default)</p><h3 id="define/COMPONENT_DUPE_UNIQUE"><aside class="declaration">#define </aside>COMPONENT_DUPE_UNIQUE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 20"/></a>
+    </h3>
+    <p>new component is deleted</p><h3 id="define/COMPONENT_DUPE_UNIQUE_PASSARGS"><aside class="declaration">#define </aside>COMPONENT_DUPE_UNIQUE_PASSARGS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 22"/></a>
+    </h3>
+    <p>old component is given the initialization args of the new</p><h3 id="define/COMSIG_COMPONENT_ADDED"><aside class="declaration">#define </aside>COMSIG_COMPONENT_ADDED
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 50"/></a>
+    </h3>
+    <p>when a component is added to a datum: (/datum/component)</p><h3 id="define/COMSIG_COMPONENT_REMOVING"><aside class="declaration">#define </aside>COMSIG_COMPONENT_REMOVING
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 52"/></a>
+    </h3>
+    <p>before a component is removed from a datum because of RemoveComponent: (/datum/component)</p><h3 id="define/COMSIG_GLOB_LIVING_SAY_SPECIAL"><aside class="declaration">#define </aside>COMSIG_GLOB_LIVING_SAY_SPECIAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 40"/></a>
+    </h3>
+    <p>global living say plug - use sparingly: (mob/speaker , message)</p><h3 id="define/COMSIG_GLOB_MOB_CREATED"><aside class="declaration">#define </aside>COMSIG_GLOB_MOB_CREATED
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 36"/></a>
+    </h3>
+    <p>mob was created somewhere : (mob)</p><h3 id="define/COMSIG_GLOB_MOB_DEATH"><aside class="declaration">#define </aside>COMSIG_GLOB_MOB_DEATH
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 38"/></a>
+    </h3>
+    <p>mob died somewhere : (mob , gibbed)</p><h3 id="define/COMSIG_GLOB_NEW_Z"><aside class="declaration">#define </aside>COMSIG_GLOB_NEW_Z
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 32"/></a>
+    </h3>
+    <p>from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)</p><h3 id="define/COMSIG_GLOB_VAR_EDIT"><aside class="declaration">#define </aside>COMSIG_GLOB_VAR_EDIT
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 34"/></a>
+    </h3>
+    <p>called after a successful var edit somewhere in the world: (list/args)</p><h3 id="define/COMSIG_PARENT_PREQDELETED"><aside class="declaration">#define </aside>COMSIG_PARENT_PREQDELETED
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 54"/></a>
+    </h3>
+    <p>before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation</p><h3 id="define/COMSIG_PARENT_QDELETING"><aside class="declaration">#define </aside>COMSIG_PARENT_QDELETING
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 56"/></a>
+    </h3>
+    <p>just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called</p><h3 id="define/COMSIG_SUN_MOVED"><aside class="declaration">#define </aside>COMSIG_SUN_MOVED
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 44"/></a>
+    </h3>
+    <p>from SSsun when the sun changes position : (azimuth)</p><h3 id="define/COMSIG_TOPIC"><aside class="declaration">#define </aside>COMSIG_TOPIC
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 58"/></a>
+    </h3>
+    <p>generic topic handler (usr, href_list)</p><h3 id="define/COMSIG_TURF_IS_WET"><aside class="declaration">#define </aside>COMSIG_TURF_IS_WET
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 288"/></a>
+    </h3>
+    <p>Component Specific Signals</p><h3 id="define/ELEMENT_DETACH"><aside class="declaration">#define </aside>ELEMENT_DETACH
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 12"/></a>
+    </h3>
+    <p>datum/element flags</p><h3 id="define/ELEMENT_INCOMPATIBLE"><aside class="declaration">#define </aside>ELEMENT_INCOMPATIBLE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 9"/></a>
+    </h3>
+    <p>Return value to cancel attaching</p><h3 id="define/REDIRECT_TRANSFER_WITH_TURF"><aside class="declaration">#define </aside>REDIRECT_TRANSFER_WITH_TURF
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/components.dm#L345">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;components.dm 345"/></a>
     </h3>
     <p>Non-Signal Component Related Defines</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/f3b1d3d6728e89174ea3a5971e6b95ded68208df">f3b1d3d</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/8b963c9626932a6a5feb40f3a633464e1b04c4d1">8b963c9</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>

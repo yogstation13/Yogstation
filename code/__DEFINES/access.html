@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;access.dm - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/access.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/access.dm 
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_BRIG">ACCESS_BRIG</a></th><td>Brig cells+timers, permabrig, gulag+gulag shuttle, prisoner management console</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ARMORY">ACCESS_ARMORY</a></th><td>Armory, gulag teleporter, execution chamber</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_FORENSICS_LOCKERS">ACCESS_FORENSICS_LOCKERS</a></th><td>Detective's office, forensics lockers, security+medical records</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MEDICAL">ACCESS_MEDICAL</a></th><td>Medical general access</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MORGUE">ACCESS_MORGUE</a></th><td>Morgue access</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TOX">ACCESS_TOX</a></th><td>R&amp;D department, R&amp;D console, burn chamber on some maps</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TOX_STORAGE">ACCESS_TOX_STORAGE</a></th><td>Toxins storage, burn chamber on some maps</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_GENETICS">ACCESS_GENETICS</a></th><td>Genetics access</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ENGINE">ACCESS_ENGINE</a></th><td>Engineering area, power monitor, power flow control console</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_ENGINE_EQUIP">ACCESS_ENGINE_EQUIP</a></th><td>APCs, EngiVend/YouTool, engineering equipment lockers</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_HEADS">ACCESS_HEADS</a></th><td>Bridge, EVA storage windoors, gateway shutters, AI integrity restorer, clone record deletion, comms console</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_RC_ANNOUNCE">ACCESS_RC_ANNOUNCE</a></th><td>Request console announcements</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_KEYCARD_AUTH">ACCESS_KEYCARD_AUTH</a></th><td>Used for events which require at least two people to confirm them</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TCOMSAT">ACCESS_TCOMSAT</a></th><td>has access to the entire telecomms satellite / machinery</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SEC_DOORS">ACCESS_SEC_DOORS</a></th><td>Outer brig doors, department security posts</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_MINERAL_STOREROOM">ACCESS_MINERAL_STOREROOM</a></th><td>For releasing minerals from the ORM</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_WEAPONS">ACCESS_WEAPONS</a></th><td>Weapon authorization for secbots</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_NETWORK">ACCESS_NETWORK</a></th><td>NTnet diagnostics/monitoring software</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CLONING">ACCESS_CLONING</a></th><td>Cloning room and clone pod ejection</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_PARAMEDIC">ACCESS_PARAMEDIC</a></th><td>Paramedic Office</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_TCOM_ADMIN">ACCESS_TCOM_ADMIN</a></th><td>Access to the Signal Tech monitoring room</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_GENERAL">ACCESS_CENT_GENERAL</a></th><td>General facilities. CentCom ferry.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_THUNDER">ACCESS_CENT_THUNDER</a></th><td>Thunderdome.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_SPECOPS">ACCESS_CENT_SPECOPS</a></th><td>Special Ops. Captain's display case, Marauder and Seraph mechs.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_MEDICAL">ACCESS_CENT_MEDICAL</a></th><td>Medical/Research</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_LIVING">ACCESS_CENT_LIVING</a></th><td>Living quarters.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_STORAGE">ACCESS_CENT_STORAGE</a></th><td>Generic storage areas.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_TELEPORTER">ACCESS_CENT_TELEPORTER</a></th><td>Teleporter.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_CAPTAIN">ACCESS_CENT_CAPTAIN</a></th><td>Captain's office/ID comp/AI.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_CENT_BAR">ACCESS_CENT_BAR</a></th><td>The non-existent CentCom Bar</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SYNDICATE">ACCESS_SYNDICATE</a></th><td>General Syndicate Access. Includes Syndicate mechs and ruins.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_SYNDICATE_LEADER">ACCESS_SYNDICATE_LEADER</a></th><td>Nuke Op Leader Access</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_GENERAL">ACCESS_AWAY_GENERAL</a></th><td>Away general facilities.</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_MAINT">ACCESS_AWAY_MAINT</a></th><td>Away maintenance</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_MED">ACCESS_AWAY_MED</a></th><td>Away medical</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_SEC">ACCESS_AWAY_SEC</a></th><td>Away security</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_ENGINE">ACCESS_AWAY_ENGINE</a></th><td>Away engineering</td></tr>
+        <tr><th><a href="code/__DEFINES/access.html#define/ACCESS_AWAY_GENERIC1">ACCESS_AWAY_GENERIC1</a></th><td>Away generic access</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ACCESS_ARMORY"><aside class="declaration">#define </aside>ACCESS_ARMORY
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 6"/></a>
+    </h3>
+    <p>Armory, gulag teleporter, execution chamber</p><h3 id="define/ACCESS_AWAY_ENGINE"><aside class="declaration">#define </aside>ACCESS_AWAY_ENGINE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 129"/></a>
+    </h3>
+    <p>Away engineering</p><h3 id="define/ACCESS_AWAY_GENERAL"><aside class="declaration">#define </aside>ACCESS_AWAY_GENERAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 121"/></a>
+    </h3>
+    <p>Away general facilities.</p><h3 id="define/ACCESS_AWAY_GENERIC1"><aside class="declaration">#define </aside>ACCESS_AWAY_GENERIC1
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 131"/></a>
+    </h3>
+    <p>Away generic access</p><h3 id="define/ACCESS_AWAY_MAINT"><aside class="declaration">#define </aside>ACCESS_AWAY_MAINT
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 123"/></a>
+    </h3>
+    <p>Away maintenance</p><h3 id="define/ACCESS_AWAY_MED"><aside class="declaration">#define </aside>ACCESS_AWAY_MED
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 125"/></a>
+    </h3>
+    <p>Away medical</p><h3 id="define/ACCESS_AWAY_SEC"><aside class="declaration">#define </aside>ACCESS_AWAY_SEC
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 127"/></a>
+    </h3>
+    <p>Away security</p><h3 id="define/ACCESS_BRIG"><aside class="declaration">#define </aside>ACCESS_BRIG
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 4"/></a>
+    </h3>
+    <p>Brig cells+timers, permabrig, gulag+gulag shuttle, prisoner management console</p><h3 id="define/ACCESS_CENT_BAR"><aside class="declaration">#define </aside>ACCESS_CENT_BAR
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 109"/></a>
+    </h3>
+    <p>The non-existent CentCom Bar</p><h3 id="define/ACCESS_CENT_CAPTAIN"><aside class="declaration">#define </aside>ACCESS_CENT_CAPTAIN
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 107"/></a>
+    </h3>
+    <p>Captain's office/ID comp/AI.</p><h3 id="define/ACCESS_CENT_GENERAL"><aside class="declaration">#define </aside>ACCESS_CENT_GENERAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 93"/></a>
+    </h3>
+    <p>General facilities. CentCom ferry.</p><h3 id="define/ACCESS_CENT_LIVING"><aside class="declaration">#define </aside>ACCESS_CENT_LIVING
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 101"/></a>
+    </h3>
+    <p>Living quarters.</p><h3 id="define/ACCESS_CENT_MEDICAL"><aside class="declaration">#define </aside>ACCESS_CENT_MEDICAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 99"/></a>
+    </h3>
+    <p>Medical/Research</p><h3 id="define/ACCESS_CENT_SPECOPS"><aside class="declaration">#define </aside>ACCESS_CENT_SPECOPS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 97"/></a>
+    </h3>
+    <p>Special Ops. Captain's display case, Marauder and Seraph mechs.</p><h3 id="define/ACCESS_CENT_STORAGE"><aside class="declaration">#define </aside>ACCESS_CENT_STORAGE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 103"/></a>
+    </h3>
+    <p>Generic storage areas.</p><h3 id="define/ACCESS_CENT_TELEPORTER"><aside class="declaration">#define </aside>ACCESS_CENT_TELEPORTER
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 105"/></a>
+    </h3>
+    <p>Teleporter.</p><h3 id="define/ACCESS_CENT_THUNDER"><aside class="declaration">#define </aside>ACCESS_CENT_THUNDER
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 95"/></a>
+    </h3>
+    <p>Thunderdome.</p><h3 id="define/ACCESS_CLONING"><aside class="declaration">#define </aside>ACCESS_CLONING
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 81"/></a>
+    </h3>
+    <p>Cloning room and clone pod ejection</p><h3 id="define/ACCESS_ENGINE"><aside class="declaration">#define </aside>ACCESS_ENGINE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 20"/></a>
+    </h3>
+    <p>Engineering area, power monitor, power flow control console</p><h3 id="define/ACCESS_ENGINE_EQUIP"><aside class="declaration">#define </aside>ACCESS_ENGINE_EQUIP
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 22"/></a>
+    </h3>
+    <p>APCs, EngiVend/YouTool, engineering equipment lockers</p><h3 id="define/ACCESS_FORENSICS_LOCKERS"><aside class="declaration">#define </aside>ACCESS_FORENSICS_LOCKERS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 8"/></a>
+    </h3>
+    <p>Detective's office, forensics lockers, security+medical records</p><h3 id="define/ACCESS_GENETICS"><aside class="declaration">#define </aside>ACCESS_GENETICS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 18"/></a>
+    </h3>
+    <p>Genetics access</p><h3 id="define/ACCESS_HEADS"><aside class="declaration">#define </aside>ACCESS_HEADS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 30"/></a>
+    </h3>
+    <p>Bridge, EVA storage windoors, gateway shutters, AI integrity restorer, clone record deletion, comms console</p><h3 id="define/ACCESS_KEYCARD_AUTH"><aside class="declaration">#define </aside>ACCESS_KEYCARD_AUTH
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 67"/></a>
+    </h3>
+    <p>Used for events which require at least two people to confirm them</p><h3 id="define/ACCESS_MEDICAL"><aside class="declaration">#define </aside>ACCESS_MEDICAL
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 10"/></a>
+    </h3>
+    <p>Medical general access</p><h3 id="define/ACCESS_MINERAL_STOREROOM"><aside class="declaration">#define </aside>ACCESS_MINERAL_STOREROOM
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 74"/></a>
+    </h3>
+    <p>For releasing minerals from the ORM</p><h3 id="define/ACCESS_MORGUE"><aside class="declaration">#define </aside>ACCESS_MORGUE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 12"/></a>
+    </h3>
+    <p>Morgue access</p><h3 id="define/ACCESS_NETWORK"><aside class="declaration">#define </aside>ACCESS_NETWORK
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 79"/></a>
+    </h3>
+    <p>NTnet diagnostics/monitoring software</p><h3 id="define/ACCESS_PARAMEDIC"><aside class="declaration">#define </aside>ACCESS_PARAMEDIC
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 83"/></a>
+    </h3>
+    <p>Paramedic Office</p><h3 id="define/ACCESS_RC_ANNOUNCE"><aside class="declaration">#define </aside>ACCESS_RC_ANNOUNCE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 65"/></a>
+    </h3>
+    <p>Request console announcements</p><h3 id="define/ACCESS_SEC_DOORS"><aside class="declaration">#define </aside>ACCESS_SEC_DOORS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 72"/></a>
+    </h3>
+    <p>Outer brig doors, department security posts</p><h3 id="define/ACCESS_SYNDICATE"><aside class="declaration">#define </aside>ACCESS_SYNDICATE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 113"/></a>
+    </h3>
+    <p>General Syndicate Access. Includes Syndicate mechs and ruins.</p><h3 id="define/ACCESS_SYNDICATE_LEADER"><aside class="declaration">#define </aside>ACCESS_SYNDICATE_LEADER
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 115"/></a>
+    </h3>
+    <p>Nuke Op Leader Access</p><h3 id="define/ACCESS_TCOMSAT"><aside class="declaration">#define </aside>ACCESS_TCOMSAT
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 69"/></a>
+    </h3>
+    <p>has access to the entire telecomms satellite / machinery</p><h3 id="define/ACCESS_TCOM_ADMIN"><aside class="declaration">#define </aside>ACCESS_TCOM_ADMIN
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 85"/></a>
+    </h3>
+    <p>Access to the Signal Tech monitoring room</p><h3 id="define/ACCESS_TOX"><aside class="declaration">#define </aside>ACCESS_TOX
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 14"/></a>
+    </h3>
+    <p>R&amp;D department, R&amp;D console, burn chamber on some maps</p><h3 id="define/ACCESS_TOX_STORAGE"><aside class="declaration">#define </aside>ACCESS_TOX_STORAGE
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 16"/></a>
+    </h3>
+    <p>Toxins storage, burn chamber on some maps</p><h3 id="define/ACCESS_WEAPONS"><aside class="declaration">#define </aside>ACCESS_WEAPONS
+            <a href="https://github.com/yogstation13/Yogstation/blob/8b963c9626932a6a5feb40f3a633464e1b04c4d1/code/__DEFINES/access.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 77"/></a>
+    </h3>
+    <p>Weapon authorization for secbots</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/8b963c9626932a6a5feb40f3a633464e1b04c4d1">8b963c9</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>
