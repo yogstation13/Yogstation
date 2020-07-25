@@ -6,4 +6,4 @@ This repository is built and tested against BYOND version `512.1485` at time of 
 
 ## Reporting a Vulnerability
 
-If you have been informed of or discovered a security vulnerability, exploit or other flaw, please contact a developer to report it privately. Public channels on Discord or the forums should be avoided, as the exploit may be taken from a public post and used before it can be patched.
+post it on reddit lmao
