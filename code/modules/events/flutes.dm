@@ -105,7 +105,7 @@
 	if(HAS_TRAIT(M, TRAIT_UNSTABLE))
 		to_chat(M, "<span class='green'><b>Your mind shatters.</b></span>")
 		M.SetSleeping(30)
-		sleep(300)
+		sleep(30 SECONDS)
 		to_chat(M, "<span class='suicide'><b>Your flesh undulates, and boils off your bones. You were blind, yet now you've seen a glimpse behind the cosmic curtain.</b></span>")
 		//sanity = 25
 		REMOVE_TRAIT(M, TRAIT_UNSTABLE, M)
