@@ -91,7 +91,7 @@
 	to_chat(M, "<span class='warning'><b>Exhaustion takes you.</b></span>")
 	M.SetSleeping(70)
 	to_chat(M, "<span class='notice'><b>You see vague, inhuman forms, in the tightest corners of your alien dreams, dancing frantically to thundering drums, in tune with yellow monotone flutes.</b></span>")
-	sleep(200)
+	sleep(20 SECONDS)
 	M.adjustBruteLoss(15)
 	to_chat(M, "<span class='notice'><b>You wake from your deep dreams, blood oozing from your nose, while your head beats to a familiar tune.</b></span>")
 
