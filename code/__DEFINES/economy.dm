@@ -46,5 +46,3 @@
 #define CIV_JOB_GROW 12
 
 #define MEGAFAUNA_CASH_SCALE 5
-
-#define NO_FREEBIES "commies go home"
