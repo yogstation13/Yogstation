@@ -1,5 +1,0 @@
-author: "swissloaf"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the swarmer beacon and other swarmer objects"
-  - tweak: "Major changes to swarmer gameplay"
