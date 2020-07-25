@@ -97,7 +97,7 @@
 
 /datum/round_event/flutes/proc/flute_corridor_encounter(mob/living/carbon/M)
 	to_chat(M, "<span class='notice'><b>You glance upwards, down the corridor.</b></span>")
-	sleep(50)
+	sleep(5 SECONDS)
 	to_chat(M, "<span class='bold large_brass'><b>A BRIGHT BLINDING LIGHT FILLS YOUR VISION!</b></span>")
 	M.eye_blind = 5
 	sleep(100)
