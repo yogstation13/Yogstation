@@ -10,13 +10,11 @@
 	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 50
 	integrity_failure = 20
-
 	appearance_flags = KEEP_TOGETHER
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = TRUE
 	canSmoothWith = list(/obj/structure/grille, /obj/structure/grille/broken)
 	var/holes = 0 //bitflag
-
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2
 	var/rods_broken = TRUE
@@ -44,11 +42,9 @@
 
 	update_icon()
 
-
 /obj/structure/grille/update_icon()
 	if(QDELETED(src))
 		return
-
 	for(var/i = 0; i < 5; i++)
 		var/mask = 1 << i
 		if(holes & mask)
