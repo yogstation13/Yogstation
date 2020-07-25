@@ -1914,3 +1914,4 @@
 /datum/sprite_accessory/tails/polysmorph/polys
 	name = "Polys"
 	icon_state = "polys"
+	color_src = null
