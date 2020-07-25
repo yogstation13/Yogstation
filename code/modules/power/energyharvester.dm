@@ -120,7 +120,7 @@ obj/item/energy_harvester/Initialize()
 		return
 	if(last_tick == 0)
 		last_tick = REALTIMEOFDAY
-	input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)*(REALTIMEOFDAY-last_tick)
+	input_energy = min(PN.netexcess, manual_power_setting, MAXIMUM_POWER_LIMIT)*((REALTIMEOFDAY-last_tick)/10)
 	last_tick = REALTIMEOFDAY
 	PN.delayedload += input_energy
 	accumulated_power += input_energy
