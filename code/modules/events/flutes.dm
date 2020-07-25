@@ -82,7 +82,7 @@
 
 /datum/round_event/flutes/proc/flute_starlight(mob/living/carbon/M)
 	to_chat(M, "<span class='warning'><b>As the nearest stars light your skin and your station, you can make out the faint whispers being spoken in turn with the monotone flutes playing beyond you. You feel so tired, as the struts of metal piping, the walls, the floor twist in unnatural ways, as the lights dim.</b></span>")
-	sleep(300)
+	sleep(30 SECONDS)
 	M.blur_eyes(40)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 80)
 	ADD_TRAIT(M, TRAIT_UNSTABLE, M)
