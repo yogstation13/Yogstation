@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "Megafauna now supply cargo with money when killed"
