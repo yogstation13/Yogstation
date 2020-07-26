@@ -73,13 +73,13 @@
 	..()
 	if(istype(H))
 		if(!("tail_polysmorph" in H.dna.species.mutant_bodyparts))
-			H.dna.species.mutant_bodyparts |= "tail_polysmorph"
 			H.dna.features["tail_polysmorph"] = tail_type
-			H.update_body()
+			H.dna.species.mutant_bodyparts |= "tail_polysmorph"
+		H.update_body()
 
 /obj/item/organ/tail/polysmorph/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
 	if(istype(H))
-		H.dna.features["tail_polysmorph"] = "None"
 		H.dna.species.mutant_bodyparts -= "tail_polysmorph"
+		tail_type = H.dna.features["tail_polysmorph"]
 		H.update_body()

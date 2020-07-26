@@ -622,6 +622,18 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
 
+	if("teeth" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "teeth"
+
+	if("dome" in mutant_bodyparts)
+		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "dome"
+
+	//if("dorsal_tubes" in mutant_bodyparts)
+		//if(!H.dna.features["dorsal_tubes"] || H.dna.features["dorsal_tubes"] == "No" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))
+			//bodyparts_to_add -= "dorsal_tubes"
+
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
 	var/not_digitigrade = TRUE
@@ -691,6 +703,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
+				if("plasma_vessels")
+					S = GLOB.plasma_vessels_list[H.dna.features["plasma_vessels"]]
+				if("teeth")
+					S = GLOB.teeth_list[H.dna.features["teeth"]]
+				if("dome")
+					S = GLOB.dome_list[H.dna.features["dome"]]
+				if("dorsal_tubes")
+					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 			if(!S || S.icon_state == "none")
 				continue
 

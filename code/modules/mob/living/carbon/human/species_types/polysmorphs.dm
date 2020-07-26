@@ -2,7 +2,6 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	default_color = "96BB00"
 	exotic_blood = /datum/reagent/polysmorphblood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
@@ -24,7 +23,7 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth")
-	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "1", "dome" = "None", "dorsal_tubes" = "None", "teeth" = "None")
+	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "None", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None")
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT

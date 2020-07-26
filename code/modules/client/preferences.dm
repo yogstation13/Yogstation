@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "tail_polysmorph" = "Polys", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain")
+	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "plasma_vessels" = "None", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -424,13 +424,52 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("tail_polysmorph" in pref_species.default_features)
+			if("plasma_vessels" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Tail</h3>"
+				dat += "<h3>Plasma Vessels</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=tail_polysmorph;task=input'>[features["tail_polysmorph"]]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=plasma_vessels;task=input'>[features["plasma_vessels"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("teeth" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Teeth</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=teeth;task=input'>[features["teeth"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("dome" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Dome</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=dome;task=input'>[features["dome"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("dorsal_tubes" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Dorsal Tubes</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=dorsal_tubes;task=input'>[features["dorsal_tubes"]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1457,6 +1496,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_moth_wings = input(user, "Choose your character's wings:", "Character Preference") as null|anything in GLOB.moth_wings_list
 					if(new_moth_wings)
 						features["moth_wings"] = new_moth_wings
+
+				if("plasma_vessels")
+					var/new_plasma_vessels
+					new_plasma_vessels = input(user, "Choose your character's plasma vessels:", "Character Preference") as null|anything in GLOB.plasma_vessels_list
+					if(new_plasma_vessels)
+						features["plasma_vessels"] = new_plasma_vessels
+
+				if("teeth")
+					var/new_teeth
+					new_teeth = input(user, "Choose your character's teeth:", "Character Preference") as null|anything in GLOB.teeth_list
+					if(new_teeth)
+						features["teeth"] = new_teeth
+
+				if("dome")
+					var/new_dome
+					new_dome = input(user, "Choose your character's dome:", "Character Preference") as null|anything in GLOB.dome_list
+					if(new_dome)
+						features["dome"] = new_dome
+
+				if("dorsal_tubes")
+					var/new_dorsal_tubes
+					new_dorsal_tubes = input(user, "Choose if your character has dorsal tubes:", "Character Preference") as null|anything in GLOB.dorsal_tubes_list
+					if(new_dorsal_tubes)
+						features["dorsal_tubes"] = new_dorsal_tubes
 
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones
