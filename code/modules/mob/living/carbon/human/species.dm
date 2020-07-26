@@ -1348,7 +1348,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					user.visible_message("<span class='danger'>[user.name] shoves [target.name], disarming them!</span>",
 						"<span class='danger'>You shove [target.name], disarming them!</span>", null, COMBAT_MESSAGE_RANGE)
 					log_combat(user, target, "shoved", "knocking them down")
-			else if(target_collateral_human)
+			else if(target_collateral_human && (target.mobility_flags & MOBILITY_STAND) && (target_collateral_human.mobility_flags & MOBILITY_STAND))
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				user.visible_message("<span class='danger'>[user.name] shoves [target.name] into [target_collateral_human.name]!</span>",
