@@ -17,7 +17,7 @@
 
 	sexes = FALSE
 
-	offset_features = list(OFFSET_GLASSES = list(0,10), OFFSET_EARS = list(0,10), OFFSET_FACEMASK = list(0,-10), OFFSET_HEAD = list(0,-10), OFFSET_FACE = list(0,-10), OFFSET_BACK = list(0,-10))
+	offset_features = list(OFFSET_GLASSES = list(0,-8), OFFSET_EARS = list(0,-8), OFFSET_FACEMASK = list(0,-8), OFFSET_HEAD = list(0,-8), OFFSET_FACE = list(0,-8), OFFSET_BACK = list(0,-8))
 	hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
 
 	use_skintones = FALSE	// does it use skintones or not? (spoiler alert this is only used by humans)
@@ -122,7 +122,7 @@
 		if(do_after(owner, 20, TRUE))
 			H.set_species(/datum/species/savant)
 			H.update_body_parts()
-			explosion(H, 0, 1, 0)
+			explosion(H, 0, 0, 1)
 			var/sfh = SS.suitFailHealth
 			H.adjustBruteLoss(sfh*0.5, 0)
 			H.adjustFireLoss(sfh*0.5, 0)
@@ -199,7 +199,7 @@
 	if((H.getFireLoss() + H.getBruteLoss()) > suitFailHealth)
 		H.set_species(/datum/species/savant)
 		H.update_body_parts()
-		explosion(H, 0, 2, 0)
+		explosion(H, 0, 0, 2)
 
 /datum/species/savant/spec_fully_heal(mob/living/carbon/human/H)
 	H.set_species(/datum/species/savant/suit)
