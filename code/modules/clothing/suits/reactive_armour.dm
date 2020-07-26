@@ -68,6 +68,10 @@
 	var/rad_amount= 15
 	reactivearmor_cooldown_duration = 100
 
+/obj/item/clothing/suit/armor/reactive/teleport/Initialize()
+	..()
+	AddComponent(/datum/component/revs_security_code)
+
 /obj/item/clothing/suit/armor/reactive/teleport/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
 		return 0

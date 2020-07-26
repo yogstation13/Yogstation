@@ -38,6 +38,9 @@
 
 	var/victory_timer_ended = FALSE
 
+	///The item that holds the security code for the heads
+	var/code_holder
+
 ///////////////////////////////////////////////////////////////////////////////
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
@@ -108,10 +111,14 @@
 	revolution.update_heads()
 
 	SSshuttle.registerHostileEnvironment(src)
+
+	code_holder = pick(GLOB.all_rev_security_codes)
 	..()
 
 
 /datum/game_mode/revolution/process()
+	if(!code_holder || !code_holder.parent || QDELETED(code_holder) || QDELETED(code_holder.parent))
+		code_holder = pick(GLOB.all_rev_security_codes)
 	check_counter++
 	if(check_counter >= 5)
 		if(!finished)
@@ -211,6 +218,15 @@
 		who then follow their orders without question and work towards dethroning departmental leaders. Watch for behavior such as this with caution. If the crew attempts a mutiny, you and \
 		your heads of staff are fully authorized to execute them using lethal weaponry - they will be later cloned and interrogated at Central Command."
 
+/**
+  * Notifies heads of where the security code is
+  */
+/datum/game_mode/revolution/proc/notify_heads_possible_securitycode()
+	for(var/datum/objective/mutiny/objective in revolution.objectives)
+		if(objective.target)
+			to_chat(objective.target, "<span class='userdanger'>You suddenly remember that the security code is scribbled on [code_holder.parent]</span>")
+
+
 /datum/game_mode/revolution/extended
 	name = "extended_revolution"
 	config_tag = "extended_revolution"
@@ -237,3 +253,4 @@
 					N.timer_set = 200
 					N.set_safety()
 					N.set_active()
+

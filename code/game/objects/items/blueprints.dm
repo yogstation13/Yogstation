@@ -51,6 +51,10 @@
 	var/legend = FALSE	//Viewing the wire legend
 
 
+/obj/item/areaeditor/blueprints/Initialize()
+	..()
+	AddComponent(/datum/component/revs_security_code)
+
 /obj/item/areaeditor/blueprints/Destroy()
 	clear_viewer()
 	return ..()

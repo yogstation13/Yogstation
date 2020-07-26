@@ -60,6 +60,10 @@
 	ammo_x_offset = 4
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
+/obj/item/gun/energy/e_gun/hos/Initialize()
+	. = ..()
+	AddComponent(/datum/component/revs_security_code)
+
 /obj/item/gun/energy/e_gun/dragnet
 	name = "\improper DRAGnet"
 	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology. Alt+click it to set a destination for the netting mode if a teleporter is set up."

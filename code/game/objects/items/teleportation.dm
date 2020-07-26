@@ -139,6 +139,7 @@
 /obj/item/hand_tele/Initialize()
 	. = ..()
 	active_portal_pairs = list()
+	AddComponent(/datum/component/revs_security_code)
 
 /obj/item/hand_tele/pre_attack(atom/target, mob/user, params)
 	if(try_dispel_portal(target, user))

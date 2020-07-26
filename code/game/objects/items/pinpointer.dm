@@ -23,6 +23,7 @@
 /obj/item/pinpointer/Initialize()
 	. = ..()
 	GLOB.pinpointer_list += src
+	AddComponent(/datum/component/revs_security_code)
 
 /obj/item/pinpointer/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
