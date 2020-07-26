@@ -164,7 +164,7 @@
 	return randname
 
 /datum/species/plasmaman/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/toxin/plasma))
+	if(chem.type == /datum/reagent/toxin/plasma)
 	H.adjustOxyLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
 	H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 	H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
