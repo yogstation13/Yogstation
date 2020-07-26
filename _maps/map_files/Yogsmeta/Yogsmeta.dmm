@@ -1212,6 +1212,28 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"acx" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/rack,
+/obj/item/storage/box/fancy/donut_box,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "acy" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Two"
@@ -3891,27 +3913,6 @@
 /obj/item/clothing/head/helmet/alt,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/head/helmet/alt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
-"agR" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/rack,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -111866,7 +111867,7 @@ aaf
 aeq
 aeq
 afZ
-agR
+acx
 ahE
 aiA
 akD
