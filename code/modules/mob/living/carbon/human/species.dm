@@ -1342,15 +1342,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						if(O.flags_1 & ON_BORDER_1 && O.dir == turn(shove_dir, 180) && O.density)
 							directional_blocked = TRUE
 							break
-			if(!target_collateral_human || directional_blocked)
+			var/bothstanding = target_collateral_human && (target.mobility_flags & MOBILITY_STAND) && (target_collateral_human.mobility_flags & MOBILITY_STAND)
+			if(!bothstanding || directional_blocked)
 				var/obj/item/I = target.get_active_held_item()
 				if(target.dropItemToGround(I))
 					user.visible_message("<span class='danger'>[user.name] shoves [target.name], disarming them!</span>",
 						"<span class='danger'>You shove [target.name], disarming them!</span>", null, COMBAT_MESSAGE_RANGE)
 					log_combat(user, target, "shoved", "knocking them down")
-			else if(target_collateral_human && (target.mobility_flags & MOBILITY_STAND) && (target_collateral_human.mobility_flags & MOBILITY_STAND))
+			else if(bothstanding)
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
-				target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
+				if(!target_collateral_human.is_shove_knockdown_blocked())
+					target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				user.visible_message("<span class='danger'>[user.name] shoves [target.name] into [target_collateral_human.name]!</span>",
 					"<span class='danger'>You shove [target.name] into [target_collateral_human.name]!</span>", null, COMBAT_MESSAGE_RANGE)
 				log_combat(user, target, "shoved", "into [target_collateral_human.name]")
