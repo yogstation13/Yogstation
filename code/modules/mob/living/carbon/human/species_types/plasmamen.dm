@@ -169,8 +169,6 @@
     if(chem.type == /datum/reagent/toxin/plasma)
         H.adjustOxyLoss(-1)
         H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-            if(H.losebreath >= 4)
-            H.losebreath -= 1
 
     if(H.reagents.has_reagent(/datum/reagent/stable_plasma))
         H.adjustBruteLoss(-0.5)
