@@ -167,14 +167,14 @@
     . = ..()
 
     if(chem.type == /datum/reagent/toxin/plasma)
-      H.adjustOxyLoss(-5)
-      H.adjustToxLoss(-1)
-      H.adjustFireLoss(-1)
-      H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+        H.adjustOxyLoss(-5)
+        H.adjustToxLoss(-1)
+        H.adjustFireLoss(-1)
+        H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 
     if(H.reagents.has_reagent(/datum/reagent/stable_plasma))
-      H.adjustBruteLoss(-1)
+        H.adjustBruteLoss(-1)
 
     if(H.reagents.has_reagent(/datum/reagent/oxygen))
-      H.adjustFireLoss(3)
-      H.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL + 40) //310.15 is the normal bodytemp.
+        H.adjustFireLoss(3)
+        H.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL + 40) //310.15 is the normal bodytemp.
