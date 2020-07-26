@@ -60,7 +60,7 @@
 /obj/item/twohanded/proc/wield(mob/living/carbon/user)
 	if(wielded)
 		return
-	if(ismonkey(user))
+	if(ismonkey(user) || HAS_TRAIT(user, TRAIT_SHORT))
 		to_chat(user, "<span class='warning'>It's too heavy for you to wield fully.</span>")
 		return
 	if(user.get_inactive_held_item())

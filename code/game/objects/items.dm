@@ -320,6 +320,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!allow_attack_hand_drop(user) || !user.temporarilyRemoveItemFromInventory(src))
 			return
 
+	if((HAS_TRAIT(user, TRAIT_SMALL_HANDS) && w_class > WEIGHT_CLASS_NORMAL) && (user.get_inactive_held_item() || user.get_num_arms() < 2))
+		to_chat(user, "<span class='warning'>You need two hands to hold something this big!</span>")
+		return
+
 	pickup(user)
 	add_fingerprint(user)
 	if(!user.put_in_active_hand(src, FALSE, FALSE))

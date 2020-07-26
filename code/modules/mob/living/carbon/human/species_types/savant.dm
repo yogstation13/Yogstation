@@ -92,20 +92,22 @@
   */
 /datum/action/innate/savantSuitUp/Activate()
 	var/mob/living/carbon/human/H = owner
-
+	var/metalNeeded = 30
 	if(isSuitedSavant(H))
 		to_chat(H, "<span class='warning'>You begin to take off your suit...</span>")
-		if(do_after(owner, 20, TRUE))
+		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
+		if(do_after(owner, 40, TRUE))
 			H.set_species(/datum/species/savant)
 			H.update_body_parts()
 			explosion(H, 0, 0, 0, adminlog = FALSE)
 			var/sfh = SUITFAILHEALTH
 			H.adjustBruteLoss(sfh*0.5, 0)
 			H.adjustFireLoss(sfh*0.5, 0)
+			var/obj/item/stack/sheet/metal/M = new(H.loc)
+			M.amount = round(metalNeeded * 0.5)
 		return
 
 	///This is how much metal is needed
-	var/metalNeeded = 30
 	var/obj/item/stack/sheet/metal/M
 	for(var/obj/item/stack/sheet/metal/S in range(1))
 		if(S.get_amount() >= metalNeeded)
@@ -113,8 +115,8 @@
 			continue
 	if(M)
 		H.visible_message("<span class='notice'>[H] begins to construct a suit!</span>", "<span class='danger'>You begin to construct a suit...</span>")
-		playsound(get_turf(H), 'sound/weapons/flash.ogg', 25, 1)
-		if(do_after(owner, 40, TRUE))
+		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
+		if(do_after(owner, 80, TRUE))
 			if(!(M.use(metalNeeded)))
 				return
 			suitUp(H)
@@ -188,7 +190,7 @@
 		var/obj/item/bodypart/O = X
 		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))//Head and chest are organic. Only the limbs are augmented
 			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, FALSE)
-			O.icon = 'yogstation/icons/mob/human_parts.dmi'
+			O.icon = 'icons/mob/augmentation/savant.dmi'
 			O.icon_state = "savant_suited_[O.body_zone]"
 
 /datum/species/savant/suit/on_species_loss(mob/living/carbon/C)
