@@ -1057,6 +1057,12 @@
 /mob/living/carbon/human/species/shadow/nightmare
 	race = /datum/species/shadow/nightmare
 
+/mob/living/carbon/human/species/savant
+	race = /datum/species/savant
+
+/mob/living/carbon/human/species/savant/suit
+	race = /datum/species/savant/suit
+
 /mob/living/carbon/human/species/skeleton
 	race = /datum/species/skeleton
 

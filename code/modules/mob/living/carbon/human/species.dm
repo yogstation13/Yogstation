@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/hair_alpha = 255
 
 	/// does it use skintones or not? (spoiler alert this is only used by humans)
-	var/use_skintones = 0
+	var/use_skintones = FALSE
 
 	/// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/exotic_blood = ""

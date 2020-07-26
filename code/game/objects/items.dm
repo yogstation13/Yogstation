@@ -258,12 +258,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(HAS_TRAIT(user, TRAIT_SHORT))
 		var/turf/T = get_turf(src)
 		var/turf/Z = get_turf(user)
+		var/highUp = TRUE
 		for(var/obj/structure/table/S in T)
 			if (S)
 				for(var/obj/structure/table/Y in Z)
 					if (Y)
-						to_chat(user, "<span class='warning'>You can't reach [src]! It's too high up!</span>")
-						return
+						highUp = FALSE
+				if(highUp)
+					to_chat(user, "<span class='warning'>You can't reach [src]! It's too high up!</span>")
+					return
 
 	if(resistance_flags & ON_FIRE)
 		var/mob/living/carbon/C = user
