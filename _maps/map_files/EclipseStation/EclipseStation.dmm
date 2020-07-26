@@ -82519,24 +82519,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"dAJ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "giftshop";
-	name = "Gift Shop Button";
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "dCc" = (
 /obj/machinery/vending/snack/random,
 /obj/effect/turf_decal/tile/white,
@@ -86342,6 +86324,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"orA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Gift Shop Maintenance";
+	req_one_access_txt = "36"
+	},
+/turf/open/floor/plating,
+/area/clerk)
 "osi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 9
@@ -86582,19 +86577,6 @@
 /obj/machinery/vending/boozeomat/all_access,
 /turf/closed/wall,
 /area/maintenance/department/chapel)
-"oYO" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Gift Shop Maintenance";
-	req_one_access_txt = "36"
-	},
-/turf/open/floor/plating,
-/area/clerk)
 "pbv" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -89537,6 +89519,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"xQT" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "giftshop";
+	name = "Gift Shop Button";
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "xUN" = (
 /obj/structure/rack,
 /obj/machinery/light/small,
@@ -107070,7 +107070,7 @@ cus
 cpA
 ccN
 bMK
-oYO
+orA
 bOu
 bPp
 mlO
@@ -107588,7 +107588,7 @@ aGh
 bOv
 bPr
 bPv
-dAJ
+xQT
 bRw
 deW
 bPv
