@@ -1,0 +1,4 @@
+author: "Partheo"
+delete-after: true 
+changes: 
+  - imageadd: "Grille sprites now tile and have holes punched in them as they take damage."
