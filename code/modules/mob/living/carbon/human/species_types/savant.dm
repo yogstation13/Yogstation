@@ -17,7 +17,7 @@
 	default_color = "#FFF"	// if alien colors are disabled, this is the color that will be used by that race
 	limbs_id = "savant"
 	sexes = FALSE
-
+	damage_overlay_type = ""
 	offset_features = list(OFFSET_GLASSES = list(0,-8), OFFSET_EARS = list(0,-8), OFFSET_FACEMASK = list(0,-8), OFFSET_HEAD = list(0,-8), OFFSET_FACE = list(0,-8), OFFSET_BACK = list(0,-8))
 	hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
 
@@ -98,7 +98,7 @@
 		if(do_after(owner, 20, TRUE))
 			H.set_species(/datum/species/savant)
 			H.update_body_parts()
-			explosion(H, 0, 0, 0, adminlog = TRUE)
+			explosion(H, 0, 0, 0, adminlog = FALSE)
 			var/sfh = SUITFAILHEALTH
 			H.adjustBruteLoss(sfh*0.5, 0)
 			H.adjustFireLoss(sfh*0.5, 0)
@@ -188,12 +188,14 @@
 		var/obj/item/bodypart/O = X
 		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))//Head and chest are organic. Only the limbs are augmented
 			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, FALSE)
+			O.icon = 'yogstation/icons/mob/human_parts.dmi'
+			O.icon_state = "savant_suited_[O.body_zone]"
 
 /datum/species/savant/suit/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
-		O.change_bodypart_status(BODYPART_ORGANIC,FALSE, TRUE)
+		O.change_bodypart_status(BODYPART_ORGANIC,FALSE,FALSE)
 
 /datum/species/savant/suit/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
 	. = ..()
