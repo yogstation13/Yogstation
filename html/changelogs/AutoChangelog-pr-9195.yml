@@ -1,6 +1,0 @@
-author: " Pawn, Partheo"
-delete-after: true 
-changes: 
-  - tweak: "the TEG's construction steps have been altered slightly for visual consistency."
-  - imageadd: "the TEG's visuals have been completely redone. Sprites by Pawn."
-  - tweak: "the TEG circulators can now be flipped with a crowbar."
