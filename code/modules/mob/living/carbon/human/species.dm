@@ -1313,7 +1313,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		//Thank you based whoneedsspace
 		target_collateral_human = locate(/mob/living/carbon/human) in target_shove_turf.contents
-		if(target_collateral_human)
+		var/bothstanding = target_collateral_human && (target.mobility_flags & MOBILITY_STAND) && (target_collateral_human.mobility_flags & MOBILITY_STAND)
+		if(target_collateral_human && bothstanding)
 			shove_blocked = TRUE
 		else
 			target.Move(target_shove_turf, shove_dir)
@@ -1342,7 +1343,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						if(O.flags_1 & ON_BORDER_1 && O.dir == turn(shove_dir, 180) && O.density)
 							directional_blocked = TRUE
 							break
-			var/bothstanding = target_collateral_human && (target.mobility_flags & MOBILITY_STAND) && (target_collateral_human.mobility_flags & MOBILITY_STAND)
 			if(!bothstanding || directional_blocked)
 				var/obj/item/I = target.get_active_held_item()
 				if(target.dropItemToGround(I))
