@@ -2,7 +2,7 @@
 //add ability to cure sanity instability with psychatrist?
 //add goals?
 //xoxeyos
-//massive help from Art Prime
+//massive help from arcturus-prime
 
 //----------------------------
 //ROUND EVENT CONTROL "FLUTES"
