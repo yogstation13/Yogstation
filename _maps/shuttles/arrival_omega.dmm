@@ -52,8 +52,12 @@
 /obj/machinery/vending/wallmed{
 	pixel_y = 32
 	},
-/obj/item/storage/toolbox/emergency,
-/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = -2
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 2
+	},
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
 /obj/item/clothing/suit/hazardvest,
@@ -87,9 +91,11 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
@@ -120,14 +126,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/enlist{
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -144,6 +150,9 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
+	},
+/obj/machinery/status_display/ai{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -181,6 +190,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
@@ -261,6 +273,20 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
+"Q" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/shuttle/arrival)
+"R" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/obj/effect/turf_decal/stripes/end{
+	dir = 1;
+	icon_state = "warn_end"
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -268,7 +294,7 @@ d
 f
 j
 f
-A
+R
 A
 d
 A
@@ -306,7 +332,7 @@ l
 l
 l
 l
-l
+Q
 l
 l
 l

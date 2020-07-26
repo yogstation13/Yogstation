@@ -3734,16 +3734,6 @@
 	dir = 9
 	},
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
-"li" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/ruin/unpowered/syndicate_lava_base/bar)
 "lj" = (
 /obj/machinery/door/window/southleft{
 	base_state = "right";
@@ -3897,15 +3887,6 @@
 "lB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/wood,
-/area/ruin/unpowered/syndicate_lava_base/bar)
-"lC" = (
-/obj/structure/table/wood,
-/obj/machinery/reagentgrinder,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife{
-	pixel_x = 6
-	},
 /turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "lE" = (
@@ -5279,30 +5260,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/dormitories)
-"pR" = (
-/obj/item/storage/box/donkpockets{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/bar)
 "ql" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi_bar"
@@ -5563,6 +5520,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
+"yP" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/condiment/peppermill,
+/turf/open/floor/wood,
+/area/ruin/unpowered/syndicate_lava_base/bar)
 "yU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -5748,6 +5714,20 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
+/area/ruin/unpowered/syndicate_lava_base/bar)
+"EG" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/storage/pill_bottle/dice{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "EY" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
@@ -5953,11 +5933,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)
-"Ja" = (
-/obj/structure/table/wood,
-/obj/item/storage/pill_bottle/dice,
-/turf/open/floor/wood,
-/area/ruin/unpowered/syndicate_lava_base/bar)
 "Jj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -5984,19 +5959,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"Jn" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/snacks/meat/slab,
-/obj/item/reagent_containers/food/snacks/meat/slab,
-/obj/item/reagent_containers/food/snacks/meat/slab,
-/obj/item/reagent_containers/food/snacks/meat/slab,
-/obj/item/reagent_containers/food/snacks/meat/slab,
-/obj/item/reagent_containers/food/snacks/meat/slab,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered/syndicate_lava_base/bar)
 "JE" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/virology{
@@ -6092,6 +6054,21 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
+"KD" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = list(150)
+	},
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/obj/item/reagent_containers/food/snacks/meat/slab,
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/bar)
 "KZ" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medbay"
@@ -6283,6 +6260,32 @@
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/dormitories)
+"Pd" = (
+/obj/item/storage/box/donkpockets{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/bar)
 "Pg" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -6341,6 +6344,15 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/unpowered/syndicate_lava_base/bar)
+"Qv" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife{
+	pixel_x = 6
+	},
+/obj/machinery/reagentgrinder/kitchen,
+/turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "QJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -7739,7 +7751,7 @@ jM
 jN
 jZ
 kJ
-Ja
+yP
 lz
 Ob
 YQ
@@ -7789,7 +7801,7 @@ jN
 jZ
 ko
 kK
-li
+EG
 lA
 lX
 mw
@@ -7890,7 +7902,7 @@ nJ
 kq
 oK
 lk
-lC
+Qv
 lZ
 mx
 jy
@@ -7992,7 +8004,7 @@ kN
 jZ
 lE
 mb
-Jn
+KD
 jy
 nt
 nW
@@ -8041,7 +8053,7 @@ EB
 kO
 ll
 lF
-pR
+Pd
 jy
 jy
 nu

@@ -1650,7 +1650,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/race_restricted/angelcoolboy
 	name = "Angel Potion"
 	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
-	cost = 7
+	cost = 5
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	restricted_species = list("human")
 
