@@ -77,7 +77,7 @@
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
 		carried_item.add_mob_blood(H)//Oh yes, there will be blood...
 	H.regenerate_icons()
-	
+
 /datum/outfit/mafia/clown
 	name = "Mafia Clown"
 	uniform = /obj/item/clothing/under/rank/clown
@@ -89,7 +89,7 @@
 	mask = /obj/item/clothing/mask/gas/syndicate
 	uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/jackboots
-	
+
 /datum/outfit/mafia/nightmare
 	name = "Mafia Nightmare"
 	uniform = null
