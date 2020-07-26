@@ -240,3 +240,26 @@
 		else
 			new_message += message[i]
 	speech_args[SPEECH_MESSAGE] = new_message
+
+/obj/item/organ/tongue/savant
+	name = "coiled voicebox"
+	desc = "A circular organ, that makes sounds like a bell. If you shake it, you hear a gentle chime."
+	icon_state = "tonguesavant"
+	say_mod = "trills"
+	taste_sensitivity = 15
+	modifies_speech = TRUE
+
+/obj/item/organ/tongue/savant/handle_speech(datum/source, list/speech_args)
+	var/static/regex/savant_trill = new("r+", "g")
+	var/static/regex/savant_tRill = new("R+", "g")//Linguists literally call this sound a "trill". Common in some non-english languages
+	var/static/regex/savant_chime = new("i+", "g")
+	var/static/regex/savant_chIme = new("I+", "g")//the sound of a bell sounds like "pING" or "dING" or ring ting etc it's always an ing sound
+
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = savant_trill.Replace(message, "rrr")//for example, I hate your stupid red coat becomes --> "ING hate yourrr stupingd rrred coat"
+		message = savant_tRill.Replace(message, "RRR")
+		message = savant_chime.Replace(message, "ing")
+		message = savant_chIme.Replace(message, "ING")
+
+	speech_args[SPEECH_MESSAGE] = message

@@ -66,7 +66,7 @@
 	obj/item/organ/eyes/mutanteyes = /obj/item/organ/eyes
 	obj/item/organ/ears/mutantears = /obj/item/organ/ears
 	obj/item/mutanthands = null
-	obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue
+	obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue/savant
 	obj/item/organ/tail/mutanttail = null
 
 	//obj/item/organ/liver/mutantliver
@@ -120,6 +120,7 @@
 			if(!(M.use(metalNeeded)))
 				return
 			suitUp(H)
+			playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 	else
 		to_chat(H, "<span class='warning'>You need at least 30 metal sheets nearby to make a suit!</span>")
 /**
