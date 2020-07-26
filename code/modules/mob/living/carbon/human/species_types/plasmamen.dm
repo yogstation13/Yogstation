@@ -166,7 +166,7 @@
 /datum/species/plasmaman/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.reagents.has_reagent(/datum/reagent/plasma))
+	if(H.reagents.has_reagent(/datum/reagent/toxin/plasma))
 	H.adjustOxyLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
 	H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 	H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
