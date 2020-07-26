@@ -9810,11 +9810,9 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
 "atR" = (
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Common Channel";
-	pixel_x = 5;
-	pixel_y = 28
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -16275,12 +16273,14 @@
 /turf/open/floor/carpet/red,
 /area/hallway/primary/fore)
 "aIj" = (
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Common Channel";
+	pixel_x = 5;
+	pixel_y = 28
+	},
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 1;
-	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -16518,12 +16518,20 @@
 /area/chapel/office)
 "aIL" = (
 /obj/structure/table/wood,
+/obj/item/clothing/under/burial{
+	pixel_x = -4
+	},
+/obj/item/clothing/under/burial{
+	pixel_x = -4
+	},
 /obj/item/clothing/under/burial,
 /obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/burial{
+	pixel_x = 4
+	},
+/obj/item/clothing/under/burial{
+	pixel_x = 4
+	},
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
 "aIM" = (
@@ -103967,7 +103975,7 @@ ayt
 ayt
 ayt
 ayf
-aIj
+atR
 aua
 awb
 awD
@@ -104481,7 +104489,7 @@ ayf
 aAu
 ayf
 ayf
-atR
+aIj
 aIL
 awD
 awD
@@ -108152,7 +108160,7 @@ aGh
 bOx
 bPt
 bPv
-bQY
+bQZ
 bPv
 bPv
 bPv
@@ -108409,7 +108417,7 @@ aGh
 bOy
 bPu
 aJa
-bQZ
+bQY
 bPv
 cSR
 bPv
