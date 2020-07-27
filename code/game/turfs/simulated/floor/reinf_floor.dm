@@ -123,6 +123,10 @@
 	name = "air floor"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
 
+///This turf is for premapped SMs that are not directly linked to a dedicated cooling + filtering system. Contains a large gasbank of safe gases. 
+/turf/open/floor/engine/sm_premixed
+	initial_gas_mix = SM_PREMIXED_GASBANK
+
 
 
 /turf/open/floor/engine/cult

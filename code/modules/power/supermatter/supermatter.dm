@@ -793,6 +793,40 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	moveable = FALSE
 	explosion_power = 3
 
+///Instead of outright dusting as in a regular SM, this proc dismembers the arm used and calls the modified Consume() proc. Very deadly, but not as bad as outright dusting.
+/obj/machinery/power/supermatter_crystal/shard/grill/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	var/which_hand = BODY_ZONE_L_ARM
+	if(!(user.active_hand_index % 2))
+		which_hand = BODY_ZONE_R_ARM
+	var/obj/item/bodypart/dust_arm = user.get_bodypart(which_hand)
+	if(dust_arm)
+		dust_arm.dismember()
+		Consume(dust_arm)
+	Consume(user)
+
+///Instead of outright dusting as in a regular SM, this proc dismembers a random limb and calls the modified Consume() proc.
+/obj/machinery/power/supermatter_crystal/shard/grill/Bumped(atom/movable/AM)
+	if(!isliving(AM))
+		return ..()
+	else
+		var/mob/living/user = AM
+		user.visible_message("<span class='danger'>\The [user] slams into \the [src] inducing a resonance... [user.p_their()] body starts to glow and burst into flames!</span>",\
+		"<span class='userdanger'>You slam into \the [src] as your ears are filled with unearthly ringing.</span>",\
+		"<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
+		Consume(user)
+
+		var/obj/item/bodypart/BP = user.get_bodypart(pick(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG))
+		if(BP)
+			BP.dismember()
+			Consume(BP)
+
+/** Does horrible things to living mobs that are fed into it. Still less punishing than outright dusting, just some delimbing mostly.
+	Whatever poor sod gets consumed takes 100 burn damage and 100 electrocution damage and gets set on fire for a long time, all while paralyzed.
+  */
 /obj/machinery/power/supermatter_crystal/shard/grill/Consume(atom/movable/AM)
 	if(!isliving(AM))
 		return ..()
@@ -801,31 +835,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(user.status_flags & GODMODE)
 			return
 		user.Paralyze(300)
-		user.electrocute_act(100, src, 1)
+		user.electrocute_act(75, src, 1)
+		user.adjustFireLoss(75)
 		user.adjust_fire_stacks(100)
-		var/which_hand = BODY_ZONE_L_ARM
-		if(!(user.active_hand_index % 2))
-			which_hand = BODY_ZONE_R_ARM
-		var/obj/item/bodypart/dust_arm = user.get_bodypart(which_hand)
-		dust_arm.dismember()
-		QDEL(dust_arm)
-		user.visible_message("<span class='danger'>Oops! Just as you think everything is over, the paranoblium interface burns brightly for a moment, knocking [AM] back before their entire body dusts!</span>,\
-			<span class='userdanger'>A surge of electricity and pain course through your body as you are knocked back!</span>")
+		user.IgniteMob()
+		user.visible_message("<span class='danger'>Just as you think [user] is going to get dusted, the paranoblium interface burns brightly for a moment, knocking [user] back before their entire body dusts!</span>",\
+			"<span class='userdanger'>A surge of electricity and pain course through your body as you are knocked back!</span>")
 		var/atom/target = get_edge_target_turf(AM, get_dir(src, get_step_away(AM, src)))
 		user.throw_at(target, 10, 4)
 		matter_power += 200
 		playsound(src, 'sound/effects/supermatter.ogg', 150, 1)
-
-/obj/machinery/power/supermatter_crystal/shard/grill/Bumped(atom/movable/AM)
-	if(!isliving(AM))
-		return ..()
-	else
-		AM.visible_message("<span class='danger'>\The [AM] slams into \the [src] inducing a resonance... [AM.p_their()] body starts to glow and burst into flames!</span>",\
-		"<span class='userdanger'>You slam into \the [src] as your ears are filled with unearthly ringing.</span>",\
-		"<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
-		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
-		Consume(AM)
-	
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
