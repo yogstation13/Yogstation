@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/Triangle
+/mob/living/simple_animal/hostile/retaliate/triangle
 	name = "Triangle spider"
 	desc = "A creepy geometric spider. When it stares at you, you get the feeling it's trying to triangulate your position."
 	icon = 'icons/mob/triangle.dmi'
