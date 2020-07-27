@@ -1,0 +1,3211 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"al" = (
+/obj/machinery/door/airlock/public/glass{
+	desc = "It opens and closes. On closer inspection, it appears to be gold leafed instead of pure gold.";
+	icon = 'icons/obj/doors/airlocks/station/gold.dmi';
+	name = "gold airlock"
+	},
+/turf/open/floor/carpet/cyan,
+/area/crew_quarters/bar)
+"aL" = (
+/obj/machinery/rnd/production/techfab/department/service,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"aZ" = (
+/obj/machinery/jukebox,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"bf" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/grass,
+/area/hydroponics)
+"bA" = (
+/obj/structure/chair/sofa/corner,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"bM" = (
+/obj/machinery/door/airlock/public/glass{
+	desc = "It opens and closes. On closer inspection, it appears to be gold leafed instead of pure gold.";
+	icon = 'icons/obj/doors/airlocks/station/gold.dmi';
+	name = "gold airlock"
+	},
+/turf/open/floor/carpet/exoticgreen,
+/area/crew_quarters/bar)
+"bU" = (
+/obj/structure/chair/sofa/left,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"bX" = (
+/obj/machinery/door/airlock{
+	name = "Kitchen cold room";
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"cB" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"dH" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"dL" = (
+/turf/closed/wall{
+	desc = "A wall with gold plating. Swag! Upon closer inspection, it appears to be gold leafing instead of solid gold...";
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold";
+	name = "gold wall"
+	},
+/area/hydroponics)
+"ej" = (
+/obj/structure/sign/barsign,
+/turf/closed/wall{
+	desc = "A wall with gold plating. Swag! Upon closer inspection, it appears to be gold leafing instead of solid gold...";
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold";
+	name = "gold wall"
+	},
+/area/crew_quarters/bar)
+"eH" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"eK" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"gt" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"gG" = (
+/obj/structure/table/wood/fancy/exoticpurple,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"gK" = (
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/grass,
+/area/hydroponics)
+"ii" = (
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"iY" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"jX" = (
+/obj/machinery/holopad,
+/turf/open/floor/grass,
+/area/hydroponics)
+"kS" = (
+/obj/machinery/button/door{
+	id = "kitchen";
+	name = "Kitchen Shutters Control";
+	pixel_x = -1;
+	pixel_y = -24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"lm" = (
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"lo" = (
+/obj/structure/chair/sofa{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"lJ" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/grass,
+/area/hydroponics)
+"nd" = (
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"nI" = (
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"oh" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 23;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"op" = (
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"oz" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/grass,
+/area/hydroponics)
+"pj" = (
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
+/turf/open/floor/grass,
+/area/hydroponics)
+"pw" = (
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"rF" = (
+/turf/open/space/basic,
+/area/space)
+"rH" = (
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"si" = (
+/obj/structure/table/wood/fancy/cyan,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "botany"
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"ss" = (
+/obj/machinery/processor,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"sH" = (
+/turf/closed/wall{
+	desc = "A wall with gold plating. Swag! Upon closer inspection, it appears to be gold leafing instead of solid gold...";
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold";
+	name = "gold wall"
+	},
+/area/space)
+"tI" = (
+/obj/structure/chair/sofa,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"uY" = (
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/crew_quarters/bar)
+"vd" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/grass,
+/area/hydroponics)
+"vp" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Service Door";
+	req_access_txt = "0";
+	req_one_access_txt = "35;28"
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"vr" = (
+/obj/machinery/door/airlock/public/glass{
+	desc = "It opens and closes. On closer inspection, it appears to be painted purple instead of being actually made of plasma.";
+	icon = 'icons/obj/doors/airlocks/station/plasma.dmi';
+	name = "plasma airlock"
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"vN" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/camera{
+	c_tag = "Hydroponics South";
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/hydroponics)
+"wL" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"xN" = (
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/crew_quarters/bar)
+"xU" = (
+/obj/machinery/chem_master/condimaster,
+/turf/open/floor/plasteel/cafeteria,
+/area/hydroponics)
+"yL" = (
+/obj/machinery/food_cart,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"zg" = (
+/obj/structure/chair/sofa{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"zq" = (
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Ad" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Ah" = (
+/obj/structure/chair/sofa/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"Aw" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/grass,
+/area/hydroponics)
+"Ay" = (
+/obj/structure/chair/sofa/left{
+	dir = 8
+	},
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"AC" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Bm" = (
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_one_access_txt = "25;26;35;28;46;37;38"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"By" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"BG" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"Cb" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/grass,
+/area/hydroponics)
+"Cz" = (
+/obj/structure/chair/comfy/teal{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"CS" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/cafeteria,
+/area/hydroponics)
+"Dt" = (
+/turf/open/floor/carpet/exoticgreen,
+/area/crew_quarters/bar)
+"Ec" = (
+/turf/closed/wall{
+	desc = "A wall with plasma plating. This is definitely a bad ide-, wait that just looks like paint. ";
+	icon = 'icons/turf/walls/plasma_wall.dmi';
+	icon_state = "plasma";
+	name = "plasma wall"
+	},
+/area/crew_quarters/bar)
+"Eq" = (
+/turf/open/floor/grass,
+/area/hydroponics)
+"EW" = (
+/obj/structure/etherealball,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"FH" = (
+/obj/structure/curtain,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"FK" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"FN" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/hydroponics)
+"FT" = (
+/obj/structure/chair/sofa{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"Gs" = (
+/turf/closed/wall{
+	desc = "A wall with gold plating. Swag! Upon closer inspection, it appears to be gold leafing instead of solid gold...";
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold";
+	name = "gold wall"
+	},
+/area/crew_quarters/bar)
+"Gt" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Gu" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/crew_quarters/bar)
+"GE" = (
+/obj/structure/table/wood,
+/obj/machinery/paystand/register{
+	dir = 1
+	},
+/turf/open/floor/carpet/exoticgreen,
+/area/crew_quarters/bar)
+"Hx" = (
+/turf/closed/wall{
+	desc = "A wall with gold plating. Swag! Upon closer inspection, it appears to be gold leafing instead of solid gold...";
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold";
+	name = "gold wall"
+	},
+/area/crew_quarters/kitchen)
+"HG" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/grass,
+/area/hydroponics)
+"IQ" = (
+/obj/effect/landmark/start/botanist,
+/turf/open/floor/grass,
+/area/hydroponics)
+"Jg" = (
+/obj/machinery/smartfridge/food,
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"Jz" = (
+/obj/machinery/smartfridge/drying_rack,
+/obj/machinery/camera{
+	c_tag = "Hydroponics North"
+	},
+/turf/open/floor/grass,
+/area/hydroponics)
+"JD" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"JM" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny,
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"JX" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = -4;
+	pixel_y = -62
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -6;
+	pixel_y = 13
+	},
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"LU" = (
+/turf/closed/wall{
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold"
+	},
+/area/crew_quarters/bar)
+"Mf" = (
+/obj/structure/chair/sofa/right,
+/turf/open/floor/plating/abductor,
+/area/crew_quarters/bar)
+"Ms" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/table/wood/fancy/cyan,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Nj" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Np" = (
+/obj/machinery/light,
+/obj/machinery/plantgenes,
+/turf/open/floor/plasteel/cafeteria,
+/area/hydroponics)
+"NK" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"NL" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Oa" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/hydroponics)
+"Po" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Hydroponics";
+	req_access_txt = "35"
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"Pu" = (
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_one_access_txt = "25;26;35;28;46;37;38"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Rc" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/hydroponics)
+"Rr" = (
+/obj/structure/chair/comfy/teal,
+/turf/open/floor/engine,
+/area/crew_quarters/bar)
+"RA" = (
+/obj/machinery/button/door{
+	id = "botany";
+	name = "Botany shutter controls";
+	pixel_x = -1;
+	pixel_y = -24;
+	req_access_txt = "35"
+	},
+/turf/closed/wall{
+	desc = "A wall with gold plating. Swag! Upon closer inspection, it appears to be gold leafing instead of solid gold...";
+	icon = 'icons/turf/walls/gold_wall.dmi';
+	icon_state = "gold";
+	name = "gold wall"
+	},
+/area/hydroponics)
+"UT" = (
+/obj/structure/chair/sofa/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"UX" = (
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/crew_quarters/bar)
+"VX" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"WJ" = (
+/obj/structure/table,
+/obj/item/key/janitor,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"XU" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Yo" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"YV" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/grass,
+/area/hydroponics)
+"YY" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Za" = (
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/plasteel/cafeteria,
+/area/hydroponics)
+"Zf" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"ZN" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+
+(1,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(2,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(3,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(4,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(5,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(6,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(7,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(8,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+ej
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(9,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+LU
+nI
+nI
+nI
+nI
+nI
+JM
+rH
+eK
+By
+lo
+ii
+Gs
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(10,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+LU
+LU
+LU
+LU
+LU
+LU
+LU
+LU
+nI
+nI
+nI
+nI
+nI
+JM
+rH
+rH
+rH
+rH
+rH
+al
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(11,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+aZ
+JX
+BG
+wL
+iY
+EW
+LU
+nI
+nI
+nI
+nI
+nI
+Gs
+Dt
+Gu
+Dt
+Dt
+Dt
+Gs
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(12,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+op
+uY
+xN
+uY
+xN
+op
+LU
+nI
+nI
+nI
+nI
+nI
+Gs
+Dt
+GE
+Dt
+Dt
+Dt
+bM
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(13,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+Mf
+xN
+uY
+xN
+uY
+op
+LU
+nI
+nI
+nI
+nI
+nI
+Gs
+Dt
+Gu
+Dt
+Dt
+Dt
+Gs
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(14,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+tI
+uY
+xN
+uY
+xN
+op
+LU
+nI
+nI
+nI
+nI
+nI
+JM
+rH
+rH
+rH
+rH
+rH
+al
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(15,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+tI
+xN
+uY
+xN
+uY
+op
+LU
+nI
+nI
+nI
+nI
+nI
+JM
+rH
+cB
+UX
+zg
+UT
+ej
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(16,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+bA
+Ay
+op
+op
+op
+op
+LU
+nI
+nI
+nI
+nI
+nI
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(17,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Gs
+LU
+LU
+FH
+FH
+LU
+LU
+LU
+nI
+nI
+nI
+nI
+nI
+Gs
+aL
+nI
+WJ
+ZN
+nI
+Gs
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(18,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+Ec
+Ec
+Ec
+Ec
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Gs
+nI
+nI
+nI
+nI
+nI
+Pu
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(19,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+Ah
+FT
+ai
+pw
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+Hx
+Hx
+Hx
+Hx
+Hx
+Bm
+Hx
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(20,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+bU
+gG
+gG
+pw
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+YY
+YY
+YY
+Hx
+zq
+YY
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(21,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+pw
+pw
+pw
+lm
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+zq
+YY
+YY
+YY
+Hx
+YY
+YY
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(22,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+gt
+pw
+pw
+pw
+vr
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+YY
+YY
+YY
+Hx
+YY
+YY
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(23,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+JD
+pw
+pw
+lm
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+Hx
+Hx
+bX
+Hx
+Hx
+YY
+YY
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(24,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+uY
+xN
+pw
+Cz
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+Zf
+YY
+YY
+YY
+YY
+YY
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(25,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+xN
+uY
+Rr
+gG
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+yL
+YY
+YY
+YY
+YY
+AC
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(26,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+Ec
+Ec
+Ec
+Ec
+Ec
+Ec
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+YY
+YY
+dH
+VX
+YY
+YY
+Ms
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(27,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+YY
+YY
+oh
+NK
+YY
+YY
+Ms
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(28,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+zq
+Gt
+YY
+Yo
+FK
+YY
+YY
+Ms
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(29,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+XU
+YY
+Nj
+FK
+YY
+YY
+Ms
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(30,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+NL
+YY
+YY
+YY
+YY
+kS
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(31,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+nI
+Hx
+YY
+eH
+YY
+YY
+ss
+Ad
+YY
+Hx
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(32,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+dL
+dL
+dL
+dL
+dL
+Jg
+vp
+dL
+dL
+RA
+dL
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(33,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+vd
+vd
+vd
+vd
+vd
+Oa
+Oa
+xU
+Rc
+Oa
+si
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(34,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Oa
+si
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(35,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+gK
+Eq
+vd
+vd
+Eq
+oz
+Cb
+IQ
+Eq
+Oa
+si
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(36,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+Jz
+Eq
+vd
+vd
+Eq
+Aw
+HG
+IQ
+Eq
+Za
+dL
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(37,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+gK
+Eq
+vd
+vd
+Eq
+bf
+pj
+jX
+Eq
+Np
+dL
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(38,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+YV
+Eq
+vd
+vd
+Eq
+lJ
+Cb
+Eq
+Eq
+Oa
+Po
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(39,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Oa
+Po
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(40,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+nd
+dL
+vd
+vd
+vd
+vd
+vd
+vd
+FN
+vN
+vd
+CS
+dL
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(41,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+nd
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+sH
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(42,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+sH
+sH
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(43,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+nd
+nd
+nd
+nd
+sH
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(44,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+sH
+sH
+sH
+sH
+sH
+sH
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(45,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(46,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(47,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(48,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(49,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
+(50,1,1) = {"
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+rF
+"}
