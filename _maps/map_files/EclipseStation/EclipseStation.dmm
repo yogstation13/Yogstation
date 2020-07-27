@@ -84732,6 +84732,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
+"jVV" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "jWB" = (
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -85782,6 +85786,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"mSk" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "mSs" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
@@ -86965,6 +86973,10 @@
 	},
 /turf/open/floor/wood,
 /area/maintenance/department/chapel)
+"qqa" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/sleeper)
 "qqO" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
@@ -87162,6 +87174,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"rbq" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/main)
 "rdp" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/radio/intercom{
@@ -87479,7 +87495,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "rJJ" = (
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /obj/structure/sign/poster/contraband/lusty_xenomorph{
 	pixel_y = 32
 	},
@@ -87487,6 +87502,7 @@
 	dir = 4
 	},
 /obj/structure/bed/dogbed/birdboat,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "rKm" = (
@@ -88609,6 +88625,10 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"vck" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/captain)
 "vcJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera{
@@ -88771,6 +88791,10 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"vuX" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/research)
 "vvy" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -100851,7 +100875,7 @@ aBa
 aBa
 bhh
 ben
-aBa
+qqa
 aSU
 blo
 atM
@@ -122208,7 +122232,7 @@ daQ
 dbC
 fRe
 agb
-agb
+jVV
 ddV
 ddX
 ddX
@@ -123412,7 +123436,7 @@ amE
 aks
 aor
 akD
-ajp
+rbq
 ajp
 ajp
 ajp
@@ -127125,7 +127149,7 @@ amO
 dfQ
 cLY
 dge
-aop
+vuX
 ciB
 cjo
 cjl
@@ -128870,7 +128894,7 @@ bcr
 aWE
 bzf
 bBg
-aWH
+vck
 bjU
 blK
 bmW
@@ -143554,7 +143578,7 @@ aYe
 aYe
 bqr
 brU
-aYe
+mSk
 buB
 bsO
 bxd
