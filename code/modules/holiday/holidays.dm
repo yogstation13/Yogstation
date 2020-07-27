@@ -71,6 +71,9 @@
 	end_day = 2
 	end_month = JANUARY
 	drone_hat = /obj/item/clothing/head/festive
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=L_jWHffIx5E" //Smash Mouth - All Star
+		)
 
 /datum/holiday/new_year/getStationPrefix()
 	return pick("Party","New","Hangover","Resolution","Auld")
