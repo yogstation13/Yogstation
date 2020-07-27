@@ -234,6 +234,27 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
+"aaC" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
+"aaD" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8
+	},
+/mob/living/simple_animal/spiffles,
+/turf/open/floor/plasteel,
+/area/clerk)
 "aaE" = (
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -275,6 +296,29 @@
 "aaH" = (
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"aaI" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/plasteel,
+/area/maintenance/fore)
+"aaJ" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
+"aaK" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "aaL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -431,6 +475,10 @@
 "abc" = (
 /turf/closed/wall,
 /area/security/execution/transfer)
+"abd" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/lab)
 "abe" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -439,6 +487,10 @@
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"abf" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "abg" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -448,6 +500,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"abh" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/engineering)
 "abi" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin,
@@ -46711,10 +46767,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/virology)
-"eVE" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall,
-/area/medical/medbay/central)
 "eVJ" = (
 /obj/structure/table,
 /obj/item/flashlight{
@@ -47776,10 +47828,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"gof" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall,
-/area/quartermaster/storage)
 "goD" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -48463,23 +48511,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"hfx" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/mob/living/simple_animal/spiffles,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "hfy" = (
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_y = -32
@@ -53443,10 +53474,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"ndh" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall/r_wall,
-/area/bridge)
 "ndo" = (
 /obj/structure/transit_tube/station{
 	dir = 4
@@ -56396,21 +56423,6 @@
 "qHe" = (
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"qIc" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/mob/living/simple_animal/mouse/brown,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/fore)
 "qIm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -85595,7 +85607,7 @@ bkJ
 aZE
 aZE
 aZE
-gof
+abf
 aZE
 bxu
 byD
@@ -87877,7 +87889,7 @@ vsK
 exs
 exs
 emo
-qIc
+aaI
 gWP
 vJL
 gWP
@@ -91194,7 +91206,7 @@ ahs
 ahP
 ahP
 aiF
-mUk
+aaC
 ajA
 ajG
 akQ
@@ -92315,7 +92327,7 @@ ccw
 cig
 rcg
 cSV
-fjZ
+abh
 cig
 orf
 cje
@@ -94569,7 +94581,7 @@ aLY
 aOG
 aPR
 aPR
-ndh
+aaJ
 aUb
 aZs
 aTX
@@ -97641,7 +97653,7 @@ gfz
 sAQ
 ayG
 jMv
-hfx
+aaD
 iSc
 ayG
 tRt
@@ -101268,7 +101280,7 @@ bhi
 bfK
 bfK
 bfK
-eVE
+aaK
 bhh
 bsx
 btV
@@ -111035,7 +111047,7 @@ blI
 bnn
 boA
 bpZ
-vaf
+abd
 bta
 bmU
 bvJ
