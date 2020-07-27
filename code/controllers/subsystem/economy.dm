@@ -48,6 +48,7 @@ SUBSYSTEM_DEF(economy)
 							"rainbow" = 1000)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
 	var/list/dep_cards = list()
+	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
 	var/obj/item/energy_harvester/moneysink = null
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
@@ -72,6 +73,9 @@ SUBSYSTEM_DEF(economy)
 		if(D.department_id == dep_id)
 			return D
 
+/** Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
+  * the energy harvester and adds the cash from that to the budget.
+  */
 /datum/controller/subsystem/economy/proc/eng_payout()
 	var/engineering_cash = 3000
 	engineering_check.count()
