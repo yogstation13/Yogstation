@@ -18,7 +18,7 @@
 	limbs_id = "savant"
 	sexes = FALSE
 	damage_overlay_type = ""
-	offset_features = list(OFFSET_GLASSES = list(0,-8), OFFSET_EARS = list(0,-8), OFFSET_FACEMASK = list(0,-8), OFFSET_HEAD = list(0,-8), OFFSET_FACE = list(0,-8), OFFSET_BACK = list(0,-8))
+	offset_features = list(OFFSET_GLOVES = list(0,-6),OFFSET_GLASSES = list(0,-8), OFFSET_EARS = list(0,-8), OFFSET_FACEMASK = list(0,-8), OFFSET_HEAD = list(0,-8), OFFSET_FACE = list(0,-8), OFFSET_BACK = list(0,-8))
 	hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
 
 	use_skintones = FALSE	// does it use skintones or not? (spoiler alert this is only used by humans)

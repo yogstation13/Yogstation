@@ -541,15 +541,6 @@ generate/load female uniform sprites matching all previously decided variables
 		if(L)
 			standing.pixel_x += L["x"] //+= because of center()ing
 			standing.pixel_y += L["y"]
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/XX = 0
-		var/YY = 0
-		if(OFFSET_GLOVES in H.dna.species.offset_features)
-			XX += H.dna.species.offset_features[OFFSET_GLOVES][1]
-			YY += H.dna.species.offset_features[OFFSET_GLOVES][2]
-		standing.pixel_x += XX
-		standing.pixel_y += YY
 	standing.alpha = alpha
 	standing.color = color
 
@@ -566,11 +557,18 @@ generate/load female uniform sprites matching all previously decided variables
 
 //Can't think of a better way to do this, sadly
 /mob/proc/get_item_offsets_for_index(i)
+	var/XX = 0
+	var/YY = 16
+	if (ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(OFFSET_GLOVES in H.dna.species.offset_features)
+			XX += H.dna.species.offset_features[OFFSET_GLOVES][1]
+			YY += H.dna.species.offset_features[OFFSET_GLOVES][2]
 	switch(i)
 		if(3) //odd = left hands
-			return list("x" = 0, "y" = 16)
+			return list("x" = XX, "y" = YY)
 		if(4) //even = right hands
-			return list("x" = 0, "y" = 16)
+			return list("x" = XX, "y" = YY)
 		else //No offsets or Unwritten number of hands
 			return list("x" = 0, "y" = 0)//Handle held offsets
 
