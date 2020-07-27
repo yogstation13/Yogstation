@@ -466,7 +466,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Secrets"
 	set category = "Admin"
 	if (holder)
-		holder.Secrets()
+		GLOB.admin_secrets.ui_interact(usr)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Secrets Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

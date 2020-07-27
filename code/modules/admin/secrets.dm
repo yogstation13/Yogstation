@@ -1,123 +1,119 @@
-/datum/admins/proc/Secrets()
+GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
+
+/datum/admin_secrets
+
+/datum/admin_secrets/ui_interact(mob/user, ui_key = "secrets_panel", datum/tgui/ui = null, force_open = TRUE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
 	if(!check_rights(0))
 		return
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		log_admin_private("[user.ckey] opened the Secrets panel.")
+		ui = new(user, src, ui_key, "AdminSecretsPanel", "Secrets", 720, 480, master_ui, state)
+		ui.open()
 
-	var/list/dat = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>")
+/datum/admin_secrets/ui_data(mob/user)
+	/*
+	Each command is a list that will be read like [Name, Action(see ui_act)]
+	"omg but you could have done it like X"
+	But I didn't. This is how I did it. And it works. And it's simple.
+	And lets us keep each command entry to one line. Gotta stay compact, yo.
+	*/
+	. = list()
+	.["Categories"] = list()
 
-	dat +={"
-			<B>General Secrets</B><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=admin_log'>Admin Log</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=mentor_log'>Mentor Log</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=show_admins'>Show Admin List</A><BR>
-			<BR>
-			"}   // YOGS - Added mentor logs
+	.["Categories"]["General Secrets"] = list(
+		list("Admin Log", "admin_log"),
+		list("Mentor Log", "mentor_log"),
+		list("Show Admin List", "show_admins")
+		)
 
 	if(check_rights(R_ADMIN,0))
-		dat += {"
-			<B>Admin Secrets</B><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=clear_virus'>Cure all diseases currently in existence</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=list_bombers'>Bombing List</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=list_signalers'>Show last [length(GLOB.lastsignalers)] signalers</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=list_lawchanges'>Show last [length(GLOB.lawchanges)] law changes</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=showailaws'>Show AI Laws</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=showgm'>Show Game Mode</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=manifest'>Show Crew Manifest</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=DNA'>List DNA (Blood)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=fingerprints'>List Fingerprints</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=ctfbutton'>Enable/Disable CTF</A><BR><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=tdomereset'>Reset Thunderdome to default state</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=set_name'>Rename Station Name</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=reset_name'>Reset Station Name</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=night_shift_set'>Set Night Shift Mode</A><BR>
-			<BR>
-			<B>Shuttles</B><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=moveferry'>Move Ferry</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=togglearrivals'>Toggle Arrivals Ferry</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=moveminingshuttle'>Move Mining Shuttle</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=movelaborshuttle'>Move Labor Shuttle</A><BR>
-			<BR>
-			"}
+		.["Categories"]["Admin Secrets"] = list(
+			list("Cure all diseases currently in existence", "clear_virus"),
+			list("Bombing List", "list_bombers"),
+			list("Show last [length(GLOB.lastsignalers)] signalers", "list_signalers"),
+			list("Show last [length(GLOB.lawchanges)] law changes", "list_lawchanges"),
+			list("Show AI Laws", "showailaws"),
+			list("Show Game Mode", "showgm"),
+			list("Show Crew Manifest", "manifest"),
+			list("List DNA (Blood)", "DNA"),
+			list("List Fingerprints", "fingerprints"),
+			list("Enable/Disable CTF", "ctfbutton"),
+			list("Reset Thunderdome to default state", "tdomereset"),
+			list("Rename Station Name", "set_name"),
+			list("Reset Station Name", "reset_name"),
+			list("Set Night Shift Mode", "night_shift_set")
+			)
+
+		.["Categories"]["Shuttles"] += list(
+			list("Move Ferry", "moveferry"),
+			list("Toggle Arrivals Ferry", "togglearrivals"),
+			list("Move Mining Shuttle", "moveminingshuttle"),
+			list("Move Labor Shuttle", "movelaborshuttle")
+			)
 
 	if(check_rights(R_FUN,0))
-		dat += {"
-			<B>Fun Secrets</B><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=virus'>Trigger a Virus Outbreak</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=monkey'>Turn all humans into monkeys</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=anime'>Chinese Cartoons</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=allspecies'>Change the species of all humans</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=power'>Make all areas powered</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=unpower'>Make all areas unpowered</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=quickpower'>Power all SMES</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=traitor_all'>Everyone is the traitor</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=iaa_all'>Everyone is the IAA (except sec/cap/hop)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=onlyone'>There can only be one!</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players retarded</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=eagles'>Egalitarian Station Mode</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=ancap'>Anarcho-Capitalist Station Mode</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=blackout'>Break all lights</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=whiteout'>Fix all lights</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=flipmovement'>Flip client movement directions</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=randommovement'>Randomize client movement directions</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=custommovement'>Set each movement direction manually</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=resetmovement'>Reset movement directions to default</A><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
-			"}
-
-	dat += "<BR>"
+		.["Categories"]["Fun Secrets"] += list(
+			list("Trigger a Virus Outbreak", "virus"),
+			list("Turn all humans into monkeys", "monkey"),
+			list("Chinese Cartoons", "anime"),
+			list("Change the species of all humans", "allspecies"),
+			list("Make all areas powered", "power"),
+			list("Make all areas unpowered", "unpower"),
+			list("Power all SMES", "quickpower"),
+			list("Triple AI mode (needs to be used in the lobby)", "tripleAI"),
+			list("Everyone is the traitor", "traitor_all"),
+			list("Everyone is the IAA (except sec/cap/hop)", "iaa_all"),
+			list("There can only be one!", "onlyone"),
+			list("There can only be one! (40-second delay)", "delayed_onlyone"),
+			list("Make all players retarded", "retardify"),
+			list("Egalitarian Station Mode", "eagles"),
+			list("Anarcho-Capitalist Station Mode", "ancap"),
+			list("Break all lights", "blackout"),
+			list("Fix all lights", "whiteout"),
+			list("The floor is lava! (DANGEROUS: extremely lame)", "floorlava"),
+			list("Flip client movement directions", "flipmovement"),
+			list("Randomize client movement directions", "randommovement"),
+			list("Set each movement direction manually", "custommovement"),
+			list("Reset movement directions to default", "resetmovement"),
+			list("Change bomb cap", "changebombcap"),
+			list("Mass Purrbation", "masspurrbation"),
+			list("Mass Remove Purrbation", "massremovepurrbation")
+			)
 
 	if(check_rights(R_DEBUG,0))
-		dat += {"
-			<B>Security Level Elevated</B><BR>
-			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=maint_access_engiebrig'>Change all maintenance doors to engie/brig access only</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=maint_access_brig'>Change all maintenance doors to brig access only</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=infinite_sec'>Remove cap on security officers</A><BR>
-			<BR>
-			"}
+		.["Categories"]["Security Level Elevated"] = list(
+			list("Change all maintenance doors to engie/brig access only", "maint_access_engiebrig"),
+			list("Change all maintenance doors to brig access only", "maint_access_brig"),
+			list("Remove cap on security officers", "infinite_sec")
+			)
 
-	dat += "</BODY></HTML>"
-
-	usr << browse(dat.Join(), "window=secrets")
-	return
-
-
-
-
-
-/datum/admins/proc/Secrets_topic(item,href_list)
+/datum/admin_secrets/ui_act(action, params)
+	var/datum/admins/admin_datum = GLOB.admin_datums[usr.ckey]
+	if(!admin_datum) // Should have already been blocked by ui_state, but juuust in case
+		message_admins("[usr] sent a request to interact with the secrets panel without sufficient rights.")
+		log_admin_private("[usr] sent a request to interact with the secrets panel without sufficient rights.")
+		return
 	var/datum/round_event/E
 	var/ok = 0
-	switch(item)
+	switch(action)
 		if("admin_log")
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Admin Log<HR></B>"
+			var/dat = "<B>Admin Log<HR></B>"
 			for(var/l in GLOB.admin_log)
 				dat += "<li>[l]</li>"
 			if(!GLOB.admin_log.len)
-				dat += "No-one has done anything this round!"
-			dat += "</BODY></HTML>"
+				dat += "No one has done anything this round!"
 			usr << browse(dat, "window=admin_log")
 
 		if("mentor_log") // YOGS - Get in those mentor logs
-			YogMentorLogs() // YOGS - Same as above
+			admin_datum.YogMentorLogs() // YOGS - Same as above
 
 		if("show_admins")
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Current admins:</B><HR>"
+			var/dat = "<B>Current admins:</B><HR>"
 			if(GLOB.admin_datums)
 				for(var/ckey in GLOB.admin_datums)
 					var/datum/admins/D = GLOB.admin_datums[ckey]
 					dat += "[ckey] - [D.rank.name]<br>"
-				dat += "</BODY></HTML>"
 				usr << browse(dat, "window=showadmins;size=600x500")
 
 		if("tdomereset")
@@ -189,28 +185,25 @@
 		if("list_bombers")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Bombing List</B><HR>"
+			var/dat = "<B>Bombing List</B><HR>"
 			for(var/l in GLOB.bombers)
 				dat += text("[l]<BR>")
-			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=bombers")
 
 		if("list_signalers")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing last [length(GLOB.lastsignalers)] signalers.</B><HR>"
+			var/dat = "<B>Showing last [length(GLOB.lastsignalers)] signalers.</B><HR>"
 			for(var/sig in GLOB.lastsignalers)
 				dat += "[sig]<BR>"
-			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=lastsignalers;size=800x500")
 
 		if("list_lawchanges")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing last [length(GLOB.lawchanges)] law changes.</B><HR>"
+			var/dat = "<B>Showing last [length(GLOB.lawchanges)] law changes.</B><HR>"
 			for(var/sig in GLOB.lawchanges)
 				dat += "[sig]<BR>"
-			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=lawchanges;size=800x500")
 
 		if("moveminingshuttle")
@@ -252,7 +245,7 @@
 		if("showailaws")
 			if(!check_rights(R_ADMIN))
 				return
-			output_ai_laws()
+			admin_datum.output_ai_laws()
 		if("showgm")
 			if(!check_rights(R_ADMIN))
 				return
@@ -264,33 +257,31 @@
 		if("manifest")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing Crew Manifest.</B><HR>"
+			var/dat = "<B>Showing Crew Manifest.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th></tr>"
 			for(var/datum/data/record/t in GLOB.data_core.general)
 				dat += "<tr><td>[t.fields["name"]]</td><td>[t.fields["rank"]]</td></tr>"
 			dat += "</table>"
-			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=manifest;size=440x410")
 		if("DNA")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing DNA from blood.</B><HR>"
+			var/dat = "<B>Showing DNA from blood.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
 					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type]</td></tr>"
 			dat += "</table>"
-			dat += "</BODY></HTML>"
 			usr << browse(dat, "window=DNA;size=440x410")
 		if("fingerprints")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Showing Fingerprints.</B><HR>"
+			var/dat = "<B>Showing Fingerprints.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
 					dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"
-			dat += "</table></BODY></HTML>"
+			dat += "</table>"
 			usr << browse(dat, "window=fingerprints;size=440x410")
 
 		if("monkey")
@@ -640,6 +631,6 @@
 				E.announceWhen = -1
 		E.processing = TRUE
 	if (usr)
-		log_admin("[key_name(usr)] used secret [item]")
+		log_admin("[key_name(usr)] used secret [action]")
 		if (ok)
 			to_chat(world, text("<B>A secret has been activated by []!</B>", usr.key))
