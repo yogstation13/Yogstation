@@ -31,6 +31,6 @@ GLOBAL_LIST_EMPTY(all_rev_security_codes)
   *	* list/examine_list - The list of examines which we pass new ones to
   */
 /datum/component/revs_security_code/proc/examine(datum/source, mob/user, list/examine_list)
-	if(!locate(user.mind) in get_all_heads())
+	if(!locate(user.mind) in SSjob.get_all_heads())
 		return
 	examine_list += "<span class='notice'>There's a note with a [code] scribbled on it...</span>"
