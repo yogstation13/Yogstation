@@ -40046,6 +40046,10 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hUU" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "hWW" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -40571,6 +40575,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"kSk" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "kZa" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -40700,6 +40708,10 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/hallway/secondary/entry)
+"lvj" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/research)
 "lvw" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/decal/cleanable/dirt,
@@ -41588,6 +41600,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"ptU" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical)
 "pvw" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -44962,6 +44978,10 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/hallway/secondary/entry)
+"wYt" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "xcJ" = (
 /turf/closed/wall,
 /area/science/robotics/lab)
@@ -78793,7 +78813,7 @@ aGr
 aHx
 aIs
 aEt
-aEt
+wYt
 aVM
 aEt
 aEt
@@ -80826,7 +80846,7 @@ akV
 ala
 amI
 akV
-ala
+hUU
 aoy
 apD
 aoZ
@@ -83173,7 +83193,7 @@ aph
 aph
 aph
 aRs
-aph
+ptU
 aph
 aph
 aVz
@@ -90624,7 +90644,7 @@ pUR
 sJL
 hMx
 sJL
-aVA
+lvj
 mKa
 pGE
 aVA
@@ -91101,7 +91121,7 @@ adn
 adn
 swL
 adn
-adn
+kSk
 ado
 adn
 ado
