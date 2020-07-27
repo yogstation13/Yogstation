@@ -4,7 +4,7 @@
 	icon = 'icons/mob/triangle.dmi'
 	icon_state = "triangle"
 	icon_living = "triangle"
-	icon_dead = "triangle_Dead"
+	icon_dead = "triangle_dead"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
 	emote_hear = list("chitters")
 	speak_chance = 5
