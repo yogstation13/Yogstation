@@ -771,8 +771,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	anchored = TRUE
 	moveable = FALSE
 
-// When you wanna make a supermatter shard for the dramatic effect, but
-// don't want it exploding suddenly
+///When you wanna make a supermatter shard for the dramatic effect, but don't want it exploding suddenly
 /obj/machinery/power/supermatter_crystal/shard/hugbox
 	name = "anchored supermatter shard"
 	takes_damage = FALSE
@@ -780,10 +779,53 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	moveable = FALSE
 	anchored = TRUE
 
-/obj/machinery/power/supermatter_crystal/shard/hugbox/fakecrystal //Hugbox shard with crystal visuals, used in the Supermatter/Hyperfractal shuttle
+///Hugbox shard with crystal visuals, used in the Supermatter/Hyperfractal shuttle
+/obj/machinery/power/supermatter_crystal/shard/hugbox/fakecrystal 
 	name = "supermatter crystal"
 	base_icon_state = "darkmatter"
 	icon_state = "darkmatter"
+
+/// Used in MDonalds. Is technically a functioning engine, just doesn't outright dust you but kills you instead.
+/obj/machinery/power/supermatter_crystal/shard/grill
+	name = "supermatter grill"
+	desc = "A fully functioning supermatter shard. This one is tuned to be less deadly when accidentally touched, but will still hurt if you get it wrong."
+	anchored = TRUE
+	moveable = FALSE
+	explosion_power = 3
+
+/obj/machinery/power/supermatter_crystal/shard/grill/Consume(atom/movable/AM)
+	if(!isliving(AM))
+		return ..()
+	else
+		var/mob/living/user = AM
+		if(user.status_flags & GODMODE)
+			return
+		user.Paralyze(300)
+		user.electrocute_act(100, src, 1)
+		user.adjust_fire_stacks(100)
+		var/which_hand = BODY_ZONE_L_ARM
+		if(!(user.active_hand_index % 2))
+			which_hand = BODY_ZONE_R_ARM
+		var/obj/item/bodypart/dust_arm = user.get_bodypart(which_hand)
+		dust_arm.dismember()
+		QDEL(dust_arm)
+		user.visible_message("<span class='danger'>Oops! Just as you think everything is over, the paranoblium interface burns brightly for a moment, knocking [AM] back before their entire body dusts!</span>,\
+			<span class='userdanger'>A surge of electricity and pain course through your body as you are knocked back!</span>")
+		var/atom/target = get_edge_target_turf(AM, get_dir(src, get_step_away(AM, src)))
+		user.throw_at(target, 10, 4)
+		matter_power += 200
+		playsound(src, 'sound/effects/supermatter.ogg', 150, 1)
+
+/obj/machinery/power/supermatter_crystal/shard/grill/Bumped(atom/movable/AM)
+	if(!isliving(AM))
+		return ..()
+	else
+		AM.visible_message("<span class='danger'>\The [AM] slams into \the [src] inducing a resonance... [AM.p_their()] body starts to glow and burst into flames!</span>",\
+		"<span class='userdanger'>You slam into \the [src] as your ears are filled with unearthly ringing.</span>",\
+		"<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
+		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
+		Consume(AM)
+	
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
