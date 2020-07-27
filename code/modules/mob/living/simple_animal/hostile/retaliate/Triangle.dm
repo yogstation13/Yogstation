@@ -2,9 +2,9 @@
 	name = "triangle spider"
 	desc = "A creepy geometric spider. When it stares at you, you get the feeling it's trying to triangulate your position."
 	icon = 'icons/mob/triangle.dmi'
-	icon_state = "Triangle"
+	icon_state = "triangle"
 	icon_living = "triangle"
-	icon_dead = "Triangle_Dead"
+	icon_dead = "triangle_Dead"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
 	emote_hear = list("chitters")
 	speak_chance = 5
