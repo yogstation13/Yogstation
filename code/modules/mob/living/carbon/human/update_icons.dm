@@ -541,7 +541,15 @@ generate/load female uniform sprites matching all previously decided variables
 		if(L)
 			standing.pixel_x += L["x"] //+= because of center()ing
 			standing.pixel_y += L["y"]
-
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/XX = 0
+		var/YY = 0
+		if(OFFSET_GLOVES in H.dna.species.offset_features)
+			XX += H.dna.species.offset_features[OFFSET_GLOVES][1]
+			YY += H.dna.species.offset_features[OFFSET_GLOVES][2]
+		standing.pixel_x += XX
+		standing.pixel_y += YY
 	standing.alpha = alpha
 	standing.color = color
 

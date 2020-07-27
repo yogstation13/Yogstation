@@ -35,42 +35,14 @@
 	armor = -20	// overall defense for the race... or less defense, if it's negative.
 	punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
 	punchdamagehigh = 5      //highest possible punch damage
-	//punchstunthreshold = 10//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
-	//siemens_coeff = 1.5 //base electrocution coefficient
-	//damage_overlay_type = "human" //what kind of damage overlays (if any) appear on our species when wounded?
-	//fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
-	//inert_mutation 	= DWARFISM //special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
-	//deathsound //used to set the mobs deathsound on species change
-	//list/special_step_sounds //Sounds to override barefeet walkng
-	//grab_sound //Special sound for grabbing
-	//screamsound //yogs - audio of a species' scream
-	//flying_species = FALSE //is a flying species, just a check for some things
-	//datum/action/innate/flight/fly //the actual flying ability given to flying species
-	//wings_icon = "Angel" //the icon used for the wings
-
-	// species-only traits. Can be found in DNA.dm
 	species_traits = list(AGENDER, NO_UNDERWEAR, NOEYESPRITES)
 	// generic traits tied to having the species
 	inherent_traits = list(TRAIT_SMALL_HANDS, TRAIT_SHORT)
 	attack_verb = "punch"	// punch-specific attack verb
 	sound/attack_sound = 'sound/weapons/punch1.ogg'
 	sound/miss_sound = 'sound/weapons/punchmiss.ogg'
+	mutanttongue = /obj/item/organ/tongue/savant
 
-	//mob/living/ignored_by = list()	// list of mobs that will ignore this species
-	//Breathing!
-	//obj/item/organ/lungs/mutantlungs = null
-//	breathid = "o2"
-
-	obj/item/organ/brain/mutant_brain = /obj/item/organ/brain
-	obj/item/organ/heart/mutant_heart = /obj/item/organ/heart
-	obj/item/organ/eyes/mutanteyes = /obj/item/organ/eyes
-	obj/item/organ/ears/mutantears = /obj/item/organ/ears
-	obj/item/mutanthands = null
-	obj/item/organ/tongue/mutanttongue = /obj/item/organ/tongue/savant
-	obj/item/organ/tail/mutanttail = null
-
-	//obj/item/organ/liver/mutantliver
-	//obj/item/organ/stomach/mutantstomach
 	override_float = FALSE
 	///This is the 'spell' that savants get so they can craft a new suit.
 	var/datum/action/innate/savantSuitUp/SuitUpPower
@@ -94,9 +66,9 @@
 	var/mob/living/carbon/human/H = owner
 	var/metalNeeded = 30
 	if(isSuitedSavant(H))
-		to_chat(H, "<span class='warning'>You begin to take off your suit...</span>")
+		to_chat(H, "<span class='warning'>You begin to take off your suit...this might hurt! Are you sure you want to?</span>")
 		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
-		if(do_after(owner, 40, TRUE))
+		if(do_after(owner, 40, TRUE, owner))
 			H.set_species(/datum/species/savant)
 			H.update_body_parts()
 			explosion(H, 0, 0, 0, adminlog = FALSE)
@@ -116,7 +88,7 @@
 	if(M)
 		H.visible_message("<span class='notice'>[H] begins to construct a suit!</span>", "<span class='danger'>You begin to construct a suit...</span>")
 		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
-		if(do_after(owner, 80, TRUE))
+		if(do_after(owner, 80, TRUE, owner))
 			if(!(M.use(metalNeeded)))
 				return
 			suitUp(H)

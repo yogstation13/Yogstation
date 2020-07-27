@@ -461,7 +461,7 @@ ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
 #ROUNDSTART_RACES snail
-ROUNDSTART RACES savant
+ROUNDSTART_RACES savant_suited
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal

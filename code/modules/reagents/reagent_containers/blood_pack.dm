@@ -77,6 +77,9 @@
 /obj/item/reagent_containers/blood/universal
 	blood_type = "U"
 
+/obj/item/reagent_containers/blood/savant
+	blood_type = "S"
+
 /obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))
 		if(!user.is_literate())

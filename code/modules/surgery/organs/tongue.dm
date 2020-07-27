@@ -252,14 +252,14 @@
 /obj/item/organ/tongue/savant/handle_speech(datum/source, list/speech_args)
 	var/static/regex/savant_trill = new("r+", "g")
 	var/static/regex/savant_tRill = new("R+", "g")//Linguists literally call this sound a "trill". Common in some non-english languages
-	var/static/regex/savant_chime = new("i+", "g")
-	var/static/regex/savant_chIme = new("I+", "g")//the sound of a bell sounds like "pING" or "dING" or ring ting etc it's always an ing sound
+	//var/static/regex/savant_chime = new("i+", "g")
+	//var/static/regex/savant_chIme = new("I+", "g")//the sound of a bell sounds like "pING" or "dING" or ring ting etc it's always an ing sound
 
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = savant_trill.Replace(message, "rrr")//for example, I hate your stupid red coat becomes --> "ING hate yourrr stupingd rrred coat"
 		message = savant_tRill.Replace(message, "RRR")
-		message = savant_chime.Replace(message, "ing")
-		message = savant_chIme.Replace(message, "ING")
+		//message = savant_chime.Replace(message, "ing")
+		//message = savant_chIme.Replace(message, "ING")
 
 	speech_args[SPEECH_MESSAGE] = message
