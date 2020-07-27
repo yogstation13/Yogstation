@@ -6,8 +6,9 @@ import { isFalsy } from 'common/react';
 
 const pick = array => array[Math.floor(Math.random() * array.length)];
 const possTitles = [
-  "The first rule of adminbuse is: you don't talk about the adminbuse.",
+  "The first rule of the adminbus is: you don't talk about the adminbus.",
   "Oh, this is gonna be fun.",
+  "Swissloaf was here",
   "ADMIN, HE'S DOING IT SIDEWAYS!",
   "What flavor of admemes are we having today?",
   "Mass Purrbation. You know you want to.",
