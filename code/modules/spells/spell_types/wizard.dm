@@ -173,6 +173,12 @@
 
 	summon_type = list(/obj/effect/timestop/wizard)
 
+/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/zlevel
+	name = "The World"
+	clothes_req = FALSE
+	invocation = "ZA WARUDO"
+	summon_type = list(/obj/effect/timestop/zlevel)
+
 /obj/effect/proc_holder/spell/aoe_turf/conjure/carp
 	name = "Summon Carp"
 	desc = "This spell conjures a simple carp."
@@ -285,7 +291,7 @@
 		var/atom/movable/AM = am
 		if(AM == user || AM.anchored)
 			continue
-		
+
 		if(ismob(AM))
 			var/mob/M = AM
 			if(M.anti_magic_check(anti_magic_check, FALSE))

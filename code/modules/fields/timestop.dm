@@ -83,6 +83,7 @@
 		if(M.anti_magic_check(check_anti_magic, check_holy))
 			immune[A] = TRUE
 			return
+		M.theworld()
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
@@ -112,6 +113,9 @@
 		unfreeze_atom(i)
 
 /datum/proximity_monitor/advanced/timestop/proc/unfreeze_atom(atom/movable/A)
+	if(ismob(A))
+		var/mob/M = A
+		M.removetheworld()
 	if(A.throwing)
 		unfreeze_throwing(A)
 	if(isliving(A))
@@ -183,12 +187,10 @@
 //you don't look quite right, is something the matter?
 /datum/proximity_monitor/advanced/timestop/proc/into_the_negative_zone(atom/A)
 	A.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
-	A.theworld()
 
 //let's put some colour back into your cheeks
 /datum/proximity_monitor/advanced/timestop/proc/escape_the_negative_zone(atom/A)
 	A.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	A.removetheworld()
 
 /obj/effect/timestop/zlevel
 	name = "The World"
