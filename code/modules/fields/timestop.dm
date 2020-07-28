@@ -83,7 +83,7 @@
 		if(M.anti_magic_check(check_anti_magic, check_holy))
 			immune[A] = TRUE
 			return
-		M.theworld()
+		M.overlay_fullscreen("timestop", /obj/screen/fullscreen/timestop)
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
@@ -115,7 +115,7 @@
 /datum/proximity_monitor/advanced/timestop/proc/unfreeze_atom(atom/movable/A)
 	if(ismob(A))
 		var/mob/M = A
-		M.removetheworld()
+		M.clear_fullscreen("timestop")
 	if(A.throwing)
 		unfreeze_throwing(A)
 	if(isliving(A))
