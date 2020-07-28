@@ -1,4 +1,3 @@
-
 /obj/effect/timestop
 	anchored = TRUE
 	name = "chronofield"
@@ -18,6 +17,11 @@
 	var/check_anti_magic = FALSE
 	var/check_holy = FALSE
 	var/start_sound = 'sound/magic/timeparadox2.ogg'
+
+/obj/effect/timestop/zlevel
+	name = "The World"
+	desc = "It's a Stand that stops ti-"
+	freezerange = 64
 
 /obj/effect/timestop/Initialize(mapload, radius, time, list/immune_atoms, start = TRUE)	//Immune atoms assoc list atom = TRUE
 	. = ..()
@@ -191,9 +195,3 @@
 //let's put some colour back into your cheeks
 /datum/proximity_monitor/advanced/timestop/proc/escape_the_negative_zone(atom/A)
 	A.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-
-/obj/effect/timestop/zlevel
-	name = "The World"
-	desc = "It's a Stand that stops ti-"
-	layer = FLY_LAYER
-	freezerange = 256 //enough to cover a standard z level
