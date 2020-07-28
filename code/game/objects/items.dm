@@ -381,9 +381,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/final_block_level = block_level
 	var/obj/item/bodypart/blockhand = null
 	if(owner.stat) //can't block if you're dead
-		return 0
+		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_NOBLOCK) && istype(src, /obj/item/shield)) //shields can always block, because they break instead of using stamina damage
-		return 0
+		return FALSE
 	if(owner.get_active_held_item() == src) //copypaste of this code for an edgecase-nodrops
 		if(owner.active_hand_index == 1)
 			blockhand = (locate(/obj/item/bodypart/l_arm) in owner.bodyparts)
@@ -396,21 +396,21 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			blockhand = (locate(/obj/item/bodypart/l_arm) in owner.bodyparts)
 	if(blockhand.is_disabled())
 		to_chat(owner, "<span_class='danger'>You're too exausted to block the attack<!/span>")
-		return 0
+		return FALSE
 	else if(HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE) && owner.getStaminaLoss() >= 30)
 		to_chat(owner, "<span_class='danger'>You're too exausted to block the attack<!/span>")
-		return 0
+		return FALSE
 	if(owner.a_intent == INTENT_HARM) //you can choose not to block an attack
-		return 0
+		return FALSE
 	if(block_flags & BLOCKING_ACTIVE && owner.get_active_held_item() != src) //you can still parry with the offhand
-		return 0
+		return FALSE
 	if(isprojectile(hitby)) //fucking bitflags broke this when coded in other ways
 		var/obj/item/projectile/P = hitby
 		if(block_flags & BLOCKING_PROJECTILE)
 			if(P.movement_type & UNSTOPPABLE) //you can't block piercing rounds!
-				return 0
+				return FALSE
 		else
-			return 0
+			return FALSE
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		final_block_level += block_upgrade_walk
 	switch(relative_dir)
@@ -418,23 +418,23 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(final_block_level >= 1)
 				playsound(src, block_sound, 50, 1)
 				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
-				return 1
+				return TRUE
 		if(135, 225, -135, -225)
 			if(final_block_level >= 2)
 				playsound(src, block_sound, 50, 1)
 				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
-				return 1
+				return TRUE
 		if(90, 270, -90, -270)
 			if(final_block_level >= 3)
 				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
 				playsound(src, block_sound, 50, 1)
-				return 1
+				return TRUE
 		if(45, 315, -45, -315)
 			if(final_block_level >= 4)
 				playsound(src, block_sound, 50, 1)
 				owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
 /obj/item/proc/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	var/blockhand = 0
