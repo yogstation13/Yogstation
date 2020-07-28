@@ -62,8 +62,7 @@
 "bj" = (/obj/structure/closet/emcloset/anchored,/turf/open/floor/plasteel,/area/ruin/construction_site)
 "bk" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/open/floor/plasteel,/area/ruin/construction_site)
 "bl" = (/obj/effect/mob_spawn/human/construction_worker,/turf/open/floor/plasteel,/area/ruin/construction_site)
-"bm" = (/obj/item/rcd_upgrade{step_x = 27; step_y = 11},/turf/open/floor/plasteel,/area/ruin/construction_site)
-"bn" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/item/storage/toolbox/electrical{pixel_x = 3; pixel_y = 1},/obj/item/storage/toolbox/electrical{pixel_x = 3; pixel_y = 1},/obj/item/storage/toolbox/electrical{pixel_x = 3; pixel_y = 1},/obj/item/storage/toolbox/electrical{pixel_x = 3; pixel_y = 1},/obj/item/areaeditor/blueprints,/obj/item/rcd_upgrade{step_x = 12; step_y = 10},/obj/item/rcd_upgrade{step_x = 5; step_y = 8},/turf/open/floor/plasteel,/area/ruin/construction_site)
+"bm" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical,/obj/item/storage/toolbox/mechanical,/obj/item/storage/toolbox/mechanical,/obj/item/storage/toolbox/electrical,/obj/item/storage/toolbox/electrical,/obj/item/storage/toolbox/electrical,/obj/item/rcd_upgrade,/obj/item/rcd_upgrade,/obj/item/rcd_upgrade,/turf/open/floor/plasteel,/area/ruin/construction_site)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -158,7 +157,7 @@ aaavaAakbhavaZakaXadaYakbkabaaaaacaaatatatatataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaavaBaCakbbakakakarakakbaabaaaaacaaataDaDaEaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
 aaavavavavavavbbavavadaradadaaaaacaaataDaLaDaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
 aaaaaaaaaaavaNakbeavbfakbfadaaaaacaaataDaDaOaPaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
-aaaaaaaaaaavaGbmbnaIbiakakadaaaaacaaatatatatataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
+aaaaaaaaaaavaGakbmaIbiakakadaaaaacaaatatatatataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
 aaaaaaaaaaavaJbaaKavblblbladaaaaacaaataWaWbcaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
 aaaaaaaaaaavavavavavadadadadaaaaacaaataWbdaWaMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaataWaWbgaPaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaa
