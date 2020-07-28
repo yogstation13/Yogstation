@@ -124,8 +124,8 @@
 		M.blur_eyes(40)
 		M.adjustStaminaLoss(99)
 		to_chat(M, "<span class='Narsie'><b>Y'HAH HT'HU THRZHZU. UA'KLL GHRT AWN ZUU!</b></span>")
-		M.adjustBruteLoss(99)
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 99.9)
+		M.adjustBruteLoss(60, 70, 75, 80, 85)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 75, 80, 90)
 	random_blackouts_enable(M)
 
 /datum/round_event/flutes/proc/random_blackouts_enable(mob/living/carbon/M)
@@ -150,6 +150,3 @@
 	random_light.light_power = 1
 	random_light.bulb_power = 1
 	random_light.update()
-
-		M.adjustBruteLoss(60, 70, 75, 80, 85)
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 75, 80, 90)
