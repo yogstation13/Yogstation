@@ -185,7 +185,7 @@
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 
-//ZA WARUDO!!
+//Triggered when affected by timestop
 /obj/screen/fullscreen/timestop
 	icon_state = "timestopoverlay"
 	plane = FULLSCREEN_PLANE

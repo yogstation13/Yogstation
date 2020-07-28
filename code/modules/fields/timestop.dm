@@ -10,7 +10,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/list/immune = list() // the one who creates the timestop is immune, which includes wizards and the dead slime you murdered to make this chronofield
 	var/turf/target
-	var/freezerange = 2
+	var/freezerange = 2 //radius of timestop
 	var/duration = 140
 	var/datum/proximity_monitor/advanced/timestop/chronofield
 	alpha = 125
@@ -21,7 +21,7 @@
 /obj/effect/timestop/zlevel
 	name = "The World"
 	desc = "It's a Stand that stops ti-"
-	freezerange = 64
+	freezerange = 64 //64 tiles in every direction of the origin is time frozen, i tested 256 and 128, they don't work for some reason, if triggered at bridge, will reach library
 
 /obj/effect/timestop/Initialize(mapload, radius, time, list/immune_atoms, start = TRUE)	//Immune atoms assoc list atom = TRUE
 	. = ..()
