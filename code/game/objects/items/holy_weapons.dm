@@ -332,8 +332,9 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
 	slot_flags = ITEM_SLOT_BACK
-	block_flags = BLOCKING_PROJECTILE
-	block_level = 2
+	block_flags = BLOCKING_ACTIVE | BLOCKING_PROJECTILE
+	block_level = 1
+	block_upgrade_walk = 2
 	block_power = 20
 	var/shield_icon = "shield-red"
 
