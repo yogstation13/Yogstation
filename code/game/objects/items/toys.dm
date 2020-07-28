@@ -245,7 +245,7 @@
 	attack_verb = list("attacked", "struck", "hit")
 	var/hacked = FALSE
 	block_upgrade_walk = 1
-	block_power = -200
+	block_power = -500
 
 /obj/item/toy/sword/attack_self(mob/user)
 	active = !( active )
@@ -310,7 +310,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	block_upgrade_walk = 1
-	block_power = -200
+	block_power = -500
 
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
@@ -323,7 +323,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	attack_verb = list("robusted")
 	block_upgrade_walk = 1
-	block_power = -100
+	block_power = -500
 
 /obj/item/toy/windupToolbox/attack_self(mob/user)
 	if(!active)
@@ -374,7 +374,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	block_upgrade_walk = 1
-	block_power = -25
+	block_power = -500
 	block_flags = BLOCKING_ACTIVE | BLOCKING_NASTY | BLOCKING_PROJECTILE //lol
 
 /*

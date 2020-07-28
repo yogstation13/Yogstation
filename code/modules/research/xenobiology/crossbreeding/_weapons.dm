@@ -67,7 +67,7 @@ Slimecrossing Weapons
 	block_power = 75
 	block_level = 3
 	block_upgrade_walk = 1
-	block_flags = BLOCKING_PROJECTILE
+	block_flags = BLOCKING_ACTIVE | BLOCKING_PROJECTILE //shouldnt be able to offhand it but you get blocking active a n y w a y s
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
 	force = 15 //Heavy, but hard to wield.

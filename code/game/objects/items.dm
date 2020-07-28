@@ -382,6 +382,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/obj/item/bodypart/blockhand = null
 	if(owner.stat) //can't block if you're dead
 		return 0
+	if(HAS_TRAIT(owner, TRAIT_NOBLOCK) && istype(src, /obj/item/shield)) //shields can always block, because they break instead of using stamina damage
+		return 0
 	if(owner.get_active_held_item() == src) //copypaste of this code for an edgecase-nodrops
 		if(owner.active_hand_index == 1)
 			blockhand = (locate(/obj/item/bodypart/l_arm) in owner.bodyparts)
@@ -395,12 +397,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(blockhand.is_disabled())
 		to_chat(owner, "<span_class='danger'>You're too exausted to block the attack<!/span>")
 		return 0
+	else if(HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE) && owner.getStaminaLoss() >= 30)
+		to_chat(owner, "<span_class='danger'>You're too exausted to block the attack<!/span>")
+		return 0
 	if(owner.a_intent == INTENT_HARM) //you can choose not to block an attack
 		return 0
-	if((block_flags & BLOCKING_ACTIVE) && !owner.get_active_held_item() == src)
+	if(block_flags & BLOCKING_ACTIVE && owner.get_active_held_item() != src) //you can still parry with the offhand
 		return 0
-	if((!block_flags & BLOCKING_PROJECTILE) && attack_type == PROJECTILE_ATTACK)
-		return 0
+	if(isprojectile(hitby)) //fucking bitflags broke this when coded in other ways
+		var/obj/item/projectile/P = hitby
+		if(block_flags & BLOCKING_PROJECTILE)
+			if(P.movement_type & UNSTOPPABLE) //you can't block piercing rounds!
+				return 0
+		else
+			return 0
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		final_block_level += block_upgrade_walk
 	switch(relative_dir)
@@ -441,8 +451,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			blockhand = BODY_ZONE_L_ARM
 	if(isprojectile(hitby))
 		var/obj/item/projectile/P = hitby
-		if(P.damtype != STAMINA)// disablers dont do shit to shields
-			attackforce = (P.damage / 2)
+		if(P.damage_type != STAMINA)// disablers dont do shit to shields
+			attackforce = (P.damage)
 	else if(isitem(hitby))
 		var/obj/item/I = hitby
 		attackforce = damage
@@ -451,19 +461,27 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!I.damtype == BRUTE)
 			attackforce = (attackforce / 2)//as above, burning weapons, or weapons that deal other damage type probably dont get force from physical power
 		attackforce = (attackforce * I.attack_weight)
+		if(I.damtype == STAMINA)//pure stamina damage wont affect blocks
+			attackforce = 0
 	else if(attack_type == UNARMED_ATTACK && isliving(hitby))
 		var/mob/living/L = hitby
-		attackforce = damage
-		if(block_flags & BLOCKING_NASTY)
+		if(block_flags & BLOCKING_NASTY && !HAS_TRAIT(L, TRAIT_PIERCEIMMUNE))
 			L.attackby(src, owner)
 			owner.visible_message("<span class='danger'>[L] injures themselves on [owner]'s [src]!</span>")
 	else if(isliving(hitby))
 		var/mob/living/L = hitby
 		attackforce = (damage * 2)//simplemobs have an advantage here because of how much these blocking mechanics put them at a disadvantage
 		if(block_flags & BLOCKING_NASTY)
-			L.attackby(src, owner)
-			owner.visible_message("<span class='danger'>[L] injures themselves on [owner]'s [src]!</span>")
+			if(istype(L, /mob/living/simple_animal))
+				var/mob/living/simple_animal/S = L
+				S.attackby(src, owner)
+				owner.visible_message("<span class='danger'>[S] injures themselves on [owner]'s [src]!</span>")
+			else
+				L.attackby(src, owner)
+				owner.visible_message("<span class='danger'>[L] injures themselves on [owner]'s [src]!</span>")
 	owner.apply_damage(attackforce, STAMINA, blockhand, block_power)
+	if(owner.getStaminaLoss() >= 35 && HAS_TRAIT(src, TRAIT_NODROP))//if you don't drop the item, you can't block for a few seconds
+		owner.blockbreak()
 	return TRUE
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
