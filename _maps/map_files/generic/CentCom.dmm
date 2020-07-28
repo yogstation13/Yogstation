@@ -9868,13 +9868,6 @@
 /obj/item/toy/nuke,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
-"vy" = (
-/obj/structure/sign/poster/official/random{
-	pixel_x = -32
-	},
-/obj/structure/closet/crate/bin,
-/turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
 "vA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/directions/engineering{
@@ -11580,12 +11573,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"zc" = (
-/obj/structure/shuttle/engine/propulsion/right{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/evac)
 "zd" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-22"
@@ -13107,6 +13094,12 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"Cj" = (
+/obj/structure/shuttle/engine/propulsion/right{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/centcom/evac)
 "Ck" = (
 /obj/structure/table/wood,
 /obj/item/hierophant_club,
@@ -13550,6 +13543,21 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"CU" = (
+/obj/structure/table/wood/bar{
+	boot_dir = 8
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/snacks/pizza/donkpocket,
+/obj/item/kitchen/knife,
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "CV" = (
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
@@ -15001,6 +15009,15 @@
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/circuit/green,
 /area/centcom/ferry)
+"FV" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "FW" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -17122,15 +17139,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"JW" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
-/area/centcom/evac)
 "JX" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -17612,12 +17620,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
-"KN" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
-/turf/open/floor/mineral/titanium,
-/area/centcom/evac)
 "KO" = (
 /obj/item/storage/box/drinkingglasses,
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine,
@@ -17689,17 +17691,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"KZ" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/centcom/evac)
 "Lb" = (
 /turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
+"Ld" = (
+/obj/structure/dresser,
+/turf/open/floor/carpet/blue,
 /area/centcom/evac)
 "Li" = (
 /obj/structure/window/reinforced,
@@ -17710,6 +17707,17 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red,
+/area/centcom/evac)
+"Lk" = (
+/obj/machinery/sleeper{
+	controls_inside = 1;
+	dir = 4;
+	use_power = 0
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
 "Lo" = (
 /turf/open/floor/mineral/plastitanium/red,
@@ -17961,12 +17969,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"Mo" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/evac)
 "Mp" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -18133,6 +18135,12 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
+"MJ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/centcom/evac)
 "MK" = (
 /obj/structure/mineral_door/paperframe{
 	name = "Dojo"
@@ -18401,6 +18409,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Nz" = (
+/obj/structure/shuttle/engine/propulsion/left{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/centcom/evac)
 "NA" = (
 /obj/machinery/doppler_array/research/science{
 	dir = 4
@@ -19539,6 +19553,13 @@
 /obj/effect/decal/cleanable/shreds,
 /turf/open/space/basic,
 /area/centcom/testchamber)
+"QF" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/centcom/evac)
 "QG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20160,6 +20181,10 @@
 	},
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"Sh" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
@@ -20814,12 +20839,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"Ua" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/centcom/evac)
 "Ub" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/item/storage/pill_bottle/stimulant,
@@ -20997,20 +21016,6 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"UC" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/mecha/combat/reticence,
-/turf/open/floor/engine,
-/area/centcom/testchamber)
 "UE" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
@@ -21145,25 +21150,9 @@
 /obj/item/gun/ballistic/automatic/sniper_rifle,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"UZ" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
-/area/centcom/evac)
 "Va" = (
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
-"Vc" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/centcom/evac)
 "Ve" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22123,20 +22112,6 @@
 	},
 /turf/closed/wall/mineral/titanium,
 /area/centcom/evac)
-"XB" = (
-/obj/structure/table/wood/bar{
-	boot_dir = 8
-	},
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/item/reagent_containers/food/snacks/pizzaslice/donkpocket,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/centcom/evac)
 "XC" = (
 /obj/item/reagent_containers/food/snacks/egg/rainbow{
 	desc = "I bet you think you're pretty clever... well you are.";
@@ -22165,6 +22140,12 @@
 /obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"XG" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "XH" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -22276,6 +22257,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+"XS" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/mecha/combat/reticence{
+	internals_req_access = list(303,302)
+	},
+/turf/open/floor/engine,
+/area/centcom/testchamber)
 "XT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
@@ -22373,6 +22370,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Yj" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "Yk" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23013,6 +23016,15 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"ZV" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "ZW" = (
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
@@ -49231,9 +49243,9 @@ aa
 aa
 aa
 aa
-zc
-Vc
-KQ
+Cj
+QF
+Sh
 KQ
 Ry
 KH
@@ -49488,8 +49500,8 @@ aa
 aa
 aa
 aa
-Ua
-Vc
+MJ
+QF
 WR
 KQ
 KQ
@@ -49745,8 +49757,8 @@ aa
 aa
 aa
 aa
-Mo
-Vc
+Nz
+QF
 KH
 Xj
 KH
@@ -49754,7 +49766,7 @@ KH
 KH
 KP
 KX
-XB
+CU
 Oy
 KX
 Lt
@@ -50014,7 +50026,7 @@ KY
 KY
 KY
 KY
-vy
+XG
 Yw
 KH
 KH
@@ -50788,7 +50800,7 @@ Li
 KV
 Lb
 KH
-JW
+FV
 KV
 LR
 Im
@@ -51037,7 +51049,7 @@ Lb
 KV
 KV
 KM
-KN
+Yj
 KH
 zY
 zY
@@ -51295,14 +51307,14 @@ KV
 XU
 rY
 KV
-KZ
+Lk
 Th
 yL
 Uo
 KV
 Lb
 KH
-UZ
+ZV
 KV
 LQ
 Im
@@ -52315,8 +52327,8 @@ aa
 aa
 aa
 aa
-zc
-Vc
+Cj
+QF
 KH
 OK
 KH
@@ -52572,8 +52584,8 @@ aa
 aa
 aa
 aa
-Ua
-Vc
+MJ
+QF
 Gt
 KQ
 KQ
@@ -52583,7 +52595,7 @@ ta
 TF
 ta
 ta
-ta
+KV
 KH
 KH
 aa
@@ -52829,13 +52841,13 @@ aa
 aa
 aa
 aa
-Mo
-Vc
+Nz
+QF
 KQ
 KQ
 Ry
 KH
-zS
+Ld
 zS
 zS
 zS
@@ -64140,7 +64152,7 @@ Zd
 wS
 YF
 wS
-UC
+XS
 Zk
 Nt
 We
