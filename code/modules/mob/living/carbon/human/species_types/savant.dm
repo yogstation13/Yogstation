@@ -46,7 +46,8 @@
 	override_float = FALSE
 	///This is the 'spell' that savants get so they can craft a new suit.
 	var/datum/action/innate/savantSuitUp/SuitUpPower
-	///Here is how long it takes for the spell to recharge, in 1/10th seconds
+
+	changesource_flags = MIRROR_BADMIN
 
 /datum/action/innate/savantSuitUp
 	name = "Construct Suit"
