@@ -183,7 +183,15 @@
 //you don't look quite right, is something the matter?
 /datum/proximity_monitor/advanced/timestop/proc/into_the_negative_zone(atom/A)
 	A.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
+	A.theworld()
 
 //let's put some colour back into your cheeks
 /datum/proximity_monitor/advanced/timestop/proc/escape_the_negative_zone(atom/A)
 	A.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+	A.removetheworld()
+
+/obj/effect/timestop/zlevel
+	name = "The World"
+	desc = "It's a Stand that stops ti-"
+	layer = FLY_LAYER
+	freezerange = 256 //enough to cover a standard z level

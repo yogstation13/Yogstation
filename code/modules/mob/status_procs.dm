@@ -129,3 +129,10 @@
 /mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)
+
+//utilized in code/modules/fields/timestop.dm
+/mob/proc/theworld()
+	overlay_fullscreen("timestop", /obj/screen/fullscreen/timestop)
+
+/mob/proc/removetheworld()
+	clear_fullscreen("timestop")

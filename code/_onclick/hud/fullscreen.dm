@@ -184,3 +184,9 @@
 	layer = LIGHTING_LAYER
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
+
+//ZA WARUDO!!
+/obj/screen/fullscreen/timestop
+	icon_state = "timestopoverlay"
+	plane = FULLSCREEN_PLANE
+	layer = CURSE_LAYER
