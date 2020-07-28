@@ -798,11 +798,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	. = ..()
 	if(.)
 		return
-	var/obj/item/bodypart/nomnomnom = user.hand_bodyparts[user.active_hand_index]
-	if(nomnomnom)
-		nomnomnom.dismember()
-		Consume(nomnomnom)
-	Consume(user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		var/obj/item/bodypart/nomnomnom = C.hand_bodyparts[C.active_hand_index]
+		if(nomnomnom)
+			nomnomnom.dismember()
+			Consume(nomnomnom)
+			return TRUE
+	else
+		Consume(user)
+		return TRUE
 
 ///Instead of outright dusting as in a regular SM, this proc dismembers a random limb and calls the modified Consume() proc.
 /obj/machinery/power/supermatter_crystal/shard/grill/Bumped(atom/movable/AM)

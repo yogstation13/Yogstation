@@ -456,10 +456,10 @@
 	qdel(src)
 	return(gain)
 
-///special singularity
+///Special singularity that cannot disappear, even if left alone forever as stage 1. Also delimbs if attacked instead of outright consuming you, but is normal in all other aspects
 /obj/singularity/grill
 	name = "singularity grill"
-	desc = "A specially contained singularity kept in one position "
+	desc = "A specially contained singularity with an automatic repulsion field that'll save your life maybe, but not your limbs."
 	pixel_x = 0
 	pixel_y = 0
 	dissipate = 0
@@ -475,25 +475,35 @@
 	if(energy != 100)
 		energy = 100
 
-///keeps energy stable at 1000
+///keeps it from dying
 /obj/singularity/grill/process()
 	. = ..()
-	if(energy != 100)
-		energy = 100
+	if(energy < 50)
+		energy = 50
 
-///instead of consuming the user outright, it just eats their entire arm
+/** instead of consuming the user outright, it just eats their entire arm. 
+  * This weird iscarbon code is to proof it against cases that involve extra arms; mob code is weird like that.
+  */
 /obj/singularity/grill/attackby(obj/item/W, mob/user, params)
-/*
-	for(var/obj/item/bodypart/L in user.hand_bodyparts)
-        if(L.held_index == user.active_hand_index)
-			var/obj/item/bodypart/nomnomnom = user.get_bodypart(L.held_index)
-	if(nomnomnom)
-		nomnomnom.dismember()
-		Consume(nomnomnom)
-*/
-	return 1
+	consume(W)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		var/obj/item/bodypart/nomnomnom = C.hand_bodyparts[C.active_hand_index]
+		if(nomnomnom)
+			nomnomnom.dismember()
+			consume(nomnomnom)
+	else
+		consume(user)
+	return TRUE
 
-///
+///delimbs instead of consuming outright. 
 /obj/singularity/grill/attack_hand(mob/user)
-	consume(user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		var/obj/item/bodypart/nomnomnom = C.hand_bodyparts[C.active_hand_index]
+		if(nomnomnom)
+			nomnomnom.dismember()
+			consume(nomnomnom)
+	else
+		consume(user)
 	return TRUE
