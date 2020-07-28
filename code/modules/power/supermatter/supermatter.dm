@@ -798,13 +798,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	. = ..()
 	if(.)
 		return
-	var/which_hand = BODY_ZONE_L_ARM
-	if(!(user.active_hand_index % 2))
-		which_hand = BODY_ZONE_R_ARM
-	var/obj/item/bodypart/dust_arm = user.get_bodypart(which_hand)
-	if(dust_arm)
-		dust_arm.dismember()
-		Consume(dust_arm)
+	var/obj/item/bodypart/nomnomnom = user.hand_bodyparts[user.active_hand_index]
+	if(nomnomnom)
+		nomnomnom.dismember()
+		Consume(nomnomnom)
 	Consume(user)
 
 ///Instead of outright dusting as in a regular SM, this proc dismembers a random limb and calls the modified Consume() proc.
@@ -818,7 +815,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		"<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 		Consume(user)
-
 		var/obj/item/bodypart/BP = user.get_bodypart(pick(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG))
 		if(BP)
 			BP.dismember()

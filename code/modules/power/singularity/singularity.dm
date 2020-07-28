@@ -1,5 +1,3 @@
-
-
 /obj/singularity
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -457,3 +455,45 @@
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	qdel(src)
 	return(gain)
+
+///special singularity
+/obj/singularity/grill
+	name = "singularity grill"
+	desc = "A specially contained singularity kept in one position "
+	pixel_x = 0
+	pixel_y = 0
+	dissipate = 0
+	move_self = 0
+	consume_range = 0
+	grav_pull = 4
+	current_size = STAGE_ONE
+	allowed_size = STAGE_ONE
+
+///qdels the thing like normal, but ensures energy remains stable at 100
+/obj/singularity/grill/consume(atom/A)
+	. = ..()
+	if(energy != 100)
+		energy = 100
+
+///keeps energy stable at 1000
+/obj/singularity/grill/process()
+	. = ..()
+	if(energy != 100)
+		energy = 100
+
+///instead of consuming the user outright, it just eats their entire arm
+/obj/singularity/grill/attackby(obj/item/W, mob/user, params)
+/*
+	for(var/obj/item/bodypart/L in user.hand_bodyparts)
+        if(L.held_index == user.active_hand_index)
+			var/obj/item/bodypart/nomnomnom = user.get_bodypart(L.held_index)
+	if(nomnomnom)
+		nomnomnom.dismember()
+		Consume(nomnomnom)
+*/
+	return 1
+
+///
+/obj/singularity/grill/attack_hand(mob/user)
+	consume(user)
+	return TRUE
