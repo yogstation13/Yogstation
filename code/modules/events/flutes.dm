@@ -126,3 +126,28 @@
 		to_chat(M, "<span class='Narsie'><b>Y'HAH HT'HU THRZHZU. UA'KLL GHRT AWN ZUU!</b></span>")
 		M.adjustBruteLoss(99)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 99.9)
+	random_blackouts_enable(M)
+
+/datum/round_event/flutes/proc/random_blackouts_enable(mob/living/carbon/M)
+	ADD_TRAIT(M, RANDOM_BLACKOUTS, M)
+	spawn
+		while(HAS_TRAIT(M, RANDOM_BLACKOUTS))
+			sleep(15 SECONDS)
+			spawn
+				random_blackout(M)
+
+/datum/round_event/flutes/proc/random_blackout(mob/living/carbon/M)
+	var/list/nearby_lights = list()
+	for(var/obj/machinery/light/L in M.loc.loc.contents)
+		if(L.bulb_power == 0 && L.light_power == 0)
+			continue
+		nearby_lights.Add(L)
+	var/obj/machinery/light/random_light = nearby_lights[rand(1, nearby_lights.len)]
+	random_light.light_power = 0
+	random_light.bulb_power = 0
+	random_light.update()
+	sleep(rand(1, 30) SECONDS)
+	random_light.light_power = 1
+	random_light.bulb_power = 1
+	random_light.update()
+
