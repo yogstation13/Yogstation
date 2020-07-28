@@ -237,9 +237,6 @@
 /// used in the holodeck burn test program
 #define BURNMIX_ATMOS				"o2=2500;plasma=5000;TEMP=370"
 
-/// used in premade SMs designed to be safe
-#define SM_PREMIXED_GASBANK			"n2=500;pluox=500;TEMP=293.15"
-
 //ATMOSPHERICS DEPARTMENT GAS TANK TURFS
 #define ATMOS_TANK_N2O				"n2o=6000;TEMP=293.15"
 #define ATMOS_TANK_CO2				"co2=50000;TEMP=293.15"
