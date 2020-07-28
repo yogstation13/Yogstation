@@ -90,3 +90,10 @@
 /obj/item/card/id/gasclerk/New()
 	..()
 	registered_account = new("Clerk", FALSE)
+
+/obj/item/card/id/away/construction_worker
+	name = "Construction Worker"
+	desc = "A employee ID used to access areas around the construction site."
+	assignment = "Construction Worker"
+	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE,
+									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM, ACCESS_VAULT)

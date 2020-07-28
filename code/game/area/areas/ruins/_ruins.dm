@@ -17,3 +17,7 @@
 
 /area/ruin/powered
 	requires_power = FALSE
+
+/area/ruin/construction_site
+	requires_power = FALSE
+	has_gravity = TRUE

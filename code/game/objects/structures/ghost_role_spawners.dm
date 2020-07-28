@@ -620,3 +620,36 @@
 /obj/effect/mob_spawn/human/gamer/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
+
+
+/obj/effect/mob_spawn/human/construction_worker
+	name = "construction worker sleeper"
+	desc = "A humming cryo pod."
+	mob_name = "a construction worker"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	short_desc = "Nanotrasen has hired you to construct a new station, as a backup in the case that ss13 is no longer livable"
+	flavour_text = "You are a proffesional stationbuilder you have been hired for this task in particular, you will build the best station nanotrasen can buy."
+	important_info = "Do not leave the construction area"
+	outfit = /datum/outfit/construction_worker
+
+	assignedrole = "Construction worker"
+
+
+/datum/outfit/construction_worker
+	name = "Construction Worker"
+
+	glasses = /obj/item/clothing/glasses/meson/engine
+	belt = /obj/item/storage/belt/utility/full/engi
+	ears = /obj/item/radio/headset/headset_eng
+	uniform = /obj/item/clothing/under/rank/engineer
+	suit = /obj/item/clothing/suit/space/hardsuit/engine
+	back = /obj/item/storage/backpack/industrial
+	backpack_contents = list(/obj/item/storage/box/engineer,/obj/item/pipe_dispenser,/obj/item/construction/rcd)
+	shoes = /obj/item/clothing/shoes/magboots
+	id = /obj/item/card/id/away/construction_worker
+	gloves = /obj/item/clothing/gloves/color/yellow

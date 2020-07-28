@@ -340,3 +340,11 @@
 	suffix = "gameroom.dmm"
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
+
+
+/datum/map_template/ruin/space/construction_site
+	id = "Construction site"
+	suffix = "Constructionsite.dmm"
+	name = "Construction site"
+	description = "The construction site for a backup station."
+	always_place = TRUE
