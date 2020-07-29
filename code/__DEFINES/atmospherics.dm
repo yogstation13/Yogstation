@@ -236,6 +236,8 @@
 #define KITCHEN_COLDROOM_ATMOS		"o2=33;n2=124;TEMP=193.15"
 /// used in the holodeck burn test program
 #define BURNMIX_ATMOS				"o2=2500;plasma=5000;TEMP=370"
+/// used for areas where you want a safe premixed SM gasbank
+#define SM_PREMIX_GASBANK			"n2=500;pluox=500;TEMP=2.7"
 
 //ATMOSPHERICS DEPARTMENT GAS TANK TURFS
 #define ATMOS_TANK_N2O				"n2o=6000;TEMP=293.15"

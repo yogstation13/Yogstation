@@ -456,24 +456,20 @@
 	qdel(src)
 	return(gain)
 
-///Special singularity that cannot disappear, even if left alone forever as stage 1. Also delimbs if attacked instead of outright consuming you, but is normal in all other aspects
+/** Special singularity that cannot disappear, even if left alone forever as stage 1. Also delimbs if attacked instead of outright consuming you.
+  * Also has a lower starting pull range to make map design easier, but is normal in all other aspects. Can and will loose if fed too much.
+  */ 
 /obj/singularity/grill
 	name = "singularity grill"
 	desc = "A specially contained singularity with an automatic repulsion field that'll save your life maybe, but not your limbs."
 	pixel_x = 0
 	pixel_y = 0
-	dissipate = 0
+	dissipate = 1
 	move_self = 0
 	consume_range = 0
-	grav_pull = 4
+	grav_pull = 2 //allows for a less messy grilling experience. Once it goes big though, all of that gets thrown out of the window
 	current_size = STAGE_ONE
 	allowed_size = STAGE_ONE
-
-///qdels the thing like normal, but ensures energy remains stable at 100
-/obj/singularity/grill/consume(atom/A)
-	. = ..()
-	if(energy != 100)
-		energy = 100
 
 ///keeps it from dying
 /obj/singularity/grill/process()
@@ -481,29 +477,33 @@
 	if(energy < 50)
 		energy = 50
 
-/** instead of consuming the user outright, it just eats their entire arm. 
+/** Instead of consuming the user outright, it just eats their entire arm and whatever they attacked it with
   * This weird iscarbon code is to proof it against cases that involve extra arms; mob code is weird like that.
   */
 /obj/singularity/grill/attackby(obj/item/W, mob/user, params)
 	consume(W)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		var/obj/item/bodypart/nomnomnom = C.hand_bodyparts[C.active_hand_index]
-		if(nomnomnom)
-			nomnomnom.dismember()
-			consume(nomnomnom)
-	else
-		consume(user)
+	disarm(user)
 	return TRUE
 
 ///delimbs instead of consuming outright. 
 /obj/singularity/grill/attack_hand(mob/user)
+	disarm(user)
+	return TRUE
+
+/// Delimbs the mob fed into the args. If not a carbon, just eats them instead. 
+/obj/singularity/grill/proc/disarm(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		var/obj/item/bodypart/nomnomnom = C.hand_bodyparts[C.active_hand_index]
 		if(nomnomnom)
+			user.visible_message("<span class='danger'>\The [user] gets sucked into \the [src] causing the repulsion system to flare into life!</span>",\
+				"<span class='userdanger'>Your arm is dismembered by the repulsion system as it throws you back!</span>")
 			nomnomnom.dismember()
 			consume(nomnomnom)
-	else
-		consume(user)
-	return TRUE
+			user.Paralyze(300)
+			user.adjustFireLoss(50)
+			var/atom/target = get_edge_target_turf(AM, get_dir(src, get_step_away(AM, src)))
+			user.throw_at(target, 10, 4)
+		else
+			consume(user)
+		

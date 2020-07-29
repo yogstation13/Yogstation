@@ -818,7 +818,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		"<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 		Consume(user)
-
 		var/obj/item/bodypart/BP = user.get_bodypart(pick(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG))
 		if(BP)
 			BP.dismember()
@@ -836,7 +835,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			return
 		user.Paralyze(300)
 		user.electrocute_act(75, src, 1)
-		user.adjustFireLoss(75)
+		user.adjustFireLoss(50)
 		user.adjust_fire_stacks(100)
 		user.IgniteMob()
 		user.visible_message("<span class='danger'>Just as you think [user] is going to get dusted, the paranoblium interface burns brightly for a moment, knocking [user] back before their entire body dusts!</span>",\

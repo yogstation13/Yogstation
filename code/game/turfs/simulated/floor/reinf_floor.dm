@@ -123,7 +123,8 @@
 	name = "air floor"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
 
-
+/turf/open/floor/engine/sm_premix
+	initial_gas_mix = SM_PREMIX_GASBANK
 
 /turf/open/floor/engine/cult
 	name = "engraved floor"
