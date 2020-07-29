@@ -500,9 +500,9 @@
 				"<span class='userdanger'>Your arm is dismembered by the repulsion system as it throws you back!</span>")
 			nomnomnom.dismember()
 			consume(nomnomnom)
-			user.Paralyze(300)
-			user.adjustFireLoss(50)
-			var/atom/target = get_edge_target_turf(AM, get_dir(src, get_step_away(AM, src)))
+			C.Paralyze(300)
+			C.adjustFireLoss(50)
+			var/atom/target = get_edge_target_turf(C, get_dir(src, get_step_away(C, src)))
 			user.throw_at(target, 10, 4)
 		else
 			consume(user)
