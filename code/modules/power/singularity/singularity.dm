@@ -162,6 +162,15 @@
 		message_admins("A singulo has been created without containment fields active at [ADMIN_VERBOSEJMP(T)].")
 	investigate_log("was created at [AREACOORD(T)]. [count?"":"<font color='red'>No containment fields were active</font>"]", INVESTIGATE_SINGULO)
 
+///used by singularity monitor to check for singuloose
+/obj/singularity/proc/check_setup()
+	var/turf/T = get_turf(src)
+	var/count = locate(/obj/machinery/field/containment) in urange(30, src, 1)
+	if(!count)
+		return TRUE
+	else 
+		return FALSE
+
 /obj/singularity/proc/dissipate()
 	if(!dissipate)
 		return
