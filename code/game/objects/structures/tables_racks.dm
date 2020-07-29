@@ -41,8 +41,9 @@
 	if(prob(0.1))
 		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
 		H.emote("scream")
+		H.affected_mob.adjustStaminaLoss(100)
 		H.apply_damage(2, BRUTE, def_zone = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT))
-		H.Paralyze(100)
+		H.Paralyze(30)
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
