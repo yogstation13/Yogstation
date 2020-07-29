@@ -123,6 +123,7 @@
 	name = "air floor"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
 
+///for when you want to map in a premixed safe SM
 /turf/open/floor/engine/sm_premix
 	initial_gas_mix = SM_PREMIX_GASBANK
 

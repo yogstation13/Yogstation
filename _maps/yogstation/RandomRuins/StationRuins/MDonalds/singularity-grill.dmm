@@ -1,0 +1,61 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/obj/machinery/launchpad,
+/turf/template_noop,
+/area/template_noop)
+"m" = (
+/obj/structure/table/wood,
+/obj/item/melee/roastingstick,
+/turf/template_noop,
+/area/template_noop)
+"r" = (
+/obj/singularity/grill,
+/turf/closed/indestructible/riveted,
+/area/space)
+"y" = (
+/obj/structure/table/wood,
+/turf/template_noop,
+/area/template_noop)
+"H" = (
+/turf/template_noop,
+/area/template_noop)
+"Z" = (
+/obj/machinery/computer/launchpad,
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+d
+H
+m
+y
+y
+"}
+(2,1,1) = {"
+Z
+H
+H
+H
+H
+"}
+(3,1,1) = {"
+H
+H
+H
+H
+H
+"}
+(4,1,1) = {"
+H
+H
+H
+H
+H
+"}
+(5,1,1) = {"
+H
+H
+r
+H
+H
+"}
