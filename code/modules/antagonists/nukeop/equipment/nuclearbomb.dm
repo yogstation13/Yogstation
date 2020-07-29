@@ -582,7 +582,7 @@
 	if(!z)
 		return
 	for(var/mob/M in GLOB.mob_list)
-		if(M.stat != DEAD && M.z == z)
+		if(M.stat != DEAD && M.z == z && !istype(m.loc, /obj/structure/closet/secure_closet/freezer))
 			M.gib()
 
 /*
