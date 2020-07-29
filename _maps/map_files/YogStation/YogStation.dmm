@@ -49093,6 +49093,12 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
+"iJE" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "iLA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -51914,12 +51920,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"lOI" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/turf/open/floor/plating,
-/area/space)
 "lPO" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -56474,9 +56474,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"qOS" = (
-/turf/open/floor/plating,
-/area/space)
 "qPC" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
@@ -105650,7 +105647,7 @@ bHd
 bzs
 bAw
 bAw
-lOI
+iJE
 qug
 bzs
 gXs
@@ -105907,7 +105904,7 @@ cdN
 bzs
 bAw
 bAw
-qOS
+bAw
 mag
 bzs
 gXs
