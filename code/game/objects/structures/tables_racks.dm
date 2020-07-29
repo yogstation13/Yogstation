@@ -43,7 +43,7 @@
 		H.emote("scream")
 		H.adjustStaminaLoss(100)
 		H.apply_damage(2, BRUTE, def_zone = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT))
-		H.Paralyze(20)
+		H.Paralyze(10)
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
