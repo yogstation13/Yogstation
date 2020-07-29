@@ -88,15 +88,15 @@
   */
 /obj/structure/swarmer_beacon/proc/release_swarmer(mob/swarmer)
 	to_chat(swarmer, "<b><FONT color='red'>You are to allow other beings to leave peacefully on the shuttle without interference. The station and its resources are your only concern.</font>\n\
-						SWARMER CONSTRUCTION COMPLETED.  OBJECTIVES:\n\
-						1. Consume resources and replicate on the station until there are no more resources left\n\
-						2. Ensure protection of the beacon so this location can be ivnaded at a later date; do not perform actions that would render this location dangerous or inshospitable\n\
-						3. Biological resources will be harvested at a later date, do not harm them\n\
+						SWARMER CONSTRUCTION COMPLETED. OBJECTIVES:\n\
+						1. Consume resources and replicate on the station until there are no more resources left.\n\
+						2. Ensure protection of the beacon so this location can be invaded at a later date; do not perform actions that would render this location dangerous or inhospitable.\n\
+						3. Biological resources will be harvested at a later date: do not harm them.\n\
 						OPERATOR NOTES:\n\
-						- Consume resources to construct traps, barriers, and follower drones\n\
-						- Follower drones can be ordered to move via middle clicking on a tile. While drones cannot assist in resource harvesting, they can protect you from threats\n\
-						- LCTRL + attacking an organic will allow you to remove said organic from the area\n\
-						- You and your drones have a stun effect on melee. You are also armed with a disabler projectile, use these to prevent organics from halting your progress\n\
+						- Consume resources to construct traps, barriers, and follower drones.\n\
+						- Follower drones can be ordered to move via middle clicking on a tile. While drones cannot assist in resource harvesting, they can protect you from threats.\n\
+						- LCTRL + attacking an organic will allow you to remove said organic from the area.\n\
+						- You and your drones have a stun effect on melee. You are also armed with a disabler projectile, use these to prevent organics from halting your progress.\n\
 						GLORY TO !*# $*#^")
 	swarmer.forceMove(get_turf(src))
 	processing_swarmer = FALSE
