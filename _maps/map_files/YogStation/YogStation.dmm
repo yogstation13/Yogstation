@@ -312,8 +312,18 @@
 /turf/open/floor/plasteel,
 /area/maintenance/fore)
 "aaJ" = (
-/obj/machinery/bounty_board,
-/turf/closed/wall/r_wall,
+/obj/machinery/modular_computer/console/preset/engineering,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/bounty_board{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aaK" = (
 /obj/machinery/bounty_board,
@@ -19082,17 +19092,6 @@
 /area/bridge)
 "aUa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/turf/open/floor/plasteel,
-/area/bridge)
-"aUb" = (
-/obj/machinery/modular_computer/console/preset/engineering,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/bridge)
 "aUc" = (
@@ -94581,8 +94580,8 @@ aLY
 aOG
 aPR
 aPR
+aPR
 aaJ
-aUb
 aZs
 aTX
 aYr
