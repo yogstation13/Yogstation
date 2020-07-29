@@ -578,6 +578,13 @@
 /obj/machinery/nuclearbomb/beer/really_actually_explode()
 	disarm()
 
+
+/**
+  * Kills any mob on the z-level, assuming they're not in a freezer
+  *
+  * Arguments:
+  * * z - the z-level to kill people on
+  */
 /proc/KillEveryoneOnZLevel(z)
 	if(!z)
 		return
