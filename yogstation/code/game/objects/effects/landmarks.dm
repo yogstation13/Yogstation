@@ -109,8 +109,3 @@
 /obj/effect/landmark/stationroom/eclipse/bar
 	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
 
-/obj/effect/landmark/stationroom/mdonalds/sm_grill
-	template_names = list("SM Grill")
-
-/obj/effect/landmark/stationroom/mdonalds/singulo_grill
-	template_names = list("Singularity Grill")
