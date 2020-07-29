@@ -2992,6 +2992,7 @@
 #include "yogstation\code\datums\mutations\extendoarm.dm"
 #include "yogstation\code\datums\ruins\free_miners.dm"
 #include "yogstation\code\datums\ruins\station.dm"
+#include "yogstation\code\datums\ruins\mdonalds.dm"
 #include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
 #include "yogstation\code\datums\wires\smartfridge.dm"
