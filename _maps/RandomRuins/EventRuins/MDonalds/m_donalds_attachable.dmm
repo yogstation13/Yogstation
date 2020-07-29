@@ -947,6 +947,10 @@
 	dir = 8
 	},
 /area/space)
+"GL" = (
+/obj/effect/landmark/stationroom/mdonalds/singulo_grill,
+/turf/open/floor/plasteel,
+/area/space)
 "Hl" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -1318,6 +1322,10 @@
 /area/space)
 "Wj" = (
 /turf/open/floor/plasteel/yellowsiding/corner,
+/area/space)
+"Wm" = (
+/obj/effect/landmark/stationroom/mdonalds/sm_grill,
+/turf/open/floor/plasteel,
 /area/space)
 "Wy" = (
 /obj/structure/piano{
@@ -2075,13 +2083,13 @@ oW
 oW
 oW
 oW
-oW
+GL
 At
 oW
 oW
 oW
 oW
-oW
+Wm
 EP
 EP
 At

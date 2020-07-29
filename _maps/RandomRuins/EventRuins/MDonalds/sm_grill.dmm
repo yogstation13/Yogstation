@@ -1,0 +1,214 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/machinery/power/supermatter_crystal/shard/hugbox,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/engine/sm_premix,
+/area/template_noop)
+"e" = (
+/turf/open/floor/engine/air,
+/area/template_noop)
+"g" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner/east,
+/turf/open/floor/engine/air,
+/area/template_noop)
+"k" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 1
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 2
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"o" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"p" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/toxins{
+	filled = 10
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/structure/window/plasma/reinforced/spawner/east,
+/turf/open/floor/engine/air,
+/area/template_noop)
+"r" = (
+/obj/item/pipe/binary/bendable{
+	dir = 6
+	},
+/obj/machinery/airalarm/all_access{
+	pixel_y = 24
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"s" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"w" = (
+/turf/open/floor/plasteel,
+/area/template_noop)
+"E" = (
+/obj/item/pipe/binary/bendable{
+	dir = 9
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"H" = (
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner/east,
+/turf/open/floor/engine/sm_premix,
+/area/template_noop)
+"I" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 1
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 8
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"M" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/structure/window/plasma/reinforced/spawner/east,
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/template_noop)
+"N" = (
+/obj/item/pipe/binary/bendable{
+	dir = 10
+	},
+/obj/structure/window/plasma/reinforced/spawner/east,
+/turf/open/floor/engine/air,
+/area/template_noop)
+"P" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/turf/open/floor/engine/air,
+/area/template_noop)
+"R" = (
+/obj/effect/turf_decal/stripes,
+/obj/machinery/door/airlock/atmos/glass,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"S" = (
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner/east,
+/turf/open/floor/engine/sm_premix,
+/area/template_noop)
+"T" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/structure/fans/tiny/invisible,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"V" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"Y" = (
+/obj/structure/window/plasma/reinforced/spawner/east,
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+
+(1,1,1) = {"
+w
+w
+Y
+T
+Y
+"}
+(2,1,1) = {"
+V
+R
+H
+b
+S
+"}
+(3,1,1) = {"
+V
+e
+I
+o
+E
+"}
+(4,1,1) = {"
+V
+r
+s
+P
+k
+"}
+(5,1,1) = {"
+V
+M
+N
+g
+p
+"}
