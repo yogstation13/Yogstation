@@ -123,7 +123,7 @@
 		M.SetSleeping(30)
 		M.blur_eyes(40)
 		M.adjustStaminaLoss(99)
-		to_chat(M, "<span class='Narsie'><b>Y'HAH HT'HU THRZHZU. UA'KLL GHRT AWN ZUU!</b></span>")
+		to_chat(M, "<span class='narsie'><b>Y'HAH HT'HU THRZHZU. UA'KLL GHRT AWN ZUU!</b></span>")
 		M.adjustBruteLoss(60, 70, 75, 80, 85)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 65, 70, 75, 80, 90)
 	random_blackouts_enable(M)
@@ -146,7 +146,7 @@
 	random_light.light_power = 0
 	random_light.bulb_power = 0
 	random_light.update()
-	sleep(rand(1, 30) SECONDS)
+	sleep(rand(8, 30) SECONDS)
 	random_light.light_power = 1
 	random_light.bulb_power = 1
 	random_light.update()
