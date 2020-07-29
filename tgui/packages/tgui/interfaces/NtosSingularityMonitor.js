@@ -3,7 +3,6 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../backend';
 import { Button, Flex, LabeledList, ProgressBar, Section, Table } from '../components';
-import { getGasColor, getGasLabel } from '../constants';
 import { NtosWindow } from '../layouts';
 
 const logScale = value => Math.log2(16 + Math.max(0, value)) - 4;
@@ -12,20 +11,20 @@ export const NtosSingularityMonitor = (props, context) => {
   return (
     <NtosWindow resizable>
       <NtosWindow.Content scrollable>
-        <NtosSupermatterMonitorContent />
+        <NtosSingularityMonitorContent />
       </NtosWindow.Content>
     </NtosWindow>
   );
 };
 
-export const NtosSupermatterMonitorContent = (props, context) => {
+export const NtosSingularityMonitorContent = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     active,
-    SM_integrity,
-    SM_power,
-    SM_ambienttemp,
-    SM_ambientpressure,
+    currentArea,
+    current_Coords,
+    energy,
+    size,
   } = data;
   if (!active) {
     return (

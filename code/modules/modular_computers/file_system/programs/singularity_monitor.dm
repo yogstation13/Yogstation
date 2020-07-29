@@ -52,7 +52,7 @@
 	if(!T)
 		return
 	for(var/obj/singularity/S in GLOB.singularities)
-		if ((is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z) && S == obj/singularity) 
+		if ((is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z) && istype(S, obj/singularity)) 
 		//for(x in y) includes subtypes. We don't want subtypes here.
 			singularities.Add(S)
 
@@ -75,8 +75,8 @@
 			refresh()
 			return
 		data["active"] = TRUE
-		data["currentArea"] = "[get_area_name(T, TRUE)]"
-		data["currentCoords"] = "[T.x], [T.y], [T.z]"
+		data["area"] = "[get_area_name(T, TRUE)]"
+		data["coordinates"] = "[T.x], [T.y], [T.z]"
 		data["energy"] = active.energy
 		data["size"] = active.current_size
 	else
@@ -86,10 +86,10 @@
 			var/turf/T = get_turf_global(S)
 			if(A)
 				sings.Add(list(list(
-				"area_name" = A.name,
+				"area" = A.name,
 				"coordinates" = "[T.x], [T.y], [T.z]",  
 				"energy" = S.energy,
-				"size" = S.current_size
+				"size" = S.current_size,
 				"uid" = S.uid
 				)))
 
