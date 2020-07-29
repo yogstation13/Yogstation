@@ -520,6 +520,10 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
 /area/space)
+"rU" = (
+/obj/effect/landmark/stationroom/mdonalds/sm_grill,
+/turf/open/floor/plasteel,
+/area/space)
 "rV" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/closet/secure_closet/hydroponics,
@@ -1265,6 +1269,10 @@
 	dir = 8
 	},
 /turf/open/floor/grass,
+/area/space)
+"Pi" = (
+/obj/effect/landmark/stationroom/mdonalds/singulo_grill,
+/turf/open/floor/plasteel,
 /area/space)
 "Pn" = (
 /obj/machinery/vending/wardrobe/chef_wardrobe,
@@ -2202,13 +2210,13 @@ oW
 oW
 oW
 oW
-oW
+Pi
 At
 oW
 oW
 oW
 oW
-oW
+rU
 EP
 EP
 At

@@ -1,3 +1,4 @@
+/// This file contains the mapping data for MDonalds' landmarks
 /datum/map_template/ruin/mdonalds/
 	prefix = "_maps/RandomRuins/EventRuins/MDonalds/"
 
