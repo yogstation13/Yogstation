@@ -845,7 +845,7 @@
 		N.apply_card_vars(N,O)
 		qdel(src)
 		cardUser.put_in_hands(N)
-		cardUser.visible_message("[cardUser] also takes their last card and holds it.", "<span class='notice'>You also take [currenthand[1]] and hold it.</span>")//the outside world will now know when you break a 2 card hand into two seperate cards. Useful for UNO but can be used by any card game
+		cardUser.visible_message("[cardUser] also takes their last card and holds it.", "<span class='notice'>You also take [currenthand[1]] and hold it.</span>") //the outside world will now know when you break a 2 card hand into two separate cards. Useful for UNO but can be used by any card game
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/singlecard/C, mob/living/user, params)
 	if(istype(C))
