@@ -38,11 +38,11 @@
 	. = ..()
 	if(!istype(H) || H.shoes || !(H.mobility_flags & MOBILITY_STAND) || istype(H.dna.species, /datum/species/shadow/ling))
 		return ..()
-	if(prob(5))
+	if(prob(0.1))
 		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
 		H.emote("scream")
 		H.apply_damage(2, BRUTE, def_zone = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT))
-		H.Paralyze(20)
+		H.Paralyze(100)
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
