@@ -627,8 +627,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
 					fire_nuclear_particle()
-		if(support_integrity<MOLE_SPACE_THRESHOLD)
-			if(istype(T, /turf/open/space) || T.return_air().total_moles() < 10)
+		if(support_integrity<10)
+			if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
 				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
