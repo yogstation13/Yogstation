@@ -1,17 +1,36 @@
-import { sortBy } from 'common/collections';
+import { map } from 'common/collections';
 import { flow } from 'common/fp';
-import { toFixed } from 'common/math';
+import { toFixed, clamp } from 'common/math';
+import { vecLength, vecSubtract } from 'common/vector';
 import { useBackend } from '../backend';
-import { Button, Flex, LabeledList, ProgressBar, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
+import { Button, Icon, Flex, LabeledList, ProgressBar, Section, Table } from '../components';
+import { NtosWindow, Box } from '../layouts';
 
-const logScale = value => Math.log2(16 + Math.max(0, value)) - 4;
+const getColor = (distance, stage) => {
+  let dangerRange = 0;
+  if (stage<5) {
+    dangerRange = (stage*2) + 2;
+  } else {
+    dangerRange = 15;
+  }
+  return (("red" && (distance<dangerRange))
+    || ("orange" && (distance>dangerRange && distance < dangerRange*2))
+    || ("green" && (distance>dangerRange*3))
+  );
+};
 
 export const NtosSingularityMonitor = (props, context) => {
   return (
     <NtosWindow resizable>
       <NtosWindow.Content scrollable>
         <NtosSingularityMonitorContent />
+
+        <Section title="debug data">
+          <ul>
+            <li> test</li>
+
+          </ul>
+        </Section>
       </NtosWindow.Content>
     </NtosWindow>
   );
@@ -19,116 +38,21 @@ export const NtosSingularityMonitor = (props, context) => {
 
 export const NtosSingularityMonitorContent = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    active,
-    currentArea,
-    current_Coords,
-    energy,
-    size,
-  } = data;
-  if (!active) {
+  if (!data.active) {
     return (
-      <SupermatterList />
+      <SingularityList />
     );
+  } else {
+    return <SingularityWindow />;
   }
-  const gases = flow([
-    gases => gases.filter(gas => gas.amount >= 0.01),
-    sortBy(gas => -gas.amount),
-  ])(data.gases || []);
-  const gasMaxAmount = Math.max(1, ...gases.map(gas => gas.amount));
-  return (
-    <Flex spacing={1}>
-      <Flex.Item width="270px">
-        <Section title="Metrics">
-          <LabeledList>
-            <LabeledList.Item label="Integrity">
-              <ProgressBar
-                value={SM_integrity / 100}
-                ranges={{
-                  good: [0.90, Infinity],
-                  average: [0.5, 0.90],
-                  bad: [-Infinity, 0.5],
-                }} />
-            </LabeledList.Item>
-            <LabeledList.Item label="Relative EER">
-              <ProgressBar
-                value={SM_power}
-                minValue={0}
-                maxValue={5000}
-                ranges={{
-                  good: [-Infinity, 5000],
-                  average: [5000, 7000],
-                  bad: [7000, Infinity],
-                }}>
-                {toFixed(SM_power) + ' MeV/cm3'}
-              </ProgressBar>
-            </LabeledList.Item>
-            <LabeledList.Item label="Temperature">
-              <ProgressBar
-                value={logScale(SM_ambienttemp)}
-                minValue={0}
-                maxValue={logScale(10000)}
-                ranges={{
-                  teal: [-Infinity, logScale(80)],
-                  good: [logScale(80), logScale(373)],
-                  average: [logScale(373), logScale(1000)],
-                  bad: [logScale(1000), Infinity],
-                }}>
-                {toFixed(SM_ambienttemp) + ' K'}
-              </ProgressBar>
-            </LabeledList.Item>
-            <LabeledList.Item label="Pressure">
-              <ProgressBar
-                value={logScale(SM_ambientpressure)}
-                minValue={0}
-                maxValue={logScale(50000)}
-                ranges={{
-                  good: [logScale(1), logScale(300)],
-                  average: [-Infinity, logScale(1000)],
-                  bad: [logScale(1000), +Infinity],
-                }}>
-                {toFixed(SM_ambientpressure) + ' kPa'}
-              </ProgressBar>
-            </LabeledList.Item>
-          </LabeledList>
-        </Section>
-      </Flex.Item>
-      <Flex.Item grow={1} basis={0}>
-        <Section
-          title="Gases"
-          buttons={(
-            <Button
-              icon="arrow-left"
-              content="Back"
-              onClick={() => act('PRG_clear')} />
-          )}>
-          <LabeledList>
-            {gases.map(gas => (
-              <LabeledList.Item
-                key={gas.name}
-                label={getGasLabel(gas.name)}>
-                <ProgressBar
-                  color={getGasColor(gas.name)}
-                  value={gas.amount}
-                  minValue={0}
-                  maxValue={gasMaxAmount}>
-                  {toFixed(gas.amount, 2) + '%'}
-                </ProgressBar>
-              </LabeledList.Item>
-            ))}
-          </LabeledList>
-        </Section>
-      </Flex.Item>
-    </Flex>
-  );
 };
 
-const SupermatterList = (props, context) => {
+const SingularityList = (props, context) => {
   const { act, data } = useBackend(context);
-  const { supermatters = [] } = data;
+  const { singularities = [] } = data;
   return (
     <Section
-      title="Detected Supermatters"
+      title="Detected singularities"
       buttons={(
         <Button
           icon="sync"
@@ -136,33 +60,75 @@ const SupermatterList = (props, context) => {
           onClick={() => act('PRG_refresh')} />
       )}>
       <Table>
-        {supermatters.map(sm => (
-          <Table.Row key={sm.uid}>
-            <Table.Cell>
-              {sm.uid + '. ' + sm.area_name}
+        {singularities.map(sing => (
+          <Table.Row key={sing.uid}>
+            <Table.Cell color={getColor(sing.distance, sing.size)}>
+              {sing.uid + '. In: ' + sing.area + '  '}
+              <Icon
+                opacity={sing.dist !== undefined && (
+                  clamp(
+                    1.2 / Math.log(Math.E + sing.dist / 20),
+                    0.4, 1)
+                )}
+                mr={1}
+                size={1.2}
+                name="arrow-up"
+                rotation={sing.degrees} />
+              {sing.dist !== undefined && (
+                Math.round(sing.dist, 1) + 'm'
+              )}
             </Table.Cell>
             <Table.Cell collapsing color="label">
-              Integrity:
+              Energy
             </Table.Cell>
             <Table.Cell collapsing width="120px">
               <ProgressBar
-                value={sm.integrity / 100}
+                value={sing.energy/100}
                 ranges={{
-                  good: [0.90, Infinity],
-                  average: [0.5, 0.90],
-                  bad: [-Infinity, 0.5],
+                  good: [-Infinity, 9.99],
+                  average: [100, 19.99],
+                  bad: [20.00, Infinity],
                 }} />
             </Table.Cell>
             <Table.Cell collapsing>
               <Button
                 content="Details"
                 onClick={() => act('PRG_set', {
-                  target: sm.uid,
+                  target: sing.uid,
                 })} />
             </Table.Cell>
           </Table.Row>
         ))}
       </Table>
+    </Section>
+  );
+};
+
+const SingularityWindow = (props, context) => {
+  const { act, data } = useBackend(context);
+  const {
+    active,
+    area,
+    x,
+    y,
+    energy,
+    size,
+  } = data;
+  return (
+    <Section
+      title="Singularity Data"
+      buttons={(
+        <Button
+          icon="arrow-left"
+          content="Back"
+          onClick={() => act('PRG_clear')} />
+      )} >
+      <p>active: {active}</p>
+      <p>area: {area}</p>
+      <p>energy: {energy}</p>
+      <p>size: {size}</p>
+      <p>x: {x} </p>
+      <p>y: {y}</p>
     </Section>
   );
 };
