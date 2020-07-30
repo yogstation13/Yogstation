@@ -2,7 +2,7 @@
 	name = "Plants"
 
 //Lists the antags & greentext on end round report
-/datum/team/xeno/roundend_report()
+/datum/team/kudzu/roundend_report()
 	var/list/parts = list()
 	//is kudzu alive? if yes, greentext
 	parts += "The [name] [locate(/obj/structure/spacevine) in world ? "were <span class='greentext'>successful</span>" : "have <span class='redtext'>failed</span>"] in protecting the kudzu!</span>\n"
