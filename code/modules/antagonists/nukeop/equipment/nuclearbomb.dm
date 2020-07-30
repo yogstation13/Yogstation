@@ -589,7 +589,7 @@
 	if(!z)
 		return
 	for(var/mob/M in GLOB.mob_list)
-		if(M.stat != DEAD && get_turf(M).z == z && !istype(M.loc, /obj/structure/closet/secure_closet/freezer)))
+		if(M.stat != DEAD && (get_turf(M).z == z) && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))
 			M.gib()
 
 /*
