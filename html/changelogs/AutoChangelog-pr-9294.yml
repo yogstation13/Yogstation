@@ -1,0 +1,5 @@
+author: "AutisticFroggy"
+delete-after: true 
+changes: 
+  - rscadd: "Adds slime empathy potion, allowing you to understand slimes"
+  - rscdel: "Removes love potion"
