@@ -177,6 +177,8 @@
 			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
+		if((href_list["multiplier"] == "-nan") || (href_list["multiplier"] == "nan")) //this isn't picked up by the other check so we're putting it here too
+			return
 		var/multiplier = text2num(href_list["multiplier"])
 		if (!multiplier ||(multiplier <= 0)) //href protection
 			return
