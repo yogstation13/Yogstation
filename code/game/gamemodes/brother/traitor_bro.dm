@@ -7,6 +7,7 @@
 	config_tag = "traitorbro"
 	restricted_jobs = list("AI", "Cyborg")
 	required_players = 8 //yogs - just a minor change
+	title_icon = "ss13"
 
 	announce_span = "danger"
 	announce_text = "There are Syndicate agents and Blood Brothers on the station!\n\
@@ -70,3 +71,7 @@
 	var/datum/atom_hud/antag/brotherhud = GLOB.huds[ANTAG_HUD_BROTHER]
 	brotherhud.leave_hud(brother_mind.current)
 	set_antag_hud(brother_mind.current, null)
+	
+/datum/game_mode/traitor/bros/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition

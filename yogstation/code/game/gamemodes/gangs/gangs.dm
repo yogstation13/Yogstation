@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	required_players = 24
 	required_enemies = 1
 	recommended_enemies = 2
-	enemy_minimum_age = 14'
+	enemy_minimum_age = 14
 	title_icon = "gang"
 
 	announce_span = "danger"
