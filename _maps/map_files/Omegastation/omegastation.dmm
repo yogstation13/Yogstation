@@ -3430,6 +3430,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/item/flashlight/flare/signal,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "afq" = (
@@ -4649,6 +4650,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"aha" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/utility,
+/obj/item/radio,
+/obj/item/radio,
+/obj/effect/turf_decal/bot,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
 "ahb" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4662,6 +4672,28 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ahc" = (
+/obj/structure/table/reinforced,
+/obj/item/lightreplacer,
+/obj/structure/cable/white{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "ahe" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -8690,16 +8722,6 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
-"anh" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/belt/utility,
-/obj/item/radio,
-/obj/item/radio,
-/obj/item/flashlight/flare/signal,
-/obj/item/flashlight/flare,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
 "ani" = (
@@ -24622,27 +24644,6 @@
 "aKL" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/engivend,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"aKM" = (
-/obj/structure/table/reinforced,
-/obj/item/lightreplacer,
-/obj/structure/cable/white{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aKN" = (
@@ -79841,7 +79842,7 @@ aHh
 aJO
 aGY
 aTb
-aKM
+ahc
 aMa
 aNe
 aEt
@@ -89583,7 +89584,7 @@ aii
 ajx
 alv
 ani
-anh
+aha
 anW
 aoX
 aqe

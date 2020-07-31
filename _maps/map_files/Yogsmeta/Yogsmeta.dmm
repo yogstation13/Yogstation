@@ -1402,6 +1402,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"acM" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/clothing/mask/breath{
+	pixel_x = 4
+	},
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "acN" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/security/prison";
@@ -3029,6 +3039,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"afn" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/flashlight/flare/signal{
+	step_x = 1;
+	step_y = 11
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
 "afo" = (
 /obj/machinery/light{
 	dir = 4
@@ -13728,15 +13755,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/fore)
-"ayc" = (
-/obj/structure/table/reinforced,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/clothing/mask/breath{
-	pixel_x = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "ayd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -53048,19 +53066,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bPZ" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "bQa" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -108606,7 +108611,7 @@ bZg
 bns
 bMU
 dbm
-bPZ
+afn
 bRq
 bSE
 bre
@@ -128606,7 +128611,7 @@ apm
 dnR
 aFH
 axY
-ayc
+acM
 awz
 aAw
 bUw

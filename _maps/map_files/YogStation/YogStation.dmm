@@ -599,6 +599,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"abt" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
+"abu" = (
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "abx" = (
 /obj/machinery/biogenerator,
 /obj/effect/decal/cleanable/dirt,
@@ -10709,18 +10726,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"ayN" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/hand_labeler,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "ayO" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical{
@@ -90174,7 +90179,7 @@ aph
 aph
 avt
 ayL
-ayN
+abt
 aAb
 aAW
 axA
@@ -97203,7 +97208,7 @@ clJ
 cig
 ciZ
 ciZ
-ciZ
+abu
 jmH
 gCP
 cig
