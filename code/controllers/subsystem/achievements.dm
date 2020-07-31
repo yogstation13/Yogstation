@@ -112,6 +112,6 @@ SUBSYSTEM_DEF(achievements)
 
 /datum/controller/subsystem/achievements/proc/get_achievement(achievementPath)
 	for(var/datum/achievement/i in achievements)
-		if(i.type == achievementPath) // Can't use istype() here since it needs to be the EXACT correct type.
+		if(istype(i, achievementPath) && !(i in subtypesof(achievementPath))) // Can't use istype() here since it needs to be the EXACT correct type.
 			return i
 	return FALSE
