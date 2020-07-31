@@ -48,12 +48,12 @@
 	var/speed_multiplier = 2/H.cached_multiplicative_slowdown 
 	var/blindness_multiplier = 0
 	if(H.eye_blurry)
-		blindness_multiplier = 20
+		blindness_multiplier = 4
 	if(H.eye_blind)
-		blindness_multiplier = 1000
+		blindness_multiplier = 200
 	if(HAS_TRAIT_FROM(H, "blind", ROUNDSTART_TRAIT))
-		blindness_multiplier = 10
-	var/chance = 0.1*blindness_multiplier*speed_multiplier
+		blindness_multiplier = 2
+	var/chance = 0.5*blindness_multiplier*speed_multiplier
 	if(prob(chance))
 		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
 		H.emote("scream")
