@@ -71,7 +71,3 @@
 	var/datum/atom_hud/antag/brotherhud = GLOB.huds[ANTAG_HUD_BROTHER]
 	brotherhud.leave_hud(brother_mind.current)
 	set_antag_hud(brother_mind.current, null)
-	
-/datum/game_mode/traitor/bros/generate_credit_text()
-	var/list/round_credits = list()
-	var/len_before_addition
