@@ -56,7 +56,7 @@
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
 
-//Remember to update _globalvars/traits.dm if you're adding/removing/renaming traits.
+//Remember to update code/datums/traits/ folder if you're adding/removing/renaming traits.
 
 //mob traits
 #define TRAIT_BLIND 			"blind"
