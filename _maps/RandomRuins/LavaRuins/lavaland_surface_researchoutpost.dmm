@@ -68,7 +68,7 @@
 /area/ruin/powered)
 "n" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/flashlight/flare,
+/obj/item/flashlight/flare/signal,
 /turf/open/floor/pod/light,
 /area/ruin/powered)
 "p" = (
