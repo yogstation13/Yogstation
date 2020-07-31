@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(achievements)
 	/// Dictionary of all achievement browsers. Key is a username, value is the given browser. See [/datum/achievement_browser] and [/datum/controller/subsystem/achievements/get_browser]
 	var/list/browsers = list()
 	/// Dictionary of all achievements earned this round. Key is a username, value is a list of achievements that have been earnt by that username. 
-	var/list/achievementsEarned // Really should get around to adding that to the round-end report
+	var/list/achievementsEarned = list() // Really should get around to adding that to the round-end report
 	/// The current guy that SSachievements believes to be the CE. See [/datum/controller/subsystem/achievements/proc/fire]
 	var/mob/living/carbon/human/CE
 
