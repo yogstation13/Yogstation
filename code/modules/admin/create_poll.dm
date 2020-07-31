@@ -120,15 +120,14 @@
 	var/datum/DBQuery/query_polladd_question = SSdbcore.NewQuery({"INSERT INTO [format_table_name("poll_question")] (polltype, starttime, endtime, question, adminonly, multiplechoiceoptions, createdby_ckey, createdby_ip, dontshow)
 	VALUES (:polltype, :starttime, :endtime, :question, :adminonly, :choice_amount, :sql_ckey, INET_ATON(:address), :dontshow)"},
 	list("polltype" = polltype, "starttime" = starttime, "endtime" = endtime, "question" = question, "adminonly" = adminonly, "choice_amount" = choice_amount, "sql_ckey" = ckey, "address" = address, "dontshow" = dontshow))
-	var/questionid = query_polladd_question.last_insert_id
 	if(!query_polladd_question.warn_execute())
 		qdel(query_polladd_question)
 		return
+	var/questionid = query_polladd_question.last_insert_id
 	qdel(query_polladd_question)
 	if(polltype != POLLTYPE_TEXT)
 		for(var/list/i in sql_option_list)
 			i |= list("pollid" = questionid)
 		SSdbcore.MassInsert(format_table_name("poll_option"), sql_option_list, warn = 1)
-	qdel()
 	log_admin(m1)
 	message_admins(m2)
