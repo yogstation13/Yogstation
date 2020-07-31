@@ -289,7 +289,7 @@
 			original_owner = source
 	else 
 		C = owner
-		if(original_owner = "limb grower")
+		if(original_owner == "limb grower")
 			original_owner = owner
 		if(original_owner && owner != original_owner) //Foreign limb
 			no_update = TRUE
