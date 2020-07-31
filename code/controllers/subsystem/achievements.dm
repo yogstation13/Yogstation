@@ -129,9 +129,7 @@ SUBSYSTEM_DEF(achievements)
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
-		if(!achievementsEarned[C.ckey])
-			achievementsEarned[C.ckey] = list()
-		achievementsEarned[C.ckey] += achievement
+		achievementsEarned[C.ckey] += list(achievement) // Apparently adding a list to a nullvar just makes the var the list. Neat!
 		to_chat(C, "<span class='greentext'>You have unlocked the \"[achievement.name]\" achievement!</span>")
 		return TRUE
 
