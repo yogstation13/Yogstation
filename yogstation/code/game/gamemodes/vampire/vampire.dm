@@ -113,7 +113,7 @@
 
 	round_credits += "<center><h1>The Vampires:</h1>"
 	len_before_addition = round_credits.len
-	for(var/datum/mind/vamp in vamp)
+	for(var/datum/mind/vamp in pre_vamps)
 		round_credits += "<center><h2>[vamp.name] as a Vampire</h2>"
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The Vampires have fled to Transylvania!</h2>", "<center><h2>We couldn't locate them!</h2>")
