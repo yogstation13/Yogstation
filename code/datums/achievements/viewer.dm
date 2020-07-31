@@ -5,6 +5,7 @@
 
 /datum/achievement_browser/New(client/C)
 	client = C
+	SSachievements.browsers[C.ckey] = src
 
 /datum/achievement_browser/proc/get_achievements(client/C)
 	var/list/A = list()
@@ -42,7 +43,4 @@
 		return
 
 	var/datum/achievement_browser/achievement_browser = SSachievements.get_browser(src)
-	if(!achievement_browser)
-		achievement_browser = new(src)
-		SSachievements.browsers[ckey] = achievement_browser
 	achievement_browser.ui_interact(usr)
