@@ -39,7 +39,7 @@
 /sound/ @Partheo
 /code/controllers/subsystem/ticker.dm @Partheo
 /yogstation/code/controllers/subsystem/ticker.dm @Partheo
-/code/modules/holiday/holiday.dm @Partheo
-/yogstation/code/modules/holiday/holiday.dm @Partheo
+/code/modules/holidays/holidays.dm @Partheo
+/yogstation/code/modules/holidays/holidays.dm @Partheo
 
 #Multiple Owners
