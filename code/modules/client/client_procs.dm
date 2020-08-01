@@ -772,7 +772,17 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/note_randomizer_user()
 	add_system_note("CID-Error", "Detected as using a cid randomizer.")
 
-/client/proc/add_system_note(system_ckey, message)
+
+/**
+  * Makes the server note a player
+  *
+  * Automatically checks that we haven't noted them with the same system_ckey in the last day, and that their last note is not from that ckey either
+  * Arguments:
+  ** system_ckey The ckey of the server giving the note
+  ** message The actual message
+  ** avoid_duplicate Should we NEVER add a note with the same message?
+  */
+/client/proc/add_system_note(system_ckey, message, avoid_duplicate = FALSE)
 	//check to see if we noted them in the last day.
 	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery(
 		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
@@ -798,6 +808,19 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			qdel(query_get_notes)
 			return
 	qdel(query_get_notes)
+	if(avoid_duplicate)
+		query_get_notes = SSdbcore.NewQuery(
+			"SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = :targetckey AND deleted = 0 AND text = :message AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC",
+			list("targetckey" = ckey, "message" = message)
+		)
+		if(!query_get_notes.Execute())
+			qdel(query_get_notes)
+			return
+		if(query_get_notes.NextRow())
+			if (query_get_notes.item[1] == system_ckey)
+				qdel(query_get_notes)
+				return
+
 	//create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
 	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0) //yogs -
 
