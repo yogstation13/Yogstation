@@ -349,7 +349,7 @@
 	desc = "A specialized formulation of the standard Nanotrasen-issued flare, containing increased magnesium content. There are instructions on the side, it reads 'pull cord, make intense light'."
 	brightness_on = 5
 	flashlight_power = 2
-	item_state = "flare"
+	item_state = "flaresignal"
 	icon_state = "flaresignal"
 	light_color = LIGHT_COLOR_HALOGEN
 	frng_min = 540
