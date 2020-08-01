@@ -580,6 +580,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	world.TgsTargetedChatBroadcast("[msg] | [msg2]", TRUE)
 
 /proc/send2otherserver(source,msg,type = "Ahelp")
+	set waitfor = FALSE
+	
 	var/comms_key = CONFIG_GET(string/comms_key)
 	if(!comms_key)
 		return
