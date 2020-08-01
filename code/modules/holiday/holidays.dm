@@ -288,7 +288,8 @@
 		"https://www.youtube.com/watch?v=ec0XKhAHR5I", // fortunate (how did i forget a slash)
 		"https://www.youtube.com/watch?v=9Cyokaj3BJU", // alabama
 		"https://www.youtube.com/watch?v=1vrEljMfXYo", // country roads
-		"https://www.youtube.com/watch?v=FqxJ_iuBPCs" // Star Spangled Banner
+		"https://www.youtube.com/watch?v=FqxJ_iuBPCs", // Star Spangled Banner
+		"https://www.youtube.com/watch?v=H0bhSGfKTs4" // Surfin' USA
 	)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
