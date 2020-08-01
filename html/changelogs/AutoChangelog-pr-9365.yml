@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "hypersensitive no longer completely  breaks your mood when you get a high level sadness or happiness before an opposing moodlet"
