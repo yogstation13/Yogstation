@@ -99,11 +99,6 @@
 		yandere_two.target = obsessionmind
 		yandere_two.update_explanation_text() //usually called in find_target()
 		objectives += yandere_two
-	else
-		var/datum/objective/assassinate/obsessed/kill = new
-		kill.owner = owner
-		kill.target = obsessionmind
-		objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 
