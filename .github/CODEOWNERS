@@ -25,6 +25,7 @@
 /code/controllers/subsystem/timer.dm @AsV9
 
 #Ktlwjec
+
 /_maps/ @Ktlwjec1
 
 #monster860
@@ -32,11 +33,13 @@
 /code/modules/atmospherics/ @monster860
 /yogstation/code/modules/atmospherics/ @monster860
 
-#partheo
+#Partheo
 
 /icons/ @Partheo
 /sound/ @Partheo
 /code/controllers/subsystem/ticker.dm @Partheo
 /yogstation/code/controllers/subsystem/ticker.dm @Partheo
+/code/modules/holiday/holiday.dm @Partheo
+/yogstation/code/modules/holiday/holiday.dm @Partheo
 
 #Multiple Owners
