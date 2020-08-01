@@ -45,7 +45,7 @@
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_removed(M)
 	if(!M.mood_enabled)
-	var/component/C = M.GetComponent(/datum/component/mood)
+		var/component/C = M.GetComponent(/datum/component/mood)
 		C?.RemoveComponent()
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
