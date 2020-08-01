@@ -46,7 +46,7 @@
 	update_obsession_icons_removed(M)
 	var/mob/living/carbon/human/H = M
 	if(H && !H.mood_enabled)
-		var/component/C = M.GetComponent(/datum/component/mood)
+		var/datum/component/C = M.GetComponent(/datum/component/mood)
 		if(C) //we cannot be too sure they may have somehow removed it
 			C.RemoveComponent()
 
