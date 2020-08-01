@@ -38,10 +38,15 @@
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_added(M)
+	if(!owner.GetComponent(/datum/component/mood))
+		owner.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_removed(M)
+	if(!M.mood_enabled)
+	var/component/C = M.GetComponent(/datum/component/mood)
+		C?.RemoveComponent()
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
