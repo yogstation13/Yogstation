@@ -46,7 +46,8 @@
 	update_obsession_icons_removed(M)
 	if(!owner.mood_enabled)
 		var/component/C = M.GetComponent(/datum/component/mood)
-		C?.RemoveComponent()
+		if(C) //we cannot be too sure they may have somehow removed it
+			C.RemoveComponent()
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
