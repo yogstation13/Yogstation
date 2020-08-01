@@ -2,6 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
+	sexes = 0
 	exotic_blood = /datum/reagent/polysmorphblood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT
@@ -16,7 +17,7 @@
 	//var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES)
+	species_traits = list(NOEYESPRITES, AGENDER)
 	inherent_traits = list(TRAIT_THERMAL_VISION)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "slash"
@@ -28,3 +29,13 @@
 	mutanttail = /obj/item/organ/tail/polysmorph
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
+/datum/species/polysmorph/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_polysmorph_name()
+
+	var/randname = polysmorph_name()
+
+	if(lastname)
+		randname += " [lastname]"
+
+	return randname

@@ -246,6 +246,8 @@
 	desc = "A polysmorph tongue."
 	say_mod = "hisses"
 	modifies_speech = TRUE
+	var/static/list/languages_possible_polysmorph = typecacheof(list(
+		/datum/language/xenocommon))
 
 /obj/item/organ/tongue/polysmorph/handle_speech(datum/source, list/speech_args)
 	var/static/regex/polysmorph_hiss = new("s+", "g")
@@ -255,3 +257,7 @@
 		message = polysmorph_hiss.Replace(message, "ssssss")
 		message = polysmorph_hiSS.Replace(message, "SSSSSS")
 	speech_args[SPEECH_MESSAGE] = message
+
+/obj/item/organ/tongue/polysmorph/Initialize(mapload)
+	. = ..()
+	languages_possible = languages_possible_polysmorph
