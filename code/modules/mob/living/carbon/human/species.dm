@@ -1348,7 +1348,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(target.dropItemToGround(I))
 					user.visible_message("<span class='danger'>[user.name] shoves [target.name], disarming them!</span>",
 						"<span class='danger'>You shove [target.name], disarming them!</span>", null, COMBAT_MESSAGE_RANGE)
-					log_combat(user, target, "shoved", "knocking them down")
+					log_combat(user, target, "shoved", "disarming them")
 			else if(bothstanding)
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				if(!target_collateral_human.is_shove_knockdown_blocked())
