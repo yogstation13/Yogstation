@@ -44,7 +44,7 @@
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_removed(M)
-	if(!owner.mood_enabled)
+	if(!M.mood_enabled)
 		var/component/C = M.GetComponent(/datum/component/mood)
 		if(C) //we cannot be too sure they may have somehow removed it
 			C.RemoveComponent()
