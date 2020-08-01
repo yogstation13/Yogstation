@@ -72,9 +72,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"n" = (
-/turf/closed/wall,
-/area/science/nanite)
 "o" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -444,7 +441,7 @@ d
 d
 "}
 (16,1,1) = {"
-n
+c
 c
 p
 j
