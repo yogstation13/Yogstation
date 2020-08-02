@@ -73,6 +73,8 @@
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	slowdown = 0
+	blocks_shove_knockdown = FALSE
 
 /obj/item/choice_beacon/holy
 	name = "armaments beacon"
@@ -257,7 +259,7 @@
 
   /*
   reskin_holy_weapon: Shows a user a list of all available nullrod reskins and based on his choice replaces the nullrod with the reskinned version
-  
+
   Arguments:
   M : The mob choosing a nullrod reskin
   */
@@ -291,7 +293,7 @@
 
   /*
   check_menu : Checks if we are allowed to interact with a radial menu
-  
+
   Arguments:
   user : The mob interacting with a menu
   */
@@ -346,8 +348,8 @@
 	shield_icon = "shield-old"
 
 /obj/item/nullrod/claymore
-	icon_state = "claymore"
-	item_state = "claymore"
+	icon_state = "holyblade"
+	item_state = "holyblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "holy claymore"
@@ -367,13 +369,11 @@
 /obj/item/nullrod/claymore/darkblade
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "dark blade"
 	desc = "Spread the glory of the dark gods!"
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
 /obj/item/nullrod/claymore/chainsaw_sword
@@ -680,7 +680,7 @@
 		user.faction |= "carp"
 		used_blessing = TRUE
 
-		
+
 
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
 	name = "monk's staff"

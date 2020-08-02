@@ -1,6 +1,6 @@
 /obj/machinery/plantgenes
 	name = "plant DNA manipulator"
-	desc = "An advanced device designed to manipulate plant genetic makeup."
+	desc = "An advanced device designed to manipulate the genetic makeup of a plant."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "dnamod"
 	density = TRUE
@@ -64,6 +64,8 @@
 		icon_state = "dnamod"
 	if(seed)
 		add_overlay("dnamod-dna")
+	if(disk)
+		add_overlay("dnamod-disk")
 	if(panel_open)
 		add_overlay("dnamod-open")
 
@@ -276,6 +278,7 @@
 				return
 			disk = I
 			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+			update_icon()
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
 		if(!operation) // Wait for confirmation
 			operation = "insert"
@@ -327,6 +330,7 @@
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
 						disk.update_name()
+						disk.update_icon()
 						qdel(seed)
 						seed = null
 						update_icon()
@@ -372,6 +376,7 @@
 			disk.forceMove(drop_location())
 		disk = null
 		update_genes()
+		update_icon()
 
 /obj/machinery/plantgenes/proc/update_genes()
 	core_genes = list()
@@ -424,9 +429,14 @@
 
 /obj/item/disk/plantgene/Initialize()
 	. = ..()
-	add_overlay("datadisk_gene")
+	update_icon()
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
+
+/obj/item/disk/plantgene/update_icon()
+	cut_overlays()
+	if(gene)
+		add_overlay("datadisk_gene")
 
 /obj/item/disk/plantgene/proc/update_name()
 	if(gene)
@@ -443,3 +453,8 @@
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
 		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
 	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
+
+/obj/machinery/plantgenes/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	eject_disk()

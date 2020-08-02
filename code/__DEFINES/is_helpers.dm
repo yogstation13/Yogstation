@@ -217,6 +217,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isclothing(A) (istype(A, /obj/item/clothing))
 
+#define iscash(A) (istype(A, /obj/item/coin) || istype(A, /obj/item/stack/spacecash) || istype(A, /obj/item/holochip))
+
 GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 	/obj/item/pen,
 	/obj/item/screwdriver,
@@ -255,3 +257,6 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+
+//Fugitive
+#define isfugitive(M) (istype(M) && M.mind?.has_antag_datum(/datum/antagonist/fugitive))

@@ -15,7 +15,7 @@ TRICORDER
 	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
-	item_state = "analyzer"
+	item_state = "tricorder"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1

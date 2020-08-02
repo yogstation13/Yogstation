@@ -119,8 +119,8 @@
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -139,8 +139,8 @@
 "aB" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -156,18 +156,10 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
-"aE" = (
-/obj/machinery/button/door{
-	id = "spacebardock";
-	name = "pod dock door cycle";
-	pixel_x = -32
-	},
-/turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aF" = (
 /obj/machinery/vending/boozeomat,
@@ -201,17 +193,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
-"aL" = (
-/obj/structure/table,
-/mob/living/carbon/monkey{
-	name = "Nup Nup"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
-"aM" = (
-/obj/structure/table,
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
 "aN" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -234,16 +215,16 @@
 	tag = ""
 	},
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "aQ" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -254,8 +235,8 @@
 	tag = ""
 	},
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -279,12 +260,12 @@
 "aZ" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -296,8 +277,8 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -305,8 +286,8 @@
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -318,16 +299,16 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
 "bd" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -335,8 +316,8 @@
 /obj/machinery/vending/cola,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -344,8 +325,8 @@
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -353,8 +334,8 @@
 /obj/machinery/vending/coffee,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -363,8 +344,8 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -372,8 +353,8 @@
 /obj/machinery/vending/dinnerware,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -382,8 +363,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -391,8 +372,8 @@
 /obj/machinery/computer/arcade/orion_trail,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -406,8 +387,8 @@
 /obj/machinery/computer/arcade/battle,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -435,8 +416,8 @@
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -469,28 +450,14 @@
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 4
+	dir = 4;
+	icon_state = "tube"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
-"by" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "spacebardock";
-	name = "airlock dock"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/spacebar)
-"bz" = (
-/obj/machinery/door/poddoor{
-	id = "spacebardock";
-	name = "airlock dock"
-	},
-/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "bA" = (
 /obj/structure/chair{
@@ -498,8 +465,8 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
@@ -522,8 +489,8 @@
 "bE" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/item/gps{
 	gpstag = "Space Bar";
@@ -543,15 +510,73 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered/spacebar)
+"hw" = (
+/obj/structure/table,
+/mob/living/carbon/monkey{
+	name = "Nup Nup"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/fernet,
+/turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"ke" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"oy" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"zJ" = (
+/obj/machinery/button/door{
+	id = "spacebardock";
+	name = "pod bay blast door";
+	pixel_y = -27
+	},
+/turf/open/floor/plating/asteroid,
+/area/ruin/powered/spacebar)
+"Dv" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Ex" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "ER" = (
 /obj/item/beacon,
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered/spacebar)
+"Ff" = (
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "FA" = (
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Qy" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"QM" = (
+/obj/effect/turf_decal/stripes,
+/obj/effect/turf_decal/caution,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "Sr" = (
@@ -559,6 +584,23 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"SD" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"SK" = (
+/obj/machinery/door/poddoor{
+	id = "spacebardock";
+	name = "airlock dock"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"YH" = (
+/obj/effect/turf_decal/box/corners,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 
@@ -843,7 +885,7 @@ ad
 ad
 ai
 ae
-ag
+Dv
 ae
 ai
 ai
@@ -1012,7 +1054,7 @@ ac
 ac
 ac
 ac
-ac
+zJ
 ae
 ae
 ae
@@ -1056,12 +1098,12 @@ ac
 ac
 ac
 bB
-by
 aY
+oy
 FA
-aY
-aY
-bz
+Ex
+Ff
+SK
 aa
 aa
 aa
@@ -1097,13 +1139,13 @@ ac
 ac
 ac
 ac
-bB
-by
+QM
 aY
 aY
 aY
 aY
-bz
+Ff
+SK
 aa
 aa
 aa
@@ -1140,12 +1182,12 @@ ac
 ac
 ac
 bB
-by
 aY
+Qy
 aY
-aY
-aY
-bz
+YH
+Ff
+SK
 aa
 aa
 aa
@@ -1182,12 +1224,12 @@ ac
 ac
 ac
 bB
-by
 aY
+oy
 aY
-aY
-aY
-bz
+Ex
+Ff
+SK
 aa
 aa
 aa
@@ -1223,13 +1265,13 @@ av
 ac
 ac
 ac
-bB
-by
+QM
 aY
 aY
 aY
 aY
-bz
+Ff
+SK
 aa
 aa
 aa
@@ -1266,12 +1308,12 @@ ac
 ac
 ac
 bB
-by
 aY
+Qy
 Sr
-aY
-aY
-bz
+YH
+Ff
+SK
 aa
 aa
 aa
@@ -1417,8 +1459,8 @@ ab
 ae
 ap
 aw
-aE
-aL
+aw
+hw
 ay
 aB
 aB
@@ -1460,7 +1502,7 @@ ae
 aq
 aw
 aw
-aM
+SD
 ay
 aB
 aB
@@ -1544,7 +1586,7 @@ ae
 as
 aw
 aw
-aM
+ke
 ay
 aB
 aB

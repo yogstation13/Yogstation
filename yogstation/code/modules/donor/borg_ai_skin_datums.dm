@@ -27,7 +27,7 @@
 	owner = "kmc2000"
 	module_locked = "Security"
 
-/*							PENDING SPRITE!
+/*						PENDING SPRITE!
 /datum/borg_skin/snail
 	name = "Snailborg"
 	icon_state = "snail"
@@ -317,3 +317,8 @@
 	name = "War Doge"
 	icon_state = "wardoge"
 	owner = "fluffe9911"
+
+datum/ai_skin/carrion
+	name = "Carrion"
+	icon_state = "carrion"
+	owner = "xoxeyos"

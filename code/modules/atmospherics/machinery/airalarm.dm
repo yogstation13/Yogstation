@@ -249,7 +249,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "airalarm", name, 440, 650, master_ui, state)
+		ui = new(user, src, ui_key, "AirAlarm", name, 440, 650, master_ui, state)
 		ui.open()
 
 /obj/machinery/airalarm/ui_data(mob/user)
@@ -806,20 +806,12 @@
 			to_chat(user, "<span class='danger'>Access denied.</span>")
 	return
 
-/obj/machinery/airalarm/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/airalarm/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
 	visible_message("<span class='warning'>Sparks fly out of [src]!</span>", "<span class='notice'>You emag [src], disabling its safeties.</span>")
 	playsound(src, "sparks", 50, 1)
-
-/obj/machinery/airalarm/obj_break(damage_flag)
-	..()
-	update_icon()
 
 /obj/machinery/airalarm/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

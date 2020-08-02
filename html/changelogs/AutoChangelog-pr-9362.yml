@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added TRAIT_NOINTERACT"
+  - bugfix: "You can no longer effectively combat someone during the effects of the ability Time Erasure"

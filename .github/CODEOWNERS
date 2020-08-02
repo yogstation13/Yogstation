@@ -32,4 +32,11 @@
 /code/modules/atmospherics/ @monster860
 /yogstation/code/modules/atmospherics/ @monster860
 
+#partheo
+
+/icons/ @Partheo
+/sound/ @Partheo
+/code/controllers/subsystem/ticker.dm @Partheo
+/yogstation/code/controllers/subsystem/ticker.dm @Partheo
+
 #Multiple Owners

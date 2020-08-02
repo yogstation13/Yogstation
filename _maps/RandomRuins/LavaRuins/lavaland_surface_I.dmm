@@ -205,9 +205,6 @@
 "P" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Q" = (
-/turf/open/floor/plasteel/dark,
-/area/lavaland/surface/outdoors)
 "R" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -216,6 +213,12 @@
 /obj/effect/mob_spawn/human/skeleton,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"T" = (
+/turf/open/floor/plasteel/dark/lavaland,
+/area/lavaland/surface/outdoors)
+"U" = (
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -511,7 +514,7 @@ b
 a
 P
 P
-Q
+T
 P
 P
 O
@@ -542,7 +545,7 @@ a
 P
 P
 P
-Q
+T
 O
 O
 O
@@ -597,11 +600,11 @@ i
 h
 b
 b
-h
-h
+U
+U
 P
 P
-Q
+T
 P
 O
 O
@@ -626,12 +629,12 @@ b
 M
 h
 k
-h
-h
-h
-Q
-Q
-Q
+U
+U
+U
+T
+T
+T
 O
 O
 O
@@ -657,8 +660,8 @@ b
 k
 b
 b
-h
-h
+U
+U
 P
 P
 P

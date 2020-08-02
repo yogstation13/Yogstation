@@ -17,6 +17,12 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
 
+	changed_maps = list("EclipseStation")
+
+/datum/job/miningmedic/proc/EclipseStationChanges()
+	total_positions = 2
+	spawn_positions = 1
+
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic

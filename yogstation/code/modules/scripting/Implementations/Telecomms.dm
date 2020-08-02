@@ -10,6 +10,8 @@
 #define ROBOT 8
 #define SLIME 16
 #define DRONE 32
+#define DRACONIC 64
+#define BEACHTONGUE 128
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
@@ -113,7 +115,9 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		"alien" = ALIEN,
 		"robot" = ROBOT,
 		"slime" = SLIME,
-		"drone" = DRONE
+		"drone" = DRONE,
+		"draconic" = DRACONIC,
+		"beachtounge" = BEACHTONGUE
 	)))
 
 	interpreter.Run() // run the thing
@@ -151,6 +155,10 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		oldlang = SLIME
 	else if(oldlang == /datum/language/drone)
 		oldlang = DRONE
+	else if(oldlang == /datum/language/draconic)
+		oldlang = DRACONIC
+	else if(oldlang == /datum/language/beachbum)
+		oldlang = BEACHTONGUE
 
 	// Signal data
 
@@ -187,7 +195,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	signal.data["message"] = msg
 
 
-	signal.frequency 		= script_signal.get_clean_property("freq", signal.frequency)
+	signal.frequency = script_signal.get_clean_property("freq", signal.frequency)
 
 	var/setname = script_signal.get_clean_property("source", signal.data["name"])
 
@@ -274,6 +282,10 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 			return /datum/language/slime
 		if(DRONE)
 			return /datum/language/drone
+		if(DRACONIC)
+			return /datum/language/draconic
+		if(BEACHTONGUE)
+			return /datum/language/beachbum
 
 /datum/n_function/default/mem
 	name = "mem"
@@ -441,3 +453,5 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 #undef ROBOT
 #undef SLIME
 #undef DRONE
+#undef DRACONIC
+#undef BEACHTONGUE

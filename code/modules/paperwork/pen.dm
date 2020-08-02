@@ -226,3 +226,18 @@
 		item_state = initial(item_state)
 		lefthand_file = initial(lefthand_file)
 		righthand_file = initial(righthand_file)
+		
+/obj/item/pen/charcoal
+	name = "charcoal stylus"
+	desc = "It's just a wooden stick with some compressed ash on the end. At least it can write."
+	icon_state = "pen-charcoal"
+	colour = "dimgray"
+	font = CHARCOAL_FONT
+	grind_results = list(/datum/reagent/ash = 5)
+
+/datum/crafting_recipe/charcoal_stylus
+	name = "Charcoal Stylus"
+	result = /obj/item/pen/charcoal
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
+	time = 30
+	category = CAT_PRIMAL

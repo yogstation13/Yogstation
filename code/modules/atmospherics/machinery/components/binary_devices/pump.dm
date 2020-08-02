@@ -28,7 +28,7 @@
 	pipe_state = "pump"
 
 /obj/machinery/atmospherics/components/binary/pump/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
 		on = !on
 		update_icon()
 	return ..()
@@ -36,7 +36,7 @@
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user, "pump"))
 		return
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
 		target_pressure = MAX_OUTPUT_PRESSURE
 		update_icon()
 	return ..()
@@ -99,7 +99,7 @@
 																datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_pump", name, 335, 115, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosPump", name, 335, 115, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/pump/ui_data()
@@ -167,10 +167,6 @@
 		return
 
 	broadcast_status()
-	update_icon()
-
-/obj/machinery/atmospherics/components/binary/pump/power_change()
-	..()
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/pump/can_unwrench(mob/user)

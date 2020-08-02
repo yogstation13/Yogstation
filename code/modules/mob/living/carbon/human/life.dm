@@ -71,7 +71,7 @@
 			adjust_blindness(-3)
 		else
 			adjust_blindness(-1)
-	else if(eye_blurry)			//blurry eyes heal slowly
+	if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
 	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)

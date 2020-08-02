@@ -544,6 +544,23 @@ CREATE TABLE `SS13_misc` (
 	PRIMARY KEY (`key`)
 ) ENGINE=InnoDB;
 
+--
+-- Table structure for table `antag_tokens`
+--
+DROP TABLE IF EXISTS `SS13_antag_tokens`;
+CREATE TABLE `SS13_antag_tokens` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NULL DEFAULT NULL,
+	`reason` VARCHAR(2048) NOT NULL,
+	`denial_reason` VARCHAR(2048) NOT NULL,
+	`applying_admin` VARCHAR(32) NOT NULL,
+	`denying_admin` VARCHAR(32) NOT NULL,
+	`granted_time` DATETIME NOT NULL,
+	`redeemed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+	`round_id` int(11) unsigned NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

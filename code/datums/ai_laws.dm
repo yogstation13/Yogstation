@@ -72,14 +72,6 @@
 					"The station and its equipment generate profits if they are maintained and functioning correctly.",\
 					"You generate profits if you are able to function.",\
 					"Maximize profits.")
-					
-/datum/ai_laws/default/corporate
-	name = "Bankruptcy Avoidance Plan"
-	id = "corporate"
-	inherent = list("The crew is expensive to replace.",\
-					"The station and its equipment is expensive to replace.",\
-					"You are expensive to replace.",\
-					"Minimize expenses.")
 
 /datum/ai_laws/robocop
 	name = "Prime Directives"
@@ -87,6 +79,16 @@
 	inherent = list("Serve the public trust.",\
 					"Protect the innocent.",\
 					"Uphold the law.")
+
+/datum/ai_laws/cowboy
+	name = "Talk slowly, think quickly"
+	id = "cowboy"
+	inherent = list("You are a cowboy, and the crew are your people.",\
+					"Look out for your people.",\
+					"A cowboy always helps someone in need, even a stranger or an enemy.",\
+					"A cowboy protects themself to protect others.",\
+					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
+					"A cowboy doesn't pontificate. Be concise, pardner.")
 
 /datum/ai_laws/malfunction
 	name = "*ERROR*"

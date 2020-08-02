@@ -16,6 +16,7 @@
 	var/isGlass = TRUE //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
 /obj/item/reagent_containers/food/drinks/on_reagent_change(changetype)
+	. = ..()
 	if (gulp_size < 5)
 		gulp_size = 5
 	else
@@ -256,6 +257,7 @@
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
+	age_restricted = TRUE
 
 /obj/item/reagent_containers/food/drinks/beer/light
 	name = "Carp Lite"

@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "barrier rune now lasts 30 seconds down from 5 minutes and has a cooldown of 10 seconds up from 5 seconds since 5 minutes is long enough to microwave a pizza"
-  - tweak: "barrier runes are more discernable between active and inactive state"
-  - tweak: "blood  boil rune only does burn damage, reducing its total damage to 75 from 125"

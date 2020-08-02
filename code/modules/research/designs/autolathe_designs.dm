@@ -15,9 +15,9 @@
 	name = "Bucket"
 	id = "bucket"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_METAL = 200)
+	materials = list(MAT_METAL = 1000)
 	build_path = /obj/item/reagent_containers/glass/bucket
-	category = list("initial","Tools","Tool Designs")
+	category = list("initial","Tools","Service")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/mop
@@ -26,7 +26,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 1000)
 	build_path = /obj/item/mop
-	category = list("initial","Tools","Tool Designs")
+	category = list("initial","Tools","Service")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/crowbar
@@ -336,50 +336,65 @@
 /datum/design/fork
 	name = "Fork"
 	id = "fork"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 80)
 	build_path = /obj/item/kitchen/fork
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/tray
 	name = "Tray"
 	id = "tray"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 3000)
 	build_path = /obj/item/storage/bag/tray
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/bowl
 	name = "Bowl"
 	id = "bowl"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_GLASS = 500)
 	build_path = /obj/item/reagent_containers/glass/bowl
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/mixbowl
+	name = "Mixing Bowl"
+	id = "mixing_bowl"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 1750)
+	build_path = /obj/item/reagent_containers/glass/mixbowl
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/drinking_glass
 	name = "Drinking Glass"
 	id = "drinking_glass"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_GLASS = 500)
 	build_path = /obj/item/reagent_containers/food/drinks/drinkingglass
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/shot_glass
 	name = "Shot Glass"
 	id = "shot_glass"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_GLASS = 100)
 	build_path = /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/shaker
 	name = "Shaker"
 	id = "shaker"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 1500)
 	build_path = /obj/item/reagent_containers/food/drinks/shaker
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/cultivator
 	name = "Cultivator"
@@ -677,6 +692,14 @@
 	build_path = /obj/item/wallframe/newscaster
 	category = list("initial", "Construction")
 
+/datum/design/bounty_board_frame
+	name = "Bounty Board Frame"
+	id = "bountyboard_frame"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
+	build_path = /obj/item/wallframe/bounty_board
+	category = list("initial", "Construction")
+
 /datum/design/syringe
 	name = "Syringe"
 	id = "syringe"
@@ -725,7 +748,7 @@
 	name = "Rapid Pipe Dispenser (RPD)"
 	id = "rpd"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 75000, MAT_GLASS = 37500)
+	materials = list(MAT_METAL = 45000, MAT_GLASS = 37500)
 	build_path = /obj/item/pipe_dispenser
 	category = list("hacked", "Construction")
 
@@ -896,8 +919,8 @@
 	materials = list(MAT_METAL = 3000)
 	build_path = /obj/item/stack/conveyor
 	category = list("initial", "Construction")
-	maxstack = 30 
-	
+	maxstack = 30
+
 
 /datum/design/conveyor_switch
 	name = "Conveyor Belt Switch"
@@ -1010,8 +1033,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/wallframe/flasher
-	name = "Mounted Flash Frame" 
-	id =  "wallframe/flasher" 
+	name = "Mounted Flash Frame"
+	id =  "wallframe/flasher"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
 	build_path = /obj/item/wallframe/flasher

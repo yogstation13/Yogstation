@@ -81,7 +81,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
 	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
 	flags_1 = CONDUCT_1
-	item_flags = DROPDEL
+	item_flags = DROPDEL //If this ever happens, it's because you lost an arm
 	slot_flags = null
 	block_chance = 0 //RNG WON'T HELP YOU NOW, PANSY
 	light_range = 3
@@ -113,14 +113,14 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 
 /obj/item/claymore/highlander/pickup(mob/living/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>The power of Scotland protects you! You are shielded from all stuns and knockdowns.</span>")
 	user.add_stun_absorption("highlander", INFINITY, 1, " is protected by the power of Scotland!", "The power of Scotland absorbs the stun!", " is protected by the power of Scotland!")
 	user.ignore_slowdown(HIGHLANDER)
 
 /obj/item/claymore/highlander/dropped(mob/living/user)
+	. = ..()
 	user.unignore_slowdown(HIGHLANDER)
-	if(!QDELETED(src))
-		qdel(src) //If this ever happens, it's because you lost an arm
 
 /obj/item/claymore/highlander/examine(mob/user)
 	. = ..()
@@ -371,7 +371,30 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	to_chat(usr, "<span class='danger'>Message sent. Pray you made the right choice.</span>")
 	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
 	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
-
+	
+/obj/item/phone/banana
+	name = "banana phone"
+	desc = "Direct telecommunications line to the Clown Planet. Use for emergencies only!"
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "banana_phone"
+	force = 3
+	throwforce = 2
+	throw_speed = 3
+	throw_range = 4
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("called", "rang")
+	hitsound = 'sound/items/bikehorn.ogg'
+	
+/obj/item/phone/banana/attack_self(mob/user)
+	var/input = stripped_input(usr, "Please choose a message to send. If you are unsure, you can still turn back.", "Send a message to the Clown Planet.", "")
+	if(!input || !(usr in view(1,src)))
+		return
+	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+	Clown_announce(input, usr)
+	to_chat(usr, "<span class='danger'>Message sent. The Clown Planet will judge your message.</span>")
+	usr.log_talk(input, LOG_SAY, tag="Clown Planet announcement")
+	deadchat_broadcast(" has messaged the Clown Planet using the banana phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
+	
 /obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentleman. Or a clown."
@@ -715,3 +738,19 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, "<span class='warning'>[M] is too close to use [src] on.</span>")
 		return
 	M.attack_hand(user)
+
+/obj/item/claymore/bone
+	name = "Bone Sword"
+	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
+	icon_state = "bone_sword"
+	item_state = "bone_sword"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	force = 15
+	throwforce = 10
+	armour_penetration = 15
+	w_class = WEIGHT_CLASS_NORMAL
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)

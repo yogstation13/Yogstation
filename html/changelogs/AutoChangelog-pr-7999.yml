@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "healing parasites can heal robot limbs"
-  - bugfix: "limited healing parasites can't heal their user through proxy"

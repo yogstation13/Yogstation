@@ -13,21 +13,20 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/arrival)
-"d" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "e" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_y = 4
-	},
 /obj/item/storage/toolbox/emergency,
+/obj/machinery/status_display/ai{
+	pixel_x = -32
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "f" = (
@@ -37,8 +36,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/sign/poster/official/enlist{
-	pixel_y = 32
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = 32;
+	use_power = 0
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -68,27 +69,23 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "l" = (
 /obj/structure/shuttle/engine/propulsion/burst/right{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "m" = (
-/obj/structure/grille,
-/obj/structure/window/shuttle,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "arrivy";
-	name = "ship shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "n" = (
@@ -104,10 +101,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "o" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
 "p" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -117,6 +111,9 @@
 	height = 13;
 	name = "pubby arrivals shuttle";
 	width = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
@@ -128,13 +125,27 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "s" = (
-/obj/structure/closet/emcloset,
+/obj/structure/closet/crate/internals,
 /obj/item/storage/firstaid/o2,
 /obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
 /obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/machinery/status_display/evac{
+	pixel_x = -32
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "t" = (
@@ -156,15 +167,31 @@
 /obj/structure/shuttle/engine/propulsion/burst/left{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "C" = (
-/turf/open/floor/mineral/titanium,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/arrival)
-"V" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
+"F" = (
+/obj/structure/closet/wardrobe/white,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"M" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/arrival)
+"N" = (
+/obj/machinery/holopad,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/arrival)
+"O" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 
 (1,1,1) = {"
@@ -192,12 +219,12 @@ b
 b
 "}
 (4,1,1) = {"
-b
+O
 e
-C
-C
+f
+f
 s
-b
+O
 "}
 (5,1,1) = {"
 c
@@ -216,42 +243,42 @@ t
 b
 "}
 (7,1,1) = {"
-d
+m
 h
-o
-o
+C
+C
 f
-V
+m
 "}
 (8,1,1) = {"
-d
+m
 i
-C
-C
+o
+N
 f
-V
+m
 "}
 (9,1,1) = {"
-d
+m
+F
+C
+C
 f
-o
-o
-f
-V
+m
 "}
 (10,1,1) = {"
 b
 j
-o
-o
+C
+C
 u
 b
 "}
 (11,1,1) = {"
 c
 f
-C
-C
+o
+o
 f
 c
 "}
@@ -264,10 +291,10 @@ k
 b
 "}
 (13,1,1) = {"
-b
+M
 l
 p
 r
 v
-b
+M
 "}

@@ -33,17 +33,21 @@
 	var/check_records = TRUE //Does it check security records?
 	var/arrest_type = FALSE //If true, don't handcuff
 	var/russian = FALSE // If true, it uses russian voice lines
+	var/stuncount = 0 // The securitron will stun you until it gets tired of doing it
+	var/mob/living/carbon/lastStunned // Who was stunned last?
 
 /mob/living/simple_animal/bot/secbot/beepsky
-	name = "Officer Beep O'sky"
-	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
+	name = "Commander Beepsky"
+	desc = "It's Commander Beepsky! Officially the superior officer of all bots on station, Beepsky remains as humble and dedicated to the law as the day he was first fabricated."
 	idcheck = FALSE
 	weaponscheck = FALSE
 	auto_patrol = TRUE
+	commissioned = TRUE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
 	name = "Officer Pipsqueak"
-	desc = "It's Officer Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
+	desc = "It's Commander Beepsky's smaller, just-as aggressive cousin, Pipsqueak."
+	commissioned = FALSE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize()
 	. = ..()
@@ -52,6 +56,7 @@
 
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
+	lastStunned = null
 	var/atom/Tsec = drop_location()
 	new /obj/item/stock_parts/cell/potato(Tsec)
 	var/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/S = new(Tsec)
@@ -218,9 +223,15 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(!C.IsParalyzed() || arrest_type)
+		if((!C.IsParalyzed() || arrest_type) && stuncount < 30)
 			stun_attack(A)
+			if(lastStunned && lastStunned == A)
+				stuncount++
+			else
+				stuncount = 0
+			lastStunned = A
 		else if(C.canBeHandcuffed() && !C.handcuffed)
+			stuncount = 0
 			cuff(A)
 	else
 		..()

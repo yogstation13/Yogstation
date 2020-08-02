@@ -2045,8 +2045,8 @@
 /area/awaymission/wildwest/mines)
 "gW" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/syndicate/black/orange,
-/obj/item/clothing/head/helmet/space/syndicate/black/orange,
+/obj/item/clothing/suit/space/syndicate/black,
+/obj/item/clothing/head/helmet/space/syndicate/black,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/tank/internals/oxygen,
 /turf/open/floor/mineral/titanium/yellow,

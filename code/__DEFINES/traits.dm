@@ -56,7 +56,7 @@
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
 
-//Remember to update _globalvars/traits.dm if you're adding/removing/renaming traits.
+//Remember to update code/datums/traits/ folder if you're adding/removing/renaming traits.
 
 //mob traits
 #define TRAIT_BLIND 			"blind"
@@ -94,6 +94,7 @@
 #define TRAIT_NODISMEMBER		"dismember_immunity"
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
+#define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 #define TRAIT_NOHUNGER			"no_hunger"
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
@@ -142,6 +143,7 @@
 #define TRAIT_RANDOM_ACCENT		"random_accent"
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
 #define TRAIT_PASSTABLE			"passtable"
+#define TRAIT_SLIME_EMPATHY		"slime-empathy"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
@@ -150,6 +152,7 @@
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
+#define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"

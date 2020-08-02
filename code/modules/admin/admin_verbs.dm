@@ -88,7 +88,11 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
 	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
 	/client/proc/queue_check, // Yogs -- Some queue manipulation/debuggin kinda verbs
-	/client/proc/cmd_view_polls
+	/client/proc/cmd_view_polls,
+	/client/proc/antag_token_panel, //Yogs -- Access Antag Token Panel
+	/client/proc/give_antag_token,
+	/client/proc/show_redeemable_antag_tokens,
+  /client/proc/admincryo
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -144,7 +148,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
-	/client/proc/mentor_memo, /* YOGS - something stupid about "Mentor memos" */
+	/client/proc/mentor_memo, // YOGS - something stupid about "Mentor memos"
+	///client/proc/dump_memory_usage,
 	/client/proc/release_queue // Yogs -- Adds some queue-manipulation verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
@@ -258,7 +263,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	/client/proc/debug_huds,
+	/client/proc/admincryo
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
@@ -423,6 +429,31 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		return
 	holder.unban_panel()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unbanning Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/antag_token_panel()
+	set name = "Antag Token Panel"
+	set category = "Admin"
+	if(!check_rights(R_ADMIN))
+		return
+	holder.antag_token_panel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Antag Token Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/show_redeemable_antag_tokens()
+	set name = "Redeemable Antag Tokens"
+	set category = "Admin"
+	if(!check_rights(R_ADMIN))
+		return
+	holder.show_redeemable_antag_tokens()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Antag Token Redeemable Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/give_antag_token()
+	set name = "Give Antag Token"
+	set category = "Admin"
+	if(!check_rights(R_ADMIN))
+		return
+	holder.give_antag_token()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Antag Token") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/game_panel()
 	set name = "Game Panel"
@@ -677,7 +708,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(!holder)
 		return
-	
+
 	holder.legacy_mc = !holder.legacy_mc
 
 /client/proc/readmin()
@@ -750,3 +781,30 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
+
+/*/client/proc/dump_memory_usage()
+	set name = "Dump Server Memory Usage"
+	set category = "Server"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", "Yes", "No") != "Yes")
+		return
+
+	var/fname = "[GLOB.round_id ? GLOB.round_id : "NULL"]-[time2text(world.timeofday, "MM-DD-hhmm")].json"
+
+	to_chat(world, "<span class='userdanger'>Performing a memory dump!</span>")
+	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
+	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
+
+	sleep(20)
+
+	if(!dump_memory_profile("data/logs/memory/[fname]"))
+		to_chat(usr, "<span class='warning'>Dumping memory failed at dll call.</span>")
+		return
+
+	if(!fexists("data/logs/memory/[fname]"))
+		to_chat(usr, "<span class='warning'>File creation failed. Please check to see if the data/logs/memory folder actually exists.</span>")
+	else
+		to_chat(usr, "<span class='notice'>Memory dump completed.</span>")*/

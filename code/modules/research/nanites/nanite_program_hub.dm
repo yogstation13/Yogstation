@@ -53,7 +53,7 @@
 /obj/machinery/nanite_program_hub/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_program_hub", name, 500, 700, master_ui, state)
+		ui = new(user, src, ui_key, "NaniteProgramHub", name, 500, 700, master_ui, state)
 		ui.set_autoupdate(FALSE) //to avoid making the whole program list every second
 		ui.open()
 
@@ -70,23 +70,26 @@
 		data["disk"] = disk_data
 
 	data["detail_view"] = detail_view
-	data["category"] = current_category
+	return data
 
-	if(current_category != "Main")
-		var/list/program_list = list()
-		for(var/i in linked_techweb.researched_designs)
-			var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
-			if(!istype(D))
-				continue
-			if(current_category in D.category)
-				var/list/program_design = list()
-				program_design["id"] = D.id
-				program_design["name"] = D.name
-				program_design["desc"] = D.desc
-				program_list += list(program_design)
-		data["program_list"] = program_list
-	else
-		data["categories"] = categories
+/obj/machinery/nanite_program_hub/ui_static_data(mob/user)
+	var/list/data = list()
+	data["programs"] = list()
+	for(var/i in linked_techweb.researched_designs)
+		var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
+		if(!istype(D))
+			continue
+		var/cat_name = D.category[1] //just put them in the first category fuck it
+		if(isnull(data["programs"][cat_name]))
+			data["programs"][cat_name] = list()
+		var/list/program_design = list()
+		program_design["id"] = D.id
+		program_design["name"] = D.name
+		program_design["desc"] = D.desc
+		data["programs"][cat_name] += list(program_design)
+
+	if(!length(data["programs"]))
+		data["programs"] = null
 
 	return data
 
@@ -96,6 +99,7 @@
 	switch(action)
 		if("eject")
 			eject(usr)
+			ui_interact(usr)
 			. = TRUE
 		if("download")
 			if(!disk)
@@ -109,10 +113,6 @@
 			disk.name = "[initial(disk.name)] \[[disk.program.name]\]"
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
 			. = TRUE
-		if("set_category")
-			var/new_category = params["category"]
-			current_category = new_category
-			. = TRUE
 		if("toggle_details")
 			detail_view = !detail_view
 			. = TRUE
@@ -121,4 +121,7 @@
 				qdel(disk.program)
 				disk.program = null
 				disk.name = initial(disk.name)
+			. = TRUE
+		if("refresh")
+			update_static_data(usr)
 			. = TRUE

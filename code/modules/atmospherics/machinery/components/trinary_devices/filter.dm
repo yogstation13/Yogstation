@@ -15,7 +15,7 @@
 	pipe_state = "filter"
 
 /obj/machinery/atmospherics/components/trinary/filter/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
 		on = !on
 		update_icon()
 	return ..()
@@ -23,7 +23,7 @@
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
 	if(!ai_can_use(ENVIROMENTAL_CONTROL, user, "filter"))
 		return
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
 		transfer_rate = MAX_TRANSFER_RATE
 		update_icon()
 	return ..()
@@ -58,12 +58,6 @@
 /obj/machinery/atmospherics/components/trinary/filter/update_icon_nopipes()
 	var/on_state = on && nodes[1] && nodes[2] && nodes[3] && is_operational()
 	icon_state = "filter_[on_state ? "on" : "off"][flipped ? "_f" : ""]"
-
-/obj/machinery/atmospherics/components/trinary/filter/power_change()
-	var/old_stat = stat
-	..()
-	if(stat != old_stat)
-		update_icon()
 
 /obj/machinery/atmospherics/components/trinary/filter/process_atmos()
 	..()
@@ -126,7 +120,7 @@
 																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_filter", name, 390, 187, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosFilter", name, 390, 187, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/trinary/filter/ui_data()

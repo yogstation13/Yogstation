@@ -54,7 +54,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "cargo", name, 780, 750, master_ui, state)
+		ui = new(user, src, ui_key, "Cargo", name, 780, 750, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/cargo/ui_data()

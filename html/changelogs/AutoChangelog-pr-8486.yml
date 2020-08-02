@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "megafauna will no longer get buckled by slimes, causing their pixel offset to be reset to 0 or something and moving their icon."
