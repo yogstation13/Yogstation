@@ -986,7 +986,7 @@
 	minimum_players = 40
 	requirements = list(100,100,100,100,95,95,90,80,85,75)
 	var/mage_cap = 999
-	var/bullshit_mode = 1
+	bullshit_mode = 1
 
 /datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
