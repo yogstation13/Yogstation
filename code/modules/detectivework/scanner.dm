@@ -41,9 +41,10 @@
 		return
 	if(!sound_file || admin)
 		return
+	sleep(scan_speed)
 	if(sound_on)
 		playsound(src, sound_file, 50, 0)
-	sleep(scan_speed*2) // this is here for timing - Hopek
+	sleep(scan_speed) // this is here again for sound timing - Hopek
 
 /obj/item/detective_scanner/Initialize()
 	. = ..()

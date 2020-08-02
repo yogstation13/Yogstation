@@ -3018,6 +3018,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"agc" = (
+/obj/structure/table,
+/obj/item/storage/box/flashbangs{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/lockbox/loyalty{
+	layer = 4
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "agd" = (
 /obj/machinery/shower{
 	dir = 8
@@ -4400,21 +4416,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aiL" = (
-/obj/structure/table,
-/obj/item/storage/box/flashbangs{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/lockbox/loyalty{
-	layer = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "aiM" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -54705,6 +54706,10 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main/monastery)
+"cjE" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/sleeper)
 "cjO" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/stack/sheet/glass/fifty{
@@ -57373,6 +57378,10 @@
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fkv" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "fkH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -58176,6 +58185,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"hVt" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "hVx" = (
 /obj/structure/chair{
 	dir = 4
@@ -59380,6 +59393,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lawoffice)
+"mZp" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "mZE" = (
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -61210,6 +61227,10 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"tGh" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "tIS" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -61271,6 +61292,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"tYT" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/hor)
 "uaC" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -82672,7 +82697,7 @@ ajM
 aol
 aoP
 apG
-ajM
+hVt
 arj
 ajM
 ajM
@@ -84717,7 +84742,7 @@ abI
 abI
 ahL
 aii
-aiL
+agc
 ajg
 agV
 akL
@@ -90181,7 +90206,7 @@ bsA
 bua
 brK
 bsA
-bsA
+cjE
 byo
 btA
 byo
@@ -93038,7 +93063,7 @@ bdO
 bei
 bCf
 cdN
-bXk
+fkv
 ccd
 ccX
 cdS
@@ -94756,7 +94781,7 @@ aaa
 arA
 arA
 arA
-arA
+tGh
 arA
 azh
 arA
@@ -95579,7 +95604,7 @@ bfG
 byF
 cCt
 aQH
-bBp
+tYT
 bBp
 bBp
 bBp
@@ -99922,7 +99947,7 @@ aSc
 aSr
 aCl
 aWu
-aLf
+mZp
 aYs
 aYV
 aPY

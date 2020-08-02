@@ -120,6 +120,10 @@
 	icon_state = "anchored_rod"
 	anchored = TRUE
 
+/obj/structure/festivus/erp
+	name = "pole"
+	desc = "Don't think too hard about what it'll be used for."
+
 /obj/structure/flora/tree/dead/Initialize()
 	icon_state = "tree_[rand(1, 6)]"
 	. = ..()
