@@ -36443,10 +36443,6 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bqG" = (

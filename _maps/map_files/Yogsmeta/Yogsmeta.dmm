@@ -83232,10 +83232,6 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "gLo" = (

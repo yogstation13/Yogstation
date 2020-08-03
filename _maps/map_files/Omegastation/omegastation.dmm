@@ -24273,7 +24273,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aKm" = (
@@ -25074,7 +25073,6 @@
 	name = "Containment Control";
 	req_access_txt = "55"
 	},
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aLw" = (
@@ -25720,7 +25718,6 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aMJ" = (
@@ -37447,7 +37444,6 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "biZ" = (
@@ -38752,7 +38748,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/central)
 "cxU" = (

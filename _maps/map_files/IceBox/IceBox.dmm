@@ -60809,7 +60809,6 @@
 	dir = 4
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "nYC" = (
@@ -63927,10 +63926,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "xWi" = (

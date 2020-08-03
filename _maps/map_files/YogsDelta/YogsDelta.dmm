@@ -126865,10 +126865,6 @@
 	pixel_x = 32
 	},
 /obj/structure/table/reinforced,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /obj/item/extinguisher,
 /obj/item/extinguisher,
 /turf/open/floor/circuit/green,
