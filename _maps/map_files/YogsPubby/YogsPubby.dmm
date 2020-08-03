@@ -16132,17 +16132,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
-"aFa" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/light,
-/obj/item/radio/intercom{
-	pixel_y = -26
-	},
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aFb" = (
 /obj/machinery/light_switch{
 	pixel_y = 25
@@ -28970,28 +28959,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/stairs,
 /area/storage/tech)
-"bcG" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "bcH" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/structure/sign/poster/official/random{
@@ -33409,12 +33376,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
-"bkZ" = (
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "bla" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -57394,6 +57355,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/explab)
+"flR" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/obj/item/radio/intercom{
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "fmh" = (
 /turf/open/floor/wood,
 /area/maintenance/department/engine)
@@ -57724,6 +57695,21 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"gpV" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "gvf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -102777,7 +102763,7 @@ aTm
 aVu
 aXN
 bFI
-aFa
+flR
 bbI
 aNA
 aaD
@@ -103550,7 +103536,7 @@ aYB
 cCT
 baF
 jqN
-bcG
+gpV
 bdM
 beP
 bfH
@@ -113846,7 +113832,7 @@ bkF
 blX
 blX
 blX
-bkZ
+blX
 blX
 blX
 blX

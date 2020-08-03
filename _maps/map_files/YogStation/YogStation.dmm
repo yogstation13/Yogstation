@@ -45484,6 +45484,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"eCn" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "eCt" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -45649,17 +45653,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"eIF" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "eII" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -46329,12 +46322,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"ftM" = (
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "fvJ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	name = "Waste Ejector"
@@ -86624,7 +86611,7 @@ bEK
 byE
 byE
 eSR
-eIF
+eCn
 bGi
 aaf
 aaf
@@ -107694,7 +107681,7 @@ bAB
 bBV
 bDb
 aBe
-ftM
+bEm
 nUW
 cLX
 lIR
