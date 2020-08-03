@@ -19,3 +19,25 @@
 		/datum/gas/nitryl			= new/datum/tlv/no_checks,
 		/datum/gas/pluoxium			= new/datum/tlv/no_checks
 	)
+
+/obj/machinery/airalarm/ai_relays
+	name = "\improper AI relay air alarm"
+	req_access = null
+	req_one_access = list(ACCESS_ATMOSPHERICS)
+	TLV = list( // This is the list provided by obj machinery airalarm server. No checks, apparently.
+		"pressure"					= new/datum/tlv/no_checks,
+		"temperature"				= new/datum/tlv/no_checks,
+		/datum/gas/oxygen			= new/datum/tlv/no_checks,
+		/datum/gas/nitrogen			= new/datum/tlv/no_checks,
+		/datum/gas/carbon_dioxide	= new/datum/tlv/no_checks,
+		/datum/gas/miasma			= new/datum/tlv/no_checks,
+		/datum/gas/plasma			= new/datum/tlv/no_checks,
+		/datum/gas/nitrous_oxide	= new/datum/tlv/no_checks,
+		/datum/gas/bz				= new/datum/tlv/no_checks,
+		/datum/gas/hypernoblium		= new/datum/tlv/no_checks,
+		/datum/gas/water_vapor		= new/datum/tlv/no_checks,
+		/datum/gas/tritium			= new/datum/tlv/no_checks,
+		/datum/gas/stimulum			= new/datum/tlv/no_checks,
+		/datum/gas/nitryl			= new/datum/tlv/no_checks,
+		/datum/gas/pluoxium			= new/datum/tlv/no_checks
+	)
