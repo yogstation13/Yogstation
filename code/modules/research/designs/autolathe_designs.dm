@@ -692,6 +692,14 @@
 	build_path = /obj/item/wallframe/newscaster
 	category = list("initial", "Construction")
 
+/datum/design/bounty_board_frame
+	name = "Bounty Board Frame"
+	id = "bountyboard_frame"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 14000, MAT_GLASS = 8000)
+	build_path = /obj/item/wallframe/bounty_board
+	category = list("initial", "Construction")
+
 /datum/design/syringe
 	name = "Syringe"
 	id = "syringe"
@@ -911,8 +919,8 @@
 	materials = list(MAT_METAL = 3000)
 	build_path = /obj/item/stack/conveyor
 	category = list("initial", "Construction")
-	maxstack = 30 
-	
+	maxstack = 30
+
 
 /datum/design/conveyor_switch
 	name = "Conveyor Belt Switch"
@@ -1025,8 +1033,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/wallframe/flasher
-	name = "Mounted Flash Frame" 
-	id =  "wallframe/flasher" 
+	name = "Mounted Flash Frame"
+	id =  "wallframe/flasher"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
 	build_path = /obj/item/wallframe/flasher
