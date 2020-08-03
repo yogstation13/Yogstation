@@ -340,6 +340,9 @@
 	begin_day = 19
 	begin_month = SEPTEMBER
 	drone_hat = /obj/item/clothing/head/pirate
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=s5f_ZyLhnmg" // The Blarney Stone, Ween
+		)
 
 /datum/holiday/pirate/greet()
 	return "Ye be talkin' like a pirate today or else ye'r walkin' tha plank, matey!"
