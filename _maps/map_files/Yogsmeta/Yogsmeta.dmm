@@ -3051,8 +3051,8 @@
 	maxcharge = 15000
 	},
 /obj/item/flashlight/flare/signal{
-	step_x = 1;
-	step_y = 11
+	pixel_x = 1;
+	pixel_y = 11
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)

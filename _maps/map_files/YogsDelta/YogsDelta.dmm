@@ -25001,8 +25001,8 @@
 	dir = 8
 	},
 /obj/item/flashlight/flare/signal{
-	step_x = 2;
-	step_y = 10
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
