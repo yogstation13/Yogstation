@@ -1230,6 +1230,12 @@
 /obj/machinery/power/tracker,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/solar/starboard/fore)
+"acz" = (
+/obj/structure/rack,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "acA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -8769,11 +8775,6 @@
 "arf" = (
 /turf/closed/wall,
 /area/crew_quarters/dorms)
-"arg" = (
-/obj/structure/rack,
-/obj/item/storage/lockbox/loyalty,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "arh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Dormitories Maintenance";
@@ -57748,6 +57749,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"dLy" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/engineering)
 "dMP" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/stripes/line{
@@ -59504,6 +59509,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"jwa" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/lab)
 "jxM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -60885,6 +60894,10 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"ojV" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "oka" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/advanced_airlock_controller/lavaland{
@@ -62861,6 +62874,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"usY" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "uum" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -63197,6 +63214,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"vxD" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "vAA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63441,6 +63462,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/bridge)
+"wod" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "wom" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -87338,7 +87363,7 @@ bkJ
 aZE
 aZE
 aZE
-aZE
+usY
 aZE
 bxu
 byD
@@ -92937,7 +92962,7 @@ ahs
 ahP
 ahP
 aiF
-agj
+ojV
 ajA
 ajG
 akQ
@@ -94058,7 +94083,7 @@ ccw
 cig
 cSR
 cSV
-cig
+dLy
 cig
 cTf
 cgR
@@ -94464,7 +94489,7 @@ aae
 aag
 aae
 aaZ
-arg
+acz
 adl
 awX
 adl
@@ -96312,7 +96337,7 @@ aLY
 aOG
 aPR
 aPR
-aPR
+vxD
 aUb
 aZs
 aTX
@@ -103011,7 +103036,7 @@ bhi
 bfK
 bfK
 bfK
-bof
+wod
 bhh
 bsx
 btV
@@ -112778,7 +112803,7 @@ blI
 bnn
 boA
 bpZ
-boB
+jwa
 bta
 bmU
 bvJ

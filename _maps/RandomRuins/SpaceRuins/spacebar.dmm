@@ -161,14 +161,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"aE" = (
-/obj/machinery/button/door{
-	id = "spacebardock";
-	name = "pod dock door cycle";
-	pixel_x = -32
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/spacebar)
 "aF" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
@@ -467,20 +459,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"by" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "spacebardock";
-	name = "airlock dock"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/spacebar)
-"bz" = (
-/obj/machinery/door/poddoor{
-	id = "spacebardock";
-	name = "airlock dock"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/spacebar)
 "bA" = (
 /obj/structure/chair{
 	dir = 1
@@ -545,15 +523,60 @@
 /obj/item/reagent_containers/food/drinks/bottle/patron,
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
+"oy" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"zJ" = (
+/obj/machinery/button/door{
+	id = "spacebardock";
+	name = "pod bay blast door";
+	pixel_y = -27
+	},
+/turf/open/floor/plating/asteroid,
+/area/ruin/powered/spacebar)
+"Dv" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Ex" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "ER" = (
 /obj/item/beacon,
 /turf/open/floor/plating/asteroid,
+/area/ruin/powered/spacebar)
+"Ff" = (
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "FA" = (
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube"
 	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"Qy" = (
+/obj/effect/turf_decal/box/corners{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"QM" = (
+/obj/effect/turf_decal/stripes,
+/obj/effect/turf_decal/caution,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "Sr" = (
@@ -567,6 +590,18 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine,
 /turf/open/floor/wood,
+/area/ruin/powered/spacebar)
+"SK" = (
+/obj/machinery/door/poddoor{
+	id = "spacebardock";
+	name = "airlock dock"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"YH" = (
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 
 (1,1,1) = {"
@@ -850,7 +885,7 @@ ad
 ad
 ai
 ae
-ag
+Dv
 ae
 ai
 ai
@@ -1019,7 +1054,7 @@ ac
 ac
 ac
 ac
-ac
+zJ
 ae
 ae
 ae
@@ -1063,12 +1098,12 @@ ac
 ac
 ac
 bB
-by
 aY
+oy
 FA
-aY
-aY
-bz
+Ex
+Ff
+SK
 aa
 aa
 aa
@@ -1104,13 +1139,13 @@ ac
 ac
 ac
 ac
-bB
-by
+QM
 aY
 aY
 aY
 aY
-bz
+Ff
+SK
 aa
 aa
 aa
@@ -1147,12 +1182,12 @@ ac
 ac
 ac
 bB
-by
 aY
+Qy
 aY
-aY
-aY
-bz
+YH
+Ff
+SK
 aa
 aa
 aa
@@ -1189,12 +1224,12 @@ ac
 ac
 ac
 bB
-by
 aY
+oy
 aY
-aY
-aY
-bz
+Ex
+Ff
+SK
 aa
 aa
 aa
@@ -1230,13 +1265,13 @@ av
 ac
 ac
 ac
-bB
-by
+QM
 aY
 aY
 aY
 aY
-bz
+Ff
+SK
 aa
 aa
 aa
@@ -1273,12 +1308,12 @@ ac
 ac
 ac
 bB
-by
 aY
+Qy
 Sr
-aY
-aY
-bz
+YH
+Ff
+SK
 aa
 aa
 aa
@@ -1424,7 +1459,7 @@ ab
 ae
 ap
 aw
-aE
+aw
 hw
 ay
 aB

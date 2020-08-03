@@ -7,7 +7,7 @@
 	name = "General Requests Form (Form NT-010)"
 
 
-/obj/item/paper/paperwork/general_request_form/New()
+/obj/item/paper/paperwork/general_request_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>General Request Form NT-010</h3></center><hr><b>Name: </b>",/datum/language/common)
@@ -24,7 +24,7 @@
 /obj/item/paper/paperwork/complaint_form
 	name = "Complaint Form (Form NT-021)"
 
-/obj/item/paper/paperwork/complaint_form/New()
+/obj/item/paper/paperwork/complaint_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Complaint Form NT-020</h3></center><hr><b>Complainant: </b>",/datum/language/common)
@@ -48,7 +48,7 @@
 /obj/item/paper/paperwork/incident_report
 	name = "Incident Report (Form NT-400)"
 
-/obj/item/paper/paperwork/incident_report/New()
+/obj/item/paper/paperwork/incident_report/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><hr><h3>Incident Report Form NT-400</h3></center><br>",/datum/language/common)
@@ -89,7 +89,7 @@
 /obj/item/paper/paperwork/sec_incident_report
 	name = "Security Incident Report (Form SEC-030)"
 
-/obj/item/paper/paperwork/sec_incident_report/New()
+/obj/item/paper/paperwork/sec_incident_report/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<br>",/datum/language/common)
@@ -150,7 +150,7 @@
 /obj/item/paper/paperwork/item_form
 	name = "Item Request Form (Form NT-089)"
 
-/obj/item/paper/paperwork/item_form/New()
+/obj/item/paper/paperwork/item_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Item Request Form NT-089</h3></center><hr>",/datum/language/common)
@@ -177,7 +177,7 @@
 /obj/item/paper/paperwork/cyborg_request_form
 	name = "Cyborgization Consent Form (Form NT-203)"
 
-/obj/item/paper/paperwork/cyborg_request_form/New()
+/obj/item/paper/paperwork/cyborg_request_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Cyberization Consent Form NT-203</h3></center><hr>",/datum/language/common)
@@ -204,7 +204,7 @@
 /obj/item/paper/paperwork/hopaccessrequestform
 	name = "HoP Access Request Form (Form NT-022)"
 
-/obj/item/paper/paperwork/hopaccessrequestform/New()
+/obj/item/paper/paperwork/hopaccessrequestform/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>HOP Access Request Form NT-022</h3></center><hr>",/datum/language/common)
@@ -227,7 +227,7 @@
 /obj/item/paper/paperwork/hop_job_change_form
 	name = "Job Reassignment Form (Form NT-059)"
 
-/obj/item/paper/paperwork/hop_job_change_form/New()
+/obj/item/paper/paperwork/hop_job_change_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Job Reassignment Form</h3></center><hr>",/datum/language/common)
@@ -257,7 +257,7 @@
 /obj/item/paper/paperwork/rd_form
 	name = "R&D Request Form (Form SCI-3)"
 
-/obj/item/paper/paperwork/rd_form/New()
+/obj/item/paper/paperwork/rd_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>R&D Request Form SCI-3</h3></center><hr>",/datum/language/common)
@@ -278,7 +278,7 @@
 /obj/item/paper/paperwork/mech_form
 	name = "R&D Mech Request Form (Form SCI-9)"
 
-/obj/item/paper/paperwork/mech_form/New()
+/obj/item/paper/paperwork/mech_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Mech Request Form SCI-9</h3></center><hr>",/datum/language/common)
@@ -295,7 +295,7 @@
 /obj/item/paper/paperwork/jobchangecert
 	name = "Job Change Certificate"
 
-/obj/item/paper/paperwork/jobchangecert/New()
+/obj/item/paper/paperwork/jobchangecert/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Job Transfer Certificate</h3></center><hr>",/datum/language/common)
@@ -390,7 +390,6 @@
 	new /obj/item/paper/paperwork/complaint_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/hop_job_change_form(src)
-	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
 	update_icon()

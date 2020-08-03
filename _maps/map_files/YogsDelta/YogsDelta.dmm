@@ -21572,6 +21572,31 @@
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"aJh" = (
+/obj/item/storage/box/chemimp{
+	pixel_x = 6
+	},
+/obj/item/storage/box/trackimp{
+	pixel_x = -3
+	},
+/obj/item/storage/lockbox/loyalty,
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "aJi" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -59919,30 +59944,6 @@
 	},
 /obj/item/gun/energy/e_gun/dragnet,
 /obj/item/gun/energy/e_gun/dragnet,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
-"bNr" = (
-/obj/item/storage/box/chemimp{
-	pixel_x = 6
-	},
-/obj/item/storage/box/trackimp{
-	pixel_x = -3
-	},
-/obj/item/storage/lockbox/loyalty,
-/obj/structure/table/reinforced,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bNs" = (
@@ -106986,7 +106987,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "dfH" = (
-/obj/structure/sign/nanotrasen,
+/obj/machinery/bounty_board,
 /turf/closed/wall,
 /area/medical/medbay/central)
 "dfI" = (
@@ -126448,6 +126449,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/research)
+"ids" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/captain)
 "iiu" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -126459,6 +126464,10 @@
 /obj/machinery/cryopod,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"isB" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/xenobiology)
 "ixL" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = 32
@@ -126757,6 +126766,10 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"mjf" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/hallway/secondary/service)
 "mvm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -126803,6 +126816,10 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"mSY" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
 "ncP" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/engine,
@@ -127441,6 +127458,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"vjD" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/foyer)
 "vjX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -151821,7 +151842,7 @@ cJQ
 cJT
 acR
 aSZ
-aUl
+vjD
 aZA
 bdC
 aZA
@@ -160608,7 +160629,7 @@ cMY
 cMY
 cMY
 cMY
-cMY
+isB
 dgv
 cgv
 ceS
@@ -161814,7 +161835,7 @@ dqh
 aDI
 aDI
 auN
-aDI
+mjf
 aDI
 ehG
 cJE
@@ -168273,7 +168294,7 @@ bBM
 bjk
 bzP
 bGU
-bIV
+ids
 bIV
 bMG
 bOP
@@ -178551,7 +178572,7 @@ bnG
 bCc
 bnG
 bnG
-bnG
+mSY
 biy
 bEF
 bmc
@@ -181382,7 +181403,7 @@ bFR
 bHK
 bJE
 bLs
-bNr
+aJh
 bLi
 bfA
 bgx
