@@ -41,3 +41,8 @@
 	name = "\improper AI Relay Module (Machine Interaction)"
 	desc = "A module that enable AI relays to interact with consoles and regular machinery."
 	enabling_tasks = MACHINE_INTERACTION
+
+/obj/item/ai_relay_module/all_in_one
+	name = "\improper AI Relay Module (Unknown)"
+	desc = "A modified module that gives the AI unknown capabilities to control various objects."
+	enabling_tasks = MACHINE_INTERACTION | TELECOMMS_CONTROL | DOOR_CONTROL | ENVIROMENTAL_CONTROL | POWER_MANIPULATION

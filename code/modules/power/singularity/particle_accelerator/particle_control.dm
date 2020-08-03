@@ -302,8 +302,8 @@
 /obj/machinery/particle_accelerator/control_box/ui_act(action, params)
 	if(..())
 		return
-    
-  if(!ai_can_use(POWER_MANIPULATION, usr))
+	
+	if(!ai_can_use(POWER_MANIPULATION, usr))
 		return
 
 	switch(action)

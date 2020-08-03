@@ -77,3 +77,22 @@
 /area/security/podbay
 	name = "Security Podbay"
 	icon_state = "security"
+
+/area/ai_monitored/relays
+	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
+	minimap_color = "#00fff6"
+
+/area/ai_monitored/relays/power
+	name = "Power Manipulation AI Relay"
+
+/area/ai_monitored/relays/telecomms
+	name = "Telecommunications Control AI Relay"
+
+/area/ai_monitored/relays/doors
+	name = "Door Control AI Relay"
+
+/area/ai_monitored/relays/machinery
+	name = "Machinery Interraction AI Relay"
+
+/area/ai_monitored/relays/environmental
+	name = "Environmental Control AI Relay"

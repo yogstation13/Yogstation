@@ -31,11 +31,15 @@ GLOBAL_LIST_EMPTY(ai_relays)
 	var/generates_heat = TRUE
 	var/heat_output = 5000
 
+
 	circuit = /obj/item/circuitboard/machine/ai_relay
 
 /obj/machinery/ai_relay/Initialize()
 	GLOB.ai_relays += src
 	name = "[name] ([num2hex(rand(1,65535), -1)])"
+	if(inserted_module)
+		var/obj/item/ai_relay_module/board = new inserted_module(src)
+		inserted_module = board
 	. = ..()
 
 /obj/machinery/ai_relay/Destroy()
@@ -64,20 +68,26 @@ GLOBAL_LIST_EMPTY(ai_relays)
 			to_chat(user, "<span class='warning'>The breaker won't budge! The relay has locked it for [(last_flipped - world.time) / 10] seconds!</span>")
 			return
 		last_flipped = world.time + FLIP_DELAY
+		to_chat(user, "<span class='notice'>You start flipping the breaker...</span>")
+		if(!do_after(user, FLIP_DELAY, target = src))
+			return
 		on = FALSE
 		user.visible_message("[user] switches [src] off.", "<span class='warning'>You flip the breaker to the OFF position.</span>")
 		use_power = IDLE_POWER_USE
-		message_ais("<span class='warning'>[src] has been turned manually off!</span>")
+		message_ais("<span class='warning'>[src] has been turned off manually!</span>")
 		update_icon()
 	else
 		if(last_flipped > world.time)
 			to_chat(user, "<span class='warning'>The breaker won't budge! The relay has locked it for [(last_flipped - world.time) / 10] seconds!</span>")
 			return
 		last_flipped = world.time + FLIP_DELAY
+		to_chat(user, "<span class='notice'>You start flipping the breaker...</span>")
+		if(!do_after(user, FLIP_DELAY, target = src))
+			return
 		on = TRUE
 		user.visible_message("[user] switches [src] on.", "<span class='warning'>You flip the breaker to the ON position.</span>")
 		use_power = ACTIVE_POWER_USE
-		message_ais("<span class='notice'>[src] has been turned manually on.</span>")
+		message_ais("<span class='notice'>[src] has been turned on manually.</span>")
 		update_icon()
 
 
@@ -109,7 +119,7 @@ GLOBAL_LIST_EMPTY(ai_relays)
 	if(hacker.relay_hack)
 		return
 
-	hacker.relay_hack = addtimer(CALLBACK(hacker, /mob/living/silicon/ai/.proc/relay_hacked, src), 300, TIMER_STOPPABLE)
+	hacker.relay_hack = addtimer(CALLBACK(hacker, /mob/living/silicon/ai/.proc/relay_hacked, src), AI_RELAY_HACK_TIME, TIMER_STOPPABLE)
 	var/obj/screen/alert/hackingapc/A
 	A = hacker.throw_alert("hacking_relay", /obj/screen/alert/hackingapc)
 	A.target = src
@@ -180,6 +190,7 @@ GLOBAL_LIST_EMPTY(ai_relays)
 		to_chat(AI, msg)
 
 /obj/machinery/ai_relay/update_icon()
+	. = ..()
 
 /obj/machinery/ai_relay/allinone
 	name = "suspcious processing relay"
@@ -190,7 +201,24 @@ GLOBAL_LIST_EMPTY(ai_relays)
 
 	generates_heat = FALSE
 
-/obj/machinery/ai_relay/allinone/Initialize()
-	var/obj/item/ai_relay_module/board = new(src)
-	board.enabling_tasks = MACHINE_INTERACTION | TELECOMMS_CONTROL | DOOR_CONTROL | ENVIROMENTAL_CONTROL | POWER_MANIPULATION
-	inserted_module = board
+	inserted_module = /obj/item/ai_relay_module/all_in_one
+
+/obj/machinery/ai_relay/machines
+	name = "processing relay - machine interaction"
+	inserted_module = /obj/item/ai_relay_module/machine_interaction
+
+/obj/machinery/ai_relay/telecomms
+	name = "processing relay - telecommunications control"
+	inserted_module = /obj/item/ai_relay_module/telecomms
+
+/obj/machinery/ai_relay/doors
+	name = "processing relay - door control"
+	inserted_module = /obj/item/ai_relay_module/doors
+
+/obj/machinery/ai_relay/environment
+	name = "processing relay - enviromental control"
+	inserted_module = /obj/item/ai_relay_module/enviromental
+
+/obj/machinery/ai_relay/power
+	name = "processing relay - power manipulation"
+	inserted_module = /obj/item/ai_relay_module/power_manip

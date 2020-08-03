@@ -774,10 +774,9 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	if(AI.eyeobj)
 		AI.eyeobj.relay_speech = TRUE
 
-//All-in-one relay.
+///All-in-one relay.
 /datum/AI_Module/large/place_relay
-	module_name = "All-in-one Relay"
-	mod_pick_name = "allinone_relay"
+	name = "All-in-one Relay"
 	description = "Build a relay anywhere, using expensive nanomachines. Automatically connected upon construction."
 	cost = 50
 	one_purchase = TRUE
