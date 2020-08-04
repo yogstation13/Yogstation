@@ -11,16 +11,20 @@
 	var/restraining = 0 //used in cqc's disarm_act to check if the disarmed is being restrained and so whether they should be put in a chokehold or not
 	var/help_verb
 	var/no_guns = FALSE
+	var/nonlethal = FALSE //if the martial art has no lethal attacks
 	var/allow_temp_override = TRUE //if this martial art can be overridden by temporary martial arts
 
 /datum/martial_art/proc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return 0
+	return FALSE
 
 /datum/martial_art/proc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return 0
+	return FALSE
 
 /datum/martial_art/proc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return 0
+	return FALSE
+
+/datum/martial_art/proc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker) //handles martial art counters if a block is scored
+	return
 
 /datum/martial_art/proc/can_use(mob/living/carbon/human/H)
 	return TRUE
@@ -58,7 +62,7 @@
 		D.visible_message("<span class='warning'>[A] has attempted to [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] has attempted to [atk_verb] [D]!</span>", null, COMBAT_MESSAGE_RANGE)
 		log_combat(A, D, "attempted to [atk_verb]")
-		return 0
+		return FALSE
 
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, "melee")
@@ -78,7 +82,7 @@
 		D.forcesay(GLOB.hit_appends)
 	else if(!(D.mobility_flags & MOBILITY_STAND))
 		D.forcesay(GLOB.hit_appends)
-	return 1
+	return TRUE
 
 /datum/martial_art/proc/teach(mob/living/carbon/human/H,make_temporary=0)
 	if(!istype(H) || !H.mind)
