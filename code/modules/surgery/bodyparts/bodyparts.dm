@@ -477,6 +477,10 @@
 	icon_state = "default_monkey_chest"
 	animal_origin = MONKEY_BODYPART
 
+/obj/item/bodypart/chest/monkey/teratoma
+	icon_state = "teratoma_chest"
+	animal_origin = TERATOMA_BODYPART
+
 /obj/item/bodypart/chest/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_chest"
@@ -548,6 +552,10 @@
 	px_x = -5
 	px_y = -3
 
+/obj/item/bodypart/l_arm/monkey/teratoma
+	icon_state = "teratoma_l_arm"
+	animal_origin = TERATOMA_BODYPART
+
 /obj/item/bodypart/l_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_l_arm"
@@ -611,6 +619,10 @@
 	animal_origin = MONKEY_BODYPART
 	px_x = 5
 	px_y = -3
+
+/obj/item/bodypart/r_arm/monkey/teratoma
+	icon_state = "teratoma_r_arm"
+	animal_origin = TERATOMA_BODYPART
 
 /obj/item/bodypart/r_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
