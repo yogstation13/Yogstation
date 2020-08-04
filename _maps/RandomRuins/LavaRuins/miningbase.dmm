@@ -972,13 +972,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"dO" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "dP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1;
@@ -1419,12 +1412,13 @@
 /obj/item/book/manual/wiki/surgery,
 /turf/open/floor/plasteel/white,
 /area/mine/production)
-"hc" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Morgue"
+"gC" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel,
-/area/mine/production)
+/area/mine/living_quarters)
 "ht" = (
 /obj/structure/ore_box,
 /obj/effect/turf_decal/tile/brown{
@@ -2340,6 +2334,12 @@
 /obj/machinery/vending/games,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"Hp" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Morgue"
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/production)
 "HE" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -3672,7 +3672,7 @@ ak
 ba
 dv
 du
-dO
+gC
 bQ
 sP
 lf
@@ -4341,7 +4341,7 @@ aw
 zd
 mx
 mx
-hc
+Hp
 mx
 mx
 mx
