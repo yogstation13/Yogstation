@@ -3086,6 +3086,11 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
+"Qa" = (
+/obj/effect/decal/cleanable/ash,
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard,
+/turf/open/floor/plating,
+/area/awaymission/academy/academycellar)
 "Qc" = (
 /obj/machinery/door/window{
 	dir = 4
@@ -14304,7 +14309,7 @@ ac
 ac
 iU
 ml
-lV
+Qa
 lV
 iU
 ac

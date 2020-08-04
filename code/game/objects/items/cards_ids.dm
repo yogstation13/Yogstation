@@ -339,7 +339,7 @@ update_label("John Doe", "Clowny")
 			var/target_occupation = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", assignment ? assignment : "Assistant", MAX_MESSAGE_LEN)
 			if(!target_occupation)
 				return
-				
+
 			var/newAge = input(user, "Choose the ID's age:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
 			if(newAge)
 				registered_age = max(round(text2num(newAge)), 0)
@@ -460,7 +460,7 @@ update_label("John Doe", "Clowny")
 	icon_state = "centcom_gold"
 
 
-	
+
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
 	. = ..()
@@ -645,26 +645,6 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/Destroy()
 	SSeconomy.dep_cards -= src
 	return ..()
-
-/obj/item/card/id/departmental_budget/civ
-	department_ID = ACCOUNT_CIV
-	department_name = ACCOUNT_CIV_NAME
-
-/obj/item/card/id/departmental_budget/eng
-	department_ID = ACCOUNT_ENG
-	department_name = ACCOUNT_ENG_NAME
-
-/obj/item/card/id/departmental_budget/sci
-	department_ID = ACCOUNT_SCI
-	department_name = ACCOUNT_SCI_NAME
-
-/obj/item/card/id/departmental_budget/med
-	department_ID = ACCOUNT_MED
-	department_name = ACCOUNT_MED_NAME
-
-/obj/item/card/id/departmental_budget/srv
-	department_ID = ACCOUNT_SRV
-	department_name = ACCOUNT_SRV_NAME
 
 /obj/item/card/id/departmental_budget/car
 	department_ID = ACCOUNT_CAR

@@ -1182,9 +1182,8 @@
 		to_chat(user, "<span class='notice'>You carefully start removing [charge] from [src]...</span>")
 		if(!I.use_tool(src, user, 150, volume=50))
 			to_chat(user, "<span class='warning'>You slip and [charge] detonates!</span>")
-			charge.ex_act(EXPLODE_DEVASTATE)
 			user.Paralyze(60)
-			return
+			return blow_charge()
 		user.visible_message("<span class='notice'>[user] removes [charge] from [src].</span>", \
 							 "<span class='notice'>You gently pry out [charge] from [src] and unhook its wires.</span>")
 		charge.forceMove(get_turf(user))
@@ -1244,19 +1243,7 @@
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
 			return FALSE
 	if(charge && !detonated)
-		panel_open = TRUE
-		update_icon(AIRLOCK_OPENING)
-		visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
-		charge.forceMove(drop_location())
-		charge.ex_act(EXPLODE_DEVASTATE)
-		detonated = 1
-		charge = null
-		for(var/mob/living/carbon/human/H in orange(2,src))
-			H.Unconscious(160)
-			H.adjust_fire_stacks(20)
-			H.IgniteMob() //Guaranteed knockout and ignition for nearby people
-			H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
-		return
+		return blow_charge()
 	if(forced < 2)
 		if(obj_flags & EMAGGED)
 			return FALSE
@@ -1753,6 +1740,19 @@
 	else
 		open()
 
+/obj/machinery/door/airlock/proc/blow_charge()
+	panel_open = TRUE
+	update_icon(AIRLOCK_OPENING)
+	visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
+	charge.forceMove(drop_location())
+	charge.ex_act(EXPLODE_DEVASTATE)
+	detonated = 1
+	charge = null
+	for(var/mob/living/carbon/human/H in orange(2,src))
+		H.Unconscious(160)
+		H.adjust_fire_stacks(20)
+		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
+		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 
 #undef AIRLOCK_CLOSED
 #undef AIRLOCK_CLOSING

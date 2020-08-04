@@ -399,16 +399,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"os" = (
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/kitchen)
 "pv" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -1100,6 +1090,18 @@
 "Uw" = (
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"UN" = (
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/structure/table/bronze,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/kitchen)
 "Vk" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/bronze,
@@ -1547,7 +1549,7 @@ lP
 CT
 CT
 iO
-os
+UN
 SJ
 uo
 aa

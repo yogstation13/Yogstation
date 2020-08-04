@@ -307,10 +307,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
-"bd" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "be" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
@@ -412,6 +408,12 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "ga" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"gh" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "iq" = (
@@ -782,9 +784,9 @@ am
 Ir
 aR
 ac
-bd
+gh
 be
-bd
+gh
 ad
 ad
 "}

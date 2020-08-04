@@ -3018,6 +3018,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"agc" = (
+/obj/structure/table,
+/obj/item/storage/box/flashbangs{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/lockbox/loyalty{
+	layer = 4
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "agd" = (
 /obj/machinery/shower{
 	dir = 8
@@ -4400,21 +4416,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aiL" = (
-/obj/structure/table,
-/obj/item/storage/box/flashbangs{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/lockbox/loyalty{
-	layer = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "aiM" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -28271,11 +28272,6 @@
 /obj/item/reagent_containers/food/condiment/peppermill,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bbi" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bbj" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/purple,
@@ -43761,22 +43757,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
-"bCj" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "bCk" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Gravity Generator";
@@ -54726,6 +54706,10 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main/monastery)
+"cjE" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/sleeper)
 "cjO" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/stack/sheet/glass/fifty{
@@ -57079,6 +57063,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"dBv" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "dBW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57387,6 +57378,10 @@
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fkv" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "fkH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -58190,6 +58185,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"hVt" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "hVx" = (
 /obj/structure/chair{
 	dir = 4
@@ -58224,6 +58223,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
+"ifT" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "igE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -59378,6 +59393,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lawoffice)
+"mZp" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "mZE" = (
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -61208,6 +61227,10 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"tGh" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "tIS" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -61269,6 +61292,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"tYT" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/hor)
 "uaC" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -82670,7 +82697,7 @@ ajM
 aol
 aoP
 apG
-ajM
+hVt
 arj
 ajM
 ajM
@@ -84715,7 +84742,7 @@ abI
 abI
 ahL
 aii
-aiL
+agc
 ajg
 agV
 akL
@@ -88896,7 +88923,7 @@ brg
 aPl
 byo
 bkk
-bCj
+ifT
 bCi
 bDr
 bEv
@@ -90179,7 +90206,7 @@ bsA
 bua
 brK
 bsA
-bsA
+cjE
 byo
 btA
 byo
@@ -92214,7 +92241,7 @@ aRC
 aRN
 aYU
 bab
-bbi
+dBv
 bbh
 bdr
 bct
@@ -93036,7 +93063,7 @@ bdO
 bei
 bCf
 cdN
-bXk
+fkv
 ccd
 ccX
 cdS
@@ -94754,7 +94781,7 @@ aaa
 arA
 arA
 arA
-arA
+tGh
 arA
 azh
 arA
@@ -95577,7 +95604,7 @@ bfG
 byF
 cCt
 aQH
-bBp
+tYT
 bBp
 bBp
 bBp
@@ -99920,7 +99947,7 @@ aSc
 aSr
 aCl
 aWu
-aLf
+mZp
 aYs
 aYV
 aPY

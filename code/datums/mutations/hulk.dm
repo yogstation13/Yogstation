@@ -36,6 +36,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	owner.update_body_parts()
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "hulk")
+	UnregisterSignal(owner, COMSIG_MOB_SAY)
 
 /datum/mutation/human/hulk/proc/handle_speech(original_message, wrapped_message)
 	var/message = wrapped_message[1]
