@@ -483,15 +483,11 @@
 	var/current_size = 1
 	var/tetsuo = FALSE
 	var/bruteheal = FALSE
-	threshold_desc = "<b>Stage Speed 6:</b> The disease heals brute damage at a fast rate, but causes expulsion of benign tumors<br>\
-					<b>Stage Speed 12:</b> The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced."
+	threshold_descs = list(
+	"Stage Speed 6" = "The disease heals brute damage at a fast rate, but causes expulsion of benign tumors",
+	"Stage Speed 12" = "The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced.",
+					)
 
-/datum/symptom/growth/severityset(datum/disease/advance/A)
-	. = ..()
-	if(A.properties["stage_rate"] >= 6)
-		severity -= 1
-	if(A.properties["stage_rate"] >= 12)
-		severity += 3
 
 /datum/symptom/growth/Start(datum/disease/advance/A)
 	if(!..())
@@ -606,13 +602,11 @@
 	symptom_delay_max = 30
 	var/bigsweat = FALSE
 	var/toxheal = FALSE
-	threshold_desc = "<b>transmission 6:</b> The sweat production ramps up to the point that it puts out fires in the general vicinity<br>\
-					<b>transmission 8:</b> The symptom heals toxin damage and purges chemicals."
+	threshold_descs = list(
+	"transmission 6" = "The sweat production ramps up to the point that it puts out fires in the general vicinity"
+					"transmission 8" = "The symptom heals toxin damage and purges chemicals."
+					)
 
-/datum/symptom/sweat/severityset(datum/disease/advance/A)
-	. = ..()
-	if(A.properties["transmittable"] >= 8)
-		severity -= 1
 
 /datum/symptom/sweat/Start(datum/disease/advance/A)
 	if(!..())
