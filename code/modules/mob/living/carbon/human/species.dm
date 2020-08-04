@@ -1197,21 +1197,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, "<span class='notice'>You do not breathe, so you cannot perform CPR.</span>")
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s grab attempt!</span>")
-		return 0
+	var/datum/martial_art/M = target.check_block()
+	if(M)
+		M.handle_counter(target, user)
+		return FALSE
 	if(attacker_style && attacker_style.grab_act(user,target))
-		return 1
+		return FALSE
 	else
 		target.grabbedby(user)
-		return 1
+		return FALSE
 
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+	if(attacker_style.nonlethal || !HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
 		return FALSE
-	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>")
+	var/datum/martial_art/M = target.check_block()
+	if(M)
+		M.handle_counter(target, user)
 		return FALSE
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
