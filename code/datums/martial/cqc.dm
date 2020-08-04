@@ -1,14 +1,14 @@
 #define SLAM_COMBO "GH"
-#define KICK_COMBO "HH"
+#define KICK_COMBO "DH"
 #define RESTRAIN_COMBO "GG"
-#define PRESSURE_COMBO "DG"
-#define CONSECUTIVE_COMBO "DDH"
+#define PRESSURE_COMBO "DDG"
+#define CONSECUTIVE_COMBO "HHHHH"
 
 /datum/martial_art/cqc
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_chance = 75
+	block_chance = 75 //to do: make blocking actually ufcking work with everything instead of being hidden in 5 different locations
 	var/just_a_cook = FALSE
 	var/old_grab_state = null
 
@@ -57,27 +57,28 @@
 						  	"<span class='userdanger'>[A] slams you into the ground!</span>")
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, 1, -1)
 		D.apply_damage(10, BRUTE)
-		D.Paralyze(120)
+		D.Paralyze(10)
+		D.Knockdown(60)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
 
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
-	if(!D.stat || !D.IsParalyzed())
+	if(!D.stat || (D.mobility_flags & MOBILITY_STAND))
 		D.visible_message("<span class='warning'>[A] kicks [D] back!</span>", \
 							"<span class='userdanger'>[A] kicks you back!</span>")
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 		var/atom/throw_target = get_edge_target_turf(D, A.dir)
 		D.throw_at(throw_target, 1, 14, A)
-		D.apply_damage(10, A.dna.species.attack_type)
+		D.apply_damage(10, STAMINA)
 		log_combat(A, D, "kicked (CQC)")
-	if(D.IsParalyzed() && !D.stat)
-		log_combat(A, D, "knocked out (Head kick)(CQC)")
-		D.visible_message("<span class='warning'>[A] kicks [D]'s head, knocking [D.p_them()] out!</span>", \
-					  		"<span class='userdanger'>[A] kicks your head, knocking you out!</span>")
+	if(!(D.mobility_flags & MOBILITY_STAND) && !D.stat)
+		log_combat(A, D, "prone-kicked(CQC)")
+		D.visible_message("<span class='warning'>[A] firmly kicks [D] in the abdomen!</span>", \
+					  		"<span class='userdanger'>[A] kicks you in the abdomen!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
-		D.SetSleeping(300)
+		D.apply_damage(30, STAMINA)
 		D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	return TRUE
 
@@ -86,7 +87,9 @@
 		return FALSE
 	log_combat(A, D, "pressured (CQC)")
 	D.visible_message("<span class='warning'>[A] punches [D]'s neck!</span>")
-	D.adjustStaminaLoss(60)
+	D.drop_all_held_items()
+	D.adjustStaminaLoss(30)
+	D.Immobilize(60)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
@@ -99,25 +102,24 @@
 		log_combat(A, D, "restrained (CQC)")
 		D.visible_message("<span class='warning'>[A] locks [D] into a restraining position!</span>", \
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
-		D.adjustStaminaLoss(20)
-		D.Stun(100)
+		D.Stun(20)
+		if(A.grab_state < GRAB_AGGRESSIVE)
+			A.grab_state = GRAB_AGGRESSIVE
 		restraining = TRUE
-		addtimer(CALLBACK(src, .proc/drop_restraining), 50, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/drop_restraining), 300, TIMER_UNIQUE)
 	return TRUE
 
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
-	if(!D.stat)
+	if(D.mobility_flags & MOBILITY_STAND)
 		log_combat(A, D, "consecutive CQC'd (CQC)")
-		D.visible_message("<span class='warning'>[A] strikes [D]'s abdomen, neck and back consecutively</span>", \
-							"<span class='userdanger'>[A] strikes your abdomen, neck and back consecutively!</span>")
+		D.visible_message("<span class='warning'>[A] delivers a firm blow to [D]'s head, knocking them down</span>", \
+							"<span class='userdanger'>[A] delivers a firm blow to your head, causing you to fall over!</span>")
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
-		var/obj/item/I = D.get_active_held_item()
-		if(I && D.temporarilyRemoveItemFromInventory(I))
-			A.put_in_hands(I)
-		D.adjustStaminaLoss(50)
-		D.apply_damage(25, A.dna.species.attack_type)
+		D.Paralyze(20)
+		D.Knockdown(100)
+		D.apply_damage(25, STAMINA)
 	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -125,14 +127,8 @@
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
-		old_grab_state = A.grab_state
 		D.grabbedby(A, 1)
-		if(old_grab_state == GRAB_PASSIVE)
-			D.drop_all_held_items()
-			A.grab_state = GRAB_AGGRESSIVE //Instant agressive grab if on grab intent
-			log_combat(A, D, "grabbed", addition="aggressively")
-			D.visible_message("<span class='warning'>[A] violently grabs [D]!</span>", \
-								"<span class='userdanger'>[A] violently grabs you!</span>")
+		D.Stun(15)
 		return TRUE
 	else
 		return FALSE
@@ -146,24 +142,21 @@
 	log_combat(A, D, "attacked (CQC)")
 	A.do_attack_animation(D)
 	var/picked_hit_type = pick("CQC'd", "Big Bossed")
-	var/bonus_damage = 13
-	if(!(D.mobility_flags & MOBILITY_STAND))
-		bonus_damage += 5
-		picked_hit_type = "stomps on"
-	D.apply_damage(bonus_damage, BRUTE)
-	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
-		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
-	else
-		playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
+	var/bonus_damage = 15
+	D.apply_damage(bonus_damage, STAMINA)
+	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
+	D.Immobilize(15)
 	log_combat(A, D, "[picked_hit_type] (CQC)")
-	if(A.resting && !D.stat && !D.IsParalyzed())
+	if(A.resting && !D.stat && !(D.mobility_flags & MOBILITY_STAND))
 		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 							"<span class='userdanger'>[A] leg sweeps you!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-		D.apply_damage(10, BRUTE)
-		D.Paralyze(60)
+		D.Paralyze(10)
+		D.Knockdown(60)
+		A.set_resting(FALSE)
+		A.SetKnockdown(0)
 		log_combat(A, D, "sweeped (CQC)")
 	return TRUE
 
@@ -177,30 +170,65 @@
 	if(prob(65))
 		if(!D.stat || !D.IsParalyzed() || !restraining)
 			I = D.get_active_held_item()
-			D.visible_message("<span class='warning'>[A] strikes [D]'s jaw with their hand!</span>", \
-								"<span class='userdanger'>[A] strikes your jaw, disorienting you!</span>")
+			D.visible_message("<span class='warning'>[A] quickly grabs [D]'s arm and and chops it, disarming them!</span>", \
+								"<span class='userdanger'>[A] grabs your arm and chops it, disarming you!</span>")
 			playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
 			D.Jitter(2)
-			D.apply_damage(5, A.dna.species.attack_type)
+			D.apply_damage(5, STAMINA)
 	else
-		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
-							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
+		D.visible_message("<span class='danger'>[A] grabs at [D]'s arm, but misses!</span>", \
+							"<span class='userdanger'>[A] grabs at your arm, but misses!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	log_combat(A, D, "disarmed (CQC)", "[I ? " grabbing \the [I]" : ""]")
 	if(restraining && A.pulling == D)
-		log_combat(A, D, "knocked out (Chokehold)(CQC)")
+		log_combat(A, D, "began to chokehold(CQC)")
 		D.visible_message("<span class='danger'>[A] puts [D] into a chokehold!</span>", \
 							"<span class='userdanger'>[A] puts you into a chokehold!</span>")
-		D.SetSleeping(400)
+		if(handle_chokehold(A, D))
+			D.Unconscious(400)
+			if(A.grab_state < GRAB_NECK)
+				A.grab_state = GRAB_NECK
+			A.visibe_message("<span class='danger'>[A] relaxes their grip on [D].</span>", \ //ok sure it's actually probably a stronger grab but they aren't being choked nearly as fast
+								"<span class='danger'>You relax your grip on [D].</span>") //visible message comes from attacker since defender is unconscious and therefore can't see
+		else
+			A.grab_state = min(0, A.grab_state - 1) //immediately lose grab power...
+			if(prob(BASE_RESIST_CHANCE/A.grab_state)) //...and have a chance to lose the entire grab
+				A.visible_message("<span class='danger'>[A] is put off balance, losing their grip on [D]!</span>", \
+									"<span class='danger'>You are put off balance, and you lose your grip on [D]!</span>")
+				A.stop_pulling()
+			else
+				A.visible_message("<span class='danger'>[A] is put off balance, and struggles to maintain their grip on [D]!</span>", \
+									"<span class='danger>You are put off balance, and struggle to maintain your grip on [D]!</span>)
 		restraining = FALSE
-		if(A.grab_state < GRAB_NECK)
-			A.grab_state = GRAB_NECK
 	else
 		restraining = FALSE
 		return FALSE
 	return TRUE
+
+/datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
+	var/damage2deal = 10 * (1+D.getStaminaLoss/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
+	while(do_mob(A, D, 30))
+		if(D.health - damage2deal < 20 || D.stat)
+			return TRUE
+		D.adjustOxyLoss(damage2deal)
+		if(D.getOxyLoss >= 50)
+			return TRUE
+
+/datum/martial_art/cqc/handle_counter(mob/living/carbon/human/A, mob/living/carbon/human/D) //I am going to fucking gut whoever did the old counter system also whoever made martial arts
+	if(!can_use(A))
+		return
+	D.visible_message("<span class='warning'>[A] grabs [D]'s arm as they attack and throws them to the ground!</span>", \
+						"<span class='userdanger'>[A] grabs your arm as you attack and throws you to the ground!</span>")
+	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
+	I = D.get_active_held_item()
+	if(I && D.temporarilyRemoveItemFromInventory(I))
+		var/hand = A.get_inactive_hand_index()
+		A.put_in_hand(I, hand)
+	D.Paralyze(20)
+	D.Knockdown(60)
+	
 
 /mob/living/carbon/human/proc/CQC_help()
 	set name = "Remember The Basics"
@@ -208,10 +236,16 @@
 	set category = "CQC"
 	to_chat(usr, "<b><i>You try to remember some of the basics of CQC.</i></b>")
 
-	to_chat(usr, "<span class='notice'>Slam</span>: Grab Harm. Slam opponent into the ground, knocking them down.")
-	to_chat(usr, "<span class='notice'>CQC Kick</span>: Harm Harm. Knocks opponent away. Knocks out stunned or knocked down opponents.")
-	to_chat(usr, "<span class='notice'>Restrain</span>: Grab Grab. Locks opponents into a restraining position, disarm to knock them out with a chokehold.")
-	to_chat(usr, "<span class='notice'>Pressure</span>: Disarm Grab. Decent stamina damage.")
-	to_chat(usr, "<span class='notice'>Consecutive CQC</span>: Disarm Disarm Harm. Mainly offensive move, huge damage and decent stamina damage.")
+	to_chat(usr, "<span class='notice'><b>All of your attacks deal stamina damage instead of your normal physical damage type</b></span>")
+	
+	to_chat(usr, "<span class='notice'><b>Disarm Intent</b> Has a chance to disarm the opponent's main hand, and immediately pick up the item if successful</span>")
+	to_chat(usr, "<span class='notice'><b>Grab Intent</b> Will stun opponents for a short second, allowing you to quickly increase the strength of your grabs</span>")
+	to_chat(usr, "<span class='notice'><b>Harm Intent</b> Will deal a competitive amount of stamina damage, and hitting a standing opponent while you are prone will both knock them down and stand you up</span>")
+	
+	to_chat(usr, "<span class='notice'>Slam</span>: Grab Harm. Slam opponent into the ground, knocking them down and dealing decent stamina damage.")
+	to_chat(usr, "<span class='notice'>CQC Kick</span>: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents.")
+	to_chat(usr, "<span class='notice'>Restrain</span>: Grab Grab. Locks opponents into a restraining position, making your grab harder to break out of, disarm to begin a chokehold which will knock out faster the more stamina damage the opponent has. Failing to complete the chokehold will weaken and possibly break your grab.")
+	to_chat(usr, "<span class='notice'>Pressure</span>: Disarm Grab. Deals decent stamina damage and immobilizes the target, forcing them to drop anything they are holding.")
+	to_chat(usr, "<span class='notice'>Consecutive CQC</span>: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
 	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>")
