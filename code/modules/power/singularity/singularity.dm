@@ -267,15 +267,15 @@
 		qdel(src)
 		return 0
 	switch(energy)//Some of these numbers might need to be changed up later -Mport
-		if(1 to 199)
+		if(STAGE_ONE_THRESHOLD to STAGE_TWO_THRESHOLD-1)
 			allowed_size = STAGE_ONE
-		if(200 to 499)
+		if(STAGE_TWO_THRESHOLD to STAGE_THREE_THRESHOLD-1)
 			allowed_size = STAGE_TWO
-		if(500 to 999)
+		if(STAGE_THREE_THRESHOLD to STAGE_FOUR_THRESHOLD-1)
 			allowed_size = STAGE_THREE
-		if(1000 to 1999)
+		if(STAGE_FOUR_THRESHOLD to STAGE_FIVE_THRESHOLD-1)
 			allowed_size = STAGE_FOUR
-		if(2000 to INFINITY)
+		if(STAGE_FIVE_THRESHOLD to INFINITY)
 			if(energy >= 3000 && consumedSupermatter)
 				allowed_size = STAGE_SIX
 			else

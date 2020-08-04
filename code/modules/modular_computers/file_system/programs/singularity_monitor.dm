@@ -14,7 +14,7 @@
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_CONSTRUCTION
 	network_destination = "singularity monitoring system"
-	size = 5
+	size = 2
 	tgui_id = "NtosSingularityMonitor"
 	ui_x = 600
 	ui_y = 350
@@ -45,6 +45,23 @@
 	singularities = null
 	..()
 
+/// Returns a stage threshold linked to the singularity defines.
+/datum/computer_file/program/singularity_monitor/proc/get_threshold(threshold)
+	threshold = clamp(threshold, 1, 6)
+	switch(threshold)
+		if(1)
+			return STAGE_ONE_THRESHOLD
+		if(2)
+			return STAGE_TWO_THRESHOLD
+		if(3)
+			return STAGE_THREE_THRESHOLD
+		if(4)
+			return STAGE_FOUR_THRESHOLD
+		if(5)
+			return STAGE_FIVE_THRESHOLD
+		if(6)
+			return STAGE_SIX_THRESHOLD
+
 /// Refreshes list of singularities
 /datum/computer_file/program/singularity_monitor/proc/refresh()
 	singularities = list()
@@ -67,27 +84,36 @@
 
 /datum/computer_file/program/singularity_monitor/ui_data()
 	var/list/data = get_header_data()
+	var/turf/pos = get_turf(ui_host())
 
-	if(istype(active))
+	if(!isnull(active))
 		var/turf/T = get_turf(active)
+		var/area/A = get_area(active)
 		if(!T)
 			active = null
 			refresh()
 			return
 		data["active"] = TRUE
-		data["area"] = "[get_area_name(T, TRUE)]"
+		data["area"] = A.name
 		data["x"] = T.x
 		data["y"] = T.y
+		data["dist"] = max(get_dist_euclidian(pos, T), 0) //Distance between the src and the sing
+		data["degrees"] = round(Get_Angle(pos, T)) //0-360 degree directional bearing, for more precision.
 		data["energy"] = active.energy
 		data["size"] = (active.current_size+1)/2
+		data["consume_range"] = active.consume_range
+		data["pull_range"] = active.grav_pull
+		data["dissipate_strength"] = active.dissipate_strength
+		data["down_threshold"] = get_threshold((active.current_size+1)/2)
+		data["up_threshold"] = get_threshold((active.current_size+3)/2)
+
 	else
 		var/list/sings = list()
 		var/counter = 1
-		var/turf/pos = get_turf(ui_host())
 		for(var/obj/singularity/S in singularities)
+			var/area_name = "Space"
 			var/turf/T = get_turf(S)
 			var/area/A = get_area(S)
-			var/area_name = "Space"
 			if(A)
 				area_name = A.name
 			sings.Add(list(list(
@@ -97,7 +123,7 @@
 				"dist" = max(get_dist_euclidian(pos, T), 0), //Distance between the src and the sing
 				"degrees" = round(Get_Angle(pos, T)), //0-360 degree directional bearing, for more precision.
 				"energy" = S.energy,
-				"size" = S.current_size,
+				"size" = (S.current_size+1)/2,
 				"uid" = counter
 				)))
 			counter += 1

@@ -84,6 +84,13 @@
 #define STAGE_FIVE 9
 #define STAGE_SIX 11 //From supermatter shard
 
+#define STAGE_ONE_THRESHOLD 1
+#define STAGE_TWO_THRESHOLD 200
+#define STAGE_THREE_THRESHOLD 500
+#define STAGE_FOUR_THRESHOLD 1000
+#define STAGE_FIVE_THRESHOLD 2000
+#define STAGE_SIX_THRESHOLD 3000
+
 //SSticker.current_state values
 #define GAME_STATE_STARTUP		0
 #define GAME_STATE_PREGAME		1
