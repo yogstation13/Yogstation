@@ -191,11 +191,11 @@
 			D.Unconscious(400)
 			if(A.grab_state < GRAB_NECK)
 				A.grab_state = GRAB_NECK
-			A.visibe_message("<span class='danger'>[A] relaxes their grip on [D].</span>", \ //ok sure it's actually probably a stronger grab but they aren't being choked nearly as fast
+			A.visible_message("<span class='danger'>[A] relaxes their grip on [D].</span>", \
 								"<span class='danger'>You relax your grip on [D].</span>") //visible message comes from attacker since defender is unconscious and therefore can't see
 		else
 			A.grab_state = min(0, A.grab_state - 1) //immediately lose grab power...
-			if(prob(BASE_RESIST_CHANCE/A.grab_state)) //...and have a chance to lose the entire grab
+			if(prob(BASE_GRAB_RESIST_CHANCE/A.grab_state)) //...and have a chance to lose the entire grab
 				A.visible_message("<span class='danger'>[A] is put off balance, losing their grip on [D]!</span>", \
 									"<span class='danger'>You are put off balance, and you lose your grip on [D]!</span>")
 				A.stop_pulling()
@@ -209,27 +209,27 @@
 	return TRUE
 
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
-	var/damage2deal = 10 * (1+D.getStaminaLoss/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
+	var/damage2deal = 10 * (1+D.getStaminaLoss()/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
 	while(do_mob(A, D, 30))
 		if(D.health - damage2deal < 20 || D.stat)
 			return TRUE
 		D.adjustOxyLoss(damage2deal)
-		if(D.getOxyLoss >= 50)
+		if(D.getOxyLoss() >= 50)
 			return TRUE
 
 /datum/martial_art/cqc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker) //I am going to fucking gut whoever did the old counter system also whoever made martial arts
 	if(!can_use(user))
 		return
 	attacker.visible_message("<span class='warning'>[user] grabs [attacker]'s arm as they attack and throws them to the ground!</span>", \
-						"<span class='userdanger'>[A] grabs your arm as you attack and throws you to the ground!</span>")
-	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
-	I = attacker.get_active_held_item()
+						"<span class='userdanger'>[user] grabs your arm as you attack and throws you to the ground!</span>")
+	playsound(get_turf(attacker), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
+	var/obj/item/I = attacker.get_active_held_item()
 	if(I && attacker.temporarilyRemoveItemFromInventory(I))
-		var/hand = A.get_inactive_hand_index()
+		var/hand = user.get_inactive_hand_index()
 		user.put_in_hand(I, hand)
 	attacker.Paralyze(20)
 	attacker.Knockdown(60)
-	
+
 
 /mob/living/carbon/human/proc/CQC_help()
 	set name = "Remember The Basics"
@@ -238,11 +238,11 @@
 	to_chat(usr, "<b><i>You try to remember some of the basics of CQC.</i></b>")
 
 	to_chat(usr, "<span class='notice'><b>All of your attacks deal stamina damage instead of your normal physical damage type</b></span>")
-	
+
 	to_chat(usr, "<span class='notice'><b>Disarm Intent</b> Has a chance to disarm the opponent's main hand, and immediately pick up the item if successful</span>")
 	to_chat(usr, "<span class='notice'><b>Grab Intent</b> Will stun opponents for a short second, allowing you to quickly increase the strength of your grabs</span>")
 	to_chat(usr, "<span class='notice'><b>Harm Intent</b> Will deal a competitive amount of stamina damage, and hitting a standing opponent while you are prone will both knock them down and stand you up</span>")
-	
+
 	to_chat(usr, "<span class='notice'>Slam</span>: Grab Harm. Slam opponent into the ground, knocking them down and dealing decent stamina damage.")
 	to_chat(usr, "<span class='notice'>CQC Kick</span>: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents.")
 	to_chat(usr, "<span class='notice'>Restrain</span>: Grab Grab. Locks opponents into a restraining position, making your grab harder to break out of, disarm to begin a chokehold which will knock out faster the more stamina damage the opponent has. Failing to complete the chokehold will weaken and possibly break your grab.")

@@ -274,7 +274,7 @@
 				var/mob/living/carbon/human/H = target
 				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
 					return
-				var/datum/martial_art/M = target.check_block()
+				var/datum/martial_art/M = H.check_block()
 				if(M)
 					M.handle_counter(target, user)
 					return
@@ -380,8 +380,8 @@
 	force = 5
 
 	cooldown = 20
-	stun_time_carbon = 85 
-	affect_silicon = TRUE 
+	stun_time_carbon = 85
+	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
 	stun_animation = TRUE

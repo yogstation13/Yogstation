@@ -1422,7 +1422,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return FALSE
 	var/datum/martial_art/M = H.check_block()
 	if(M)
-		M.handle_counter(target, user)
+		M.handle_counter(H, user)
 		return FALSE
 
 	var/hit_area
