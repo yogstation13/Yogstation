@@ -668,6 +668,10 @@
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
 
+/obj/item/bodypart/l_leg/monkey/teratoma
+	icon_state = "teratoma_l_leg"
+	animal_origin = TERATOMA_BODYPART
+
 /obj/item/bodypart/l_leg/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_l_leg"
@@ -725,6 +729,10 @@
 	icon_state = "default_monkey_r_leg"
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
+
+/obj/item/bodypart/r_leg/monkey/teratoma
+	icon_state = "teratoma_r_leg"
+	animal_origin = TERATOMA_BODYPART
 
 /obj/item/bodypart/r_leg/alien
 	icon = 'icons/mob/animal_parts.dmi'
