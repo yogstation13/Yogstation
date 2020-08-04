@@ -603,8 +603,8 @@
 	var/bigsweat = FALSE
 	var/toxheal = FALSE
 	threshold_descs = list(
-	"transmission 6" = "The sweat production ramps up to the point that it puts out fires in the general vicinity"
-					"transmission 8" = "The symptom heals toxin damage and purges chemicals."
+	"transmission 6" = "The sweat production ramps up to the point that it puts out fires in the general vicinity",
+					"transmission 8" = "The symptom heals toxin damage and purges chemicals.",
 					)
 
 
