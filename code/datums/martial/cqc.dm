@@ -200,7 +200,7 @@
 				A.stop_pulling()
 			else
 				A.visible_message("<span class='danger'>[A] is put off balance, and struggles to maintain their grip on [D]!</span>", \
-									"<span class='danger>You are put off balance, and struggle to maintain your grip on [D]!</span>)
+									"<span class='danger>You are put off balance, and struggle to maintain your grip on [D]!</span>")
 		restraining = FALSE
 	else
 		restraining = FALSE
