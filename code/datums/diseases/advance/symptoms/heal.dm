@@ -478,7 +478,6 @@
 	stage_speed = 1
 	transmittable = -2
 	level = 7
-	severity = 1
 	symptom_delay_min = 1
 	symptom_delay_max = 1
 	var/current_size = 1
@@ -603,7 +602,6 @@
 	stage_speed = 0
 	transmittable = 1
 	level = 6
-	severity = 1
 	symptom_delay_min = 10
 	symptom_delay_max = 30
 	var/bigsweat = FALSE
