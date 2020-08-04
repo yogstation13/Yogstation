@@ -1,13 +1,8 @@
 
 import { Button, Icon, Flex, LabeledList, ProgressBar, Section, Table, Box, ColorableProgressBar } from '../components';
 import { NtosWindow } from '../layouts';
-import { random } from 'common/math';
-import { map } from 'common/collections';
-import { flow } from 'common/fp';
-import { toFixed, clamp } from 'common/math';
-import { vecLength, vecSubtract } from 'common/vector';
+import { clamp } from 'common/math';
 import { useBackend } from '../backend';
-import { FlexItem } from '../components/Flex';
 
 const getStageColor = stage => {
   let colors = ["yellow", "purple", "pink"];
@@ -25,6 +20,18 @@ const getStageColor = stage => {
   }
 };
 
+const getDistColor = (dist, consume, pull) => {
+  if (dist>=pull) {
+    return computeGradient((dist-pull)/(60-pull), "#f0de18", "#42f563");
+    // yellow to green transition
+  } else if (dist<=pull && dist>=consume) {
+    return computeGradient((dist-consume)/(pull-consume), "#ff0000", "#f0de18");
+    // red to yellow transition
+  } else {
+    return "red";
+  }
+};
+
 const rgbToHex = (r, g, b) => {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 };
@@ -36,12 +43,12 @@ const hexToRGB = hex => {
 };
 
 const computeGradient= (value, color1, color2) => {
+  value = clamp(value, 0, 1);
   let rgbColor1 = hexToRGB(color1);
   let rgbColor2 = hexToRGB(color2);
-  let result = [rgbToHex(rgbColor1[0] + (Math.round((rgbColor2[0]-rgbColor1[0])*value)),
-  Math.round(rgbColor1[1] + ((rgbColor2[1]-rgbColor1[1])*value)),
-  Math.round(rgbColor1[2] + ((rgbColor2[2]-rgbColor1[2])*value)))];
-  return result;
+  return [rgbToHex(rgbColor1[0] + (Math.round((rgbColor2[0]-rgbColor1[0])*value)),
+    Math.round(rgbColor1[1] + ((rgbColor2[1]-rgbColor1[1])*value)),
+    Math.round(rgbColor1[2] + ((rgbColor2[2]-rgbColor1[2])*value)))];
 };
 
 export const NtosSingularityMonitor = (props, context) => {
@@ -130,7 +137,6 @@ const SingularityList = (props, context) => {
 
 const SingularityWindow = (props, context) => {
   const { act, data } = useBackend(context);
-  const { active } = data;
   return (
     <Section
       title="Singularity Data"
@@ -165,27 +171,21 @@ const SingularityWindow = (props, context) => {
           </ProgressBar>
         </LabeledList.Item>
         <LabeledList.Item
-          label="Location Data">
-          {data.area + " " + Math.round(data.dist, 1) + 'm'}
-          <Icon
-            opacity={data.dist !== undefined && (
-              clamp(
-                1.2 / Math.log(Math.E + data.dist / data.pull),
-                0.4, 1)
-            )}
-            mr={1}
-            size={1.2}
-            name="arrow-up"
-            rotation={data.degrees}
-            color={computeGradient(0.5, "#000000", "#FFFFFF")} />
+          label="Proximity Data">
+          <Box color={getDistColor(data.dist, data.consume_range, data.pull_range)}>
+            {data.area + " " + Math.round(data.dist, 1) + 'm '}
+            <Icon
+              mr={1}
+              size={1.2}
+              name="arrow-up"
+              rotation={data.degrees}
+              color={getDistColor(data.dist, data.consume_range, data.pull_range)} />
+          </Box>
         </LabeledList.Item>
       </LabeledList>
       <Box
         width={"20%"}
-        backgroundColor="FAFDE2"
-        color={computeGradient(0.5, "#AA00AA", "#FFFFFF")}>
-        {computeGradient(0.5, "#AA00AA", "#FFFFFF")}
-      </Box>
+        backgroundColor="FAFDE2" />
     </Section>
   );
 };
@@ -230,4 +230,4 @@ const getDistColor = (distance, consume, pull) => {
 // {rgbToHex(255, 255, 255)}
 
 
-//{hexToRGB("#FF00FF")[0]}
+// {hexToRGB("#FF00FF")[0]}

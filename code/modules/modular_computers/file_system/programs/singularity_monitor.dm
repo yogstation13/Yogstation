@@ -103,7 +103,6 @@
 		data["size"] = (active.current_size+1)/2
 		data["consume_range"] = active.consume_range
 		data["pull_range"] = active.grav_pull
-		data["dissipate_strength"] = active.dissipate_strength
 		data["down_threshold"] = get_threshold((active.current_size+1)/2)
 		data["up_threshold"] = get_threshold((active.current_size+3)/2)
 
@@ -124,6 +123,8 @@
 				"degrees" = round(Get_Angle(pos, T)), //0-360 degree directional bearing, for more precision.
 				"energy" = S.energy,
 				"size" = (S.current_size+1)/2,
+				"consume_range" = S.consume_range,
+				"pull_range" = S.grav_pull,
 				"uid" = counter
 				)))
 			counter += 1
