@@ -20,9 +20,9 @@
 	ui_y = 350
 	var/last_status = SUPERMATTER_INACTIVE
 	var/list/singularities
-	var/obj/singularity/active		// Currently selected supermatter crystal.
+	var/obj/singularity/active		// Currently selected singularity
 
-
+///updates the icon, when I get the damn icons.
 /datum/computer_file/program/singularity_monitor/process_tick()
 	..()/*
 	var/new_status = get_status()
@@ -76,6 +76,7 @@
 	if(!(active in singularities))
 		active = null
 
+///returns status for the monitor icon
 /datum/computer_file/program/singularity_monitor/proc/get_status()
 	. = "ALL CLEAR"
 	for(var/obj/singularity/S in singularities)

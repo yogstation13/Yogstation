@@ -183,51 +183,6 @@ const SingularityWindow = (props, context) => {
           </Box>
         </LabeledList.Item>
       </LabeledList>
-      <Box
-        width={"20%"}
-        backgroundColor="FAFDE2" />
     </Section>
   );
 };
-
-/*
-          <p>active: {active}</p>
-      <p>area: {area}</p>
-      <p>energy: {energy}</p>
-      <p>size: {size}</p>
-      <p>x: {x} </p>
-      <p>y: {y}</p>
-*/
-/* style={{
-              color: getStageColor(size),
-            }}*/
-
-// color={getStageColor(size)}
-/*
-
-const getDistColor = (distance, consume, pull) => {
-  let dangerRange = 0.0;
-  if (stage<5) {
-    dangerRange = (stage*2) + 2;
-  } else {
-    dangerRange = 15;
-  }
-  switch (distance) {
-    case (distance<dangerRange):
-      return "red";
-    case (distance<dangerRange*2):
-      return "orange";
-    case (distance<dangerRange*3):
-      return "green";
-    case (distance):
-      return "red";
-  }
-};
-*/
-
-// {"red"}
-
-// {rgbToHex(255, 255, 255)}
-
-
-// {hexToRGB("#FF00FF")[0]}
