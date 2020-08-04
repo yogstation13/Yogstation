@@ -216,18 +216,18 @@
 		if(D.getOxyLoss >= 50)
 			return TRUE
 
-/datum/martial_art/cqc/handle_counter(mob/living/carbon/human/A, mob/living/carbon/human/D) //I am going to fucking gut whoever did the old counter system also whoever made martial arts
-	if(!can_use(A))
+/datum/martial_art/cqc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker) //I am going to fucking gut whoever did the old counter system also whoever made martial arts
+	if(!can_use(user))
 		return
-	D.visible_message("<span class='warning'>[A] grabs [D]'s arm as they attack and throws them to the ground!</span>", \
+	attacker.visible_message("<span class='warning'>[user] grabs [attacker]'s arm as they attack and throws them to the ground!</span>", \
 						"<span class='userdanger'>[A] grabs your arm as you attack and throws you to the ground!</span>")
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
-	I = D.get_active_held_item()
-	if(I && D.temporarilyRemoveItemFromInventory(I))
+	I = attacker.get_active_held_item()
+	if(I && attacker.temporarilyRemoveItemFromInventory(I))
 		var/hand = A.get_inactive_hand_index()
-		A.put_in_hand(I, hand)
-	D.Paralyze(20)
-	D.Knockdown(60)
+		user.put_in_hand(I, hand)
+	attacker.Paralyze(20)
+	attacker.Knockdown(60)
 	
 
 /mob/living/carbon/human/proc/CQC_help()
