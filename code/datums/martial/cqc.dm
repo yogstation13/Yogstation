@@ -8,7 +8,8 @@
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_chance = 75 //to do: make blocking actually ufcking work with everything instead of being hidden in 5 different locations
+	block_chance = 75
+	nonlethal = TRUE //all attacks deal solely stamina damage or knock out before dealing lethal amounts of damage
 	var/just_a_cook = FALSE
 	var/old_grab_state = null
 
@@ -114,7 +115,7 @@
 		return FALSE
 	if(D.mobility_flags & MOBILITY_STAND)
 		log_combat(A, D, "consecutive CQC'd (CQC)")
-		D.visible_message("<span class='warning'>[A] delivers a firm blow to [D]'s head, knocking them down</span>", \
+		D.visible_message("<span class='warning'>[A] delivers a firm blow to [D]'s head, knocking them down!</span>", \
 							"<span class='userdanger'>[A] delivers a firm blow to your head, causing you to fall over!</span>")
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
 		D.Paralyze(20)
