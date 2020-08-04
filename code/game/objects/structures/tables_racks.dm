@@ -40,6 +40,7 @@
 		return ..()
 	if(prob(5))
 		to_chat(H, "<span class='warning'>You stub your toe on the [name]!</span>")
+		H.visible_message("[H] stubs their toe on the [name].") 
 		H.emote("scream")
 		H.apply_damage(2, BRUTE, def_zone = pick(BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT))
 		H.Paralyze(20)

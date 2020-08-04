@@ -54706,6 +54706,10 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main/monastery)
+"cjE" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/sleeper)
 "cjO" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/stack/sheet/glass/fifty{
@@ -57374,6 +57378,10 @@
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fkv" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "fkH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -58177,6 +58185,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"hVt" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "hVx" = (
 /obj/structure/chair{
 	dir = 4
@@ -59381,6 +59393,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/lawoffice)
+"mZp" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "mZE" = (
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -61211,6 +61227,10 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"tGh" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "tIS" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -61272,6 +61292,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"tYT" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/hor)
 "uaC" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -82673,7 +82697,7 @@ ajM
 aol
 aoP
 apG
-ajM
+hVt
 arj
 ajM
 ajM
@@ -90182,7 +90206,7 @@ bsA
 bua
 brK
 bsA
-bsA
+cjE
 byo
 btA
 byo
@@ -93039,7 +93063,7 @@ bdO
 bei
 bCf
 cdN
-bXk
+fkv
 ccd
 ccX
 cdS
@@ -94757,7 +94781,7 @@ aaa
 arA
 arA
 arA
-arA
+tGh
 arA
 azh
 arA
@@ -95580,7 +95604,7 @@ bfG
 byF
 cCt
 aQH
-bBp
+tYT
 bBp
 bBp
 bBp
@@ -99923,7 +99947,7 @@ aSc
 aSr
 aCl
 aWu
-aLf
+mZp
 aYs
 aYV
 aPY

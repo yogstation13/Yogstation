@@ -83756,6 +83756,10 @@
 "lob" = (
 /turf/closed/wall,
 /area/maintenance/department/science/central)
+"lpm" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "lvi" = (
 /turf/closed/wall,
 /area/maintenance/starboard/secondary)
@@ -83997,6 +84001,10 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/aisat)
+"oKC" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "oQe" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 8;
@@ -84152,6 +84160,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"qhB" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/storage)
 "qya" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -84251,6 +84263,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"rNv" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/research)
 "rOP" = (
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -84793,6 +84809,10 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"yiu" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/security/main)
 "yiY" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -103679,7 +103699,7 @@ aPC
 aRb
 aYM
 aYP
-bat
+oKC
 dmF
 dmF
 dmF
@@ -107314,7 +107334,7 @@ bvi
 cdr
 cew
 cfL
-bXK
+qhB
 byP
 cop
 clj
@@ -115799,7 +115819,7 @@ chp
 cgo
 cgo
 cgo
-cgo
+rNv
 bDm
 bSM
 bEN
@@ -116504,7 +116524,7 @@ aoI
 anO
 aqz
 asL
-aqa
+yiu
 ajm
 aHS
 ajm
@@ -126282,7 +126302,7 @@ deh
 aGn
 aCZ
 deM
-axY
+lpm
 aCZ
 aMg
 aCZ

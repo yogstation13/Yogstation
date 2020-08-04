@@ -52,6 +52,7 @@
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			G.erased_time = TRUE
 		ADD_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
+		ADD_TRAIT(L, TRAIT_NOINTERACT, "king_crimson") // no touching anything ever
 		L.remove_alt_appearance("king_crimson")
 		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
 	sleep(length)
@@ -72,6 +73,7 @@
 		L.alpha = initial(L.alpha)
 		L.remove_alt_appearance("king_crimson")
 		REMOVE_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
+		REMOVE_TRAIT(L, TRAIT_NOINTERACT, "king_crimson")
 
 /datum/atom_hud/alternate_appearance/basic/king_crimson
 	var/list/seers
