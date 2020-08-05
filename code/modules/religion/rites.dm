@@ -101,3 +101,19 @@
 	human2borg.set_species(/datum/species/android)
 	human2borg.visible_message("<span class='notice'>[human2borg] has been converted by the rite of [name]!</span>")
 	return TRUE
+
+/*********Capitalists**********/
+
+/datum/religion_rites/looks
+	name = "Gonna look like it"
+	desc = "From rags to riches? Better get rid of the rags then!"
+	ritual_length = 0.5 MINUTES
+	invoke_msg = "Please, all i want are some nice clothes..."
+	favor_cost = 100
+
+/datum/religion_rites/looks/invoke_effect(atom/religious_tool, mob/user)
+	var/location = get_turf(user)
+	new /obj/item/clothing/head/that(location)
+	new /obj/item/clothing/glasses/monocle(location)
+	new /obj/item/clothing/under/suit/black_really(location)
+	return TRUE
