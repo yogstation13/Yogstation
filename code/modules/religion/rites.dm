@@ -115,5 +115,5 @@
 	var/location = get_turf(user)
 	new /obj/item/clothing/head/that(location)
 	new /obj/item/clothing/glasses/monocle(location)
-	new /obj/item/clothing/under/suit/black_really(location)
+	new /obj/item/clothing/under/yogs/victorianvest(location)
 	return TRUE
