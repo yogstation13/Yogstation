@@ -8,6 +8,6 @@
 		return
 	var/turf/open/T = get_turf(holder.my_atom)
 	if(istype(T))
-		T.atmos_spawn_air("dilithium=[created_volume*2];TEMP=750")
+		T.atmos_spawn_air("dilithium=[created_volume*20];TEMP=750")
 	holder.clear_reagents()
 	return
