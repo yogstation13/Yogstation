@@ -1,7 +1,12 @@
+///slam combo string
 #define SLAM_COMBO "GH"
+///kick combo string
 #define KICK_COMBO "DH"
+///restrain combo string
 #define RESTRAIN_COMBO "GG"
+///pressure combo string
 #define PRESSURE_COMBO "DDG"
+///consecutive combo string
 #define CONSECUTIVE_COMBO "HHHHH"
 
 /datum/martial_art/cqc
@@ -10,15 +15,14 @@
 	help_verb = /mob/living/carbon/human/proc/CQC_help
 	block_chance = 75
 	nonlethal = TRUE //all attacks deal solely stamina damage or knock out before dealing lethal amounts of damage
+	///whether the art checks for being inside the kitchen for use
 	var/just_a_cook = FALSE
-	var/chokehold_active = FALSE //used to stop chokehold stacking
+	///used to stop a chokehold attack from stacking
+	var/chokehold_active = FALSE
 
 /datum/martial_art/cqc/under_siege
 	name = "Close Quarters Cooking"
 	just_a_cook = TRUE
-
-/datum/martial_art/cqc/proc/drop_restraining()
-	restraining = FALSE
 
 /datum/martial_art/cqc/can_use(mob/living/carbon/human/H) //this is used to make chef CQC only work in kitchen
 	var/area/A = get_area(H)
@@ -26,6 +30,13 @@
 		return FALSE
 	return ..()
 
+/**
+  * check_streak proc
+  *
+  * checks a martial arts' current combo string against combo defines
+  * activates a combo and returns true if it succeeds and the user can use the art
+  * otherwise returns false
+  */
 /datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -51,6 +62,11 @@
 		return TRUE
 	return FALSE
 
+/**
+  * CQC slam combo attack
+  *
+  * Attack that causes a short paralyze and knockdown plus 10 stamina admage
+  */
 /datum/martial_art/cqc/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -64,6 +80,12 @@
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
 
+/**
+  * CQC kick combo attack
+  *
+  * attack that deals 10 stamina and pushes the target away if they are standing
+  * or 30 stamina damage if they aren't
+  */
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -84,6 +106,12 @@
 		D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	return TRUE
 
+/**
+  * CQC pressure attack
+  *
+  * Attack that deals 30 stamina damage and immobilizes the target for 6 seconds
+  * also forces them to drop anything they are holding
+  */
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -95,6 +123,12 @@
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
+/**
+  * CQC restrain attack
+  *
+  * attack that puts the target into a restraining position, stunning them for a short period
+  * used to set up a chokehold attack
+  */
 /datum/martial_art/cqc/proc/Restrain(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(restraining)
 		return
@@ -110,6 +144,11 @@
 		restraining = TRUE
 	return TRUE
 
+/**
+  * CQC consecutive attack
+  *
+  * Attack that causes 2 seconds paralyze and 10 seconds knockdown as well as 25 stamina damage
+  */
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -212,6 +251,13 @@
 	restraining = FALSE
 	return TRUE
 
+/**
+  * CQC chokehold handle
+  *
+  * handles chokehold attack, dealing 10 oxygen damage with stamina damage multiplied as a % bonus every 1.5 seconds
+  * returns true if total damage reaches 80 or oxygen damage reaches 50
+  * returns false if the attack is interrupted
+  */
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
 	chokehold_active = TRUE
 	var/damage2deal = 10 * (1+D.getStaminaLoss()/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
@@ -238,7 +284,11 @@
 	attacker.Paralyze(20)
 	attacker.Knockdown(60)
 
-
+/**
+  * CQC help proc
+  *
+  * Tells the user how CQC attacks work
+  */
 /mob/living/carbon/human/proc/CQC_help()
 	set name = "Remember The Basics"
 	set desc = "You try to remember some of the basics of CQC."
@@ -258,3 +308,16 @@
 	to_chat(usr, "<span class='notice'>Consecutive CQC</span>: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
 	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>")
+
+/**
+  *
+  * CQC martial art
+  *
+  * Martial art that focuses on stamina damage and movement impairing effects
+  * Combos:
+  * [Slam][/datum/martial_art/cqc/proc/Slam]
+  * [Kick][/datum/martial_art/cqc/proc/Kick]
+  * [Restrain][/datum/martial_art/cqc/proc/Restrain]
+  * [Pressure][/datum/martial_art/cqc/proc/Pressure]
+  * [Consecutive][/datum/martial_art/cqc/proc/Consecutive]
+  */
