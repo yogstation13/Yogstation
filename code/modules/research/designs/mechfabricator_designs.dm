@@ -683,7 +683,7 @@
 	id = "borg_transform_security"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/security
-	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_URANIUM = 3000)
+	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_DIAMOND = 3000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
