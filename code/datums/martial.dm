@@ -26,21 +26,52 @@
 	var/nonlethal = FALSE
 	var/allow_temp_override = TRUE //if this martial art can be overridden by temporary martial arts
 
+/**
+  * martial art specific disarm attacks
+  *
+  * used to give a martial art a unique attack on disarm, returns FALSE if a basic hit should be done afterwards, TRUE if it should only do the unique stuff
+  */
 /datum/martial_art/proc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return FALSE
 
+/**
+  * martial art specific harm attacks
+  *
+  * used to give a martial art a unique attack on harm, returns FALSE if a basic hit should be done afterwards, TRUE if it should only do the unique stuff
+  */
 /datum/martial_art/proc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return FALSE
 
+/**
+  * martial art specific grab attacks
+  *
+  * used to give a martial art a unique attack on grab, returns FALSE if a basic hit should be done afterwards, TRUE if it should only do the unique stuff
+  */
 /datum/martial_art/proc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return FALSE
 
-/datum/martial_art/proc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker) //handles martial art counters if a block is scored
+/**
+  * martial art handle counter proc
+  *
+  * handles unique stuff on a martial art melee counter activating
+  */
+/datum/martial_art/proc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
 	return
 
+/**
+  * martial art can_use proc
+  *
+  * used to checks specific information regarding whether or not someone can use the martial art, returns TRUE if they can, FALSE if they can't
+  */
 /datum/martial_art/proc/can_use(mob/living/carbon/human/H)
 	return TRUE
 
+/**
+  * martial art add to streak proc
+  *
+  * used to add a character to a streak, up to the maximum streak size. forgets the oldest character in the streak if it would go above the maximum size.
+  * streaks are on a per person basis, and streaks will be lost if a new target is hit
+  */
 /datum/martial_art/proc/add_to_streak(element,mob/living/carbon/human/D)
 	if(D != current_target)
 		current_target = D
@@ -51,6 +82,11 @@
 		streak = copytext(streak, 1 + length(streak[1]))
 	return
 
+/**
+  * martial art basic hit
+  *
+  * used for basic punch attacks
+  */
 /datum/martial_art/proc/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
 
 	var/damage = rand(A.dna.species.punchdamagelow, A.dna.species.punchdamagehigh)
@@ -96,6 +132,12 @@
 		D.forcesay(GLOB.hit_appends)
 	return TRUE
 
+/**
+  * martial art learn proc
+  *
+  * gives the user the martial art, if it's a temporary one  it will only temporarily override an older martial art rather than replacing it
+  * unless the current art won't allow a temporary override
+  */
 /datum/martial_art/proc/teach(mob/living/carbon/human/H,make_temporary=0)
 	if(!istype(H) || !H.mind)
 		return FALSE
@@ -113,6 +155,11 @@
 	H.mind.martial_art = src
 	return TRUE
 
+/**
+  * martial art store proc
+  *
+  * used to store the martial art as the basic art if another art would temporarily override it
+  */
 /datum/martial_art/proc/store(datum/martial_art/M,mob/living/carbon/human/H)
 	M.on_remove(H)
 	if(M.base) //Checks if M is temporary, if so it will not be stored.
@@ -120,6 +167,11 @@
 	else //Otherwise, M is stored.
 		base = M
 
+/**
+  * martial art removal proc
+  *
+  * used to remove a martial art, will replace it with the base martial art or default martial art lacking a base
+  */
 /datum/martial_art/proc/remove(mob/living/carbon/human/H)
 	if(!istype(H) || !H.mind || H.mind.martial_art != src)
 		return
@@ -129,7 +181,11 @@
 	else
 		var/datum/martial_art/X = H.mind.default_martial_art
 		X.teach(H)
-
+/**
+  * martial art on_remove handler proc
+  *
+  * handles specific things that are to be done on a martial art being removed
+  */
 /datum/martial_art/proc/on_remove(mob/living/carbon/human/H)
 	if(help_verb)
 		H.verbs -= help_verb
