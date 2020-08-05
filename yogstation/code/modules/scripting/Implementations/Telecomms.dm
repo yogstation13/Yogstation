@@ -213,7 +213,8 @@ GLOBAL_LIST_INIT(allowed_translations,list(HUMAN,ROBOT,DRACONIC))
 	signal.virt.verb_yell		= script_signal.get_clean_property("yell")
 	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
 	var/newlang = script_signal.get_clean_property("language")
-	newlang &= GLOB.allowed_translations // cleans out any unallowed translations. Tcomms powergaming is dead! - Hopek
+	if(newlang != oldlang)
+		newlang &= GLOB.allowed_translations // cleans out any unallowed translations. Tcomms powergaming is dead! - Hopek
 	signal.language = LangBit2Datum(newlang) || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
