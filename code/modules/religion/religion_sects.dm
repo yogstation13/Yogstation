@@ -175,7 +175,7 @@
 	to_chat(L, "<span class='notice'>You offer [the_cell]'s power to [GLOB.deity], pleasing them.</span>")
 	qdel(I)
 	return TRUE
-
+// cool new religion thats based off of money. (am i doing autodoc correctly?)
 /datum/religion_sect/capitalists
 	name = "The Cult of St. Credit"
 	desc = "A cult oriented around money."
