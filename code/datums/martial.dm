@@ -1,17 +1,29 @@
 /datum/martial_art
+	///the name of the martial art
 	var/name = "Martial Art"
-	var/id = "" //ID, used by mind/has_martialart
+	///ID, used by mind/has_martialart
+	var/id = "" 
+	///current streak, successful attacks add to this
 	var/streak = ""
+	///longest a streak can be before the oldest attack is forgotten
 	var/max_streak_length = 6
+	///current thing being targetted for combos, switches if the user hits a different opponent
 	var/current_target
 	var/datum/martial_art/base // The permanent style. This will be null unless the martial art is temporary
-	var/deflection_chance = 0 //Chance to deflect projectiles
-	var/reroute_deflection = FALSE //Delete the bullet, or actually deflect it in some direction?
-	var/block_chance = 0 //Chance to block melee attacks using items while on throw mode.
-	var/restraining = 0 //used in cqc's disarm_act to check if the disarmed is being restrained and so whether they should be put in a chokehold or not
+	///chance to deflect bullets
+	var/deflection_chance = 0
+	///check for if deflected bullets should be destroyed (false) or redirected (true)
+	var/reroute_deflection = FALSE
+	///chance for the martial art to block a melee attack when throw is on
+	var/block_chance = 0
+	///used for CQC's restrain combo
+	var/restraining = 0
+	///verb used to get a description of the art
 	var/help_verb
+	///forbid use of guns if martial art is active
 	var/no_guns = FALSE
-	var/nonlethal = FALSE //if the martial art has no lethal attacks
+	///check for if the martial art can be used by pacifists
+	var/nonlethal = FALSE
 	var/allow_temp_override = TRUE //if this martial art can be overridden by temporary martial arts
 
 /datum/martial_art/proc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -122,3 +134,11 @@
 	if(help_verb)
 		H.verbs -= help_verb
 	return
+
+/**
+  * Martial arts, allow different attack effects and combo attacks
+  *
+  * Martial arts are used to change how a carbon can attack, giving different effects based on intent
+  * Martial arts can also use combination attacks, which drastically change how an attack effects its target
+  * The user can also gain projectile or melee block chance from having a martial art
+  */
