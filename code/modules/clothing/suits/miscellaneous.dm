@@ -17,6 +17,8 @@
 	body_parts_covered = CHEST
 	allowed = list (/obj/item/gun/energy/laser/bluetag)
 	resistance_flags = NONE
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armor"
@@ -27,6 +29,7 @@
 	body_parts_covered = CHEST
 	allowed = list (/obj/item/gun/energy/laser/redtag)
 	resistance_flags = NONE
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /*
  * Costume
