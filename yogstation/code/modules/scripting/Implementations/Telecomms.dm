@@ -13,7 +13,7 @@
 #define DRACONIC 64
 #define BEACHTONGUE 128
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
-GLOBAL_LIST_INIT(allowed_translations,list(HUMAN,ROBOT,DRACONIC))// languages that players are allowed to translate to in a radio transmission
+GLOBAL_LIST_INIT(allowed_translations,list(HUMAN,ROBOT,DRACONIC))// languages that players are allowed to translate to in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
