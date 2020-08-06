@@ -93,7 +93,6 @@
 		D.visible_message("<span class='warning'>[A] kicks [D] back!</span>", \
 							"<span class='userdanger'>[A] kicks you back!</span>")
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
-		var/atom/throw_target = get_edge_target_turf(D, A.dir)
 		step(D, A.dir)
 		D.apply_damage(10, STAMINA)
 		log_combat(A, D, "kicked (CQC)")
