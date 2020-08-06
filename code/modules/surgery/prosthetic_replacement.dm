@@ -31,7 +31,6 @@
 	var/mob/living/carbon/C = target
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return 1
-	
 
 /datum/surgery_step/add_prosthetic
 	name = "add prosthetic"
