@@ -15,7 +15,6 @@
 	if(!agent_team)
 		agent_team = new
 		SSticker.mode.blood_agent_team = agent_team
-		agent_team.forge_blood_objectives()
 		agent_team.add_member(owner)
 		objectives += agent_team.objectives
 	else
