@@ -15,7 +15,6 @@
 	if(!agent_team)
 		agent_team = new(owner)
 		SSticker.mode.clock_agent_team = agent_team
-		agent_team.forge_clock_objectives()
 		agent_team.add_member(owner)
 		objectives += agent_team.objectives
 		adjust_clockwork_power(1000)
