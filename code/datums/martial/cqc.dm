@@ -94,7 +94,7 @@
 							"<span class='userdanger'>[A] kicks you back!</span>")
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 		var/atom/throw_target = get_edge_target_turf(D, A.dir)
-		D.throw_at(throw_target, 1, 14, A)
+		step(D, A.dir)
 		D.apply_damage(10, STAMINA)
 		log_combat(A, D, "kicked (CQC)")
 	if(!(D.mobility_flags & MOBILITY_STAND) && !D.stat)
@@ -103,7 +103,6 @@
 					  		"<span class='userdanger'>[A] kicks you in the abdomen!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		D.apply_damage(30, STAMINA)
-		D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	return TRUE
 
 /**
@@ -209,8 +208,8 @@
 	var/obj/item/I = null
 	if(check_streak(A,D))
 		return TRUE
+	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	if(!D.stat && !D.IsParalyzed() && !restraining)
-		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 		if(prob(65))
 			I = D.get_active_held_item()
 			D.visible_message("<span class='warning'>[A] quickly grabs [D]'s arm and and chops it, disarming them!</span>", \
