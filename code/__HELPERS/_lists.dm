@@ -348,9 +348,22 @@
 	GLOB.cmp_field = field
 	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
 
-//any value in a list
+/// Allows for a near instant result!
 /proc/sortList(list/L, cmp=/proc/cmp_text_asc)
-	return sortTim(L.Copy(), cmp)
+	var/sorted = FALSE
+	while(!sorted)
+		var/holder = 0
+		var/list/sorted_list = list()
+		for(var/i in L)
+			var/pick = pick(L)
+			if(pick > holder)
+				pick = holder
+				sorted_list += pick
+				continue
+			else
+				break
+		sorted = TRUE
+		return sorted_list
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L, order=1)
