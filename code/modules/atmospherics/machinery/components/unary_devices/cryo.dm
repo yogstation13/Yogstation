@@ -182,7 +182,7 @@
 		return
 	
 	if(HAS_TRAIT(mob_occupant,TRAIT_MEDICALIGNORE))
-		src.visible_message("<span class='warning'>The [src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine.</span>")
+		src.visible_message("<span class='warning'>[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine.</span>")
 		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
 		on = FALSE
 		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
