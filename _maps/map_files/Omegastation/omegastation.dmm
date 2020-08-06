@@ -10929,19 +10929,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
-"aqu" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/machinery/light,
-/obj/effect/turf_decal/bot,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "aqv" = (
 /obj/effect/decal/cleanable/oil,
 /obj/structure/closet/crate,
@@ -16768,13 +16755,6 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
 /area/hallway/primary/starboard)
-"ayQ" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/starboard/central)
 "ayR" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/fire/firefighter,
@@ -22723,19 +22703,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
-"aHV" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "aHW" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -24306,7 +24273,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aKm" = (
@@ -25107,7 +25073,6 @@
 	name = "Containment Control";
 	req_access_txt = "55"
 	},
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aLw" = (
@@ -25753,7 +25718,6 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aMJ" = (
@@ -37480,7 +37444,6 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "biZ" = (
@@ -38780,6 +38743,13 @@
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
 /area/maintenance/port)
+"cwF" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/starboard/central)
 "cxU" = (
 /obj/machinery/light,
 /obj/machinery/power/apc{
@@ -39099,6 +39069,12 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
+"dWp" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/bot,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "dYW" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
@@ -39858,6 +39834,16 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"gZr" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "hdh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
@@ -89081,7 +89067,7 @@ avl
 awp
 awD
 ara
-ayQ
+cwF
 apY
 asl
 aCe
@@ -89899,7 +89885,7 @@ aZE
 aZN
 aZE
 aZQ
-aHV
+gZr
 bjQ
 bfP
 aad
@@ -94469,7 +94455,7 @@ aae
 aGc
 aol
 apn
-aqu
+dWp
 aGc
 aae
 aae

@@ -2793,20 +2793,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"aeV" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "aeW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3416,12 +3402,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
-"afV" = (
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "afW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -83252,10 +83232,6 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "gLo" = (
@@ -83315,6 +83291,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"heF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "hfl" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -100852,7 +100835,7 @@ aaf
 aaa
 aaf
 aFO
-aeV
+heF
 aAC
 aBS
 aFO
@@ -118706,7 +118689,7 @@ cTt
 daA
 cSn
 cSn
-afV
+cSn
 daL
 cRi
 daQ
