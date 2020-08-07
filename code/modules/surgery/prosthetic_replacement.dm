@@ -25,8 +25,8 @@
 		)
 
 /datum/surgery/prosthetic_replacement/mechanic_limb/can_start(mob/user, mob/living/carbon/target)
-	if(!iscarbon(target) || !ispreternis(target)) // This surgery won't work unless you are working on a preterni
-		return 0
+	if(!ispreternis(target))
+		return FALSE
 
 	var/mob/living/carbon/C = target
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
@@ -111,4 +111,3 @@
 			var/obj/item/melee/arm_blade/new_arm = new(target,TRUE,TRUE)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 			return 1
-
