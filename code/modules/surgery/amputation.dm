@@ -47,7 +47,7 @@
 
 /datum/surgery_step/sever_limb/mechanic
 	name = "uninstall limb"
-	accept_hand = 1
+	accept_hand = TRUE
 
 /datum/surgery_step/sever_limb/mechanic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, "<span class='notice'>You begin to detach [target]'s [parse_zone(target_zone)]...</span>",
