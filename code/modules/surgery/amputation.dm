@@ -22,9 +22,7 @@
 		)
 
 /datum/surgery/amputation/mechanic/can_start(mob/user, mob/living/carbon/target)
-	if(!iscarbon(target) || !ispreternis(target)) // This surgery won't work unless you are working on a preterni
-		return 0
-	return 1
+	return ispreternis(target))
 
 /datum/surgery_step/sever_limb
 	name = "sever limb"
