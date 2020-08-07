@@ -87,18 +87,16 @@
 				jealous.owner = owner
 				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
 				objectives += jealous
-
-	if(prob(50))
-		var/datum/objective/protect/yandere_one = new
-		yandere_one.owner = owner
-		yandere_one.target = obsessionmind
-		yandere_one.update_explanation_text()
-		objectives += yandere_one
-		var/datum/objective/maroon/yandere_two = new
-		yandere_two.owner = owner
-		yandere_two.target = obsessionmind
-		yandere_two.update_explanation_text() //usually called in find_target()
-		objectives += yandere_two
+	var/datum/objective/protect/yandere_one = new
+	yandere_one.owner = owner
+	yandere_one.target = obsessionmind
+	yandere_one.update_explanation_text()
+	objectives += yandere_one
+	var/datum/objective/maroon/yandere_two = new
+	yandere_two.owner = owner
+	yandere_two.target = obsessionmind
+	yandere_two.update_explanation_text() //usually called in find_target()
+	objectives += yandere_two
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 
