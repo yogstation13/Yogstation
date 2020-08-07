@@ -115,7 +115,6 @@
         			/obj/item/clothing/head/wig/random = 3, // yogs added a ,
         			/obj/item/clothing/under/yogs/ronaldmcdonald = 1, // yogs clothes for autodrobe start here
 					/obj/item/clothing/mask/yogs/ronald = 1,
-					/obj/item/clothing/mask/yogs/cluwne/happy_cluwne = 1,
 					/obj/item/clothing/mask/yogs/bananamask = 1,
 					/obj/item/storage/backpack/banana = 1,
 					/obj/item/clothing/mask/yogs/gigglesmask = 1,
