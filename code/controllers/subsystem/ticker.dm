@@ -671,8 +671,8 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/yoggers.ogg', //yogs -- adds yogurt saying "Can we get a yoggers in the chat?"
 		'sound/roundend/disappointed.ogg',
 		'sound/roundend/scrunglartiy.ogg',
-		'sound/roundend/windowsxp.ogg'\
-		'sound/roundend/it_never_happened.ogg' // jonathan frakes telling you you're wrong
+		'sound/roundend/windowsxp.ogg',
+		'sound/roundend/it_never_happened.ogg'\ // jonathan frakes telling you you're wrong
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
