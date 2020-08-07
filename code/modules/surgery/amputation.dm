@@ -22,7 +22,7 @@
 		)
 
 /datum/surgery/amputation/mechanic/can_start(mob/user, mob/living/carbon/target)
-	return ispreternis(target))
+	return ispreternis(target)
 
 /datum/surgery_step/sever_limb
 	name = "sever limb"
