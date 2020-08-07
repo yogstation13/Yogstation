@@ -708,6 +708,10 @@ world
 
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
 /proc/getFlatIcon(image/A, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE)
+	var/static/last = world.time
+	if((world.time - last) > 30 SECONDS)
+		stack_trace("getFlatIcon")
+		
 	//Define... defines.
 	var/static/icon/flat_template = icon('icons/effects/effects.dmi', "nothing")
 
