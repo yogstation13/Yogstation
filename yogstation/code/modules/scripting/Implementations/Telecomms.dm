@@ -214,7 +214,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
 	var/newlang = LangBit2Datum(script_signal.get_clean_property("language"))
 	if(newlang != oldlang)// makes sure that we only clean out unallowed languages when a translation is taking place otherwise we run an unnecessary proc to filter newlang on foreign untranslated languages.
-		if(!LAZYFIND(GLOB.allowed_translations, newlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
+		if(!LAZYFIND(GLOB.allowed_translations, oldlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
 			newlang = oldlang
 	signal.language = newlang || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
