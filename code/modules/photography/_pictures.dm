@@ -38,6 +38,7 @@
 
 /datum/picture/proc/get_small_icon()
 	if(!picture_icon)
+		picture_icon = icon('icons/obj/items_and_weapons.dmi', "photo")// sets default icon if picture_icon doesn't exist.
 		regenerate_small_icon()
 	return picture_icon
 
