@@ -3124,6 +3124,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"ago" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/item/flashlight/flare/signal{
+	pixel_x = 1;
+	pixel_y = 11
+	},
+/turf/open/floor/plasteel,
+/area/storage/eva)
 "agp" = (
 /obj/item/soap/nanotrasen,
 /turf/open/floor/plasteel/freezer,
@@ -4416,6 +4436,39 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aiL" = (
+/obj/item/cartridge/engineering{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/cartridge/engineering{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/cartridge/engineering{
+	pixel_x = 3
+	},
+/obj/structure/table/reinforced,
+/obj/item/cartridge/atmos,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Engineer's Desk";
+	departmentType = 3;
+	name = "Chief Engineer RC";
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "aiM" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -10923,6 +10976,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"auX" = (
+/obj/structure/table,
+/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "auY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -20445,22 +20504,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"aNr" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/effect/turf_decal/stripes/end{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/storage/eva)
 "aNs" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -51747,38 +51790,6 @@
 "bUH" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/chief)
-"bUI" = (
-/obj/item/cartridge/engineering{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = 3
-	},
-/obj/structure/table/reinforced,
-/obj/item/cartridge/atmos,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Engineer's Desk";
-	departmentType = 3;
-	name = "Chief Engineer RC";
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "bUJ" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/light{
@@ -53126,11 +53137,6 @@
 	brightness = 3;
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/maintenance/department/engine)
-"cba" = (
-/obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "cbb" = (
@@ -83795,7 +83801,7 @@ ahi
 abI
 aaa
 bgj
-cba
+auX
 cbT
 bDi
 bgj
@@ -90467,7 +90473,7 @@ bva
 amE
 aoc
 bUH
-bUI
+aiL
 bVD
 bWn
 bXf
@@ -95037,7 +95043,7 @@ awN
 awG
 aKZ
 aLS
-aNr
+ago
 aOC
 aJg
 aRa
