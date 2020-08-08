@@ -1,0 +1,5 @@
+author: "swissloaf"
+delete-after: true 
+changes: 
+  - rscadd: "Adds movie-like rolling credits to the end of the round"
+  - experiment: "This is experimental"
