@@ -63,7 +63,7 @@
 			H.dna.add_mutation(CLUWNEMUT)
 
 /**
-  * Togglable cluwne mask that has a small chance to turn the user into a cluwne or a floor cluwne
+  * Togglable cluwne mask that has a small chance to turn the user into a cluwne or create a floor cluwne with the user as a target
   *
   * The logic of the cluwne mask is predetermined in [/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/proc/Initialize] to prevent spamming the equip until you get a floor cluwne
   */
