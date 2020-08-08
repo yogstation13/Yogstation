@@ -46,6 +46,7 @@
 	required_enemies = 4
 	recommended_enemies = 4
 	enemy_minimum_age = 14
+	title_icon = "cult"
 
 	announce_span = "cult"
 	announce_text = "Some crew members are trying to start a cult to Nar-Sie!\n\
@@ -266,5 +267,25 @@
 			L.maxHealth = initial(L.maxHealth)
 			to_chat(L, "<span class='cult'>Your form regains its original durability!</span>")
 	//send message to cultists saying they can do stuff again
+	
+/datum/game_mode/cult/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Cult of Nar'Sie:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/cultist in cult)
+		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
+
+	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives
+	if(summon_objective && summon_objective.summoned)
+		round_credits += "<center><h2>Nar'Sie as the eldritch abomination</h2>"
+
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The cultists have learned the danger of eldritch magic!</h2>", "<center><h2>They all disappeared!</h2>")
+		round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits
 
 #undef CULT_SCALING_COEFFICIENT
