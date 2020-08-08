@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;achievements - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/achievements.html#var">Var Details</a> - <a href="datum/controller/subsystem/achievements.html#proc">Proc Details</a></header>
+<main>
+<h1>Achievements <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/achievements.html">achievements</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 17"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#var/CE">CE</a></th><td>The current guy that SSachievements believes to be the CE. See <a href="datum/controller/subsystem/achievements.html#proc/fire" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/proc/fire</a></td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#var/achievements">achievements</a></th><td>List of all the achievement instances, one for each achievement. Access through <a href="datum/controller/subsystem/achievements.html#proc/get_achievement" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/proc/get_achievement</a></td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#var/achievementsEarned">achievementsEarned</a></th><td>Dictionary of all achievements earned this round. Key is a username, value is a list of achievements that have been earnt by that username.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#var/browsers">browsers</a></th><td>Dictionary of all achievement browsers. Key is a username, value is the given browser. See <a href="datum/achievement_browser.html" title="/datum/achievement_browser">/datum/achievement_browser</a> and <a href="datum/controller/subsystem/achievements.html" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/get_browser</a></td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#var/cached_achievements">cached_achievements</a></th><td>Dictionary of cached achievements. Key is a username, value is a dictionary where the keys are achievements and the values are booleans signifying completion. See <a href="datum/controller/subsystem/achievements.html#proc/cache_achievements" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/proc/cache_achievements</a></td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/Initialize">Initialize</a></th><td>Sets up all the lists used by the subsystem and updates the database</td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/cache_achievements">cache_achievements</a></th><td>Creates a cache of all achievements and whether or not they're unlocked for the given ckey</td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/fire">fire</a></th><td>Subsystem firing, checks solar panel achievement</td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/get_achievement">get_achievement</a></th><td>Gets the achievement instance for the given achievement path</td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/get_browser">get_browser</a></th><td>Gets the achievement browser for the given client. See <a href="datum/achievement_browser.html" title="/datum/achievement_browser">/datum/achievement_browser</a></td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/has_achievement">has_achievement</a></th><td>Checks whether the client has an achievement. </td></tr>
+            <tr><th><a href="datum/controller/subsystem/achievements.html#proc/unlock_achievement">unlock_achievement</a></th><td>Unlocks the given achievement for the given client.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/CE"><aside class="declaration">var </aside>CE
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 31"/></a></h3>
+        <p>The current guy that SSachievements believes to be the CE. See <a href="datum/controller/subsystem/achievements.html#proc/fire" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/proc/fire</a></p><h3 id="var/achievements"><aside class="declaration">var </aside>achievements
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 21"/></a></h3>
+        <p>List of all the achievement instances, one for each achievement. Access through <a href="datum/controller/subsystem/achievements.html#proc/get_achievement" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/proc/get_achievement</a></p><h3 id="var/achievementsEarned"><aside class="declaration">var </aside>achievementsEarned
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 27"/></a></h3>
+        <p>Dictionary of all achievements earned this round. Key is a username, value is a list of achievements that have been earnt by that username.</p><h3 id="var/browsers"><aside class="declaration">var </aside>browsers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 25"/></a></h3>
+        <p>Dictionary of all achievement browsers. Key is a username, value is the given browser. See <a href="datum/achievement_browser.html" title="/datum/achievement_browser">/datum/achievement_browser</a> and <a href="datum/controller/subsystem/achievements.html" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/get_browser</a></p><h3 id="var/cached_achievements"><aside class="declaration">var </aside>cached_achievements
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 23"/></a></h3>
+        <p>Dictionary of cached achievements. Key is a username, value is a dictionary where the keys are achievements and the values are booleans signifying completion. See <a href="datum/controller/subsystem/achievements.html#proc/cache_achievements" title="/datum/controller/subsystem/achievements">/datum/controller/subsystem/achievements/proc/cache_achievements</a></p><h2 id="proc">Proc Details</h2><h3 id="proc/Initialize">Initialize<aside>(timeofday) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 40"/></a></aside>
+        </h3>
+        <p>Sets up all the lists used by the subsystem and updates the database</p>
+<p>First it creates all the achievement instances, then it updates the database to remove old achievements and add any new ones
+It also updates old achievement name/descriptions in the database to the new ones</p>
+<p>Arguments:</p>
+<ul>
+<li>timeofday - Time of initialization, used to calculate how long SS initialization took</li>
+</ul><h3 id="proc/cache_achievements"><aside class="declaration">proc </aside>cache_achievements<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 164"/></a></aside>
+        </h3>
+        <p>Creates a cache of all achievements and whether or not they're unlocked for the given ckey</p>
+<p>Will likely not work if admins call this proc, since SQL calls as a result of admin calls are blocked</p>
+<p>Arguments: </p>
+<ul>
+<li>C - Client that you're caching for, See <a href="client.html" title="/client">/client</a></li>
+</ul><h3 id="proc/fire">fire<aside>(resumed) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 90"/></a></aside>
+        </h3>
+        <p>Subsystem firing, checks solar panel achievement</p>
+<p>Checks whether there's currently a <a href="datum/controller/subsystem/achievements.html#var/CE" title="/datum/controller/subsystem/achievements">CE</a>, if there isn't, it tries to find one
+Otherwise, it checks to see whether <a href="datum/achievement.html" title="/datum/achievement">/datum/achievement/engineering/scotty</a> should be triggered. It then calls [/datum/controller/subsystem/proc/fire]</p>
+<p>Arguments:</p>
+<ul>
+<li>resumed - Whether or not this was resumed from last tick (unlikely with this subsystem)</li>
+</ul><h3 id="proc/get_achievement"><aside class="declaration">proc </aside>get_achievement<aside>(achievementPath) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 196"/></a></aside>
+        </h3>
+        <p>Gets the achievement instance for the given achievement path</p>
+<p>Will return false if it doesn't exist, otherwise it'll get that exact achievement (subtypes aren't accepted)</p>
+<p>Arguments:</p>
+<ul>
+<li>achievementPath - The typepath for the achievement you're trying to get. See <a href="datum/achievement.html" title="/datum/achievement">/datum/achievement</a></li>
+</ul><h3 id="proc/get_browser"><aside class="declaration">proc </aside>get_browser<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 185"/></a></aside>
+        </h3>
+        <p>Gets the achievement browser for the given client. See <a href="datum/achievement_browser.html" title="/datum/achievement_browser">/datum/achievement_browser</a></p>
+<p>If the achievement_browser doesn't exist, it'll create it and then return it</p>
+<p>Arguments:</p>
+<ul>
+<li>C - Client that you're getting the browser for, See <a href="client.html" title="/client">/client</a></li>
+</ul><h3 id="proc/has_achievement"><aside class="declaration">proc </aside>has_achievement<aside>(achievementPath, /<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 146"/></a></aside>
+        </h3>
+        <p>Checks whether the client has an achievement. </p>
+<p>Will create a cache of the given client's achievements if it doesn't already exist</p>
+<p>Arguments:</p>
+<ul>
+<li>achievementPath - The typepath for the achievement you're checking. See <a href="datum/achievement.html" title="/datum/achievement">/datum/achievement</a></li>
+<li>C - Client that you're checking it for, See <a href="client.html" title="/client">/client</a></li>
+</ul><h3 id="proc/unlock_achievement"><aside class="declaration">proc </aside>unlock_achievement<aside>(achievementPath, /<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/a1beb612832dac538ce2329717a13444df9d1a9c/code/controllers/subsystem/achievements.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements.dm 118"/></a></aside>
+        </h3>
+        <p>Unlocks the given achievement for the given client.</p>
+<p>Will log if the achievement getting unlocked doesn't exist.
+Will unlock the given achievement, save it to the DB and cache it for the round.
+This won't work if you're admin calling the proc, since SQL blocks admin-called queries</p>
+<p>Arguments:</p>
+<ul>
+<li>achievementPath - The typepath for the achievement you're trying to unlock. See <a href="datum/achievement.html" title="/datum/achievement">/datum/achievement</a></li>
+<li>C - Client that you're unlocking it for, See <a href="client.html" title="/client">/client</a></li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/a1beb612832dac538ce2329717a13444df9d1a9c">a1beb61</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>
