@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(49 modules,
-    424/6010 macros, 7.1%)</aside></h3>
+    426/6034 macros, 7.1%)</aside></h3>
 <ul class="index-tree">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -108,7 +108,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(152 detailed/584 documented/21590 total, 2.7%)</aside></h3>
+<aside>(156 detailed/593 documented/21594 total, 2.7%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -128,6 +128,7 @@ Syndicate infiltrator</li>
     </ul></li>
     <li class="has-children"><a href="atom.html" title="&#x2F;atom">atom</a> - The base type for nearly all physical objects in SS13<ul class="index-tree">
     <li class="has-children"><a href="atom/movable.html" title="&#x2F;atom&#x2F;movable">movable</a><ul class="index-tree">
+    <li><a href="atom/movable/emissive_blocker.html" title="&#x2F;atom&#x2F;movable&#x2F;emissive_blocker">emissive_blocker</a> - Internal atom that copies an appearance on to the blocker plane</li>
     <li><a href="atom/movable/lighting_object.html" title="&#x2F;atom&#x2F;movable&#x2F;lighting_object">lighting_object</a></li>
     </ul></li>
     </ul></li>
@@ -882,6 +883,16 @@ It is also implicitly used to allocate a rectangle on the map, which will
 be used for auto-scaling the map.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;map_view">map_view</span> - A screen object, which acts as a container for turfs and other things
 you want to show on the map, which you usually attach to &quot;vis_contents&quot;.</li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;screen&#x2F;plane_master">plane_master</span><ul class="index-tree">
+    <li><a href="obj/screen/plane_master/emissive.html" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;emissive">emissive plane master</a> - Things placed on this mask the lighting plane. Doesn't render directly.</li>
+    <li><a href="obj/screen/plane_master/emissive_blocker.html" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;emissive_blocker">emissive blocker plane master</a> - Things placed on this layer mask the emissive layer. Doesn't render directly</li>
+    <li><a href="obj/screen/plane_master/emissive_unblockable.html" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;emissive_unblockable">unblockable emissive plane master</a> - Things placed on this always mask the lighting plane. Doesn't render directly.</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;floor">floor plane master</span> - Contains just the floor</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;game_world">game world plane master</span> - Contains most things in the game world</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;lighting">lighting plane master</span> - Contains all lighting objects</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;openspace">open space plane master</span> - Things rendered on &quot;openspace&quot;; holes in multi-z</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;plane_master&#x2F;parallax">parallax plane master</span> - Contains space parallax</li>
+    </ul></li>
     </ul></li>
     <li><span class="no-substance">singularity&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;singularity&#x2F;wizard">tear in the fabric of reality</span> - TEAR IN REALITY</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;structure">structure</span><ul class="index-tree">
@@ -947,7 +958,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/e8122341fc6730adf9461b97327616d76035469c">e812234</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/d36d862173736dc5ffe283b43205d4731fd73996">d36d862</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
 </body>
 </html>
