@@ -1,0 +1,5 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - bugfix: "Signal techs can no longer power game by translating antagonist languages."
+  - tweak: "Signal techs can now only translate the base languages."
