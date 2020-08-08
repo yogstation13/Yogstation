@@ -138,6 +138,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 0
 	return 1
 
+/datum/species/proc/has_toes()
+	return FALSE
+
 //Will regenerate missing organs
 /datum/species/proc/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
 	var/obj/item/organ/brain/brain = C.getorganslot(ORGAN_SLOT_BRAIN)
