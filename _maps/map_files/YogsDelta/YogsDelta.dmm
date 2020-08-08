@@ -23639,6 +23639,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aMl" = (
+/obj/structure/rack,
+/obj/item/crowbar,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/stack/cable_coil/white,
+/obj/effect/turf_decal/bot,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "aMm" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -24974,6 +24983,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"aOw" = (
+/obj/machinery/cell_charger,
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/structure/table/reinforced,
+/obj/item/stock_parts/cell/high,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/flashlight/flare/signal{
+	pixel_x = 2;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "aOx" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -76480,14 +76512,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"clW" = (
-/obj/structure/rack,
-/obj/item/crowbar,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/stack/cable_coil/white,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "clX" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -84110,25 +84134,6 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
-"cyq" = (
-/obj/machinery/cell_charger,
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/structure/table/reinforced,
-/obj/item/stock_parts/cell/high,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "cyr" = (
 /obj/structure/cable/white,
@@ -151835,7 +151840,7 @@ cfD
 chw
 cjg
 ckB
-clW
+aMl
 cnD
 cpb
 cqt
@@ -164950,7 +164955,7 @@ byX
 bLj
 cvo
 cwI
-cyq
+aOw
 czX
 cBn
 dUC
