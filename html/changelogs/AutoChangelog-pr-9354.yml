@@ -1,0 +1,6 @@
+author: "Firewolf34"
+delete-after: true 
+changes: 
+  - rscadd: "Nanotrasen has equipped Engineering staff with a brand-new flare formulation, designed for EVA work."
+  - bugfix: "Flares are no longer invisible due to a space quantum anomaly when held in the hand."
+  - soundadd: "Centcom has approved a change to make flares sound louder upon ignition, to improve crew morale."
