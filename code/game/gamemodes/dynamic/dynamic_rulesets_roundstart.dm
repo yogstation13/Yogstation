@@ -702,8 +702,7 @@
 	required_candidates = 0
 	weight = 1
 	cost = 75
-	requirements = list(100,100,100,100,100,100,100,100,100,100)
-	high_population_requirement = 100
+	requirements = list(100,100,100,100,100,100,100,100,99,98)
 	var/meteordelay = 2000
 	var/nometeors = 0
 	var/rampupdelta = 5
