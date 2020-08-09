@@ -1,5 +1,0 @@
-author: "FLME"
-delete-after: true 
-changes: 
-  - tweak: "dilithium obtained from dilithium is now times ten"
-  - tweak: "dilithium asymptote lowered to 425 from 4000"
