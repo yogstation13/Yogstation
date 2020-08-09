@@ -1,4 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed the ancient camera bug where a camera would generate an invisible photo breaking the camera."

@@ -1,4 +1,0 @@
-author: "  Xoxeyos"
-delete-after: true 
-changes: 
-  - bugfix: "Attempts to fix dynamic ragin' mages by copying code straight from the original ragin' mages file. Not sure how to fit config tabs into dynamic."
