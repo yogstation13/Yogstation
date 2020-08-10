@@ -180,6 +180,7 @@
 		to_chat("<span class='danger'>You don't have enough points for a Guardian like that!</span>")
 		used = FALSE
 		return FALSE
+	var/list/all_items = user.current.GetAllContents()
 	for(var/obj/I in all_items) //Check for mori
 		if(istype(I, /obj/item/clothing/neck/necklace/memento_mori))
 			to_chat("<span class='danger'>The memento mori revolts at the sight of the guardian creator!</span>")
