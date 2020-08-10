@@ -1,3 +1,4 @@
+GLOBAL_VAR_INIT(clones, 0)
 //Cloning revival method.
 //The pod handles the actual cloning while the computer manages the clone profiles
 
@@ -40,6 +41,7 @@
 	var/datum/bank_account/current_insurance
 	fair_market_price = 5 // He nodded, because he knew I was right. Then he swiped his credit card to pay me for arresting him.
 	payment_department = ACCOUNT_MED
+
 /obj/machinery/clonepod/Initialize()
 	. = ..()
 
@@ -422,6 +424,7 @@
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		to_chat(occupant, "<span class='notice'>You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>.</span>") //yogs
 		mob_occupant.flash_act()
+		GLOB.clones++
 
 	occupant.forceMove(T)
 	icon_state = "pod_0"
