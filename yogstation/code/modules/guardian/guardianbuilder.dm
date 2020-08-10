@@ -183,7 +183,7 @@
 	var/list/all_items = user.GetAllContents()
 	for(var/obj/I in all_items) //Check for mori
 		if(istype(I, /obj/item/clothing/neck/necklace/memento_mori))
-			to_chat(user, "<span class='danger'>The memento mori revolts at the sight of the guardian creator!</span>")
+			to_chat(user, "<span class='danger'>The [I] revolts at the sight of the [src]!</span>")
 			used = FALSE
 			return FALSE
 	// IMPORTANT - if we're debugging, the user gets thrown into the stand
