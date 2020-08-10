@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - rscadd: "There's now a framework for department goals. Each department is given up to 5 goals a round to complete, with bonuses when they're completed."
