@@ -146,7 +146,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/flashlight/flare/emergency(src)
+	new /obj/item/flashlight/flare/signal(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
@@ -173,7 +173,7 @@
 // Plasmaman survival box
 /obj/item/storage/box/plasmaman/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/internals/plasmaman(src)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)

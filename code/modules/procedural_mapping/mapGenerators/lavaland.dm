@@ -11,7 +11,6 @@
 /datum/mapGeneratorModule/splatterLayer/lavalandMonsters
 	spawnableTurfs = list()
 	spawnableAtoms = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast = 10,
-	/mob/living/simple_animal/slime/random = 10,
 	/mob/living/simple_animal/hostile/asteroid/hivelord/legion = 10,
 	/mob/living/simple_animal/hostile/asteroid/basilisk/watcher = 10,
 	/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 10)

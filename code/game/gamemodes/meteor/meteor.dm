@@ -7,6 +7,7 @@
 	var/nometeors = 0
 	var/rampupdelta = 5
 	required_players = 0
+	title_icon = "meteor"
 
 	announce_span = "danger"
 	announce_text = "A major meteor shower is bombarding the station! The crew needs to evacuate or survive the onslaught."
