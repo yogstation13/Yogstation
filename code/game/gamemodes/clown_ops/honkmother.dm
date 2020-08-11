@@ -64,6 +64,7 @@
 		T = get_step(T, dir) //NOTHING WILL STAND IN THE WAY OF PRANKS
 	forceMove(T)
 
+//moves and turns things into BANANIUM
 /obj/structure/destructible/honkmother/process()
 	for(var/I in circlerangeturfs(src, convert_range))
 		var/turf/T = I
