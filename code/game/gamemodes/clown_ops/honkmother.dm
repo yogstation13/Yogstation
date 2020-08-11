@@ -3,6 +3,7 @@
 	name = "The Honkmother"
 	desc = "HONK!"
 	icon = 'icons/effects/288x288.dmi'
+	//Sprite made by MerchantPixels
 	icon_state = "honkmother"
 	//Centers Her
 	pixel_x = -144
