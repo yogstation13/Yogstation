@@ -221,6 +221,11 @@
 	if(.)
 		ChangeTurf(/turf/open/floor/clockwork)
 
+/turf/open/floor/honk_act(force, ignore_mobs)
+	. = ..()
+	if(.)
+		ChangeTurf(/turf/open/floor/mineral/bananium)
+
 /turf/open/floor/acid_melt()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
