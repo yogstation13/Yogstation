@@ -1537,6 +1537,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"kF" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/conveyor{
+	dir = 2;
+	id = "mining_internal"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "kM" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Mining Station Communications";
@@ -1701,18 +1712,18 @@
 /obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"nO" = (
+/obj/machinery/conveyor{
+	dir = 2;
+	id = "mining_internal"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "or" = (
 /obj/structure/window/reinforced,
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/mine/production)
-"ov" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_internal"
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "pl" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -1734,13 +1745,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"qy" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "qK" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -1929,6 +1933,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"zV" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining_internal"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "zW" = (
 /obj/machinery/mineral/unloading_machine{
 	dir = 1;
@@ -1953,10 +1964,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
-"Av" = (
-/obj/machinery/mineral/processing_unit_console,
-/turf/closed/wall,
-/area/mine/living_quarters)
 "AK" = (
 /obj/machinery/camera{
 	c_tag = "Storage";
@@ -2180,6 +2187,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"Dy" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "Ew" = (
 /obj/machinery/mineral/equipment_vendor,
 /obj/effect/turf_decal/tile/brown{
@@ -2362,13 +2376,6 @@
 /obj/machinery/atmospherics/pipe/simple,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
-"IO" = (
-/obj/machinery/conveyor{
-	dir = 2;
-	id = "mining_internal"
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "Je" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/effect/turf_decal/tile/purple{
@@ -2471,13 +2478,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
-"Np" = (
-/obj/machinery/mineral/processing_unit{
-	dir = 1;
-	output_dir = 2
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "NE" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
@@ -2527,6 +2527,13 @@
 	},
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"PG" = (
+/obj/machinery/mineral/processing_unit{
+	dir = 1;
+	output_dir = 2
+	},
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "Qs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -2713,17 +2720,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"Vk" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/conveyor{
-	dir = 2;
-	id = "mining_internal"
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "Vn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2881,6 +2877,10 @@
 	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"ZE" = (
+/obj/machinery/mineral/processing_unit_console,
+/turf/closed/wall,
 /area/mine/living_quarters)
 
 (1,1,1) = {"
@@ -3096,7 +3096,7 @@ di
 wF
 HE
 NE
-ov
+zV
 nl
 bQ
 ak
@@ -3157,7 +3157,7 @@ kM
 To
 iO
 eT
-qy
+Dy
 Yt
 di
 cY
@@ -3191,7 +3191,7 @@ cZ
 di
 bQ
 cY
-Av
+ZE
 cY
 By
 bQ
@@ -3222,9 +3222,9 @@ cB
 de
 gh
 zW
-Vk
-Np
-IO
+kF
+PG
+nO
 Up
 bQ
 bP
