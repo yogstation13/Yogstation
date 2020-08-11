@@ -250,6 +250,11 @@
 	if(.)
 		ChangeTurf(/turf/closed/wall/clockwork)
 
+/turf/closed/wall/honk_act(force, ignore_mobs)
+	. = ..()
+	if(.)
+		ChangeTurf(/turf/closed/wall/mineral/bananium)
+
 /turf/closed/wall/get_dumping_location(obj/item/storage/source, mob/user)
 	return null
 
