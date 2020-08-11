@@ -91,6 +91,13 @@
 		new/obj/structure/window/reinforced/clockwork/fulltile(get_turf(src))
 	qdel(src)
 
+/obj/structure/window/honk_act()
+	if(fulltile)
+		new/obj/structure/window/bananium/fulltile(get_turf(src))
+	else
+		return
+	qdel(src)
+
 /obj/structure/window/singularity_pull(S, current_size)
 	..()
 	if(current_size >= STAGE_FIVE)
