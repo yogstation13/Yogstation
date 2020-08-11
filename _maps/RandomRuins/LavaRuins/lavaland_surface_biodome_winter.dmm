@@ -328,6 +328,10 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/powered/snow_biodome)
+"As" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/wood,
+/area/ruin/powered/snow_biodome)
 "AM" = (
 /obj/structure/table,
 /obj/item/pen,
@@ -425,10 +429,6 @@
 /area/ruin/powered/snow_biodome)
 "Wg" = (
 /turf/closed/wall/r_wall,
-/area/ruin/powered/snow_biodome)
-"Wo" = (
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
-/turf/open/floor/wood,
 /area/ruin/powered/snow_biodome)
 
 (1,1,1) = {"
@@ -792,7 +792,7 @@ bw
 at
 aD
 at
-Wo
+As
 aq
 ak
 az
