@@ -41,6 +41,10 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+/obj/structure/falsewall/honk_act()
+	new /obj/structure/falsewall/bananium(loc)
+	qdel(src)
+
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
