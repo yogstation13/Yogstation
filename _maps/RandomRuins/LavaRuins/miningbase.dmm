@@ -1706,6 +1706,13 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"ov" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining_internal"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "pl" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -1852,16 +1859,6 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/mine/maintenance)
-"vJ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/mineral/processing_unit{
-	dir = 1;
-	output_dir = 2
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "vS" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -1956,6 +1953,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"Av" = (
+/obj/machinery/mineral/processing_unit_console,
+/turf/closed/wall,
+/area/mine/living_quarters)
 "AK" = (
 /obj/machinery/camera{
 	c_tag = "Storage";
@@ -2361,6 +2362,13 @@
 /obj/machinery/atmospherics/pipe/simple,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
+"IO" = (
+/obj/machinery/conveyor{
+	dir = 2;
+	id = "mining_internal"
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "Je" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/effect/turf_decal/tile/purple{
@@ -2463,6 +2471,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"Np" = (
+/obj/machinery/mineral/processing_unit{
+	dir = 1;
+	output_dir = 2
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "NE" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
@@ -2558,13 +2573,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"RF" = (
-/obj/machinery/mineral/processing_unit_console{
-	dir = 2;
-	machinedir = 8
-	},
-/turf/closed/wall,
-/area/mine/living_quarters)
 "RR" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -3058,7 +3066,7 @@ bQ
 bQ
 bQ
 bQ
-bI
+bQ
 bI
 ab
 ab
@@ -3088,10 +3096,10 @@ di
 wF
 HE
 NE
+ov
 nl
 bQ
 ak
-ab
 ab
 ab
 ab
@@ -3120,10 +3128,10 @@ di
 di
 MS
 cY
-pl
+cY
+By
 bQ
 ak
-ab
 ab
 ab
 ab
@@ -3151,11 +3159,11 @@ iO
 eT
 qy
 Yt
+di
 cY
-By
+pl
 bQ
 ak
-ab
 ab
 ab
 ab
@@ -3181,12 +3189,12 @@ cU
 dl
 cZ
 di
-RF
-cY
 bQ
+cY
+Av
+cY
 By
 bQ
-ak
 bI
 bI
 ab
@@ -3215,10 +3223,10 @@ de
 gh
 zW
 Vk
-vJ
+Np
+IO
 Up
 bQ
-bI
 bP
 bI
 bI
