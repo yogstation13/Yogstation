@@ -176,18 +176,28 @@
 	dir = 5
 	},
 /area/shuttle/caravan/pirate)
+"aJ" = (
+/obj/structure/table,
+/obj/machinery/airalarm/all_access{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/pirate)
 "bH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/shuttle/caravan/pirate)
-"bR" = (
-/mob/living/simple_animal/hostile/pirate{
-	environment_smash = 0;
-	loot = list(/obj/effect/mob_spawn/human/corpse/pirate)
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
 "de" = (
@@ -263,6 +273,33 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
+"gy" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/turretid{
+	icon_state = "control_kill";
+	lethal = 1;
+	locked = 0;
+	pixel_x = 1;
+	pixel_y = -25;
+	req_access = null
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/pirate/ranged{
+	environment_smash = 0
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "hI" = (
 /obj/structure/cable/yellow{
@@ -531,6 +568,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
+"qd" = (
+/mob/living/simple_animal/hostile/pirate{
+	environment_smash = 0;
+	loot = list(/obj/effect/mob_spawn/human/corpse/pirate)
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/caravan/pirate)
 "qo" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	dir = 6;
@@ -796,20 +840,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
-"Ff" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	id = "caravanpirate_bridge";
-	name = "Bridge Blast Door Control";
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
 "FM" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -839,6 +869,20 @@
 /obj/machinery/atmospherics/components/unary/tank/air,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
+/area/shuttle/caravan/pirate)
+"Go" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "caravanpirate_bridge";
+	name = "Bridge Blast Door Control";
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "GQ" = (
 /obj/machinery/light/small{
@@ -965,33 +1009,6 @@
 /obj/structure/sign/departments/engineering,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/caravan/pirate)
-"Pi" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/machinery/turretid{
-	icon_state = "control_kill";
-	lethal = 1;
-	locked = 0;
-	pixel_x = 1;
-	pixel_y = -25;
-	req_access = null
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/pirate/ranged{
-	environment_smash = 0
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
 "Pn" = (
 /obj/structure/shuttle/engine/propulsion/burst/left{
 	dir = 8
@@ -1060,23 +1077,6 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
-"Sy" = (
-/obj/structure/table,
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
@@ -1269,7 +1269,7 @@ na
 su
 Ag
 af
-Sy
+aJ
 al
 sr
 af
@@ -1300,7 +1300,7 @@ su
 Kd
 af
 oT
-bR
+qd
 zB
 af
 af
@@ -1463,8 +1463,8 @@ Jv
 Jv
 aa
 oO
-Pi
-Ff
+gy
+Go
 ao
 Jv
 Jv

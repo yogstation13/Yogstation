@@ -401,17 +401,6 @@
 /obj/item/shard,
 /turf/template_noop,
 /area/template_noop)
-"dA" = (
-/obj/effect/turf_decal/box/white/corners,
-/obj/structure/closet/crate/secure/gear,
-/obj/item/ammo_casing/shotgun/ion,
-/obj/item/ammo_casing/shotgun/dragonsbreath,
-/obj/item/ammo_casing/shotgun/dragonsbreath,
-/obj/item/ammo_casing/shotgun/buckshot,
-/obj/item/ammo_casing/shotgun/buckshot,
-/obj/item/ammo_casing/shotgun/buckshot,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter2)
 "dD" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
@@ -458,12 +447,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/ruin/unpowered)
-"fX" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter2)
 "fZ" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/caravan/freighter3)
@@ -1246,6 +1229,17 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/unpowered)
+"pp" = (
+/obj/effect/turf_decal/box/white/corners,
+/obj/structure/closet/crate/secure/gear,
+/obj/item/ammo_casing/shotgun/ion,
+/obj/item/ammo_casing/shotgun/dragonsbreath,
+/obj/item/ammo_casing/shotgun/dragonsbreath,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/ammo_casing/shotgun/buckshot,
+/obj/item/ammo_casing/shotgun/buckshot,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter2)
 "tH" = (
 /obj/structure/shuttle/engine/propulsion/burst{
 	dir = 8
@@ -1261,7 +1255,14 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter3)
-"Bs" = (
+"vN" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter2)
+"xM" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/button/door{
 	id = "caravantrade2_cargo_port";
@@ -1275,11 +1276,10 @@
 /obj/item/storage/box/rubbershot,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
-"DO" = (
+"DF" = (
 /obj/effect/turf_decal/box/white/corners{
-	dir = 8
+	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
 "GL" = (
@@ -1292,7 +1292,7 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter2)
-"ZM" = (
+"UA" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/gun/ballistic/shotgun/sc_pump,
@@ -3667,8 +3667,8 @@ bs
 hp
 jZ
 is
-fX
-DO
+DF
+vN
 jJ
 jY
 kf
@@ -3711,7 +3711,7 @@ aa
 af
 af
 af
-ZM
+UA
 ah
 af
 af
@@ -3772,7 +3772,7 @@ hr
 jX
 iu
 iX
-dA
+pp
 au
 jX
 kf
@@ -3821,7 +3821,7 @@ aa
 aa
 aa
 hn
-Bs
+xM
 iv
 az
 ju
