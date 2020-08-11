@@ -291,7 +291,7 @@
 
 /obj/structure/closet/crate/critter/exoticgoats/Initialize()
 	. = ..()
-	var/loot = rand(1,39) //39 different goats!
+	var/loot = rand(1,38) //38 different goats!
 	switch(loot)
 		if(1)
 			new /mob/living/simple_animal/hostile/retaliate/goat(loc)
@@ -326,7 +326,7 @@
 		if(16)
 			new /mob/living/simple_animal/hostile/retaliate/goat/pixel(loc)
 		if(17)
-			new /mob/living/simple_animal/hostile/retaliate/goat/radioactive(loc)
+			new /mob/living/simple_animal/hostile/retaliate/goat/plunger(loc)
 		if(18)
 			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(19)
@@ -369,5 +369,3 @@
 			new /mob/living/simple_animal/hostile/retaliate/goat/gogoat(loc)
 		if(38)
 			new /mob/living/simple_animal/hostile/retaliate/goat/sanic(loc)
-		if(39)
-			new /mob/living/simple_animal/hostile/retaliate/goat/plunger(loc)
