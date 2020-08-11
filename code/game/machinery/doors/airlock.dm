@@ -386,6 +386,15 @@
 	A.name = name
 	qdel(src)
 
+/obj/machinery/door/airlock/honk_act()
+	var/obj/machinery/door/airlock/bananium/B
+	if(glass)
+		A = new/obj/machinery/door/airlock/bananium/glass(get_turf(src))
+	else
+		A = new/obj/machinery/door/airlock/bananium(get_turf(src))
+	A.name = name
+	qdel(src)
+
 /obj/machinery/door/airlock/Destroy()
 	QDEL_NULL(wires)
 	if(charge)
