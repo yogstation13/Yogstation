@@ -1,4 +1,4 @@
-/obj/item/storage/toolbox/mechanical/insulated
+/obj/item/storage/toolbox/mechanical/insulateds
 	name = "toolbox"
 	desc = "A blue toolbox, it looks robust and has insulated gloves in it!"
 	icon_state = "blue"

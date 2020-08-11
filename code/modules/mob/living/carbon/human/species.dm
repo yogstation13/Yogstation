@@ -138,6 +138,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 0
 	return 1
 
+/datum/species/proc/has_toes()
+	return FALSE
+
 //Will regenerate missing organs
 /datum/species/proc/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
 	var/obj/item/organ/brain/brain = C.getorganslot(ORGAN_SLOT_BRAIN)
@@ -1348,7 +1351,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(target.dropItemToGround(I))
 					user.visible_message("<span class='danger'>[user.name] shoves [target.name], disarming them!</span>",
 						"<span class='danger'>You shove [target.name], disarming them!</span>", null, COMBAT_MESSAGE_RANGE)
-					log_combat(user, target, "shoved", "knocking them down")
+					log_combat(user, target, "shoved", "disarming them")
 			else if(bothstanding)
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				if(!target_collateral_human.is_shove_knockdown_blocked())
