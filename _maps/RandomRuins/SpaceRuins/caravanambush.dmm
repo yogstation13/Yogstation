@@ -509,18 +509,6 @@
 /obj/item/multitool,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter3)
-"gw" = (
-/obj/effect/turf_decal/bot_white,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "caravantrade3_cargo_port";
-	name = "Cargo Blast Door Control";
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter3)
 "gy" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -797,15 +785,6 @@
 /obj/effect/turf_decal/box/white/corners,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter3)
-"ie" = (
-/obj/machinery/airalarm/all_access{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter3)
 "if" = (
 /obj/machinery/firealarm{
@@ -1208,16 +1187,6 @@
 	},
 /turf/template_noop,
 /area/template_noop)
-"kM" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/gear,
-/obj/item/gun/ballistic/automatic/pistol/APS,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter2)
 "kU" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -1230,6 +1199,15 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"lx" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 1
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter2)
 "lB" = (
 /turf/closed/mineral/random/high_chance,
 /area/ruin/unpowered)
@@ -1239,6 +1217,17 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/unpowered)
+"lJ" = (
+/obj/machinery/airalarm/all_access{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gun/energy/e_gun,
+/obj/structure/closet/crate/secure/gear,
+/turf/open/floor/plasteel/airless,
+/area/shuttle/caravan/freighter3)
 "pp" = (
 /obj/effect/turf_decal/box/white/corners,
 /obj/structure/closet/crate/secure/gear,
@@ -1286,6 +1275,23 @@
 /obj/item/storage/box/rubbershot,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
+"FA" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "caravantrade3_cargo_port";
+	name = "Cargo Blast Door Control";
+	pixel_y = 24
+	},
+/obj/structure/closet/crate,
+/obj/item/clothing/head/centhat/admiral,
+/obj/item/clothing/under/rank/centcom_admiral,
+/obj/item/clothing/gloves/color/captain/centcom/admiral,
+/obj/item/paper,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter3)
 "GL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/external{
@@ -3671,7 +3677,7 @@ bs
 hp
 jZ
 is
-kM
+lx
 vN
 jJ
 jY
@@ -5538,10 +5544,10 @@ aa
 aa
 aa
 ga
-gw
+FA
 gW
 hz
-ie
+lJ
 aR
 jd
 ga
