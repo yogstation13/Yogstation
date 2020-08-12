@@ -4,10 +4,7 @@
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "ba" = (
-/obj/machinery/computer/teleporter{
-	dir = 1;
-	id = null
-	},
+/obj/structure/destructible/clockwork,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
 "bE" = (
@@ -359,10 +356,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/gaming)
-"nB" = (
-/obj/machinery/teleport/hub/syndicate,
-/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/powered/gaming)
 "nL" = (
 /obj/structure/closet/crate,
@@ -1006,10 +999,6 @@
 /obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/gaming)
-"Xj" = (
-/obj/machinery/teleport/station,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/powered/gaming)
 "Xt" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -1254,7 +1243,7 @@ XL
 Rb
 Ag
 pY
-Xj
+ba
 XL
 og
 bE
@@ -1286,7 +1275,7 @@ xo
 YR
 Ag
 GL
-nB
+ba
 XL
 og
 og
