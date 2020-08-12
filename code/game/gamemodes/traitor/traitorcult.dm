@@ -40,6 +40,7 @@
 		possible_clocks -= clock
 		possible_bloods -= clock
 		antag_candidates -= clock
+		clock_agent_team.add_member(clock)
 		clock.special_role = ROLE_CLOCK_AGENT
 		clock.restricted_roles = restricted_jobs
 		coggers_to_cog += clock
@@ -48,6 +49,7 @@
 		var/datum/mind/blood = antag_pick(possible_bloods)
 		possible_bloods -= blood
 		antag_candidates -= blood
+		blood_agent_team.add_member(blood)
 		blood.special_role = ROLE_BLOOD_AGENT
 		blood.restricted_roles = restricted_jobs
 		bloods_to_blood += blood
