@@ -6915,6 +6915,18 @@
 /obj/machinery/firealarm,
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
+"pC" = (
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/centcom/evac)
 "pD" = (
 /obj/structure/destructible/cult/tome,
 /obj/item/shuttle_curse,
@@ -12627,11 +12639,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Bu" = (
-/obj/item/reagent_containers/food/snacks/deadmouse,
-/obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plating,
-/area/centcom/evac)
 "Bv" = (
 /obj/machinery/computer/card/centcom{
 	dir = 1
@@ -15228,14 +15235,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Gt" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance/eight,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/centcom/evac)
 "Gu" = (
 /obj/machinery/door/airlock/silver{
 	name = "Shower"
@@ -15274,16 +15273,6 @@
 	},
 /turf/open/lava/airless,
 /area/wizard_station)
-"GA" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/machinery/door/firedoor/border_only,
-/obj/item/storage/firstaid/advanced{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/centcom/evac)
 "GB" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/grille/ratvar,
@@ -17656,10 +17645,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"KU" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
 "KV" = (
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
@@ -17951,6 +17936,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Ml" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Mm" = (
 /turf/open/floor/grass,
 /area/centcom/holding)
@@ -18529,6 +18523,10 @@
 "NO" = (
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
+"NP" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "NQ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -19228,6 +19226,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"PJ" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "PK" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -19934,10 +19939,6 @@
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"Ry" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plating,
-/area/centcom/evac)
 "RA" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /mob/living/simple_animal/hostile/retaliate/goat/king,
@@ -20205,10 +20206,6 @@
 	},
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"Sh" = (
-/obj/machinery/space_heater,
-/turf/open/floor/plating,
-/area/centcom/evac)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
@@ -20474,6 +20471,12 @@
 /obj/machinery/portable_atmospherics/canister/nob,
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
+"Ta" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Tb" = (
 /obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/wood,
@@ -20523,15 +20526,6 @@
 /obj/item/gun/ballistic/automatic/tommygun,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Th" = (
-/obj/structure/mirror{
-	pixel_y = 28
-	},
-/obj/structure/sink{
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel/freezer,
-/area/centcom/evac)
 "Ti" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20890,6 +20884,16 @@
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Uf" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/machinery/door/firedoor/border_only,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/centcom/evac)
 "Ug" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -21326,6 +21330,11 @@
 /obj/machinery/vending/medical/syndicate_access,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Vt" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Vu" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -21606,6 +21615,11 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/evac)
+"Wi" = (
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Wj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21865,14 +21879,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
-"WR" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance/eight,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/centcom/evac)
 "WS" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -22396,6 +22402,15 @@
 /obj/item/reagent_containers/food/snacks/chawanmushi,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Yg" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/eight,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Yh" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -49284,9 +49299,9 @@ aa
 aa
 Cj
 QF
-Sh
+Wi
 KQ
-Ry
+Vt
 KH
 KL
 KO
@@ -49541,9 +49556,9 @@ aa
 aa
 MJ
 QF
-WR
+Yg
 KQ
-Bu
+NP
 KH
 SO
 Tt
@@ -50312,7 +50327,7 @@ aa
 aa
 aa
 KH
-KU
+PJ
 KV
 KV
 KV
@@ -51349,7 +51364,7 @@ KV
 Lk
 La
 yL
-GA
+Uf
 KV
 Lb
 KH
@@ -51854,7 +51869,7 @@ aa
 aa
 aa
 KH
-KU
+PJ
 KV
 KV
 KV
@@ -52625,11 +52640,11 @@ aa
 aa
 MJ
 QF
-Gt
+Ml
 KQ
-KQ
+NP
 KH
-Th
+pC
 UG
 ta
 TF
@@ -52882,9 +52897,9 @@ aa
 aa
 Nz
 QF
+Ta
 KQ
-KQ
-Ry
+Vt
 KH
 RH
 KH
