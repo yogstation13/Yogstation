@@ -54,18 +54,6 @@
 	speed = 1
 	spacewalk = TRUE
 
-/mob/living/simple_animal/hostile/pirate/melee/Initialize()
-	. = ..()
-	sord = new(src)
-
-/mob/living/simple_animal/hostile/pirate/melee/Destroy()
-	QDEL_NULL(sord)
-	return ..()
-
-/mob/living/simple_animal/hostile/pirate/melee/Initialize()
-	. = ..()
-	set_light(2)
-
 /mob/living/simple_animal/hostile/pirate/ranged
 	name = "Pirate Gunner"
 	icon_state = "pirateranged"
