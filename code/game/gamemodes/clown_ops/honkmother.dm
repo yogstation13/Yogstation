@@ -63,7 +63,7 @@
 /obj/structure/destructible/honkmother/Bump(atom/A)
 	var/turf/T = get_turf(A)
 	if(T == loc)
-		T = get_step(T, dir) //NOTHING WILL STAND IN THE WAY OF PRANKS
+		T = get_step(T, dir) // NOTHING WILL STAND IN THE WAY OF PRANKS
 	forceMove(T)
 
 //moves and turns things into BANANIUM
