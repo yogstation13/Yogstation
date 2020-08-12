@@ -255,6 +255,13 @@
 	var/obj/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[psi]</font></div>"
 
+/datum/antagonist/darkspawn/proc/regain_abilities()
+	for(var/A in abilities)
+		var/datum/action/innate/darkspawn/ability = abilities[A]
+		if(ability)
+			ability.Remove(ability.owner)
+			ability.Grant(owner.current)
+
 /datum/antagonist/darkspawn/proc/has_ability(id)
 	if(isnull(abilities[id]))
 		return
@@ -313,7 +320,12 @@
 /datum/antagonist/darkspawn/proc/force_divulge()
 	if(darkspawn_state != MUNDANE)
 		return
+	var/mob/living/carbon/C = owner.current
+	if(C && !ishuman(C))
+		C.humanize()
 	var/mob/living/carbon/human/H = owner.current
+	if(!H)
+		owner.current.gib(TRUE)
 	H.visible_message("<span class='boldwarning'>[H]'s skin begins to slough off in sheets!</span>", \
 	"<span class='userdanger'>You can't maintain your disguise any more! It begins sloughing off!</span>")
 	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
