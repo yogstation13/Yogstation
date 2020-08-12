@@ -169,4 +169,4 @@
 	y_offset = -3
 	
 /obj/item/paper/fluff/ruins/caravanambush/admiral
-	info = "Please deliever these new sets of clothes to centcomm as our admiral has lost theirs"
+	info = "Please deliever these new sets of clothes to centcom as our admiral has lost theirs"
