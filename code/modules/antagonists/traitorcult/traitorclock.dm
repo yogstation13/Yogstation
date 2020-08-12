@@ -4,23 +4,12 @@
 	make_team = FALSE
 	agent = TRUE
 	ignore_holy_water = TRUE
-	var/datum/team/clock_agents/agent_team
 
 /datum/antagonist/clockcult/agent/on_gain()
 	SSticker.mode.clockagents += owner
 	SSticker.mode.update_servant_icons_added(owner)
 	equip_clock_agent()
 	owner.special_role = ROLE_CLOCK_AGENT
-	agent_team = SSticker.mode.clock_agent_team //only one agent team can exist for each side
-	if(!agent_team)
-		agent_team = new(owner)
-		SSticker.mode.clock_agent_team = agent_team
-		agent_team.add_member(owner)
-		objectives += agent_team.objectives
-		adjust_clockwork_power(1000)
-	else
-		agent_team.add_member(owner)
-		objectives += agent_team.objectives
 	..()
 
 /datum/antagonist/clockcult/agent/greet()
@@ -37,8 +26,10 @@
 	. = ..()
 
 /datum/antagonist/clockcult/agent/admin_add(datum/mind/new_owner, mob/admin)
+	if(!SSticker.mode.clock_agent_team)
+		SSticker.mode.clock_agent_team = new()
 	add_servant_of_ratvar(new_owner.current, TRUE, FALSE, TRUE)
-	agent_team = SSticker.mode.clock_agent_team
+	SSticker.mode.clock_agent_team.add_member(owner)
 	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a Clockwork Agent.")
 	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a Clockwork Agent.")
 
@@ -74,15 +65,12 @@
 	else
 		to_chat(admin, "<span class='notice'>Successfully gave [owner.current] a slab!</span>")
 
-/datum/antagonist/clockcult/agent/create_team(datum/team/clock_agents/new_team)
-	if(!new_team)
-		return
-	if(!istype(new_team))
-		stack_trace("Wrong team type passed to [type] initialization.")
-	agent_team = new_team
-
 /datum/team/clock_agents
 	name = "Clockwork Agents"
+
+/datum/team/clock_agents/New(starting_members)
+	. = ..()
+	adjust_clockwork_power(1000)
 
 /datum/team/clock_agents/proc/forge_clock_objectives()
 	objectives = list()
