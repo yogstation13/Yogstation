@@ -273,6 +273,7 @@
 	time = 10
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+/*
 
 /datum/crafting_recipe/meteorslug
 	name = "Meteorslug Shell"
@@ -284,6 +285,7 @@
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+*/
 
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
@@ -305,6 +307,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
+/*
 /datum/crafting_recipe/frag12
 	name = "FRAG-12 Shell"
 	result = /obj/item/ammo_casing/shotgun/frag12
@@ -316,6 +319,7 @@
 	time = 5
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
+*/
 
 /datum/crafting_recipe/ionslug
 	name = "Ion Scatter Shell"
