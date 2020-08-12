@@ -180,6 +180,7 @@
 		to_chat(user, "<span class='danger'>You don't have enough points for a Guardian like that!</span>")
 		used = FALSE
 		return FALSE
+	//alerts user in case they didn't know
 	var/list/all_items = user.GetAllContents()
 	for(var/obj/I in all_items) //Check for mori
 		if(istype(I, /obj/item/clothing/neck/necklace/memento_mori))
@@ -217,6 +218,13 @@
 		user.verbs += /mob/living/proc/guardian_comm
 		user.verbs += /mob/living/proc/guardian_recall
 		user.verbs += /mob/living/proc/guardian_reset
+		//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
+		for(var/obj/H in all_items)
+			if(istype(H, /obj/item/clothing/neck/necklace/memento_mori))
+				to_chat(user, "<span class='danger'>The power of the [H] overtakes the [src]!</span>")
+				used = TRUE
+				G.Destroy()
+				return FALSE
 		return TRUE
 	else
 		to_chat(user, "[failure_message]")
