@@ -12912,19 +12912,6 @@
 	dir = 5
 	},
 /area/science/research)
-"aEz" = (
-/obj/machinery/power/apc{
-	areastring = "/area/hallway/secondary/entry";
-	dir = 4;
-	name = "Entry Hall APC";
-	pixel_x = 24
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/corner,
-/area/hallway/secondary/entry)
 "aEB" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -54968,6 +54955,19 @@
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos_distro)
+"pAL" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/power/apc/highcap/fifteen_k{
+	areastring = "/area/hallway/secondary/entry";
+	dir = 4;
+	name = "Arrivals APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "pBu" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/aisat_interior";
@@ -77490,7 +77490,7 @@ azD
 aAJ
 azD
 aCp
-aEz
+pAL
 aFG
 aHu
 ayl
