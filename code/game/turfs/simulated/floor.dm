@@ -221,7 +221,7 @@
 	if(.)
 		ChangeTurf(/turf/open/floor/clockwork)
 
-/turf/open/floor/honk_act(force, ignore_mobs)
+/turf/open/floor/honk_act()
 	ChangeTurf(/turf/open/floor/mineral/bananium)
 
 /turf/open/floor/acid_melt()
