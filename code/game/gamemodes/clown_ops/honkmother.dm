@@ -53,8 +53,8 @@
 		"clown/mutant",
 		"clown/mutant/blob",
 		"clown/mutant/thicc")
-	var/MobType = text2path("mob/living/simple_animal/hostile/retaliate/[pick(L)]")
-	var/MobType/R = new MobType(get_turf(src))
+	var/MobType = text2path("/mob/living/simple_animal/hostile/retaliate/[pick(L)]")
+	var/R = new MobType(get_turf(src))
 	R.visible_message("<span class='clown'>[R] awakens!</span>")
 	R.key = O.key
 
