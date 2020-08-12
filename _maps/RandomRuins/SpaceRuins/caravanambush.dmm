@@ -1208,6 +1208,16 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"kM" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 1
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/gun/ballistic/automatic/pistol/APS,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter2)
 "kU" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -1274,12 +1284,6 @@
 	},
 /obj/structure/closet/crate/secure/gear,
 /obj/item/storage/box/rubbershot,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter2)
-"DF" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 1
-	},
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
 "GL" = (
@@ -3667,7 +3671,7 @@ bs
 hp
 jZ
 is
-DF
+kM
 vN
 jJ
 jY
