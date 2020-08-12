@@ -16,7 +16,7 @@
 	//Yellow, the color of bananas!
 	light_color = "#FFFF000"
 	//How far things are turned around Her are turned into bananium
-	var/convert_range = 10
+	var/convert_range = 8
 	//She is above
 	layer = 4.5
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
@@ -70,12 +70,14 @@
 /obj/structure/destructible/honkmother/process()
 	for(var/I in circlerangeturfs(src, convert_range))
 		var/turf/T = I
-		T.honk_act()
+		if(prob(20))
+			T.honk_act()
 	for(var/I in circleviewturfs(src, round(convert_range * 0.5)))
 		var/turf/T = I
 		T.honk_act(TRUE)
 	for(var/O in range(round(convert_range / 1.2), src))
 		var/obj/T = O
-		T.honk_act()
+		if(prob(20))
+			T.honk_act()
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	step(src, dir_to_step_in)
