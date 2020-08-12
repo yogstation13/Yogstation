@@ -12021,14 +12021,6 @@
 /obj/item/soap/deluxe,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"zY" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/fernybush,
-/obj/structure/window/shuttle,
-/turf/open/floor/grass,
-/area/centcom/evac)
 "zZ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -12635,6 +12627,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Bu" = (
+/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating,
+/area/centcom/evac)
 "Bv" = (
 /obj/machinery/computer/card/centcom{
 	dir = 1
@@ -15277,6 +15274,16 @@
 	},
 /turf/open/lava/airless,
 /area/wizard_station)
+"GA" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/machinery/door/firedoor/border_only,
+/obj/item/storage/firstaid/advanced{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/centcom/evac)
 "GB" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/grille/ratvar,
@@ -17630,17 +17637,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"KP" = (
-/obj/machinery/door/window/eastleft,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/centcom/evac)
 "KQ" = (
 /turf/open/floor/plating,
 /area/centcom/evac)
@@ -17691,12 +17687,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"La" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = -28;
+	pixel_y = -3
+	},
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/centcom/evac)
 "Lb" = (
 /turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
-"Ld" = (
-/obj/structure/dresser,
-/turf/open/floor/carpet/blue,
 /area/centcom/evac)
 "Li" = (
 /obj/structure/window/reinforced,
@@ -17728,10 +17733,6 @@
 /area/centcom/evac)
 "Lt" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/centcom/evac)
-"Lw" = (
-/obj/structure/chair/office/dark,
-/turf/open/floor/mineral/titanium,
 /area/centcom/evac)
 "LE" = (
 /obj/structure/table,
@@ -18982,6 +18983,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"OO" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "OP" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -19983,6 +19993,12 @@
 /obj/machinery/vending/syndichem,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"RH" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/centcom/evac)
 "RI" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -20174,6 +20190,14 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sf" = (
+/obj/structure/chair/office/dark,
+/mob/living/simple_animal/bot/cleanbot{
+	desc = "A little cleaning robot that after years of hard work, got promoted to captain and was given his own ship!";
+	name = "Captain Cleanbot"
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "Sg" = (
 /obj/machinery/light{
 	dir = 4;
@@ -20202,6 +20226,15 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/centcom/evac)
+"Sm" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "So" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
@@ -20491,10 +20524,13 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "Th" = (
-/obj/machinery/stasis{
-	dir = 4
+/obj/structure/mirror{
+	pixel_y = 28
 	},
-/turf/open/floor/mineral/titanium/white,
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/freezer,
 /area/centcom/evac)
 "Ti" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -20922,16 +20958,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
-"Uo" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/white,
-/area/centcom/evac)
 "Up" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien14";
@@ -21027,6 +21053,12 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
+/area/centcom/evac)
+"UG" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Bathroom"
+	},
+/turf/open/floor/plasteel/freezer,
 /area/centcom/evac)
 "UH" = (
 /obj/machinery/light{
@@ -22559,6 +22591,19 @@
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"YR" = (
+/obj/machinery/door/window/eastleft{
+	name = "bar counter door"
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "YS" = (
 /obj/structure/destructible/cult/talisman,
 /obj/item/sharpener/cult,
@@ -22999,12 +23044,6 @@
 /obj/item/gun/magic/staff/spellblade,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"ZS" = (
-/obj/structure/sink{
-	pixel_y = 20
-	},
-/turf/open/floor/carpet/blue,
-/area/centcom/evac)
 "ZT" = (
 /mob/living/simple_animal/cow,
 /turf/open/floor/grass,
@@ -49504,7 +49543,7 @@ MJ
 QF
 WR
 KQ
-KQ
+Bu
 KH
 SO
 Tt
@@ -49764,7 +49803,7 @@ Xj
 KH
 KH
 KH
-KP
+YR
 KX
 CU
 Oy
@@ -50532,7 +50571,7 @@ wT
 Sl
 KV
 KV
-KV
+Sm
 XU
 rY
 KV
@@ -50788,8 +50827,8 @@ aa
 aa
 KH
 YW
-Lb
 KV
+OO
 SQ
 tv
 KV
@@ -51045,20 +51084,20 @@ aa
 aa
 xC
 xA
-Lb
+KV
 KV
 KV
 KM
 Yj
 KH
-zY
-zY
+KH
+KH
 XA
 KV
 KV
 WP
 KV
-Lw
+Sf
 LP
 Im
 aa
@@ -51302,15 +51341,15 @@ aa
 aa
 KH
 Rl
-Lb
 KV
+Sm
 XU
 rY
 KV
 Lk
-Th
+La
 yL
-Uo
+GA
 KV
 Lb
 KH
@@ -51560,7 +51599,7 @@ Bw
 Sl
 KV
 KV
-KV
+OO
 SQ
 tv
 KV
@@ -52590,10 +52629,10 @@ Gt
 KQ
 KQ
 KH
-ZS
+Th
+UG
 ta
 TF
-ta
 ta
 KV
 KH
@@ -52847,8 +52886,8 @@ KQ
 KQ
 Ry
 KH
-Ld
-zS
+RH
+KH
 zS
 zS
 zS
@@ -53105,10 +53144,10 @@ jA
 KH
 KH
 KH
-RL
-RL
-RL
 KH
+RL
+RL
+RL
 KH
 aa
 aa
