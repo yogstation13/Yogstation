@@ -155,6 +155,10 @@
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
 	update_icon()
 
+/obj/machinery/stasis/wrench_act(mob/living/user, obj/item/I)
+	if(default_change_direction_wrench(user, I))
+		return TRUE
+
 /obj/machinery/stasis/crowbar_act(mob/living/user, obj/item/I)
 	return default_deconstruction_crowbar(I)
 
