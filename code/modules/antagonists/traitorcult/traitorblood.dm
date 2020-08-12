@@ -4,22 +4,12 @@
 	make_team = FALSE
 	agent = TRUE
 	ignore_holy_water = TRUE
-	var/datum/team/blood_agents/agent_team
 
 /datum/antagonist/cult/agent/on_gain()
 	SSticker.mode.bloodagents += owner
 	SSticker.mode.update_cult_icons_added(owner)
 	equip_cultist(FALSE)
 	owner.special_role = ROLE_BLOOD_AGENT
-	agent_team = SSticker.mode.blood_agent_team //only one agent team can exist for each side
-	if(!agent_team)
-		agent_team = new
-		SSticker.mode.blood_agent_team = agent_team
-		agent_team.add_member(owner)
-		objectives += agent_team.objectives
-	else
-		agent_team.add_member(owner)
-		objectives += agent_team.objectives
 	..()
 
 /datum/antagonist/cult/agent/greet()
@@ -35,8 +25,10 @@
 	SSticker.mode.bloodagents -= owner
 	. = ..()
 /datum/antagonist/cult/agent/admin_add(datum/mind/new_owner, mob/admin)
+	if(!SSticker.mode.blood_agent_team)
+		SSticker.mode.blood_agent_team = new()
 	new_owner.add_antag_datum(/datum/antagonist/cult/agent)
-	agent_team = SSticker.mode.blood_agent_team
+	SSticker.mode.blood_agent_team.add_member(new_owner)
 	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a Blood Agent.")
 	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a Blood Agent.")
 
@@ -44,13 +36,6 @@
 	message_admins("[key_name_admin(user)] has removed blood agent status from [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed blood agent status from [key_name(owner)].")
 	owner.remove_antag_datum(/datum/antagonist/cult/agent)
-
-/datum/antagonist/cult/agent/create_team(datum/team/blood_agents/new_team)
-	if(!new_team)
-		return
-	if(!istype(new_team))
-		stack_trace("Wrong team type passed to [type] initialization.")
-	agent_team = new_team
 
 /datum/team/blood_agents
 	name = "Blood Agents"
