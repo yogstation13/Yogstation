@@ -22,7 +22,7 @@
 /obj/structure/destructible/honkmother/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	send_to_playing_players("<span class='reallybig'><span class='clown'>HONK!</span></span>")
+	send_to_playing_players("<span class='clown'>HONK!</span>")
 	//mine now bitch
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/items_and_weapons.dmi', "bike_horn")
@@ -55,7 +55,7 @@
 		"clown/mutant/thicc")
 	var/MobType = text2path("/mob/living/simple_animal/hostile/retaliate/[pick(L)]")
 	var/mob/R = new MobType(get_turf(src))
-	R.visible_message("<span class='clown'>[R] awakens!</span>")
+	R.visible_message("<span class='warning'>[R] awakens!</span>")
 	R.key = O.key
 
 /obj/structure/destructible/honkmother/Bump(atom/A)
