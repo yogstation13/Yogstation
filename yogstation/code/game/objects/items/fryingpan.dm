@@ -57,3 +57,6 @@
 			statue.max_integrity = 9999
 			statue.obj_integrity = 9999
 	return ..()
+
+/obj/item/melee/fryingpan/bananium/honk_act()
+	return FALSE
