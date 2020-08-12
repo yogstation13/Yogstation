@@ -19862,12 +19862,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Rl" = (
-/obj/machinery/vending/toyliberationstation{
-	pixel_x = -1
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
 "Rm" = (
 /obj/structure/chair/wood/wings{
 	dir = 3
@@ -21046,6 +21040,13 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"UD" = (
+/obj/machinery/vending/toyliberationstation{
+	age_restrictions = 0;
+	extended_inventory = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "UE" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
@@ -21899,6 +21900,14 @@
 /obj/item/desynchronizer,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
+"WW" = (
+/obj/machinery/vending/toyliberationstation{
+	age_restrictions = 0;
+	extended_inventory = 1;
+	pixel_x = -1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/centcom/evac)
 "WY" = (
 /obj/structure/mineral_door/paperframe{
 	name = "Arcade"
@@ -22678,10 +22687,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"YW" = (
-/obj/machinery/vending/toyliberationstation,
-/turf/open/floor/mineral/titanium/blue,
-/area/centcom/evac)
 "YX" = (
 /obj/machinery/airalarm/directional/west{
 	pixel_x = -24
@@ -50841,7 +50846,7 @@ aa
 aa
 aa
 KH
-YW
+UD
 KV
 OO
 SQ
@@ -51355,7 +51360,7 @@ aa
 aa
 aa
 KH
-Rl
+WW
 KV
 Sm
 XU
