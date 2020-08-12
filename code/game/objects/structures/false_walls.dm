@@ -272,6 +272,8 @@
 	walltype = /turf/closed/wall/mineral/bananium
 	canSmoothWith = list(/obj/structure/falsewall/bananium, /turf/closed/wall/mineral/bananium)
 
+/obj/structure/falsewall/bananium/honk_act()
+	return FALSE
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
