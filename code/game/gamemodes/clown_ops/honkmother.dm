@@ -6,8 +6,8 @@
 	//Sprite made by MerchantPixels
 	icon_state = "honkmother"
 	//Centers Her
-	pixel_x = -144
-	pixel_y = -144
+	pixel_x = -128
+	pixel_y = -128
 	//She's immortal! Unkillable! Unmatched!
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	appearance_flags = 0
@@ -72,5 +72,8 @@
 	for(var/I in circleviewturfs(src, round(convert_range * 0.5)))
 		var/turf/T = I
 		T.honk_act(TRUE)
+	for(/obj/I in range(convert_range))
+		var/obj/T = I
+		T.honk_act()
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	step(src, dir_to_step_in)
