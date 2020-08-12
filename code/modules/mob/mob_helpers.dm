@@ -389,7 +389,7 @@
 			if (ignore_key && (O.ckey in GLOB.poll_ignore[ignore_key]))
 				continue
 			var/orbit_link
-			if (source && action == NOTIFY_ORBIT)
+			if (source && (action == NOTIFY_ORBIT || action == NOTIFY_ATTACKORBIT))
 				orbit_link = " <a href='?src=[REF(O)];follow=[REF(source)]'>(Orbit)</a>"
 			to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
 			if(ghost_sound)
