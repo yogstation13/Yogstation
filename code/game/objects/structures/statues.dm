@@ -263,6 +263,9 @@
 		spawn(20)
 			spam_flag = 0
 
+/obj/structure/statue/bananium/clown/honk_act()
+	return FALSE
+
 /////////////////////sandstone/////////////////////////////////////////
 
 /obj/structure/statue/sandstone
