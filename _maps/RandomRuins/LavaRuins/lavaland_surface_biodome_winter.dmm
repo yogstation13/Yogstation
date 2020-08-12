@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
@@ -175,10 +175,6 @@
 	initial_gas_mix = "o2=22;n2=82;TEMP=180"
 	},
 /area/ruin/powered/snow_biodome)
-"aL" = (
-/obj/structure/displaycase/captain,
-/turf/open/floor/wood,
-/area/ruin/powered/snow_biodome)
 "aM" = (
 /turf/open/floor/carpet,
 /area/ruin/powered/snow_biodome)
@@ -353,6 +349,11 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/glass_large,
 /turf/open/floor/pod/dark,
+/area/ruin/powered/snow_biodome)
+"ET" = (
+/obj/structure/table/wood,
+/obj/item/grenade/gluon,
+/turf/open/floor/wood,
 /area/ruin/powered/snow_biodome)
 "HP" = (
 /turf/open/floor/pod/dark,
@@ -792,7 +793,7 @@ bw
 at
 aD
 at
-aL
+at
 aq
 ak
 az
@@ -949,7 +950,7 @@ ah
 af
 aq
 ax
-aw
+ET
 aF
 at
 at
