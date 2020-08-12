@@ -17,6 +17,8 @@
 	light_color = "#FFFF000"
 	//How far things are turned around Her are turned into bananium
 	var/convert_range = 10
+	//She is above
+	layer = 4.5
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
 /obj/structure/destructible/honkmother/Initialize()
