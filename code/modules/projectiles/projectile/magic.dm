@@ -291,7 +291,7 @@
 
 /obj/item/projectile/magic/cheese
 	name = "bolt of cheese"
-	icon_state = "ice_1"
+	icon_state = "cheese"
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
@@ -308,7 +308,7 @@
 	if(istype(target) && target.mind)
 		var/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan/P = new(target.loc)
 		var/mob/living/B = new(P)
-		P.desc = "What appears to be [target.real_name] refrmed into a wheel of delicious parmesan... recovery is unlikely."
+		P.desc = "What appears to be [target.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
 		P.name = "[target.name] Parmesan"
 		B.real_name = "[target.name] Parmesan"
 		B.name = "[target.name] Parmesan"
