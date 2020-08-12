@@ -67,6 +67,20 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(MAT_METAL = 1000)
 
+/obj/item/melee/cutlass
+	name = "cutlass"
+	desc = "A true pirates weapon, seems kinda dull though"
+	icon_state = "metalcutlass"
+	item_state = "metalcutlass"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 10
+	throwforce = 5
+	w_class = WEIGHT_CLASS_BULKY
+	attack_verb = list("slashed", "cut")
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	materials = list(MAT_METAL = 1000)
+
 /obj/item/melee/sabre/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 30, 95, 5) //fast and effective, but as a sword, it might damage the results.
@@ -386,8 +400,8 @@
 	force = 5
 
 	cooldown = 20
-	stun_time_carbon = 85 
-	affect_silicon = TRUE 
+	stun_time_carbon = 85
+	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
 	stun_animation = TRUE
