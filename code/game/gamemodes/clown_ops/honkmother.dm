@@ -74,7 +74,7 @@
 	for(var/I in circleviewturfs(src, round(convert_range * 0.5)))
 		var/turf/T = I
 		T.honk_act(TRUE)
-	for(var/O in range(round(convert_range / 1.2)))
+	for(var/O in range(round(convert_range / 1.2), src))
 		var/obj/T = O
 		T.honk_act()
 	var/dir_to_step_in = pick(GLOB.cardinals)
