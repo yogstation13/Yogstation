@@ -77,9 +77,7 @@
 		T.honk_act(TRUE)
 	for(var/O in range(round(convert_range / 1.2), src))
 		var/obj/T = O
-		var/converted
-		if(prob(20) && !converted)
+		if(prob(20))
 			T.honk_act()
-			converted == TRUE
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	step(src, dir_to_step_in)
