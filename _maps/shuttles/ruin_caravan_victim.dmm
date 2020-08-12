@@ -380,6 +380,25 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/freighter1)
+"iT" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/gun/ballistic/automatic/pistol/APS,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/shuttle/caravan/freighter1)
 "jg" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
@@ -394,6 +413,13 @@
 /turf/open/floor/plasteel/showroomfloor{
 	initial_gas_mix = "TEMP=2.7"
 	},
+/area/shuttle/caravan/freighter1)
+"ji" = (
+/obj/structure/closet/crate/secure/science,
+/obj/item/circuitboard/machine/autolathe,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
 "lt" = (
 /obj/structure/cable,
@@ -514,13 +540,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
-"re" = (
-/obj/structure/closet/crate/secure/science,
-/obj/item/circuitboard/machine/autolathe,
-/obj/item/circuitboard/machine/protolathe,
-/obj/item/circuitboard/machine/circuit_imprinter,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter1)
 "rF" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -612,6 +631,15 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
+/area/shuttle/caravan/freighter1)
+"wz" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/gear,
+/obj/item/gun/energy/e_gun,
+/turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
 "xz" = (
 /obj/effect/turf_decal/box/white/corners{
@@ -1131,15 +1159,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/shuttle/caravan/freighter1)
-"Vg" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/secure/gear,
-/obj/item/gun/energy/e_gun,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter1)
 "VD" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 2
@@ -1284,25 +1303,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/shuttle/caravan/freighter1)
-"ZX" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/obj/item/storage/firstaid/regular,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/gun/ballistic/automatic/pistol/APS,
-/turf/open/floor/plasteel/dark{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/shuttle/caravan/freighter1)
 "ZZ" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 1
@@ -1366,7 +1366,7 @@ fk
 El
 OK
 ax
-Vg
+wz
 El
 "}
 (5,1,1) = {"
@@ -1378,7 +1378,7 @@ El
 aa
 El
 DQ
-re
+ji
 bI
 El
 "}
@@ -1541,7 +1541,7 @@ Jv
 (18,1,1) = {"
 Jv
 El
-ZX
+iT
 qM
 Xt
 aj

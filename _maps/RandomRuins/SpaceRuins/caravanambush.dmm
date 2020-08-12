@@ -1199,15 +1199,6 @@
 	},
 /turf/template_noop,
 /area/template_noop)
-"lx" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/gear,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter2)
 "lB" = (
 /turf/closed/mineral/random/high_chance,
 /area/ruin/unpowered)
@@ -1217,17 +1208,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/unpowered)
-"lJ" = (
-/obj/machinery/airalarm/all_access{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/gun/energy/e_gun,
-/obj/structure/closet/crate/secure/gear,
-/turf/open/floor/plasteel/airless,
-/area/shuttle/caravan/freighter3)
 "pp" = (
 /obj/effect/turf_decal/box/white/corners,
 /obj/structure/closet/crate/secure/gear,
@@ -1261,21 +1241,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
-"xM" = (
-/obj/effect/turf_decal/bot_white,
-/obj/machinery/button/door{
-	id = "caravantrade2_cargo_port";
-	name = "Cargo Blast Door Control";
-	pixel_y = 24
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/gear,
-/obj/item/storage/box/rubbershot,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter2)
-"FA" = (
+"wh" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/light/small{
 	dir = 1
@@ -1291,6 +1257,31 @@
 /obj/item/clothing/gloves/color/captain/centcom/admiral,
 /obj/item/paper,
 /turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter3)
+"xM" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/button/door{
+	id = "caravantrade2_cargo_port";
+	name = "Cargo Blast Door Control";
+	pixel_y = 24
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/storage/box/rubbershot,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter2)
+"zS" = (
+/obj/machinery/airalarm/all_access{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gun/energy/e_gun,
+/obj/structure/closet/crate/secure/gear,
+/turf/open/floor/plasteel/airless,
 /area/shuttle/caravan/freighter3)
 "GL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1308,6 +1299,15 @@
 /obj/item/gun/ballistic/shotgun/sc_pump,
 /turf/template_noop,
 /area/template_noop)
+"ZW" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 1
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter2)
 
 (1,1,1) = {"
 aa
@@ -3677,7 +3677,7 @@ bs
 hp
 jZ
 is
-lx
+ZW
 vN
 jJ
 jY
@@ -5544,10 +5544,10 @@ aa
 aa
 aa
 ga
-FA
+wh
 gW
 hz
-lJ
+zS
 aR
 jd
 ga

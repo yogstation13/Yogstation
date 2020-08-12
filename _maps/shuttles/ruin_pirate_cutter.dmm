@@ -503,6 +503,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
+"oX" = (
+/obj/structure/table,
+/obj/machinery/airalarm/all_access{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/pirate)
 "pK" = (
 /obj/item/stack/sheet/mineral/gold{
 	amount = 25
@@ -1103,24 +1121,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
-"Xw" = (
-/obj/structure/table,
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/storage/toolbox/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/pirate)
 "Yj" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	dir = 9;
@@ -1270,7 +1270,7 @@ na
 su
 Ag
 af
-Xw
+oX
 al
 sr
 af
