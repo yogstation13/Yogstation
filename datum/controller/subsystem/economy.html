@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;economy - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/economy.html#var">Var Details</a> - <a href="datum/controller/subsystem/economy.html#proc">Proc Details</a></header>
+<main>
+<h1>Economy <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/economy.html">economy</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/c955a33e530355ab6d5675787cbaea7dacd34f8f/code/controllers/subsystem/economy.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#var/moneysink">moneysink</a></th><td>ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/economy.html#proc/eng_payout">eng_payout</a></th><td></td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/moneysink"><aside class="declaration">var </aside>moneysink
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item/energy_harvester.html">item/energy_harvester</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/c955a33e530355ab6d5675787cbaea7dacd34f8f/code/controllers/subsystem/economy.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 52"/></a></h3>
+        <p>ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle</p><h2 id="proc">Proc Details</h2><h3 id="proc/eng_payout"><aside class="declaration">proc </aside>eng_payout<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/c955a33e530355ab6d5675787cbaea7dacd34f8f/code/controllers/subsystem/economy.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;economy.dm 79"/></a></aside>
+        </h3>
+        <ul>
+<li>Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
+<ul>
+<li>the energy harvester and adds the cash from that to the budget.</li>
+</ul>
+</li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/c955a33e530355ab6d5675787cbaea7dacd34f8f">c955a33</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>
