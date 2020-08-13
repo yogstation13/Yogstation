@@ -88,7 +88,7 @@
 						  	"<span class='userdanger'>[A] slams you into the ground!</span>")
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, 1, -1)
 		D.apply_damage(10, STAMINA)
-		D.Paralyze(10)
+		D.Paralyze(15)
 		D.Knockdown(60)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
@@ -97,7 +97,7 @@
   * CQC kick combo attack
   *
   * attack that deals 10 stamina and pushes the target away if they are standing
-  * or 30 stamina damage if they aren't
+  * or 35 stamina damage if they aren't
   */
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -109,12 +109,15 @@
 		step(D, A.dir)
 		D.apply_damage(10, STAMINA)
 		log_combat(A, D, "kicked (CQC)")
+		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
+		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
 	if(!(D.mobility_flags & MOBILITY_STAND) && !D.stat)
 		log_combat(A, D, "prone-kicked(CQC)")
 		D.visible_message("<span class='warning'>[A] firmly kicks [D] in the abdomen!</span>", \
 					  		"<span class='userdanger'>[A] kicks you in the abdomen!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
-		D.apply_damage(30, STAMINA)
+		D.Paralyze(5)
+		D.apply_damage(35, STAMINA)
 	return TRUE
 
 /**
@@ -173,6 +176,7 @@
 		D.apply_damage(25, STAMINA)
 	return TRUE
 
+///CQC grab, stuns for 1.5 seconds on use
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.a_intent == INTENT_GRAB && A!=D && can_use(A)) // A!=D prevents grabbing yourself
 		add_to_streak("G",D)
@@ -186,6 +190,7 @@
 	else
 		return FALSE
 
+///CQC harm intent, deals 15 stamina damage and immobilizes for 1.5 seconds, if the attacker is prone, they knock the defender down and stand up
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -213,6 +218,7 @@
 		log_combat(A, D, "sweeped (CQC)")
 	return TRUE
 
+///CQC disarm, 65% chance to instantly pick up the opponent's weapon and deal 5 stamina damage, also used for choke attack
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -281,6 +287,7 @@
 		if(D.getOxyLoss() >= 50)
 			return TRUE
 
+///CQC counter: attacker's weapon is placed in the defender's offhand and they are knocked down
 /datum/martial_art/cqc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker) //I am going to fucking gut whoever did the old counter system also whoever made martial arts
 	if(!can_use(user))
 		return
