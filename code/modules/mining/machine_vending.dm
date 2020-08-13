@@ -301,7 +301,7 @@
 		new /datum/data/mining_equipment("Stimpack Bundle",				/obj/item/storage/box/medipens/utility,							200, VENDING_MEDS),
 		new /datum/data/mining_equipment("Point Transfer Card", 		/obj/item/card/mining_point_card,								500, VENDING_MISC),
 		new /datum/data/mining_equipment("Space Cash",    				/obj/item/stack/spacecash/c1000,								2000, VENDING_MISC),
-		new /datum/data/mining_equipment("Nanotrasen Brand Rnd Kit",  	/obj/item/storage/box/rndboards,								2000, VENDING_TOOL)
+		new /datum/data/mining_equipment("Nanotrasen Brand Circuitry Kit",  	/obj/item/storage/box/rndboards,								2000, VENDING_TOOL)
 		)
 
 /obj/machinery/mineral/equipment_vendor/free_miner/New()
