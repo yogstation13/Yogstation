@@ -159,8 +159,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/fullcrit = InFullCritical()
 	if((InCritical() && !fullcrit) || message_mode == MODE_WHISPER)
 		if(fullcrit)
-			var/alertresult = alert(O, "You will be immediately killed by this action. Proceed?",,"Accept", "Decline")
-			if(alertresult == "Decline" || QDELETED(O) || !istype(O) || !O.key)
+			var/alertresult = alert(src, "You will be immediately killed by this action. Proceed?",,"Accept", "Decline")
+			if(alertresult == "Decline" || QDELETED(src) || !istype(src) || !src.key)
 				return FALSE
 		message_range = 1
 		message_mode = MODE_WHISPER
