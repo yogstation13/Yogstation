@@ -68,7 +68,7 @@
 	pixel_y = -2
 	},
 /obj/item/paper{
-	info = "Put the prisoner in, use the guilotine with harmful intent.";
+	info = "Put the prisoner in, use the guillotine with harmful intent.";
 	name = "Guillotine operating instructions";
 	pixel_x = 8;
 	pixel_y = -5
