@@ -230,6 +230,9 @@
 			if(cloned_trauma)
 				H.gain_trauma(cloned_trauma, BT.resilience)
 
+		if(HAS_TRAIT(H, TRAIT_DNA_FROM_PARENT))
+			H.dna.species = H.dna.species.parent_type
+
 		H.set_cloned_appearance()
 
 		H.set_suicide(FALSE)

@@ -142,8 +142,12 @@
 #define TRAIT_RANDOM_ACCENT		"random_accent"
 #define TRAIT_MEDICALIGNORE     "medical_ignore"
 #define TRAIT_PASSTABLE			"passtable"
+///This trait represents having difficulty holding normal human-sized devices
 #define TRAIT_SMALL_HANDS		"small-hands"
+///This trait represents being smaller than the average alien
 #define TRAIT_SHORT				"short"
+///This trait handles some snowflakery with making the dna come from the parent type
+#define TRAIT_DNA_FROM_PARENT	"dna-from-parent"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
