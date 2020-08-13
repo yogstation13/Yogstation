@@ -161,6 +161,12 @@ SUBSYSTEM_DEF(Yogs)
 			else if(dg.continuous && !dg.fail_if_failed)
 				dg.continuing()
 
+/**
+  * Generates up to 5 department goals of the given type. 
+  *
+  * Arguments:
+  * * d - the given datum that we're getting the subtypes of.
+  */
 /datum/controller/subsystem/Yogs/proc/generateGoalsFromSubtypes(datum/d)
 	var/list/goals = subtypesof(d)
 	var/goalsSoFar = 0
@@ -172,6 +178,12 @@ SUBSYSTEM_DEF(Yogs)
 		else 
 			qdel(goal)
 
+/**
+  * Gets the correct string from the given department account. See code/__DEFINES/economy.dm
+  *
+  * Arguments:
+  * * account - The account that you're getting the string from. IE ACCOUNT_CIV or ACCOUNT_ENG
+  */
 /datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
 	switch(account)
 		if(ACCOUNT_CIV)
