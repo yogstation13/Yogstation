@@ -1,3 +1,16 @@
+/**
+  *
+  * CQC martial art
+  *
+  * Martial art that focuses on stamina damage and movement impairing effects
+  * Combos:
+  * [Slam][/datum/martial_art/cqc/proc/Slam]
+  * [Kick][/datum/martial_art/cqc/proc/Kick]
+  * [Restrain][/datum/martial_art/cqc/proc/Restrain]
+  * [Pressure][/datum/martial_art/cqc/proc/Pressure]
+  * [Consecutive][/datum/martial_art/cqc/proc/Consecutive]
+  */
+
 ///slam combo string
 #define SLAM_COMBO "GH"
 ///kick combo string
@@ -293,7 +306,7 @@
 	set category = "CQC"
 	to_chat(usr, "<b><i>You try to remember some of the basics of CQC.</i></b>")
 
-	to_chat(usr, "<span class='notice'><b>All of your attacks deal stamina damage instead of your normal physical damage type</b></span>")
+	to_chat(usr, "<span class='notice'><b>All of your unarmed attacks deal stamina damage instead of your normal physical damage type</b></span>")
 
 	to_chat(usr, "<span class='notice'><b>Disarm Intent</b> Has a chance to disarm the opponent's main hand, and immediately pick up the item if successful</span>")
 	to_chat(usr, "<span class='notice'><b>Grab Intent</b> Will stun opponents for a short second, allowing you to quickly increase the strength of your grabs</span>")
@@ -306,16 +319,3 @@
 	to_chat(usr, "<span class='notice'>Consecutive CQC</span>: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
 	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to block and sometimes even counter attacks done to you.</i></b>")
-
-/**
-  *
-  * CQC martial art
-  *
-  * Martial art that focuses on stamina damage and movement impairing effects
-  * Combos:
-  * [Slam][/datum/martial_art/cqc/proc/Slam]
-  * [Kick][/datum/martial_art/cqc/proc/Kick]
-  * [Restrain][/datum/martial_art/cqc/proc/Restrain]
-  * [Pressure][/datum/martial_art/cqc/proc/Pressure]
-  * [Consecutive][/datum/martial_art/cqc/proc/Consecutive]
-  */
