@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Using memento mori and a guardian is now impossible"
-  - bugfix: "You are now told when you attempt to create a guardian with too many points"
