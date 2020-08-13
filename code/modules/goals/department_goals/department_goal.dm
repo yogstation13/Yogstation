@@ -25,47 +25,80 @@
 
 	/// The account that the goal is tied to. Should probably not be fiddled with as most things rely on it. 
 	var/account // See code/__DEFINES/economy.dm
+	/// If defined, this will be paid in to the given account on completion. Otherwise, define your own reward in [/datum/department_goal/proc/complete]
 	var/reward // should be a number, if it's defined then it will just be given as a cash reward on complete()
 
+/**
+  * Creates the new goal.
+  *
+  * Adds the goal to the list of goals in [SSYogs][/datum/controller/subsystem/Yogs], and if the game is currently running, messages players. See: [/datum/department_goal/proc/message_players]
+  */
 /datum/department_goal/New()
 	SSYogs.department_goals += src
 	if(SSticker.current_state == GAME_STATE_PLAYING)
 		message_players("new")
 	return ..()
 
+/**
+  * Destroys the goal.
+  * 
+  * Removes the goal from the list of goals in [SSYogs][/datum/controller/subsystem/Yogs], and if the game is currently running, messages players. See: [/datum/department_goal/proc/message_players]
+  */
 /datum/department_goal/Destroy()
 	SSYogs.department_goals -= src
 	if(SSticker.current_state == GAME_STATE_PLAYING)
 		message_players("ded")
 	return ..()
 
+/**
+  * Returns true if the goal is available to be run, returns false otherwise. Used for conditional goals. See [/datum/department_goal/eng/additional_singularity]
+  */
 /datum/department_goal/proc/is_available()
 	return TRUE
 
-// Should contain the conditions for completing it, not just checking whether the objective has *already* been completed
+/**
+  * Whether the goal is completed. On subtypes, contains all the logic for determining whether it's complete.
+  */
 /datum/department_goal/proc/check_complete()
 	return FALSE
 
-// Should contain the effects on completing it, like paying the given department
+/**
+  * Called to complete the goal. If a reward is set, it doles it out automatically. Otherwise, put your own reward in it.
+  *
+  * Arguments:
+  * * endOfRound - Whether or not this was called at the end of the round. If it was, it completes the objective regardless of continuous status
+  */
 /datum/department_goal/proc/complete(endOfRound = FALSE)
 	if(!continuous || endOfRound)
 		completed = TRUE
 		if(!endOfRound)
 			message_players("complet")
-	else
+	else if(continuous)
 		continuing()
 	if(reward && account)
 		var/datum/bank_account/D = SSeconomy.get_dep_account(account)
 		D.adjust_money(reward)
 
+/**
+  * Called at the end of the round, returns a string saying either `completed` or `not completed`
+  */
 /datum/department_goal/proc/get_result()
 	if(!completed && check_complete())
 		complete(TRUE)
 	return "<li>[name] : <span class='[completed ? "greentext'>C" : "redtext'>Not c"]ompleted</span></li>"
 
+/**
+  * Returns a string containing the name and the description of the goal
+  */
 /datum/department_goal/proc/get_name()
 	return "<li>[name] : [desc]</li>"
 
+/**
+  * Messages the players of the goal's department, dependent on input
+  *
+  * Arguments:
+  * * message - Can be either "ded", "new", or "complet". Will output either that the objective has been deleted, created, or completed.
+  */
 /datum/department_goal/proc/message_players(message)
 	var/string = "Your department's goals have been updated, please have another look at them."
 	switch(message)
@@ -95,5 +128,8 @@
 				linkedServer = S
 			linkedServer.receive_information(signal, null)
 
+/**
+  * If the goal is continuous, this will set the timer to now + how-ever-long-the-timer-is
+  */
 /datum/department_goal/proc/continuing()
 	SSYogs.department_goals[src] = world.time + continuous
