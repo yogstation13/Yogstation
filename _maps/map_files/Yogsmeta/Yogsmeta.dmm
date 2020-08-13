@@ -39005,21 +39005,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"bqd" = (
-/obj/machinery/power/apc{
-	areastring = "/area/hallway/secondary/entry";
-	dir = 4;
-	name = "Arrivals APC";
-	pixel_x = 24
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/corner,
-/area/hallway/secondary/entry)
 "bqe" = (
 /obj/structure/chair/comfy/beige{
 	dir = 4
@@ -83186,6 +83171,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fOs" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/power/apc/highcap/fifteen_k{
+	areastring = "/area/hallway/secondary/entry";
+	dir = 4;
+	name = "Arrivals APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "fWM" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -98813,7 +98813,7 @@ biw
 aUW
 bkd
 bnM
-bqd
+fOs
 bsp
 bnM
 bnM

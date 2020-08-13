@@ -2358,6 +2358,7 @@
 #include "code\modules\modular_computers\file_system\programs\card.dm"
 #include "code\modules\modular_computers\file_system\programs\configurator.dm"
 #include "code\modules\modular_computers\file_system\programs\crewmanifest.dm"
+#include "code\modules\modular_computers\file_system\programs\energyharvestercontrol.dm"
 #include "code\modules\modular_computers\file_system\programs\file_browser.dm"
 #include "code\modules\modular_computers\file_system\programs\jobmanagement.dm"
 #include "code\modules\modular_computers\file_system\programs\ntdownloader.dm"
