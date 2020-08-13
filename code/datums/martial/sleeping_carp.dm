@@ -226,7 +226,7 @@
 
 		log_combat(user, H, "Bo Staffed", src.name, "((DAMTYPE: STAMINA)")
 		add_fingerprint(user)
-		H.adjustStaminaLoss(rand(28,33))
+		H.apply_damage(rand(28,33), STAMINA, BODY_ZONE_HEAD)
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
