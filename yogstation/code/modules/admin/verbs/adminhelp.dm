@@ -1,3 +1,5 @@
+#define REBWOINK_TIME 60 // Number of seconds before unclaimed tickets bwoink again and yell about being unclaimed
+
 /client/var/adminhelptimerid = 0	//a timer id for returning the ahelp verb
 /client/var/datum/admin_help/current_ticket	//the current ticket the (usually) not-admin client is dealing with
 
@@ -170,20 +172,47 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.tickets_list += src
 	GLOB.ahelp_tickets.ticketAmount += 1
 
+	addtimer(CALLBACK(src, .proc/resend_bwoink), REBWOINK_TIME*10) //Callback used for resending adminhelp alert
+
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
 	return ..()
 
-/datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
+/**
+  * Resend adminhelp alert
+  *
+  * Resends the adminhelp notification. Sends the text notifications to all admins, but only sends the audio notification to admins who do not
+  * currently have a ticket assigned to them. Adds a callback so that it'll automagically resend the notification after a minute.
+  */
+/datum/admin_help/proc/resend_bwoink()
 	if(!handling_admin && state == AHELP_ACTIVE)
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
-		for(var/client/X in GLOB.admins)
+		for(var/client/X in get_avail_admins())
 			if(check_rights_for(X,R_BAN) && (X.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+				world.sync_logout_with_db(X.connection_number)	//"log" them out
+				GLOB.ticket_logout_admins += X
+		addtimer(CALLBACK(src, .proc/resend_bwoink), REBWOINK_TIME*10) //uh oh recursion
 		return FALSE
+	if(handling_admin in GLOB.ticket_logout_admins && state == AHELP_ACTIVE) //an inactive admin is handling a ticket, log them back in
+		handling_admin.sync_login_with_db()
+		GLOB.ticket_logout_admins -= handling_admin
 	return TRUE
 
+/**
+  * Get availiable admins
+  *
+  * Returns a list of all admins who do not have a ticket assigned to them. Takes no arguments.
+  */
+/datum/admin_help/proc/get_avail_admins()
+	var/list/client/busy_admins = list()
+	for(var/datum/admin_help/T in GLOB.ahelp_tickets.tickets_list)
+		if(T.handling_admin && T.state == AHELP_ACTIVE)
+			busy_admins += T.handling_admin
+	return GLOB.admins - busy_admins
+
+		
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE, ckey = null)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
 	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client.ckey))
@@ -301,6 +330,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
+	if(!GLOB.ahelp_tickets.ticketAmount)
+		for(var/client/X in GLOB.ticket_logout_admins)
+			X.sync_login_with_db()
+			GLOB.ticket_logout_admins -= X
+
 	GLOB.ahelp_tickets.ticketAmount -= 1
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
@@ -344,6 +378,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/msg = "Ticket [TicketHref("#[id]")] [resolved ? "" : "un"]resolved by [key_name]"
 		message_admins(msg)
 		log_admin_private(msg)
+
+	if(!GLOB.ahelp_tickets.ticketAmount)
+		for(var/client/X in GLOB.ticket_logout_admins)
+			X.sync_login_with_db()
+			GLOB.ticket_logout_admins -= X
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
@@ -552,6 +591,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
 	message_admins(msg)
 	log_admin_private(msg)
+	if(handling_admin in GLOB.ticket_logout_admins) //inactive admin is administering a ticket, log them back in
+		handling_admin.sync_login_with_db()
+		GLOB.ticket_logout_admins -= handling_admin
 
 //Admin activates the pop-ups
 /datum/admin_help/proc/PopUps(key_name = key_name_admin(usr))
