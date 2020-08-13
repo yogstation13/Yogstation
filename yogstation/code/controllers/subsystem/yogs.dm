@@ -63,22 +63,22 @@ SUBSYSTEM_DEF(Yogs)
 
 	// Picking department goals
 	// Engineering first
-	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/eng)
+	generateGoalsFromSubtypes(/datum/department_goal/eng)
 	
 	// Then security
-	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/sec)
+	generateGoalsFromSubtypes(/datum/department_goal/sec)
 
 	// Then medical
-	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/med)
+	generateGoalsFromSubtypes(/datum/department_goal/med)
 
 	// Then cargo
-	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/car)
+	generateGoalsFromSubtypes(/datum/department_goal/car)
 
 	// Then service
-	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/srv)
+	generateGoalsFromSubtypes(/datum/department_goal/srv)
 
 	// Then science
-	asvToldMeToRenameThisProcSoHereWeAre(/datum/department_goal/sci)
+	generateGoalsFromSubtypes(/datum/department_goal/sci)
 
 	// Then spawn the papers with the goals on em on the heads' (and QM's) computers
 	for(var/obj/machinery/computer/C in GLOB.machines)
@@ -157,14 +157,20 @@ SUBSYSTEM_DEF(Yogs)
 			if(dg.completed || dg.endround || (department_goals[dg] && world.time < department_goals[dg]))
 				continue
 			if(dg.check_complete())
-				dg.on_complete()
+				dg.complete()
+			else if(dg.continuous && !dg.fail_if_failed)
+				dg.continuing()
 
-/datum/controller/subsystem/Yogs/proc/asvToldMeToRenameThisProcSoHereWeAre(datum/d)
+/datum/controller/subsystem/Yogs/proc/generateGoalsFromSubtypes(datum/d)
 	var/list/goals = subtypesof(d)
-	var/five = goals.len >= 5 ? 5 : goals.len
-	for(var/i in 1 to five)
-		var/datum/f = pick_n_take(goals)
-		new f
+	var/goalsSoFar = 0
+	while(goals.len && goalsSoFar < 5)
+		var/datum/typepath = pick_n_take(goals)
+		var/datum/department_goal/goal = new typepath
+		if(goal.is_available())
+			goalsSoFar++
+		else 
+			qdel(goal)
 
 /datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
 	switch(account)
