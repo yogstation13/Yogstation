@@ -51,6 +51,13 @@
 	crate_name = "Advanced Crate Container"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/organic/cheese
+	name = "Cheese Culture Crate"
+	desc = "A crate containing a variety of advanced cheese bacteria cultures."
+	cost = 1500
+	contains = list(/obj/item/storage/box/cheese)
+	crate_name = "cheese crate"
+
 /datum/supply_pack/critter/exoticgoat
 	name = "Exotic Goat Crate"
 	desc = "Contains a bunch of genetically altered goats from Goat Tech Industries. Try to collect them all!"
