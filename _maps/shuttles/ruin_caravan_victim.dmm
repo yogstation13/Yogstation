@@ -1121,13 +1121,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/shuttle/caravan/freighter1)
-"Se" = (
-/obj/structure/closet/crate/secure/science,
-/obj/item/circuitboard/machine/autolathe,
-/obj/item/circuitboard/machine/protolathe,
-/obj/item/circuitboard/machine/circuit_imprinter,
-/turf/open/floor/plasteel/airless/dark,
-/area/shuttle/caravan/freighter1)
 "Su" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless{
@@ -1143,6 +1136,14 @@
 	icon_state = "crateopen"
 	},
 /obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel/airless/dark,
+/area/shuttle/caravan/freighter1)
+"TZ" = (
+/obj/structure/closet/crate/secure/science,
+/obj/item/circuitboard/machine/autolathe,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/obj/item/circuitboard/computer/rdconsole,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter1)
 "Ut" = (
@@ -1378,7 +1379,7 @@ El
 aa
 El
 DQ
-Se
+TZ
 bI
 El
 "}
