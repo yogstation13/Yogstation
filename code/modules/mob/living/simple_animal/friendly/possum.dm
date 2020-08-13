@@ -15,12 +15,6 @@
 	maxHealth = 15
 	health = 15
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "stamps on"
-	response_harm_simple = "stamp"
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSMOB
