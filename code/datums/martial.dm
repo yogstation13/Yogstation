@@ -1,3 +1,11 @@
+/**
+  *
+  * Martial Arts
+  *
+  * Martial arts change how human unarmed attacks effect other humans, and allow for strings of attacks on the same target to have special effects
+  * Martial arts also can block melee or ranged attacks using block_chance and deflect_chance variables
+  */
+
 /datum/martial_art
 	///the name of the martial art
 	var/name = "Martial Art"
@@ -24,7 +32,8 @@
 	var/no_guns = FALSE
 	///check for if the martial art can be used by pacifists
 	var/nonlethal = FALSE
-	var/allow_temp_override = TRUE //if this martial art can be overridden by temporary martial arts
+	///if the martial art can be overridden by temporary arts
+	var/allow_temp_override = TRUE
 
 /**
   * martial art specific disarm attacks
@@ -190,11 +199,3 @@
 	if(help_verb)
 		H.verbs -= help_verb
 	return
-
-/**
-  * Martial arts, allow different attack effects and combo attacks
-  *
-  * Martial arts are used to change how a carbon can attack, giving different effects based on intent
-  * Martial arts can also use combination attacks, which drastically change how an attack effects its target
-  * The user can also gain projectile or melee block chance from having a martial art
-  */
