@@ -319,10 +319,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
-"aX" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/bananium,
-/area/shuttle/escape)
 "aY" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -489,6 +485,12 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/escape)
+"WL" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "XS" = (
@@ -742,9 +744,9 @@ aM
 he
 aL
 ac
-aX
+WL
 bb
-aX
+WL
 ab
 ab
 "}

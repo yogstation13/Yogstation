@@ -1212,6 +1212,28 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"acx" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/rack,
+/obj/item/storage/box/fancy/donut_box,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/card/id/departmental_budget/sec,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "acy" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Two"
@@ -3891,27 +3913,6 @@
 /obj/item/clothing/head/helmet/alt,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/head/helmet/alt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
-"agR" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/rack,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -54076,16 +54077,6 @@
 	dir = 2
 	},
 /area/crew_quarters/kitchen)
-"bRT" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "bRU" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -65450,22 +65441,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"cld" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "cle" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -83151,6 +83126,18 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"eTc" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "fdr" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -83664,6 +83651,22 @@
 "kwT" = (
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"kwY" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "kyR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
 	dir = 4
@@ -83753,6 +83756,10 @@
 "lob" = (
 /turf/closed/wall,
 /area/maintenance/department/science/central)
+"lpm" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "lvi" = (
 /turf/closed/wall,
 /area/maintenance/starboard/secondary)
@@ -83994,6 +84001,10 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/aisat)
+"oKC" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/office)
 "oQe" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 8;
@@ -84149,6 +84160,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"qhB" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/storage)
 "qya" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -84248,6 +84263,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"rNv" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/science/research)
 "rOP" = (
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -84790,6 +84809,10 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"yiu" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/security/main)
 "yiY" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -103676,7 +103699,7 @@ aPC
 aRb
 aYM
 aYP
-bat
+oKC
 dmF
 dmF
 dmF
@@ -105772,7 +105795,7 @@ cfG
 byc
 bXc
 cbV
-cld
+kwY
 cev
 ccB
 bSv
@@ -107311,7 +107334,7 @@ bvi
 cdr
 cew
 cfL
-bXK
+qhB
 byP
 cop
 clj
@@ -111864,7 +111887,7 @@ aaf
 aeq
 aeq
 afZ
-agR
+acx
 ahE
 aiA
 akD
@@ -115796,7 +115819,7 @@ chp
 cgo
 cgo
 cgo
-cgo
+rNv
 bDm
 bSM
 bEN
@@ -116501,7 +116524,7 @@ aoI
 anO
 aqz
 asL
-aqa
+yiu
 ajm
 aHS
 ajm
@@ -119121,7 +119144,7 @@ bLN
 dDe
 bOV
 bpl
-bRT
+eTc
 bST
 bUj
 bVu
@@ -126279,7 +126302,7 @@ deh
 aGn
 aCZ
 deM
-axY
+lpm
 aCZ
 aMg
 aCZ
