@@ -15,6 +15,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 70, "acid" = 50)
 	strip_delay = 70
+	force = 3
+	attack_verb = list("attacked")
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
@@ -27,6 +29,8 @@
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
 	permeability_coefficient = 0.01
+	force = 3
+	attack_verb = list("attacked")
 	clothing_flags = NOSLIP
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 50)
 
@@ -133,6 +137,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	item_color = "hosred"
+	force = 3
+	attack_verb = list("attacked")
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
@@ -145,6 +151,8 @@
 /obj/item/clothing/shoes/jackboots/warden
 	name = "warden's spur jackboots"
 	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. These boots have spurs attached to them."
+	force = 3
+	attack_verb = list("attacked")
 	icon_state = "spurboots"
 	item_state = "spurboots"
 
@@ -167,6 +175,8 @@
 /obj/item/clothing/shoes/winterboots/ice_boots
 	name = "ice hiking boots"
 	desc = "A pair of winter boots with special grips on the bottom, designed to prevent slipping on frozen surfaces."
+	force = 3
+	attack_verb = list("attacked")
 	icon_state = "iceboots"
 	item_state = "iceboots"
 	clothing_flags = NOSLIP_ICE
@@ -186,6 +196,8 @@
 /obj/item/clothing/shoes/workboots/mining
 	name = "mining boots"
 	desc = "Steel-toed mining boots for mining in hazardous environments. Very good at keeping toes uncrushed."
+	force = 6
+	attack_verb = list("attacked")
 	icon_state = "explorer"
 	resistance_flags = FIRE_PROOF
 
