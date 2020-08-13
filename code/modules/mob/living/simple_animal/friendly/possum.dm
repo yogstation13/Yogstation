@@ -19,7 +19,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = list(MOB_ORGANIC, MOB_Beast)
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 /mob/living/simple_animal/opossum/poppy
