@@ -1,0 +1,6 @@
+author: "MrHorizons"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a mounted defibrillator to the CentCom recovery ship."
+  - rscadd: "Adds a bathroom to the CentCom recovery ship."
+  - rscadd: "Adds additional seating, lighting, and \"grime\" to the CentCom recovery ship."
