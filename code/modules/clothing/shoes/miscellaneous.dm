@@ -257,6 +257,8 @@
 	item_state = "jetboots"
 	item_color = "hosred"
 	resistance_flags = FIRE_PROOF
+	force = 3
+	attack_verb = list("attacked")
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/item_action/bhop)
 	permeability_coefficient = 0.05
@@ -297,6 +299,8 @@
 /obj/item/clothing/shoes/bronze
 	name = "bronze boots"
 	desc = "A giant, clunky pair of shoes crudely made out of bronze. Why would anyone wear these?"
+	force = 3
+	attack_verb = list("attacked")
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_treads"
 
@@ -380,6 +384,8 @@
 	name = "cowboy boots"
 	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
 	icon_state = "cowboy_brown"
+	force = 3
+	attack_verb = list("attacked")
 	permeability_coefficient = 0.05 //these are quite tall
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	custom_price = 35 //poor assistants cant afford 50 credits
