@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 
 	// Tgui Topic middleware
-	if(!tgui_Topic(href_list))
+	if(tgui_Topic(href_list))
 		return
 
 	// Admin PM
@@ -145,8 +145,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return
 		if("vars")
 			return view_var_Topic(href,href_list,hsrc)
-		if("chat")
-			return chatOutput.Topic(href, href_list)
 
 	switch(href_list["action"])
 		if("openLink")
@@ -283,6 +281,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	// Instantiate tgui panel
+	tgui_panel = new(src)
+
 	GLOB.ahelp_tickets.ClientLogin(src)
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
 	//Admin Authorisation
@@ -403,7 +404,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
 
-	chatOutput.start() // Starts the chat
+	// Initialize tgui panel
+	tgui_panel.initialize()
 
 	if(alert_mob_dupe_login)
 		spawn()
