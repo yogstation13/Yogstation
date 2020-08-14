@@ -1,4 +1,4 @@
-#define REBWOINK_TIME 60 // Number of seconds before unclaimed tickets bwoink again and yell about being unclaimed
+#define REBWOINK_TIME 60 SECONDS // Number of seconds before unclaimed tickets bwoink again and yell about being unclaimed
 
 /client/var/adminhelptimerid = 0	//a timer id for returning the ahelp verb
 /client/var/datum/admin_help/current_ticket	//the current ticket the (usually) not-admin client is dealing with
@@ -172,7 +172,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.tickets_list += src
 	GLOB.ahelp_tickets.ticketAmount += 1
 
-	addtimer(CALLBACK(src, .proc/resend_bwoink), REBWOINK_TIME*10) //Callback used for resending adminhelp alert
+	addtimer(CALLBACK(src, .proc/resend_bwoink), REBWOINK_TIME) //Callback used for resending adminhelp alert
 
 
 /datum/admin_help/Destroy()
@@ -193,7 +193,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 				world.sync_logout_with_db(X.connection_number)	//"log" them out
 				GLOB.ticket_logout_admins += X
-		addtimer(CALLBACK(src, .proc/resend_bwoink), REBWOINK_TIME*10) //uh oh recursion
+		addtimer(CALLBACK(src, .proc/resend_bwoink), REBWOINK_TIME) //uh oh recursion
 		return FALSE
 	if(handling_admin in GLOB.ticket_logout_admins && state == AHELP_ACTIVE) //an inactive admin is handling a ticket, log them back in
 		handling_admin.sync_login_with_db()
