@@ -54,7 +54,7 @@
 /datum/supply_pack/organic/cheeseculture
 	name = "Cheese Culture Crate"
 	desc = "Contains a variety of advanced cheese bacteria cultures."
-	cost = 1500
+	cost = 800
 	contains = list(/obj/item/storage/box/cheese)
 	crate_name = "cheese culture crate"
 	
