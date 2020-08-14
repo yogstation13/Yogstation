@@ -33,6 +33,41 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"g" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/healthanalyzer{
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/glass/rag{
+	color = "#FFFF00";
+	desc = "I didn't know the sponge was supposed to be wet.";
+	name = "sponge";
+	pixel_x = -6;
+	pixel_y = 13
+	},
+/obj/item/assembly/signaler{
+	code = 3;
+	frequency = 1399;
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/obj/item/paper{
+	info = "Connect the helmet to the electropack, connect the assembly to the chair in the transfer chamber, use the preset signaler to apply an electric shock.";
+	name = "Electric chair assembly instructions";
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
 "h" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
@@ -63,41 +98,6 @@
 	},
 /obj/structure/chair,
 /turf/open/floor/plating,
-/area/security/execution/transfer)
-"k" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/healthanalyzer{
-	pixel_y = 18
-	},
-/obj/item/reagent_containers/glass/rag{
-	color = "#FFFF00";
-	desc = "I didn't know the sponge was supposed to be wet.";
-	name = "sponge";
-	pixel_x = -6;
-	pixel_y = 13
-	},
-/obj/item/assembly/signaler{
-	code = 3;
-	frequency = 1339;
-	pixel_x = 11;
-	pixel_y = 8
-	},
-/obj/item/paper{
-	info = "Connect the helmet to the electropack, connect the assembly to the chair in the transfer chamber, use the signaler to apply an electric shock.";
-	name = "Electric chair assembly instructions";
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
 "l" = (
 /obj/effect/turf_decal/tile/red{
@@ -454,7 +454,7 @@ a
 a
 M
 s
-k
+g
 l
 M
 "}
