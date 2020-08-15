@@ -67,15 +67,16 @@
   *
   */
 /datum/action/innate/savantSuitUp/Activate()
-	var/mob/living/carbon/human/H = owner
-	var/datum/species/savant/S = H.dna.species
 	///This is how much metal is needed, in sheets
 	var/metalNeeded = 30
-	if(S.isSuited)
+
+	var/mob/living/carbon/human/H = owner
+	var/datum/species/savant/Sav = H.dna.species
+	if(Sav.isSuited)
 		to_chat(H, "<span class='warning'>You begin to take off your suit...this might hurt! Are you sure you want to?</span>")
 		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		if(do_after(owner, 40, TRUE, owner))
-			S.loseSuit(H)
+			Sav.loseSuit(H)
 			H.update_body_parts()
 			explosion(H, 0, 0, 0, adminlog = FALSE)
 			var/sfh = SUITFAILHEALTH
