@@ -70,6 +70,11 @@
 	B.setDir(dir)
 	qdel(src)
 
+/obj/structure/chair/honk_act()
+	var/obj/structure/chair/bananium/A = new(get_turf(src))
+	A.setDir(dir)
+	qdel(src)
+
 /obj/structure/chair/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
 		to_chat(user, "<span class='notice'>You start deconstructing [src]...</span>")

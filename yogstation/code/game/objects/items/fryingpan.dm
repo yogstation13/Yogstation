@@ -19,6 +19,10 @@
 /obj/item/melee/fryingpan/get_clamped_volume()
 	return 100 // BONK!
 
+/obj/item/melee/fryingpan/honk_act()
+	new /obj/item/melee/fryingpan/bananium(src.loc)
+	qdel(src)
+
 /obj/item/melee/fryingpan/bananium
 	name = "bananium frying pan"
 	desc = "A cast-bananium frying pan imbued with an ancient power."
@@ -53,3 +57,6 @@
 			statue.max_integrity = 9999
 			statue.obj_integrity = 9999
 	return ..()
+
+/obj/item/melee/fryingpan/bananium/honk_act()
+	return FALSE

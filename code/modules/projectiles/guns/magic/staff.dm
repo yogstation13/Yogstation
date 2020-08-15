@@ -72,6 +72,9 @@
 	max_charges = 4
 	recharge_rate = 8
 
+/obj/item/gun/magic/staff/honk/honk_act()
+	return FALSE
+
 /obj/item/gun/magic/staff/spellblade
 	name = "spellblade"
 	desc = "A deadly combination of laziness and boodlust, this blade allows the user to dismember their enemies without all the hard work of actually swinging the sword."

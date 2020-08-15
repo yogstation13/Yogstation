@@ -313,6 +313,10 @@
 			new mineral_path(T, 2)
 	qdel(src)
 
+/obj/structure/door_assembly/honk_act()
+	new /obj/structure/door_assembly/door_assembly_bananium(src.loc)
+	qdel(src)
+
 /obj/structure/door_assembly/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_DECONSTRUCT)
 		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
