@@ -34,7 +34,21 @@
 
 /obj/machinery/nuclearbomb/syndicate/bananium/really_actually_explode(off_station)
 	//SHE LIVES
-	new /obj/structure/destructible/honkmother(src.loc)
+	var/turf/T = SSmapping.get_station_center()
+	new /obj/structure/destructible/honkmother(T)
+	var/x0 = T.x
+	var/y0 = T.y
+	for(var/I in spiral_range_turfs(255, T, tick_checked = TRUE))
+		var/turf/T2 = I
+		if(!T2)
+			continue
+		var/dist = cheap_hypotenuse(T2.x, T2.y, x0, y0)
+		if(dist < 100)
+			dist = TRUE
+		else
+			dist = FALSE
+		T.honk_act(dist)
+		CHECK_TICK
 	Cinematic(get_cinematic_type(off_station), world)
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		var/turf/T = get_turf(H)
