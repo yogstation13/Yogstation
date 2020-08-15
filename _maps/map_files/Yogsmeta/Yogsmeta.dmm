@@ -1402,6 +1402,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
+"acM" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/clothing/mask/breath{
+	pixel_x = 4
+	},
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "acN" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/security/prison";
@@ -2793,20 +2803,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"aeV" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "aeW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3029,6 +3025,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"afn" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/flashlight/flare/signal{
+	pixel_x = 1;
+	pixel_y = 11
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
 "afo" = (
 /obj/machinery/light{
 	dir = 4
@@ -3416,12 +3429,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
-"afV" = (
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "afW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -13728,15 +13735,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/fore)
-"ayc" = (
-/obj/structure/table/reinforced,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/clothing/mask/breath{
-	pixel_x = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "ayd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -39007,21 +39005,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"bqd" = (
-/obj/machinery/power/apc{
-	areastring = "/area/hallway/secondary/entry";
-	dir = 4;
-	name = "Arrivals APC";
-	pixel_x = 24
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/corner,
-/area/hallway/secondary/entry)
 "bqe" = (
 /obj/structure/chair/comfy/beige{
 	dir = 4
@@ -53048,19 +53031,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bPZ" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "bQa" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -83201,6 +83171,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fOs" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/power/apc/highcap/fifteen_k{
+	areastring = "/area/hallway/secondary/entry";
+	dir = 4;
+	name = "Arrivals APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "fWM" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -83252,10 +83237,6 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "gLo" = (
@@ -83315,6 +83296,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"heF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "hfl" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -98825,7 +98813,7 @@ biw
 aUW
 bkd
 bnM
-bqd
+fOs
 bsp
 bnM
 bnM
@@ -100852,7 +100840,7 @@ aaf
 aaa
 aaf
 aFO
-aeV
+heF
 aAC
 aBS
 aFO
@@ -108606,7 +108594,7 @@ bZg
 bns
 bMU
 dbm
-bPZ
+afn
 bRq
 bSE
 bre
@@ -118706,7 +118694,7 @@ cTt
 daA
 cSn
 cSn
-afV
+cSn
 daL
 cRi
 daQ
@@ -128606,7 +128594,7 @@ apm
 dnR
 aFH
 axY
-ayc
+acM
 awz
 aAw
 bUw

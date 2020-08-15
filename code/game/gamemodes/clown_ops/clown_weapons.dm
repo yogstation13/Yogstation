@@ -157,6 +157,8 @@
 	else
 		return ..()
 
+/obj/item/shield/energy/bananium/honk_act()
+	return FALSE
 
 //BOMBANANA
 

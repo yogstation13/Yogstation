@@ -129,8 +129,3 @@
 	name = "URGENT!"
 	info = "A hastily written note has been scribbled here... <br><br> Please use the ore redemption machine in the cargo office for smelting. PLEASE! <br><br>--The Research Staff"
 	infolang = /datum/language/common
-
-/obj/item/paper/fluff/stations/lavaland/slime_hunter
-	name = "Notice from Science!"
-	info = "Xenobiology wants you to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
-

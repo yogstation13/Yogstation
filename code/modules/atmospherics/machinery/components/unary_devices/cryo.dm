@@ -180,6 +180,14 @@
 		return
 	if(mob_occupant.stat == DEAD) // We don't bother with dead people.
 		return
+	
+	if(HAS_TRAIT(mob_occupant,TRAIT_MEDICALIGNORE))
+		src.visible_message("<span class='warning'>[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine.</span>")
+		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
+		on = FALSE
+		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
+		update_icon()
+		return
 
 	if(mob_occupant.health >= mob_occupant.getMaxHealth()) // Don't bother with fully healed people.
 		on = FALSE
