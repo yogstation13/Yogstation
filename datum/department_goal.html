@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;department_goal - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/department_goal.html#var">Var Details</a> - <a href="datum/department_goal.html#proc">Proc Details</a></header>
+<main>
+<h1>Department goal <aside>/<a href="datum.html">datum</a>/<a href="datum/department_goal.html">department_goal</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 11"/></a></h1>
+
+<p>Goals that a department can complete for monetary (or other) rewards.</p>
+<p>Can be either do-once-and-complete goals that you just need to do once, or continuous goals that check every specified interval, and reward the department if they're still true.
+You shouldn't make direct subtypes of <a href="datum/department_goal.html" title="/datum/department_goal">/datum/department_goal</a>, instead make subtypes of each subtype, IE <a href="datum/department_goal.html" title="/datum/department_goal">/datum/department_goal/sec</a> or <a href="datum/department_goal.html" title="/datum/department_goal">/datum/department_goal/eng</a>.</p>
+<p>Each subtype is already preset to payout and show to the correct accounts, if you want to add more, you need to update <a href="datum/controller/subsystem/Yogs.html#proc/getDepartmentFromAccount" title="/datum/controller/subsystem/Yogs">/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount</a>.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/department_goal.html#var/account">account</a></th><td>The account that the goal is tied to. Should probably not be fiddled with as most things rely on it.</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/completed">completed</a></th><td>Whether its already been completed. If true, <a href="datum/controller/subsystem/Yogs.html" title="/datum/controller/subsystem/Yogs">SSYogs</a> won't check it again</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/continuous">continuous</a></th><td>Whether the goal can be completed multiple times with multiple payouts, or just once. Will be 0 if it's completed-once, otherwise it'll be the amount of time inbetween checks</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/desc">desc</a></th><td>The description of the goal - Describe how to accomplish it</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/endround">endround</a></th><td>If true, this goal will only be checked at round-end, otherwise it'll get checked every time <a href="datum/controller/subsystem/Yogs.html" title="/datum/controller/subsystem/Yogs">SSYogs</a> fires</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/fail_if_failed">fail_if_failed</a></th><td>If false, it'll stop checking once failed, otherwise it'll keep checking but only reward when it's completed</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/name">name</a></th><td>The name of the goal - Should be kept short</td></tr>
+            <tr><th><a href="datum/department_goal.html#var/reward">reward</a></th><td>If defined, this will be paid in to the given account on completion. Otherwise, define your own reward in <a href="datum/department_goal.html#proc/complete" title="/datum/department_goal">/datum/department_goal/proc/complete</a></td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/Destroy">Destroy</a></th><td>Destroys the goal.</td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/New">New</a></th><td>Creates the new goal.</td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/check_complete">check_complete</a></th><td>Whether the goal is completed. On subtypes, contains all the logic for determining whether it's complete.</td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/complete">complete</a></th><td>Called to complete the goal. If a reward is set, it doles it out automatically. Otherwise, put your own reward in it.</td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/continuing">continuing</a></th><td>If the goal is continuous, this will set the timer to now + how-ever-long-the-timer-is</td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/get_name">get_name</a></th><td>Returns a string containing the name and the description of the goal</td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/get_result">get_result</a></th><td>Called at the end of the round, returns a string saying either <code>completed</code> or <code>not completed</code></td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/is_available">is_available</a></th><td>Returns true if the goal is available to be run, returns false otherwise. Used for conditional goals. See <a href="datum/department_goal.html" title="/datum/department_goal">/datum/department_goal/eng/additional_singularity</a></td></tr>
+            <tr><th><a href="datum/department_goal.html#proc/message_players">message_players</a></th><td>Messages the players of the goal's department, dependent on input</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/account"><aside class="declaration">var </aside>account
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 27"/></a></h3>
+        <p>The account that the goal is tied to. Should probably not be fiddled with as most things rely on it.</p><h3 id="var/completed"><aside class="declaration">var </aside>completed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 19"/></a></h3>
+        <p>Whether its already been completed. If true, <a href="datum/controller/subsystem/Yogs.html" title="/datum/controller/subsystem/Yogs">SSYogs</a> won't check it again</p><h3 id="var/continuous"><aside class="declaration">var </aside>continuous
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 22"/></a></h3>
+        <p>Whether the goal can be completed multiple times with multiple payouts, or just once. Will be 0 if it's completed-once, otherwise it'll be the amount of time inbetween checks</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 15"/></a></h3>
+        <p>The description of the goal - Describe how to accomplish it</p><h3 id="var/endround"><aside class="declaration">var </aside>endround
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 17"/></a></h3>
+        <p>If true, this goal will only be checked at round-end, otherwise it'll get checked every time <a href="datum/controller/subsystem/Yogs.html" title="/datum/controller/subsystem/Yogs">SSYogs</a> fires</p><h3 id="var/fail_if_failed"><aside class="declaration">var </aside>fail_if_failed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 24"/></a></h3>
+        <p>If false, it'll stop checking once failed, otherwise it'll keep checking but only reward when it's completed</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 13"/></a></h3>
+        <p>The name of the goal - Should be kept short</p><h3 id="var/reward"><aside class="declaration">var </aside>reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 31"/></a></h3>
+        <p>If defined, this will be paid in to the given account on completion. Otherwise, define your own reward in <a href="datum/department_goal.html#proc/complete" title="/datum/department_goal">/datum/department_goal/proc/complete</a></p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/datum" href="datum.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 47"/></a></aside>
+        </h3>
+        <p>Destroys the goal.</p>
+<p>Removes the goal from the list of goals in <a href="datum/controller/subsystem/Yogs.html" title="/datum/controller/subsystem/Yogs">SSYogs</a>, and if the game is currently running, messages players. See: <a href="datum/department_goal.html#proc/message_players" title="/datum/department_goal">/datum/department_goal/proc/message_players</a></p><h3 id="proc/New">New<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 36"/></a></aside>
+        </h3>
+        <p>Creates the new goal.</p>
+<p>Adds the goal to the list of goals in <a href="datum/controller/subsystem/Yogs.html" title="/datum/controller/subsystem/Yogs">SSYogs</a>, and if the game is currently running, messages players. See: <a href="datum/department_goal.html#proc/message_players" title="/datum/department_goal">/datum/department_goal/proc/message_players</a></p><h3 id="proc/check_complete"><aside class="declaration">proc </aside>check_complete<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 62"/></a></aside>
+        </h3>
+        <p>Whether the goal is completed. On subtypes, contains all the logic for determining whether it's complete.</p><h3 id="proc/complete"><aside class="declaration">proc </aside>complete<aside>(endOfRound) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 71"/></a></aside>
+        </h3>
+        <p>Called to complete the goal. If a reward is set, it doles it out automatically. Otherwise, put your own reward in it.</p>
+<p>Arguments:</p>
+<ul>
+<li>endOfRound - Whether or not this was called at the end of the round. If it was, it completes the objective regardless of continuous status</li>
+</ul><h3 id="proc/continuing"><aside class="declaration">proc </aside>continuing<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 134"/></a></aside>
+        </h3>
+        <p>If the goal is continuous, this will set the timer to now + how-ever-long-the-timer-is</p><h3 id="proc/get_name"><aside class="declaration">proc </aside>get_name<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 93"/></a></aside>
+        </h3>
+        <p>Returns a string containing the name and the description of the goal</p><h3 id="proc/get_result"><aside class="declaration">proc </aside>get_result<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 85"/></a></aside>
+        </h3>
+        <p>Called at the end of the round, returns a string saying either <code>completed</code> or <code>not completed</code></p><h3 id="proc/is_available"><aside class="declaration">proc </aside>is_available<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 56"/></a></aside>
+        </h3>
+        <p>Returns true if the goal is available to be run, returns false otherwise. Used for conditional goals. See <a href="datum/department_goal.html" title="/datum/department_goal">/datum/department_goal/eng/additional_singularity</a></p><h3 id="proc/message_players"><aside class="declaration">proc </aside>message_players<aside>(message) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/157c10bf6e4028ce4a5073fc83490af3504602a9/code/modules/goals/department_goals/department_goal.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goals&#x2F;department_goals&#x2F;department_goal.dm 102"/></a></aside>
+        </h3>
+        <p>Messages the players of the goal's department, dependent on input</p>
+<p>Arguments:</p>
+<ul>
+<li>message - Can be either &quot;ded&quot;, &quot;new&quot;, or &quot;complet&quot;. Will output either that the objective has been deleted, created, or completed.</li>
+</ul></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/157c10bf6e4028ce4a5073fc83490af3504602a9">157c10b</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.2.1</a></footer>
+</body>
+</html>
