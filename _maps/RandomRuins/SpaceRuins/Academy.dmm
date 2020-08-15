@@ -2585,20 +2585,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/academyclassroom)
-"IP" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/structure/mirror/magic/lesser{
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
-/area/awaymission/academy/academyaft)
 "IV" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2756,6 +2742,10 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/awaymission/academy/academyfore)
+"Lf" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/awaymission/academy/academyfore)
 "Lh" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -2813,6 +2803,10 @@
 	icon_state = "white"
 	},
 /area/awaymission/academy/academyclassroom)
+"MT" = (
+/obj/structure/mirror/magic,
+/turf/closed/indestructible/riveted/uranium,
+/area/awaymission/academy/academyfore)
 "MV" = (
 /obj/structure/ladder/unbreakable/rune{
 	id = "academy_engine"
@@ -3335,13 +3329,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
-"Tj" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/mirror{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/awaymission/academy/academyfore)
 "Tk" = (
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plating,
@@ -8028,7 +8015,7 @@ zj
 jV
 Ig
 jV
-IP
+Ig
 jV
 Ig
 jV
@@ -9120,8 +9107,8 @@ hT
 Sg
 uO
 uO
-qA
-Tj
+MT
+Lf
 KI
 al
 qA
