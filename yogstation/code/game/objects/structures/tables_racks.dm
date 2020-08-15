@@ -31,9 +31,6 @@
 		spawn(20)
 			spam_flag = 0
 
-/obj/structure/table/bananium/honk_act()
-	return FALSE
-
 /obj/structure/rack/skeletal
 	name = "minibar"
 	desc = "Different from the Middle Ages version."
