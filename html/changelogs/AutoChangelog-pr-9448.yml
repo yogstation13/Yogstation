@@ -1,0 +1,4 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - rscdel: "Comments out frag-12 rounds and meteorshot. Not that it matters since buckshot kills anything in two hits."
