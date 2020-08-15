@@ -167,7 +167,6 @@
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40, /obj/structure/spawner/lavaland = 2, \
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 20, /obj/structure/spawner/lavaland/magmawing = 1, \
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random = 30, /obj/structure/spawner/lavaland/legion = 3, \
-		/mob/living/simple_animal/slime/random = 50, \
 		SPAWN_MEGAFAUNA = 6, /mob/living/simple_animal/hostile/asteroid/goldgrub = 10, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 35) // yogs change added marrowweaver
 
 	data_having_type = /turf/open/floor/plating/asteroid/airless/cave/volcanic/has_data

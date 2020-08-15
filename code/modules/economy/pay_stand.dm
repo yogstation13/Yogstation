@@ -30,6 +30,9 @@
 				return
 		var/obj/item/card/id/vbucks = W
 		if(vbucks.registered_account)
+			if(!my_card)
+				to_chat(user, "<span class='warning'>ERROR: No bank account assigned to pay stand.</span>")
+				return
 			var/momsdebitcard = input(user, "How much would you like to deposit?", "Money Deposit") as null|num
 			if(momsdebitcard < 1)
 				to_chat(user, "<span class='warning'>ERROR: Invalid amount designated.</span>")

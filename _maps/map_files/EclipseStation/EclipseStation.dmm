@@ -5120,6 +5120,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
+"akm" = (
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plating/airless,
+/area/construction)
 "akn" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
@@ -5189,6 +5193,13 @@
 /obj/machinery/recharger,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"akt" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/item/flashlight/flare/emergency,
+/turf/open/floor/plating,
+/area/teleporter/hub/security)
 "aku" = (
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
@@ -7858,6 +7869,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
+"apT" = (
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/crowbar,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "apU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -8186,6 +8207,19 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms/a)
+"aqI" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"aqJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/wood,
+/area/maintenance/starboard/aft)
 "aqK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -8201,6 +8235,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/solar/port/fore)
+"aqL" = (
+/obj/structure/table,
+/obj/item/wrench,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/item/flashlight,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plating,
+/area/maintenance/department/tcoms)
 "aqO" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -15913,12 +15958,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
-"aIp" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/teleporter/hub/security)
 "aIq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
@@ -20273,15 +20312,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/chapel)
-"aRA" = (
-/obj/effect/turf_decal/tile/darkblue,
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/crowbar,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "aRB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -32229,13 +32259,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/sleeper)
-"box" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "boy" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -40841,21 +40864,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"bFr" = (
-/obj/machinery/power/apc{
-	areastring = "/area/hallway/secondary/entry";
-	dir = 4;
-	name = "Entry Hall APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "bFs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -77928,16 +77936,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"dbH" = (
-/obj/structure/table,
-/obj/item/wrench,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/item/flashlight,
-/turf/open/floor/plating,
-/area/maintenance/department/tcoms)
 "dbI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating,
@@ -87564,6 +87562,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
+"rSJ" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/power/apc/highcap/fifteen_k{
+	areastring = "/area/hallway/secondary/entry";
+	dir = 4;
+	name = "Arrivals APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "rWo" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -112972,7 +112985,7 @@ aaa
 aic
 aQb
 aXP
-bFr
+rSJ
 bJO
 bJO
 bLW
@@ -114328,7 +114341,7 @@ ckF
 ckF
 ckF
 ckF
-ckF
+aqJ
 cLW
 cLW
 cLW
@@ -119363,7 +119376,7 @@ aBF
 aBF
 aBF
 aBF
-aIp
+akt
 aJS
 aLE
 aBF
@@ -124016,7 +124029,7 @@ aPk
 aRY
 aQd
 aQQ
-aRA
+apT
 aSo
 ahK
 wcp
@@ -130806,7 +130819,7 @@ cZI
 abg
 dam
 cZT
-dbH
+aqL
 dbM
 dcb
 cYJ
@@ -142822,7 +142835,7 @@ bkd
 aYO
 bmm
 aYO
-box
+aqI
 bqn
 brG
 bsV
@@ -149945,7 +149958,7 @@ aCA
 aCF
 aCF
 aCF
-aCE
+akm
 aCE
 aCF
 aCF

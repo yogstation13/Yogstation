@@ -21,7 +21,7 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		notify_ghosts("A drone shell has been created in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_DRONE)
+		notify_ghosts("A drone shell has been created in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_DRONE)
 	GLOB.poi_list |= src
 	LAZYADD(GLOB.mob_spawners[initial(name)], src)//Yogs -- Adds drone shells to Spawner Menu
 	if(isnull(possible_seasonal_hats))

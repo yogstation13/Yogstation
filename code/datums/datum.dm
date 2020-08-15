@@ -8,6 +8,7 @@
   * thing in the entire game, and so you can easily cause memory usage to rise a lot with careless
   * use of variables at this level
   */
+  
 /datum
 	/**
 	  * Tick count time when this object was destroyed.
