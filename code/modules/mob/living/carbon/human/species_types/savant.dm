@@ -1,3 +1,5 @@
+/// How much damage the Savant can take before the suit fails and they become a /datum/species/savant
+#define SUITFAILHEALTH 50
 /**
   * # Savant
   *
@@ -9,36 +11,34 @@
   * Author: Jcat
   *
   */
-/// How much damage the Savant can take before the suit fails and they become a /datum/species/savant
-#define SUITFAILHEALTH 50
 /datum/species/savant //sa'vän(t). This is the suitless one. Not for roundstart use.
 	id = "savant"
 	name = "Savant"
-	default_color = "#FFF"	// if alien colors are disabled, this is the color that will be used by that race
+	default_color = "#FFF"
 	limbs_id = "savant"
 	sexes = FALSE
 	damage_overlay_type = ""
-	offset_features = list(OFFSET_GLOVES = list(0,-6),OFFSET_GLASSES = list(0,-8), OFFSET_EARS = list(0,-8), OFFSET_FACEMASK = list(0,-8), OFFSET_HEAD = list(0,-8), OFFSET_FACE = list(0,-8), OFFSET_BACK = list(0,-8))
-	hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
+	offset_features = list(OFFSET_GLASSES = list(0,-8), OFFSET_EARS = list(0,-8), OFFSET_FACEMASK = list(0,-8), OFFSET_HEAD = list(0,-8), OFFSET_FACE = list(0,-8), OFFSET_BACK = list(0,-8))
+	hair_alpha = 255
 
-	use_skintones = FALSE	// does it use skintones or not? (spoiler alert this is only used by humans)
-	exotic_bloodtype = "S" //If your race uses a non standard bloodtype (A+, O-, AB-, etc)
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab //What the species drops on gibbing
+	use_skintones = FALSE
+	exotic_bloodtype = "S"
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab
 	liked_food = VEGETABLES | FRUIT
 	disliked_food = GROSS | RAW | MEAT
 	toxic_food = TOXIC
-	no_equip = list(SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE, SLOT_BELT, SLOT_NECK)	// slots the race can't equip stuff to
+	no_equip = list(SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE, SLOT_BELT, SLOT_NECK)
 	nojumpsuit = TRUE
-	say_mod = "trills"	// affects the speech message
+	say_mod = "trills"
 
 	speedmod = 1	//Small legs!
-	armor = -20	// overall defense for the race... or less defense, if it's negative.
-	punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
-	punchdamagehigh = 5      //highest possible punch damage
+	armor = -20
+	punchdamagelow = 1
+	punchdamagehigh = 5
 	species_traits = list(AGENDER, NO_UNDERWEAR, NOEYESPRITES)
-	// generic traits tied to having the species
+
 	inherent_traits = list(TRAIT_SMALL_HANDS, TRAIT_SHORT)
-	attack_verb = "punch"	// punch-specific attack verb
+	attack_verb = "punch"
 	sound/attack_sound = 'sound/weapons/punch1.ogg'
 	sound/miss_sound = 'sound/weapons/punchmiss.ogg'
 	mutanttongue = /obj/item/organ/tongue/savant
@@ -48,6 +48,11 @@
 	var/datum/action/innate/savantSuitUp/SuitUpPower
 
 	changesource_flags = MIRROR_BADMIN
+
+	///This var decides if the savant is suited or naked :flushed:
+	var/isSuited = FALSE
+	///This is the list of all the vars as they were when this list was made. Used when turning from a suited to unsuited savant.
+	var/list/defaultVars = vars
 
 /datum/action/innate/savantSuitUp
 	name = "Construct Suit"
@@ -65,6 +70,7 @@
   */
 /datum/action/innate/savantSuitUp/Activate()
 	var/mob/living/carbon/human/H = owner
+	///This is how much metal is needed, in sheets
 	var/metalNeeded = 30
 	if(isSuitedSavant(H))
 		to_chat(H, "<span class='warning'>You begin to take off your suit...this might hurt! Are you sure you want to?</span>")
@@ -80,7 +86,6 @@
 			M.amount = round(metalNeeded * 0.5)
 		return
 
-	///This is how much metal is needed
 	var/obj/item/stack/sheet/metal/M
 	for(var/obj/item/stack/sheet/metal/S in range(1))
 		if(S.get_amount() >= metalNeeded)
@@ -97,15 +102,28 @@
 	else
 		to_chat(H, "<span class='warning'>You need at least 30 metal sheets nearby to make a suit!</span>")
 /**
-  * Causes a mob/living/carbon/human to become a mob/living/carbon/savant/suit. Also heals them above the suit breakage threshold.
+  * Causes a mob/living/carbon/human to become a savant with a suit Also heals them above the suit breakage threshold.
   *
   * This proc can take any mob/living/carbon/human. It is intended to only be used on savants, but hey, go nuts.
-  * The proc will also heal the subject until it is above the suitFailHealth threshold, defined in /datum/species/savant/suit.
+  * The proc will also heal the subject until it is above the suitFailHealth threshold.
   * The proc heals brute first, with leftover healing going to burn.
   * Since toxin and o2 damage do not cause the suit to break, they are not healed at all.
   * * C - the savant (or other human type) that will be turned into a savant/suit
   */
 /datum/action/innate/savantSuitUp/proc/suitUp(mob/living/carbon/human/C)
+	//first, the values get changed
+	C.limbs_id = "savant"
+	C.no_equip = list(SLOT_W_UNIFORM)
+	C.speedmod = 0
+	C.armor = -10
+	C.punchdamagelow = 1
+	C.punchdamagehigh = 10
+	C.offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
+	C.inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
+	C.species_traits = list(AGENDER, NO_UNDERWEAR, NOTRANSSTING, NOEYESPRITES)
+	C.isSuited = TRUE
+
+	//next, they heal (if needed)
 	var/sfh = SUITFAILHEALTH
 	if((C.getFireLoss() + C.getBruteLoss()) > sfh)//This part heals suitFailHealth points total, starting in brute, and any leftovers go to burn.
 		if(C.getBruteLoss() > sfh)
@@ -115,7 +133,14 @@
 			C.adjustBruteLoss(-BruteHeal, 0)
 			var/BurnHeal = -(sfh - BruteHeal)
 			C.adjustFireLoss(BurnHeal)
-	C.set_species(/datum/species/savant/suit)
+	//C.set_species(/datum/species/savant/suit)
+	//Lastly, the robot limbs are handled
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/O = X
+		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))//Head and chest are organic. Only the limbs are augmented
+			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, FALSE)
+			O.icon = 'icons/mob/augmentation/savant.dmi'
+			O.icon_state = "savant_suited_[O.body_zone]"
 
 /datum/species/savant/on_species_gain(mob/living/carbon/C)
 	. = ..()
@@ -132,6 +157,38 @@
 	H.set_species(/datum/species/savant/suit)
 	. = ..()
 
+/**
+  * Causes a savant to lose the suit.
+  *
+  * Basically, this does SuitUp in reverse
+  */
+/datum/species/savant/proc/loseSuit()
+	if(!isSuited)
+		return
+	explosion(src, 0, 0, 0, adminlog = FALSE)
+	update_body_parts()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/O = X
+		O.change_bodypart_status(BODYPART_ORGANIC,FALSE,FALSE)
+
+	limbs_id = defaultVars["limbs_id"]
+	no_equip = defaultVars["no_equip"]
+	speedmod = defaultVars["speedmod"]
+	armor = defaultVars["armor"]
+	punchdamagelow = defaultVars["punchdamagelow"]
+	punchdamagehigh = defaultVars["punchdamagehigh"]
+	offset_features = defaultVars["offset_features"]
+	inherent_traits = defaultVars["inherent_traits"]
+	species_traits = defaultVars["species_traits"]
+	isSuited = FALSE
+
+/datum/species/savant/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
+	. = ..()
+	if (!isSuited)
+		return
+	if((H.getFireLoss() + H.getBruteLoss()) > SUITFAILHEALTH)
+		loseSuit()
+
 
 /**
   * # Suited Savants
@@ -140,49 +197,34 @@
   *
   * Savants live comfortably in thier suit until they are damaged enough.
   * Once they take suitFailHealth in brute or burn, they explode(just a little bit) and the suit comes off.
-  * Bodypart stuff is handled in the on_species_gain and loss, since parts of the suit are mechanical and parts are just the savant's chest lol
+  * Savant/suit allows for the savant to be spawned with a suit on. The species type instantly goes back to savant, so this species will never actually exist.
   * Author: Jcat
   *
   */
 /datum/species/savant/suit
-	id = "savant_suited"
-	limbs_id = "savant_suited"
-	name = "Savant"
-	no_equip = list(SLOT_W_UNIFORM)
-	speedmod = 0
-	armor = -10
-	punchdamagelow = 1
-	punchdamagehigh = 10
-	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
-	inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
-	species_traits = list(AGENDER, NO_UNDERWEAR, NOTRANSSTING, NO_DNA_COPY, NOEYESPRITES)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	///This var is repeated here for the character selection screen to render properly
+	limbs_id = "savant_suited"
 
 /datum/species/savant/suit/on_species_gain(mob/living/carbon/C)
 	. = ..()
+	if(ishuman(C))
+		C.set_species(/datum/species/savant)
+		SuitUpPower = new //This is redundant but is here for safety
+		SuitUpPower.Grant(C)
+		SuitUpPower.suitUp()
+
+	/*
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
 		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))//Head and chest are organic. Only the limbs are augmented
 			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, FALSE)
 			O.icon = 'icons/mob/augmentation/savant.dmi'
 			O.icon_state = "savant_suited_[O.body_zone]"
-
+	*/
 /datum/species/savant/suit/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
 		O.change_bodypart_status(BODYPART_ORGANIC,FALSE,FALSE)
 
-/datum/species/savant/suit/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
-	. = ..()
-	if((H.getFireLoss() + H.getBruteLoss()) > SUITFAILHEALTH)
-		H.set_species(/datum/species/savant)
-		H.update_body_parts()
-		explosion(H, 0, 0, 0, adminlog = FALSE)
-
-/datum/species/savant/suit/spec_death(gibbed, mob/living/carbon/human/H)
-	. = ..()
-	if(gibbed)
-		return
-	explosion(H, 0, 0, 0, adminlog = FALSE)
-	H.set_species(/datum/species/savant)
