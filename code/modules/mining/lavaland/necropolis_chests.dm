@@ -226,7 +226,8 @@
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
-	if(user.hasparasites())
+	var/list/hasholos = user.hasparasites()
+	if(hasholos.len)
 		to_chat(user, "<span class='warning'>The pendant refuses to work with a guardian spirit...</span>")
 		return
 	to_chat(user, "<span class='warning'>You feel your life being drained by the pendant...</span>")
