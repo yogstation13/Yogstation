@@ -147,10 +147,7 @@
 #define TRAIT_SMALL_HANDS		"small-hands"
 ///This trait represents being smaller than the average alien
 #define TRAIT_SHORT				"short"
-///This trait handles some snowflakery with making the dna come from the parent type
-#define TRAIT_DNA_FROM_PARENT	"dna-from-parent"
 #define TRAIT_SLIME_EMPATHY		"slime-empathy"
-
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
