@@ -51,8 +51,6 @@
 
 	///This var decides if the savant is suited or naked :flushed:
 	var/isSuited = FALSE
-	///This is the list of all the vars as they were when this list was made. Used when turning from a suited to unsuited savant.
-	var/list/defaultVars = vars
 
 /datum/action/innate/savantSuitUp
 	name = "Construct Suit"
@@ -76,7 +74,8 @@
 		to_chat(H, "<span class='warning'>You begin to take off your suit...this might hurt! Are you sure you want to?</span>")
 		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		if(do_after(owner, 40, TRUE, owner))
-			H.set_species(/datum/species/savant)
+			var/datum/species/savant/S = H.dna.species
+			S.loseSuit(H)
 			H.update_body_parts()
 			explosion(H, 0, 0, 0, adminlog = FALSE)
 			var/sfh = SUITFAILHEALTH
@@ -112,16 +111,17 @@
   */
 /datum/action/innate/savantSuitUp/proc/suitUp(mob/living/carbon/human/C)
 	//first, the values get changed
-	C.limbs_id = "savant"
-	C.no_equip = list(SLOT_W_UNIFORM)
-	C.speedmod = 0
-	C.armor = -10
-	C.punchdamagelow = 1
-	C.punchdamagehigh = 10
-	C.offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
-	C.inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
-	C.species_traits = list(AGENDER, NO_UNDERWEAR, NOTRANSSTING, NOEYESPRITES)
-	C.isSuited = TRUE
+	C.dna.species.limbs_id = "savant"
+	C.dna.species.no_equip = list(SLOT_W_UNIFORM)
+	C.dna.species.speedmod = 0
+	C.dna.species.armor = -10
+	C.dna.species.punchdamagelow = 1
+	C.dna.species.punchdamagehigh = 10
+	C.dna.species.offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
+	C.dna.species.inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
+	C.dna.species.species_traits = list(AGENDER, NO_UNDERWEAR, NOTRANSSTING, NOEYESPRITES)
+	var/datum/species/savant/S = C.dna.species
+	S.isSuited = TRUE
 
 	//next, they heal (if needed)
 	var/sfh = SUITFAILHEALTH
@@ -162,24 +162,24 @@
   *
   * Basically, this does SuitUp in reverse
   */
-/datum/species/savant/proc/loseSuit()
+/datum/species/savant/proc/loseSuit(mob/living/carbon/C)
 	if(!isSuited)
 		return
-	explosion(src, 0, 0, 0, adminlog = FALSE)
-	update_body_parts()
-	for(var/X in bodyparts)
+	explosion(C, 0, 0, 0, adminlog = FALSE)
+
+	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
 		O.change_bodypart_status(BODYPART_ORGANIC,FALSE,FALSE)
-
-	limbs_id = defaultVars["limbs_id"]
-	no_equip = defaultVars["no_equip"]
-	speedmod = defaultVars["speedmod"]
-	armor = defaultVars["armor"]
-	punchdamagelow = defaultVars["punchdamagelow"]
-	punchdamagehigh = defaultVars["punchdamagehigh"]
-	offset_features = defaultVars["offset_features"]
-	inherent_traits = defaultVars["inherent_traits"]
-	species_traits = defaultVars["species_traits"]
+	C.update_body_parts()
+	limbs_id = initial(limbs_id)
+	no_equip = initial(no_equip)
+	speedmod = initial(speedmod)
+	armor = initial(armor)
+	punchdamagelow = initial(punchdamagelow)
+	punchdamagehigh = initial(punchdamagehigh)
+	offset_features = initial(offset_features)
+	inherent_traits = initial(inherent_traits)
+	species_traits = initial(species_traits)
 	isSuited = FALSE
 
 /datum/species/savant/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
@@ -187,7 +187,7 @@
 	if (!isSuited)
 		return
 	if((H.getFireLoss() + H.getBruteLoss()) > SUITFAILHEALTH)
-		loseSuit()
+		loseSuit(H)
 
 
 /**
@@ -212,19 +212,4 @@
 		C.set_species(/datum/species/savant)
 		SuitUpPower = new //This is redundant but is here for safety
 		SuitUpPower.Grant(C)
-		SuitUpPower.suitUp()
-
-	/*
-	for(var/X in C.bodyparts)
-		var/obj/item/bodypart/O = X
-		if(!(istype(O, /obj/item/bodypart/head) || istype(O, /obj/item/bodypart/chest)))//Head and chest are organic. Only the limbs are augmented
-			O.change_bodypart_status(BODYPART_ROBOTIC, FALSE, FALSE)
-			O.icon = 'icons/mob/augmentation/savant.dmi'
-			O.icon_state = "savant_suited_[O.body_zone]"
-	*/
-/datum/species/savant/suit/on_species_loss(mob/living/carbon/C)
-	. = ..()
-	for(var/X in C.bodyparts)
-		var/obj/item/bodypart/O = X
-		O.change_bodypart_status(BODYPART_ORGANIC,FALSE,FALSE)
-
+		SuitUpPower.suitUp(C)
