@@ -168,11 +168,10 @@
 
     if(chem.type == /datum/reagent/toxin/plasma)
         H.adjustOxyLoss(-1)
-        H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
-
-    if(H.reagents.has_reagent(/datum/reagent/stable_plasma))
         H.adjustBruteLoss(-0.5)
         H.adjustFireLoss(-0.5)
+        H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+        return TRUE
 
     if(H.reagents.has_reagent(/datum/reagent/oxygen))
         H.adjustFireLoss(3)
