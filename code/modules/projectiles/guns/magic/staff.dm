@@ -12,6 +12,14 @@
 	icon_state = "staffofchange"
 	item_state = "staffofchange"
 
+/obj/item/gun/magic/staff/cheese
+	name = "staff of cheese"
+	desc = "An artefact that spits bolts of cheesey energy which twists the target into a wheel of parmesan."
+	fire_sound = 'sound/magic/staff_change.ogg'
+	ammo_type = /obj/item/ammo_casing/magic/cheese
+	icon_state = "staffofcheese"
+	item_state = "staffofcheese"
+
 /obj/item/gun/magic/staff/animate
 	name = "staff of animation"
 	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
