@@ -49598,13 +49598,6 @@
 /obj/structure/altar_of_gods,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"jUQ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/mob/living/simple_animal/opossum/poppy,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "jVN" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -94787,7 +94780,7 @@ cdU
 cSZ
 ckL
 cmF
-jUQ
+cje
 cje
 qQV
 qQV
