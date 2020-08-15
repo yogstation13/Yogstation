@@ -74391,14 +74391,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
-"czt" = (
-/obj/structure/cable/yellow,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/hallway/secondary/exit/departure_lounge)
 "czu" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -83494,6 +83486,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"kUr" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/exit/departure_lounge)
 "lal" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -84109,6 +84108,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"rBD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/exit/departure_lounge)
 "rBU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -84694,6 +84704,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"xJC" = (
+/obj/structure/cable/yellow,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/exit/departure_lounge)
 "xTR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -110154,9 +110172,9 @@ oul
 oul
 lqb
 cPv
-czv
+cPv
 cPb
-czv
+cPv
 cPv
 czv
 aaa
@@ -111954,7 +111972,7 @@ lLU
 qFb
 hXq
 jpv
-dEK
+rBD
 sLU
 rqP
 nSt
@@ -112210,9 +112228,9 @@ oul
 oul
 lqb
 cPv
-czv
+cPv
 cPb
-czv
+cPv
 cPv
 czv
 aaa
@@ -112467,8 +112485,8 @@ sVB
 cLm
 eWM
 hXq
-jpv
-dEK
+kUr
+rBD
 sLU
 rqP
 nSt
@@ -113232,7 +113250,7 @@ cPb
 cas
 cxg
 cxy
-czt
+xJC
 aaf
 aaf
 aaf
