@@ -68,13 +68,13 @@
   */
 /datum/action/innate/savantSuitUp/Activate()
 	var/mob/living/carbon/human/H = owner
+	var/datum/species/savant/S = H.dna.species
 	///This is how much metal is needed, in sheets
 	var/metalNeeded = 30
-	if(isSuitedSavant(H))
+	if(S.isSuited)
 		to_chat(H, "<span class='warning'>You begin to take off your suit...this might hurt! Are you sure you want to?</span>")
 		playsound(H, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		if(do_after(owner, 40, TRUE, owner))
-			var/datum/species/savant/S = H.dna.species
 			S.loseSuit(H)
 			H.update_body_parts()
 			explosion(H, 0, 0, 0, adminlog = FALSE)
@@ -120,6 +120,7 @@
 	C.dna.species.offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	C.dna.species.inherent_traits = list(TRAIT_NODISMEMBER ,TRAIT_NOLIMBDISABLE)
 	C.dna.species.species_traits = list(AGENDER, NO_UNDERWEAR, NOTRANSSTING, NOEYESPRITES)
+	C.dna.species.no_equip = list(SLOT_W_UNIFORM)
 	var/datum/species/savant/S = C.dna.species
 	S.isSuited = TRUE
 
@@ -180,6 +181,7 @@
 	offset_features = initial(offset_features)
 	inherent_traits = initial(inherent_traits)
 	species_traits = initial(species_traits)
+	no_equip = initial(no_equip)
 	isSuited = FALSE
 
 /datum/species/savant/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
@@ -205,11 +207,11 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	///This var is repeated here for the character selection screen to render properly
 	limbs_id = "savant_suited"
+	id = "savant_suited"
 
 /datum/species/savant/suit/on_species_gain(mob/living/carbon/C)
 	. = ..()
 	if(ishuman(C))
 		C.set_species(/datum/species/savant)
 		SuitUpPower = new //This is redundant but is here for safety
-		SuitUpPower.Grant(C)
 		SuitUpPower.suitUp(C)
