@@ -42,4 +42,22 @@
 /code/modules/holidays/holidays.dm @Partheo
 /yogstation/code/modules/holidays/holidays.dm @Partheo
 
-#Multiple Owners
+#Teams
+
+/.github/ @yogstation13/head-coders
+/SQL/ @yogstation13/head-coders
+/_maps/ @yogstation13/map
+/code/ @yogstation13/code
+/config/ @yogstation13/head-coders
+/goon/ @yogstation13/art
+/html/ @yogstation13/code
+/icons/ @yogstation/art
+/interface/ @yogstation13/code
+/sound/ @yogstation/art
+/tgui/ @yogstation13/code
+/tools/ @yogstation13/code
+/yogstation/SQL/ @yogstation13/head-coders
+/yogstation/code/ @yogstation13/code
+/yogstation/icons/ @yogstation13/art
+/yogstation/interface/ @yogstation13/code
+/yogstation/sound/ @yogstation13/art
