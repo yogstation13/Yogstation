@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "darkspawn now regenerate their abilities when swapping bodies instead of losing them"
-  - tweak: "darkspawn who somehow become monkies can not divulge as monkies"
