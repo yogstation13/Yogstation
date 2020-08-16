@@ -27,37 +27,39 @@ export const MiningVendor = (props, context) => {
             </Box>
           )}
         </Section>
-        <Section title="Equipment" >
-          <Table>
-            {inventory.map((product => {
-              return (
-                <Table.Row key={product.name}>
-                  <Table.Cell>
-                    <span
-                      className={classes(['vending32x32', product.path])}
-                      style={{
-                        'vertical-align': 'middle',
-                      }} />
-                    {' '}<b>{product.name}</b>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Button
-                      style={{
-                        'min-width': '95px',
-                        'text-align': 'center',
-                      }}
-                      disabled={!data.user
-                        || product.price > data.user.points}
-                      content={product.price + ' points'}
-                      onClick={() => act('purchase', {
-                        'ref': product.ref,
-                      })} />
-                  </Table.Cell>
-                </Table.Row>
-              );
-            }))}
-          </Table>
-        </Section>
+        {inventory.map((category => {
+          <Section title={category.category_name} >
+            <Table>
+              {category.products.map((product => {
+                return (
+                  <Table.Row key={product.name}>
+                    <Table.Cell>
+                      <span
+                        className={classes(['vending32x32', product.path])}
+                        style={{
+                          'vertical-align': 'middle',
+                        }} />
+                      {' '}<b>{product.name}</b>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Button
+                        style={{
+                          'min-width': '95px',
+                          'text-align': 'center',
+                        }}
+                        disabled={!data.user
+                          || product.price > data.user.points}
+                        content={product.price + ' points'}
+                        onClick={() => act('purchase', {
+                          'ref': product.ref,
+                        })} />
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              }))}
+            </Table>
+          </Section>;
+        }))}
       </Window.Content>
     </Window>
   );
