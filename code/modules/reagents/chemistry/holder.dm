@@ -231,10 +231,13 @@
 		var/datum/reagent/T = reagent
 		if(remove_blacklisted && !T.can_synth)
 			continue
+		if(R.whitelist && !(T in R.whitelist))
+			continue
 		var/transfer_amount = T.volume * part
 		if(preserve_data)
 			trans_data = copy_data(T)
 		R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
+		total_transferred += transfer_amount * multiplier
 		remove_reagent(T.type, transfer_amount)
 
 	update_total()
@@ -274,7 +277,8 @@
 	R.update_total()
 	R.handle_reactions()
 	src.handle_reactions()
-	return amount
+return total_transferred
+
 
 /// Transfer a specific reagent id to the target object
 /datum/reagents/proc/trans_id_to(obj/target, reagent, amount=1, preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
