@@ -107,6 +107,9 @@
 /obj/mecha/attack_tk()
 	return
 
+/obj/mecha/rust_heretic_act()
+	take_damage(500,  BRUTE)
+
 /obj/mecha/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum) //wrapper
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
@@ -376,4 +379,4 @@
 			WR.crowbar_salvage += internal_tank
 			internal_tank.forceMove(WR)
 			cell = null
-	. = ..() 
+	. = ..()

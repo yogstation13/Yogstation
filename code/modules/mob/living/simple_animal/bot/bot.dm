@@ -90,7 +90,7 @@
 	var/reset_access_timer_id
 	var/ignorelistcleanuptimer = 1 // This ticks up every automated action, at 300 we clean the ignore list
 	var/robot_arm = /obj/item/bodypart/r_arm/robot
-	
+
 	var/commissioned = FALSE // Will other (noncommissioned) bots salute this bot?
 	var/can_salute = TRUE
 	var/salute_delay = 60 SECONDS
@@ -256,7 +256,7 @@
 
 	if(!on || client)
 		return
-		
+
 	if(!commissioned && can_salute)
 		for(var/mob/living/simple_animal/bot/B in get_hearers_in_view(5, get_turf(src)))
 			if(B.commissioned)
@@ -1045,3 +1045,6 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(I)
 		I.icon_state = null
 	path.Cut(1, 2)
+
+/mob/living/simple_animal/bot/rust_heretic_act()
+	adjustBruteLoss(400)
