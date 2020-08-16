@@ -93,6 +93,8 @@
 	seed = /obj/item/seeds/tower/steel
 	name = "steel-cap log"
 	desc = "It's made of metal."
+	force = 9
+	throwforce = 7
 	icon_state = "steellogs"
 	plank_type = /obj/item/stack/rods
 	plank_name = "rods"
