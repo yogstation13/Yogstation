@@ -175,6 +175,7 @@
 /// Get a reference to the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent()
 	var/list/cached_reagents = reagent_list
+	SEND_SIGNAL(target, COMSIG_REAGENT_TRANSFER, src
 	var/datum/reagent/master
 	var/max_volume = 0
 	for(var/reagent in cached_reagents)
@@ -223,6 +224,7 @@
 		log_combat(transfered_by, target_atom, "transferred reagents ([log_list()]) from [my_atom] to")
 
 	amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
+	var/total_transferred = 0
 	var/part = amount / src.total_volume
 	var/trans_data = null
 	for(var/reagent in cached_reagents)
