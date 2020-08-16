@@ -175,7 +175,7 @@
 /// Get a reference to the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent()
 	var/list/cached_reagents = reagent_list
-	SEND_SIGNAL(target, COMSIG_REAGENT_TRANSFER, src
+	SEND_SIGNAL(target, COMSIG_REAGENT_TRANSFER, src)
 	var/datum/reagent/master
 	var/max_volume = 0
 	for(var/reagent in cached_reagents)
