@@ -226,24 +226,22 @@
 	desc = "The nanites link the host's brains together forming a neural research network, that becomes more efficient with the amount of total hosts."
 	use_rate = 0.3
 	rogue_types = list(/datum/nanite_program/brain_decay)
+	var/points
 
 /datum/nanite_program/researchplus/enable_passive_effect()
 	. = ..()
 	if(!iscarbon(host_mob))
 		return
-	if(host_mob.client)
-		SSnanites.neural_network_count++
-	else
-		SSnanites.neural_network_count += 0.25
+
+	points = host_mob.client ? 1 : 0.25
+	SSnanites.neural_network_count += points
 
 /datum/nanite_program/researchplus/disable_passive_effect()
 	. = ..()
 	if(!iscarbon(host_mob))
 		return
-	if(host_mob.client)
-		SSnanites.neural_network_count--
-	else
-		SSnanites.neural_network_count -= 0.25
+
+	SSnanites.neural_network_count -= points
 
 /datum/nanite_program/researchplus/active_effect()
 	if(!iscarbon(host_mob))
