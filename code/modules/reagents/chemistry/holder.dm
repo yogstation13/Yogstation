@@ -65,6 +65,7 @@
 	var/addiction_tick = 1
 	/// currently addicted reagents
 	var/list/datum/reagent/addiction_list = new/list()
+	var/list/datum/reagent/whitelist //Set a list of reagents to only allow for incoming reagent transfer.
 	/// various flags, see code\__DEFINES\reagents.dm
 	var/flags
 
