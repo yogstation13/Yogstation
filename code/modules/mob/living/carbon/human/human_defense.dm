@@ -756,16 +756,16 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-		combined_msg += src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>"
+		combined_msg += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>"
 
 		for(var/obj/item/I in LB.embedded_objects)
-			combined_msg += src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>"
+			combined_msg += "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>"
 
 	for(var/t in missing)
 		combined_msg += "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>"
 
 	if(bleed_rate)
-		combined_msg += src, "<span class='danger'>You are bleeding!</span>"
+		combined_msg += "<span class='danger'>You are bleeding!</span>"
 	if(getStaminaLoss())
 		if(getStaminaLoss() > 30)
 			combined_msg += "<span class='info'>You're completely exhausted.</span>"
@@ -800,7 +800,7 @@
 			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
 				combined_msg += "<span class='info'>You feel quite hungry.</span>"
 			if(0 to NUTRITION_LEVEL_STARVING)
-				combined_msg += src, "<span class='danger'>You're starving!</span>"
+				combined_msg += "<span class='danger'>You're starving!</span>"
 	if(dna.species.id == "skeleton")
 		var/obj/item/clothing/under/under = w_uniform
 		if((!under || under.adjusted) && (!wear_suit))
@@ -837,7 +837,7 @@
 		//Put the items in that list into a string of text
 		for(var/B in broken)
 			broken_message += B
-		combined_msg += src, "<span class='warning'> Your [broken_message] [broken_plural ? "are" : "is"] non-functional!</span>"
+		combined_msg += "<span class='warning'> Your [broken_message] [broken_plural ? "are" : "is"] non-functional!</span>"
 	if(damaged.len)
 		if(damaged.len > 1)
 			damaged.Insert(damaged.len, "and ")
@@ -851,7 +851,7 @@
 		combined_msg += "<span class='info'>Your [damaged_message] [damaged_plural ? "are" : "is"] hurt.</span>"
 
 	if(roundstart_quirks.len)
-		combined_msg += src, "<span class='notice'>You have these quirks: [get_trait_string()].</span>"
+		combined_msg += "<span class='notice'>You have these quirks: [get_trait_string()].</span>"
 
 	to_chat(src, combined_msg.Join("\n"))
 

@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		alert(src, "Invalid hash \"[hash]\"")
 		winset(src, null, "command=.reconnect")
 		return
-		
+
 	//Since this action is passive as in its executed as you login, we need to make sure the user didnt just click on some random link and he actually wants to link
 	var/res = input(src, "You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
 	if(lowertext(res) != "proceed")
@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		//Reconnecting clears out the connection parameters, this is so the user doesn't get the prompt to link their account if they later click replay
 		winset(src, null, "command=.reconnect")
 		return
-		
+
 	var/datum/http_request/request = new()
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=verify&data=[json_encode(list("ckey" = ckey, "hash" = hash))]")
 	request.begin_async()
@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		alert(src,"Internal Server Error")
 		winset(src, null, "command=.reconnect")
 		return
-	
+
 	if(data["response"]["status"] == "err")
 		alert(src, "Could not link account: [data["response"]["message"]]")
 	else
@@ -272,7 +272,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//this is a scam, so sometimes the topicdata is set to /?key=value instead of key=value, this is a hack around that
 	if(copytext(tdata, 1, 3) == "/?")
 		tdata = copytext(tdata, 3)
-	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
