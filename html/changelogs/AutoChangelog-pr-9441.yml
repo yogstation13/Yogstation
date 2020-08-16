@@ -1,4 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - tweak: "Cryo pods don't stop when cloning damage is present on MEDICALIGNORE. This means that Preterni can now heal cloning damage in cryopods but will still not be trapped after they're healed even with brute or burn damage."
