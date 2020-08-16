@@ -1090,8 +1090,8 @@
 /area/awaymission/academy/academycellar)
 "lC" = (
 /mob/living/simple_animal/hostile/wizard{
-	desc = "Found stranded on a remote island surrounded by cheese";
-	name = "Tessa the Fromager"
+	desc = "Found leading several other scribes, one of which was prone to rage";
+	name = "Anvil the Archiver"
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
