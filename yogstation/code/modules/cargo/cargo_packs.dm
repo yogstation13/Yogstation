@@ -51,6 +51,34 @@
 	crate_name = "Advanced Crate Container"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/organic/cheeseculture
+	name = "Cheese Culture Crate"
+	desc = "Contains a variety of advanced cheese bacteria cultures."
+	cost = 800
+	contains = list(/obj/item/storage/box/cheese)
+	crate_name = "cheese culture crate"
+	
+/datum/supply_pack/organic/randomized/cheesewheel
+	name = "Cheese Wheel Crate"
+	desc = "Contains 6 various cheese wheels, for stations that don't have a chef or work ethic."
+	cost = 1000
+	contains = list(/obj/item/reagent_containers/food/snacks/cheesewedge/parmesan,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/swiss,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/mozzarella,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/halloumi,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/goat,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/feta,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/brie,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/blue,
+					/obj/item/reagent_containers/food/snacks/store/cheesewheel/american)
+	crate_name = "cheese wheel crate"
+
+/datum/supply_pack/organic/randomized/cheesewheel/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
 /datum/supply_pack/critter/exoticgoat
 	name = "Exotic Goat Crate"
 	desc = "Contains a bunch of genetically altered goats from Goat Tech Industries. Try to collect them all!"

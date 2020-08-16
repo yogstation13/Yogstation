@@ -507,7 +507,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 			name = R.name,
 			price = R.custom_premium_price || extra_price,
 			max_amount = R.max_amount,
-			ref = REF(R)
+			ref = REF(R),
+			extended = TRUE
 		)
 		.["coin_records"] += list(data)
 	.["hidden_records"] = list()
