@@ -212,6 +212,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("loom", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/glass/mortar, 3), \
 	new/datum/stack_recipe("firebrand", /obj/item/match/firebrand, 2, time = 100), \
+	new/datum/stack_recipe("filter bowl", /obj/item/reagent_containers/glass/filterbowl, 2), \
   new/datum/stack_recipe("pestle", /obj/item/pestle, 1, time = 50), \
 	new/datum/stack_recipe("easel", /obj/structure/easel, 7, time = 30), \
 
