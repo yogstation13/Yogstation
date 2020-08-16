@@ -113,7 +113,7 @@
 
 /obj/machinery/mineral/equipment_vendor/ui_static_data(mob/user)
 	. = list()
-	.["categories"] = list()
+	.["product_records"] = list()
 	for(var/datum/data/mining_equipment/prize in prize_list)
 		if(!.["product_records"][prize.category])
 			.["product_records"][prize.category] = list("category_name" = prize.category, "products" = list())
