@@ -17,7 +17,7 @@
 	view = "15x15"
 	hub = "Exadv1.spacestation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
-	name = "Yogstation 13"
+	name = "test"
 	fps = 20
 #ifdef FIND_REF_NO_CHECK_TICK
 	loop_checks = FALSE
