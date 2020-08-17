@@ -1090,8 +1090,8 @@
 /area/awaymission/academy/academycellar)
 "lC" = (
 /mob/living/simple_animal/hostile/wizard{
-	desc = "Found leading several other scribes, one of which was prone to rage";
-	name = "Anvil the Archiver"
+	desc = "Found leading several other archivists, one of which was prone to rage";
+	name = "Anvil the Archivist"
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
