@@ -214,28 +214,26 @@
 		QDEL_NULL(back) // chain destruction baby
 	return ..()
 
-
 /mob/living/simple_animal/hostile/eldritch/armsy/proc/heal()
 	if(health == maxHealth)
+		if(QDELETED(back))
+			back = null
 		if(back)
 			back.heal()
 			return
-		else
-			current_stacks++
-			if(current_stacks >= stacks_to_grow)
-				var/mob/living/simple_animal/hostile/eldritch/armsy/prev = new type(drop_location(),spawn_more = FALSE)
-				icon_state = "armsy_mid"
-				icon_living =  "armsy_mid"
-				back = prev
-				prev.icon_state = "armsy_end"
-				prev.icon_living = "armsy_end"
-				prev.front = src
-				prev.AIStatus = AI_OFF
-				current_stacks = 0
+		current_stacks++
+		if(current_stacks >= stacks_to_grow)
+			var/mob/living/simple_animal/hostile/eldritch/armsy/prev = new type(drop_location(),FALSE)
+			icon_state = "armsy_mid"
+			icon_living =  "armsy_mid"
+			back = prev
+			prev.icon_state = "armsy_end"
+			prev.icon_living = "armsy_end"
+			prev.front = src
+			prev.AIStatus = AI_OFF
+			current_stacks = 0
 
-	adjustBruteLoss(-maxHealth * 0.5, FALSE)
-	adjustFireLoss(-maxHealth * 0.5 ,FALSE)
-
+	heal_bodypart_damage(maxHealth * 0.5)
 
 /mob/living/simple_animal/hostile/eldritch/armsy/Shoot(atom/targeted_atom)
 	target = targeted_atom
@@ -244,8 +242,8 @@
 
 /mob/living/simple_animal/hostile/eldritch/armsy/AttackingTarget()
 	if(istype(target,/obj/item/bodypart/r_arm) || istype(target,/obj/item/bodypart/l_arm))
-		qdel(target)
 		heal()
+		qdel(target)
 		return
 	if(target == back || target == front)
 		return
@@ -262,17 +260,16 @@
 
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
-			return
-		var/list/parts = list()
-		for(var/X in C.bodyparts)
-			var/obj/item/bodypart/bodypart = X
-			if(bodypart.body_part != HEAD && bodypart.body_part != CHEST && bodypart.body_part != LEG_LEFT && bodypart.body_part != LEG_RIGHT)
-				if(bodypart.dismemberable)
-					parts += bodypart
-		if(length(parts) && prob(10))
-			var/obj/item/bodypart/bodypart = pick(parts)
-			bodypart.dismember()
+		if(!HAS_TRAIT(C, TRAIT_NODISMEMBER))
+			var/list/parts = list()
+			for(var/X in C.bodyparts)
+				var/obj/item/bodypart/bodypart = X
+				if(bodypart.body_part != HEAD && bodypart.body_part != CHEST && bodypart.body_part != LEG_LEFT && bodypart.body_part != LEG_RIGHT)
+					if(bodypart.dismemberable)
+						parts += bodypart
+			if(length(parts) && prob(10))
+				var/obj/item/bodypart/bodypart = pick(parts)
+				bodypart.dismember()
 
 	return ..()
 

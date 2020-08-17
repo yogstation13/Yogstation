@@ -96,7 +96,7 @@
 		lore["cost"] = EK.cost
 		lore["disabled"] = EK.cost <= charge ? FALSE : TRUE
 		lore["path"] = EK.route
-		lore["state"] = "Study"
+		lore["state"] = "Research"
 		lore["flavour"] = EK.gain_text
 		lore["desc"] = EK.desc
 		data["to_know"] += list(lore)
@@ -108,7 +108,7 @@
 		lore["cost"] = EK.cost
 		lore["disabled"] = TRUE
 		lore["path"] = EK.route
-		lore["state"] = "Studied"
+		lore["state"] = "Researched"
 		lore["flavour"] = EK.gain_text
 		lore["desc"] = EK.desc
 		data["to_know"] += list(lore)
