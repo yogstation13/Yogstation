@@ -1,7 +1,7 @@
 #define MAXIMUM_POWER_LIMIT 1000000000000000.0
 /datum/computer_file/program/energy_harvester_control
 	filename = "energy_harvester_control"
-	filedesc = "Supermatter Monitoring"
+	filedesc = "Energy Harvester Control"
 	ui_header = ""
 	program_icon_state = ""
 	extended_desc = "This program connects remotely to the onboard energy harvester, allowing a chief engineer to control the input rates and check for cashflow."
@@ -33,7 +33,7 @@
 	moneysink = null
 	..()
 
-// Refreshes list of active supermatter crystals
+/// Resyncs energy harvester
 /datum/computer_file/program/energy_harvester_control/proc/refresh()
 	moneysink = SSeconomy.moneysink
 
