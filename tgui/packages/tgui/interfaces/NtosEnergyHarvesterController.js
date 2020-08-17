@@ -39,8 +39,7 @@ export const NtosEnergyHarvesterControlWindow = (props, context) => {
                 {manualSwitch ? 'On' : 'Off'}
               </Button>
             }>
-            <Box color="lightgreen">{inputEnergy +1}
-            </Box>
+            <Box color="lightgreen" />
           </LabeledList.Item>
           <LabeledList.Item label="Input Limit">
             <Flex inline width="100%">
