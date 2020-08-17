@@ -1,7 +1,6 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
 
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
-#define SPIRIT_BLOCK_BUFF 7
 
 /obj/structure/closet/crate/necropolis
 	name = "necropolis chest"
