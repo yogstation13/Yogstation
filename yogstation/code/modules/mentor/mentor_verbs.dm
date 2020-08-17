@@ -69,3 +69,29 @@ GLOBAL_PROTECT(mentor_verbs)
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg, confidential=TRUE)
 
+/client/proc/show_tip()
+	set category = "Mentor"
+	set name = "Show Tip"
+	set desc = "Sends a tip (that you specify) to all players. After all \
+		you're the experienced player here."
+
+	if(!is_mentor())
+		return
+
+	var/input = input(usr, "Please specify your tip that you want to send to the players.", "Tip", "") as message|null
+	if(!input)
+		return
+
+	if(!SSticker)
+		return
+
+	SSticker.selected_tip = input
+
+	// If we've already tipped, then send it straight away.
+	if(SSticker.tipped)
+		SSticker.send_tip_of_the_round()
+
+
+	message_admins("[key_name(usr)] sent a tip of the round.")
+	log_admin("[key_name(usr)] sent \"[input]\" as the Tip of the Round.")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Tip")
