@@ -278,25 +278,6 @@
 
 /datum/game_mode/proc/send_intercept()
 	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
-	intercepttext += "<b>Central Command has intercepted and partially decoded a Syndicate transmission with vital information regarding their movements. The following report outlines the most \
-	likely threats to appear in your sector.</b>"
-	var/list/report_weights = config.mode_false_report_weight.Copy()
-	report_weights[report_type] = 0 //Prevent the current mode from being falsely selected.
-	var/list/reports = list()
-	var/Count = 0 //To compensate for missing correct report
-	if(prob(65)) // 65% chance the actual mode will appear on the list
-		reports += config.mode_reports[report_type]
-		Count++
-	for(var/i in Count to rand(3,5)) //Between three and five wrong entries on the list.
-		var/false_report_type = pickweightAllowZero(report_weights)
-		report_weights[false_report_type] = 0 //Make it so the same false report won't be selected twice
-		reports += config.mode_reports[false_report_type]
-
-	reports = shuffle(reports) //Randomize the order, so the real one is at a random position.
-
-	for(var/report in reports)
-		intercepttext += "<hr>"
-		intercepttext += report
 
 	if(station_goals.len)
 		intercepttext += "<hr><b>Special Orders for [station_name()]:</b>"
@@ -305,10 +286,7 @@
 			intercepttext += G.get_report()
 
 	print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
-	priority_announce("A summary has been copied and printed to all communications consoles.", "Enemy communication intercepted. Security level elevated.", 'sound/ai/intercept.ogg')
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
-
+	priority_announce("A summary has been copied and printed to all communications consoles.", "Station orders received.", 'sound/ai/intercept.ogg')
 
 // This is a frequency selection system. You may imagine it like a raffle where each player can have some number of tickets. The more tickets you have the more likely you are to
 // "win". The default is 100 tickets. If no players use any extra tickets (earned with the antagonist rep system) calling this function should be equivalent to calling the normal
