@@ -82629,6 +82629,22 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"eSt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Departure Lounge - Port Fore";
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-24"
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "eTc" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -82641,6 +82657,18 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"eXI" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "fdr" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -82697,6 +82725,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"fNa" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "fNE" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -82763,12 +82803,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopods)
-"geg" = (
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "glh" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor/plating,
@@ -82800,18 +82834,6 @@
 /obj/item/clothing/suit/apron/chef,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"gss" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/structure/sign/warning/electricshock{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "gwI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -82854,16 +82876,31 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"gNa" = (
+/obj/structure/sign/warning/vacuum{
+	pixel_x = -32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/obj/effect/turf_decal,
+/obj/effect/turf_decal/caution/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "gNe" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
-"gYZ" = (
-/obj/effect/turf_decal/trimline/yellow/line,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "gZY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -82992,16 +83029,6 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
-"icr" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -83145,6 +83172,12 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"iPn" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "iRC" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -83152,18 +83185,6 @@
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = 26
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
-"iXF" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -83181,25 +83202,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
-"jdl" = (
-/obj/machinery/camera{
-	c_tag = "Departure Lounge - Port Aft";
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-04"
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -83222,13 +83224,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"jiM" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/yellow/corner,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "jtr" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -83267,23 +83262,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"jHv" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Departure Lounge - Starboard Fore";
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-14"
-	},
-/obj/effect/turf_decal/trimline/yellow/corner,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "jKK" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -83438,19 +83416,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
-"kEH" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/landmark/start/assistant,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "kGo" = (
 /obj/structure/closet/boxinggloves,
 /obj/effect/turf_decal/tile/neutral{
@@ -83550,25 +83515,6 @@
 /obj/effect/turf_decal,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"ltQ" = (
-/obj/structure/sign/warning/vacuum{
-	pixel_x = 32
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/effect/turf_decal,
-/obj/effect/turf_decal/caution/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "lvi" = (
 /turf/closed/wall,
 /area/maintenance/starboard/secondary)
@@ -83648,6 +83594,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"lWT" = (
+/obj/structure/sign/warning/vacuum{
+	pixel_x = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/effect/turf_decal,
+/obj/effect/turf_decal/caution/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "lZV" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -83662,25 +83627,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"mgu" = (
-/obj/machinery/camera{
-	c_tag = "Departure Lounge - Starboard Aft";
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	pixel_x = 29
-	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "mjJ" = (
 /obj/machinery/nuclearbomb/beer{
 	pixel_x = 2;
@@ -83743,21 +83689,6 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"mPd" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "mWg" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -83777,19 +83708,25 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"nvF" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "nwS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"nJL" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "nLf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -83855,14 +83792,6 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=9.4-Escape-4";
 	location = "9.3-Escape-3"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
-"olR" = (
-/obj/structure/table,
-/obj/item/candle,
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -83977,12 +83906,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"pRz" = (
-/obj/structure/chair{
+"pDu" = (
+/obj/effect/turf_decal/tile/yellow{
 	dir = 4
-	},
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
@@ -84019,6 +83945,13 @@
 /area/crew_quarters/fitness/recreation)
 "pXW" = (
 /obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
+"qbF" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "qbK" = (
@@ -84152,6 +84085,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"rgh" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "rlK" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	target_temperature = 80
@@ -84161,12 +84100,6 @@
 "rrB" = (
 /turf/closed/wall,
 /area/vacant_room/commissary)
-"rsn" = (
-/obj/structure/table,
-/obj/item/candle,
-/obj/effect/turf_decal/trimline/yellow/line,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "rwu" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -84235,25 +84168,6 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"rQt" = (
-/obj/structure/sign/warning/vacuum{
-	pixel_x = -32
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/obj/effect/turf_decal,
-/obj/effect/turf_decal/caution/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "rSL" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
@@ -84277,6 +84191,25 @@
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"srQ" = (
+/obj/machinery/camera{
+	c_tag = "Departure Lounge - Starboard Aft";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-16"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "svg" = (
 /obj/structure/lattice,
 /obj/structure/girder/reinforced,
@@ -84354,12 +84287,6 @@
 /obj/machinery/vending/gifts,
 /turf/open/floor/wood,
 /area/clerk)
-"sKK" = (
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "sLU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
@@ -84395,6 +84322,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"sRl" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Departure Lounge - Starboard Fore";
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-14"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "sTD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -84421,25 +84364,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"tgQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Departure Lounge - Port Fore";
-	dir = 4
-	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-24"
-	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "tnm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6
@@ -84456,15 +84380,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/cryopods)
-"tCS" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "tDM" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -84602,6 +84517,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"uWh" = (
+/obj/structure/table,
+/obj/item/candle,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "uXD" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -84764,6 +84693,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"wMY" = (
+/obj/structure/table,
+/obj/item/candle,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 2
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "wOE" = (
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -84798,6 +84741,25 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"wXB" = (
+/obj/machinery/camera{
+	c_tag = "Departure Lounge - Port Aft";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-04"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "xdW" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
@@ -84867,6 +84829,12 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"xDl" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "xEf" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp{
@@ -109806,10 +109774,10 @@ cPb
 cPb
 cLk
 cPb
-olR
+uWh
 cxe
 cLm
-rsn
+wMY
 cMI
 cMI
 cMI
@@ -110062,15 +110030,15 @@ cPb
 ifz
 hZO
 cLm
-tgQ
-icr
+eSt
+qbF
 cxe
 cLm
-pRz
-iXF
-jdl
-sKK
-rQt
+iPn
+fNa
+wXB
+rgh
+gNa
 hXq
 isj
 dEK
@@ -110841,7 +110809,7 @@ cLm
 dDG
 cLm
 cLm
-jiM
+cMg
 czv
 czv
 cPb
@@ -111098,7 +111066,7 @@ cMT
 cMT
 bWL
 cLm
-gYZ
+cLm
 czv
 aaa
 lMJ
@@ -111355,7 +111323,7 @@ bWI
 cMU
 bWM
 fHn
-gYZ
+cLm
 czv
 lMJ
 lMJ
@@ -111612,7 +111580,7 @@ cMV
 cMV
 bWN
 cLm
-gYZ
+cLm
 czv
 aaa
 lMJ
@@ -111869,7 +111837,7 @@ cLm
 cLm
 cLm
 cLm
-nvF
+cMe
 czv
 czv
 cPb
@@ -112632,15 +112600,15 @@ bSY
 bTH
 iRC
 sQr
-jHv
-geg
-tCS
-mPd
-gss
-kEH
-mgu
-geg
-ltQ
+sRl
+cLm
+xDl
+cwd
+eXI
+nJL
+srQ
+pDu
+lWT
 hXq
 tKz
 rBD
