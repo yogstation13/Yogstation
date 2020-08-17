@@ -200,7 +200,7 @@
 	school = "transmutation"
 	charge_max = 350
 	clothes_req = FALSE
-	invocation = "CUT ASUNDER"
+	invocation = "RIP AND TEAR"
 	invocation_type = "whisper"
 	range = 9
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
