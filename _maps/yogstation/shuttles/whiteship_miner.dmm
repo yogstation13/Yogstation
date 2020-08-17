@@ -958,6 +958,10 @@
 /obj/item/stock_parts/manipulator,
 /obj/item/stock_parts/matter_bin,
 /obj/item/stock_parts/micro_laser,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/manipulator,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "wj" = (

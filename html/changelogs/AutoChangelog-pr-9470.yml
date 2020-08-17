@@ -1,0 +1,7 @@
+author: "MrHorizons"
+delete-after: true 
+changes: 
+  - rscadd: "Adds enough additional stock parts to the free miner ship to build an autolathe. (except glass)"
+  - rscadd: "Gives the free miner equipment vendor a new R&D kit, with new flavor text and an autolathe board."
+  - tweak: "R&D kit from free miner vendor costs 2,500 points, compared to 2,000 points."
+  - spellcheck: "Fixed the capitalization of the free miner equipment vendor description."

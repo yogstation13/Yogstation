@@ -38844,17 +38844,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"byC" = (
-/obj/machinery/holopad,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "byD" = (
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/machinery/airalarm{
@@ -57749,6 +57738,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"dLy" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/engine/engineering)
 "dMP" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/stripes/line{
@@ -57947,17 +57940,6 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
-"eIF" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "eJS" = (
 /obj/machinery/door/airlock/public{
 	name = "Surgery Observation"
@@ -58213,12 +58195,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ftM" = (
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "fxr" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -58891,6 +58867,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+"hvM" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "hws" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 5
@@ -59505,6 +59485,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"jwa" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/science/lab)
 "jxM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -60816,6 +60800,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tcommsat/computer)
+"nVE" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "nYC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -60886,6 +60881,10 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"ojV" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/security/brig)
 "oka" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/advanced_airlock_controller/lavaland{
@@ -62862,6 +62861,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"usY" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/quartermaster/storage)
 "uum" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -63198,6 +63201,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"vxD" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "vAA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63442,6 +63449,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/bridge)
+"wod" = (
+/obj/machinery/bounty_board,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "wom" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63915,10 +63926,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "xWi" = (
@@ -86828,7 +86835,7 @@ brN
 brN
 brN
 bxx
-byC
+nVE
 boF
 byl
 aJn
@@ -87339,7 +87346,7 @@ bkJ
 aZE
 aZE
 aZE
-aZE
+usY
 aZE
 bxu
 byD
@@ -87865,7 +87872,7 @@ bEK
 byE
 byE
 uFu
-eIF
+hvM
 bGi
 aag
 aag
@@ -92938,7 +92945,7 @@ ahs
 ahP
 ahP
 aiF
-agj
+ojV
 ajA
 ajG
 akQ
@@ -94059,7 +94066,7 @@ ccw
 cig
 cSR
 cSV
-cig
+dLy
 cig
 cTf
 cgR
@@ -96313,7 +96320,7 @@ aLY
 aOG
 aPR
 aPR
-aPR
+vxD
 aUb
 aZs
 aTX
@@ -103012,7 +103019,7 @@ bhi
 bfK
 bfK
 bfK
-bof
+wod
 bhh
 bsx
 btV
@@ -108935,7 +108942,7 @@ bAB
 bBV
 bDb
 bEn
-ftM
+bEm
 bEm
 bEm
 bJL
@@ -112779,7 +112786,7 @@ blI
 bnn
 boA
 bpZ
-boB
+jwa
 bta
 bmU
 bvJ

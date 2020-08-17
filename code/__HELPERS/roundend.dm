@@ -171,9 +171,8 @@
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
+	RollCredits()
 	for(var/client/C in GLOB.clients)
-		if(!C.credits)
-			C.RollCredits()
 		C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
@@ -277,7 +276,11 @@
 
 	CHECK_TICK
 	//Station Goals
-	parts += goal_report()
+	parts += station_goal_report()
+
+	CHECK_TICK
+	// Department Goals
+	parts += department_goal_report()
 
 	listclearnulls(parts)
 
@@ -291,6 +294,7 @@
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[GLOB.TAB]Round ID: <b>[info]</b>"
+	parts += "[GLOB.TAB]Gamemode: <B>[SSticker.mode.name]</B>"
 	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
 	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
@@ -419,13 +423,46 @@
 	else
 		return ""
 
-/datum/controller/subsystem/ticker/proc/goal_report()
+/datum/controller/subsystem/ticker/proc/station_goal_report()
 	var/list/parts = list()
 	if(mode.station_goals.len)
 		for(var/V in mode.station_goals)
 			var/datum/station_goal/G = V
 			parts += G.get_result()
 		return "<div class='panel stationborder'><ul>[parts.Join()]</ul></div>"
+
+/datum/controller/subsystem/ticker/proc/department_goal_report()
+	var/list/parts = list("<div class='panel stationborder'><ul>")
+	var/list/goals = list(
+		ACCOUNT_ENG = list(),
+		ACCOUNT_SCI = list(),
+		ACCOUNT_MED = list(),
+		ACCOUNT_SRV = list(),
+		ACCOUNT_CAR = list(),
+		ACCOUNT_SEC = list())
+	for(var/datum/department_goal/dg in SSYogs.department_goals)
+		goals[dg.account] += dg.get_result()
+
+	parts += "<br><span class='header'>Engineering department goals:</span>"
+	parts += goals[ACCOUNT_ENG]
+
+	parts += "<br><span class='header'>Science department goals:</span>"
+	parts += goals[ACCOUNT_SCI]
+
+	parts += "<br><span class='header'>Medical department goals:</span>"
+	parts += goals[ACCOUNT_MED]
+
+	parts += "<br><span class='header'>Service department goals:</span>"
+	parts += goals[ACCOUNT_SRV]
+
+	parts += "<br><span class='header'>Cargo department goals:</span>"
+	parts += goals[ACCOUNT_CAR]
+
+	parts += "<br><span class='header'>Security department goals:</span>"
+	parts += goals[ACCOUNT_SEC]
+	
+	parts += "</ul></div>"
+	return parts.Join()
 
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
@@ -667,7 +704,7 @@
 					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
 			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
 	if(hasQM && cargoking)
-		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET value = '[SSshuttle.points]' WHERE key = 'cargorecord'")
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET `value` = '[SSshuttle.points]' WHERE `key` = 'cargorecord'")
 		Q.Execute()
 		qdel(Q)
 
