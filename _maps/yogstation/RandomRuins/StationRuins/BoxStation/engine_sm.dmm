@@ -2026,6 +2026,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Jj" = (
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "Pb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -2397,7 +2401,7 @@ dl
 dB
 ad
 dT
-bN
+Jj
 eg
 bN
 ev
