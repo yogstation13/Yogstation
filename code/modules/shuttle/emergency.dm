@@ -8,6 +8,8 @@
 	desc = "For shuttle control."
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
+	ui_x = 400
+	ui_y = 350
 	var/auth_need = 3
 	var/list/authorized = list()
 
@@ -16,12 +18,15 @@
 		say("Please equip your ID card into your ID slot to authenticate.")
 	. = ..()
 
+/obj/machinery/computer/emergency_shuttle/attack_alien(mob/living/carbon/alien/humanoid/user)
+	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen))
+		SSshuttle.clearHostileEnvironment(user)
+
 /obj/machinery/computer/emergency_shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.human_adjacent_state)
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "emergency_shuttle_console", name,
-			400, 400, master_ui, state)
+		ui = new(user, src, ui_key, "EmergencyShuttleConsole", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/emergency_shuttle/ui_data()
@@ -37,8 +42,8 @@
 		var/job = ID.assignment
 
 		if(obj_flags & EMAGGED)
-			name = Gibberish(name, 0)
-			job = Gibberish(job, 0)
+			name = Gibberish(name)
+			job = Gibberish(job)
 		A += list(list("name" = name, "job" = job))
 	data["authorizations"] = A
 
@@ -292,11 +297,30 @@
 
 	return has_people && hijacker_present
 
+/obj/docking_port/mobile/emergency/proc/is_hijacked_by_xenos()
+	var/has_xenos = FALSE
+	for(var/mob/living/player in GLOB.alive_mob_list)
+		if(issilicon(player)) //Borgs are technically dead anyways
+			continue
+		if(isanimal(player)) //animals don't count
+			continue
+		if(isbrain(player)) //also technically dead
+			continue
+		if(shuttle_areas[get_area(player)])
+			//Non-xeno present. Can't hijack.
+			if(!istype(player, /mob/living/carbon/alien))
+				return FALSE
+			has_xenos = TRUE
+
+	return has_xenos
+
 /obj/docking_port/mobile/emergency/proc/ShuttleDBStuff()
 	set waitfor = FALSE
 	if(!SSdbcore.Connect())
 		return
-	var/datum/DBQuery/query_round_shuttle_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shuttle_name = '[name]' WHERE id = [GLOB.round_id]")
+	var/datum/DBQuery/query_round_shuttle_name = SSdbcore.NewQuery({"
+		UPDATE [format_table_name("round")] SET shuttle_name = :name WHERE id = :round_id
+	"}, list("name" = name, "round_id" = GLOB.round_id))
 	query_round_shuttle_name.Execute()
 	qdel(query_round_shuttle_name)
 
@@ -329,7 +353,7 @@
 				mode = SHUTTLE_DOCKED
 				setTimer(SSshuttle.emergencyDockTime)
 				send2irc("Server", "The Emergency Shuttle ([name]) has docked with the station.") // yogs - make it say the name of the shuttle
-				priority_announce("The Emergency Shuttle has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
+				priority_announce("[SSshuttle.emergency] has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
 				ShuttleDBStuff()
 
 
@@ -488,16 +512,19 @@
 	dwidth = 1
 	width = 3
 	height = 4
-	var/target_area = /area/lavaland/surface/outdoors
+	var/areacheck = /area/lavaland/surface/outdoors
 	var/edge_distance = 16
 	// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
+
+/obj/docking_port/stationary/random/icemoon
+	areacheck = /area/icemoon/surface/outdoors/unexplored/danger
 
 /obj/docking_port/stationary/random/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		return
 
-	var/list/turfs = get_area_turfs(target_area)
+	var/list/turfs = get_area_turfs(areacheck)
 	var/original_len = turfs.len
 	while(turfs.len)
 		var/turf/T = pick(turfs)
@@ -507,8 +534,8 @@
 			forceMove(T)
 			return
 
-	// Fallback: couldn't find anything
-	WARNING("docking port '[id]' could not be randomly placed in [target_area]: of [original_len] turfs, none were suitable")
+		// Fallback: couldn't find anything
+	WARNING("docking port '[id]' could not be randomly placed in [areacheck]: of [original_len] turfs, none were suitable")
 	return INITIALIZE_HINT_QDEL
 
 //Pod suits/pickaxes
@@ -516,13 +543,13 @@
 
 /obj/item/clothing/head/helmet/space/orange
 	name = "emergency space helmet"
-	icon_state = "syndicate-helm-orange"
-	item_state = "syndicate-helm-orange"
+	icon_state = "emergency"
+	item_state = "emergency"
 
 /obj/item/clothing/suit/space/orange
 	name = "emergency space suit"
-	icon_state = "syndicate-orange"
-	item_state = "syndicate-orange"
+	icon_state = "emergency"
+	item_state = "emergency"
 	slowdown = 3
 
 /obj/item/pickaxe/emergency

@@ -18,6 +18,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/def_zone = ""	//Aiming at
 	var/atom/movable/firer = null//Who shot it
+	var/atom/fired_from = null // the atom that the projectile was fired from (gun, turret)
 	var/suppressed = FALSE	//Attack message
 	var/yo = null
 	var/xo = null
@@ -134,6 +135,8 @@
 	return TRUE
 
 /obj/item/projectile/proc/on_hit(atom/target, blocked = FALSE)
+	if(fired_from)
+		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_ON_HIT, firer, target, Angle)
 	var/turf/target_loca = get_turf(target)
 
 	var/hitx
@@ -194,9 +197,8 @@
 	if(reagents && reagents.reagent_list)
 		reagent_note = " REAGENTS:"
 		for(var/datum/reagent/R in reagents.reagent_list)
-			reagent_note += R.id + " ("
-			reagent_note += num2text(R.volume) + ") "
-// yogs start - Checks blood for diease
+			reagent_note += "[R.name] ([num2text(R.volume)])"
+// yogs start - Checks blood for disease
 			if(istype(R, /datum/reagent/blood))
 				var/datum/reagent/blood/RR = R
 				for(var/datum/disease/D in RR.data["viruses"])
@@ -213,6 +215,7 @@
 		investigate_log("[firer] injected [src] using a projectile with [viruslist] [blocked == 100 ? "BLOCKED" : ""]", INVESTIGATE_VIROLOGY)
 		log_game("[firer] injected [src] using a projectile with [viruslist] [blocked == 100 ? "BLOCKED" : ""]")
 // yogs end
+
 	if(ismob(firer))
 		log_combat(firer, L, "shot", src, reagent_note)
 	else
@@ -222,7 +225,7 @@
 
 /obj/item/projectile/proc/vol_by_damage()
 	if(src.damage)
-		return CLAMP((src.damage) * 0.67, 30, 100)// Multiply projectile damage by 0.67, then CLAMP the value between 30 and 100
+		return clamp((src.damage) * 0.67, 30, 100)// Multiply projectile damage by 0.67, then CLAMP the value between 30 and 100
 	else
 		return 50 //if the projectile doesn't do damage, play its hitsound at 50% volume
 
@@ -252,7 +255,7 @@
 	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	if(isturf(A) && hitsound_wall)
-		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
+		var/volume = clamp(vol_by_damage() + 20, 0, 100)
 		if(suppressed)
 			volume = 5
 		playsound(loc, hitsound_wall, volume, 1, -1)
@@ -370,6 +373,8 @@
 		pixel_move(1, FALSE)
 
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
+	if(fired_from)
+		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_BEFORE_FIRE, src, original)
 	//If no angle needs to resolve it from xo/yo!
 	if(!log_override && firer && original)
 		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
@@ -388,7 +393,7 @@
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
 			qdel(src)
 			return
-		var/turf/target = locate(CLAMP(starting + xo, 1, world.maxx), CLAMP(starting + yo, 1, world.maxy), starting.z)
+		var/turf/target = locate(clamp(starting + xo, 1, world.maxx), clamp(starting + yo, 1, world.maxy), starting.z)
 		setAngle(Get_Angle(src, target))
 	original_angle = Angle
 	if(!nondirectional_sprite)
@@ -517,10 +522,10 @@
 	if(!homing_target)
 		return FALSE
 	var/datum/point/PT = RETURN_PRECISE_POINT(homing_target)
-	PT.x += CLAMP(homing_offset_x, 1, world.maxx)
-	PT.y += CLAMP(homing_offset_y, 1, world.maxy)
+	PT.x += clamp(homing_offset_x, 1, world.maxx)
+	PT.y += clamp(homing_offset_y, 1, world.maxy)
 	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
-	setAngle(Angle + CLAMP(angle, -homing_turn_speed, homing_turn_speed))
+	setAngle(Angle + clamp(angle, -homing_turn_speed, homing_turn_speed))
 
 /obj/item/projectile/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))
@@ -541,7 +546,11 @@
 		return FALSE
 	if(!ignore_source_check && firer)
 		var/mob/M = firer
-		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))|| isspacepod(firer.loc)) //cannot shoot yourself or your mech // yogs - or your spacepod)
+		if(isliving(M))
+			var/mob/living/L = M
+			if((target in L.hasparasites()) && target.loc == L.loc)
+				return FALSE
+		if((target == firer) || ((target == firer.loc) && (ismecha(firer.loc) || isspacepod(firer.loc))) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))) //cannot shoot yourself or your mech // yogs - or your spacepod)
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE

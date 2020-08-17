@@ -23,7 +23,7 @@
 			desired_angular_velocity = 2 * sqrt((desired_angle - angle) * max_angular_acceleration * 0.25)
 		else
 			desired_angular_velocity = -2 * sqrt((angle - desired_angle) * max_angular_acceleration * 0.25)
-	var/angular_velocity_adjustment = CLAMP(desired_angular_velocity - angular_velocity, -max_angular_acceleration*time, max_angular_acceleration*time)
+	var/angular_velocity_adjustment = clamp(desired_angular_velocity - angular_velocity, -max_angular_acceleration*time, max_angular_acceleration*time)
 	if(angular_velocity_adjustment && cell && cell.use(abs(angular_velocity_adjustment) * 0.05))
 		last_rotate = angular_velocity_adjustment / time
 		angular_velocity += angular_velocity_adjustment
@@ -57,11 +57,11 @@
 			drag = max(drag, (velocity_mag - 20) / time)
 		if(drag)
 			if(velocity_mag)
-				var/drag_factor = 1 - CLAMP(drag * time / velocity_mag, 0, 1)
+				var/drag_factor = 1 - clamp(drag * time / velocity_mag, 0, 1)
 				velocity_x *= drag_factor
 				velocity_y *= drag_factor
 			if(angular_velocity != 0)
-				var/drag_factor_spin = 1 - CLAMP(drag * 30 * time / abs(angular_velocity), 0, 1)
+				var/drag_factor_spin = 1 - clamp(drag * 30 * time / abs(angular_velocity), 0, 1)
 				angular_velocity *= drag_factor_spin
 
 	// Alright now calculate the THRUST
@@ -79,8 +79,8 @@
 		// basically calculates how much we can brake using the thrust
 		var/forward_thrust = -((fx * velocity_x) + (fy * velocity_y)) / time
 		var/right_thrust = -((sx * velocity_x) + (sy * velocity_y)) / time
-		forward_thrust = CLAMP(forward_thrust, -backward_maxthrust, forward_maxthrust)
-		right_thrust = CLAMP(right_thrust, -side_maxthrust, side_maxthrust)
+		forward_thrust = clamp(forward_thrust, -backward_maxthrust, forward_maxthrust)
+		right_thrust = clamp(right_thrust, -side_maxthrust, side_maxthrust)
 		thrust_x += forward_thrust * fx + right_thrust * sx;
 		thrust_y += forward_thrust * fy + right_thrust * sy;
 		last_thrust_forward = forward_thrust

@@ -11,7 +11,6 @@
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.shadows += owner
 	owner.special_role = "Shadowling"
-	message_admins("[key_name_admin(owner.current)] was made into a shadowling!")
 	log_game("[key_name(owner.current)] was made into a shadowling!")
 	var/mob/living/carbon/human/S = owner.current
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hatch(null))
@@ -38,16 +37,16 @@
 		owner.RemoveSpell(S)
 	var/mob/living/M = owner.current
 	if(issilicon(M))
-		M.audible_message("<span class='notice'>[M] lets out a short blip.</span>", \
-						  "<span class='userdanger'>You have been turned into a robot! You are no longer a shadowling! Though you try, you cannot remember anything about your time as one...</span>")
+		M.audible_message("<span class='notice'>[M] lets out a short blip.</span>")
+		to_chat(M,"<span class='userdanger'>You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a shadowling! Though you try, you cannot remember anything about your time as one...</span>")
 	else
-		M.visible_message("<span class='big'>[M] screams and contorts!</span>", \
-						  "<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
+		M.visible_message("<span class='big'>[M] screams and contorts!</span>")
+		to_chat(M,"<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
 		spawn(30)
 			if(QDELETED(M))
 				return
-			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
-							  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
+			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>")
+			to_chat(M,"<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
 			playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
 			M.gib()
 	return ..()
@@ -95,8 +94,8 @@
 /datum/objective/ascend/update_explanation_text()
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with [SSticker.mode.required_thralls] or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	if(statpanel("Status") && (dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
+	if((dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
 		var/datum/species/shadow/ling/SL = dna.species
-		stat("Shadowy Shield Charges", SL.shadow_charges)
+		. += "Shadowy Shield Charges: [SL.shadow_charges]"

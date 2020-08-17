@@ -78,10 +78,6 @@
 	else
 		icon_state = "slots1"
 
-/obj/machinery/computer/slot_machine/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/computer/slot_machine/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/coin))
 		var/obj/item/coin/C = I
@@ -107,14 +103,14 @@
 			var/obj/item/holochip/H = I
 			if(!user.temporarilyRemoveItemFromInventory(H))
 				return
-			to_chat(user, "<span class='notice'>You insert [H.credits] holocredits into [src]'s!</span>")
+			to_chat(user, "<span class='notice'>You insert [H.credits] holocredits into [src]'s holoreader!</span>")
 			balance += H.credits
 			qdel(H)
 		else
 			to_chat(user, "<span class='warning'>This machine is only accepting coins!</span>")
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(balance > 0)
-			visible_message("<b>[src]</b> says, 'ERROR! Please empty the machine balance before altering paymode'") //Prevents converting coins into holocredits and vice versa
+			visible_message("<b>[src]</b> says, 'ERROR! Please empty the machine balance before altering paymode.'") //Prevents converting coins into holocredits and vice versa
 		else
 			if(paymode == HOLOCHIP)
 				paymode = COIN
@@ -157,8 +153,9 @@
 		<A href='?src=[REF(src)];spin=1'>Play!</A><BR>
 		<BR>
 		[reeltext]
-		<BR>
-		<font size='1'><A href='?src=[REF(src)];refund=1'>Refund balance</A><BR>"}
+		<BR>"}
+		if(balance > 0)
+			dat+="<font size='1'><A href='?src=[REF(src)];refund=1'>Refund balance</A><BR>"
 
 	var/datum/browser/popup = new(user, "slotmachine", "Slot Machine")
 	popup.set_content(dat)
@@ -174,8 +171,9 @@
 		spin(usr)
 
 	else if(href_list["refund"])
-		give_payout(balance)
-		balance = 0
+		if(balance > 0)
+			give_payout(balance)
+			balance = 0
 
 /obj/machinery/computer/slot_machine/emp_act(severity)
 	. = ..()
@@ -327,7 +325,7 @@
 /obj/machinery/computer/slot_machine/proc/dispense(amount = 0, cointype = /obj/item/coin/silver, mob/living/target, throwit = 0)
 	if(paymode == HOLOCHIP)
 		var/obj/item/holochip/H = new /obj/item/holochip(loc,amount)
-		
+
 		if(throwit && target)
 			H.throw_at(target, 3, 10)
 	else

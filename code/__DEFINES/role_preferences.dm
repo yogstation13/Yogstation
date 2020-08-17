@@ -28,7 +28,7 @@
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
 #define ROLE_OVERTHROW			"Syndicate Mutineer"
 #define ROLE_HIVE				"Hivemind Host"
-#define ROLE_OBSESSED				"Obsessed"
+#define ROLE_OBSESSED			"Obsessed"
 #define ROLE_SENTIENCE			"Sentience Potion Spawn"
 #define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
 #define ROLE_POSIBRAIN			"Posibrain"
@@ -36,14 +36,19 @@
 #define ROLE_DEATHSQUAD			"Deathsquad"
 #define ROLE_LAVALAND			"Lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
+#define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_BATTLEROYALE		"Battle Royale Contestant" //Yogs - Battle Royale Mode
 #define ROLE_GANG				"gangster" // Yogs
+#define ROLE_DARKSPAWN			"darkspawn" //Yogs
+#define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
+#define ROLE_ZOMBIE				"Zombie" //Yogs
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
 //(in game days played) to play that role
+// check sql_ban_system.dm as well, that's where the job bans are located.
 GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_TRAITOR = /datum/game_mode/traitor,
 	ROLE_BROTHER = /datum/game_mode/traitor/bros,
@@ -69,7 +74,10 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_GANG = /datum/game_mode/gang, // yogs
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
-	ROLE_SENTIENCE
+	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
+	ROLE_SENTIENCE,
+	ROLE_FUGITIVE,
+	ROLE_ZOMBIE
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

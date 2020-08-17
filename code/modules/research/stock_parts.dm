@@ -42,7 +42,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/storage/part_replacer/bluespace
 	name = "bluespace rapid part exchange device"
-	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with higher capacity for parts."
+	desc = "A version of the RPED that allows for the replacement of parts and scanning from a distance, along with a higher capacity for parts."
 	icon_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
 	works_from_distance = TRUE
@@ -89,6 +89,16 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		new /obj/item/stock_parts/manipulator/femto(src)
 		new /obj/item/stock_parts/micro_laser/quadultra(src)
 		new /obj/item/stock_parts/matter_bin/bluespace(src)
+
+/obj/item/storage/part_replacer/cargo //used in a cargo crate
+
+/obj/item/storage/part_replacer/cargo/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/stock_parts/capacitor(src)
+		new /obj/item/stock_parts/scanning_module(src)
+		new /obj/item/stock_parts/manipulator(src)
+		new /obj/item/stock_parts/micro_laser(src)
+		new /obj/item/stock_parts/matter_bin(src)
 
 /obj/item/storage/part_replacer/cyborg
 	name = "rapid part exchange device"
@@ -226,7 +236,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/stock_parts/capacitor/quadratic
 	name = "quadratic capacitor"
-	desc = "An capacity capacitor used in the construction of a variety of devices."
+	desc = "A quadratic capacitor used in the construction of a variety of devices."
 	icon_state = "quadratic_capacitor"
 	rating = 4
 	materials = list(MAT_METAL=50, MAT_GLASS=50)
@@ -240,7 +250,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/stock_parts/manipulator/femto
 	name = "femto-manipulator"
-	desc = "A tiny little manipulator used in the construction of certain devices."
+	desc = "A tiny manipulator used in the construction of certain devices."
 	icon_state = "femto_mani"
 	rating = 4
 	materials = list(MAT_METAL=30)

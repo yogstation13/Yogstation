@@ -18,7 +18,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/New()
 	..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.volume = 0
+	air_contents.set_volume(0)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/Destroy()
 	if(connected_device)
@@ -41,13 +41,6 @@
 	if(. && connected_device)
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], detach [connected_device] first!</span>")
 		return FALSE
-
-/obj/machinery/atmospherics/components/unary/portables_connector/portableConnectorReturnAir()
-	return connected_device.portableConnectorReturnAir()
-
-/obj/proc/portableConnectorReturnAir()
-	return
-
 
 /obj/machinery/atmospherics/components/unary/portables_connector/layer1
 	piping_layer = 1

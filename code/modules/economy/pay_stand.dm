@@ -30,6 +30,9 @@
 				return
 		var/obj/item/card/id/vbucks = W
 		if(vbucks.registered_account)
+			if(!my_card)
+				to_chat(user, "<span class='warning'>ERROR: No bank account assigned to pay stand.</span>")
+				return
 			var/momsdebitcard = input(user, "How much would you like to deposit?", "Money Deposit") as null|num
 			if(momsdebitcard < 1)
 				to_chat(user, "<span class='warning'>ERROR: Invalid amount designated.</span>")
@@ -81,8 +84,8 @@
 				desc += " A signaler appears to be attached to the scanner."
 		else
 			to_chat(user, "<span class='warning'>A signaler is already attached to this unit!</span>")
-		
-	if(default_deconstruction_screwdriver(user, "card_scanner", "card_scanner", W))
+
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
 		return
 
 	else if(default_pry_open(W))
@@ -95,7 +98,7 @@
 		return
 	else
 		return ..()
-		
+
 /obj/machinery/paystand/proc/purchase(buyer, price)
 	my_card.registered_account.adjust_money(price)
 	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [price] credits.")
@@ -109,4 +112,3 @@
 		to_chat(user, "<span class='warning'>The anchored bolts on this paystand are currently locked!</span>")
 		return
 	. = ..()
-	

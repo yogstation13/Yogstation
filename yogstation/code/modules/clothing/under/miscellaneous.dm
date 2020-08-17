@@ -8,7 +8,7 @@
 
 /obj/item/clothing/under/yogs/scaryclown
 	name = "scary clown suit"
-	desc = "Clown suit often seen being worn by sewer clowns."
+	desc = "Often worn by sewer clowns."
 	icon_state = "scaryclownuniform"
 	item_state = "scaryclownuniform"
 	item_color = "scaryclownuniform"
@@ -16,11 +16,11 @@
 
 /obj/item/clothing/under/rank/yogs/scaryclown/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/bikehorn, 50)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/clothing/under/yogs/harveyflint
 	name = "black and red suit"
-	desc = "Two faces two colors."
+	desc = "Two faces, two colors."
 	icon_state = "harvey_flint_s"
 	item_state = "harvey_flint"
 	item_color = "harvey_flint_s"
@@ -28,7 +28,7 @@
 
 /obj/item/clothing/under/yogs/thejester
 	name = "jester suit"
-	desc = "You can never catch me spaceman!."
+	desc = "You can never catch me, spaceman!"
 	icon_state = "the_jester_s"
 	item_state = "the_jester"
 	item_color = "the_jester_s"
@@ -36,7 +36,7 @@
 
 /obj/item/clothing/under/yogs/trickster
 	name = "trickster suit"
-	desc = "HAHAHA! God I love riddles!"
+	desc = "HAHAHA! I love riddles!"
 	icon_state = "trickster_s"
 	item_state = "trickster"
 	item_color = "trickster_s"
@@ -52,7 +52,7 @@
 
 /obj/item/clothing/under/yogs/barber
 	name = "barber suit"
-	desc = "Perfect suit for singing in a quartet."
+	desc = "The perfect suit for singing in a quartet."
 	icon_state = "barber_s"
 	item_state = "barber"
 	item_color = "barber_s"
@@ -60,7 +60,7 @@
 
 /obj/item/clothing/under/yogs/dresdenunder
 	name = "dresden suit"
-	desc = "Generic nerd by day evil super villian by night!"
+	desc = "Generic nerd by day, evil super villian by night."
 	icon_state = "dresdenunder_s"
 	item_state = "dresdenunder"
 	item_color = "dresdenunder_s"
@@ -116,7 +116,7 @@
 
 /obj/item/clothing/under/yogs/rycliesuni
 	name = "aluminum foil coated suit"
-	desc = "Protects your body from mental brainwashing... Too bad there is no brain inside of your chest."
+	desc = "Protects your body from mental brainwashing. Too bad there is no brain inside of your chest."
 	icon_state = "rycliesuni_s"
 	item_state = "rycliesuni"
 	item_color = "rycliesuni_s"
@@ -156,7 +156,7 @@
 
 /obj/item/clothing/under/yogs/altshield
 	name = "electronic store work suit"
-	desc = "The name tag has the name Joe From Accounting on it."
+	desc = "The name tag has the name 'Joe From Accounting' on it."
 	icon_state = "altshield_s"
 	item_state = "altshield"
 	item_color = "altshield_s"
@@ -164,7 +164,7 @@
 
 /obj/item/clothing/under/yogs/namjumpsuit
 	name = "nam jumpsuit"
-	desc = "Welcome to nam soldier now lets go arrest some greytide!"
+	desc = "Welcome to nam, soldier. Now let's go arrest some greytide!"
 	icon_state = "namjumpsuit_s"
 	item_state = "namjumpsuit"
 	item_color = "namjumpsuit_s"
@@ -173,14 +173,14 @@
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	can_adjust = FALSE
+	can_adjust = TRUE
 
-/obj/item/clothing/under/yogs/krofficer
-	name = "armory officer uniform"
-	desc = "You got one job boy dont screw it up."
-	icon_state = "kr_officer_s"
-	item_state = "kr_officer"
-	item_color = "kr_officer_s"
+/obj/item/clothing/under/yogs/ocelot
+	name = "gulag officer uniform"
+	desc = "For wardens particular to the use of the gulag."
+	icon_state = "gru_officer_s"
+	item_state = "gru_officer"
+	item_color = "gru_officer_s"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
 	strip_delay = 50
 	alt_covers_chest = TRUE
@@ -289,7 +289,7 @@
 
 /obj/item/clothing/under/yogs/whitetuxedo
 	name = "white tuxedo"
-	desc = "The perfect suit for almost any occasion, just make sure to wash it down once your done with it."
+	desc = "The perfect suit for almost any occasion, just make sure to wash it down once you're done with it."
 	icon_state = "white_tuxedo"
 	item_state = "white_tuxedo"
 	item_color = "white_tuxedo"
@@ -297,7 +297,7 @@
 
 /obj/item/clothing/under/yogs/ceturtleneck
 	name = "chief engineer turtleneck"
-	desc = "Oh how cozy!"
+	desc = "How cozy!"
 	icon_state = "ce_turtleneck"
 	item_state = "ce_turtleneck"
 	item_color = "ce_turtleneck"
@@ -307,7 +307,7 @@
 
 /obj/item/clothing/under/yogs/whitedress
 	name = "white dress"
-	desc = "The perfect dress for almost any ball!"
+	desc = "The perfect dress for almost any ball."
 	icon_state = "white_dress"
 	item_state = "white_dress"
 	item_color = "white_dress"
@@ -315,7 +315,7 @@
 
 /obj/item/clothing/under/yogs/nursedress
 	name = "nurse dress"
-	desc = "Nurse stop standing there and help me! I am dying!"
+	desc = "Nurse, stop standing there and help me! I am dying!"
 	icon_state = "nurse_dress"
 	item_state = "nurse_dress"
 	item_color = "nurse_dress"
@@ -323,7 +323,7 @@
 
 /obj/item/clothing/under/yogs/prosecutorsuit
 	name = "prosecutor suit"
-	desc = "GUILTY! CASE CLOSED LET'S GO GET SOME DONUTS!"
+	desc = "GUILTY! LET'S GO GET SOME DONUTS!"
 	icon_state = "prosecutor_suit"
 	item_state = "prosecutor_suit"
 	item_color = "prosecutor_suit"
@@ -344,7 +344,7 @@
 
 /obj/item/clothing/under/yogs/botanyuniform
 	name = "botany yellow uniform"
-	desc = "Wait are we making meth or growing plants?"
+	desc = "Are we making meth or growing plants?"
 	icon_state = "botany_uniform"
 	item_state = "botany_uniform"
 	item_color = "botany_uniform"
@@ -421,7 +421,7 @@
 
 /obj/item/clothing/under/yogs/cecasual
 	name = "casual chief engineer uniform"
-	desc = "Even the ce has to take a break from setting up the engine somet- and the singlo is loose."
+	desc = "Even the CE has to take a break from setting up the engine somet- and the singlo is loose."
 	icon_state = "ce_suit"
 	item_state = "ce_suit"
 	item_color = "ce_suit"
@@ -431,7 +431,7 @@
 
 /obj/item/clothing/under/yogs/hoscasual
 	name = "casual head of security uniform"
-	desc = "Even the hos has to take a break from beating the clown sometimes."
+	desc = "Even the HoS has to take a break from beating the clown sometimes."
 	icon_state = "hos_suit"
 	item_state = "hos_suit"
 	item_color = "hos_suit"
@@ -444,7 +444,7 @@
 
 /obj/item/clothing/under/yogs/hopcasual
 	name = "casual head of personnel uniform"
-	desc = "Even the hop has to take a break from giving all access to the crew sometimes."
+	desc = "Even the HoP has to take a break from giving all access to the crew sometimes."
 	icon_state = "hop_suit"
 	item_state = "hop_suit"
 	item_color = "hop_suit"
@@ -452,7 +452,7 @@
 
 /obj/item/clothing/under/yogs/forensictech
 	name = "forensic technician suit"
-	desc = "Hmm this bloody toolbox has insulated fibers on it..."
+	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
 	icon_state = "forensic_tech"
 	item_state = "forensic_tech"
 	item_color = "forensic_tech"
@@ -460,7 +460,7 @@
 
 /obj/item/clothing/under/yogs/bluetunic
 	name = "blue tunic"
-	desc = "Perfect for relaxing in a bath house. To bad there isn't one on the station."
+	desc = "Perfect for relaxing in a bath house. Too bad there isn't one on the station."
 	icon_state = "bluetunic_s"
 	item_state = "bluetunic"
 	item_color = "bluetunic_s"
@@ -468,7 +468,7 @@
 
 /obj/item/clothing/under/yogs/caretaker
 	name = "caretaker suit"
-	desc = "Yeah he will ''take care'' of you alright."
+	desc = "Yeah, he will 'take care' of you alright."
 	icon_state = "caretaker_s"
 	item_state = "caretaker"
 	item_color = "caretaker_s"
@@ -476,7 +476,7 @@
 
 /obj/item/clothing/under/yogs/familiartunic
 	name = "familiar tunic"
-	desc = "You swear you seen this tunic before but you cant place where..."
+	desc = "You swear you've seen this tunic before, but you can't place where..."
 	icon_state = "familiartunic_s"
 	item_state = "familiartunic"
 	item_color = "familiartunic_s"
@@ -484,7 +484,7 @@
 
 /obj/item/clothing/under/yogs/fiendsuit
 	name = "fiend suit"
-	desc = "Named so cause only a really bad person would wear such a suit."
+	desc = "Named so because only a really bad person would wear such a suit."
 	icon_state = "fiendsuit_s"
 	item_state = "fiendsuit"
 	item_color = "fiendsuit_s"
@@ -500,7 +500,7 @@
 
 /obj/item/clothing/under/yogs/infmob
 	name = "russian gangster uniform"
-	desc = "So you wanna be a classy gangster ay?"
+	desc = "So you wanna be a classy gangster, ay?"
 	icon_state = "inf_mob_s"
 	item_state = "inf_mob"
 	item_color = "inf_mob_s"
@@ -508,7 +508,7 @@
 
 /obj/item/clothing/under/yogs/persskinsuit
 	name = "blue skinsuit"
-	desc = "Pretty uncomfortable but hey atleast it looks cool."
+	desc = "Pretty uncomfortable but at least it looks cool."
 	icon_state = "pers_skinsuit_s"
 	item_state = "pers_skinsuit"
 	item_color = "pers_skinsuit_s"
@@ -524,7 +524,7 @@
 
 /obj/item/clothing/under/yogs/lightpink
 	name = "light pink jumpsuit"
-	desc = "How have we not thought of this before?!?!"
+	desc = "A jumpsuit. Now in light pink."
 	icon_state = "lightpink_s"
 	item_state = "lightpink"
 	item_color = "lightpink_s"
@@ -548,7 +548,7 @@
 
 /obj/item/clothing/under/yogs/brownoveralls
 	name = "brown overalls"
-	desc = "Perfect uniform for coal mining!"
+	desc = "The perfect uniform for coal mining."
 	icon_state = "b-overalls_s"
 	item_state = "b-overalls"
 	item_color = "b-overalls_s"
@@ -556,7 +556,7 @@
 
 /obj/item/clothing/under/yogs/redoveralls
 	name = "red overalls"
-	desc = "Perfect uniform for lumberjacks!"
+	desc = "The perfect uniform for lumberjacks."
 	icon_state = "r-overalls_s"
 	item_state = "r-overalls"
 	item_color = "r-overalls_s"
@@ -573,7 +573,7 @@
 
 /obj/item/clothing/under/yogs/callumsuit
 	name = "casual bartender suit"
-	desc = "Even the bartender has to take a break from valid hunting sometimes."
+	desc = "Even the bartender has to take a break from protecting Pun Pun sometimes."
 	icon_state = "callum_suit_s"
 	item_state = "callum_suit"
 	item_color = "callum_suit_s"
@@ -651,7 +651,7 @@
 
 /obj/item/clothing/under/yogs/cosby
 	name = "tacky sweater"
-	desc = "Zip zap zoobity bap"
+	desc = "Zip zap zoobity bap!"
 	icon_state = "cosby"
 	item_state = "cosby"
 	item_color = "cosby"

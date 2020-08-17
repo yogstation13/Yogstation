@@ -93,7 +93,7 @@
 /datum/disease/transformation/jungle_fever
 	name = "Jungle Fever"
 	cure_text = "Death."
-	cures = list("adminordrazine")
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	spread_text = "Monkey Bites"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	viable_mobtypes = list(/mob/living/carbon/monkey, /mob/living/carbon/human)
@@ -120,7 +120,7 @@
 	if(affected_mob.mind && !is_monkey(affected_mob.mind))
 		add_monkey(affected_mob.mind)
 	if(ishuman(affected_mob))
-		var/mob/living/carbon/monkey/M = affected_mob.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSE)
+		var/mob/living/carbon/monkey/M = affected_mob.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_KEEPSE)
 		M.ventcrawler = VENTCRAWLER_ALWAYS
 
 
@@ -145,18 +145,19 @@
 /datum/disease/transformation/jungle_fever/monkeymode
 	visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
 	disease_flags = CAN_CARRY //no vaccines! no cure!
-
+	cure_text = "Clown's Tears."
+	cures = list(/datum/reagent/consumable/clownstears)
+	
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
 		visibility_flags = NONE
-
 
 
 /datum/disease/transformation/robot
 
 	name = "Robotic Transformation"
 	cure_text = "An injection of copper."
-	cures = list("copper")
+	cures = list(/datum/reagent/copper)
 	cure_chance = 5
 	agent = "R2D2 Nanomachines"
 	desc = "This disease, actually acute nanomachine infection, converts the victim into a cyborg."
@@ -189,7 +190,7 @@
 
 	name = "Xenomorph Transformation"
 	cure_text = "Spaceacillin & Glycerol"
-	cures = list("spaceacillin", "glycerol")
+	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/glycerol)
 	cure_chance = 5
 	agent = "Rip-LEY Alien Microbes"
 	desc = "This disease changes the victim into a xenomorph."
@@ -218,7 +219,7 @@
 /datum/disease/transformation/slime
 	name = "Advanced Mutation Transformation"
 	cure_text = "frost oil"
-	cures = list("frostoil")
+	cures = list(/datum/reagent/consumable/frostoil)
 	cure_chance = 80
 	agent = "Advanced Mutation Toxin"
 	desc = "This highly concentrated extract converts anything into more of itself."
@@ -247,7 +248,7 @@
 /datum/disease/transformation/corgi
 	name = "The Barkening"
 	cure_text = "Death"
-	cures = list("adminordrazine")
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Fell Doge Majicks"
 	desc = "This disease transforms the victim into a corgi."
 	severity = DISEASE_SEVERITY_BIOHAZARD
@@ -271,8 +272,8 @@
 
 /datum/disease/transformation/morph
 	name = "Gluttony's Blessing"
-	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
-	cures = list("adminordrazine")
+	cure_text = /datum/reagent/consumable/nothing
+	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Gluttony's Blessing"
 	desc = "A 'gift' from somewhere terrible."
 	stage_prob = 20
@@ -285,11 +286,28 @@
 	stage5	= list("<span class='danger'>You have become a morph.</span>")
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
+	
+/datum/disease/transformation/ghost
+	name = "Spectral Curse"
+	cure_text = /datum/reagent/water/holywater
+	cures = list(/datum/reagent/water/holywater)
+	agent = "Spectral Curse"
+	desc = "A 'gift' from the spectral realm"
+	stage_prob = 20
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = 0
+	stage1	= list("Your stomach rumbles.")
+	stage2	= list("Your body feels tired")
+	stage3	= list("<span class='danger'>Your skin starts to look transparent</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
+	stage4	= list("<span class='danger'>your organs seems to suddenly disappear.</span>")
+	stage5	= list("<span class='danger'>You have become a ghost.</span>")
+	new_form = /mob/living/simple_animal/hostile/retaliate/ghost
+	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
 
 /datum/disease/transformation/gondola
 	name = "Gondola Transformation"
 	cure_text = "Condensed Capsaicin, ingested or injected." //getting pepper sprayed doesn't help
-	cures = list("condensedcapsaicin") //beats the hippie crap right out of your system
+	cures = list(/datum/reagent/consumable/condensedcapsaicin) //beats the hippie crap right out of your system
 	cure_chance = 80
 	stage_prob = 5
 	agent = "Tranquility"
@@ -310,17 +328,17 @@
 			if (prob(5))
 				affected_mob.emote("smile")
 			if (prob(20))
-				affected_mob.reagents.add_reagent_list(list("pax" = 5))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/pax = 5))
 		if(3)
 			if (prob(5))
 				affected_mob.emote("smile")
 			if (prob(20))
-				affected_mob.reagents.add_reagent_list(list("pax" = 5))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/pax = 5))
 		if(4)
 			if (prob(5))
 				affected_mob.emote("smile")
 			if (prob(20))
-				affected_mob.reagents.add_reagent_list(list("pax" = 5))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/pax = 5))
 			if (prob(2))
 				to_chat(affected_mob, "<span class='danger'>You let go of what you were holding.</span>")
 				var/obj/item/I = affected_mob.get_active_held_item()

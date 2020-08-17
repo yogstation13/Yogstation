@@ -29,15 +29,16 @@
 #define LOG_CHAT			(1 << 6)
 #define LOG_COMMENT			(1 << 7)
 #define LOG_TELECOMMS		(1 << 8)
-#define LOG_OOC				(1 << 9)
-#define LOG_ADMIN			(1 << 10)
-#define LOG_OWNERSHIP		(1 << 11)
-#define LOG_GAME			(1 << 12)
-#define LOG_ADMIN_PRIVATE	(1 << 13)
-#define LOG_ASAY			(1 << 14)
-#define LOG_MECHA			(1 << 15)
-#define LOG_VIRUS			(1 << 16)
-#define LOG_CLONING			(1 << 17)
+#define LOG_NTSL			(1 << 9)
+#define LOG_OOC				(1 << 10)
+#define LOG_ADMIN			(1 << 11)
+#define LOG_OWNERSHIP		(1 << 12)
+#define LOG_GAME			(1 << 13)
+#define LOG_ADMIN_PRIVATE	(1 << 14)
+#define LOG_ASAY			(1 << 15)
+#define LOG_MECHA			(1 << 16)
+#define LOG_VIRUS			(1 << 17)
+#define LOG_CLONING			(1 << 18)
 
 //Individual logging panel pages
 #define INDIVIDUAL_ATTACK_LOG		(LOG_ATTACK)
@@ -46,7 +47,7 @@
 #define INDIVIDUAL_COMMS_LOG		(LOG_PDA | LOG_CHAT | LOG_COMMENT | LOG_TELECOMMS)
 #define INDIVIDUAL_OOC_LOG			(LOG_OOC | LOG_ADMIN)
 #define INDIVIDUAL_OWNERSHIP_LOG	(LOG_OWNERSHIP)
-#define INDIVIDUAL_SHOW_ALL_LOG		(LOG_ATTACK | LOG_SAY | LOG_WHISPER | LOG_EMOTE | LOG_DSAY | LOG_PDA | LOG_CHAT | LOG_COMMENT | LOG_TELECOMMS | LOG_OOC | LOG_ADMIN | LOG_OWNERSHIP | LOG_GAME)
+#define INDIVIDUAL_SHOW_ALL_LOG		(LOG_ATTACK | LOG_SAY | LOG_WHISPER | LOG_EMOTE | LOG_DSAY | LOG_PDA | LOG_CHAT | LOG_COMMENT | LOG_TELECOMMS | LOG_NTSL | LOG_OOC | LOG_ADMIN | LOG_OWNERSHIP | LOG_GAME)
 
 #define LOGSRC_CLIENT "Client"
 #define LOGSRC_MOB "Mob"

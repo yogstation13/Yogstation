@@ -8,7 +8,7 @@
 	viable_mobtypes = list(/mob/living/carbon/human)
 	stage_prob = 1
 	disease_flags = CURABLE
-	cures = list("sodiumchloride",  "mutadone")
+	cures = list(/datum/reagent/consumable/sodiumchloride,  /datum/reagent/medicine/mutadone)
 
 /datum/disease/gastrolosis/stage_act()
 	..()
@@ -81,5 +81,5 @@
 		var/obj/item/storage/backpack/bag = H.get_item_by_slot(SLOT_BACK)
 		if(istype(bag, /obj/item/storage/backpack/snail))
 			bag.emptyStorage()
-			H.doUnEquip(bag, TRUE, no_move = TRUE)
+			H.temporarilyRemoveItemFromInventory(bag, TRUE)
 			qdel(bag)

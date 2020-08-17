@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Admins can now hear the deadsay of admins (including themselves) while in the lobby."

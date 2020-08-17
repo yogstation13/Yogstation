@@ -6,7 +6,7 @@
 
 /obj/item/storage/box/goatcubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 

@@ -15,6 +15,7 @@
 		)) - typecacheof(list(
 		/obj/effect/dummy/chameleon,
 		/obj/effect/wisp,
+		/obj/effect/mob_spawn,
 		))
 	if(delete_atoms[teleatom.type])
 		qdel(teleatom)
@@ -38,14 +39,23 @@
 					var/mob/living/MM = teleatom
 					to_chat(MM, "<span class='warning'>The bluespace interface on your bag of holding interferes with the teleport!</span>")
 
-	// if effects are not specified and not explicitly disabled, sparks
-	if ((!effectin || !effectout) && !no_effects)
-		var/datum/effect_system/spark_spread/sparks = new
-		sparks.set_up(5, 1, teleatom)
-		if (!effectin)
-			effectin = sparks
-		if (!effectout)
-			effectout = sparks
+			// if effects are not specified and not explicitly disabled, sparks
+			if ((!effectin || !effectout) && !no_effects)
+				var/datum/effect_system/spark_spread/sparks = new
+				sparks.set_up(5, 1, teleatom)
+				if (!effectin)
+					effectin = sparks
+				if (!effectout)
+					effectout = sparks
+		if(TELEPORT_CHANNEL_QUANTUM)
+			// if effects are not specified and not explicitly disabled, rainbow sparks
+			if ((!effectin || !effectout) && !no_effects)
+				var/datum/effect_system/spark_spread/quantum/sparks = new
+				sparks.set_up(5, 1, teleatom)
+				if (!effectin)
+					effectin = sparks
+				if (!effectout)
+					effectout = sparks
 
 	// perform the teleport
 	var/turf/curturf = get_turf(teleatom)
@@ -56,7 +66,7 @@
 
 	var/area/A = get_area(curturf)
 	var/area/B = get_area(destturf)
-	if(!forced && (teleatom.has_trait(TRAIT_NO_TELEPORT) || A.noteleport || B.noteleport))
+	if(!forced && (HAS_TRAIT(teleatom, TRAIT_NO_TELEPORT) || A.noteleport || B.noteleport))
 		return FALSE
 
 	if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf, destturf))
@@ -106,9 +116,8 @@
 			continue
 
 		var/datum/gas_mixture/A = F.air
-		var/list/A_gases = A.gases
 		var/trace_gases
-		for(var/id in A_gases)
+		for(var/id in A.get_gases())
 			if(id in GLOB.hardcoded_gases)
 				continue
 			trace_gases = TRUE
@@ -117,15 +126,15 @@
 		// Can most things breathe?
 		if(trace_gases)
 			continue
-		if(!(A_gases[/datum/gas/oxygen] && A_gases[/datum/gas/oxygen][MOLES] >= 16))
+		if(A.get_moles(/datum/gas/oxygen) < 16)
 			continue
-		if(A_gases[/datum/gas/plasma])
+		if(A.get_moles(/datum/gas/plasma))
 			continue
-		if(A_gases[/datum/gas/carbon_dioxide] && A_gases[/datum/gas/carbon_dioxide][MOLES] >= 10)
+		if(A.get_moles(/datum/gas/carbon_dioxide) >= 10)
 			continue
 
 		// Aim for goldilocks temperatures and pressure
-		if((A.temperature <= 270) || (A.temperature >= 360))
+		if((A.return_temperature() <= 270) || (A.return_temperature() >= 360))
 			continue
 		var/pressure = A.return_pressure()
 		if((pressure <= 20) || (pressure >= 550))

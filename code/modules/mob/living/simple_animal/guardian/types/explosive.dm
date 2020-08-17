@@ -10,11 +10,10 @@
 	carp_fluff_string = "<span class='holoparasite'>CARP CARP CARP! Caught one! It's an explosive carp! Boom goes the fishy.</span>"
 	var/bomb_cooldown = 0
 
-/mob/living/simple_animal/hostile/guardian/bomb/Stat()
-	..()
-	if(statpanel("Status"))
-		if(bomb_cooldown >= world.time)
-			stat(null, "Bomb Cooldown Remaining: [DisplayTimeText(bomb_cooldown - world.time)]")
+/mob/living/simple_animal/hostile/guardian/bomb/get_status_tab_items()
+	. = ..()
+	if(bomb_cooldown >= world.time)
+		. += "Bomb Cooldown Remaining: [DisplayTimeText(bomb_cooldown - world.time)]"
 
 /mob/living/simple_animal/hostile/guardian/bomb/AttackingTarget()
 	. = ..()
@@ -74,7 +73,7 @@
 			to_chat(spawner, "<span class='danger'><B>Success! Your trap caught [user]</B></span>")
 			var/turf/T = get_turf(src)
 			stored_obj.forceMove(T)
-			playsound(T,'sound/effects/explosion2.ogg', 200, 1)
+			playsound(T,'sound/effects/explosion2.ogg', 'yogstation/sound/effects/bokudan.ogg',  200, 1) // yogs - bokudan sound
 			new /obj/effect/temp_visual/explosion(T)
 			user.ex_act(EXPLODE_HEAVY)
 			qdel(src)
@@ -93,6 +92,6 @@
 	detonate(user)
 
 /obj/guardian_bomb/examine(mob/user)
-	stored_obj.examine(user)
+	. = stored_obj.examine(user)
 	if(get_dist(user,src)<=2)
-		to_chat(user, "<span class='holoparasite'>It glows with a strange <font color=\"[spawner.namedatum.colour]\">light</font>!</span>")
+		. += "<span class='holoparasite'>It glows with a strange <font color=\"[spawner.namedatum.colour]\">light</font>!</span>"

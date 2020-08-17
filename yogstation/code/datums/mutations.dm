@@ -10,20 +10,20 @@
 		return
 	owner.dna.add_mutation(CLOWNMUT)
 	owner.dna.add_mutation(EPILEPSY)
-	owner.setBrainLoss(200)
+	owner.setOrganLoss(ORGAN_SLOT_BRAIN,199)
 
 	var/mob/living/carbon/human/H = owner
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/yogs/cluwne))
-		if(!H.doUnEquip(H.wear_mask))
+		if(!H.temporarilyRemoveItemFromInventory(H.wear_mask))
 			qdel(H.wear_mask)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/yogs/cluwne(H), SLOT_WEAR_MASK)
 	if(!istype(H.w_uniform, /obj/item/clothing/under/yogs/cluwne))
-		if(!H.doUnEquip(H.w_uniform))
+		if(!H.temporarilyRemoveItemFromInventory(H.w_uniform))
 			qdel(H.w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/yogs/cluwne(H), SLOT_W_UNIFORM)
 	if(!istype(H.shoes, /obj/item/clothing/shoes/yogs/cluwne))
-		if(!H.doUnEquip(H.shoes))
+		if(!H.temporarilyRemoveItemFromInventory(H.shoes))
 			qdel(H.shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yogs/cluwne(H), SLOT_SHOES)
 
@@ -32,7 +32,7 @@
 
 /datum/mutation/human/cluwne/on_life(mob/living/carbon/human/owner)
 	if((prob(15) && owner.IsUnconscious()))
-		owner.setBrainLoss(200) // there I changed it to setBrainLoss
+		owner.setOrganLoss(ORGAN_SLOT_BRAIN,199) // there I changed it to setBrainLoss
 		switch(rand(1, 6))
 			if(1)
 				owner.say("HONK")
@@ -56,7 +56,7 @@
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
 
-/datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
+/datum/mutation/human/tourettes/on_life()
 	if(prob(10) && owner.stat == CONSCIOUS)
 		owner.Stun(20)
 		switch(rand(1, 3))

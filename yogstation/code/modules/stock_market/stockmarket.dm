@@ -69,7 +69,7 @@
 		var/datum/stock/S = new
 		var/sname = ""
 		switch (rand(1,6))
-			if(1)
+			if(1) //                          VVVVVVVV this is a check to prevent the word from randomly showing up in game, github dont lynch us
 				while (sname == "" || sname == "FAG") // honestly it's a 0.6% chance per round this happens - or once in 166 rounds - so i'm accounting for it before someone yells at me
 					sname = "[consonant()][vowel()][consonant()]"
 			if (2)
@@ -126,7 +126,7 @@
 GLOBAL_DATUM_INIT(stockExchange, /datum/stockMarket, new)
 
 /proc/plotBarGraph(var/list/points, var/base_text, var/width=400, var/height=400)
-	var/output = "<table style='border:1px solid black; border-collapse: collapse; width: [width]px; height: [height]px'>"
+	var/output = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><table style='border:1px solid black; border-collapse: collapse; width: [width]px; height: [height]px'>"
 	if (points.len && height > 20 && width > 20)
 		var/min = points[1]
 		var/max = points[1]
@@ -167,5 +167,5 @@ GLOBAL_DATUM_INIT(stockExchange, /datum/stockMarket, new)
 		output += "<tr><td style='width:[width]px; height:[height]px; background: black'></td></tr>"
 		output += "<tr><td style='font-size:10px; background:black; color:green; text-align:center'>[base_text]</td></tr>"
 
-	return "[output]</table>"
+	return "[output]</table></BODY></HTML>"
 

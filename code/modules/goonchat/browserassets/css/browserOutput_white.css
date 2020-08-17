@@ -101,7 +101,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 80px;
+	right: 135px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -131,13 +131,13 @@ a.popt {text-decoration: none;}
 }
 #userBar .subCell:hover {background: #ccc;}
 #userBar .toggle {
-	width: 40px;
+	width: 45px;
     background: #ccc;
     border-top: 0;
     float: right;
     text-align: center;
 }
-#userBar .sub {clear: both; display: none; width: 160px;}
+#userBar .sub {clear: both; display: none; width: 180px;}
 #userBar .sub.scroll {overflow-y: scroll;}
 #userBar .sub.subCell {padding: 3px 0 3px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
 #userBar .sub span {
@@ -260,14 +260,14 @@ h1.alert, h2.alert		{color: #000000;}
 
 em						{font-style: normal;	font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #0000d1;	font-weight: bold;} /* yogs - OOC */
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
 .looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
 
 .adminsay   			{color: #996600;	font-weight: bold;} /*yogs - changes asay colour back*/
-.admin					{color: #386aff;	font-weight: bold;}
+.admin					{color: #4473ff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
 
@@ -276,6 +276,7 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
+.dronesay 				{color: #ffbf00; background-color: #000000; display: block;}
 .radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
 .commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #993399;}
@@ -306,6 +307,7 @@ h1.alert, h2.alert		{color: #000000;}
 .userdanger				{color: #ff0000;	font-weight: bold; font-size: 24px;}
 .danger					{color: #ff0000;}
 .warning				{color: #ff0000;	font-style: italic;}
+.alertwarning           {color: #FF0000;    font-weight: bold}
 .boldwarning			{color: #ff0000;	font-style: italic;	font-weight: bold}
 .announce 				{color: #228b22;	font-weight: bold;}
 .boldannounce			{color: #ff0000;	font-weight: bold;}
@@ -319,9 +321,30 @@ h1.alert, h2.alert		{color: #000000;}
 .unconscious			{color: #0000ff;	font-weight: bold;}
 .suicide				{color: #ff5050;	font-style: italic;}
 .green					{color: #03ff39;}
-.nicegreen					{color: #14a833;}
+.red                    {color: #FF0000}
+.blue                   {color: #0000FF}
+.nicegreen				{color: #14a833;}
 .shadowling				{color: #3b2769;}
+.velvet					{color: #21007F;}
 .cult					{color: #960000;}
+.surrender				{
+	color: #1235d1;
+	font-weight: bold; 
+	font-size: 27px; 
+	animation: surrender 1s ease-in-out infinite alternate;
+	transform-origin: 0 0;
+	display: inline-block;
+  }
+  @keyframes surrender {
+	  0% {
+	  transform: scale(1,1);
+	  color: #ff0000;
+	}
+	  100% {
+	  transform: scale(1.05,1);
+	  color: #0000ff
+	}
+  }
 
 .cultitalic				{color: #960000;	font-style: italic;}
 .cultbold				{color: #960000; font-style: italic; font-weight: bold;}
@@ -380,8 +403,9 @@ h1.alert, h2.alert		{color: #000000;}
 .changeling				{color: #800080;	font-style: italic;}
 .assimilator			{color: #800080;	font-size: 16px ; font-weight: bold;}
 .bigassimilator			{color: #800080;	font-size: 32px ; font-weight: bold;}
+.alertsyndie			{color: #FF0000;	font-size: 24px ; font-weight: bold;}
 
-.spider					{color: #4d004d;}
+.spider					{color: #4d004d; font-weight: bold; font-size: 24px;}
 
 .interface				{color: #330033;}
 
@@ -436,3 +460,32 @@ h1.alert, h2.alert		{color: #000000;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
+
+/* yogs start -- tickets */
+.ticket-status {
+	color: #000099;
+	font-weight: bold;
+}
+.ticket-text-sent {
+	color: #47beff;
+	font-weight: bold;
+}
+.ticket-text-received {
+	color: #ff0000;
+	font-weight: bold;
+}
+.ticket-text-monitored {
+	color: #ff00ff;
+	font-weight: bold;
+}
+.ticket-header-recieved {
+	color: #ff0000;
+	font-weight: bold;
+	font-size: 15px;
+}
+.ticket-admin-reply {
+	color: #ff0000;
+	font-weight: bold;
+	font-style: italic;
+}
+/* yogs end */

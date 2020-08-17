@@ -23,8 +23,9 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/glass
-	grind_results = list("silicon" = 20)
-	point_value = 1
+	grind_results = list(/datum/reagent/silicon = 20)
+	point_value = 5
+	tableVariant = /obj/structure/table/glass
 
 /obj/item/stack/sheet/glass/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to slice [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -67,6 +68,17 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 		else
 			to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass!</span>")
 			return
+	else if(istype(W, /obj/item/lightreplacer/cyborg)) //yogs start janiborgs can refill lightreplacers with glass now
+		var/obj/item/lightreplacer/cyborg/G = W
+		if(G.uses >= G.max_uses)
+			to_chat(user, "<span class='warning'>[W.name] is full.</span>")
+			return
+		else if(src.use(1))
+			G.AddUses(G.increment)
+			to_chat(user, "<span class='notice'>You insert a piece of glass into \the [G.name]. You have [G.uses] light\s remaining.</span>")
+			return
+		else
+			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights!</span>") //yogs end
 	else
 		return ..()
 
@@ -87,7 +99,7 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plasmaglass
-	grind_results = list("silicon" = 20, "plasma" = 10)
+	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10)
 
 /obj/item/stack/sheet/plasmaglass/fifty
 	amount = 50
@@ -138,8 +150,8 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/rglass
-	grind_results = list("silicon" = 20, "iron" = 10)
-	point_value = 4
+	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/iron = 10)
+	point_value = 6
 
 /obj/item/stack/sheet/rglass/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -181,8 +193,8 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plasmarglass
-	grind_results = list("silicon" = 20, "plasma" = 10, "iron" = 10)
-	point_value = 23
+	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10, /datum/reagent/iron = 10)
+	point_value = 30
 
 /obj/item/stack/sheet/plasmarglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.prglass_recipes
@@ -244,6 +256,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	armor = list("melee" = 100, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 100)
 	max_integrity = 40
 	sharpness = IS_SHARP
+	grind_results = list(/datum/reagent/silicon = 20)
 	var/icon_prefix
 
 
@@ -281,12 +294,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	var/hit_hand = ((user.active_hand_index % 2 == 0) ? "r_" : "l_") + "arm"
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(!H.gloves && !H.has_trait(TRAIT_PIERCEIMMUNE)) // golems, etc
+		if(!H.gloves && !HAS_TRAIT(H, TRAIT_PIERCEIMMUNE)) // golems, etc
 			to_chat(H, "<span class='warning'>[src] cuts into your hand!</span>")
 			H.apply_damage(force*0.5, BRUTE, hit_hand)
 	else if(ismonkey(user))
 		var/mob/living/carbon/monkey/M = user
-		if(!M.has_trait(TRAIT_PIERCEIMMUNE))
+		if(!HAS_TRAIT(M, TRAIT_PIERCEIMMUNE))
 			to_chat(M, "<span class='warning'>[src] cuts into your hand!</span>")
 			M.apply_damage(force*0.5, BRUTE, hit_hand)
 
@@ -310,12 +323,14 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 		qdel(src)
 	return TRUE
 
-/obj/item/shard/Crossed(mob/living/L)
-	if(istype(L) && has_gravity(loc))
-		if(L.has_trait(TRAIT_LIGHT_STEP))
-			playsound(loc, 'sound/effects/glass_step.ogg', 30, 1)
-		else
-			playsound(loc, 'sound/effects/glass_step.ogg', 50, 1)
+/obj/item/shard/Crossed(atom/movable/AM)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!(L.is_flying() || L.buckled))
+			if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
+				playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
+			else
+				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 	return ..()
 
 /obj/item/shard/plasma

@@ -20,6 +20,16 @@
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 
+	changed_maps = list("OmegaStation", "EclipseStation")
+
+/datum/job/atmos/proc/OmegaStationChanges()
+	total_positions = 3
+	supervisors = "the captain and the head of personnel"
+
+/datum/job/atmos/proc/EclipseStationChanges()
+	total_positions = 3
+	spawn_positions = 3
+
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"
 	jobtype = /datum/job/atmos

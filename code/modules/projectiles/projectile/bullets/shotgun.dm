@@ -5,7 +5,7 @@
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	damage = 5
-	stamina = 80
+	stamina = 55
 
 /obj/item/projectile/bullet/incendiary/shotgun
 	name = "incendiary slug"
@@ -35,7 +35,7 @@
 
 /obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 3, 2)
@@ -56,7 +56,7 @@
 
 /obj/item/projectile/bullet/pellet
 	var/tile_dropoff = 0.75
-	var/tile_dropoff_s = 1.25
+	var/tile_dropoff_s = 0.5
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
@@ -65,7 +65,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
-	stamina = 25
+	stamina = 11
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
@@ -92,3 +92,16 @@
 
 /obj/item/projectile/bullet/scattershot
 	damage = 24
+
+//Breaching Ammo
+
+/obj/item/projectile/bullet/shotgun_breaching
+	name = "12g breaching round"
+	desc = "A breaching round designed to destroy airlocks and windows with only a few shots, but is ineffective against other targets."
+	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
+	damage = 10 //does shit damage to everything except doors and windows
+
+/obj/item/projectile/bullet/shotgun_breaching/on_hit(atom/target)
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
+		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
+	..()

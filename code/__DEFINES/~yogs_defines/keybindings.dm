@@ -112,6 +112,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_TARGETGROIN "Target Groin"
 #define ACTION_TARGETLLEG "Target LLeg"
 
+#define ACTION_GIVE "Give"
 #define ACTION_RESIST "Resist"
 
 #define ACTION_TOGGLETHROW "Toggle Throw"
@@ -162,6 +163,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_TARGETGROIN = "Numpad2",
 	ACTION_TARGETLLEG = "Numpad3",
 
+	ACTION_GIVE = "C",
 	ACTION_RESIST = "B",
 
 	ACTION_TOGGLETHROW = "R",
@@ -190,3 +192,5 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 
 #define BUTTON_KEY(name, action) \
 BUTTON_KEY_MOVEMENT(name, action, 0);
+
+#define MAX_KEYPRESS_COMMANDLENGTH 32

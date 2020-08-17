@@ -79,6 +79,7 @@ As a Roboticist, you can augment people with cyborg limbs. Augmented limbs can e
 As the AI, you can click on people's names to look at them. This only works if there are cameras that can see them, they aren't wearing agent IDs and aren't using digital camouflage as changelings.
 As the AI, you can quickly open and close doors by holding shift while clicking them, bolt them when holding ctrl, and even shock them while holding alt.
 As the AI, you can take pictures with your camera and upload them to newscasters.
+As the AI, you can use CTRL + 1-9 to set a location hotkey for your camera, allowing you to save the location and jump to it at will. Tilde and zero will return you to the last spot you jumped from, and the numpad numbers act as aliases to the regular number keys.
 As a Cyborg, choose your module carefully, as only cutting and mending your reset wire will let you repick it. If possible, refrain from choosing a module until a situation that requires one occurs.
 As a Cyborg, you are immune to most forms of stunning, and excel at almost everything far better than humans. However, flashes can easily stunlock you and you cannot do any precision work as you lack hands.
 As a Cyborg, you are impervious to fires and heat. If you are rogue, you can release plasma fires everywhere and walk through them without a care in the world!
@@ -208,7 +209,6 @@ As a Blobbernaut, your HUD shows your health and the core health of the overmind
 As a Revolutionary, you cannot convert a head of staff or someone who has a mindshield implant, such as a security officer or those they implant. Implants can however be surgically removed, and do not carry over with cloning. Take control of medbay to keep control of conversions!
 As a Revolutionary, cargo can be your best friend or your worst nightmare. In the best case scenario you will be able to order a limitless amount of guns and armor, in the worst case scenario security will take control and order a limitless number of mindshield implants to turn your fellow revolutionaries against you.
 As a Revolutionary, your main power comes from who you convert, choose your converts wisely to ensure you win the round.
-As a Changeling, the Extract DNA sting counts for your genome absorb objective, but does not let you respec your powers.
 As a Changeling, you can absorb someone by strangling them and using the Absorb verb; this gives you the ability to rechoose your powers, the DNA of whoever you absorbed, the memory of the absorbed, and some samples of things the absorbed said.
 As a Cultist, do not cause too much chaos before your objective is completed. If the shuttle gets called too soon, you may not have enough time to win.
 As a Cultist, your team starts off very weak, but if necessary can quickly convert everything they have into raw power. Make sure you have the numbers and equipment to support going loud, or the cult will fall flat on its face.
@@ -220,8 +220,7 @@ The Chaplain can bless any container with water by hitting it with their bible. 
 The Chaplain's holy weapon will kill clockwork marauders in two hits.
 As a Wizard, you can turn people to stone, then animate the resulting statue with a staff of animation to create an extremely powerful minion, for all of 5 minutes at least.
 As a Wizard, the fireball spell performs very poorly at close range, as it can easily catch you in the blast. It is best used as a form of artillery down long hallways.
-As a Wizard, summoning guns will turn a large portion of the crew against themselves, but will also give everyone anything from a floral somatoray to a pulse rifle. Use at your own risk!
-As a Wizard, the staff of chaos can fire any type of bolts from the magical wands. This can range from bolts of instant death to healing or reviving someone.
+As a Wizard, the staff of chaos can fire any type of bolts from the magical wands. This can range from bolts of fireball to healing or reviving someone.
 As a Wizard, most spells become unusable if you are not wearing your robe, hat, and sandals.
 As an Abductor, you can select where your victims will be sent on the ship control console.
 As an Abductor Agent, the combat mode vest has much higher resistance to every kind of weapon, and your helmet prevents the AI from tracking you.
@@ -248,3 +247,14 @@ When hacking doors, cutting and mending a "test light wire" will restore power t
 When crafting most items, you can either manually combine parts or use the crafting menu.
 Suit storage units not only remove blood and dirt from clothing, but also radiation!
 Remote devices will work when used through cameras. For example: Bluespace RPEDs and door remotes.
+You can light a cigar on a supermatter crystal.
+YOU CAN SUCK BLOOD AS A VAMPIRE BY HARM INTENTING THE HEAD
+Click the ‘resist’ button to get out of a chair.
+Using a multitool on a flux-wave anomaly does not fix it. Stop shocking yourself on it.
+Normal analysers can determine a blob's type, the code to neutralize an anomaly, and the composition of gas in both the atmosphere or a tank/canister.
+Use chromosomes in genetics, reinforcement chromosome prevents mutadone from removing powers.
+The round isn't all about you. If you try to help others have a good time you'll make friends very easily in this game.
+Just because someone attacks you doesn't mean they're trying to kill you, people make mistakes.
+Questions? Consult the Wiki: https://wiki.yogstation.net/wiki/Main_Page
+Questions? Consult the Mentors using the 'MHelp' system.
+Starving makes you move slower. Be sure to keep fed!

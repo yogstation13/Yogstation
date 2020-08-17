@@ -12,6 +12,8 @@ SUBSYSTEM_DEF(research)
 	var/datum/techweb/admin/admin_tech
 	var/datum/techweb_node/error_node/error_node	//These two are what you get if a node/design is deleted and somehow still stored in a console.
 	var/datum/design/error_design/error_design
+	var/techweb_pixel_size = 800
+	var/techweb_legacy = FALSE
 
 	//ERROR LOGGING
 	var/list/invalid_design_ids = list()		//associative id = number of times
@@ -124,7 +126,7 @@ SUBSYSTEM_DEF(research)
 			continue
 		TN = new path
 		if(returned[initial(TN.id)])
-			stack_trace("WARNING: Techweb node ID clash with ID [initial(TN.id)] detected!")
+			stack_trace("WARNING: Techweb node ID clash with ID [initial(TN.id)] detected! Path: [path]")
 			errored_datums[TN] = initial(TN.id)
 			continue
 		returned[initial(TN.id)] = TN
@@ -152,7 +154,7 @@ SUBSYSTEM_DEF(research)
 			continue
 		DN = new path
 		if(returned[initial(DN.id)])
-			stack_trace("WARNING: Design ID clash with ID [initial(DN.id)] detected!")
+			stack_trace("WARNING: Design ID clash with ID [initial(DN.id)] detected! Path: [path]")
 			errored_datums[DN] = initial(DN.id)
 			continue
 		returned[initial(DN.id)] = DN

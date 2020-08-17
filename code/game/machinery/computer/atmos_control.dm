@@ -54,14 +54,14 @@
 			"id_tag" = id_tag,
 			"timestamp" = world.time,
 			"pressure" = air_sample.return_pressure(),
-			"temperature" = air_sample.temperature,
+			"temperature" = air_sample.return_temperature(),
 			"gases" = list()
 		))
 		var/total_moles = air_sample.total_moles()
 		if(total_moles)
-			for(var/gas_id in air_sample.gases)
-				var/gas_name = air_sample.gases[gas_id][GAS_META][META_GAS_NAME]
-				signal.data["gases"][gas_name] = air_sample.gases[gas_id][MOLES] / total_moles * 100
+			for(var/gas_id in air_sample.get_gases())
+				var/gas_name = GLOB.meta_gas_info[gas_id][META_GAS_NAME]
+				signal.data["gases"][gas_name] = air_sample.get_moles(gas_id) / total_moles * 100
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_control", name, 400, 925, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosControlConsole", name, 400, 925, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/atmos_control/ui_data(mob/user)
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_control", name, 500, 305, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosControlConsole", name, 500, 315, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/atmos_control/tank/ui_data(mob/user)
@@ -291,18 +291,18 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 			signal.data += list("tag" = input_tag, "power_toggle" = TRUE)
 			. = TRUE
 		if("rate")
-			var/target = input("New target rate:", name, input_info ? input_info["volume_rate"] : 0) as num|null
-			if(!isnull(target) && !..())
-				target =  CLAMP(target, 0, MAX_TRANSFER_RATE)
+			var/target = text2num(params["rate"])
+			if(!isnull(target))
+				target = clamp(target, 0, MAX_TRANSFER_RATE)
 				signal.data += list("tag" = input_tag, "set_volume_rate" = target)
 				. = TRUE
 		if("output")
 			signal.data += list("tag" = output_tag, "power_toggle" = TRUE)
 			. = TRUE
 		if("pressure")
-			var/target = input("New target pressure:", name, output_info ? output_info["internal"] : 0) as num|null
-			if(!isnull(target) && !..())
-				target =  CLAMP(target, 0, 50 * ONE_ATMOSPHERE)
+			var/target = text2num(params["pressure"])
+			if(!isnull(target))
+				target = clamp(target, 0, 4500)
 				signal.data += list("tag" = output_tag, "set_internal_pressure" = target)
 				. = TRUE
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)

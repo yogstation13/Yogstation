@@ -1,4 +1,5 @@
 GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
+GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
@@ -12,8 +13,18 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
 
 /datum/objective/New(var/text)
+	GLOB.objectives += src
 	if(text)
 		explanation_text = text
+
+/datum/objective/Destroy(force, ...)
+	GLOB.objectives -= src
+	if(owner)
+		for(var/datum/antagonist/A in owner.antag_datums)
+			A.objectives -= src
+	if(team)
+		team.objectives -= src
+	. = ..()
 
 /datum/objective/proc/get_owners() // Combine owner and team into a single list.
 	. = (team && team.members) ? team.members.Copy() : list()
@@ -98,7 +109,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			. += M
 
 //dupe_search_range is a list of antag datums / minds / teams
-/datum/objective/proc/find_target(dupe_search_range)
+/datum/objective/proc/find_target(dupe_search_range, blacklist)
 	var/list/datum/mind/owners = get_owners()
 	if(!dupe_search_range)
 		dupe_search_range = get_owners()
@@ -110,8 +121,12 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
 		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
-			if(!((possible_target.current.client.prefs.toggles & QUIET_ROUND) && !possible_target.antag_datums.len))//Yogs -- Fixes Quiet Rounds (the second bit allows quiet rounders chosen to be antags, to be targetted)
-				possible_targets += possible_target//yogs indent
+			//yogs start -- Quiet Rounds
+			var/mob/living/carbon/human/guy = possible_target.current
+			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
+				if (!(possible_target in blacklist))
+					possible_targets += possible_target//yogs indent
+			//yogs end
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
 		for(var/I in all_possible_targets)
@@ -308,6 +323,37 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "protect nonhuman"
 	human_check = FALSE
 
+/datum/objective/assist
+	name = "assist"
+	var/target_role_type
+	martyr_compatible = TRUE
+
+/datum/objective/assist/find_target_by_role(role, role_type=FALSE,invert=FALSE)
+	if(!invert)
+		target_role_type = role_type
+	..()
+	return target
+
+/datum/objective/assist/check_completion()
+	if(target)
+		for(var/datum/antagonist/antag in target.antag_datums)
+			for(var/datum/objective/O in antag.objectives)
+				if(istype(O, /datum/objective/assist))//assuming someone gives people assist objectives in a circle for some reason
+					continue
+				if(!O.check_completion())
+					return FALSE
+	return TRUE
+
+/datum/objective/assist/update_explanation_text()
+	..()
+	if(target && target.current)
+		explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] completes their objectives."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/assist/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
+
 /datum/objective/hijack
 	name = "hijack"
 	explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody."
@@ -339,7 +385,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/purge
 	name = "no mutants on shuttle"
-	explanation_text = "Ensure no mutant humanoid species are present aboard the escape shuttle."
+	explanation_text = "Ensure no mutant humanoids or nonhuman species are present aboard the escape shuttle."
 	martyr_compatible = 1
 
 /datum/objective/purge/check_completion()
@@ -500,6 +546,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal/proc/set_target(datum/objective_item/item)
 	if(item)
 		targetinfo = item
+		targetinfo.objective = src
 		steal_target = targetinfo.targetitem
 		explanation_text = "Steal [targetinfo.name]"
 		give_special_equipment(targetinfo.special_equipment)
@@ -546,7 +593,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 				else if(targetinfo.check_special_completion(I))//Returns 1 by default. Items with special checks will return 1 if the conditions are fulfilled.
 					return TRUE
 
-			if(targetinfo && I.type in targetinfo.altitems) //Ok, so you don't have the item. Do you have an alternative, at least?
+			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
 				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
 					return TRUE
 	return FALSE
@@ -681,6 +728,24 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		target_amount = count
 	update_explanation_text()
 
+/datum/objective/protect_object
+	name = "protect object"
+	var/obj/protect_target
+
+/datum/objective/protect_object/proc/set_target(obj/O)
+	protect_target = O
+	update_explanation_text()
+
+/datum/objective/protect_object/update_explanation_text()
+	. = ..()
+	if(protect_target)
+		explanation_text = "Protect \the [protect_target] at all costs."
+	else
+		explanation_text = "Free objective."
+
+/datum/objective/protect_object/check_completion()
+	return !QDELETED(protect_target)
+
 //Changeling Objectives
 
 /datum/objective/absorb
@@ -808,52 +873,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	name = "steal five of"
 	explanation_text = "Steal at least five items!"
 	var/list/wanted_items = list()
-
-/datum/objective/steal_five_of_type/New()
-	..()
-	wanted_items = typecacheof(wanted_items)
-
-/datum/objective/steal_five_of_type/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	var/stolen_count = 0
-	for(var/datum/mind/M in owners)
-		if(!isliving(M.current))
-			continue
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
-		for(var/obj/I in all_items) //Check for wanted items
-			if(is_type_in_typecache(I, wanted_items))
-				stolen_count++
-	return stolen_count >= 5
-
-/datum/objective/steal_five_of_type/summon_guns
-	name = "steal guns"
-	explanation_text = "Steal at least five guns!"
-	wanted_items = list(/obj/item/gun)
-
-/datum/objective/steal_five_of_type/summon_magic
-	name = "steal magic"
-	explanation_text = "Steal at least five magical artefacts!"
-	wanted_items = list()
-
-/datum/objective/steal_five_of_type/summon_magic/New()
-	wanted_items = GLOB.summoned_magic_objectives
-	..()
-
-/datum/objective/steal_five_of_type/summon_magic/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	var/stolen_count = 0
-	for(var/datum/mind/M in owners)
-		if(!isliving(M.current))
-			continue
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
-		for(var/obj/I in all_items) //Check for wanted items
-			if(istype(I, /obj/item/book/granter/spell))
-				var/obj/item/book/granter/spell/spellbook = I
-				if(!spellbook.used || !spellbook.oneuse) //if the book still has powers...
-					stolen_count++ //it counts. nice.
-			else if(is_type_in_typecache(I, wanted_items))
-				stolen_count++
-	return stolen_count >= 5
 
 //Created by admin tools
 /datum/objective/custom
@@ -1043,6 +1062,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/maroon,
 		/datum/objective/debrain,
 		/datum/objective/protect,
+		/datum/objective/assist,
 		/datum/objective/destroy,
 		/datum/objective/hijack,
 		/datum/objective/escape,
@@ -1059,3 +1079,24 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/T in allowed_types)
 		var/datum/objective/X = T
 		GLOB.admin_objective_list[initial(X.name)] = T
+
+/datum/objective/contract
+	var/payout = 0
+	var/payout_bonus = 0
+	var/area/dropoff = null
+
+// Generate a random valid area on the station that the dropoff will happen.
+/datum/objective/contract/proc/generate_dropoff()
+	var/found = FALSE
+	while (!found)
+		var/area/dropoff_area = pick(GLOB.sortedAreas)
+		if(dropoff_area && is_station_level(dropoff_area.z) && !dropoff_area.outdoors)
+			dropoff = dropoff_area
+			found = TRUE
+
+// Check if both the contractor and contract target are at the dropoff point.
+/datum/objective/contract/proc/dropoff_check(mob/user, mob/target)
+	var/area/user_area = get_area(user)
+	var/area/target_area = get_area(target)
+
+	return (istype(user_area, dropoff) && istype(target_area, dropoff))

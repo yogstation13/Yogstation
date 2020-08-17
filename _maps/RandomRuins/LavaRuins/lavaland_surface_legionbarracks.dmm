@@ -1,0 +1,388 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"b" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered)
+"c" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"d" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/under/roman,
+/obj/item/clothing/shoes/roman,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"e" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"j" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"n" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"o" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"r" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"t" = (
+/obj/item/flashlight/flare/torch,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"u" = (
+/obj/structure/table,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/flashlight/flare/torch,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"x" = (
+/obj/structure/mineral_door/sandstone,
+/obj/structure/fans/tiny/invisible,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"z" = (
+/obj/structure/table,
+/obj/item/flashlight/flare/torch,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"B" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Q" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"R" = (
+/obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"S" = (
+/obj/structure/rack,
+/obj/item/claymore{
+	desc = "It's cracked and blunted";
+	force = 21;
+	name = "Ancient Sword"
+	},
+/obj/item/shield/riot/roman{
+	block_chance = 25;
+	desc = "Bears an inscription on the inside: <i>\"Necropolis venio domus\"</i>.";
+	name = "battered shield"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"T" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/spidereggsham,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"U" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/roman,
+/obj/item/clothing/shoes/roman,
+/obj/item/clothing/under/roman,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Y" = (
+/obj/structure/table,
+/obj/effect/turf_decal/sand,
+/obj/item/rod_of_asclepius,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+U
+U
+U
+U
+b
+b
+"}
+(4,1,1) = {"
+a
+b
+c
+B
+t
+b
+B
+B
+e
+b
+B
+R
+e
+c
+d
+b
+"}
+(5,1,1) = {"
+a
+b
+B
+Y
+B
+b
+e
+c
+B
+x
+B
+B
+e
+t
+d
+b
+"}
+(6,1,1) = {"
+a
+b
+e
+T
+e
+x
+B
+e
+e
+b
+B
+B
+B
+R
+d
+b
+"}
+(7,1,1) = {"
+a
+b
+B
+B
+c
+b
+R
+B
+t
+b
+S
+S
+S
+S
+b
+b
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+B
+B
+R
+b
+b
+b
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+o
+B
+o
+b
+B
+e
+B
+b
+j
+r
+j
+j
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+B
+c
+B
+b
+B
+R
+B
+b
+B
+B
+B
+R
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+B
+B
+B
+x
+B
+B
+e
+x
+B
+B
+Q
+z
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+o
+B
+u
+b
+B
+B
+e
+b
+B
+B
+B
+B
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+x
+b
+b
+r
+r
+j
+j
+b
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+n
+n
+n
+b
+b
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+n
+n
+a
+a
+a
+a
+a
+a
+a
+"}

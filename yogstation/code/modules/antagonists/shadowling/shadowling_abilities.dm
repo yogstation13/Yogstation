@@ -166,13 +166,12 @@
 			if(prob(10))
 				LO.emp_act(2)
 			continue
-		if(istype(LO, /obj/structure/glowshroom))
-			LO.visible_message("<span class='warning'>[LO] withers away!</span>")
-			qdel(LO)
-			continue
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		G.visible_message("<span class='warning'>[G] withers away!</span>")
-		qdel(G)
+		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
+			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
+			S.generation = G.generation
+			G.visible_message("<span class='warning'>[G] suddenly turns dark!</span>")
+			qdel(G)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
@@ -204,9 +203,9 @@
 			M.Stun(2)
 			M.apply_damage(10, BURN)
 			if(M.bodytemperature)
-				M.bodytemperature -= 200 //Extreme amount of initial cold
+				M.adjust_bodytemperature(-200, 50)
 			if(M.reagents)
-				M.reagents.add_reagent("frostoil", 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F, TRUE)
@@ -268,7 +267,7 @@
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
 					target.Knockdown(120)
-					if(target.has_trait(TRAIT_MINDSHIELD))
+					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time...</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
 						to_chat(target, "<span class='boldannounce'>You feel your mental protection faltering!</span>")
@@ -395,6 +394,7 @@
 		null_charge_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Null Charge</b> ability. This ability will drain an APC's contents to the void, preventing it from recharging \
 		or sending power until repaired.</i></span>")
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/null_charge(null))
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
@@ -484,7 +484,7 @@
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
-	B.reagents.add_reagent("blindness_smoke", 10)
+	B.reagents.add_reagent(/datum/reagent/shadowling_blindness_smoke, 10)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	S.attach(B)
 	if(S)
@@ -611,7 +611,7 @@
 					to_chat(user, "<span class='warning'>[thrallToRevive] is not dead.</span>")
 					revert_cast()
 					return
-				if(thrallToRevive.has_trait(TRAIT_BADDNA))
+				if(HAS_TRAIT(thrallToRevive, TRAIT_BADDNA))
 					to_chat(user, "<span class='warning'>[thrallToRevive] is too far gone.</span>")
 					revert_cast()
 					return
@@ -683,8 +683,7 @@
 		to_chat(user, "<span class='notice'>You project [M]'s life force toward the approaching shuttle, extending its arrival duration!</span>")
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
-		M.death()
-		M.add_trait(TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+		M.dust()
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000
@@ -997,7 +996,7 @@
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		return
 	if(is_shadow_or_thrall(target))
-		to_chat(user, "<span class='warning'>You cannot enthrall an ally.<span>")
+		to_chat(user, "<span class='warning'>You cannot enthrall an ally.</span>")
 		revert_cast()
 		return
 	if(!target.ckey || !target.mind)

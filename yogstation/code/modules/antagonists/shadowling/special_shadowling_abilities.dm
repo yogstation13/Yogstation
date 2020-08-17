@@ -15,13 +15,13 @@
 	max_integrity = INFINITY
 
 /obj/effect/proc_holder/spell/self/shadowling_hatch/cast(list/targets,mob/user = usr)
-	if(user.stat || !ishuman(user) || !user || !is_shadow(user || isinspace(user)))
+	if(user.stat || !ishuman(user) || !user || !is_shadow(user) || isinspace(user))
 		return
 	var/mob/living/carbon/human/H = user
 	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
-			to_chat(H, "<span class='warning'>You decide against hatching for now.")
+			to_chat(H, "<span class='warning'>You decide against hatching for now.</span>")
 			charge_counter = charge_max
 			return
 		if("Yes")
@@ -124,7 +124,7 @@
 	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
-			to_chat(H, "<span class='warning'>You decide against ascending for now.")
+			to_chat(H, "<span class='warning'>You decide against ascending for now.</span>")
 			charge_counter = charge_max
 			return
 		if("Yes")
@@ -164,6 +164,7 @@
 				SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))
 			for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 				A.overload_lighting()
+			SSachievements.unlock_achievement(/datum/achievement/greentext/slingascend, H.client)
 			var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
 			for(var/X in H.mind.spell_list)
 				var/obj/effect/proc_holder/spell/S = X

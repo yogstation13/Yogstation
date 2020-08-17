@@ -19,26 +19,13 @@
 	text_lose_indication = "<span class='notice'>Your sense of smell goes back to normal.</span>"
 	power = /obj/effect/proc_holder/spell/targeted/olfaction
 	instability = 30
+	synchronizer_coeff = 1
 	var/reek = 200
 
-/datum/mutation/human/olfaction/on_life()
-	var/hygiene_now = owner.hygiene
-
-	if(hygiene_now < 100 && prob(5))
-		owner.adjust_disgust(rand(3,5))
-	if(hygiene_now < HYGIENE_LEVEL_DIRTY && prob(50))
-		to_chat(owner,"<span class='danger'>You get a whiff of your stench and feel sick!</span>")
-		owner.adjust_disgust(rand(5,10))
-
-	if(hygiene_now < HYGIENE_LEVEL_NORMAL && reek >= HYGIENE_LEVEL_NORMAL)
-		to_chat(owner,"<span class='warning'>Your inhumanly strong nose picks up a faint odor. Maybe you should shower soon.</span>")
-	if(hygiene_now < 150 && reek >= 150)
-		to_chat(owner,"<span class='warning'>Your odor is getting bad, what with you having a super-nose and all.</span>")
-	if(hygiene_now < 100 && reek >= 100)
-		to_chat(owner,"<span class='danger'>Your odor begins to make you gag. You silently curse your godly nose. You should really get clean!</span>")
-	if(hygiene_now < HYGIENE_LEVEL_DIRTY && reek >= HYGIENE_LEVEL_DIRTY)
-		to_chat(owner,"<span class='userdanger'>Your super-nose is 100% fed up with your stench. You absolutely must get clean.</span>")
-	reek = hygiene_now
+/datum/mutation/human/olfaction/modify()
+	if(power)
+		var/obj/effect/proc_holder/spell/targeted/olfaction/S = power
+		S.sensitivity = GET_MUTATION_SYNCHRONIZER(src)
 
 /obj/effect/proc_holder/spell/targeted/olfaction
 	name = "Remember the Scent"
@@ -50,8 +37,16 @@
 	action_icon_state = "nose"
 	var/mob/living/carbon/tracking_target
 	var/list/mob/living/carbon/possible = list()
+	var/sensitivity = 1
 
 /obj/effect/proc_holder/spell/targeted/olfaction/cast(list/targets, mob/living/user = usr)
+	//can we sniff? is there miasma in the air?
+	var/datum/gas_mixture/air = user.loc.return_air()
+	if(air.get_moles(/datum/gas/miasma) >= 0.1)
+		user.adjust_disgust(sensitivity * 45)
+		to_chat(user, "<span class='warning'>With your overly sensitive nose, you get a whiff of stench and feel sick! Try moving to a cleaner area!</span>")
+		return
+
 	var/atom/sniffed = user.get_active_held_item()
 	if(sniffed)
 		var/old_target = tracking_target
@@ -76,7 +71,7 @@
 		return
 
 	if(!tracking_target)
-		to_chat(user,"<span class='warning'>You're not holding anything to smell, and you haven't smelled anything you can track. You smell your palm instead; it's kinda salty.</span>")
+		to_chat(user,"<span class='warning'>You're not holding anything to smell, and you haven't smelled anything you can track. You smell your skin instead; it's kinda salty.</span>")
 		return
 
 	on_the_trail(user)
@@ -88,13 +83,14 @@
 	if(tracking_target == user)
 		to_chat(user,"<span class='warning'>You smell out the trail to yourself. Yep, it's you.</span>")
 		return
-	if(usr.z < tracking_target.z)
+	var/turf/pos = get_turf(tracking_target)
+	if(usr.z < pos.z)
 		to_chat(user,"<span class='warning'>The trail leads... way up above you? Huh. They must be really, really far away.</span>")
 		return
-	else if(usr.z > tracking_target.z)
+	else if(usr.z > pos.z)
 		to_chat(user,"<span class='warning'>The trail leads... way down below you? Huh. They must be really, really far away.</span>")
 		return
-	var/direction_text = "[dir2text(get_dir(usr, tracking_target))]"
+	var/direction_text = "[dir2text(get_dir(usr, pos))]"
 	if(direction_text)
 		to_chat(user,"<span class='notice'>You consider [tracking_target]'s scent. The trail leads <b>[direction_text].</b></span>")
 
@@ -110,11 +106,11 @@
 	instability = 30
 	energy_coeff = 1
 	power_coeff = 1
-
+	
 /datum/mutation/human/firebreath/modify()
 	if(power)
 		var/obj/effect/proc_holder/spell/aimed/firebreath/S = power
-		S.strength = GET_MUTATION_POWER(src)
+		S.strength = min(GET_MUTATION_POWER(src), S.strengthMax)
 
 /obj/effect/proc_holder/spell/aimed/firebreath
 	name = "Fire Breath"
@@ -127,10 +123,11 @@
 	base_icon_state = "fireball"
 	action_icon_state = "fireball0"
 	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
-	active_msg = "You built up heat in your mouth."
+	active_msg = "You build up heat in your mouth."
 	deactive_msg = "You swallow the flame."
 	var/strength = 1
-
+	var/const/strengthMax = 3
+	
 /obj/effect/proc_holder/spell/aimed/firebreath/before_cast(list/targets)
 	. = ..()
 	if(iscarbon(usr))
@@ -145,12 +142,12 @@
 	if(!istype(P, /obj/item/projectile/magic/aoe/fireball))
 		return
 	var/obj/item/projectile/magic/aoe/fireball/F = P
-	switch(strength)
-		if(1 to 3)
-			F.exp_light = strength-1
-		if(4 to INFINITY)
-			F.exp_heavy = strength-3
+	F.exp_light = strength-1
 	F.exp_fire += strength
+
+obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
+	. = ..()
+	message_admins("[ADMIN_LOOKUPFLW(user)] has shot firebreath at [ADMIN_VERBOSEJMP(user)]")
 
 /obj/item/projectile/magic/aoe/fireball/firebreath
 	name = "fire breath"
@@ -183,6 +180,7 @@
 	charge_max = 600
 	invocation = "DOOOOOOOOOOOOOOOOOOOOM!!!"
 	invocation_type = "shout"
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "void_magnet"
 
 /obj/effect/proc_holder/spell/self/void/can_cast(mob/user = usr)

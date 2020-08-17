@@ -272,7 +272,7 @@
 /mob/proc/canUnEquip(obj/item/I, force)
 	if(!I)
 		return TRUE
-	if(I.has_trait(TRAIT_NODROP) && !force)
+	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
 	return TRUE
 
@@ -309,10 +309,11 @@
 /mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
+	PROTECTED_PROC(TRUE)
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
 		return TRUE
 
-	if(I.has_trait(TRAIT_NODROP) && !force)
+	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
 
 	var/hand_index = get_held_index_of_item(I)

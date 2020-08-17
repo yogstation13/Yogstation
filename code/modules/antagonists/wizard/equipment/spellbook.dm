@@ -228,7 +228,7 @@
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
 	spell_type = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
-	cost = 3
+	cost = 2
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/gun
 
 /datum/spellbook_entry/barnyard
@@ -251,7 +251,7 @@
 	name = "Soul Tap"
 	spell_type = /obj/effect/proc_holder/spell/self/tap
 	category = "Assistance"
-	cost = 3
+	cost = 1
 
 /datum/spellbook_entry/spacetime_dist
 	name = "Spacetime Distortion"
@@ -362,6 +362,7 @@
 	name = "Mastercrafted Armor Set"
 	desc = "An artefact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space."
 	item_path = /obj/item/clothing/suit/space/hardsuit/wizard
+	cost = 1
 	category = "Defensive"
 
 /datum/spellbook_entry/item/armor/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
@@ -380,13 +381,26 @@
 	name = "Guardian Deck"
 	desc = "A deck of guardian tarot cards, capable of binding a personal guardian to your body. There are multiple types of guardian available, but all of them will transfer some amount of damage to you. \
 	It would be wise to avoid buying these with anything capable of causing you to swap bodies with others."
-	item_path = /obj/item/guardiancreator/choose/wizard
+	item_path = /obj/item/guardiancreator/wizard
 	category = "Assistance"
 
 /datum/spellbook_entry/item/guardian/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
 	. = ..()
+
+/datum/spellbook_entry/item/rune_crate
+	name = "Rune Crate"
+	desc = "A wizard specialized in runecrafting is offering two chests full of runes! The problem is, he mixed up the contents of them so you won't know what you will get!"
+	item_path = /obj/structure/closet/crate/magic
+	category = "Offensive"
+	cost = 1
+	buy_word = "Order"
+
+/datum/spellbook_entry/item/rune_crate/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
 	if(.)
-		new /obj/item/paper/guides/antag/guardian/wizard(get_turf(user))
+		new /obj/structure/closet/crate/magic(get_turf(user)) //Two crates full of magic goodies
+
+
 
 /datum/spellbook_entry/item/bloodbottle
 	name = "Bottle of Blood"
@@ -421,10 +435,16 @@
 
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
-	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted."
-	item_path = /obj/item/clothing/suit/space/hardsuit/shielded/wizard
+	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
+	item_path = /obj/item/clothing/suit/wizrobe/armor
 	limit = 1
 	category = "Defensive"
+
+/datum/spellbook_entry/item/battlemage/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. =..()
+	if(.)
+		new /obj/item/clothing/head/wizard/armor(get_turf(user))//To complete the outfit
+
 
 /datum/spellbook_entry/item/battlemage_charge
 	name = "Battlemage Armour Charges"
@@ -481,64 +501,6 @@
 	playsound(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	return TRUE
 
-/datum/spellbook_entry/summon/guns
-	name = "Summon Guns"
-	desc = "Nothing could possibly go wrong with arming a crew of lunatics just itching for an excuse to kill you. There is a good chance that they will shoot each other first."
-
-/datum/spellbook_entry/summon/guns/IsAvailible()
-	if(!SSticker.mode) // In case spellbook is placed on map
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_guns)
-
-/datum/spellbook_entry/summon/guns/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	rightandwrong(SUMMON_GUNS, user, 10)
-	active = TRUE
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You have cast summon guns!</span>")
-	return TRUE
-
-/datum/spellbook_entry/summon/magic
-	name = "Summon Magic"
-	desc = "Share the wonders of magic with the crew and show them why they aren't to be trusted with it at the same time."
-
-/datum/spellbook_entry/summon/magic/IsAvailible()
-	if(!SSticker.mode) // In case spellbook is placed on map
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_magic)
-
-/datum/spellbook_entry/summon/magic/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	rightandwrong(SUMMON_MAGIC, user, 10)
-	active = TRUE
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You have cast summon magic!</span>")
-	return TRUE
-
-/datum/spellbook_entry/summon/events
-	name = "Summon Events"
-	desc = "Give Murphy's law a little push and replace all events with special wizard ones that will confound and confuse everyone. Multiple castings increase the rate of these events."
-	var/times = 0
-
-/datum/spellbook_entry/summon/events/IsAvailible()
-	if(!SSticker.mode) // In case spellbook is placed on map
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_events)
-
-/datum/spellbook_entry/summon/events/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	summonevents()
-	times++
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You have cast summon events.</span>")
-	return TRUE
-
-/datum/spellbook_entry/summon/events/GetInfo()
-	. = ..()
-	if(times>0)
-		. += "You cast it [times] times.<br>"
-	return .
-
 /datum/spellbook_entry/summon/curse_of_madness
 	name = "Curse of Madness"
 	desc = "Curses the station, warping the minds of everyone inside, causing lasting traumas. Warning: this spell can affect you if not cast from a safe distance."
@@ -571,11 +533,11 @@
 	var/list/categories = list()
 
 /obj/item/spellbook/examine(mob/user)
-	..()
+	. = ..()
 	if(owner)
-		to_chat(user, "There is a small signature on the front cover: \"[owner]\".")
+		. += {"There is a small signature on the front cover: "[owner]"."}
 	else
-		to_chat(user, "It appears to have no author.")
+		. += "It appears to have no author."
 
 /obj/item/spellbook/Initialize()
 	. = ..()
@@ -644,7 +606,7 @@
 
 /obj/item/spellbook/proc/wrap(content)
 	var/dat = ""
-	dat +="<html><head><title>Spellbook</title></head>"
+	dat +="<html><head><meta charset='UTF-8'><title>Spellbook</title></head>"
 	dat += {"
 	<head>
 		<style type="text/css">

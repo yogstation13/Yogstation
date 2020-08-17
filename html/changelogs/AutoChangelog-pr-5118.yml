@@ -1,4 +1,0 @@
-author: "  Theos"
-delete-after: true 
-changes: 
-  - bugfix: "gang dominators can now actually tick down why was this not seen in the testmerge"

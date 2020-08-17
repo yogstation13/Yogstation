@@ -1,0 +1,409 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"d" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/space/hardsuit/wizard,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"e" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/wizard{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/clothing/head/wizard/black{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/wizard/yellow,
+/obj/item/clothing/head/wizard/red{
+	pixel_x = -7
+	},
+/obj/item/clothing/head/wizard/marisa{
+	pixel_x = 8;
+	pixel_y = -7
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"f" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/wizrobe/black{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/wizrobe,
+/obj/item/clothing/suit/wizrobe/red{
+	pixel_x = 3;
+	pixel_y = -8
+	},
+/obj/item/clothing/suit/wizrobe/yellow{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/clothing/suit/wizrobe/marisa{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"g" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"h" = (
+/turf/open/floor/wood,
+/area/ruin/powered)
+"i" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"j" = (
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	name = "Blossom"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"k" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"l" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	name = "Buttercup"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"m" = (
+/obj/structure/bookcase,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"n" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/gun/magic/wand/resurrection/inert{
+	max_charges = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"o" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/wizrobe/magusblue,
+/obj/item/clothing/head/magus,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"p" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/wizrobe/magusred,
+/obj/item/clothing/head/magus,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"q" = (
+/obj/structure/table/wood,
+/obj/item/toy/plush/carpplushie,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"r" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"s" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/pizzaslice/donkpocket,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"t" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/pizza/donkpocket,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"u" = (
+/obj/structure/table/wood,
+/obj/item/book/granter/spell/random,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"v" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"x" = (
+/turf/closed/indestructible/riveted/uranium,
+/area/ruin/powered)
+"z" = (
+/obj/structure/table/wood,
+/obj/item/teleportation_scroll/apprentice,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"A" = (
+/obj/structure/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"B" = (
+/obj/structure/bed,
+/obj/item/bedsheet/wiz,
+/obj/item/toy/plush/stuffedmonkey,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"D" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	name = "Bubbles"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"G" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"R" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"S" = (
+/mob/living/simple_animal/hostile/wizard/cloaked{
+	name = "Malarky The Mad"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"U" = (
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+x
+x
+x
+x
+x
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+x
+d
+k
+o
+x
+U
+P
+x
+a
+"}
+(4,1,1) = {"
+a
+x
+e
+l
+p
+x
+U
+R
+G
+a
+"}
+(5,1,1) = {"
+a
+x
+f
+h
+q
+x
+U
+U
+U
+a
+"}
+(6,1,1) = {"
+a
+x
+x
+i
+x
+x
+x
+i
+x
+a
+"}
+(7,1,1) = {"
+a
+x
+g
+h
+h
+h
+h
+h
+x
+a
+"}
+(8,1,1) = {"
+a
+x
+h
+h
+D
+h
+g
+h
+x
+a
+"}
+(9,1,1) = {"
+a
+x
+i
+x
+x
+x
+i
+x
+x
+a
+"}
+(10,1,1) = {"
+a
+x
+j
+n
+x
+s
+h
+h
+x
+a
+"}
+(11,1,1) = {"
+a
+x
+x
+x
+x
+x
+h
+h
+x
+a
+"}
+(12,1,1) = {"
+a
+a
+x
+m
+h
+t
+g
+h
+x
+a
+"}
+(13,1,1) = {"
+a
+a
+x
+m
+h
+h
+h
+h
+x
+a
+"}
+(14,1,1) = {"
+a
+a
+x
+r
+h
+h
+S
+z
+x
+a
+"}
+(15,1,1) = {"
+a
+a
+x
+u
+h
+g
+h
+A
+x
+a
+"}
+(16,1,1) = {"
+a
+a
+x
+r
+h
+v
+h
+B
+x
+a
+"}
+(17,1,1) = {"
+a
+a
+x
+x
+x
+x
+x
+x
+x
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

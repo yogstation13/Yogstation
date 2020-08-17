@@ -80,11 +80,11 @@
 	if(lookup)
 		return lookup
 
-	var/input_size = length(input)
+	var/input_size = length_char(input)
 	var/scrambled_text = ""
 	var/capitalize = TRUE
 
-	while(length(scrambled_text) < input_size)
+	while(length_char(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
@@ -98,16 +98,33 @@
 			scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
+	var/ending = copytext_char(scrambled_text, -1)
 	if(ending == ".")
-		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
-	var/input_ending = copytext(input, input_size)
+		scrambled_text = copytext_char(scrambled_text, 1, -2)
+	var/input_ending = copytext_char(input, -1)
 	if(input_ending in list("!","?","."))
 		scrambled_text += input_ending
 
 	add_to_cache(input, scrambled_text)
 
 	return scrambled_text
+
+/datum/language/proc/scramble_HTML(intext) // Calls scramble() on HTML text, making sure to not disturb the HTML.
+	var/text = ""
+	var/regex/plaintext = regex(@"((>|^)([^<>]+)(?:<|$)") // Finds plaintext within the HTML.
+	var/newtext = intext
+	var/startpos = 1
+	while(startpos < 8192 && startpos > -1)
+		var/regexstart = plaintext.Find(newtext,startpos) // Where the *regex* first matches
+		if(!regexstart)
+			break
+		var/capturestart = regexstart + length(plaintext.group[1]) // Where the *capture* first matches, the actual plaintext of this section
+		var/sentence = plaintext.group[2]
+		var/scramb = scramble(sentence) // The scrambled version of the sentence.
+		newtext = replacetext(newtext, sentence, scramb, capturestart, capturestart + length(sentence)+1)
+		startpos = plaintext.next + (length(scramb) - length(sentence))
+	text += newtext
+	return text
 
 /datum/language/proc/get_spoken_verb(msg_end)
 	switch(msg_end)

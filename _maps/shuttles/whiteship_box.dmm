@@ -29,7 +29,30 @@
 	preferred_direction = 4;
 	width = 34
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
+/area/shuttle/abandoned/crew)
+"af" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/medical{
+	name = "Surgery"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/shuttle/abandoned/crew)
 "ag" = (
 /turf/closed/wall/mineral/titanium,
@@ -39,8 +62,11 @@
 /obj/machinery/door/poddoor{
 	id = "whiteship_windows"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
-/area/shuttle/abandoned/medbay)
+/area/shuttle/abandoned/crew)
 "ai" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -78,10 +104,16 @@
 "ak" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
-	id = "whiteship_windows"
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/abandoned/crew)
+/area/shuttle/abandoned/bridge)
 "al" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/medbay)
@@ -108,6 +140,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/crew)
 "ao" = (
@@ -126,6 +162,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/crew)
 "ap" = (
@@ -134,6 +174,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/crew)
 "aq" = (
@@ -204,16 +248,34 @@
 "aw" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/airlock/medical{
-	name = "Surgery"
+	name = "Crew Quarters"
 	},
-/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/white,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/crew)
 "ax" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -271,28 +333,21 @@
 /area/shuttle/abandoned/crew)
 "aA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/medical{
-	name = "Crew Quarters"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/zombie{
+	desc = "This undead fiend looks to be badly decomposed.";
+	environment_smash = 0;
+	health = 60;
+	melee_damage_lower = 11;
+	melee_damage_upper = 11;
+	name = "Rotting Carcass"
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/crew)
@@ -444,14 +499,14 @@
 /obj/machinery/light/small/built{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/old,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -529,24 +584,19 @@
 /area/shuttle/abandoned/crew)
 "aP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
+/obj/machinery/door/airlock/medical{
+	name = "Surgery"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/zombie{
-	desc = "This undead fiend looks to be badly decomposed.";
-	environment_smash = 0;
-	health = 60;
-	melee_damage_lower = 11;
-	melee_damage_upper = 11;
-	name = "Rotting Carcass"
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/crew)
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/white,
+/area/shuttle/abandoned/medbay)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -653,6 +703,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
@@ -793,6 +849,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "bn" = (
@@ -840,15 +902,18 @@
 "br" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/airlock/medical{
-	name = "Surgery"
+	name = "Break Room"
 	},
-/obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/abandoned/medbay)
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/crew)
 "bs" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -888,18 +953,39 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/medbay)
+"bv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/medical/glass{
+	name = "Cryo Room"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/abandoned/medbay)
 "bw" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/medical{
-	name = "Break Room"
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/zombie{
+	desc = "This undead fiend looks to be badly decomposed.";
+	environment_smash = 0;
+	health = 60;
+	melee_damage_lower = 11;
+	melee_damage_upper = 11;
+	name = "Rotting Carcass"
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/abandoned/crew)
+/area/shuttle/abandoned/medbay)
 "bx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -924,6 +1010,10 @@
 "by" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "bz" = (
@@ -1080,6 +1170,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/bridge)
+"bL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/medical/glass{
+	name = "Cryo Room"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/abandoned/medbay)
 "bM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1110,15 +1216,23 @@
 /area/shuttle/abandoned/medbay)
 "bP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/command{
+	name = "Bridge"
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/medical/glass{
-	name = "Cryo Room"
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/abandoned/medbay)
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/bridge)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1136,20 +1250,18 @@
 /area/shuttle/abandoned/medbay)
 "bS" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6
+/obj/machinery/door/airlock/medical{
+	name = "Recovery Room"
 	},
-/obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/zombie{
-	desc = "This undead fiend looks to be badly decomposed.";
-	environment_smash = 0;
-	health = 60;
-	melee_damage_lower = 11;
-	melee_damage_upper = 11;
-	name = "Rotting Carcass"
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/white,
 /area/shuttle/abandoned/medbay)
 "bT" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1171,14 +1283,19 @@
 /area/shuttle/abandoned/medbay)
 "bV" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/medical{
+	name = "Medical Storage"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/medical/glass{
-	name = "Cryo Room"
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/turf/open/floor/plasteel/white,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/medbay)
 "bW" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1211,18 +1328,24 @@
 /area/shuttle/abandoned/medbay)
 "bY" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/command{
-	name = "Bridge"
+/obj/machinery/door/airlock/medical{
+	name = "Recovery Room"
 	},
-/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
-/area/shuttle/abandoned/bridge)
+/area/shuttle/abandoned/medbay)
 "bZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -1257,12 +1380,15 @@
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/bridge)
 "cc" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/abandoned/engine)
+/area/shuttle/abandoned/medbay)
 "cd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -1283,12 +1409,12 @@
 /obj/structure/closet/secure_closet/medical3{
 	anchored = 1
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 6
@@ -1349,8 +1475,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
+	dir = 4;
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
@@ -1379,10 +1505,6 @@
 /obj/machinery/light/small/built{
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
 /obj/machinery/button/door{
 	id = "whiteship_windows";
 	name = "Windows Blast Door Control";
@@ -1397,6 +1519,10 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/bridge)
@@ -1488,30 +1614,29 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "cv" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/medical{
-	name = "Recovery Room"
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/shuttle/abandoned/medbay)
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "cw" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/medical{
-	name = "Medical Storage"
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/medbay)
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "cx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1559,6 +1684,17 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
+"cA" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "cB" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -1582,6 +1718,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
@@ -1782,6 +1924,10 @@
 /obj/machinery/door/airlock{
 	name = "Restroom"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/abandoned/medbay)
 "cU" = (
@@ -1945,20 +2091,14 @@
 	},
 /area/shuttle/abandoned/medbay)
 "df" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/medical{
-	name = "Recovery Room"
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
 	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/medbay)
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/abandoned/engine)
 "dg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/stripes/line,
@@ -2066,6 +2206,10 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/medbay)
 "dp" = (
@@ -2114,6 +2258,18 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/abandoned/medbay)
+"du" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/medbay)
 "dv" = (
@@ -2149,6 +2305,16 @@
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/engine)
+"rn" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 "vk" = (
 /obj/structure/shuttle/engine/propulsion/left{
 	dir = 8
@@ -2161,12 +2327,33 @@
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned/engine)
+"Rx" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_windows"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/medbay)
 "Tw" = (
 /obj/structure/shuttle/engine/propulsion/left{
 	dir = 8
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/engine)
+"WP" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor{
+	id = "whiteship_bridge"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/bridge)
 
 (1,1,1) = {"
 aa
@@ -2235,7 +2422,7 @@ at
 bh
 by
 aa
-cc
+df
 cp
 at
 aa
@@ -2405,7 +2592,7 @@ aF
 aW
 bq
 at
-ah
+cc
 at
 cu
 cB
@@ -2441,11 +2628,11 @@ ag
 al
 aH
 aY
-br
+aP
 bz
 bN
 cd
-cv
+bS
 cD
 cN
 al
@@ -2474,28 +2661,28 @@ aa
 "}
 (17,1,1) = {"
 aa
-ah
+Rx
 am
 av
 aJ
 ba
 al
 al
-bP
+bv
 al
 al
 cF
 cP
 da
 dk
-ah
+du
 aa
 "}
 (18,1,1) = {"
 ab
 ac
 ac
-aw
+af
 ac
 al
 al
@@ -2538,7 +2725,7 @@ aL
 al
 bt
 bD
-bS
+bw
 ch
 al
 al
@@ -2571,7 +2758,7 @@ al
 ad
 ac
 ac
-aA
+aw
 ac
 al
 bI
@@ -2581,7 +2768,7 @@ cj
 al
 cJ
 al
-df
+bY
 al
 al
 cY
@@ -2595,7 +2782,7 @@ aN
 al
 al
 al
-bV
+bL
 al
 al
 al
@@ -2626,21 +2813,21 @@ ag
 "}
 (25,1,1) = {"
 aa
-ak
+ah
 aq
 aD
-aP
+aA
 bc
-bw
+br
 bH
 bX
 cl
-cw
+bV
 bz
 cV
 di
 dp
-ah
+du
 aa
 "}
 (26,1,1) = {"
@@ -2652,7 +2839,7 @@ aQ
 bd
 be
 be
-bY
+bP
 be
 be
 cL
@@ -2706,13 +2893,13 @@ aa
 aa
 aa
 aa
-bf
-bf
+ak
+WP
 bK
 cb
 co
 bf
-bf
+cA
 aa
 aa
 aa
@@ -2726,11 +2913,11 @@ aa
 aa
 aa
 aa
-bf
-bf
-bf
-bf
-bf
+cv
+rn
+rn
+rn
+cw
 aa
 aa
 aa

@@ -1,41 +1,41 @@
 /obj/spacepod/examine(mob/user)
-	..()
+	. = ..()
 	switch(construction_state) // more construction states than r-walls!
 		if(SPACEPOD_EMPTY)
-			to_chat(user, "<span class='notice'>The struts holding it together can be <b>cut</b> and it is missing <i>wires</i>.</span>")
+			. += "<span class='notice'>The struts holding it together can be <b>cut</b> and it is missing <i>wires</i>.</span>"
 		if(SPACEPOD_WIRES_LOOSE)
-			to_chat(user, "<span class='notice'>The <b>wires</b> need to be <i>screwed</i> on.</span>")
+			. += "<span class='notice'>The <b>wires</b> need to be <i>screwed</i> on.</span>"
 		if(SPACEPOD_WIRES_SECURED)
-			to_chat(user, "<span class='notice'>The wires are <b>screwed</b> on and need a <i>circuit board</i>.</span>")
+			. += "<span class='notice'>The wires are <b>screwed</b> on and need a <i>circuit board</i>.</span>"
 		if(SPACEPOD_CIRCUIT_LOOSE)
-			to_chat(user, "<span class='notice'>The circuit board is <b>loosely attached</b> and needs to be <i>screwed</i> on.</span>")
+			. += "<span class='notice'>The circuit board is <b>loosely attached</b> and needs to be <i>screwed</i> on.</span>"
 		if(SPACEPOD_CIRCUIT_SECURED)
-			to_chat(user, "<span class='notice'>The circuit board is <b>screwed</b> on, and there is space for a <i>core</i>.</span>")
+			. += "<span class='notice'>The circuit board is <b>screwed</b> on, and there is space for a <i>core</i>.</span>"
 		if(SPACEPOD_CORE_LOOSE)
-			to_chat(user, "<span class='notice'>The core is <b>loosely attached</b> and needs to be <i>bolted</i> on.</span>")
+			. += "<span class='notice'>The core is <b>loosely attached</b> and needs to be <i>bolted</i> on.</span>"
 		if(SPACEPOD_CORE_SECURED)
-			to_chat(user, "<span class='notice'>The core is <b>bolted</b> on and the <i>metal</i> bulkhead can be attached.</span>")
+			. += "<span class='notice'>The core is <b>bolted</b> on and the <i>metal</i> bulkhead can be attached.</span>"
 		if(SPACEPOD_BULKHEAD_LOOSE)
-			to_chat(user, "<span class='notice'>The bulkhead is <b>loosely attached</b> and can be <i>bolted</i> down.</span>")
+			. += "<span class='notice'>The bulkhead is <b>loosely attached</b> and can be <i>bolted</i> down.</span>"
 		if(SPACEPOD_BULKHEAD_SECURED)
-			to_chat(user, "<span class='notice'>The bulkhead is <b>bolted</b> on but not <i>welded</i> on.</span>")
+			. += "<span class='notice'>The bulkhead is <b>bolted</b> on but not <i>welded</i> on.</span>"
 		if(SPACEPOD_BULKHEAD_WELDED)
-			to_chat(user, "<span class='notice'>The bulkhead is <b>welded</b> on and <i>armor</i> can be attached.</span>")
+			. += "<span class='notice'>The bulkhead is <b>welded</b> on and <i>armor</i> can be attached.</span>"
 		if(SPACEPOD_ARMOR_LOOSE)
-			to_chat(user, "<span class='notice'>The armor is <b>loosely attached</b> and can be <i>bolted</i> down.</span>")
+			. += "<span class='notice'>The armor is <b>loosely attached</b> and can be <i>bolted</i> down.</span>"
 		if(SPACEPOD_ARMOR_SECURED)
-			to_chat(user, "<span class='notice'>The armor is <b>bolted</b> on but not <i>welded</i> on.</span>")
+			. += "<span class='notice'>The armor is <b>bolted</b> on but not <i>welded</i> on.</span>"
 		if(SPACEPOD_ARMOR_WELDED)
 			if(hatch_open)
 				if(cell || internal_tank || equipment.len)
-					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.")
+					. += "<span class='notice'>The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.</span>"
 				else
-					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and the armor is <b>welded</b> on.</span>")
+					. += "<span class='notice'>The maintenance hatch is <i>pried</i> open and the armor is <b>welded</b> on.</span>"
 			else
 				if(locked)
-					to_chat(user, "<span class='notice'>[src] is <b>locked</b>.</span>")
+					. += "<span class='notice'>[src] is <b>locked</b>.</span>"
 				else
-					to_chat(user, "<span class='notice'>The maintenance hatch is <b>closed</b>.")
+					. += "<span class='notice'>The maintenance hatch is <b>closed</b>.</span>"
 
 /obj/spacepod/proc/handle_spacepod_construction(obj/item/W, mob/living/user)
 	// time for a construction/deconstruction process to rival r-walls

@@ -1,17 +1,95 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ab" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ac" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ad" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ae" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/syndicate3)
+"af" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/caravan/syndicate3)
+"ag" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ah" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
+"ai" = (
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
 "al" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/syndicate3)
-"bo" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 "bB" = (
@@ -80,6 +158,10 @@
 	width = 15
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "ha" = (
@@ -177,14 +259,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/syndicate3)
-"rU" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravansyndicate3_bridge"
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "rV" = (
 /obj/structure/chair/comfy/shuttle{
@@ -421,6 +495,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 "Jv" = (
@@ -436,6 +516,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "Lq" = (
@@ -569,6 +653,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 "Wr" = (
@@ -620,14 +710,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/caravan/syndicate3)
-"ZZ" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 
@@ -708,7 +790,7 @@ gl
 xC
 al
 cB
-bo
+ae
 bB
 KS
 "}
@@ -735,34 +817,34 @@ Tn
 uy
 Gx
 cB
-ZZ
+af
 Sl
 Tn
 "}
 (13,1,1) = {"
-rU
+aa
 ns
 Ij
 HM
 Wr
 vw
-rU
+ah
 "}
 (14,1,1) = {"
-rU
-rU
+ab
+ac
 sb
 rz
 ZK
-rU
-rU
+ac
+ai
 "}
 (15,1,1) = {"
 Jv
-rU
-rU
-rU
-rU
-rU
+ab
+ad
+ad
+ad
+ag
 Jv
 "}

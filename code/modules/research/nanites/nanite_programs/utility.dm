@@ -42,7 +42,7 @@
 				if(isnull(new_cloud))
 					return
 				overwrite_cloud = TRUE
-				set_cloud = CLAMP(round(new_cloud, 1), 1, 100)
+				set_cloud = clamp(round(new_cloud, 1), 1, 100)
 
 /datum/nanite_program/viral/get_extra_setting(setting)
 	if(setting == "Program Overwrite")
@@ -155,7 +155,7 @@
 		var/new_channel = input(user, "Set the relay channel (1-9999):", name, null) as null|num
 		if(isnull(new_channel))
 			return
-		relay_channel = CLAMP(round(new_channel, 1), 1, 9999)
+		relay_channel = clamp(round(new_channel, 1), 1, 9999)
 
 /datum/nanite_program/relay/get_extra_setting(setting)
 	if(setting == "Relay Channel")
@@ -181,6 +181,15 @@
 		return
 	SEND_SIGNAL(host_mob, COMSIG_NANITE_SIGNAL, code, source)
 
+/datum/nanite_program/relay/proc/relay_comm_signal(comm_code, relay_code, comm_message)
+	if(!activated)
+		return
+	if(!host_mob)
+		return
+	if(relay_code != relay_channel)
+		return
+	SEND_SIGNAL(host_mob, COMSIG_NANITE_COMM_SIGNAL, comm_code, comm_message)
+
 /datum/nanite_program/metabolic_synthesis
 	name = "Metabolic Synthesis"
 	desc = "The nanites use the metabolic cycle of the host to speed up their replication rate, using their extra nutrition as fuel."
@@ -197,6 +206,53 @@
 
 /datum/nanite_program/metabolic_synthesis/active_effect()
 	host_mob.adjust_nutrition(-0.5)
+
+/datum/nanite_program/research
+	name = "Distributed Computing"
+	desc = "The nanites aid the research servers by performing a portion of its calculations, increasing research point generation."
+	use_rate = 0.2
+	rogue_types = list(/datum/nanite_program/toxic)
+
+/datum/nanite_program/research/active_effect()
+	if(!iscarbon(host_mob))
+		return
+	var/points = 1
+	if(!host_mob.client) //less brainpower
+		points *= 0.25
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points))
+
+/datum/nanite_program/researchplus
+	name = "Neural Network"
+	desc = "The nanites link the host's brains together forming a neural research network, that becomes more efficient with the amount of total hosts."
+	use_rate = 0.3
+	rogue_types = list(/datum/nanite_program/brain_decay)
+
+/datum/nanite_program/researchplus/enable_passive_effect()
+	. = ..()
+	if(!iscarbon(host_mob))
+		return
+	if(host_mob.client)
+		SSnanites.neural_network_count++
+	else
+		SSnanites.neural_network_count += 0.25
+
+/datum/nanite_program/researchplus/disable_passive_effect()
+	. = ..()
+	if(!iscarbon(host_mob))
+		return
+	if(host_mob.client)
+		SSnanites.neural_network_count--
+	else
+		SSnanites.neural_network_count -= 0.25
+
+/datum/nanite_program/researchplus/active_effect()
+	if(!iscarbon(host_mob))
+		return
+	var/mob/living/carbon/C = host_mob
+	var/points = round(SSnanites.neural_network_count / 12, 0.1)
+	if(!C.client) //less brainpower
+		points *= 0.25
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points))
 
 /datum/nanite_program/triggered/access
 	name = "Subdermal ID"
@@ -261,7 +317,7 @@
 		return
 	var/rep_rate = round(nanites.nanite_volume / 50, 1) //0.5 per 50 nanite volume
 	rep_rate *= 0.5
-	nanites.adjust_nanites(rep_rate)
+	nanites.adjust_nanites(null,rep_rate)
 	if(prob(rep_rate))
 		var/datum/nanite_program/fault = pick(nanites.programs)
 		if(fault == src)

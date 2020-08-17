@@ -320,6 +320,7 @@ CREATE TABLE `SS13_player` (
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
   `accountjoindate` DATE DEFAULT NULL,
   `flags` smallint(5) unsigned DEFAULT '0' NOT NULL,
+  `discord_id` BIGINT(20) NULL DEFAULT NULL,
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)
@@ -513,7 +514,52 @@ CREATE TABLE `SS13_stickyban_matched_cid` (
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
 
+--
+-- Table structure for table `SS13_achievements`
+--
+DROP TABLE IF EXISTS `SS13_achievements`;
+CREATE TABLE `SS13_achievements` (
+	`name` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL,
+	`descr` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
+--
+-- Table structure for table `SS13_earned_achievements`
+--
+DROP TABLE IF EXISTS `SS13_earned_achievements`;
+CREATE TABLE `SS13_earned_achievements` (
+	`ckey` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `achievements`
+--
+DROP TABLE IF EXISTS `SS13_misc`;
+CREATE TABLE `SS13_misc` (
+	`key` VARCHAR(32) NOT NULL,
+	`value` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`key`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `antag_tokens`
+--
+DROP TABLE IF EXISTS `SS13_antag_tokens`;
+CREATE TABLE `SS13_antag_tokens` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NULL DEFAULT NULL,
+	`reason` VARCHAR(2048) NOT NULL,
+	`denial_reason` VARCHAR(2048) NOT NULL,
+	`applying_admin` VARCHAR(32) NOT NULL,
+	`denying_admin` VARCHAR(32) NOT NULL,
+	`granted_time` DATETIME NOT NULL,
+	`redeemed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+	`round_id` int(11) unsigned NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

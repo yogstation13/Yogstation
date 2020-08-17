@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 
 	outfit = /datum/outfit/job/miningmedic
 
@@ -16,6 +16,12 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
+
+	changed_maps = list("EclipseStation")
+
+/datum/job/miningmedic/proc/EclipseStationChanges()
+	total_positions = 2
+	spawn_positions = 1
 
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
@@ -26,6 +32,7 @@
 		/obj/item/gps/mining = 1)
 	belt = /obj/item/storage/belt/mining/medical
 	ears = /obj/item/radio/headset/headset_medcargo
+	glasses = /obj/item/clothing/glasses/hud/health/meson
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/regular

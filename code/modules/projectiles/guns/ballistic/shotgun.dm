@@ -38,21 +38,24 @@
 	icon_state = "riotshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
+	can_be_sawn_off  = TRUE
 
-/obj/item/gun/ballistic/shotgun/riot/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
+// Breaching Shotgun //
+
+/obj/item/gun/ballistic/shotgun/automatic/breaching
+	name = "tactical breaching shotgun"
+	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points."
+	icon_state = "breachingshotgun"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/breaching
+	w_class = WEIGHT_CLASS_NORMAL //compact so it fits in backpacks
+	can_be_sawn_off  = FALSE
+
 
 // Automatic Shotguns//
 
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user as mob|obj)
+/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user)
 	..()
-	src.rack()
+	rack()
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
@@ -81,8 +84,8 @@
 	semi_auto = TRUE
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to pump it.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to pump it.</span>"
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize()
 	. = ..()
@@ -164,20 +167,12 @@
 						)
 	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
+	can_be_sawn_off  = TRUE
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/AltClick(mob/user)
 	. = ..()
 	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		reskin_obj(user)
-
-/obj/item/gun/ballistic/shotgun/doublebarrel/attackby(obj/item/A, mob/user, params)
-	..()
-	if(istype(A, /obj/item/melee/transforming/energy))
-		var/obj/item/melee/transforming/energy/W = A
-		if(W.active)
-			sawoff(user)
-	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/gun/energy/plasmacutter))
-		sawoff(user)
 
 // IMPROVISED SHOTGUN //
 
@@ -193,11 +188,15 @@
 	sawn_desc = "I'm just here for the gasoline."
 	unique_reskin = null
 	var/slung = FALSE
+	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()
 	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
 		var/obj/item/stack/cable_coil/C = A
+		if(slung)
+			to_chat(user, "<span class='notice'>The shotgun already has a sling.</span>")
+			return
 		if(C.use(10))
 			slot_flags = ITEM_SLOT_BACK
 			to_chat(user, "<span class='notice'>You tie the lengths of cable to the shotgun, making a sling.</span>")
@@ -209,7 +208,8 @@
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon()
 	..()
 	if(slung)
-		add_overlay("improvised_sling")
+		icon_state = "ishotgunsling"
+	
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawoff(mob/user)
 	. = ..()
@@ -226,4 +226,4 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
-
+	can_bayonet = FALSE

@@ -45,9 +45,6 @@
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
-	kill.owner = owner
-	kill.target = obsessionmind
 	var/datum/quirk/family_heirloom/family_heirloom
 
 	for(var/datum/quirk/quirky in obsessionmind.current.roundstart_quirks)
@@ -90,8 +87,16 @@
 				jealous.owner = owner
 				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
 				objectives += jealous
-
-	objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
+	var/datum/objective/protect/yandere_one = new
+	yandere_one.owner = owner
+	yandere_one.target = obsessionmind
+	yandere_one.update_explanation_text()
+	objectives += yandere_one
+	var/datum/objective/maroon/yandere_two = new
+	yandere_two.owner = owner
+	yandere_two.target = obsessionmind
+	yandere_two.update_explanation_text() //usually called in find_target()
+	objectives += yandere_two
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 
@@ -117,7 +122,7 @@
 		if(trauma.total_time_creeping > 0)
 			report += "<span class='greentext'>The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!</span>"
 		else
-			report += "<span class='redtext'>The [name] did not go near their obsession the entire round! That's extremely impressive, but you are a shit [name]!</span>"
+			report += "<span class='redtext'>The [name] did not go near their obsession the entire round! That's extremely impressive!</span>"
 	else
 		report += "<span class='redtext'>The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!</span>"
 
@@ -259,7 +264,7 @@
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
-				if(P.picture.mobs_seen.Find(owner) && P.picture.mobs_seen.Find(target) && !P.picture.dead_seen.Find(target))//you are in the picture, they are but they are not dead.
+				if(P.picture.mobs_seen.Find(owner.current) && P.picture.mobs_seen.Find(target.current) && !P.picture.dead_seen.Find(target.current))//you are in the picture, they are but they are not dead.
 					return TRUE
 	return FALSE
 

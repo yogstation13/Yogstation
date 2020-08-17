@@ -20,6 +20,7 @@
 	var/spam_prevention = DOM_BLOCKED_SPAM_CAP //first message is immediate
 	var/datum/effect_system/spark_spread/spark_system
 	var/obj/effect/countdown/dominator/countdown
+	var/obj/item/disk/nuclear/nukedisk
 
 /obj/machinery/dominator/Initialize()
 	set_light(2)
@@ -38,6 +39,9 @@
 	QDEL_NULL(spark_system)
 	QDEL_NULL(countdown)
 	STOP_PROCESSING(SSmachines, src)
+	if(nukedisk)
+		nukedisk.forceMove(drop_location())
+		nukedisk = null
 	return ..()
 
 /obj/machinery/dominator/emp_act(severity)
@@ -67,18 +71,20 @@
 		icon_state = "dominator-broken"
 
 /obj/machinery/dominator/examine(mob/user)
-	..()
+	. = ..()
 	if(stat & BROKEN)
 		return
 
 	if(gang && gang.domination_time != NOT_DOMINATING)
 		if(gang.domination_time > world.time)
-			to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+			. += "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>"
 		else
-			to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
+			. += "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>"
 	else
-		to_chat(user, "<span class='notice'>System on standby.</span>")
-	to_chat(user, "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>")
+		. += "<span class='notice'>System on standby.</span>"
+	if(nukedisk)
+		. += "<span class='notice'>[nukedisk] seems to be stuck inside.</span>"
+	. += "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>"
 
 /obj/machinery/dominator/process()
 	..()
@@ -171,6 +177,10 @@
 		to_chat(user, "<span class='warning'>Error: Unable to breach station network. Firewall has logged our signature and is blocking all further attempts.</span>")
 		return
 
+	if(!nukedisk)
+		to_chat(user, "<span class='warning'>Error: Nuclear Authentication Disk required to breach station network.</span>")
+		return
+
 	var/time = round(tempgang.determine_domination_time()/60,0.1)
 	if(alert(user,"A takeover will require [time] minutes.\nYour gang will be unable to gain influence while it is active.\nThe entire station will likely be alerted to it once it starts.\nYou have [tempgang.dom_attempts] attempt(s) remaining. Are you ready?","Confirm","Ready","Later") == "Ready")
 		if((tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
@@ -236,6 +246,28 @@
 	stat |= BROKEN
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
+	if(nukedisk)
+		nukedisk.forceMove(drop_location())
+		nukedisk = null
+
+/obj/machinery/dominator/attackby(obj/item/I, mob/user, params)
+	if (istype(I, /obj/item/disk/nuclear))
+		if(!disk_check(I))
+			return
+		if(!user.transferItemToLoc(I, src))
+			return
+		nukedisk = I
+		add_fingerprint(user)
+		return
+
+	.=..()
+
+/obj/machinery/dominator/proc/disk_check(obj/item/disk/nuclear/D)
+	if(D.fake)
+		say("Authentication failure; disk not recognised.")
+		return FALSE
+	else
+		return TRUE
 
 #undef DOM_BLOCKED_SPAM_CAP
 #undef DOM_REQUIRED_TURFS

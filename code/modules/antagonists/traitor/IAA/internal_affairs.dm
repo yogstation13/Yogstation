@@ -12,7 +12,7 @@
 	var/syndicate = FALSE
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
-
+	greentext_achieve = /datum/achievement/greentext/internal
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -30,6 +30,16 @@
 
 /datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
+	
+	if(ishuman(owner.current))
+		//Gives Cyanide dental implant
+		var/obj/item/reagent_containers/pill/cyanide/cyan = new
+		owner.current.transferItemToLoc(cyan, owner, TRUE)
+		var/datum/action/item_action/hands_free/activate_pill/P = new(cyan)
+		P.button.name = "Activate [cyan.name]"
+		P.target = cyan
+		P.Grant(owner.current)//The pill never actually goes in an inventory slot, so the owner doesn't inherit actions from it
+	
 	.=..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
@@ -224,6 +234,7 @@
 			special_role = TRAITOR_AGENT_ROLE
 			syndicate = TRUE
 			forge_single_objective()
+			greentext_achieve = /datum/achievement/greentext/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()
 	forge_iaa_objectives()

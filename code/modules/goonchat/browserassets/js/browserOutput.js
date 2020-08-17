@@ -6,7 +6,6 @@
 ******************************************/
 
 //DEBUG STUFF
-var triggerError = attachErrorHandler('chatDebug', true);
 var escaper = encodeURIComponent || escape;
 var decoder = decodeURIComponent || unescape;
 window.onerror = function(msg, url, line, col, error) {
@@ -741,8 +740,8 @@ $(function() {
 		$("body").css('line-height', savedConfig.slineHeight);
 		internalOutput('<span class="internal boldnshit">Loaded line height setting of: '+savedConfig.slineHeight+'</span>', 'internal');
 	}
-	if(savedConfig.sdarkmode == 'false'){
-		swap(); //They dont want darkmode, so switch!
+	if(savedConfig.sdarkmode == 'true'){
+		swap();
 	}
 	if (savedConfig.spingDisabled) {
 		if (savedConfig.spingDisabled == 'true') {

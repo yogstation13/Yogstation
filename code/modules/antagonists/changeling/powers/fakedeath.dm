@@ -24,7 +24,6 @@
 	else
 		to_chat(user, "<span class='notice'>We begin our stasis, preparing energy to arise once more.</span>")
 		if(user.stat != DEAD)
-			user.emote("deathgasp")
 			user.tod = station_time_timestamp()
 		user.fakedeath("changeling") //play dead
 		user.update_stat()
@@ -64,7 +63,7 @@
 			revive_ready = TRUE
 
 /datum/action/changeling/fakedeath/can_sting(mob/living/user)
-	if(user.has_trait(TRAIT_DEATHCOMA, "changeling") && !revive_ready)
+	if(HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, "changeling") && !revive_ready)
 		to_chat(user, "<span class='warning'>We are already reviving.</span>")
 		return
 	if(!user.stat && !revive_ready) //Confirmation for living changelings if they want to fake their death

@@ -50,9 +50,9 @@
 
 /obj/item/flashlight/attack(mob/living/carbon/M, mob/living/carbon/human/user)
 	add_fingerprint(user)
-	if(istype(M) && on && user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))
+	if(istype(M) && on && (user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH)))
 
-		if((user.has_trait(TRAIT_CLUMSY) || user.has_trait(TRAIT_DUMB)) && prob(50))	//too dumb to use flashlight properly
+		if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		if(!user.IsAdvancedToolUser())
@@ -86,7 +86,7 @@
 				else
 					user.visible_message("<span class='warning'>[user] directs [src] to [M]'s eyes.</span>", \
 										 "<span class='danger'>You direct [src] to [M]'s eyes.</span>")
-					if(M.stat == DEAD || (M.has_trait(TRAIT_BLIND)) || !M.flash_act(visual = 1)) //mob is dead or fully blind
+					if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_BLIND)) || !M.flash_act(visual = 1)) //mob is dead or fully blind
 						to_chat(user, "<span class='warning'>[M]'s pupils don't react to the light!</span>")
 					else if(M.dna && M.dna.check_mutation(XRAY))	//mob has X-ray vision
 						to_chat(user, "<span class='danger'>[M]'s pupils give an eerie glow!</span>")
@@ -188,11 +188,11 @@
 	icon_state = "medi_holo"
 	duration = 30
 
-/obj/effect/temp_visual/medical_holosign/Initialize(mapload, creator)
+/obj/effect/temp_visual/medical_holosign/Initialize(mapload, mob/creator)
 	. = ..()
 	playsound(loc, 'sound/machines/ping.ogg', 50, 0) //make some noise!
 	if(creator)
-		visible_message("<span class='danger'>[creator] created a medical hologram!</span>")
+		visible_message("<span class='danger'>[creator] created a medical hologram, indicating that [creator.p_theyre(FALSE, FALSE)] coming to help!</span>")
 
 
 /obj/item/flashlight/seclite
@@ -254,17 +254,21 @@
 	brightness_on = 7 // Pretty bright.
 	icon_state = "flare"
 	item_state = "flare"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	actions_types = list()
+	var/ignition_sound = 'sound/items/flare_strike_1.ogg'
 	var/fuel = 0
 	var/on_damage = 7
-	var/produce_heat = 1500
+	var/frng_min = 800
+	var/frng_max = 1000
 	heat = 1000
 	light_color = LIGHT_COLOR_FLARE
-	grind_results = list("sulfur" = 15)
+	grind_results = list(/datum/reagent/sulfur = 15)
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel = rand(frng_min, frng_max)
 
 /obj/item/flashlight/flare/process()
 	open_flame(heat)
@@ -273,6 +277,8 @@
 		turn_off()
 		if(!fuel)
 			icon_state = "[initial(icon_state)]-empty"
+			name = "spent [initial(src.name)]"
+			desc = "[initial(src.desc)] It's all used up."
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/ignition_effect(atom/A, mob/user)
@@ -286,6 +292,9 @@
 	on = FALSE
 	force = initial(src.force)
 	damtype = initial(src.damtype)
+	hitsound = initial(src.hitsound)
+	desc = initial(src.desc)
+	attack_verb = initial(src.attack_verb)
 	if(ismob(loc))
 		var/mob/U = loc
 		update_brightness(U)
@@ -313,12 +322,40 @@
 	// All good, turn it on.
 	if(.)
 		user.visible_message("<span class='notice'>[user] lights \the [src].</span>", "<span class='notice'>You light \the [src]!</span>")
+		playsound(loc, ignition_sound, 50, 1) //make some noise!
 		force = on_damage
+		name = "lit [initial(src.name)]"
+		desc = "[initial(src.desc)] This one is lit."
 		damtype = "fire"
+		attack_verb = list("burnt","scorched","scalded")
+		hitsound = 'sound/items/welder.ogg'
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/is_hot()
 	return on * heat
+
+/obj/item/flashlight/flare/emergency
+	name = "safety flare"
+	desc = "A flare issued to Nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey Nanotrasen'."
+	brightness_on = 3
+	item_state = "flare"
+	icon_state = "flaresafety"
+	ignition_sound = 'sound/items/flare_strike_2.ogg'
+	frng_min = 40
+	frng_max = 70
+
+/obj/item/flashlight/flare/signal
+	name = "signalling flare"
+	desc = "A specialized formulation of the standard Nanotrasen-issued flare, containing increased magnesium content. There are instructions on the side, it reads 'pull cord, make intense light'."
+	brightness_on = 5
+	flashlight_power = 2
+	item_state = "flaresignal"
+	icon_state = "flaresignal"
+	light_color = LIGHT_COLOR_HALOGEN
+	frng_min = 540
+	frng_max = 700
+	heat = 2500
+	grind_results = list(/datum/reagent/sulfur = 15, /datum/reagent/potassium = 10)
 
 /obj/item/flashlight/flare/torch
 	name = "torch"
@@ -329,6 +366,7 @@
 	item_state = "torch"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	ignition_sound = 'sound/items/match_strike.ogg'
 	light_color = LIGHT_COLOR_ORANGE
 	on_damage = 10
 	slot_flags = null
@@ -353,6 +391,12 @@
 	icon_state = "syndilantern"
 	item_state = "syndilantern"
 	brightness_on = 10
+
+/obj/item/flashlight/lantern/jade
+	name = "jade lantern"
+	desc = "An ornate, green lantern."
+	color = LIGHT_COLOR_GREEN
+	light_color = LIGHT_COLOR_GREEN
 
 /obj/item/flashlight/slime
 	gender = PLURAL
@@ -388,7 +432,7 @@
 	return TRUE
 
 /obj/item/flashlight/emp/attack(mob/living/M, mob/living/user)
-	if(on && user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH)) // call original attack when examining organs
+	if(on && (user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))) // call original attack when examining organs
 		..()
 	return
 
@@ -403,11 +447,11 @@
 		if(ismob(A))
 			var/mob/M = A
 			log_combat(user, M, "attacked", "EMP-light")
-			M.visible_message("<span class='danger'>[user] blinks \the [src] at \the [A].", \
-								"<span class='userdanger'>[user] blinks \the [src] at you.")
+			M.visible_message("<span class='danger'>[user] blinks \the [src] at \the [A].</span>", \
+								"<span class='userdanger'>[user] blinks \the [src] at you.</span>")
 		else
-			A.visible_message("<span class='danger'>[user] blinks \the [src] at \the [A].")
-		to_chat(user, "\The [src] now has [emp_cur_charges] charge\s.")
+			A.visible_message("<span class='danger'>[user] blinks \the [src] at \the [A].</span>")
+		to_chat(user, "\The [src] now has [emp_cur_charges] charge\s.</span>")
 		A.emp_act(EMP_HEAVY)
 	else
 		to_chat(user, "<span class='warning'>\The [src] needs time to recharge!</span>")
@@ -429,7 +473,7 @@
 	color = LIGHT_COLOR_GREEN
 	icon_state = "glowstick"
 	item_state = "glowstick"
-	grind_results = list("phenol" = 15, "hydrogen" = 10, "oxygen" = 5) //Meth-in-a-stick
+	grind_results = list(/datum/reagent/phenol = 15, /datum/reagent/hydrogen = 10, /datum/reagent/oxygen = 5) //Meth-in-a-stick
 	var/fuel = 0
 
 /obj/item/flashlight/glowstick/Initialize()

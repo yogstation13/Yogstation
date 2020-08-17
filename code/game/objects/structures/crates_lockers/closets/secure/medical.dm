@@ -51,13 +51,7 @@
 
 /obj/structure/closet/secure_closet/CMO/PopulateContents()
 	..()
-	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/storage/backpack/duffelbag/med(src)
-	new /obj/item/clothing/suit/bio_suit/cmo(src)
-	new /obj/item/clothing/head/bio_hood/cmo(src)
-	new /obj/item/clothing/suit/toggle/labcoat/cmo(src)
-	new /obj/item/clothing/under/rank/chief_medical_officer(src)
-	new /obj/item/clothing/shoes/sneakers/brown	(src)
 	new /obj/item/cartridge/cmo(src)
 	new /obj/item/radio/headset/heads/cmo(src)
 	new /obj/item/megaphone/command(src)
@@ -74,7 +68,78 @@
 	new /obj/item/wallframe/defib_mount(src)
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
-	new /obj/item/clothing/head/beret/cmo(src) //yogs
+	new /obj/item/clipboard/yog/paperwork/cmo(src)
+	new /obj/item/storage/backpack/duffelbag/med/chief/clothing(src)
+
+
+/obj/structure/closet/secure_closet/paramedic
+	name = "paramedical closet"
+	desc = "It's a secure storage unit for paramedical supplies."
+	icon = 'yogstation/icons/obj/closet.dmi'
+	icon_state = "paramed"
+	req_access = list(ACCESS_PARAMEDIC)
+
+/obj/structure/closet/secure_closet/paramedic/PopulateContents()
+	..()
+	if(prob(50))
+		new /obj/item/storage/backpack/medic(src)
+	else
+		new /obj/item/storage/backpack/satchel/med(src)
+	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/clothing/shoes/sneakers/white(src)
+	switch(pick("blue", "green", "purple"))
+		if ("blue")
+			new /obj/item/clothing/under/rank/medical/blue(src)
+		if ("green")
+			new /obj/item/clothing/under/rank/medical/green(src)
+		if ("purple")
+			new /obj/item/clothing/under/rank/medical/purple(src)
+	switch(pick("blue", "green", "purple"))
+		if ("blue")
+			new /obj/item/clothing/under/rank/medical/blue(src)
+		if ("green")
+			new /obj/item/clothing/under/rank/medical/green(src)
+		if ("purple")
+			new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/under/rank/medical(src)
+	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
+	new /obj/item/clothing/head/soft/emt(src)
+	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/suit/toggle/labcoat/emt/green(src)
+	new /obj/item/clothing/head/soft/emt/green (src)
+	new /obj/item/radio/headset/headset_med(src)
+	new /obj/item/storage/belt/medical(src)
+
+/obj/structure/closet/secure_closet/mmedical
+	name = "mining medic's locker"
+	req_access = list(ACCESS_MEDICAL)
+	icon = 'yogstation/icons/obj/closet.dmi'
+	icon_state = "medic"
+
+/obj/structure/closet/secure_closet/mmedical/PopulateContents()
+	..()
+	new /obj/item/reagent_containers/hypospray/mixi(src)
+	new /obj/item/reagent_containers/hypospray/derm(src)
+	if(prob(50))
+		new /obj/item/storage/backpack/medic(src)
+	else
+		new /obj/item/storage/backpack/satchel/med(src)
+	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/suit/toggle/labcoat/emt/explorer(src)
+	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
+	new /obj/item/clothing/shoes/sneakers/white(src)
+	new /obj/item/cartridge/medical(src)
+	new /obj/item/radio/headset/headset_cargo(src)
+	new /obj/item/storage/firstaid/toxin(src)
+	new /obj/item/clothing/mask/gas/explorer(src)
+	new /obj/item/storage/belt/medical(src)
+	new /obj/item/pickaxe(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/storage/box/bodybags(src)
+	new /obj/item/extinguisher/mini(src)
+	var/obj/item/key/K = new(src)
+	K.name = "ATV key"
+	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"
@@ -98,11 +163,9 @@
 	new /obj/item/storage/box/pillbottles(src)
 	new /obj/item/storage/box/medsprays(src)
 	new /obj/item/storage/box/medsprays(src)
-	//yogs start - adds reagent bottles
 	new /obj/item/reagent_containers/glass/bottle/facid(src)
 	new /obj/item/reagent_containers/glass/bottle/capsaicin(src)
 	new /obj/item/reagent_containers/glass/bottle/mutagen(src)
-	//yogs end
 
 /obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
 	name = "advanced chemical closet"

@@ -25,10 +25,11 @@
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	see_in_dark = 8
 	hud_type = /datum/hud/ai
-	med_hud = DATA_HUD_MEDICAL_BASIC
-	sec_hud = DATA_HUD_SECURITY_BASIC
+	med_hud = DATA_HUD_MEDICAL_ADVANCED
+	sec_hud = DATA_HUD_SECURITY_ADVANCED
 	d_hud = DATA_HUD_DIAGNOSTIC_ADVANCED
 	mob_size = MOB_SIZE_LARGE
+	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
 	var/obj/machinery/camera/current
 	var/list/connected_robots = list()
@@ -41,7 +42,6 @@
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/radio_enabled = TRUE //Determins if a carded AI can speak with its built in radio or not.
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
-	var/obj/item/pda/ai/aiPDA
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
@@ -97,6 +97,8 @@
 	var/list/cam_hotkeys = new/list(9)
 	var/cam_prev
 
+	var/datum/robot_control/robot_control
+
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
@@ -150,7 +152,7 @@
 	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
 
 	aiMulti = new(src)
-	radio = new /obj/item/radio/headset/ai(src)
+	radio = new /obj/item/radio/headset/silicon/ai(src)
 	aicamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	deploy_action.Grant(src)
@@ -165,7 +167,9 @@
 	GLOB.shuttle_caller_list += src
 
 	builtInCamera = new (src)
+	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
+	builtInCamera.built_in = src
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -240,26 +244,27 @@
 	display_icon_override = ai_core_icon
 	set_core_display_icon(ai_core_icon)
 
-/mob/living/silicon/ai/Stat()
-	..()
-	if(statpanel("Status"))
-		if(!stat)
-			stat(null, text("System integrity: [(health+100)/2]%"))
-			stat(null, text("Connected cyborgs: [connected_robots.len]"))
-			for(var/mob/living/silicon/robot/R in connected_robots)
-				var/robot_status = "Nominal"
-				if(R.shell)
-					robot_status = "AI SHELL"
-				else if(R.stat || !R.client)
-					robot_status = "OFFLINE"
-				else if(!R.cell || R.cell.charge <= 0)
-					robot_status = "DEPOWERED"
-				//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
-				stat(null, text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
-				Module: [R.designation] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]"))
-			stat(null, text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]")) //Count of total AI shells
-		else
-			stat(null, text("Systems nonfunctional"))
+/mob/living/silicon/ai/get_status_tab_items()
+	. = ..()
+	if(!stat)
+		. += text("System integrity: [(health+100)/2]%")
+		if(isturf(loc)) //only show if we're "in" a core
+			. += text("Backup Power: [battery/2]%")
+		. += text("Connected cyborgs: [connected_robots.len]")
+		for(var/mob/living/silicon/robot/R in connected_robots)
+			var/robot_status = "Nominal"
+			if(R.shell)
+				robot_status = "AI SHELL"
+			else if(R.stat || !R.client)
+				robot_status = "OFFLINE"
+			else if(!R.cell || R.cell.charge <= 0)
+				robot_status = "DEPOWERED"
+			//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
+			. += text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
+			Module: [R.designation] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]")
+		. += text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]") //Count of total AI shells
+	else
+		. += text("Systems nonfunctional")
 
 /mob/living/silicon/ai/proc/ai_alerts()
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
@@ -292,16 +297,9 @@
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	src << browse(dat, "window=aialerts&can_close=0")
-
-/mob/living/silicon/ai/proc/ai_roster()
-	var/dat = "<html><head><title>Crew Roster</title></head><body><b>Crew Roster:</b><br><br>"
-
-	dat += GLOB.data_core.get_manifest()
-	dat += "</body></html>"
-
-	src << browse(dat, "window=airoster")
-	onclose(src, "airoster")
+	var/datum/browser/alerts = new(usr, "aitalerts", "Current Station Alerts", 400, 410)
+	alerts.set_content(dat)
+	alerts.open()
 
 /mob/living/silicon/ai/proc/ai_call_shuttle()
 	if(control_disabled)
@@ -346,8 +344,14 @@
 	set name = "Toggle Floor Bolts"
 	if(!isturf(loc)) // if their location isn't a turf
 		return // stop
-	if(incapacitated())
+	if(stat == DEAD)
 		return
+	if(incapacitated())
+		if(battery < 50)
+			to_chat(src, "<span class='warning'>Insufficient backup power!</span>")
+			return
+		battery = battery - 50
+		to_chat(src, "<span class='notice'>You route power from your backup battery to move the bolts.</span>")
 	var/is_anchored = FALSE
 	if(move_resist == MOVE_FORCE_VERY_STRONG)
 		move_resist = MOVE_FORCE_NORMAL
@@ -420,24 +424,6 @@
 		else
 			to_chat(src, "Target is not on or near any active cameras on the station.")
 		return
-	if(href_list["callbot"]) //Command a bot to move to a selected location.
-		if(call_bot_cooldown > world.time)
-			to_chat(src, "<span class='danger'>Error: Your last call bot command is still processing, please wait for the bot to finish calculating a route.</span>")
-			return
-		Bot = locate(href_list["callbot"]) in GLOB.alive_mob_list
-		if(!Bot || Bot.remote_disabled || control_disabled)
-			return //True if there is no bot found, the bot is manually emagged, or the AI is carded with wireless off.
-		waypoint_mode = 1
-		to_chat(src, "<span class='notice'>Set your waypoint by clicking on a valid location free of obstructions.</span>")
-		return
-	if(href_list["interface"]) //Remotely connect to a bot!
-		Bot = locate(href_list["interface"]) in GLOB.alive_mob_list
-		if(!Bot || Bot.remote_disabled || control_disabled)
-			return
-		Bot.attack_ai(src)
-	if(href_list["botrefresh"]) //Refreshes the bot control panel.
-		botcall()
-		return
 
 	if (href_list["ai_take_control"]) //Mech domination
 		var/obj/mecha/M = locate(href_list["ai_take_control"]) in GLOB.mechas_list
@@ -484,33 +470,10 @@
 	set category = "AI Commands"
 	set name = "Access Robot Control"
 	set desc = "Wirelessly control various automatic robots."
-	if(incapacitated())
-		return
 
-	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless control is disabled.</span>")
-		return
-	var/turf/ai_current_turf = get_turf(src)
-	var/ai_Zlevel = ai_current_turf.z
-	var/d
-	d += "<A HREF=?src=[REF(src)];botrefresh=1>Query network status</A><br>"
-	d += "<table width='100%'><tr><td width='40%'><h3>Name</h3></td><td width='30%'><h3>Status</h3></td><td width='30%'><h3>Location</h3></td><td width='10%'><h3>Control</h3></td></tr>"
-
-	for (Bot in GLOB.alive_mob_list)
-		if(Bot.z == ai_Zlevel && !Bot.remote_disabled) //Only non-emagged bots on the same Z-level are detected!
-			var/bot_mode = Bot.get_mode()
-			d += "<tr><td width='30%'>[Bot.hacked ? "<span class='bad'>(!)</span>" : ""] [Bot.name]</A> ([Bot.model])</td>"
-			//If the bot is on, it will display the bot's current mode status. If the bot is not mode, it will just report "Idle". "Inactive if it is not on at all.
-			d += "<td width='30%'>[bot_mode]</td>"
-			d += "<td width='30%'>[get_area_name(Bot, TRUE)]</td>"
-			d += "<td width='10%'><A HREF=?src=[REF(src)];interface=[REF(Bot)]>Interface</A></td>"
-			d += "<td width='10%'><A HREF=?src=[REF(src)];callbot=[REF(Bot)]>Call</A></td>"
-			d += "</tr>"
-			d = format_text(d)
-
-	var/datum/browser/popup = new(src, "botcall", "Remote Robot Control", 700, 400)
-	popup.set_content(d)
-	popup.open()
+	if(!robot_control)
+		robot_control = new(src)
+	robot_control.ui_interact(src)
 
 /mob/living/silicon/ai/proc/set_waypoint(atom/A)
 	var/turf/turf_check = get_turf(A)
@@ -640,7 +603,7 @@
 	set category = "Malfunction"
 	set name = "Choose Module"
 
-	malf_picker.use(src)
+	malf_picker.ui_interact(src)
 
 /mob/living/silicon/ai/proc/ai_statuschange()
 	set category = "AI Commands"
@@ -723,7 +686,8 @@
 				"default" = 'icons/mob/ai.dmi',
 				"floating face" = 'icons/mob/ai.dmi',
 				"xeno queen" = 'icons/mob/alien.dmi',
-				"horror" = 'icons/mob/ai.dmi'
+				"horror" = 'icons/mob/ai.dmi',
+				"automaton" = 'icons/mob/ai.dmi'
 				)
 
 			input = input("Please select a hologram:") as null|anything in icon_list
@@ -821,7 +785,8 @@
 			to_chat(user, "<span class='warning'>No intelligence patterns detected.</span>"    )
 			return
 		ShutOffDoomsdayDevice()
-		new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
+		var/obj/structure/AIcore/new_core = new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
+		new_core.circuit.battery = battery
 		ai_restore_power()//So the AI initially has power.
 		control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
 		radio_enabled = FALSE 	//No talking on the built-in radio for you either!
@@ -833,7 +798,7 @@
 /mob/living/silicon/ai/can_buckle()
 	return 0
 
-/mob/living/silicon/ai/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
+/mob/living/silicon/ai/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
 	if(aiRestorePowerRoutine)
 		return TRUE
 	return ..()
@@ -858,11 +823,11 @@
 	return get_dist(src, A) <= max(viewscale[1]*0.5,viewscale[2]*0.5)
 
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
-	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
+	var/treated_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
-	var/jobpart
+	var/jobpart = "Unknown"
 
 	if (iscarbon(speaker))
 		var/mob/living/carbon/S = speaker
@@ -871,7 +836,10 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
+	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[treated_message]</span></span></i>"
+
+	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 
 	show_message(rendered, 2)
 
@@ -893,7 +861,7 @@
 
 /mob/living/silicon/ai/proc/add_malf_picker()
 	to_chat(src, "In the top right corner of the screen you will find the Malfunctions tab, where you can purchase various abilities, from upgraded surveillance to station ending doomsday devices.")
-	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 60 seconds.")
+	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
 	verbs += /mob/living/silicon/ai/proc/choose_modules
 	malf_picker = new /datum/module_picker
@@ -905,7 +873,7 @@
 	if(istype(A, /obj/machinery/camera))
 		current = A
 	if(client)
-		if(ismovableatom(A))
+		if(ismovable(A))
 			if(A != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
@@ -947,7 +915,7 @@
 		to_chat(src, "<span class='danger'>Hack aborted. \The [apc] is no longer responding to our systems.</span>")
 		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 50, 1, ignore_walls = FALSE)
 	else
-		malf_picker.processing_time += 10
+		malf_picker.processing_time += 5
 
 		apc.malfai = parent || src
 		apc.malfhack = TRUE
@@ -1023,6 +991,7 @@
 	if(deployed_shell) //Forcibly call back AI in event of things such as damage, EMP or power loss.
 		to_chat(src, "<span class='danger'>Your remote connection has been reset!</span>")
 		deployed_shell.undeploy()
+		deployed_shell = null
 	diag_hud_set_deployed()
 
 /mob/living/silicon/ai/resist()

@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE)
 
 	if(sanitize)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
 
@@ -99,12 +99,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/in_critical = InCritical()
 
 	if(one_character_prefix[message_mode])
-		message = copytext(message, 2)
+		message = copytext_char(message, 2)
 	else if(message_mode || saymode)
-		message = copytext(message, 3)
-	if(findtext(message, " ", 1, 2))
-		message = copytext(message, 2)
-
+		message = copytext_char(message, 3)
+	message = trim_left(message)
 	if(message_mode == MODE_ADMIN)
 		if(client)
 			client.cmd_admin_say(message)
@@ -119,7 +117,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		say_dead(original_message)
 		return
 
-	if(check_emote(original_message) || !can_speak_basic(original_message, ignore_spam))
+	if(check_emote(original_message, forced) || !can_speak_basic(original_message, ignore_spam))
 		return
 
 	if(in_critical)
@@ -133,16 +131,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/datum/language/message_language = get_message_language(message)
 	if(message_language)
 		// No, you cannot speak in xenocommon just because you know the key
-		if(can_speak_in_language(message_language))
+		if(can_speak_language(message_language))
 			language = message_language
-		message = copytext(message, 3)
+		message = copytext_char(message, 3)
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
-		if(findtext(message, " ", 1, 2))
-			message = copytext(message, 2)
+		message = trim_left(message)
 
 	if(!language)
-		language = get_default_language()
+		language = get_selected_language()
 
 	// Detection of language needs to be before inherent channels, because
 	// AIs use inherent channels for the holopad. Most inherent channels
@@ -167,8 +164,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		if(fullcrit)
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
-			var/message_len = length(message)
-			message = copytext(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"
+			var/message_len = length_char(message)
+			message = copytext_char(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"
 			message = Ellipsis(message, 10, 1)
 			last_words = message
 			message_mode = MODE_WHISPER_CRIT
@@ -176,11 +173,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
-	message = treat_message(message)
+	message = treat_message(message) // unfortunately we still need this
+	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
+	if (sigreturn & COMPONENT_UPPERCASE_SPEECH)
+		message = uppertext(message)
 	if(!message)
 		return
 
-	spans |= get_spans()
+	spans |= speech_span
 
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
@@ -225,14 +225,16 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else
 		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
 		deaf_type = 2 // Since you should be able to hear yourself without looking
+	// Create map text prior to modifying message for goonchat
+	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && (client.prefs.see_chat_non_mob || ismob(speaker)) && can_hear())
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+
 
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
-	message = hear_intercept(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
-	show_message(message, 2, deaf_message, deaf_type)
-	return message
+	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 
-/mob/living/proc/hear_intercept(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
+	show_message(message, 2, deaf_message, deaf_type)
 	return message
 
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode)
@@ -300,7 +302,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return 1
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno and ling channels
-	if(has_trait(TRAIT_MUTE))
+	if(HAS_TRAIT(src, TRAIT_MUTE))
 		return 0
 
 	if(is_muzzled())
@@ -312,13 +314,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return 1
 
 /mob/living/proc/get_key(message)
-	var/key = copytext(message, 1, 2)
+	var/key = message[1]
 	if(key in GLOB.department_radio_prefixes)
-		return lowertext(copytext(message, 2, 3))
+		return lowertext(message[1 + length(key)])
 
 /mob/living/proc/get_message_language(message)
-	if(copytext(message, 1, 2) == ",")
-		var/key = copytext(message, 2, 3)
+	if(message[1] == ",")
+		var/key = message[1 + length(message[1])]
 		for(var/ld in GLOB.all_languages)
 			var/datum/language/LD = ld
 			if(initial(LD.key) == key)
@@ -326,7 +328,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return null
 
 /mob/living/proc/treat_message(message)
-	if(has_trait(TRAIT_UNINTELLIGIBLE_SPEECH))
+	if(HAS_TRAIT(src, TRAIT_UNINTELLIGIBLE_SPEECH))
 		message = unintelligize(message)
 
 	if(derpspeech)
@@ -351,7 +353,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		if(message_mode == MODE_HEADSET)
 			imp.radio.talk_into(src, message, , spans, language)
 			return ITALICS | REDUCE_RANGE
-		if(message_mode == MODE_DEPARTMENT || message_mode in GLOB.radiochannels)
+		if(message_mode == MODE_DEPARTMENT || (message_mode in GLOB.radiochannels))
 			imp.radio.talk_into(src, message, message_mode, spans, language)
 			return ITALICS | REDUCE_RANGE
 
@@ -394,11 +396,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
-/mob/living/get_language_holder(shadow=TRUE)
-	if(mind && shadow)
-		// Mind language holders shadow mob holders.
-		. = mind.get_language_holder()
-		if(.)
-			return .
-
+/mob/living/get_language_holder(get_minds = TRUE)
+	if(get_minds && mind)
+		return mind.get_language_holder()
 	. = ..()

@@ -14,6 +14,7 @@ the new instance inside the host to be updated to the template's stats.
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_on_shuttle = FALSE
 	see_in_dark = 8
+	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -31,7 +32,6 @@ the new instance inside the host to be updated to the template's stats.
 	var/browser_open = FALSE
 
 	var/mob/living/following_host
-	var/datum/component/redirect/move_listener
 	var/list/disease_instances
 	var/list/hosts //this list is associative, affected_mob -> disease_instance
 	var/datum/disease/advance/sentient_disease/disease_template
@@ -83,29 +83,24 @@ the new instance inside the host to be updated to the template's stats.
 	if(freemove)
 		to_chat(src, "<span class='warning'>You have [DisplayTimeText(freemove_end - world.time)] to select your first host. Click on a human to select your host.</span>")
 
-
-/mob/camera/disease/Stat()
-	..()
-	if(statpanel("Status"))
-		if(freemove)
-			stat("Host Selection Time: [round((freemove_end - world.time)/10)]s")
-		else
-			stat("Adaptation Points: [points]/[total_points]")
-			stat("Hosts: [disease_instances.len]")
-			var/adapt_ready = next_adaptation_time - world.time
-			if(adapt_ready > 0)
-				stat("Adaptation Ready: [round(adapt_ready/10, 0.1)]s")
-
+/mob/camera/disease/get_status_tab_items()
+	. = ..()
+	if(freemove)
+		. += "Host Selection Time: [round((freemove_end - world.time)/10)]s"
+	else
+		. += "Adaptation Points: [points]/[total_points]"
+		. += "Hosts: [disease_instances.len]"
+		var/adapt_ready = next_adaptation_time - world.time
+		if(adapt_ready > 0)
+			. += "Adaptation Ready: [round(adapt_ready/10, 0.1)]s"
 
 /mob/camera/disease/examine(mob/user)
-	..()
+	. = ..()
 	if(isobserver(user))
-		to_chat(user, "<span class='notice'>[src] has [points]/[total_points] adaptation points.</span>")
-		to_chat(user, "<span class='notice'>[src] has the following unlocked:</span>")
-		for(var/A in purchased_abilities)
-			var/datum/disease_ability/B = A
-			if(istype(B))
-				to_chat(user, "<span class='notice'>[B.name]</span>")
+		. += {"<span class='notice'>[src] has [points]/[total_points] adaptation points.</span>
+		<span class='notice'>[src] has the following unlocked:</span>"}
+		for(var/datum/disease_ability/ability in purchased_abilities)
+			. += "<span class='notice'>[ability.name]</span>"
 
 /mob/camera/disease/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	return
@@ -129,6 +124,9 @@ the new instance inside the host to be updated to the template's stats.
 		link = FOLLOW_LINK(src, to_follow)
 	else
 		link = ""
+	// Create map text prior to modifying message for goonchat
+	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	to_chat(src, "[link] [message]")
@@ -259,16 +257,10 @@ the new instance inside the host to be updated to the template's stats.
 		refresh_adaptation_menu()
 
 /mob/camera/disease/proc/set_following(mob/living/L)
+	if(following_host)
+		UnregisterSignal(following_host, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/follow_mob)
 	following_host = L
-	if(!move_listener)
-		move_listener = L.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/follow_mob)))
-	else
-		if(L)
-			L.TakeComponent(move_listener)
-			if(QDELING(move_listener))
-				move_listener = null
-		else
-			QDEL_NULL(move_listener)
 	follow_mob()
 
 /mob/camera/disease/proc/follow_next(reverse = FALSE)
@@ -323,7 +315,11 @@ the new instance inside the host to be updated to the template's stats.
 	var/list/dat = list()
 
 	if(examining_ability)
-		dat += "<a href='byond://?src=[REF(src)];main_menu=1'>Back</a><br><h1>[examining_ability.name]</h1>[examining_ability.stat_block][examining_ability.long_desc][examining_ability.threshold_block]"
+		dat += "<a href='byond://?src=[REF(src)];main_menu=1'>Back</a><br>"
+		dat += "<h1>[examining_ability.name]</h1>"
+		dat += "[examining_ability.stat_block][examining_ability.long_desc][examining_ability.threshold_block]"
+		for(var/entry in examining_ability.threshold_block)
+			dat += "<b>[entry]</b>: [examining_ability.threshold_block[entry]]<br>"
 	else
 		dat += "<h1>Disease Statistics</h1><br>\
 			Resistance: [DT.totalResistance()]<br>\

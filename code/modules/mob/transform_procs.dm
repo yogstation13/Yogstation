@@ -1,7 +1,31 @@
-/mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_DEFAULTMSG))
-	if (notransform)
+#define TRANSFORMATION_DURATION 22
+
+/mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
+	if (notransform || transformation_timer)
 		return
 	//Handle items on mob
+
+	if(tr_flags & TR_KEEPITEMS)
+		var/Itemlist = get_equipped_items(TRUE)
+		Itemlist += held_items
+		for(var/obj/item/W in Itemlist)
+			dropItemToGround(W)
+
+	//Make mob invisible and spawn animation
+	notransform = TRUE
+	Paralyze(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
+	icon = null
+	cut_overlays()
+	invisibility = INVISIBILITY_MAXIMUM
+
+	new /obj/effect/temp_visual/monkeyify(loc)
+
+	transformation_timer = addtimer(CALLBACK(src, .proc/finish_monkeyize, tr_flags), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+
+/mob/living/carbon/proc/finish_monkeyize(tr_flags)
+	transformation_timer = null
+
+	var/list/missing_bodyparts_zones = get_missing_limbs()
 
 	//first implants & organs
 	var/list/stored_implants = list()
@@ -13,7 +37,7 @@
 			stored_implants += IMP
 			IMP.removed(src, 1, 1)
 
-	var/list/missing_bodyparts_zones = get_missing_limbs()
+
 
 	var/obj/item/cavity_object
 
@@ -22,27 +46,12 @@
 		cavity_object = CH.cavity_item
 		CH.cavity_item = null
 
-	if(tr_flags & TR_KEEPITEMS)
-		var/Itemlist = get_equipped_items(TRUE)
-		Itemlist += held_items
-		for(var/obj/item/W in Itemlist)
-			dropItemToGround(W)
-
-	//Make mob invisible and spawn animation
-	notransform = TRUE
-	Paralyze(22, ignore_canstun = TRUE)
-	icon = null
-	cut_overlays()
-	invisibility = INVISIBILITY_MAXIMUM
-
-	new /obj/effect/temp_visual/monkeyify(loc)
-	sleep(22)
 	var/mob/living/carbon/monkey/O = new /mob/living/carbon/monkey( loc )
 
 	// hash the original name?
 	if(tr_flags & TR_HASHNAME)
-		O.name = "monkey ([copytext(md5(real_name), 2, 6)])"
-		O.real_name = "monkey ([copytext(md5(real_name), 2, 6)])"
+		O.name = "monkey ([copytext_char(md5(real_name), 2, 6)])"
+		O.real_name = "monkey ([copytext_char(md5(real_name), 2, 6)])"
 
 	//handle DNA and other attributes
 	dna.transfer_identity(O)
@@ -50,6 +59,7 @@
 
 	if(tr_flags & TR_KEEPSE)
 		O.dna.mutation_index = dna.mutation_index
+		O.dna.default_mutation_genes = dna.default_mutation_genes
 		O.dna.set_se(1, GET_INITIALIZED_MUTATION(RACEMUT))
 
 	if(suiciding)
@@ -73,7 +83,7 @@
 		O.setOxyLoss(getOxyLoss(), 0)
 		O.setCloneLoss(getCloneLoss(), 0)
 		O.adjustFireLoss(getFireLoss(), 0)
-		O.setBrainLoss(getBrainLoss(), 0)
+		O.setOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
 
@@ -123,6 +133,19 @@
 					qdel(G) //we lose the organs in the missing limbs
 		qdel(BP)
 
+	//transfer stuns
+	if(tr_flags & TR_KEEPSTUNS)
+		O.Stun(AmountStun(), ignore_canstun = TRUE)
+		O.Knockdown(AmountKnockdown(), ignore_canstun = TRUE)
+		O.Immobilize(AmountImmobilized(), ignore_canstun = TRUE)
+		O.Paralyze(AmountParalyzed(), ignore_canstun = TRUE)
+		O.Unconscious(AmountUnconscious(), ignore_canstun = TRUE)
+		O.Sleeping(AmountSleeping(), ignore_canstun = TRUE)
+
+	//transfer reagents
+	if(tr_flags & TR_KEEPREAGENTS)
+		reagents.trans_to(O, reagents.total_volume)
+
 	//transfer mind if we didn't yet
 	if(mind)
 		mind.transfer_to(O)
@@ -149,12 +172,31 @@
 //////////////////////////           Humanize               //////////////////////////////
 //Could probably be merged with monkeyize but other transformations got their own procs, too
 
-/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_DEFAULTMSG))
-	if (notransform)
+/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
+	if (notransform || transformation_timer)
 		return
-	//Handle items on mob
+	//now the rest
+	if (tr_flags & TR_KEEPITEMS)
+		var/Itemlist = get_equipped_items(TRUE)
+		Itemlist += held_items
+		for(var/obj/item/W in Itemlist)
+			dropItemToGround(W, TRUE)
+			if (client)
+				client.screen -= W
 
-	//first implants & organs
+	//Make mob invisible and spawn animation
+	notransform = TRUE
+	Paralyze(TRANSFORMATION_DURATION, ignore_canstun = TRUE)
+
+	icon = null
+	cut_overlays()
+	invisibility = INVISIBILITY_MAXIMUM
+	new /obj/effect/temp_visual/monkeyify/humanify(loc)
+
+	transformation_timer = addtimer(CALLBACK(src, .proc/finish_humanize, tr_flags), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+
+/mob/living/carbon/proc/finish_humanize(tr_flags)
+	transformation_timer = null
 	var/list/stored_implants = list()
 	var/list/int_organs = list()
 
@@ -173,26 +215,7 @@
 		cavity_object = CH.cavity_item
 		CH.cavity_item = null
 
-	//now the rest
-	if (tr_flags & TR_KEEPITEMS)
-		var/Itemlist = get_equipped_items(TRUE)
-		Itemlist += held_items
-		for(var/obj/item/W in Itemlist)
-			dropItemToGround(W, TRUE)
-			if (client)
-				client.screen -= W
 
-
-
-	//Make mob invisible and spawn animation
-	notransform = TRUE
-	Paralyze(22, ignore_canstun = TRUE)
-
-	icon = null
-	cut_overlays()
-	invisibility = INVISIBILITY_MAXIMUM
-	new /obj/effect/temp_visual/monkeyify/humanify(loc)
-	sleep(22)
 	var/mob/living/carbon/human/O = new( loc )
 	for(var/obj/item/C in O.loc)
 		O.equip_to_appropriate_slot(C)
@@ -200,7 +223,7 @@
 	dna.transfer_identity(O)
 	O.updateappearance(mutcolor_update=1)
 
-	if(cmptext("monkey",copytext(O.dna.real_name,1,7)))
+	if(findtext(O.dna.real_name, "monkey", 1, 7)) //7 == length("monkey") + 1
 		O.real_name = random_unique_name(O.gender)
 		O.dna.generate_unique_enzymes(O)
 	else
@@ -209,6 +232,7 @@
 
 	if(tr_flags & TR_KEEPSE)
 		O.dna.mutation_index = dna.mutation_index
+		O.dna.default_mutation_genes = dna.default_mutation_genes
 		O.dna.set_se(0, GET_INITIALIZED_MUTATION(RACEMUT))
 		O.domutcheck()
 
@@ -233,7 +257,7 @@
 		O.setOxyLoss(getOxyLoss(), 0)
 		O.setCloneLoss(getCloneLoss(), 0)
 		O.adjustFireLoss(getFireLoss(), 0)
-		O.setBrainLoss(getBrainLoss(), 0)
+		O.adjustOrganLoss(ORGAN_SLOT_BRAIN, getOrganLoss(ORGAN_SLOT_BRAIN))
 		O.updatehealth()
 		O.radiation = radiation
 
@@ -282,6 +306,19 @@
 						continue //so headless changelings don't lose their brain when transforming
 					qdel(G) //we lose the organs in the missing limbs
 		qdel(BP)
+
+	//transfer stuns
+	if(tr_flags & TR_KEEPSTUNS)
+		O.Stun(AmountStun(), ignore_canstun = TRUE)
+		O.Knockdown(AmountKnockdown(), ignore_canstun = TRUE)
+		O.Immobilize(AmountImmobilized(), ignore_canstun = TRUE)
+		O.Paralyze(AmountParalyzed(), ignore_canstun = TRUE)
+		O.Unconscious(AmountUnconscious(), ignore_canstun = TRUE)
+		O.Sleeping(AmountSleeping(), ignore_canstun = TRUE)
+
+	//transfer reagents
+	if(tr_flags & TR_KEEPREAGENTS)
+		reagents.trans_to(O, reagents.total_volume)
 
 	if(mind)
 		mind.transfer_to(O)
@@ -429,6 +466,7 @@
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
+	update_atom_languages()
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
 	. = new_xeno
@@ -518,6 +556,27 @@
 		new_gorilla.key = key
 	to_chat(new_gorilla, "<B>You are now a gorilla. Ooga ooga!</B>")
 	. = new_gorilla
+	qdel(src)
+
+/mob/living/carbon/human/proc/pacmanize()
+	if (notransform)
+		return
+	notransform = TRUE
+	Paralyze(1, ignore_canstun = TRUE)
+	for(var/obj/item/W in src)
+		dropItemToGround(W)
+	regenerate_icons()
+	icon = null
+	invisibility = INVISIBILITY_MAXIMUM
+	for(var/t in bodyparts)	//this really should not be necessary
+		qdel(t)
+
+	var/mob/living/simple_animal/pacman/new_pacman = new /mob/living/simple_animal/pacman (loc)
+	new_pacman.a_intent = INTENT_HARM
+	new_pacman.key = key
+
+	to_chat(new_pacman, "<B>You are now a pacman. I LOVE PACMAN!</B>")
+	. = new_pacman
 	qdel(src)
 
 /mob/living/carbon/human/Animalize()
@@ -610,3 +669,5 @@
 
 	//Not in here? Must be untested!
 	return 0
+
+#undef TRANSFORMATION_DURATION

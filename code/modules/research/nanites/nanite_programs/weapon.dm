@@ -51,7 +51,7 @@
 
 /datum/nanite_program/aggressive_replication/active_effect()
 	var/extra_regen = round(nanites.nanite_volume / 200, 0.1)
-	nanites.adjust_nanites(extra_regen)
+	nanites.adjust_nanites(null,extra_regen)
 	host_mob.adjustBruteLoss(extra_regen / 2, TRUE)
 
 /datum/nanite_program/meltdown
@@ -85,7 +85,7 @@
 		return
 	host_mob.visible_message("<span class='warning'>[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow...</span>",\
 							"<span class='userdanger'>You start emitting a high-pitched buzzing, and your skin begins to glow...</span>")
-	addtimer(CALLBACK(src, .proc/boom), CLAMP((nanites.nanite_volume * 0.35), 25, 150))
+	addtimer(CALLBACK(src, .proc/boom), clamp((nanites.nanite_volume * 0.35), 25, 150))
 
 /datum/nanite_program/triggered/explosive/proc/boom()
 	var/nanite_amount = nanites.nanite_volume

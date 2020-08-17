@@ -44,9 +44,9 @@
 					icon_state = "holdingpack-split-right"
 
 					var/obj/item/storage/backpack/holding/twin = new(loc)
-					GET_COMPONENT_FROM(old_other_storage, /datum/component/storage, twin)
+					var/datum/component/storage/old_other_storage = twin.GetComponent(/datum/component/storage)
 					old_other_storage.RemoveComponent()
-					GET_COMPONENT(this_storage, /datum/component/storage)
+					var/datum/component/storage/this_storage = GetComponent(/datum/component/storage)
 					var/datum/component/storage/twin_storage = twin.AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.master()) // add a slave storage component
 					twin_storage.allow_big_nesting = TRUE
 					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
@@ -78,13 +78,13 @@
 
 /obj/item/storage/backpack/holding/proc/disable_bag(dump = FALSE)
 	// find a new master but only if this bag is a master
-	GET_COMPONENT(STR, /datum/component/storage/concrete)
+	var/datum/component/storage/concrete/STR = GetComponent(/datum/component/storage/concrete)
 	if(istype(STR))
 		var/list/new_slaves = STR.slaves.Copy()
 		var/datum/component/storage/new_master = pick_n_take(new_slaves)
 		if(new_master)
 			var/obj/item/storage/backpack/holding/m_obj = new_master.parent
-			GET_COMPONENT_FROM(m_storage, /datum/component/storage, m_obj)
+			var/datum/component/storage/m_storage = m_obj.GetComponent(/datum/component/storage)
 			if(m_storage)
 				m_storage.RemoveComponent()
 			m_storage = m_obj.AddComponent(m_obj.component_type)
@@ -135,7 +135,7 @@
 	. = ..()
 	if(slot == SLOT_HEAD)
 		// time to wonkize this shit
-		GET_COMPONENT(STR, /datum/component/storage)
+		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		var/datum/component/storage/concrete/master = STR.master()
 		var/list/eye_list = master.slaves + master - STR
 		if(eye_list.len)
@@ -191,7 +191,7 @@
 
 /obj/item/storage/backpack/snail/green
 	name = "green shell backpack"
-	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt"
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt."
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
@@ -210,4 +210,3 @@
 	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
 	icon_state = "clownfacebackpack"
 	item_state = "clownfacebackpack"
-

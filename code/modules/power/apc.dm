@@ -56,6 +56,13 @@
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	FASTDMM_PROP(\
+		set_instance_vars(\
+			pixel_x = dir == EAST ? 24 : (dir == WEST ? -24 : INSTANCE_VAR_DEFAULT),\
+			pixel_y = dir == NORTH ? 24 : (dir == SOUTH ? -24 : INSTANCE_VAR_DEFAULT)\
+		),\
+		dir_amount = 4\
+    )
 
 	var/lon_range = 1.5
 	var/area/area
@@ -198,7 +205,7 @@
 	GLOB.apcs_list -= src
 
 	if(malfai && operating)
-		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
+		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	area.power_light = FALSE
 	area.power_equip = FALSE
 	area.power_environ = FALSE
@@ -253,33 +260,33 @@
 	addtimer(CALLBACK(src, .proc/update), 5)
 
 /obj/machinery/power/apc/examine(mob/user)
-	..()
+	. = ..()
 	if(stat & BROKEN)
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			to_chat(user, "The cover is [opened==APC_COVER_REMOVED?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].")
+			. += "The cover is [opened==APC_COVER_REMOVED?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
 		else
-			to_chat(user, "It's [ !terminal ? "not" : "" ] wired up.")
-			to_chat(user, "The electronics are[!has_electronics?"n't":""] installed.")
+			. += {"It's [ !terminal ? "not" : "" ] wired up.\n
+			The electronics are[!has_electronics?"n't":""] installed."}
 		if(user.Adjacent(src) && integration_cog)
-			to_chat(user, "<span class='warning'>[src]'s innards have been replaced by strange brass machinery!</span>")
+			. += "<span class='warning'>[src]'s innards have been replaced by strange brass machinery!</span>"
 
 	else
 		if (stat & MAINT)
-			to_chat(user, "The cover is closed. Something is wrong with it. It doesn't work.")
+			. += "The cover is closed. Something is wrong with it. It doesn't work."
 		else if (malfhack)
-			to_chat(user, "The cover is broken. It may be hard to force it open.")
+			. += "The cover is broken. It may be hard to force it open."
 		else
-			to_chat(user, "The cover is closed.")
+			. += "The cover is closed."
 
 	if(integration_cog && is_servant_of_ratvar(user))
-		to_chat(user, "<span class='brass'>There is an integration cog installed!</span>")
+		. += "<span class='brass'>There is an integration cog installed!</span>"
 
-	to_chat(user, "<span class='notice'>Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.</span>")
+	. += "<span class='notice'>Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.</span>"
 
 	if(issilicon(user))
-		to_chat(user, "<span class='notice'>Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].</span>")
+		. += "<span class='notice'>Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].</span>"
 
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
@@ -321,12 +328,17 @@
 	if(update & 2)
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
-			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, plane, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, EMISSIVE_PLANE, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", layer, plane, dir)
+			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", layer, EMISSIVE_PLANE, dir)
 			if(operating)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, EMISSIVE_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, EMISSIVE_PLANE, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, plane, dir)
+				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, EMISSIVE_PLANE, dir)
 
 	// And now, separately for cleanness, the lighting changing
 	if(update_state & UPSTATE_ALLGOOD)
@@ -363,7 +375,7 @@
 			update_state |= UPSTATE_OPENED1
 		if(opened==APC_COVER_REMOVED)
 			update_state |= UPSTATE_OPENED2
-	else if((obj_flags & EMAGGED) || malfai)
+	else if(obj_flags & EMAGGED)
 		update_state |= UPSTATE_BLUESCREEN
 	else if(panel_open)
 		update_state |= UPSTATE_WIREEXP
@@ -435,19 +447,19 @@
 					has_electronics = APC_ELECTRONICS_MISSING
 					if (stat & BROKEN)
 						user.visible_message(\
-							"[user.name] has broken the power control board inside [src.name]!",\
+							"[user.name] has broken the charred power control board inside [src.name]!", //Yogs -- Makes this message a bit more clear
 							"<span class='notice'>You break the charred power control board and remove the remains.</span>",
 							"<span class='italics'>You hear a crack.</span>")
 						return
 					else if (obj_flags & EMAGGED)
 						obj_flags &= ~EMAGGED
 						user.visible_message(\
-							"[user.name] has discarded an emagged power control board from [src.name]!",\
+							"[user.name] has discarded a sparking power control board from [src.name]!", // Yogs -- Makes this message make more sense.
 							"<span class='notice'>You discard the emagged power control board.</span>")
 						return
 					else if (malfhack)
 						user.visible_message(\
-							"[user.name] has discarded a strangely programmed power control board from [src.name]!",\
+							"[user.name] has discarded a strange-looking power control board from [src.name]!", //Yogs -- Makes this message make more sense.
 							"<span class='notice'>You discard the strangely programmed board.</span>")
 						malfai = null
 						malfhack = 0
@@ -520,7 +532,7 @@
 		return
 	else
 		panel_open = !panel_open
-		to_chat(user, "The wires have been [panel_open ? "exposed" : "unexposed"]")
+		to_chat(user, "<span class='notice'>The wires have been [panel_open ? "exposed" : "unexposed"].</span>")
 		update_icon()
 
 /obj/machinery/power/apc/wirecutter_act(mob/living/user, obj/item/W)
@@ -577,7 +589,6 @@
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
 			CRASH("attackby on APC when it's not on a turf")
-			return
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")
 			return
@@ -750,7 +761,8 @@
 
 
 /obj/machinery/power/apc/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	. = ..()
+	if(.)
 		set_broken()
 
 /obj/machinery/power/apc/deconstruct(disassembled = TRUE)
@@ -803,7 +815,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, ui_key, "Apc", name, 535, 515, master_ui, state)
 		ui.open()
 	if(ui)
 		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
@@ -918,7 +930,7 @@
 		. = UI_INTERACTIVE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && !(integration_cog && (is_servant_of_ratvar(usr)))))
+	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && action != "toggle_nightshift" && !(integration_cog && (is_servant_of_ratvar(usr)))))
 		return
 	switch(action)
 		if("lock")
@@ -1003,7 +1015,7 @@
 		return
 	to_chat(malf, "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.")
 	malf.malfhack = src
-	malf.malfhacking = addtimer(CALLBACK(malf, /mob/living/silicon/ai/.proc/malfhacked, src), 600, TIMER_STOPPABLE)
+	malf.malfhacking = addtimer(CALLBACK(malf, /mob/living/silicon/ai/.proc/malfhacked, src), 300, TIMER_STOPPABLE)
 
 	var/obj/screen/alert/hackingapc/A
 	A = malf.throw_alert("hackingapc", /obj/screen/alert/hackingapc)
@@ -1019,6 +1031,8 @@
 		to_chat(malf, "<span class='warning'>You cannot shunt!</span>")
 		return
 	if(!is_station_level(z))
+		return
+	if(alert("Are you sure you want to shunt into this APC?", "Confirm Shunt", "Yes", "No") != "Yes")
 		return
 	occupier = new /mob/living/silicon/ai(src, malf.laws, malf) //DEAR GOD WHY?	//IKR????
 	occupier.adjustOxyLoss(malf.getOxyLoss())
@@ -1333,12 +1347,11 @@
 
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
-		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
-	stat |= BROKEN
+		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
 	operating = FALSE
+	obj_break()
 	if(occupier)
 		malfvacate(1)
-	update_icon()
 	update()
 
 // overload all the lights in this APC area

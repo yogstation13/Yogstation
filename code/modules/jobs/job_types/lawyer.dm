@@ -20,12 +20,17 @@
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/lawyer/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/lawyer
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
 	belt = /obj/item/pda/lawyer
-	ears = /obj/item/radio/headset/headset_sec
+	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit
 	suit = /obj/item/clothing/suit/toggle/lawyer
 	shoes = /obj/item/clothing/shoes/laceup

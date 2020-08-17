@@ -41,10 +41,6 @@ The console is located at computer/gulag_teleporter.dm
 		linked_reclaimer.linked_teleporter = null
 	return ..()
 
-/obj/machinery/gulag_teleporter/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/gulag_teleporter/interact(mob/user)
 	. = ..()
 	if(locked)
@@ -178,3 +174,4 @@ The console is located at computer/gulag_teleporter.dm
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "light_on-w"
 	resistance_flags = INDESTRUCTIBLE
+	anchored = TRUE

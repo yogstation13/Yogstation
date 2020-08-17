@@ -19,6 +19,7 @@
 	var/list/mode_false_report_weight
 
 	var/motd
+	var/policy
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
@@ -47,6 +48,7 @@
 				break
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
+	LoadPolicy()
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
@@ -106,13 +108,13 @@
 		if(!L)
 			continue
 
-		var/firstchar = copytext(L, 1, 2)
+		var/firstchar = L[1]
 		if(firstchar == "#")
 			continue
 
 		var/lockthis = firstchar == "@"
 		if(lockthis)
-			L = copytext(L, 2)
+			L = copytext(L, length(firstchar) + 1)
 
 		var/pos = findtext(L, " ")
 		var/entry = null
@@ -120,7 +122,7 @@
 
 		if(pos)
 			entry = lowertext(copytext(L, 1, pos))
-			value = copytext(L, pos + 1)
+			value = copytext(L, pos + length(L[pos]))
 		else
 			entry = lowertext(L)
 
@@ -243,6 +245,34 @@
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)
 		motd = motd ? "[motd]<br>[tm_info]" : tm_info
+/*
+Policy file should be a json file with a single object.
+Value is raw html.
+
+Possible keywords : 
+Job titles / Assigned roles (ghost spawners for example) : Assistant , Captain , Ash Walker
+Mob types : /mob/living/simple_animal/hostile/carp
+Antagonist types : /datum/antagonist/highlander
+Species types : /datum/species/lizard
+special keywords defined in _DEFINES/admin.dm
+
+Example config:
+{
+    "Assistant" : "Don't kill everyone",
+    "/datum/antagonist/highlander" : "<b>Kill everyone</b>",
+    "Ash Walker" : "Kill all spacemans"
+}
+
+*/
+/datum/controller/configuration/proc/LoadPolicy()
+	policy = list()
+	var/rawpolicy = file2text("[directory]/policy.json")
+	if(rawpolicy)
+		var/parsed = json_decode(rawpolicy)
+		if(!parsed)
+			log_config("JSON parsing failure for policy.json")
+		else
+			policy = parsed
 
 /datum/controller/configuration/proc/loadmaplist(filename)
 	log_config("Loading config file [filename]...")
@@ -257,7 +287,7 @@
 		t = trim(t)
 		if(length(t) == 0)
 			continue
-		else if(copytext(t, 1, 2) == "#")
+		else if(t[1] == "#")
 			continue
 
 		var/pos = findtext(t, " ")
@@ -266,7 +296,7 @@
 
 		if(pos)
 			command = lowertext(copytext(t, 1, pos))
-			data = copytext(t, pos + 1)
+			data = copytext(t, pos + length(t[pos]))
 		else
 			command = lowertext(t)
 
@@ -290,6 +320,8 @@
 				currentmap.voteweight = text2num(data)
 			if ("default","defaultmap")
 				defaultmap = currentmap
+			if ("votable")
+				currentmap.votable = TRUE
 			if ("endmap")
 				LAZYINITLIST(maplist)
 				maplist[currentmap.map_name] = currentmap

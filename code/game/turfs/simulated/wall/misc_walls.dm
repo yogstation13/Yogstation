@@ -50,8 +50,8 @@
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
 	explosion_block = 2
-	hardness = 10
-	slicing_duration = 80
+	hardness = 6
+	slicing_duration = 100
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
@@ -90,24 +90,6 @@
 		animate(src, color = previouscolor, time = 8)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
-/turf/closed/wall/clockwork/dismantle_wall(devastated=0, explode=0)
-	if(devastated)
-		devastate_wall()
-		ScrapeAway()
-	else
-		playsound(src, 'sound/items/welder.ogg', 100, 1)
-		var/newgirder = break_wall()
-		if(newgirder) //maybe we want a gear!
-			transfer_fingerprints_to(newgirder)
-		ScrapeAway()
-
-	for(var/obj/O in src) //Eject contents!
-		if(istype(O, /obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-		else
-			O.forceMove(src)
-
 /turf/closed/wall/clockwork/devastate_wall()
 	for(var/i in 1 to 2)
 		new/obj/item/clockwork/alloy_shards/large(src)
@@ -136,7 +118,7 @@
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
-		slicing_duration = 150
+		slicing_duration = 170
 		animate(realappearance, color = "#FFC3C3", time = 5)
 	else
 		name = initial(name)

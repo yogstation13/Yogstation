@@ -44,15 +44,7 @@
 		return
 	if(!chassis || chassis.occupant != owner)
 		return
-	chassis.is_currently_ejecting = TRUE
-	to_chat(owner, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(chassis.occupant,chassis.exit_delay, target = chassis))
-		to_chat(owner, "<span class='notice'>You exit the mech.<span>")
-		chassis.go_out()
-	else
-		to_chat(owner, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.<span>")
-	chassis.is_currently_ejecting = FALSE
-
+	chassis.container_resist(chassis.occupant)
 
 /datum/action/innate/mecha/mech_toggle_internals
 	name = "Toggle Internal Airtank Usage"
@@ -199,6 +191,8 @@
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
+	if(chassis.equipment_disabled)
+		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
 	if(!isnull(forced_state))
@@ -215,7 +209,7 @@
 		chassis.occupant_message("<span class='danger'>You enable leg actuators overload.</span>")
 	else
 		chassis.leg_overload_mode = 0
-		chassis.bumpsmash = 0
+		chassis.bumpsmash = initial(chassis.bumpsmash)
 		chassis.step_in = initial(chassis.step_in)
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
 		chassis.occupant_message("<span class='notice'>You disable leg actuators overload.</span>")
@@ -249,10 +243,10 @@
 		chassis.log_message("Toggled zoom mode.", LOG_MECHA)
 		chassis.occupant_message("<font color='[chassis.zoom_mode?"blue":"red"]'>Zoom mode [chassis.zoom_mode?"en":"dis"]abled.</font>")
 		if(chassis.zoom_mode)
-			owner.client.change_view(12)
+			owner.client.view_size.setTo(4.5)
 			SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg',volume=50))
 		else
-			owner.client.change_view(CONFIG_GET(string/default_view)) //world.view - default mob view size
+			owner.client.view_size.resetToDefault() //Let's not let this stack shall we?
 		UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_switch_damtype

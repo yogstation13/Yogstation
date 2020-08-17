@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //  IMPORTANT! IF YOU'RE ADDING A DONATOR SKIN FOR SOMEONE, PLEASE FOLLOW THE FORMAT BELOW!   //
 ////////////////////////////////////////////////////////////////////////////////////////////////
-//============================================================================================\\
-//>------------------------------------Template below-----------------------------------------<\\
+//============================================================================================//
+//>-------------------------------------Template below---------------------------------------<//
 
 /*
 /datum/borg_skin/MadVenturerIsBadAtSiege
@@ -12,7 +12,7 @@
 	owner = "asv9"
 	module_locked = "Security"
 */
-// And finally, if you want to lock your skin to any specific module, just put module_locked as the name of any of these modules: https://github.com/yogstation13/Yogstation-TG/blob/c3a439daa6b6f8496f47ce55235d30b513334749/code/modules/mob/living/silicon/robot/robot_modules.dm"
+// And finally, if you want to lock your skin to any specific module, just put module_locked as the name of any of these modules: https://github.com/yogstation13/Yogstation/blob/c3a439daa6b6f8496f47ce55235d30b513334749/code/modules/mob/living/silicon/robot/robot_modules.dm"
 
 /datum/borg_skin //Give it a unique type
 	var/name = "A borg skin" //Give it a name! This will be visible when it's being picked
@@ -27,7 +27,7 @@
 	owner = "kmc2000"
 	module_locked = "Security"
 
-/*							PENDING SPRITE!
+/*						PENDING SPRITE!
 /datum/borg_skin/snail
 	name = "Snailborg"
 	icon_state = "snail"
@@ -86,6 +86,12 @@
 	owner = "qe"
 	module_locked = null
 
+/datum/borg_skin/oldbrainjar
+	name = "Old Cryojar"
+	icon_state = "oldbrainjar"
+	owner = "fluffe9911"
+	module_locked = null
+
 /datum/borg_skin/angel
 	name = "Angel"
 	icon_state = "angel"
@@ -100,7 +106,7 @@
 /datum/borg_skin/rainbowpeace
 	name = "Rainbow Peacekeeper"
 	icon_state = "rainbow_peace"
-	owner = "fluffe9911"
+	owner = null
 	module_locked = "Peacekeeper"
 
 /datum/borg_skin/mrsparako
@@ -178,18 +184,6 @@
 	icon_state = "tau_sec"
 	module_locked = "Security"
 
-/datum/borg_skin/paramed_droid
-	name = "Paramedic Droid"
-	icon_state = "paramed_droid"
-	module_locked = "Medical"
-	owner = null
-
-/datum/borg_skin/gold_experience
-	name = "Gold Experience"
-	icon_state = "gold_experience"
-	module_locked = "Security"
-	owner = "identification"
-
 /datum/borg_skin/qualified_doctor
 	name = "Qualified Doctor"
 	icon_state = "qualified_doctor"
@@ -217,10 +211,10 @@
 	module_locked = "Engineering"
 
 /datum/borg_skin/gutsy
-	name = "Mr Gutsy (universal)"
+	name = "Mr Gutsy (standard)"
 	icon_state = "gutsy_standard"
 	owner = null
-	module_locked = null
+	module_locked = "Standard"
 
 /datum/borg_skin/gutsy_med
 	name = "Mr Gutsy (medical)"
@@ -234,7 +228,35 @@
 	owner = null
 	module_locked = "Security"
 
+/datum/borg_skin/cola
+	name = "Sec Cola"
+	icon_state = "colaborg"
+	owner = "boodaliboo"
+	module_locked = "Security"
 
+/datum/borg_skin/polis
+	name = "Police Borg"
+	icon_state = "policeborg"
+	owner = null
+	module_locked = "Security"
+
+/datum/borg_skin/klein
+	name = "Dr Klein"
+	icon_state = "dr_klein"
+	owner = null
+	module_locked = "Standard"
+
+/datum/borg_skin/atlas
+	name = "Atlas"
+	icon_state = "brainlas"
+	owner = "jierda"
+	module_locked = "Engineering"
+
+/datum/borg_skin/icarus
+	name = "Icarus"
+	icon_state = "icarus"
+	owner = "reddsnotdead"
+	module_locked = "Engineering"
 
 //Begin AI skins://
 /* These follow the same format as borg skins*/
@@ -279,7 +301,24 @@
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
 
-/datum/ai_skin/urquan
-	name = "Ur-Quan Kzer-Za Master"
-	icon_state = "urquan_kzer_za"
-	owner = "identification"
+/datum/ai_skin/realisticface
+	name = "Hyper Realistic Face"
+	icon_state = "realisticface"
+
+/datum/ai_skin/spacewhale
+	name = "Space Whale"
+	icon_state = "spacewhale"
+
+/datum/ai_skin/extranet
+	name = "Extranet"
+	icon_state = "extranet"
+
+/datum/ai_skin/wardoge
+	name = "War Doge"
+	icon_state = "wardoge"
+	owner = "fluffe9911"
+
+datum/ai_skin/carrion
+	name = "Carrion"
+	icon_state = "carrion"
+	owner = "xoxeyos"

@@ -307,8 +307,8 @@ Code:
 					var/list/chg = list("N","C","F")
 
 					for(var/obj/machinery/power/apc/A in L)
-						menu += copytext(add_tspace(A.area.name, 30), 1, 30)
-						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_lspace(DisplayPower(A.lastused_total), 6)]  [A.cell ? "[add_lspace(round(A.cell.percent()), 3)]% [chg[A.charging+1]]" : "  N/C"]<BR>"
+						menu += copytext_char(add_trailing(A.area.name, 30, " "), 1, 30)
+						menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(DisplayPower(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading(round(A.cell.percent()), 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 
 				menu += "</FONT></PRE>"
 
@@ -323,7 +323,7 @@ Code:
 
 			if(active1 in GLOB.data_core.general)
 				menu += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<br>"
-				menu += "Sex: [active1.fields["sex"]]<br>"
+				menu += "Gender: [active1.fields["gender"]]<br>"
 				menu += "Age: [active1.fields["age"]]<br>"
 				menu += "Rank: [active1.fields["rank"]]<br>"
 				menu += "Fingerprint: [active1.fields["fingerprint"]]<br>"
@@ -367,7 +367,7 @@ Code:
 
 			if(active1 in GLOB.data_core.general)
 				menu += "Name: [active1.fields["name"]] ID: [active1.fields["id"]]<br>"
-				menu += "Sex: [active1.fields["sex"]]<br>"
+				menu += "Gender: [active1.fields["gender"]]<br>"
 				menu += "Age: [active1.fields["age"]]<br>"
 				menu += "Rank: [active1.fields["rank"]]<br>"
 				menu += "Fingerprint: [active1.fields["fingerprint"]]<br>"
@@ -543,7 +543,7 @@ Code:
 					current = chan
 			if(!current)
 				menu += "<h5> ERROR : NO CHANNEL FOUND </h5>"
-				return
+				return menu
 			var/i = 1
 			for(var/datum/newscaster/feed_message/msg in current.messages)
 				menu +="-[msg.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[msg.returnAuthor(-1)]</FONT>\]</FONT><BR>"
@@ -606,6 +606,7 @@ Code:
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", message1, message2)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [message1] - [message2].")
 				if("alert")
 					post_status("alert", href_list["alert"])
 				if("setmsg1")
@@ -657,14 +658,14 @@ Code:
 			if("botlist")
 				active_bot = null
 			if("summon") //Args are in the correct order, they are stated here just as an easy reminder.
-				active_bot.bot_control(command= "summon", user_turf= get_turf(usr), user_access= host_pda.GetAccess())
+				active_bot.bot_control("summon", usr, host_pda.GetAccess())
 			else //Forward all other bot commands to the bot itself!
-				active_bot.bot_control(command= href_list["op"], user= usr)
+				active_bot.bot_control(href_list["op"], usr)
 
 	if(href_list["mule"]) //MULEbots are special snowflakes, and need different args due to how they work.
 		var/mob/living/simple_animal/bot/mulebot/mule = active_bot
 		if (istype(mule))
-			mule.bot_control(command=href_list["mule"], user=usr, pda=TRUE)
+			mule.bot_control(href_list["mule"], usr, pda=TRUE)
 
 	if(!host_pda)
 		return

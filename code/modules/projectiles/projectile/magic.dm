@@ -6,6 +6,8 @@
 	nodamage = TRUE
 	armour_penetration = 100
 	flag = "magic"
+	var/tile_dropoff = 0
+	var/tile_dropoff_s = 0
 
 /obj/item/projectile/magic/death
 	name = "bolt of death"
@@ -66,7 +68,7 @@
 	if(!isturf(target))
 		teleloc = target.loc
 	for(var/atom/movable/stuff in teleloc)
-		if(!stuff.anchored && stuff.loc)
+		if(!stuff.anchored && stuff.loc && !isobserver(stuff))
 			if(do_teleport(stuff, stuff, 10, channel = TELEPORT_CHANNEL_MAGIC))
 				teleammount++
 				var/datum/effect_system/smoke_spread/smoke = new
@@ -119,7 +121,7 @@
 /obj/item/projectile/magic/door/proc/CreateDoor(turf/T)
 	var/door_type = pick(door_types)
 	var/obj/structure/mineral_door/D = new door_type(T)
-	T.ChangeTurf(/turf/open/floor/plating)
+	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
 
 /obj/item/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
@@ -146,7 +148,7 @@
 	wabbajack(change)
 	qdel(src)
 
-/proc/wabbajack(mob/living/M)
+/proc/wabbajack(mob/living/M, randomize)
 	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
 		return
 
@@ -170,7 +172,8 @@
 
 	var/mob/living/new_mob
 
-	var/randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
+	if(!randomize)
+		randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
 	switch(randomize)
 		if("monkey")
 			new_mob = new /mob/living/carbon/monkey(M.loc)
@@ -264,7 +267,6 @@
 
 	if(!new_mob)
 		return
-	new_mob.grant_language(/datum/language/common)
 
 	// Some forms can still wear some items
 	for(var/obj/item/W in contents)
@@ -278,7 +280,7 @@
 
 	to_chat(new_mob, "<span class='warning'>Your form morphs into that of a [randomize].</span>")
 
-	var/poly_msg = CONFIG_GET(keyed_list/policy)["polymorph"]
+	var/poly_msg = get_policy(POLICY_POLYMORPH)
 	if(poly_msg)
 		to_chat(new_mob, poly_msg)
 
@@ -286,6 +288,35 @@
 
 	qdel(M)
 	return new_mob
+
+/obj/item/projectile/magic/cheese
+	name = "bolt of cheese"
+	icon_state = "cheese"
+	damage = 0
+	damage_type = BURN
+	nodamage = TRUE
+
+/obj/item/projectile/magic/cheese/on_hit(mob/living/target)
+	. = ..()
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] fizzles on contact with [target]!</span>")
+			return BULLET_ACT_BLOCK
+	if(!istype(target) || target.stat == DEAD || target.notransform || (GODMODE & target.status_flags))
+		return
+	if(istype(target) && target.mind)
+		var/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan/P = new(target.loc)
+		var/mob/living/B = new(P)
+		P.desc = "What appears to be [target.real_name] reformed into a wheel of delicious parmesan... recovery is unlikely."
+		P.name = "[target.name] Parmesan"
+		B.real_name = "[target.name] Parmesan"
+		B.name = "[target.name] Parmesan"
+		B.stat = CONSCIOUS
+		target.transfer_observers_to(B)
+		target.mind.transfer_to(B)
+		qdel(target)
+
 
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"
@@ -562,9 +593,9 @@
 /obj/item/projectile/magic/wipe/proc/possession_test(var/mob/living/carbon/M)
 	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = M.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
 	var/poll_message = "Do you want to play as [M.real_name]?"
-	if(M.mind && M.mind.assigned_role)
+	if(M?.mind?.assigned_role)
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
-	if(M.mind && M.mind.special_role)
+	if(M?.mind?.special_role)
 		poll_message = "[poll_message] Status:[M.mind.special_role]."
 	else if(M.mind)
 		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist/)
@@ -688,3 +719,314 @@
 	armour_penetration = 100
 	temperature = 50
 	flag = "magic"
+
+
+/obj/item/projectile/temp/runic_icycle
+	name = "Icicle"
+	icon_state = "runic_icycle"
+	damage = 6
+	flag = "magic"
+	temperature = 80
+
+/obj/item/projectile/temp/runic_icycle/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	.=..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.adjustBruteLoss(5)
+
+/obj/item/projectile/magic/runic_tentacle
+	name = "Tentacle"
+	icon_state = "tentacle_end"
+	damage = 6
+	flag = "magic"
+
+
+/obj/item/projectile/magic/runic_tentacle/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+		new /obj/effect/temp_visual/goliath_tentacle/original(target)
+	.=..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.Paralyze(30)
+		X.visible_message("<span class='warning'>Tentacle wraps around [target]!</span>")
+		X.adjustBruteLoss(6)
+		new /obj/effect/temp_visual/goliath_tentacle/original(target)
+
+/obj/item/projectile/magic/runic_heal
+	name = "Runic Heal"
+	icon_state = "runic_heal"
+	flag = "magic"
+	nodamage = TRUE
+/obj/item/projectile/magic/runic_heal/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.adjustBruteLoss(-10)
+		X.adjustFireLoss(-10)
+		X.adjustToxLoss(-10)
+		X.adjustOxyLoss(-10)
+		X.adjustCloneLoss(-10)
+		var/mob/living/carbon/Y = firer
+		Y.adjustBruteLoss(-10)
+		Y.adjustFireLoss(-10)
+		Y.adjustToxLoss(-10)
+		Y.adjustOxyLoss(-10)
+		Y.adjustCloneLoss(-10)
+
+
+
+/obj/item/projectile/magic/runic_fire
+	name = "Runic Fire"
+	icon_state = "lava"
+	flag = "magic"
+	nodamage = FALSE
+
+/obj/item/projectile/magic/runic_fire/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.fire_stacks += 2
+		X.IgniteMob()
+
+
+/obj/item/projectile/magic/runic_honk
+	name = "Runic Peel"
+	icon_state = "runic_honk"
+	flag = "magic"
+	range = 200
+	movement_type = FLYING
+	reflectable = REFLECT_NORMAL
+	ricochet_chance = 100
+	ricochets_max = 66
+
+/obj/item/projectile/magic/runic_honk/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	var/mob/X = target
+	if(istype(X))
+		X.slip(75, X.loc, GALOSHES_DONT_HELP|SLIDE, 0, FALSE)
+
+
+/obj/item/projectile/magic/runic_bomb
+	name = "Runic Bomb"
+	icon_state = "runic_bomb"
+	flag = "magic"
+	range = 10
+	speed = 4
+	var/boom = 1
+
+/obj/item/projectile/magic/runic_bomb/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+		else
+			explosion(M, -1, 0, boom, 0, 0)
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		ADD_TRAIT(X, TRAIT_NODISMEMBER, type)
+		ADD_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
+		ADD_TRAIT(X, TRAIT_STUNIMMUNE, type)
+		spawn(5)
+			REMOVE_TRAIT(X, TRAIT_NODISMEMBER, type)
+			REMOVE_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
+			REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, type)
+			X.adjustBruteLoss(-120)
+		explosion(X, -1, 0, boom, 0, 0)
+
+/obj/item/projectile/magic/runic_toxin
+	name = "Runic Toxin"
+	icon_state = "syringeproj"
+	flag = "magic"
+	damage = 1
+	damage_type = BRUTE
+	nodamage = FALSE
+	eyeblur = 10
+
+/obj/item/projectile/magic/runic_toxin/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		if(prob(25))
+			X.reagents.add_reagent(/datum/reagent/toxin, 10)
+		else
+			if(prob(25))
+				X.reagents.add_reagent(/datum/reagent/toxin/amatoxin, 10)
+			else
+				if(prob(50))
+					X.reagents.add_reagent(/datum/reagent/toxin/fentanyl, 10)
+				else
+					if(prob(5))
+						X.reagents.add_reagent(/datum/reagent/drug/methamphetamine, 20)
+					else
+						X.reagents.add_reagent(/datum/reagent/toxin/plasma, 10)
+
+
+/obj/item/projectile/magic/runic_death
+	name = "Runic Death"
+	icon_state = "antimagic"
+	flag = "magic"
+	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
+
+/obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iszombie(target))
+		target.gib()
+	if(isskeleton(target))
+		target.gib()
+	if(isvampire(target))
+		target.adjustBruteLoss(40)
+
+
+/obj/item/projectile/magic/shotgun_slug
+	name = "Shotgun slug"
+	icon_state = "bullet"
+	damage = 10
+	flag = "magic"
+
+/obj/item/projectile/magic/shotgun_slug/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.adjustBruteLoss(10)
+
+/obj/item/projectile/magic/incediary_slug
+	name = "Incendiary shotgun slug"
+	icon_state = "bullet"
+	damage = 5
+	flag = "magic"
+
+
+/obj/item/projectile/magic/incediary_slug/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.fire_stacks += 1
+		X.IgniteMob()
+		X.adjustBruteLoss(5)
+
+/obj/item/projectile/magic/runic_mutation
+	name = "Runic Mutation"
+	icon_state = "toxin"
+	flag = "magic"
+	irradiate = 12
+
+/obj/item/projectile/magic/runic_mutation/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.randmuti()
+		if(prob(66))
+			X.easy_randmut(NEGATIVE)
+		else
+			X.easy_randmut(MINOR_NEGATIVE)
+
+
+/obj/item/projectile/magic/runic_resizement
+	name = "Runic Resizement"
+	flag = "magic"
+	icon_state = "cursehand1"
+
+
+/obj/item/projectile/magic/runic_resizement/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+	if(isliving(target))
+		var/mob/living/X = target
+		var/newsize1 = 0.5
+		var/newsize2 = 0.75
+		var/newsize3 = 1
+		var/newsize4 = 1.25
+		var/newsize5 = 1.50
+		var/reresize = pick(newsize1, newsize2, newsize3, newsize4, newsize5)
+		X.resize = reresize
+		X.update_transform()
+		sleep(100)
+		if(reresize == 0.5)
+			reresize = 2
+			X.resize = reresize
+			X.update_transform()
+		else
+			if(reresize == 0.75)
+				reresize = 1.3333334
+				X.resize = reresize
+				X.update_transform()
+			else
+				if(reresize == 1)
+					return
+				else
+					if(reresize == 1.25)
+						reresize = 0.8
+						X.resize = reresize
+						X.update_transform()
+					else
+						if(reresize == 1.5)
+							reresize = 0.66666667
+							X.resize = reresize
+							X.update_transform()
+		.=..()

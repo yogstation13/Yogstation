@@ -19,6 +19,16 @@
 
 	display_order = JOB_DISPLAY_ORDER_COOK
 
+	changed_maps = list("OmegaStation", "EclipseStation")
+
+/datum/job/cook/proc/OmegaStationChanges()
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+
+/datum/job/cook/proc/EclipseStationChanges()
+	total_positions = 4
+	spawn_positions = 3
+
 /datum/outfit/job/cook
 	name = "Cook"
 	jobtype = /datum/job/cook

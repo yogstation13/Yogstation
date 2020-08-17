@@ -1,5 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "Traitor Stimpacks now have an actual sprite, instead of just being a spooky syringe!"
-  - tweak: "Traitor Stimpacks now function more like hyposprays, with two 25u doses of Stimulant inside."

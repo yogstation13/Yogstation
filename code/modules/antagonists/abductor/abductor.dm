@@ -6,6 +6,7 @@
 	antagpanel_category = "Abductor"
 	job_rank = ROLE_ABDUCTOR
 	show_in_antagpanel = FALSE //should only show subtypes
+	show_to_ghosts = TRUE
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit
@@ -44,14 +45,14 @@
 	owner.assigned_role = "[name] [sub_role]"
 	objectives += team.objectives
 	finalize_abductor()
-	owner.add_trait(TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
 
 /datum/antagonist/abductor/on_removal()
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>You are no longer the [owner.special_role]!</span>")
 	owner.special_role = null
-	owner.remove_trait(TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
 
 /datum/antagonist/abductor/greet()
@@ -79,13 +80,13 @@
 	update_abductor_icons_added(owner,"abductor")
 
 /datum/antagonist/abductor/scientist/on_gain()
-	owner.add_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	owner.add_trait(TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
 /datum/antagonist/abductor/scientist/on_removal()
-	owner.remove_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	owner.remove_trait(TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
 /datum/antagonist/abductor/admin_add(datum/mind/new_owner,mob/admin)
@@ -146,6 +147,7 @@
 	for(var/datum/objective/O in objectives)
 		if(!O.check_completion())
 			won = FALSE
+			break
 	if(won)
 		result += "<span class='greentext big'>[name] team fulfilled its mission!</span>"
 	else

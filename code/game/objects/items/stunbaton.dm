@@ -65,11 +65,11 @@
 		icon_state = "[initial(icon_state)]"
 
 /obj/item/melee/baton/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>\The [src] is [round(cell.percent())]% charged.</span>")
+		. += "<span class='notice'>\The [src] is [round(cell.percent())]% charged.</span>"
 	else
-		to_chat(user, "<span class='warning'>\The [src] does not have a power source installed.</span>")
+		. += "<span class='warning'>\The [src] does not have a power source installed.</span>"
 
 /obj/item/melee/baton/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stock_parts/cell))
@@ -112,18 +112,19 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
-	if(status && user.has_trait(TRAIT_CLUMSY) && prob(50))
+	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
 		return
 	//yogs edit begin ---------------------------------
-	if(status && isethereal(M))
+	if(status && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/datum/species/ethereal/E = H.dna?.species
-		E.adjust_charge(20) //equivalent to hitting a lightbulb 4 times
-		to_chat(M,"<span class='notice'>You receive some charge from [src].</span>")
+		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+		if(istype(stomach))
+			stomach.adjust_charge(20)
+			to_chat(M,"<span class='notice'>You get charged by [src].</span>")
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
@@ -142,7 +143,7 @@
 				return
 		else
 			M.visible_message("<span class='warning'>[user] has prodded [M] with [src]. Luckily it was off.</span>", \
-							"<span class='warning'>[user] has prodded you with [src]. Luckily it was off</span>")
+							"<span class='warning'>[user] has prodded you with [src]. Luckily it was off.</span>")
 	else
 		if(status)
 			baton_stun(M, user)

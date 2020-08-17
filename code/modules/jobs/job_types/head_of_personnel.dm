@@ -1,6 +1,7 @@
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = HOP
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = CIVILIAN
 	head_announce = list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_SERVICE)
@@ -36,6 +37,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/hop/proc/OmegaStationChanges()
+	access = get_all_accesses()
+	minimal_access = get_all_accesses()
+
 /datum/outfit/job/hop
 	name = "Head of Personnel"
 	jobtype = /datum/job/hop
@@ -47,6 +54,6 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/hopcap
 	backpack_contents = list(/obj/item/storage/box/ids=1,\
-		/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1, /obj/item/card/id/departmental_budget/srv=1)
+		/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1) //yogs - removes serv budget
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/hop)

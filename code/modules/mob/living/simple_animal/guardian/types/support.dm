@@ -20,11 +20,10 @@
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(src)
 
-/mob/living/simple_animal/hostile/guardian/healer/Stat()
-	..()
-	if(statpanel("Status"))
-		if(beacon_cooldown >= world.time)
-			stat(null, "Beacon Cooldown Remaining: [DisplayTimeText(beacon_cooldown - world.time)]")
+/mob/living/simple_animal/hostile/guardian/healer/get_status_tab_items()
+	. = ..()
+	if(beacon_cooldown >= world.time)
+		. += "Beacon Cooldown Remaining: [DisplayTimeText(beacon_cooldown - world.time)]"
 
 /mob/living/simple_animal/hostile/guardian/healer/AttackingTarget()
 	. = ..()
@@ -70,11 +69,12 @@
 	set desc = "Mark a floor as your beacon point, allowing you to warp targets to it. Your beacon will not work at extreme distances."
 
 	if(beacon_cooldown >= world.time)
-		to_chat(src, "<span class='danger'><B>Your power is on cooldown. You must wait five minutes between placing beacons.</span></B>")
+		to_chat(src, "<span class='danger'><B>Your power is on cooldown. You must wait five minutes between placing beacons.</B></span>")
 		return
 
 	var/turf/beacon_loc = get_turf(src.loc)
 	if(!isfloorturf(beacon_loc))
+		to_chat(src, "<span class='danger'>Your beacon can only be placed on solid flooring!</span>")
 		return
 
 	if(beacon)

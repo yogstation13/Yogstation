@@ -17,7 +17,7 @@
 	cooldown_min = 10
 	include_user = TRUE
 
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "skeleton"
 
 /obj/effect/proc_holder/spell/targeted/lichdom/cast(list/targets,mob/user = usr)
@@ -37,7 +37,7 @@
 		for(var/obj/item/item in hand_items)
 			// I ensouled the nuke disk once. But it's probably a really
 			// mean tactic, so probably should discourage it.
-			if((item.item_flags & ABSTRACT) || item.has_trait(TRAIT_NODROP) || SEND_SIGNAL(item, COMSIG_ITEM_IMBUE_SOUL, user))
+			if((item.item_flags & ABSTRACT) || HAS_TRAIT(item, TRAIT_NODROP) || SEND_SIGNAL(item, COMSIG_ITEM_IMBUE_SOUL, user))
 				continue
 			marked_item = item
 			to_chat(M, "<span class='warning'>You begin to focus your very being into [item]...</span>")
@@ -136,7 +136,7 @@
 	lich.real_name = mind.name
 	mind.transfer_to(lich)
 	mind.grab_ghost(force=TRUE)
-	lich.hardset_dna(null,null,lich.real_name,null, new /datum/species/skeleton)
+	lich.hardset_dna(null,null,null,lich.real_name,null, new /datum/species/skeleton)
 	to_chat(lich, "<span class='warning'>Your bones clatter and shudder as you are pulled back into this world!</span>")
 	var/turf/body_turf = get_turf(old_body)
 	lich.Paralyze(200 + 200*resurrections)

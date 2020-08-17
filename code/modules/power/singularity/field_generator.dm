@@ -48,7 +48,7 @@ field_generator power level display
 	cut_overlays()
 	if(warming_up)
 		add_overlay("+a[warming_up]")
-	if(fields.len)
+	if(LAZYLEN(fields))
 		add_overlay("+on")
 	if(power_level)
 		add_overlay("+p[power_level]")
@@ -329,6 +329,8 @@ field_generator power level display
 	spawn(1)
 		var/temp = 1 //stops spam
 		for(var/obj/singularity/O in GLOB.singularities)
+			if(O.z != z)
+				continue
 			if(O.last_warning && temp)
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0

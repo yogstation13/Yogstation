@@ -5,16 +5,51 @@
 //Bottles now knockdown and break when smashed on people's heads. - Giacom
 
 /obj/item/reagent_containers/food/drinks/bottle
+	name = "glass bottle"
+	desc = "This blank bottle is unyieldingly anonymous, offering no clues to its contents."
+	icon_state = "glassbottle"
+	custom_price = 65
 	amount_per_transfer_from_this = 10
 	volume = 100
+	force = 15 //Smashing bottles over someone's head hurts.
 	throwforce = 15
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	var/const/duration = 13 //Directly relates to the 'knockdown' duration. Lowered by armor (i.e. helmets)
+	var/list/fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
 	isGlass = TRUE
 	foodtype = ALCOHOL
+	age_restricted = TRUE
 
+/obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
+	update_icon()
+
+/obj/item/reagent_containers/food/drinks/bottle/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/fill_name = icon_state
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_name][fill_icon_thresholds[1]]")
+
+		var/percent = round((reagents.total_volume / volume) * 100)
+		for(var/i in 1 to fill_icon_thresholds.len)
+			var/threshold = fill_icon_thresholds[i]
+			var/threshold_end = (i == fill_icon_thresholds.len)? INFINITY : fill_icon_thresholds[i+1]
+			if(threshold <= percent && percent < threshold_end)
+				filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
+
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling)
+
+	add_overlay("[initial(icon_state)]shine")
+
+/obj/item/reagent_containers/food/drinks/bottle/small
+	name = "small glass bottle"
+	desc = "This blank bottle is unyieldingly anonymous, offering no clues to its contents."
+	icon_state = "glassbottlesmall"
+	volume = 50
+	custom_price = 55
 
 /obj/item/reagent_containers/food/drinks/bottle/smash(mob/living/target, mob/thrower, ranged = FALSE)
 	//Creates a shattering noise and replaces the bottle with a broken_bottle
@@ -53,11 +88,9 @@
 	if(user.a_intent != INTENT_HARM || !isGlass)
 		return ..()
 
-	if(user.has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
 		return
-
-	force = 15 //Smashing bottles over someoen's head hurts.
 
 	var/obj/item/bodypart/affecting = user.zone_selected //Find what the player is aiming at
 
@@ -131,8 +164,8 @@
 	item_state = "beer"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("stabbed", "slashed", "attacked")
-	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 	sharpness = IS_SHARP
+	var/static/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/broken_bottle/Initialize()
 	. = ..()
@@ -142,99 +175,100 @@
 	name = "Griffeater gin"
 	desc = "A bottle of high quality gin, produced in the New London Space Station."
 	icon_state = "ginbottle"
-	list_reagents = list("gin" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/gin = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's special reserve"
 	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
 	icon_state = "whiskeybottle"
-	list_reagents = list("whiskey" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska triple distilled"
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
 	icon_state = "vodkabottle"
-	list_reagents = list("vodka" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka
 	name = "Badminka vodka"
 	desc = "The label's written in Cyrillic. All you can make out is the name and a word that looks vaguely like 'Vodka'."
 	icon_state = "badminka"
-	list_reagents = list("vodka" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tequila
 	name = "Caccavo guaranteed quality tequila"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequilabottle"
-	list_reagents = list("tequila" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/tequila = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "bottle of nothing"
 	desc = "A bottle filled with nothing."
 	icon_state = "bottleofnothing"
-	list_reagents = list("nothing" = 100)
+	list_reagents = list(/datum/reagent/consumable/nothing = 100)
 	foodtype = NONE
+	age_restricted = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
 	desc = "Silver laced tequila, served in space night clubs across the galaxy."
 	icon_state = "patronbottle"
-	list_reagents = list("patron" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/patron = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban spiced rum"
 	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
 	icon_state = "rumbottle"
-	list_reagents = list("rum" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/rum = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater
 	name = "flask of holy water"
 	desc = "A flask of the chaplain's holy water."
 	icon_state = "holyflask"
-	list_reagents = list("holywater" = 100)
+	list_reagents = list(/datum/reagent/water/holywater = 100)
 	foodtype = NONE
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater/hell
 	desc = "A flask of holy water...it's been sitting in the Necropolis a while though."
-	list_reagents = list("hell_water" = 100)
+	list_reagents = list(/datum/reagent/hellwater = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye vermouth"
-	desc = "Sweet, sweet dryness~"
+	desc = "Sweet, sweet dryness."
 	icon_state = "vermouthbottle"
-	list_reagents = list("vermouth" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/vermouth = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/kahlua
 	name = "Robert Robust's coffee liqueur"
 	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK."
 	icon_state = "kahluabottle"
-	list_reagents = list("kahlua" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 100)
 	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/drinks/bottle/goldschlager
 	name = "College Girl goldschlager"
 	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
 	icon_state = "goldschlagerbottle"
-	list_reagents = list("goldschlager" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/goldschlager = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau de Baton premium cognac"
 	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
 	icon_state = "cognacbottle"
-	list_reagents = list("cognac" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/wine
 	name = "Doublebeard's bearded special wine"
 	desc = "A faint aura of unease and asspainery surrounds the bottle."
 	icon_state = "winebottle"
-	list_reagents = list("wine" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/wine = 100)
 	foodtype = FRUIT | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe
 	name = "extra-strong absinthe"
-	desc = "An strong alcoholic drink brewed and distributed by"
+	desc = "A strong alcoholic drink brewed and distributed by"
 	icon_state = "absinthebottle"
-	list_reagents = list("absinthe" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe/Initialize()
 	. = ..()
@@ -287,7 +321,7 @@
 	name = "bottle of lizard wine"
 	desc = "An alcoholic beverage from Space China, made by infusing lizard tails in ethanol. Inexplicably popular among command staff."
 	icon_state = "lizardwine"
-	list_reagents = list("lizardwine" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/lizardwine = 100)
 	foodtype = FRUIT | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/bottle/hcider
@@ -295,19 +329,19 @@
 	desc = "Apple juice for adults."
 	icon_state = "hcider"
 	volume = 50
-	list_reagents = list("hcider" = 50)
+	list_reagents = list(/datum/reagent/consumable/ethanol/hcider = 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/grappa
 	name = "Phillipes well-aged Grappa"
 	desc = "Bottle of Grappa."
 	icon_state = "grappabottle"
-	list_reagents = list("grappa" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/grappa = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/sake
 	name = "Ryo's traditional sake"
 	desc = "Sweet as can be, and burns like fire going down."
 	icon_state = "sakebottle"
-	list_reagents = list("sake" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/sake = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/sake/Initialize()
 	. = ..()
@@ -322,9 +356,9 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/fernet
 	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station"
+	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station."
 	icon_state = "fernetbottle"
-	list_reagents = list("fernet" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 
@@ -337,8 +371,9 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
-	list_reagents = list("orangejuice" = 100)
-	foodtype = FRUIT
+	list_reagents = list(/datum/reagent/consumable/orangejuice = 100)
+	foodtype = FRUIT | BREAKFAST
+	age_restricted = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
 	name = "milk cream"
@@ -349,8 +384,9 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
-	list_reagents = list("cream" = 100)
+	list_reagents = list(/datum/reagent/consumable/cream = 100)
 	foodtype = DAIRY
+	age_restricted = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
 	name = "tomato juice"
@@ -361,8 +397,9 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
-	list_reagents = list("tomatojuice" = 100)
+	list_reagents = list(/datum/reagent/consumable/tomatojuice = 100)
 	foodtype = VEGETABLES
+	age_restricted = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
 	name = "lime juice"
@@ -373,8 +410,22 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
-	list_reagents = list("limejuice" = 100)
+	list_reagents = list(/datum/reagent/consumable/limejuice = 100)
 	foodtype = FRUIT
+	age_restricted = FALSE
+
+/obj/item/reagent_containers/food/drinks/bottle/pineapplejuice
+	name = "pineapple juice"
+	desc = "Extremely tart, yellow juice."
+	custom_price = 100
+	icon_state = "pineapplejuice"
+	item_state = "carton"
+	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
+	isGlass = FALSE
+	list_reagents = list(/datum/reagent/consumable/pineapplejuice = 100)
+	foodtype = FRUIT | PINEAPPLE
+	age_restricted = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/menthol
 	name = "menthol"
@@ -385,7 +436,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
-	list_reagents = list("menthol" = 100)
+	list_reagents = list(/datum/reagent/consumable/menthol = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine
 	name = "Jester Grenadine"
@@ -393,9 +444,46 @@
 	custom_price = 10
 	icon_state = "grenadine"
 	isGlass = TRUE
-	list_reagents = list("grenadine" = 100)
+	list_reagents = list(/datum/reagent/consumable/grenadine = 100)
+	foodtype = FRUIT
+	age_restricted = FALSE
+
+/obj/item/reagent_containers/food/drinks/bottle/applejack
+	name = "Buckin' Bronco's Applejack"
+	desc = "Kicks like a horse, tastes like an apple!"
+	custom_price = 10
+	icon_state = "applejack_bottle"
+	isGlass = TRUE
+	list_reagents = list(/datum/reagent/consumable/ethanol/applejack = 100)
 	foodtype = FRUIT
 
+/obj/item/reagent_containers/food/drinks/bottle/champagne
+	name = "Eau d' Dandy Brut Champagne"
+	desc = "Finely sourced from only the most pretentious French vineyards."
+	custom_premium_price = 200
+	icon_state = "champagne_bottle"
+	isGlass = TRUE
+	list_reagents = list(/datum/reagent/consumable/ethanol/champagne = 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/blazaam
+	name = "Ginbad's Blazaam"
+	desc = "You feel like you should give the bottle a good rub before opening."
+	icon_state = "blazaambottle"
+	list_reagents = list(/datum/reagent/consumable/ethanol/blazaam = 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/trappist
+	name = "Mont de Requin Trappistes Bleu"
+	desc = "Brewed in space-Belgium. Fancy!"
+	custom_premium_price = 50
+	icon_state = "trappistbottle"
+	volume = 50
+	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
+	
+/obj/item/reagent_containers/food/drinks/bottle/nukacola
+	name = "Nuka Cola"
+	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."
+	icon_state = "nuka_colaglass"
+	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
 ////////////////////////// MOLOTOV ///////////////////////
 /obj/item/reagent_containers/food/drinks/bottle/molotov

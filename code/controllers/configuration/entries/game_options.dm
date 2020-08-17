@@ -35,10 +35,6 @@
 /datum/config_entry/keyed_list/midround_antag/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
-/datum/config_entry/keyed_list/policy
-	key_mode = KEY_MODE_TEXT
-	value_mode = VALUE_MODE_TEXT
-
 /datum/config_entry/number/damage_multiplier
 	config_entry_value = 1
 	integer = FALSE
@@ -160,12 +156,6 @@
 
 /datum/config_entry/flag/join_with_mutant_humans	//players can pick mutant bodyparts for humans before joining the game
 
-/datum/config_entry/flag/no_summon_guns	//No
-
-/datum/config_entry/flag/no_summon_magic	//Fun
-
-/datum/config_entry/flag/no_summon_events	//Allowed
-
 /datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
 /datum/config_entry/number/arrivals_shuttle_dock_window	//Time from when a player late joins on the arrivals shuttle to when the shuttle docks on the station
@@ -191,6 +181,12 @@
 
 /datum/config_entry/string/alert_red_downto
 	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	
+/datum/config_entry/string/alert_gamma
+	config_entry_value = "Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location. Violating orders is punishable by death."
+	
+/datum/config_entry/string/alert_epsilon
+	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_delta
 	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
@@ -272,6 +268,8 @@
 	movedelay_type = /mob/living/simple_animal
 /////////////////////////////////////////////////
 
+/datum/config_entry/flag/virtual_reality	//Will virtual reality be loaded
+
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.
 
 /datum/config_entry/number/gateway_delay	//How long the gateway takes before it activates. Default is half an hour. Only matters if roundstart_away is enabled.
@@ -285,8 +283,6 @@
 
 /datum/config_entry/flag/silent_ai
 /datum/config_entry/flag/silent_borg
-
-/datum/config_entry/flag/sandbox_autoclose	// close the sandbox panel after spawning an item, potentially reducing griff
 
 /datum/config_entry/number/default_laws //Controls what laws the AI spawns with.
 	config_entry_value = 0
@@ -321,6 +317,11 @@
 
 /datum/config_entry/number/lavaland_budget
 	config_entry_value = 60
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/icemoon_budget
+	config_entry_value = 90
 	integer = FALSE
 	min_val = 0
 

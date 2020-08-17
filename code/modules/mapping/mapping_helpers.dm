@@ -125,6 +125,22 @@
 	else
 		airlock.cyclelinkeddir = dir
 
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target	//yogs start
+	name = "airlock cyclelink helper target"
+	icon_state = "airlock_cyclelink_helper_target"
+	var/dirx
+	var/diry
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.cyclelinkedx || airlock.cyclelinkedy)
+		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkedx and y, but they're already set")
+	else
+		if(!dirx && !diry)
+			log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkedx and y, but has dirx and diry are uninitialized")
+			return
+		airlock.cyclelinkedx = dirx
+		airlock.cyclelinkedy = diry//yogs end
+
 
 /obj/effect/mapping_helpers/airlock/locked
 	name = "airlock lock helper"
@@ -205,3 +221,31 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		CRASH("Wrong disease type passed in.")
 	var/datum/disease/D = new disease_type()
 	return list(component_type,D)
+
+/obj/effect/mapping_helpers/dead_body_placer
+	name = "Dead Body placer"
+	late = TRUE
+	icon_state = "deadbodyplacer"
+	var/bodycount = 2 //number of bodies to spawn
+
+/obj/effect/mapping_helpers/dead_body_placer/LateInitialize()
+	var/area/a = get_area(src)
+	var/list/trays = list()
+	for (var/i in a.contents)
+		if (istype(i, /obj/structure/bodycontainer/morgue))
+			trays += i
+	if(!trays.len)
+		log_mapping("[src] at [x],[y] could not find any morgues.")
+		return
+	for (var/i = 1 to bodycount)
+		var/obj/structure/bodycontainer/morgue/j = pick(trays)
+		var/mob/living/carbon/human/h = new /mob/living/carbon/human(j, 1)
+		h.death()
+		for (var/part in h.internal_organs) //randomly remove organs from each body, set those we keep to be in stasis
+			if (prob(40))
+				qdel(part)
+			else
+				var/obj/item/organ/O = part
+				O.organ_flags |= ORGAN_FROZEN
+		j.update_icon()
+	qdel(src)

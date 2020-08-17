@@ -231,6 +231,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 /obj/effect/landmark/start/depsec/science
 	name = "science_sec"
 
+/obj/effect/landmark/start/depsec/service
+	name = "service_sec"
+
 //Antagonist spawns
 
 /obj/effect/landmark/start/wizard
@@ -303,7 +306,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.xeno_spawn += loc
 	return INITIALIZE_HINT_QDEL
 
-//objects with the stationloving component (nuke disk) respawn here. 
+//objects with the stationloving component (nuke disk) respawn here.
 //also blobs that have their spawn forcemoved (running out of time when picking their spawn spot), santa and respawning devils
 /obj/effect/landmark/blobstart
 	name = "blobstart"
@@ -398,6 +401,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/servant_of_ratvar/Initialize(mapload)
 	..()
 	GLOB.servant_spawns += loc
+	return INITIALIZE_HINT_QDEL
+
+//Servant spawn locations
+/obj/effect/landmark/servant_of_ratvar/scarab
+	name = "servant of ratvar spawn"
+	icon_state = "clockwork_orange"
+	layer = MOB_LAYER
+
+/obj/effect/landmark/servant_of_ratvar/scarab/Initialize(mapload)
+	..()
+	GLOB.servant_spawns_scarabs += loc
 	return INITIALIZE_HINT_QDEL
 
 //City of Cogs entrances

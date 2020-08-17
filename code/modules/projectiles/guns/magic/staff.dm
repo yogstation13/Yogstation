@@ -12,6 +12,14 @@
 	icon_state = "staffofchange"
 	item_state = "staffofchange"
 
+/obj/item/gun/magic/staff/cheese
+	name = "staff of cheese"
+	desc = "An artefact that spits bolts of cheesey energy which twists the target into a wheel of parmesan."
+	fire_sound = 'sound/magic/staff_change.ogg'
+	ammo_type = /obj/item/ammo_casing/magic/cheese
+	icon_state = "staffofcheese"
+	item_state = "staffofcheese"
+
 /obj/item/gun/magic/staff/animate
 	name = "staff of animation"
 	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
@@ -42,7 +50,7 @@
 	recharge_rate = 2
 	no_den_usage = 1
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/change, /obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
-	/obj/item/projectile/magic/death, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/aoe/fireball,
+	/obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/aoe/fireball,
 	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage, /obj/item/projectile/magic/locker, /obj/item/projectile/magic/flying,
 	/obj/item/projectile/magic/bounty, /obj/item/projectile/magic/antimagic, /obj/item/projectile/magic/fetch, /obj/item/projectile/magic/sapping,
 	/obj/item/projectile/magic/necropotence, /obj/item/projectile/magic, /obj/item/projectile/temp/chill, /obj/item/projectile/magic/wipe)

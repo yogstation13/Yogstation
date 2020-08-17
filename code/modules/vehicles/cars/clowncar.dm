@@ -35,13 +35,6 @@
 	. = ..()
 	playsound(src, pick('sound/vehicles/clowncar_load1.ogg', 'sound/vehicles/clowncar_load2.ogg'), 75)
 
-/obj/vehicle/sealed/car/clowncar/after_add_occupant(mob/M, control_flags)
-	. = ..()
-	if(return_controllers_with_flag(VEHICLE_CONTROL_KIDNAPPED).len >= 30)
-		for(var/i in return_drivers())
-			var/mob/voreman = i
-			SSmedals.UnlockMedal(MEDAL_CLOWNCARKING,voreman.client)
-
 /obj/vehicle/sealed/car/clowncar/attack_animal(mob/living/simple_animal/M)
 	if((M.loc != src) || M.environment_smash & (ENVIRONMENT_SMASH_WALLS|ENVIRONMENT_SMASH_RWALLS))
 		return ..()
@@ -64,23 +57,25 @@
 		to_chat(user, "<span class='danger'>You use the [banana] to repair the [src]!</span>")
 		qdel(banana)
 
-/obj/vehicle/sealed/car/clowncar/Bump(atom/movable/M)
+/obj/vehicle/sealed/car/clowncar/Bump(atom/A)
 	. = ..()
-	if(isliving(M))
-		if(ismegafauna(M))
+	if(isliving(A))
+		if(ismegafauna(A))
 			return
-		var/mob/living/L = M
+		var/mob/living/L = A
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.Paralyze(40) //I play to make sprites go horizontal
 		L.visible_message("<span class='warning'>[src] rams into [L] and sucks him up!</span>") //fuck off shezza this isn't ERP.
 		mob_forced_enter(L)
 		playsound(src, pick('sound/vehicles/clowncar_ram1.ogg', 'sound/vehicles/clowncar_ram2.ogg', 'sound/vehicles/clowncar_ram3.ogg'), 75)
-	else if(istype(M, /turf/closed))
-		visible_message("<span class='warning'>[src] rams into [M] and crashes!</span>")
+		log_combat(src, A, "sucked up")
+	else if(istype(A, /turf/closed))
+		visible_message("<span class='warning'>[src] rams into [A] and crashes!</span>")
 		playsound(src, pick('sound/vehicles/clowncar_crash1.ogg', 'sound/vehicles/clowncar_crash2.ogg'), 75)
 		playsound(src, 'sound/vehicles/clowncar_crashpins.ogg', 75)
 		DumpMobs(TRUE)
+		log_combat(src, A, "crashed into", null, "dumping all passengers")
 
 /obj/vehicle/sealed/car/clowncar/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -126,7 +121,7 @@
 			visible_message("<span class='danger'>[user] has pressed one of the colorful buttons on [src] and the clown car spews out a cloud of laughing gas.</span>")
 			var/datum/reagents/R = new/datum/reagents(300)
 			R.my_atom = src
-			R.add_reagent("superlaughter", 50)
+			R.add_reagent(/datum/reagent/consumable/superlaughter, 50)
 			var/datum/effect_system/smoke_spread/chem/smoke = new()
 			smoke.set_up(R, 4)
 			smoke.attach(src)
@@ -190,10 +185,3 @@
 		playsound(src, pick('sound/vehicles/carcannon1.ogg', 'sound/vehicles/carcannon2.ogg', 'sound/vehicles/carcannon3.ogg'), 75)
 		L.throw_at(A, 10, 2)
 		return COMSIG_MOB_CANCEL_CLICKON
-
-/obj/vehicle/sealed/car/clowncar/proc/ThanksCounter()
-	thankscount++
-	if(thankscount >= 100)
-		for(var/i in return_drivers())
-			var/mob/busdriver = i
-			SSmedals.UnlockMedal(MEDAL_THANKSALOT,busdriver.client)

@@ -16,6 +16,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "ae" = (
@@ -37,8 +41,12 @@
 	req_access_txt = "12"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/maintenance/starboard/fore)
 "ag" = (
 /turf/closed/wall{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
@@ -55,7 +63,6 @@
 	amount = 50
 	},
 /obj/item/stack/cable_coil,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
 "ai" = (
@@ -96,8 +103,12 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
-/area/crew_quarters/kitchen)
+/area/maintenance/starboard/fore)
 "ao" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -160,7 +171,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 26
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
@@ -213,8 +224,8 @@
 /area/crew_quarters/bar)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
@@ -250,15 +261,15 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/light/small{
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
@@ -266,19 +277,17 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
 "aM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/rockvault,
 /area/crew_quarters/bar)
@@ -311,22 +320,23 @@
 	},
 /area/crew_quarters/kitchen)
 "aR" = (
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks,
-/obj/machinery/door/window/eastright{
-	base_state = "left";
+/obj/structure/table,
+/obj/machinery/firealarm{
 	dir = 8;
-	icon_state = "left";
-	name = "Soda Dispenser";
-	req_access_txt = "0"
+	pixel_x = 26
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aS" = (
-/obj/machinery/light{
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks{
 	dir = 4;
-	light_color = "#e8eaff"
+	icon_state = "soda_dispenser"
 	},
+/obj/machinery/door/window/westright,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aT" = (
@@ -378,12 +388,10 @@
 /area/crew_quarters/kitchen)
 "aZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
-/mob/living/simple_animal/hostile/retaliate/goat{
-	name = "Pete"
-	},
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
@@ -402,11 +410,9 @@
 /area/crew_quarters/bar)
 "bc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -434,6 +440,10 @@
 	name = "Casino Vault";
 	req_access_txt = "25"
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -442,7 +452,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -22
+	pixel_x = -24
 	},
 /obj/machinery/camera{
 	c_tag = "Bar West";
@@ -455,8 +465,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/camera{
 	c_tag = "Bar";
@@ -479,7 +488,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -489,8 +497,8 @@
 "bk" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -511,10 +519,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"bn" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -523,23 +527,22 @@
 /area/crew_quarters/bar)
 "bp" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "bq" = (
-/obj/machinery/firealarm{
+/obj/machinery/vending/boozeomat,
+/obj/machinery/light{
 	dir = 4;
-	pixel_x = 24
+	light_color = "#e8eaff"
 	},
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "br" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/window/westright,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bs" = (
@@ -550,6 +553,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
@@ -559,6 +566,10 @@
 	name = "Teller's desk";
 	req_access_txt = "25"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bu" = (
@@ -571,6 +582,10 @@
 /obj/machinery/door/window/northright{
 	name = "Teller's Desk"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bv" = (
@@ -583,10 +598,6 @@
 	pixel_x = 2
 	},
 /turf/open/floor/carpet/black,
-/area/crew_quarters/bar)
-"bx" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "by" = (
 /obj/machinery/smartfridge/drinks,
@@ -629,7 +640,12 @@
 	name = "Kitchen";
 	req_access_txt = "28"
 	},
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/kitchen)
 "bF" = (
@@ -678,7 +694,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bL" = (
@@ -710,20 +726,16 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Bar"
 	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"bP" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "Bar"
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -738,8 +750,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -795,20 +807,28 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "cb" = (
+/obj/machinery/processor,
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 8;
+	pixel_x = 26
 	},
-/turf/open/floor/carpet,
-/area/crew_quarters/bar)
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "cc" = (
-/obj/structure/closet/gmcloset,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil,
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
+/obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/plasteel/rockvault,
+/area/crew_quarters/bar)
+"cd" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "cf" = (
 /obj/machinery/deepfryer,
@@ -841,25 +861,6 @@
 /area/crew_quarters/kitchen)
 "cs" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"ct" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"cG" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
-	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "cI" = (
@@ -900,7 +901,6 @@
 /area/crew_quarters/bar)
 "db" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/chair/americandiner{
@@ -924,7 +924,6 @@
 "pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -950,22 +949,40 @@
 /area/crew_quarters/bar)
 "Sb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"Sc" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "SW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 5
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
+"UT" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1092,7 +1109,7 @@ bW
 ap
 bv
 bv
-cb
+cd
 ac
 "}
 (9,1,1) = {"
@@ -1125,7 +1142,7 @@ ap
 ap
 ap
 ap
-bP
+bO
 "}
 (11,1,1) = {"
 ac
@@ -1150,7 +1167,7 @@ ag
 ag
 ij
 aH
-aR
+aS
 cl
 bY
 cl
@@ -1182,7 +1199,7 @@ aL
 ai
 bf
 aI
-aS
+cm
 bM
 cm
 cm
@@ -1197,8 +1214,8 @@ ay
 aM
 cc
 ag
+aR
 bq
-bx
 cm
 bh
 cm
@@ -1312,7 +1329,7 @@ aQ
 am
 aU
 bT
-bn
+Sc
 cq
 co
 co
@@ -1345,8 +1362,8 @@ am
 aX
 co
 co
-ct
-cG
+cb
+UT
 bH
 am
 aa

@@ -53,7 +53,7 @@
 	name = "Omni"
 	color = "#008080"
 	inner_outfits = list(/obj/item/clothing/under/color/teal)
-	outer_outfits = list(/obj/item/clothing/suit/studentuni)
+	outer_outfits = list(/obj/item/clothing/suit/chaplainsuit/studentuni)
 
 /datum/team/gang/newton
 	name = "Newton"

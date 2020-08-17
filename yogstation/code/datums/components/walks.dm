@@ -10,12 +10,12 @@
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_PROCESS_MOVE, .proc/handle_move)
-	GET_COMPONENT_FROM(footsteps, /datum/component/footstep, parent)
+	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
 	if(footsteps)
 		footsteps.signal_enabled = FALSE
 
 /datum/component/walk/RemoveComponent()
-	GET_COMPONENT_FROM(footsteps, /datum/component/footstep, parent)
+	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
 	if(footsteps)
 		footsteps.signal_enabled = TRUE
 	return ..()

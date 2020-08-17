@@ -7,6 +7,9 @@
 /area/shuttle/escape)
 "ac" = (
 /obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ad" = (
@@ -57,6 +60,30 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"am" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-22"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"an" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"ao" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-22"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "ap" = (
 /obj/structure/chair/comfy,
@@ -118,6 +145,9 @@
 /obj/item/toy/cards/deck{
 	pixel_y = 5
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aw" = (
@@ -136,6 +166,12 @@
 "ay" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -162,6 +198,9 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aB" = (
@@ -179,9 +218,6 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aC" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -190,6 +226,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aD" = (
@@ -217,6 +254,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -260,6 +300,10 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "First Class"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aJ" = (
@@ -283,6 +327,9 @@
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
@@ -340,6 +387,9 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aQ" = (
@@ -387,6 +437,9 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aU" = (
@@ -411,6 +464,9 @@
 	pixel_y = 8
 	},
 /obj/structure/table/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aW" = (
@@ -419,13 +475,13 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/shuttle/escape)
 "aX" = (
-/obj/machinery/sleeper,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "aY" = (
@@ -436,6 +492,9 @@
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
@@ -454,6 +513,9 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/machinery/vending/wallmed/pubby{
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -536,6 +598,9 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bj" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bk" = (
@@ -556,6 +621,9 @@
 	},
 /obj/machinery/light,
 /obj/item/storage/toolbox/mechanical,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bo" = (
@@ -563,6 +631,13 @@
 /obj/structure/window/reinforced{
 	dir = 1;
 	pixel_y = 2
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"bp" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -590,27 +665,29 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "bu" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"bv" = (
-/obj/structure/window/plastitanium,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"bw" = (
 /obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"bx" = (
+"bv" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"bw" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "by" = (
 /obj/structure/table/reinforced,
@@ -627,6 +704,10 @@
 /obj/machinery/door/airlock/public/glass{
 	req_access_txt = "2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bB" = (
@@ -657,13 +738,10 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"bH" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "bI" = (
 /obj/machinery/light,
@@ -673,6 +751,10 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Economy Class"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bL" = (
@@ -688,6 +770,12 @@
 	preferred_direction = 1;
 	width = 46
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bO" = (
@@ -695,18 +783,128 @@
 	name = "Cockpit";
 	req_access_txt = "19"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bQ" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Service"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bT" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Brig";
 	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"cM" = (
+/obj/structure/chair/comfy,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"lW" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"od" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"oJ" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"us" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"uz" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"vy" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"wy" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -717,9 +915,83 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"yR" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"zv" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"AG" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"HF" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Ri" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
 "Uu" = (
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"XK" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/shuttle/escape)
+"XQ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"XY" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -727,48 +999,48 @@
 (1,1,1) = {"
 aa
 ab
-ac
-ac
+zv
+zv
 ab
 aa
 ab
 ab
-ac
+zv
 ab
-ac
+zv
 ab
-ac
-ab
-ab
-aa
-ab
-ab
-ac
-ab
-ac
-ab
-ac
+zv
 ab
 ab
 aa
 ab
 ab
-ac
+zv
 ab
-ac
+zv
 ab
-ac
+zv
+ab
+ab
+aa
+ab
+ab
+zv
+ab
+zv
+ab
+zv
 ab
 ab
 aa
 bs
 bs
-bv
-bv
+bp
+bp
 bs
 bs
-bv
-bv
+bp
+bp
 bs
 bs
 "}
@@ -810,10 +1082,10 @@ bg
 ab
 aa
 bs
+am
 bu
-bw
-bw
-bw
+bu
+bu
 bs
 ax
 bD
@@ -831,34 +1103,34 @@ ab
 aE
 aV
 aA
-au
+XQ
 aA
-au
+XQ
 aK
 ab
 aa
 ab
 aT
-au
+XQ
 aP
-au
+XQ
 aP
-au
+XQ
 aY
 ab
 aa
 ab
 aZ
-bb
-bb
+yR
+yR
 bi
-bl
-bg
+uz
+vy
 bn
 ab
 aa
 bs
-bH
+an
 ax
 ax
 ax
@@ -972,37 +1244,37 @@ bt
 ab
 aa
 ab
-aE
+cM
 av
-aA
-au
-aA
-au
-aK
+lW
+AG
+lW
+AG
+us
 ab
 aa
 ab
-aT
-au
-aP
-au
-aP
-au
-aY
+oJ
+AG
+od
+AG
+od
+AG
+Ri
 ab
 aa
 ab
 aG
-ba
+XK
 bd
 bj
 bj
-bo
+XY
 bG
 ab
 aa
 bs
-bH
+an
 ax
 ax
 ax
@@ -1034,7 +1306,7 @@ aL
 au
 aQ
 au
-aQ
+HF
 aR
 aU
 ab
@@ -1050,10 +1322,10 @@ bq
 ab
 aa
 bs
-bu
-bx
-bx
-bx
+ao
+bv
+bv
+bv
 bs
 ax
 bD
@@ -1063,8 +1335,8 @@ bc
 (8,1,1) = {"
 aa
 ab
-ac
-ac
+wy
+wy
 ab
 aa
 ab
@@ -1083,28 +1355,28 @@ bL
 ab
 ay
 ab
-ac
+wy
 ab
 ab
 aa
 ab
 ab
-ac
+wy
 ab
-ac
+wy
 ab
-ac
+wy
 ab
 ab
 aa
 bs
 bs
-bv
-bv
+bw
+bw
 bs
 bs
-bv
-bv
+bw
+bw
 bs
 bs
 "}
