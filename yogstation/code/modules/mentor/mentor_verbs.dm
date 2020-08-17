@@ -94,4 +94,4 @@ GLOBAL_PROTECT(mentor_verbs)
 
 	message_admins("[key_name(usr)] sent a tip of the round.")
 	log_admin("[key_name(usr)] sent \"[input]\" as the Tip of the Round.")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Tip")
+	SSblackbox.record_feedback("tally", "Mentor_verb", 1, "Show Tip")
