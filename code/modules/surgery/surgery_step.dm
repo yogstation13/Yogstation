@@ -60,10 +60,6 @@
 				return TRUE
 			else
 				surgery.status--
-
-	if(iscyborg(user) && user.a_intent != INTENT_HARM && !istype(tool, /obj/item/surgical_drapes)) //to save asimov borgs a LOT of heartache
-		return TRUE
-
 	return FALSE
 
 
