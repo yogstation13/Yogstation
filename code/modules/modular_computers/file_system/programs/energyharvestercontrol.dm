@@ -11,20 +11,13 @@
 	size = 1
 	tgui_id = "NtosEnergyHarvesterController"
 	ui_x = 300
-	ui_y = 350
+	ui_y = 420
 	var/obj/item/energy_harvester/moneysink
 
 ///updates icon
 /datum/computer_file/program/energy_harvester_control/process_tick()
-	..()/*
-	var/new_status = get_status()
-	if(last_status != new_status)
-		last_status = new_status
-		ui_header = "smmon_[last_status].gif"
-		program_icon_state = "smmon_[last_status]"
-		if(istype(computer))
-			computer.update_icon()
-		*/
+	..()
+
 /datum/computer_file/program/energy_harvester_control/run_program(mob/living/user)
 	. = ..(user)
 	refresh()
@@ -46,17 +39,18 @@
 		data["status"] = "null"
 	else
 		if(!moneysink.anchored || isnull(moneysink.PN))
-			data["status"] = "unpowered"
+			data["status"] = "Unpowered"
 		else
-			data["status"] = "working"
+			data["status"] = "Working"
 		data["x"] = T.x
 		data["y"] = T.y
 		data["area"] = get_area_name(T)
 		data["dist"] = get_dist_euclidian(curr, T)
 		data["rotation"] = Get_Angle(curr, T)
 		data["power"] = moneysink.accumulated_power
+		data["power_setting"] = moneysink.manual_power_setting
 		data["input"] = moneysink.input_energy
-		data["switch"] = moneysink.manual_switch
+		data["power_switch"] = moneysink.manual_switch
 		data["payout"] = moneysink.calculateMoney()
 		data["last_power"] = moneysink.last_accumulated_power
 		data["last_payout"] = moneysink.last_payout

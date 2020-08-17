@@ -78,7 +78,7 @@ export const EnergyHarvester = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Estimated Income">
               <Box color={projectedIncome ? "good":"bad"}>
-                {projectedIncome}
+                {Math.floor(projectedIncome)+"cr"}
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Last Transmitted">
@@ -88,28 +88,13 @@ export const EnergyHarvester = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Last Payout">
               <Box color={lastPayout ? "good":"bad"}>
-                {lastPayout}
+                {Math.floor(lastPayout)+"cr"}
               </Box>
             </LabeledList.Item>
           </LabeledList>
         </Section>
-
       </Window.Content>
     </Window>
   );
 };
 
-/* Debug section if needed remove on final commit
-
-        <Section title="Debug data">
-          <ul>
-            <li>inputEnergy = {inputEnergy}</li>
-            <li>manualPowerSetting = {manualPowerSetting}</li>
-            <li>accumulatedPower = {accumulatedPower}</li>
-            <li>projectedIncome = {projectedIncome}</li>
-            <li>lastPayout = {lastPayout}</li>
-            <li>lastAccumulatedPower ={lastAccumulatedPower}</li>
-            <li>manualSwitch ={manualSwitch}</li>
-          </ul>
-        </Section>
-*/
