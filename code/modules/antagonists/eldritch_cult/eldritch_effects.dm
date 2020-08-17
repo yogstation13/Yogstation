@@ -82,6 +82,8 @@
 		if(current_eldritch_knowledge.on_finished_recipe(user,selected_atoms,loc))
 			current_eldritch_knowledge.cleanup_atoms(selected_atoms)
 			is_in_use = FALSE
+		else
+			is_in_use = FALSE
 
 		for(var/to_appear in atoms_to_disappear)
 			var/atom/atom_to_appear = to_appear
