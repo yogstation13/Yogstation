@@ -34,7 +34,7 @@
 		"https://www.youtube.com/watch?v=xhlH91k-86E",						// J.G. Thirlwell - In a Spaceage Mood
 		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
-		"https://www.youtube.com/watch?v=qImHuiYnVQ0")						// Lemon Demon - Redesign Your Logo
+		"https://www.youtube.com/watch?v=HXk-0_rETJ8")						// Lemon Demon - Redesign Your Logo
 
 	selected_lobby_music = pick(songs)
 
