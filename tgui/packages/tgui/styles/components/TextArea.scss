@@ -5,38 +5,33 @@
 
 @use '../base.scss';
 @use '../functions.scss' as *;
+@use './Input.scss';
 
-$text-color: base.$color-fg !default;
-$background-color: #0a0a0a !default;
-$border-color: #88bfff !default;
-$border-radius: base.$border-radius !default;
+$text-color: Input.$text-color !default;
+$background-color: Input.$background-color !default;
+$border-color: Input.$border-color !default;
+$border-radius: Input.$border-radius !default;
 
-.Input {
+.TextArea {
   position: relative;
   display: inline-block;
-  width: 120px;
   border: 1px solid $border-color;
   border: 1px solid rgba($border-color, 0.75);
   border-radius: $border-radius;
-  color: $text-color;
   background-color: $background-color;
-  padding: 0 4px;
   margin-right: 2px;
   line-height: 17px;
-  overflow: visible;
+  box-sizing: border-box; 
+  width: 100%;
 }
 
-.Input--fluid {
+.TextArea--fluid {
   display: block;
   width: auto;
+  height: auto;
 }
 
-.Input__baseline {
-  display: inline-block;
-  color: transparent;
-}
-
-.Input__input {
+.TextArea__textarea {
   display: block;
   position: absolute;
   top: 0;
@@ -46,23 +41,23 @@ $border-radius: base.$border-radius !default;
   border: 0;
   outline: 0;
   width: 100%;
-  font-size: 12px;
+  height: 100%;
+  font-size: 1em;
   line-height: 17px;
-  height: 17px;
+  min-height: 17px;
   margin: 0;
   padding: 0 0.5em;
-  font-family: Verdana, sans-serif;
+  font-family: inherit;
   background-color: transparent;
-  color: $text-color;
   color: inherit;
+  box-sizing: border-box;
+  // Make sure the div and the textarea wrap words in the same way
+  word-wrap: break-word;
+  overflow: hidden;
 
   &:-ms-input-placeholder {
     font-style: italic;
     color: #777;
     color: rgba(255, 255, 255, 0.45);
   }
-}
-
-.Input--monospace .Input__input {
-  font-family: 'Consolas', monospace;
 }
