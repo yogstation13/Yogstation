@@ -83,7 +83,7 @@ export const NtosEnergyHarvesterController = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Estimated Income">
               <Box color={payout ? "good":"bad"}>
-                {Math.floor(payout)+"cr"}
+                {Math.floor(payout)+" cr"}
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Last Transmitted">
@@ -93,7 +93,7 @@ export const NtosEnergyHarvesterController = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Last Payout">
               <Box color={last_payout ? "good":"bad"}>
-                {Math.floor(last_payout)+"cr"}
+                {Math.floor(last_payout)+" cr"}
               </Box>
             </LabeledList.Item>
           </LabeledList>
@@ -107,7 +107,7 @@ export const NtosEnergyHarvesterController = (props, context) => {
               <Icon
                 mr={1}
                 size={1.2}
-                name="arrow-up"
+                name={dist===0 ? "circle" : "arrow-up"}
                 rotation={rotation} />
               {dist !== undefined && (
                 Math.round(dist) + 'm'

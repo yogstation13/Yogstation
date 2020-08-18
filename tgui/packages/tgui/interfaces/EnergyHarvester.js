@@ -78,7 +78,7 @@ export const EnergyHarvester = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Estimated Income">
               <Box color={projectedIncome ? "good":"bad"}>
-                {Math.floor(projectedIncome)+"cr"}
+                {Math.floor(projectedIncome)+" cr"}
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Last Transmitted">
@@ -88,7 +88,7 @@ export const EnergyHarvester = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item label="Last Payout">
               <Box color={lastPayout ? "good":"bad"}>
-                {Math.floor(lastPayout)+"cr"}
+                {Math.floor(lastPayout)+" cr"}
               </Box>
             </LabeledList.Item>
           </LabeledList>

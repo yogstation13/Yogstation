@@ -38,7 +38,7 @@
 	if(isnull(moneysink)||!T) //something has gone horribly wrong, time to abort.
 		data["status"] = "null"
 	else
-		if(!moneysink.anchored || isnull(moneysink.PN))
+		if(!moneysink.anchored || isnull(moneysink.PN) || moneysink.input_energy==0)
 			data["status"] = "Unpowered"
 		else
 			data["status"] = "Working"
