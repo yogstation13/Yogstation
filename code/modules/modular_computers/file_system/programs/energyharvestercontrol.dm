@@ -12,11 +12,26 @@
 	tgui_id = "NtosEnergyHarvesterController"
 	ui_x = 300
 	ui_y = 420
+	var/status
 	var/obj/item/energy_harvester/moneysink
 
 ///updates icon
 /datum/computer_file/program/energy_harvester_control/process_tick()
 	..()
+	var/new_status
+	if(isnull(moneysink))
+		new_status = "null"
+	else if(moneysink.input_energy==0)
+		new_status = "off"
+	else 
+		new_status = "on"
+
+	if(new_status != status)
+		status = new_status
+		ui_header = "energy_harvester_[status].gif"
+		program_icon_state = "energy_harvester_[status]"
+		if(istype(computer))
+			update_computer_icon()
 
 /datum/computer_file/program/energy_harvester_control/run_program(mob/living/user)
 	. = ..(user)
