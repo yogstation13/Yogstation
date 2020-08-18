@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	/client/proc/cmd_mentor_say,
 	/client/proc/show_mentor_memo,
 	/client/proc/show_mentor_tickets,
-	/client/proc/cmd_mentor_pm_context
+	/client/proc/cmd_mentor_pm_context,
 	/client/proc/show_tip
 	))
 GLOBAL_PROTECT(mentor_verbs)
