@@ -20,9 +20,10 @@
 	air_contents.set_moles(/datum/gas/nitrous_oxide, 100)
 	air_contents.set_temperature(9999)
 
+///A canister that is 1 Kelvin away from doing the stimball reaction.
 /obj/machinery/portable_atmospherics/canister/stimball_test
 	name = "Stimball Test Canister"
-	desc = "This shouldn never be spawned in game"
+	desc = "This should never be spawned in game except for testing purposes"
 
 obj/machinery/portable_atmospherics/canister/create_gas()
 	air_contents.set_moles(/datum/gas/stimulum, 1000)
