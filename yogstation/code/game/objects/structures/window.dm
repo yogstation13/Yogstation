@@ -28,9 +28,6 @@
 		spawn(20)
 			spam_flag = 0
 
-/obj/structure/window/bananium/honk_act()
-	return FALSE
-
 /obj/structure/window/bananium/spawner/east
 	dir = EAST
 
