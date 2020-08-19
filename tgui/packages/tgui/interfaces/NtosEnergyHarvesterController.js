@@ -116,7 +116,7 @@ export const NtosEnergyHarvesterController = (props, context) => {
             <LabeledList.Item
               label="Status"
               color={status==="Working" ? 'green' : 'red'}>
-              {status}
+              {status === "null" ? "Energy Harvester not linked to NTNet!" : status}
             </LabeledList.Item>
           </LabeledList>
         </Section>
