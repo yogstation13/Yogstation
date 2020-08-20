@@ -323,5 +323,5 @@
 	icon_state = "forensic2"
 	icon_state_scanning =  "forensic2_scan" // icon state for scanning
 	range = 2 // this scanner does not have much range
-	scan_speed = 2
+	scan_speed = 10
 	advanced = TRUE
