@@ -47,7 +47,7 @@
 			dist = TRUE
 		else
 			dist = FALSE
-		T.honk_act(dist)
+		center.honk_act(dist)
 		CHECK_TICK
 	Cinematic(get_cinematic_type(off_station), world)
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
