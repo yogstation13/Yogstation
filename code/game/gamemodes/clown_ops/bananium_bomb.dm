@@ -38,7 +38,7 @@
 	new /obj/structure/destructible/honkmother(T)
 	var/x0 = center.x
 	var/y0 = center.y
-	for(var/I in spiral_range_turfs(255, T, tick_checked = TRUE))
+	for(var/I in spiral_range_turfs(255, center, tick_checked = TRUE))
 		var/turf/T2 = I
 		if(!T2)
 			continue
