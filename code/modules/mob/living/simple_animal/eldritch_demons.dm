@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	name = "Raw Prophet"
 	real_name = "Raw Prophet"
-	desc = "Abomination made from severed limbs."
+	desc = "An eye supported by a mass of severed limbs, it has a piercing gaze."
 	icon_state = "raw_prophet"
 	status_flags = CANPUSH
 	icon_living = "raw_prophet"
@@ -78,7 +78,7 @@
 	if(linked_mobs[mob_linked])
 		return FALSE
 
-	to_chat(mob_linked, "<span class='notice'>You feel something new enter your sphere of mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link.</span>")
+	to_chat(mob_linked, "<span class='notice'>You feel something new enter your mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link.</span>")
 	var/datum/action/innate/mansus_speech/action = new(src)
 	linked_mobs[mob_linked] = action
 	action.Grant(mob_linked)
@@ -92,7 +92,7 @@
 	var/datum/action/innate/mansus_speech/action = linked_mobs[mob_linked]
 	action.Remove(mob_linked)
 	qdel(action)
-	to_chat(mob_linked, "<span class='notice'>Your mind shatters as the [src]'s Mansus Link leaves your mind.</span>")
+	to_chat(mob_linked, "<span class='notice'>You feel something tear out of your mind as the [src]'s Mansus Link leaves your mind.</span>")
 	mob_linked.emote("Scream")
 	//micro stun
 	mob_linked.AdjustParalyzed(0.5 SECONDS)
@@ -290,7 +290,7 @@
 /mob/living/simple_animal/hostile/eldritch/rust_spirit
 	name = "Rust Walker"
 	real_name = "Rusty"
-	desc = "Incomprehensible abomination actively seeping life out of it's surrounding."
+	desc = "A massive skull supported by a machination of deteriorating machinery, it actively seeps life out of its environment."
 	icon_state = "rust_walker_s"
 	status_flags = CANPUSH
 	icon_living = "rust_walker_s"
@@ -325,7 +325,7 @@
 /mob/living/simple_animal/hostile/eldritch/ash_spirit
 	name = "Ash Man"
 	real_name = "Ashy"
-	desc = "Incomprehensible abomination actively seeping life out of it's surrounding."
+	desc = "A strange, floating... thing..."
 	icon_state = "ash_walker"
 	status_flags = CANPUSH
 	icon_living = "ash_walker"
@@ -339,7 +339,7 @@
 /mob/living/simple_animal/hostile/eldritch/stalker
 	name = "Flesh Stalker"
 	real_name = "Flesh Stalker"
-	desc = "Abomination made from severed limbs."
+	desc = "An abomination made from severed limbs, its form shifts as it moves."
 	icon_state = "stalker"
 	status_flags = CANPUSH
 	icon_living = "stalker"

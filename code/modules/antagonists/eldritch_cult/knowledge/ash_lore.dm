@@ -176,6 +176,8 @@
 	var/mob/living/carbon/human/H = user
 	H.physiology.brute_mod *= 0.5
 	H.physiology.burn_mod *= 0.5
+	H.physiology.stamina_mod = 0
+	H.physiology.stun_mod = 0
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
 	for(var/X in trait_list)
