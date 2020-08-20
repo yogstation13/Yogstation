@@ -13,13 +13,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"C" = (
+"B" = (
 /obj/item/drone_shell,
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"F" = (
-/obj/item/drone_shell,
-/obj/structure/bed/dogbed,
+/obj/structure/bed/dogbed{
+	desc = "A comfy-looking drone bed.";
+	name = "drone bed"
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "L" = (
@@ -34,7 +33,7 @@
 
 (1,1,1) = {"
 y
-C
+M
 o
 "}
 (2,1,1) = {"
@@ -43,7 +42,7 @@ M
 k
 "}
 (3,1,1) = {"
-F
+B
 M
 o
 "}
