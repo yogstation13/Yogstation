@@ -15,7 +15,7 @@
 	light_range = 15
 	//Yellow, the color of bananas!
 	light_color = "#FFFF000"
-	//How far things are turned around Her are turned into bananium
+	///How far things around Her are turned into bananium
 	var/convert_range = 8
 	//She is above even fire
 	layer = RIPPLE_LAYER
