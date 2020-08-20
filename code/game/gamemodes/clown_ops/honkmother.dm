@@ -38,25 +38,7 @@
 	var/alertresult = alert(O, "Become a honking abomination? You can no longer be cloned!",,"Yes", "No")
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
-	var/list/L = list(
-		"clown",
-		"clown/lube",
-		"clown/banana",
-		"clown/afro",
-		"clown/thin",
-		"clown/honkling",
-		"clown/fleshclown",
-		"clown/longface",
-		"clown/clownhulk",
-		"clown/clownhulk/chlown",
-		"clown/clownhulk/honcmunculus",
-		"clown/clownhulk/destroyer",
-		"clown/clownhulk/punisher",
-		"clown/mutant",
-		"clown/mutant/blob",
-		"clown/mutant/thicc")
-	var/MobType = text2path("/mob/living/simple_animal/hostile/retaliate/[pick(L)]")
-	var/mob/R = new MobType(get_turf(src))
+	var/mob/R = new pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))
 	R.visible_message("<span class='warning'>[R] awakens!</span>")
 	R.key = O.key
 
