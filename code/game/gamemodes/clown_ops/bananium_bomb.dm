@@ -37,7 +37,7 @@
 	var/turf/center = SSmapping.get_station_center()
 	new /obj/structure/destructible/honkmother(T)
 	var/x0 = center.x
-	var/y0 = T.y
+	var/y0 = center.y
 	for(var/I in spiral_range_turfs(255, T, tick_checked = TRUE))
 		var/turf/T2 = I
 		if(!T2)
