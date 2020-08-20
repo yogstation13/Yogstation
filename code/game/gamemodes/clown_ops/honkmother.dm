@@ -1,4 +1,4 @@
-//HONK HONK HONK HONK HONK HONK HONK
+//I am honkadias clown of clowns look upon my pranks and despair!
 /obj/structure/destructible/honkmother
 	name = "The Honkmother"
 	desc = "HONK!"
@@ -19,6 +19,7 @@
 	var/convert_range = 8
 	//She is above even fire
 	layer = RIPPLE_LAYER
+	movement_type = UNSTOPPABLE
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
 /obj/structure/destructible/honkmother/Initialize()
@@ -38,15 +39,10 @@
 	var/alertresult = alert(O, "Become a honking abomination? You can no longer be cloned!",,"Yes", "No")
 	if(alertresult == "No" || QDELETED(O) || !istype(O) || !O.key)
 		return FALSE
-	var/mob/R = new pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))
+	var/type = pick(typesof(/mob/living/simple_animal/hostile/retaliate/clown))
+	var/mob/R = new type
 	R.visible_message("<span class='warning'>[R] awakens!</span>")
 	R.key = O.key
-
-/obj/structure/destructible/honkmother/Bump(atom/A)
-	var/turf/T = get_turf(A)
-	if(T == loc)
-		T = get_step(T, dir) // NOTHING WILL STAND IN THE WAY OF PRANKS
-	forceMove(T)
 
 //moves and turns things into BANANIUM
 /obj/structure/destructible/honkmother/process()
@@ -54,11 +50,11 @@
 		var/turf/T = I
 		if(prob(20))
 			T.honk_act()
-	for(var/I in circleviewturfs(src, round(convert_range * 0.5)))
-		var/turf/T = I
+	for(var/F in circleviewturfs(src, round(convert_range * 0.5)))
+		var/turf/T = F
 		T.honk_act(TRUE)
 		for(var/I in T)
-			var/atom/A = I
+			var/atom/A = F
 			A.honk_act()
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	step(src, dir_to_step_in)
