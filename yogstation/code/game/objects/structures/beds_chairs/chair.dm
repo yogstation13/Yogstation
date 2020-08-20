@@ -8,6 +8,9 @@
 	buildstacktype = /obj/item/stack/sheet/mineral/bananium
 	buildstackamount = 2
 
+/obj/structure/chair/bananium/honk_act()
+	return FALSE
+
 /obj/item/chair/bananium
 	name = "bananium chair"
 	icon = 'yogstation/icons/obj/chairs.dmi'

@@ -33,6 +33,8 @@
 	return CINEMATIC_NUKE_FAKE
 
 /obj/machinery/nuclearbomb/syndicate/bananium/really_actually_explode(off_station)
+	//SHE LIVES
+	new /obj/structure/destructible/honkmother(src.loc)
 	Cinematic(get_cinematic_type(off_station), world)
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		var/turf/T = get_turf(H)

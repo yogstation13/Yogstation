@@ -252,6 +252,10 @@
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 	add_fingerprint(user)
 
+/obj/item/shield/energy/honk_act()
+	new /obj/item/shield/energy/bananium(src.loc)
+	qdel(src)
+
 /obj/item/shield/riot/tele
 	name = "telescopic shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
