@@ -26,6 +26,7 @@
 	required_enemies = 1
 	recommended_enemies = 3
 	enemy_minimum_age = 0
+	title_icon = "vampires"
 
 	announce_text = "There are vampires onboard the station!\n\
 		+	<span class='danger'>Vampires</span>: Suck the blood of the crew and complete your objectives!\n\
@@ -105,3 +106,18 @@
 	return "The Wizard Federation has created a new being based off ancient mythology. \
 	These beings are known as vampires and are capable of sucking blood from crew members. \
 	No further information is known at this time."
+	
+/datum/game_mode/vampire/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Vampires:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/vamp in pre_vamps)
+		round_credits += "<center><h2>[vamp.name] as a Vampire</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Vampires have fled to Transylvania!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits
