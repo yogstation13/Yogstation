@@ -34,7 +34,7 @@
 
 /obj/machinery/nuclearbomb/syndicate/bananium/really_actually_explode(off_station)
 	//SHE LIVES
-	var/turf/T = SSmapping.get_station_center()
+	var/turf/center = SSmapping.get_station_center()
 	new /obj/structure/destructible/honkmother(T)
 	var/x0 = T.x
 	var/y0 = T.y
