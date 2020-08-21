@@ -74,7 +74,6 @@
 		return NO_REACTION
 	var/turf/open/location = isturf(holder) ? holder : null
 	. = NO_REACTION
-	if (air.return_temperature() >= )
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
 		if(location && location.freon_gas_act())
 			. = REACTING
@@ -386,7 +385,7 @@
 
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_scale = min(air.return_temperature()/STIMULUM_HEAT_SCALE,air.get_moles(/datum/gas/plasma),air.get_moles(/datum/gas/nitryl))
-	var/stim_energy_change = heat_scale + STIMULUM_FIRST_RISE*(heat_scale**2) - STIMULUM_FIRST_DROP*(heat_scale**3) + STIMULUM_SECOND_RISE*(heat_scale**4) - STIMULUM_ABSOLUTE_DROP*(heat_scale**5)
+	var/stim_energy_change = heat_scale*STIMULUM_HEAT_SCALE
 
 	if ((air.get_moles(/datum/gas/plasma) - heat_scale < 0) || (air.get_moles(/datum/gas/nitryl) - heat_scale < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
