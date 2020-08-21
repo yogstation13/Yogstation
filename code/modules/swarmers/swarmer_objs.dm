@@ -132,6 +132,8 @@
 		return TRUE
 	if(istype(O, /obj/item/projectile/beam/disabler))
 		return TRUE
+	else
+		return FALSE
 
 /obj/effect/temp_visual/swarmer //temporary swarmer visual feedback objects
 	icon = 'icons/mob/swarmer.dmi'
