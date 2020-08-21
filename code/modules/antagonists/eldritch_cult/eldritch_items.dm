@@ -94,13 +94,13 @@
 	var/trait = TRAIT_THERMAL_VISION
 
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
-	. = ..()
-	if(ishuman(user) && user.mind && slot == ITEM_SLOT_NECK && IS_HERETIC(user) )
+	..()
+	if(ishuman(user) && user.mind && slot == SLOT_NECK && IS_HERETIC(user) )
 		ADD_TRAIT(user, trait, CLOTHING_TRAIT)
 		user.update_sight()
 
 /obj/item/clothing/neck/eldritch_amulet/dropped(mob/user)
-	. = ..()
+	..()
 	REMOVE_TRAIT(user, trait, CLOTHING_TRAIT)
 	user.update_sight()
 
