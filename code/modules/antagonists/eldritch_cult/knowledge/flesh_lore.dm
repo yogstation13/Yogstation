@@ -32,7 +32,7 @@
 	if(HAS_TRAIT(humie,TRAIT_HUSK))
 		return
 
-	if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(humie, TRAIT_MINDSHIELD))
 		return
 
 	humie.grab_ghost()
@@ -103,7 +103,7 @@
 		to_chat(user, "<span class='warning'>The body is too damaged to be revived this way!</span>")
 		return
 
-	if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
 		to_chat(user, "<span class='warning'>Their connection to this realm is too strong!</span>")
 		return
 
