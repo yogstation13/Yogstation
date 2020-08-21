@@ -41,7 +41,7 @@
 	///tgui width
 	var/ui_x = 300
 	///tgui height
-	var/ui_y = 300
+	var/ui_y = 270
 
 obj/item/energy_harvester/Initialize()
 	. = ..()
