@@ -32,6 +32,9 @@
 	if(HAS_TRAIT(humie,TRAIT_HUSK))
 		return
 
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
+		return
+
 	humie.grab_ghost()
 
 	if(!humie.mind || !humie.client)
@@ -83,11 +86,9 @@
 	if(eldritch_effect)
 		. = TRUE
 		eldritch_effect.on_effect()
-		//if(iscarbon(target))
-			//var/mob/living/carbon/carbon_target = target
-			//var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
-			//var/datum/wound/slash/severe/crit_wound = new
-			//crit_wound.apply_wound(bodypart)
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.bleed_rate += 7
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
 		return
@@ -100,6 +101,10 @@
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
 		to_chat(user, "<span class='warning'>The body is too damaged to be revived this way!</span>")
+		return
+
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
+		to_chat(user, "<span class='warning'>Their connection to this realm is too strong!</span>")
 		return
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
