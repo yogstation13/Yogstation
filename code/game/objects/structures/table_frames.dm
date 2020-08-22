@@ -60,6 +60,10 @@
 	new /obj/structure/table_frame/brass(src.loc)
 	qdel(src)
 
+/obj/structure/table_frame/honk_act()
+	new /obj/structure/table_frame/bananium(src.loc)
+	qdel(src)
+
 /*
  * Wooden Frames
  */

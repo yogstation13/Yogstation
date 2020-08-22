@@ -38,10 +38,19 @@
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_added(M)
+	if(ishuman(owner) && !owner.GetComponent(/datum/component/mood))
+		to_chat(owner, "<span class='danger'>You feel more aware of your condition, mood has been enabled!</span>")
+		owner.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_removed(M)
+	var/mob/living/carbon/human/H = M
+	if(H && !H.mood_enabled)
+		var/datum/component/C = M.GetComponent(/datum/component/mood)
+		if(C) //we cannot be too sure they may have somehow removed it
+			to_chat(owner, "<span class='danger'>Your need for mental fitness vanishes alongside the voices, mood has been disabled.</span>")
+			C.RemoveComponent()
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
