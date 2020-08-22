@@ -115,10 +115,7 @@
 		var/mob/M = m
 		var/client/C = M.client
 		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-			if(!stop_web_sounds)
-				C.chatOutput.sendMusic("https://www.youtube.com/watch?v=MU__2jFQ5EY")
-			else
-				C.chatOutput.stopMusic()
+			C.chatOutput.sendMusic("https://www.youtube.com/watch?v=MU__2jFQ5EY")
 
 //Shuttle equipment
 /obj/machinery/shuttle_scrambler
