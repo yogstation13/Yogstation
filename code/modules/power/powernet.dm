@@ -66,7 +66,7 @@
 
 
 //add a power machine to the current powernet
-//Warning : this proc DON'T check if the machine exists
+//Warning : this proc DOESN'T check if the machine exists
 /datum/powernet/proc/add_machine(obj/machinery/power/M)
 	if(M.powernet)// if M already has a powernet...
 		if(M.powernet == src)
@@ -77,7 +77,7 @@
 	nodes[M] = M
 
 //handles the power changes in the powernet
-//called every ticks by the powernet controller
+//called every tick by the powernet controller
 /datum/powernet/proc/reset()
 	//see if there's a surplus of power remaining in the powernet and stores unused power in the SMES
 	netexcess = avail - load

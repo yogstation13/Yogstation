@@ -45,6 +45,36 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"i" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/healthanalyzer{
+	pixel_y = 18
+	},
+/obj/item/clothing/gloves/color/black{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/clothing/mask/balaclava{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/obj/item/paper{
+	info = "Put the prisoner in, use the guillotine with harmful intent.";
+	name = "Guillotine operating instructions";
+	pixel_x = 8;
+	pixel_y = -5
+	},
+/turf/open/floor/plasteel/white,
+/area/security/execution/transfer)
 "j" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -363,26 +393,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"W" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/healthanalyzer{
-	pixel_y = 18
-	},
-/obj/item/clothing/gloves/color/black{
-	pixel_y = 5
-	},
-/obj/item/clothing/mask/balaclava,
-/turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
 "Y" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -420,7 +430,7 @@ a
 a
 M
 s
-W
+i
 Z
 M
 "}

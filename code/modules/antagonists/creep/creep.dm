@@ -38,10 +38,19 @@
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_added(M)
+	if(ishuman(owner) && !owner.GetComponent(/datum/component/mood))
+		to_chat(owner, "<span class='danger'>You feel more aware of your condition, mood has been enabled!</span>")
+		owner.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_obsession_icons_removed(M)
+	var/mob/living/carbon/human/H = M
+	if(H && !H.mood_enabled)
+		var/datum/component/C = M.GetComponent(/datum/component/mood)
+		if(C) //we cannot be too sure they may have somehow removed it
+			to_chat(owner, "<span class='danger'>Your need for mental fitness vanishes alongside the voices, mood has been disabled.</span>")
+			C.RemoveComponent()
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
@@ -87,23 +96,16 @@
 				jealous.owner = owner
 				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
 				objectives += jealous
-
-	if(prob(50))
-		var/datum/objective/protect/yandere_one = new
-		yandere_one.owner = owner
-		yandere_one.target = obsessionmind
-		yandere_one.update_explanation_text()
-		objectives += yandere_one
-		var/datum/objective/maroon/yandere_two = new
-		yandere_two.owner = owner
-		yandere_two.target = obsessionmind
-		yandere_two.update_explanation_text() //usually called in find_target()
-		objectives += yandere_two
-	else
-		var/datum/objective/assassinate/obsessed/kill = new
-		kill.owner = owner
-		kill.target = obsessionmind
-		objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
+	var/datum/objective/protect/yandere_one = new
+	yandere_one.owner = owner
+	yandere_one.target = obsessionmind
+	yandere_one.update_explanation_text()
+	objectives += yandere_one
+	var/datum/objective/maroon/yandere_two = new
+	yandere_two.owner = owner
+	yandere_two.target = obsessionmind
+	yandere_two.update_explanation_text() //usually called in find_target()
+	objectives += yandere_two
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 

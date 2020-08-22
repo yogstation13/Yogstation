@@ -48,6 +48,8 @@ SUBSYSTEM_DEF(economy)
 							"rainbow" = 1000)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
 	var/list/dep_cards = list()
+	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
+	var/obj/item/energy_harvester/moneysink = null
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
@@ -56,7 +58,7 @@ SUBSYSTEM_DEF(economy)
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
-	eng_payout()  // Payout based on nothing. What will replace it? Surplus power, powered APC's, air alarms? Who knows.
+	eng_payout() // Payout based on station integrity. Also adds money from excess power sold via energy harvester.
 	sci_payout() // Payout based on slimes.
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
@@ -71,12 +73,17 @@ SUBSYSTEM_DEF(economy)
 		if(D.department_id == dep_id)
 			return D
 
+/** Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
+  * the energy harvester and adds the cash from that to the budget.
+  */
 /datum/controller/subsystem/economy/proc/eng_payout()
 	var/engineering_cash = 3000
 	engineering_check.count()
 	var/station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
 	station_integrity *= 0.01
 	engineering_cash *= station_integrity
+	if(moneysink)
+		engineering_cash += moneysink.payout()
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
 	if(D)
 		D.adjust_money(engineering_cash)

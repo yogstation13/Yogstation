@@ -391,7 +391,7 @@ SUBSYSTEM_DEF(demo)
 	msg += "Upd:[marked_dirty.len]|"
 	msg += "Del:[del_list.len]"
 	msg += "}"
-	..(msg)
+	return ..(msg)
 
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
 	if(!isturf(T))

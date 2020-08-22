@@ -1,3 +1,5 @@
+#define FLUKEOPS_TIME_DELAY 12000 // 20 minutes, how long before the credits stop calling the nukies flukeops
+
 /datum/game_mode/nuclear
 	name = "nuclear emergency"
 	config_tag = "nuclear"
@@ -8,6 +10,7 @@
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
+	title_icon = "nukeops"
 
 	announce_span = "danger"
 	announce_text = "Syndicate forces are approaching the station in an attempt to destroy it!\n\
@@ -172,3 +175,21 @@
 		/obj/item/tank/jetpack/oxygen/harness=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1,\
 		/obj/item/kitchen/knife/combat/survival)
+
+/datum/game_mode/nuclear/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	if((world.time-SSticker.round_start_time) < (FLUKEOPS_TIME_DELAY)) // If the nukies died super early, they're basically a massive disappointment
+		title_icon = "flukeops"
+
+	round_credits += "<center><h1>The [syndicate_name()] Operatives:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/operative in nuke_team.members)
+		round_credits += "<center><h2>[operative.name] as a nuclear operative</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The operatives blew themselves up!</h2>", "<center><h2>Their remains could not be identified!</h2>")
+		round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits
