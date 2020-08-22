@@ -444,7 +444,7 @@
 			if(cult.cult_ascendent)
 				to_chat(user, "<span class='cultitalic'>[L] is thrown away in a flash of red light!</span>")
 				L.Knockdown(100)
-				L.apply_damage(50), STAMINA, BODY_ZONE_HEAD)
+				L.apply_damage(50, STAMINA, BODY_ZONE_HEAD)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 				target.throw_at(throw_target, 5, 4)
 				L.flash_act(1,1)
