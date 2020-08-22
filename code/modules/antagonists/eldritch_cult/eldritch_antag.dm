@@ -35,6 +35,7 @@
 	current.log_message("has been converted to the cult of the forgotten ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
+	SSticker.mode.update_heretic_icons_added(owner)
 	if(give_equipment)
 		equip_cultist()
 	return ..()
@@ -50,6 +51,8 @@
 		owner.current.log_message("has renounced the cult of the old ones!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
+
+	SSticker.mode.update_heretic_icons_removed(owner)
 
 	return ..()
 
