@@ -34,7 +34,7 @@
 	name = "Cold Fusion Test Canister"	
 	desc = "This should never be spawned in game. Contains dilithium for cold fusion."	
 	icon_state = "green"	
-/obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()	
+/obj/machinery/portable_atmospherics/canister/fusion_test_4/create_gas()	
 	air_contents.set_moles(/datum/gas/tritium, 1000)
 	air_contents.set_moles(/datum/gas/plasma, 4500)
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
