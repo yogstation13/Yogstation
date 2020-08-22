@@ -538,7 +538,7 @@
 /area/awaymission/academy/academyaft)
 "ja" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Jaidon The Brave"
+	name = "Gumorn The Brave"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
@@ -573,7 +573,7 @@
 /area/awaymission/academy/academyclassroom)
 "js" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "John Sweeps The Knowledgeable"
+	name = "Xupan The Knowledgeable"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
@@ -613,7 +613,7 @@
 /area/awaymission/academy/academyaft)
 "jA" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Faether Martin The Forgotten"
+	name = "Ivius The Forgotten"
 	},
 /turf/open/floor/plasteel{
 	dir = 2;
@@ -970,7 +970,7 @@
 /area/awaymission/academy/academyaft)
 "kV" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Rotciv The Dented"
+	name = "Eronin The Dented"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
@@ -1027,7 +1027,7 @@
 /area/awaymission/academy/academyclassroom)
 "lo" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Art Cox The Star Gazer"
+	name = "Divior The Star Gazer"
 	},
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
@@ -1084,20 +1084,20 @@
 /area/awaymission/academy/academycellar)
 "lB" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Monster The Hacker"
+	name = "Eneth The Hacker"
 	},
 /turf/open/floor/light,
 /area/awaymission/academy/academycellar)
 "lC" = (
 /mob/living/simple_animal/hostile/wizard{
 	desc = "Exiled from his old academy when he casted a illusion spell to make 16 clones of himself then claimed they were not his";
-	name = "Feweh The Replicator"
+	name = "Ador The Replicator"
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
 "lD" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Ian The Commissioned"
+	name = "Otior The Commissioned"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academycellar)
@@ -1376,7 +1376,7 @@
 /area/awaymission/academy/academyaft)
 "nO" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Maya The Funny"
+	name = "Imari The Funny"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -1400,7 +1400,7 @@
 /area/awaymission/academy/academyclassroom)
 "oo" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Maximillus The Boss Slayer"
+	name = "Ogast The Boss Slayer"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyclassroom)
@@ -1576,7 +1576,7 @@
 "rD" = (
 /mob/living/simple_animal/slaughter{
 	desc = "A radioactive being made of condensed fusion material";
-	name = "Radioactive Prat Demon"
+	name = "Radioactive Demon"
 	},
 /turf/open/floor/plating,
 /area/awaymission/academy/academycellar)
@@ -1706,7 +1706,7 @@
 /obj/effect/turf_decal/tile/red,
 /mob/living/simple_animal/hostile/wizard/cloaked{
 	desc = "EI NATH?";
-	name = "Cali The Stubborn"
+	name = "Arune The Stubborn"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/academyclassroom)
@@ -1831,7 +1831,7 @@
 /area/awaymission/academy/academyclassroom)
 "uW" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Marc The Robust"
+	name = "Zoleus The Robust"
 	},
 /obj/structure/noticeboard{
 	pixel_y = 32
@@ -2011,7 +2011,7 @@
 /area/awaymission/academy/academyclassroom)
 "ya" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Druja The Foolish"
+	name = "Odosior The Foolish"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -2084,7 +2084,7 @@
 /area/awaymission/academy/academyclassroom)
 "zN" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Gael The Suicidal"
+	name = "Dugast The Suicidal"
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
@@ -2144,7 +2144,7 @@
 /area/awaymission/academy/academyclassroom)
 "Bp" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Onion The Fixer"
+	name = "Irish The Fixer"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -2171,7 +2171,7 @@
 /area/awaymission/academy/academyclassroom)
 "Ce" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Colburn The Egg"
+	name = "Odel The Egg"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -2336,7 +2336,7 @@
 /area/awaymission/academy/academyaft)
 "FP" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Zero The Valid"
+	name = "Endusim The Valid"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -2429,7 +2429,7 @@
 /area/awaymission/academy/academyaft)
 "GE" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Grug The Caveman"
+	name = "Oviar The Caveman"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyfore)
@@ -2474,7 +2474,7 @@
 /area/awaymission/academy/academycellar)
 "GZ" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Sayk The Young"
+	name = "Polenor The Young"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -2627,7 +2627,7 @@
 /area/awaymission/academy/academyclassroom)
 "Jj" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Poe The Lawyer"
+	name = "Usim The Lawyer"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -2649,7 +2649,7 @@
 /area/awaymission/academy/academyfore)
 "Jv" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Alison The Rabbit"
+	name = "Exone The Rabbit"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "grimy"
@@ -2997,7 +2997,7 @@
 /obj/effect/turf_decal/tile/red,
 /mob/living/simple_animal/hostile/wizard{
 	desc = "Accused of copying off another wizards work without crediting them. A month after he added proper credits...";
-	name = "Jack The Thief"
+	name = "Dizax The Thief"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyclassroom)
@@ -3023,7 +3023,7 @@
 /area/awaymission/academy/academyclassroom)
 "OX" = (
 /mob/living/simple_animal/hostile/syndicate{
-	name = "Operative John Adams"
+	name = "Operative Udore"
 	},
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academycellar)
@@ -3123,7 +3123,7 @@
 /area/awaymission/academy/academyclassroom)
 "QC" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Chester The Cheesy"
+	name = "Aphior The Cheesy"
 	},
 /turf/open/floor/plasteel{
 	dir = 2;
@@ -3261,7 +3261,7 @@
 /area/awaymission/academy/academycellar)
 "Sa" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Alexander The Holy"
+	name = "Idel The Holy"
 	},
 /turf/open/floor/plasteel{
 	dir = 2;
@@ -3570,7 +3570,7 @@
 /area/awaymission/academy/academyfore)
 "Xb" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Jeff The Intern"
+	name = "Ugeleus The Intern"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "chapel"
@@ -3666,7 +3666,7 @@
 	icon_state = "tile_corner"
 	},
 /mob/living/simple_animal/hostile/wizard{
-	name = "Cherry The Scientific"
+	name = "Alleas The Scientific"
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
