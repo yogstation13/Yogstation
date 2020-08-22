@@ -25,5 +25,5 @@
 #define DEFAULT_BLOODTIP "14:6,14:27"
 #define DEFAULT_TOOLTIP "6:-29,5:-2"
 //misc
-#define SOULS_TO_REVIVE 3
+#define SOULS_TO_REVIVE 7
 #define BLOODCULT_EYE "f00"
