@@ -106,7 +106,19 @@
 				announce_to_ghosts(spawner)
 
 	priority_announce("Unidentified armed ship detected near the station.")
+	//plays music from youtube, specifically Cortez Battle - Paper Mario: The Thousand-Year Door
+	for(var/m in GLOB.player_list)
+		var/mob/M = m
+		var/client/C = M.client
+		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+			if(!stop_web_sounds)
+				C.chatOutput.sendMusic("https://www.youtube.com/watch?v=MU__2jFQ5EY")
+			else
+				C.chatOutput.stopMusic()
 
+	sound_to_playing_players('sound/theme/piratical.ogg')
+	for(var/mob/M in GLOB.player_list)
+		M.playsound_local(M, 'sound/theme/piratical.ogg', pressure_affected = FALSE)
 //Shuttle equipment
 
 /obj/machinery/shuttle_scrambler
