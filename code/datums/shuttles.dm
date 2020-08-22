@@ -487,10 +487,6 @@
 	suffix = "delta"
 	name = "arrival shuttle (Delta)"
 
-/datum/map_template/shuttle/arrival/pubby
-	suffix = "pubby"
-	name = "arrival shuttle (Pubby)"
-
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
 	name = "arrival shuttle (Omega)"
