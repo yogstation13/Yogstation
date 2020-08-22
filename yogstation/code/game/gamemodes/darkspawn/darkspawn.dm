@@ -27,7 +27,7 @@
 		restricted_jobs += "Assistant"
 	var/darkbois = max(required_enemies, round(num_players()/14))
 	while(darkbois)
-		var/datum/mind/darkboi = pick(antag_candidates)
+		var/datum/mind/darkboi = antag_pick(antag_candidates)
 		darkspawn += darkboi
 		antag_candidates -= darkboi
 		darkboi.special_role = "Darkspawn"

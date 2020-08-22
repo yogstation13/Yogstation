@@ -634,6 +634,16 @@
 
 /datum/reagent/gluttonytoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	L.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
+	
+/datum/reagent/ghosttoxin
+	name = "Ghost's Curse"
+	description = "An advanced corruptive toxin produced by something otherwordly."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	can_synth = FALSE
+	taste_description = "decay"
+
+/datum/reagent/ghosttoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	L.ForceContractDisease(new /datum/disease/transformation/ghost(), FALSE, TRUE)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"

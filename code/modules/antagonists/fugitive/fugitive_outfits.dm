@@ -3,11 +3,26 @@
 	uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 	r_pocket = /obj/item/kitchen/knife/carrotshiv
+	var/list/rhand_items = list(
+		/obj/item/storage/toolbox/mechanical,
+		/obj/item/twohanded/spear,
+		/obj/item/gun/ballistic/automatic/surplus,
+		/obj/item/melee/baton/cattleprod	
+		) //Prisoners get a random item from this list
 
 /datum/outfit/prisoner/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)
 	if(visualsOnly)
 		return
 	H.fully_replace_character_name(null,"NTP #CC-0[rand(111,999)]") //same as the lavaland prisoner transport, but this time they are from CC, or CentCom
+	var/chosen = pick(rhand_items)
+	var/turf/T = get_turf(H)
+	var/obj/item/I = new chosen(T)
+	H.put_in_hands(I)
+
+	if(istype(I, /obj/item/melee/baton/cattleprod)) //If they get a stunprod, they get one hit worth of charge.
+		var/obj/item/stock_parts/cell/upgraded/C = new(T)
+		C.charge = 2000
+		H.put_in_hands(C)
 
 /datum/outfit/yalp_cultist
 	name = "Cultist of Yalp Elor"
@@ -53,6 +68,7 @@
 	name = "Factory Error Synth"
 	uniform = /obj/item/clothing/under/color/white
 	ears = /obj/item/radio/headset
+	r_pocket = /obj/item/reagent_containers/medspray/synthflesh
 
 /datum/outfit/synthetic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -73,6 +89,21 @@
 	l_pocket = /obj/item/ammo_box/magazine/m45
 	r_pocket = /obj/item/ammo_box/magazine/m45
 	id = /obj/item/card/id
+	back = /obj/item/storage/backpack
+	box = /obj/item/storage/box/survival
+
+/datum/outfit/russianhunters
+	name = "Russian Bouny Hunter"
+	uniform = /obj/item/clothing/under/soviet
+	shoes = /obj/item/clothing/shoes/jackboots
+	head = /obj/item/clothing/head/bearpelt
+	gloves = /obj/item/clothing/gloves/color/black
+	mask = /obj/item/clothing/mask/gas
+	r_hand = /obj/item/gun/ballistic/rifle/boltaction
+	r_pocket = /obj/item/ammo_box/magazine/internal/boltaction
+	mask = /obj/item/clothing/mask/gas
+	back = /obj/item/storage/backpack
+	box = /obj/item/storage/box/survival
 
 /datum/outfit/spacepol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

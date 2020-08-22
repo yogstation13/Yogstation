@@ -5,11 +5,17 @@
 	antagpanel_category = "ClownOp"
 	nukeop_outfit = /datum/outfit/syndicate/clownop
 
+/datum/antagonist/nukeop/clownop/greet()
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)
+	
 /datum/antagonist/nukeop/leader/clownop
 	name = "Clown Operative Leader"
 	roundend_category = "clown operatives"
 	antagpanel_category = "ClownOp"
 	nukeop_outfit = /datum/outfit/syndicate/clownop/leader
+	
+/datum/antagonist/nukeop/leader/clownop/greet()
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/nukeop/leader/clownop/give_alias()
 	title = pick("Head Honker", "Slipmaster", "Clown King", "Honkbearer")

@@ -310,10 +310,8 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aW" = (
 /obj/structure/chair/comfy/shuttle{
@@ -330,9 +328,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aY" = (
-/obj/structure/sign/departments/medbay/alt{
-	pixel_y = -32
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aZ" = (
@@ -524,6 +520,139 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"bu" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bv" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bw" = (
+/obj/machinery/light,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bx" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"by" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bz" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bA" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bC" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bD" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bE" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bF" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bG" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bH" = (
+/obj/structure/sign/departments/medbay/alt{
+	pixel_y = -32
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bI" = (
+/obj/structure/sign/departments/medbay/alt{
+	pixel_y = -32
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"bJ" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "bS" = (
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/item/clothing/suit/apron/surgical,
@@ -607,12 +736,12 @@ aC
 ab
 ak
 ab
-ac
-ac
-ac
+ZL
+ZL
+ZL
 ad
 ak
-ak
+aV
 ak
 ad
 ab
@@ -628,8 +757,8 @@ ab
 (3,1,1) = {"
 aa
 ab
-ac
-ac
+ZL
+ZL
 ab
 ab
 ab
@@ -644,11 +773,11 @@ ab
 ak
 am
 am
+by
 am
 am
 am
-am
-am
+aY
 am
 am
 am
@@ -680,11 +809,11 @@ ab
 ak
 am
 am
+bz
 aM
 aM
 aM
-aM
-aM
+bA
 am
 am
 am
@@ -713,18 +842,18 @@ aI
 aC
 aQ
 ab
-ak
-am
-aJ
+bu
+bv
+bw
 aN
 ac
 ab
 ac
 aT
-aV
-aW
-aX
-aY
+bB
+bD
+bF
+bH
 ab
 bS
 bj
@@ -752,11 +881,11 @@ aH
 ak
 am
 am
+bx
 aO
 aO
 aO
-aO
-aO
+bJ
 am
 aW
 aX
@@ -786,17 +915,17 @@ am
 am
 am
 am
+aZ
+am
+by
 am
 am
 am
-am
-am
-am
-am
+aY
 am
 aW
 aX
-aZ
+am
 ac
 bf
 bg
@@ -824,15 +953,15 @@ am
 am
 am
 am
+by
 am
 am
 am
-am
-am
+aY
 am
 aW
 aX
-aZ
+am
 ac
 bf
 bg
@@ -860,11 +989,11 @@ aM
 aM
 aM
 am
+bz
 aM
 aM
 aM
-aM
-aM
+bA
 am
 aW
 aX
@@ -888,7 +1017,7 @@ aw
 ak
 ak
 ak
-ak
+aV
 aJ
 aN
 ac
@@ -901,10 +1030,10 @@ ac
 ab
 ac
 aT
-aV
-aW
-aX
-aY
+bC
+bE
+bG
+bI
 ab
 bf
 bk
@@ -924,19 +1053,19 @@ am
 am
 am
 am
-am
-am
-aO
-aO
-aO
-aO
-aO
+aY
 am
 aO
 aO
 aO
 aO
 aO
+am
+bx
+aO
+aO
+aO
+bJ
 am
 am
 am
@@ -952,15 +1081,15 @@ bt
 (12,1,1) = {"
 aa
 ab
-ac
-ac
+sp
+sp
 ab
 ad
 ax
 ax
 aq
 ak
-ak
+aV
 am
 am
 am
@@ -968,11 +1097,11 @@ am
 am
 am
 am
+by
 am
 am
 am
-am
-am
+aY
 am
 am
 am
@@ -1003,12 +1132,12 @@ ak
 ak
 ak
 ad
-ac
-ac
-ac
+sp
+sp
+sp
 ad
 ak
-ak
+aV
 ak
 ad
 ab

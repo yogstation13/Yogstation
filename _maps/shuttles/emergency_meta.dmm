@@ -2,12 +2,31 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
+"ab" = (
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "ac" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ad" = (
 /turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"ae" = (
+/obj/structure/table,
+/obj/item/folder/blue,
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_y = -32
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "af" = (
 /obj/machinery/door/airlock/titanium{
@@ -39,6 +58,35 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"ai" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"aj" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 32
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"ak" = (
+/obj/structure/sink{
+	dir = 1;
+	icon_state = "sink"
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "al" = (
 /obj/structure/table,
@@ -228,6 +276,18 @@
 /obj/structure/chair/office/dark,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"aD" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "aE" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -269,6 +329,14 @@
 "aJ" = (
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"aK" = (
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/bot,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aL" = (
 /obj/machinery/computer/station_alert{
@@ -314,15 +382,6 @@
 	dir = 2;
 	name = "Station Intercom (General)";
 	pixel_y = -31
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aR" = (
-/obj/structure/table,
-/obj/item/folder/blue,
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_y = -27
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -439,10 +498,6 @@
 /obj/machinery/shower,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"bl" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "bm" = (
 /obj/structure/rack,
 /obj/item/crowbar,
@@ -482,10 +537,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"bt" = (
-/obj/structure/reagent_dispensers/peppertank,
-/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "bu" = (
 /obj/structure/table,
@@ -635,10 +686,6 @@
 /obj/item/cautery,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"bI" = (
-/obj/structure/sink,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "bJ" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
@@ -670,15 +717,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bN" = (
-/obj/machinery/space_heater,
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_y = -27
-	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bO" = (
@@ -883,15 +921,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"cd" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
 "cq" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -983,6 +1012,12 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"Np" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "Ps" = (
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -1067,8 +1102,8 @@ aF
 aL
 aO
 aP
-aJ
-bd
+ad
+ai
 bd
 bd
 bC
@@ -1078,9 +1113,9 @@ Yb
 cq
 am
 aq
-aC
 aG
-ax
+aG
+aG
 aq
 aQ
 ad
@@ -1098,7 +1133,7 @@ LY
 LY
 LY
 aC
-aR
+ae
 ad
 bf
 bT
@@ -1197,7 +1232,7 @@ LY
 aE
 ad
 bi
-cd
+aj
 bs
 bG
 ad
@@ -1213,7 +1248,7 @@ LY
 aS
 ad
 ad
-bt
+ad
 az
 ad
 ad
@@ -1235,8 +1270,8 @@ bH
 ad
 "}
 (15,1,1) = {"
-ag
-Ps
+ad
+ab
 yF
 Ne
 ac
@@ -1247,7 +1282,7 @@ ac
 bk
 Vs
 Vs
-bI
+ak
 Yb
 "}
 (16,1,1) = {"
@@ -1276,8 +1311,8 @@ Zu
 EF
 tb
 ac
-bl
-bl
+Np
+Np
 Vs
 bK
 ad
@@ -1327,7 +1362,7 @@ ac
 bn
 bw
 be
-bN
+aK
 ad
 "}
 (21,1,1) = {"
@@ -1338,8 +1373,8 @@ Ne
 ac
 Ps
 yF
-Ne
-aJ
+aD
+ad
 bo
 be
 be

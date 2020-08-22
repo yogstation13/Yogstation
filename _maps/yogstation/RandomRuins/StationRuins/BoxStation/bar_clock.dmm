@@ -241,17 +241,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
-"dZ" = (
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "eu" = (
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
@@ -410,16 +399,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"os" = (
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/kitchen)
 "pv" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -448,16 +427,6 @@
 	},
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
-/area/crew_quarters/kitchen)
-"qh" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
 "qz" = (
 /obj/machinery/door/firedoor/border_only{
@@ -556,6 +525,13 @@
 /obj/structure/window/reinforced/fulltile/bronze,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"vK" = (
+/obj/structure/table/bronze,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 2
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "wa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -706,6 +682,21 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"Cz" = (
+/obj/item/kitchen/rollingpin{
+	pixel_x = 3
+	},
+/obj/structure/table/bronze,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -5;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "CJ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -949,6 +940,14 @@
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"Nx" = (
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/table/bronze,
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "Oy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4;
@@ -1091,6 +1090,18 @@
 "Uw" = (
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"UN" = (
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/structure/table/bronze,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/kitchen)
 "Vk" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/bronze,
@@ -1158,11 +1169,6 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"ZB" = (
-/obj/item/kitchen/rollingpin,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1477,8 +1483,8 @@ aZ
 yl
 Bl
 SD
-qh
-dZ
+vK
+Nx
 Mg
 CT
 CJ
@@ -1493,7 +1499,7 @@ ba
 al
 pv
 pA
-ZB
+Cz
 eP
 eu
 rZ
@@ -1543,7 +1549,7 @@ lP
 CT
 CT
 iO
-os
+UN
 SJ
 uo
 aa

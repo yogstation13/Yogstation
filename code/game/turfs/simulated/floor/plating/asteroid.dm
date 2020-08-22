@@ -82,7 +82,8 @@
 
 /turf/open/floor/plating/lavaland_baseturf
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	
 /turf/open/floor/plating/asteroid/basalt
 	name = "volcanic floor"
 	baseturfs = /turf/open/floor/plating/asteroid/basalt

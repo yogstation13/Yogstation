@@ -66,38 +66,27 @@ Slimecrossing Potions
 		C.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_SURGERY)
 	qdel(src)
 
-//Love potion - Charged Pink
-/obj/item/slimepotion/lovepotion
-	name = "love potion"
-	desc = "A pink chemical mix thought to inspire feelings of love."
+//Empathy potion - Charged Pink
+/obj/item/slimepotion/empathypotion
+	name = "slime empathy potion"
+	desc = "A pink chemical mix known to allow one to understand slimes."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpink"
 
-/obj/item/slimepotion/lovepotion/attack(mob/living/M, mob/user)
+/obj/item/slimepotion/empathypotion/attack(mob/living/M, mob/user)
 	if(!isliving(M) || M.stat == DEAD)
-		to_chat(user, "<span class='warning'>The love potion only works on living things, sicko!</span>")
+		to_chat(user, "<span class='warning'>The slime empathy potion only works on living things.</span>")
 		return ..()
 	if(istype(M, /mob/living/simple_animal/hostile/megafauna))
-		to_chat(user, "<span class='warning'>The love potion does not work on beings of pure evil!</span>")
+		to_chat(user, "<span class='warning'>The slime empathy potion does not work on beings of pure evil!</span>")
 		return ..()
-	if(user == M)
-		to_chat(user, "<span class='warning'>You can't drink the love potion. What are you, a narcissist?</span>")
-		return ..()
-	if(M.has_status_effect(STATUS_EFFECT_INLOVE))
-		to_chat(user, "<span class='warning'>[M] is already lovestruck!</span>")
-		return ..()
-
-	M.visible_message("<span class='danger'>[user] starts to feed [M] a love potion!</span>",
-		"<span class='userdanger'>[user] starts to feed you a love potion!</span>")
-
+	M.visible_message("<span class='danger'>[user] starts to feed [M] a slime empathy potion!</span>")
 	if(!do_after(user, 50, target = M))
 		return
-	to_chat(user, "<span class='notice'>You feed [M] the love potion!</span>")
-	to_chat(M, "<span class='notice'>You develop feelings for [user], and anyone [user.p_they()] like.</span>")
-	if(M.mind)
-		M.mind.store_memory("You are in love with [user].")
-	M.faction |= "[REF(user)]"
-	M.apply_status_effect(STATUS_EFFECT_INLOVE, user)
+	to_chat(user, "<span class='notice'>You feed [M] the slime empathy potion!</span>")
+	to_chat(M, "<span class='notice'>You feel like you can understand slimes better!.</span>")
+	M.grant_language(/datum/language/slime, TRUE, TRUE, LANGUAGE_ATOM)
+	ADD_TRAIT(M, TRAIT_SLIME_EMPATHY, TRAIT_GENERIC)
 	qdel(src)
 
 //Pressure potion - Charged Dark Blue

@@ -34,10 +34,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"ah" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "ai" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -232,6 +228,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aI" = (
@@ -240,19 +239,13 @@
 /area/shuttle/escape)
 "aJ" = (
 /obj/machinery/door/airlock/titanium,
-/obj/docking_port/mobile/emergency{
-	dheight = 0;
-	dir = 8;
-	dwidth = 6;
-	height = 18;
-	name = "Birdboat emergency escape shuttle";
-	port_direction = 4;
-	width = 14
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
@@ -451,13 +444,14 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "bj" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
+/obj/structure/chair/comfy/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bk" = (
 /obj/structure/chair/comfy/shuttle,
@@ -468,6 +462,41 @@
 /area/shuttle/escape)
 "bl" = (
 /obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"bm" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"bn" = (
+/obj/machinery/door/airlock/titanium,
+/obj/docking_port/mobile/emergency{
+	dheight = 0;
+	dir = 8;
+	dwidth = 6;
+	height = 18;
+	name = "Birdboat emergency escape shuttle";
+	port_direction = 4;
+	width = 14
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"eR" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 
@@ -521,7 +550,7 @@ aa
 "}
 (4,1,1) = {"
 aa
-ao
+bm
 aW
 an
 aO
@@ -537,7 +566,7 @@ aa
 "}
 (5,1,1) = {"
 aa
-ao
+bm
 aW
 an
 af
@@ -580,7 +609,7 @@ an
 an
 an
 an
-bi
+ae
 ab
 "}
 (8,1,1) = {"
@@ -596,7 +625,7 @@ an
 an
 an
 an
-bj
+af
 ab
 "}
 (9,1,1) = {"
@@ -612,7 +641,7 @@ aE
 be
 av
 av
-bk
+bj
 ac
 "}
 (10,1,1) = {"
@@ -692,7 +721,7 @@ aD
 ax
 ai
 ai
-ah
+eR
 ab
 "}
 (15,1,1) = {"
@@ -750,8 +779,8 @@ aq
 ak
 ab
 ab
-aH
 aJ
+bn
 ab
 ab
 au

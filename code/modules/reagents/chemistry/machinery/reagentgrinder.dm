@@ -4,7 +4,7 @@
 	name = "\improper All-In-One Grinder"
 	desc = "From BlenderTech. Will It Blend? Let's test it out!"
 	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "juicer1"
+	icon_state = "juicer"
 	layer = BELOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -13,7 +13,7 @@
 	pass_flags = PASSTABLE
 	resistance_flags = ACID_PROOF
 	var/operating = FALSE
-	var/obj/item/reagent_containers/beaker = null
+	var/obj/item/reagent_containers/container = /obj/item/reagent_containers/glass/beaker/large
 	var/limit = 10
 	var/speed = 1
 	var/list/holdingitems
@@ -24,27 +24,29 @@
 	var/static/radial_juice = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_juice")
 	var/static/radial_mix = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_mix")
 
+/obj/machinery/reagentgrinder/kitchen //starts with a mixing bowl inside instead
+	container = /obj/item/reagent_containers/glass/mixbowl
+
 /obj/machinery/reagentgrinder/Initialize()
 	. = ..()
 	holdingitems = list()
-	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
-	beaker.desc += " May contain blended dust. Don't breathe this in!"
+	container = new container(src)
 
 /obj/machinery/reagentgrinder/constructed/Initialize()
 	. = ..()
 	holdingitems = list()
-	QDEL_NULL(beaker)
+	QDEL_NULL(container)
 	update_icon()
 
 /obj/machinery/reagentgrinder/Destroy()
-	if(beaker)
-		beaker.forceMove(drop_location())
+	if(container)
+		container.forceMove(drop_location())
 	drop_all_items()
 	return ..()
 
 /obj/machinery/reagentgrinder/contents_explosion(severity, target)
-	if(beaker)
-		beaker.ex_act(severity, target)
+	if(container)
+		container.ex_act(severity, target)
 
 /obj/machinery/reagentgrinder/RefreshParts()
 	speed = 1
@@ -61,10 +63,10 @@
 		. += "<span class='warning'>\The [src] is operating.</span>"
 		return
 
-	if(beaker || length(holdingitems))
+	if(container || length(holdingitems))
 		. += "<span class='notice'>\The [src] contains:</span>"
-		if(beaker)
-			. += "<span class='notice'>- \A [beaker].</span>"
+		if(container)
+			. += "<span class='notice'>- \A [container].</span>"
 		for(var/i in holdingitems)
 			var/obj/item/O = i
 			. += "<span class='notice'>- \A [O.name].</span>"
@@ -72,14 +74,14 @@
 	if(!(stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>The status display reads:</span>\n"+\
 		"<span class='notice'>- Grinding reagents at <b>[speed*100]%</b>.</span>"
-		if(beaker)
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+		if(container)
+			for(var/datum/reagent/R in container.reagents.reagent_list)
 				. += "<span class='notice'>- [R.volume] units of [R.name].</span>"
 
 /obj/machinery/reagentgrinder/handle_atom_del(atom/A)
 	. = ..()
-	if(A == beaker)
-		beaker = null
+	if(A == container)
+		container = null
 		update_icon()
 	if(holdingitems[A])
 		holdingitems -= A
@@ -91,26 +93,30 @@
 	holdingitems = list()
 
 /obj/machinery/reagentgrinder/update_icon()
-	if(beaker)
-		icon_state = "juicer1"
-	else
-		icon_state = "juicer0"
+	if(!container)
+		icon_state = "juicer"
+		return
 
-/obj/machinery/reagentgrinder/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
-	if(beaker)
-		beaker.forceMove(drop_location())
-		if(user && Adjacent(user) && !issiliconoradminghost(user))
-			user.put_in_hands(beaker)
-	if(new_beaker)
-		beaker = new_beaker
+	if(istype(container, /obj/item/reagent_containers/glass/mixbowl))
+		icon_state = "juicer_bowl"
 	else
-		beaker = null
+		icon_state = "juicer_beaker"
+
+/obj/machinery/reagentgrinder/proc/replace_container(mob/living/user, obj/item/reagent_containers/new_container)
+	if(container)
+		container.forceMove(drop_location())
+		if(user && Adjacent(user) && !issiliconoradminghost(user))
+			user.put_in_hands(container)
+	if(new_container)
+		container = new_container
+	else
+		container = null
 	update_icon()
 	return TRUE
 
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
 	//You can only screw open empty grinder
-	if(!beaker && !length(holdingitems) && default_deconstruction_screwdriver(user, icon_state, icon_state, I))
+	if(!container && !length(holdingitems) && default_deconstruction_screwdriver(user, icon_state, icon_state, I))
 		return
 
 	if(default_deconstruction_crowbar(I))
@@ -127,7 +133,7 @@
 		. = TRUE //no afterattack
 		if(!user.transferItemToLoc(B, src))
 			return
-		replace_beaker(user, B)
+		replace_container(user, B)
 		to_chat(user, "<span class='notice'>You add [B] to [src].</span>")
 		update_icon()
 		return TRUE //no afterattack
@@ -171,7 +177,7 @@
 
 	var/list/options = list()
 
-	if(beaker || length(holdingitems))
+	if(container || length(holdingitems))
 		options["eject"] = radial_eject
 
 	if(isAI(user))
@@ -183,7 +189,7 @@
 	if(length(holdingitems))
 		options["grind"] = radial_grind
 		options["juice"] = radial_juice
-	else if(beaker?.reagents.total_volume)
+	else if(container?.reagents.total_volume)
 		options["mix"] = radial_mix
 
 	var/choice
@@ -217,20 +223,22 @@
 		var/obj/item/O = i
 		O.forceMove(drop_location())
 		holdingitems -= O
-	if(beaker)
-		replace_beaker(user)
+	if(container)
+		replace_container(user)
 
 /obj/machinery/reagentgrinder/proc/remove_object(obj/item/O)
 	holdingitems -= O
 	qdel(O)
 
 /obj/machinery/reagentgrinder/proc/shake_for(duration)
+	add_overlay("juicer_blend")
 	var/offset = prob(50) ? -2 : 2
 	var/old_pixel_x = pixel_x
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shaking, old_pixel_x), duration)
 
 /obj/machinery/reagentgrinder/proc/stop_shaking(old_px)
+	cut_overlays()
 	animate(src)
 	pixel_x = old_px
 
@@ -249,11 +257,11 @@
 
 /obj/machinery/reagentgrinder/proc/juice()
 	power_change()
-	if(!beaker || stat & (NOPOWER|BROKEN) || beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
+	if(!container || stat & (NOPOWER|BROKEN) || container.reagents.total_volume >= container.reagents.maximum_volume)
 		return
 	operate_for(50, juicing = TRUE)
 	for(var/obj/item/i in holdingitems)
-		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
+		if(container.reagents.total_volume >= container.reagents.maximum_volume)
 			break
 		var/obj/item/I = i
 		check_trash(I)
@@ -264,16 +272,16 @@
 	if(I.on_juice(src) == -1)
 		to_chat(usr, "<span class='danger'>[src] shorts out as it tries to juice up [I], and transfers it back to storage.</span>")
 		return
-	beaker.reagents.add_reagent_list(I.juice_results)
+	container.reagents.add_reagent_list(I.juice_results)
 	remove_object(I)
 
 /obj/machinery/reagentgrinder/proc/grind(mob/user)
 	power_change()
-	if(!beaker || stat & (NOPOWER|BROKEN) || beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
+	if(!container || stat & (NOPOWER|BROKEN) || container.reagents.total_volume >= container.reagents.maximum_volume)
 		return
 	operate_for(60)
 	for(var/i in holdingitems)
-		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
+		if(container.reagents.total_volume >= container.reagents.maximum_volume)
 			break
 		var/obj/item/I = i
 		check_trash(I)
@@ -284,9 +292,9 @@
 	if(I.on_grind(src) == -1) //Call on_grind() to change amount as needed, and stop grinding the item if it returns -1
 		to_chat(usr, "<span class='danger'>[src] shorts out as it tries to grind up [I], and transfers it back to storage.</span>")
 		return
-	beaker.reagents.add_reagent_list(I.grind_results)
+	container.reagents.add_reagent_list(I.grind_results)
 	if(I.reagents)
-		I.reagents.trans_to(beaker, I.reagents.total_volume, transfered_by = user)
+		I.reagents.trans_to(container, I.reagents.total_volume, transfered_by = user)
 	remove_object(I)
 
 /obj/machinery/reagentgrinder/proc/check_trash(obj/item/I)
@@ -298,26 +306,26 @@
 /obj/machinery/reagentgrinder/proc/mix(mob/user)
 	//For butter and other things that would change upon shaking or mixing
 	power_change()
-	if(!beaker || stat & (NOPOWER|BROKEN))
+	if(!container || stat & (NOPOWER|BROKEN))
 		return
 	operate_for(50, juicing = TRUE)
 	addtimer(CALLBACK(src, /obj/machinery/reagentgrinder/proc/mix_complete), 50)
 
 /obj/machinery/reagentgrinder/proc/mix_complete()
-	if(beaker?.reagents.total_volume)
+	if(container?.reagents.total_volume)
 		//Recipe to make Butter
-		var/butter_amt = FLOOR(beaker.reagents.get_reagent_amount(/datum/reagent/consumable/milk) / MILK_TO_BUTTER_COEFF, 1)
-		beaker.reagents.remove_reagent(/datum/reagent/consumable/milk, MILK_TO_BUTTER_COEFF * butter_amt)
+		var/butter_amt = FLOOR(container.reagents.get_reagent_amount(/datum/reagent/consumable/milk) / MILK_TO_BUTTER_COEFF, 1)
+		container.reagents.remove_reagent(/datum/reagent/consumable/milk, MILK_TO_BUTTER_COEFF * butter_amt)
 		for(var/i in 1 to butter_amt)
 			new /obj/item/reagent_containers/food/snacks/butter(drop_location())
 		//Recipe to make Mayonnaise
-		if (beaker.reagents.has_reagent(/datum/reagent/consumable/eggyolk))
-			var/amount = beaker.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
-			beaker.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
-			beaker.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)
+		if (container.reagents.has_reagent(/datum/reagent/consumable/eggyolk))
+			var/amount = container.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
+			container.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
+			container.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)
 
 /obj/machinery/reagentgrinder/MouseDrop_T(atom/dropping, mob/user)
-	if(istype(dropping, /obj/item/reagent_containers/glass/beaker))
+	if(istype(dropping, /obj/item/reagent_containers/glass))
 		attackby(dropping, user)
 	else
 		..()

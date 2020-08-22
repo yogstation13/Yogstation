@@ -3,8 +3,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ab" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ac" = (
@@ -128,12 +127,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "an" = (
@@ -271,12 +264,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aw" = (
@@ -298,12 +285,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ay" = (
@@ -578,16 +559,11 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aS" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "aT" = (
 /obj/machinery/door/airlock/shuttle{
@@ -603,9 +579,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aU" = (
@@ -626,9 +599,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aW" = (
@@ -933,6 +903,32 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"bw" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"bx" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"by" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-21";
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "kt" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1016,25 +1012,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"JO" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Cargo"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "Ts" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1048,25 +1025,6 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Uo" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -1101,9 +1059,9 @@ aq
 ac
 ay
 aa
-ab
-ab
-ab
+bx
+bx
+bx
 aa
 aP
 ac
@@ -1136,7 +1094,7 @@ br
 bv
 "}
 (3,1,1) = {"
-ab
+aS
 ae
 al
 al
@@ -1157,7 +1115,7 @@ bs
 bv
 "}
 (4,1,1) = {"
-ab
+aS
 ae
 al
 al
@@ -1169,7 +1127,7 @@ aF
 aF
 Aw
 aQ
-JO
+aT
 aX
 bf
 bl
@@ -1241,7 +1199,7 @@ bt
 bv
 "}
 (8,1,1) = {"
-ab
+aS
 ah
 ao
 an
@@ -1262,7 +1220,7 @@ bt
 bv
 "}
 (9,1,1) = {"
-ab
+aS
 ai
 an
 at
@@ -1274,7 +1232,7 @@ aE
 aE
 pZ
 aQ
-Uo
+aV
 bb
 bb
 bp
@@ -1283,7 +1241,7 @@ bt
 bv
 "}
 (10,1,1) = {"
-ab
+aS
 aj
 ap
 au
@@ -1294,7 +1252,7 @@ aF
 aF
 aF
 Aw
-aS
+by
 ab
 bc
 bi
@@ -1305,16 +1263,16 @@ bv
 "}
 (11,1,1) = {"
 aa
-ab
-ab
+bw
+bw
 aa
 ac
 aa
-ab
-ab
-ab
-ab
-ab
+bw
+bw
+bw
+bw
+bw
 aa
 ac
 aa

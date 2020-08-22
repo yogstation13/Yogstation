@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(dynamic_midround_delay_min, (15 MINUTES))
 GLOBAL_VAR_INIT(dynamic_midround_delay_max, (35 MINUTES))
 
 // Are HIGHLANDER_RULESETs allowed to stack?
-GLOBAL_VAR_INIT(dynamic_no_stacking, TRUE)
+GLOBAL_VAR_INIT(dynamic_no_stacking, FALSE)
 // A number between -5 and +5. 
 // A negative value will give a more peaceful round and
 // a positive value will give a round with higher threat.

@@ -43,6 +43,8 @@
 		man is a dangerous mutant with the ability to alter himself and the world around him by what he and his leaders believe to be magic. If this man attempts an attack on your station, \
 		his execution is highly encouraged, as is the preservation of his body for later study."
 
+/proc/is_wizard(mob/M) // Check if Wizard
+	return M?.mind?.has_antag_datum(/datum/antagonist/wizard)
 
 /datum/game_mode/wizard/are_special_antags_dead()
 	for(var/datum/mind/wizard in wizards)
@@ -71,4 +73,4 @@
 
 //returns whether the mob is a wizard (or apprentice)
 /proc/iswizard(mob/living/M)
-	return M.mind && M.mind.has_antag_datum(/datum/antagonist/wizard,TRUE)
+	return M?.mind?.has_antag_datum(/datum/antagonist/wizard)

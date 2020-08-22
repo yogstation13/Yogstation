@@ -22,7 +22,12 @@
 	opacity = 0
 
 /obj/machinery/door/poddoor/ert
+	name = "ERT Armory door"
 	desc = "A heavy duty blast door that only opens for dire emergencies."
+	
+/obj/machinery/door/poddoor/deathsquad
+	name = "ERT Mech Bay door"
+	desc = "A heavy duty blast door that only opens for extreme emergencies."
 
 //special poddoors that open when emergency shuttle docks at centcom
 /obj/machinery/door/poddoor/shuttledock

@@ -61,6 +61,30 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"am" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-22"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"an" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"ao" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-22"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
 "ap" = (
 /obj/structure/chair/comfy,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -610,6 +634,13 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"bp" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "bq" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -634,27 +665,29 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "bu" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"bv" = (
-/obj/structure/window/plastitanium,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"bw" = (
 /obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"bx" = (
+"bv" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"bw" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "by" = (
 /obj/structure/table/reinforced,
@@ -709,15 +742,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"bH" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bI" = (
 /obj/machinery/light,
@@ -786,15 +810,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"cj" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
 "cM" = (
 /obj/structure/chair/comfy,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -857,18 +872,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"pi" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"tb" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "us" = (
 /obj/structure/chair/comfy{
@@ -1032,12 +1035,12 @@ ab
 aa
 bs
 bs
-bv
-bv
+bp
+bp
 bs
 bs
-bv
-bv
+bp
+bp
 bs
 bs
 "}
@@ -1079,10 +1082,10 @@ bg
 ab
 aa
 bs
+am
 bu
-bw
-bw
-bw
+bu
+bu
 bs
 ax
 bD
@@ -1127,10 +1130,10 @@ bn
 ab
 aa
 bs
-bH
-pi
-pi
-pi
+an
+ax
+ax
+ax
 bA
 ax
 bI
@@ -1271,10 +1274,10 @@ bG
 ab
 aa
 bs
-cj
-tb
-tb
-tb
+an
+ax
+ax
+ax
 bA
 ax
 bI
@@ -1319,10 +1322,10 @@ bq
 ab
 aa
 bs
-bu
-bx
-bx
-bx
+ao
+bv
+bv
+bv
 bs
 ax
 bD
@@ -1368,12 +1371,12 @@ ab
 aa
 bs
 bs
-bv
-bv
+bw
+bw
 bs
 bs
-bv
-bv
+bw
+bw
 bs
 bs
 "}

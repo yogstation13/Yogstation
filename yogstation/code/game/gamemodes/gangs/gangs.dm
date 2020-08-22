@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(gangs)
 			break
 
 		//Now assign a boss for the gang
-		var/datum/mind/boss = pick_n_take(antag_candidates)
+		var/datum/mind/boss = antag_pick(antag_candidates)
 		antag_candidates -= boss
 		gangboss_candidates += boss
 		boss.restricted_roles = restricted_jobs
@@ -56,3 +56,9 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/datum/antagonist/gang/boss/B = new()
 		M.add_antag_datum(B)
 		B.equip_gang()
+
+/proc/is_gangster(mob/M) // Gangster Checks
+	return M?.mind?.has_antag_datum(/datum/antagonist/gang)
+
+/proc/is_gang_boss(mob/M)
+	return M?.mind?.has_antag_datum(/datum/antagonist/gang/boss)

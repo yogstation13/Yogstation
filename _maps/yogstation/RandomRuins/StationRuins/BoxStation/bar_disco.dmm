@@ -208,8 +208,8 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -220,8 +220,8 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -262,8 +262,8 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
@@ -280,8 +280,8 @@
 /area/crew_quarters/bar)
 "aK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
@@ -396,8 +396,8 @@
 /area/crew_quarters/kitchen)
 "aZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel{
@@ -486,8 +486,8 @@
 "bl" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -755,8 +755,8 @@
 /area/crew_quarters/bar)
 "bZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -765,8 +765,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
@@ -817,11 +817,6 @@
 /obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cr" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/salad/fruit,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "ct" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
@@ -842,16 +837,6 @@
 /area/crew_quarters/kitchen)
 "cC" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"cN" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "cP" = (
@@ -954,6 +939,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"uB" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"vH" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "Gv" = (
 /obj/machinery/light_switch,
 /turf/closed/wall,
@@ -972,6 +976,19 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"RL" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/salad/fruit{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1318,11 +1335,11 @@ ba
 ak
 bJ
 cc
-cr
+uB
 cA
 cy
 cy
-bB
+RL
 aa
 "}
 (23,1,1) = {"
@@ -1352,7 +1369,7 @@ bL
 cy
 cy
 bT
-cN
+vH
 cX
 ak
 aa

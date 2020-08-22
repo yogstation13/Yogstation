@@ -211,6 +211,11 @@ Difficulty: Very Hard
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
+/mob/living/simple_animal/hostile/megafauna/colossus/death()
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
 	visible_message("<span class='colossus'>[src] disintegrates [L]!</span>")
@@ -255,7 +260,6 @@ Difficulty: Very Hard
 	. = ..()
 	if(isturf(target) || isobj(target))
 		target.ex_act(EXPLODE_HEAVY)
-
 
 /obj/item/gps/internal/colossus
 	icon_state = null

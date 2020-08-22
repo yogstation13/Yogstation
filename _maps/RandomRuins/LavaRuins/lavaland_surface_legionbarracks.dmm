@@ -10,59 +10,77 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "d" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/under/roman,
+/obj/item/clothing/shoes/roman,
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "e" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"f" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"h" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/spidereggsham,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"i" = (
-/obj/item/flashlight/flare/torch,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
 "j" = (
-/obj/structure/table,
-/obj/item/clothing/head/helmet/roman/legionnaire,
-/obj/item/flashlight/flare/torch,
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"k" = (
-/obj/structure/mineral_door/sandstone,
-/obj/structure/fans/tiny/invisible,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"l" = (
-/obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"m" = (
-/obj/structure/rack,
-/obj/item/clothing/head/helmet/roman,
-/obj/item/clothing/shoes/roman,
-/obj/item/clothing/under/roman,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "n" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
 "o" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"r" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"t" = (
+/obj/item/flashlight/flare/torch,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"u" = (
+/obj/structure/table,
+/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/flashlight/flare/torch,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"x" = (
+/obj/structure/mineral_door/sandstone,
+/obj/structure/fans/tiny/invisible,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"z" = (
+/obj/structure/table,
+/obj/item/flashlight/flare/torch,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"B" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Q" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"R" = (
+/obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"S" = (
 /obj/structure/rack,
 /obj/item/claymore{
 	desc = "It's cracked and blunted";
@@ -75,45 +93,27 @@
 	name = "battered shield"
 	},
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
-"p" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"q" = (
+"T" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,
+/obj/item/reagent_containers/food/snacks/spidereggsham,
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
-"r" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"s" = (
-/obj/structure/table,
-/obj/item/flashlight/flare/torch,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"t" = (
+"U" = (
 /obj/structure/rack,
-/obj/item/clothing/head/helmet/roman/legionnaire,
-/obj/item/clothing/under/roman,
+/obj/item/clothing/head/helmet/roman,
 /obj/item/clothing/shoes/roman,
+/obj/item/clothing/under/roman,
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
-"V" = (
+"Y" = (
 /obj/structure/table,
 /obj/effect/turf_decal/sand,
 /obj/item/rod_of_asclepius,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -163,10 +163,10 @@ b
 b
 b
 b
-m
-m
-m
-m
+U
+U
+U
+U
 b
 b
 "}
@@ -174,71 +174,71 @@ b
 a
 b
 c
-d
-i
+B
+t
 b
-d
-d
+B
+B
 e
 b
-d
-l
+B
+R
 e
 c
-t
+d
 b
 "}
 (5,1,1) = {"
 a
 b
-d
-V
-d
+B
+Y
+B
 b
 e
 c
-d
-k
-d
-d
+B
+x
+B
+B
 e
-i
 t
+d
 b
 "}
 (6,1,1) = {"
 a
 b
 e
-h
+T
 e
-k
-d
+x
+B
 e
 e
 b
+B
+B
+B
+R
 d
-d
-d
-l
-t
 b
 "}
 (7,1,1) = {"
 a
 b
-d
-d
+B
+B
 c
 b
-l
-d
-i
+R
+B
+t
 b
-o
-o
-o
-o
+S
+S
+S
+S
 b
 b
 "}
@@ -249,9 +249,9 @@ b
 b
 b
 b
-d
-d
-l
+B
+B
+R
 b
 b
 b
@@ -263,72 +263,72 @@ a
 (9,1,1) = {"
 a
 b
-f
-d
-f
+o
+B
+o
 b
-d
+B
 e
-d
+B
 b
-p
+j
 r
-p
-p
+j
+j
 b
 a
 "}
 (10,1,1) = {"
 a
 b
-d
+B
 c
-d
+B
 b
-d
-l
-d
+B
+R
+B
 b
-d
-d
-d
-l
+B
+B
+B
+R
 b
 a
 "}
 (11,1,1) = {"
 a
 b
-d
-d
-d
-k
-d
-d
+B
+B
+B
+x
+B
+B
 e
-k
-d
-d
-q
-s
+x
+B
+B
+Q
+z
 b
 a
 "}
 (12,1,1) = {"
 a
 b
-f
-d
-j
+o
+B
+u
 b
-d
-d
+B
+B
 e
 b
-d
-d
-d
-d
+B
+B
+B
+B
 b
 a
 "}
@@ -340,13 +340,13 @@ b
 b
 b
 b
-k
+x
 b
 b
 r
 r
-p
-p
+j
+j
 b
 a
 "}

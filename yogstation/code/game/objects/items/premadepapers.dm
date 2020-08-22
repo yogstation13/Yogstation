@@ -7,7 +7,7 @@
 	name = "General Requests Form (Form NT-010)"
 
 
-/obj/item/paper/paperwork/general_request_form/New()
+/obj/item/paper/paperwork/general_request_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>General Request Form NT-010</h3></center><hr><b>Name: </b>",/datum/language/common)
@@ -24,7 +24,7 @@
 /obj/item/paper/paperwork/complaint_form
 	name = "Complaint Form (Form NT-021)"
 
-/obj/item/paper/paperwork/complaint_form/New()
+/obj/item/paper/paperwork/complaint_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Complaint Form NT-020</h3></center><hr><b>Complainant: </b>",/datum/language/common)
@@ -48,7 +48,7 @@
 /obj/item/paper/paperwork/incident_report
 	name = "Incident Report (Form NT-400)"
 
-/obj/item/paper/paperwork/incident_report/New()
+/obj/item/paper/paperwork/incident_report/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><hr><h3>Incident Report Form NT-400</h3></center><br>",/datum/language/common)
@@ -89,7 +89,7 @@
 /obj/item/paper/paperwork/sec_incident_report
 	name = "Security Incident Report (Form SEC-030)"
 
-/obj/item/paper/paperwork/sec_incident_report/New()
+/obj/item/paper/paperwork/sec_incident_report/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<br>",/datum/language/common)
@@ -150,7 +150,7 @@
 /obj/item/paper/paperwork/item_form
 	name = "Item Request Form (Form NT-089)"
 
-/obj/item/paper/paperwork/item_form/New()
+/obj/item/paper/paperwork/item_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Item Request Form NT-089</h3></center><hr>",/datum/language/common)
@@ -177,7 +177,7 @@
 /obj/item/paper/paperwork/cyborg_request_form
 	name = "Cyborgization Consent Form (Form NT-203)"
 
-/obj/item/paper/paperwork/cyborg_request_form/New()
+/obj/item/paper/paperwork/cyborg_request_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Cyberization Consent Form NT-203</h3></center><hr>",/datum/language/common)
@@ -204,7 +204,7 @@
 /obj/item/paper/paperwork/hopaccessrequestform
 	name = "HoP Access Request Form (Form NT-022)"
 
-/obj/item/paper/paperwork/hopaccessrequestform/New()
+/obj/item/paper/paperwork/hopaccessrequestform/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>HOP Access Request Form NT-022</h3></center><hr>",/datum/language/common)
@@ -227,7 +227,7 @@
 /obj/item/paper/paperwork/hop_job_change_form
 	name = "Job Reassignment Form (Form NT-059)"
 
-/obj/item/paper/paperwork/hop_job_change_form/New()
+/obj/item/paper/paperwork/hop_job_change_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Job Reassignment Form</h3></center><hr>",/datum/language/common)
@@ -257,7 +257,7 @@
 /obj/item/paper/paperwork/rd_form
 	name = "R&D Request Form (Form SCI-3)"
 
-/obj/item/paper/paperwork/rd_form/New()
+/obj/item/paper/paperwork/rd_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>R&D Request Form SCI-3</h3></center><hr>",/datum/language/common)
@@ -278,7 +278,7 @@
 /obj/item/paper/paperwork/mech_form
 	name = "R&D Mech Request Form (Form SCI-9)"
 
-/obj/item/paper/paperwork/mech_form/New()
+/obj/item/paper/paperwork/mech_form/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Mech Request Form SCI-9</h3></center><hr>",/datum/language/common)
@@ -295,7 +295,7 @@
 /obj/item/paper/paperwork/jobchangecert
 	name = "Job Change Certificate"
 
-/obj/item/paper/paperwork/jobchangecert/New()
+/obj/item/paper/paperwork/jobchangecert/Initialize()
 	. = ..()
 	written = list()
 	written += new/datum/langtext("<center><h3>Job Transfer Certificate</h3></center><hr>",/datum/language/common)
@@ -314,10 +314,30 @@
 	written += new/datum/langtext("",/datum/language/common)
 	update_icon()
 
+//academy ruin paper
+/obj/item/paper/yog/ruins/academy
+	name = "Debug Paper"
+	desc = "Official Wizard Academy Mail"
+
+//in regards to trey being a lizard
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard
+	name = "RE: Trey of the Shattered Voice"
+
+/obj/item/paper/yog/ruins/academy/trey_wizard_lizard/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("<center><h3>Wizard Academy Official Mail</h3></center><hr>",/datum/language/common)
+	written += new/datum/langtext("<b>From: Archmage Daniel the Great</b><br>",/datum/language/common)
+	written += new/datum/langtext("<b>To: Recruiter Billy the Lame</b><hr>",/datum/language/common)
+	written += new/datum/langtext("Bill, where the heck did you find this guy? Are you sure he's wizard material..? He st--te-s a-lot. He's a -tink-ng l-zard--<br>",/datum/language/common)
+	written += new/datum/langtext("<i><b>The rest of the paper is charred...</i></b>",/datum/language/common)
+	update_icon()
+
+
+
 //clipboards
 /obj/item/clipboard/yog/paperwork
 	name = "Paperwork"
-
 
 /obj/item/clipboard/yog/paperwork/rd/Initialize()
 	. = ..()
@@ -370,7 +390,6 @@
 	new /obj/item/paper/paperwork/complaint_form(src)
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/hop_job_change_form(src)
-	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
 	update_icon()

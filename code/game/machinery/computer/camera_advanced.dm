@@ -12,6 +12,9 @@
 	var/datum/action/innate/camera_jump/jump_action = new
 	var/list/actions = list()
 
+	///Should we supress any view changes?
+	var/should_supress_view_changes  = TRUE
+
 	light_color = LIGHT_COLOR_RED
 
 /obj/machinery/computer/camera_advanced/Initialize()
@@ -69,6 +72,7 @@
 
 	current_user = null
 	user.unset_machine()
+	user.client.view_size.unsupress()
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/user)
@@ -154,6 +158,8 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
+	if(should_supress_view_changes )
+		user.client.view_size.supress()
 
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"

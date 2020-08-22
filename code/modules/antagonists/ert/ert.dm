@@ -172,9 +172,9 @@
 	else
 		missiondesc += " Follow orders given to you by your squad leader."
 
-	missiondesc += "Avoid civilian casualties when possible."
+	missiondesc += " Avoid civilian casualties when possible."
 
-	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
+	missiondesc += "<BR><B>Your Mission</B>: [ert_team.mission.explanation_text]"
 	to_chat(owner,missiondesc)
 
 /datum/antagonist/ert/amber/greet()
@@ -209,3 +209,4 @@
 		missiondesc += " Follow orders given to you by your squad leader in order to ensure maximum laughs."
 
 		missiondesc += " Be the funniest Prankster possible!"
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)
