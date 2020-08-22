@@ -1090,8 +1090,8 @@
 /area/awaymission/academy/academycellar)
 "lC" = (
 /mob/living/simple_animal/hostile/wizard{
-	desc = "Currently on the run from NanoTrasen for committing War Crimes";
-	name = "Alexander The Fugitive"
+	desc = "The leader of a small team of hard working archivists.";
+	name = "Anvil The Archivist"
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
