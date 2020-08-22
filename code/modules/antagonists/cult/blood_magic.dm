@@ -417,8 +417,8 @@
 	var/mob/living/L = target
 	if(iscultist(target))
 		return
-	var/datum/antagonist/cult/C = user.mind.has_antag_datum(datum/antagonist/cult)
-	var/datum/team/cult/cult = C.get_team
+	var/datum/antagonist/cult/cultist = user.mind.has_antag_datum(/datum/antagonist/cult)
+	var/datum/team/cult/cult = cultist.get_team()
 	if(iscultist(user))
 		user.visible_message("<span class='warning'>[user] holds up [user.p_their()] hand, which explodes in a flash of red light!</span>", \
 							"<span class='cultitalic'>You attempt to stun [L] with the spell!</span>")
@@ -446,7 +446,7 @@
 				L.Knockdown(100)
 				L.apply_damage(50, STAMINA, BODY_ZONE_HEAD)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
-				target.throw_at(throw_target, 5, 4)
+				L.throw_at(throw_target, 5, 4)
 				L.flash_act(1,1)
 				if(issilicon(target))
 					var/mob/living/silicon/S = L
