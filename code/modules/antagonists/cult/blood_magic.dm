@@ -149,7 +149,7 @@
 	desc = "Empowers your hand to teleport yourself or another cultist to a teleport rune on contact."
 	button_icon_state = "tele"
 	magic_path = "/obj/item/melee/blood_magic/teleport"
-	health_cost = 7
+	health_cost = 50
 
 /datum/action/innate/cult/blood_spell/emp
 	name = "Electromagnetic Pulse"
@@ -494,6 +494,8 @@
 			to_chat(user, "<span class='warning'>The target rune is blocked. You cannot teleport there.</span>")
 			return
 		uses--
+		if(!(target == user))
+			health_cost = 7
 		var/turf/origin = get_turf(user)
 		var/mob/living/L = target
 		if(do_teleport(L, dest, channel = TELEPORT_CHANNEL_CULT))
@@ -501,6 +503,7 @@
 				"<span class='cultitalic'>You speak the words of the talisman and find yourself somewhere else!</span>", "<i>You hear a sharp crack.</i>")
 			dest.visible_message("<span class='warning'>There is a boom of outrushing air as something appears above the rune!</span>", null, "<i>You hear a boom.</i>")
 		..()
+		health_cost = initial(health_cost)
 
 //Shackles
 /obj/item/melee/blood_magic/shackles
