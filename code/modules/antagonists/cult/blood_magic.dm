@@ -139,7 +139,7 @@
 //Cult Blood Spells
 /datum/action/innate/cult/blood_spell/stun
 	name = "Stun"
-	desc = "Empowers your hand to stun and mute a victim on contact."
+	desc = "Empowers your hand to stun and mute a victim on contact. Effects become weaker as the cult grows in size."
 	button_icon_state = "hand"
 	magic_path = "/obj/item/melee/blood_magic/stun"
 	health_cost = 10
@@ -407,7 +407,7 @@
 //Stun
 /obj/item/melee/blood_magic/stun
 	name = "Stunning Aura"
-	desc = "Will stun and mute a victim on contact."
+	desc = "Will stun and mute a victim on contact. Effects become weaker as the cult grows."
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
@@ -458,7 +458,7 @@
 				if(is_servant_of_ratvar(L))
 					L.adjustBruteLoss(30)
 			else if(cult.cult_risen)
-				to_chat(user, "<span class='cultitalic'>In a brilliant flash of red, [L] falls to the ground!</span>")
+				to_chat(user, "<span class='cultitalic'>In a dull flash of red, [L] falls to the ground!</span>")
 				L.Paralyze(80)
 				L.flash_act(1,1)
 				if(issilicon(target))
