@@ -19,3 +19,24 @@
 	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
 	air_contents.set_moles(/datum/gas/nitrous_oxide, 100)
 	air_contents.set_temperature(9999)
+
+/obj/machinery/portable_atmospherics/canister/fusion_test_3
+	name = "Fusion Test Canister"	
+	desc = "This should never be spawned in game."	
+	icon_state = "green"	
+/obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()	
+	air_contents.set_moles(/datum/gas/tritium, 1000)
+	air_contents.set_moles(/datum/gas/plasma, 4500)
+	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
+	air_contents.set_temperature(100000)
+
+/obj/machinery/portable_atmospherics/canister/fusion_test_4
+	name = "Cold Fusion Test Canister"	
+	desc = "This should never be spawned in game. Contains dilithium for cold fusion."	
+	icon_state = "green"	
+/obj/machinery/portable_atmospherics/canister/fusion_test_3/create_gas()	
+	air_contents.set_moles(/datum/gas/tritium, 1000)
+	air_contents.set_moles(/datum/gas/plasma, 4500)
+	air_contents.set_moles(/datum/gas/carbon_dioxide, 1500)
+	air_contents.set_moles(/datum/gas/dilithium, 2000)
+	air_contents.set_temperature(1000)
