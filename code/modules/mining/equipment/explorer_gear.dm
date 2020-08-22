@@ -61,7 +61,7 @@
 	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from Lavaland. It wasn't enough for its last owner."
 	icon_state = "hostile_env"
 	item_state = "hostile_env"
-	clothing_flags = THICKMATERIAL //not spaceproof
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0
@@ -93,7 +93,7 @@
 	item_state = "hostile_env"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	clothing_flags = THICKMATERIAL // no space protection
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
