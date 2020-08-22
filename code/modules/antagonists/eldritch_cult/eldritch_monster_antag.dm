@@ -16,10 +16,15 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ecult_op.ogg', 100, FALSE, pressure_affected = FALSE)//subject to change
 	to_chat(owner, "<span class='boldannounce'>You became an Eldritch Horror!</span>")
 
+/datum/antagonist/heretic_monster/on_gain()
+	SSticker.mode.update_heretic_icons_added(owner)
+	return ..()
+
 /datum/antagonist/heretic_monster/on_removal()
 	if(owner)
 		to_chat(owner, "<span class='boldannounce'>Your master is no longer [master.owner.current.real_name]</span>")
 		owner = null
+	SSticker.mode.update_heretic_icons_removed(owner)
 	return ..()
 
 /datum/antagonist/heretic_monster/proc/set_owner(datum/antagonist/_master)
