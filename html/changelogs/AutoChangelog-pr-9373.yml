@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - rscadd: "Creep/obsession/what have you will forcibly enable mood since its effects are tied to mood, mood will be re-disabled for people who had it off if the trauma is cured"
