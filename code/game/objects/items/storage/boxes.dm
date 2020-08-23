@@ -1074,6 +1074,17 @@
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
+/obj/item/storage/box/rndboards/miner
+	name = "\proper Morokha Heavy Industries Research and Development Kit"
+	desc = "A box containing the essential circuit boards for research and development. Materials, stock parts, and intelligence not included."
+
+/obj/item/storage/box/rndboards/miner/PopulateContents()
+	new /obj/item/circuitboard/machine/autolathe(src)
+	new /obj/item/circuitboard/machine/protolathe(src)
+	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/circuit_imprinter(src)
+	new /obj/item/circuitboard/computer/rdconsole(src)
+
 /obj/item/storage/box/silver_sulf
 	name = "box of silver sulfadiazine patches"
 	desc = "Contains patches used to treat burns."
