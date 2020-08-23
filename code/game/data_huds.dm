@@ -110,7 +110,8 @@
 		maxi_health = 100 //so crit shows up right for aliens and other high-health carbon mobs; noncarbons don't have crit.
 	var/resulthealth = (M.health / maxi_health) * 100
 
-	var/roundedhealth = clamp(round(resulthealth / 6.25)*6.25, -100, 100);
+	//rounds the health to the nearest multiple of 6.25, the minimum is -93.75 to prevent showing as dead when you are 2 hitpoints away from death
+	var/roundedhealth = clamp(round(resulthealth / 6.25)*6.25, -93.75, 100);
 	return "health[roundedhealth]"
 
 //HOOKS
