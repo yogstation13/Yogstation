@@ -175,9 +175,9 @@
 	to_chat(L, "<span class='notice'>You offer [the_cell]'s power to [GLOB.deity], pleasing them.</span>")
 	qdel(I)
 	return TRUE
- /*
-a new religious sect based around donating money for favors
-  */
+/*
+ * A religious sect based around giving money for favor which can be used to get a cool suit and become a golem. 
+ */
 /datum/religion_sect/capitalists
 	name = "The Cult of St. Credit"
 	desc = "A cult oriented around money."
