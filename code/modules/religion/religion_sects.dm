@@ -176,7 +176,7 @@
 	qdel(I)
 	return TRUE
 /*
- * A religious sect based around giving money for favor which can be used to get a cool suit.
+ * A religious sect based around giving money for favor which can be used to get a cool suit and become a golem. 
  */
 /datum/religion_sect/capitalists
 	name = "The Cult of St. Credit"
@@ -185,7 +185,8 @@
 	alignment = ALIGNMENT_EVIL
 	desired_items = list(/obj/item/holochip)
 	max_favor = 100000
-	rites_list = list(/datum/religion_rites/looks)
+	rites_list = list(/datum/religion_rites/toppercent,
+					  /datum/religion_rites/looks)
 
 /datum/religion_sect/capitalists/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
