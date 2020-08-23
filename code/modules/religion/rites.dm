@@ -104,8 +104,8 @@
 
 /*********Capitalists**********/
 /*
-this rites gives you some snazzy looking clothes for 100 favor
-  */
+* this rites gives you some snazzy looking clothes for 100 favor
+*/
 /datum/religion_rites/looks
 	name = "Gonna look like it"
 	desc = "From rags to riches? Better get rid of the rags then!"
