@@ -199,7 +199,7 @@ a new religious sect based around donating money for favors
 		user.visible_message("<span class='notice'>[H] is too poor to recieve [GLOB.deity]'s blessing!</span>")
 	else
 		var/heal_amt = 10
-		var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+		var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
 
 		if(hurt_limbs.len)
 			for(var/X in hurt_limbs)
