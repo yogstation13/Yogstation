@@ -14,7 +14,7 @@
 
 	var/cooldown_check = 0
 
-	var/cooldown = (2 SECONDS)
+	var/cooldown = 2 SECONDS
 	var/stunforce = 100
 	var/status = 0
 	var/obj/item/stock_parts/cell/cell
