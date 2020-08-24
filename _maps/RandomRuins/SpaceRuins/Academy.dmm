@@ -1090,8 +1090,8 @@
 /area/awaymission/academy/academycellar)
 "lC" = (
 /mob/living/simple_animal/hostile/wizard{
-	desc = "Exiled from his old academy when he casted a illusion spell to make 16 clones of himself then claimed they were not his";
-	name = "Feweh The Replicator"
+	desc = "The leader of a small team of hard working archivists.";
+	name = "Anvil The Archivist"
 	},
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
