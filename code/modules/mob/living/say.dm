@@ -84,7 +84,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
-	var/static/list/stamcrit_disallowed_modes = list(MODE_HEADSET = TRUE)
 	var/static/list/stun_disallowed_modes = list(MODE_HEADSET = TRUE)
 	var/talk_key = get_key(message)
 
@@ -99,6 +98,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/message_mode = get_message_mode(message)
 	var/original_message = message
 	var/in_critical = InCritical()
+	var/is_paralyzed = IsParalyzed()
 
 	if(one_character_prefix[message_mode])
 		message = copytext_char(message, 2)
@@ -128,13 +128,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else if(stat == UNCONSCIOUS)
 		if(!(unconscious_allowed_modes[message_mode]))
 			return
-	else if(has_status_effect(STATUS_EFFECT_PARALYZED))
+	else if(is_paralyzed)
 		if(stun_disallowed_modes[message_mode])
 			return
-	else ifcarbon()
-		if(var/mob/living/carbon/stam_paralyzed)
-			if(stamcrit_disallowed_modes[message_mode])
-				return
 
 	// language comma detection.
 	var/datum/language/message_language = get_message_language(message)
