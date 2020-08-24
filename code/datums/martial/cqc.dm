@@ -132,7 +132,7 @@
 	log_combat(A, D, "pressured (CQC)")
 	var/list/viable_zones = (BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/selected_zone = A.zone_selected
-	if(!viable_zones.Find(selected_zone)
+	if(!viable_zones.Find(selected_zone))
 		selected_zone = pick(viable_zones)
 	D.visible_message("<span class='warning'>[A] quickly wrenches [D]'s [selected_zone]!</span>")
 	D.drop_all_held_items()
