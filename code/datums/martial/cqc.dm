@@ -215,7 +215,7 @@
 							"<span class='userdanger'>[A] leg sweeps you!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 		D.Paralyze(10)
-		D.Knockdown(60)
+		D.Knockdown(30)
 		A.set_resting(FALSE)
 		A.SetKnockdown(0)
 		log_combat(A, D, "sweeped (CQC)")
