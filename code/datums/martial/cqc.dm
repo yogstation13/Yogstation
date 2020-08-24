@@ -123,17 +123,20 @@
 /**
   * CQC pressure attack
   *
-  * Attack that deals 30 stamina damage and immobilizes the target for 6 seconds
+  * Attack that disables a limb if an arm/leg is selected, randomly selects a limb if one is not selected
   * also forces them to drop anything they are holding
   */
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "pressured (CQC)")
-	D.visible_message("<span class='warning'>[A] punches [D]'s neck!</span>")
+	var/list/viable_zones = (BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	var/selected_zone = A.zone_selected
+	if(!viable_zones.Find(selected_zone)
+		selected_zone = pick(viable_zones)
+	D.visible_message("<span class='warning'>[A] quickly wrenches [D]'s [selected_zone]!</span>")
 	D.drop_all_held_items()
-	D.adjustStaminaLoss(30)
-	D.Immobilize(60)
+	D.apply_damage(50, STAMINA, selected_zone) //damage dealt from 3 harm intent hits would be roughly 45
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
@@ -182,10 +185,10 @@
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
-		D.grabbedby(A, 1)
+		if(D.grabbedby(A, 1))
+			D.Stun(15)
 		if(A.grab_state < 1)
 			restraining = FALSE
-		D.Stun(15)
 		return TRUE
 	else
 		return FALSE
