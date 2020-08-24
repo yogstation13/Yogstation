@@ -128,11 +128,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else if(stat == UNCONSCIOUS)
 		if(!(unconscious_allowed_modes[message_mode]))
 			return
-	else if(stamparalyzed)
+	else if(stam_paralyzed)
 		if(stamcrit_disallowed_modes[message_mode])
 			return
 	else if(has_status_effect(STATUS_EFFECT_PARALYZED))
-		if(stun_disallowed_modes[messagemode])
+		if(stun_disallowed_modes[message_mode])
 			return
 
 	// language comma detection.
