@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		if(stamcrit_disallowed_modes[message_mode])
 			return
 	else if(has_status_effect(STATUS_EFFECT_PARALYZED))
-		if(stun_disallowed_modes[messagemode]_
+		if(stun_disallowed_modes[messagemode])
 			return
 
 	// language comma detection.
