@@ -1202,10 +1202,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		M.handle_counter(target, user)
 		return FALSE
 	if(attacker_style && attacker_style.grab_act(user,target))
-		return FALSE
+		return TRUE
 	else
 		target.grabbedby(user)
-		return FALSE
+		return TRUE
 
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(!attacker_style.nonlethal && HAS_TRAIT(user, TRAIT_PACIFISM))
