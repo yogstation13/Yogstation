@@ -207,7 +207,7 @@
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
 	D.Immobilize(15)
 	log_combat(A, D, "[picked_hit_type] (CQC)")
-	if(!(A.mobility_flags & MOBILITY_STAND) && !D.stat && (D.mobility_flags & MOBILITY_STAND))
+	if(!(A.mobility_flags & MOBILITY_STAND) && (D.mobility_flags & MOBILITY_STAND))
 		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 							"<span class='userdanger'>[A] leg sweeps you!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
