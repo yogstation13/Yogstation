@@ -442,11 +442,9 @@
 									   "<span class='userdanger'>A feeling of warmth washes over you, rays of holy light surround your body and protect you from the flash of light!</span>")
 		else
 			if(cult.cult_ascendent)
-				to_chat(user, "<span class='cultitalic'>[L] is thrown away in a flash of red light!</span>")
+				to_chat(user, "<span class='cultitalic'>[L] is dazed by a flash of red light!</span>")
 				L.Knockdown(100)
 				L.apply_damage(50, STAMINA, BODY_ZONE_HEAD)
-				var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
-				L.throw_at(throw_target, 5, 4)
 				L.flash_act(1,1)
 				if(issilicon(target))
 					var/mob/living/silicon/S = L
