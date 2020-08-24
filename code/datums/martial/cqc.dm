@@ -130,7 +130,7 @@
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "pressured (CQC)")
-	var/list/viable_zones = (BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+	var/list/viable_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/selected_zone = A.zone_selected
 	if(!viable_zones.Find(selected_zone))
 		selected_zone = pick(viable_zones)
