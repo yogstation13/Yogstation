@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else if(stat == UNCONSCIOUS)
 		if(!(unconscious_allowed_modes[message_mode]))
 			return
-	else if(stam_paralyzed)
+	else if(stam_paralyzed == TRUE)
 		if(stamcrit_disallowed_modes[message_mode])
 			return
 	else if(has_status_effect(STATUS_EFFECT_PARALYZED))
