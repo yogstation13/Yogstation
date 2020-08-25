@@ -429,3 +429,9 @@
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "Ancient Shuttle"
 	icon_state = "yellow"
+
+//ASSISTANT POD
+
+/area/ruin/space/assistantpod
+	name = "Assistant Pod"
+	icon_state = "away"

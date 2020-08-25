@@ -346,4 +346,9 @@
 	suffix = "pubby_monastery.dmm"
 	name = "Pubby Monastery"
 	description = "A beautiful monastery that used to have a station attached to it"
+/datum/map_template/ruin/space/assistantpod
+	id = "assistantpod"
+	suffix = "assistantpod.dmm"
+	name = "Assistant Pod"
+	description = "A long lost escape pod from an older Nanotrasen facility."
 	

@@ -1,0 +1,620 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/bookcase/random/fiction,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"b" = (
+/obj/structure/table/wood/fancy/exoticpurple,
+/obj/item/toy/figure/assistant,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"c" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"d" = (
+/obj/effect/decal/cleanable/greenglow,
+/obj/structure/statue/sandstone/assistant,
+/turf/open/floor/carpet,
+/area/ruin/space/assistantpod)
+"e" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"f" = (
+/obj/structure/sign/poster/contraband/grey_tide,
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/assistantpod)
+"g" = (
+/turf/open/indestructible/grass/sand,
+/area/ruin/space/assistantpod)
+"h" = (
+/obj/item/stack/sheet/metal,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"i" = (
+/obj/structure/bed,
+/turf/open/floor/carpet,
+/area/ruin/space/assistantpod)
+"j" = (
+/obj/structure/grille/broken,
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"k" = (
+/obj/item/shard,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"m" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/assistantpod)
+"n" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"o" = (
+/obj/structure/table/wood/fancy/exoticblue,
+/obj/item/storage/toolbox/mechanical/old,
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"p" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"q" = (
+/obj/item/pickaxe/emergency,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"r" = (
+/obj/item/book/manual/wiki/engineering_hacking,
+/turf/open/floor/carpet,
+/area/ruin/space/assistantpod)
+"s" = (
+/obj/structure/door_assembly/door_assembly_hatch,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"t" = (
+/obj/item/trash/popcorn,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"u" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/freezer/airless,
+/area/ruin/space/assistantpod)
+"v" = (
+/turf/closed/mineral/random,
+/area/ruin/space/assistantpod)
+"x" = (
+/turf/open/space/basic,
+/area/space)
+"y" = (
+/mob/living/simple_animal/hostile/carp,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"A" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand,
+/obj/item/toy/cards/deck,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"B" = (
+/obj/structure/lattice,
+/obj/item/shard,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"C" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/hollow/reinforced,
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"D" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"E" = (
+/obj/structure/table/wood/fancy/royalblue,
+/obj/item/toy/figure/clown,
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"G" = (
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"I" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/carpet,
+/area/ruin/space/assistantpod)
+"L" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/assistantpod)
+"N" = (
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"P" = (
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/carpet,
+/area/ruin/space/assistantpod)
+"Q" = (
+/obj/structure/table/wood/fancy/exoticpurple,
+/obj/item/bikehorn/golden,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"S" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"T" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"U" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/item/reagent_containers/food/snacks/pie/plain,
+/obj/item/reagent_containers/food/snacks/meat/slab/spider,
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/effect/decal/cleanable/food/flour,
+/turf/open/floor/plasteel/freezer/airless,
+/area/ruin/space/assistantpod)
+"W" = (
+/obj/effect/mob_spawn/human/clown/corpse,
+/turf/open/space/basic,
+/area/ruin/space/assistantpod)
+"Y" = (
+/obj/item/trash/floursack,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"Z" = (
+/obj/structure/sign/poster/contraband/lusty_xenomorph,
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/assistantpod)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(3,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(4,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+h
+x
+x
+x
+x
+"}
+(5,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+k
+x
+y
+x
+x
+x
+x
+x
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+g
+g
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(7,1,1) = {"
+x
+x
+x
+x
+x
+v
+v
+g
+g
+x
+x
+x
+W
+x
+x
+x
+x
+e
+x
+x
+"}
+(8,1,1) = {"
+x
+x
+x
+x
+x
+v
+v
+L
+m
+L
+L
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(9,1,1) = {"
+x
+x
+x
+x
+x
+v
+a
+t
+o
+Q
+L
+x
+e
+x
+x
+x
+y
+x
+x
+x
+"}
+(10,1,1) = {"
+x
+x
+x
+x
+v
+v
+p
+D
+G
+S
+s
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(11,1,1) = {"
+x
+x
+x
+x
+v
+u
+N
+A
+b
+E
+L
+x
+x
+B
+e
+x
+x
+x
+x
+x
+"}
+(12,1,1) = {"
+x
+x
+x
+x
+v
+U
+Y
+n
+c
+Z
+L
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(13,1,1) = {"
+x
+x
+x
+x
+v
+v
+v
+d
+P
+r
+C
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(14,1,1) = {"
+x
+x
+x
+x
+v
+v
+v
+I
+i
+T
+j
+x
+x
+q
+x
+x
+B
+x
+x
+x
+"}
+(15,1,1) = {"
+x
+x
+x
+x
+x
+x
+v
+v
+v
+f
+v
+x
+e
+x
+y
+x
+x
+x
+x
+x
+"}
+(16,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+v
+v
+x
+x
+x
+e
+x
+x
+x
+x
+x
+x
+"}
+(17,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(18,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(19,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(20,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
