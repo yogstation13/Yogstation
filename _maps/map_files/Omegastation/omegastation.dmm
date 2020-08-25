@@ -28366,19 +28366,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical)
-"aRu" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/lab)
 "aRv" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -29476,11 +29463,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"aTH" = (
-/obj/machinery/holopad,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/lab)
 "aTJ" = (
 /obj/effect/landmark/start/scientist,
 /obj/structure/cable/white{
@@ -29548,18 +29530,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
-"aTM" = (
-/obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/rnd/production/circuit_imprinter/department/science,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/lab)
 "aTN" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -30873,17 +30843,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/science/research)
-"aWk" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/wrench,
-/obj/item/clothing/glasses/welding,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "aWl" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/stripes/line{
@@ -41228,6 +41187,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"nEV" = (
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "nFG" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 8
@@ -41880,6 +41842,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"qHv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/rnd/production/circuit_imprinter/department/science,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/lab)
 "qMr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -44480,6 +44453,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"uXm" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/wrench,
+/obj/item/clothing/glasses/welding,
+/obj/effect/turf_decal/tile/purple{
+	dir = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "vdX" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -44660,6 +44644,11 @@
 /obj/effect/landmark/start/virologist,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
+"vCC" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "vDt" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -88577,7 +88566,7 @@ aSu
 aTG
 aUA
 aVt
-aWk
+uXm
 aSL
 aWl
 aXE
@@ -88831,7 +88820,7 @@ aPh
 aQw
 aJj
 aSv
-aTH
+vCC
 aUB
 aTJ
 aUF
@@ -89088,9 +89077,9 @@ aPi
 aQz
 aJd
 aJf
-aRu
+nEV
 aSB
-aTM
+qHv
 aUG
 aSL
 aWq
