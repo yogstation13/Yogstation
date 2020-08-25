@@ -133,6 +133,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	icon_type = "cigarette"
 	spawn_type = /obj/item/clothing/mask/cigarette/space_cigarette
+	age_restricted = TRUE
 
 /obj/item/storage/box/fancy/cigarettes/ComponentInitialize()
 	. = ..()

@@ -9,7 +9,7 @@
 		return
 
 	if(check_rights(R_ADMIN, FALSE)) // If they're an admin, then just do an aghost (the FALSE marks that it shouldn't yell about not being admin)
-		//Basically a copy of Yogstation-TG\code\modules\admin\topic.dm, line 960, from 24 Feb 2019
+		//Basically a copy of Yogstation\code\modules\admin\topic.dm, line 960, from 24 Feb 2019
 		if(!isobserver(usr))
 			admin_ghost()
 		var/mob/dead/observer/A = mob

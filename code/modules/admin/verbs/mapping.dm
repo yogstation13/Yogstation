@@ -39,7 +39,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 	/client/proc/see_dirty_varedits,
 	#endif
 	/client/proc/cmd_admin_test_atmos_controllers,
-	/client/proc/cmd_admin_rejuvenate,
 	/datum/admins/proc/show_traitor_panel,
 	/client/proc/disable_communication,
 	/client/proc/cmd_show_at_list,
@@ -117,7 +116,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
-	var/output = {"<B>Camera Abnormalities Report</B><HR>
+	var/output = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Camera Abnormalities Report</B><HR>
 <B>The following abnormalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.</B><BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
@@ -134,13 +133,13 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 			if(!(locate(/obj/structure/grille) in T))
 				var/window_check = 0
 				for(var/obj/structure/window/W in T)
-					if (W.dir == turn(C1.dir,180) || W.dir in list(5,6,9,10) )
+					if (W.dir == turn(C1.dir,180) || (W.dir in list(NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST)) )
 						window_check = 1
 						break
 				if(!window_check)
 					output += "<li><font color='red'>Camera not connected to wall at [ADMIN_VERBOSEJMP(C1)] Network: [json_encode(C1.network)]</font></li>"
 
-	output += "</ul>"
+	output += "</ul></BODY></HTML>"
 	usr << browse(output,"window=airreport;size=1000x500")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Camera Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -167,13 +166,16 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Show roundstart AT list"
 	set desc = "Displays a list of active turfs coordinates at roundstart"
 
-	var/dat = {"<b>Coordinate list of Active Turfs at Roundstart</b>
+	var/dat = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
+	 <b>Coordinate list of Active Turfs at Roundstart</b>
 	 <br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
 
 	for(var/t in GLOB.active_turfs_startlist)
 		var/turf/T = t
 		dat += "[ADMIN_VERBOSEJMP(T)]\n"
 		dat += "<br>"
+
+	dat += "</BODY></HTML>"
 
 	usr << browse(dat, "window=at_list")
 

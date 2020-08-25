@@ -1,5 +1,5 @@
 /obj/mecha/makeshift
-	desc = "A locker with stolen wires, struts, electronics and airlock servos crudley assemebled into something that resembles the fuctions of a mech."
+	desc = "A locker with stolen wires, struts, electronics and airlock servos crudely assembled into something that resembles the functions of a mech."
 	name = "Locker Mech"
 	icon = 'yogstation/icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"
@@ -17,7 +17,7 @@
 	..()
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(sanitize(href_list["drop_from_cargo"]))
-		if(O && O in cargo)
+		if(O && (O in cargo))
 			occupant_message("<span class='notice'>You unload [O].</span>")
 			O.forceMove(loc)
 			cargo -= O

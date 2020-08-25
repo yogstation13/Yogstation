@@ -2,7 +2,8 @@
 	name = "Space Dragon"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
-	
+	show_to_ghosts = TRUE
+
 /datum/antagonist/space_dragon/greet()
 	to_chat(owner, "<b>I am Space Dragon, ex-space carp, and defender of the secrets of constellation, Draco.</b>")
 	to_chat(owner, "<b>Fabulous secret powers were revealed to me the day I held aloft a wizard's staff of change and said 'By the power of Draco, I have the power!'</b>")

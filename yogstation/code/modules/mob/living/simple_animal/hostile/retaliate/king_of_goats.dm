@@ -2,19 +2,19 @@
 
 KING OF GOATS
 
-The king of goat is inside a 9x9 arena protected by two guards while during stage one it is generally a cake walk the later stages however can prove extremely challenging and downright impossible for less skilled miners..
-The king goat is as indicated by his name the king of all goats and as such if you attempt to fight him you will learn why he is the king in the first place...
+found in kinggoatarea.dmm
 
-It has no ranged attacks what so ever but makes up for it by being confined in a small space and having the ability to summon guards, charge at his enemy and do a aoe explosion attack which can prove devistating for most miners.
+It has no ranged attacks but has the ability to summon guards, charge at its enemy and do an AOE explosion attack.
+If defeated at stage three he will fall over dead on the ground and drop a ladder so you may now leave the arena. Will also drop loot.
 
 The three stages of the king goat:
- Stage 1: The king goat is pretty much just a slightly more robust regular goat, the king will proceed to charge at you full force in the hopes of taking you out easily but can be easily defeated by even a unexperienced miner.
- Stage 2: This is where things start heating up. At this stage the king goat will become slightly larger and start doing special attacks which range from summoning guards to come to his aid to stomping his hooves on the ground causing the arena to shake and a aoe explosion to appear around him most miners do not make it pass this stage but if you do...
- Stage 3: Oh boy your in for it now at this stage the king goat will completly heal and grow slightly bigger and start glowing it has the exact same attacks as stage 2 but is more aggressive overall if you can defeat him at stage three he will fall over dead on the ground and drop a ladder so you may now leave the arena but dont forget to grab the loot first!
+ Stage 1: Pretty much just a slightly more robust regular goat, the king will charge at you full force in the hopes of taking you out easily. Can easily be defeated.
+ Stage 2: The king goat will become slightly larger and start doing special attacks, which range from summoning guards to stomping his hooves on the ground (causing the arena to shake and an AOE explosion to appear around him).
+ Stage 3: The king goat will completely heal, grow slightly bigger and start glowing. It has the exact same attacks as stage 2 but is more aggressive overall.
 
 The loot:
-The meteor gun: This baby is a killing machine although it has three shots before needing to be recharged it can insta crit almost anybody and destroys almost anything you fire it at making it a weapon worthy of someone that can defeat the king.
-The king goat pelt: Hope you brought a knife cause your gonna need to butcher the king goats corpse to get this prize. Once you butcher the king goat you can grab his pelt and wear it on your head as armor, boasting complete bomb immunity and slightly better gun and laser immunity then the drake helm at the cost of slightly reduced melee protection this is THE prize to show who the king of lavaland really is around here! Also makes goats friendly towards you as long as you are wearing it for they will see you as their new king.
+The meteor gun: It has three shots before needing to be recharged, can insta-crit almost anybody and destroys almost anything you fire it at.
+The king goat pelt: Gained by butchering the King Goat's corpse. When worn on your head grants complete bomb immunity. Has slightly better gun and laser protection than the drake helm at the cost of slightly reduced melee protection. Makes goats friendly towards you as long as you are wearing it.
 
 Difficulty: Insanely Hard
 
@@ -167,6 +167,17 @@ Difficulty: Insanely Hard
 	melee_damage_upper = 30
 	move_to_delay = 3
 	loot = list(/obj/item/clothing/head/yogs/goatpope)
+
+/mob/living/simple_animal/hostile/retaliate/goat/guard/harem
+	name = "goat with a wig"
+	desc = "A very... handsome beast?"
+	icon_state = "goat_harem"
+	icon_living = "goat_harem"
+	icon_dead = "goat_harem_dead"
+	faction = list("goat_king")
+	attack_same = FALSE
+	minimum_distance = 5
+	retreat_distance = 7
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Retaliate()
 	..()

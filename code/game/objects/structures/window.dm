@@ -91,6 +91,13 @@
 		new/obj/structure/window/reinforced/clockwork/fulltile(get_turf(src))
 	qdel(src)
 
+/obj/structure/window/honk_act()
+	if(fulltile)
+		new/obj/structure/window/bananium/fulltile(get_turf(src))
+	else
+		return
+	qdel(src)
+
 /obj/structure/window/singularity_pull(S, current_size)
 	..()
 	if(current_size >= STAGE_FIVE)
@@ -102,13 +109,15 @@
 	else
 		..(FULLTILE_WINDOW_DIR)
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return 1
 	if(dir == FULLTILE_WINDOW_DIR)
 		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
-		return !density
+	var/attempted_dir = get_dir(loc, target)
+	if(attempted_dir == dir)
+		return
 	if(istype(mover, /obj/structure/window))
 		var/obj/structure/window/W = mover
 		if(!valid_window_location(loc, W.ini_dir))
@@ -119,7 +128,8 @@
 			return FALSE
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
-	return 1
+	else if(attempted_dir != dir)
+		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && (O.pass_flags & PASSGLASS))

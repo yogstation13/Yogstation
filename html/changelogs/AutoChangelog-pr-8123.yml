@@ -1,5 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "The AFK verb will now automatically ahelp if you go AFK as a Xeno, ERT, or most antagonists."
-  - rscadd: "The Suicide verb now warns people with important roles against suiciding."

@@ -30,7 +30,7 @@
 	. = ..()
 	if(.)
 		return
-	var/dat = "<b>Coin Press</b><br>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Coin Press</b><br>"
 
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	for(var/mat_id in materials.materials)
@@ -54,7 +54,7 @@
 	dat += "<A href='?src=[REF(src)];chooseAmt=10'>+10</A> "
 
 	dat += "<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins."
-	dat += "<br><A href='?src=[REF(src)];makeCoins=[1]'>Make coins</A>"
+	dat += "<br><A href='?src=[REF(src)];makeCoins=[1]'>Make coins</A></BODY></HTML>"
 	user << browse(dat, "window=mint")
 
 /obj/machinery/mineral/mint/Topic(href, href_list)
@@ -70,7 +70,7 @@
 		if(materials.materials[href_list["choose"]])
 			chosen = href_list["choose"]
 	if(href_list["chooseAmt"])
-		coinsToProduce = CLAMP(coinsToProduce + text2num(href_list["chooseAmt"]), 0, 1000)
+		coinsToProduce = clamp(coinsToProduce + text2num(href_list["chooseAmt"]), 0, 1000)
 	if(href_list["makeCoins"])
 		var/temp_coins = coinsToProduce
 		processing = TRUE

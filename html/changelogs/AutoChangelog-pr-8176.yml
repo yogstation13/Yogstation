@@ -1,5 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - rscadd: "Makes clockwork golems compatible with tgUI's language holder system."
-  - bugfix: "fixed clock cult not understanding common after declaring war."

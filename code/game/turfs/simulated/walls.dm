@@ -70,7 +70,8 @@
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
 
-	ScrapeAway()
+	var/turf/new_floor = ScrapeAway()
+	new_floor.air_update_turf()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
@@ -248,6 +249,9 @@
 	. = ..()
 	if(.)
 		ChangeTurf(/turf/closed/wall/clockwork)
+
+/turf/closed/wall/honk_act()
+	ChangeTurf(/turf/closed/wall/mineral/bananium)
 
 /turf/closed/wall/get_dumping_location(obj/item/storage/source, mob/user)
 	return null

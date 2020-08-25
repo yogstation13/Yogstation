@@ -1,4 +1,5 @@
 GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
+GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
@@ -12,8 +13,18 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
 
 /datum/objective/New(var/text)
+	GLOB.objectives += src
 	if(text)
 		explanation_text = text
+
+/datum/objective/Destroy(force, ...)
+	GLOB.objectives -= src
+	if(owner)
+		for(var/datum/antagonist/A in owner.antag_datums)
+			A.objectives -= src
+	if(team)
+		team.objectives -= src
+	. = ..()
 
 /datum/objective/proc/get_owners() // Combine owner and team into a single list.
 	. = (team && team.members) ? team.members.Copy() : list()
@@ -582,7 +593,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 				else if(targetinfo.check_special_completion(I))//Returns 1 by default. Items with special checks will return 1 if the conditions are fulfilled.
 					return TRUE
 
-			if(targetinfo && I.type in targetinfo.altitems) //Ok, so you don't have the item. Do you have an alternative, at least?
+			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
 				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
 					return TRUE
 	return FALSE
@@ -1079,7 +1090,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/found = FALSE
 	while (!found)
 		var/area/dropoff_area = pick(GLOB.sortedAreas)
-		if(dropoff_area && is_station_level(dropoff_area.z) && dropoff_area.valid_territory)
+		if(dropoff_area && is_station_level(dropoff_area.z) && !dropoff_area.outdoors)
 			dropoff = dropoff_area
 			found = TRUE
 

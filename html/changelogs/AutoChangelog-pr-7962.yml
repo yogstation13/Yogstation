@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Accents now work moreso as intended, and do not capture incorrectly on the middle of words as much."

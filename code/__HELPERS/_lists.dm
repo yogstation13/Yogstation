@@ -21,6 +21,8 @@
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 
 // binary search sorted insert
 // IN: Object to be inserted
@@ -386,6 +388,7 @@
 	for(var/datum/data/record/R in L)
 		if(R.fields[field] == value)
 			return R
+	return FALSE
 
 
 //Move a single element from position fromIndex within a list, to position toIndex

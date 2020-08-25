@@ -5,9 +5,6 @@
 "ab" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"ac" = (
-/turf/template_noop,
-/area/space)
 "ad" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -145,8 +142,8 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -289,8 +286,8 @@
 /area/crew_quarters/kitchen)
 "aL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map_on-3"
 	},
 /obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
@@ -351,8 +348,8 @@
 /area/crew_quarters/bar)
 "aT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -397,8 +394,8 @@
 "aY" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -426,8 +423,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -689,21 +686,6 @@
 /obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bM" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bN" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bP" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
@@ -718,17 +700,6 @@
 	layer = 5
 	},
 /obj/item/stack/packageWrap,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bT" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bU" = (
@@ -752,20 +723,10 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"bY" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "bZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-3"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -963,8 +924,8 @@
 /area/crew_quarters/bar)
 "cG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1043,6 +1004,30 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"nP" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"pB" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 23;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "rr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1050,6 +1035,26 @@
 	name = "kitchen shutters"
 	},
 /obj/machinery/door/window/westright,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"EC" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"Fq" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Lp" = (
@@ -1065,15 +1070,15 @@
 /area/crew_quarters/bar)
 "Wu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
-ac
-ac
+aa
+aa
 an
 an
 an
@@ -1088,8 +1093,8 @@ ab
 ab
 "}
 (2,1,1) = {"
-ac
-ac
+aa
+aa
 aO
 cO
 cS
@@ -1104,8 +1109,8 @@ ch
 ab
 "}
 (3,1,1) = {"
-ac
-ac
+aa
+aa
 aP
 Lp
 cT
@@ -1384,8 +1389,8 @@ aR
 aU
 aV
 aZ
-bM
-bT
+pB
+Fq
 bX
 bC
 bG
@@ -1400,7 +1405,7 @@ aT
 aj
 aX
 bb
-bN
+nP
 bU
 bC
 ce
@@ -1450,7 +1455,7 @@ bv
 bC
 bC
 bA
-bY
+EC
 cg
 aj
 aa

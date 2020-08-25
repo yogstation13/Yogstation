@@ -47,6 +47,12 @@ Nothing else in the console has ID requirements.
 
 	var/research_control = TRUE
 
+	// VV this to TRUE in order to be able to drag techweb nodes around.
+	// In addition it displays the coordinates of the node in the tooltip.
+	// Use this when making new techweb nodes to determine a good position for it.
+	// It will also prevent clicking on nodes.
+	var/do_node_drag = FALSE 
+
 /obj/machinery/computer/rdconsole/production
 	circuit = /obj/item/circuitboard/computer/rdconsole/production
 	research_control = FALSE
@@ -1041,6 +1047,10 @@ Nothing else in the console has ID requirements.
 	if(ls["view_node"])
 		selected_node_id = ls["view_node"]
 		screen = RDSCREEN_TECHWEB_NODEVIEW
+	if(ls["move_node"] && do_node_drag)
+		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(ls["move_node"])
+		node.ui_x = round(text2num(ls["ui_x"]),32)
+		node.ui_y = round(text2num(ls["ui_y"]),32)
 	if(ls["view_design"])
 		selected_design_id = ls["view_design"]
 		screen = RDSCREEN_TECHWEB_DESIGNVIEW

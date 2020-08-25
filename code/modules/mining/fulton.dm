@@ -18,6 +18,9 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	. += "It has [uses_left] use\s remaining."
 
 /obj/item/extraction_pack/attack_self(mob/user)
+	if(is_species(user, /datum/species/lizard/ashwalker))
+		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
+		return FALSE
 	var/list/possible_beacons = list()
 	for(var/B in GLOB.total_extraction_beacons)
 		var/obj/structure/extraction_point/EP = B
@@ -40,6 +43,9 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/human/user, flag, params)
 	. = ..()
+	if(is_species(user, /datum/species/lizard/ashwalker))
+		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
+		return FALSE
 	if(!beacon)
 		to_chat(user, "[src] is not linked to a beacon, and cannot be used.")
 		return

@@ -22,7 +22,7 @@
 	var/del_on_unbuckle_all = FALSE
 
 /datum/component/riding/Initialize()
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/vehicle_mob_buckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
@@ -140,7 +140,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.change_view(CONFIG_GET(string/default_view))
+			buckled_mob.client.view_size.resetToDefault()
 
 //MOVEMENT
 /datum/component/riding/proc/turf_check(turf/next, turf/current)
@@ -158,7 +158,7 @@
 
 	if(world.time < last_vehicle_move + ((last_move_diagonal? 2 : 1) * vehicle_move_delay * CONFIG_GET(number/movedelay/run_delay))) //yogs - fixed this to work with movespeed
 		return
-	
+
 	AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
 	for(var/mob/M in AM.buckled_mobs)
 		ride_check(M)
@@ -315,7 +315,6 @@
 	for(var/obj/item/riding_offhand/O in user.contents)
 		if(O.parent != AM)
 			CRASH("RIDING OFFHAND ON WRONG MOB")
-			continue
 		if(O.selfdeleting)
 			continue
 		else

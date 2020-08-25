@@ -8,6 +8,7 @@
 	required_enemies = 1
 	recommended_enemies = 1
 	reroll_friendly = FALSE
+	title_icon = "ss13"
 
 	announce_span = "danger"
 	announce_text = "The station's Artificial Intelligence is rogue!\n\
@@ -32,7 +33,7 @@
 		AI.mind.add_antag_datum(/datum/antagonist/traitor/malf)
 
 	gamemode_ready = TRUE
-	return TRUE
+	. = ..()
 
 /datum/game_mode/malf/make_antag_chance()
 	return FALSE //no latejoins for you

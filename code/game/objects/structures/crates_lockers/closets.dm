@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(lockers)
+
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
@@ -45,6 +47,7 @@
 	. = ..()
 	update_icon()
 	PopulateContents()
+	GLOB.lockers += src
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -52,6 +55,7 @@
 
 /obj/structure/closet/Destroy()
 	dump_contents()
+	GLOB.lockers -= src
 	return ..()
 
 /obj/structure/closet/update_icon()
@@ -94,10 +98,10 @@
 		if(HAS_TRAIT(L, TRAIT_SKITTISH))
 			. += "<span class='notice'>Ctrl-Shift-click [src] to jump inside.</span>"
 
-/obj/structure/closet/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(wall_mounted)
 		return TRUE
-	return !density
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
@@ -201,6 +205,7 @@
 	density = TRUE
 	update_icon()
 	update_airtightness()
+	close_storage(user)
 	return TRUE
 
 /obj/structure/closet/proc/toggle(mob/living/user)
@@ -208,6 +213,12 @@
 		return close(user)
 	else
 		return open(user)
+
+/obj/structure/closet/proc/close_storage(mob/living/user)
+	for(var/obj/object in contents)
+		var/datum/component/storage/closeall = object.GetComponent(/datum/component/storage)
+		if(closeall)
+			closeall.close_all()
 
 /obj/structure/closet/deconstruct(disassembled = TRUE)
 	if(ispath(material_drop) && material_drop_amount && !(flags_1 & NODECONSTRUCT_1))
@@ -380,7 +391,7 @@
 /obj/structure/closet/container_resist(mob/living/user)
 	if(opened)
 		return
-	if(ismovableatom(loc))
+	if(ismovable(loc))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		var/atom/movable/AM = loc

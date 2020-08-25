@@ -6,7 +6,7 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
 	gender = PLURAL
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
@@ -104,7 +104,7 @@
 	if(safe_oxygen_max)
 		if(O2_pp > safe_oxygen_max)
 			var/ratio = (breath.get_moles(/datum/gas/oxygen)/safe_oxygen_max) * 10
-			H.apply_damage_type(CLAMP(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type)
+			H.apply_damage_type(clamp(ratio, oxy_breath_dam_min, oxy_breath_dam_max), oxy_damage_type)
 			H.throw_alert("too_much_oxy", /obj/screen/alert/too_much_oxy)
 		else
 			H.clear_alert("too_much_oxy")
@@ -132,7 +132,7 @@
 	if(safe_nitro_max)
 		if(N2_pp > safe_nitro_max)
 			var/ratio = (breath.get_moles(/datum/gas/nitrogen)/safe_nitro_max) * 10
-			H.apply_damage_type(CLAMP(ratio, nitro_breath_dam_min, nitro_breath_dam_max), nitro_damage_type)
+			H.apply_damage_type(clamp(ratio, nitro_breath_dam_min, nitro_breath_dam_max), nitro_damage_type)
 			H.throw_alert("too_much_nitro", /obj/screen/alert/too_much_nitro)
 		else
 			H.clear_alert("too_much_nitro")
@@ -198,7 +198,7 @@
 	if(safe_toxins_max)
 		if(Toxins_pp > safe_toxins_max)
 			var/ratio = (breath.get_moles(/datum/gas/plasma)/safe_toxins_max) * 10
-			H.apply_damage_type(CLAMP(ratio, tox_breath_dam_min, tox_breath_dam_max), tox_damage_type)
+			H.apply_damage_type(clamp(ratio, tox_breath_dam_min, tox_breath_dam_max), tox_damage_type)
 			H.throw_alert("too_much_tox", /obj/screen/alert/too_much_tox)
 		else
 			H.clear_alert("too_much_tox")
@@ -441,7 +441,7 @@
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 10
 	safe_co2_max = 20
-	safe_toxins_max = 20 //Higher resistance to most harmful gasses 
+	safe_toxins_max = 20 //Higher resistance to most harmful gasses
 	SA_para_min = 3
 	SA_sleep_min = 6
 	BZ_trip_balls_min = 2

@@ -41,8 +41,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "h" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "i" = (
@@ -132,8 +131,11 @@
 /area/shuttle/arrival)
 "k" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 5
+	},
 /obj/effect/turf_decal/bot,
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "l" = (
@@ -141,12 +143,11 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
 	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/regular,
 /obj/effect/turf_decal/bot,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "m" = (
@@ -171,7 +172,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plating,
 /area/shuttle/arrival)
 "o" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -291,6 +292,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
@@ -324,6 +328,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "F" = (
@@ -347,9 +354,6 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/turf_decal/bot,
-/obj/item/radio/intercom{
-	pixel_x = -30
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "H" = (
@@ -487,6 +491,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
+"X" = (
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -495,13 +504,13 @@ f
 g
 n
 g
-h
-h
-h
-h
-z
-n
+X
+X
+X
+X
 g
+n
+z
 g
 a
 a
@@ -542,7 +551,7 @@ p
 H
 g
 g
-h
+X
 g
 "}
 (4,1,1) = {"
@@ -562,7 +571,7 @@ I
 N
 Q
 U
-h
+X
 "}
 (5,1,1) = {"
 c
@@ -581,7 +590,7 @@ J
 O
 R
 V
-h
+X
 "}
 (6,1,1) = {"
 b
@@ -600,7 +609,7 @@ K
 P
 S
 U
-h
+X
 "}
 (7,1,1) = {"
 b
@@ -618,7 +627,7 @@ p
 L
 g
 g
-h
+X
 g
 "}
 (8,1,1) = {"
@@ -647,13 +656,13 @@ f
 g
 n
 g
-h
-h
-h
-h
-z
-n
+X
+X
+X
+X
 g
+n
+z
 g
 a
 a

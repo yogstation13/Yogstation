@@ -180,6 +180,15 @@
 		return
 	if(mob_occupant.stat == DEAD) // We don't bother with dead people.
 		return
+	
+	/// Individuals with the MEDICALIGNORE trait will stop the cryo from functioning and display a unique warning unless there is clone damage on the body which cryo happens to be able to heal even with MEDICALIGNORE (oversight probably but one of the one ways to heal their clone damage atm). - Hopek
+	if(HAS_TRAIT(mob_occupant,TRAIT_MEDICALIGNORE) && !mob_occupant.getCloneLoss())
+		src.visible_message("<span class='warning'>[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine.</span>")
+		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
+		on = FALSE
+		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
+		update_icon()
+		return
 
 	if(mob_occupant.health >= mob_occupant.getMaxHealth()) // Don't bother with fully healed people.
 		on = FALSE
@@ -239,10 +248,6 @@
 			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
 
 		air1.set_moles(/datum/gas/oxygen, max(0,air1.get_moles(/datum/gas/oxygen) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
@@ -331,7 +336,7 @@
 																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "cryo", name, 400, 550, master_ui, state)
+		ui = new(user, src, ui_key, "Cryo", name, 400, 550, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data()
@@ -447,5 +452,21 @@
 			node.atmosinit()
 			node.addMember(src)
 		build_network()
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
+	if(on)
+		on = FALSE
+	else if(!state_open)
+		on = TRUE
+	update_icon()
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine()
+	update_icon()
 
 #undef CRYOMOBS

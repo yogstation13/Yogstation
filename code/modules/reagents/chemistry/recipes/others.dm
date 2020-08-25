@@ -552,6 +552,15 @@
 /datum/chemical_reaction/monkey/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	if (location) new /mob/living/carbon/monkey(location)
+	
+/datum/chemical_reaction/gorilla
+	name = "gorilla"
+	id = "gorilla"
+	required_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/gorilla/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/gorilla(location)
 
 
 /datum/chemical_reaction/hair_dye

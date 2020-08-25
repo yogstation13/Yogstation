@@ -15,15 +15,15 @@
 	var/mob/living/carbon/human/H = owner
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/yogs/cluwne))
-		if(!H.doUnEquip(H.wear_mask))
+		if(!H.temporarilyRemoveItemFromInventory(H.wear_mask))
 			qdel(H.wear_mask)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/yogs/cluwne(H), SLOT_WEAR_MASK)
 	if(!istype(H.w_uniform, /obj/item/clothing/under/yogs/cluwne))
-		if(!H.doUnEquip(H.w_uniform))
+		if(!H.temporarilyRemoveItemFromInventory(H.w_uniform))
 			qdel(H.w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/yogs/cluwne(H), SLOT_W_UNIFORM)
 	if(!istype(H.shoes, /obj/item/clothing/shoes/yogs/cluwne))
-		if(!H.doUnEquip(H.shoes))
+		if(!H.temporarilyRemoveItemFromInventory(H.shoes))
 			qdel(H.shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yogs/cluwne(H), SLOT_SHOES)
 

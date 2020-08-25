@@ -54,7 +54,19 @@
 			var/isadmin = 0
 			if(src.client && src.client.holder)
 				isadmin = 1
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(ckey)]\")")
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
+				SELECT id FROM [format_table_name("poll_question")]
+				WHERE (adminonly = 0 OR :isadmin = 1)
+				AND Now() BETWEEN starttime AND endtime
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_vote")]
+					WHERE ckey = :ckey
+				)
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_textreply")]
+					WHERE ckey = :ckey
+				)
+			"}, list("isadmin" = isadmin, "ckey" = ckey))
 			var/rs = REF(src)
 			if(query_get_new_polls.Execute())
 				var/newpoll = 0
@@ -173,9 +185,6 @@
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
 
-	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
 
@@ -402,7 +411,7 @@
 		if(GLOB.highlander)
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
-	
+
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
@@ -522,9 +531,15 @@
 		qdel(src)
 
 /mob/dead/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
+	if(!client)
+		return
+	if(world.time < client.crew_manifest_delay)
+		return
+	client.crew_manifest_delay = world.time + (1 SECONDS)
+	var/dat = "<html><HEAD><meta charset='UTF-8'></HEAD><body>"
 	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest(OOC = 1)
+	dat += GLOB.data_core.get_manifest_html()
+	dat += "</BODY></HTML>"
 
 	src << browse(dat, "window=manifest;size=387x420;can_close=1")
 

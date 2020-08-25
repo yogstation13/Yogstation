@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/glass
 	grind_results = list(/datum/reagent/silicon = 20)
-	point_value = 1
+	point_value = 5
 	tableVariant = /obj/structure/table/glass
 
 /obj/item/stack/sheet/glass/suicide_act(mob/living/carbon/user)
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/rglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/iron = 10)
-	point_value = 4
+	point_value = 6
 
 /obj/item/stack/sheet/rglass/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plasmarglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10, /datum/reagent/iron = 10)
-	point_value = 23
+	point_value = 30
 
 /obj/item/stack/sheet/plasmarglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.prglass_recipes
@@ -323,12 +323,14 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 		qdel(src)
 	return TRUE
 
-/obj/item/shard/Crossed(mob/living/L)
-	if(istype(L) && has_gravity(loc))
-		if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
-			playsound(loc, 'sound/effects/glass_step.ogg', 30, 1)
-		else
-			playsound(loc, 'sound/effects/glass_step.ogg', 50, 1)
+/obj/item/shard/Crossed(atom/movable/AM)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!(L.is_flying() || L.buckled))
+			if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
+				playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
+			else
+				playsound(loc, 'sound/effects/glass_step.ogg', 50, TRUE)
 	return ..()
 
 /obj/item/shard/plasma

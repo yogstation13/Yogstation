@@ -419,7 +419,7 @@
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/living/L in rangers)
+	for(var/mob/L in rangers)
 		if(!L || !L.client)
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)

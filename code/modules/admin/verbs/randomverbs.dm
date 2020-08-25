@@ -163,7 +163,7 @@
 
 	if( !msg )
 		return
-	
+
 	msg = to_utf8(msg, src)
 
 	to_chat(M, msg)
@@ -298,7 +298,7 @@
 				continue	//we don't want to be an alium
 			if(M.client.is_afk())
 				continue	//we are afk
-			if(M.mind && M.mind.current && M.mind.current.stat != DEAD)
+			if(M?.mind?.current?.stat != DEAD)
 				continue	//we have a live body we are tied to
 			candidates += M.ckey
 		if(candidates.len)
@@ -427,7 +427,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.real_name = record_found.fields["name"]
 		new_character.gender = record_found.fields["gender"]
 		new_character.age = record_found.fields["age"]
-		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
+		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
 	else
 		var/datum/preferences/A = new()
 		A.copy_to(new_character)
@@ -747,7 +747,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
 
-	if(view == CONFIG_GET(string/default_view))
+	if(view_size.getView() == view_size.default)
 		//yogs start -- Adds customization and warnings
 		var/newview = input("Select view range:", "FUCK YE", 7) in list(7,10,12,14,32,64,128,"Custom...")
 		if(newview == "Custom...")
@@ -757,10 +757,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(newview > 64)
 			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
 				return
-		change_view(newview)
+		view_size.setTo(newview)
 		//yogs end
 	else
-		change_view(CONFIG_GET(string/default_view))
+		view_size.resetToDefault(getScreenSize(prefs.widescreenpref))
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].")	//why? removed by order of XSI
@@ -862,7 +862,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","red","delta")
+	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","red","gamma","epsilon","delta")
 	if(level)
 		set_security_level(level)
 
@@ -1055,10 +1055,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	holder.modify_goals()
 
 /datum/admins/proc/modify_goals()
-	var/dat = ""
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	for(var/datum/station_goal/S in SSticker.mode.station_goals)
 		dat += "[S.name] - <a href='?src=[REF(S)];[HrefToken()];announce=1'>Announce</a> | <a href='?src=[REF(S)];[HrefToken()];remove=1'>Remove</a><br>"
 	dat += "<br><a href='?src=[REF(src)];[HrefToken()];add_station_goal=1'>Add New Goal</a>"
+	dat += "</BODY></HTML>"
 	usr << browse(dat, "window=goals;size=400x400")
 
 
@@ -1081,7 +1082,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_PIE)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
@@ -1146,6 +1147,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(!puzzle_imprison(target))
 				to_chat(usr,"<span class='warning'>Imprisonment failed!</span>", confidential=TRUE)
 				return
+		if(ADMIN_PUNISHMENT_PIE)
+			var/confirm = alert(usr, "Send honk message?", "Honk Message", "Yes", "No")
+			if(confirm == "Yes")
+				to_chat(target, "<span class='clown'>Honk! You probably did something stupid..</span>")
+			var/mob/living/carbon/C = target
+			C.adminpie(target)
 	punish_log(target, punishment)
 
 /client/proc/punish_log(var/whom, var/punishment)
@@ -1178,7 +1185,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/list/msg = list()
-	msg += "<html><head><title>Playtime Report</title></head><body>Playtime:<BR><UL>"
+	msg += "<html><head><meta charset='UTF-8'><title>Playtime Report</title></head><body>Playtime:<BR><UL>"
 	for(var/client/C in GLOB.clients)
 		msg += "<LI> - [key_name_admin(C)]: <A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(C.mob)]'>" + C.get_exp_living() + "</a></LI>"
 	msg += "</UL></BODY></HTML>"
@@ -1195,7 +1202,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/list/body = list()
-	body += "<html><head><title>Playtime for [C.key]</title></head><BODY><BR>Playtime:"
+	body += "<html><head><meta charset='UTF-8'><title>Playtime for [C.key]</title></head><BODY><BR>Playtime:"
 	body += C.get_exp_report()
 	body += "<A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(C)]'>Toggle Exempt status</a>"
 	body += "</BODY></HTML>"
@@ -1222,3 +1229,33 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		message_admins("[key_name_admin(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name_admin(C)]")
 		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
+
+/mob/living/carbon/proc/adminpie(mob/user)
+	var/obj/item/reagent_containers/food/snacks/pie/cream/p = new (get_turf(pick(oview(3,user))))
+	p.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSMACHINES | PASSCOMPUTER
+	p.throw_at(user, 10, 0.5, usr)
+
+/client/proc/admincryo(mob/living/carbon/human/target as mob)
+	set category = "Admin"
+	set name = "Admin Cryo"
+	if(!check_rights(R_ADMIN))
+		return
+	var/confirm = alert(usr, "Are you Sure you want to offer them?", "Are you Sure", "Yes", "No")
+	if(confirm == "No")
+		return
+	var/offer = alert(usr, "Do you want to try to offer to ghosts first?", "Ghost Offer", "Yes", "No")
+	if(offer == "Yes" && offer_control(target))
+		return
+	for(var/obj/machinery/cryopod/cryopod in GLOB.cryopods)
+		if(cryopod.occupant)
+			continue
+		if(!istype(get_area(cryopod), /area/crew_quarters))
+			continue
+		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
+		target.forceMove(cryopod.loc)
+		var/msg = "[key_name_admin(usr)] has put [target.real_name]/[key_name(target)] into cryostorage at [ADMIN_VERBOSEJMP(target)]."
+		message_admins(msg)
+		log_admin(msg)
+		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
+		cryopod.close_machine(target)
+		return

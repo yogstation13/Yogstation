@@ -23,6 +23,17 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/borderstage = 0
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
+	title_icon = "ss13"
+
+	var/list/possible_virgins = list()
+
+/datum/game_mode/fortnite/can_start()
+	if(!..())
+		return 0
+	possible_virgins = get_players_for_role(ROLE_BATTLEROYALE)
+	if(possible_virgins.len < required_enemies)	
+		return 0
+	return 1
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
@@ -191,7 +202,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/starter_z = 0 //What Z level did we start on?
 
 /obj/structure/battle_bus/attack_hand(mob/user)
-	if(!user in contents)
+	if(!(user in contents))
 		return
 	exit(user)
 
@@ -227,4 +238,5 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		qdel(src) // Thank you for your service
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE

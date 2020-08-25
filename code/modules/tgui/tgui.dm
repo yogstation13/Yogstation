@@ -1,8 +1,11 @@
- /**
-  * tgui
-  *
-  * /tg/station user interface library
- **/
+/**
+ * tgui
+ *
+ * /tg/station user interface library
+ *
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
 
  /**
   * tgui datum (represents a UI).
@@ -34,6 +37,8 @@
 	var/list/initial_data
 	/// The static data used to initialize the UI.
 	var/list/initial_static_data
+	/// Holder for the json string, that is sent during the initial update
+	var/_initial_update
 	/// The status/visibility of the UI.
 	var/status = UI_INTERACTIVE
 	/// Topic state used to determine status/interactability.
@@ -62,14 +67,14 @@
   *
   * return datum/tgui The requested UI.
  **/
-/datum/tgui/New(mob/user, datum/src_object, ui_key, interface, title, width = 0, height = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state, browser_id = null)
+/datum/tgui/New(mob/user, datum/src_object, ui_key, interface, title, width = 0, height = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	src.user = user
 	src.src_object = src_object
 	src.ui_key = ui_key
-	src.window_id = browser_id ? browser_id : "[REF(src_object)]-[ui_key]"
-	src.custom_browser_id = browser_id ? TRUE : FALSE
+	// DO NOT replace with \ref here. src_object could potentially be tagged
+	src.window_id = "[REF(src_object)]-[ui_key]"
 
-	set_interface(interface)
+	src.interface = interface
 
 	if(title)
 		src.title = sanitize(title)
@@ -98,18 +103,17 @@
 	update_status(push = FALSE) // Update the window status.
 	if(status < UI_UPDATE)
 		return // Bail if we're not supposed to open.
-	var/window_size
-	if(width && height) // If we have a width and height, use them.
-		window_size = "size=[width]x[height];"
-	else
-		window_size = ""
+	
+	var/window_options = "can_minimize=0;auto_format=0;"
+	if(width && height)
+		window_options += "size=[width]x[height];"
 	
 	// Remove titlebar and resize handles for a fancy window
-	var/have_title_bar
+	
 	if(user.client.prefs.tgui_fancy)
-		have_title_bar = "titlebar=0;can_resize=0;"
+		window_options  += "titlebar=0;can_resize=0;"
 	else
-		have_title_bar = "titlebar=1;can_resize=1;"
+		window_options  += "titlebar=1;can_resize=1;"
 
 	// Generate page html
 	var/html
@@ -119,22 +123,27 @@
 	// Replace template tokens with important UI data
 	// NOTE: Intentional \ref usage; tgui datums can't/shouldn't
 	// be tagged, so this is an effective unwrap
-	html = replacetextEx(html, "\[ref]", "\ref[src]")
-	html = replacetextEx(html, "\[style]", style)
+	html = replacetextEx(html, "\[tgui:ref]", "\ref[src]")
 
 	// Open the window.
-	user << browse(html, "window=[window_id];can_minimize=0;auto_format=0;[window_size][have_title_bar]")
-	if (!custom_browser_id)
-		// Instruct the client to signal UI when the window is closed.
-		// NOTE: Intentional \ref usage; tgui datums can't/shouldn't
-		// be tagged, so this is an effective unwrap
-		winset(user, window_id, "on-close=\"uiclose \ref[src]\"")
-	SStgui.on_open(src)
+	user << browse(html, "window=[window_id];[window_options]")
 
-	if(!initial_data)
+	// Instruct the client to signal UI when the window is closed.
+	// NOTE: Intentional \ref usage; tgui datums can't/shouldn't
+	// be tagged, so this is an effective unwrap
+	winset(user, window_id, "on-close=\"uiclose \ref[src]\"")
+
+	// Pre-fetch initial state while browser is still loading in
+	// another thread
+	if(!initial_data) {
 		initial_data = src_object.ui_data(user)
-	if(!initial_static_data)
+	}
+	if(!initial_static_data) {
 		initial_static_data = src_object.ui_static_data(user)
+	}
+	_initial_update = url_encode(get_json(initial_data, initial_static_data))
+
+	SStgui.on_open(src)
 
  /**
   * public
@@ -147,7 +156,7 @@
  **/
 /datum/tgui/proc/reinitialize(interface, list/data, list/static_data)
 	if(interface)
-		set_interface(interface) // Set a new interface.
+		src.interface = interface
 	if(data)
 		initial_data = data
 	if(static_data)
@@ -161,7 +170,7 @@
  **/
 /datum/tgui/proc/close()
 	user << browse(null, "window=[window_id]") // Close the window.
-	src_object.ui_close()
+	src_object.ui_close(user)
 	SStgui.on_close(src)
 	for(var/datum/tgui/child in children) // Loop through and close all children.
 		child.close()
@@ -171,25 +180,6 @@
 	qdel(src)
 
 
- /**
-  * public
-  *
-  * Set the style for this UI.
-  *
-  * required style string The new UI style.
- **/
-/datum/tgui/proc/set_style(style)
-	src.style = lowertext(style)
-
- /**
-  * public
-  *
-  * Set the interface (template) for this UI.
-  *
-  * required interface string The new UI interface.
- **/
-/datum/tgui/proc/set_interface(interface)
-	src.interface = lowertext(interface)
 
  /**
   * public
@@ -215,19 +205,24 @@
 	json_data["config"] = list(
 		"title" = title,
 		"status" = status,
-		"screen" = ui_screen,
-		"style" = style,
 		"interface" = interface,
 		"fancy" = user.client.prefs.tgui_fancy,
-		"locked" = user.client.prefs.tgui_lock && !custom_browser_id,
+		"locked" = user.client.prefs.tgui_lock,
+		"observer" = isobserver(user),
 		"window" = window_id,
-		// Intentional \ref usage; tgui datums can't/shouldn't be tagged so this is an effective unwrap
+		// NOTE: Intentional \ref usage; tgui datums can't/shouldn't
+		// be tagged, so this is an effective unwrap
 		"ref" = "\ref[src]"
 	)
+
 	if(!isnull(data))
 		json_data["data"] = data
 	if(!isnull(static_data))
 		json_data["static_data"] = static_data
+
+	// Send shared states
+	if(src_object.tgui_shared_states)
+		json_data["shared"] = src_object.tgui_shared_states
 
 	// Generate the JSON.
 	var/json = json_encode(json_data)
@@ -252,12 +247,24 @@
 
 	switch(action)
 		if("tgui:initialize")
-			user << output(url_encode(get_json(initial_data, initial_static_data)), "[custom_browser_id ? window_id : "[window_id].browser"]:initialize")
+			user << output(_initial_update, "[window_id].browser:update")
 			initialized = TRUE
-		if("tgui:view")
-			if(params["screen"])
-				ui_screen = params["screen"]
+		if("tgui:setSharedState")
+			// Update the window state.
+			update_status(push = FALSE)
+			// Bail if UI is not interactive or usr calling Topic
+			// is not the UI user.
+			if(status != UI_INTERACTIVE)
+				return
+			var/key = params["key"]
+			var/value = params["value"]
+			if(!src_object.tgui_shared_states)
+				src_object.tgui_shared_states = list()
+			src_object.tgui_shared_states[key] = value
 			SStgui.update_uis(src_object)
+		if("tgui:setFancy")
+			var/value = text2num(params["value"])
+			user.client.prefs.tgui_fancy = value
 		if("tgui:log")
 			// Force window to show frills on fatal errors
 			if(params["fatal"])
@@ -265,14 +272,13 @@
 			log_message(params["log"])
 		if("tgui:link")
 			user << link(params["url"])
-		if("tgui:fancy")
-			user.client.prefs.tgui_fancy = TRUE
-		if("tgui:nofrills")
-			user.client.prefs.tgui_fancy = FALSE
 		else
-			update_status(push = FALSE) // Update the window state.
-			if(src_object.ui_act(action, params, src, state)) // Call ui_act() on the src_object.
-				SStgui.update_uis(src_object) // Update if the object requested it.
+			// Update the window state.
+			update_status(push = FALSE)
+			// Call ui_act() on the src_object.
+			if(src_object.ui_act(action, params, src, state))
+				// Update if the object requested it.
+				SStgui.update_uis(src_object)
 
  /**
   * private
@@ -302,14 +308,18 @@
   * optional force bool If the update should be sent regardless of state.
  **/
 /datum/tgui/proc/push_data(data, static_data, force = FALSE)
-	update_status(push = FALSE) // Update the window state.
+	// Update the window state.
+	update_status(push = FALSE)
+	// Cannot update UI if it is not set up yet.
 	if(!initialized)
-		return // Cannot update UI if it is not set up yet.
+		return
+	// Cannot update UI, we have no visibility.
 	if(status <= UI_DISABLED && !force)
-		return // Cannot update UI, we have no visibility.
-
+		return
 	// Send the new JSON to the update() Javascript function.
-	user << output(url_encode(get_json(data, static_data)), "[custom_browser_id ? window_id : "[window_id].browser"]:update")
+	user << output(
+		url_encode(get_json(data, static_data)),
+		"[window_id].browser:update")
 
  /**
   * private
@@ -347,14 +357,16 @@
   * optional push bool Push an update to the UI (an update is always sent for UI_DISABLED).
  **/
 /datum/tgui/proc/set_status(status, push = FALSE)
-	if(src.status != status) // Only update if status has changed.
+	// Only update if status has changed.
+	if(src.status != status)
 		if(src.status == UI_DISABLED)
 			src.status = status
 			if(push)
 				update()
 		else
 			src.status = status
-			if(status == UI_DISABLED || push) // Update if the UI just because disabled, or a push is requested.
+			// Update if the UI just because disabled, or a push is requested.
+			if(status == UI_DISABLED || push)
 				push_data(null, force = TRUE)
 
 /datum/tgui/proc/log_message(message)

@@ -90,6 +90,10 @@
 	var/reset_access_timer_id
 	var/ignorelistcleanuptimer = 1 // This ticks up every automated action, at 300 we clean the ignore list
 	var/robot_arm = /obj/item/bodypart/r_arm/robot
+	
+	var/commissioned = FALSE // Will other (noncommissioned) bots salute this bot?
+	var/can_salute = TRUE
+	var/salute_delay = 60 SECONDS
 
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BOT_HUD, DIAG_HUD, DIAG_PATH_HUD = HUD_LIST_LIST) //Diagnostic HUD views
 
@@ -105,6 +109,19 @@
 		return "<span class='good'>Idle</span>"
 	else
 		return "<span class='average'>[mode_name[mode]]</span>"
+
+/**
+  * Returns a status string about the bot's current status, if it's moving, manually controlled, or idle.
+  */
+/mob/living/simple_animal/bot/proc/get_mode_ui()
+	if(client) //Player bots do not have modes, thus the override. Also an easy way for PDA users/AI to know when a bot is a player.
+		return paicard ? "pAI Controlled" : "Autonomous"
+	else if(!on)
+		return "Inactive"
+	else if(!mode)
+		return "Idle"
+	else
+		return "[mode_name[mode]]"
 
 /mob/living/simple_animal/bot/proc/turn_on()
 	if(stat)
@@ -239,6 +256,14 @@
 
 	if(!on || client)
 		return
+		
+	if(!commissioned && can_salute)
+		for(var/mob/living/simple_animal/bot/B in get_hearers_in_view(5, get_turf(src)))
+			if(B.commissioned)
+				visible_message("<b>[src]</b> performs an elaborate salute for [B]!")
+				can_salute = FALSE
+				addtimer(VARSET_CALLBACK(src, can_salute, TRUE), salute_delay)
+				break
 
 	switch(mode) //High-priority overrides are processed first. Bots can do nothing else while under direct command.
 		if(BOT_RESPONDING)	//Called by the AI.
@@ -438,7 +463,6 @@ Pass the desired type path itself, declaring a temporary var beforehand is not r
 		return scan_result
 	else
 		return FALSE //The current element failed assessment, move on to the next.
-	return
 
 /mob/living/simple_animal/bot/proc/check_bot(targ)
 	var/turf/T = get_turf(targ)
@@ -761,10 +785,10 @@ Pass a positive integer as an argument to override a bot's default speed.
 	else	// no path, so calculate new one
 		calc_summon_path()
 
-/mob/living/simple_animal/bot/Bump(M as mob|obj) //Leave no door unopened!
+/mob/living/simple_animal/bot/Bump(atom/A) //Leave no door unopened!
 	. = ..()
-	if((istype(M, /obj/machinery/door/airlock) ||  istype(M, /obj/machinery/door/window)) && (!isnull(access_card)))
-		var/obj/machinery/door/D = M
+	if((istype(A, /obj/machinery/door/airlock) ||  istype(A, /obj/machinery/door/window)) && (!isnull(access_card)))
+		var/obj/machinery/door/D = A
 		if(D.check_access(access_card))
 			D.open()
 			frustration = 0

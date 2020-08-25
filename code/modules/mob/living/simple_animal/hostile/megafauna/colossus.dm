@@ -82,7 +82,7 @@ Difficulty: Very Hard
 	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/megafauna/colossus/OpenFire()
-	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + 120
 
 	if(client)
@@ -211,6 +211,11 @@ Difficulty: Very Hard
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
+/mob/living/simple_animal/hostile/megafauna/colossus/death()
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
 	visible_message("<span class='colossus'>[src] disintegrates [L]!</span>")
@@ -255,7 +260,6 @@ Difficulty: Very Hard
 	. = ..()
 	if(isturf(target) || isobj(target))
 		target.ex_act(EXPLODE_HEAVY)
-
 
 /obj/item/gps/internal/colossus
 	icon_state = null
@@ -613,7 +617,7 @@ Difficulty: Very Hard
 	if(..() && !ready_to_deploy)
 		GLOB.poi_list |= src
 		ready_to_deploy = TRUE
-		notify_ghosts("An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.", enter_link = "<a href=?src=[REF(src)];ghostjoin=1>(Click to enter)</a>", ghost_sound = 'sound/effects/ghost2.ogg', source = src, action = NOTIFY_ATTACK)
+		notify_ghosts("An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.", enter_link = "<a href=?src=[REF(src)];ghostjoin=1>(Click to enter)</a>", ghost_sound = 'sound/effects/ghost2.ogg', source = src, action = NOTIFY_ATTACKORBIT)
 
 /obj/machinery/anomalous_crystal/helpers/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -649,7 +653,7 @@ Difficulty: Very Hard
 	friendly = "mends"
 	density = FALSE
 	movement_type = FLYING
-	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMPUTER
 	ventcrawler = VENTCRAWLER_ALWAYS
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = HOSTILE_SPAWN

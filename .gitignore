@@ -7,6 +7,10 @@
 #Ignore byond config folder.
 /cfg/**/*
 
+#Ignore changelog entries
+/html/changelogs/**/*
+/html/changelog.html
+
 #Ignore compiled files and other files generated during compilation.
 *.mdme
 *.dmb

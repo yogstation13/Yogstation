@@ -174,7 +174,7 @@
 	cut_overlays()
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
-		rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
+		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
 		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling_overlay)
@@ -260,6 +260,13 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/gluttonytoxin = 1)
+	
+/obj/item/reagent_containers/syringe/ghost
+	name = "Spectral Curse"
+	desc = "A syringe recovered from a dreaded place. It probably isn't wise to use."
+	amount_per_transfer_from_this = 1
+	volume = 1
+	list_reagents = list(/datum/reagent/ghosttoxin = 1)
 
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"

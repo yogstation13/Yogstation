@@ -20,7 +20,6 @@
 		            /obj/item/clothing/head/beanie/stripedred = 3,
 		            /obj/item/clothing/head/beanie/stripedblue = 3,
 		            /obj/item/clothing/head/beanie/stripedgreen = 3,
-					/obj/item/clothing/head/beanie/rasta = 3,
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/head/taqiyahred = 3,
 		            /obj/item/clothing/gloves/fingerless = 2,
@@ -164,6 +163,7 @@
 		            /obj/item/clothing/glasses/sunglasses/cheap = 2,
 		            /obj/item/clothing/glasses/yogs/threed = 2,
 		            /obj/item/clothing/shoes/sneakers/black = 3,
+		            /obj/item/clothing/shoes/yogs/fire_crocs = 1,
 		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,

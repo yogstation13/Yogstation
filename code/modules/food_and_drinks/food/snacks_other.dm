@@ -107,7 +107,18 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	filling_color = "#FFD700"
 	tastes = list("fries" = 3, "cheese" = 1)
-	foodtype = VEGETABLES | GRAIN
+	foodtype = VEGETABLES | GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/poutine
+	name = "poutine"
+	desc = "Fries, cheese, and gravy. Une maudite poutine!"
+	icon_state = "poutine"
+	trash = /obj/item/trash/plate
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/gravy = 6)
+	filling_color = "#5e4b39"
+	tastes = list("gravy" = 3, "cheese" = 1, "fries" = 1)
+	foodtype = VEGETABLES | GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/badrecipe
 	name = "burned mess"
@@ -308,36 +319,6 @@
 	tastes = list("melon" = 1)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/snacks/spacefreezy
-	name = "space freezy"
-	desc = "The best ice cream in space."
-	icon_state = "spacefreezy"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/bluecherryjelly = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
-	filling_color = "#87CEFA"
-	tastes = list("blue cherries" = 2, "ice cream" = 2)
-	foodtype = FRUIT | DAIRY
-
-/obj/item/reagent_containers/food/snacks/sundae
-	name = "sundae"
-	desc = "A classic dessert."
-	icon_state = "sundae"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
-	filling_color = "#FFFACD"
-	tastes = list("ice cream" = 1, "banana" = 1)
-	foodtype = FRUIT | DAIRY | SUGAR
-
-/obj/item/reagent_containers/food/snacks/honkdae
-	name = "honkdae"
-	desc = "The clown's favorite dessert."
-	icon_state = "honkdae"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
-	filling_color = "#FFFACD"
-	tastes = list("ice cream" = 1, "banana" = 1, "a bad joke" = 1)
-	foodtype = FRUIT | DAIRY | SUGAR
-
 /obj/item/reagent_containers/food/snacks/nachos
 	name = "nachos"
 	desc = "Chips from Space Mexico."
@@ -394,7 +375,7 @@
 	name = "stuffed legion"
 	desc = "The former skull of a damned human, filled with goliath meat. It has a decorative lava pool made of ketchup and hotsauce."
 	icon_state = "stuffed_legion"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/medicine/tricordrazine = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/medicine/tricordrazine = 5, /datum/reagent/medicine/lavaland_extract = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
 	foodtype = MEAT
@@ -535,6 +516,7 @@
 	desc = "A sliced piece of juicy pineapple."
 	icon_state = "pineapple_slice"
 	filling_color = "#F6CB0B"
+	juice_results = list(/datum/reagent/consumable/pineapplejuice = 3)
 	tastes = list("pineapple" = 1)
 	foodtype = FRUIT | PINEAPPLE
 

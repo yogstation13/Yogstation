@@ -132,7 +132,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	health = CLAMP(health, 0, maxHealth)
+	health = clamp(health, 0, maxHealth)
 
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
@@ -249,9 +249,10 @@
 	var/atom/A = src.loc
 	if(isturf(A))
 		var/areatemp = get_temperature(environment)
+		var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 		if( abs(areatemp - bodytemperature) > 5)
 			var/diff = areatemp - bodytemperature
-			diff = diff / 5
+			diff = diff / 5 * heat_capacity_factor
 			adjust_bodytemperature(diff)
 
 	if(!environment_is_safe(environment))
@@ -294,11 +295,10 @@
 		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
 	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
 
-/mob/living/simple_animal/Stat()
-	..()
-	if(statpanel("Status"))
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
-		return 1
+/mob/living/simple_animal/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
 	if(loot.len)

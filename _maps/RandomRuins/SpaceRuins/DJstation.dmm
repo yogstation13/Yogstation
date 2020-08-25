@@ -97,8 +97,8 @@
 /area/ruin/space/djstation)
 "as" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/space/syndicate/orange,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
 /obj/item/clothing/mask/breath,
 /turf/open/floor/plating,
 /area/ruin/space/djstation)

@@ -22,7 +22,8 @@
 /datum/guardian_ability/proc/CanBuy()
 	return TRUE
 
-/datum/guardian_ability/proc/Stat()
+/datum/guardian_ability/proc/StatusTab()
+	return list()
 
 // major abilities have a mode usually
 /datum/guardian_ability/major

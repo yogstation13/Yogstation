@@ -394,6 +394,7 @@
 		null_charge_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Null Charge</b> ability. This ability will drain an APC's contents to the void, preventing it from recharging \
 		or sending power until repaired.</i></span>")
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/null_charge(null))
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
@@ -682,8 +683,7 @@
 		to_chat(user, "<span class='notice'>You project [M]'s life force toward the approaching shuttle, extending its arrival duration!</span>")
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
-		M.death()
-		ADD_TRAIT(M, TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+		M.dust()
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000

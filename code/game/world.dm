@@ -3,12 +3,26 @@
 GLOBAL_VAR(restart_counter)
 
 /world/proc/enable_debugger()
-    var/dll = world.GetConfig("env", "EXTOOLS_DLL") || (fexists("./extools.dll") && "./extools.dll")
+    var/dll = (fexists(EXTOOLS) && EXTOOLS)
     if (dll)
         call(dll, "debug_initialize")()
 
-//This happens after the Master subsystem new(s) (it's a global datum)
-//So subsystems globals exist, but are not initialised
+/**
+  * World creation
+  *
+  * Here is where a round itself is actually begun and setup, lots of important config changes happen here
+  * * db connection setup
+  * * config loaded from files
+  * * loads admins
+  * * Sets up the dynamic menu system
+  * * and most importantly, calls initialize on the master subsystem, starting the game loop that causes the rest of the game to begin processing and setting up
+  *
+  * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
+  * but they have not been Initialized at this point, only their New proc has run
+  * 
+  * Nothing happens until something moves. ~Albert Einstein 
+  * 
+  */
 /world/New()
 	enable_debugger() //This does nothing if you aren't trying to debug
 	log_world("World loaded at [time_stamp()]!")
@@ -131,6 +145,8 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 	GLOB.tgui_log = "[GLOB.log_directory]/tgui.log"
 
+	GLOB.demo_log = "[GLOB.log_directory]/demo.txt"
+
 #ifdef UNIT_TESTS
 	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
 	start_log(GLOB.test_log)
@@ -225,6 +241,11 @@ GLOBAL_VAR(restart_counter)
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown()	//run SS shutdowns
 
+	for(var/boi in GLOB.clients)
+		var/client/C = boi
+		if(!istype(C)) continue //yes so this is useful to prevent nulls from preventing the server from rebooting...
+		sync_logout_with_db(C.connection_number)
+
 	TgsReboot()
 
 	if(TEST_RUN_PARAMETER in params)
@@ -263,6 +284,8 @@ GLOBAL_VAR(restart_counter)
 		GM.__gasmixture_unregister()
 		num_deleted++
 	log_world("Deallocated [num_deleted] gas mixtures")
+	if(fexists(EXTOOLS))
+		call(EXTOOLS, "cleanup")()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid

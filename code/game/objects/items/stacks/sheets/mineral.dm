@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	materials = list(MAT_DIAMOND=MINERAL_MATERIAL_AMOUNT)
 	novariants = TRUE
 	grind_results = list(/datum/reagent/carbon = 30)
-	point_value = 25
+	point_value = 50
 	merge_type = /obj/item/stack/sheet/mineral/diamond
 
 GLOBAL_LIST_INIT(diamond_recipes, list ( \
@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	materials = list(MAT_URANIUM=MINERAL_MATERIAL_AMOUNT)
 	novariants = TRUE
 	grind_results = list(/datum/reagent/uranium = 20)
-	point_value = 20
+	point_value = 35
 	merge_type = /obj/item/stack/sheet/mineral/uranium
 
 GLOBAL_LIST_INIT(uranium_recipes, list ( \
@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	max_integrity = 100
 	materials = list(MAT_PLASMA=MINERAL_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/toxin/plasma = 20)
-	point_value = 20
+	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/plasma
 
 /obj/item/stack/sheet/mineral/plasma/suicide_act(mob/living/carbon/user)
@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
 	sheettype = "gold"
 	materials = list(MAT_GOLD=MINERAL_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/gold = 20)
-	point_value = 20
+	point_value = 30
 	merge_type = /obj/item/stack/sheet/mineral/gold
 
 GLOBAL_LIST_INIT(gold_recipes, list ( \
@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(gold_recipes, list ( \
 	sheettype = "silver"
 	materials = list(MAT_SILVER=MINERAL_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/silver = 20)
-	point_value = 20
+	point_value = 25
 	merge_type = /obj/item/stack/sheet/mineral/silver
 	tableVariant = /obj/structure/table/optable
 
@@ -290,7 +290,7 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	throw_range = 3
 	sheettype = "titanium"
 	materials = list(MAT_TITANIUM=MINERAL_MATERIAL_AMOUNT)
-	point_value = 20
+	point_value = 35
 	merge_type = /obj/item/stack/sheet/mineral/titanium
 
 GLOBAL_LIST_INIT(titanium_recipes, list ( \

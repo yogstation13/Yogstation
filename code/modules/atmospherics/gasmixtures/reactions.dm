@@ -50,7 +50,7 @@
 	return NO_REACTION
 
 /datum/gas_reaction/nobliumsupression
-	priority = INFINITY
+	priority = 1000 //ensure all non-HN reactions are lower than this number.
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
@@ -298,7 +298,7 @@
 
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(CLAMP(((air.return_temperature()*old_heat_capacity + reaction_energy)/new_heat_capacity),TCMB,INFINITY))
+			air.set_temperature(clamp(((air.return_temperature()*old_heat_capacity + reaction_energy)/new_heat_capacity),TCMB,INFINITY))
 		return REACTING
 
 /datum/gas_reaction/nitrylformation //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
@@ -398,7 +398,7 @@
 		return REACTING
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
-	priority = 6
+	priority = 1001 //Ensure this value is higher than nobstop
 	name = "Hyper-Noblium condensation"
 	id = "nobformation"
 
@@ -412,8 +412,6 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/nob_formed = min((air.get_moles(/datum/gas/nitrogen)+air.get_moles(/datum/gas/tritium))/100,air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(air.get_moles(/datum/gas/bz),1)))
-	if ((air.get_moles(/datum/gas/tritium) - 10*nob_formed < 0) || (air.get_moles(/datum/gas/nitrogen) - 20*nob_formed < 0))
-		return NO_REACTION
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
 	air.adjust_moles(/datum/gas/nitrogen, -20*nob_formed)
 	air.adjust_moles(/datum/gas/hypernoblium, nob_formed)

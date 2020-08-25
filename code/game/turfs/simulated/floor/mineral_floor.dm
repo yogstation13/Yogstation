@@ -138,10 +138,10 @@
 	icons = list("bananium","bananium_dam")
 	var/spam_flag = 0
 
-/turf/open/floor/mineral/bananium/Entered(var/mob/living/L)
+/turf/open/floor/mineral/bananium/Entered(atom/movable/AM)
 	.=..()
 	if(!.)
-		if(istype(L))
+		if(isliving(AM))
 			squeak()
 
 /turf/open/floor/mineral/bananium/attackby(obj/item/W, mob/user, params)
@@ -172,6 +172,9 @@
 /turf/open/floor/mineral/bananium/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/mineral/bananium/honk_act()
+	return FALSE
+
 //DIAMOND
 
 /turf/open/floor/mineral/diamond
@@ -191,10 +194,10 @@
 	var/last_event = 0
 	var/active = null
 
-/turf/open/floor/mineral/uranium/Entered(var/mob/AM)
+/turf/open/floor/mineral/uranium/Entered(atom/movable/AM)
 	.=..()
 	if(!.)
-		if(istype(AM))
+		if(ismob(AM))
 			radiate()
 
 /turf/open/floor/mineral/uranium/attackby(obj/item/W, mob/user, params)

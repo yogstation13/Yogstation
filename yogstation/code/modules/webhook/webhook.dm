@@ -2,9 +2,10 @@
 	if(!CONFIG_GET(string/webhook_address) || !CONFIG_GET(string/webhook_key))
 		return
 
-	var/query = "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=[method]&data=[json_encode(data)]"
-	spawn(-1)
-		world.Export(query)
+	var/url = "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=[method]&data=[json_encode(data)]"
+	var/datum/http_request/req = new()
+	req.prepare(RUSTG_HTTP_METHOD_GET, url, "", list())
+	req.begin_async() //why would we ever want to track the results of the request, meme made by yogstation gang
 
 /proc/webhook(var/ckey, var/message)
 	return list("ckey" = url_encode(ckey), "message" = url_encode(message))

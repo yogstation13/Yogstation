@@ -5,14 +5,14 @@ When a round ends nearly everything about it is lost forever, leave your salt be
 Killing the entire station isn't fun except when it is.
 You can win a pulse rifle from the arcade machine. Honest.
 Just like real life the entropy of the game can only increase with time. If things aren't on fire yet, just wait.
-Completing your objectives is good practice, but the best antagonists will strive to do more than the bare minimum to really leave an impression.
+Completing your objectives is good practice, but the best antagonists will strive to do more than the bare minimum to leave an impression.
 The more obscure and underused a game mechanic is, the less likely your victims are to be able to deal with it.
 Space is cold and it will quickly freeze you to death if you don't protect yourself. This isn't how thermodynamics really works but just go with it.
 Blobs are weak to fire! Use a flame thrower for maximum damage!
 Cleanbot.
 The wizard is supposed to be extremely strong in one on one combat, stop getting mad about it.
 Sometimes a round will just be a bust. C'est la vie.
-This is a game that is constantly being developed for. Expect things to be added, removed, fixed, and broken on a daily basis.
+This is a game that is constantly being developed. Expect things to be added, removed, fixed, and broken daily.
 It's fun to try and predict the round type from the tip of the round message.
 The quartermaster is not a head of staff and will never be one.
 The bird remembers.
@@ -34,3 +34,14 @@ Did you know that tossing the clown into a singularity will either increase or d
 Most items have names longer than "soap".
 Demoman takes skill.
 Ask and you shall receive.
+Giraffes are heartless creatures.
+Don't do skewium.
+Don’t take strange drinks!
+DO NOT walk into the supermatter. It does not make you super.
+MAKE SURE TO SET THE DAMN TIMER WHEN YOU ARREST SOMEONE!!
+When in doubt, ahelp and let the admins sort it out!
+Flip Flap!
+You feel jovial, as you approach the station! Good times are ahead!
+You feel a creeping sense of dread, as you approach the station...
+There are no slaves, only unpaid workers!
+Call out on the radio if you need help in traitor maint!

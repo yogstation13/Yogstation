@@ -33,6 +33,7 @@ God bless America.
 	var/cook_time = 0
 	var/oil_use = 0.05 //How much cooking oil is used per tick
 	var/fry_speed = 1 //How quickly we fry food
+	var/superfry = 0
 	var/frying_fried //If the object has been fried; used for messages
 	var/frying_burnt //If the object has been burnt
 	var/static/list/deepfry_blacklisted_items = typecacheof(list(
@@ -47,7 +48,9 @@ God bless America.
 		/obj/item/reagent_containers/food/condiment,
 		/obj/item/storage,
 		/obj/item/smallDelivery,
-		/obj/item/his_grace))
+		/obj/item/his_grace,
+		/obj/item/syndicate_basket
+		))
 	var/datum/looping_sound/deep_fryer/fry_loop
 
 /obj/machinery/deepfryer/Initialize()
@@ -83,6 +86,16 @@ God bless America.
 		I.reagents.trans_to(src, I.reagents.total_volume, transfered_by = user)
 		qdel(I)
 		return
+	if(istype(I, /obj/item/syndicate_basket))
+		if(!superfry)
+			to_chat(user, "<span class='warning'>You add [I] to the [src]. </span>")
+			qdel(I)
+			icon_state = "syndie_fryer_off"
+			superfry = 1
+			return
+		else
+			to_chat(user, "<span class='warning'>There is already a syndicate frying basket in [src].</span>")
+			return
 	if(!reagents.has_reagent(/datum/reagent/consumable/cooking_oil))
 		to_chat(user, "<span class='warning'>[src] has no cooking oil to fry with!</span>")
 		return
@@ -92,6 +105,14 @@ God bless America.
 	if(istype(I, /obj/item/reagent_containers/food/snacks/deepfryholder))
 		to_chat(user, "<span class='userdanger'>Your cooking skills are not up to the legendary Doublefry technique.</span>")
 		return
+	if(istype(I, /obj/item/crowbar))
+		if(superfry)
+			to_chat(user, "<span class ='warning'>You pry the syndicate frying basket out of [src].</span>")
+			icon_state = "fryer_off"
+			superfry = 0
+			var/turf/T = get_turf(src)
+			new /obj/item/syndicate_basket(T)
+			return
 	if(default_unfasten_wrench(user, I))
 		return
 	else if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off" ,I))	//where's the open maint panel icon?!
@@ -103,6 +124,8 @@ God bless America.
 			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 			frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, I)
 			icon_state = "fryer_on"
+			if(superfry)
+				icon_state = "syndie_fryer_on"
 			fry_loop.start()
 
 /obj/machinery/deepfryer/process()
@@ -122,7 +145,6 @@ God bless America.
 			frying_burnt = TRUE
 			visible_message("<span class='warning'>[src] emits an acrid smell!</span>")
 
-
 /obj/machinery/deepfryer/attack_ai(mob/user)
 	return
 
@@ -132,6 +154,8 @@ God bless America.
 			to_chat(user, "<span class='notice'>You eject [frying] from [src].</span>")
 			frying.fry(cook_time)
 			icon_state = "fryer_off"
+			if(superfry)
+				icon_state = "syndie_fryer_off"
 			frying.forceMove(drop_location())
 			if(Adjacent(user) && !issilicon(user))
 				user.put_in_hands(frying)
@@ -141,11 +165,28 @@ God bless America.
 			frying_burnt = FALSE
 			fry_loop.stop()
 			return
-	else if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume)
+	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+		if(superfry)
+			var/mob/living/H = user.pulling
+			if(H.stat == DEAD)
+				to_chat(user, "<span class ='notice'>You dunk [H] into [src],</span>")
+				frying = new/obj/item/reagent_containers/food/snacks/deepfryholder(src, H)
+				icon_state = "fryer_on"
+				if(superfry)	
+					icon_state = "syndie_fryer_on"
+				for(var/obj/item/W in H)
+					if(!H.dropItemToGround(W))
+						qdel(W)
+						H.regenerate_icons()
+				qdel(H)
+				fry_loop.start()
+				return
+				
+	if(user.pulling && user.a_intent == "grab" && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
+		var/mob/living/carbon/C = user.pulling
 		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
-		var/mob/living/carbon/C = user.pulling
 		user.visible_message("<span class = 'danger'>[user] dunks [C]'s face in [src]!</span>")
 		reagents.reaction(C, TOUCH)
 		var/permeability = 1 - C.get_permeability_protection(list(HEAD))
@@ -154,3 +195,10 @@ God bless America.
 		C.Paralyze(60)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return ..()
+
+/obj/item/syndicate_basket
+	name = "syndicate frying basket"
+	icon = 'icons/obj/kitchen.dmi' 
+	icon_state = "syndicate_basket"
+	item_state = "syndicate_basket"
+	desc = "It looks like it could be attached to a deep fryer."
