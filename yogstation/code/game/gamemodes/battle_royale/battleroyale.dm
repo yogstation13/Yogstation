@@ -29,11 +29,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /datum/game_mode/fortnite/can_start()
 	if(!..())
-		return 0
-	possible_virgins = get_players_for_role(ROLE_BATTLEROYALE)
-	if(possible_virgins.len < required_enemies)	
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
