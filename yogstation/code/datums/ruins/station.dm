@@ -292,3 +292,13 @@
 	id = "ebar_casino"
 	suffix = "ebar_casino.dmm"
 	name = "Eclipse Bar Casino"
+
+/datum/map_template/ruin/station/box/foremaint/chem
+	id = "foremaint1"
+	suffix = "foremaint-chem.dmm"
+	name = "Foremaint Chem Lockers"
+
+/datum/map_template/ruin/station/box/foremaint/drone
+	id = "foremaint2"
+	suffix = "foremaint-drone.dmm"
+	name = "Foremaint Drone Hole"

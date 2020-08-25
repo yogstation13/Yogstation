@@ -180,7 +180,7 @@ ID_CONSOLE_JOBSLOT_DELAY 30
 #ALLOW_VOTE_MODE
 
 ## allow players to initiate a map-change vote
-#ALLOW_VOTE_MAP
+ALLOW_VOTE_MAP
 
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
@@ -256,7 +256,7 @@ CHECK_RANDOMIZER
 ## Github repo id
 ##This can be found by going to https://api.github.com/users/<user name here>/repos
 ##Or https://api.github.com/orgs/<org name here>/repos if the repo owner is an organization
-# GITHUBREPOID 120966336
+GITHUBREPOID 120966336
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://justanotherday.example.com
@@ -380,7 +380,7 @@ PREFERENCE_MAP_VOTING 1
 ## This is the chance of map rotation factored to the round length.
 ## A value of 1 would mean the map rotation chance is the round length in minutes (hour long round == 60% rotation chance)
 ## A value of 0.5 would mean the map rotation chance is half of the round length in minutes (hour long round == 30% rotation chance)
-#MAPROTATIONCHANCEDELTA 0.25
+MAPROTATIONCHANCEDELTA 0
 
 ## AUTOADMIN
 ## The default admin rank
@@ -457,7 +457,7 @@ MINUTE_CLICK_LIMIT 400
 
 
 ## Allow admin hrefs that don't use the new token system, will eventually be removed
-DEBUG_ADMIN_HREFS
+#DEBUG_ADMIN_HREFS
 
 ###Master Controller High Pop Mode###
 
@@ -483,7 +483,7 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 50
 #RESUME_AFTER_INITIALIZATIONS
 
 ## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
-ROUNDS_UNTIL_HARD_RESTART 5
+ROUNDS_UNTIL_HARD_RESTART 0
 
 
 ##Default view size, in tiles.
