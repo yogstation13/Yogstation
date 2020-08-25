@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "necropolis chest healing gland drop now actually drops a healing gland instead of nothing"
