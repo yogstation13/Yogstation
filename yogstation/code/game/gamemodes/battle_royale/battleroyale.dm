@@ -25,8 +25,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
 
-	var/list/possible_virgins = list()
-
 /datum/game_mode/fortnite/can_start()
 	return 1 //There are no real requirements and the ROLE_BATTLEROYALE isn't working
 
