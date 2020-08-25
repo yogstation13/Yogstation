@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	title_icon = "ss13"
 
 /datum/game_mode/fortnite/can_start()
-	return 1 //There are no real requirements and the ROLE_BATTLEROYALE isn't working
+	return TRUE //There are no real requirements and the ROLE_BATTLEROYALE isn't working
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
