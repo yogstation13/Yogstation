@@ -26,6 +26,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	title_icon = "ss13"
 
 /datum/game_mode/fortnite/can_start()
+	if(!..())
+		return 0
 	return TRUE //There are no real requirements and the ROLE_BATTLEROYALE isn't working
 
 /datum/game_mode/fortnite/pre_setup()
