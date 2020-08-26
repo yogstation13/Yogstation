@@ -115,7 +115,7 @@
 		var/mob/M = m
 		var/client/C = M.client
 		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-			C.chatOutput.sendMusic("https://www.youtube.com/watch?v=MU__2jFQ5EY")
+			C.chatOutput.sendMusic("https://cdn.discordapp.com/attachments/632474272635551744/748105964216909864/Cortez_Battle_-_Paper_Mario_The_Thousand-Year_Door.mp3")
 
 //Shuttle equipment
 /obj/machinery/shuttle_scrambler
