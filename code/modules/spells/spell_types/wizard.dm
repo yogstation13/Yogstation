@@ -37,6 +37,7 @@
 			return BULLET_ACT_BLOCK
 	. = ..()
 
+
 /obj/effect/proc_holder/spell/targeted/genetic/mutate
 	name = "Mutate"
 	desc = "This spell causes you to turn into a hulk and gain laser vision for a short while."
