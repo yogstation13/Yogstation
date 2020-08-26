@@ -306,7 +306,7 @@
 		if(2 to 3)
 			dance3(M)
 		if(4 to 6)
-			dance5(M)
+			dance4(M)
 
 /obj/machinery/jukebox/disco/proc/dance2(var/mob/living/M)
 	for(var/i = 1, i < 10, i++)
@@ -364,7 +364,7 @@
 		sleep(1)
 	M.lying_fix()
 
-/obj/machinery/jukebox/disco/proc/dance5(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)
