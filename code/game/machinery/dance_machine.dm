@@ -306,7 +306,7 @@
 		if(2 to 3)
 			dance3(M)
 		if(4 to 6)
-			dance7(M)
+			dance5(M)
 
 /obj/machinery/jukebox/disco/proc/dance2(var/mob/living/M)
 	for(var/i = 1, i < 10, i++)
