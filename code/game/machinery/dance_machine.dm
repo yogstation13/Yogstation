@@ -300,15 +300,13 @@
 
 /obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
 	set waitfor = FALSE
-	switch(rand(0,9))
+	switch(rand(0,6))
 		if(0 to 1)
 			dance2(M)
 		if(2 to 3)
 			dance3(M)
 		if(4 to 6)
-			dance4(M)
-		if(7 to 9)
-			dance5(M)
+			dance7(M)
 
 /obj/machinery/jukebox/disco/proc/dance2(var/mob/living/M)
 	for(var/i = 1, i < 10, i++)
@@ -365,19 +363,6 @@
 				animate(M, transform = initial_matrix, time = 1, loop = 0)
 		sleep(1)
 	M.lying_fix()
-
-
-/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
-	var/speed = rand(1,3)
-	set waitfor = 0
-	var/time = 30
-	while(time)
-		sleep(speed)
-		for(var/i in 1 to speed)
-			M.setDir(pick(GLOB.cardinals))
-			for(var/mob/living/carbon/NS in rangers)
-				NS.set_resting(!NS.resting, TRUE)
-		 time--
 
 /obj/machinery/jukebox/disco/proc/dance5(var/mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
