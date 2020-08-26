@@ -146,7 +146,7 @@
 
 /datum/action/innate/cult/blood_spell/teleport
 	name = "Teleport"
-	desc = "Empowers your hand to teleport yourself or another cultist to a teleport rune on contact."
+	desc = "Empowers your hand to teleport yourself or another cultist to a teleport rune on contact. This will deal heavy damage to your arm if you use it to teleport yourself."
 	button_icon_state = "tele"
 	magic_path = "/obj/item/melee/blood_magic/teleport"
 	health_cost = 50
@@ -460,7 +460,7 @@
 /obj/item/melee/blood_magic/teleport
 	name = "Teleporting Aura"
 	color = RUNE_COLOR_TELEPORT
-	desc = "Will teleport a cultist to a teleport rune on contact."
+	desc = "Will teleport a cultist to a teleport rune on contact. This will deal heavy damage to your arm if you use it on yourself."
 	invocation = "Sas'so c'arta forbici!"
 
 /obj/item/melee/blood_magic/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
@@ -496,6 +496,8 @@
 		uses--
 		if(!(target == user))
 			health_cost = 7
+		else if(user.health < 38) //at this point 50 damage to an arm will crit
+			health_cost = abs(user.health) //but since we're dealing damage to an arm, this won't
 		var/turf/origin = get_turf(user)
 		var/mob/living/L = target
 		if(do_teleport(L, dest, channel = TELEPORT_CHANNEL_CULT))
