@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	config_tag = "gang"
 	antag_flag = ROLE_GANG
 	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
-	required_players = 24
+	required_players = 40
 	required_enemies = 1
 	recommended_enemies = 2
 	enemy_minimum_age = 14
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		restricted_jobs += "Assistant"
 
 	//Spawn more bosses depending on server population
-	var/gangs_to_create = 2
+	var/gangs_to_create = 4
 	if(prob(num_players()) && num_players() > 1.5*required_players)
 		gangs_to_create++
 	if(prob(num_players()) && num_players() > 2*required_players)
