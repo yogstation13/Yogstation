@@ -596,7 +596,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		mob_to_revive.revive(1, 1) //This does remove traits and such, but the rune might actually see some use because of it!
 		mob_to_revive.grab_ghost()
 		mob_to_revive.adjustBruteLoss(60)
-		var/damage4invoker = user.health * 0.4
+		var/damage4invoker = abs(user.health * 0.4)
 		user.adjustBruteLoss(damage4invoker)
 	if(!mob_to_revive.client || mob_to_revive.client.is_afk())
 		set waitfor = FALSE
