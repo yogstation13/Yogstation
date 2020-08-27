@@ -202,7 +202,7 @@ mob/living/simple_animal/hostile/venus_human_trap/proc/remove_vine(datum/beam/vi
 			SSshuttle.emergency.request(null, set_coefficient=0.5)
 			SSshuttle.emergencyNoRecall = TRUE
 
-/mob/living/carbon/alien/humanoid/royal/queen/death()
+/mob/living/simple_animal/hostile/venus_human_trap/death()
 	SSshuttle.clearHostileEnvironment(src)
 	..()
 
