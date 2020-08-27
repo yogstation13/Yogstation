@@ -97,8 +97,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/datum/saymode/saymode = SSradio.saymodes[talk_key]
 	var/message_mode = get_message_mode(message)
 	var/original_message = message
-	var/in_critical = InCritical()
-	var/is_paralyzed = IsParalyzed()
 
 	if(one_character_prefix[message_mode])
 		message = copytext_char(message, 2)
@@ -122,13 +120,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(check_emote(original_message, forced) || !can_speak_basic(original_message, ignore_spam))
 		return
 
-	if(in_critical)
+	if(InCritical())
 		if(!(crit_allowed_modes[message_mode]))
 			return
 	else if(stat == UNCONSCIOUS)
 		if(!(unconscious_allowed_modes[message_mode]))
 			return
-	else if(is_paralyzed)
+	else if(IsParalyzed())
 		if(stun_disallowed_modes[message_mode])
 			return
 
