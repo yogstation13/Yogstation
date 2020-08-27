@@ -34,8 +34,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 				continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
-		virgin.assigned_role = ROLE_BATTLEROYALE
-		virgin.special_role = ROLE_BATTLEROYALE
 	return TRUE
 
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
