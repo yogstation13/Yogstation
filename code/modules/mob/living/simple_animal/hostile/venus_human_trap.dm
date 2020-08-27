@@ -188,3 +188,24 @@
   */
 mob/living/simple_animal/hostile/venus_human_trap/proc/remove_vine(datum/beam/vine, force)
 	vines -= vine
+
+/mob/living/simple_animal/hostile/venus_human_trap/Initialize()
+	SSshuttle.registerHostileEnvironment(src) 
+	addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) 
+
+		
+/mob/living/simple_animal/hostile/venus_human_trap/proc/game_end()
+	if(stat != DEAD)
+		SSshuttle.clearHostileEnvironment(src)
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			priority_announce("Plant infestation detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
+			SSshuttle.emergency.request(null, set_coefficient=0.5)
+			SSshuttle.emergencyNoRecall = TRUE
+
+/mob/living/carbon/alien/humanoid/royal/queen/death()
+	SSshuttle.clearHostileEnvironment(src)
+	..()
+
+/mob/living/simple_animal/hostile/venus_human_trap/Destroy()
+	SSshuttle.clearHostileEnvironment(src)
+	..()
