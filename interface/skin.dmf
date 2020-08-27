@@ -321,19 +321,19 @@ window "preferences_window"
 window "statwindow"
 	elem "statwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-	elem "stat"
-		type = INFO
+	elem "statbrowser"
+		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-default = true
+		is-visible = false
 		saved-params = ""
 		on-tab = ".output statbrowser:tab_change [[*]]"
 	elem "statbrowser"

@@ -6,6 +6,8 @@
 		////////////////
 		//ADMIN THINGS//
 		////////////////
+	/// hides the byond verb panel as we use our own custom version
+	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
  	///Needs to implement InterceptClickOn(user,params,atom) proc
@@ -122,12 +124,15 @@
 	///Messages currently seen by this client
 	var/list/seen_messages
 
-	var/list/spell_tabs = list()
-
 	///rate limiting for the crew manifest
 	var/crew_manifest_delay
 
 	var/datum/viewData/view_size
+
+	/// list of tabs containing spells and abilities
+	var/list/spell_tabs = list()
+	/// list of tabs containing verbs
+	var/list/verb_tabs = list()
 
 	var/list/sent_assets = list()
 	var/list/completed_asset_jobs = list()
