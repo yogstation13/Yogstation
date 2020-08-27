@@ -7,9 +7,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	report_type = "battleroyale"
 	false_report_weight = 0
 	required_players = 1 //Everyone is an antag in this mode
-	required_enemies = 1
 	recommended_enemies = 1
-	antag_flag = ROLE_BATTLEROYALE
 	enemy_minimum_age = 0
 	announce_span = "warning"
 	announce_text = "Attention ALL space station 13 crewmembers,\n\
@@ -24,11 +22,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
-
-/datum/game_mode/fortnite/can_start()
-	if(!..())
-		return FALSE
-	return TRUE //There are no real requirements and the ROLE_BATTLEROYALE isn't working
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
