@@ -192,7 +192,7 @@ mob/living/simple_animal/hostile/venus_human_trap/proc/remove_vine(datum/beam/vi
 /mob/living/simple_animal/hostile/venus_human_trap/Initialize()
 	SSshuttle.registerHostileEnvironment(src) 
 	addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) 
-	for(/mob/living/simple_animal/hostile/venus_human_trap/Q in GLOB.carbon_list)
+	for(var/mob/living/simple_animal/hostile/venus_human_trap/Q in GLOB.carbon_list)
 		if(Q == src)
 			continue
 		if(Q.stat == DEAD)
