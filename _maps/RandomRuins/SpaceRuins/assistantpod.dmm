@@ -3,12 +3,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
-"b" = (
-/obj/item/book/manual/wiki/engineering_hacking,
-/turf/open/floor/carpet{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/space/assistantpod)
 "c" = (
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/insectguts,
@@ -24,31 +18,32 @@
 /turf/template_noop,
 /area/template_noop)
 "f" = (
-/turf/open/floor/plating/asteroid/airless,
+/obj/item/trash/floursack,
+/turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "g" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "h" = (
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/shuttle/engine/heater{
-	dir = 8
+/obj/item/card/id/gold{
+	access = list("Maintenance");
+	access_txt = "Mainenance";
+	assignment = "Assistant";
+	pixel_x = -4;
+	pixel_y = -1
 	},
-/obj/structure/window/reinforced/spawner/east{
-	dir = 2
-	},
-/obj/structure/window/reinforced/spawner/east{
-	dir = 1
+/obj/structure/sign/poster/contraband/grey_tide{
+	pixel_x = 26;
+	pixel_y = 1
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
 "j" = (
-/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/structure/chair/stool,
 /obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/carpet{
-	initial_gas_mix = "TEMP=2.7"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "k" = (
 /obj/item/trash/popcorn,
@@ -60,15 +55,28 @@
 /turf/template_noop,
 /area/template_noop)
 "m" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark/airless,
-/area/ruin/space/assistantpod)
-"n" = (
-/obj/structure/bed,
-/obj/item/bedsheet/clown,
+/obj/item/book/manual/wiki/engineering_hacking,
 /turf/open/floor/carpet{
 	initial_gas_mix = "TEMP=2.7"
 	},
+/area/ruin/space/assistantpod)
+"n" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/card/emagfake,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"o" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/structure/window/reinforced/spawner/east{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
 "p" = (
 /obj/structure/sign/poster/contraband/lusty_xenomorph,
@@ -88,62 +96,6 @@
 /turf/template_noop,
 /area/template_noop)
 "u" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/cardhand,
-/obj/item/toy/cards/deck,
-/turf/open/floor/wood/airless,
-/area/ruin/space/assistantpod)
-"v" = (
-/obj/structure/table/wood/fancy/exoticblue,
-/obj/item/storage/toolbox/mechanical/old,
-/obj/structure/sign/poster/contraband/clown{
-	pixel_x = -27
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/assistantpod)
-"w" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/ruin/space/assistantpod)
-"y" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood/airless,
-/area/ruin/space/assistantpod)
-"z" = (
-/obj/structure/door_assembly/door_assembly_hatch,
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plasteel/dark/airless,
-/area/ruin/space/assistantpod)
-"A" = (
-/obj/item/card/id/gold{
-	access = list("Maintenance");
-	access_txt = "Mainenance";
-	assignment = "Assistant";
-	pixel_x = -4;
-	pixel_y = -1
-	},
-/obj/structure/sign/poster/contraband/grey_tide{
-	pixel_x = 26;
-	pixel_y = 1
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/assistantpod)
-"B" = (
-/turf/template_noop,
-/area/template_noop)
-"C" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/bot/honkbot,
-/turf/open/floor/wood/airless,
-/area/ruin/space/assistantpod)
-"G" = (
-/obj/structure/statue/sandstone/assistant,
-/turf/open/floor/carpet{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/space/assistantpod)
-"H" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/bedsheet/grey,
@@ -151,13 +103,37 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/space/assistantpod)
-"J" = (
+"v" = (
 /obj/structure/table/wood/fancy/exoticpurple,
-/obj/item/bikehorn/golden,
-/obj/item/toy/figure/assistant,
+/obj/item/bikehorn/golden{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/toy/figure/assistant{
+	pixel_x = 73;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/assistantpod)
-"K" = (
+"w" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/assistantpod)
+"y" = (
+/obj/structure/bed,
+/obj/item/bedsheet/clown,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/assistantpod)
+"z" = (
+/obj/structure/door_assembly/door_assembly_hatch,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/space/assistantpod)
+"B" = (
+/turf/template_noop,
+/area/template_noop)
+"C" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/window/reinforced/spawner/east{
 	dir = 2
@@ -170,47 +146,100 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
+"E" = (
+/obj/structure/statue/sandstone/assistant,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/assistantpod)
+"G" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/toy/cards/deck{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/radio{
+	pixel_x = 11;
+	pixel_y = 14
+	},
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"H" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/assistantpod)
+"J" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
 "L" = (
 /obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"M" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/paper/crumpled/bloody/fluff{
+	text = "It's too late... the clown and I were happy living out here, but I guess nothing can be perfect forever, huh? We are running out of snacks, and we are stranded here without EVA suits... we have heard over the radio that there has been a massive carp migration, I just hope we can hold out for long enough..."
+	},
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "N" = (
 /turf/closed/mineral/random,
 /area/ruin/space/assistantpod)
 "O" = (
-/obj/item/trash/floursack,
-/turf/open/floor/wood/airless,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/assistantpod)
-"Q" = (
+"P" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open,
 /obj/item/reagent_containers/food/snacks/pie/plain,
-/obj/item/reagent_containers/food/snacks/meat/slab/spider,
-/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/item/reagent_containers/food/snacks/meat/slab/spider{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey{
+	pixel_x = 5;
+	pixel_y = -4
+	},
 /obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/plasteel/freezer/airless,
+/area/ruin/space/assistantpod)
+"Q" = (
+/obj/structure/table/wood/fancy/royalblue,
+/obj/item/toy/figure/clown{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
 "R" = (
 /obj/effect/mob_spawn/human/clown/corpse,
 /turf/template_noop,
 /area/template_noop)
 "S" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/template_noop,
-/area/template_noop)
-"T" = (
-/obj/structure/table/wood/fancy/royalblue,
-/obj/item/toy/figure/clown,
-/turf/open/floor/plating/airless,
-/area/ruin/space/assistantpod)
-"U" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/blood/old,
-/obj/item/card/emagfake{
-	desc = "It's a card with a magnetic strip attached to some circuitry."
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/bot/honkbot{
+	on = 0
 	},
 /turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"U" = (
+/obj/structure/table/wood/fancy/exoticblue,
+/obj/item/storage/toolbox/mechanical/old{
+	pixel_y = 6
+	},
+/obj/structure/sign/poster/contraband/clown{
+	pixel_x = -27
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
 "V" = (
 /obj/effect/decal/cleanable/ash,
@@ -224,10 +253,11 @@
 /turf/open/floor/plasteel/freezer/airless,
 /area/ruin/space/assistantpod)
 "X" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
 	},
-/turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/assistantpod)
 "Y" = (
 /obj/item/shard,
@@ -355,8 +385,8 @@ B
 B
 B
 B
-f
-f
+H
+H
 B
 B
 B
@@ -378,9 +408,9 @@ B
 B
 N
 N
-X
-f
-S
+O
+H
+J
 B
 B
 R
@@ -400,9 +430,9 @@ B
 B
 N
 N
-K
+C
 w
-h
+o
 w
 B
 B
@@ -423,8 +453,8 @@ B
 N
 g
 k
+U
 v
-J
 w
 B
 e
@@ -444,8 +474,8 @@ B
 N
 N
 a
-U
-m
+M
+n
 Z
 z
 B
@@ -466,9 +496,9 @@ B
 N
 W
 L
-u
-C
-T
+G
+S
+Q
 w
 B
 B
@@ -486,9 +516,9 @@ B
 B
 B
 N
-Q
-O
-y
+P
+f
+j
 V
 p
 w
@@ -510,9 +540,9 @@ B
 N
 N
 N
-G
-j
-b
+E
+X
+m
 q
 B
 B
@@ -532,9 +562,9 @@ B
 N
 N
 N
-H
-n
-A
+u
+y
+h
 c
 B
 B
