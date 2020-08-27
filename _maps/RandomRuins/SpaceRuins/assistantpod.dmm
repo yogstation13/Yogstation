@@ -4,9 +4,11 @@
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "b" = (
-/obj/structure/table/wood/fancy/exoticpurple,
-/obj/item/toy/figure/assistant,
-/turf/open/floor/wood/airless,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/ruin/space/assistantpod)
 "c" = (
 /obj/structure/grille/broken,
@@ -23,23 +25,27 @@
 /turf/template_noop,
 /area/template_noop)
 "f" = (
-/obj/item/trash/floursack,
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/wood/airless,
+/obj/structure/bed,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/bedsheet/grey,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/ruin/space/assistantpod)
 "g" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
-"i" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/open/space/basic,
+"h" = (
+/obj/item/trash/floursack,
+/turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "j" = (
-/obj/effect/decal/cleanable/oil/slippery,
-/turf/open/floor/plasteel/dark/airless,
+/obj/structure/bed,
+/obj/item/bedsheet/clown,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/ruin/space/assistantpod)
 "k" = (
 /obj/item/trash/popcorn,
@@ -51,14 +57,35 @@
 /turf/template_noop,
 /area/template_noop)
 "m" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/blood/old,
-/obj/item/card/emagfake,
-/turf/open/floor/wood/airless,
+/obj/item/book/manual/wiki/engineering_hacking,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/ruin/space/assistantpod)
 "n" = (
-/obj/structure/sign/poster/contraband/clown,
-/turf/closed/wall/mineral/plastitanium,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/bot/honkbot{
+	bot_name = null;
+	desc = "A handmade medibot, found with things lying on the ground. How the hell could this help anyone? Patent pending.";
+	icon_state = "honkbot";
+	name = "Medibot V2"
+	},
+/turf/open/floor/wood/airless,
+/area/ruin/space/assistantpod)
+"o" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/shuttle/engine/heater,
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/window/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/structure/window/reinforced/spawner/east{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
 "p" = (
 /obj/structure/sign/poster/contraband/lusty_xenomorph,
@@ -84,90 +111,94 @@
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "v" = (
-/obj/structure/shuttle/engine/propulsion,
+/obj/structure/statue/sandstone/assistant,
+/turf/open/floor/carpet{
+	initial_gas_mix = "TEMP=2.7"
+	},
+/area/ruin/space/assistantpod)
+"w" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/assistantpod)
+"x" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/open/indestructible/grass/sand,
-/area/ruin/space/assistantpod)
-"w" = (
-/turf/closed/wall/mineral/plastitanium,
 /area/ruin/space/assistantpod)
 "z" = (
 /obj/structure/door_assembly/door_assembly_hatch,
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/assistantpod)
-"A" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 4
-	},
-/obj/structure/window/reinforced/spawner/east,
-/turf/open/floor/plating/airless,
-/area/ruin/space/assistantpod)
 "B" = (
 /turf/template_noop,
 /area/template_noop)
+"C" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
 "D" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/bedsheet/grey,
-/turf/open/floor/carpet,
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/card/emagfake{
+	desc = "It's a card with a magnetic strip attached to some circuitry."
+	},
+/turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "E" = (
 /turf/open/indestructible/grass/sand,
 /area/ruin/space/assistantpod)
 "F" = (
-/obj/item/book/manual/wiki/engineering_hacking,
-/turf/open/floor/carpet,
-/area/ruin/space/assistantpod)
-"G" = (
-/obj/effect/decal/cleanable/greenglow,
-/obj/structure/statue/sandstone/assistant,
-/turf/open/floor/carpet,
-/area/ruin/space/assistantpod)
-"H" = (
-/obj/structure/sign/poster/contraband/grey_tide,
-/turf/closed/wall/mineral/plastitanium,
-/area/ruin/space/assistantpod)
-"I" = (
-/obj/structure/bed,
-/obj/item/bedsheet/clown,
-/turf/open/floor/carpet,
-/area/ruin/space/assistantpod)
-"J" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/shuttle/engine/heater,
-/obj/structure/shuttle/engine/heater{
-	dir = 4
-	},
-/obj/structure/window/reinforced/spawner/east,
-/turf/open/floor/plating/airless,
-/area/ruin/space/assistantpod)
-"K" = (
 /obj/item/card/id/gold{
 	access = list("Maintenance");
 	access_txt = "Mainenance";
-	assignment = "Assistant"
+	assignment = "Assistant";
+	pixel_x = -4;
+	pixel_y = -1
+	},
+/obj/structure/sign/poster/contraband/grey_tide{
+	pixel_x = 26;
+	pixel_y = 1
 	},
 /turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"G" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/east{
+	dir = 2
+	},
+/obj/structure/window/reinforced/spawner/east{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/assistantpod)
 "L" = (
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "M" = (
-/obj/structure/table/wood/fancy/exoticpurple,
-/obj/item/bikehorn/golden,
-/turf/open/floor/plasteel/dark/airless,
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "N" = (
 /turf/closed/mineral/random,
 /area/ruin/space/assistantpod)
-"P" = (
-/obj/effect/mob_spawn/human/corpse/assistant,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/carpet,
+"O" = (
+/obj/structure/table/wood/fancy/exoticpurple,
+/obj/item/bikehorn/golden,
+/obj/item/toy/figure/assistant,
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/assistantpod)
 "Q" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open,
@@ -181,15 +212,18 @@
 /obj/effect/mob_spawn/human/clown/corpse,
 /turf/template_noop,
 /area/template_noop)
+"S" = (
+/obj/structure/table/wood/fancy/exoticblue,
+/obj/item/storage/toolbox/mechanical/old,
+/obj/structure/sign/poster/contraband/clown{
+	pixel_x = -27
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/assistantpod)
 "T" = (
 /obj/structure/table/wood/fancy/royalblue,
 /obj/item/toy/figure/clown,
 /turf/open/floor/plating/airless,
-/area/ruin/space/assistantpod)
-"U" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/wood/airless,
 /area/ruin/space/assistantpod)
 "V" = (
 /obj/effect/decal/cleanable/ash,
@@ -201,11 +235,6 @@
 /obj/structure/table,
 /obj/machinery/microwave,
 /turf/open/floor/plasteel/freezer/airless,
-/area/ruin/space/assistantpod)
-"X" = (
-/obj/structure/table/wood/fancy/exoticblue,
-/obj/item/storage/toolbox/mechanical/old,
-/turf/open/floor/plating/airless,
 /area/ruin/space/assistantpod)
 "Y" = (
 /obj/item/shard,
@@ -356,9 +385,9 @@ B
 B
 N
 N
-v
+x
 E
-i
+C
 B
 B
 R
@@ -378,9 +407,9 @@ B
 B
 N
 N
-J
-n
-A
+o
+w
+G
 w
 B
 B
@@ -401,8 +430,8 @@ B
 N
 g
 k
-X
-M
+S
+O
 w
 B
 e
@@ -422,8 +451,8 @@ B
 N
 N
 a
-m
-j
+D
+K
 Z
 z
 B
@@ -445,7 +474,7 @@ N
 W
 L
 u
-b
+n
 T
 w
 B
@@ -465,8 +494,8 @@ B
 B
 N
 Q
-f
-U
+h
+M
 V
 p
 w
@@ -488,9 +517,9 @@ B
 N
 N
 N
-G
-P
-F
+v
+b
+m
 q
 B
 B
@@ -510,9 +539,9 @@ B
 N
 N
 N
-D
-I
-K
+f
+j
+F
 c
 B
 B
@@ -534,7 +563,7 @@ B
 N
 N
 N
-H
+w
 N
 B
 e
