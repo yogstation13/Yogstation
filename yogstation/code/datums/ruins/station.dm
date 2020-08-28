@@ -260,3 +260,45 @@
 	suffix = "transfer9.dmm"
 	name = "Transfer 9"
 
+/datum/map_template/ruin/station/eclipse
+    prefix = "_maps/yogstation/RandomRuins/StationRuins/EclipseStation/"
+
+/datum/map_template/ruin/station/eclipse/bar
+	id = "ebar_eclipse"
+	suffix = "ebar_eclipse.dmm"
+	name = "Eclipse Bar Default"
+
+/datum/map_template/ruin/station/eclipse/bar/beach
+	id = "ebar_beach"
+	suffix = "ebar_beach.dmm"
+	name = "Eclipse Bar Beach"
+
+/datum/map_template/ruin/station/eclipse/bar/saloon
+	id = "ebar_saloon"
+	suffix = "ebar_saloon.dmm"
+	name = "Eclipse Bar Western"
+
+/datum/map_template/ruin/station/eclipse/bar/clock
+	id = "ebar_clock"
+	suffix = "ebar_clock.dmm"
+	name = "Eclipse Bar Clock"
+
+/datum/map_template/ruin/station/eclipse/bar/disco
+	id = "ebar_disco"
+	suffix = "ebar_disco.dmm"
+	name = "Eclipse Bar Disco"
+
+/datum/map_template/ruin/station/eclipse/bar/casino
+	id = "ebar_casino"
+	suffix = "ebar_casino.dmm"
+	name = "Eclipse Bar Casino"
+
+/datum/map_template/ruin/station/box/foremaint/chem
+	id = "foremaint1"
+	suffix = "foremaint-chem.dmm"
+	name = "Foremaint Chem Lockers"
+
+/datum/map_template/ruin/station/box/foremaint/drone
+	id = "foremaint2"
+	suffix = "foremaint-drone.dmm"
+	name = "Foremaint Drone Hole"

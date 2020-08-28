@@ -1132,6 +1132,7 @@
 	playsound(source, 'sound/misc/mymoney.ogg', 25, 0)
 	speech_args[SPEECH_MESSAGE] = "Hello, I like money!"
 
+
 /datum/species/golem/soviet
 	name = "Soviet Golem"
 	id = "soviet golem"

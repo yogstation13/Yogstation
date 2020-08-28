@@ -44,7 +44,11 @@ SUBSYSTEM_DEF(blackbox)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			playercount += 1
-	var/admincount = GLOB.admins.len
+	var/adminstats = get_admin_counts()
+	var/list/st = adminstats["stealth"]
+	var/list/pr = adminstats["present"]
+	var/admincount = st.len + pr.len
+	
 	var/datum/DBQuery/query_record_playercount = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id)
 		VALUES (:playercount, :admincount, :time, INET_ATON(:server_ip), :server_port, :round_id)

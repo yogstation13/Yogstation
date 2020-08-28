@@ -180,6 +180,7 @@
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_STATION]'>Through Tube Station</A><BR>
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_TERMINUS]'>Terminus Tube Station</A><BR>
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_POD]'>Transit Tube Pod</A><BR>
+<A href='?src=[REF(src)];tube=[TRANSIT_TUBE_CARGO_POD]'>Transit Tube Cargo Pod</A><BR>
 "}
 
 	user << browse("<HEAD><meta charset='UTF-8'><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
@@ -214,6 +215,8 @@
 					C = new /obj/structure/c_transit_tube/station/reverse(loc)
 				if(TRANSIT_TUBE_POD)
 					C = new /obj/structure/c_transit_tube_pod(loc)
+				if(TRANSIT_TUBE_CARGO_POD)
+					C = new /obj/structure/c_transit_tube_pod/cargo(loc)
 			if(C)
 				C.add_fingerprint(usr)
 			wait = world.time + 15

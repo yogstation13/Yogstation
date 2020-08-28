@@ -10,6 +10,8 @@ SUBSYSTEM_DEF(Yogs)
 	var/endedshift = FALSE //whether or not we've announced that the shift can be ended
 	var/last_rebwoink = 0 // Last time we bwoinked all admins about unclaimed tickets
 
+	var/list/datum/department_goal/department_goals = list()
+
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()
 	
@@ -59,6 +61,81 @@ SUBSYSTEM_DEF(Yogs)
 				accent_lists[3][regex(reg,"gi")] = accent_regex2replace[original_reg]
 		GLOB.accents_name2regexes[accent] = accent_lists
 
+	// Picking department goals
+	// Engineering first
+	generateGoalsFromSubtypes(/datum/department_goal/eng)
+	
+	// Then security
+	generateGoalsFromSubtypes(/datum/department_goal/sec)
+
+	// Then medical
+	generateGoalsFromSubtypes(/datum/department_goal/med)
+
+	// Then cargo
+	generateGoalsFromSubtypes(/datum/department_goal/car)
+
+	// Then service
+	generateGoalsFromSubtypes(/datum/department_goal/srv)
+
+	// Then science
+	generateGoalsFromSubtypes(/datum/department_goal/sci)
+
+	// Then spawn the papers with the goals on em on the heads' (and QM's) computers
+	for(var/obj/machinery/computer/C in GLOB.machines)
+		var/account
+
+
+		if(istype(C, /obj/machinery/computer/card/minor/ce))
+			account = ACCOUNT_ENG
+		
+		else if(istype(C, /obj/machinery/computer/cargo))
+			account = ACCOUNT_CAR
+		
+		else if(istype(C, /obj/machinery/computer/card/minor/cmo))
+			account = ACCOUNT_MED
+		
+		else if(istype(C, /obj/machinery/computer/card/minor/rd))
+			account = ACCOUNT_SCI
+		
+		else if(istype(C, /obj/machinery/computer/card) && !istype(C, /obj/machinery/computer/card/minor))
+			account = ACCOUNT_SRV
+		
+		else if(istype(C, /obj/machinery/computer/card/minor/hos))
+			account = ACCOUNT_SEC
+		
+		else if(istype(C, /obj/machinery/computer/communications))
+			account = "all" // Special case, we'll give em all the objectives
+		
+		if(account)
+			if(!is_station_level(C.z))
+				continue
+			if(account == "all")
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "paper - 'department goals'"
+				P.info = ""
+				var/list/listOfGoals = list()
+				for(var/datum/department_goal/d in SSYogs.department_goals)
+					if(!listOfGoals[d.account])
+						listOfGoals[d.account] = list()
+					listOfGoals[d.account] += d
+				for(account in listOfGoals)
+					P.info += "Goals for the [getDepartmentFromAccount(account)] department:<ul>"
+					for(var/datum/department_goal/d in listOfGoals[account])
+						P.info += d.get_name()
+					P.info += "</ul><br>"
+				P.update_icon()
+
+			else
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "paper - '[getDepartmentFromAccount(account)] department goals'"
+				P.info = "<ul>"
+				for(var/datum/department_goal/d in SSYogs.department_goals)
+					if(d.account == account)
+						P.info += d.get_name()
+				P.info += "</ul>"
+				P.update_icon()
+
+
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
@@ -73,4 +150,55 @@ SUBSYSTEM_DEF(Yogs)
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
-	return
+	
+	// Department goal checker
+	if(department_goals.len && SSticker.current_state == GAME_STATE_PLAYING)
+		for(var/datum/department_goal/dg in department_goals)
+			if(dg.completed || dg.endround || (department_goals[dg] && world.time < department_goals[dg]))
+				continue
+			if(dg.check_complete())
+				dg.complete()
+			else if(dg.continuous && !dg.fail_if_failed)
+				dg.continuing()
+
+/**
+  * Generates up to 5 department goals of the given type. 
+  *
+  * Arguments:
+  * * d - the given datum that we're getting the subtypes of.
+  */
+/datum/controller/subsystem/Yogs/proc/generateGoalsFromSubtypes(datum/d)
+	var/list/goals = subtypesof(d)
+	var/goalsSoFar = 0
+	while(goals.len && goalsSoFar < 5)
+		var/datum/typepath = pick_n_take(goals)
+		var/datum/department_goal/goal = new typepath
+		if(goal.is_available())
+			goalsSoFar++
+		else 
+			qdel(goal)
+
+/**
+  * Gets the correct string from the given department account. See code/__DEFINES/economy.dm
+  *
+  * Arguments:
+  * * account - The account that you're getting the string from. IE ACCOUNT_CIV or ACCOUNT_ENG
+  */
+/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
+	switch(account)
+		if(ACCOUNT_CIV)
+			return "Civilian"
+		if(ACCOUNT_ENG)
+			return "Engineering"
+		if(ACCOUNT_SCI)
+			return "Science"
+		if(ACCOUNT_MED)
+			return "Medical"
+		if(ACCOUNT_SRV)
+			return "Service"
+		if(ACCOUNT_CAR)
+			return "Cargo"
+		if(ACCOUNT_SEC)
+			return "Security"
+		else
+			return "N/A report this to coders, see .proc/getDepartmentFromAccount"

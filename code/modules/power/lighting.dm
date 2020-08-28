@@ -241,7 +241,7 @@
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
 	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
-	var/bulb_vacuum_brightness = 4
+	var/bulb_vacuum_brightness = 8
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
@@ -332,7 +332,7 @@
 			else
 				icon_state = "[base_state]"
 				if(on && !forced_off)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
 					glowybit.alpha = clamp(light_power*250, 30, 200)
 					add_overlay(glowybit)
 		if(LIGHT_EMPTY)

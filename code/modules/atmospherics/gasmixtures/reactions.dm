@@ -412,8 +412,6 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/nob_formed = min((air.get_moles(/datum/gas/nitrogen)+air.get_moles(/datum/gas/tritium))/100,air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(air.get_moles(/datum/gas/bz),1)))
-	if ((air.get_moles(/datum/gas/tritium) - 10*nob_formed < 0) || (air.get_moles(/datum/gas/nitrogen) - 20*nob_formed < 0))
-		return NO_REACTION
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
 	air.adjust_moles(/datum/gas/nitrogen, -20*nob_formed)
 	air.adjust_moles(/datum/gas/hypernoblium, nob_formed)

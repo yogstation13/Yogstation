@@ -172,6 +172,9 @@
 /turf/open/floor/mineral/bananium/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/mineral/bananium/honk_act()
+	return FALSE
+
 //DIAMOND
 
 /turf/open/floor/mineral/diamond

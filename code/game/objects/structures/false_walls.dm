@@ -41,6 +41,10 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+/obj/structure/falsewall/honk_act()
+	new /obj/structure/falsewall/bananium(loc)
+	qdel(src)
+
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
@@ -268,6 +272,8 @@
 	walltype = /turf/closed/wall/mineral/bananium
 	canSmoothWith = list(/obj/structure/falsewall/bananium, /turf/closed/wall/mineral/bananium)
 
+/obj/structure/falsewall/bananium/honk_act()
+	return FALSE
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
