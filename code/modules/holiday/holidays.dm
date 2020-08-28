@@ -74,7 +74,7 @@
 
 /datum/holiday/new_year/getStationPrefix()
 	return pick("Party","New","Hangover","Resolution","Auld")
-	
+
 /datum/holiday/new_year/greet()
 	return "Happy New Years!"
 
@@ -86,7 +86,7 @@
 
 /datum/holiday/groundhog/getStationPrefix()
 	return pick("Groundhog")
-	
+
 /datum/holiday/groundhog/greet()
 	return "Happy Groundhog day!"
 
@@ -151,7 +151,7 @@
 	name = "Leap Day"
 	begin_day = 29
 	begin_month = FEBRUARY
-	
+
 /datum/holiday/leap/greet()
 	return "Today is Leap Day!"
 
@@ -192,7 +192,7 @@
 	for(var/mob/dead/new_player/P in GLOB.mob_list)
 		if(P.client)
 			P.client.playtitlemusic()
-			
+
 /datum/holiday/april_fools/greet()
 	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
 
@@ -212,7 +212,7 @@
 
 /datum/holiday/fourtwenty/getStationPrefix()
 	return pick("Snoop","Blunt","Toke","Dank","Cheech","Chong")
-	
+
 /datum/holiday/fourtwenty/greet()
 	return "Smoke weed every day!"
 
@@ -234,7 +234,7 @@
 	begin_day = 1
 	begin_month = MAY
 	drone_hat = /obj/item/clothing/head/hardhat
-	
+
 /datum/holiday/labor/getStationPrefix()
 	return pick("Union","Labor","Worker","Trade")
 
@@ -260,7 +260,7 @@
 	name = "Summer Solstice"
 	begin_day = 21
 	begin_month = JUNE
-	
+
 /datum/holiday/summersolstice/greet()
 	return "Happy Summer Solstice!"
 
@@ -309,7 +309,7 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà 
+		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
 
 /datum/holiday/france/getStationPrefix()
@@ -334,6 +334,16 @@
 
 /datum/holiday/beer/getStationPrefix()
 	return pick("Stout","Porter","Lager","Ale","Malt","Bock","Doppelbock","Hefeweizen","Pilsner","IPA","Lite") //I'm sorry for the last one
+
+/datum/holiday/twofoursixohfive
+	name = "24605 Anniversary"
+	begin_day = 2
+	begin_month = AUGUST
+	drone_hat = /obj/item/clothing/head/beret/atmos
+	lobby_music = list("https://www.youtube.com/watch?v=5WyLhwYFgmk") // Johnny Cash - Ring Of Fire
+
+/datum/holiday/twofoursixohfive/getStationPrefix()
+	return pick("Class-O","Class-B","Class-A","Class-F","Class-G","Class-K","Class-M","Dwarf","Main Sequence","Giant","Atmospheric")
 
 /datum/holiday/pirate
 	name = "Talk-Like-a-Pirate Day"
