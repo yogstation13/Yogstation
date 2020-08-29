@@ -32,7 +32,7 @@
 	shuffle_inplace(avail_players)
 	var/target_amount = (round((avail_players.len / 10), 1) == 0 ? 1 : round((avail_players.len / 10), 1))
 	for(var/mob/living/carbon/C in avail_players)
-		C.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
+		C.playsound_local(C, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 		pick_flute_scene(C)
 		chosen_players.Add(C)
 		if(chosen_players.len >= target_amount)
