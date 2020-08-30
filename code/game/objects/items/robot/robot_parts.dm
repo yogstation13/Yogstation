@@ -288,12 +288,12 @@
 			O.custom_name = created_name
 			O.locked = panel_locked
 			if(!aisync)
-				lawsync = 0
-				O.connected_ai = null
+				lawsync = FALSE
+				O.set_connected_ai(null)
 			else
 				O.notify_ai(NEW_BORG)
 				if(forced_ai)
-					O.connected_ai = forced_ai
+					O.set_connected_ai(forced_ai)
 			if(!lawsync)
 				O.lawupdate = 0
 				if(M.laws.id == DEFAULT_AI_LAWID)
@@ -348,10 +348,10 @@
 
 			if(!aisync)
 				lawsync = FALSE
-				O.connected_ai = null
+				O.set_connected_ai(null)
 			else
 				if(forced_ai)
-					O.connected_ai = forced_ai
+					O.set_connected_ai(forced_ai)
 				O.notify_ai(AI_SHELL)
 			if(!lawsync)
 				O.lawupdate = FALSE
