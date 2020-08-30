@@ -437,19 +437,19 @@
 			Knockdown(200 - (bomb_armor * 1.6)) 	//between ~4 and ~20 seconds of knockdown depending on bomb armor
 
 		if (EXPLODE_LIGHT)
-			brute_loss = 30
+			brute_loss = 24
 			if(bomb_armor)
-				brute_loss = 15*(2 - round(bomb_armor*0.01, 0.05))
-			damage_clothes(max(50 - bomb_armor, 0), BRUTE, "bomb")
+				brute_loss = 12*(2 - round(bomb_armor*0.01, 0.05))
+			damage_clothes(max(40 - bomb_armor, 0), BRUTE, "bomb")
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			Knockdown(160 - (bomb_armor * 1.6))	//100 bomb armor prevents knockdown entirely
+			Knockdown(120 - (bomb_armor * 1.2))	//100 bomb armor prevents knockdown entirely
 
 	take_overall_damage(brute_loss,burn_loss)
 
 	//attempt to dismember bodyparts
-	if(severity <= 2 || !bomb_armor)
-		var/max_limb_loss = round(4/severity) //so you don't lose four limbs at severity 3.
+	if(severity <= 2 || HAS_TRAIT(src, TRAIT_EASYDISMEMBER)) //light explosions only can dismember those with easy dismember
+		var/max_limb_loss = round(4/severity) //so you don't lose more than 2 limbs on severity 2
 		for(var/X in bodyparts)
 			var/obj/item/bodypart/BP = X
 			if(prob(50/severity) && !prob(getarmor(BP, "bomb")) && BP.body_zone != BODY_ZONE_HEAD && BP.body_zone != BODY_ZONE_CHEST)
