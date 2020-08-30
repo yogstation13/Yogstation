@@ -1,0 +1,4 @@
+author: "  Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Asclepius' snake now injects godblood on bite instead of potentially useless (or even dangerous) medicines"
