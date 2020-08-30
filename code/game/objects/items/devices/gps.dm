@@ -99,6 +99,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		if(G.emped || !G.tracking || G == src)
 			continue
 		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
+		if(!pos)
+			continue
 		if(!global_mode && pos.z != curr.z)
 			continue
 		var/list/signal = list()
