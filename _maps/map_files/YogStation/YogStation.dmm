@@ -36386,12 +36386,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bIW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "bJc" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -53422,6 +53416,13 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"nPI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "nPW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -116081,7 +116082,7 @@ bDh
 bEs
 bGd
 bHv
-bIW
+nPI
 bKe
 bLm
 bEs
