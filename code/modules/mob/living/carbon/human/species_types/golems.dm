@@ -1095,9 +1095,6 @@
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
 
-	var/last_cash = 0
-	var/cash_cooldown = 100
-
 /datum/species/golem/capitalist/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), SLOT_HEAD)
@@ -1145,9 +1142,6 @@
 	info_text = "As a <span class='danger'>Churchgoing Capitalist Golem</span>, your god-given right is to make fat stacks of money!"
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
-
-	var/last_cash = 0
-	var/cash_cooldown = 100
 
 /datum/species/golem/church_capitalist/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
