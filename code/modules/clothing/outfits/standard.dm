@@ -421,4 +421,5 @@
 		/obj/item/disk/surgery/debug=1,\
 		/obj/item/disk/tech_disk/debug=1,\
 		/obj/item/guardiancreator/debug=1,\
-		/obj/item/storage/box/materials=1)
+		/obj/item/storage/box/materials=1,\
+		/obj/item/dnainjector/hulkmut=1)
