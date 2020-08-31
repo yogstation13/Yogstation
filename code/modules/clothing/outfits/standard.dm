@@ -409,7 +409,7 @@
 	glasses = /obj/item/clothing/glasses/meson/night
 	ears = /obj/item/radio/headset/headset_cent/commander
 	back = /obj/item/storage/backpack/holding
-	backpack_contents = list(/obj/item/card/emag=1,\
+	backpack_contents = list(
 		/obj/item/flashlight/emp/debug=1,\
 		/obj/item/construction/rcd/combat=1,\
 		/obj/item/gun/magic/wand/resurrection/debug=1,\
@@ -421,5 +421,6 @@
 		/obj/item/disk/surgery/debug=1,\
 		/obj/item/disk/tech_disk/debug=1,\
 		/obj/item/guardiancreator/debug=1,\
-		/obj/item/storage/box/materials=1,\
-		/obj/item/dnainjector/hulkmut=1)
+		/obj/item/card/emag/bluespace=1,\
+		/obj/item/dnainjector/hulkmut=1,\
+		/obj/item/storage/box/materials=1)
