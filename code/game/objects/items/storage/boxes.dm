@@ -1151,3 +1151,28 @@
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/screwdriver = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials
+	name = "Materials Box"
+	desc = "Contains most of what you would need"
+
+/obj/item/storage/box/materials/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/stack/sheet/metal/fifty = 2,
+		/obj/item/stack/rods/fifty = 2,
+		/obj/item/stack/sheet/plasteel/fifty = 2,
+		/obj/item/stack/sheet/plastic/fifty = 2,
+		/obj/item/stack/sheet/plastitaniumglass/fifty = 2,
+		/obj/item/stack/sheet/titaniumglass/fifty = 2,
+		/obj/item/stack/sheet/plasmaglass/fifty = 2,
+		/obj/item/stack/sheet/rglass/fifty = 2,
+		/obj/item/stack/sheet/mineral/plastitanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/wood/fifty = 1,
+		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
+		/obj/item/stack/sheet/mineral/diamond = 1,
+		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
+		/obj/item/stack/sheet/mineral/gold/fifty = 1,
+		/obj/item/stack/sheet/mineral/silver/fifty = 1,
+		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
+	generate_items_inside(items_inside,src)

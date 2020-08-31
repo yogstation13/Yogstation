@@ -385,7 +385,7 @@
 /datum/outfit/death_commando/officer
 	name = "Death Commando Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
-	
+
 
 /datum/outfit/chrono_agent
 	name = "Timeline Eradication Agent"
@@ -399,7 +399,7 @@
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
 	uniform = /obj/item/clothing/under/patriotsuit
-	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi/debug
 	shoes = /obj/item/clothing/shoes/magboots/advance
 	suit_store = /obj/item/tank/internals/oxygen
 	mask = /obj/item/clothing/mask/gas/welding
@@ -414,4 +414,11 @@
 		/obj/item/construction/rcd/combat=1,\
 		/obj/item/gun/magic/wand/resurrection/debug=1,\
 		/obj/item/melee/transforming/energy/axe=1,\
-		/obj/item/storage/part_replacer/bluespace/tier4=1)
+		/obj/item/storage/part_replacer/bluespace/tier4=1,\
+		/obj/item/construction/rld=1,\
+		/obj/item/pipe_dispenser=1,\
+		/obj/item/uplink/debug=1,\
+		/obj/item/disk/surgery/debug=1,\
+		/obj/item/disk/tech_disk/debug=1,\
+		/obj/item/guardiancreator/debug=1,\
+		/obj/item/storage/box/materials=1)
