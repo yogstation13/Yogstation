@@ -137,7 +137,7 @@
 	for(var/gps in GLOB.GPS_list)
 		var/obj/item/gps/G = gps
 		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
-		if(pos.z != 5)
+		if(G.emped || !G.tracking || pos.z != 5)
 			continue
 		var/list/signal = list()
 		signal["entrytag"] = G.gpstag //GPS name
