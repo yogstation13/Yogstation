@@ -1,6 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "light explosions do 20% less damage (30 -> 24 brute)"
-  - tweak: "light explosion knock down base time from 16 to 12 seconds"
-  - tweak: "light explosions can only dismember those with the easy dismembering trait"
