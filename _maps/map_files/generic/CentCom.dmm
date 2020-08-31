@@ -13874,6 +13874,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"Dw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "Dx" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
@@ -62873,7 +62887,7 @@ Nt
 QN
 Zy
 Qa
-RT
+Dw
 Bt
 AD
 Ol
@@ -63130,7 +63144,7 @@ Nt
 SY
 NR
 TN
-zv
+RT
 Bt
 WL
 Pi
@@ -63387,7 +63401,7 @@ Nt
 ZF
 Zr
 ZF
-Zr
+zv
 Bt
 TJ
 Uu

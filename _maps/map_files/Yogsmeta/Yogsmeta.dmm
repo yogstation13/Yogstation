@@ -75203,10 +75203,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"cBJ" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/science/mixing)
 "cBK" = (
 /obj/machinery/light/small,
 /obj/machinery/airalarm{
@@ -84582,6 +84578,11 @@
 /obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"wrD" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "wxc" = (
 /obj/machinery/door/airlock/external{
 	name = "Atmospherics External Airlock";
@@ -120963,7 +120964,7 @@ cyX
 vNW
 czF
 cAN
-cBJ
+wrD
 cAP
 cDs
 czD
