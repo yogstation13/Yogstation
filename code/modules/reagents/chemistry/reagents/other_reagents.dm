@@ -88,6 +88,12 @@
 	taste_description = "gross iron"
 	shot_glass_icon_state = "shotglassred"
 
+/datum/reagent/polysmorphblood
+	name = "Polysmorph blood"
+	color = "#96BB00"
+	description = "The blood of a polysmorph"
+	taste_description = "acidic"
+
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
@@ -634,7 +640,7 @@
 
 /datum/reagent/gluttonytoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	L.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
-	
+
 /datum/reagent/ghosttoxin
 	name = "Ghost's Curse"
 	description = "An advanced corruptive toxin produced by something otherwordly."
@@ -1105,7 +1111,7 @@
 
 /datum/reagent/snail/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
-		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE) 
+		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE)
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
@@ -1534,7 +1540,7 @@
 	name = "sucrose agar"
 	color = "#41B0C0" // rgb: 65,176,192
 	taste_description = "sweetness"
-	
+
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(0.5*REM, 0)
 	..()
@@ -1544,7 +1550,7 @@
 	name = "virus rations"
 	color = "#D18AA5" // rgb: 209,138,165
 	taste_description = "bitterness"
-	
+
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(0.25*REM, 0)
 	..()
@@ -1555,7 +1561,7 @@
 	color = "#A69DA9" // rgb: 166,157,169
 	taste_description = "bitterness"
 	taste_mult = 1.5
-	
+
 /datum/reagent/toxin/plasma/plasmavirusfood/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(REM, 0)
 	..()
