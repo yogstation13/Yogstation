@@ -32,15 +32,11 @@
 	shuffle_inplace(avail_players)
 	var/target_amount = (round((avail_players.len / 10), 1) == 0 ? 1 : round((avail_players.len / 10), 1))
 	for(var/mob/living/carbon/C in avail_players)
-		sound_intro(C)
+		C.playsound_local(C, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 		pick_flute_scene(C)
 		chosen_players.Add(C)
 		if(chosen_players.len >= target_amount)
 			break
-
-//EVENT PROCS
-/datum/round_event/flutes/proc/sound_intro(mob/living/carbon/M)
-	M.playsound_local(M, 'sound/ambience/flutes.ogg', 20, FALSE, pressure_affected = FALSE)
 
 /datum/round_event/flutes/proc/pick_flute_scene(mob/living/carbon/M)
 	switch(rand(1, 6))
