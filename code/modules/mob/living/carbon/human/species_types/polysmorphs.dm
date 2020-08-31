@@ -34,9 +34,4 @@
 
 	var/randname = polysmorph_name()
 
-	if(lastname)
-		randname += " [lastname]"
-
 	return randname
-
-//look at jellypeople for abilities
