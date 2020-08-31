@@ -81,10 +81,18 @@
 "at" = (
 /obj/structure/table,
 /obj/item/pickaxe,
-/obj/item/gps/mining,
-/obj/item/gps/mining,
-/obj/item/gps/mining,
-/obj/item/gps/mining,
+/obj/item/gps/mining{
+	tracking = FALSE
+	},
+/obj/item/gps/mining{
+	tracking = FALSE
+	},
+/obj/item/gps/mining{
+	tracking = FALSE
+	},
+/obj/item/gps/mining{
+	tracking = FALSE
+	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
