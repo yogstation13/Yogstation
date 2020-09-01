@@ -33,12 +33,6 @@
 	///Target name for LAM
 	var/targetdest = "None"
 
-/obj/machinery/sci_bombardment/examine(mob/user)
-	. = ..()
-	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice>You can see that the firing chamber is [scibomb ? "loaded" : "empty"].</span>"
-		return
-
 /obj/machinery/sci_bombardment/Initialize()
 	. = ..()
 	radio = new /obj/item/radio/(src)
