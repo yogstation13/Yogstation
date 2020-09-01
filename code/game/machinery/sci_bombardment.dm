@@ -10,18 +10,28 @@
 	power_channel = EQUIP
 	density = TRUE
 	verb_say = "states coldly"
+	///Initial countdown timer 
 	var/countdown = 30
-	var/mincount = 15 // Minimum countdown time
+	///Minimum amount of time for adjusting the countdown
+	var/mincount = 15
+	///used for reset_lam() 
 	var/target_delay = FALSE
+	///determines whether the machine is locked, and cannot be used
 	var/locked = TRUE
-	var/stopcount = TRUE
+	///Used to start countdown(), and used to stop it
+	var/stopcount = TRUE 
+	///Used to determine time left before fire_ttv() is triggered
 	var/tick = 0
-	var/obj/item/radio/radio
+	///Where TTV is stored
 	var/obj/item/transfer_valve/scibomb //Right here, JC
+	///Target location for the TTV. Does not move with GPS after targetting
+	var/turf/dest
+	var/obj/item/radio/radio
 	var/radio_freq = FREQ_SCIENCE
-	var/turf/dest //target location for the TTV. Does not move with GPS after targetting
-	var/tcoords
-	var/targetdest = "None" //target name, defaults to N/A after firing.
+	///Target coords for LAM 
+	var/tcoords 
+	///Target name for LAM
+	var/targetdest = "None"
 
 /obj/machinery/sci_bombardment/examine(mob/user)
 	. = ..()
@@ -67,6 +77,7 @@
 		to_chat(usr, "<span class='warning'>[B] is refused, as it is invalid or incomplete.</span>")
 	return
 
+///LAM countdown sequence
 /obj/machinery/sci_bombardment/proc/countdown()
 	if(stopcount) //Abort launch
 		tick = countdown
@@ -86,6 +97,7 @@
 	spawn(10)
 		countdown()
 
+///Launches TTV from LAM to turf, and then resets var's to initial values
 /obj/machinery/sci_bombardment/proc/fire_ttv()
 	if(!scibomb || !dest)
 		return
@@ -101,7 +113,8 @@
 	update_icon()
 	. = TRUE
 
-/obj/machinery/sci_bombardment/proc/reset_lam() //prevent the spam of targetting coordinates and fake TTV launches
+///Timed delay between LAM Targetting coordinates & aborting a launch
+/obj/machinery/sci_bombardment/proc/reset_lam() 
 	target_delay = !target_delay
 	update_icon()
 	if(target_delay)
@@ -146,7 +159,15 @@
 	data["signals"] = signals
 	return data
 
-
+/**
+* Determines input from TGUI Lam.js
+*
+* * Lock - Check for RD/Silicon access. Lock/Unlock console if valid
+* * Count - Prompts user to change countdown timer (Minimum based on var/mincount)
+* * Unload - If unlocked, allows user to remove TTV from the machine, if present
+* * Launch - Transfers var/countdown to var/tick before proc'ing countdown()
+* * Target - Acknowledges GPS signal selected by user and saves it as place to send TTV
+*/
 /obj/machinery/sci_bombardment/ui_act(action, params)
 	if(..())
 		return
@@ -188,7 +209,6 @@
 			scibomb = null
 			update_icon()
 			. = TRUE
-
 		if("launch")
 			if(locked || target_delay || !scibomb || !dest)
 				return
