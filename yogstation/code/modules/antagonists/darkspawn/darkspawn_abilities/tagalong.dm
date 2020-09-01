@@ -10,6 +10,11 @@
 	lucidity_price = 2
 	var/datum/status_effect/tagalong/tagalong
 
+/datum/action/innate/darkspawn/tagalong/IsAvailable()
+	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
+		return
+	return ..()
+
 /datum/action/innate/darkspawn/tagalong/process()
 	psi_cost = 30 * isnull(tagalong)
 
