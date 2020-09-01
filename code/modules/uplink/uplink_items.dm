@@ -1152,7 +1152,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Bluespace Projectile Weapon Disrupter"
 	desc = "Hidden in an ordinary-looking playing card, this device will teleport an opponent's gun to your hand when they fire at you. Just make sure to hold this in your hand!"
 	item = /obj/item/syndicateReverseCard
-	cost = 6
+	cost = 1
 
 /datum/uplink_item/stealthy_tools/chameleon
 	name = "Chameleon Kit"
