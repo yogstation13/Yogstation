@@ -82,16 +82,16 @@
 /obj/structure/table,
 /obj/item/pickaxe,
 /obj/item/gps/mining{
-	tracking = FALSE
+	tracking = 0
 	},
 /obj/item/gps/mining{
-	tracking = FALSE
+	tracking = 0
 	},
 /obj/item/gps/mining{
-	tracking = FALSE
+	tracking = 0
 	},
 /obj/item/gps/mining{
-	tracking = FALSE
+	tracking = 0
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
