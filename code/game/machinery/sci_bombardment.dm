@@ -12,7 +12,6 @@
 	var/mincount = 15 // Minimum countdown time
 	var/target_delay = FALSE
 	var/locked = TRUE
-	var/loaded = FALSE
 	var/stopcount = TRUE
 	var/tick = 0
 	var/obj/item/radio/radio
@@ -53,9 +52,8 @@
 	if(istype(B, /obj/item/transfer_valve) && B.tank_one && B.tank_two)
 		if(!user.transferItemToLoc(B, src))
 			return
-		if(!loaded)
+		if(!scibomb)
 			scibomb = B
-			loaded = TRUE
 			playsound(src, 'sound/effects/bin_close.ogg', 100, 1)
 			to_chat(usr, "<span class='notice'>You load [B] into the firing mechanism.</span>")
 			update_icon()
@@ -96,7 +94,6 @@
 	targetdest = initial(dest)
 	tcoords = initial(tcoords)
 	scibomb = initial(scibomb)
-	loaded = FALSE
 	update_icon()
 	. = TRUE
 
@@ -122,7 +119,7 @@
 	data["tcoords"] = tcoords
 	data["countdown"] = countdown
 	data["locked"] = locked
-	data["loaded"] = loaded
+	data["loaded"] = scibomb
 	data["stopcount"] = stopcount
 	if(locked)
 		return data
@@ -175,7 +172,7 @@
 			to_chat(usr, "<span class='notice'>Countdown set to [countdown] seconds.</span>")
 			. = TRUE
 		if("unload")
-			if(!loaded || locked)
+			if(!scibomb || locked)
 				return
 			if(!stopcount)
 				playsound(src, 'sound/misc/box_deploy.ogg', 80, 0.5)
@@ -183,7 +180,6 @@
 				return
 			playsound(src, 'sound/machines/blastdoor.ogg', 75, 0)
 			to_chat(usr, "<span class='notice'>[scibomb] is ejected from the loading chamber.</span>")
-			loaded = FALSE
 			scibomb.forceMove(drop_location())
 			scibomb = null
 			update_icon()
