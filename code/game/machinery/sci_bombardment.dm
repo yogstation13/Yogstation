@@ -179,7 +179,7 @@
 			else 
 				var/mob/M = usr
 				var/obj/item/card/id/I = M.get_idcard(TRUE)
-				if(check_access(I) && 30 in I.access)
+				if(check_access(I) && (30 in I.access))
 					locked = !locked
 					radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [I.registered_name].",)
 				else
