@@ -101,15 +101,14 @@
 	. = TRUE
 
 /obj/machinery/sci_bombardment/proc/reset_lam() //prevent the spam of targetting coordinates and fake TTV launches
-	target_delay = TRUE
+	target_delay = !target_delay
 	update_icon()
-	sleep(100)
-	target_delay = FALSE
-	update_icon()
-	playsound(src, 'sound/items/scanner_match.ogg', 100, 1)
-	return
-//UI segment
-
+	if(target_delay)
+		spawn(100)
+			reset_lam()
+	else
+		playsound(src, 'sound/items/scanner_match.ogg', 100, 1)
+		return
 
 /obj/machinery/sci_bombardment/ui_interact(mob/user, ui_key = "lam", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -142,7 +141,6 @@
 		var/list/signal = list()
 		signal["entrytag"] = G.gpstag //GPS name
 		signal["coords"] = "[pos.x], [pos.y], [pos.z]"
-
 		signals += list(signal)
 	data["signals"] = signals
 	return data
@@ -152,7 +150,7 @@
 	if(..())
 		return
 	switch(action)
-		if("lock")
+		if("lock") //Check for RD/Silicon access
 			if(iscyborg(usr) || isAI(usr))
 				locked = !locked
 				radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [usr].",)
@@ -212,7 +210,7 @@
 				var/obj/item/gps/T = gps
 				var/turf/pos = get_turf_global(T) // yogs - get_turf_global instead of get_turf
 				if(T.gpstag == targetdest && "[pos.x], [pos.y], [pos.z]" == tcoords)
-					dest = get_turf_global(T) // yogs - get_turf_global instead of get_turf
+					dest = pos
 					break
 			if(!dest)
 				radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of GPS required before trying again. Resetting mainframe...",)
