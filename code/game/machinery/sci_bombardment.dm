@@ -4,10 +4,12 @@
 	icon = 'icons/obj/machines/lam.dmi'
 	icon_state = "LAM_Base"
 	light_color = LIGHT_COLOR_PINK
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 500
+	active_power_usage = 5000
+	power_channel = EQUIP
 	density = TRUE
 	verb_say = "states coldly"
-	idle_power_usage = 500
-	active_power_usage = 10000
 	var/countdown = 30
 	var/mincount = 15 // Minimum countdown time
 	var/target_delay = FALSE
@@ -41,9 +43,11 @@
 	cut_overlays()
 	if(!powered(power_channel))
 		add_overlay("LAM_radar0")
+		set_light(0)
 	else
 		add_overlay("LAM_screen[dest && !locked && !target_delay ? "Targ" : "Idle"]")
 		add_overlay("LAM_radar[target_delay || locked ? "0" : "1"]")
+		set_light(2)
 	if(scibomb)
 		add_overlay("LAM_hatch")
 	return
@@ -59,7 +63,6 @@
 			update_icon()
 		else
 			to_chat(usr, "<span class='warning'>There is already a transfer valve loaded in the firing mechanism!</span>")
-			return
 	else
 		to_chat(usr, "<span class='warning'>[B] is refused, as it is invalid or incomplete.</span>")
 	return
