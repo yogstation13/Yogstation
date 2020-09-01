@@ -183,3 +183,6 @@
 	view_range = 2.5
 	x_offset = -1
 	y_offset = -3
+	
+/obj/item/paper/fluff/ruins/caravanambush/admiral
+	info = "Please deliever these new sets of clothes to centcom as our admiral has lost theirs"
