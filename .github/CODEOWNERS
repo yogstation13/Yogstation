@@ -9,9 +9,25 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Altoids
+#Teams
 
-/yogstation/code/modules/scripting/ @Altoids1
+/.github/ @yogstation13/head-coders
+/SQL/ @yogstation13/head-coders
+/_maps/ @yogstation13/map
+/code/ @yogstation13/code
+/config/ @yogstation13/head-coders
+/goon/ @yogstation13/art
+/html/ @yogstation13/code
+/icons/ @yogstation/art
+/interface/ @yogstation13/code
+/sound/ @yogstation/art
+/tgui/ @yogstation13/code
+/tools/ @yogstation13/code
+/yogstation/SQL/ @yogstation13/head-coders
+/yogstation/code/ @yogstation13/code
+/yogstation/icons/ @yogstation13/art
+/yogstation/interface/ @yogstation13/code
+/yogstation/sound/ @yogstation13/art
 
 #AsV9
 
@@ -24,22 +40,15 @@
 /code/controllers/subsystem.dm @AsV9
 /code/controllers/subsystem/timer.dm @AsV9
 
-#Ktlwjec
-
-/_maps/ @Ktlwjec1
-
 #monster860
 
 /code/modules/atmospherics/ @monster860
 /yogstation/code/modules/atmospherics/ @monster860
 
-#Partheo
+#Art stuff
 
-/icons/ @Partheo
-/sound/ @Partheo
-/code/controllers/subsystem/ticker.dm @Partheo
-/yogstation/code/controllers/subsystem/ticker.dm @Partheo
-/code/modules/holidays/holidays.dm @Partheo
-/yogstation/code/modules/holidays/holidays.dm @Partheo
+/code/controllers/subsystem/ticker.dm @yogstation13/art
+/yogstation/code/controllers/subsystem/ticker.dm @yogstation13/art
+/code/modules/holidays/holidays.dm @yogstation13/art
+/yogstation/code/modules/holidays/holidays.dm @yogstation13/art
 
-#Multiple Owners

@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "advanced forensic scanner's range is now the same as a basic forensic scanner's range"

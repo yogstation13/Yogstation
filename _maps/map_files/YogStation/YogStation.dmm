@@ -8370,19 +8370,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"asR" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"asS" = (
-/obj/structure/closet/secure_closet/medical1,
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"asT" = (
-/obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "asU" = (
 /obj/structure/table,
 /obj/machinery/cell_charger{
@@ -9283,18 +9270,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"avf" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Chemical Storage";
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "avg" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -46749,6 +46724,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"gQH" = (
+/obj/effect/landmark/stationroom/box/foremaint,
+/turf/template_noop,
+/area/template_noop)
 "gQJ" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/light/small{
@@ -88532,9 +88511,9 @@ aiT
 aiT
 aiT
 arP
-asR
-aqR
-arP
+qQV
+qQV
+gQH
 awc
 axB
 arP
@@ -88789,9 +88768,9 @@ aiT
 aeR
 aeC
 arP
-asT
-aqR
-avf
+qQV
+qQV
+qQV
 aqR
 axB
 arP
@@ -89046,9 +89025,9 @@ ads
 adZ
 aeG
 arP
-asS
-aqR
-arP
+qQV
+qQV
+qQV
 aqP
 axC
 arP

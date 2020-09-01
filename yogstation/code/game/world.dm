@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(donators)
 	if (server_name)
 		s += "<b>[server_name]</b> &#8212; "
 	
-	s += "<b>[station_name()]] -- 99% LAG FREE</b><br>"; // The station & server name line
+	s += "<b>[station_name()]] -- [round(10000 / (100 + SStime_track.time_dilation_current), 1)]% LAG FREE</b><br>"; // The station & server name line
 	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/0keg6hQH05Ha8OfO\">Discord</a>)<br>" // The Forum & Discord links line
 	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
 	

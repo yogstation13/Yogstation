@@ -133,7 +133,7 @@
 
 /datum/achievement/cargoking/New()
 	.=..()
-	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT value FROM [format_table_name("misc")] WHERE `key` = 'cargorecord'")
+	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT `value` FROM [format_table_name("misc")] WHERE `key` = 'cargorecord'")
 	Q.Execute()
 	if(Q.item && Q.item.len)
 		amount = Q.item[1]

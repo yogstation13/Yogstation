@@ -108,3 +108,6 @@
 
 /obj/effect/landmark/stationroom/eclipse/bar
 	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
+
+/obj/effect/landmark/stationroom/box/foremaint
+	template_names = list ("Foremaint Chem Lockers", "Foremaint Drone Hole")

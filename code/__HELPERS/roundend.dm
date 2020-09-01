@@ -704,7 +704,7 @@
 					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
 			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
 	if(hasQM && cargoking)
-		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET value = '[SSshuttle.points]' WHERE key = 'cargorecord'")
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET `value` = '[SSshuttle.points]' WHERE `key` = 'cargorecord'")
 		Q.Execute()
 		qdel(Q)
 
