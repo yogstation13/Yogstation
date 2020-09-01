@@ -125,7 +125,7 @@
 
 /mob/living/simple_animal/drone/Login()
 	..()
-	check_laws()
+	to_chat (src, "[laws]")
 
 	if(flavortext)
 		to_chat(src, "[flavortext]")
