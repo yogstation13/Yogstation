@@ -48,7 +48,7 @@
 
 	if(mind)
 		if(mind.martial_art && !incapacitated(FALSE, TRUE) && mind.martial_art.can_use(src) && mind.martial_art.deflection_chance) //Some martial arts users can deflect projectiles!
-			if(prob(mind.martial_art.deflection_chance))
+			if(prob(mind.martial_art.deflection_chance) || (mind.martial_art.id == MARTIALART_SLEEPINGCARP && in_throw_mode)) // special check if sleeping carp is our martial art and throwmode is on, deflect
 				if((mobility_flags & MOBILITY_USE) && dna && !dna.check_mutation(HULK)) //But only if they're otherwise able to use items, and hulks can't do it
 					if(!isturf(loc)) //if we're inside something and still got hit
 						P.force_hit = TRUE //The thing we're in passed the bullet to us. Pass it back, and tell it to take the damage.
