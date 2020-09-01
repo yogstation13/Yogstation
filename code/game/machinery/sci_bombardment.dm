@@ -92,6 +92,7 @@
 	playsound(src, 'sound/effects/gravhit.ogg', 80, 0.25)
 	playsound(src, 'sound/effects/podwoosh.ogg', 80, 0.25)
 	scibomb.forceMove(dest)
+	playsound(scibomb, 'sound/effects/bamf.ogg', 95, 0.25, 75, 1, 0, 0, FALSE, TRUE) //Minimum impact sound in the odd event Toxins doesn't send a bomb
 	scibomb.toggle_valve()
 	dest = initial(dest)
 	targetdest = initial(dest)
@@ -167,7 +168,7 @@
 		if("count")
 			if(locked)
 				return
-			var/a = text2num(stripped_input(usr, "Set a new countdown timer. (Minimum [mincount])", name, 15))
+			var/a = text2num(stripped_input(usr, "Set a new countdown timer. (Minimum [mincount])", name, mincount))
 			if(a < mincount)
 				to_chat(usr, "<span class='warning'>The countdown remains unchanged.</span>")
 				return
@@ -197,7 +198,7 @@
 				tick = countdown + 1
 				countdown()
 			else
-				radio.talk_into(src, "Launch sequence aborted by [usr]. Resetting mainframe...",)
+				radio.talk_into(src, "Launch sequence aborted by [usr]. Adjusting mainframe...",)
 				reset_lam()
 			. = TRUE
 		if("target")
@@ -212,8 +213,11 @@
 					dest = pos
 					break
 			if(!dest)
-				radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of GPS required before trying again. Resetting mainframe...",)
-			radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Resetting mainframe..." : ""]",)
+				radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of [targetdest] required before trying again. Adjusting mainframe...",)
+				targetdest = initial(targetdest)
+				tcoords = initial(tcoords)
+				. = TRUE
+			radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Adjusting mainframe..." : ""]",)
 			playsound(src, 'sound/effects/servostep.ogg', 100, 1)
 			reset_lam()
 			. = TRUE
