@@ -72,7 +72,6 @@
 	desc = "This grenade contains 5 dehydrated feral cats in a similar manner to dehydrated monkeys, which, upon detonation, will be rehydrated by a small reservoir of water contained within the grenade. These cats will then attack anything in sight."
 	spawner_type = /mob/living/simple_animal/hostile/feral_cat
 	deliveryamt = 5
-	origin_tech = "materials=3;magnets=4;syndicate=3"
 
 /obj/item/grenade/spawnergrenade/feral_cats/prime()			//Own proc for this because the regular one would flash people which was dumb.
 	update_mob()
