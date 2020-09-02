@@ -377,7 +377,7 @@
 	item_state = "lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "A mining lantern."
+	desc = "A mining lantern it seems to use kerosene as fuel."
 	brightness_on = 6			// luminosity when on
 
 /obj/item/flashlight/lantern/heirloom_moth
