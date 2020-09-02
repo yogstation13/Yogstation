@@ -22,6 +22,14 @@
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
+/datum/design/clawgame
+	name = "Machine Design (Claw Game Board)"
+	desc = "The circuit board for a Claw Game."
+	id = "clawgame"
+	build_type = IMPRINTER
+	category = list("Computer Boards")
+	build_path = /obj/item/weapon/circuitboard/clawgame
+
 /datum/design/board/seccamera
 	name = "Computer Design (Security Camera)"
 	desc = "Allows for the construction of circuit boards used to build security camera computers."
