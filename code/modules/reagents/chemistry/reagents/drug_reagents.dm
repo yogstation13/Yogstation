@@ -506,17 +506,3 @@
 		update_flags |= M.adjustBruteLoss(-2, FALSE)
 		update_flags |= M.adjustFireLoss(-2, FALSE)
 	return ..() | update_flags
-
-/datum/reagent/lsd
-	name = "Lysergic acid diethylamide"
-	id = "lsd"
-	description = "A highly potent hallucinogenic substance. Far out, maaaan."
-	reagent_state = LIQUID
-	color = "#0000D8"
-	taste_description = "a magical journey"
-
-/datum/reagent/lsd/on_mob_life(mob/living/M)
-	var/update_flags = STATUS_UPDATE_NONE
-	update_flags |= M.Druggy(15, FALSE)
-	M.AdjustHallucinate(10)
-	return ..() | update_flags
