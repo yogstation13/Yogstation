@@ -11,12 +11,12 @@
 	var/bonus_prize_chance = 5		//chance to dispense a SECOND prize if you win, increased by matter bin rating
 
 	//This is to make sure the images are available
-	var/list/img_resources = list('icons/obj/arcade_images/backgroundsprite.png',
-								'icons/obj/arcade_images/clawpieces.png',
-								'icons/obj/arcade_images/crane_bot.png',
-								'icons/obj/arcade_images/crane_top.png',
-								'icons/obj/arcade_images/prize_inside.png',
-								'icons/obj/arcade_images/prizeorbs.png')
+	var/list/img_resources = list('icons/arcade_images/backgroundsprite.png',
+								'icons/arcade_images/clawpieces.png',
+								'icons/arcade_images/crane_bot.png',
+								'icons/arcade_images/crane_top.png',
+								'icons/arcade_images/prize_inside.png',
+								'icons/arcade_images/prizeorbs.png')
 
 /obj/machinery/arcade/claw/New()
 	src.addAtProcessing()
