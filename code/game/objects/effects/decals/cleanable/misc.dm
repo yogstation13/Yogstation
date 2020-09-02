@@ -201,14 +201,4 @@
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
 
-/obj/effect/decal/cleanable/fungus
-	name = "space fungus"
-	desc = "A fungal growth. Looks pretty nasty."
-	density = FALSE
-	anchored = TRUE
-	layer = TURF_LAYER
-	plane = GAME_PLANE
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "flour"
-	color = "#D5820B"
-	scoop_reagents = list("fungus" = 10)
+
