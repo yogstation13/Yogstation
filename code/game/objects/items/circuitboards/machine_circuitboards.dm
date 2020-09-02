@@ -1193,7 +1193,7 @@
 		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra,
 		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/triphasic)
 
-/obj/item/circuitboard/clawgame
+/obj/item/circuitboard/machine/clawgame
 	name = "circuit board (Claw Game)"
 	build_path = /obj/machinery/arcade/claw
 	req_components = list(
