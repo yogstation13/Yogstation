@@ -75,7 +75,7 @@
 			if(pay_with_card(C))
 				tokens += 1
 			return
-		else if(istype(O, /obj/item/weapon/spacecash))
+		else if(istype(O, /obj/item/stack/spacecash))
 			var/obj/item/stack/spacecash/C = O
 			if(pay_with_cash(C, user))
 				tokens += 1
