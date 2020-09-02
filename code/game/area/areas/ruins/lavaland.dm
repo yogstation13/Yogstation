@@ -102,3 +102,12 @@
 //ash walker nest
 /area/ruin/unpowered/ash_walkers
 	icon_state = "red"
+
+// elephant graveyard
+/area/ruin/unpowered/elephant_graveyard
+	name = "Elephant Graveyard"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/graveyard_shuttle
+	name = "Elephant Graveyard"
+	icon_state = "green"
