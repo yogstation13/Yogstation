@@ -13,6 +13,11 @@
 	if(!IMP)
 		on_removal()
 
+/datum/antagonist/mindslave/proc/update_traitor_icons_added(datum/mind/slave_mind)
+	var/datum/atom_hud/antag/slavehud = GLOB.huds[ANTAG_HUD_MINDSLAVE]
+	slavehud.join_hud(owner.current)
+	set_antag_hud(owner.current, "mindslave")
+
 /datum/objective/mindslave
 	name = "Mindslave Objective"
 	martyr_compatible = TRUE
@@ -38,3 +43,8 @@
 	var/obj/item/implant/greytide/IMP = locate() in new_body.implants
 	if(!IMP)
 		on_removal()
+
+/datum/antagonist/greytide/proc/update_traitor_icons_added(datum/mind/slave_mind)
+	var/datum/atom_hud/antag/slavehud = GLOB.huds[ANTAG_HUD_MINDSLAVE]
+	slavehud.join_hud(owner.current)
+	set_antag_hud(owner.current, "mindslave")
