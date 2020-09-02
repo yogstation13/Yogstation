@@ -460,3 +460,63 @@
 		M.emote(pick("twitch","laugh","frown"))
 	..()
 	. = 1
+
+/datum/reagent/thc
+	name = "Tetrahydrocannabinol"
+	id = "thc"
+	description = "A mild psychoactive chemical extracted from the cannabis plant."
+	reagent_state = LIQUID
+	color = "#0FBE0F"
+	taste_description = "man like, totally the best like, thing ever dude"
+
+/datum/reagent/thc/on_mob_life(mob/living/M)
+	M.stuttering += rand(0,2)
+	if(prob(5))
+		M.emote(pick("laugh","giggle","smile"))
+	if(prob(5))
+		to_chat(M, "[pick("You feel hungry.","Your stomach rumbles.","You feel cold.","You feel warm.")]")
+	if(prob(4))
+		M.Confused(10)
+	if(volume >= 50 && prob(25))
+		if(prob(10))
+			M.Drowsy(10)
+	return ..()
+
+/datum/reagent/cbd
+	name = "Cannabidiol"
+	id = "cbd"
+	description = "A non-psychoactive phytocannabinoid extracted from the cannabis plant."
+	reagent_state = LIQUID
+	color = "#00e100"
+	taste_description = "relaxation"
+
+/datum/reagent/cbd/on_mob_life(mob/living/M)
+	var/update_flags = STATUS_UPDATE_NONE
+	if(prob(5))
+		M.emote(pick("hsigh", "yawn"))
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[pick("You feel peaceful.", "You breathe softly.", "You feel chill.", "You vibe.")]</span>")
+	if(prob(10))
+		M.AdjustConfused(-5)
+		update_flags |= M.SetWeakened(0, FALSE)
+	if(volume >= 70 && prob(25))
+		if(M.reagents.get_reagent_amount("thc") <= 20)
+			M.Drowsy(10)
+	if(prob(25))
+		update_flags |= M.adjustBruteLoss(-2, FALSE)
+		update_flags |= M.adjustFireLoss(-2, FALSE)
+	return ..() | update_flags
+
+/datum/reagent/lsd
+	name = "Lysergic acid diethylamide"
+	id = "lsd"
+	description = "A highly potent hallucinogenic substance. Far out, maaaan."
+	reagent_state = LIQUID
+	color = "#0000D8"
+	taste_description = "a magical journey"
+
+/datum/reagent/lsd/on_mob_life(mob/living/M)
+	var/update_flags = STATUS_UPDATE_NONE
+	update_flags |= M.Druggy(15, FALSE)
+	M.AdjustHallucinate(10)
+	return ..() | update_flags
