@@ -63,20 +63,20 @@
 	return 1
 
 /obj/machinery/arcade/attackby(var/obj/item/O as obj, var/mob/user as mob, params)
-	if(istype(O, /obj/item/weapon/screwdriver) && anchored)
+	if(istype(O, /obj/item/screwdriver) && anchored)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		panel_open = !panel_open
 		user << "You [panel_open ? "open" : "close"] the maintenance panel."
 		update_icon()
 		return
 	if(!freeplay)
-		if(istype(O, /obj/item/weapon/card/id))
-			var/obj/item/weapon/card/id/C = O
+		if(istype(O, /obj/item/card/id))
+			var/obj/item/card/id/C = O
 			if(pay_with_card(C))
 				tokens += 1
 			return
 		else if(istype(O, /obj/item/weapon/spacecash))
-			var/obj/item/weapon/spacecash/C = O
+			var/obj/item/stack/spacecash/C = O
 			if(pay_with_cash(C, user))
 				tokens += 1
 			return
@@ -86,7 +86,7 @@
 /obj/machinery/arcade/update_icon()
 	return
 
-/obj/machinery/arcade/proc/pay_with_cash(var/obj/item/weapon/spacecash/cashmoney, var/mob/user)
+/obj/machinery/arcade/proc/pay_with_cash(var/obj/item/stack/spacecash, var/mob/user)
 	if(cashmoney.get_total() < token_price)
 		user << "\icon[cashmoney] <span class='warning'>That is not enough money.</span>"
 		return 0
@@ -98,7 +98,7 @@
 		dispense_cash(left, src.loc, user)
 	return 1
 
-/obj/machinery/arcade/proc/pay_with_card(var/obj/item/weapon/card/id/I, var/mob/user)
+/obj/machinery/arcade/proc/pay_with_card(var/obj/item/card/id/I, var/mob/user)
 	visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 	var/datum/money_account/customer_account = attempt_account_access_nosec(I.associated_account_number)
 	if (!customer_account)
