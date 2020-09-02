@@ -3,6 +3,7 @@
 * then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.
 *
 * Five primary variables are used to operate the machine: 
+*		lavaland - setup during Init(), defines Z-level of lavaland for GPS checks
 *		locked - Locks/Unlocks all interactions w/ LAM, except for loading a TTV into it.
 *		dest - Turf that is selected as a target for the TTV to be shot at. Does not change unless a new target is chosen.
 *		targetdest - Name of the GPS selected at the same time as var/dest.
@@ -13,6 +14,7 @@
 *		radio_freq - Restricts machine to only speak on Science radio channel. This allows Miners to hear the LAM
 *			announcements as well.
 *		countdown - Adjustable value used to determine the time until the TTV is deployed to Lavaland.
+*		stopcount - Variable affected by ui_act("launch"). Used during countdown() to maintain or break the loop.
 *		mincount - Value that restricts var/countdown from being less than it.
 *		tick - Value that uses var/countdown when starting the countdown() proc.
 *		target_delay - Variable used in reset_lam(), limits targetting/firing actions in short succession.
@@ -33,19 +35,22 @@
 	var/mincount = 15
 	var/target_delay = FALSE
 	var/locked = TRUE
-	///Used to start countdown(), and used to stop it
 	var/stopcount = TRUE 
-	///Used to determine time left before fire_ttv() is triggered
 	var/tick = 0
 	var/obj/item/transfer_valve/scibomb //Right here, JC
 	var/turf/dest
 	var/obj/item/radio/radio
 	var/radio_freq = FREQ_SCIENCE
+	var/lavaland
 	var/tcoords 
 	var/targetdest = "None"
 
 /obj/machinery/sci_bombardment/Initialize()
 	. = ..()
+	for(var/Z in 1 to world.maxz) //define Lavaland Z-level
+		if(is_mining_level(Z))
+			lavaland = Z
+			break
 	radio = new /obj/item/radio/(src)
 	radio.frequency = radio_freq
 	update_icon()
@@ -173,7 +178,7 @@
 	for(var/gps in GLOB.GPS_list)
 		var/obj/item/gps/G = gps
 		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
-		if(G.emped || !G.tracking || pos.z != 5)
+		if(G.emped || !G.tracking || pos.z != lavaland)
 			continue
 		var/list/signal = list()
 		signal["entrytag"] = G.gpstag //GPS name
@@ -204,10 +209,7 @@
 			if(locked)
 				return
 			var/a = text2num(stripped_input(usr, "Set a new countdown timer. (Minimum [mincount])", name, mincount))
-			if(a < mincount)
-				to_chat(usr, "<span class='warning'>The countdown remains unchanged.</span>")
-				return
-			countdown = a
+			countdown = max(a, mincount)
 			to_chat(usr, "<span class='notice'>Countdown set to [countdown] seconds.</span>")
 			. = TRUE
 		if("unload")//If unlocked, allows user to remove TTV from the machine, if present
