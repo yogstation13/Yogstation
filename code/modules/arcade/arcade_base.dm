@@ -80,7 +80,7 @@
 			if(pay_with_cash(C, user))
 				tokens += 1
 			return
-	if(panel_open&& component_parts && istype(O, /obj/item/weapon/crowbar))
+	if(panel_open&& component_parts && istype(O, /obj/item/crowbar))
 		default_deconstruction_crowbar(O)
 
 /obj/machinery/arcade/update_icon()
