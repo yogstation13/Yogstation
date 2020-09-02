@@ -92,7 +92,6 @@
 		return 0
 	visible_message("<span class='info'>[usr] inserts a credit chip into [src].</span>")
 	var/left = cashmoney.get_total() - token_price
-	user.unEquip(cashmoney)
 	qdel(cashmoney)
 	if(left)
 		dispense_cash(left, src.loc, user)
