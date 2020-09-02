@@ -28,7 +28,8 @@
 	id = "clawgame"
 	build_type = IMPRINTER
 	category = list("Computer Boards")
-	build_path = /obj/item/weapon/circuitboard/clawgame
+	build_path = /obj/item/circuitboard/machine/clawgame
+	materials = list(MAT_GLASS = 1000)
 
 /datum/design/board/seccamera
 	name = "Computer Design (Security Camera)"
