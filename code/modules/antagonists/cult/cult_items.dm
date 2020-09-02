@@ -40,7 +40,7 @@
 	flags_1 = CONDUCT_1
 	sharpness = IS_SHARP
 	w_class = WEIGHT_CLASS_BULKY
-  force = 25
+	force = 25
 	block_level = 1
 	block_upgrade_walk = 1
 	block_power = 30
