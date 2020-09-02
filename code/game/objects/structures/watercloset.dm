@@ -283,7 +283,7 @@
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
 		if(B.cell)
-			if(B.cell.charge > 0 && B.status == 1)
+			if(B.cell.charge > 0 && B.status == 1)if(!(flags_1 & NODECONSTRUCT_1))
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
 				user.Paralyze(stunforce)
@@ -337,10 +337,18 @@
 	else
 		return ..()
 
-/obj/structure/sink/deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/metal (loc, 3)
-	qdel(src)
+/obj/structure/sink/deconstruct()
+	if(!(flags_1 & NODECONSTRUCT_1))
+	drop_materials()
+..()
 
+/obj/structure/sink/proc/drop_materials()
+	if(buildstacktype)
+		new buildstacktype(loc,buildstackamount)
+	else
+		for(var/i in custom_materials)
+			var/datum/material/M = i
+			new M.sheet_type(loc, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))
 
 
 /obj/structure/sink/kitchen
