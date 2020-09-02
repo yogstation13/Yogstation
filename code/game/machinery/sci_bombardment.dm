@@ -4,18 +4,18 @@
 *
 * Five primary variables are used to operate the machine: 
 *		locked - Locks/Unlocks all interactions w/ LAM, except for loading a TTV into it.
-* 		dest - Turf that is selected as a target for the TTV to be shot at. Does not change unless a new target is chosen.
-* 		targetdest - Name of the GPS selected at the same time as var/dest.
+*		dest - Turf that is selected as a target for the TTV to be shot at. Does not change unless a new target is chosen.
+*		targetdest - Name of the GPS selected at the same time as var/dest.
 *		tcoords - X, Y, Z coordinates selected at the same time as var/dest.
 *		scibomb - Variable that stores the TTV.
 * 
 * Additional secondary variables:
 *		radio_freq - Restricts machine to only speak on Science radio channel. This allows Miners to hear the LAM
-* 			announcements as well.
-* 		countdown - Adjustable value used to determine the time until the TTV is deployed to Lavaland.
+*			announcements as well.
+*		countdown - Adjustable value used to determine the time until the TTV is deployed to Lavaland.
 *		mincount - Value that restricts var/countdown from being less than it.
-* 		tick - Value that uses var/countdown when starting the countdown() proc.
-* 		target_delay - Variable used in reset_lam(), limits targetting/firing actions in short succession.
+*		tick - Value that uses var/countdown when starting the countdown() proc.
+*		target_delay - Variable used in reset_lam(), limits targetting/firing actions in short succession.
 */
 /obj/machinery/sci_bombardment
 	name = "Lavaland Artillery Mainframe"
