@@ -9,6 +9,7 @@
 	designation = "Default" //used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"

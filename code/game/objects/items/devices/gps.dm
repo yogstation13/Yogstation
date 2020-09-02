@@ -99,6 +99,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		if(G.emped || !G.tracking || G == src)
 			continue
 		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
+		if(!pos)
+			continue
 		if(!global_mode && pos.z != curr.z)
 			continue
 		var/list/signal = list()
@@ -207,3 +209,34 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	tagged = null
 	STOP_PROCESSING(SSfastprocess, src)
 	. = ..()
+
+/**
+  * # Pirate GPS
+  *
+  *	Pirate GPS used for targeting by the [Blue Space Artillery] [/obj/machinery/computer/bsa_control]
+  *
+  * When shot at, relays the fact that it was shot at to [the pirate event] [/datum/round_event/pirates] so it cancels
+  */
+
+/obj/item/gps/pirate
+
+/**
+  *	Initializes the GPS with the correct name, taken from the pirate ship's name
+  *	If no name is provided, it'll default to "Jolly Robuster"
+  *
+  *	Arguments:
+  *	* ship_name - The name that of the ship that we're pretending to be, defaults to "Jolly Robuster"
+  */
+/obj/item/gps/pirate/Initialize(ship_name = "Jolly Robuster")
+	.=..()
+	if(ship_name)
+		name = ship_name
+		gpstag = ship_name
+
+/**
+  * Relays that the [Blue Space Artillery] [/obj/machinery/computer/bsa_control] has shot the ship to the event, then qdels
+  */
+/obj/item/gps/pirate/proc/on_shoot()
+	var/datum/round_event/pirates/r = locate() in SSevents.running
+	r?.shot_down()
+	qdel(src)

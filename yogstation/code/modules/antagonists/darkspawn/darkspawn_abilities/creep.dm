@@ -9,6 +9,11 @@
 	psi_addendum = " to activate and per second"
 	lucidity_price = 2
 
+/datum/action/innate/darkspawn/creep/IsAvailable()
+	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
+		return
+	return ..()
+
 /datum/action/innate/darkspawn/creep/process()
 	var/mob/living/L = owner
 	active = L.has_status_effect(STATUS_EFFECT_CREEP)

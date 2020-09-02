@@ -13,7 +13,23 @@
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return 1
 
+/datum/surgery/prosthetic_replacement/mechanic_limb
+	name = "Attach mechanical limb"
+	self_operable = TRUE
+	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	target_mobtypes = list(/mob/living/carbon/human)
+	lying_required = FALSE
+	steps = list(
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/add_prosthetic
+		)
 
+/datum/surgery/prosthetic_replacement/mechanic_limb/can_start(mob/user, mob/living/carbon/target)
+	if(!ispreternis(target))
+		return FALSE
+
+	var/mob/living/carbon/C = target
+	return !C.get_bodypart(user.zone_selected) //can only start if limb is missing
 
 /datum/surgery_step/add_prosthetic
 	name = "add prosthetic"
@@ -94,4 +110,3 @@
 			var/obj/item/melee/arm_blade/new_arm = new(target,TRUE,TRUE)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 			return 1
-

@@ -1,29 +1,45 @@
 //caravan ambush
 
 /obj/item/wrench/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new wrench design, allegedly the red color scheme makes it go faster."
 	name = "experimental wrench"
+	desc = "A prototype of a new wrench design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expwrench"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expwrench"
 	toolspeed = 0.3
 
 /obj/item/screwdriver/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new screwdriver design, allegedly the red color scheme makes it go faster."
 	name = "experimental screwdriver"
+	desc = "A prototype of a new screwdriver design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expscrewdriver"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expscrewdriver"
 	toolspeed = 0.3
 	random_color = FALSE
 
 /obj/item/wirecutters/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new wirecutter design, allegedly the red color scheme makes it go faster."
 	name = "experimental wirecutters"
+	desc = "A prototype of a new wirecutter design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expcutters"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expcutters"
 	toolspeed = 0.3
 	random_color = FALSE
 
 /obj/item/crowbar/red/caravan
-	color = "#ff0000"
-	desc = "A prototype of a new crowbar design, allegedly the red color scheme makes it go faster."
 	name = "experimental crowbar"
+	desc = "A prototype of a new crowbar design, allegedly the orange color scheme makes it go faster."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "expcrowbar"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	item_state = "expcrowbar"
 	toolspeed = 0.3
 
 /obj/machinery/computer/shuttle/caravan
@@ -167,3 +183,6 @@
 	view_range = 2.5
 	x_offset = -1
 	y_offset = -3
+	
+/obj/item/paper/fluff/ruins/caravanambush/admiral
+	info = "Please deliever these new sets of clothes to centcom as our admiral has lost theirs"

@@ -98,7 +98,7 @@
 	minor_announce(input["message"], "Breaking Update From [input["message_sender"]]")
 	
 /datum/world_topic/ooc_relay
-	keyword = "ooc"
+	keyword = "ooc_relay"
 	require_comms_key = TRUE
 
 /datum/world_topic/ooc_relay/Run(list/input)

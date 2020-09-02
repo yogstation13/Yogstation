@@ -585,6 +585,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"abt" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/hand_labeler,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
+"abu" = (
+/obj/item/flashlight/flare/signal,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "abx" = (
 /obj/machinery/biogenerator,
 /obj/effect/decal/cleanable/dirt,
@@ -8353,19 +8370,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"asR" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"asS" = (
-/obj/structure/closet/secure_closet/medical1,
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"asT" = (
-/obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "asU" = (
 /obj/structure/table,
 /obj/machinery/cell_charger{
@@ -9266,18 +9270,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"avf" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Chemical Storage";
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "avg" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -10695,18 +10687,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"ayN" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/hand_labeler,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "ayO" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical{
@@ -12907,19 +12887,6 @@
 	dir = 5
 	},
 /area/science/research)
-"aEz" = (
-/obj/machinery/power/apc{
-	areastring = "/area/hallway/secondary/entry";
-	dir = 4;
-	name = "Entry Hall APC";
-	pixel_x = 24
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/corner,
-/area/hallway/secondary/entry)
 "aEB" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -44644,6 +44611,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"eCn" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "eCt" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -44818,17 +44789,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"eIF" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "eII" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -45537,12 +45497,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"ftM" = (
-/obj/structure/extraction_point{
-	name = "Xenobiology Fulton Retriever"
-	},
-/turf/open/floor/engine,
-/area/science/xenobiology)
 "fvJ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	name = "Waste Ejector"
@@ -46776,6 +46730,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"gQH" = (
+/obj/effect/landmark/stationroom/box/foremaint,
+/turf/template_noop,
+/area/template_noop)
 "gQJ" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/light/small{
@@ -54976,6 +54934,19 @@
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos_distro)
+"pAL" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/power/apc/highcap/fifteen_k{
+	areastring = "/area/hallway/secondary/entry";
+	dir = 4;
+	name = "Arrivals APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "pBu" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/aisat_interior";
@@ -62005,15 +61976,13 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/pet_carrier/xenobio{
-	pixel_x = -5
+/obj/item/extinguisher{
+	pixel_x = -9;
+	pixel_y = 1
 	},
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio{
-	pixel_x = 5
-	},
-/obj/item/pet_carrier/xenobio{
-	pixel_x = 10
+/obj/item/extinguisher{
+	pixel_x = -3;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
@@ -62446,20 +62415,12 @@
 /area/engine/atmos)
 "xHn" = (
 /obj/structure/table/reinforced,
-/obj/item/extinguisher{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/obj/item/extinguisher{
-	pixel_x = -3;
-	pixel_y = 4
-	},
 /obj/item/storage/box/beakers{
-	pixel_x = 12;
+	pixel_x = 0;
 	pixel_y = 2
 	},
 /obj/item/storage/box/syringes{
-	pixel_x = 17;
+	pixel_x = 5;
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -77508,7 +77469,7 @@ azD
 aAJ
 azD
 aCp
-aEz
+pAL
 aFG
 aHu
 ayl
@@ -86803,7 +86764,7 @@ bEK
 byE
 byE
 eSR
-eIF
+eCn
 bGi
 aaf
 aaf
@@ -88549,9 +88510,9 @@ aiT
 aiT
 aiT
 arP
-asR
-aqR
-arP
+qQV
+qQV
+gQH
 awc
 axB
 arP
@@ -88806,9 +88767,9 @@ aiT
 aeR
 aeC
 arP
-asT
-aqR
-avf
+qQV
+qQV
+qQV
 aqR
 axB
 arP
@@ -89063,9 +89024,9 @@ ads
 adZ
 aeG
 arP
-asS
-aqR
-arP
+qQV
+qQV
+qQV
 aqP
 axC
 arP
@@ -90353,7 +90314,7 @@ aph
 aph
 avt
 ayL
-ayN
+abt
 aAb
 aAW
 axA
@@ -97382,7 +97343,7 @@ clJ
 cig
 ciZ
 ciZ
-ciZ
+abu
 jmH
 gCP
 cig
@@ -107873,7 +107834,7 @@ bAB
 bBV
 bDb
 aBe
-ftM
+bEm
 nUW
 cLX
 lIR
