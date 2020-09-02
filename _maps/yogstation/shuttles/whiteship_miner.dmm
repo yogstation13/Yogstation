@@ -683,14 +683,6 @@
 /obj/item/storage/photo_album,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"gv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/syndicatebomb/training{
-	desc = "A sticky note on the side says 'DO NOT TOUCH, VERY DANGEROUS'.";
-	name = "self-destruct device"
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "gP" = (
 /obj/effect/decal/cleanable/xenoblood,
 /obj/machinery/iv_drip{
@@ -1487,7 +1479,7 @@ ax
 YW
 JR
 JR
-gv
+bx
 JR
 JR
 pa
