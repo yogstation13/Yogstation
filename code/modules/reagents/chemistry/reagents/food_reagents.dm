@@ -800,4 +800,23 @@
 	color = "#75553a"
 	taste_mult = 1.5
 	taste_description = "gravy"
+
+/datum/reagent/fungus
+	name = "Space fungus"
+	description = "Scrapings of some unknown fungus found growing on the station walls."
+	reagent_state = LIQUID
+	color = "#C87D28"
+	taste_description = "mold"
+
+/datum/reagent/fungus/reaction_mob(mob/living/M, method=REAGENT_TOUCH, volume)
+	if(method == REAGENT_INGEST)
+		var/ranchance = rand(1,10)
+		if(ranchance == 1)
+			to_chat(M, "<span class='warning'>You feel very sick.</span>")
+			M.reagents.add_reagent("toxin", rand(1,5))
+		else if(ranchance <= 5)
+			to_chat(M, "<span class='warning'>That tasted absolutely FOUL.</span>")
+			M.ForceContractDisease(new /datum/disease/food_poisoning(0))
+		else
+			to_chat(M, "<span class='warning'>Yuck!</span>")
 	
