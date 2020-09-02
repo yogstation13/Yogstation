@@ -463,7 +463,6 @@
 
 /datum/reagent/thc
 	name = "Tetrahydrocannabinol"
-	id = "thc"
 	description = "A mild psychoactive chemical extracted from the cannabis plant."
 	reagent_state = LIQUID
 	color = "#0FBE0F"
@@ -484,10 +483,10 @@
 
 /datum/reagent/cbd
 	name = "Cannabidiol"
-	id = "cbd"
 	description = "A non-psychoactive phytocannabinoid extracted from the cannabis plant."
 	reagent_state = LIQUID
 	color = "#00e100"
+	trippy = false
 	taste_description = "relaxation"
 
 /datum/reagent/cbd/on_mob_life(mob/living/M)
