@@ -15,7 +15,6 @@
 	opening = 1
 	playsound(src.loc, 'sound/items/bubblewrap.ogg', 30, 1, extrarange = -4, falloff = 10)
 	icon_state = "prizeconfetti"
-	src.color = pick(random_color_list)
 	var/prize_inside = pick(/obj/item/toy/foamblade, /obj/item/twohanded/dualsaber/toy, /obj/item/toy/redbutton, /obj/item/toy/cards/deck, /obj/item/toy/clockwork_watch, /obj/item/toy/figure/assistant, /obj/item/toy/plush/narplush, /obj/item/toy/plush/teddybear, /obj/item/toy/plush/goatplushie/angry/kinggoat, /obj/item/toy/plush/realgoat, /obj/item/toy/plush/plushvar, /obj/item/toy/plush/nukeplushie, /obj/item/toy/plush/snakeplushie, /obj/item/toy/plush/slimeplushie, /obj/item/toy/plush/bubbleplush, /obj/item/toy/plush/carpplushie
 )	//will add ticket bundles later
 	spawn(10)
