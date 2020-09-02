@@ -722,3 +722,18 @@
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/closed/mineral/strong/gets_drilled(user)
+	drop_ores()
+	var/flags = NONE
+	if(defer_change) // TODO: make the defer change var a var for any changeturf flag
+		flags = CHANGETURF_DEFER_CHANGE
+	ScrapeAway(flags=flags)
+	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
+	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE) //beautiful destruction
+
+/turf/closed/mineral/strong/proc/drop_ores()
+	if(prob(10))
+		new /obj/item/stack/sheet/mineral/mythril(src, 5)
+	else
+		new /obj/item/stack/sheet/mineral/adamantine(src, 5
