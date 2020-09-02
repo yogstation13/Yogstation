@@ -689,7 +689,13 @@
 		return
 	if(isAI(M))
 		return
-	show_inv(usr)
+
+/mob/MouseDrop_T(atom/dropping, atom/user)
+	. = ..()
+	if(ismob(dropping) && dropping != user)
+		var/mob/M = dropping
+		M.show_inv(user)
+		
 /** 
   * Handle the result of a click drag onto this mob
   *

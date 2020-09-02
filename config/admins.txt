@@ -10,70 +10,72 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-AsV9	=	RetCoder
-ThatLing	=	RetCoder
+Qwerty	=	Host
 AshCorr	=	Host
 Xantam	=	Host
-Spl99	=	Community Manager
  
-oakboscage	=	Council Member
 TehLadyK	=	Council Member
 Yogurtshrimp69	=	Council Member
+oakboscage	=	Council Member
 zxmongoose	=	Council Member
  
+jamied12	=	Head Coder
 alexkar598	=	Head Coder
-Monster860	=	Head Coder
  
-halueryphi	=	Senior Admin
 ktlwjec	=	Senior Admin
+SwissLoaf	=	Senior Admin
 Alexandria404	=	Senior Admin
+Mordrehel	=	Senior Admin
  
-SwissLoaf	=	Primary Admin
-Master Penguin5	=	Primary Admin
-Mordrehel	=	Primary Admin
-Fillywonk	=	Primary Admin
+Spl99	=	Community Manager
+ 
 Rayisken	=	Primary Admin
+Master Penguin5	=	Primary Admin
  
-hopek	=	Administrator
-lyis	=	Administrator
-superguy113	=	Administrator
-Readystorm546	=	Administrator
-BayBee	=	Administrator
+Monster860	=	Administrator-Mainterino
+wejengin2	=	Administrator-Mainterino
+ 
+thatoneguywiththeface	=	Administrator
 jasiopl123	=	Administrator
-TheGamer01	=	Administrator
+superguy113	=	Administrator
+lyis	=	Administrator
+dr.derp3635	=	Administrator
+SLRaptor	=	Administrator
 Takahiru	=	Administrator
-lewdelf	=	Administrator
+ynot01	=	Administrator
+supertealove	=	Administrator
+genericdm	=	Administrator
+TheGamer01	=	Administrator
  
-Colburn3000	=	Retired Admin
-Fataleyes	=	Retired Admin
-Menacingmanatee	=	Retired Admin
-Nightshadow1055	=	Retired Admin
+readystorm546	=	Moderator
+xoxeyos	=	Moderator
+lactos	=	Moderator
+Athena413	=	Moderator
+ 
 PenguinFisher	=	Retired Admin
-BritishGrace	=	Retired Admin
-Altoids0	=	Retired Admin
-Qe	=	Retired Admin
-dominuslucian	=	Retired Admin
-liberalbiass	=	Retired Admin
-ltureborned	=	Retired Admin
-Slovenian	=	Retired Admin
-Likeless	=	Retired Admin
-genericdm	=	Retired Admin
-AtRealDonaldTrump	=	Retired Admin
+lewdelf	=	Retired Admin
 simonset55	=	Retired Admin
+kmc2000	=	Retired Admin
+halueryphi	=	Retired Admin
+Colburn3000	=	Retired Admin
+ASV9	=	Retired Admin
+Qe	=	Retired Admin
+BayBee	=	Retired Admin
+Altoids0	=	Retired Admin
+BritishGrace	=	Retired Admin
+Menacingmanatee	=	Retired Admin
+Fataleyes	=	Retired Admin
+Slovenian	=	Retired Admin
+Nightshadow1055	=	Retired Admin
 Mrspace	=	Retired Admin
-Rumia29	=	Retired Admin
- 
-ynot01	=	Moderator
- 
-05rhardy	=	ModeratorOnProbation
- 
-Identification	=	Maintainer
-Theos	=	Maintainer
-fluffe9911	=	Maintainer
-McDonald072	=	Maintainer
  
 Observer	=	Admin Observer
-dr.derp3635	=	Admin Observer
-bowlofcereal	=	Admin Observer
+ 
+McDonald072	=	Maintainer
+Theos	=	Maintainer
+Partheo	=	Maintainer
+ 
+#Enkaa	=	#Forum Mod
+#Crazyhyperway	=	#Forum Mod
  
 Yogstation13-Bot	=	Bot

@@ -27,10 +27,7 @@
 	return completed
 
 /datum/station_goal/proc/get_result()
-	if(check_completion())
-		return "<li>[name] :  <span class='greentext'>Completed!</span></li>"
-	else
-		return "<li>[name] : <span class='redtext'>Failed!</span></li>"
+	return "<li>[name] : <span class='[check_completion() ? "greentext'>Complet" : "redtext'>Fail"]ed</span></li>"
 
 /datum/station_goal/Destroy()
 	SSticker.mode.station_goals -= src

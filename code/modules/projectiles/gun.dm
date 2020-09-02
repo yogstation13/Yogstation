@@ -91,6 +91,11 @@
 		QDEL_NULL(azoom)
 	return ..()
 
+//ALL GUNS ARE NOW STAFF OF THE HONKMOTHER HONK
+/obj/item/gun/honk_act()
+	new /obj/item/gun/magic/staff/honk(src.loc)
+	qdel(src)
+
 /obj/item/gun/handle_atom_del(atom/A)
 	if(A == pin)
 		pin = null
@@ -542,7 +547,9 @@
 	if(chambered && chambered.BB)
 		chambered.BB.damage *= 5
 
-	process_fire(target, user, TRUE, params)
+	var/fired = process_fire(target, user, TRUE, params, BODY_ZONE_HEAD)
+	if(!fired && chambered?.BB)
+		chambered.BB.damage /= 5
 
 /obj/item/gun/proc/unlock() //used in summon guns and as a convience for admins
 	if(pin)

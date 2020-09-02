@@ -279,11 +279,25 @@
 	else if(istype(target, /obj/item/gps))
 		return get_turf(target)
 
+/**
+  * Fires the BSA (duh) if it has power
+  * 
+  * If its target is the [pirate gps] [/obj/item/gps/pirate], it'll just fire at the edge of the map then call the [GPS' on_shoot proc] [/obj/item/gps/pirate/proc/on_shoot]
+  *
+  * Arguments:
+  *	* user - The [/mob] that fired the cannon, assumed to exist and will *probably* runtime without it.
+  */
 /obj/machinery/computer/bsa_control/proc/fire(mob/user)
 	if(cannon.stat)
 		notice = "Cannon unpowered!"
 		return
 	notice = null
+	if(istype(target, /obj/item/gps/pirate))
+		var/obj/item/gps/pirate/p = target
+		p.on_shoot()
+		cannon.fire(user, cannon.get_target_turf())
+		target = null
+		return
 	cannon.fire(user, get_impact_turf())
 
 /obj/machinery/computer/bsa_control/proc/deploy(force=FALSE)

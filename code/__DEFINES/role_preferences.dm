@@ -39,7 +39,6 @@
 #define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
-#define ROLE_BATTLEROYALE		"Battle Royale Contestant" //Yogs - Battle Royale Mode
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" //Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
