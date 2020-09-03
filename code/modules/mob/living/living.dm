@@ -300,8 +300,6 @@
 				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
 
-				update_pull_movespeed()
-
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
@@ -356,7 +354,6 @@
 	if(ismob(pulling))
 		reset_pull_offsets(pulling)
 	..()
-	update_pull_movespeed()
 	update_pull_hud_icon()
 
 /mob/living/verb/stop_pulling1()
@@ -586,10 +583,6 @@
 
 	var/old_direction = dir
 	var/turf/T = loc
-
-	if(pulling)
-		update_pull_movespeed()
-	
 	. = ..()
 
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
