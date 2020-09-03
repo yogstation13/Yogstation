@@ -3,7 +3,7 @@
 #define DRONE_HEAD_LAYER 2
 #define DRONE_TOTAL_LAYERS 2
 
-#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
+
 
 #define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected in [A.name].</span>"
 #define DRONE_NET_DISCONNECT "<span class='notice'>DRONE NETWORK: [name] has stopped responding at [A.name]!</span>"
