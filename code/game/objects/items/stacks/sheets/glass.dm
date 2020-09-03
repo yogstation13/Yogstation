@@ -160,7 +160,6 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 /obj/item/stack/sheet/rglass/fifty
 	amount = 50
 
-
 /obj/item/stack/sheet/rglass/cyborg
 	materials = list()
 	var/datum/robot_energy_storage/glasource
