@@ -1060,6 +1060,10 @@
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"RJ" = (
+/obj/structure/sign/plaques/deempisi,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "Sp" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1257,7 +1261,7 @@ ab
 ab
 ab
 ab
-ab
+RJ
 bk
 cA
 cy

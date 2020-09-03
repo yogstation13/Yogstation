@@ -473,10 +473,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"bh" = (
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "bi" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel{
@@ -488,16 +484,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
-"bk" = (
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -1067,6 +1053,11 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"ka" = (
+/obj/effect/turf_decal/ameritard,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "ko" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/burger/baseball{
@@ -1125,6 +1116,20 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"Bu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
+"Ca" = (
+/obj/effect/landmark/blobstart,
+/obj/item/reagent_containers/food/snacks/burger/plain,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "Dn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1147,6 +1152,11 @@
 /obj/structure/chair/americandiner/booth/end_left,
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Jm" = (
+/obj/effect/spawner/structure/window,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "Ns" = (
 /obj/structure/disposalpipe/segment,
@@ -1185,7 +1195,7 @@ ab
 ab
 ab
 ab
-mc
+Jm
 ab
 mc
 ab
@@ -1232,7 +1242,7 @@ aB
 aO
 aO
 bS
-az
+ka
 az
 ca
 HO
@@ -1438,7 +1448,7 @@ ai
 bK
 bP
 ab
-bh
+Ca
 aj
 bg
 bD
@@ -1502,7 +1512,7 @@ aj
 aj
 aL
 aY
-bk
+Bu
 aj
 br
 bG

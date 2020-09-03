@@ -284,20 +284,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"dd" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "dP" = (
 /obj/structure/chair/sofa/left,
 /obj/structure/window{
@@ -327,15 +313,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"fh" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "ft" = (
 /obj/effect/landmark/event_spawn,
 /turf/closed/wall,
@@ -449,6 +426,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"kq" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "kK" = (
 /obj/machinery/camera{
 	c_tag = "Bar Storage"
@@ -560,6 +544,12 @@
 /obj/effect/landmark/start/assistant,
 /obj/structure/chair/sofa/right{
 	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"qv" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1119,6 +1109,17 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"KN" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "La" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -1242,6 +1243,15 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"RX" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "RZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -1654,8 +1664,8 @@ kk
 Pe
 cK
 Pe
-fh
-sC
+KN
+kq
 xa
 OC
 "}
@@ -1686,9 +1696,9 @@ ac
 Pe
 IO
 Pe
-dd
+RX
 wZ
-wZ
+qv
 OC
 "}
 (16,1,1) = {"

@@ -494,16 +494,6 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"bk" = (
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
 "bl" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel{
@@ -921,6 +911,10 @@
 	icon_state = "r_wall"
 	},
 /area/crew_quarters/bar)
+"nY" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
 "pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
@@ -931,6 +925,19 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"yt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
+"HQ" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
 "JA" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/carpet,
@@ -941,6 +948,10 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"OZ" = (
+/obj/effect/landmark/event_spawn,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "Qz" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -991,7 +1002,7 @@ ac
 ab
 ac
 ab
-ac
+OZ
 ab
 ac
 ac
@@ -1115,7 +1126,7 @@ ac
 (9,1,1) = {"
 ac
 ap
-ap
+HQ
 ap
 aD
 aD
@@ -1188,7 +1199,7 @@ cm
 bZ
 cm
 bR
-ap
+nY
 bJ
 ac
 "}
@@ -1309,7 +1320,7 @@ am
 am
 aP
 aZ
-bk
+yt
 am
 bC
 bS
