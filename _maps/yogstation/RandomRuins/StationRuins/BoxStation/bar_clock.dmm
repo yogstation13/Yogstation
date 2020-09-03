@@ -244,13 +244,6 @@
 "eu" = (
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"eI" = (
-/obj/item/clockwork/alloy_shards,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
 "eP" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/bronze,
@@ -307,10 +300,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"hv" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
 "ia" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -335,6 +324,16 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"js" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/mob/living/simple_animal/bot/honkbot,
+/turf/open/floor/bronze,
+/area/crew_quarters/theatre)
 "jy" = (
 /obj/structure/chair/bronze{
 	dir = 1
@@ -689,6 +688,12 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"Cw" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/effect/landmark/event_spawn,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "Cz" = (
 /obj/item/kitchen/rollingpin{
 	pixel_x = 3
@@ -732,12 +737,6 @@
 "Ej" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"Er" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/obj/effect/landmark/event_spawn,
-/obj/effect/spawner/xmastree,
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
 "EX" = (
 /obj/structure/chair/bronze{
 	dir = 4
@@ -767,10 +766,8 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"Gl" = (
-/obj/structure/table/bronze,
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
+"Gs" = (
+/obj/machinery/smartfridge/drinks,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "Gv" = (
@@ -933,6 +930,13 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
+"MA" = (
+/obj/item/clockwork/alloy_shards,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "Nc" = (
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
 /turf/open/floor/bronze,
@@ -945,16 +949,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"NC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/mob/living/simple_animal/bot/honkbot,
-/turf/open/floor/bronze,
-/area/crew_quarters/theatre)
 "Oy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4;
@@ -1033,6 +1027,12 @@
 	pixel_y = 2
 	},
 /obj/structure/table/bronze,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
+"Sf" = (
+/obj/structure/table/bronze,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "SD" = (
@@ -1130,6 +1130,16 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"Wq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/bronze,
+/area/crew_quarters/theatre)
 "Ws" = (
 /turf/closed/wall/mineral/bronze,
 /area/crew_quarters/bar)
@@ -1166,16 +1176,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
-"Yk" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/bronze,
-/area/crew_quarters/theatre)
 "YH" = (
 /obj/item/clockwork/alloy_shards/small,
 /turf/open/floor/bronze/reebe,
@@ -1255,7 +1255,7 @@ Ws
 ab
 wa
 rB
-NC
+js
 fz
 Wx
 AD
@@ -1271,12 +1271,12 @@ Ws
 nF
 xV
 ya
-Yk
+Wq
 fz
 Wx
 Wx
 Wx
-Er
+Cw
 Vt
 Vl
 Wx
@@ -1390,7 +1390,7 @@ AD
 AD
 zN
 AD
-Gl
+Sf
 yQ
 Rh
 Ws
@@ -1422,9 +1422,9 @@ BM
 AD
 BH
 AD
-hv
+Gs
 AD
-eI
+MA
 Ws
 "}
 (16,1,1) = {"

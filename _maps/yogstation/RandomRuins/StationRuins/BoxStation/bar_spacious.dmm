@@ -1004,6 +1004,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"lI" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "nP" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1037,6 +1046,10 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Eu" = (
+/obj/structure/sign/plaques/deempisi,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "EC" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -1060,10 +1073,6 @@
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"RJ" = (
-/obj/structure/sign/plaques/deempisi,
-/turf/closed/wall,
-/area/crew_quarters/bar)
 "Sp" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1153,7 +1162,7 @@ cT
 ba
 ba
 cI
-cI
+lI
 cI
 cI
 ba
@@ -1188,7 +1197,7 @@ bz
 bj
 bj
 bz
-cI
+lI
 ba
 bw
 "}
@@ -1236,7 +1245,7 @@ bz
 bj
 bj
 bz
-cI
+lI
 cm
 ab
 "}
@@ -1261,7 +1270,7 @@ ab
 ab
 ab
 ab
-RJ
+Eu
 bk
 cA
 cy

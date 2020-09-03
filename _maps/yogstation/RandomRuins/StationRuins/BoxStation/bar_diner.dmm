@@ -985,6 +985,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"cK" = (
+/obj/effect/spawner/structure/window,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "cQ" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/ameritard,
@@ -1053,11 +1058,6 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"ka" = (
-/obj/effect/turf_decal/ameritard,
-/obj/effect/spawner/xmastree,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "ko" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/burger/baseball{
@@ -1070,6 +1070,15 @@
 	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"lT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
 "mc" = (
@@ -1088,6 +1097,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"sL" = (
+/obj/effect/turf_decal/ameritard,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "vO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -1101,6 +1115,11 @@
 "xx" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
+/area/crew_quarters/bar)
+"yv" = (
+/obj/effect/landmark/blobstart,
+/obj/item/reagent_containers/food/snacks/burger/plain,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "Aw" = (
 /obj/structure/table,
@@ -1116,20 +1135,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"Bu" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
-"Ca" = (
-/obj/effect/landmark/blobstart,
-/obj/item/reagent_containers/food/snacks/burger/plain,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "Dn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1153,10 +1158,13 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"Jm" = (
-/obj/effect/spawner/structure/window,
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plating,
+"JN" = (
+/mob/living/carbon/monkey{
+	name = "Pun Pun"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
 /area/crew_quarters/bar)
 "Ns" = (
 /obj/structure/disposalpipe/segment,
@@ -1195,7 +1203,7 @@ ab
 ab
 ab
 ab
-Jm
+cK
 ab
 mc
 ab
@@ -1242,7 +1250,7 @@ aB
 aO
 aO
 bS
-ka
+sL
 az
 ca
 HO
@@ -1403,7 +1411,7 @@ ag
 bf
 aU
 bx
-cv
+JN
 cv
 cv
 bY
@@ -1448,7 +1456,7 @@ ai
 bK
 bP
 ab
-Ca
+yv
 aj
 bg
 bD
@@ -1512,7 +1520,7 @@ aj
 aj
 aL
 aY
-Bu
+lT
 aj
 br
 bG

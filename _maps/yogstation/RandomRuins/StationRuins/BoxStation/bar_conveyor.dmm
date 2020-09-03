@@ -1005,6 +1005,15 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"cS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
 "cV" = (
 /obj/machinery/conveyor{
 	dir = 9;
@@ -1082,10 +1091,22 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"nk" = (
+"ht" = (
+/obj/effect/landmark/event_spawn,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"jj" = (
 /obj/machinery/computer/slot_machine,
 /obj/machinery/light{
 	dir = 1
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"jX" = (
+/obj/structure/chair/americandiner{
+	dir = 1;
+	icon_state = "americhair";
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -1100,6 +1121,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"rA" = (
+/obj/machinery/camera{
+	c_tag = "Theatre Stage";
+	dir = 2
+	},
+/obj/structure/table,
+/obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "up" = (
@@ -1120,8 +1150,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"HO" = (
+"BP" = (
 /obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"EC" = (
+/obj/structure/chair/stool,
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "KY" = (
@@ -1131,22 +1166,10 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"MH" = (
-/obj/structure/chair/americandiner{
-	dir = 1;
-	icon_state = "americhair";
-	tag = ""
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"UH" = (
-/obj/machinery/camera{
-	c_tag = "Theatre Stage";
-	dir = 2
-	},
-/obj/structure/table,
-/obj/item/clothing/head/hardhat/cakehat,
-/turf/open/floor/plasteel/vaporwave,
+"SA" = (
+/obj/effect/landmark/blobstart,
+/obj/item/clothing/mask/cigarette/rollie/cannabis,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "VM" = (
 /obj/structure/table,
@@ -1156,15 +1179,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
-"VV" = (
-/obj/effect/landmark/blobstart,
-/obj/item/clothing/mask/cigarette/rollie/cannabis,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
-"Wr" = (
-/obj/effect/landmark/event_spawn,
-/turf/closed/wall,
-/area/crew_quarters/bar)
 "XW" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1178,20 +1192,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
-"YP" = (
-/obj/structure/chair/stool,
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"Zl" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1200,7 +1200,7 @@ ab
 ab
 ab
 nw
-Wr
+ht
 nw
 ab
 nw
@@ -1253,7 +1253,7 @@ bs
 bs
 bs
 cV
-YP
+EC
 dq
 ab
 "}
@@ -1291,8 +1291,8 @@ cF
 "}
 (7,1,1) = {"
 ae
-UH
-MH
+rA
+jX
 aP
 bd
 bv
@@ -1307,7 +1307,7 @@ nw
 "}
 (8,1,1) = {"
 ac
-HO
+BP
 ao
 aP
 bg
@@ -1323,7 +1323,7 @@ cF
 "}
 (9,1,1) = {"
 ab
-nk
+jj
 ao
 ao
 ao
@@ -1454,7 +1454,7 @@ ak
 bk
 aF
 ab
-VV
+SA
 al
 bi
 bN
@@ -1491,7 +1491,7 @@ al
 bl
 bO
 bU
-cf
+bN
 bN
 bN
 ct
@@ -1518,7 +1518,7 @@ al
 al
 aN
 aZ
-Zl
+cS
 al
 bA
 bQ
@@ -1539,7 +1539,7 @@ al
 bC
 bR
 VM
-cf
+bN
 bN
 bN
 XW

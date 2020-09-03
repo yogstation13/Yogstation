@@ -738,23 +738,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
-"by" = (
-/obj/effect/landmark/start/bartender,
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
 "bz" = (
 /obj/machinery/light{
 	dir = 4
@@ -1156,23 +1139,6 @@
 /obj/machinery/processor,
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
-"cs" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
 "ct" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/chair/comfy/shuttle{
@@ -1485,6 +1451,10 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
+"Rz" = (
+/obj/structure/sign/plaques/deempisi,
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "Sd" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -1498,10 +1468,6 @@
 	},
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
-"SI" = (
-/obj/structure/sign/plaques/deempisi,
-/turf/closed/wall,
 /area/crew_quarters/bar)
 "ST" = (
 /obj/structure/table,
@@ -1683,7 +1649,7 @@ bN
 bN
 bN
 bN
-cs
+aL
 cD
 ag
 "}
@@ -1692,7 +1658,7 @@ ag
 ag
 ag
 ag
-SI
+Rz
 bp
 aL
 aM
@@ -1710,7 +1676,7 @@ aP
 aZ
 ag
 bt
-by
+aL
 aM
 bX
 aM

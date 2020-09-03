@@ -904,85 +904,7 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"dF" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/icecream_vat,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"ih" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
-	},
-/obj/machinery/reagentgrinder,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"jQ" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"mD" = (
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#706891"
-	},
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"nf" = (
-/obj/machinery/food_cart,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"nC" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"oE" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"rh" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"rk" = (
-/obj/structure/table,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"vO" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"zX" = (
+"dI" = (
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1002,7 +924,29 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Ar" = (
+"hk" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"jQ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"kC" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"oC" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil,
@@ -1011,33 +955,72 @@
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Le" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/spawner/xmastree,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+"rk" = (
+/obj/structure/table,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
 	},
-/area/crew_quarters/bar)
-"RM" = (
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"rA" = (
 /obj/effect/landmark/blobstart,
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"Tw" = (
+"rW" = (
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#706891"
+	},
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"tG" = (
+/obj/machinery/food_cart,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"ul" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"we" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Ux" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 4
+"BJ" = (
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Ew" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/machinery/reagentgrinder,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Fb" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/icecream_vat,
+/turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"UF" = (
+"Ra" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/wine{
 	pixel_x = -4
@@ -1048,11 +1031,20 @@
 /obj/item/reagent_containers/food/drinks/bottle/lizardwine,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"VB" = (
-/obj/effect/landmark/xeno_spawn,
+"RF" = (
+/obj/machinery/smartfridge/drinks,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"XG" = (
+"Ux" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table,
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"UZ" = (
 /obj/machinery/camera{
 	c_tag = "Bar Storage"
 	},
@@ -1064,6 +1056,14 @@
 	pixel_y = 28
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ZP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
@@ -1198,7 +1198,7 @@ ag
 ag
 aB
 aI
-Le
+ZP
 bj
 bC
 am
@@ -1251,7 +1251,7 @@ bk
 aB
 au
 aE
-UF
+Ra
 aY
 aB
 aX
@@ -1264,7 +1264,7 @@ aK
 ag
 ag
 ag
-vO
+ul
 cD
 cK
 bX
@@ -1277,7 +1277,7 @@ cC
 (14,1,1) = {"
 ah
 at
-ih
+Ew
 ba
 ag
 aV
@@ -1291,9 +1291,9 @@ cz
 ag
 "}
 (15,1,1) = {"
-Ar
+oC
 au
-VB
+hk
 aB
 bl
 aB
@@ -1308,14 +1308,14 @@ ag
 "}
 (16,1,1) = {"
 ag
-XG
+UZ
 aM
 ag
 ag
 ag
-zX
-nC
-oE
+dI
+kC
+RF
 cd
 aB
 cr
@@ -1324,10 +1324,10 @@ ag
 "}
 (17,1,1) = {"
 ak
-rh
+BJ
 aN
 ag
-RM
+rA
 al
 al
 al
@@ -1345,10 +1345,10 @@ al
 al
 al
 al
-mD
+rW
 ce
-Tw
-Tw
+we
+we
 ce
 cs
 al
@@ -1357,7 +1357,7 @@ aa
 (19,1,1) = {"
 al
 bc
-dF
+Fb
 bq
 bq
 al
@@ -1393,7 +1393,7 @@ aQ
 bf
 bt
 al
-nf
+tG
 bQ
 ce
 ce
