@@ -3,8 +3,10 @@
 #define DRONE_HEAD_LAYER 2
 #define DRONE_TOTAL_LAYERS 2
 
-#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected.</span>"
-#define DRONE_NET_DISCONNECT "<span class='danger'>DRONE NETWORK: [name] is not responding.</span>"
+#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
+
+#define DRONE_NET_CONNECT "<span class='notice'>DRONE NETWORK: [name] connected in [A.name].</span>"
+#define DRONE_NET_DISCONNECT "<span class='notice'>DRONE NETWORK: [name] has stopped responding at [A.name]!</span>"
 
 #define MAINTDRONE	"drone_maint"
 #define REPAIRDRONE	"drone_repair"
@@ -78,7 +80,7 @@
 	"<span class='notify'>     - Interacting with non-living beings (dragging bodies, looting bodies, etc.)</span>\n"+\
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
 	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>"
-
+	
 /mob/living/simple_animal/drone/Initialize()
 	. = ..()
 	GLOB.drones_list += src
@@ -95,6 +97,8 @@
 
 	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
+	var/turf/A = get_area(src)
+	
 	alert_drones(DRONE_NET_CONNECT)
 
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
@@ -146,7 +150,9 @@
 		dropItemToGround(internal_storage)
 	if(head)
 		dropItemToGround(head)
-
+	
+	var/turf/A = get_area(src)
+	
 	alert_drones(DRONE_NET_DISCONNECT)
 
 
