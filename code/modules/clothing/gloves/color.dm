@@ -43,6 +43,12 @@
 	resistance_flags = NONE
 	var/can_be_cut = 1
 
+/obj/item/clothing/gloves/color/black/forensic
+	desc = "Specially made gloves for detectives. The luminescent threads woven into the material stand out under scrutiny."
+	name = "forensic gloves"
+	icon_state = "forensic"
+	can_be_cut = 0
+
 /obj/item/clothing/gloves/color/black/hos
 	item_color = "hosred"	//Exists for washing machines. Is not different from black gloves in any way.
 
