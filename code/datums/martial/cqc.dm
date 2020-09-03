@@ -86,7 +86,8 @@
 	if(D.mobility_flags & MOBILITY_STAND)
 		D.visible_message("<span class='warning'>[A] slams [D] into the ground!</span>", \
 						  	"<span class='userdanger'>[A] slams you into the ground!</span>")
-		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, 1, -1)
+		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
+		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 		D.apply_damage(10, STAMINA)
 		D.Paralyze(15)
 		D.Knockdown(60)
@@ -102,6 +103,7 @@
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
+	A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 	if(!D.stat && (D.mobility_flags & MOBILITY_STAND))
 		D.visible_message("<span class='warning'>[A] kicks [D] back!</span>", \
 							"<span class='userdanger'>[A] kicks you back!</span>")
@@ -129,12 +131,17 @@
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
+	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	log_combat(A, D, "pressured (CQC)")
 	var/list/viable_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	var/selected_zone = A.zone_selected
 	if(!viable_zones.Find(selected_zone))
 		selected_zone = pick(viable_zones)
-	D.visible_message("<span class='warning'>[A] quickly wrenches [D]'s [selected_zone]!</span>")
+	var/hit_limb = D.get_bodypart(selected_zone)
+	if(!hit_limb)
+		return FALSE
+	D.visible_message("<span class='warning'>[A] dislocates [D]'s [hit_limb]!</span>", \
+						"<span class = 'userdanger'>[A] dislocates your [hit_limb]!</span>")
 	D.drop_all_held_items()
 	D.apply_damage(50, STAMINA, selected_zone) //damage dealt from 3 harm intent hits would be roughly 45
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
@@ -171,6 +178,7 @@
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
+	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	if(D.mobility_flags & MOBILITY_STAND)
 		log_combat(A, D, "consecutive CQC'd (CQC)")
 		D.visible_message("<span class='warning'>[A] delivers a firm blow to [D]'s head, knocking them down!</span>", \
@@ -203,7 +211,7 @@
 	if(check_streak(A,D))
 		return TRUE
 	log_combat(A, D, "attacked (CQC)")
-	A.do_attack_animation(D)
+	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/picked_hit_type = pick("CQC'd", "Big Bossed")
 	var/bonus_damage = 15
 	D.apply_damage(bonus_damage, STAMINA)
@@ -296,6 +304,7 @@
 /datum/martial_art/cqc/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker) //I am going to fucking gut whoever did the old counter system also whoever made martial arts
 	if(!can_use(user))
 		return
+	user.do_attack_animation(attacker, ATTACK_EFFECT_DISARM)
 	attacker.visible_message("<span class='warning'>[user] grabs [attacker]'s arm as they attack and throws them to the ground!</span>", \
 						"<span class='userdanger'>[user] grabs your arm as you attack and throws you to the ground!</span>")
 	playsound(get_turf(attacker), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
