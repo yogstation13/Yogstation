@@ -177,6 +177,12 @@
 	P.special_enabled = TRUE
 
 
+/datum/map_template/shuttle/emergency/ceti
+	suffix = "ceti"
+	name = "\"Shattl Otbytiya\""
+	description = ""
+	credit_cost = 5000
+
 /datum/map_template/shuttle/emergency/transtar
 	suffix = "transtar"
 	name = "Transtar 800-C"
