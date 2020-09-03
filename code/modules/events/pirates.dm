@@ -109,7 +109,7 @@
 	priority_announce("Unidentified armed ship detected near the station.")
 	play_intro_music()
 
-///plays music from youtube, specifically Cortez Battle - Paper Mario: The Thousand-Year Door
+///plays Cortez Battle - Paper Mario: The Thousand-Year Door. Uses chatoutput.sendmusic instead of playsound.local because it is more than 90 seconds long
 /datum/round_event/pirates/proc/play_intro_music()
 	for(var/m in GLOB.player_list)
 		var/mob/M = m
