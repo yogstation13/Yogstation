@@ -106288,18 +106288,6 @@
 	icon_state = "chapel"
 	},
 /area/chapel/main)
-"deM" = (
-/obj/structure/cable/white{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/main)
 "deN" = (
 /obj/structure/sign/departments/examroom{
 	pixel_x = -32
@@ -127789,6 +127777,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"yfP" = (
+/obj/structure/cable/white{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/grimy,
+/area/chapel/main)
 "yiv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -162702,7 +162703,7 @@ cMf
 cMf
 cMf
 cMf
-deM
+yfP
 dVc
 cHQ
 cIg
