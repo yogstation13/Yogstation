@@ -118,6 +118,12 @@ Yogs End*/
 				[expires] If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums."} //yogs
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				key_cache[key] = 0
+				if(address == i["ip"])
+					SSblackbox.record_feedback("amount", "blockedIPs", 1)
+					SSblackbox.record_feedback("tally", "blockedIPsbyCKEY", 1, key)
+				if(computer_id == i["computerid"])
+					SSblackbox.record_feedback("amount", "blockedCIDs", 1)
+					SSblackbox.record_feedback("tally", "blockedCIDsbyCKEY", 1, key)
 				return list("reason"="Banned","desc"="[desc]")
 
 	var/list/ban = ..()	//default pager ban stuff
