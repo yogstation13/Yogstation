@@ -773,7 +773,7 @@
 /obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
 	used = TRUE
 	to_chat(H, "<span class='holoparasite'>You pull a card from the deck...</span>")
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Holyparasite of [H.real_name]?", ROLE_LAVALAND, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Holyparasite of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(H, "holy")
