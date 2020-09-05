@@ -464,7 +464,7 @@
 
 /// Reaction that burns stimulum and plouxium into radballs and partial constituent gases, but also catalyzes the combustion of plasma.
 /datum/gas_reaction/stim_ball/react(datum/gas_mixture/air, datum/holder)
-	var/turf/open/location
+	var/turf/location
 	var/old_heat_capacity = air.heat_capacity()
 	if(istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
 		var/datum/pipeline/pipenet = holder
@@ -481,12 +481,12 @@
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
 	air.adjust_moles(/datum/gas/nitryl, reaction_rate*5)
 	air.adjust_moles(/datum/gas/plasma, -plasma_burned)
-	if(balls_shot>0)
+	if(balls_shot)
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
-			location.fire_nuclear_particle((i*angular_increment+random_starting_angle)%360)
-	if(energy_released>0)
+			location.fire_nuclear_particle((i*angular_increment+random_starting_angle))
+	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))

@@ -23,9 +23,9 @@
 ///A canister that is 1 Kelvin away from doing the stimball reaction.
 /obj/machinery/portable_atmospherics/canister/stimball_test
 	name = "Stimball Test Canister"
-	desc = "This should never be spawned in game except for testing purposes"
+	desc = "This should never be spawned in game except for testing purposes."
 
-obj/machinery/portable_atmospherics/canister/create_gas()
+/obj/machinery/portable_atmospherics/canister/stimball_test/create_gas()
 	air_contents.set_moles(/datum/gas/stimulum, 1000)
 	air_contents.set_moles(/datum/gas/plasma, 1000)
 	air_contents.set_moles(/datum/gas/pluoxium, 1000)
