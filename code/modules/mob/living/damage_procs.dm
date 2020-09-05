@@ -28,12 +28,12 @@
 			adjustStaminaLoss(damage * hit_percent)
 	return 1
 
-/mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, _required_status) //like apply damage except it always uses the damage procs
+/mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, required_status) //like apply damage except it always uses the damage procs
 	switch(damagetype)
 		if(BRUTE)
-			return adjustBruteLoss(damage, required_status = _required_status)
+			return adjustBruteLoss(damage, TRUE, FALSE, required_status)
 		if(BURN)
-			return adjustFireLoss(damage, required_status = _required_status)
+			return adjustFireLoss(damage, TRUE, FALSE, required_status)
 		if(TOX)
 			return adjustToxLoss(damage)
 		if(OXY)
