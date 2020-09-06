@@ -454,7 +454,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/obj/item/projectile/P = hitby
 		attackforce = P.damage
 		if(P.damage_type == STAMINA)// disablers are weaker against blocking
-			attackforce * 0.5
+			attackforce *= 0.5
 	else if(isitem(hitby))
 		var/obj/item/I = hitby
 		attackforce = damage
@@ -464,7 +464,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			attackforce = (attackforce / 2)//as above, burning weapons, or weapons that deal other damage type probably dont get force from physical power
 		attackforce = (attackforce * I.attack_weight)
 		if(I.damtype == STAMINA)//pure stamina damage is weaker against blocks
-			attackforce * 0.5
+			attackforce *= 0.5
 	else if(attack_type == UNARMED_ATTACK && isliving(hitby))
 		var/mob/living/L = hitby
 		if(block_flags & BLOCKING_NASTY && !HAS_TRAIT(L, TRAIT_PIERCEIMMUNE))
