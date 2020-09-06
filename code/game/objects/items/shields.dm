@@ -18,18 +18,18 @@
 		var/attackforce = 0
 		if(isprojectile(hitby))
 			var/obj/item/projectile/P = hitby
-			if(P.damtype == STAMINA)// disablers dont do shit to shields
+			if(P.damtype == STAMINA)
 				var/blockhand = 0
-					if(owner.get_active_held_item() == src)
-						if(owner.active_hand_index == 1)
-							blockhand = BODY_ZONE_L_ARM
-						else
-							blockhand = BODY_ZONE_R_ARM
+				if(owner.get_active_held_item() == src)
+					if(owner.active_hand_index == 1)
+						blockhand = BODY_ZONE_L_ARM
 					else
-						if(owner.active_hand_index == 1)
-							blockhand = BODY_ZONE_R_ARM
-						else
-							blockhand = BODY_ZONE_L_ARM
+						blockhand = BODY_ZONE_R_ARM
+				else
+					if(owner.active_hand_index == 1)
+						blockhand = BODY_ZONE_R_ARM
+					else
+						blockhand = BODY_ZONE_L_ARM
 				owner.apply_damage(attackforce, STAMINA, blockhand, block_power * 1.5)
 			attackforce = P.damage
 		if(isitem(hitby))
