@@ -73289,15 +73289,6 @@
 	},
 /turf/open/floor/circuit/green,
 /area/science/robotics/mechbay)
-"cxH" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "cxI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -83262,6 +83253,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
+"jCV" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "jKK" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -108494,7 +108495,7 @@ cwF
 cxs
 cxA
 cxA
-cxH
+jCV
 cxW
 cQG
 cQW
