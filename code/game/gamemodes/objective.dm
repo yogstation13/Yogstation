@@ -1053,6 +1053,73 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Have X or more heads of staff escape on the shuttle disguised as heads, while the real heads are dead"
 	command_staff_only = TRUE
 
+////////////////////////////////
+//  Minor traitor Objectives  //
+////////////////////////////////
+/**
+  * # Minor Objectives
+  *
+  * Objectives given to traitors without hijack or martyr, just small flavour things that shouldn't be too hard or impactful.
+  */
+/datum/objective/minor
+
+/**
+  * Sets up the achievement, returns TRUE if it was set up successfully and can be used, FALSE otherwise
+  */
+/datum/objective/minor/proc/finalize()
+	return FALSE
+
+
+/**
+  * # Delete your security records
+  *
+  * Just delete the original record. For now, you don't have to prevent other records being made of your identity
+  */
+/datum/objective/minor/secrecords
+	explanation_text = "Delete your NanoTrasen security records."
+	/// The security record that needs to be deleted
+	var/datum/data/record/record
+
+/**
+  * Search through all the security records, and find ours. 
+  */
+/datum/objective/minor/secrecords/finalize()
+	for(var/datum/data/record/s in GLOB.data_core.security)
+		if(s.fields["name"] == owner.name)
+			record = s
+			return TRUE
+	return FALSE
+
+/**
+  * Returns TRUE if there's no record, returns FALSE otherwise
+  */
+/datum/objective/minor/secrecords/check_completion()
+	return !record || !(record in GLOB.data_core.security)
+
+
+/**
+  * # Kill Ian
+  *
+  * Kill Ian
+  */
+/datum/objective/minor/ian
+	explanation_text = "Assassinate the HoP's assistant, Ian."
+	/// Ian
+	var/mob/living/simple_animal/pet/dog/corgi/Ian/Ian
+
+/**
+  * Finds Ian
+  */
+/datum/objective/minor/ian/finalize()
+	Ian = locate() in GLOB.mob_list
+	return Ian
+
+/**
+  * Check whether Ian is dead
+  */
+/datum/objective/minor/ian/check_completion()
+	return (!Ian || Ian.stat == DEAD)
+
 //Ideally this would be all of them but laziness and unusual subtypes
 /proc/generate_admin_objective_list()
 	GLOB.admin_objective_list = list()
