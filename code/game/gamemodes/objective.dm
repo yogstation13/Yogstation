@@ -1076,7 +1076,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Just delete the original record. For now, you don't have to prevent other records being made of your identity
   */
 /datum/objective/minor/secrecords
-	explanation_text = "Delete your NanoTrasen security records."
+	name = "Delete your security records."
+	explanation_text = "Delete your Nanotrasen security records."
 	/// The security record that needs to be deleted
 	var/datum/data/record/record
 
@@ -1103,6 +1104,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Kill Ian
   */
 /datum/objective/minor/ian
+	name = "Kill Ian."
 	explanation_text = "Assassinate the HoP's assistant, Ian."
 	/// Ian
 	var/mob/living/simple_animal/pet/dog/corgi/Ian/Ian
