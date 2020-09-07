@@ -118,7 +118,7 @@
 		return
 
 	else
-		if(prob(100))
+		if(prob(50))
 			//Give them a minor flavour objective
 			var/list/datum/objective/minor/minorObjectives = subtypesof(/datum/objective/minor)
 			var/datum/objective/minor/minorObjective
