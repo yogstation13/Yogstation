@@ -1,0 +1,6 @@
+author: "GenericDM"
+delete-after: true 
+changes: 
+  - rscadd: "add gloves that are unique to detective"
+  - rscdel: "remove boring old gloves"
+  - imageadd: "add the glove image"
