@@ -324,6 +324,16 @@
 	},
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"js" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/mob/living/simple_animal/bot/honkbot,
+/turf/open/floor/bronze,
+/area/crew_quarters/theatre)
 "jy" = (
 /obj/structure/chair/bronze{
 	dir = 1
@@ -367,10 +377,6 @@
 /obj/item/toy/plush/plushvar,
 /obj/structure/table/bronze,
 /turf/open/floor/bronze/reebe,
-/area/crew_quarters/bar)
-"nu" = (
-/obj/item/clockwork/alloy_shards,
-/turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "nC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -682,6 +688,12 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
+"Cw" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/effect/landmark/event_spawn,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/bronze,
+/area/crew_quarters/bar)
 "Cz" = (
 /obj/item/kitchen/rollingpin{
 	pixel_x = 3
@@ -754,6 +766,10 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
+"Gs" = (
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
 "Gv" = (
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
@@ -811,19 +827,6 @@
 /obj/structure/table/bronze,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"HX" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/bronze,
-/area/crew_quarters/bar)
-"Ia" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/theatre)
 "Iq" = (
 /obj/machinery/disposal/bin,
 /obj/structure/sign/warning/securearea{
@@ -927,14 +930,12 @@
 /obj/effect/landmark/start/cook,
 /turf/open/floor/bronze,
 /area/crew_quarters/kitchen)
-"ML" = (
+"MA" = (
+/obj/item/clockwork/alloy_shards,
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/structure/table/bronze,
-/turf/open/floor/bronze/reebe,
+/turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "Nc" = (
 /obj/item/clockwork/component/geis_capacitor/fallen_armor,
@@ -1026,6 +1027,12 @@
 	pixel_y = 2
 	},
 /obj/structure/table/bronze,
+/turf/open/floor/bronze/reebe,
+/area/crew_quarters/bar)
+"Sf" = (
+/obj/structure/table/bronze,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/bar)
 "SD" = (
@@ -1123,6 +1130,16 @@
 	},
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
+"Wq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/bronze,
+/area/crew_quarters/theatre)
 "Ws" = (
 /turf/closed/wall/mineral/bronze,
 /area/crew_quarters/bar)
@@ -1238,7 +1255,7 @@ Ws
 ab
 wa
 rB
-Ia
+js
 fz
 Wx
 AD
@@ -1254,12 +1271,12 @@ Ws
 nF
 xV
 ya
-CO
+Wq
 fz
 Wx
 Wx
 Wx
-HX
+Cw
 Vt
 Vl
 Wx
@@ -1373,7 +1390,7 @@ AD
 AD
 zN
 AD
-BA
+Sf
 yQ
 Rh
 Ws
@@ -1405,9 +1422,9 @@ BM
 AD
 BH
 AD
-ML
+Gs
 AD
-nu
+MA
 Ws
 "}
 (16,1,1) = {"
