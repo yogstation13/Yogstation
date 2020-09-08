@@ -1,0 +1,4 @@
+author: "DiamondSentinel"
+delete-after: true 
+changes: 
+  - rscadd: "Added a blacklist for say modes for stuns and stamcrit which currently only includes Radio"
