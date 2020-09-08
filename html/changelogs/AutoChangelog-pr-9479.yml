@@ -1,0 +1,7 @@
+author: "  Edge, a few Sprites from Kryson, theos for porting"
+delete-after: true 
+changes: 
+  - rscadd: "Heretics have been spotted near your area, don't let them succeed."
+  - rscadd: "Added a sane version of GetAllContents called get_all_gear()."
+  - tweak: "moved blind to be a pointed spell and adds support for pointed spells"
+  - tweak: "adds support for cone spells"
