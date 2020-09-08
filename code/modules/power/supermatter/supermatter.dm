@@ -309,17 +309,19 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/proc/explode()
 	for(var/mob in GLOB.alive_mob_list)
 		var/mob/living/L = mob
-		if(istype(L) && L.z == z)
+		var/turf/T2 = get_turf(L)
+		if(istype(L) && T2.z == z)
 			if(ishuman(mob))
-				//Hilariously enough, running into a closet should make you get hit the hardest.
 				var/mob/living/carbon/human/H = mob
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
 			L.rad_act(rads)
 
 	var/turf/T = get_turf(src)
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
+	for(var/_M in GLOB.player_list)
+		var/mob/M = _M
+		var/turf/T2 = get_turf(M)
+		if(T2.z == z)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
 			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
