@@ -1122,6 +1122,38 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/ian/check_completion()
 	return (!Ian || Ian.stat == DEAD)
 
+/**
+  * # Take a picture of your target's dead body
+  *
+  * Escape with a picture of their dead body
+  */
+
+/datum/objective/minor/deadpics
+	name = "Photograph your target's dead body"
+	explanation_text = "Escape with a photo of the dead body of your target"
+
+/**
+  * Checks whether our owner has an assassinate target, and sets the objective up if so, returns FALSE otherwise
+  */
+/datum/objective/minor/deadpics/finalize()
+	var/datum/objective/assassinate/A = locate() in owner.objectives
+	if(!A)
+		return FALSE
+	target = A.target
+	explanation_text = "Escape with a photo of the dead body of [target.name]."	
+	return TRUE
+
+/**
+  * Ripped code straight from [/datum/objective/steal], checks all the owner's items for a picture with the dead target
+  */
+/datum/objective/minor/deadpics/check_completion()
+	var/list/all_items = owner.current.GetAllContents()
+	for(var/obj/item/photo/P in all_items)
+		for(var/mob/M in P.picture.dead_seen)
+			if(M.real_name == target.name)
+				return TRUE
+	return FALSE
+
 //Ideally this would be all of them but laziness and unusual subtypes
 /proc/generate_admin_objective_list()
 	GLOB.admin_objective_list = list()
