@@ -750,6 +750,8 @@
 /obj/item/nullrod/holypara
 	name = "deck of holy tarot cards"
 	desc = "A holy deck of tarot cards, harboring a healing spirit."
+	force = 0 //cards deal 18 damage hehe
+	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob_name = "Holyparasite"
 	icon = 'icons/obj/toy.dmi'
