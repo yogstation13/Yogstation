@@ -25089,9 +25089,45 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
+"bHP" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 5
+	},
+/obj/item/book/manual/wiki/barman_recipes{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/machinery/newscaster{
+	pixel_y = -30
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "bIG" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/maintenance/port)
+"bIV" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -8;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "bJd" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -26827,17 +26863,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"dVQ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "dVS" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -28410,15 +28435,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"fOl" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "fOx" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -31702,6 +31718,20 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"jwQ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/item/radio/intercom{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "jxd" = (
 /obj/structure/cable/white{
 	icon_state = "0-8"
@@ -32264,16 +32294,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"ken" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar/atrium)
 "keY" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/disposalpipe/segment{
@@ -34082,6 +34102,17 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"mnM" = (
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/item/radio/intercom{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "moj" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -35208,6 +35239,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"nKi" = (
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = 10
+	},
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "nKl" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
@@ -36573,15 +36620,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"pfg" = (
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 10
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "pgL" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -38675,26 +38713,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/medical)
-"ruo" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 5
-	},
-/obj/item/book/manual/wiki/barman_recipes{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/machinery/newscaster{
-	pixel_y = -30
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "rvh" = (
 /obj/structure/cable/white{
 	icon_state = "2-8"
@@ -42097,6 +42115,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/central)
+"tEa" = (
+/obj/machinery/camera{
+	c_tag = "Kitchen - Coldroom";
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "tEs" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -44614,14 +44639,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"wsZ" = (
-/obj/machinery/light{
-	dir = 2
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/kitchen)
 "wwY" = (
 /obj/machinery/door/airlock/medical/glass{
 	id_tag = "cloningfoyer";
@@ -88921,8 +88938,8 @@ klB
 jvR
 pig
 kWu
-ken
-ken
+kcd
+kcd
 kcd
 kcd
 dNe
@@ -89191,7 +89208,7 @@ fHZ
 xSp
 jXX
 aju
-dVQ
+jwQ
 xXO
 sJA
 akJ
@@ -89434,7 +89451,7 @@ jqf
 vhB
 dfI
 aCe
-fOl
+bIV
 jTO
 jTO
 jTO
@@ -89705,7 +89722,7 @@ qVR
 ajn
 cVd
 kKb
-ruo
+bHP
 xXO
 apd
 akN
@@ -90202,7 +90219,7 @@ syT
 afu
 aCe
 pzw
-qvD
+tEa
 aCe
 aCe
 rjo
@@ -90210,7 +90227,7 @@ bmk
 kiZ
 pYn
 lSI
-wsZ
+mnM
 aCe
 kzS
 bqR
@@ -90722,7 +90739,7 @@ gpP
 lBL
 iMx
 eVe
-pfg
+nKi
 tYm
 aSb
 aCe
