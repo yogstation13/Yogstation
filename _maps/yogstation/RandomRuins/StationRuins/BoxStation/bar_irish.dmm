@@ -1438,26 +1438,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cD" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/glass/rag,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/darkgreen,
-/obj/effect/turf_decal/tile/darkgreen{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "cE" = (
 /obj/effect/landmark/start/cook,
 /turf/open/floor/plasteel/cafeteria,
@@ -1747,6 +1727,21 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"dd" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "hD" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -1774,6 +1769,23 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"qV" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "MM" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -1790,6 +1802,23 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"PQ" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1994,7 +2023,7 @@ aI
 aI
 ci
 aI
-bU
+qV
 cI
 cX
 ad
@@ -2026,9 +2055,9 @@ bF
 aI
 cj
 aI
-cD
+dd
 aI
-aI
+PQ
 ad
 "}
 (16,1,1) = {"
