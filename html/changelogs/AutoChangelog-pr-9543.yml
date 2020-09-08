@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "cult stun hand stuns weaker as the cult increases in power, with effects being halved on entering risen (red eyes) and dealing heavy stamina damage and knockdown while throwing the target when in ascendent (halos)"
