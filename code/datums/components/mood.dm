@@ -168,31 +168,28 @@
 					screen_obj.color = "#2eeb9a"
 			break
 
-/datum/component/mood/process() //Called on SSmood process
-	var/mob/living/owner = parent
-	if(!owner)
-		qdel(src)
-		return
-
+///Called on SSmood process
+/datum/component/mood/process(delta_time)
 	switch(mood_level)
 		if(1)
-			setSanity(sanity-0.2)
+			setSanity(sanity-0.3*delta_time, SANITY_INSANE)
 		if(2)
-			setSanity(sanity-0.125, minimum=SANITY_CRAZY)
+			setSanity(sanity-0.15*delta_time, SANITY_INSANE)
 		if(3)
-			setSanity(sanity-0.075, minimum=SANITY_UNSTABLE)
+			setSanity(sanity-0.1*delta_time, SANITY_CRAZY)
 		if(4)
-			setSanity(sanity-0.025, minimum=SANITY_DISTURBED)
+			setSanity(sanity-0.05*delta_time, SANITY_UNSTABLE)
 		if(5)
 			setSanity(sanity+0.1)
 		if(6)
-			setSanity(sanity+0.15)
+			setSanity(sanity+0.2*delta_time, SANITY_UNSTABLE)
 		if(7)
-			setSanity(sanity+0.2)
+			setSanity(sanity+0.3*delta_time, SANITY_UNSTABLE)
 		if(8)
-			setSanity(sanity+0.25, maximum=SANITY_GREAT)
+			setSanity(sanity+0.4*delta_time, SANITY_NEUTRAL, SANITY_MAXIMUM)
 		if(9)
-			setSanity(sanity+0.4, maximum=INFINITY)
+			setSanity(sanity+0.6*delta_time, SANITY_NEUTRAL, SANITY_MAXIMUM)
+	HandleNutrition()
 
 	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
 		if(prob(0.05))

@@ -191,7 +191,9 @@
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0
-	var/health_boost = 1
+
+	/// Repaired health per second
+	var/health_boost = 0.5
 	var/icon/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
 	selectable = 0
@@ -236,16 +238,16 @@
 		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
 
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/process()
+/obj/item/mecha_parts/mecha_equipment/repair_droid/process(delta_time)
 	if(!chassis)
 		STOP_PROCESSING(SSobj, src)
 		set_ready_state(1)
 		return
-	var/h_boost = health_boost
+	var/h_boost = health_boost * delta_time
 	var/repaired = 0
 	if(chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		h_boost *= -2
-	else if(chassis.internal_damage && prob(15))
+	else if(chassis.internal_damage && DT_PROB(8, delta_time))
 		for(var/int_dam_flag in repairable_damage)
 			if(chassis.internal_damage & int_dam_flag)
 				chassis.clearInternalDamage(int_dam_flag)
@@ -328,7 +330,7 @@
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp; [src.name] - <a href='?src=[REF(src)];toggle_relay=1'>[equip_ready?"A":"Dea"]ctivate</a>"
 
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process()
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process(delta_time)
 	if(!chassis || chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		STOP_PROCESSING(SSobj, src)
 		set_ready_state(1)
@@ -348,7 +350,7 @@
 					pow_chan = c
 					break
 			if(pow_chan)
-				var/delta = min(20, chassis.cell.maxcharge-cur_charge)
+				var/delta = min(10 * delta_time, chassis.cell.maxcharge-cur_charge)
 				chassis.give_power(delta)
 				A.use_power(delta*coeff, pow_chan)
 
@@ -366,9 +368,12 @@
 	var/coeff = 100
 	var/obj/item/stack/sheet/fuel
 	var/max_fuel = 150000
-	var/fuel_per_cycle_idle = 25
-	var/fuel_per_cycle_active = 200
-	var/power_per_cycle = 20
+	/// Fuel used per second while idle, not generating
+	var/fuelrate_idle = 12.5
+	/// Fuel used per second while actively generating
+	var/fuelrate_active = 100
+	/// Energy recharged per second
+	var/rechargerate = 10
 
 /obj/item/mecha_parts/mecha_equipment/generator/Initialize()
 	. = ..()
@@ -428,7 +433,7 @@
 /obj/item/mecha_parts/mecha_equipment/generator/attackby(weapon,mob/user, params)
 	load_fuel(weapon)
 
-/obj/item/mecha_parts/mecha_equipment/generator/process()
+/obj/item/mecha_parts/mecha_equipment/generator/process(delta_time)
 	if(!chassis)
 		STOP_PROCESSING(SSobj, src)
 		set_ready_state(1)
@@ -445,11 +450,11 @@
 		log_message("Deactivated.", LOG_MECHA)
 		STOP_PROCESSING(SSobj, src)
 		return
-	var/use_fuel = fuel_per_cycle_idle
+	var/use_fuel = fuelrate_idle
 	if(cur_charge < chassis.cell.maxcharge)
-		use_fuel = fuel_per_cycle_active
-		chassis.give_power(power_per_cycle)
-	fuel.amount -= min(use_fuel/fuel.mats_per_stack,fuel.amount)
+		use_fuel = fuelrate_active
+		chassis.give_power(rechargerate * delta_time)
+	fuel.amount -= min(delta_time * use_fuel / MINERAL_MATERIAL_AMOUNT, fuel.amount)
 	update_equip_info()
 	return 1
 
@@ -459,14 +464,126 @@
 	desc = "An exosuit module that generates power using uranium as fuel. Pollutes the environment."
 	icon_state = "tesla"
 	max_fuel = 50000
-	fuel_per_cycle_idle = 10
-	fuel_per_cycle_active = 30
-	power_per_cycle = 50
-	var/rad_per_cycle = 30
+	fuelrate_idle = 5
+	fuelrate_active = 15
+	rechargerate = 25
+	var/radrate = 15
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/generator_init()
 	fuel = new /obj/item/stack/sheet/mineral/uranium(src, 0)
 
-/obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
+/obj/item/mecha_parts/mecha_equipment/generator/nuclear/process(delta_time)
 	if(..())
-		radiation_pulse(get_turf(src), rad_per_cycle)
+		radiation_pulse(get_turf(src), radrate * delta_time)
+
+
+/////////////////////////////////////////// THRUSTERS /////////////////////////////////////////////
+
+/obj/item/mecha_parts/mecha_equipment/thrusters
+	name = "generic exosuit thrusters" //parent object, in-game sources will be a child object
+	desc = "A generic set of thrusters, from an unknown source. Uses not-understood methods to propel exosuits seemingly for free."
+	icon_state = "thrusters"
+	selectable = FALSE
+	var/effect_type = /obj/effect/particle_effect/sparks
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M)
+	for(var/obj/item/I in M.equipment)
+		if(istype(I, src))
+			to_chat(user, "<span class='warning'>[M] already has this thruster package!</span>")
+			return FALSE
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/attach(obj/vehicle/sealed/mecha/M)
+	M.active_thrusters = src //Enable by default
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/detach()
+	if(chassis?.active_thrusters == src)
+		chassis.active_thrusters = null
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/Destroy()
+	if(chassis?.active_thrusters == src)
+		chassis.active_thrusters = null
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/Topic(href,href_list)
+	..()
+	if(!chassis)
+		return
+	if(href_list["mode"])
+		var/mode = text2num(href_list["mode"])
+		switch(mode)
+			if(0)
+				enable()
+			if(1)
+				disable()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/proc/enable()
+	if (chassis.active_thrusters == src)
+		return
+	chassis.active_thrusters = src
+	to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)]<span class='notice'>[src] enabled.</span>")
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/proc/disable()
+	if(chassis.active_thrusters != src)
+		return
+	chassis.active_thrusters = null
+	to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)]<span class='notice'>[src] disabled.</span>")
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/get_equip_info()
+	return "[..()] \[<a href='?src=[REF(src)];mode=0'>Enable</a>|<a href='?src=[REF(src)];mode=1'>Disable</a>\]"
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/proc/thrust(movement_dir)
+	if(!chassis)
+		return FALSE
+	generate_effect(movement_dir)
+	return TRUE //This parent should never exist in-game outside admeme use, so why not let it be a creative thruster?
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/proc/generate_effect(movement_dir)
+	var/obj/effect/particle_effect/E = new effect_type(get_turf(chassis))
+	E.dir = turn(movement_dir, 180)
+	step(E, turn(movement_dir, 180))
+	QDEL_IN(E, 5)
+
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/gas
+	name = "RCS thruster package"
+	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments, by expelling gas from the internal life support tank."
+	effect_type = /obj/effect/particle_effect/smoke
+	var/move_cost = 20 //moles per step
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/gas/try_attach_part(mob/user, obj/vehicle/sealed/mecha/M)
+	if(!M.internal_tank)
+		to_chat(user, "<span class='warning'>[M] does not have an internal tank and cannot support this upgrade!</span>")
+		return FALSE
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/gas/thrust(movement_dir)
+	if(!chassis || !chassis.internal_tank)
+		return FALSE
+	var/moles = chassis.internal_tank.air_contents.total_moles()
+	if(moles < move_cost)
+		chassis.internal_tank.air_contents.remove(moles)
+		return FALSE
+	chassis.internal_tank.air_contents.remove(move_cost)
+	generate_effect(movement_dir)
+	return TRUE
+
+
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/ion //for mechs with built-in thrusters, should never really exist un-attached to a mech
+	name = "Ion thruster package"
+	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments."
+	detachable = FALSE
+	salvageable = FALSE
+	effect_type = /obj/effect/particle_effect/ion_trails
+
+/obj/item/mecha_parts/mecha_equipment/thrusters/ion/thrust(movement_dir)
+	if(!chassis)
+		return FALSE
+	if(chassis.use_power(chassis.step_energy_drain))
+		generate_effect(movement_dir)
+		return TRUE
+	return FALSE

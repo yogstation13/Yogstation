@@ -28,6 +28,12 @@
 	var/uv_cycles = 6
 	var/message_cooldown
 	var/breakout_time = 300
+	/// How fast it charges cells in a suit
+	var/charge_rate = 250
+
+/obj/machinery/suit_storage_unit/Initialize()
+	. = ..()
+	interaction_flags_machine |= INTERACT_MACHINE_OFFLINE
 
 /obj/machinery/suit_storage_unit/standard_unit
 	suit_type = /obj/item/clothing/suit/space
@@ -278,6 +284,18 @@
 		open_machine(FALSE)
 		if(occupant)
 			dump_contents()
+
+/obj/machinery/suit_storage_unit/process(delta_time)
+	if(!suit)
+		return
+	if(!istype(suit, /obj/item/clothing/suit/space))
+		return
+	if(!suit.cell)
+		return
+
+	var/obj/item/stock_parts/cell/C = suit.cell
+	use_power(charge_rate * delta_time)
+	C.give(charge_rate * delta_time)
 
 /obj/machinery/suit_storage_unit/proc/shock(mob/user, prb)
 	if(!prob(prb))

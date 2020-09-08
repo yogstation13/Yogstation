@@ -256,6 +256,28 @@
 /datum/antagonist/heretic/proc/get_all_transmutations()
 	return transmutations
 
+/datum/objective/stalk/process(delta_time)
+	if(owner?.current.stat != DEAD && target?.current.stat != DEAD && (target in view(5,owner.current)))
+		timer -= delta_time * 10 // timer is in deciseconds
+	///we don't want to process after the counter reaches 0, otherwise it is wasted processing
+	if(timer <= 0)
+		STOP_PROCESSING(SSprocessing,src)
+
+/datum/objective/stalk/Destroy(force, ...)
+	STOP_PROCESSING(SSprocessing,src)
+	return ..()
+
+/datum/objective/stalk/update_explanation_text()
+	//we want to start processing after we set the timer
+	timer += rand(-3 MINUTES, 3 MINUTES)
+	START_PROCESSING(SSprocessing,src)
+	if(target?.current)
+		explanation_text = "Stalk [target.name] for at least [DisplayTimeText(timer)] while they're alive."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/stalk/check_completion()
+	return timer <= 0 || explanation_text == "Free Objective"
 
 ////////////////
 // Objectives //

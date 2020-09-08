@@ -40,8 +40,8 @@ Contents:
 		//Main function variables.
 	var/s_initialized = 0//Suit starts off.
 	var/s_coold = 0//If the suit is on cooldown. Can be used to attach different cooldowns to abilities. Ticks down every second based on suit ntick().
-	var/s_cost = 5//Base energy cost each ntick.
-	var/s_acost = 25//Additional cost for additional powers active.
+	var/s_cost = 2.5//Base energy cost each ntick.
+	var/s_acost = 12.5//Additional cost for additional powers active.
 	var/s_delay = 40//How fast the suit does certain things, lower is faster. Can be overridden in specific procs. Also determines adverse probability.
 	var/a_transfer = 20//How much radium is used per adrenaline boost.
 	var/a_maxamount = 7//Maximum number of adrenaline boosts.
@@ -77,6 +77,32 @@ Contents:
 	cell.name = "black power cell"
 	cell.icon_state = "bscell"
 
+// seal the cell in the ninja outfit
+/obj/item/clothing/suit/space/space_ninja/toggle_spacesuit_cell(mob/user)
+	return
+
+// Space Suit temperature regulation and power usage
+/obj/item/clothing/suit/space/space_ninja/process(delta_time)
+	var/mob/living/carbon/human/user = src.loc
+	if(!user || !ishuman(user) || !(user.wear_suit == src))
+		return
+
+	// Check for energy usage
+	if(s_initialized)
+		if(!affecting)
+			terminate() // Kills the suit and attached objects.
+		else if(cell.charge > 0)
+			if(s_coold > 0)
+				s_coold -= delta_time // Checks for ability s_cooldown first.
+			cell.charge -= s_cost * delta_time // s_cost is the default energy cost each ntick, usually 5.
+			if(stealth) // If stealth is active.
+				cell.charge -= s_acost * delta_time
+		else
+			cell.charge = 0
+			cancel_stealth()
+
+	user.adjust_bodytemperature(BODYTEMP_NORMAL - user.bodytemperature)
+
 //Simply deletes all the attachments and self, killing all related procs.
 /obj/item/clothing/suit/space/space_ninja/proc/terminate()
 	qdel(n_hood)
@@ -87,8 +113,8 @@ Contents:
 
 //Randomizes suit parameters.
 /obj/item/clothing/suit/space/space_ninja/proc/randomize_param()
-	s_cost = rand(1,20)
-	s_acost = rand(20,100)
+	s_cost = rand(1,10)
+	s_acost = rand(10,50)
 	s_delay = rand(10,100)
 	s_bombs = rand(5,20)
 	a_boost = rand(1,7)

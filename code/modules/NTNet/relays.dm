@@ -19,7 +19,7 @@
 	// Denial of Service attack variables
 	var/dos_overload = 0		// Amount of DoS "packets" in this relay's buffer
 	var/dos_capacity = 500		// Amount of DoS "packets" in buffer required to crash the relay
-	var/dos_dissipate = 1		// Amount of DoS "packets" dissipated over time.
+	var/dos_dissipate = 0.5		// Amount of DoS "packets" dissipated over time.
 
 
 // TODO: Implement more logic here. For now it's only a placeholder.
@@ -43,16 +43,16 @@
 		icon_state = initial(icon_state)
 	icon_state = "bus"
 
-/obj/machinery/ntnet_relay/process()
-	if(is_operational())
+/obj/machinery/ntnet_relay/process(delta_time)
+	if(is_operational)
 		use_power = ACTIVE_POWER_USE
 	else
 		use_power = IDLE_POWER_USE
 
 	update_icon()
 
-	if(dos_overload)
-		dos_overload = max(0, dos_overload - dos_dissipate)
+	if(dos_overload > 0)
+		dos_overload = max(0, dos_overload - dos_dissipate * delta_time)
 
 	// If DoS traffic exceeded capacity, crash.
 	if((dos_overload > dos_capacity) && !dos_failure)

@@ -22,8 +22,8 @@
 	var/stored_power = 0
 	var/active = 0
 	var/locked = FALSE
-	var/drainratio = 1
-	var/powerproduction_drain = 0.01
+	var/drainratio = 0.5
+	var/powerproduction_drain = 0.001
 
 	var/bitcoinproduction_drain = 0.15
 	var/bitcoinmining = FALSE
@@ -35,7 +35,7 @@
 /obj/machinery/power/rad_collector/Destroy()
 	return ..()
 
-/obj/machinery/power/rad_collector/process()
+/obj/machinery/power/rad_collector/process(delta_time)
 	if(!loaded_tank)
 		return
 	if(!bitcoinmining)
@@ -45,7 +45,7 @@
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			eject()
 		else
-			var/gasdrained = min(powerproduction_drain*drainratio,loaded_tank.air_contents.get_moles(/datum/gas/plasma))
+			var/gasdrained = min(powerproduction_drain*drainratio*delta_time,loaded_tank.air_contents.get_moles(/datum/gas/plasma))
 			loaded_tank.air_contents.adjust_moles(/datum/gas/plasma, -gasdrained)
 			loaded_tank.air_contents.adjust_moles(/datum/gas/tritium, gasdrained)
 
@@ -59,7 +59,7 @@
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			eject()
 		else
-			var/gasdrained = min(bitcoinproduction_drain*drainratio, min(trit_amount, oxy_amount))
+			var/gasdrained = min(bitcoinproduction_drain*drainratio*delta_time, min(trit_amount, oxy_amount))
 			loaded_tank.air_contents.adjust_moles(/datum/gas/tritium, -gasdrained)
 			loaded_tank.air_contents.adjust_moles(/datum/gas/oxygen, -gasdrained)
 			loaded_tank.air_contents.adjust_moles(/datum/gas/carbon_dioxide, gasdrained*2)

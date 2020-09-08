@@ -69,15 +69,15 @@
 /obj/item/organ/proc/on_find(mob/living/finder)
 	return
 
-/obj/item/organ/process()	//runs decay when outside of a person
+/obj/item/organ/process(delta_time)	//runs decay when outside of a person
 	if((organ_flags & (ORGAN_SYNTHETIC | ORGAN_FROZEN)) || istype(loc, /obj/item/mmi))
 		return
 	if(damage >= maxHealth)
 		organ_flags |= ORGAN_FAILING
-		damage = maxHealth
+		damage = maxHealth * delta_time
 		return
 	else if(!owner)
-		damage = min(maxHealth, damage + (maxHealth * decay_factor))
+		damage = min(maxHealth, damage + (maxHealth * decay_factor)) * delta_time
 
 	else
 		var/mob/living/carbon/C = owner
@@ -88,7 +88,7 @@
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth
 				return
-			damage = min(maxHealth, damage + (maxHealth * decay_factor))
+			damage = min(maxHealth, damage + (maxHealth * decay_factor)) * delta_time
 
 /obj/item/organ/proc/on_life()	//repair organ damage if the organ is not failing
 	var/mob/living/carbon/C = owner

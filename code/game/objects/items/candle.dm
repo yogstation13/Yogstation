@@ -9,7 +9,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	light_color = LIGHT_COLOR_FIRE
 	heat = 1000
-	var/wax = 1000
+	/// How many seconds it burns for
+	var/wax = 2000
 	var/lit = FALSE
 	var/infinite = FALSE
 	var/start_lit = FALSE
@@ -59,7 +60,7 @@
 	put_out_candle()
 	return ..()
 
-/obj/item/candle/process()
+/obj/item/candle/process(delta_time)
 	if(!lit)
 		return PROCESS_KILL
 	if(!infinite)

@@ -42,15 +42,15 @@
 		web of pus and viscera, bound tightly around the brain like some \
 		biological harness.</span>")
 
-/obj/item/organ/zombie_infection/process()
+/obj/item/organ/zombie_infection/process(delta_time)
 	if(!owner)
 		return
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
-		owner.adjustToxLoss(damage_caused)
-		if (prob(10))
-			to_chat(owner, span_danger("You feel sick..."))
+		owner.adjustToxLoss(damage_caused * delta_time)
+		if(DT_PROB(10, delta_time))
+			to_chat(owner, "<span class='danger'>You feel sick...</span>")
 	if(timer_id)
 		return
 	if(owner.suiciding)

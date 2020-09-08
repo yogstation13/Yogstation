@@ -24,7 +24,7 @@
 	circuit = /obj/item/circuitboard/machine/mech_recharger
 	var/obj/mecha/recharging_mech
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
-	var/max_charge = 50
+	var/recharge_power = 25
 	var/on = FALSE
 	var/turf/recharging_turf = null
 
@@ -45,15 +45,15 @@
 	var/MC
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		MC += C.rating
-	max_charge = MC * 25
+	recharge_power = MC * 12.5
 
 /obj/machinery/mech_bay_recharge_port/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Base recharge rate at <b>[max_charge]J</b> per cycle.<span>"
+		. += "<span class='notice'>The status display reads: Recharge power <b>[siunit(recharge_power, "W", 1)]</b>.</span>"
 
-/obj/machinery/mech_bay_recharge_port/process()
-	if(stat & NOPOWER || !recharge_console)
+/obj/machinery/mech_bay_recharge_port/process(delta_time)
+	if(machine_stat & NOPOWER || !recharge_console)
 		return
 	if(!recharging_mech)
 		recharging_mech = locate(/obj/mecha) in recharging_turf
@@ -61,7 +61,7 @@
 			recharge_console.update_icon()
 	if(recharging_mech && recharging_mech.cell)
 		if(recharging_mech.cell.charge < recharging_mech.cell.maxcharge)
-			var/delta = min(max_charge, recharging_mech.cell.maxcharge - recharging_mech.cell.charge)
+			var/delta = min(recharge_power * delta_time, recharging_mech.cell.maxcharge - recharging_mech.cell.charge)
 			recharging_mech.give_power(delta)
 			use_power(delta*150)
 		else

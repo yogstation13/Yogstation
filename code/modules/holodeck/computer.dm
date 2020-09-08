@@ -131,10 +131,10 @@
 				emergency_shutdown()
 			nerf(obj_flags & EMAGGED)
 
-/obj/machinery/computer/holodeck/process()
-	if(damaged && prob(10))
+/obj/machinery/computer/holodeck/process(delta_time)
+	if(damaged && DT_PROB(5, delta_time))
 		for(var/turf/T in linked)
-			if(prob(5))
+			if(DT_PROB(2.5, delta_time))
 				do_sparks(2, 1, T)
 				return
 

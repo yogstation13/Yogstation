@@ -19,8 +19,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	critical_machine = TRUE
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
-	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
-	var/net_efective = 100 //yogs percentage of netspeed aplied
+	var/netspeed = 2.5 // how much traffic to lose per second (50 gigabytes/second * netspeed)
 	var/list/autolinkers = list() // list of text/number values to link with
 	var/id = "NULL" // identification string
 	var/network = "NULL" // the network of the machinery
@@ -144,36 +143,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	else
 		on = FALSE
 
-
-/obj/machinery/telecomms/proc/update_speed()
-	if(!on)
-		return
-	var/turf/T = get_turf(src) //yogs
-	var/speedloss = 0
-	var/datum/gas_mixture/env = T.return_air()
-	var/temperature = env.return_temperature()
-	if(temperature <= 150)				// 150K optimal operating parameters
-		net_efective = 100
-	else
-		if(temperature >= 1150)		// at 1000K above 150K the efectivity becomes 0
-			net_efective = 0
-			speedloss = netspeed
-		else
-			var/ratio = 1000/netspeed			// temp per one unit of speedloss
-			speedloss = round((temperature - 150)/ratio)	// exact speedloss
-			net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
-
-	if(traffic > 0)
-		var/deltaT = netspeed - speedloss  //yogs start
-		if (traffic < deltaT)
-			deltaT = traffic
-			traffic = 0
-		else
-			traffic -= deltaT
-		if(generates_heat && env.heat_capacity())
-			env.set_temperature(env.return_temperature() + deltaT * heatoutput / env.heat_capacity())   //yogs end
-
-/obj/machinery/telecomms/process()
+/obj/machinery/telecomms/process(delta_time)
 	update_power()
 
 	// Update the icon
@@ -181,6 +151,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	update_speed()
 
 
+	if(traffic > 0)
+		traffic -= netspeed * delta_time
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()

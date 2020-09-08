@@ -121,23 +121,25 @@
 		charging.forceMove(drop_location())
 		setCharging(null)
 
-/obj/machinery/recharger/process()
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+/obj/machinery/recharger/process(delta_time)
+	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		return PROCESS_KILL
 
 	if(charging)
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
 		if(C)
 			if(C.charge < C.maxcharge)
-				C.give(C.chargerate * recharge_coeff)
-				use_power(250 * recharge_coeff)
+				C.give(C.chargerate * recharge_coeff * delta_time / 2)
+				use_power(125 * recharge_coeff * delta_time)
+				using_power = TRUE
 			update_icon()
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
 				R.stored_ammo += new R.ammo_type(R)
-				use_power(200 * recharge_coeff)
+				use_power(100 * recharge_coeff * delta_time)
+				using_power = TRUE
 			update_icon()
 			return
 	else

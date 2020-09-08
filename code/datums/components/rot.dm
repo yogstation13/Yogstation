@@ -10,7 +10,7 @@
 
 	START_PROCESSING(SSprocessing, src)
 
-/datum/component/rot/process()
+/datum/component/rot/process(delta_time)
 	var/atom/A = parent
 
 	var/turf/open/T = get_turf(A)
@@ -28,7 +28,7 @@
 	var/oxygen_pp = stank_breath.get_moles(/datum/gas/oxygen) * R_IDEAL_GAS_EQUATION * stank_breath.return_temperature() / stank_breath.return_volume()
 	
 	if(oxygen_pp > 18)
-		var/this_amount = min((oxygen_pp - 8) * stank_breath.return_volume() / stank_breath.return_temperature() / R_IDEAL_GAS_EQUATION, amount)
+		var/this_amount = min((oxygen_pp - 8) * stank_breath.return_volume() / stank_breath.return_temperature() / R_IDEAL_GAS_EQUATION, amount) * delta_time
 		stank_breath.adjust_moles(/datum/gas/oxygen, -this_amount)
 
 		var/datum/gas_mixture/stank = new

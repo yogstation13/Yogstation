@@ -10,8 +10,12 @@
 	active_power_usage = 1000
 
 	var/powered = FALSE
-	var/pump_power = 2 //units we pump per process (2 seconds)
 
+	///units we pump per second
+	var/pump_power = 1
+	///set to true if the loop couldnt find a geyser in process, so it remembers and stops checking every loop until moved. more accurate name would be absolutely_no_geyser_under_me_so_dont_try
+	var/geyserless = FALSE
+	///The geyser object
 	var/obj/structure/geyser/geyser
 	var/volume = 200
 
@@ -45,8 +49,8 @@
 		P.disable()
 		disconnect_from_network()
 
-/obj/machinery/power/liquid_pump/process()
-	if(!anchored)
+/obj/machinery/plumbing/liquid_pump/process(delta_time)
+	if(!anchored || panel_open || geyserless)
 		return
 	if(!geyser)
 		for(var/obj/structure/geyser/G in loc.contents)
@@ -63,12 +67,12 @@
 			powered = TRUE
 			icon_state = "[initial(icon_state)]-on"
 		add_load(active_power_usage)
-		pump()
+		pump(delta_time)
 	else if(powered) //we were powered, but now we arent
 		powered = FALSE
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/liquid_pump/proc/pump()
+/obj/machinery/power/liquid_pump/proc/pump(delta_time)
 	if(!geyser || !geyser.reagents)
 		return
-	geyser.reagents.trans_to(src, pump_power)
+	geyser.reagents.trans_to(src, pump_power * delta_time)

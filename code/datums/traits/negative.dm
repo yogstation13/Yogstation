@@ -24,13 +24,13 @@
 	lose_text = span_notice("You feel vigorous again.")
 	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
 
-/datum/quirk/blooddeficiency/on_process()
+/datum/quirk/blooddeficiency/on_process(delta_time)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
 		return
 	else
-		if (H.blood_volume > (BLOOD_VOLUME_SAFE(H) - 25)) // just barely survivable without treatment
-			H.blood_volume -= 0.275
+		if (H.blood_volume > (BLOOD_VOLUME_SAFE - 25)) // just barely survivable without treatment
+			H.blood_volume -= 0.275 * delta_time
 
 /datum/quirk/blindness
 	name = "Blind"
@@ -73,7 +73,16 @@
 	where = H.equip_in_one_of_slots(mannitolpills, slots, FALSE) || "at your feet"
 
 /datum/quirk/brainproblems/post_add()
-	to_chat(quirk_holder, span_boldnotice("There is a pill bottle of mannitol [where]. You're going to need it."))
+	if(where == LOCATION_BACKPACK)
+		var/mob/living/carbon/human/H = quirk_holder
+		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
+
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a bottle of mannitol pills [where] to keep you alive until you can secure a supply of medication. Don't rely on it too much!</span>")
+
+/datum/quirk/brainproblems/on_process(delta_time)
+	if(HAS_TRAIT(quirk_holder, TRAIT_TUMOR_SUPPRESSED))
+		return
+	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
 
 /datum/quirk/deafness
 	name = "Deaf"
@@ -93,6 +102,11 @@
 	lose_text = span_notice("You no longer feel depressed.") //if only it were that easy!
 	medical_record_text = "Patient has a mild mood disorder, causing them to experience episodes of depression."
 	mood_quirk = TRUE
+	hardcore_value = 1
+
+/datum/quirk/depression/on_process(delta_time)
+	if(DT_PROB(0.05, delta_time))
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "depression_mild", /datum/mood_event/depression_mild)
 
 /datum/quirk/family_heirloom
 	name = "Family Heirloom"
@@ -420,6 +434,14 @@
 	gain_text = null //handled by trauma
 	lose_text = null
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
+	hardcore_value = 6
+
+/datum/quirk/insanity/on_process(delta_time)
+	if(quirk_holder.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
+		quirk_holder.hallucination = 0
+		return
+	if(DT_PROB(2, delta_time)) //we'll all be mad soon enough
+		madness()
 
 /datum/quirk/insanity/add()
 	var/datum/brain_trauma/mild/reality_dissociation/T = new()
@@ -441,19 +463,26 @@
 	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
 	var/dumb_thing = TRUE
 
-/datum/quirk/social_anxiety/on_process()
+/datum/quirk/social_anxiety/add()
+	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, .proc/eye_contact)
+	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, .proc/looks_at_floor)
+
+/datum/quirk/social_anxiety/remove()
+	UnregisterSignal(quirk_holder, list(COMSIG_MOB_EYECONTACT, COMSIG_MOB_EXAMINATE))
+
+/datum/quirk/social_anxiety/on_process(delta_time)
 	var/nearby_people = 0
 	for(var/mob/living/carbon/human/H in oview(3, quirk_holder))
 		if(H.client)
 			nearby_people++
 	var/mob/living/carbon/human/H = quirk_holder
-	if(prob(2 + nearby_people))
+	if(DT_PROB(2 + nearby_people, delta_time))
 		H.stuttering = max(3, H.stuttering)
-	else if(prob(min(3, nearby_people)) && !H.silent)
-		to_chat(H, span_danger("You retreat into yourself. You <i>really</i> don't feel up to talking."))
+	else if(DT_PROB(min(3, nearby_people), delta_time) && !H.silent)
+		to_chat(H, "<span class='danger'>You retreat into yourself. You <i>really</i> don't feel up to talking.</span>")
 		H.silent = max(10, H.silent)
-	else if(prob(0.5) && dumb_thing)
-		to_chat(H, span_userdanger("You think of a dumb thing you said a long time ago and scream internally."))
+	else if(DT_PROB(0.5, delta_time) && dumb_thing)
+		to_chat(H, "<span class='userdanger'>You think of a dumb thing you said a long time ago and scream internally.</span>")
 		dumb_thing = FALSE //only once per life
 		if(prob(1))
 			new/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(get_turf(H)) //now that's what I call spaghetti code
@@ -633,57 +662,27 @@
 	to_chat(quirk_holder, span_danger("You remember you are allergic to [allergy.name]."))
 	quirk_holder.allergies += allergy
 
-/datum/quirk/allergic/on_process()
-	var/mob/living/carbon/H = quirk_holder
-	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
-	if(cooldown == FALSE && H.reagents.has_reagent(reagent_id))
-		to_chat(quirk_holder, span_danger("You forgot you were allergic to [allergy.name]!"))
-		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
+/datum/quirk/allergic/on_process(delta_time)
+	. = ..()
+	if(!iscarbon(quirk_holder))
+		return
+	var/mob/living/carbon/carbon_quirk_holder = quirk_holder
+	for(var/M in allergies)
+		var/datum/reagent/instantiated_med = carbon_quirk_holder.has_reagent(M)
+		if(!instantiated_med)
+			continue
+		//Just halts the progression, I'd suggest you run to medbay asap to get it fixed
+		if(carbon_quirk_holder.has_reagent(/datum/reagent/medicine/epinephrine))
+			instantiated_med.reagent_removal_skip_list |= ALLERGIC_REMOVAL_SKIP
+			return //intentionally stops the entire proc so we avoid the organ damage after the loop
+		instantiated_med.reagent_removal_skip_list -= ALLERGIC_REMOVAL_SKIP
+		carbon_quirk_holder.adjustToxLoss(3 * delta_time)
+		carbon_quirk_holder.reagents.add_reagent(/datum/reagent/toxin/histamine, 3 * delta_time)
+		if(DT_PROB(10, delta_time))
+			carbon_quirk_holder.vomit()
+			carbon_quirk_holder.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_APPENDIX,ORGAN_SLOT_LUNGS,ORGAN_SLOT_HEART,ORGAN_SLOT_LIVER,ORGAN_SLOT_STOMACH),10)
 
-/datum/quirk/kleptomaniac
-	name = "Kleptomaniac"
-	desc = "You have an uncontrollable urge to pick up things you see. Even things that don't belong to you."
-	value = -2
-	mob_trait = TRAIT_KLEPTOMANIAC
-	gain_text = span_danger("You have an unmistakeable urge to grab nearby objects.")
-	lose_text = span_notice("You no longer feel the urge to steal.")
-	medical_record_text = "Patient has an uncontrollable urge to steal."
-
-/datum/quirk/kleptomaniac/on_process()
-	if(prob(3))
-		var/mob/living/carbon/H = quirk_holder
-		var/obj/item/I = locate(/obj/item/) in oview(1, H)
-		if(!I || I.anchored || H.incapacitated() || !I.Adjacent(H))
-			return
-		if(isliving(quirk_holder))
-			var/mob/living/L = quirk_holder
-			if(!(L.mobility_flags & MOBILITY_PICKUP))
-				return
-		if(!H.get_active_held_item())
-			to_chat(quirk_holder, span_danger("You can't keep your eyes off [I.name]."))
-			H.UnarmedAttack(I)
-
-/datum/quirk/ineloquent
-	name = "Ineloquent"
-	desc = "Thinking big words makes brain go hurt."
-	value = -2
-	human_only = TRUE
-	gain_text = "You feel your vocabularly slipping away."
-	lose_text = "You regrasp the full extent of your linguistic prowess."
-	medical_record_text = "Patient is affected by partial loss of speech leading to a reduced vocabulary."
-
-/datum/quirk/ineloquent/add()
-	var/datum/brain_trauma/mild/expressive_aphasia/T = new()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
-
-/datum/quirk/hemophilia //basically permanent heparin
-	name = "Hemophiliac"
-	desc = "You can't naturally clot bleeding wounds and bleed much more from them than most people, making even small cuts possibly life threatening."
-	value = -6
-	mob_trait = TRAIT_BLOODY_MESS
-	gain_text = span_danger("You feel like your blood is thin.")
-	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
-	medical_record_text = "Patient appears unable to naturally form blood clots."
+#undef LOCATION_LPOCKET
+#undef LOCATION_RPOCKET
+#undef LOCATION_BACKPACK
+#undef LOCATION_HANDS

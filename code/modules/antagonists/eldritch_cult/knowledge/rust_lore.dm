@@ -114,3 +114,92 @@
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/rust_final)
 	route = PATH_RUST
 	tier = TIER_ASCEND
+
+/datum/eldritch_knowledge/final/rust_final/on_finished_recipe(mob/living/user, list/atoms, loc)
+	var/mob/living/carbon/human/H = user
+	H.physiology.brute_mod *= 0.5
+	H.physiology.burn_mod *= 0.5
+	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the decay, for Rustbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
+	new /datum/rust_spread(loc)
+	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
+	ascension.ascended = TRUE
+	return ..()
+
+
+/datum/eldritch_knowledge/final/rust_final/on_life(mob/user)
+	. = ..()
+	var/turf/user_loc_turf = get_turf(user)
+	if(!istype(user_loc_turf, /turf/open/floor/plating/rust) || !isliving(user) || !finished)
+		return
+	var/mob/living/carbon/human/human_user = user
+	human_user.adjustBruteLoss(-4, FALSE)
+	human_user.adjustFireLoss(-4, FALSE)
+	human_user.adjustToxLoss(-4, FALSE)
+	human_user.adjustOxyLoss(-2, FALSE)
+	human_user.adjustStaminaLoss(-20)
+	human_user.AdjustAllImmobility(-10)
+
+/**
+  * #Rust spread datum
+  *
+  * Simple datum that automatically spreads rust around it
+  *
+  * Simple implementation of automatically growing entity
+  */
+/datum/rust_spread
+	var/list/edge_turfs = list()
+	var/list/turfs = list()
+	var/turf/centre
+	var/static/list/blacklisted_turfs = typecacheof(list(/turf/open/indestructible,/turf/closed/indestructible,/turf/open/space,/turf/open/lava,/turf/open/chasm))
+	var/spread_per_sec = 6
+
+
+/datum/rust_spread/New(loc)
+	. = ..()
+	centre = get_turf(loc)
+	centre.rust_heretic_act()
+	turfs += centre
+	START_PROCESSING(SSprocessing,src)
+
+/datum/rust_spread/Destroy(force, ...)
+	STOP_PROCESSING(SSprocessing,src)
+	return ..()
+
+/datum/rust_spread/process(delta_time)
+	var/spread_am = round(spread_per_sec * delta_time)
+
+	if(edge_turfs.len < spread_am)
+		compile_turfs()
+
+	var/turf/T
+	for(var/i in 0 to spread_am)
+		if(!edge_turfs.len)
+			continue
+		T = pick(edge_turfs)
+		edge_turfs -= T
+		T.rust_heretic_act()
+		turfs += T
+
+
+
+/**
+  * Compile turfs
+  *
+  * Recreates all edge_turfs as well as normal turfs.
+  */
+/datum/rust_spread/proc/compile_turfs()
+	edge_turfs = list()
+	var/list/removal_list = list()
+	var/max_dist = 1
+	for(var/turfie in turfs)
+		if(!istype(turfie,/turf/closed/wall/rust) && !istype(turfie,/turf/closed/wall/r_wall/rust) && !istype(turfie,/turf/open/floor/plating/rust))
+			removal_list +=turfie
+		max_dist = max(max_dist,get_dist(turfie,centre)+1)
+	turfs -= removal_list
+	for(var/turfie in spiral_range_turfs(max_dist,centre,FALSE))
+		if(turfie in turfs || is_type_in_typecache(turfie,blacklisted_turfs))
+			continue
+		for(var/line_turfie_owo in getline(turfie,centre))
+			if(get_dist(turfie,line_turfie_owo) <= 1)
+				edge_turfs += turfie
+		CHECK_TICK
