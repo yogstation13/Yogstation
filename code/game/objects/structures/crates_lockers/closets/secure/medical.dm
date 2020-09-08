@@ -109,6 +109,7 @@
 	new /obj/item/clothing/head/soft/emt/green (src)
 	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
+	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 
 /obj/structure/closet/secure_closet/mmedical
 	name = "mining medic's locker"
