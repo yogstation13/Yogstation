@@ -1154,6 +1154,21 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 				return TRUE
 	return FALSE
 
+/**
+  * # Mindshielding
+  * 
+  * get mindshielded
+  */
+/datum/objective/minor/mindshield
+	name = "Get mindshielded."
+	explanation_text = "Extract with an NT mindshield implanted in you."
+
+/datum/objective/minor/mindshield/finalize()
+	return TRUE
+
+/datum/objective/minor/mindshield/check_completion()
+	return HAS_TRAIT(owner.current, TRAIT_MINDSHIELD)
+
 //Ideally this would be all of them but laziness and unusual subtypes
 /proc/generate_admin_objective_list()
 	GLOB.admin_objective_list = list()
