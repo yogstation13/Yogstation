@@ -1,8 +1,7 @@
 /** This is the ntOS modular application that allows you to track singularities
   * find out their current energy level, their location, distance from you, direction
   * and everything you need to know to survive Lord Singuloth's fury.
-  * Currently only works for proper singularities and not its subtypes since I'm prioritizing
-  * getting this to work for MDonalds event.
+  * Currently only works for proper singularities.
   */
 
 /datum/computer_file/program/singularity_monitor
