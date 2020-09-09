@@ -9,13 +9,16 @@
 	tgui_id = "NtosGPS"
 	ui_x = 600
 	ui_y = 350
-	var/gpstag = "MPC0"
-	var/emped = FALSE
-	var/tracking = TRUE
-	var/updating = TRUE //Automatic updating of GPS list. Can be set to manual by user.
-	var/global_mode = TRUE //If disabled, only GPS signals of the same Z level are shown
+	// var/gpstag = "MPC0"
+	gpstag = "MPC0"
+	// var/tracking = TRUE
+	tracking = TRUE
+	//var/updating = TRUE //Automatic updating of GPS list. Can be set to manual by user.
+	updating = TRUE
+	//var/global_mode = TRUE //If disabled, only GPS signals of the same Z level are shown
+	global_mode = TRUE
 
-/datum/computer_file/program/ui_act(action, params)
+/datum/computer_file/program/gps/ui_act(action, params)
 	if(..())
 		return
 	switch(action)
@@ -23,7 +26,6 @@
 			var/a = stripped_input(usr, "Please enter desired tag.", name, gpstag, 20)
 			gpstag = a
 			. = TRUE
-			name = "global positioning system ([gpstag])"
 
 		if("power")
 			toggletracking(usr)
@@ -41,10 +43,8 @@
 	data["tag"] = gpstag
 	data["updating"] = updating
 	data["globalmode"] = global_mode
-	if(!tracking || emped) //Do not bother scanning if the GPS is off or EMPed
-		return data
 
-	var/turf/curr = get_turf_global(src) // yogs - get_turf_global instead of get_turf
+	var/turf/curr = get_turf_global(ui_holder) // yogs - get_turf_global instead of get_turf
 	data["currentArea"] = "[get_area_name(curr, TRUE)]"
 	data["currentCoords"] = "[curr.x], [curr.y], [curr.z]"
 
