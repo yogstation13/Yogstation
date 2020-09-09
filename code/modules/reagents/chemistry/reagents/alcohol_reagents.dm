@@ -376,7 +376,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(M.mind?.assigned_role == "Assistant")
 		M.heal_bodypart_damage(1,1)
 		. = 1
-	return ..() || .
+	M.radiation = max(M.radiation-2, 0)
+	return ..()  || . 
 
 /datum/reagent/consumable/ethanol/ale
 	name = "Ale"
@@ -2178,3 +2179,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.adjustToxLoss(1, 0)
 		. = 1
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+
+/datum/reagent/consumable/ethanol/beer/maltliquor
+	name = "Malt Liquor"
+	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is stronger than usual, super cheap, and super terrible."
+	boozepwr = 35
+	taste_description = "sweet corn beer and the hood life"
+	glass_name = "glass of malt liquor"
+	glass_desc = "A freezing pint of malt liquor."

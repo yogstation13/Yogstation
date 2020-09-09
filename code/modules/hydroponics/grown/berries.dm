@@ -134,7 +134,7 @@
 	filling_color = "#FF0000"
 	bitesize_mod = 2
 	foodtype = FRUIT
-	grind_results = list(/datum/reagent/consumable/cherryjelly = 0)
+	juice_results = list(/datum/reagent/consumable/cherryjelly = 0)
 	tastes = list("cherry" = 1)
 	wine_power = 30
 
@@ -158,7 +158,7 @@
 	filling_color = "#6495ED"
 	bitesize_mod = 2
 	foodtype = FRUIT
-	grind_results = list(/datum/reagent/consumable/bluecherryjelly = 0)
+	juice_results = list(/datum/reagent/consumable/bluecherryjelly = 0)
 	tastes = list("blue cherry" = 1)
 	wine_power = 50
 

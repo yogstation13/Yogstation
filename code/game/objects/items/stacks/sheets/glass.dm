@@ -83,7 +83,6 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 		return ..()
 
 
-
 GLOBAL_LIST_INIT(pglass_recipes, list ( \
 	new/datum/stack_recipe("directional window", /obj/structure/window/plasma/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	new/datum/stack_recipe("fulltile window", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
@@ -157,6 +156,9 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	add_fingerprint(user)
 	..()
 
+/obj/item/stack/sheet/rglass/fifty
+	amount = 50
+
 /obj/item/stack/sheet/rglass/cyborg
 	materials = list()
 	var/datum/robot_energy_storage/glasource
@@ -215,6 +217,9 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/titaniumglass
 
+	/obj/item/stack/sheet/titaniumglass/fifty
+		amount = 50
+
 /obj/item/stack/sheet/titaniumglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.titaniumglass_recipes
 	return ..()
@@ -233,6 +238,9 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plastitaniumglass
+
+/obj/item/stack/sheet/plastitaniumglass/fifty
+	amount = 50
 
 /obj/item/stack/sheet/plastitaniumglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.plastitaniumglass_recipes
