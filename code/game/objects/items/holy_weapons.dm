@@ -796,6 +796,9 @@
 		H.verbs += /mob/living/proc/guardian_comm
 		H.verbs += /mob/living/proc/guardian_recall
 		H.verbs += /mob/living/proc/guardian_reset
+		force = 0
+		throwforce = 0
+		to_chat(H, "<span class='warning'>The [src]'s rigid ends become dull from summoning <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>!</span>")
 	else
 		to_chat(H, "<span class='holoparasite'>And it's blank? Perhaps you should try again later.</span>")
 		used = FALSE
