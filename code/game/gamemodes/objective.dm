@@ -1203,6 +1203,41 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/mindshield/check_completion()
 	return HAS_TRAIT(owner.current, TRAIT_MINDSHIELD)
 
+/**
+  * # Photograph a head of staff
+  *
+  * photograph a head of staff
+  */
+/datum/objective/minor/staffpics
+	name = "Photograph a head of staff."
+	explanation_text "Extract with a photograph of this head of staff."
+	/// The head of staff we want a picture of
+	var/datum/mind/target
+
+/**
+  * Find a head of staff to photograph
+  */
+/datum/objective/minor/staffpics/finalize()
+	var/list/datum/mind/heads = SSjob.get_living_heads()
+	if(!heads.len || owner in heads)
+		return FALSE
+	
+	target = pick(heads)
+	name = "Photograph [target.name]."
+	explanation_text = "Extract with a photograph [target.name], the [target.assigned_role]."
+	return TRUE
+
+/**
+  * return true if we escape with a picture of the head of staff
+  */
+/datum/objective/minor/staffpics/check_completion()
+	var/list/all_items = owner.current.GetAllContents()
+	for(var/obj/item/photo/P in all_items)
+		for(var/mob/M in P.picture.dead_seen)
+			if(M.real_name == target.name)
+				return TRUE
+	return FALSE
+
 //Ideally this would be all of them but laziness and unusual subtypes
 /proc/generate_admin_objective_list()
 	GLOB.admin_objective_list = list()
