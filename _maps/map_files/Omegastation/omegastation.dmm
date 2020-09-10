@@ -32634,6 +32634,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"kxQ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "kzp" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -42910,18 +42922,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"uqA" = (
-/obj/structure/sign/warning/vacuum{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/brig)
 "urt" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -42960,16 +42960,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
-"utQ" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Security Maintenance";
-	req_access_txt = "63"
-	},
-/turf/open/floor/plating,
-/area/security/brig)
 "uuj" = (
 /obj/machinery/plantgenes{
 	pixel_y = 6
@@ -78715,8 +78705,8 @@ mNR
 wJP
 aeJ
 tPH
-uqA
-utQ
+kxQ
+agF
 atL
 atS
 auK
