@@ -1210,9 +1210,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   */
 /datum/objective/minor/staffpics
 	name = "Photograph a head of staff."
-	explanation_text "Extract with a photograph of this head of staff."
-	/// The head of staff we want a picture of
-	var/datum/mind/target
+	explanation_text = "Extract with a photograph of this head of staff."
 
 /**
   * Find a head of staff to photograph
