@@ -1114,7 +1114,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   *
   * Choices are: Ian, Runtime, Anadear, Pun pun, Poly, Renault, Autumn.
   */
-/datum/objective/minor/ian/finalize()
+/datum/objective/minor/pet/finalize()
 	var/list/pets = list("ian", "runtime", "anadear", "pun-pun", "poly", "renault", "autumn")
 	while(pets.len && !Ian)
 		var/pet = rand(1, pets.len)
@@ -1153,7 +1153,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /**
   * Check whether Pet is dead
   */
-/datum/objective/minor/ian/check_completion()
+/datum/objective/minor/pet/check_completion()
 	return (!Ian || Ian.stat == DEAD)
 
 /**
