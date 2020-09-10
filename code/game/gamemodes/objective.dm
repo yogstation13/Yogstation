@@ -1217,7 +1217,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   */
 /datum/objective/minor/staffpics/finalize()
 	var/list/datum/mind/heads = SSjob.get_living_heads()
-	if(!heads.len || owner in heads)
+	if(!heads.len || (owner in heads))
 		return FALSE
 	
 	target = pick(heads)
