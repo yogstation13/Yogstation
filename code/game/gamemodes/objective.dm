@@ -1099,25 +1099,59 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 
 /**
-  * # Kill Ian
+  * # Kill Pet
   *
-  * Kill Ian
+  * Kill Pet
   */
-/datum/objective/minor/ian
+/datum/objective/minor/pet
 	name = "Kill Ian."
 	explanation_text = "Assassinate the HoP's assistant, Ian."
-	/// Ian
-	var/mob/living/simple_animal/pet/dog/corgi/Ian/Ian
+	/// Pet
+	var/mob/Ian
 
 /**
-  * Finds Ian
+  * Chooses and finds pet.area
+  *
+  * Choices are: Ian, Runtime, Anadear, Pun pun, Poly, Renault, Autumn.
   */
 /datum/objective/minor/ian/finalize()
-	Ian = locate() in GLOB.mob_list
+	var/list/pets = list("ian", "runtime", "anadear", "pun-pun", "poly", "renault", "autumn")
+	while(pets.len && !Ian)
+		var/pet = rand(1, pets.len)
+		switch(pets[pet])
+			if("ian")
+				Ian = locate(/mob/living/simple_animal/pet/dog/corgi/Ian) in GLOB.mob_living_list
+				name = "Kill Ian."
+				explanation_text = "Assassinate the HoP's assistant, Ian."
+			if("runtime")
+				Ian = locate(/mob/living/simple_animal/pet/cat/Runtime) in GLOB.mob_living_list
+				name = "Kill Runtime."
+				explanation_text = "Assassinate the CMO's assistant, Runtime."
+			if("anadear")
+				Ian = locate(/mob/living/simple_animal/pet/penguin/emperor/shamebrero) in GLOB.mob_living_list
+				name = "Kill Anadear."
+				explanation_text = "Assassinate the RD's assistant, Anadear."
+			if("pun-pun")
+				Ian = locate(/mob/living/carbon/monkey/punpun) in GLOB.mob_living_list
+				name = "Kill Pun Pun."
+				explanation_text = "Assassinate the barkeep's assistant, Pun Pun."
+			if("poly")
+				Ian = locate(/mob/living/simple_animal/parrot/Poly) in GLOB.mob_living_list
+				name = "Kill Poly."
+				explanation_text = "Assassinate the CE's assistant, Poly."
+			if("renault")
+				Ian = locate(/mob/living/simple_animal/pet/fox/Renault) in GLOB.mob_living_list
+				name = "Kill Renault."
+				explanation_text = "Assassinate the Captain's asssistant, Renault."
+			if("autumn")
+				Ian = locate(/mob/living/simple_animal/pet/fox/fennec/Autumn) in GLOB.mob_living_list
+				name = "Kill Autumn."
+				explanation_text = "Assassinate the QM's assistant, Autumn."
+		pets -= pets[pet]
 	return Ian
 
 /**
-  * Check whether Ian is dead
+  * Check whether Pet is dead
   */
 /datum/objective/minor/ian/check_completion()
 	return (!Ian || Ian.stat == DEAD)
