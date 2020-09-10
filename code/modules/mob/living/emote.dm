@@ -527,3 +527,30 @@
 		to_chat(user, "<span class='notice'>You ready your slapping hand.</span>")
 	else
 		to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>")
+
+/datum/emote/living/awoo
+	key = "awoo"
+	key_third_person = "lets out an awoo"
+	message = "lets out an awoo!"
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	sound = 'sound/voice/awoo.ogg'
+
+/datum/emote/living/nya
+	key = "nya"
+	key_third_person = "lets out a nya"
+	message = "lets out a nya!"
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	sound = 'sound/voice/nya.ogg'
+
+/datum/emote/living/weh
+	key = "weh"
+	key_third_person = "lets out a weh"
+	message = "lets out a weh!"
+	emote_type = EMOTE_AUDIBLE
+	muzzle_ignore = FALSE
+	restraint_check = FALSE
+	sound = 'sound/voice/weh.ogg'
