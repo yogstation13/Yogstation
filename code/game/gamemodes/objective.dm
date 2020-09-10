@@ -1233,7 +1233,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/staffpics/check_completion()
 	var/list/all_items = owner.current.GetAllContents()
 	for(var/obj/item/photo/P in all_items)
-		for(var/mob/M in P.picture.dead_seen)
+		for(var/mob/M in P.picture.mobs_seen)
 			if(M.real_name == target.name)
 				return TRUE
 	return FALSE
