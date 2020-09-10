@@ -26342,9 +26342,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/detectives_office)
-"cZI" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/starboard/aft)
 "dak" = (
 /obj/structure/cable/white{
 	icon_state = "2-4"
@@ -33924,16 +33921,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"mau" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = 32
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Security Maintenance";
-	req_access_txt = "63"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "mba" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -42973,6 +42960,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"utQ" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Security Maintenance";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plating,
+/area/security/brig)
 "uuj" = (
 /obj/machinery/plantgenes{
 	pixel_y = 6
@@ -78719,7 +78716,7 @@ wJP
 aeJ
 tPH
 uqA
-mau
+utQ
 atL
 atS
 auK
@@ -83123,7 +83120,7 @@ aph
 aph
 aph
 aph
-baj
+aph
 jDk
 hhb
 sep
@@ -93140,7 +93137,7 @@ sOM
 sPY
 tQL
 qiu
-cZI
+sJL
 pon
 alE
 xcJ
@@ -93397,7 +93394,7 @@ uHt
 sPY
 rVY
 rVY
-cZI
+sJL
 fuM
 alG
 aZi
@@ -93654,7 +93651,7 @@ sOM
 sPY
 xFD
 xFD
-cZI
+sJL
 byq
 dLl
 nQD
@@ -94166,9 +94163,9 @@ sOM
 sPY
 sOM
 htR
-cZI
-cZI
-cZI
+hbL
+hbL
+hbL
 hbL
 alJ
 hbL
