@@ -3064,6 +3064,7 @@
 #include "yogstation\code\game\gamemodes\vampire\vampire_powers.dm"
 #include "yogstation\code\game\gamemodes\wizard\raginmages.dm"
 #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
+#include "yogstation\code\game\gamemodes\brother\traitor_bro.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"
 #include "yogstation\code\game\machinery\computer\atmos_sim.dm"
 #include "yogstation\code\game\machinery\computer\crew.dm"
