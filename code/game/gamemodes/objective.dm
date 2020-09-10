@@ -1223,7 +1223,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	target = pick(heads)
 	name = "Photograph [target.name]."
 	explanation_text = "Extract with a photograph [target.name], the [target.assigned_role]."
-	return TRUE
+	return TRUE 
 
 /**
   * return true if we escape with a picture of the head of staff
