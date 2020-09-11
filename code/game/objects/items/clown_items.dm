@@ -1,5 +1,5 @@
 /* Clown Items
- * Contains:
+ * Contains: 
  *		Soap
  *		Bike Horns
  *		Air Horns
