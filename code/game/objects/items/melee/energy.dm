@@ -196,6 +196,7 @@
 	name = "energy cutlass"
 	desc = "Arrrr matey."
 	icon_state = "cutlass0"
+	force = 25 //nerfed
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	icon_state_on = "cutlass1"
