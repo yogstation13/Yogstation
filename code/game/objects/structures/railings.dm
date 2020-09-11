@@ -6,6 +6,8 @@
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
+	climb_time = 10 // not that hard to jump a rail
+	climb_stun = 0 // if you dont fall
 	///Initial direction of the railing.
 	var/ini_dir
 
