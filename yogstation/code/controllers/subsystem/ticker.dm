@@ -33,7 +33,8 @@
 		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords
 		"https://www.youtube.com/watch?v=xhlH91k-86E",						// J.G. Thirlwell - In a Spaceage Mood
 		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
-		"https://www.youtube.com/watch?v=ZhhQrFfzFM4")						// Carpenter Brut - Escape from Midwich Valley
+		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
+		"https://www.youtube.com/watch?v=dLrdSC9MVb4")						// Tally Hall - Turn the Lights Off
 
 	selected_lobby_music = pick(songs)
 
