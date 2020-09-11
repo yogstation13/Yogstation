@@ -31,6 +31,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /obj/structure/bodycontainer/Initialize()
 	. = ..()
 	GLOB.bodycontainers += src
+	recursive_organ_check(src)
 
 /obj/structure/bodycontainer/Destroy()
 	GLOB.bodycontainers -= src
@@ -101,6 +102,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/metal (loc, 5)
+	recursive_organ_check(src)
 	qdel(src)
 
 /obj/structure/bodycontainer/container_resist(mob/living/user)
@@ -120,12 +122,14 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 		open()
 
 /obj/structure/bodycontainer/proc/open()
+	recursive_organ_check(src)
 	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 	playsound(src, 'sound/effects/roll.ogg', 5, 1)
 	var/turf/T = get_step(src, dir)
 	connected.setDir(dir)
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
+	recursive_organ_check(src)
 	update_icon()
 
 /obj/structure/bodycontainer/proc/close()
@@ -159,8 +163,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	connected.connected = src
 
 /obj/structure/bodycontainer/morgue/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>")
+	. = ..()
+	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
 
 /obj/structure/bodycontainer/morgue/AltClick(mob/user)
 	..()
@@ -184,7 +188,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 			for(var/mob/living/M in compiled)
 				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
-				if(mob_occupant.client && !mob_occupant.suiciding && !(mob_occupant.has_trait(TRAIT_BADDNA)) && !mob_occupant.hellbound)
+				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)) && !mob_occupant.hellbound)
 					icon_state = "morgue4" // Cloneable
 					if(mob_occupant.stat == DEAD && beeper)
 						if(world.time > next_beep)
@@ -257,8 +261,14 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		update_icon()
 
 		for(var/mob/living/M in conts)
-			if (M.stat != DEAD)
+			if(M.stat != DEAD)
 				M.emote("scream")
+			if(M.client)
+				if(M.stat != DEAD)
+					SSachievements.unlock_achievement(/datum/achievement/cremated_alive, M.client) //they are in body and alive, give achievement
+				SSachievements.unlock_achievement(/datum/achievement/cremated, M.client) //they are in body, but dead, they can have one achievement
+			else if(M.oobe_client) //they might be ghosted if they are dead, we'll allow it.
+				SSachievements.unlock_achievement(/datum/achievement/cremated, M.oobe_client) //no burning alive achievement if you are ghosted though
 			if(user)
 				log_combat(user, M, "cremated")
 			else
@@ -305,10 +315,10 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/tray
 	icon = 'icons/obj/stationobjs.dmi'
 	density = TRUE
-	layer = BELOW_OBJ_LAYER
 	var/obj/structure/bodycontainer/connected = null
 	anchored = TRUE
 	pass_flags = LETPASSTHROW
+	layer = TABLE_LAYER
 	max_integrity = 350
 
 /obj/structure/tray/Destroy()
@@ -336,7 +346,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		to_chat(user, "<span class='warning'>That's not connected to anything!</span>")
 
 /obj/structure/tray/MouseDrop_T(atom/movable/O as mob|obj, mob/user)
-	if(!ismovableatom(O) || O.anchored || !Adjacent(user) || !user.Adjacent(O) || O.loc == user)
+	if(!ismovable(O) || O.anchored || !Adjacent(user) || !user.Adjacent(O) || O.loc == user)
 		return
 	if(!ismob(O))
 		if(!istype(O, /obj/structure/closet/body_bag))
@@ -372,16 +382,15 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	desc = "Apply corpse before closing."
 	icon_state = "morguet"
 
-/obj/structure/tray/m_tray/CanPass(atom/movable/mover, turf/target)
+/obj/structure/tray/m_tray/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
-		return 1
+		return TRUE
 	if(locate(/obj/structure/table) in get_turf(mover))
-		return 1
-	else
-		return 0
+		return TRUE
 
 /obj/structure/tray/m_tray/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSTABLE)

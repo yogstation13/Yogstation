@@ -7,9 +7,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	report_type = "battleroyale"
 	false_report_weight = 0
 	required_players = 1 //Everyone is an antag in this mode
-	required_enemies = 1
 	recommended_enemies = 1
-	antag_flag = ROLE_BATTLEROYALE
 	enemy_minimum_age = 0
 	announce_span = "warning"
 	announce_text = "Attention ALL space station 13 crewmembers,\n\
@@ -22,6 +20,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/stage_interval = 1200 //Copied from Nich's homework. Storm shrinks every 2 minutes
 	var/borderstage = 0
 	var/finished = FALSE
+	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
+	title_icon = "ss13"
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
@@ -34,8 +34,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 				continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
-		virgin.assigned_role = ROLE_BATTLEROYALE
-		virgin.special_role = ROLE_BATTLEROYALE
 	return TRUE
 
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
@@ -50,7 +48,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			message_admins("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
-		virgin.current.add_trait(TRAIT_XRAY_VISION) //so they can see where theyre dropping
+		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
@@ -96,13 +94,20 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(royalers.len == 1) //We have a wiener!
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
-		var/mob/living/dub = pick(royalers)
+		winner = pick(royalers)
 		to_chat(world, "<img src='https://cdn.discordapp.com/attachments/351367327184584704/539903688857092106/victoryroyale.png'>")
-		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [dub] </span>")
+		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [winner] </span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
 	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
+
+/datum/game_mode/fortnite/set_round_result()
+	..()
+	if(winner)
+		SSticker.mode_result = "win - [winner] won the battle royale"
+	else
+		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
 	loot_spawn()
@@ -183,7 +188,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/starter_z = 0 //What Z level did we start on?
 
 /obj/structure/battle_bus/attack_hand(mob/user)
-	if(!user in contents)
+	if(!(user in contents))
 		return
 	exit(user)
 
@@ -205,7 +210,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
-	Ltaker.remove_trait(TRAIT_XRAY_VISION)
+	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 
@@ -219,4 +224,5 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		qdel(src) // Thank you for your service
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(FALSE)
 	return TRUE

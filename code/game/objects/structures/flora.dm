@@ -14,7 +14,7 @@
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
 	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
-		if(W.sharpness && W.force > 0)
+		if(W.is_sharp() && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
 			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
@@ -119,6 +119,10 @@
 	desc = "A true feat of strength, almost as good as last year."
 	icon_state = "anchored_rod"
 	anchored = TRUE
+
+/obj/structure/festivus/erp
+	name = "pole"
+	desc = "Don't think too hard about what it'll be used for."
 
 /obj/structure/flora/tree/dead/Initialize()
 	icon_state = "tree_[rand(1, 6)]"
@@ -303,7 +307,7 @@
 
 /obj/item/twohanded/required/kirbyplants
 	name = "potted plant"
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed path
+	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
@@ -313,18 +317,9 @@
 	throw_speed = 2
 	throw_range = 4
 
-
-/obj/item/twohanded/required/kirbyplants/equipped(mob/living/user)
-	var/image/I = image(icon = 'yogstation/icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user) //yogs changed icon path
-	I.copy_overlays(src)
-	I.override = 1
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "sneaking_mission", I)
-	I.layer = ABOVE_MOB_LAYER
-	..()
-
-/obj/item/twohanded/required/kirbyplants/dropped(mob/living/user)
-	..()
-	user.remove_alt_appearance("sneaking_mission")
+/obj/item/twohanded/required/kirbyplants/Initialize()
+	. = ..()
+	AddComponent(/datum/component/tactical)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -333,7 +328,7 @@
 
 /obj/item/twohanded/required/kirbyplants/random/Initialize()
 	. = ..()
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed icon path
+	icon = 'icons/obj/flora/plants.dmi'
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
@@ -372,10 +367,23 @@
 	icon = 'icons/obj/flora/rocks.dmi'
 	resistance_flags = FIRE_PROOF
 	density = TRUE
+	var/obj/item/stack/mineResult = /obj/item/stack/ore/glass/basalt
 
 /obj/structure/flora/rock/Initialize()
 	. = ..()
 	icon_state = "[icon_state][rand(1,3)]"
+
+/obj/structure/flora/rock/attackby(obj/item/W, mob/user, params)
+	if(mineResult && (!(flags_1 & NODECONSTRUCT_1)))
+		if(W.tool_behaviour == TOOL_MINING)
+			to_chat(user, "<span class='notice'>You start mining...</span>")
+			if(W.use_tool(src, user, 40, volume=50))
+				to_chat(user, "<span class='notice'>You finish mining the rock.</span>")
+				new mineResult(get_turf(src), 20)
+				SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
+				qdel(src)
+			return
+	return ..()
 
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"

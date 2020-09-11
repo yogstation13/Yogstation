@@ -1,7 +1,7 @@
 /obj/structure/particle_accelerator/particle_emitter
 	name = "EM Containment Grid"
 	desc = "This launches the Alpha particles, might not want to stand near this end."
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'yogstation/icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
 	icon_state = "none"
 	var/fire_delay = 50
 	var/last_shot = 0
@@ -38,6 +38,10 @@
 				P = new/obj/effect/accelerated_particle/strong(T)
 			if(3)
 				P = new/obj/effect/accelerated_particle/powerful(T)
+			//yogs start -- Emaggable PAs
+			if(4)
+				P = new/obj/effect/accelerated_particle/catastrophic(T)
+ 	         //yogs end
 		P.setDir(dir)
 		return 1
 	return 0

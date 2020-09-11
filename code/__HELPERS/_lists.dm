@@ -21,6 +21,8 @@
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 
 // binary search sorted insert
 // IN: Object to be inserted
@@ -124,6 +126,7 @@
 
 //returns a new list with only atoms that are in typecache L
 /proc/typecache_filter_list(list/atoms, list/typecache)
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/thing in atoms)
 		var/atom/A = thing
@@ -131,6 +134,7 @@
 			. += A
 
 /proc/typecache_filter_list_reverse(list/atoms, list/typecache)
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/thing in atoms)
 		var/atom/A = thing
@@ -257,6 +261,7 @@
 
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/L)
+	RETURN_TYPE(L[_].type)
 	if(L.len)
 		var/picked = rand(1,L.len)
 		. = L[picked]
@@ -383,6 +388,7 @@
 	for(var/datum/data/record/R in L)
 		if(R.fields[field] == value)
 			return R
+	return FALSE
 
 
 //Move a single element from position fromIndex within a list, to position toIndex
@@ -514,7 +520,7 @@
 		used_key_list[input_key] = 1
 	return input_key
 
-#if DM_VERSION > 512
+#if DM_VERSION > 513
 #error Remie said that lummox was adding a way to get a lists
 #error contents via list.values, if that is true remove this
 #error otherwise, update the version and bug lummox

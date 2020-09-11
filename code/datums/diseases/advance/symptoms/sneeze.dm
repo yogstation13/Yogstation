@@ -27,8 +27,10 @@ Bonus
 	severity = 1
 	symptom_delay_min = 5
 	symptom_delay_max = 35
-	threshold_desc = "<b>Transmission 9:</b> Increases sneezing range, spreading the virus over a larger area.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Transmission 9" = "Increases sneezing range, spreading the virus over 6 meter cone instead of over a 4 meter cone.",
+		"Stealth 4" = "The symptom remains hidden until active.",
+	)
 
 /datum/symptom/sneeze/Start(datum/disease/advance/A)
 	if(!..())

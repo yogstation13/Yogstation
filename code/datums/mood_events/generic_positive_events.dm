@@ -19,6 +19,14 @@
 /datum/mood_event/besthug/add_effects(mob/friend)
 	description = "<span class='nicegreen'>[friend.name] is great to be around, [friend.p_they()] makes me feel so happy!</span>\n"
 
+/datum/mood_event/lamphug
+	description = "<span class='nicegreen'>I just hugged a lamp.</span>\n"
+	mood_change = 3
+	timeout = 3000
+
+/datum/mood_event/lamphug/add_effects(mob/friend)
+	description = "<span class='nicegreen'>I hugged a lamp called [friend.name].</span>\n"
+
 /datum/mood_event/arcade
 	description = "<span class='nicegreen'>I beat the arcade game!</span>\n"
 	mood_change = 3
@@ -48,9 +56,11 @@
 	description = "<span class='nicegreen'>\The [animal.name] is adorable! I can't stop petting [animal.p_them()]!</span>\n"
 
 /datum/mood_event/honk
-	description = "<span class='nicegreen'>Maybe clowns aren't so bad after all. Honk!</span>\n"
+	description = "<span class='nicegreen'>I've been honked!</span>\n"
 	mood_change = 2
-	timeout = 2400
+	timeout = 4 MINUTES
+	special_screen_obj = "honked_nose"
+	special_screen_replace = FALSE
 
 /datum/mood_event/perform_cpr
 	description = "<span class='nicegreen'>It feels good to save a life.</span>\n"
@@ -94,6 +104,11 @@
 	mood_change = 40 //maybe being a cultist isnt that bad after all
 	hidden = TRUE
 
+/datum/mood_event/heretics
+	description = "<span class='nicegreen'>I can't stop here. If I continue my research, I could become immortal!</span>\n"
+	mood_change = 10
+	hidden = TRUE
+
 /datum/mood_event/family_heirloom
 	description = "<span class='nicegreen'>My family heirloom is safe with me.</span>\n"
 	mood_change = 1
@@ -120,7 +135,40 @@
 /datum/mood_event/religiously_comforted
 	description = "<span class='nicegreen'>You are comforted by the presence of a holy person.</span>"
 	mood_change = 3
+	timeout = 5 MINUTES
 
 /datum/mood_event/clownshoes
 	description = "<span class='nicegreen'>The shoes are a clown's legacy, I never want to take them off!</span>\n"
 	mood_change = 5
+
+/datum/mood_event/sacrifice_good
+	description ="<span class='nicegreen'>The gods are pleased with this offering!</span>\n"
+	mood_change = 5
+	timeout = 3 MINUTES
+
+/datum/mood_event/artok
+	description = "<span class='nicegreen'>It's nice to see people are making art around here.</span>\n"
+	mood_change = 2
+	timeout = 2 MINUTES
+
+/datum/mood_event/artgood
+	description = "<span class='nicegreen'>What a thought-provoking piece of art. I'll remember that for a while.</span>\n"
+	mood_change = 3
+	timeout = 3 MINUTES
+
+/datum/mood_event/artgreat
+	description = "<span class='nicegreen'>That work of art was so great it made me believe in the goodness of humanity. Says a lot in a place like this.</span>\n"
+	mood_change = 4
+	timeout = 4 MINUTES
+
+/datum/mood_event/hope_lavaland
+	description = "<span class='nicegreen'>What a peculiar emblem.  It makes me feel hopeful for my future.</span>\n"
+	mood_change = 5
+
+/datum/mood_event/area
+	description = "" //Fill this out in the area
+	mood_change = 0
+
+/datum/mood_event/area/add_effects(_mood_change, _description)
+	mood_change = _mood_change
+	description = _description

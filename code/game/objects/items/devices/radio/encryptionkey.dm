@@ -21,7 +21,7 @@
 		for(var/i in channels)
 			examine_text_list += "[GLOB.channel_tokens[i]] - [lowertext(i)]"
 
-		to_chat(user, "<span class='notice'>It can access the following channels; [jointext(examine_text_list, ", ")].</span>")
+		. += "<span class='notice'>It can access the following channels; [jointext(examine_text_list, ", ")].</span>"
 
 /obj/item/encryptionkey/syndicate
 	name = "syndicate encryption key"
@@ -67,7 +67,7 @@
 /obj/item/encryptionkey/headset_srvsec
 	name = "law and order radio encryption key"
 	icon_state = "srvsec_cypherkey"
-	channels = list(RADIO_CHANNEL_SERVICE = 1, RADIO_CHANNEL_SECURITY = 1)
+	channels = list(RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_SERVICE = 1) //yogs - changed order
 
 /obj/item/encryptionkey/headset_com
 	name = "command radio encryption key"

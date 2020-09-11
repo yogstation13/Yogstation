@@ -35,9 +35,9 @@
 	wielded = 0
 	if(force_unwielded)
 		force = force_unwielded
-	var/sf = findtext(name," (Wielded)")
+	var/sf = findtext(name, " (Wielded)", -10)//10 == length(" (Wielded)")
 	if(sf)
-		name = copytext(name,1,sf)
+		name = copytext(name, 1, sf)
 	else //something wrong
 		name = "[initial(name)]"
 	update_icon()
@@ -129,6 +129,7 @@
 	return ..()
 
 /obj/item/twohanded/offhand/dropped(mob/living/user, show_message = TRUE) //Only utilized by dismemberment since you can't normally switch to the offhand to drop it.
+	SHOULD_CALL_PARENT(FALSE)
 	var/obj/I = user.get_active_held_item()
 	if(I && istype(I, /obj/item/twohanded))
 		var/obj/item/twohanded/thw = I
@@ -297,7 +298,7 @@
 
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)//stole from chainsaw code
 		var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
-		B.vital = FALSE//this cant possibly be a good idea
+		B.organ_flags &= ~ORGAN_VITAL	//this cant possibly be a good idea
 		var/randdir
 		for(var/i in 1 to 24)//like a headless chicken!
 			if(user.is_holding(src))
@@ -348,7 +349,7 @@
 			unwield()
 			return
 	..()
-	if(user.has_trait(TRAIT_CLUMSY) && (wielded) && prob(40))
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && (wielded) && prob(40))
 		impale(user)
 		return
 	if((wielded) && prob(50))
@@ -364,7 +365,7 @@
 /obj/item/twohanded/dualsaber/proc/impale(mob/living/user)
 	to_chat(user, "<span class='warning'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>")
 	if (force_wielded)
-		user.take_bodypart_damage(20,25)
+		user.take_bodypart_damage(20,25,check_armor = TRUE)
 	else
 		user.adjustStaminaLoss(25)
 
@@ -536,8 +537,8 @@
 	return BRUTELOSS
 
 /obj/item/twohanded/spear/explosive/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to set your war cry.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to set your war cry.</span>"
 
 /obj/item/twohanded/spear/explosive/update_icon()
 	icon_state = "spearbomb[wielded]"
@@ -552,6 +553,8 @@
 
 /obj/item/twohanded/spear/explosive/afterattack(atom/movable/AM, mob/user, proximity)
 	. = ..()
+	if(!proximity)
+		return
 	if(wielded)
 		user.say("[war_cry]", forced="spear warcry")
 		explosive.forceMove(AM)
@@ -601,7 +604,7 @@
 	force = on ? force_on : initial(force)
 	throwforce = on ? force_on : initial(force)
 	icon_state = "chainsaw_[on ? "on" : "off"]"
-	GET_COMPONENT_FROM(butchering, /datum/component/butchering, src)
+	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = on
 
 	if(on)
@@ -676,6 +679,15 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
 	resistance_flags = FIRE_PROOF
 
+/obj/item/twohanded/pitchfork/trident
+	icon_state = "trident"
+	name = "trident"
+	desc = "A trident recovered from the ruins of atlantis"
+	force = 14
+	throwforce = 23
+	force_unwielded = 14
+	force_wielded = 20
+
 /obj/item/twohanded/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
@@ -708,6 +720,7 @@
 	return (BRUTELOSS)
 
 /obj/item/twohanded/pitchfork/demonic/pickup(mob/living/user)
+	. = ..()
 	if(isliving(user) && user.mind && user.owns_soul() && !is_devil(user))
 		var/mob/living/U = user
 		U.visible_message("<span class='warning'>As [U] picks [src] up, [U]'s arms briefly catch fire.</span>", \
@@ -733,7 +746,7 @@
 		user.visible_message("<span class='danger'>[user] blasts \the [target] with \the [src]!</span>")
 		playsound(target, 'sound/magic/disintegrate.ogg', 100, 1)
 		W.break_wall()
-		W.ScrapeAway()
+		W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return
 
 //HF blade
@@ -823,48 +836,37 @@
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
-	var/datum/component/mobhook
+	var/mob/listeningTo
 	var/zoom_out_amt = 6
 	var/zoom_amt = 10
+
+/obj/item/twohanded/binoculars/Destroy()
+	listeningTo = null
+	return ..()
 
 /obj/item/twohanded/binoculars/wield(mob/user)
 	. = ..()
 	if(!wielded)
 		return
-	if(QDELETED(mobhook))
-		mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/unwield)))
-	else
-		user.TakeComponent(mobhook)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
 	item_state = "binoculars_wielded"
 	user.regenerate_icons()
-	if(!user?.client)
-		return
-	var/client/C = user.client
-	var/_x = 0
-	var/_y = 0
-	switch(user.dir)
-		if(NORTH)
-			_y = zoom_amt
-		if(EAST)
-			_x = zoom_amt
-		if(SOUTH)
-			_y = -zoom_amt
-		if(WEST)
-			_x = -zoom_amt
-	C.change_view(world.view + zoom_out_amt)
-	C.pixel_x = world.icon_size*_x
-	C.pixel_y = world.icon_size*_y
+	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
 
 /obj/item/twohanded/binoculars/unwield(mob/user)
 	. = ..()
-	mobhook.RemoveComponent()
-	user.visible_message("[user] lowers [src].","You lower [src].")
+	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+	listeningTo = null
 	item_state = "binoculars"
 	user.regenerate_icons()
-	if(user && user.client)
-		user.regenerate_icons()
-		var/client/C = user.client
-		C.change_view(CONFIG_GET(string/default_view))
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
+	user.client.view_size.zoomIn()
+
+/obj/item/twohanded/binoculars/proc/rotate(atom/thing, old_dir, new_dir)
+	if(ismob(thing))
+		var/mob/lad = thing
+		lad.regenerate_icons()
+		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)

@@ -56,7 +56,8 @@ Made by Xhuis
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer")
+	title_icon = "ss13"
 
 /datum/game_mode/shadowling/announce()
 	to_chat(world, "<b>The current game mode is - Shadowling!</b>")
@@ -76,7 +77,7 @@ Made by Xhuis
 		shadow.restricted_roles = restricted_jobs
 		shadowlings--
 	var/thrall_scaling = round(num_players() / 3)
-	required_thralls = CLAMP(thrall_scaling, 15, 30)
+	required_thralls = clamp(thrall_scaling, 15, 30)
 	thrall_ratio = required_thralls / 15
 	return TRUE
 
@@ -126,6 +127,13 @@ Made by Xhuis
 	text += "<br>"
 	to_chat(world, text)
 
+/datum/game_mode/shadowling/set_round_result()
+	..()
+	if(check_shadow_victory())
+		SSticker.mode_result = "win - shadowlings have ascended"
+	else
+		SSticker.mode_result = "loss - staff stopped the shadowlings"
+
 /*
 	MISCELLANEOUS
 */
@@ -145,6 +153,9 @@ Made by Xhuis
 	var/shadow_charges = 3
 	var/last_charge = 0
 
+/datum/species/shadow/ling/negates_gravity(mob/living/carbon/human/H)
+	return TRUE
+
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
@@ -153,6 +164,7 @@ Made by Xhuis
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
 	C.draw_yogs_parts(FALSE)
+	C.remove_movespeed_modifier(id)
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
 		QDEL_NULL(eyes_overlay)
@@ -172,7 +184,7 @@ Made by Xhuis
 		else if (light_amount < LIGHT_HEAL_THRESHOLD  && !istype(H.loc, /obj/effect/dummy/phased_mob/shadowling)) //Can't heal while jaunting
 			H.heal_overall_damage(5,5)
 			H.adjustToxLoss(-5)
-			H.adjustBrainLoss(-25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
 			H.adjustCloneLoss(-1)
 			H.SetKnockdown(0)
 			H.SetStun(0)
@@ -213,7 +225,7 @@ Made by Xhuis
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
 			H.heal_overall_damage(2,2)
 			H.adjustToxLoss(-5)
-			H.adjustBrainLoss(-25)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
 			H.adjustCloneLoss(-1)
 
 /datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
@@ -245,3 +257,18 @@ Made by Xhuis
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(ANTAG_DATUM_SLING)
+
+/datum/game_mode/shadowling/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Shadowlings:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/shadow in shadows)
+		round_credits += "<center><h2>[shadow.name] as a Shadowling</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The Shadowlings have moved to the shadows!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

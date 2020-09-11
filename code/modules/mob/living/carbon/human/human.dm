@@ -3,7 +3,7 @@
 	real_name = "Unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "human_basic"
-	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
@@ -23,11 +23,10 @@
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 	physiology = new()
 
-	handcrafting = new()
-
 	. = ..()
 
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_blood)
+	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -37,16 +36,13 @@
 
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
+	if(!(CONFIG_GET(flag/disable_human_mood)))
 		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	return ..()
 
-
-/mob/living/carbon/human/OpenCraftingMenu()
-	handcrafting.ui_interact(src)
 
 /mob/living/carbon/human/prepare_data_huds()
 	//Update med hud images...
@@ -58,29 +54,33 @@
 	//...and display them.
 	add_to_all_human_data_huds()
 
+/mob/living/carbon/human/get_status_tab_items()
+	. = .=..()
+	. += "Intent: [a_intent]"
+	. += "Move Mode: [m_intent]"
+	if (internal)
+		if (!internal.air_contents)
+			qdel(internal)
+		else
+			. += ""
+			. += "Internal Atmosphere Info: [internal.name]"
+			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
+			. += "Distribution Pressure: [internal.distribute_pressure]"
+
+	if(mind)
+		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
+		if(changeling)
+			. += ""
+			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
+			. += "Absorbed DNA: [changeling.absorbedcount]"
+		var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
+		if(hivemind)
+			. += ""
+			. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
+			. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
+
 /mob/living/carbon/human/Stat()
 	..()
-
-	if(statpanel("Status"))
-		stat(null, "Intent: [a_intent]")
-		stat(null, "Move Mode: [m_intent]")
-		if (internal)
-			if (!internal.air_contents)
-				qdel(internal)
-			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
-
-		if(mind)
-			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-			if(changeling)
-				stat("Chemical Storage", "[changeling.chem_charges]/[changeling.chem_storage]")
-				stat("Absorbed DNA", changeling.absorbedcount)
-			var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
-			if(hivemind)
-				stat("Hivemind Vessels", "[hivemind.hive_size] (+[hivemind.size_mod])")
-				stat("Psychic Link Duration", "[(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds")
 
 	//NINJACODE
 	if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)) //Only display if actually a ninja.
@@ -261,7 +261,7 @@
 
 		var/delay_denominator = 1
 		if(pocket_item && !(pocket_item.item_flags & ABSTRACT))
-			if(pocket_item.has_trait(TRAIT_NODROP))
+			if(HAS_TRAIT(pocket_item, TRAIT_NODROP))
 				to_chat(usr, "<span class='warning'>You try to empty [src]'s [pocket_side] pocket, it seems to be stuck!</span>")
 			to_chat(usr, "<span class='notice'>You try to empty [src]'s [pocket_side] pocket.</span>")
 		else if(place_item && place_item.mob_can_equip(src, usr, pocket_id, 1) && !(place_item.item_flags & ABSTRACT))
@@ -394,7 +394,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged", "Cancel")
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -503,7 +503,7 @@
 	. = 1 // Default to returning true.
 	if(user && !target_zone)
 		target_zone = user.zone_selected
-	if(has_trait(TRAIT_PIERCEIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 		. = 0
 	// If targeting the head, see if the head item is thin enough.
 	// If targeting anything else, see if the wear suit is thin enough.
@@ -584,7 +584,7 @@
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
-	if(has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
@@ -617,7 +617,7 @@
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)
 
-	if(C.stat == DEAD || (C.has_trait(TRAIT_FAKEDEATH)))
+	if(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_FAKEDEATH)))
 		to_chat(src, "<span class='warning'>[C.name] is dead!</span>")
 		return
 	if(is_mouth_covered())
@@ -634,11 +634,10 @@
 			to_chat(src, "<span class='warning'>You fail to perform CPR on [C]!</span>")
 			return 0
 
-		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
+		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
-		var/anticpr = min(C.getOxyLoss(), 10) // yogs - for incompatible lungs
 
 		if(C.health > C.crit_threshold)
 			return
@@ -647,15 +646,13 @@
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
 		C.cpr_time = world.time
 		log_combat(src, C, "CPRed")
+		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
 		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
-		if(they_breathe && they_ashlung && !we_ashlung)
-			C.adjustOxyLoss(anticpr)
+		if(they_breathe && !!they_ashlung != !!we_ashlung)
+			C.adjustOxyLoss(10)
 			C.updatehealth()
 			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
-		else if(they_breathe && they_lung && we_ashlung)
-			C.adjustOxyLoss(anticpr)
-			C.updatehealth()
-			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
+			SSachievements.unlock_achievement(/datum/achievement/anticpr, client) //you can get both achievements at the same time I guess
 		//yogs end
 		else if(they_breathe && they_lung)
 			var/suff = min(C.getOxyLoss(), 7)
@@ -718,7 +715,7 @@
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
 	if(!Adjacent(M) && (M.loc != src))
-		if((be_close == 0) || (!no_tk && (dna.check_mutation(TK) && tkMaxRangeCheck(src, M))))
+		if((be_close == FALSE) || (!no_tk && (dna.check_mutation(TK) && tkMaxRangeCheck(src, M))))
 			return TRUE
 		to_chat(src, "<span class='warning'>You are too far away!</span>")
 		return FALSE
@@ -750,7 +747,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = health - getStaminaLoss()
+			var/health_amount = min(health, maxHealth - getStaminaLoss())
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -797,7 +794,6 @@
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
 	drunkenness = 0
-	set_hygiene(HYGIENE_LEVEL_NORMAL)
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -841,49 +837,119 @@
 	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
 	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // yogs -- make cluwne
+	.["Make Pacman"] = "?_src_=vars;[HrefToken()];makepacman=[REF(src)]" //I LOVE PACMAN
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
-	//If they dragged themselves and we're currently aggressively grabbing them try to piggyback
-	if(user == target && can_piggyback(target) && pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
-		buckle_mob(target,TRUE,TRUE)
+	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
+		//If they dragged themselves and we're currently aggressively grabbing them try to piggyback
+		if(user == target && can_piggyback(target))
+			piggyback(target)
+			return
+		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
+		else if(user != target && can_be_firemanned(target))
+			fireman_carry(target)
+			return
 	. = ..()
 
-//Can C try to piggyback at all.
-/mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/C)
-	if(istype(C) && C.stat == CONSCIOUS)
-		return TRUE
-	return FALSE
+//src is the user that will be carrying, target is the mob to be carried
+/mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
+	return (istype(target) && target.stat == CONSCIOUS)
 
-/mob/living/carbon/human/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+/mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
+	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
+
+/mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
+	var/carrydelay = 50 //if you have latex you are faster at grabbing
+	var/skills_space = "" // Changes depending on glove type
+	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
+		carrydelay = 30
+		skills_space = "expertly"
+	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
+		carrydelay = 40
+		skills_space = "quickly"
+	if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))
+		visible_message("<span class='notice'>[src] starts [skills_space] lifting [target] onto their back..</span>",
+		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
+		"<span class='notice'>[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space] start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]</span>")
+		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
+		if(do_after(src, carrydelay, TRUE, target))
+			//Second check to make sure they're still valid to be carried
+			if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE) && !target.buckled)
+				if(target.loc != loc)
+					var/old_density = density
+					density = FALSE
+					step_towards(target, loc)
+					density = old_density
+					if(target.loc == loc)
+						buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+						return
+				else
+					buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
+	else
+		to_chat(src, "<span class='warning'>You can't fireman carry [target] while they're standing!</span>")
+
+/mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
+	if(can_piggyback(target))
+		visible_message("<span class='notice'>[target] starts to climb onto [src]...</span>")
+		if(do_after(target, 15, target = src))
+			if(can_piggyback(target))
+				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
+					target.visible_message("<span class='warning'>[target] can't hang onto [src]!</span>")
+					return
+				buckle_mob(target, TRUE, TRUE, FALSE, 0, 2)
+		else
+			visible_message("<span class='warning'>[target] fails to climb onto [src]!</span>")
+	else
+		to_chat(target, "<span class='warning'>You can't piggyback ride [src] right now!</span>")
+
+/mob/living/carbon/human/buckle_mob(mob/living/target, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases
 		return
-	if(!is_type_in_typecache(M, can_ride_typecache))
-		M.visible_message("<span class='warning'>[M] really can't seem to mount [src]...</span>")
+	if(!is_type_in_typecache(target, can_ride_typecache))
+		target.visible_message("<span class='warning'>[target] really can't seem to mount [src]...</span>")
 		return
+	buckle_lying = lying_buckle
 	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
-	riding_datum.ride_check_rider_incapacitated = TRUE
-	riding_datum.ride_check_rider_restrained = TRUE
-	riding_datum.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4)))
-	if(buckled_mobs && ((M in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled || (M.stat != CONSCIOUS))
+	if(target_hands_needed)
+		riding_datum.ride_check_rider_restrained = TRUE
+	if(buckled_mobs && ((target in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled)
 		return
-	if(can_piggyback(M))
-		riding_datum.ride_check_ridden_incapacitated = TRUE
-		visible_message("<span class='notice'>[M] starts to climb onto [src]...</span>")
-		if(do_after(M, 15, target = src))
-			if(can_piggyback(M))
-				if(M.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
-					M.visible_message("<span class='warning'>[M] can't hang onto [src]!</span>")
-					return
-				if(!riding_datum.equip_buckle_inhands(M, 2))	//MAKE SURE THIS IS LAST!!
-					M.visible_message("<span class='warning'>[M] can't climb onto [src]!</span>")
-					return
-			stop_pulling()
-			. = ..(M, force, check_loc)
-		else
-			visible_message("<span class='warning'>[M] fails to climb onto [src]!</span>")
-	else
-		stop_pulling()
-		. = ..(M,force,check_loc)
+	var/equipped_hands_self
+	var/equipped_hands_target
+	if(hands_needed)
+		equipped_hands_self = riding_datum.equip_buckle_inhands(src, hands_needed, target)
+	if(target_hands_needed)
+		equipped_hands_target = riding_datum.equip_buckle_inhands(target, target_hands_needed)
+
+	if(hands_needed || target_hands_needed)
+		if(hands_needed && !equipped_hands_self)
+			src.visible_message("<span class='warning'>[src] can't get a grip on [target] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [target] because your hands are full!</span>")
+			return
+		else if(target_hands_needed && !equipped_hands_target)
+			target.visible_message("<span class='warning'>[target] can't get a grip on [src] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
+			return
+
+	stop_pulling()
+	riding_datum.handle_vehicle_layer()
+	. = ..(target, force, check_loc)
+
+/mob/living/carbon/human/proc/is_shove_knockdown_blocked() //If you want to add more things that block shove knockdown, extend this
+	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	for(var/bp in body_parts)
+		if(istype(bp, /obj/item/clothing))
+			var/obj/item/clothing/C = bp
+			if(C.blocks_shove_knockdown)
+				return TRUE
+	return FALSE
+
+/mob/living/carbon/human/proc/clear_shove_slowdown()
+	remove_movespeed_modifier(MOVESPEED_ID_SHOVE)
+	var/active_item = get_active_held_item()
+	if(is_type_in_typecache(active_item, GLOB.shove_disarming_types))
+		visible_message("<span class='warning'>[src.name] regains their grip on \the [active_item]!</span>", "<span class='warning'>You regain your grip on \the [active_item]</span>", null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
@@ -894,12 +960,12 @@
 	dna?.species.spec_updatehealth(src)
 
 /mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 
 /mob/living/carbon/human/set_nutrition(var/change) //Seriously fuck you oldcoders.
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 
@@ -915,9 +981,6 @@
 
 /mob/living/carbon/human/species/android
 	race = /datum/species/android
-
-/mob/living/carbon/human/species/angel
-	race = /datum/species/angel
 
 /mob/living/carbon/human/species/corporate
 	race = /datum/species/corporate
@@ -1006,6 +1069,9 @@
 /mob/living/carbon/human/species/golem/durathread
 	race = /datum/species/golem/durathread
 
+/mob/living/carbon/human/species/golem/snow
+	race = /datum/species/golem/snow
+
 /mob/living/carbon/human/species/golem/clockwork
 	race = /datum/species/golem/clockwork
 
@@ -1017,6 +1083,9 @@
 
 /mob/living/carbon/human/species/golem/soviet
 	race = /datum/species/golem/soviet
+
+/mob/living/carbon/human/species/golem/cheese
+	race = /datum/species/golem/cheese
 
 /mob/living/carbon/human/species/jelly
 	race = /datum/species/jelly

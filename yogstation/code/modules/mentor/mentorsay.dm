@@ -12,6 +12,7 @@
 	if(!msg)
 		return
 
+	msg = pretty_filter(msg)
 	msg = emoji_parse(msg)
 	log_mentor("MSAY: [key_name(src)] : [msg]")
 
@@ -20,7 +21,7 @@
 	else
 		msg = "<b><font color ='#E236D8'><span class='prefix'>MENTOR:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message'>[msg]</span></font></b>"
 
-	to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, msg)
+	to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, msg, confidential=TRUE)
 
 /client/proc/get_mentor_say()
 	var/msg = input(src, null, "msay \"text\"") as text

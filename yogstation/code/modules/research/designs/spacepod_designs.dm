@@ -1,6 +1,6 @@
 /datum/design/board/spacepod_main
 	name = "Circuit Design (Space Pod Mainboard)"
-	desc = "Allows for the construction of a Space Pod mainboard."
+	desc = "Allows for the construction of a spacepod mainboard."
 	id = "spacepod_main"
 	build_path = /obj/item/circuitboard/mecha/pod
 	category = list("Exosuit Modules")
@@ -147,7 +147,7 @@
 
 /datum/design/pod_misc_tracker
 	name = "Spacepod Tracking Module"
-	desc = "Allows for the construction of a Space Pod Tracking Module."
+	desc = "Allows for the construction of a spacepod tracking module."
 	id = "podmisc_tracker"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=5000)
@@ -161,7 +161,7 @@
 
 /datum/design/pod_cargo_ore
 	name = "Spacepod Ore Storage Module"
-	desc = "Allows for the construction of a Space Pod Ore Storage Module."
+	desc = "Allows for the construction of a spacepod ore storage module."
 	id = "podcargo_ore"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=20000, MAT_GLASS=2000)
@@ -171,7 +171,7 @@
 
 /datum/design/pod_cargo_crate
 	name = "Spacepod Crate Storage Module"
-	desc = "Allows the construction of a Space Pod Crate Storage Module."
+	desc = "Allows the construction of a spacepod crate storage module."
 	id = "podcargo_crate"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=25000)
@@ -185,7 +185,7 @@
 
 /datum/design/passenger_seat
 	name = "Spacepod Passenger Seat"
-	desc = "Allows the construction of a Space Pod Passenger Seat Module."
+	desc = "Allows the construction of a spacepod passenger seat module."
 	id = "podcargo_seat"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=7500, MAT_GLASS=2500)
@@ -195,7 +195,7 @@
 
 /*/datum/design/loot_box
 	name = "Spacepod Loot Storage Module"
-	desc = "Allows the construction of a Space Pod Auxillary Cargo Module."
+	desc = "Allows the construction of a spacepod auxillary cargo module."
 	id = "podcargo_lootbox"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=7500, MAT_GLASS=2500)

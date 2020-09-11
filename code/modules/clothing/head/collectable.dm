@@ -53,7 +53,7 @@
 
 /obj/item/clothing/head/collectable/police
 	name = "collectable police officer's hat"
-	desc = "A collectable police officer's Hat. This hat emphasizes that you are THE LAW."
+	desc = "A collectable police officer's hat. This hat emphasizes that you are THE LAW."
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 
@@ -140,7 +140,7 @@
 
 /obj/item/clothing/head/collectable/thunderdome
 	name = "collectable Thunderdome helmet"
-	desc = "Go Red! I mean Green! I mean Red! No Green!"
+	desc = "Go Red! I mean Green! I mean Red! No, Green!"
 	icon_state = "thunderdome"
 	item_state = "thunderdome"
 	resistance_flags = NONE

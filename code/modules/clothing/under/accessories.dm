@@ -19,7 +19,7 @@
 		to_chat(user, "<span class='warning'>There doesn't seem to be anywhere to put [src]...</span>")
 
 /obj/item/clothing/accessory/proc/attach(obj/item/clothing/under/U, user)
-	GET_COMPONENT(storage, /datum/component/storage)
+	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
 	if(storage)
 		if(SEND_SIGNAL(U, COMSIG_CONTAINS_STORAGE))
 			return FALSE
@@ -80,10 +80,10 @@
 			to_chat(user, "[src] will be worn [above_suit ? "above" : "below"] your suit.")
 
 /obj/item/clothing/accessory/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src] can be attached to a uniform. Alt-click to remove it once attached.</span>")
+	. = ..()
+	. += "<span class='notice'>\The [src] can be attached to a uniform. Alt-click to remove it once attached.</span>"
 	if(initial(above_suit))
-		to_chat(user, "<span class='notice'>\The [src] can be worn above or below your suit. Alt-click to toggle.</span>")
+		. += "<span class='notice'>\The [src] can be worn above or below your suit. Alt-click to toggle.</span>"
 
 /obj/item/clothing/accessory/waistcoat
 	name = "waistcoat"
@@ -192,6 +192,10 @@
 	name = "robust security award"
 	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
 
+/obj/item/clothing/accessory/medal/silver/excellence
+	name = "head of personnel award for outstanding achievement in the field of excellence"
+	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
+
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
 	desc = "A prestigious golden medal."
@@ -247,37 +251,43 @@
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo bay guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is brown."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is brown."
 	icon_state = "cargoband"
 	item_color = "cargoband"
 
 /obj/item/clothing/accessory/armband/engine
 	name = "engineering guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is orange with a reflective strip!"
+	desc = "An armband, worn by security members to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engieband"
 	item_color = "engieband"
 
 /obj/item/clothing/accessory/armband/science
 	name = "science guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is purple."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is purple."
 	icon_state = "rndband"
 	item_color = "rndband"
 
+/obj/item/clothing/accessory/armband/service
+	name = "service guard armband"
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green."
+	icon_state = "serviceband"
+	item_color = "serviceband"
+
 /obj/item/clothing/accessory/armband/hydro
 	name = "hydroponics guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green and blue."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydroband"
 	item_color = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
 	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white."
 	icon_state = "medband"
 	item_color = "medband"
 
 /obj/item/clothing/accessory/armband/medblue
 	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white and blue."
+	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
 	item_color = "medblueband"
 

@@ -132,8 +132,15 @@
 
 /obj/item/ammo_casing/shotgun/dart/bioterror/Initialize()
 	. = ..()
-	reagents.add_reagent("neurotoxin", 6)
-	reagents.add_reagent("spore", 6)
-	reagents.add_reagent("mutetoxin", 6) //;HELP OPS IN MAINT
-	reagents.add_reagent("coniine", 6)
-	reagents.add_reagent("sodium_thiopental", 6)
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/neurotoxin, 6)
+	reagents.add_reagent(/datum/reagent/toxin/spore, 6)
+	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 6) //;HELP OPS IN MAINT
+	reagents.add_reagent(/datum/reagent/toxin/coniine, 6)
+	reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 6)
+
+/obj/item/ammo_casing/shotgun/breacher
+	name = "breaching slug"
+	desc = "A 12 gauge anti-material slug. Great for breaching airlocks and windows with minimal shots."
+	icon_state = "breacher"
+	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
+	materials = list(MAT_METAL=4000)

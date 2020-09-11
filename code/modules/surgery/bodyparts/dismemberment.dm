@@ -12,11 +12,11 @@
 		return FALSE
 	if(C.status_flags & GODMODE)
 		return FALSE
-	if(C.has_trait(TRAIT_NODISMEMBER))
+	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return FALSE
 
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
-	affecting.receive_damage(CLAMP(brute_dam/2 * affecting.body_damage_coeff, 15, 50), CLAMP(burn_dam/2 * affecting.body_damage_coeff, 0, 50)) //Damage the chest based on limb's existing damage
+	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50)) //Damage the chest based on limb's existing damage
 	C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
 	C.emote("scream")
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
@@ -49,7 +49,7 @@
 	var/mob/living/carbon/C = owner
 	if(!dismemberable)
 		return FALSE
-	if(C.has_trait(TRAIT_NODISMEMBER))
+	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return FALSE
 	. = list()
 	var/organ_spilled = 0
@@ -359,6 +359,8 @@
 		limb_list -= excluded_limbs
 	for(var/Z in limb_list)
 		. += regenerate_limb(Z, noheal)
+	if(("legs" in dna.species.mutant_bodyparts) && dna.features["legs"] == "Digitigrade Legs")
+		Digitigrade_Leg_Swap(FALSE)
 
 /mob/living/proc/regenerate_limb(limb_zone, noheal)
 	return
@@ -374,6 +376,5 @@
 			L.burn_dam = 0
 			L.brutestate = 0
 			L.burnstate = 0
-
 		L.attach_limb(src, 1)
 		return 1

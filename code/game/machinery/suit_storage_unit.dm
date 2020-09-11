@@ -30,8 +30,8 @@
 	var/breakout_time = 300
 
 /obj/machinery/suit_storage_unit/standard_unit
-	suit_type = /obj/item/clothing/suit/space/eva
-	helmet_type = /obj/item/clothing/head/helmet/space/eva
+	suit_type = /obj/item/clothing/suit/space
+	helmet_type = /obj/item/clothing/head/helmet/space
 	mask_type = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/captain
@@ -42,20 +42,22 @@
 /obj/machinery/suit_storage_unit/engine
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine
 	mask_type = /obj/item/clothing/mask/breath
+	storage_type = /obj/item/clothing/shoes/magboots //yogs
 
 /obj/machinery/suit_storage_unit/ce
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/elite
 	mask_type = /obj/item/clothing/mask/breath
-	storage_type= /obj/item/clothing/shoes/magboots/advance
+	storage_type = /obj/item/clothing/shoes/magboots/advance
 
 /obj/machinery/suit_storage_unit/security
 	suit_type = /obj/item/clothing/suit/space/hardsuit/security
 	mask_type = /obj/item/clothing/mask/gas/sechailer
+	storage_type = /obj/item/clothing/shoes/magboots/security
 
 /obj/machinery/suit_storage_unit/hos
 	suit_type = /obj/item/clothing/suit/space/hardsuit/security/hos
 	mask_type = /obj/item/clothing/mask/gas/sechailer
-	storage_type = /obj/item/tank/internals/oxygen
+	storage_type = /obj/item/clothing/shoes/magboots/security
 
 /obj/machinery/suit_storage_unit/atmos
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/atmos
@@ -76,6 +78,11 @@
 
 /obj/machinery/suit_storage_unit/rd
 	suit_type = /obj/item/clothing/suit/space/hardsuit/rd
+	mask_type = /obj/item/clothing/mask/breath
+
+/obj/machinery/suit_storage_unit/command
+	suit_type = /obj/item/clothing/suit/space/heads
+	helmet_type = /obj/item/clothing/head/helmet/space/heads
 	mask_type = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/syndicate
@@ -158,7 +165,7 @@
 		add_overlay("human")
 
 /obj/machinery/suit_storage_unit/power_change()
-	..()
+	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()
@@ -355,7 +362,7 @@
 				return
 			storage = I
 
-		visible_message("<span class='notice'>[user] inserts [I] into [src]</span>", "<span class='notice'>You load [I] into [src].</span>")
+		visible_message("<span class='notice'>[user] inserts [I] into [src].</span>", "<span class='notice'>You load [I] into [src].</span>")
 		update_icon()
 		return
 
@@ -382,7 +389,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "suit_storage_unit", name, 400, 305, master_ui, state)
+		ui = new(user, src, ui_key, "SuitStorageUnit", name, 400, 305, master_ui, state)
 		ui.open()
 
 /obj/machinery/suit_storage_unit/ui_data()
@@ -394,14 +401,24 @@
 	data["uv_super"] = uv_super
 	if(helmet)
 		data["helmet"] = helmet.name
+	else
+		data["helmet"] = null
 	if(suit)
 		data["suit"] = suit.name
+	else
+		data["suit"] = null
 	if(mask)
 		data["mask"] = mask.name
+	else
+		data["mask"] = null
 	if(storage)
 		data["storage"] = storage.name
+	else
+		data["storage"] = null
 	if(occupant)
-		data["occupied"] = 1
+		data["occupied"] = TRUE
+	else
+		data["occupied"] = FALSE
 	return data
 
 /obj/machinery/suit_storage_unit/ui_act(action, params)
@@ -444,4 +461,20 @@
 				if(I)
 					I.forceMove(loc)
 			. = TRUE
+	update_icon()
+
+/obj/machinery/suit_storage_unit/CtrlClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine(0)
+		if(occupant)
+			dump_contents() // Dump out contents if someone is in there.
+
+/obj/machinery/suit_storage_unit/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
+		return
+	locked = !locked
 	update_icon()

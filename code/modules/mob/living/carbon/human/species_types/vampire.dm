@@ -6,7 +6,7 @@
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN
 	exotic_bloodtype = "U"
 	use_skintones = TRUE
 	mutant_heart = /obj/item/organ/heart/vampire
@@ -45,7 +45,7 @@
 		C.adjustCloneLoss(-4)
 		return
 	C.blood_volume -= 0.75
-	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
+	if(C.blood_volume <= BLOOD_VOLUME_SURVIVE(C))
 		to_chat(C, "<span class='danger'>You ran out of blood!</span>")
 		var/obj/shapeshift_holder/H = locate() in C
 		if(H)
@@ -85,7 +85,7 @@
 			return
 		if(H.pulling && iscarbon(H.pulling))
 			var/mob/living/carbon/victim = H.pulling
-			if(H.blood_volume >= BLOOD_VOLUME_MAXIMUM)
+			if(H.blood_volume >= BLOOD_VOLUME_MAXIMUM(H))
 				to_chat(H, "<span class='notice'>You're already full!</span>")
 				return
 			if(victim.stat == DEAD)
@@ -95,19 +95,23 @@
 				to_chat(H, "<span class='notice'>[victim] doesn't have blood!</span>")
 				return
 			V.drain_cooldown = world.time + 30
-			if(victim.anti_magic_check(FALSE, TRUE, FALSE))
+			if(victim.anti_magic_check(FALSE, TRUE, FALSE, 0))
 				to_chat(victim, "<span class='warning'>[H] tries to bite you, but stops before touching you!</span>")
 				to_chat(H, "<span class='warning'>[victim] is blessed! You stop just in time to avoid catching fire.</span>")
 				return
+			if(victim?.reagents?.has_reagent(/datum/reagent/consumable/garlic))
+				to_chat(victim, "<span class='warning'>[H] tries to bite you, but recoils in disgust!</span>")
+				to_chat(H, "<span class='warning'>[victim] reeks of garlic! you can't bring yourself to drain such tainted blood.</span>")
+				return
 			if(!do_after(H, 30, target = victim))
 				return
-			var/blood_volume_difference = BLOOD_VOLUME_MAXIMUM - H.blood_volume //How much capacity we have left to absorb blood
+			var/blood_volume_difference = BLOOD_VOLUME_MAXIMUM(H) - H.blood_volume //How much capacity we have left to absorb blood
 			var/drained_blood = min(victim.blood_volume, VAMP_DRAIN_AMOUNT, blood_volume_difference)
 			to_chat(victim, "<span class='danger'>[H] is draining your blood!</span>")
 			to_chat(H, "<span class='notice'>You drain some blood!</span>")
 			playsound(H, 'sound/items/drink.ogg', 30, 1, -2)
-			victim.blood_volume = CLAMP(victim.blood_volume - drained_blood, 0, BLOOD_VOLUME_MAXIMUM)
-			H.blood_volume = CLAMP(H.blood_volume + drained_blood, 0, BLOOD_VOLUME_MAXIMUM)
+			victim.blood_volume = clamp(victim.blood_volume - drained_blood, 0, BLOOD_VOLUME_MAXIMUM(victim))
+			H.blood_volume = clamp(H.blood_volume + drained_blood, 0, BLOOD_VOLUME_MAXIMUM(H))
 			if(!victim.blood_volume)
 				to_chat(H, "<span class='warning'>You finish off [victim]'s blood supply!</span>")
 
@@ -126,7 +130,7 @@
 	. = ..()
 	if(iscarbon(owner))
 		var/mob/living/carbon/H = owner
-		to_chat(H, "<span class='notice'>Current blood level: [H.blood_volume]/[BLOOD_VOLUME_MAXIMUM].</span>")
+		to_chat(H, "<span class='notice'>Current blood level: [H.blood_volume]/[BLOOD_VOLUME_MAXIMUM(H)].</span>")
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/bat
 	name = "Bat Form"

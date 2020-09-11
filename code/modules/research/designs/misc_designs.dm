@@ -15,11 +15,21 @@
 
 /datum/design/health_hud_night
 	name = "Night Vision Health Scanner HUD"
-	desc = "An advanced medical head-up display that allows doctors to find patients in complete darkness."
+	desc = "An advanced medical heads-up display that allows doctors to find patients in complete darkness."
 	id = "health_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_SILVER = 350)
 	build_path = /obj/item/clothing/glasses/hud/health/night
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/health_hud_meson
+	name = "Meson Health Scanner HUD"
+	desc = "An upgraded version of the Health Scanner HUD, functions the same and in addition allows the user to see basic structural and terrain layouts through walls."
+	id = "health_hud_meson"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_PLASMA = 100)
+	build_path = /obj/item/clothing/glasses/hud/health/meson
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -35,7 +45,7 @@
 
 /datum/design/security_hud_night
 	name = "Night Vision Security HUD"
-	desc = "A heads-up display which provides id data and vision in complete darkness."
+	desc = "A heads-up display which provides ID data and vision in complete darkness."
 	id = "security_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_GOLD = 350)
@@ -55,7 +65,7 @@
 
 /datum/design/diagnostic_hud_night
 	name = "Night Vision Diagnostic HUD"
-	desc = "Upgraded version of the diagnostic HUD designed to function during a power failure."
+	desc = "An upgraded version of the diagnostic HUD, designed to function during a power failure."
 	id = "diagnostic_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_PLASMA = 300)
@@ -129,7 +139,7 @@
 
 /datum/design/nvgmesons
 	name = "Night Vision Optical Meson Scanners"
-	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the UHD display."
+	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the HUD display."
 	id = "nvgmesons"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_PLASMA = 350, MAT_URANIUM = 1000)
@@ -169,7 +179,7 @@
 
 /datum/design/sci_goggles
 	name = "Science Goggles"
-	desc = "Goggles fitted with a portable analyzer capable of determining the research worth of an item or components of a machine."
+	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine."
 	id = "scigoggles"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
@@ -206,7 +216,7 @@
 	build_path = /obj/item/locator
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-	
+
 /datum/design/quantum_keycard
 	name = "Quantum Keycard"
 	desc = "Allows for the construction of a quantum keycard."
@@ -248,13 +258,33 @@
 
 /datum/design/plasma_tank
 	name = "Plasma Tank"
-	desc = "An empty oxygen tank."
+	desc = "An empty plasma tank."
 	id = "plasma_tank"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 2000)
 	build_path = /obj/item/tank/internals/plasma/empty
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/body_camera
+	name = "Bodycamera"
+	desc = "A camera worn around the neck, meant to keep you safe."
+	id = "bodycam"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000, MAT_GOLD = 500)
+	build_path = /obj/item/clothing/neck/bodycam/
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/ticket_remote
+	name = "Ticket Machine Remote"
+	desc = "A remote for operating a ticket machine (sold seperately)"
+	id = "ticket_remote"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/ticket_machine_remote
+	category = list ("Electronics")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////
@@ -334,7 +364,6 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-
 /datum/design/holosignsec
 	name = "Security Holobarrier Projector"
 	desc = "A holographic projector that creates holographic security barriers."
@@ -413,6 +442,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/detective_scanner_advanced
+	name = "Advanced Forensic Scanner"
+	desc = "Processes data much quicker at the cost of not being able to scan far remotely. Gives more detailed reports. Scan from 2 tiles away to avoid leaving prints on the scene of the crime!"
+	id = "detective_scanner_advanced"
+	build_type = PROTOLATHE
+	materials = list(MAT_TITANIUM = 5000, MAT_GLASS = 1000, MAT_GOLD = 2500, MAT_SILVER = 3000) // made of titanium instead of metal + extra silver
+	build_path = /obj/item/detective_scanner/advanced
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/pepperspray
 	name = "Pepper Spray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Printed pepper sprays do not contain reagents."
@@ -453,32 +492,4 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/c38_trac
-	name = "Speed Loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
-	id = "c38_trac"
-	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 20000, MAT_SILVER = 5000, MAT_GOLD = 1000)
-	build_path = /obj/item/ammo_box/c38/trac
-	category = list("Security")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/c38_hotshot
-	name = "Speed Loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
-	id = "c38_hotshot"
-	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 20000, MAT_PLASMA = 5000)
-	build_path = /obj/item/ammo_box/c38/hotshot
-	category = list("Security")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/datum/design/c38_iceblox
-	name = "Speed Loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
-	id = "c38_iceblox"
-	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 20000, MAT_PLASMA = 5000)
-	build_path = /obj/item/ammo_box/c38/iceblox
-	category = list("Security")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

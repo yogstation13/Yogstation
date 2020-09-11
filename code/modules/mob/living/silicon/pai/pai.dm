@@ -27,7 +27,6 @@
 	var/speakDoubleExclamation = "alarms"
 	var/speakQuery = "queries"
 
-	var/obj/item/radio/headset			// The pAI's headset
 	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
@@ -38,10 +37,6 @@
 	var/temp				// General error reporting text contained here will typically be shown once and cleared
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
-
-	var/obj/item/pda/ai/pai/pda = null
-	
-	var/obj/machinery/newscaster			//pAI Newscaster
 
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
@@ -58,6 +53,8 @@
 	var/obj/item/integrated_signaler/signaler // AI's signaller
 
 	var/obj/item/instrument/piano_synth/internal_instrument
+	var/obj/machinery/newscaster			//pAI Newscaster
+	var/obj/item/healthanalyzer/hostscan				//pAI healthanalyzer
 
 	var/encryptmod = FALSE
 	var/holoform = FALSE
@@ -111,20 +108,21 @@
 		P.setPersonality(src)
 	forceMove(P)
 	card = P
-	job = "personal AI"
+	job = "Personal AI"
 	signaler = new(src)
+	hostscan = new /obj/item/healthanalyzer(src)
 	if(!radio)
 		radio = new /obj/item/radio/headset/silicon/pai(src)
 	newscaster = new /obj/machinery/newscaster(src)
 	if(!aicamera)
 		aicamera = new /obj/item/camera/siliconcam/ai_camera(src)
+		aicamera.flash_enabled = TRUE
 
 	//PDA
-	pda = new(src)
-	spawn(5)
-		pda.ownjob = "pAI Messenger"
-		pda.owner = text("[]", src)
-		pda.name = pda.owner + " (" + pda.ownjob + ")"
+	aiPDA = new/obj/item/pda/ai(src)
+	aiPDA.owner = real_name
+	aiPDA.ownjob = "pAI Messenger"
+	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
 
 	. = ..()
 
@@ -139,7 +137,7 @@
 /mob/living/silicon/pai/proc/process_hack()
 
 	if(cable && cable.machine && istype(cable.machine, /obj/machinery/door) && cable.machine == hackdoor && get_dist(src, hackdoor) <= 1)
-		hackprogress = CLAMP(hackprogress + 4, 0, 100)
+		hackprogress = clamp(hackprogress + 20, 0, 100)
 	else
 		temp = "Door Jack: Connection to airlock has been lost. Hack aborted."
 		hackprogress = 0
@@ -168,13 +166,12 @@
 		else
 			client.eye = card
 
-/mob/living/silicon/pai/Stat()
-	..()
-	if(statpanel("Status"))
-		if(!stat)
-			stat(null, text("Emitter Integrity: [emitterhealth * (100/emittermaxhealth)]"))
-		else
-			stat(null, text("Systems nonfunctional"))
+/mob/living/silicon/pai/get_status_tab_items()
+	. += ..()
+	if(!stat)
+		. += text("Emitter Integrity: [emitterhealth * (100/emittermaxhealth)]")
+	else
+		. += text("Systems nonfunctional")
 
 /mob/living/silicon/pai/restrained(ignore_grab)
 	. = FALSE
@@ -264,8 +261,8 @@
 	return TRUE
 
 /mob/living/silicon/pai/examine(mob/user)
-	..()
-	to_chat(user, "A personal AI in holochassis mode. Its master ID string seems to be [master].")
+	. = ..()
+	. += "A personal AI in holochassis mode. Its master ID string seems to be [master]."
 
 /mob/living/silicon/pai/Life()
 	if(stat == DEAD)
@@ -286,7 +283,7 @@
 	update_stat()
 
 /mob/living/silicon/pai/process()
-	emitterhealth = CLAMP((emitterhealth + emitterregen), -50, emittermaxhealth)
+	emitterhealth = clamp((emitterhealth + emitterregen), -50, emittermaxhealth)
 
 /obj/item/paicard/attackby(obj/item/W, mob/user, params)
 	..()

@@ -177,9 +177,14 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	icon_state = "sinew"
 	novariants = TRUE
 
+/obj/item/stack/sheet/sinew/wolf
+	name = "wolf sinew"
+	desc = "Long stringy filaments which came from the insides of a wolf."
+	singular_name = "wolf sinew"
+
 
 GLOBAL_LIST_INIT(sinew_recipes, list ( \
-	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/sinew, 1), \
+	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/cable/sinew, 1), \
 ))
 
 /obj/item/stack/sheet/sinew/Initialize(mapload, new_amount, merge = TRUE)
@@ -201,6 +206,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
 
+/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide
+	name = "polar bear hides"
+	desc = "Pieces of a polar bear's fur, these might be able to make your suit a bit more durable to attack from the local fauna."
+	icon_state = "polar_bear_hide"
+	singular_name = "polar bear hide"
 
 /obj/item/stack/sheet/animalhide/ashdrake
 	name = "ash drake hide"
@@ -245,3 +255,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	..()
 	new /obj/item/stack/sheet/leather(drop_location(), amount)
 	qdel(src)
+
+
+/obj/item/stack/sheet/animalhide/egg
+	name = "egg shell pieces"
+	desc = "The shattered remains of an eggperson."
+	singular_name = "egg shell pieces"
+	icon_state = "sheet-gondola"
+	item_state = "sheet-gondola"

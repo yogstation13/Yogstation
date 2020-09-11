@@ -3,18 +3,18 @@
 	set name = "Dsay"
 	set hidden = 1
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
+		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
 	if(!mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='danger'>You cannot send DSAY messages (muted).</span>")
+		to_chat(src, "<span class='danger'>You cannot send DSAY messages (muted).</span>", confidential=TRUE)
 		return
 
 	if (handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	mob.log_talk(msg, LOG_DSAY)
 
 	if (!msg)
@@ -38,5 +38,6 @@
 	// yogs start - Cancel button
 	var/msg = input(src, null, "dsay \"text\"") as text|null
 	if(msg)
+		msg = to_utf8(msg, src)
 		dsay(msg)
 	// yogs end

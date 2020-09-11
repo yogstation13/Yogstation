@@ -3,7 +3,7 @@
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
-	if(armor && armour_penetration)
+	if(armor > 0 && armour_penetration)
 		armor = max(0, armor - armour_penetration)
 		if(penetrated_text)
 			to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
@@ -55,9 +55,9 @@
 
 /obj/item/proc/get_volume_by_throwforce_and_or_w_class()
 		if(throwforce && w_class)
-				return CLAMP((throwforce + w_class) * 5, 30, 100)// Add the item's throwforce to its weight class and multiply by 5, then clamp the value between 30 and 100
+				return clamp((throwforce + w_class) * 5, 30, 100)// Add the item's throwforce to its weight class and multiply by 5, then clamp the value between 30 and 100
 		else if(w_class)
-				return CLAMP(w_class * 8, 20, 100) // Multiply the item's weight class by 8, then clamp the value between 20 and 100
+				return clamp(w_class * 8, 20, 100) // Multiply the item's weight class by 8, then clamp the value between 20 and 100
 		else
 				return 0
 
@@ -86,9 +86,12 @@
 			visible_message("<span class='danger'>[src] has been hit by [I].</span>", \
 							"<span class='userdanger'>[src] has been hit by [I].</span>")
 			var/armor = run_armor_check(zone, "melee", "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
-			apply_damage(I.throwforce, dtype, zone, armor)
-			if(I.thrownby)
-				log_combat(I.thrownby, src, "threw and hit", I)
+			if(isobj(AM))
+				var/obj/O = AM
+				if(O.damtype != STAMINA)
+					apply_damage(I.throwforce, dtype, zone, armor)
+					if(I.thrownby)
+						log_combat(I.thrownby, src, "threw and hit", I)
 		else
 			return 1
 	else
@@ -133,11 +136,11 @@
 		user.start_pulling(src, supress_message = supress_message)
 		return
 
-	if(!(status_flags & CANPUSH) || has_trait(TRAIT_PUSHIMMUNE))
+	if(!(status_flags & CANPUSH) || HAS_TRAIT(src, TRAIT_PUSHIMMUNE))
 		to_chat(user, "<span class='warning'>[src] can't be grabbed more aggressively!</span>")
 		return FALSE
 
-	if(user.has_trait(TRAIT_PACIFISM))
+	if(user.grab_state >= GRAB_AGGRESSIVE && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='notice'>You don't want to risk hurting [src]!</span>")
 		return FALSE
 	grippedby(user)
@@ -173,11 +176,17 @@
 		user.grab_state++
 		switch(user.grab_state)
 			if(GRAB_AGGRESSIVE)
-				log_combat(user, src, "grabbed", addition="aggressive grab")
-				visible_message("<span class='danger'>[user] has grabbed [src] aggressively!</span>", \
-								"<span class='userdanger'>[user] has grabbed [src] aggressively!</span>")
-				drop_all_held_items()
+				var/add_log = ""
+				if(HAS_TRAIT(user, TRAIT_PACIFISM))
+					visible_message("<span class='danger'>[user] has firmly gripped [src]!</span>",
+						"<span class='danger'>[user] has firmly gripped you!</span>")
+					add_log = " (pacifist)"
+				else
+					visible_message("<span class='danger'>[user] has grabbed [src] aggressively!</span>", \
+									"<span class='userdanger'>[user] has grabbed you aggressively!</span>")
+					drop_all_held_items()
 				stop_pulling()
+				log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
 			if(GRAB_NECK)
 				log_combat(user, src, "grabbed", addition="neck grab")
 				visible_message("<span class='danger'>[user] has grabbed [src] by the neck!</span>",\
@@ -206,7 +215,7 @@
 			M.Feedstop()
 		return // can't attack while eating!
 
-	if(has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(src, TRAIT_PACIFISM))
 		to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 		return FALSE
 
@@ -223,7 +232,7 @@
 		M.visible_message("<span class='notice'>\The [M] [M.friendly] [src]!</span>")
 		return FALSE
 	else
-		if(M.has_trait(TRAIT_PACIFISM))
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 			return FALSE
 
@@ -242,7 +251,7 @@
 		return FALSE
 
 	if (M.a_intent == INTENT_HARM)
-		if(M.has_trait(TRAIT_PACIFISM))
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 			return FALSE
 
@@ -268,7 +277,7 @@
 			return FALSE
 
 		else
-			if(L.has_trait(TRAIT_PACIFISM))
+			if(HAS_TRAIT(L, TRAIT_PACIFISM))
 				to_chat(L, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return
 
@@ -293,7 +302,7 @@
 			grabbedby(M)
 			return FALSE
 		if("harm")
-			if(M.has_trait(TRAIT_PACIFISM))
+			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return FALSE
 			M.do_attack_animation(src)
@@ -317,7 +326,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
-	if(has_trait(TRAIT_SHOCKIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
 	if(shock_damage > 0)
 		if(!illusion)
@@ -350,7 +359,7 @@
 		to_chat(src, "<span class='userdanger'>You resist Nar-Sie's influence... but not all of it. <i>Run!</i></span>")
 		adjustBruteLoss(35)
 		if(src && reagents)
-			reagents.add_reagent("heparin", 5)
+			reagents.add_reagent(/datum/reagent/toxin/heparin, 5)
 		return FALSE
 	if(GLOB.cult_narsie && GLOB.cult_narsie.souls_needed[src])
 		GLOB.cult_narsie.souls_needed -= src
@@ -387,7 +396,7 @@
 
 //called when the mob receives a bright flash
 /mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
-	if(get_eye_protection() < intensity && (override_blindness_check || !(has_trait(TRAIT_BLIND))))
+	if(get_eye_protection() < intensity && (override_blindness_check || !(HAS_TRAIT(src, TRAIT_BLIND))))
 		overlay_fullscreen("flash", type)
 		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", 25), 25)
 		return TRUE

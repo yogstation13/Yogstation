@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 
 	outfit = /datum/outfit/job/psych
 
@@ -16,6 +16,11 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
+
+	changed_maps = list("OmegaStation")
+
+/datum/job/psych/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/psych
 	name = "Psych"

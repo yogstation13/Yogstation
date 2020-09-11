@@ -2,6 +2,7 @@
 	name = "navigation computer"
 	desc = "Used to designate a precise transit location for a spacecraft."
 	jump_action = null
+	should_supress_view_changes  = FALSE
 	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
 	var/datum/action/innate/shuttledocker_place/place_action = new
 	var/shuttleId = ""
@@ -10,7 +11,7 @@
 	var/list/jumpto_ports = list() //hashset of ports to jump to and ignore for collision purposes
 	var/obj/docking_port/stationary/my_port //the custom docking port placed by this console
 	var/obj/docking_port/mobile/shuttle_port //the mobile docking port of the connected shuttle
-	var/view_range = 7
+	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
 	var/space_turfs_only = TRUE
@@ -63,9 +64,8 @@
 		shuttle_port = null
 		return
 
-	eyeobj = new /mob/camera/aiEye/remote/shuttle_docker()
+	eyeobj = new /mob/camera/aiEye/remote/shuttle_docker(null, src)
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
-	the_eye.origin = src
 	the_eye.setDir(shuttle_port.dir)
 	var/turf/origin = locate(shuttle_port.x + x_offset, shuttle_port.y + y_offset, shuttle_port.z)
 	for(var/V in shuttle_port.shuttle_areas)
@@ -79,7 +79,7 @@
 			I.loc = locate(origin.x + x_off, origin.y + y_off, origin.z) //we have to set this after creating the image because it might be null, and images created in nullspace are immutable.
 			I.layer = ABOVE_NORMAL_TURF_LAYER
 			I.plane = 0
-			I.mouse_opacity = 0
+			I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 			the_eye.placement_images[I] = list(x_off, y_off)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_eye_control(mob/user)
@@ -93,7 +93,7 @@
 			to_add += SSshuttle.hidden_shuttle_turf_images
 
 		user.client.images += to_add
-		user.client.change_view(view_range)
+		user.client.view_size.setTo(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	..()
@@ -106,7 +106,7 @@
 			to_remove += SSshuttle.hidden_shuttle_turf_images
 
 		user.client.images -= to_remove
-		user.client.change_view(CONFIG_GET(string/default_view))
+		user.client.view_size.resetToDefault()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()
 	if(designating_target_loc || !current_user)
@@ -230,7 +230,8 @@
 
 	if(space_turfs_only)
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
-		if(!ispath(turf_type, /turf/open/space))
+		var/area/A = get_area(T)
+		if(!ispath(turf_type, /turf/open/space) && !ispath(A.type, /area/icemoon))
 			return SHUTTLE_DOCKER_BLOCKED
 
 	// Checking for overlapping dock boundaries
@@ -256,6 +257,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))
 		shuttleId = port.id
+		shuttlePortId = "[port.id]_custom"
 	if(dock)
 		jumpto_ports[dock.id] = TRUE
 
@@ -264,6 +266,10 @@
 	use_static = USE_STATIC_NONE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
+
+/mob/camera/aiEye/remote/shuttle_docker/Initialize(mapload, obj/machinery/computer/camera_advanced/origin)
+	src.origin = origin
+	return ..()
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()

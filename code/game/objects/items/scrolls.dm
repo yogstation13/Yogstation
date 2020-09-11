@@ -18,12 +18,19 @@
 
 /obj/item/teleportation_scroll/attack_self(mob/user)
 	user.set_machine(src)
-	var/dat = "<B>Teleportation Scroll:</B><BR>"
+	var/dat = ""
+
+	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
+
+	dat +="<B>Teleportation Scroll:</B><BR>"
 	dat += "Number of uses: [src.uses]<BR>"
 	dat += "<HR>"
 	dat += "<B>Four uses, use them wisely:</B><BR>"
 	dat += "<A href='byond://?src=[REF(src)];spell_teleport=1'>Teleport</A><BR>"
 	dat += "Kind regards,<br>Wizards Federation<br><br>P.S. Don't forget to bring your gear, you'll need it to cast most spells.<HR>"
+	
+	dat += "</BODY></HTML>"
+
 	user << browse(dat, "window=scroll")
 	onclose(user, "scroll")
 	return

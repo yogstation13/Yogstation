@@ -33,3 +33,7 @@
 	return randname
 
 // Gorillas don't have tails
+
+// But they do have pain receptive toes!
+/datum/species/gorilla/has_toes()
+	return TRUE

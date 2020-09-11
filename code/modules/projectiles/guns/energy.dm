@@ -18,6 +18,7 @@
 	var/selfcharge = 0
 	var/charge_tick = 0
 	var/charge_delay = 4
+	var/charge_amount = 1
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge
 	var/dead_cell = FALSE //set to true so the gun is given an empty cell
 
@@ -68,7 +69,7 @@
 		if(charge_tick < charge_delay)
 			return
 		charge_tick = 0
-		cell.give(100)
+		cell.give(100*charge_amount)
 		if(!chambered) //if empty chamber we try to charge a new shot
 			recharge_newshot(TRUE)
 		update_icon()
@@ -136,7 +137,7 @@
 	..()
 	if(!automatic_charge_overlays)
 		return
-	var/ratio = CEILING(CLAMP(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
+	var/ratio = CEILING(clamp(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
 	if(ratio == old_ratio && !force_update)
 		return
 	old_ratio = ratio

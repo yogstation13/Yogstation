@@ -14,8 +14,11 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/datum/component/storage/concrete/master		//If not null, all actions act on master and this is just an access point.
 
-	var/list/can_hold								//if this is set, only things in this typecache will fit.
-	var/list/cant_hold								//if this is set, anything in this typecache will not be able to fit.
+	var/list/can_hold								//if this is set, only items, and their children, will fit
+	var/list/cant_hold								//if this is set, items, and their children, won't fit
+	var/list/exception_hold           //if set, these items will be the exception to the max size of object that can fit.
+
+	var/can_hold_description
 
 	var/list/mob/is_using							//lazy list of mobs looking at the contents of this storage.
 
@@ -81,6 +84,8 @@
 	RegisterSignal(parent, COMSIG_TRY_STORAGE_HIDE_ALL, .proc/close_all)
 	RegisterSignal(parent, COMSIG_TRY_STORAGE_RETURN_INVENTORY, .proc/signal_return_inv)
 
+	RegisterSignal(parent, COMSIG_TOPIC, .proc/topic_handle)
+
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby)
 
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/on_attack_hand)
@@ -113,6 +118,24 @@
 
 /datum/component/storage/PreTransfer()
 	update_actions()
+
+/datum/component/storage/proc/set_holdable(can_hold_list, cant_hold_list)
+	can_hold_description = generate_hold_desc(can_hold_list)
+
+	if (can_hold_list)
+		can_hold = typecacheof(can_hold_list)
+
+	if (cant_hold_list)
+		cant_hold = typecacheof(cant_hold_list)
+
+/datum/component/storage/proc/generate_hold_desc(can_hold_list)
+	var/list/desc = list()
+
+	for(var/valid_type in can_hold_list)
+		var/obj/item/valid_item = valid_type
+		desc += "\a [initial(valid_item.name)]"
+
+	return "\n\t<span class='notice'>[desc.Join("\n\t")]</span>"
 
 /datum/component/storage/proc/update_actions()
 	QDEL_NULL(modeswitch_action)
@@ -310,8 +333,8 @@
 		numbered_contents = _process_numerical_display()
 		adjusted_contents = numbered_contents.len
 
-	var/columns = CLAMP(max_items, 1, screen_max_columns)
-	var/rows = CLAMP(CEILING(adjusted_contents / columns, 1), 1, screen_max_rows)
+	var/columns = clamp(max_items, 1, screen_max_columns)
+	var/rows = clamp(CEILING(adjusted_contents / columns, 1), 1, screen_max_rows)
 	standard_orient_objs(rows, columns, numbered_contents)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
@@ -501,11 +524,18 @@
 	interface |= return_inv(recursive)
 	return TRUE
 
+/datum/component/storage/proc/topic_handle(datum/source, user, href_list)
+	if(href_list["show_valid_pocket_items"])
+		handle_show_valid_items(source, user)
+
+/datum/component/storage/proc/handle_show_valid_items(datum/source, user)
+	to_chat(user, "<span class='notice'>[source] can hold: [can_hold_description]</span>")
+
 /datum/component/storage/proc/mousedrop_onto(datum/source, atom/over_object, mob/M)
 	set waitfor = FALSE
 	. = COMPONENT_NO_MOUSEDROP
 	var/atom/A = parent
-	if(ismob(M)) //all the check for item manipulation are in other places, you can safely open any storages as anything and its not buggy, i checked
+	if(isliving(M)) //all the check for item manipulation are in other places, you can safely open any storages as anything and its not buggy, i checked //yogs -- Makes ghosts not be able to interact with storage shit
 		A.add_fingerprint(M)
 		if(!over_object)
 			return FALSE
@@ -576,7 +606,7 @@
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>[host] cannot hold [I]!</span>")
 		return FALSE
-	if(I.w_class > max_w_class)
+	if(I.w_class > max_w_class && !is_type_in_typecache(I, exception_hold))
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>[I] is too big for [host]!</span>")
 		return FALSE
@@ -589,12 +619,16 @@
 		return FALSE
 	if(isitem(host))
 		var/obj/item/IP = host
-		GET_COMPONENT_FROM(STR_I, /datum/component/storage, I)
+		var/datum/component/storage/STR_I = I.GetComponent(/datum/component/storage)
 		if((I.w_class >= IP.w_class) && STR_I && !allow_big_nesting)
 			if(!stop_messages)
 				to_chat(M, "<span class='warning'>[IP] cannot hold [I] as it's a storage item of the same size!</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
-	if(I.has_trait(TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
+	if(HAS_TRAIT(I, TRAIT_NO_STORAGE))
+		if(!stop_messages)
+			to_chat(M, "<span class='warning'>\the [I] can't seem to fit in \the [host]!</span>")
+		return FALSE
+	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>\the [I] is stuck to your hand, you can't put it in \the [host]!</span>")
 		return FALSE
@@ -742,7 +776,10 @@
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
 	if(!isliving(user) || !user.CanReach(parent))
 		return
+
 	if(locked)
+		if(istype(parent, /obj/item/storage/lockbox))
+			return
 		to_chat(user, "<span class='warning'>[parent] seems to be locked!</span>")
 		return
 

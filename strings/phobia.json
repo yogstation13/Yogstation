@@ -4,7 +4,6 @@
 		"web",
 		"arachnid"
 	],
-
 	"space": [
 		"space",
 		"star",
@@ -13,7 +12,6 @@
 		"galaxy",
 		"spess"
 	],
-
 	"security": [
 		"sec",
 		"security",
@@ -25,7 +23,6 @@
 		"brig",
 		"gulag"
 	],
-
 	"conspiracies": [
 		"central command",
 		"command",
@@ -61,7 +58,6 @@
 		"second shooter",
 		"freemason"
 	],
-
 	"clowns": [
 		"clown",
 		"honk",
@@ -70,7 +66,6 @@
 		"slipped",
 		"slipping"
 	],
-
 	"greytide": [
 		"assistant",
 		"grey",
@@ -81,7 +76,6 @@
 		"revolution",
 		"viva"
 	],
-
 	"lizards": [
 		"lizard",
 		"ligger",
@@ -92,7 +86,6 @@
 		"wagged",
 		"wagging"
 	],
-
 	"skeletons": [
 		"skeleton",
 		"milk",
@@ -102,7 +95,6 @@
 		"the ride never ends",
 		"doot"
 	],
-
 	"snakes": [
 		"snake",
 		"snek",
@@ -114,7 +106,6 @@
 		"viper",
 		"python"
 	],
-
 	"robots": [
 		"robot",
 		"bot",
@@ -128,7 +119,6 @@
 		"beep",
 		"boop"
 	],
-
 	"doctors": [
 		"doc",
 		"md",
@@ -149,7 +139,6 @@
 		"cloning",
 		"virology"
 	],
-
 	"authority": [
 		"cap",
 		"captain",
@@ -167,7 +156,6 @@
 		"comdom",
 		"condom"
 	],
-
 	"the supernatural": [
 		"chaplain",
 		"chappy",
@@ -196,8 +184,7 @@
 		"lich",
 		"ei nath"
 	],
-
-"aliens": [
+	"aliens": [
 		"alien",
 		"xeno",
 		"abductor",
@@ -214,14 +201,12 @@
 		"facehugger",
 		"lusty"
 	],
-
-"strangers": [
+	"strangers": [
 		"as (unknown)",
 		"unknown",
 		"stranger danger"
 	],
-
-"birds": [
+	"birds": [
 		"birdemic",
 		"bird",
 		"beak",
@@ -245,8 +230,7 @@
 		"chick",
 		"fowl"
 	],
-
-"falling": [
+	"falling": [
 		"hold on",
 		"hang in there",
 		"chasm",
@@ -258,7 +242,7 @@
 		"i'll catch you",
 		"slip"
 	],
-"anime": [
+	"anime": [
 		"anime",
 		"manga",
 		"baka",

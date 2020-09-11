@@ -16,6 +16,9 @@
 			handle_feeding()
 		if(!stat) // Slimes in stasis don't lose nutrition, don't change mood and don't respond to speech
 			handle_nutrition()
+			if(QDELETED(src)) // Stop if the slime split during handle_nutrition()
+				return
+			reagents.remove_all(0.5 * REAGENTS_METABOLISM * reagents.reagent_list.len) //Slimes are such snowflakes
 			handle_targets()
 			if (!ckey)
 				handle_mood()
@@ -61,7 +64,7 @@
 				break
 
 			if(Target in view(1,src))
-				if(issilicon(Target))
+				if(!CanFeedon(Target)) //If they're not able to be fed upon, ignore them.
 					if(!Atkcool)
 						Atkcool = 1
 						spawn(45)
@@ -69,7 +72,7 @@
 
 						if(Target.Adjacent(src))
 							Target.attack_slime(src)
-					return
+					break
 				if((Target.mobility_flags & MOBILITY_STAND) && prob(80))
 
 					if(Target.client && Target.health >= 20)
@@ -111,8 +114,9 @@
 		return
 
 	var/loc_temp = get_temperature(environment)
+	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 
-	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1))
+	adjust_bodytemperature(adjust_body_temperature(bodytemperature, loc_temp, 1) * heat_capacity_factor)
 
 	//Account for massive pressure differences
 
@@ -130,9 +134,7 @@
 		Tempstun = 0
 
 	if(stat != DEAD)
-		var/bz_percentage =0
-		if(environment.gases[/datum/gas/bz])
-			bz_percentage = environment.gases[/datum/gas/bz][MOLES] / environment.total_moles()
+		var/bz_percentage = environment.total_moles() ? (environment.get_moles(/datum/gas/bz) / environment.total_moles()) : 0
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
 
 		if(stat == CONSCIOUS && stasis)
@@ -599,7 +601,8 @@
 				phrases += "[M]... friend..."
 				if (nutrition < get_hunger_nutrition())
 					phrases += "[M]... feed me..."
-			say (pick(phrases))
+			if(!stat)
+				say (pick(phrases))
 
 /mob/living/simple_animal/slime/proc/get_max_nutrition() // Can't go above it
 	if (is_adult)

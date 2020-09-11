@@ -82,9 +82,9 @@
 
 /datum/signal/subspace/proc/send_to_receivers()
 	for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
-		R.receive_signal(src)
+		R.receive_signal(src.copy(src))
 	for(var/obj/machinery/telecomms/allinone/R in GLOB.telecomms_list)
-		R.receive_signal(src)
+		R.receive_signal(src.copy(src))
 
 /datum/signal/subspace/proc/broadcast()
 	set waitfor = FALSE
@@ -100,7 +100,7 @@
 	obj/source,  // the originating radio
 	frequency,  // the frequency the signal is taking place on
 	atom/movable/virtualspeaker/speaker,  // representation of the method's speaker
-	datum/language/language,  // the langauge of the message
+	datum/language/language,  // the language of the message
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
 	lvls = null //Yogs -- For NTSL. It's the list of Z-levels that should hear this message.
@@ -138,7 +138,7 @@
 	set waitfor = FALSE
 
 	// Perform final composition steps on the message.
-	var/message = copytext(data["message"], 1, MAX_BROADCAST_LEN)
+	var/message = copytext_char(data["message"], 1, MAX_BROADCAST_LEN)
 	if(!message)
 		return
 	var/compression = data["compression"]

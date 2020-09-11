@@ -2,6 +2,7 @@
 	name = "Sentient Disease"
 	roundend_category = "diseases"
 	antagpanel_category = "Disease"
+	show_to_ghosts = TRUE
 	var/disease_name = ""
 
 /datum/antagonist/disease/on_gain()
@@ -57,6 +58,8 @@
 
 	if(win)
 		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
+		if(istype(owner.current, /mob/camera/disease))
+			SSachievements.unlock_achievement(/datum/achievement/greentext/disease,owner.current.client)
 	else
 		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
 

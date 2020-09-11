@@ -74,8 +74,28 @@
 		return 0
 	return ..()
 
+//Mime spell boxes
+
+/obj/item/storage/box/mime
+	name = "invisible box"
+	desc = "Unfortunately not large enough to trap the mime."
+	foldable = null
+	icon_state = "box"
+	item_state = null
+	alpha = 0
+
+/obj/item/storage/box/mime/attack_hand(mob/user)
+	..()
+	if(user.mind.miming)
+		alpha = 255
+
+/obj/item/storage/box/mime/Moved(oldLoc, dir)
+	if (iscarbon(oldLoc))
+		alpha = 0
+	..()
 
 //Disk boxes
+
 /obj/item/storage/box/disks
 	name = "diskette box"
 	illustration = "disk_kit"
@@ -106,6 +126,8 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
+	new /obj/item/map/station(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -116,13 +138,16 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-
+	new /obj/item/flashlight/flare/emergency(src)
+	new /obj/item/map/station(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/signal(src)
+	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -138,10 +163,20 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
+	new /obj/item/map/station(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
 	new /obj/item/radio/off(src)
+
+// Plasmaman survival box
+/obj/item/storage/box/plasmaman/PopulateContents()
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
+	new /obj/item/map/station(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -401,8 +436,8 @@
 
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/donkpocket))
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
 
 /obj/item/storage/box/donkpockets/PopulateContents()
 	for(var/i in 1 to 6)
@@ -417,9 +452,9 @@
 
 /obj/item/storage/box/monkeycubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/monkeycubes/PopulateContents()
 	for(var/i in 1 to 5)
@@ -437,13 +472,31 @@
 
 /obj/item/storage/box/gorillacubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/gorillacubes/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/gorilla(src)
+
+/obj/item/storage/box/mixedcubes
+	name = "mixed farm animal cube box"
+	desc = "Farm Town's new cubes to make your farming dreams come true. Just add water!"
+	icon_state = "monkeycubebox"
+	illustration = null
+
+/obj/item/storage/box/mixedcubes/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 6
+	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+
+/obj/item/storage/box/mixedcubes/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
@@ -590,8 +643,8 @@
 
 /obj/item/storage/box/snappops/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.can_hold = typecacheof(list(/obj/item/toy/snappop))
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/toy/snappop))
 	STR.max_items = 8
 
 /obj/item/storage/box/snappops/PopulateContents()
@@ -608,14 +661,13 @@
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
-	STR.can_hold = typecacheof(list(/obj/item/match))
-// yogs start -- make matches play nice with holodeck
+	STR.set_holdable(list(/obj/item/match))
+
 /obj/item/storage/box/matches/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/match(src)
-// yogs end
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
+
 /obj/item/storage/box/matches/attackby(obj/item/match/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/match))
 		W.matchignite()
@@ -632,9 +684,9 @@
 
 /obj/item/storage/box/lights/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 21
-	STR.can_hold = typecacheof(list(/obj/item/light/tube, /obj/item/light/bulb))
+	STR.set_holdable(list(/obj/item/light/tube, /obj/item/light/bulb))
 	STR.max_combined_w_class = 21
 	STR.click_gather = FALSE //temp workaround to re-enable filling the light replacer with the box
 
@@ -755,6 +807,16 @@
 /obj/item/storage/box/lethalshot/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
+
+/obj/item/storage/box/breacherslug
+	name = "box of breaching shotgun shells"
+	desc = "A box full of breaching slugs, designed for rapid entry."
+	icon_state = "breachershot_box"
+	illustration = null
+
+/obj/item/storage/box/breacherslug/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/breacher(src)
 
 /obj/item/storage/box/beanbag
 	name = "box of beanbags"
@@ -986,6 +1048,15 @@
 		new /obj/item/reagent_containers/food/snacks/grown/cabbage(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
 
+/obj/item/storage/box/cheese
+	name = "box of advanced cheese bacteria"
+
+/obj/item/storage/box/cheese/PopulateContents()
+	new /obj/item/reagent_containers/food/condiment/mesophilic(src)
+	new /obj/item/reagent_containers/food/condiment/thermophilic(src)
+	new /obj/item/reagent_containers/food/condiment/pcandidum(src)
+	new /obj/item/reagent_containers/food/condiment/proqueforti(src)
+
 /obj/item/storage/box/emptysandbags
 	name = "box of empty sandbags"
 
@@ -998,6 +1069,17 @@
 	desc = "A box containing a gift for worthy golems."
 
 /obj/item/storage/box/rndboards/PopulateContents()
+	new /obj/item/circuitboard/machine/protolathe(src)
+	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/circuit_imprinter(src)
+	new /obj/item/circuitboard/computer/rdconsole(src)
+
+/obj/item/storage/box/rndboards/miner
+	name = "\proper Morokha Heavy Industries Research and Development Kit"
+	desc = "A box containing the essential circuit boards for research and development. Materials, stock parts, and intelligence not included."
+
+/obj/item/storage/box/rndboards/miner/PopulateContents()
+	new /obj/item/circuitboard/machine/autolathe(src)
 	new /obj/item/circuitboard/machine/protolathe(src)
 	new /obj/item/circuitboard/machine/destructive_analyzer(src)
 	new /obj/item/circuitboard/machine/circuit_imprinter(src)
@@ -1052,4 +1134,45 @@
 		/obj/item/stock_parts/manipulator/femto = 3,
 		/obj/item/stock_parts/micro_laser/quadultra = 3,
 		/obj/item/stock_parts/matter_bin/bluespace = 3)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/dishdrive
+	name = "DIY Dish Drive Kit"
+	desc = "Contains everything you need to build your own Dish Drive!"
+	custom_premium_price = 200
+
+/obj/item/storage/box/dishdrive/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/stack/sheet/metal/five = 1,
+		/obj/item/stack/cable_coil/random/five = 1,
+		/obj/item/circuitboard/machine/dish_drive = 1,
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/screwdriver = 1)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/materials
+	name = "Materials Box"
+	desc = "Contains most of what you would need"
+
+/obj/item/storage/box/materials/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/stack/sheet/metal/fifty = 2,
+		/obj/item/stack/rods/fifty = 2,
+		/obj/item/stack/sheet/plasteel/fifty = 2,
+		/obj/item/stack/sheet/plastic/fifty = 2,
+		/obj/item/stack/sheet/plastitaniumglass/fifty = 2,
+		/obj/item/stack/sheet/titaniumglass/fifty = 2,
+		/obj/item/stack/sheet/plasmaglass/fifty = 2,
+		/obj/item/stack/sheet/rglass/fifty = 2,
+		/obj/item/stack/sheet/mineral/plastitanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/wood/fifty = 1,
+		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
+		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
+		/obj/item/stack/sheet/mineral/diamond = 1,
+		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
+		/obj/item/stack/sheet/mineral/gold/fifty = 1,
+		/obj/item/stack/sheet/mineral/silver/fifty = 1,
+		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)

@@ -1,13 +1,27 @@
-/client/proc/sync_logout_with_db(number)
+/world/proc/sync_logout_with_db(number)
 	if(!number)
 		return
 
 	if(!SSdbcore.Connect())
 		return
 
-	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = Now() WHERE id = [number]")
-	query_logout.Execute(async = FALSE)
+	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = Now() WHERE id = :number", list("number" = number))
+	query_logout.Execute()
 	qdel(query_logout)
+
+/client/proc/sync_login_with_db()
+	if(!SSdbcore.Connect())
+		return
+
+	var/serverip = "[world.internet_address]"
+
+	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery({"INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`)
+	VALUES(null, Now(), INET_ATON(:serverip), :port, :round_id, :ckey, INET_ATON(:address), :computer_id)"},
+	list("serverip" = serverip, "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "address" = address, "computer_id" = computer_id))
+	if(query_log_connection.Execute())
+		if(query_log_connection.last_insert_id)
+			connection_number = "[num2text(query_log_connection.last_insert_id,24)]"
+		qdel(query_log_connection)
 
 /client/proc/yogs_client_procs(href_list)
 	if(href_list["mentor_msg"])

@@ -71,20 +71,20 @@
 		icon_state = "dominator-broken"
 
 /obj/machinery/dominator/examine(mob/user)
-	..()
+	. = ..()
 	if(stat & BROKEN)
 		return
 
 	if(gang && gang.domination_time != NOT_DOMINATING)
 		if(gang.domination_time > world.time)
-			to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+			. += "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>"
 		else
-			to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
+			. += "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>"
 	else
-		to_chat(user, "<span class='notice'>System on standby.</span>")
+		. += "<span class='notice'>System on standby.</span>"
 	if(nukedisk)
-		to_chat(user, "<span class='notice'>[nukedisk] seems to be stuck inside.</span>")
-	to_chat(user, "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>")
+		. += "<span class='notice'>[nukedisk] seems to be stuck inside.</span>"
+	. += "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>"
 
 /obj/machinery/dominator/process()
 	..()

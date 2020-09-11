@@ -80,7 +80,6 @@
 
 	var/dextrous = FALSE //If the creature has, and can use, hands
 	var/dextrous_hud_type = /datum/hud/dextrous
-	var/datum/personal_crafting/handcrafting
 
 	var/AIStatus = AI_ON //The Status of our AI, can be set to AI_ON (On, usual processing), AI_IDLE (Will not process, but will return to AI_ON if an enemy comes near), AI_OFF (Off, Not processing ever), AI_Z_OFF (Temporarily off due to nonpresence of players)
 	var/can_have_ai = TRUE //once we have become sentient, we can never go back
@@ -97,7 +96,6 @@
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
-	handcrafting = new()
 	if(gender == PLURAL)
 		gender = pick(MALE,FEMALE)
 	if(!real_name)
@@ -105,6 +103,8 @@
 	if(!loc)
 		stack_trace("Simple animal being instantiated in nullspace")
 	update_simplemob_varspeed()
+	if(dextrous)
+		AddComponent(/datum/component/personal_crafting)
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src
@@ -121,13 +121,18 @@
 
 	return ..()
 
+/mob/living/simple_animal/examine(mob/user)
+	. = ..()
+	if(stat == DEAD)
+		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
+
 /mob/living/simple_animal/initialize_footstep()
 	if(do_footstep)
 		..()
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	health = CLAMP(health, 0, maxHealth)
+	health = clamp(health, 0, maxHealth)
 
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
@@ -139,11 +144,12 @@
 			stat = CONSCIOUS
 	med_hud_set_status()
 
-
 /mob/living/simple_animal/handle_status_effects()
 	..()
 	if(stuttering)
 		stuttering = 0
+	if(slurring)
+		slurring = max(slurring-1,0)
 
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
@@ -207,15 +213,11 @@
 	if(isturf(src.loc) && isopenturf(src.loc))
 		var/turf/open/ST = src.loc
 		if(ST.air)
-			var/ST_gases = ST.air.gases
-			ST.air.assert_gases(arglist(GLOB.hardcoded_gases))
 
-			var/tox = ST_gases[/datum/gas/plasma][MOLES]
-			var/oxy = ST_gases[/datum/gas/oxygen][MOLES]
-			var/n2  = ST_gases[/datum/gas/nitrogen][MOLES]
-			var/co2 = ST_gases[/datum/gas/carbon_dioxide][MOLES]
-
-			ST.air.garbage_collect()
+			var/tox = ST.air.get_moles(/datum/gas/plasma)
+			var/oxy = ST.air.get_moles(/datum/gas/oxygen)
+			var/n2  = ST.air.get_moles(/datum/gas/nitrogen)
+			var/co2 = ST.air.get_moles(/datum/gas/carbon_dioxide)
 
 			if(atmos_requirements["min_oxy"] && oxy < atmos_requirements["min_oxy"])
 				. = FALSE
@@ -247,9 +249,10 @@
 	var/atom/A = src.loc
 	if(isturf(A))
 		var/areatemp = get_temperature(environment)
+		var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 		if( abs(areatemp - bodytemperature) > 5)
 			var/diff = areatemp - bodytemperature
-			diff = diff / 5
+			diff = diff / 5 * heat_capacity_factor
 			adjust_bodytemperature(diff)
 
 	if(!environment_is_safe(environment))
@@ -281,10 +284,7 @@
 /mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE)
 	if(stat)
 		return
-	if(act == "scream")
-		message = "makes a loud and pained whimper." //ugly hack to stop animals screaming when crushed :P
-		act = "me"
-	..(act, m_type, message)
+	. = ..()
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)
 	speed = var_value
@@ -295,11 +295,10 @@
 		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
 	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
 
-/mob/living/simple_animal/Stat()
-	..()
-	if(statpanel("Status"))
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
-		return 1
+/mob/living/simple_animal/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
 	if(loot.len)
@@ -435,9 +434,9 @@
 			mobility_flags = MOBILITY_FLAGS_DEFAULT
 		else
 			mobility_flags = NONE
-	if(!(mobility_flags & MOBILITY_MOVE)) 
+	if(!(mobility_flags & MOBILITY_MOVE))
 		walk(src, 0) //stop mid walk
-			
+
 	update_transform()
 	update_action_buttons_icon()
 
@@ -478,10 +477,6 @@
 
 /mob/living/simple_animal/get_idcard(hand_first)
 	return access_card
-
-/mob/living/simple_animal/OpenCraftingMenu()
-	if(dextrous)
-		handcrafting.ui_interact(src)
 
 /mob/living/simple_animal/can_hold_items()
 	return dextrous
@@ -550,7 +545,7 @@
 //ANIMAL RIDING
 
 /mob/living/simple_animal/user_buckle_mob(mob/living/M, mob/user)
-	GET_COMPONENT(riding_datum, /datum/component/riding)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(riding_datum)
 		if(user.incapacitated())
 			return
@@ -561,7 +556,7 @@
 		return ..()
 
 /mob/living/simple_animal/relaymove(mob/user, direction)
-	GET_COMPONENT(riding_datum, /datum/component/riding)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(tame && riding_datum)
 		riding_datum.handle_ride(user, direction)
 

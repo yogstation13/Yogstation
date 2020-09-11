@@ -12,7 +12,7 @@
 
 /obj/item/clothing/shoes/yogs/cluwne/Initialize()
 	.=..()
-	add_trait(TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/shoes/yogs/cluwne/step_action()
 	if(footstep > 1)
@@ -22,6 +22,7 @@
 		footstep++
 
 /obj/item/clothing/shoes/yogs/cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_SHOES)

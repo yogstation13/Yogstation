@@ -28,29 +28,29 @@
 	if (QDELETED(src))
 		return 0
 
-	if(.) //not dead
-		handle_active_genes()
+	if(!IS_IN_STASIS(src))
+		if(.) //not dead
 
-	if(stat != DEAD)
-		//heart attack stuff
-		handle_heart()
+			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
+				HM.on_life()
 
-	if(stat != DEAD)
-		//Stuff jammed in your limbs hurts
-		handle_embedded_objects()
-		
-	//yogs start - bandage memes
-	if(stat != DEAD)
-		handle_bandaged_limbs()
-	//yogs end
+		if(stat != DEAD)
+			//heart attack stuff
+			handle_heart()
 
-	if(stat != DEAD)
-		handle_hygiene()
+		if(stat != DEAD)
+			//Stuff jammed in your limbs hurts
+			handle_embedded_objects()
+
+		dna.species.spec_life(src) // for mutantraces
+
+		//yogs start - bandage memes
+		if(stat != DEAD)
+			handle_bandaged_limbs()
+		//yogs end
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
-
-	dna.species.spec_life(src) // for mutantraces
 
 	if(stat != DEAD)
 		return 1
@@ -67,14 +67,14 @@
 
 /mob/living/carbon/human/handle_traits()
 	if(eye_blind)			//blindness, heals slowly over time
-		if(has_trait(TRAIT_BLIND, EYES_COVERED)) //covering your eyes heals blurry eyes faster
+		if(HAS_TRAIT_FROM(src, TRAIT_BLIND, EYES_COVERED)) //covering your eyes heals blurry eyes faster
 			adjust_blindness(-3)
 		else
 			adjust_blindness(-1)
-	else if(eye_blurry)			//blurry eyes heal slowly
+	if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
-	if (getBrainLoss() >= 60)
+	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
@@ -94,7 +94,7 @@
 	if(!L)
 		if(health >= crit_threshold)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!has_trait(TRAIT_NOCRITDAMAGE))
+		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
 		failed_last_breath = 1
@@ -150,6 +150,8 @@
 	//If have no DNA or can be Ignited, call parent handling to light user
 	//If firestacks are high enough
 	if(!dna || dna.species.CanIgniteMob(src))
+		if(get_thermal_protection() > FIRE_SUIT_MAX_TEMP_PROTECT*0.95) // If they're resistant to fire (slightly undercut to make sure get_thermal_protection doesn't fuck over this achievement due to floating-point errors
+			SSachievements.unlock_achievement(/datum/achievement/engineering/toasty,src.client) // Fear the reaper man!
 		return ..()
 	. = FALSE //No ignition
 
@@ -314,12 +316,8 @@
 					clear_alert("embeddedobject")
 					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
-/mob/living/carbon/human/proc/handle_active_genes()
-	for(var/datum/mutation/human/HM in dna.mutations)
-		HM.on_life()
-
 /mob/living/carbon/human/proc/handle_heart()
-	var/we_breath = !has_trait(TRAIT_NOBREATH, SPECIES_TRAIT)
+	var/we_breath = !HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT)
 
 	if(!undergoing_cardiac_arrest())
 		return
@@ -329,41 +327,6 @@
 		Unconscious(80)
 	// Tissues die without blood circulation
 	adjustBruteLoss(2)
-
-/mob/living/carbon/human/proc/handle_hygiene()
-	if(has_trait(TRAIT_ALWAYS_CLEAN))
-		set_hygiene(HYGIENE_LEVEL_CLEAN)
-		return
-
-	var/hygiene_loss = -HYGIENE_FACTOR * 0.25 //Small loss per life
-
-	//If you're covered in blood, you'll start smelling like shit faster.
-	var/obj/item/head = get_item_by_slot(SLOT_HEAD)
-	if(head)
-		IF_HAS_BLOOD_DNA(head)
-			hygiene_loss -= 1 * HYGIENE_FACTOR
-
-	var/obj/item/mask = get_item_by_slot(SLOT_HEAD)
-	if(mask)
-		IF_HAS_BLOOD_DNA(mask)
-			hygiene_loss -= 1 * HYGIENE_FACTOR
-
-	var/obj/item/uniform = get_item_by_slot(SLOT_W_UNIFORM)
-	if(uniform)
-		IF_HAS_BLOOD_DNA(uniform)
-			hygiene_loss -= 4 * HYGIENE_FACTOR
-
-	var/obj/item/suit = get_item_by_slot(SLOT_WEAR_SUIT)
-	if(suit)
-		IF_HAS_BLOOD_DNA(suit)
-			hygiene_loss -= 3 * HYGIENE_FACTOR
-
-	var/obj/item/feet = get_item_by_slot(SLOT_SHOES)
-	if(feet)
-		IF_HAS_BLOOD_DNA(feet)
-			hygiene_loss -= 0.5 * HYGIENE_FACTOR
-
-	adjust_hygiene(hygiene_loss)
 
 
 #undef THERMAL_PROTECTION_HEAD

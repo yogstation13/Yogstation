@@ -27,7 +27,7 @@
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	to_chat(H, "<span class='info'><b>You are a Phytosian.</b> Born on the core-worlds of G-D52, you are a distant relative of a vestige of humanity long discarded.</span>")
+	to_chat(H, "<span class='info'><b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'.</span>")
 	to_chat(H, "<span class='info'>Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race.</span>")
 	to_chat(H, "<span class='info'>Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe.</span>")
 	to_chat(H, "<span class='info'>Heat and cold will damage your epidermis far faster than your natural regeneration can match.</span>")
@@ -134,34 +134,34 @@
 
 
 /datum/species/pod/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.id == "plantbgone")
+	if(chem.type == /datum/reagent/toxin/plantbgone)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "saltpetre")
+	if(chem.type == /datum/reagent/saltpetre)
 		H.adjustFireLoss(-2.5*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "ammonia")
+	if(chem.type == /datum/reagent/ammonia)
 		H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "robustharvestnutriment")
+	if(chem.type == /datum/reagent/plantnutriment/robustharvestnutriment)
 		H.adjustToxLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
 		for(var/V in H.reagents.reagent_list)//slow down the processing of harmful reagents.
 			var/datum/reagent/R = V
 			if(istype(R, /datum/reagent/toxin) || istype(R, /datum/reagent/drug))
 				R.metabolization_rate = initial(R.metabolization_rate) * 0.5
 
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "left4zednutriment")
+	if(chem.type == /datum/reagent/plantnutriment/left4zednutriment)
 		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
 		if(prob(10))
@@ -170,10 +170,10 @@
 			else
 				H.easy_randmut(POSITIVE)
 
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "eznutriment")
+	if(chem.type == /datum/reagent/plantnutriment/eznutriment)
 		H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustOxyLoss(-4*REAGENTS_EFFECT_MULTIPLIER)
 		if(H.health < -50)
@@ -187,10 +187,10 @@
 			if(istype(chem, addicted_reagent))
 				addicted_reagent.addiction_stage = -15
 
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "diethylamine")
+	if(chem.type == /datum/reagent/diethylamine)
 		if(chem.overdosed)
 			return 0
 
@@ -203,10 +203,10 @@
 		H.adjustFireLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustToxLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
-	if(chem.id == "sugar")
+	if(chem.type == /datum/reagent/consumable/sugar)
 		if(chem.overdosed)
 			return 0
 
@@ -217,20 +217,20 @@
 
 		light_heal_multiplier = 2
 		dark_damage_multiplier = 3
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		//removal is handled in /datum/reagent/sugar/on_mob_delete()
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
 		var/datum/reagent/consumable/ethanol/ethanol = chem
-		H.adjustBrainLoss(2*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
 		H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
 		H.confused = max(H.confused, 1)
 		if(ethanol.boozepwr > 80 && chem.volume > 30)
 			if(chem.current_cycle > 50)
 				H.IsSleeping(3)
 			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
-		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)

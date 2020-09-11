@@ -166,12 +166,12 @@
 	- <ParseParamExpression()>
 */
 		ParseExpression(list/end=list(/token/end), list/ErrChars=list("{", "}"), check_functions = 0, check_assignments = 1)
-			var/stack
-				opr=new
-				val=new
+			var/stack/opr = new
+			var/stack/val = new
+
 			src.expecting=VALUE
 			var/loop = 0
-			for()
+			while(TRUE)
 				loop++
 				if(loop > 800)
 					errors+=new/scriptError("Too many nested tokens.")
@@ -282,7 +282,7 @@
 			NextToken() //skip open parenthesis, already found
 			var/loops = 0
 
-			for()
+			while(TRUE)
 				loops++
 				if(loops>=800)
 					errors += new/scriptError("Too many nested expressions.")
@@ -305,7 +305,7 @@
 			NextToken() // skip the "list" word
 			NextToken() // skip the open parenthesis
 			var/loops = 0
-			for()
+			while(TRUE)
 				loops++
 				if(loops >= 800)
 					errors += new /scriptError("Too many nested expressions.")

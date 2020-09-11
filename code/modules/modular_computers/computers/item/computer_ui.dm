@@ -37,8 +37,9 @@
 	if (!ui)
 		var/datum/asset/assets = get_asset_datum(/datum/asset/simple/headers)
 		assets.send(user)
-
-		ui = new(user, src, ui_key, "ntos_main", "NTOS Main menu", 400, 500, master_ui, state)
+		assets = get_asset_datum(/datum/asset/simple/arcade)
+		assets.send(user)
+		ui = new(user, src, ui_key, "NtosMain", "NtOS Main menu", 400, 500, master_ui, state)
 		ui.open()
 		ui.set_autoupdate(state = 1)
 
@@ -142,6 +143,7 @@
 				set_light(comp_light_luminosity, 1, comp_light_color)
 			else
 				set_light(0)
+			return TRUE
 
 		if("PC_light_color")
 			var/mob/user = usr
@@ -156,6 +158,7 @@
 			comp_light_color = new_color
 			light_color = new_color
 			update_light()
+			return TRUE
 		else
 			return
 

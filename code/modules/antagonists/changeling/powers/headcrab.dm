@@ -6,6 +6,7 @@
 	chemical_cost = 20
 	dna_cost = 1
 	req_human = 1
+	ignores_fakedeath = TRUE
 
 /datum/action/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE
@@ -20,11 +21,13 @@
 
 	explosion(get_turf(user), 0, 0, 2, 0, TRUE)
 	for(var/mob/living/carbon/human/H in range(2,user))
-		to_chat(H, "<span class='userdanger'>You are blinded by a shower of blood!</span>")
-		H.Stun(20)
-		H.blur_eyes(20)
-		H.adjust_eye_damage(5)
-		H.confused += 3
+		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
+		if(eyes)
+			to_chat(H, "<span class='userdanger'>You are blinded by a shower of blood!</span>")
+			H.Stun(20)
+			H.blur_eyes(20)
+			eyes.applyOrganDamage(5)
+			H.confused += 3
 	for(var/mob/living/silicon/S in range(2,user))
 		to_chat(S, "<span class='userdanger'>Your sensors are disabled by a shower of blood!</span>")
 		S.Paralyze(60)

@@ -30,3 +30,18 @@
 		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
 		spawn(20)
 			spam_flag = 0
+
+/obj/structure/table/bananium/honk_act()
+	return FALSE
+
+/obj/structure/rack/skeletal
+	name = "minibar"
+	desc = "Different from the Middle Ages version."
+	icon = 'yogstation/icons/obj/stationobjs.dmi'
+	icon_state = "minibar"
+
+/obj/structure/rack/skeletal/left
+	icon_state = "minibar_left"
+
+/obj/structure/rack/skeletal/right
+	icon_state = "minibar_right"

@@ -160,6 +160,7 @@
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
+	SHOULD_BE_PURE(TRUE)
 	if(!isturf(loc)) //This only makes sense for things directly on turfs for now
 		return FALSE
 	var/turf/T = get_turf_pixel(src)
@@ -414,7 +415,7 @@
 	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
 
 	LE.firer = src
-	LE.def_zone = get_organ_target()
+	LE.def_zone = ran_zone(zone_selected)
 	LE.preparePixelProjectile(A, src, params)
 	LE.fire()
 

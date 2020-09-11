@@ -187,7 +187,7 @@
 			user.set_nutrition(0)
 
 /obj/item/book/granter/spell/blind
-	spell = /obj/effect/proc_holder/spell/targeted/trigger/blind
+	spell = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	spellname = "blind"
 	icon_state ="bookblind"
 	desc = "This book looks blurry, no matter how you look at it."
@@ -410,3 +410,10 @@
 		var/datum/crafting_recipe/R = crafting_recipe_type
 		user.mind.teach_crafting_recipe(crafting_recipe_type)
 		to_chat(user,"<span class='notice'>You learned how to make [initial(R.name)].</span>")
+
+/obj/item/book/granter/crafting_recipe/weapons
+	name = "makeshift weapons 101"
+	desc = "A book filled with directions on how to make various weaponry."
+	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/makeshiftlasrifle)
+	icon_state = "bookCrafting"
+	oneuse = TRUE

@@ -59,8 +59,7 @@
 			var/viruslist = "" // yogs - adds viruslist variable
 			if(reagents)
 				for(var/datum/reagent/A in src.reagents.reagent_list)
-					R += A.id + " ("
-					R += num2text(A.volume) + "),"
+					R += "[A] ([num2text(A.volume)]),"
 // yogs start - checks blood for disease
 					if(istype(A, /datum/reagent/blood))
 						var/datum/reagent/blood/RR = A

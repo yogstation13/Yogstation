@@ -15,7 +15,7 @@
 
 /obj/item/storage/lockbox/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 14
 	STR.max_items = 4
@@ -24,28 +24,31 @@
 /obj/item/storage/lockbox/attackby(obj/item/W, mob/user, params)
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(W.GetID())
-		if(broken)
-			to_chat(user, "<span class='danger'>It appears to be broken.</span>")
-			return
-		if(allowed(user))
-			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
-			locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-			if(locked)
-				icon_state = icon_locked
-				to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
-				return
-			else
-				icon_state = icon_closed
-				to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
-				return
-		else
-			to_chat(user, "<span class='danger'>Access Denied.</span>")
-			return
+		togglelock(user)
 	if(!locked)
 		return ..()
 	else
 		to_chat(user, "<span class='danger'>It's locked!</span>")
+
+/obj/item/storage/lockbox/proc/togglelock(mob/living/user, silent)
+	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+	if(broken)
+		to_chat(user, "<span class='danger'>It appears to be broken.</span>")
+		return
+	if(allowed(user))
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
+		locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+		if(locked)
+			icon_state = icon_locked
+			to_chat(user, "<span class='danger'>You lock the [src.name]!</span>")
+			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
+		else
+			icon_state = icon_closed
+			to_chat(user, "<span class='danger'>You unlock the [src.name]!</span>")
+			return
+	else
+		to_chat(user, "<span class='danger'>Access Denied.</span>")
+		return
 
 /obj/item/storage/lockbox/emag_act(mob/user)
 	if(!broken)
@@ -66,6 +69,12 @@
 	. = ..()
 	open = TRUE
 	update_icon()
+
+/obj/item/storage/lockbox/AltClick(mob/user)
+	..()
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	togglelock(user)
 
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"
@@ -99,17 +108,16 @@
 
 /obj/item/storage/lockbox/medal/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_items = 10
 	STR.max_combined_w_class = 20
-	STR.can_hold = typecacheof(list(/obj/item/clothing/accessory/medal))
+	STR.set_holdable(list(/obj/item/clothing/accessory/medal))
 
 /obj/item/storage/lockbox/medal/examine(mob/user)
-	..()
-	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-	if(!locked)
-		to_chat(user, "<span class='notice'>Alt-click to [open ? "close":"open"] it.</span>")
+	. = ..()
+	if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
+		. += "<span class='notice'>Alt-click to [open ? "close":"open"] it.</span>"
 
 /obj/item/storage/lockbox/medal/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
@@ -169,6 +177,14 @@
 
 /obj/item/storage/lockbox/medal/cargo/PopulateContents()
 		new /obj/item/clothing/accessory/medal/ribbon/cargo(src)
+
+/obj/item/storage/lockbox/medal/service
+	name = "service award box"
+	desc = "A locked box used to store awards to be given to members of the service department."
+	req_access = list(ACCESS_HOP)
+
+/obj/item/storage/lockbox/medal/service/PopulateContents()
+		new /obj/item/clothing/accessory/medal/silver/excellence(src)
 
 /obj/item/storage/lockbox/medal/sci
 	name = "science medal box"

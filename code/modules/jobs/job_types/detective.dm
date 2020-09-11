@@ -1,6 +1,7 @@
 /datum/job/detective
 	title = "Detective"
 	flag = DETECTIVE
+	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -22,6 +23,17 @@
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
+	changed_maps = list("EclipseStation", "OmegaStation")
+
+/datum/job/detective/proc/EclipseStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+
+/datum/job/detective/proc/OmegaStationChanges()
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
+	supervisors = "the captain"
+
 /datum/outfit/job/detective
 	name = "Detective"
 	jobtype = /datum/job/detective
@@ -32,7 +44,7 @@
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/det_suit
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/color/black/forensic
 	head = /obj/item/clothing/head/fedora/det_hat
 	l_pocket = /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter

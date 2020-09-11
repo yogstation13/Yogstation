@@ -54,8 +54,7 @@
 
 /obj/item/shoe_protector/examine(mob/user)
 	. = ..()
-	to_chat(user, "This bottle has [charges*10] ml of [max_charges*10] ml left in it")
-	return
+	. += "This bottle has [charges*10] ml of [max_charges*10] ml left in it"
 
 /obj/item/shoe_protector/afterattack(obj/I, mob/user)
 	.=..()

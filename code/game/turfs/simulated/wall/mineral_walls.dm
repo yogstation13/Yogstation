@@ -42,6 +42,9 @@
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
 	canSmoothWith = list(/turf/closed/wall/mineral/bananium, /obj/structure/falsewall/bananium)
 
+/turf/closed/wall/mineral/bananium/honk_act()
+	return FALSE
+
 /turf/closed/wall/mineral/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
@@ -133,7 +136,7 @@
 	canSmoothWith = list(/turf/closed/wall/mineral/wood, /obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood/nonmetal)
 
 /turf/closed/wall/mineral/wood/attackby(obj/item/W, mob/user)
-	if(W.sharpness && W.force)
+	if(W.is_sharp() && W.force)
 		var/duration = (48/W.force) * 2 //In seconds, for now.
 		if(istype(W, /obj/item/hatchet) || istype(W, /obj/item/twohanded/fireaxe))
 			duration /= 4 //Much better with hatchets and axes.

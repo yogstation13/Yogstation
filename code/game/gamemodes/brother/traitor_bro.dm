@@ -7,6 +7,7 @@
 	config_tag = "traitorbro"
 	restricted_jobs = list("AI", "Cyborg")
 	required_players = 8 //yogs - just a minor change
+	title_icon = "ss13"
 
 	announce_span = "danger"
 	announce_text = "There are Syndicate agents and Blood Brothers on the station!\n\
@@ -70,16 +71,3 @@
 	var/datum/atom_hud/antag/brotherhud = GLOB.huds[ANTAG_HUD_BROTHER]
 	brotherhud.leave_hud(brother_mind.current)
 	set_antag_hud(brother_mind.current, null)
-
-/datum/game_mode/proc/equip_brother(mob/living/M) //Yogs start gives the brothers a bundle
-	if(!M || !ishuman(M))
-		return FALSE
-	var/mob/living/carbon/human/L = M
-	var/obj/item/storage/box/syndicate/bundle_B/S = new
-	var/list/slots = list("in the dark depths of hell" = SLOT_IN_BACKPACK) // You know you can put *anything* as the key, yeah?
-	if(L.equip_in_one_of_slots(S, slots) == "in the dark depths of hell")
-		slots[1] = "in your [L.back.name]" // This accesses & edits the "dark depths" meme above.
-	if(S)
-		to_chat(L, "<span class='bold'>There is a syndicate bundle [slots[1]]! It'll help you get a slight leg up on your objectives but dont expect it to make things too easy!.</span>")
-		return TRUE
-	return FALSE //Yogs end gives the brothers a bundle

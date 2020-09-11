@@ -22,7 +22,7 @@
 	var/customname = "custom"
 
 /obj/item/reagent_containers/food/snacks/customizable/examine(mob/user)
-	..()
+	. = ..()
 	var/ingredients_listed = ""
 	for(var/obj/item/reagent_containers/food/snacks/ING in ingredients)
 		ingredients_listed += "[ING.name], "
@@ -33,7 +33,7 @@
 		size = "big"
 	if(ingredients.len>8)
 		size = "monster"
-	to_chat(user, "It contains [ingredients.len?"[ingredients_listed]":"no ingredient, "]making a [size]-sized [initial(name)].")
+	. += "It contains [ingredients.len?"[ingredients_listed]":"no ingredient, "]making a [size]-sized [initial(name)]."
 
 /obj/item/reagent_containers/food/snacks/customizable/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/food/snacks/customizable) && istype(I, /obj/item/reagent_containers/food/snacks))
@@ -180,14 +180,23 @@
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "plaincake"
 	foodtype = GRAIN | DAIRY
-
+	
+/obj/item/reagent_containers/food/snacks/customizable/cheesewheel/cheddar
+	name = "cheese"
+	ingredients_placement = INGREDIENTS_SCATTER
+	ingMax = 6
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar/custom
+	slices_num = 5
+	icon = 'icons/obj/food/cheese.dmi'
+	icon_state = "cheesewheel"
+	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/snacks/customizable/kebab
 	name = "kebab"
 	desc = "Delicious food on a stick."
 	ingredients_placement = INGREDIENTS_LINE
 	trash = /obj/item/stack/rods
-	list_reagents = list("nutriment" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	ingMax = 6
 	icon_state = "rod"
 
@@ -302,7 +311,7 @@
 		else if(contents.len >= 20)
 			to_chat(user, "<span class='warning'>You can't add more ingredients to [src]!</span>")
 		else
-			if(reagents.has_reagent("water", 10)) //are we starting a soup or a salad?
+			if(reagents.has_reagent(/datum/reagent/water, 10)) //are we starting a soup or a salad?
 				var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/soup(get_turf(src))
 				A.initialize_custom_food(src, S, user)
 			else

@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/russian
-	name = "Russian"
+	name = "\improper Russian"
 	desc = "For the Motherland!"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "russianmelee"
@@ -31,6 +31,8 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/russian/sentience_act()
+	faction -= "russian"
 
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"

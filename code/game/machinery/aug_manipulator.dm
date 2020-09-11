@@ -11,9 +11,9 @@
 	var/static/list/style_list_icons = list("standard" = 'icons/mob/augmentation/augments.dmi', "engineer" = 'icons/mob/augmentation/augments_engineer.dmi', "security" = 'icons/mob/augmentation/augments_security.dmi', "mining" = 'icons/mob/augmentation/augments_mining.dmi')
 
 /obj/machinery/aug_manipulator/examine(mob/user)
-	..()
+	. = ..()
 	if(storedpart)
-		to_chat(user, "<span class='notice'>Alt-click to eject the limb.</span>")
+		. += "<span class='notice'>Alt-click to eject the limb.</span>"
 
 /obj/machinery/aug_manipulator/Initialize()
     initial_icon_state = initial(icon_state)
@@ -94,12 +94,6 @@
 	else
 		return ..()
 
-/obj/machinery/aug_manipulator/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(!(stat & BROKEN))
-			stat |= BROKEN
-			update_icon()
-
 /obj/machinery/aug_manipulator/attack_hand(mob/user)
 	. = ..()
 	if(.)
@@ -130,11 +124,7 @@
 
 /obj/machinery/aug_manipulator/AltClick(mob/living/user)
 	..()
-	if(!user.canUseTopic(src))
+	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	else
 		eject_part(user)
-
-/obj/machinery/aug_manipulator/power_change()
-	..()
-	update_icon()

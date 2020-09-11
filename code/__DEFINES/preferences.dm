@@ -15,7 +15,12 @@
 #define DISABLE_DEATHRATTLE		(1<<12)
 #define DISABLE_ARRIVALRATTLE	(1<<13)
 #define COMBOHUD_LIGHTING		(1<<14)
-#define QUIET_ROUND				(1<<15) // yogs - Donor features, quiet round; "why isn't this in ~yogs_defines?" - This has to be a unique power of 2, if /tg/ adds another flag it will have merge conflicts and will be obvious this has to be updated. If I put this in a different file it wouldn't be obvious and silently break stuff.
+
+#define DEADMIN_ALWAYS			(1<<15)
+#define DEADMIN_ANTAGONIST		(1<<16)
+#define DEADMIN_POSITION_HEAD	(1<<17)
+#define DEADMIN_POSITION_SECURITY	(1<<18)
+#define DEADMIN_POSITION_SILICON	(1<<19)
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS)
 
@@ -44,12 +49,30 @@
 #define PARALLAX_DELAY_MED     1
 #define PARALLAX_DELAY_LOW     2
 
+#define PIXEL_SCALING_AUTO 0
+#define PIXEL_SCALING_1X 1
+#define PIXEL_SCALING_1_2X 1.5
+#define PIXEL_SCALING_2X 2
+#define PIXEL_SCALING_3X 3
+
+#define SCALING_METHOD_NORMAL "normal"
+#define SCALING_METHOD_DISTORT "distort"
+#define SCALING_METHOD_BLUR "blur"
+
 #define SEC_DEPT_NONE "None"
 #define SEC_DEPT_RANDOM "Random"
 #define SEC_DEPT_ENGINEERING "Engineering"
 #define SEC_DEPT_MEDICAL "Medical"
 #define SEC_DEPT_SCIENCE "Science"
 #define SEC_DEPT_SUPPLY "Supply"
+#define SEC_DEPT_SERVICE "Service"
+
+#define ENG_DEPT_NONE "None"
+#define ENG_DEPT_RANDOM "Random"
+#define ENG_DEPT_MEDICAL "Medical"
+#define ENG_DEPT_SCIENCE "Science"
+#define ENG_DEPT_SUPPLY "Supply"
+#define ENG_DEPT_SERVICE "Service"
 
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING			"Living"
@@ -71,3 +94,9 @@
 #define DB_FLAG_EXEMPT 1
 
 #define DEFAULT_CYBORG_NAME "Default Cyborg Name"
+
+
+//Job preferences levels
+#define JP_LOW 1
+#define JP_MEDIUM 2
+#define JP_HIGH 3

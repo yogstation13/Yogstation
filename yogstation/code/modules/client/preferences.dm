@@ -3,8 +3,10 @@
 	var/donor_item = 0
 	var/donor_pda = 1
 	var/quiet_round = FALSE
+	var/yogtoggles = YOGTOGGLES_DEFAULT
 	var/purrbation = null
 	var/afreeze = FALSE
+	var/accent = null // What accent to use (as the string name of that accent). NULL means no accent.
 
 	var/datum/keybindings/bindings = new
 

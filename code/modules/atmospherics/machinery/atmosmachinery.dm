@@ -10,6 +10,9 @@
 #define PIPE_VISIBLE_LEVEL 2
 #define PIPE_HIDDEN_LEVEL 1
 
+GLOBAL_LIST_EMPTY(iconsetids)
+GLOBAL_LIST_EMPTY(pipeimages)
+
 /obj/machinery/atmospherics
 	anchored = TRUE
 	move_resist = INFINITY				//Moving a connected machine without actually doing the normal (dis)connection things will probably cause a LOT of issues.
@@ -26,9 +29,6 @@
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/pipe_flags = NONE
 
-	var/global/list/iconsetids = list()
-	var/global/list/pipeimages = list()
-
 	var/image/pipe_vision_img = null
 
 	var/device_type = 0
@@ -39,11 +39,11 @@
 	var/on = FALSE
 
 /obj/machinery/atmospherics/examine(mob/user)
-	..()
+	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
 		if(L.ventcrawler)
-			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
+			. += "<span class='notice'>Alt-click to crawl through it.</span>"
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	if(!isnull(setdir))
@@ -247,15 +247,15 @@
 /obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)
 
 	//Add identifiers for the iconset
-	if(iconsetids[iconset] == null)
-		iconsetids[iconset] = num2text(iconsetids.len + 1)
+	if(GLOB.iconsetids[iconset] == null)
+		GLOB.iconsetids[iconset] = num2text(GLOB.iconsetids.len + 1)
 
 	//Generate a unique identifier for this image combination
-	var/identifier = iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
+	var/identifier = GLOB.iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
 
-	if((!(. = pipeimages[identifier])))
+	if((!(. = GLOB.pipeimages[identifier])))
 		var/image/pipe_overlay
-		pipe_overlay = . = pipeimages[identifier] = image(iconset, iconstate, dir = direction)
+		pipe_overlay = . = GLOB.pipeimages[identifier] = image(iconset, iconstate, dir = direction)
 		pipe_overlay.color = col
 		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
 

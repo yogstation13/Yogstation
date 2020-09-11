@@ -9,7 +9,7 @@
 	if (notransform)
 		return
 
-	if(..())
+	if(..() && !IS_IN_STASIS(src))
 
 		if(!client)
 			if(stat == CONSCIOUS)
@@ -50,8 +50,8 @@
 	return ..()
 
 /mob/living/carbon/monkey/handle_breath_temperature(datum/gas_mixture/breath)
-	if(abs(BODYTEMP_NORMAL - breath.temperature) > 50)
-		switch(breath.temperature)
+	if(abs(BODYTEMP_NORMAL - breath.return_temperature()) > 50)
+		switch(breath.return_temperature())
 			if(-INFINITY to 120)
 				adjustFireLoss(3)
 			if(120 to 200)
@@ -70,18 +70,19 @@
 		return
 
 	var/loc_temp = get_temperature(environment)
+	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
 
 	if(stat != DEAD)
 		adjust_bodytemperature(natural_bodytemperature_stabilization())
 
 	if(!on_fire) //If you're on fire, you do not heat up or cool down based on surrounding gases
 		if(loc_temp < bodytemperature)
-			adjust_bodytemperature(max((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
+			adjust_bodytemperature(max((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX) * heat_capacity_factor)
 		else
-			adjust_bodytemperature(min((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
+			adjust_bodytemperature(min((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX) * heat_capacity_factor)
 
 
-	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !has_trait(TRAIT_RESISTHEAT))
+	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTHEAT))
 		switch(bodytemperature)
 			if(360 to 400)
 				throw_alert("temp", /obj/screen/alert/hot, 1)
@@ -96,7 +97,7 @@
 				else
 					apply_damage(HEAT_DAMAGE_LEVEL_2, BURN)
 
-	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !has_trait(TRAIT_RESISTCOLD))
+	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTCOLD))
 		if(!istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 			switch(bodytemperature)
 				if(200 to 260)

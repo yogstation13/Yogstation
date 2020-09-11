@@ -1,6 +1,7 @@
 /datum/job/warden
 	title = "Warden"
 	flag = WARDEN
+	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -22,6 +23,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 
+	changed_maps = list("YogsPubby", "OmegaStation")
+
+/datum/job/warden/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
+
+/datum/job/warden/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/job/warden/get_access()
 	var/list/L = list()
 	L = ..() | check_config_for_sec_maint()
@@ -42,7 +52,7 @@
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
 	suit_store = /obj/item/gun/energy/disabler
-	backpack_contents = list(/obj/item/melee/baton/loaded=1, /obj/item/card/id/departmental_budget/sec=1) //yogs - added departmental budget ID
+	backpack_contents = list(/obj/item/melee/baton/loaded=1) //yogs - ~~added departmental budget ID~~ removes sec budget
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec

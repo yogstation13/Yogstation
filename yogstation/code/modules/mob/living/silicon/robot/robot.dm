@@ -21,6 +21,7 @@
 		var/datum/borg_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit
 		A = show_radial_menu(src, src, skins, radius = 42)//Pick any datum from the list we just established up here ^^
 		if(!A)
+			special_skin = FALSE
 			return FALSE
 		if(!istype(A))
 			to_chat(src, "You've chosen to use the standard skinset instead of a custom one.")
@@ -53,7 +54,7 @@
 
 /mob/living/silicon/robot/examine(mob/user)
 	. = ..()
-	to_chat(user, "It seems to have the <b>[module.name] module</b> loaded.")
+	. += "It seems to have the <b>[module.name] module</b> loaded."
 
 /mob/living/silicon/robot/verb/self_self_destruct()
 	set category = "Robot Commands"
@@ -61,10 +62,14 @@
 
 	if(usr.stat == DEAD)
 		return //won't work if dead
-	
+
 	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
 		return
-	
+
+	if(usr.stat == DEAD)
+		to_chat(usr, "<span class='danger'>You are already dead.</span>")
+		return //won't work if dead
+
 	var/turf/T = get_turf(usr)
 	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!</span>")
 	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")

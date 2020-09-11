@@ -21,7 +21,7 @@
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
 	req_access = list(ACCESS_TCOM_ADMIN)
-	
+
 /obj/machinery/computer/telecomms/traffic/Initialize(mapload)
 	. = ..()
 	GLOB.traffic_comps += src
@@ -94,7 +94,7 @@
 	if(..())
 		return
 	user.set_machine(src)
-	var/dat = "<TITLE>Telecommunication Traffic Control</TITLE><center><b>Telecommunications Traffic Control</b></center>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'><TITLE>Telecommunication Traffic Control</TITLE></HEAD><BODY><center><b>Telecommunications Traffic Control</b></center>"
 	dat += "<br><b><font color='[(auth ? "green" : "red")]'>[(auth ? "AUTHED" : "NOT AUTHED")]:</font></b> <A href='?src=\ref[src];auth=1'>[(!auth ? "Insert ID" : auth)]</A><BR>"
 	dat += "<A href='?src=\ref[src];print=1'>View System Log</A><HR>"
 
@@ -138,7 +138,7 @@
 					screen = 0
 					return
 
-
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=traffic_control;size=575x400")
 	onclose(user, "server_control")
 
@@ -159,9 +159,10 @@
 	access_log += "\[[get_timestamp()]\] [id] [entry]"
 
 /obj/machinery/computer/telecomms/traffic/proc/print_logs()
-	. = "<center><h2>Traffic Control Telecomms System Log</h2></center><HR>"
+	. = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><center><h2>Traffic Control Telecomms System Log</h2></center><HR>"
 	for(var/entry in access_log)
 		. += entry + "<BR>"
+	. += "</BODY></HTML>"
 	return .
 
 /obj/machinery/computer/telecomms/traffic/Topic(href, href_list)
@@ -299,3 +300,24 @@
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
+
+/obj/machinery/computer/telecomms/traffic/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(!auth)
+			var/obj/item/card/id/I = C.get_active_held_item()
+			if(istype(I))
+				if(check_access(I))
+					if(!C.transferItemToLoc(I, src))
+						return
+					auth = I
+					create_log("has logged in.", user)
+		else
+			create_log("has logged out.", user)
+			auth.forceMove(drop_location())
+			C.put_in_hands(auth)
+			auth = null
+		updateUsrDialog()
+		return

@@ -284,9 +284,13 @@
 	icon = "the_lightbulb"
 	desc = "A cafe popular among moths and moffs. Once shut down for a week after the bartender used mothballs to protect her spare uniforms."
 
+/datum/barsign/thegoose
+	name = "The Goose"
+	icon = "thegoose"
+	desc = "A nice place to hang loose and relax, while enjoying some electrifying drinks."
+
 /datum/barsign/hiddensigns
 	hidden = TRUE
-
 
 //Hidden signs list below this point
 

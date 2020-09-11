@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <meta charset='UTF-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- yogs -->
   <title>Create Object</title>
   <style type="text/css">
@@ -22,7 +23,6 @@
       font-size: 6pt;
     }
     .option.selected, .option.selected:hover {background-color: #4488ff;} /* yogs*/
-    .option:hover {background-color:} /* yogs*/
   </style>
 </head>
 
@@ -104,8 +104,10 @@
 		function updateSearch()
 		{
 			old_search = document.spawner.filter.value.toLowerCase();
-			
-			
+			/* -- Yogs comment-out, not necessary since we've fixed Create Object being client-crashingly bad.
+			if (!old_search)
+				return;
+			*/
 			var filtered = new Array();
 			var i;
 			for (i in objects)
@@ -120,19 +122,6 @@
 			}
 			
 			populateList(filtered);
-		}
-		
-		function submitFirst(event)
-		{
-			if (!object_list.options.length)
-			{
-				return false;
-			}
-			
-			if (event.keyCode == 13 || event.which == 13)
-			{
-				object_list.options[0].selected = 'true';
-			}
 		}
 	</script>
 </body>

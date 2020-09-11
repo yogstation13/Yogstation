@@ -48,7 +48,9 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Angel",
 	"Banned",
 	"Bliss",
+	"Blob",
 	"Blue",
+	"Cat",
 	"Clown",
 	"Database",
 	"Dorf",
@@ -63,11 +65,13 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Helios",
 	"House",
 	"Inverted",
+	"Malicious",
 	"Matrix",
 	"Monochrome",
 	"Murica",
 	"Nanotrasen",
 	"Not Malf",
+	"Plain",
 	"President",
 	"Random",
 	"Rainbow",
@@ -89,7 +93,9 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 			input = pick(GLOB.ai_core_display_screens - "Random")
 		return "ai-[lowertext(input)]"
 
-GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
+GLOBAL_LIST_INIT(security_depts_prefs, list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY, SEC_DEPT_SERVICE))
+
+GLOBAL_LIST_INIT(engineering_depts_prefs, list(ENG_DEPT_RANDOM, ENG_DEPT_NONE, ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 
 	//Backpacks
 #define GBACKPACK "Grey Backpack"
@@ -171,7 +177,7 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 
-GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt" + ""))
+GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt") + "")
 
 GLOBAL_LIST_INIT(station_suffixes, world.file2list("strings/station_suffixes.txt"))
 

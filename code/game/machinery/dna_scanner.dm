@@ -15,6 +15,7 @@
 	var/precision_coeff
 	var/message_cooldown
 	var/breakout_time = 1200
+	var/obj/machinery/computer/scan_consolenew/linked_console = null
 
 /obj/machinery/dna_scannernew/RefreshParts()
 	scan_level = 0
@@ -22,17 +23,17 @@
 	precision_coeff = 0
 	for(var/obj/item/stock_parts/scanning_module/P in component_parts)
 		scan_level += P.rating
-	for(var/obj/item/stock_parts/manipulator/P in component_parts)
-		precision_coeff = P.rating
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		precision_coeff = M.rating
 	for(var/obj/item/stock_parts/micro_laser/P in component_parts)
 		damage_coeff = P.rating
 
 /obj/machinery/dna_scannernew/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Radiation pulse accuracy increased by factor <b>[precision_coeff**2]</b>.<br>Radiation pulse damage decreased by factor <b>[damage_coeff**2]</b>.<span>")
+		. += "<span class='notice'>The status display reads: Radiation pulse accuracy increased by factor <b>[precision_coeff**2]</b>.<br>Radiation pulse damage decreased by factor <b>[damage_coeff**2]</b>.<span>"
 		if(scan_level >= 3)
-			to_chat(user, "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>")
+			. += "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>"
 
 /obj/machinery/dna_scannernew/update_icon()
 
@@ -52,10 +53,6 @@
 
 	//running
 	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
-
-/obj/machinery/dna_scannernew/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/dna_scannernew/proc/toggle_open(mob/user)
 	if(panel_open)
@@ -104,9 +101,8 @@
 
 	// DNA manipulators cannot operate on severed heads or brains
 	if(iscarbon(occupant))
-		var/obj/machinery/computer/scan_consolenew/console = locate_computer(/obj/machinery/computer/scan_consolenew)
-		if(console)
-			console.on_scanner_close()
+		if(linked_console)
+			linked_console.on_scanner_close()
 
 	return TRUE
 
@@ -115,6 +111,9 @@
 		return FALSE
 
 	..()
+
+	if(linked_console)
+		linked_console.on_scanner_open()
 
 	return TRUE
 

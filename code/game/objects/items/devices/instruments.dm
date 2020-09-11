@@ -66,7 +66,7 @@
 	item_state = "synth"
 	instrumentId = "piano"
 	instrumentExt = "ogg"
-	var/static/list/insTypes = list("accordion" = "mid", "bikehorn" = "ogg", "glockenspiel" = "mid", "guitar" = "ogg", "harmonica" = "mid", "piano" = "ogg", "recorder" = "mid", "saxophone" = "mid", "trombone" = "mid", "violin" = "mid", "xylophone" = "mid")	//No eguitar you ear-rapey fuckers.
+	var/static/list/insTypes = list("accordion" = "mid", "bikehorn" = "ogg", "glockenspiel" = "mid", "banjo" = "ogg", "guitar" = "ogg", "harmonica" = "mid", "piano" = "ogg", "recorder" = "mid", "saxophone" = "mid", "trombone" = "mid", "violin" = "mid", "xylophone" = "mid")	//No eguitar you ear-rapey fuckers.
 	actions_types = list(/datum/action/item_action/synthswitch)
 
 /obj/item/instrument/piano_synth/proc/changeInstrument(name = "piano")
@@ -78,6 +78,16 @@
 	if(!insTypes[chosen])
 		return
 	return changeInstrument(chosen)
+
+/obj/item/instrument/banjo
+	name = "banjo"
+	desc = "A 'Mura' brand banjo. It's pretty much just a drum with a neck and strings."
+	icon_state = "banjo"
+	item_state = "banjo"
+	instrumentExt = "ogg"
+	attack_verb = list("scruggs-styled", "hum-diggitied", "shin-digged", "clawhammered")
+	hitsound = 'sound/weapons/banjoslap.ogg'
+	instrumentId = "banjo"
 
 /obj/item/instrument/guitar
 	name = "guitar"
@@ -205,11 +215,18 @@
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)
 
-/obj/item/instrument/harmonica/speechModification(message)
+/obj/item/instrument/harmonica/proc/handle_speech(datum/source, list/speech_args)
 	if(song.playing && ismob(loc))
 		to_chat(loc, "<span class='warning'>You stop playing the harmonica to talk...</span>")
 		song.playing = FALSE
-	return message
+
+/obj/item/instrument/harmonica/equipped(mob/M, slot)
+	. = ..()
+	RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech, override = TRUE)
+
+/obj/item/instrument/harmonica/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
 
 /obj/item/instrument/bikehorn
 	name = "gilded bike horn"
@@ -248,7 +265,8 @@
 							/obj/item/instrument/saxophone,
 							/obj/item/instrument/trombone,
 							/obj/item/instrument/recorder,
-							/obj/item/instrument/harmonica
+							/obj/item/instrument/harmonica,
+							/obj/item/instrument/banjo
 							)
 		for(var/V in templist)
 			var/atom/A = V

@@ -44,7 +44,7 @@
 	if(!istype(C))
 		return
 
-	if(iscarbon(user) && (user.has_trait(TRAIT_CLUMSY) && prob(50)))
+	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
 		to_chat(user, "<span class='warning'>Uh... how do those things work?!</span>")
 		apply_cuffs(user,user)
 		return
@@ -72,6 +72,7 @@
 				log_combat(user, C, "handcuffed")
 			else
 				to_chat(user, "<span class='warning'>You fail to handcuff [C]!</span>")
+				log_combat(user, C, "attempted to handcuff")
 		else
 			to_chat(user, "<span class='warning'>[C] doesn't have two hands...</span>")
 
@@ -96,14 +97,15 @@
 		qdel(src)
 	return
 
-/obj/item/restraints/handcuffs/sinew
+/obj/item/restraints/handcuffs/cable/sinew
 	name = "sinew restraints"
 	desc = "A pair of restraints fashioned from long strands of flesh."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sinewcuff"
 	item_state = "sinewcuff"
-	breakouttime = 300 //Deciseconds = 30s
-	cuffsound = 'sound/weapons/cablecuff.ogg'
+	materials = null
+	item_color = "white"
+	color = "#000000"
 
 /obj/item/restraints/handcuffs/cable
 	name = "cable restraints"
@@ -178,7 +180,7 @@
 			var/obj/item/wirerod/W = new /obj/item/wirerod
 			remove_item_from_storage(user)
 			user.put_in_hands(W)
-			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
+			to_chat(user, "<span class='notice'>You wrap [src] around the top of [I].</span>")
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need one rod to make a wired rod!</span>")
@@ -325,7 +327,6 @@
 
 /obj/item/restraints/legcuffs/beartrap/energy/attack_hand(mob/user)
 	Crossed(user) //honk
-	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
 	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
@@ -337,6 +338,7 @@
 	breakouttime = 35//easy to apply, easy to break out of
 	gender = NEUTER
 	var/knockdown = 0
+	var/paralyze = 0
 
 /obj/item/restraints/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
 	if(!..())
@@ -354,7 +356,8 @@
 		C.update_inv_legcuffed()
 		SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 		to_chat(C, "<span class='userdanger'>\The [src] ensnares you!</span>")
-		C.Paralyze(knockdown)
+		C.Paralyze(paralyze)
+		C.Knockdown(knockdown)
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
 /obj/item/restraints/legcuffs/bola/tactical//traitor variant
@@ -362,7 +365,7 @@
 	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
 	icon_state = "bola_r"
 	breakouttime = 70
-	knockdown = 20
+	paralyze = 20
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
 	name = "energy bola"

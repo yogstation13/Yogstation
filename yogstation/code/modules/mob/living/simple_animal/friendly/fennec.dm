@@ -14,3 +14,9 @@
 	see_in_dark = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+/mob/living/simple_animal/pet/fox/fennec/Autumn
+	name = "Autumn"
+	gender = FEMALE
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE

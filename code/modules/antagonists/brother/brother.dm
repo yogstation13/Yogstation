@@ -21,6 +21,8 @@
 	SSticker.mode.brothers += owner
 	objectives += team.objectives
 	owner.special_role = special_role
+	if(owner.current)
+		give_pinpointer()
 	finalize_brother()
 	return ..()
 
@@ -28,8 +30,24 @@
 	SSticker.mode.brothers -= owner
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>You are no longer the [special_role]!</span>")
+		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/brother)
 	owner.special_role = null
 	return ..()
+
+/datum/antagonist/brother/antag_panel_data()
+	return "Conspirators : [get_brother_names()]"
+
+/datum/antagonist/brother/proc/get_brother_names()
+	var/list/brothers = team.members - owner
+	var/brother_text = ""
+	for(var/i = 1 to brothers.len)
+		var/datum/mind/M = brothers[i]
+		brother_text += M.name
+		if(i == brothers.len - 1)
+			brother_text += " and "
+		else if(i != brothers.len)
+			brother_text += ", "
+	return brother_text
 
 /datum/antagonist/brother/proc/give_meeting_area()
 	if(!owner.current || !team || !team.meeting_area)
@@ -38,22 +56,15 @@
 	antag_memory += "<b>Meeting Area</b>: [team.meeting_area]<br>"
 
 /datum/antagonist/brother/greet()
-	var/brother_text = ""
-	var/list/brothers = team.members - owner
-	for(var/i = 1 to brothers.len)
-		var/datum/mind/M = brothers[i]
-		brother_text += M.name
-		if(i == brothers.len - 1)
-			brother_text += " and "
-		else if(i != brothers.len)
-			brother_text += ", "
-	to_chat(owner.current, "<B><font size=3 color=red>You are the [owner.special_role] of [brother_text].</font></B>")
+	var/brother_text = get_brother_names()
+	to_chat(owner.current, "<span class='alertsyndie'>You are the [owner.special_role] of [brother_text].</span>")
 	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
 	owner.announce_objectives()
 	give_meeting_area()
 
 /datum/antagonist/brother/proc/finalize_brother()
 	SSticker.mode.update_brother_icons_added(owner)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
 	//show list of possible brothers
@@ -77,6 +88,11 @@
 	T.update_name()
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
+
+/datum/antagonist/brother/proc/give_pinpointer()
+	if(owner && owner.current)
+		var/datum/status_effect/agent_pinpointer/brother/P = owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/brother)
+		P.allowed_targets = team.members - owner
 
 /datum/team/brother_team
 	name = "brotherhood"

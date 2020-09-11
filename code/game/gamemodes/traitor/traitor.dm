@@ -18,6 +18,7 @@
 	recommended_enemies = 4
 	reroll_friendly = 1
 	enemy_minimum_age = 0
+	title_icon = "traitor"
 
 	announce_span = "danger"
 	announce_text = "There are Syndicate agents on the station!\n\
@@ -33,11 +34,18 @@
 
 /datum/game_mode/traitor/pre_setup()
 
+	if(num_players() <= lowpop_amount)
+		if(!prob((2*1.14**num_players())-2)) //exponential equation, chance of restriction goes up as pop goes down.
+			protected_jobs += GLOB.command_positions
+
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
+		
+	if(CONFIG_GET(flag/protect_AI_from_traitor))
+		restricted_jobs += "AI"
 
 	var/num_traitors = 1
 
@@ -98,3 +106,18 @@
 /datum/game_mode/traitor/generate_report()
 	return "Although more specific threats are commonplace, you should always remain vigilant for Syndicate agents aboard your station. Syndicate communications have implied that many \
 		Nanotrasen employees are Syndicate agents with hidden memories that may be activated at a moment's notice, so it's possible that these agents might not even know their positions."
+
+/datum/game_mode/traitor/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The [syndicate_name()] Spies:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/traitor in traitors)
+		round_credits += "<center><h2>[traitor.name] as a [syndicate_name()] traitor</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The traitors have concealed their treachery!</h2>", "<center><h2>We couldn't locate them!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits

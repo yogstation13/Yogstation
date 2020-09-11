@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/mineral/ash_rock,
+/turf/closed/mineral/ash_rock/airless,
 /area/ruin/unpowered/no_grav)
 "ac" = (
 /obj/item/trash/sosjerky,

@@ -180,7 +180,7 @@
 
 /obj/item/paper/contract/infernal/attack(mob/M, mob/living/user)
 	add_fingerprint(user)
-	if(M == user && target == M.mind && M.mind.soulOwner != owner && attempt_signature(user, 1))
+	if(M == user && target == M?.mind?.soulOwner != owner && attempt_signature(user, 1))
 		user.visible_message("<span class='danger'>[user] slices [user.p_their()] wrist with [src], and scrawls [user.p_their()] name in blood.</span>", "<span class='danger'>You slice your wrist open and scrawl your name in blood.</span>")
 		user.blood_volume = max(user.blood_volume - 100, 0)
 	else
@@ -202,7 +202,7 @@
 	if(!user.mind.hasSoul)
 		to_chat(user, "<span class='notice'>You do not possess a soul.</span>")
 		return 0
-	if(user.has_trait(TRAIT_DUMB))
+	if(HAS_TRAIT(user, TRAIT_DUMB))
 		to_chat(user, "<span class='notice'>You quickly scrawl 'your name' on the contract.</span>")
 		signIncorrectly()
 		return 0

@@ -12,6 +12,11 @@
 	can_buckle = 1
 	buckle_requires_restraints = 1
 	buckle_lying = -1
+	FASTDMM_PROP(\
+		set_instance_vars(\
+			icon_state = INSTANCE_VAR_DEFAULT\
+        ),\
+    )
 
 /obj/machinery/atmospherics/pipe/New()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
@@ -64,6 +69,11 @@
 
 /obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
 	atmosanalyzer_scan(parent.air, user, src)
+
+/obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
+	if(istype(user))
+		analyzer_act(user, src)
+	return ..()
 
 /obj/machinery/atmospherics/pipe/returnPipenet()
 	return parent

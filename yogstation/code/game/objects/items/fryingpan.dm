@@ -15,9 +15,13 @@
 	materials = list(MAT_METAL=75)
 	attack_verb = list("BONKED", "panned")
 	hitsound = 'yogstation/sound/weapons/pan.ogg'
-	
+
 /obj/item/melee/fryingpan/get_clamped_volume()
 	return 100 // BONK!
+
+/obj/item/melee/fryingpan/honk_act()
+	new /obj/item/melee/fryingpan/bananium(src.loc)
+	qdel(src)
 
 /obj/item/melee/fryingpan/bananium
 	name = "bananium frying pan"
@@ -31,6 +35,10 @@
 	materials = list(MAT_BANANIUM=75)
 	attack_verb = list("BONKED", "panned", "flexes on")
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100) //honkzo bananium frying pan folded over 1000 times, your mime explosives are no match.
+
+/obj/item/melee/fryingpan/bananium/Initialize()
+	. = ..()
+	AddComponent(/datum/component/randomcrits, force)
 
 /obj/item/melee/fryingpan/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if(!proximity || !isliving(target) || !iscarbon(user))
@@ -49,3 +57,6 @@
 			statue.max_integrity = 9999
 			statue.obj_integrity = 9999
 	return ..()
+
+/obj/item/melee/fryingpan/bananium/honk_act()
+	return FALSE

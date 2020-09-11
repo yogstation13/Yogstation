@@ -18,6 +18,13 @@
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/signal_tech/proc/OmegaStationChanges()
+	access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
+	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN)
+	supervisors = "the captain and the head of personnel"
+
 /datum/outfit/job/signal_tech
 	name = "Signal Technician"
 	jobtype = /datum/job/signal_tech

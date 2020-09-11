@@ -3,7 +3,7 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "signal technician's winter coat"
 	icon_state = "coatsignaltech"
-	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio,/obj/item/analyzer,/obj/item/multitool,/obj/item/assembly/signaler)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/tank/internals/plasmaman)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
@@ -26,7 +26,7 @@
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
     name = "Blue winter coat"
     icon_state = "coatwinterblue"
-    allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
     hoodtype = /obj/item/clothing/head/hooded/winterhood/bluecoat
 
 /obj/item/clothing/head/hooded/winterhood/bluecoat
@@ -36,13 +36,13 @@
 
 /obj/item/clothing/suit/yogs/gothic
 	name = "gothic suit"
-	desc = "Its not a phase mom!!!"
+	desc = "It's not a phase mom!"
 	icon_state = "gothic_s"
 	item_state = "gothic"
 
 /obj/item/clothing/suit/yogs/witchhuntblue
 	name = "witch hunter blue suit"
-	desc = "Oh boy time to hunt some demons!"
+	desc = "Oh boy, time to hunt some demons!"
 	icon_state = "witchhunt"
 	item_state = "witchhunt"
 
@@ -56,10 +56,10 @@
     alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
     name = "sand suit"
-    desc = "A suit often worn by desert nomads"
+    desc = "A suit often worn by desert nomads."
     icon_state = "sandsuit"
     item_state = "sandsuit"
-    allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
     hoodtype = /obj/item/clothing/head/hooded/sandsuit
 
 /obj/item/clothing/head/hooded/sandsuit
@@ -70,7 +70,7 @@
 
 /obj/item/clothing/suit/yogs/beaker
 	name = "beakerman costume"
-	desc = "Time to save the day using science and chemistry!"
+	desc = "Time to save the day by using science and chemistry!"
 	icon_state = "beaker_s"
 	item_state = "beaker"
 
@@ -82,13 +82,13 @@
 
 /obj/item/clothing/suit/yogs/thejestercoat
 	name = "jester coat"
-	desc = "Its a pretty nice coat...OR IS IT!!!."
+	desc = "It's a pretty nice coat...OR IS IT!!!."
 	icon_state = "the_jester_coat"
 	item_state = "the_jester_coat"
 
 /obj/item/clothing/suit/yogs/trickstercoat
 	name = "trickster coat"
-	desc = "Whats black and blue and red all over? WHAT IS LEFT OF YOUR HEAD!."
+	desc = "Whats black and blue and red all over? WHAT IS LEFT OF YOUR HEAD!"
 	icon_state = "trickstercoat"
 	item_state = "trickstercoat"
 
@@ -100,25 +100,25 @@
 
 /obj/item/clothing/suit/yogs/bluesweater
 	name = "blue sweater"
-	desc = "Just like my grandma used to knit!"
+	desc = "Just like grandma used to make."
 	icon_state = "bluesweater"
 	item_state = "bluesweater"
 
 /obj/item/clothing/suit/yogs/blueheart
 	name = "blue heart sweater"
-	desc = "Just like my grandma used to knit, now with a heart!"
+	desc = "Just like grandma used to make, now with a heart."
 	icon_state = "blueheart"
 	item_state = "blueheart"
 
 /obj/item/clothing/suit/yogs/mintsweater
 	name = "mint green sweater"
-	desc = "Just like my grandma used to knit!"
+	desc = "Just like grandma used to make."
 	icon_state = "mintsweater"
 	item_state = "mintsweater"
 
 /obj/item/clothing/suit/yogs/ntsweater
 	name = "nt sweater"
-	desc = "Just like my grandma used to knit, now with corporate advertisement!"
+	desc = "Just like grandma used to make, now with corporate advertisement."
 	icon_state = "ntsweater"
 	item_state = "ntsweater"
 
@@ -146,13 +146,13 @@
 
 /obj/item/clothing/suit/yogs/trainman
 	name = "trainman coat"
-	desc = "TICKETS PLEASE!!"
+	desc = "Tickets please."
 	icon_state = "trainman"
 	item_state = "trainman"
 
 /obj/item/clothing/suit/yogs/tailcoat
 	name = "tailcoat"
-	desc = "Oh boy seems we got some type of ''tough guy'' here boys! Let's get em!"
+	desc = "Seems we've got some type of tough guy here boys. Let's get 'em!"
 	icon_state = "tailcoat"
 	item_state = "tailcoat"
 
@@ -182,7 +182,7 @@
 
 /obj/item/clothing/suit/yogs/denimjacket
 	name = "denim jacket"
-	desc = "Bit scratchy but pretty cool looking."
+	desc = "A bit scratchy but pretty cool looking."
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
 
@@ -193,7 +193,7 @@
 	desc = "Only a really evil person would wear such a fiendish cowl!"
 	icon_state = "fiendcowl"
 	item_state = "fiendcowl"
-	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
 	hoodtype = /obj/item/clothing/head/hooded/fiendhood
 
 /obj/item/clothing/head/hooded/fiendhood
@@ -204,7 +204,7 @@
 
 /obj/item/clothing/suit/yogs/infsuit
 	name = "russian gangster suit"
-	desc = "So you wanna be a fancy gangster ay?"
+	desc = "So you wanna be a fancy gangster, ay?"
 	icon_state = "infsuit"
 	item_state = "infsuit"
 
@@ -212,10 +212,10 @@
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "caretaker cloak"
-	desc = "Yeah he will ''take care'' of you alright"
+	desc = "Yeah, he will 'take care' of you alright."
 	icon_state = "caretakercloak"
 	item_state = "caretakercloak"
-	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
 	hoodtype = /obj/item/clothing/head/hooded/caretakerhood
 
 /obj/item/clothing/head/hooded/caretakerhood
@@ -226,7 +226,7 @@
 
 /obj/item/clothing/suit/yogs/golddetective
 	name = "gold detective jacket"
-	desc = "A detective jacket that is gold!"
+	desc = "A detective jacket, in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_item"
 
@@ -248,14 +248,6 @@
 	icon_state = "janitor_coat"
 	item_state = "janitor_item"
 
-/obj/item/clothing/suit/toggle/labcoat/pmedic_jacket
-	name = "yellow paramedic jacket"
-	desc = "Bright yellow so people can see you coming from a mile away."
-	icon = 'yogstation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
-	icon_state = "pmedic_jacket"
-	item_state = "pmedic_jacket"
-
 /obj/item/clothing/suit/yogs/detectivecoat
 	name = "detective long coat"
 	desc = "For those detectives that value fashion over function."
@@ -270,10 +262,10 @@
 
 /obj/item/clothing/suit/yogs/soldierwebbing
 	name = "soldier webbing"
-	desc = "Cant actually hold much with it but still looks cool!"
+	desc = "It can't actually hold much, but it still looks cool!"
 	icon_state = "soldier_webbing"
 	item_state = "soldier_webbing"
-	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
 
 /obj/item/clothing/suit/yogs/monkrobes
 	name = "monk robes"
@@ -294,7 +286,7 @@
     desc = "A hoodie...IN SPESS!!!"
     icon_state = "spesshoodie"
     item_state = "spesshoodie"
-    allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
     hoodtype = /obj/item/clothing/head/hooded/spesshoodie
 
 /obj/item/clothing/head/hooded/spesshoodie
@@ -311,7 +303,7 @@
 
 /obj/item/clothing/suit/yogs/varsity
 	name = "varsity jacket"
-	desc = "Woo go Space Carps!!!"
+	desc = "Go Space Carps!"
 	icon_state = "varsity"
 	item_state = "varsity"
 

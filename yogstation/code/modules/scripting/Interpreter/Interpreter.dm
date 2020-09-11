@@ -80,7 +80,6 @@
 	Set ourselves to Garbage Collect
 */
 		GC()
-			..()
 			container = null
 
 /*

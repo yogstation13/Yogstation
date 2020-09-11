@@ -170,7 +170,7 @@
 /obj/item/dice/proc/diceroll(mob/user)
 	result = roll(sides)
 	if(rigged != DICE_NOT_RIGGED && result != rigged_value)
-		if(rigged == DICE_BASICALLY_RIGGED && prob(CLAMP(1/(sides - 1) * 100, 25, 80)))
+		if(rigged == DICE_BASICALLY_RIGGED && prob(clamp(1/(sides - 1) * 100, 25, 80)))
 			result = rigged_value
 		else if(rigged == DICE_TOTALLY_RIGGED)
 			result = rigged_value
@@ -188,6 +188,11 @@
 		result = (result - 1)*10
 	if(special_faces.len == sides)
 		result = special_faces[result]
+	if(!has_gravity())
+		if(user)
+			user.visible_message("[user] has thrown [src].", \
+							 "<span class='notice'>You throw [src].</span>")
+		return
 	if(user != null) //Dice was rolled in someone's hand
 		user.visible_message("[user] has thrown [src]. It lands on [result]. [comment]", \
 							 "<span class='notice'>You throw [src]. It lands on [result]. [comment]</span>", \

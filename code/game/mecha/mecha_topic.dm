@@ -5,7 +5,7 @@
 
 /obj/mecha/proc/get_stats_html()
 	. = {"<html>
-						<head><title>[src.name] data</title>
+						<head><meta charset='UTF-8'><title>[src.name] data</title>
 						<style>
 						body {color: #00ff00; background: #000000; font-family:"Lucida Console",monospace; font-size: 12px;}
 						hr {border: 1px solid #0f0; color: #0f0; background-color: #0f0;}
@@ -78,7 +78,7 @@
 	if (internal_tank)
 		int_tank_air = internal_tank.return_air()
 		tank_pressure = internal_tank ? round(int_tank_air.return_pressure(),0.01) : "None"
-		tank_temperature = internal_tank ? int_tank_air.temperature : "Unknown"
+		tank_temperature = internal_tank ? int_tank_air.return_temperature() : "Unknown"
 		cabin_pressure = round(return_pressure(),0.01)
 	. = {"[report_internal_damage()]
 						[integrity<30?"<span class='userdanger'>DAMAGE LEVEL CRITICAL</span><br>":null]
@@ -157,7 +157,7 @@
 	if(!id_card || !user)
 		return
 	. = {"<html>
-						<head><style>
+						<head><meta charset='UTF-8'><style>
 						h1 {font-size:15px;margin-bottom:4px;}
 						body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
 						a {color:#0f0;}
@@ -186,18 +186,24 @@
 	if(!id_card || !user)
 		return
 	. = {"<html>
-						<head>
-						<style>
-						body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
-						a {padding:2px 5px; background:#32CD32;color:#000;display:block;margin:2px;text-align:center;text-decoration:none;}
-						</style>
-						</head>
-						<body>
-						[add_req_access?"<a href='?src=[REF(src)];req_access=1;id_card=[REF(id_card)];user=[REF(user)]'>Edit operation keycodes</a>":null]
-						[maint_access?"<a href='?src=[REF(src)];maint_access=1;id_card=[REF(id_card)];user=[REF(user)]'>[(state>0) ? "Terminate" : "Initiate"] maintenance protocol</a>":null]
-						[(state>0) ?"<a href='?src=[REF(src)];set_internal_tank_valve=1;user=[REF(user)]'>Set Cabin Air Pressure</a>":null]
-						</body>
-						</html>"}
+			<head>
+				<meta charset='UTF-8'>
+				<style>
+					body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
+					a {padding:2px 5px; background:#32CD32;color:#000;display:block;margin:2px;text-align:center;text-decoration:none;}
+				</style>
+			</head>
+			<body>
+				[add_req_access?"<a href='?src=[REF(src)];req_access=1;id_card=[REF(id_card)];user=[REF(user)]'>Edit operation keycodes</a>":null]
+				[maint_access?"<a href='?src=[REF(src)];maint_access=1;id_card=[REF(id_card)];user=[REF(user)]'>[(state > 0) ? "Terminate" : "Initiate"] maintenance protocol</a>":null]
+				[(state == 3) ?"--------------------</br>":null]
+				[(state == 3) ?"[cell?"<a href='?src=[REF(src)];drop_cell=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop power cell</a>":"No cell installed</br>"]":null]
+				[(state == 3) ?"[scanmod?"<a href='?src=[REF(src)];drop_scanmod=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop scanning module</a>":"No scanning module installed</br>"]":null]
+				[(state == 3) ?"[capacitor?"<a href='?src=[REF(src)];drop_cap=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop capacitor</a>":"No capacitor installed</br>"]":null]
+				[(state == 3) ?"--------------------</br>":null]
+				[(state>0) ?"<a href='?src=[REF(src)];set_internal_tank_valve=1;user=[REF(user)]'>Set Cabin Air Pressure</a>":null]
+			</body>
+		</html>"}
 	user << browse(., "window=exosuit_maint_console")
 	onclose(user, "exosuit_maint_console")
 
@@ -216,90 +222,113 @@
 	if(usr.incapacitated())
 		return
 
-	var/datum/topic_input/afilter = new /datum/topic_input(href,href_list)
-
 	if(in_range(src, usr))
+		var/obj/item/card/id/id_card
+		if (href_list["id_card"])
+			id_card = locate(href_list["id_card"])
+			if (!istype(id_card))
+				return
 
-		if(href_list["req_access"] && add_req_access)
-			output_access_dialog(afilter.getObj("id_card"),afilter.getMob("user"))
+		if(href_list["req_access"] && add_req_access && id_card)
+			output_access_dialog(id_card,usr)
 
-		if(href_list["maint_access"] && maint_access)
-			var/mob/user = afilter.getMob("user")
-			if(user)
-				if(state==0)
-					state = 1
-					to_chat(user, "The securing bolts are now exposed.")
-				else if(state==1)
-					state = 0
-					to_chat(user, "The securing bolts are now hidden.")
-				output_maintenance_dialog(afilter.getObj("id_card"),user)
+		if(href_list["maint_access"] && maint_access && id_card)
+			if(state==0)
+				state = 1
+				to_chat(usr, "The securing bolts are now exposed.")
+			else if(state==1)
+				state = 0
+				to_chat(usr, "The securing bolts are now hidden.")
+			else if(state==2) //user feedback YOGGERZ
+				visible_message("<span class='warning'>You need to tighten the securing bolts first!</span>")
+			else if(state==3)
+				visible_message("<span class='warning'>You need to close the hatch to the power unit first!</span>")	
+			output_maintenance_dialog(id_card,usr)
+			return
+
+		if(href_list["drop_cell"])
+			if(state == 3)
+				cell.forceMove(get_turf(src))
+				cell = null
+			output_maintenance_dialog(id_card,usr)
+			return
+		if(href_list["drop_scanmod"])
+			if(state == 3)
+				scanmod.forceMove(get_turf(src))
+				scanmod = null
+			output_maintenance_dialog(id_card,usr)
+			return
+		if(href_list["drop_cap"])
+			if(state == 3)
+				capacitor.forceMove(get_turf(src))
+				capacitor = null
+			output_maintenance_dialog(id_card,usr)
+			return
 
 		if(href_list["set_internal_tank_valve"] && state >=1)
-			var/mob/user = afilter.getMob("user")
-			if(user)
-				var/new_pressure = input(user,"Input new output pressure","Pressure setting",internal_tank_valve) as num
-				if(new_pressure)
-					internal_tank_valve = new_pressure
-					to_chat(user, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
+			var/new_pressure = input(usr,"Input new output pressure","Pressure setting",internal_tank_valve) as num
+			if(new_pressure)
+				internal_tank_valve = new_pressure
+				to_chat(usr, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
 
-		if(href_list["add_req_access"] && add_req_access && afilter.getObj("id_card"))
-			operation_req_access += afilter.getNum("add_req_access")
-			output_access_dialog(afilter.getObj("id_card"),afilter.getMob("user"))
+		if(href_list["add_req_access"] && add_req_access && id_card)
+			operation_req_access += text2num(href_list["add_req_access"])
+			output_access_dialog(id_card,usr)
 
-		if(href_list["del_req_access"] && add_req_access && afilter.getObj("id_card"))
-			operation_req_access -= afilter.getNum("del_req_access")
-			output_access_dialog(afilter.getObj("id_card"),afilter.getMob("user"))
+		if(href_list["del_req_access"] && add_req_access && id_card)
+			operation_req_access -= text2num(href_list["add_req_access"])
+			output_access_dialog(id_card, usr)
 
 		if(href_list["finish_req_access"])
 			add_req_access = 0
-			var/mob/user = afilter.getMob("user")
-			user << browse(null,"window=exosuit_add_access")
+			usr << browse(null,"window=exosuit_add_access")
 
 	if(usr != occupant)
 		return
 
 	if(href_list["update_content"])
-		send_byjax(src.occupant,"exosuit.browser","content",src.get_stats_part())
+		send_byjax(usr,"exosuit.browser","content",src.get_stats_part())
 
 	if(href_list["select_equip"])
-		var/obj/item/mecha_parts/mecha_equipment/equip = afilter.getObj("select_equip")
+		var/obj/item/mecha_parts/mecha_equipment/equip = locate(href_list["select_equip"]) in src
 		if(equip && equip.selectable)
-			src.selected = equip
-			src.occupant_message("You switch to [equip]")
-			src.visible_message("[src] raises [equip]")
-			send_byjax(src.occupant,"exosuit.browser","eq_list",src.get_equipment_list())
+			selected = equip
+			occupant_message("You switch to [equip]")
+			visible_message("[src] raises [equip]")
+			send_byjax(usr,"exosuit.browser","eq_list",src.get_equipment_list())
 
 	if(href_list["rmictoggle"])
 		radio.broadcasting = !radio.broadcasting
-		send_byjax(src.occupant,"exosuit.browser","rmicstate",(radio.broadcasting?"Engaged":"Disengaged"))
+		send_byjax(usr,"exosuit.browser","rmicstate",(radio.broadcasting?"Engaged":"Disengaged"))
 
 	if(href_list["rspktoggle"])
 		radio.listening = !radio.listening
-		send_byjax(src.occupant,"exosuit.browser","rspkstate",(radio.listening?"Engaged":"Disengaged"))
+		send_byjax(usr,"exosuit.browser","rspkstate",(radio.listening?"Engaged":"Disengaged"))
 
 	if(href_list["rfreq"])
-		var/new_frequency = (radio.frequency + afilter.getNum("rfreq"))
+		var/new_frequency = (radio.frequency + text2num(href_list["rfreq"]))
 		if (!radio.freerange || (radio.frequency < MIN_FREE_FREQ || radio.frequency > MAX_FREE_FREQ))
 			new_frequency = sanitize_frequency(new_frequency)
 		radio.set_frequency(new_frequency)
-		send_byjax(src.occupant,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
+		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
 
 	if (href_list["change_name"])
-		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
-		if(!isnull(userinput))
-			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			name = newname ? newname : initial(name)
+		var/userinput = stripped_input(occupant, "Choose new exosuit name", "Rename exosuit", "", MAX_NAME_LEN)
+		if(!userinput || usr != occupant || usr.incapacitated())
+			return
+		name = userinput
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access
-		send_byjax(src.occupant,"exosuit.browser","t_id_upload","[add_req_access?"L":"Unl"]ock ID upload panel")
+		send_byjax(usr,"exosuit.browser","t_id_upload","[add_req_access?"L":"Unl"]ock ID upload panel")
 
 	if(href_list["toggle_maint_access"])
 		if(state)
 			occupant_message("<span class='danger'>Maintenance protocols in effect</span>")
 			return
 		maint_access = !maint_access
-		send_byjax(src.occupant,"exosuit.browser","t_maint_access","[maint_access?"Forbid":"Permit"] maintenance protocols")
+		send_byjax(usr,"exosuit.browser","t_maint_access","[maint_access?"Forbid":"Permit"] maintenance protocols")	
+
 
 	if (href_list["toggle_port_connection"])
 		if(internal_tank.connected_port)

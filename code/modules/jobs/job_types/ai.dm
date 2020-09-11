@@ -1,6 +1,7 @@
 /datum/job/ai
 	title = "AI"
 	flag = AI_JF
+	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
@@ -16,6 +17,8 @@
 	var/do_special_check = TRUE
 
 /datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
+	if(visualsOnly)
+		CRASH("dynamic preview is unsupported")
 	. = H.AIize(latejoin,preference_source)
 
 /datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
@@ -59,7 +62,8 @@
 
 /datum/job/ai/announce(mob/living/silicon/ai/AI)
 	. = ..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core in [get_area(AI).name].")) //YOGS - removed the co-ordinates
+	var/area/A = get_area(AI)//yogs
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core in [A.name].")) //YOGS - removed the co-ordinates
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)

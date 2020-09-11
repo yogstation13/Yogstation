@@ -35,6 +35,8 @@
 GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for the badmin verb for now
 
 /obj/effect/proc_holder/Destroy()
+	if (action)
+		qdel(action)
 	if(ranged_ability_user)
 		remove_ranged_ability()
 	return ..()
@@ -44,6 +46,17 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/singularity_pull()
 	return
+
+/obj/effect/proc_holder/Topic(href, href_list)
+	. = ..()
+	if(href_list["click"])
+		// first of all make sure we valid
+		var/mob/living/as_living = usr
+		if(!(src in usr.mob_spell_list) && !(usr.mind && (src in usr.mind.spell_list)) && !(istype(as_living) && (src in as_living.abilities)))
+			message_admins("[key_name_admin(src)] clicked on an invalid proc_holder href! ([src])")
+			log_game("[key_name(src)] clicked on an invalid proc_holder href! ([src])")
+			return
+		Click()
 
 /obj/effect/proc_holder/proc/InterceptClickOn(mob/living/caller, params, atom/A)
 	if(caller.ranged_ability != src || ranged_ability_user != caller) //I'm not actually sure how these would trigger, but, uh, safety, I guess?
@@ -167,7 +180,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		return FALSE
 
 	if(!antimagic_allowed)
-		var/antimagic = user.anti_magic_check(TRUE, FALSE, major = FALSE, self = TRUE)
+		var/antimagic = user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE)
 		if(antimagic)
 			if(isitem(antimagic))
 				to_chat(user, "<span class='notice'>[antimagic] is interfering with your magic.</span>")
@@ -190,8 +203,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		var/list/casting_clothes = typecacheof(list(/obj/item/clothing/suit/wizrobe,
 		/obj/item/clothing/suit/space/hardsuit/wizard,
 		/obj/item/clothing/head/wizard,
+		/obj/item/clothing/head/wizard/armor,
+		/obj/item/clothing/suit/wizrobe/armor,
 		/obj/item/clothing/head/helmet/space/hardsuit/wizard,
-		/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
 		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard))
 
 		if(clothes_req) //clothes check
@@ -513,7 +527,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(user.stat && !stat_allowed)
 		return FALSE
 
-	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE, major = FALSE, self = TRUE))
+	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE))
 		return FALSE
 
 	if(!ishuman(user))

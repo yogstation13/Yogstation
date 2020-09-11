@@ -1,4 +1,3 @@
-
 /turf/open/floor/engine
 	name = "reinforced floor"
 	desc = "Extremely sturdy."
@@ -13,8 +12,8 @@
 	tiled_dirt = FALSE
 
 /turf/open/floor/engine/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The reinforcement rods are <b>wrenched</b> firmly in place.</span>")
+	. += ..()
+	. += "<span class='notice'>The reinforcement rods are <b>wrenched</b> firmly in place.</span>"
 
 /turf/open/floor/engine/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -33,6 +32,9 @@
 /turf/open/floor/engine/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
 
+/turf/open/floor/engine/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
+	return
+
 /turf/open/floor/engine/crowbar_act(mob/living/user, obj/item/I)
 	return
 
@@ -43,7 +45,7 @@
 			return TRUE
 		if(floor_tile)
 			new floor_tile(src, 2)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	return TRUE
 
 /turf/open/floor/engine/acid_act(acidpwr, acid_volume)
@@ -56,23 +58,23 @@
 	if(severity != 1 && shielded && target != src)
 		return
 	if(target == src)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return
 	switch(severity)
 		if(1)
 			if(prob(80))
 				if(!length(baseturfs) || !ispath(baseturfs[baseturfs.len-1], /turf/open/floor))
-					ScrapeAway()
+					ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					ReplaceWithLattice()
 				else
-					ScrapeAway(2)
+					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 			else if(prob(50))
-				ScrapeAway(2)
+				ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
 			else
-				ScrapeAway()
+				ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		if(2)
 			if(prob(50))
-				ScrapeAway()
+				ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/engine/singularity_pull(S, current_size)
 	..()

@@ -1,10 +1,11 @@
+GLOBAL_LIST_EMPTY(lockers)
+
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = TRUE
-	layer = BELOW_OBJ_LAYER
 	var/icon_door = null
 	var/icon_door_override = FALSE //override to have open overlay use icon different to its base's
 	var/secure = FALSE //secure locker or not, also used if overriding a non-secure locker with a secure door overlay to add fancy lights
@@ -34,6 +35,10 @@
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
 	var/icon_welded = "welded"
+	var/notreallyacloset = FALSE // It is genuinely a closet
+	var/datum/gas_mixture/air_contents
+	var/airtight_when_welded = TRUE
+	var/airtight_when_closed = FALSE
 
 
 /obj/structure/closet/Initialize(mapload)
@@ -42,6 +47,7 @@
 	. = ..()
 	update_icon()
 	PopulateContents()
+	GLOB.lockers += src
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -49,6 +55,7 @@
 
 /obj/structure/closet/Destroy()
 	dump_contents()
+	GLOB.lockers -= src
 	return ..()
 
 /obj/structure/closet/update_icon()
@@ -75,24 +82,26 @@
 			add_overlay("[icon_state]_open")
 
 /obj/structure/closet/examine(mob/user)
-	..()
+	.=..()
+	if(notreallyacloset) // Yogs -- Fixes bodybags complaining they can be welded together
+		return . // Yogs
 	if(welded)
-		to_chat(user, "<span class='notice'>It's welded shut.</span>")
+		. += "<span class='notice'>It's welded shut.</span>"
 	if(anchored)
-		to_chat(user, "<span class='notice'>It is <b>bolted</b> to the ground.</span>")
+		. += "<span class='notice'>It is <b>bolted</b> to the ground.</span>"
 	if(opened)
-		to_chat(user, "<span class='notice'>The parts are <b>welded</b> together.</span>")
+		. += "<span class='notice'>The parts are <b>welded</b> together.</span>"
 	else if(secure && !opened)
-		to_chat(user, "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"].</span>")
+		. += "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"].</span>"
 	if(isliving(user))
 		var/mob/living/L = user
-		if(L.has_trait(TRAIT_SKITTISH))
-			to_chat(user, "<span class='notice'>Ctrl-Shift-click [src] to jump inside.</span>")
+		if(HAS_TRAIT(L, TRAIT_SKITTISH))
+			. += "<span class='notice'>Ctrl-Shift-click [src] to jump inside.</span>"
 
-/obj/structure/closet/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(wall_mounted)
 		return TRUE
-	return !density
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
@@ -142,6 +151,7 @@
 	climb_time *= 0.5 //it's faster to climb onto an open thing
 	dump_contents()
 	update_icon()
+	update_airtightness()
 	return 1
 
 /obj/structure/closet/proc/insert(atom/movable/AM)
@@ -176,7 +186,7 @@
 	else if(isobj(AM))
 		if((!allow_dense && AM.density) || AM.anchored || AM.has_buckled_mobs())
 			return FALSE
-		else if(isitem(AM) && !AM.has_trait(TRAIT_NODROP))
+		else if(isitem(AM) && !HAS_TRAIT(AM, TRAIT_NODROP))
 			return TRUE
 		else if(!allow_objects && !istype(AM, /obj/effect/dummy/chameleon))
 			return FALSE
@@ -194,6 +204,8 @@
 	opened = FALSE
 	density = TRUE
 	update_icon()
+	update_airtightness()
+	close_storage(user)
 	return TRUE
 
 /obj/structure/closet/proc/toggle(mob/living/user)
@@ -201,6 +213,12 @@
 		return close(user)
 	else
 		return open(user)
+
+/obj/structure/closet/proc/close_storage(mob/living/user)
+	for(var/obj/object in contents)
+		var/datum/component/storage/closeall = object.GetComponent(/datum/component/storage)
+		if(closeall)
+			closeall.close_all()
 
 /obj/structure/closet/deconstruct(disassembled = TRUE)
 	if(ispath(material_drop) && material_drop_amount && !(flags_1 & NODECONSTRUCT_1))
@@ -253,6 +271,7 @@
 				return
 			welded = !welded
 			after_weld(welded)
+			update_airtightness()
 			user.visible_message("<span class='notice'>[user] [welded ? "welds shut" : "unwelded"] \the [src].</span>",
 							"<span class='notice'>You [welded ? "weld" : "unwelded"] \the [src] with \the [W].</span>",
 							"<span class='italics'>You hear welding.</span>")
@@ -348,15 +367,15 @@
 	return attack_hand(user)
 
 /obj/structure/closet/verb/verb_toggleopen()
-	set src in oview(1)
+	set src in view(1)
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(!usr.incapacitated())
+	if(!usr.canUseTopic(src, BE_CLOSE) || !isturf(loc))
 		return
 
 	if(iscarbon(usr) || issilicon(usr) || isdrone(usr))
-		return attack_hand(usr)
+		return toggle(usr)
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
@@ -372,7 +391,7 @@
 /obj/structure/closet/container_resist(mob/living/user)
 	if(opened)
 		return
-	if(ismovableatom(loc))
+	if(ismovable(loc))
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		var/atom/movable/AM = loc
@@ -415,9 +434,9 @@
 		togglelock(user)
 
 /obj/structure/closet/CtrlShiftClick(mob/living/user)
-	if(!user.has_trait(TRAIT_SKITTISH))
+	if(!HAS_TRAIT(user, TRAIT_SKITTISH))
 		return ..()
-	if(!user.canUseTopic(src) || !isturf(user.loc))
+	if(!user.canUseTopic(src, BE_CLOSE) || !isturf(user.loc))
 		return
 	dive_into(user)
 
@@ -503,3 +522,48 @@
 		user.resting = FALSE
 		togglelock(user)
 		T1.visible_message("<span class='warning'>[user] dives into [src]!</span>")
+
+/obj/structure/closet/proc/update_airtightness()
+	var/is_airtight = FALSE
+	if(airtight_when_closed && !opened)
+		is_airtight = TRUE
+	if(airtight_when_welded && welded)
+		is_airtight = TRUE
+	// okay so this might create/delete gases but the alternative is extra work and/or unnecessary spacewind from welding lockers.
+	// basically we're simulating the air being displaced without actually having the air be displaced.
+	// speaking of we should really add a way to displace air. Canisters are really big and they really ought to displace air. Alas it doesnt exist
+	// so instead I have to violate conservation of energy. Not that this game already doesn't.
+	if(is_airtight && !air_contents)
+		air_contents = new(500)
+		var/datum/gas_mixture/loc_air = loc?.return_air()
+		if(loc_air)
+			air_contents.copy_from(loc_air)
+			air_contents.remove_ratio((1 - (air_contents.return_volume() / loc_air.return_volume()))) // and thus we have just magically created new gases....
+	else if(!is_airtight && air_contents)
+		var/datum/gas_mixture/loc_air = loc?.return_air()
+		if(loc_air) // remember that air we created earlier? Now it's getting deleted! I mean it's still going on the turf....
+			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.return_volume() / (loc_air.return_volume() + air_contents.return_volume())
+			loc.assume_air(air_contents)
+			loc.remove_air(remove_amount)
+			loc.air_update_turf()
+		air_contents = null
+
+/obj/structure/closet/return_air()
+	if(welded)
+		return air_contents
+	return ..()
+
+/obj/structure/closet/assume_air(datum/gas_mixture/giver)
+	if(air_contents)
+		return air_contents.merge(giver)
+	return ..()
+
+/obj/structure/closet/remove_air(amount)
+	if(air_contents)
+		return air_contents.remove(amount)
+	return ..()
+
+/obj/structure/closet/return_temperature()
+	if(air_contents)
+		return air_contents.return_temperature()
+	return ..()

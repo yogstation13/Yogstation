@@ -8,6 +8,7 @@
 	dat += {"
 
 		<head>
+			<meta charset='UTF-8'>
 			<script type='text/javascript'>
 
 				var locked_tabs = new Array();

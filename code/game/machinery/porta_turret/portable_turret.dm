@@ -218,23 +218,10 @@
 		interact(usr)
 
 /obj/machinery/porta_turret/power_change()
-	if(!anchored)
+	. = ..()
+	if(!anchored || (stat & BROKEN) || !powered())
 		update_icon()
 		remove_control()
-		return
-	if(stat & BROKEN)
-		update_icon()
-		remove_control()
-	else
-		if( powered() )
-			stat &= ~NOPOWER
-			update_icon()
-		else
-			spawn(rand(0, 15))
-				stat |= NOPOWER
-				remove_control()
-				update_icon()
-
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -339,8 +326,8 @@
 	qdel(src)
 
 /obj/machinery/porta_turret/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1) && !(stat & BROKEN))
-		stat |= BROKEN	//enables the BROKEN bit
+	. = ..()
+	if(.)
 		power_change()
 		invisibility = 0
 		spark_system.start()	//creates some sparks because they look cool
@@ -506,7 +493,7 @@
 			threatcount += 4
 
 	if(shoot_unloyal)
-		if (!perp.has_trait(TRAIT_MINDSHIELD))
+		if (!HAS_TRAIT(perp, TRAIT_MINDSHIELD))
 			threatcount += 4
 
 	return threatcount
@@ -570,6 +557,7 @@
 	//Shooting Code:
 	A.preparePixelProjectile(target, T)
 	A.firer = src
+	A.fired_from = src
 	A.fire()
 	return A
 
@@ -728,6 +716,11 @@
 /obj/machinery/porta_turret/ai/assess_perp(mob/living/carbon/human/perp)
 	return 10 //AI turrets shoot at everything not in their faction
 
+/obj/machinery/porta_turret/ai/in_faction(mob/target)
+	. = ..()
+	if(ismouse(target))
+		return TRUE
+
 /obj/machinery/porta_turret/aux_base
 	name = "perimeter defense turret"
 	desc = "A plasma beam turret calibrated to defend outposts against non-humanoid fauna. It is more effective when exposed to the environment."
@@ -836,10 +829,10 @@
 		T.cp = src
 
 /obj/machinery/turretid/examine(mob/user)
-	..()
-	if(issilicon(user) && (!stat & BROKEN))
-		to_chat(user, "<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>")
-		to_chat(user, "<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>")
+	. += ..()
+	if(issilicon(user) && !(stat & BROKEN))
+		. += {"<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>
+					<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>"}
 
 /obj/machinery/turretid/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -942,10 +935,6 @@
 /obj/machinery/turretid/proc/updateTurrets()
 	for (var/obj/machinery/porta_turret/aTurret in turrets)
 		aTurret.setState(enabled, lethal)
-	update_icon()
-
-/obj/machinery/turretid/power_change()
-	..()
 	update_icon()
 
 /obj/machinery/turretid/update_icon()

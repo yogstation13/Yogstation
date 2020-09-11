@@ -1,5 +1,3 @@
-
-
 /*
  * GAMEMODES (by Rastaf0)
  *
@@ -25,6 +23,8 @@
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
+	var/list/required_jobs = list()		// alternative required job groups eg list(list(cap=1),list(hos=1,sec=2)) translates to one captain OR one hos and two secmans
+	var/lowpop_amount = 30 //The maximum amount of players before lowpop jobs are not restricted
 	var/required_players = 0
 	var/maximum_players = -1 // -1 is no maximum, positive numbers limit the selection of a mode on overstaffed stations
 	var/required_enemies = 0
@@ -40,6 +40,9 @@
 	var/announce_span = "warning" //The gamemode's name will be in this span during announcement.
 	var/announce_text = "This gamemode forgot to set a descriptive text! Uh oh!" //Used to describe a gamemode when it's announced.
 
+	// title_icon and title_icon_state are used for the credits that roll at the end
+	var/title_icon
+
 	var/const/waittime_l = 600
 	var/const/waittime_h = 1800 // started at 1800
 
@@ -50,9 +53,15 @@
 	var/gamemode_ready = FALSE //Is the gamemode all set up and ready to start checking for ending conditions.
 	var/setup_error		//What stopepd setting up the mode.
 
+/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
+	//var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
+
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
 	to_chat(world, "<b>[announce_text]</b>")
+	
+/datum/game_mode/proc/admin_panel()
+	return
 
 
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
@@ -93,15 +102,20 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/reopen_roundstart_suicide_roles), delay)
 
 	if(SSdbcore.Connect())
-		var/sql
+		var/list/to_set  = list()
+		var/arguments  = list()
 		if(SSticker.mode)
-			sql += "game_mode = '[SSticker.mode]'"
+			to_set += "game_mode = :game_mode"
+			arguments ["game_mode"] = SSticker.mode
 		if(GLOB.revdata.originmastercommit)
-			if(sql)
-				sql += ", "
-			sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
-		if(sql)
-			var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+			to_set += "commit_hash = :commit_hash"
+			arguments ["commit_hash"] = GLOB.revdata.originmastercommit
+		if(to_set.len)
+			arguments ["round_id"] = GLOB.round_id
+			var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery(
+				"UPDATE [format_table_name("round")] SET [to_set.Join(", ")] WHERE id = :round_id",
+				arguments
+			)
 			query_round_game_mode.Execute()
 			qdel(query_round_game_mode)
 	if(report)
@@ -309,6 +323,16 @@
 //     Player A: 150 / 250 = 0.6 = 60%
 //     Player B: 100 / 250 = 0.4 = 40%
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
+	if(GLOB.antag_token_users.len >= 1) //Antag token users get first priority, no matter their preferences
+		var/client/C = pick_n_take(GLOB.antag_token_users)
+		var/mob/M = C.mob
+		if(C && istype(M, /mob/dead/new_player))
+			var/mob/dead/new_player/player = M
+			if(player.ready == PLAYER_READY_TO_PLAY)
+				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
+					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 30 SECONDS)
+					return player.mind
+
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
 		return pick(candidates)
 
@@ -363,7 +387,7 @@
 
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
 			players += player
 
 	// Shuffling, the players list is now ping-independent!!!
@@ -389,24 +413,6 @@
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
 					if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
 						drafted += player.mind
-
-	if(restricted_jobs)
-		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					drafted -= player
-
-	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
-
-	while(candidates.len < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
-		if(drafted.len > 0)
-			applicant = pick(drafted)
-			if(applicant)
-				candidates += applicant
-				drafted.Remove(applicant)
-
-		else												// Not enough scrubs, ABORT ABORT ABORT
-			break
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
@@ -484,6 +490,36 @@
 								[reopened_job_report_positions]</i>"
 
 			print_command_report(suicide_command_report, "Central Command Personnel Update")
+
+/datum/game_mode/proc/get_living_by_department(var/department)
+	. = list()
+	for(var/mob/living/carbon/human/player in GLOB.mob_list)
+		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in department))
+			. |= player.mind
+
+/datum/game_mode/proc/get_all_by_department(var/department)
+	. = list()
+	for(var/mob/player in GLOB.mob_list)
+		if(player.mind && (player.mind.assigned_role in department))
+			. |= player.mind
+
+/////////////////////////////////////////////
+//Keeps track of all living silicon members//
+/////////////////////////////////////////////
+/datum/game_mode/proc/get_living_silicon()
+	. = list()
+	for(var/mob/living/silicon/player in GLOB.mob_list)
+		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.nonhuman_positions))
+			. |= player.mind
+
+///////////////////////////////////////
+//Keeps track of all silicon members //
+///////////////////////////////////////
+/datum/game_mode/proc/get_all_silicon()
+	. = list()
+	for(var/mob/living/silicon/player in GLOB.mob_list)
+		if(player.mind && (player.mind.assigned_role in GLOB.nonhuman_positions))
+			. |= player.mind
 
 //////////////////////////
 //Reports player logouts//
@@ -572,18 +608,11 @@
 		rev.remove_revolutionary(TRUE)
 
 /datum/game_mode/proc/generate_station_goals()
-	var/list/possible = list()
 	for(var/T in subtypesof(/datum/station_goal))
 		var/datum/station_goal/G = T
 		if(config_tag in initial(G.gamemode_blacklist))
 			continue
-		possible += T
-	var/goal_weights = 0
-	while(possible.len && goal_weights < STATION_GOAL_BUDGET)
-		var/datum/station_goal/picked = pick_n_take(possible)
-		goal_weights += initial(picked.weight)
-		station_goals += new picked
-
+		station_goals += new T
 
 /datum/game_mode/proc/generate_report() //Generates a small text blurb for the gamemode in centcom report
 	return "Gamemode report for [name] not set.  Contact a coder."
@@ -607,3 +636,99 @@
 		SSticker.news_report = STATION_EVACUATED
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
+
+
+/datum/game_mode/proc/AdminPanelEntry()
+	return
+
+/datum/game_mode/proc/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	// HEADS OF STAFF
+	round_credits += "<center><h1>The Glorious Command Staff:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.command_positions))
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>A serious bureaucratic error has occurred!</h2>", "<center><h2>No one was in charge of the crew!</h2>")
+	round_credits += "<br>"
+
+	// SILICONS
+	round_credits += "<center><h1>The Silicon \"Intelligences\":</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_silicon())
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>[station_name()] had no silicon helpers!</h2>", "<center><h2>Not a single door was opened today!</h2>")
+	round_credits += "<br>"
+
+	// SECURITY
+	round_credits += "<center><h1>The Brave Security Officers:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.security_positions))
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>[station_name()] has fallen to Communism!</h2>", "<center><h2>No one was there to protect the crew!</h2>")
+	round_credits += "<br>"
+
+	// MEDICAL
+	round_credits += "<center><h1>The Wise Medical Department:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.medical_positions))
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>Healthcare was not included!</h2>", "<center><h2>There were no doctors today!</h2>")
+	round_credits += "<br>"
+
+	// ENGINEERING
+	round_credits += "<center><h1>The Industrious Engineers:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.engineering_positions))
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>[station_name()] probably did not last long!</h2>", "<center><h2>No one was holding the station together!</h2>")
+	round_credits += "<br>"
+
+	// SCIENCE
+	round_credits += "<center><h1>The Inventive Science Employees:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.science_positions))
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>No one was doing \"science\" today!</h2>", "<center><h2>Everyone probably made it out alright, then!</h2>")
+	round_credits += "<br>"
+
+	// CARGO
+	round_credits += "<center><h1>The Rugged Cargo Crew:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.supply_positions))
+		round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>The station was freed from paperwork!</h2>", "<center><h2>No one worked in cargo today!</h2>")
+	round_credits += "<br>"
+
+	// CIVILIANS
+	var/list/human_garbage = list()
+	round_credits += "<center><h1>The Hardy Civilians:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in SSticker.mode.get_all_by_department(GLOB.civilian_positions))
+		if(current.assigned_role == "Assistant")
+			human_garbage += current
+		else
+			round_credits += "<center><h2>[current.name] as the [current.assigned_role]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>Everyone was stuck in traffic this morning!</h2>", "<center><h2>No civilians made it to work!</h2>")
+	round_credits += "<br>"
+
+	round_credits += "<center><h1>The Helpful Assistants:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/current in human_garbage)
+		round_credits += "<center><h2>[current.name]</h2>"
+	if(round_credits.len == len_before_addition)
+		round_credits += list("<center><h2>The station was free of <s>greytide</s> assistance!</h2>", "<center><h2>Not a single Assistant showed up on the station today!</h2>")
+
+	round_credits += "<br>"
+	round_credits += "<br>"
+
+	return round_credits 

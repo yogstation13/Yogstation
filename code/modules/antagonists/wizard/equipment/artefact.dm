@@ -22,6 +22,10 @@
 	var/rend_desc = "You should run now."
 	var/spawn_fast = 0 //if 1, ignores checking for mobs on loc before spawning
 
+/obj/item/veilrender/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 80, 100)
+
 /obj/item/veilrender/attack_self(mob/user)
 	if(charges > 0)
 		new /obj/effect/rend(get_turf(user), spawn_type, spawn_amt, rend_desc, spawn_fast)
@@ -122,7 +126,7 @@
 /obj/singularity/wizard/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		GET_COMPONENT_FROM(insaneinthemembrane, /datum/component/mood, C)
+		var/datum/component/mood/insaneinthemembrane = C.GetComponent(/datum/component/mood)
 		if(insaneinthemembrane.sanity < 15)
 			return //they've already seen it and are about to die, or are just too insane to care
 		to_chat(C, "<span class='userdanger'>OH GOD! NONE OF IT IS REAL! NONE OF IT IS REEEEEEEEEEEEEEEEEEEEEEEEAL!</span>")
@@ -171,8 +175,8 @@
 
 		to_chat(current_owner, "<span class='notice'>Your otherworldly vision fades...</span>")
 
-		current_owner.remove_trait(TRAIT_SIXTHSENSE, SCRYING_ORB)
-		current_owner.remove_trait(TRAIT_XRAY_VISION, SCRYING_ORB)
+		REMOVE_TRAIT(current_owner, TRAIT_SIXTHSENSE, SCRYING_ORB)
+		REMOVE_TRAIT(current_owner, TRAIT_XRAY_VISION, SCRYING_ORB)
 		current_owner.update_sight()
 
 		current_owner = null
@@ -182,8 +186,8 @@
 
 		to_chat(current_owner, "<span class='notice'>You can see...everything!</span>")
 
-		current_owner.add_trait(TRAIT_SIXTHSENSE, SCRYING_ORB)
-		current_owner.add_trait(TRAIT_XRAY_VISION, SCRYING_ORB)
+		ADD_TRAIT(current_owner, TRAIT_SIXTHSENSE, SCRYING_ORB)
+		ADD_TRAIT(current_owner, TRAIT_XRAY_VISION, SCRYING_ORB)
 		current_owner.update_sight()
 
 /obj/item/scrying/attack_self(mob/user)
@@ -335,6 +339,7 @@
 		switch(user.zone_selected)
 			if(BODY_ZONE_PRECISE_MOUTH)
 				var/wgw =  sanitize(input(user, "What would you like the victim to say", "Voodoo", null)  as text)
+				wgw = to_utf8(wgw, src)
 				target.say(wgw, forced = "voodoo doll")
 				log_game("[key_name(user)] made [key_name(target)] say [wgw] with a voodoo doll.")
 			if(BODY_ZONE_PRECISE_EYES)

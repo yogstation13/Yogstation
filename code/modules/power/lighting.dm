@@ -67,22 +67,21 @@
 	return cell
 
 /obj/structure/light_construct/examine(mob/user)
-	..()
-	switch(src.stage)
+	. = ..()
+	switch(stage)
 		if(1)
-			to_chat(user, "It's an empty frame.")
+			. += "It's an empty frame."
 		if(2)
-			to_chat(user, "It's wired.")
+			. += "It's wired."
 		if(3)
-			to_chat(user, "The casing is closed.")
+			. += "The casing is closed."
 	if(cell_connectors)
 		if(cell)
-			to_chat(user, "You see [cell] inside the casing.")
+			. += "You see [cell] inside the casing."
 		else
-			to_chat(user, "The casing has no power cell for backup power.")
+			. += "The casing has no power cell for backup power."
 	else
-		to_chat(user, "<span class='danger'>This casing doesn't support power cells for backup power.</span>")
-		return
+		. += "<span class='danger'>This casing doesn't support power cells for backup power.</span>"
 
 /obj/structure/light_construct/attack_hand(mob/user)
 	if(cell)
@@ -105,7 +104,7 @@
 		if(!cell_connectors)
 			to_chat(user, "<span class='warning'>This [name] can't support a power cell!</span>")
 			return
-		if(W.has_trait(TRAIT_NODROP))
+		if(HAS_TRAIT(W, TRAIT_NODROP))
 			to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
 			return
 		if(cell)
@@ -211,6 +210,7 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = FALSE
+	var/forced_off = FALSE
 	var/static_power_used = 0
 	var/brightness = 8			// luminosity when on, also used in power calculation
 	var/bulb_power = 1			// basically the alpha of the emitted light source
@@ -239,6 +239,9 @@
 	var/bulb_emergency_colour = "#FF3232"	// determines the colour of the light while it's in emergency mode
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
+
+	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
+	var/bulb_vacuum_brightness = 8
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
@@ -309,7 +312,7 @@
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		on = FALSE
+		on = FALSE && !forced_off
 //		A.update_lights()
 	QDEL_NULL(cell)
 	return ..()
@@ -318,14 +321,19 @@
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
+			if(forced_off)
+				icon_state = "[base_state]"
+				return
 			var/area/A = get_area(src)
 			if(emergency_mode || (A && A.fire))
 				icon_state = "[base_state]_emergency"
+			else if (A && A.vacuum)
+				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
-				if(on)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
-					glowybit.alpha = CLAMP(light_power*250, 30, 200)
+				if(on && !forced_off)
+					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
+					glowybit.alpha = clamp(light_power*250, 30, 200)
 					add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
@@ -345,13 +353,19 @@
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
+		if(color)
+			CO = color
 		var/area/A = get_area(src)
 		if (A && A.fire)
 			CO = bulb_emergency_colour
+		else if (A && A.vacuum)
+			CO = bulb_vacuum_colour
+			BR = bulb_vacuum_brightness
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
 			PO = nightshift_light_power
-			CO = nightshift_light_color
+			if(!color)
+				CO = nightshift_light_color
 		var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
 		if(!matching)
 			switchcount++
@@ -384,6 +398,10 @@
 
 	broken_sparks(start_only=TRUE)
 
+/obj/machinery/light/update_atom_colour()
+	..()
+	update()
+
 /obj/machinery/light/proc/broken_sparks(start_only=FALSE)
 	if(status == LIGHT_BROKEN && has_power())
 		if(!start_only)
@@ -411,7 +429,7 @@
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/proc/seton(s)
-	on = (s && status == LIGHT_OK)
+	on = (s && status == LIGHT_OK && !forced_off)
 	update()
 
 /obj/machinery/light/get_cell()
@@ -419,18 +437,18 @@
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
-	..()
+	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			. += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			. += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
+			. += "The [fitting] has been smashed."
 	if(cell)
-		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
+		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 
 
 
@@ -464,7 +482,7 @@
 				switchcount = L.switchcount
 				rigged = L.rigged
 				brightness = L.brightness
-				on = has_power()
+				on = has_power() && !forced_off
 				update()
 
 				qdel(L)
@@ -473,6 +491,10 @@
 					explode()
 			else
 				to_chat(user, "<span class='warning'>This type of light requires a [fitting]!</span>")
+	// hit the light socket with umbral tendrils, instantly breaking the light as opposed to RNG //yogs
+	else if(istype(W, /obj/item/umbral_tendrils))
+		break_light_tube()
+		..() //yogs end
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
@@ -487,6 +509,13 @@
 				do_sparks(3, TRUE, src)
 				if (prob(75))
 					electrocute_mob(user, get_area(src), src, rand(0.7,1.0), TRUE)
+	//attempt to turn off light with multitool
+	else if(W.tool_behaviour == TOOL_MULTITOOL)
+		set_light(0)
+		forced_off = !forced_off
+		on = !on
+		update_icon()
+		update()
 	else
 		return ..()
 
@@ -523,7 +552,7 @@
 /obj/machinery/light/attacked_by(obj/item/I, mob/living/user)
 	..()
 	if(status == LIGHT_BROKEN || status == LIGHT_EMPTY)
-		if(on && (I.flags_1 & CONDUCT_1))
+		if(on && (I.flags_1 & CONDUCT_1) && !forced_off)
 			if(prob(12))
 				electrocute_mob(user, get_area(src), src, 0.3, TRUE)
 
@@ -594,7 +623,7 @@
 			on = !on
 			update(0)
 			sleep(rand(5, 15))
-		on = (status == LIGHT_OK)
+		on = (status == LIGHT_OK) && !forced_off
 		update(0)
 	flickering = 0
 
@@ -621,7 +650,7 @@
 		return
 
 	// make it burn hands unless you're wearing heat insulated gloves or have the RESISTHEAT/RESISTHEATHANDS traits
-	if(on)
+	if(on && status == LIGHT_OK)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
 
@@ -630,9 +659,12 @@
 			if(istype(eth_species))
 				to_chat(H, "<span class='notice'>You start channeling some power through the [fitting] into your body.</span>")
 				if(do_after(user, 50, target = src))
-					to_chat(H, "<span class='notice'>You receive some charge from the [fitting].</span>")
-					eth_species.adjust_charge(5)
-					return
+					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+					if(istype(stomach))
+						to_chat(H, "<span class='notice'>You receive some charge from the [fitting].</span>")
+						stomach.adjust_charge(5)
+					else
+						to_chat(H, "<span class='notice'>You can't receive charge from the [fitting].</span>")
 				return
 
 			if(H.gloves)
@@ -642,7 +674,7 @@
 		else
 			prot = 1
 
-		if(prot > 0 || user.has_trait(TRAIT_RESISTHEAT) || user.has_trait(TRAIT_RESISTHEATHANDS))
+		if(prot > 0 || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
 			to_chat(user, "<span class='notice'>You remove the light [fitting].</span>")
 		else if(istype(user) && user.dna.check_mutation(TK))
 			to_chat(user, "<span class='notice'>You telekinetically remove the light [fitting].</span>")
@@ -709,7 +741,7 @@
 		return
 	status = LIGHT_OK
 	brightness = initial(brightness)
-	on = TRUE
+	on = TRUE && !forced_off
 	update()
 
 /obj/machinery/light/tesla_act(power, tesla_flags)
@@ -737,7 +769,7 @@
 	var/turf/T = get_turf(src.loc)
 	break_light_tube()	// break it first to give a warning
 	sleep(2)
-	explosion(T, 0, 0, 2, 2)
+	explosion(T, 0, 1, 2, 4)
 	sleep(1)
 	qdel(src)
 
@@ -754,7 +786,7 @@
 	var/base_state
 	var/switchcount = 0	// number of times switched
 	materials = list(MAT_GLASS=100)
-	grind_results = list("silicon" = 5, "nitrogen" = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
+	grind_results = list(/datum/reagent/silicon = 5, /datum/reagent/nitrogen = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
 	var/rigged = FALSE		// true if rigged to explode
 	var/brightness = 2 //how much light it gives off
 
@@ -817,13 +849,13 @@
 	. = ..()
 	AddComponent(/datum/component/caltrop, force)
 
-/obj/item/light/Crossed(mob/living/L)
+/obj/item/light/Crossed(atom/movable/AM)
 	. = ..()
-	if(istype(L) && has_gravity(loc))
-		if(L.has_trait(TRAIT_LIGHT_STEP))
-			playsound(loc, 'sound/effects/glass_step.ogg', 30, 1)
-		else
-			playsound(loc, 'sound/effects/glass_step.ogg', 50, 1)
+	if(!isliving(AM))
+		return
+	var/mob/living/L = AM
+	if(istype(L) && !(L.is_flying() || L.buckled))
+		playsound(src, 'sound/effects/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 		if(status == LIGHT_BURNED || status == LIGHT_OK)
 			shatter()
 
@@ -836,7 +868,7 @@
 
 		to_chat(user, "<span class='notice'>You inject the solution into \the [src].</span>")
 
-		if(S.reagents.has_reagent("plasma", 5))
+		if(S.reagents.has_reagent(/datum/reagent/toxin/plasma, 5))
 
 			rigged = TRUE
 

@@ -12,7 +12,6 @@
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
 	var/team_mode = FALSE //Should assign team objectives ?
-	var/competitive_objectives = FALSE //Should we assign objectives in competition with other lings?
 
 	//Changeling Stuff
 
@@ -51,7 +50,6 @@
 			continue
 		if(C.was_absorbed) //make sure the other ling wasn't already killed by another one. only matters if the changeling that absorbed them was gibbed after.
 			continue
-		competitive_objectives = TRUE
 		break
 
 /datum/antagonist/changeling/Destroy()
@@ -63,8 +61,10 @@
 	var/honorific
 	if(owner.current.gender == FEMALE)
 		honorific = "Ms."
-	else
+	else if(owner.current.gender == MALE)
 		honorific = "Mr."
+	else
+		honorific = "Dear" // Yogs -- I refuse to use Mx, that sounds more like a pharmaceutical company than a person
 	if(GLOB.possible_changeling_IDs.len)
 		changelingID = pick(GLOB.possible_changeling_IDs)
 		GLOB.possible_changeling_IDs -= changelingID
@@ -87,6 +87,7 @@
 			forge_team_objectives()
 		forge_objectives()
 	remove_clownmut()
+	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
 	. = ..()
 
 /datum/antagonist/changeling/on_removal()
@@ -95,7 +96,7 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B && (B.decoy_override != initial(B.decoy_override)))
-			B.vital = TRUE
+			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
 	remove_changeling_powers()
 	. = ..()
@@ -185,7 +186,7 @@
 		to_chat(owner.current, "We have reached our capacity for abilities.")
 		return
 
-	if(owner.current.has_trait(TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
+	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
 
@@ -246,11 +247,11 @@
 		if(verbose)
 			to_chat(user, "<span class='warning'>[target] is not compatible with our biology.</span>")
 		return
-	if(target.has_trait(TRAIT_BADDNA))
+	if(HAS_TRAIT(target, TRAIT_BADDNA))
 		if(verbose)
 			to_chat(user, "<span class='warning'>DNA of [target] is ruined beyond usability!</span>")
 		return
-	if(target.has_trait(TRAIT_HUSK))
+	if(HAS_TRAIT(target, TRAIT_HUSK))
 		if(verbose)
 			to_chat(user, "<span class='warning'>[target]'s body is ruined beyond usability!</span>")
 		return
@@ -282,6 +283,8 @@
 	prof.underwear = H.underwear
 	prof.undershirt = H.undershirt
 	prof.socks = H.socks
+	if(H.mind)//yes we need to check this
+		prof.accent = H.mind.accent_name
 
 	var/list/slots = list("head", "wear_mask", "back", "wear_suit", "w_uniform", "shoes", "belt", "gloves", "glasses", "ears", "wear_id", "s_store")
 	for(var/slot in slots)
@@ -348,7 +351,7 @@
 	if(istype(C))
 		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
-			B.vital = FALSE
+			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
 	update_changeling_icons_added()
 	return
@@ -392,7 +395,13 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	var/other_changelings_exist = FALSE
+	for(var/datum/antagonist/changeling/CL in GLOB.antagonists)
+		if(CL != src)
+			other_changelings_exist = TRUE
+			break
+
+	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
@@ -514,6 +523,7 @@
 	var/underwear
 	var/undershirt
 	var/socks
+	var/accent = null
 
 /datum/changelingprofile/Destroy()
 	qdel(dna)
@@ -533,6 +543,7 @@
 	newprofile.underwear = underwear
 	newprofile.undershirt = undershirt
 	newprofile.socks = socks
+	newprofile.accent = accent
 
 
 /datum/antagonist/changeling/xenobio
@@ -566,6 +577,7 @@
 
 	if(changelingwin)
 		parts += "<span class='greentext'>The changeling was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext/changelingwin, owner.current.client) //changeling wins, give achivement
 	else
 		parts += "<span class='redtext'>The changeling has failed.</span>"
 

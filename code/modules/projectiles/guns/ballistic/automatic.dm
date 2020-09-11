@@ -233,10 +233,10 @@
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
-	..()
-	to_chat(user, "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover.")
+	. = ..()
+	. += "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover."
 	if(cover_open && magazine)
-		to_chat(user, "<span class='notice'>It seems like you could use an <b>empty hand</b> to remove the magazine.</span>")
+		. += "<span class='notice'>It seems like you could use an <b>empty hand</b> to remove the magazine.</span>"
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
@@ -300,7 +300,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
-	zoom_out_amt = 13
+	zoom_out_amt = 5
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE

@@ -343,7 +343,7 @@
 	icon_state = "barbook"
 	author = "Sir John Rose"
 	title = "Barman Recipes: Mixing Drinks and Changing Lives"
-	page_link = "Guide_to_food_and_drinks"
+	page_link = "Guide_to_drinks"
 
 /obj/item/book/manual/wiki/robotics_cyborgs
 	name = "Robotics for Dummies"
@@ -373,13 +373,20 @@
 	title = "Cloning techniques of the 26th century"
 	page_link = "Guide_to_genetics#Cloning"
 
+/obj/item/book/manual/wiki/medical_genetics
+	name = "Genetics of the 26th century"
+	icon_state ="bookCloning"
+	author = "Dr. Likes-The-Powers "
+	title = "Genetics of the 26th century"
+	page_link = "Guide_to_genetics"
+
 /obj/item/book/manual/wiki/cooking_to_serve_man
 	name = "To Serve Man"
 	desc = "It's a cookbook!"
 	icon_state ="cooked_book"
 	author = "the Kanamitan Empire"
 	title = "To Serve Man"
-	page_link = "Guide_to_food_and_drinks"
+	page_link = "Guide_to_food"
 
 /obj/item/book/manual/wiki/tcomms
 	name = "Subspace Telecommunications And You"
@@ -434,7 +441,7 @@
 			H.dropItemToGround(W)
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
-		H.add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		H.bleed_rate = 5
 		H.gib_animation()
 		sleep(3)

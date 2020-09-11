@@ -7,6 +7,10 @@
 #Ignore byond config folder.
 /cfg/**/*
 
+#Ignore changelog entries
+/html/changelogs/**/*
+/html/changelog.html
+
 #Ignore compiled files and other files generated during compilation.
 *.mdme
 *.dmb
@@ -209,3 +213,9 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
+
+#KDIFF3 files
+*.orig
+
+#Debugging and other stuff
+extools.dll

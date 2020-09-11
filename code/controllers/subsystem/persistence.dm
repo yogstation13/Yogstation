@@ -12,8 +12,10 @@ SUBSYSTEM_DEF(persistence)
 	var/list/antag_rep = list()
 	var/list/antag_rep_change = list()
 	var/list/picture_logging_information = list()
-	var/list/obj/structure/sign/picture_frame/photo_frames
-	var/list/obj/item/storage/photo_album/photo_albums
+	var/list/obj/structure/sign/picture_frame/photo_frames = list()
+	var/list/obj/item/storage/photo_album/photo_albums = list()
+	var/list/obj/structure/sign/painting/painting_frames = list()
+	var/list/paintings = list()
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -23,6 +25,8 @@ SUBSYSTEM_DEF(persistence)
 	LoadPhotoPersistence()
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
+	LoadRandomizedRecipes()
+	LoadPaintings()
 	return ..()
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
@@ -146,6 +150,8 @@ SUBSYSTEM_DEF(persistence)
 	SavePhotoPersistence()						//THIS IS PERSISTENCE, NOT THE LOGGING PORTION.
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
+	SaveRandomizedRecipes()
+	SavePaintings()
 
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
@@ -282,3 +288,61 @@ SUBSYSTEM_DEF(persistence)
 	fdel(FILE_ANTAG_REP)
 	text2file(json_encode(antag_rep), FILE_ANTAG_REP)
 
+
+/datum/controller/subsystem/persistence/proc/LoadRandomizedRecipes()
+	var/json_file = file("data/RandomizedChemRecipes.json")
+	var/json
+	if(fexists(json_file))
+		json = json_decode(file2text(json_file))
+
+	for(var/randomized_type in subtypesof(/datum/chemical_reaction/randomized))
+		var/datum/chemical_reaction/randomized/R = new randomized_type
+		var/loaded = FALSE
+		if(R.persistent && json)
+			var/list/recipe_data = json[R.id]
+			if(recipe_data)
+				if(R.LoadOldRecipe(recipe_data) && (daysSince(R.created) <= R.persistence_period))
+					loaded = TRUE
+		if(!loaded) //We do not have information for whatever reason, just generate new one
+			R.GenerateRecipe()
+
+		if(!R.HasConflicts()) //Might want to try again if conflicts happened in the future.
+			add_chemical_reaction(R)
+
+/datum/controller/subsystem/persistence/proc/SaveRandomizedRecipes()
+	var/json_file = file("data/RandomizedChemRecipes.json")
+	var/list/file_data = list()
+
+	//asert globchems done
+	for(var/randomized_type in subtypesof(/datum/chemical_reaction/randomized))
+		var/datum/chemical_reaction/randomized/R = randomized_type
+		R = get_chemical_reaction(initial(R.id)) //ew, would be nice to add some simple tracking
+		if(R && R.persistent && R.id)
+			var/recipe_data = list()
+			recipe_data["timestamp"] = R.created
+			recipe_data["required_reagents"] = R.required_reagents
+			recipe_data["required_catalysts"] = R.required_catalysts
+			recipe_data["required_temp"] = R.required_temp
+			recipe_data["is_cold_recipe"] = R.is_cold_recipe
+			recipe_data["results"] = R.results
+			recipe_data["required_container"] = "[R.required_container]"
+			file_data["[R.id]"] = recipe_data
+
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(file_data))
+
+/datum/controller/subsystem/persistence/proc/LoadPaintings()
+	var/json_file = file("data/paintings.json")
+	if(fexists(json_file))
+		paintings = json_decode(file2text(json_file))
+
+	for(var/obj/structure/sign/painting/P in painting_frames)
+		P.load_persistent()
+
+/datum/controller/subsystem/persistence/proc/SavePaintings()
+	for(var/obj/structure/sign/painting/P in painting_frames)
+		P.save_persistent()
+
+	var/json_file = file("data/paintings.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(paintings))

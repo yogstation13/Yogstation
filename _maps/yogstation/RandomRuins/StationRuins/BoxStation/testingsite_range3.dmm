@@ -1,0 +1,444 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
+"e" = (
+/obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'BOMB RANGE";
+	name = "BOMB RANGE"
+	},
+/turf/closed/wall,
+/area/science/test_area)
+"f" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"h" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"j" = (
+/turf/open/space/basic,
+/area/space)
+"k" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"l" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"m" = (
+/turf/closed/indestructible{
+	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
+	icon_state = "riveted";
+	name = "hyper-reinforced wall"
+	},
+/area/science/test_area)
+"n" = (
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/target/clown,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"o" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/grown/bananapeel,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"p" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"q" = (
+/obj/machinery/camera{
+	active_power_usage = 0;
+	c_tag = "Bomb Test Site";
+	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
+	dir = 8;
+	invuln = 1;
+	name = "Hardened Bomb-Test Camera";
+	network = list("toxins");
+	use_power = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/flashlight/lamp/bananalamp{
+	pixel_y = 3
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"r" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"t" = (
+/turf/closed/wall,
+/area/science/test_area)
+"w" = (
+/obj/item/beacon,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"x" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"B" = (
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"G" = (
+/obj/item/target/clown,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"H" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"I" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/item/target/clown,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"J" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"L" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"N" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"O" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"P" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"S" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"T" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"U" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+"W" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/science/test_area)
+
+(1,1,1) = {"
+j
+j
+j
+j
+j
+j
+c
+j
+c
+j
+j
+j
+j
+j
+j
+"}
+(2,1,1) = {"
+j
+j
+j
+j
+j
+c
+c
+j
+c
+c
+j
+j
+j
+j
+j
+"}
+(3,1,1) = {"
+j
+j
+j
+j
+c
+c
+S
+h
+S
+c
+c
+j
+j
+j
+j
+"}
+(4,1,1) = {"
+j
+j
+j
+c
+c
+e
+S
+f
+S
+e
+c
+c
+j
+j
+j
+"}
+(5,1,1) = {"
+j
+j
+c
+c
+S
+S
+l
+o
+O
+S
+S
+c
+c
+j
+j
+"}
+(6,1,1) = {"
+j
+j
+c
+t
+t
+J
+L
+G
+W
+p
+t
+t
+c
+j
+j
+"}
+(7,1,1) = {"
+c
+c
+c
+S
+n
+U
+B
+w
+B
+k
+I
+S
+c
+c
+c
+"}
+(8,1,1) = {"
+j
+j
+c
+t
+t
+N
+T
+B
+x
+P
+t
+t
+c
+j
+j
+"}
+(9,1,1) = {"
+j
+j
+c
+c
+S
+S
+H
+q
+r
+S
+S
+c
+c
+j
+j
+"}
+(10,1,1) = {"
+j
+j
+j
+c
+c
+e
+S
+m
+S
+e
+c
+c
+j
+j
+j
+"}
+(11,1,1) = {"
+j
+j
+j
+j
+c
+c
+S
+t
+S
+c
+c
+j
+j
+j
+j
+"}
+(12,1,1) = {"
+j
+j
+j
+j
+j
+c
+c
+c
+c
+c
+j
+j
+j
+j
+j
+"}
+(13,1,1) = {"
+j
+j
+j
+j
+j
+j
+c
+c
+c
+j
+j
+j
+j
+j
+j
+"}
+(14,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+c
+j
+j
+j
+j
+j
+j
+j
+"}
+(15,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+c
+j
+j
+j
+j
+j
+j
+j
+"}

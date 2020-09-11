@@ -8,14 +8,13 @@
 //why is this called hippie stop it thats bad
 
 /datum/admins/proc/checkMentorEditList(ckey)
-	var/sql_key = sanitizeSQL("[ckey]")
-	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = '[sql_key]')")
+	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = :key)", list("key" = ckey))
 	if(!query_memoedits.warn_execute())
 		qdel(query_memoedits)
 		return
 
 	if(query_memoedits.NextRow())
-		var/edit_log = query_memoedits.item[1]
+		var/edit_log = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + query_memoedits.item[1] + "</BODY></HTML>"
 		usr << browse(edit_log,"window=mentormemoeditlist")
 	qdel(query_memoedits)
 
@@ -32,27 +31,27 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>")
+			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>", confidential=TRUE)
 			return
 
 		new /datum/mentors(ckey)
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
+		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_get_mentor.warn_execute()
 		if(query_get_mentor.NextRow())
-			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>")
+			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>", confidential=TRUE)
 			qdel(query_get_mentor)
 			return
 		qdel(query_get_mentor)
 
-		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, '[ckey]')")
+		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, :ckey)", list("ckey" = ckey))
 		if(!query_add_mentor.warn_execute())
 			qdel(query_add_mentor)
 			return
 		qdel(query_add_mentor)
 
-		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added new mentor [ckey]');")
+		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , :usrckey, :address, :ckey);", list("usrckey" = usr.ckey, "address" = usr.client.address, "ckey" = "Added new mentor [ckey]"))
 		if(!query_add_admin_log.warn_execute())
 			qdel(query_add_admin_log)
 			return
@@ -61,7 +60,7 @@
 		webhook_send_mchange(owner.ckey, C.ckey, "add")
 
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
 
 	message_admins("[key_name_admin(usr)] added new mentor: [ckey]")
 	log_admin("[key_name(usr)] added new mentor: [ckey]")
@@ -79,7 +78,7 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>")
+			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>", confidential=TRUE)
 			return
 
 		C.remove_mentor_verbs()
@@ -87,14 +86,14 @@
 		GLOB.mentors -= C
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
+		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = :ckey", list("ckey" = ckey))
 		query_remove_mentor.warn_execute()
 		qdel(query_remove_mentor)
 
 		webhook_send_mchange(owner.ckey, C.ckey, "remove")
 
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
 
 	message_admins("[key_name_admin(usr)] removed mentor: [ckey]")
 	log_admin("[key_name(usr)] removed mentor: [ckey]")
