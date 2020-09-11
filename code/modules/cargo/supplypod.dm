@@ -100,7 +100,8 @@
 	update_icon()
 
 /obj/structure/closet/supplypod/tool_interact(obj/item/W, mob/user)
-	if(bluespace) //We dont want to worry about interacting with bluespace pods, as they are due to delete themselves soon anyways.
+	// Catching harm intent here so we dont put stuff into pod or have weird interactions
+	if(bluespace || user.a_intent == INTENT_HARM) //We dont want to worry about interacting with bluespace pods, as they are due to delete themselves soon anyways.
 		return FALSE
 	else
 		..()
