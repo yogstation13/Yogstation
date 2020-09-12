@@ -66,7 +66,7 @@
 	..()
 	var/didEscape = TRUE
 	for(var/datum/mind/wizard in wizards)
-		if(!considered_escaped(wizard))
+		if(!wizard.considered_escaped())
 			didEscape = FALSE
 	if(didEscape)
 		SSticker.mode_result = "win - wizard escaped the station"
