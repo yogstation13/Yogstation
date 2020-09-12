@@ -103,7 +103,7 @@
 	tastes = list("pure electricity" = 3, "fitness" = 2)
 	foodtype = TOXIC
 	
-/obj/item/reagent_containers/food/snacks/Gobstopper
+/obj/item/reagent_containers/food/snacks/gobstopper
 	name = "Nuclear Gobstopper"
 	icon_state = "gobstopper"
 	desc = "A Domestic Terrorist’s favorite candy! Disk not included."
