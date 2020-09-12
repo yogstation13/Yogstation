@@ -6,13 +6,9 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 
 /client/verb/antag_token_check()
 	set name = "Check/Use Antag Token"
-	set category = "OOC"
+	set category = "Admin"
 	set desc = "Check if you have an antag token, and if you do, use it."
 	var/client/C = usr.client
-
-	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, "<span class='userdanger'>You must use this in the lobby!</span>")
-		return
 
 	if(world.time < C.last_antag_token_check)
 		to_chat(usr, "<span class='userdanger'>You cannot use this verb yet! Please wait.</span>")
@@ -27,6 +23,9 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	C.last_antag_token_check = world.time + AntagTokenCooldown
 
 	if(query_antag_token_existing.NextRow())
+		if(SSticker.current_state > GAME_STATE_PREGAME)
+			to_chat(usr, "<span class='userdanger'>You have an antag token. You can use this button in the pre-game lobby to use it!</span>")
+			return
 		if(alert("You have an antag token! Do you want to use it? YOU CAN GET ANTAG'S THAT YOU HAVE DISABLED IN YOUR PREFERENCES",, "Yes", "No") != "Yes")
 			qdel(query_antag_token_existing)
 			return
