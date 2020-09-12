@@ -49,7 +49,7 @@
 
 	if(station_was_nuked)
 		SSticker.mode_result = "win - AI doomsday"
-	else if(didAntagsWin(traitors))
+	else if(didAntagsWin(traitors, /datum/antagonist/traitor/malf))
 		SSticker.mode_result = "win - AI achieved their objectives"
 	else if(!are_special_antags_dead())
 		SSticker.mode_result = "halfwin - evacuation - AI survived"
