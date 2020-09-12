@@ -641,9 +641,12 @@
   * Given a list of minds, returns TRUE if they completed all their objectives, FALSE otherwise
   */
 /datum/game_mode/proc/didAntagsWin(list/antags)
-	for(var/datum/mind/m in antags)
-		for(var/datum/antagonist/a in m)
-			for(var/datum/objective/objective in a.objectives)
+	for(var/m in antags)
+		var/datum/mind/mind = m
+		for(var/a in mind.antag_datums)
+			var/datum/antagonist/antagonist = a
+			for(var/o in antagonist.objectives)
+				var/datum/objective/objective = o
 				if(!objective.check_completion())
 					return FALSE
 	return TRUE
