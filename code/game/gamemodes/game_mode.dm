@@ -638,6 +638,14 @@
 			SSticker.news_report = SHUTTLE_HIJACK
 
 
+/datum/game_mode/proc/didAntagsWin(list/antags)
+	for(var/datum/mind/m in antags)
+		for(var/datum/antagonist/a in m)
+			for(var/datum/objective/objective in a.objectives)
+				if(!objective.check_completion())
+					return FALSE
+	return TRUE
+
 /datum/game_mode/proc/AdminPanelEntry()
 	return
 
