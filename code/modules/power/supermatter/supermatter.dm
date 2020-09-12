@@ -307,15 +307,19 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	explode()
 
 /obj/machinery/power/supermatter_crystal/proc/explode()
-	for(var/mob/living/M in GLOB.alive_mob_list)
+	for(var/mob in GLOB.alive_mob_list)
+		var/mob/living/M = mob
 		var/turf/T2 = get_turf_global(M)
 		if(istype(M) && T2 && T2.z == z)
-			M.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) )
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) )
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(M, src) + 1) )
 			M.rad_act(rads)
 
 	var/turf/T = get_turf(src)
-	for(var/mob/M in GLOB.player_list)
+	for(var/_M in GLOB.player_list)
+		var/mob/M = _M
 		var/turf/T2 = get_turf(M)
 		if(T2.z == z)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
