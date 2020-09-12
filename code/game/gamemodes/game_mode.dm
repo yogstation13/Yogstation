@@ -637,7 +637,9 @@
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
 
-
+/**
+  * Given a list of minds, returns TRUE if they completed all their objectives, FALSE otherwise
+  */
 /datum/game_mode/proc/didAntagsWin(list/antags)
 	for(var/datum/mind/m in antags)
 		for(var/datum/antagonist/a in m)
