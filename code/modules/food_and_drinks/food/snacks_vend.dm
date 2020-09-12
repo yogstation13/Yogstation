@@ -105,10 +105,10 @@
 	
 /obj/item/reagent_containers/food/snacks/Gobstopper
 	name = "Nuclear Gobstopper"
-	icon_state = "energybar"
+	icon_state = "gobstopper"
 	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
-	trash = /obj/item/trash/energybar
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, )
+	trash = /obj/item/trash/gobstopper
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/medicine/inacusiate = 1)
 	tastes = list("candy" = 1)
 	filling_color = "#97ee63"
 	foodtype = JUNKFOOD | SUGAR
