@@ -102,3 +102,13 @@
 	filling_color = "#97ee63"
 	tastes = list("pure electricity" = 3, "fitness" = 2)
 	foodtype = TOXIC
+	
+/obj/item/reagent_containers/food/snacks/Gobstopper
+	name = "Nuclear Gobstopper"
+	icon_state = "energybar"
+	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
+	trash = /obj/item/trash/energybar
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, )
+	tastes = list("candy" = 1)
+	filling_color = "#97ee63"
+	foodtype = JUNKFOOD | SUGAR
