@@ -64,9 +64,13 @@
 
 /datum/game_mode/wizard/set_round_result()
 	..()
-	if(finished)
+	if(didAntagsWin(wizards))
+		SSticker.mode_result = "win - wizard completed their objectives"
+	else if(are_special_antags_dead)
 		SSticker.mode_result = "loss - wizard killed"
 		SSticker.news_report = WIZARD_KILLED
+	else 
+		SSticker.mode_result = "halfwin - evacuation - wizard survived"
 
 /datum/game_mode/wizard/special_report()
 	if(finished)
