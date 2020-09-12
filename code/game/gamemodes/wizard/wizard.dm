@@ -64,13 +64,17 @@
 
 /datum/game_mode/wizard/set_round_result()
 	..()
-	if(didAntagsWin(wizards))
-		SSticker.mode_result = "win - wizard completed their objectives"
+	var/didEscape = TRUE
+	for(var/datum/mind/wizard in wizards)
+		if(!considered_escaped(wizard))
+			didEscape = FALSE
+	if(didEscape)
+		SSticker.mode_result = "win - wizard escaped the station"
 	else if(are_special_antags_dead())
 		SSticker.mode_result = "loss - wizard killed"
 		SSticker.news_report = WIZARD_KILLED
 	else 
-		SSticker.mode_result = "halfwin - evacuation - wizard survived"
+		SSticker.mode_result = "halfwin - evacuation - wizard marooned"
 
 /datum/game_mode/wizard/special_report()
 	if(finished)
