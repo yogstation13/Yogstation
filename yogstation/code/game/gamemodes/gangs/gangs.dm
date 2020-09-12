@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	round_credits += ..()
 	return round_credits
 
-/datum/game_mode/wizard/set_round_result()
+/datum/game_mode/gang/set_round_result()
 	..()
 	var/didGangsWin = FALSE
 	for(var/datum/team/gang/G in GLOB.gangs)
