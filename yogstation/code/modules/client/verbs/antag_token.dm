@@ -1,5 +1,5 @@
 //2.5 minutes, gotta prevent DDoSing using SQL
-#define AntagTokenCooldown 1500
+#define ANTAG_TOKEN_COOLDOWN 1500
 
 //List of all people using antag tokens this round
 GLOBAL_LIST_EMPTY(antag_token_users)
@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		qdel(query_antag_token_existing)
 		return
 
-	C.last_antag_token_check = world.time + AntagTokenCooldown
+	C.last_antag_token_check = world.time + ANTAG_TOKEN_COOLDOWN
 
 	if(query_antag_token_existing.NextRow())
 		if(SSticker.current_state > GAME_STATE_PREGAME)
@@ -89,3 +89,5 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	else
 		message_admins("Failed to use antag token for player '[ckey]'! Please do this manually!")
 	qdel(query_antag_token)
+
+#undef ANTAG_TOKEN_COOLDOWN
