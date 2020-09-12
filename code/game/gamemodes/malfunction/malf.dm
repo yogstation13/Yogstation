@@ -46,17 +46,10 @@
 
 /datum/game_mode/malf/set_round_result()
 	..()
-	var/didTheAIsWin = TRUE
-	for(var/datum/mind/ai in traitors)
-		for(var/datum/antagonist/a in ai)
-			for(var/datum/objective/objective in a.objectives)
-				if(!objective.check_completion())
-					didTheAIsWin = FALSE
-					break
-					
+
 	if(station_was_nuked)
 		SSticker.mode_result = "win - AI doomsday"
-	else if(didTheAIsWin)
+	else if(didAntagsWin(traitors))
 		SSticker.mode_result = "win - AI achieved their objectives"
 	else if(!are_special_antags_dead())
 		SSticker.mode_result = "halfwin - evacuation - AI survived"
