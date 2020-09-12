@@ -1,0 +1,4 @@
+author: "SiclaRogue"
+delete-after: true 
+changes: 
+  - tweak: "Player must now be in grab intent to attempt a fireman's lift."
