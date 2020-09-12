@@ -25,6 +25,7 @@
 /datum/wires
 	var/atom/holder = null // The holder (atom that contains these wires).
 	var/holder_type = null // The holder's typepath (used to make wire colors common to all holders).
+	var/dictionary_key = null // Key that enables wire assignments to be common across different holders. If null, will use the holder_type as a key.
 	var/proper_name = "Unknown" // The display name for the wire set shown in station blueprints. Not used if randomize is true or it's an item NT wouldn't know about (Explosives/Nuke)
 
 	var/list/wires = list() // List of wires.
@@ -40,15 +41,19 @@
 		CRASH("Wire holder is not of the expected type!")
 
 	src.holder = holder
+	
+	// If there is a dictionary key set, we'll want to use that. Otherwise, use the holder type.
+	var/key = dictionary_key ? dictionary_key : holder_type
+
 	if(randomize)
 		randomize()
 	else
-		if(!GLOB.wire_color_directory[holder_type])
+		if(!GLOB.wire_color_directory[key])
 			randomize()
-			GLOB.wire_color_directory[holder_type] = colors
-			GLOB.wire_name_directory[holder_type] = proper_name
+			GLOB.wire_color_directory[key] = colors
+			GLOB.wire_name_directory[key] = proper_name
 		else
-			colors = GLOB.wire_color_directory[holder_type]
+			colors = GLOB.wire_color_directory[key]
 
 /datum/wires/Destroy()
 	holder = null
@@ -250,6 +255,7 @@
 		)))
 	data["wires"] = payload
 	data["status"] = get_status()
+	data["proper_name"] = (proper_name != "Unknown") ? proper_name : null
 	return data
 
 /datum/wires/ui_act(action, params)

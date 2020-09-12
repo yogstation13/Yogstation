@@ -19,6 +19,7 @@
 /area/clerk
 	name = "Clerks office"
 	icon_state = "cafeteria"
+	airlock_wires = /datum/wires/airlock/service
 
 /area/maintenance
 	ambientsounds = list('sound/ambience/ambimaint1.ogg',
