@@ -66,7 +66,7 @@
 	..()
 	if(didAntagsWin(wizards))
 		SSticker.mode_result = "win - wizard completed their objectives"
-	else if(are_special_antags_dead)
+	else if(are_special_antags_dead())
 		SSticker.mode_result = "loss - wizard killed"
 		SSticker.news_report = WIZARD_KILLED
 	else 
