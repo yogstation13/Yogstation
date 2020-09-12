@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Deck of holy tarot cards now deals no damage after summoning"
