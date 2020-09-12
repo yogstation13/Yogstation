@@ -1,5 +1,6 @@
 /datum/wires/mulebot
 	holder_type = /mob/living/simple_animal/bot/mulebot
+	proper_name = "MULEbot"
 	randomize = TRUE
 
 /datum/wires/mulebot/New(atom/holder)

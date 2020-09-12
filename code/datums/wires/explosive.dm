@@ -1,5 +1,6 @@
 /datum/wires/explosive
 	var/duds_number = 2
+	proper_name = "Explosive Device"
 
 /datum/wires/explosive/New(atom/holder)
 	add_duds(duds_number) // In this case duds actually explode.
