@@ -115,16 +115,13 @@
 	. = list()
 	.["product_records"] = list()
 	for(var/datum/data/mining_equipment/prize in prize_list)
-		if(!.["product_records"][prize.category])
-			.["product_records"][prize.category] = list("category_name" = prize.category, "products" = list())
 		var/list/product_data = list(
 			path = replacetext(replacetext("[prize.equipment_path]", "/obj/item/", ""), "/", "-"),
 			name = prize.equipment_name,
 			price = prize.cost,
 			ref = REF(prize)
 		)
-		.["product_records"][prize.category]["products"] += list(product_data)
-
+		.["product_records"] += list(product_data)
 
 /obj/machinery/mineral/equipment_vendor/ui_data(mob/user)
 	. = list()
