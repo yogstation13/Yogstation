@@ -217,8 +217,8 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/titaniumglass
 
-	/obj/item/stack/sheet/titaniumglass/fifty
-		amount = 50
+/obj/item/stack/sheet/titaniumglass/fifty
+	amount = 50
 
 /obj/item/stack/sheet/titaniumglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.titaniumglass_recipes
