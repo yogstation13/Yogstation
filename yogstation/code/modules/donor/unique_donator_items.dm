@@ -16,7 +16,7 @@ GLOBAL_DATUM_INIT(donator_gear, /datum/donator_gear_resources, new)
 /client/proc/custom_donator_item()
 	if(!is_donator(src))
 		to_chat(src, "<span class='warning'>You're not a donator! To access this feature, considering donating today!</span>")
-	//	return todo: lazy
+		return
 	GLOB.donator_gear.ui_interact(usr)//datum has a tgui component, here we open the window
 
 /datum/donator_gear_resources
@@ -50,13 +50,15 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.alw
 		if(S && lowertext(S.ckey) == lowertext(user?.client?.ckey) || !S.ckey) //Nulled out Ckey entries are assumed to be owned by all donators.
 			var/list/item_info = list()
 			item_info["name"] = S.name
-			item_info["selected"] = text2path(user?.client?.prefs.donor_item) == S.unlock_path || text2path(user?.client?.prefs.donor_hat) == S.unlock_path
+			item_info["selected"] = "[user?.client?.prefs.donor_item]" == "[S.unlock_path]" || "[user?.client?.prefs.donor_hat]" == "[S.unlock_path]"
 			item_info["id"] = "\ref[S]"
 			//Bit of sorting on the UI to make it nicer to look at.
 			if(S.slot == SLOT_HEAD)
-				items_info["hats"][++items_info["hats"].len] = item_info
+				var/list/L = items_info["hats"] //To dodge the annoying linting error. This one really irks me.
+				items_info["hats"][++L.len] = item_info
 			else
-				items_info["items"][++items_info["items"].len] = item_info
+				var/list/L = items_info["items"] //To dodge the annoying linting error. This one really irks me.
+				items_info["items"][++L.len] = item_info
 	data["items_info"] = items_info
 	return data
 
