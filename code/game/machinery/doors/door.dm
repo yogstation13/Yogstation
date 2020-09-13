@@ -360,7 +360,7 @@
 					bodypart.dismember() //RIP HIM LIMB BY LIMB
 					break
 			L.emote("scream")
-			L.Paralyze(13)
+			L.Paralyze(9)
 		else if(ismonkey(L)) //For monkeys
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
 			L.Paralyze(100)
