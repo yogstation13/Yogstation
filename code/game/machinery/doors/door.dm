@@ -354,7 +354,8 @@
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.
 			L.emote("roar")
 		else if(ishuman(L)) //For humans
-			for (var/obj/item/bodypart/bodypart in L.bodyparts)
+			var/mob/living/carbon/CL = L
+			for (var/obj/item/bodypart/bodypart in CL.bodyparts)
 				if(bodypart.body_part != CHEST)
 					if (bodypart.dismemberable)
 						bodypart.dismember() //RIP HIM LIMB BY LIMB
