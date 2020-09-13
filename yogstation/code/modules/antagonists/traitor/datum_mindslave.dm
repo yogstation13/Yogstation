@@ -12,6 +12,9 @@
 	var/obj/item/implant/mindslave/IMP = locate() in new_body.implants
 	if(!IMP)
 		on_removal()
+/datum/antagonist/mindslave/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	update_traitor_icons_added()
 
 /datum/antagonist/mindslave/proc/update_traitor_icons_added(datum/mind/slave_mind)
 	var/datum/atom_hud/antag/slavehud = GLOB.huds[ANTAG_HUD_MINDSLAVE]
@@ -43,6 +46,10 @@
 	var/obj/item/implant/greytide/IMP = locate() in new_body.implants
 	if(!IMP)
 		on_removal()
+
+/datum/antagonist/greytide/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	update_traitor_icons_added()
 
 /datum/antagonist/greytide/proc/update_traitor_icons_added(datum/mind/slave_mind)
 	var/datum/atom_hud/antag/slavehud = GLOB.huds[ANTAG_HUD_MINDSLAVE]
