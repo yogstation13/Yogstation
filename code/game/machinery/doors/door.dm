@@ -356,7 +356,7 @@
 		else if(ishuman(L)) //For humans
 			var/mob/living/carbon/CL = L
 			for (var/obj/item/bodypart/bodypart in CL.bodyparts)
-				if((bodypart.body_part != (CHEST || HEAD)) && (bodypart.dismemberable))
+				if((bodypart.body_part != HEAD) && (bodypart.body_part != CHEST) && bodypart.dismemberable)
 					bodypart.dismember() //RIP HIM LIMB BY LIMB
 					break
 			L.emote("scream")
