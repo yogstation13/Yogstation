@@ -548,3 +548,9 @@
 		to_chat(user, "<span class='info'>You snuff out the flame on [src].</span>")
 		cut_overlay(GLOB.fire_overlay)
 		active = 0
+		
+/obj/item/reagent_containers/food/drinks/bottle/maltliquor
+	name = "\improper Rabid Bear malt liquor"
+	desc = "A 40 full of malt liquor. Kicks stronger than, well, a rabid bear."
+	icon_state = "maltliquorbottle"
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/maltliquor = 100)

@@ -11427,6 +11427,10 @@
 /obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"yN" = (
+/obj/effect/turf_decal/loading_area,
+/turf/open/floor/plasteel,
+/area)
 "yQ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -12720,14 +12724,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"BB" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/lockbox/loyalty,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/centcom/ferry)
 "BC" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
@@ -13426,13 +13422,6 @@
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/centcom/control)
-"CK" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
@@ -17603,6 +17592,11 @@
 "KH" = (
 /turf/closed/wall/mineral/titanium,
 /area/centcom/evac)
+"KI" = (
+/obj/structure/grille/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructable,
+/turf/open/floor/plating,
+/area/centcom/testchamber)
 "KL" = (
 /obj/item/storage/box/donkpockets,
 /obj/effect/turf_decal/tile/bar{
@@ -18609,6 +18603,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Oa" = (
+/obj/machinery/door/poddoor/deathsquad,
+/obj/effect/turf_decal/delivery/red,
+/turf/open/floor/plasteel/dark,
+/area)
 "Ob" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -18997,6 +18996,13 @@
 "OQ" = (
 /turf/open/space/bluespace_locker_mirage,
 /area/bluespace_locker)
+"OT" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area)
 "OU" = (
 /obj/item/clothing/under/jabroni,
 /obj/item/clothing/under/geisha,
@@ -20178,6 +20184,10 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Sc" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/indestructible/riveted,
+/area)
 "Sd" = (
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
@@ -21181,9 +21191,20 @@
 /obj/item/gun/ballistic/automatic/sniper_rifle,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"UY" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/lockbox/loyalty,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area)
 "Va" = (
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+"Vb" = (
+/turf/closed/indestructible/riveted,
+/area)
 "Ve" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21463,11 +21484,6 @@
 "VQ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel,
-/area/centcom/testchamber)
-"VS" = (
-/obj/structure/grille/indestructable,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
 /area/centcom/testchamber)
 "VT" = (
 /obj/structure/chair/comfy/shuttle{
@@ -22766,6 +22782,9 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
+"Zi" = (
+/turf/open/floor/plasteel/dark,
+/area)
 "Zk" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -59284,7 +59303,7 @@ wu
 mD
 mD
 rz
-yc
+Oa
 yc
 yc
 yc
@@ -60570,7 +60589,7 @@ rz
 uV
 zA
 sw
-zA
+Zi
 sw
 zA
 Cu
@@ -63141,7 +63160,7 @@ zg
 sw
 Aj
 AQ
-BB
+UY
 sw
 CD
 mD
@@ -64941,7 +64960,7 @@ zF
 Am
 tP
 iu
-io
+Vb
 rN
 CX
 iC
@@ -65256,7 +65275,7 @@ NX
 wS
 wS
 YU
-VS
+KI
 aa
 aa
 aa
@@ -65513,7 +65532,7 @@ Wk
 NX
 wS
 Ve
-VS
+KI
 aa
 aa
 aa
@@ -65770,7 +65789,7 @@ YF
 uh
 wS
 Mk
-VS
+KI
 aa
 aa
 aa
@@ -65969,7 +65988,7 @@ nq
 An
 in
 io
-in
+Sc
 CI
 CY
 wH
@@ -66484,7 +66503,7 @@ nq
 qT
 BE
 NU
-wH
+yN
 nq
 np
 nq
@@ -66741,7 +66760,7 @@ xo
 mk
 BE
 iu
-CK
+OT
 nq
 nq
 nq
@@ -67312,7 +67331,7 @@ YF
 uh
 wS
 Mk
-VS
+KI
 aa
 aa
 aa
@@ -67569,7 +67588,7 @@ OH
 VN
 wS
 Ve
-VS
+KI
 aa
 aa
 aa
@@ -67826,7 +67845,7 @@ VN
 wS
 wS
 QG
-VS
+KI
 aa
 aa
 aa

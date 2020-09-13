@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_CAPITALIST = new/datum/atom_hud/antag(),
 	ANTAG_HUD_COMMUNIST = new/datum/atom_hud/antag(),
 	ANTAG_HUD_MINDSLAVE = new/datum/atom_hud/antag/hidden()
+	ANTAG_HUD_HERETIC = new/datum/atom_hud/antag/hidden()
 	))
 
 /datum/atom_hud

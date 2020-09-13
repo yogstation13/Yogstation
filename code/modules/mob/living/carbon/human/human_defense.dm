@@ -401,6 +401,8 @@
 
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
+	if(TRAIT_BOMBIMMUNE in dna.species.species_traits)
+		return
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
 	..()

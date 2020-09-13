@@ -5,11 +5,10 @@
 	set name = "Say"
 	set category = "IC"
 
-	var/oldmsg = message //yogs start - pretty filter
-	message = pretty_filter(message)
-	if(oldmsg != message)
+	//yogs start - pretty filter
+	if(isnotpretty(message))
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
-		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
+		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 		return
 	if(isliving(src))
 		message = minor_filter(to_utf8(message)) //yogs end - pretty filter
@@ -25,11 +24,10 @@
 	set name = "Whisper"
 	set category = "IC"
 
-	var/oldmsg = message //yogs start - pretty filter
-	message = pretty_filter(message)
-	if(oldmsg != message)
+	//yogs start - pretty filter
+	if(isnotpretty(message))
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
-		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
+		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 		return
 	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
 
