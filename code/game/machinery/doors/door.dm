@@ -356,10 +356,9 @@
 		else if(ishuman(L)) //For humans
 			var/mob/living/carbon/CL = L
 			for (var/obj/item/bodypart/bodypart in CL.bodyparts)
-				if(bodypart.body_part != CHEST)
-					if (bodypart.dismemberable)
-						bodypart.dismember() //RIP HIM LIMB BY LIMB
-						break
+				if((bodypart.body_part != (CHEST || HEAD)) && (bodypart.dismemberable))
+					bodypart.dismember() //RIP HIM LIMB BY LIMB
+					break
 			L.emote("scream")
 			L.Paralyze(25)
 		else if(ismonkey(L)) //For monkeys
