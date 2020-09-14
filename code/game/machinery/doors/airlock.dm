@@ -594,7 +594,6 @@
 		base.add_overlay(get_airlock_overlay(notetype, note_overlay_file))
 
 /obj/machinery/door/airlock/proc/set_airlock_overlays(state)
-
 	for(var/obj/effect/overlay/airlock_part/part in part_overlays)
 		set_side_overlays(part, state == AIRLOCK_CLOSING || state == AIRLOCK_OPENING)
 		if(part.aperture_angle)
@@ -637,7 +636,7 @@
 					animate(pixel_x = part.open_px, pixel_y = part.open_py, time = part.move_end_time - part.move_start_time)
 
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
+	cut_overlays()
 	SSvis_overlays.add_vis_overlay(src, overlays_file, "frame", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 	switch(state)
@@ -696,7 +695,6 @@
 		. = airlock_overlays[iconkey] = mutable_appearance(icon_file, icon_state)
 
 /obj/machinery/door/airlock/proc/check_unres() //unrestricted sides. This overlay indicates which directions the player can access even without an ID
-	cut_overlays()
 	if(hasPower() && unres_sides)
 		if(unres_sides & NORTH)
 			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_n")
