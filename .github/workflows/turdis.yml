@@ -52,7 +52,7 @@ jobs:
           
       - name: Annotate Linter
         uses: yogstation13/DreamAnnotate@v1
-        if: ${{ steps.linter.outcome == 'failure' }}
+        if: always()
         with: 
           outputFile: output-annotations.txt
         
