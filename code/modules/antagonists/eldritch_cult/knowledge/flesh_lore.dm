@@ -212,13 +212,13 @@
 /datum/eldritch_knowledge/final/flesh_final
 	name = "Priest's Final Hymn"
 	gain_text = "Men of the world; Hear me! For the time of the Lord of Arms has come!"
-	desc = "Bring 3 bodies onto a transmutation rune to either ascend as the King of the Night or summon a Terror of the Night."
+	desc = "Bring 3 bodies onto a transmutation rune to either ascend as the King of the Night or summon a Terror of the Night and triple your ghoul maximum."
 	required_atoms = list(/mob/living/carbon/human)
 	cost = 3
 	route = PATH_FLESH
 
 /datum/eldritch_knowledge/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or just summon a Terror of the Night?","...","Yes","No")
+	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or empower yourself and summon a Terror of the Night?","...","Yes","No")
 	user.SetImmobilized(10 HOURS) // no way someone will stand 10 hours in a spot, just so he can move while the alert is still showing.
 	switch(alert_)
 		if("No")
@@ -226,9 +226,16 @@
 			message_admins("[summoned.name] is being summoned by [user.real_name] in [loc]")
 			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
 			user.SetImmobilized(0)
+			var/datum/antagonist/heretic/heretic = user.mind.has_antag_datum(/datum/antagonist/heretic)
+			var/datum/eldritch_knowledge/flesh_grasp/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_grasp)
+			ghoul1.ghoul_amt *= 3
+			var/datum/eldritch_knowledge/flesh_ghoul/ghoul2 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_ghoul)
+			ghoul2.max_amt *= 3
 			if(LAZYLEN(candidates) == 0)
 				to_chat(user,"<span class='warning'>No ghost could be found...</span>")
 				qdel(summoned)
+				ghoul1.max_amt /= 3
+				ghoul2.max_amt /= 3
 				return FALSE
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for Vassal of Arms has ascended! The Terror of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
