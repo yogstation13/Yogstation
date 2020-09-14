@@ -17,18 +17,52 @@
 	var/dist = get_dist(user.loc,target.loc)
 	var/dir = get_dir(user.loc,target.loc)
 
-	switch(dist)
-		if(0 to 15)
-			to_chat(user,"<span class='warning'>[target.real_name] is near you. They are to the [dir2text(dir)] of you!</span>")
-		if(16 to 31)
-			to_chat(user,"<span class='warning'>[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!</span>")
-		if(32 to 127)
-			to_chat(user,"<span class='warning'>[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!</span>")
-		else
-			to_chat(user,"<span class='warning'>[target.real_name] is beyond our reach.</span>")
+	if(user.z != target.z)
+		to_chat(user,"<span class='warning>[target.real_name] is ... vertical to you?</span>")
+	else
+		switch(dist)
+			if(0 to 15)
+				to_chat(user,"<span class='warning'>[target.real_name] is near you. They are to the [dir2text(dir)] of you!</span>")
+			if(16 to 31)
+				to_chat(user,"<span class='warning'>[target.real_name] is somewhere in your vicinty. They are to the [dir2text(dir)] of you!</span>")
+			if(32 to 127)
+				to_chat(user,"<span class='warning'>[target.real_name] is far away from you. They are to the [dir2text(dir)] of you!</span>")
+			else
+				to_chat(user,"<span class='warning'>[target.real_name] is beyond our reach.</span>")
 
 	if(target.stat == DEAD)
 		to_chat(user,"<span class='warning'>[target.real_name] is dead. Bring them onto a transmutation rune!</span>")
+
+/datum/action/innate/heretic_shatter
+	name = "Shattering Offer"
+	desc = "Smash your blade to release the entropic energies within it, teleporting you out of danger."
+	background_icon_state = "bg_ecult"
+	button_icon_state = "shatter"
+	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN
+	var/mob/living/carbon/human/holder
+	var/obj/item/melee/sickly_blade/sword
+
+/datum/action/innate/heretic_shatter/Grant(mob/user, obj/object)
+	sword = object
+	holder = user
+	//i know what im doing
+	return ..()
+
+/datum/action/innate/heretic_shatter/IsAvailable()
+	if(IS_HERETIC(holder) || IS_HERETIC_MONSTER(holder))
+		return TRUE
+	else
+		return FALSE
+
+/datum/action/innate/heretic_shatter/Activate()
+	var/turf/safe_turf = find_safe_turf(zlevels = sword.z, extended_safety_checks = TRUE)
+	holder.visible_message("<span class ='boldwarning'>Light bends around [holder] as they smash [sword], and in a moment they are gone.</span>", "<span class='notice'>You feel yourself begin to descend as [sword] breaks, before the darkness suddenly receeds and you find yourself somewhere else.</span>")
+	playsound(user, "shatter", 70, pressure_affected = FALSE)
+	playsound(user, "forcewall", 70, pressure_affected = FALSE)
+	flash_color(holder, flash_color = #000000, flash_time = 10)
+	do_teleport(holder,safe_turf,forceMove = TRUE)
+	qdel(sword)
 
 /obj/item/melee/sickly_blade
 	name = "Sickly blade"
@@ -47,6 +81,19 @@
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
+	var/datum/action/innate/heretic_shatter/linked_action
+
+/obj/item/melee/sickly_blade/Initialize()
+	. = ..()
+	linked_action = new(src)
+
+/obj/item/melee/sickly_blade/pickup(mob/user)
+	. = ..()
+	linked_action.Grant(user, src)
+
+/obj/item/melee/sickly_blade/dropped(mob/user, silent)
+	. = ..()
+	linked_action.Remove(user, src)
 
 /obj/item/melee/sickly_blade/attack(mob/living/M, mob/living/user)
 	if(!IS_HERETIC(user))
