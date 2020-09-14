@@ -24,6 +24,10 @@
 #define STIMULUM_ABSOLUTE_DROP				0.00000335
 #define REACTION_OPPRESSION_THRESHOLD		5
 #define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
+#define STIM_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
+#define STIM_BALL_MOLES_REQUIRED			2		//moles of reactant per radball emitted
+#define STIM_BALL_PLASMA_ENERGY				20000000//amount of energy released when plasma is consumed (into radballs) by stimball 
+#define STIM_BALL_PLASMA_COEFFICIENT		0.2		//fraction of plasma consumed during stim ball reaction	
 //Research point amounts
 #define NOBLIUM_RESEARCH_AMOUNT				1000
 #define BZ_RESEARCH_SCALE					4
