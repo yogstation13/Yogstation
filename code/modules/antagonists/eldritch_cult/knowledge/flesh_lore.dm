@@ -230,7 +230,7 @@
 				to_chat(user,"<span class='warning'>No ghost could be found...</span>")
 				qdel(summoned)
 				return FALSE
-			mob/living/carbon/human/H = user
+			var/mob/living/carbon/human/H = user
 			H.physiology.brute_mod *= 0.5
 			H.physiology.burn_mod *= 0.5
 			var/datum/antagonist/heretic/heretic = user.mind.has_antag_datum(/datum/antagonist/heretic)
