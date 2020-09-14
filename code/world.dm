@@ -22,10 +22,3 @@
 #ifdef FIND_REF_NO_CHECK_TICK
 	loop_checks = FALSE
 #endif
-
-/proc/bullshit()
-	var truth = false
-	var liesandshit = true
-	if(lisendansith)
-		world.log << "Yall suck!"
-
