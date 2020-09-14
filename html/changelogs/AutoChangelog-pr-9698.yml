@@ -1,0 +1,4 @@
+author: " monster860, SurfinNinja, MrHorizons"
+delete-after: true 
+changes: 
+  - soundadd: "Adds a new round end sound"
