@@ -83,6 +83,7 @@
 #define COMSIG_ATOM_RAD_ACT "atom_rad_act"						//from base of atom/rad_act(intensity)
 #define COMSIG_ATOM_NARSIE_ACT "atom_narsie_act"				//from base of atom/narsie_act(): ()
 #define COMSIG_ATOM_RATVAR_ACT "atom_ratvar_act"				//from base of atom/ratvar_act(): ()
+#define COMSIG_ATOM_HONK_ACT "atom_honk_act"					//from base of atom/honk_act(): ()
 #define COMSIG_ATOM_RCD_ACT "atom_rcd_act"						//from base of atom/rcd_act(): (/mob, /obj/item/construction/rcd, passed_mode)
 #define COMSIG_ATOM_SING_PULL "atom_sing_pull"					//from base of atom/singularity_pull(): (S, current_size)
 #define COMSIG_ATOM_SET_LIGHT "atom_set_light"					//from base of atom/set_light(): (l_range, l_power, l_color)
@@ -160,6 +161,10 @@
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//Called when the movable's glide size is updated: (new_glide_size)
 
 // /mob signals
+///from base of /mob/Login(): ()
+#define COMSIG_MOB_LOGIN "mob_login"
+///from base of /mob/Logout(): ()
+#define COMSIG_MOB_LOGOUT "mob_logout"
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
 	#define COMSIG_MOB_CANCEL_CLICKON 1

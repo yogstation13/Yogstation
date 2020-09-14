@@ -30,6 +30,7 @@
 
 /datum/round_event/pirates/announce(fake)
 	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", 'sound/ai/commandreport.ogg')
+	play_intro_music()
 	if(fake)
 		return
 	threat = new
@@ -106,9 +107,17 @@
 				announce_to_ghosts(spawner)
 
 	priority_announce("Unidentified armed ship detected near the station.")
+	play_intro_music()
+
+///plays Cortez Battle - Paper Mario: The Thousand-Year Door. Uses chatoutput.sendmusic instead of playsound.local because it is more than 90 seconds long
+/datum/round_event/pirates/proc/play_intro_music()
+	for(var/m in GLOB.player_list)
+		var/mob/M = m
+		var/client/C = M.client
+		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+			C.chatOutput.sendMusic("sound/largefiles/pirate_intro.ogg")
 
 //Shuttle equipment
-
 /obj/machinery/shuttle_scrambler
 	name = "Data Siphon"
 	desc = "This heap of machinery steals credits and data from unprotected systems and locks down cargo shuttles."

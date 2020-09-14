@@ -56,7 +56,7 @@
 		if(17)
 			new /obj/item/warp_cube/red(src)
 		if(18)
-			new /obj/item/organ/heart/gland/heals
+			new /obj/item/organ/heart/gland/heals(src)
 		if(19)
 			new /obj/item/immortality_talisman(src)
 		if(20)

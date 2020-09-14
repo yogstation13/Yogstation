@@ -11,7 +11,7 @@
 	icon_state = "door_open"
 	opacity = FALSE
 	density = FALSE
-	max_integrity = 300
+	max_integrity = 120
 	resistance_flags = FIRE_PROOF
 	heat_proof = TRUE
 	glass = TRUE
@@ -196,7 +196,10 @@
 	if(welded)
 		to_chat(user, "<span class='warning'>[src] refuses to budge!</span>")
 		return
-	open()
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	else
+		open()
 
 /obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
@@ -393,7 +396,7 @@
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
-	max_integrity = 550
+	max_integrity = 350
 
 /obj/machinery/door/firedoor/window
 	name = "window shutter"

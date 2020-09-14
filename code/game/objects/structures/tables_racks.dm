@@ -85,6 +85,11 @@
 	qdel(src)
 	new /obj/structure/table/reinforced/brass(A)
 
+/obj/structure/table/honk_act()
+	var/atom/A = loc
+	qdel(src)
+	new /obj/structure/table/bananium(A)
+
 /obj/structure/table/attack_paw(mob/user)
 	return attack_hand(user)
 

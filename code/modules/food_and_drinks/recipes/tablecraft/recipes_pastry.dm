@@ -100,7 +100,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/rofflewaffles
 	name = "Roffle Waffles"
 	reqs = list(
-		/datum/reagent/mushroomhallucinogen = 5,
+		/datum/reagent/drug/mushroomhallucinogen = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/rofflewaffles
