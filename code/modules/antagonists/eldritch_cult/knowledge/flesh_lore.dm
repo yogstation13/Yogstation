@@ -166,9 +166,9 @@
 /datum/eldritch_knowledge/summon/raw_prophet
 	name = "Raw Ritual"
 	gain_text = "I saw the mirror-sheen in their dead eyes. It could be put to use."
-	desc = "You can now summon a Raw Prophet by transmuting eyes, a left arm, right arm and a pool of blood. Raw prophets have a massive sight range, X-ray, and can sustain a telepathic network, but are very fragile and weak."
+	desc = "You can now summon a Raw Prophet by transmuting eyes, a left arm and a right arm. Raw prophets have a massive sight range, X-ray, and can sustain a telepathic network, but are very fragile and weak."
 	cost = 1
-	required_atoms = list(/obj/item/organ/eyes,/obj/item/bodypart/l_arm,/obj/item/bodypart/r_arm,/obj/effect/decal/cleanable/blood)
+	required_atoms = list(/obj/item/organ/eyes,/obj/item/bodypart/l_arm,/obj/item/bodypart/r_arm)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	next_knowledge = list(/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/spell/blood_siphon,/datum/eldritch_knowledge/curse/paralysis)
 	route = PATH_FLESH
@@ -176,9 +176,9 @@
 /datum/eldritch_knowledge/summon/stalker
 	name = "Lonely Ritual"
 	gain_text = " The Uncanny Man walks lonely in the Valley, I called for his aid."
-	desc = "You can now summon a Stalker by transmuting a knife, a flower, a pen and a piece of paper. Stalkers can shapeshift into harmeless animals and have access to an EMP."
+	desc = "You can now summon a Stalker by transmuting a knife, a candle, a pen and a piece of paper. Stalkers can shapeshift into harmeless animals and have access to an EMP."
 	cost = 1
-	required_atoms = list(/obj/item/kitchen/knife,/obj/item/reagent_containers/food/snacks/grown/poppy,/obj/item/pen,/obj/item/paper)
+	required_atoms = list(/obj/item/kitchen/knife,/obj/item/candle,/obj/item/pen,/obj/item/paper)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/stalker
 	next_knowledge = list(/datum/eldritch_knowledge/summon/ashy,/datum/eldritch_knowledge/summon/rusty,/datum/eldritch_knowledge/final/flesh_final)
 	route = PATH_FLESH
@@ -195,9 +195,9 @@
 /datum/eldritch_knowledge/summon/rusty
 	name = "Rusted Ritual"
 	gain_text = "I combined the principle of Hunger with a desire of Corruption. The Rusted Hills call my name."
-	desc = "You can now summon a Rust Walker transmutating vomit pool, a head and a book. Rust Walkers are capable of spreading rust and have a decent but short ranged projectile attack."
+	desc = "You can now summon a Rust Walker transmutating vomit pool and a book. Rust Walkers are capable of spreading rust and have a decent but short ranged projectile attack."
 	cost = 1
-	required_atoms = list(/obj/effect/decal/cleanable/vomit,/obj/item/bodypart/head,/obj/item/book)
+	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/rust_spirit
 	next_knowledge = list(/datum/eldritch_knowledge/summon/stalker,/datum/eldritch_knowledge/spell/entropic_plume)
 
