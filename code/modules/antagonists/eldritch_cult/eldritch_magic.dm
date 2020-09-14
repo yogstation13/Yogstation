@@ -398,7 +398,7 @@
 			new /obj/effect/hotspot(T)
 			T.hotspot_expose(700,50,1)
 			for(var/mob/living/livies in T.contents - centre)
-				livies.adjustFireLoss(10)
+				livies.adjustFireLoss(5)
 		_range++
 		sleep(3)
 
@@ -447,7 +447,7 @@
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents - current_user)
-			L.adjustFireLoss(5)
+			L.adjustFireLoss(2.5)
 
 
 /obj/effect/proc_holder/spell/targeted/worm_contract
