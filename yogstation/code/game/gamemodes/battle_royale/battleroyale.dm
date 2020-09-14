@@ -7,9 +7,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	report_type = "battleroyale"
 	false_report_weight = 0
 	required_players = 1 //Everyone is an antag in this mode
-	required_enemies = 1
 	recommended_enemies = 1
-	antag_flag = ROLE_BATTLEROYALE
 	enemy_minimum_age = 0
 	announce_span = "warning"
 	announce_text = "Attention ALL space station 13 crewmembers,\n\
@@ -36,8 +34,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 				continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
-		virgin.assigned_role = ROLE_BATTLEROYALE
-		virgin.special_role = ROLE_BATTLEROYALE
 	return TRUE
 
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)

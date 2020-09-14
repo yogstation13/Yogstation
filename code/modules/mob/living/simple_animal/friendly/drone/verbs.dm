@@ -14,7 +14,7 @@
 	set name = "Check Laws"
 
 	to_chat(src, "<b>Drone Laws</b>")
-	to_chat(src, laws)
+	to_chat (src, "[laws]")
 
 /**
   * Creates an alert to drones in the same network
