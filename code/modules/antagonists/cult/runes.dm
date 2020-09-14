@@ -930,6 +930,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		var/datum/action/innate/cult/ghostmark/GM = new
 		G.name = "Dark Spirit of [G.name]"
 		G.color = "red"
+		G.invisibility = 0
 		CM.Grant(G)
 		GM.Grant(G)
 		while(!QDELETED(affecting))
