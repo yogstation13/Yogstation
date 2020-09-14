@@ -1,0 +1,24 @@
+###############################################################################################
+# Words that will block in character chat messages from sending.                              #
+# Case is not important. Commented-out examples are listed below, just remove the "#".        #
+###############################################################################################
+#lol
+#omg
+#wtf
+epstien
+epstein
+congo
+winnie the pooh
+tiananmen square
+june 4th
+1989
+animal farm
+dictatorship
+dalai lama
+tibet independence
+soviet jokes
+great firewall of china
+709
+june 4
+zhao ziyang
+baozi
