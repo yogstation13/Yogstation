@@ -60,7 +60,7 @@
 	holder.visible_message("<span class ='boldwarning'>Light bends around [holder] as they smash [sword], and in a moment they are gone.</span>", "<span class='notice'>You feel yourself begin to descend as [sword] breaks, before the darkness suddenly receeds and you find yourself somewhere else.</span>")
 	playsound(user, "shatter", 70, pressure_affected = FALSE)
 	playsound(user, "forcewall", 70, pressure_affected = FALSE)
-	flash_color(holder, flash_color = #000000, flash_time = 10)
+	flash_color(holder, flash_color = "#000000", flash_time = 10)
 	do_teleport(holder,safe_turf,forceMove = TRUE)
 	qdel(sword)
 
