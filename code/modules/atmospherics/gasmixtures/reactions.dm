@@ -70,6 +70,8 @@
 	min_requirements = list(/datum/gas/water_vapor = MOLES_GAS_VISIBLE)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
+	if(air.return_temperature()>WATER_VAPOR_SUPERHEATING_TEMP && air.return_pressure()>WATER_VAPOR_SUPERHEATING_PRESSURE)
+		return NO_REACTION
 	var/turf/open/location = isturf(holder) ? holder : null
 	. = NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
@@ -383,7 +385,7 @@
 
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_scale = min(air.return_temperature()/STIMULUM_HEAT_SCALE,air.get_moles(/datum/gas/plasma),air.get_moles(/datum/gas/nitryl))
-	var/stim_energy_change = heat_scale + STIMULUM_FIRST_RISE*(heat_scale**2) - STIMULUM_FIRST_DROP*(heat_scale**3) + STIMULUM_SECOND_RISE*(heat_scale**4) - STIMULUM_ABSOLUTE_DROP*(heat_scale**5)
+	var/stim_energy_change = heat_scale*STIMULUM_HEAT_SCALE
 
 	if ((air.get_moles(/datum/gas/plasma) - heat_scale < 0) || (air.get_moles(/datum/gas/nitryl) - heat_scale < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
@@ -404,23 +406,22 @@
 
 /datum/gas_reaction/nobliumformation/init_reqs()
 	min_requirements = list(
-		/datum/gas/nitrogen = 10,
-		/datum/gas/tritium = 5,
+		/datum/gas/nitrogen = 20,
+		/datum/gas/tritium = 10,
 		"TEMP" = 5000000)
 
 /datum/gas_reaction/nobliumformation/react(datum/gas_mixture/air)
+	var/nob_formed = min(air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
 	var/old_heat_capacity = air.heat_capacity()
-	var/nob_formed = min((air.get_moles(/datum/gas/nitrogen)+air.get_moles(/datum/gas/tritium))/100,air.get_moles(/datum/gas/tritium)/10,air.get_moles(/datum/gas/nitrogen)/20)
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(air.get_moles(/datum/gas/bz),1)))
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
 	air.adjust_moles(/datum/gas/nitrogen, -20*nob_formed)
 	air.adjust_moles(/datum/gas/hypernoblium, nob_formed)
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, nob_formed*NOBLIUM_RESEARCH_AMOUNT)
-
-	if (nob_formed)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(max(((air.return_temperature()*old_heat_capacity - energy_taken)/new_heat_capacity),TCMB))
+	var/new_heat_capacity = air.heat_capacity()
+	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+		air.set_temperature(max(((air.return_temperature()*old_heat_capacity - energy_taken)/new_heat_capacity),TCMB))
+		return REACTING
 
 
 /datum/gas_reaction/miaster	//dry heat sterilization: clears out pathogens in the air
@@ -437,7 +438,7 @@
 /datum/gas_reaction/miaster/react(datum/gas_mixture/air, datum/holder)
 	// As the name says it, it needs to be dry
 	if(air.get_moles(/datum/gas/water_vapor)/air.total_moles() > 0.1) // Yogs --Fixes runtime in Sterilization
-		return
+		return NO_REACT
 
 	//Replace miasma with oxygen
 	var/cleaned_air = min(air.get_moles(/datum/gas/miasma), 20 + (air.return_temperature() - FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 70) / 20)
@@ -447,8 +448,8 @@
 	//Possibly burning a bit of organic matter through maillard reaction, so a *tiny* bit more heat would be understandable
 	air.set_temperature(air.return_temperature() + cleaned_air * 0.002)
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, cleaned_air*MIASMA_RESEARCH_AMOUNT)//Turns out the burning of miasma is kinda interesting to scientists
-
-
+	return REACTING
+  
 /datum/gas_reaction/stim_ball
 	priority = 7
 	name ="Stimulum Energy Ball"
