@@ -557,6 +557,7 @@
 		return FALSE
 
 /obj/machinery/door/airlock/update_icon(state=0, override=0)
+	cut_overlays()
 	if(operating && !override)
 		return
 	switch(state)
@@ -636,7 +637,6 @@
 					animate(pixel_x = part.open_px, pixel_y = part.open_py, time = part.move_end_time - part.move_start_time)
 
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	cut_overlays()
 	SSvis_overlays.add_vis_overlay(src, overlays_file, "frame", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 	switch(state)
