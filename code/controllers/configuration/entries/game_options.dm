@@ -112,8 +112,6 @@
 
 /datum/config_entry/flag/protect_assistant_from_antagonist	//If assistants can be traitor/cult/other
 
-/datum/config_entry/flag/enforce_human_authority	//If non-human species are barred from joining as a head of staff
-
 /datum/config_entry/flag/allow_latejoin_antagonists	// If late-joining players can be traitor/changeling
 
 /datum/config_entry/flag/use_antag_rep // see game_options.txt for details

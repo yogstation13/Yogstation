@@ -36,8 +36,8 @@ EMOJIS
 ## To speed things up make the number negative, to slow things down, make the number positive.
 
 ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
-RUN_DELAY 2
-WALK_DELAY 6
+RUN_DELAY 1.5
+WALK_DELAY 3
 
 ## The variables below affect the movement of specific mob types. THIS AFFECTS ALL SUBTYPES OF THE TYPE YOU CHOOSE!
 ## Entries completely override all subtypes. Later entries have precedence over earlier entries.
@@ -100,22 +100,22 @@ PROBABILITY INTERNAL_AFFAIRS 3
 PROBABILITY CHANGELING 3
 
 # Group antags
-PROBABILITY REVOLUTION 9
+PROBABILITY REVOLUTION 4
 PROBABILITY GANG 5
-PROBABILITY CULT 9
-PROBABILITY CLOCKWORK_CULT 3
+PROBABILITY CULT 7
+PROBABILITY CLOCKWORK_CULT 4
 
 # Snowflakes
 PROBABILITY SHADOWLING 4
 PROBABILITY WIZARD 7
 PROBABILITY NUCLEAR 9
 PROBABILITY MALF 6
-PROBABILITY CLOWNOPS 0
+PROBABILITY CLOWNOPS 2
 PROBABILITY MALFUNCTION 6
 
 # New
-PROBABILITY HIVEMIND 0
-PROBABILITY OVERTHROW 0
+PROBABILITY HIVEMIND 1
+PROBABILITY OVERTHROW 2
 PROBABILITY TRAITORVAMP 2
 PROBABILITY VAMPIRE 2
 
@@ -135,14 +135,14 @@ REPEATED_MODE_ADJUST 45 30 10
 ## Toggles for continuous modes.
 ## Modes that aren't continuous will end the instant all antagonists are dead.
 
-CONTINUOUS TRAITOR
+#CONTINUOUS TRAITOR
 CONTINUOUS TRAITORBRO
 CONTINUOUS TRAITORCHAN
 CONTINUOUS INTERNAL_AFFAIRS
 #CONTINUOUS NUCLEAR
 #CONTINUOUS REVOLUTION
-CONTINUOUS CULT
-CONTINUOUS CLOCKWORK_CULT
+#CONTINUOUS CULT
+#CONTINUOUS CLOCKWORK_CULT
 CONTINUOUS CHANGELING
 CONTINUOUS WIZARD
 CONTINUOUS HIVEMIND
@@ -181,34 +181,34 @@ MIDROUND_ANTAG MALF
 #MIN_POP TRAITOR 0
 #MAX_POP TRAITOR -1
 
-#MIN_POP TRAITORBRO 25
+MIN_POP TRAITORBRO 25
 #MAX_POP TRAITORBRO -1
 
-#MIN_POP TRAITORCHAN 15
+MIN_POP TRAITORCHAN 15
 #MAX_POP TRAITORCHAN -1
 
-#MIN_POP DOUBLE_AGENTS 25
+MIN_POP DOUBLE_AGENTS 25
 #MAX_POP DOUBLE_AGENTS -1
 
-#MIN_POP NUCLEAR 0
+MIN_POP NUCLEAR 0
 #MAX_POP NUCLEAR -1
 
-#MIN_POP REVOLUTION 20
+MIN_POP REVOLUTION 20
 #MAX_POP REVOLUTION -1
 
-#MIN_POP CULT 24
+MIN_POP CULT 24
 #MAX_POP CULT -1
 
-#MIN_POP CLOCKWORK_CULT 24
+MIN_POP CLOCKWORK_CULT 24
 #MAX_POP CLOCKWORK_CULT -1
 
-#MIN_POP CHANGELING 15
+MIN_POP CHANGELING 15
 #MAX_POP CHANGELING -1
 
-#MIN_POP WIZARD 20
+MIN_POP WIZARD 20
 #MAX_POP WIZARD -1
 
-#MIN_POP MONKEY 20
+MIN_POP MONKEY 20
 #MAX_POP MONKEY -1
 
 #MIN_POP METEOR 0
@@ -227,7 +227,7 @@ MIDROUND_ANTAG MALF
 
 
 ## The amount of time it takes for the emergency shuttle to be called, from round start.
-SHUTTLE_REFUEL_DELAY 12000
+SHUTTLE_REFUEL_DELAY 300
 
 ## Variables calculate how number of antagonists will scale to population.
 ## Used as (Antagonists = Population / Coeff)
@@ -367,7 +367,7 @@ GHOST_INTERACTION
 ## Set to 1 for "custom", silicons will start with the custom laws defined in silicon_laws.txt. (If silicon_laws.txt is empty, the AI will spawn with asimov and Custom boards will auto-delete.)
 ## Set to 2 for "random", silicons will start with a random lawset picked from random laws specified below.
 ## Set to 3 for "weighted random", using values in "silicon_weights.txt", a law will be selected, with weights specifed in that file.
-DEFAULT_LAWS 3
+DEFAULT_LAWS 1
 
 ## RANDOM LAWS ##
 ## ------------------------------------------------------------------------------------------
@@ -458,17 +458,18 @@ ROUNDSTART_RACES human
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
-#ROUNDSTART_RACES gorilla
+ROUNDSTART_RACES gorilla
 #ROUNDSTART_RACES fly
 ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
-#ROUNDSTART_RACES shadow
+ROUNDSTART_RACES shadow
 ROUNDSTART_RACES preternis
 #ROUNDSTART_RACES snail
+ROUNDSTART_RACES felinid
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
-#ROUNDSTART_RACES jelly
+ROUNDSTART_RACES jelly
 #ROUNDSTART_RACES golem
 #ROUNDSTART_RACES adamantine
 #ROUNDSTART_RACES plasma
@@ -477,12 +478,12 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES silver
 #ROUNDSTART_RACES uranium
 #ROUNDSTART_RACES abductor
-#ROUNDSTART_RACES synth
+ROUNDSTART_RACES synth
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
 #ROUNDSTART_RACES skeleton
 #ROUNDSTART_RACES zombie
-#ROUNDSTART_RACES slime
+ROUNDSTART_RACES slime
 ROUNDSTART_RACES pod
 #ROUNDSTART_RACES military_synth
 #ROUNDSTART_RACES agent

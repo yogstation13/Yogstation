@@ -10,7 +10,7 @@
 ADDRESS localhost
 
 ## MySQL server port (default is 3306).
-PORT 3306
+PORT 7777
 
 ## Database for all SQL functions, not just feedback.
 FEEDBACK_DATABASE feedback

@@ -14,13 +14,12 @@ $include antag_rep.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-# SERVERNAME Yogstation 13
+SERVERNAME peestation
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
-# SERVERSQLNAME yogstation
-
+SERVERSQLNAME peestation
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-# STATIONNAME Space Station 13
+STATIONNAME peestation 13
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -54,24 +53,24 @@ ENABLE_LOCALHOST_RANK
 ## REQUIRES the database set up to work. Keep it hashed if you don't have a database set up.
 ## NOTE: If you have just set-up the database keep this DISABLED, as player age is determined from the first time they connect to the server with the database up. If you just set it up, it means
 ## you have noone older than 0 days, since noone has been logged yet. Only turn this on once you have had the database up for 30 days.
-USE_AGE_RESTRICTION_FOR_JOBS
+#USE_AGE_RESTRICTION_FOR_JOBS
 
 ## Uncomment this to have the job system use the player's account creation date, rather than the when they first joined the server for job timers.
-#USE_ACCOUNT_AGE_FOR_JOBS
+USE_ACCOUNT_AGE_FOR_JOBS
 
 ## Unhash this to track player playtime in the database. Requires database to be enabled.
 USE_EXP_TRACKING
 ## Unhash this to enable playtime requirements for head jobs.
-USE_EXP_RESTRICTIONS_HEADS
+#USE_EXP_RESTRICTIONS_HEADS
 ## Unhash this to override head jobs' playtime requirements with this number of hours.
 ## Leave this commented out to use the values defined in the job datums. Values in the datums are stored as minutes.
-#USE_EXP_RESTRICTIONS_HEADS_HOURS 3
+USE_EXP_RESTRICTIONS_HEADS_HOURS 0
 ## Unhash this to change head jobs' playtime requirements so that they're based on department playtime, rather than crew playtime.
-USE_EXP_RESTRICTIONS_HEADS_DEPARTMENT
+#USE_EXP_RESTRICTIONS_HEADS_DEPARTMENT
 ## Unhash this to enable playtime requirements for certain non-head jobs, like Engineer and Scientist.
 #USE_EXP_RESTRICTIONS_OTHER
 ## Allows admins to bypass job playtime requirements.
-USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
 ## log OOC channel
 LOG_OOC
@@ -239,19 +238,19 @@ CHECK_RANDOMIZER
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 ## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.
-# SERVER ss13.example.com:2506
+# SERVER 72.132.155.114:7777
 
 ## forum address
-# FORUMURL http://yogstation.net
+# FORUMURL oj.com
 
 ## Wiki address
 # WIKIURL https://wiki.yogstation.net/wiki
 
 ##Rules address
-# RULESURL http://forums.yogstation.net/index.php?pages/rules/
+# RULESURL oj.com
 
 ##Github address
-# GITHUBURL https://www.github.com/yogstation13/yogstation
+# GITHUBURL oj.com
 
 ## Github repo id
 ##This can be found by going to https://api.github.com/users/<user name here>/repos
@@ -259,7 +258,7 @@ CHECK_RANDOMIZER
 GITHUBREPOID 120966336
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-# BANAPPEALS http://justanotherday.example.com
+# BANAPPEALS oj.net
 
 ## System command that invokes youtube-dl, used by Play Internet Sound.
 ## You can install youtube-dl with
@@ -391,7 +390,7 @@ MAPROTATIONCHANCEDELTA 0
 
 
 ## Uncomment to automatically deadmin players when the game starts.
-#AUTO_DEADMIN_PLAYERS
+AUTO_DEADMIN_PLAYERS
 
 ## Uncomment to automatically deadmin antagonists when they gain the role.
 #AUTO_DEADMIN_ANTAGONISTS

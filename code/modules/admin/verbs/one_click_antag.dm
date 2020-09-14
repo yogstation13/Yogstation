@@ -355,7 +355,6 @@
 		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
 		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
-		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
 		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
 		)
@@ -418,9 +417,6 @@
 				var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
 				chosen_candidate.client.prefs.copy_to(ERTOperative)
 				ERTOperative.key = chosen_candidate.key
-
-				if(ertemplate.enforce_human || !ERTOperative.dna.species.changesource_flags & ERT_SPAWN) // Don't want any exploding plasmemes
-					ERTOperative.set_species(/datum/species/human)
 
 				//Give antag datum
 				var/datum/antagonist/ert/ert_antag
