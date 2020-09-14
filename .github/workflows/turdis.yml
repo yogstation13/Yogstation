@@ -46,14 +46,16 @@ jobs:
           tools/travis/check_grep.sh
 
       - name: Run Linter
+        id: linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
           
       - name: Annotate Linter
         uses: yogstation13/DreamAnnotate@v1
+        if: ${{ steps.linter.outcome == "failure" }}
         with: 
           outputFile: output-annotations.txt
-          
+        
   compile:
     name: Compile All Maps
     runs-on: ubuntu-18.04
