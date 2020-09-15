@@ -23,12 +23,13 @@ jobs:
       run: |
         tgui/bin/tgui --ci
         
- #   - name: Git Commit and Push
- #     uses: github-actions-x/commit@v2.6
- #     with:
- #       github-token: ${{ secrets.GITHUB_TOKEN }}
- #       commit-message: 'Action: Build TGUI'
- #       name: 'TGUI Builder'
+    - name: Git Commit and Push
+      uses: github-actions-x/commit@v2.6
+      with:
+        push-branch: ${{ format("refs/pull/{0}", github.event.number) }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'Action: Build TGUI'
+        name: 'TGUI Builder'
 
 
   one:
