@@ -492,7 +492,7 @@
 	level = 7
 	passive_message = "<span class='notice'>You really want a drink...</span>"
 	var/absorption_coeff = 1.5
-	threshold_desc = list(
+	threshold_descs = list(
 		"Resistance 5" = "Alcohol is consumed at a much slower rate.",
 		"Stage Speed 7" = "Increases healing speed.",
 	)
