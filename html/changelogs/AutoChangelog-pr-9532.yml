@@ -1,5 +1,0 @@
-author: "AutisticFroggy"
-delete-after: true 
-changes: 
-  - bugfix: "fixed potential stim runtimes, calls gc on miasma sterilization"
-  - tweak: "Water Vapor now behaves like superheated steam at pressure above 1 bar AND 800 degrees."
