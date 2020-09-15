@@ -69,10 +69,10 @@
 
 /obj/item/melee/baton/process()
 	if(status)
-		++cell_last_used
+		++cell_last_used // Will discharge in 13 processes if it is not turned off
 		if(cell_last_used >= STUNBATON_DISCHARGE_INTERVAL)
 			deductcharge(50)
-			cell_last_used = 6 // Will discharge again in 7 processes
+			cell_last_used = 6 // Will discharge again in 7 processes if it is not turned off
 
 /obj/item/melee/baton/examine(mob/user)
 	. = ..()
@@ -104,6 +104,7 @@
 			to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
 			status = 0
 			update_icon()
+			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
 	else
 		return ..()
 
