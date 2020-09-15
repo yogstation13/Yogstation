@@ -129,10 +129,19 @@
 
 	var/datum/viewData/view_size
 
+	/// our current tab
+	var/stat_tab
+
+	/// whether our browser is ready or not yet
+	var/statbrowser_ready = FALSE
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
 	/// list of tabs containing spells and abilities
 	var/list/spell_tabs = list()
-	/// list of tabs containing verbs
-	var/list/verb_tabs = list()
 
 	var/list/sent_assets = list()
 	var/list/completed_asset_jobs = list()
