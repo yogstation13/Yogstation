@@ -22,6 +22,20 @@ jobs:
     - name: Compile TGUI
       run: |
         tgui/bin/tgui --ci
+
+    - name: Setup Git
+      run: |
+        cat <<-EOF >$HOME/.netrc
+          machine github.com
+          login $GITHUB_ACTOR
+          password $GITHUB_TOKEN
+          machine api.github.com
+          login $GITHUB_ACTOR
+          password $GITHUB_TOKEN
+        EOF
+        chmod 600 $HOME/.netrc
+        git config --global user.email "$INPUT_AUTHOR_EMAIL"
+        git config --global user.name "$INPUT_AUTHOR_NAME"
         
     - name: Git Commit and Push
       env: 
