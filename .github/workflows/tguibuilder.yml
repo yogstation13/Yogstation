@@ -34,8 +34,8 @@ jobs:
         password $GITHUB_TOKEN
         EOF
         chmod 600 $HOME/.netrc
-        git config --global user.email "$INPUT_AUTHOR_EMAIL"
-        git config --global user.name "$INPUT_AUTHOR_NAME"
+        git config --global user.email <>
+        git config --global user.name "TGUI Builder"
         
     - name: Git Commit and Push
       env: 
@@ -43,7 +43,7 @@ jobs:
         GIT_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
       run: |
         git add .
-        git commit --author="TGUI-Builder <>" -m "Compile and bundle TGUI"
+        git commit -m "Compile and bundle TGUI"
         git push $GIT_URL HEAD:$GIT_BRANCH_NAME
 
   one:
