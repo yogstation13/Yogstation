@@ -346,4 +346,10 @@
 	suffix = "pubby_monastery.dmm"
 	name = "Pubby Monastery"
 	description = "A beautiful monastery that used to have a station attached to it"
+
+/datum/map_template/ruin/space/harambe
+	id = "bigape"
+	suffix = "bigape.dmm"
+	name = "Big Ape"
+	description = "A gorilla? Out here? But why."
 	

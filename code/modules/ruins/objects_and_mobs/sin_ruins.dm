@@ -1,6 +1,6 @@
 //These objects are used in the cardinal sin-themed ruins (i.e. Gluttony, Pride...)
 
-/obj/structure/cursed_slot_machine //Greed's slot machine: Used in the Greed ruin. Deals clone damage on each use, with a successful use giving a d20 of fate.
+/obj/structure/cursed_slot_machine //Greed's slot machine: Used in the Greed ruin. Deals damage to max health on each use, with a successful use giving a d20 of fate.
 	name = "greed's slot machine"
 	desc = "High stakes, high rewards."
 	icon = 'icons/obj/economy.dmi'
@@ -15,7 +15,8 @@
 	if(obj_flags & IN_USE)
 		return
 	obj_flags |= IN_USE
-	user.adjustCloneLoss(20)
+	user.health -= 20
+	user.maxHealth -= 20
 	if(user.stat)
 		to_chat(user, "<span class='userdanger'>No... just one more try...</span>")
 		user.gib()
@@ -34,6 +35,7 @@
 		new/obj/structure/cursed_money(get_turf(src))
 		if(user)
 			to_chat(user, "<span class='boldwarning'>You've hit jackpot. Laughter echoes around you as your reward appears in the machine's place.</span>")
+			user.maxHealth += 20
 		qdel(src)
 	else
 		if(user)
