@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "vitality matrix will now actually work on robot limbs instead of wasting vitality"
