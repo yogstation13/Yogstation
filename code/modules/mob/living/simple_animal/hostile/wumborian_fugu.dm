@@ -134,11 +134,9 @@
 			to_chat(user, "<span class='warning'>Something's interfering with [src]'s effects. It's no use.</span>")
 			return
 		A.buffed++
-		A.maxHealth *= 1.5
-		A.health = min(A.maxHealth,A.health*1.5)
-		A.melee_damage_lower = max((A.melee_damage_lower * 2), 10)
-		A.melee_damage_upper = max((A.melee_damage_upper * 2), 10)
+		A.maxHealth *= 1.2
+		A.health = min(A.maxHealth,A.health*1.2)
 		A.transform *= 2
-		A.environment_smash |= ENVIRONMENT_SMASH_STRUCTURES | ENVIRONMENT_SMASH_RWALLS
+		A.environment_smash |= ENVIRONMENT_SMASH_STRUCTURES
 		to_chat(user, "<span class='info'>You increase the size of [A], giving it a surge of strength!</span>")
 		qdel(src)
