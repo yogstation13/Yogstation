@@ -34,7 +34,7 @@ jobs:
         password $GITHUB_TOKEN
         EOF
         chmod 600 $HOME/.netrc
-        git config --global user.email <>
+        git config --global user.email "<>""
         git config --global user.name "TGUI Builder"
         
     - name: Git Commit and Push
