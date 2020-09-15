@@ -358,8 +358,10 @@
 	action_background_icon_state = "bg_ecult"
 	possible_shapes = list(/mob/living/simple_animal/mouse,\
 		/mob/living/simple_animal/pet/dog/corgi,\
-		/mob/living/simple_animal/hostile/carp,\
+		/mob/living/simple_animal/hostile/carp/megacarp,\
 		/mob/living/simple_animal/pet/fox,\
+		/mob/living/simple_animal/hostile/netherworld/migo,\
+		/mob/living/simple_animal/bot/medbot,\
 		/mob/living/simple_animal/pet/cat )
 
 /obj/effect/proc_holder/spell/targeted/emplosion/eldritch
