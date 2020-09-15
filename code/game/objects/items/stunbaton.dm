@@ -122,6 +122,7 @@
 			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
 		else
 			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	add_fingerprint(user)
 
