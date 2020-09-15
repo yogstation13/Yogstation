@@ -24,13 +24,13 @@ jobs:
         tgui/bin/tgui --ci
         
     - name: Git Commit and Push
-      uses: github-actions-x/commit@v2.6
-      with:
-        push-branch: ${{ github.head_ref }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'Action: Build TGUI'
-        name: 'TGUI Builder'
-
+      env: 
+        GIT_URL: ${{ github.event.pull_request.head.repo.clone_url }}
+        GIT_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+      run: |
+        git add .
+        git commit --author="TGUI-Builder <>" -m "Compile and bundle TGUI"
+        git push $GIT_URL HEAD:$GIT_BRANCH_NAME
 
   one:
     runs-on: ubuntu-16.04
