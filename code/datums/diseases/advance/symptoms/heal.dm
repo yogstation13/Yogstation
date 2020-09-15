@@ -481,3 +481,64 @@
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
 			M.update_damage_overlays()
 	return 1
+
+/datum/symptom/heal/alcohol
+	name = "Booze Healing"
+	desc = "The virus uses alcohol based reagents inside the host to heal them."
+	stealth = 0
+	resistance = -1
+	stage_speed = 0
+	transmittable = 1
+	level = 7
+	passive_message = "<span class='notice'>You really want a drink...</span>"
+	var/absorption_coeff = 1.5
+	threshold_desc = list(
+		"Resistance 5" = "Alcohol is consumed at a much slower rate.",
+		"Stage Speed 7" = "Increases healing speed.",
+	)
+
+/datum/symptom/heal/alcohol/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.properties["stage_rate"] >= 7)
+		power = 2
+	if(A.properties["stealth"] >= 2)
+		absorption_coeff = initial(absorption_coeff)/2
+
+/datum/symptom/heal/alcohol/CanHeal(datum/disease/advance/A) //warning: shitcode ahead
+	. = 0
+	var/mob/living/M = A.affected_mob
+	if(M.reagents.has_reagent(/datum/reagent/consumable/ethanol))
+		var/list/boozereagents = list()
+		var/list/boozepowers = list(0)
+		var/multiplier = 0
+		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
+			boozereagents += E
+		for(var/datum/reagent/consumable/ethanol/E in boozereagents)
+			boozepowers += E.boozepwr
+		multiplier = max(boozepowers)/100
+		for(var/datum/reagent/consumable/ethanol/E in M.reagents)
+			M.reagents.remove_reagent(E, 1 * absorption_coeff)
+		. += power * multiplier
+
+/datum/symptom/heal/alcohol/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+	var/heal_amt = 2 * actual_power
+
+	var/list/parts = M.get_damaged_bodyparts(1,1) //more effective on burns
+
+	if(!parts.len)
+		return
+
+	if(prob(5))
+		to_chat(M, "<span class='notice'>The alcohol makes you feel stronger.</span>")
+
+	for(var/obj/item/bodypart/L in parts)
+		if(L.heal_damage(heal_amt/parts.len * 0.5, heal_amt/parts.len))
+			M.update_damage_overlays()
+
+	return 1
+
+/datum/symptom/heal/water/passive_message_condition(mob/living/M)
+	if(M.getBruteLoss() || M.getFireLoss())
+		return TRUE
+	return FALSE 
