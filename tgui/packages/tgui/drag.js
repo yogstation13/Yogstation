@@ -13,7 +13,7 @@ const logger = createLogger('drag');
 let ref;
 let dragging = false;
 let resizing = false;
-let screenOffset = [0, 0];
+let screenOffset = [1, 1];
 let dragPointOffset;
 let resizeMatrix;
 let initialSize;
