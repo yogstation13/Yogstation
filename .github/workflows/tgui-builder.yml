@@ -1,0 +1,32 @@
+name: TGUI Builder
+
+on:
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'tgui/**'
+
+jobs:
+  build:
+    name: "Build TGUI"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Install Node.JS
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Compile TGUI
+      run: |
+        tgui/bin/tgui --ci
+        
+    - name: Git Commit and Push
+      uses: github-actions-x/commit@v2.6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'Action: Build TGUI'
+        rebase: true
+        name: 'TGUI Builder'
