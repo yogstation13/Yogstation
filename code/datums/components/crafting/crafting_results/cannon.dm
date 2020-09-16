@@ -19,7 +19,7 @@
 /obj/vehicle/ridden/wheelchair/wheelchair_assembly/cannon
 	name = "cannon"
 	desc = "A makeshift cannon. This primitive weapon uses centuries-old technology."
-	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
+	icon = 'icons/obj/vg_items.dmi'
 	icon_state = "cannon"
 	var/obj/item/loaded_item
 	var/obj/item/reagent_containers/glass/beaker/reservoir/boomtank  //shh just take it as a fuel reservoir
