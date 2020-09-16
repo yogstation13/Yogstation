@@ -133,6 +133,11 @@
 		"changelog.css" = 'html/changelog.css'
 	)
 
+/datum/asset/simple/scanlines
+	assets = list(
+		"scanlines.png" = 'html/scanlines.png'
+	)
+
 /datum/asset/group/goonchat
 	children = list(
 		/datum/asset/simple/jquery,

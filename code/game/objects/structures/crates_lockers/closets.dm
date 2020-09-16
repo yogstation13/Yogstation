@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(lockers)
+
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
@@ -45,6 +47,7 @@
 	. = ..()
 	update_icon()
 	PopulateContents()
+	GLOB.lockers += src
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -52,6 +55,7 @@
 
 /obj/structure/closet/Destroy()
 	dump_contents()
+	GLOB.lockers -= src
 	return ..()
 
 /obj/structure/closet/update_icon()

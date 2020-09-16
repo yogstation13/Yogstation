@@ -73,6 +73,8 @@
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	slowdown = 0
+	blocks_shove_knockdown = FALSE
 
 /obj/item/choice_beacon/holy
 	name = "armaments beacon"
@@ -794,6 +796,9 @@
 		H.verbs += /mob/living/proc/guardian_comm
 		H.verbs += /mob/living/proc/guardian_recall
 		H.verbs += /mob/living/proc/guardian_reset
+		force = 0
+		throwforce = 0
+		to_chat(H, "<span class='warning'>The [src]'s rigid ends become dull from summoning <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>!</span>")
 	else
 		to_chat(H, "<span class='holoparasite'>And it's blank? Perhaps you should try again later.</span>")
 		used = FALSE

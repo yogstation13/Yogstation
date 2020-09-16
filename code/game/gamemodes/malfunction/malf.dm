@@ -8,6 +8,7 @@
 	required_enemies = 1
 	recommended_enemies = 1
 	reroll_friendly = FALSE
+	title_icon = "ss13"
 
 	announce_span = "danger"
 	announce_text = "The station's Artificial Intelligence is rogue!\n\

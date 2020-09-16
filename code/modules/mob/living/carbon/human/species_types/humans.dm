@@ -12,3 +12,6 @@
 
 /datum/species/human/qualifies_for_rank(rank, list/features)
 	return TRUE	//Pure humans are always allowed in all roles.
+
+/datum/species/human/has_toes()
+	return TRUE 

@@ -41,9 +41,10 @@
 		return
 	if(!sound_file || admin)
 		return
+	sleep(scan_speed)
 	if(sound_on)
 		playsound(src, sound_file, 50, 0)
-	sleep(scan_speed*2) // this is here for timing - Hopek
+	sleep(scan_speed) // this is here again for sound timing - Hopek
 
 /obj/item/detective_scanner/Initialize()
 	. = ..()
@@ -318,9 +319,8 @@
 
 /obj/item/detective_scanner/advanced
 	name = "advanced forensic scanner"
-	desc = "Processes data much quicker at the cost of not being able to scan from far away. Gives more detailed reports. Scan from 2 tiles away to avoid leaving prints on the scene of the crime!"
+	desc = "Processes data much quicker and gives more detailed reports. Scan from at least 2 tiles away to avoid leaving prints on the scene of the crime!"
 	icon_state = "forensic2"
 	icon_state_scanning =  "forensic2_scan" // icon state for scanning
-	range = 2 // this scanner does not have much range
 	scan_speed = 2
 	advanced = TRUE

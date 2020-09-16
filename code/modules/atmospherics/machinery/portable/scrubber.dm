@@ -151,8 +151,7 @@
 	if(default_unfasten_wrench(user, W))
 		if(!movable)
 			on = FALSE
-	else
-		return ..()
+	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))

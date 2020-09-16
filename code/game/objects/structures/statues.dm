@@ -48,6 +48,10 @@
 				new material_drop_type(get_turf(src), drop_amt)
 	qdel(src)
 
+/obj/structure/statue/honk_act()
+	new /obj/structure/statue/bananium/clown(src.loc)
+	qdel(src)
+
 //////////////////////////////////////STATUES/////////////////////////////////////////////////////////////
 ////////////////////////uranium///////////////////////////////////
 
@@ -258,6 +262,9 @@
 		playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
 		spawn(20)
 			spam_flag = 0
+
+/obj/structure/statue/bananium/clown/honk_act()
+	return FALSE
 
 /////////////////////sandstone/////////////////////////////////////////
 
