@@ -14,8 +14,6 @@
 	fire_delay = 15
 	spread = 0
 	recoil = 0.5
-	inaccuracy_modifier = 0
-	dualwield_spread_mult = 3
 	weapon_weight = WEAPON_MEDIUM
 	w_class = WEIGHT_CLASS_BULKY
 	spawnwithmagazine = FALSE
