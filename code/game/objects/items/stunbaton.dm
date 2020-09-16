@@ -71,7 +71,7 @@
 	if(status)
 		++cell_last_used // Will discharge in 13 processes if it is not turned off
 		if(cell_last_used >= STUNBATON_DISCHARGE_INTERVAL)
-			deductcharge(50)
+			deductcharge(500)
 			cell_last_used = 6 // Will discharge again in 7 processes if it is not turned off
 
 /obj/item/melee/baton/examine(mob/user)
