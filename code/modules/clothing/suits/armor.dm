@@ -288,3 +288,16 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 60, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 10, "fire" = 80, "acid" = 80)
 	slowdown = 0.9
+
+/obj/item/clothing/suit/armor/makeshift
+	name = "makeshift armor"
+	desc = "A hazard vest with metal plate taped on it. It offers minor protection at the cost of speed."
+	icon = 'modular_skyrat/icons/obj/clothing/shitarmor.dmi'
+	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/shitarmor.dmi'
+	anthro_mob_worn_overlay = 'modular_skyrat/icons/mob/clothing/shitarmor.dmi'
+	icon_state = "makeshiftarmor-worn"
+	item_state = "makeshiftarmor"
+	w_class = 3
+	blood_overlay_type = "armor"
+	slowdown = 0.35
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0)
