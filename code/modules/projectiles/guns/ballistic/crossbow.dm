@@ -2,21 +2,21 @@
 /obj/item/gun/ballistic/crossbow
 	name = "crossbow"
 	desc = "A powerful crossbow, capable of shooting metal rods. Very effective for hunting."
-	icon = 'modular_skyrat/icons/obj/guns/crossbow.dmi'
+	icon = 'icons/obj/guns/crossbow.dmi'
 	icon_state = "crossbow_body"
 	item_state = "crossbow_body"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 = CONDUCT_1
-	fire_sound = "modular_skyrat/sound/weapons/rodgun_fire.ogg"
+	fire_sound = "sound/weapons/rodgun_fire.ogg"
 	var/charge = 0
 	var/max_charge = 3
 	var/charging = FALSE
 	var/charge_time = 10
-	var/draw_sound = "modular_skyrat/sound/weapons/draw_bow.ogg"
-	var/insert_sound = 'modular_skyrat/sound/weapons/bulletinsert.ogg'
+	var/draw_sound = "sound/weapons/draw_bow.ogg"
+	var/insert_sound = 'sound/weapons/bulletinsert.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	spawnwithmagazine = FALSE
 	casing_ejector = FALSE
