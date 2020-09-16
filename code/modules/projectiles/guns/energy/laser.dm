@@ -179,10 +179,10 @@
 	name = "watcher projector"
 	desc = "A spiny, gruesome tool which reproduces the icy beam of a watcher, shattering rock and freezing individuals."
 	icon_state = "watcherprojector"
-	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon = 'icons/obj/guns/energy.dmi'
 	item_state = "watcherprojector"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/righthand.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/watcher)
 	attack_verb = list("bashed", "stared down", "whacked", "smashed")
 	force = 10
@@ -239,11 +239,11 @@
 /obj/item/gun/energy/pumpaction/musket
 	name = "laser musket"
 	desc = "Another settlment needs your help."
-	icon = 'modular_skyrat/icons/obj/guns/lasermusket.dmi'
+	icon = 'icons/obj/guns/lasermusket.dmi'
 	icon_state = "musket"
 	item_state = "musket"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	shaded_charge = FALSE
 	w_class = WEIGHT_CLASS_BULKY
 	cell_type = /obj/item/stock_parts/cell/pumpaction/musket
