@@ -1,18 +1,18 @@
 /obj/item/melee/sword
 	name = "sword"
 	desc = "A simple sword, hand-forged from smaller blades."
-	icon = 'modular_skyrat/icons/obj/vg_weaponsmithing.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_righthand.dmi'
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_lefthand.dmi'
+	icon = 'icons/obj/vg_weaponsmithing.dmi'
+	righthand_file = 'icons/mob/inhands/vg/vg_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/vg/vg_lefthand.dmi'
 	icon_state = "sword"
 	item_state = "sword"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/belt.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/belt.dmi'
 	force = 15
 	sharpness = IS_SHARP
-	hitsound = 'modular_skyrat/sound/weapons/bloodyslice.ogg'
+	hitsound = 'sound/weapons/bloodyslice.ogg'
 	var/obj/item/reagent_containers/hypospray/poison
 
 /obj/item/melee/sword/Initialize()
@@ -71,7 +71,7 @@
 	name = "executioner's sword"
 	desc = "A huge sword. The top third of the blade seems weaker than the rest of it."
 	force = 5
-	hitsound = 'modular_skyrat/sound/weapons/smash.ogg'
+	hitsound = 'sound/weapons/smash.ogg'
 	icon_state = "executioners_sword"
 	item_state = "executioners_sword"
 	sharpness = IS_SHARP
