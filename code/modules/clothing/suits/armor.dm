@@ -292,7 +292,7 @@
 /obj/item/clothing/suit/armor/makeshift
 	name = "makeshift armor"
 	desc = "A hazard vest with metal plate taped on it. It offers minor protection at the cost of speed."
-	icon = 'modular_skyrat/icons/obj/clothing/shitarmor.dmi'
+	icon = 'icons/obj/clothing/shitarmor.dmi'
 	icon_state = "makeshiftarmor-worn"
 	item_state = "makeshiftarmor"
 	w_class = 3
