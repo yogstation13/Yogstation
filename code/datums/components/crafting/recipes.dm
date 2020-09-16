@@ -574,6 +574,36 @@
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/mushroom_bowl
+	name = "Mushroom Bowl"
+	result = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 5)
+	time = 30
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/ashen_stablizer
+	name = "Herbal Stabilizing Bowl"
+	result = /obj/item/hivelordstabilizer/ashen
+	parts = list(/obj/item/reagent_containers/glass/bowl/mushroom_bowl = 1)
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 5,
+				/obj/item/seeds/lavaland/ember = 3,
+				/obj/item/seeds/lavaland/cactus = 5,
+				/datum/reagent/liquidgibs = 15,
+				/datum/reagent/consumable/milk = 10,
+				/obj/item/stack/ore/glass = 20)
+	time = 90
+	always_availible = FALSE
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/sandstone_sharpener
+	name = "Sandstone Sharpener"
+	result = /obj/item/sharpener/sandstone
+	time = 100 //grinding
+	always_availible = FALSE
+	reqs = list(/obj/item/stack/sheet/mineral/sandstone = 12,
+				/obj/item/stack/sheet/bone = 2)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/skullhelm
 	name = "Skull Helmet"
 	result = /obj/item/clothing/head/helmet/skull
