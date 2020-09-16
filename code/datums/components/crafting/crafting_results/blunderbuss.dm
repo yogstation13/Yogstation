@@ -2,10 +2,10 @@
 /obj/item/blunderbuss
 	name = "blunderbuss"
 	desc = "A muzzle-loaded firearm powered by welding fuel. It might not be a good idea to use more than 10u of fuel in one shot."
-	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
+	icon = 'icons/obj/vg_items.dmi'
 	icon_state = "blunderbuss"
-	righthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_righthand.dmi'
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/vg/vg_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/vg/vg_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/vg/vg_lefthand.dmi'
 	attack_verb = list("strikes", "hits", "bashes")
 	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/loaded_item
