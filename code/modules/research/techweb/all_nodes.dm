@@ -639,6 +639,12 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/datum/techweb_node/radioactive_weapons/New()
+	design_ids += "holorifle"
+	design_ids += "microfusion_cell"
+	design_ids += "microfusion_cell_box"
+	. = ..()
+
 /datum/techweb_node/medical_weapons
 	id = "medical_weapons"
 	display_name = "Medical Weaponry"
@@ -1025,6 +1031,8 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 20000
 	hidden = TRUE
+
+
 
 /datum/techweb_node/alien_engi
 	id = "alien_engi"
