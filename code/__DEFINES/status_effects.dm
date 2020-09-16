@@ -12,7 +12,8 @@
 ///////////
 // BUFFS //
 ///////////
-
+#define STATUS_EFFECT_CRUSHERMARK_HARM /datum/status_effect/crusher_mark/harm
+#define STATUS_EFFECT_HOLOBURN /datum/status_effect/holoburn //the weird burn effect of the holorifle
 #define STATUS_EFFECT_SHADOW_MEND /datum/status_effect/shadow_mend //Quick, powerful heal that deals damage afterwards. Heals 15 brute/burn every second for 3 seconds.
 #define STATUS_EFFECT_VOID_PRICE /datum/status_effect/void_price //The price of healing yourself with void energy. Deals 3 brute damage every 3 seconds for 30 seconds.
 
