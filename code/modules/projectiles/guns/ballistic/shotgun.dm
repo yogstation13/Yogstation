@@ -231,13 +231,13 @@
 /obj/item/gun/ballistic/shotgun/holorifle
 	name = "holorifle"
 	desc = "A shotgun-like weapon crafted to utilize holographic projectors like a laser firing lens. Its power expenditure requires dedicated microfusion cells to fire in place of standard ammunition."
-	icon = 'modular_skyrat/icons/obj/guns/energy.dmi'
+	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "holorifle"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x_guns_left.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/64x_guns_right.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	mob_overlay_icon = 'modular_skyrat/icons/mob/clothing/back.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/back.dmi'
 	item_state = "holorifle"
 	fire_sound = 'sound/weapons/pulse.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/holorifle
@@ -249,11 +249,11 @@
 	name = "pimp stick"
 	desc = "A gold-rimmed cane, with a gleaming diamond set at the top. Great for bashing in kneecaps."
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/canegun
-	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "pimpstick"
 	item_state = "pimpstick"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/righthand.dmi'
 	force = 15
 	throwforce = 7
 	w_class = WEIGHT_CLASS_BULKY
