@@ -216,6 +216,8 @@
 	pump.stat = 0
 	pump.build_network()
 
+/obj/machinery/portable_atmospherics/canister/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/machinery/portable_atmospherics/canister/Destroy()
