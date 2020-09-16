@@ -1,7 +1,7 @@
 //Crossbow projectile
 /obj/item/projectile/rod
 	name = "metal rod"
-	icon = 'modular_skyrat/icons/obj/guns/crossbow.dmi'
+	icon = 'icons/obj/guns/crossbow.dmi'
 	icon_state = "rod_proj"
 	suppressed = TRUE
 	damage = 10 // multiply by how drawn the bow string is
@@ -9,7 +9,7 @@
 	damage_type = BRUTE
 	flag = "bullet"
 	hitsound = null // We use our own for different circumstances
-	var/impale_sound = 'modular_skyrat/sound/weapons/rodgun_pierce.ogg'
+	var/impale_sound = 'sound/weapons/rodgun_pierce.ogg'
 	var/hitsound_override = 'sound/weapons/pierce.ogg'
 	var/charge = 0 // How much power is in the bolt, transferred from the crossbow
 
