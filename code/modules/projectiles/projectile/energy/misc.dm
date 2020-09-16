@@ -20,7 +20,7 @@
 
 /obj/item/projectile/energy/holo
 	name = "holoprojectile"
-	icon = 'modular_skyrat/icons/obj/projectiles.dmi'
+	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "holo"
 	damage = 40
 	damage_type = BURN
