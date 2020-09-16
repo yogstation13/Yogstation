@@ -81,3 +81,10 @@
 	icon_state = "foambox_riot"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 	materials = list(MAT_METAL = 50000)
+
+/obj/item/ammo_box/microfusion
+	name = "microfusion cell box"
+	icon_state = "40mm" //placeholder
+	ammo_type = /obj/item/ammo_casing/microfusion
+	caliber = "microfusion"
+	max_ammo = 10
