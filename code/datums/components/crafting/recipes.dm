@@ -1049,4 +1049,13 @@
 	time = 30
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/microfusion
+	name = "Microfusion Cell"
+	result = /obj/item/ammo_casing/microfusion
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/stock_parts/capacitor = 2)
+	tools = list(TOOL_WELDER, TOOL_WRENCH)
+	time = 30
 	
