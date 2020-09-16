@@ -127,3 +127,9 @@
 /obj/item/organ/regenerative_core/legion/preserved(implanted = 0)
 	..()
 	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
+
+/obj/item/hivelordstabilizer/ashen
+	name = "herbal stabilizing bowl"
+	icon = 'icons/obj/lavaland/ash_flora.dmi'
+	icon_state = "stabilizing_soup"
+	desc = "A bowl of herbs, fruits and gibs to keep certain types of moster organs healing powers indefinitely."
