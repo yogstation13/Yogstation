@@ -181,8 +181,8 @@
 	icon_state = "watcherprojector"
 	icon = 'icons/obj/guns/energy.dmi'
 	item_state = "watcherprojector"
-	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/watcher)
 	attack_verb = list("bashed", "stared down", "whacked", "smashed")
 	force = 10
