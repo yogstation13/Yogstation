@@ -57,3 +57,9 @@
 	max = 200
 	prefix = "super-sharpened"
 	requires_sharpness = 0
+
+/obj/item/sharpener/sandstone
+	name = "sandstone whetstone"
+	desc = "A block of sandstone that makes things sharp."
+	icon_state = "sandstone_sharpener"
+	prefix = "refined"
