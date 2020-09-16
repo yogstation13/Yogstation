@@ -756,7 +756,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 
 /obj/item/switchblade/deluxe
-	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "switchblade_deluxe"
 	desc = "A powered switchblade that also burns on impact."
 	force = 2
@@ -765,8 +765,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	extended_throwforce = 20
 	extended_icon_state = "switchblade_deluxe_ext"
 	retracted_icon_state = "switchblade_deluxe"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/swords_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	var/firestacking = 0
 	var/burn_force = 3
 	obj_flags = UNIQUE_RENAME
@@ -825,11 +825,11 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	/obj/item/hatchet/improvised
 	name = "glass hatchet"
 	desc = "A makeshift hand axe with a crude blade of broken glass."
-	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "glasshatchet"
 	item_state = "glasshatchet"
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'modular_skyrat/icons/mob/inhands/righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/righthand.dmi'
 	force = 11
 	throwforce = 11
 
@@ -845,7 +845,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/shank
 	name = "shank"
 	desc = "A nasty looking shard of glass. There's paper wrapping over one of the ends."
-	icon = 'modular_skyrat/icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "shank"
 	force = 5 // Bad force, but it stabs twice as fast
 	throwforce = 10
