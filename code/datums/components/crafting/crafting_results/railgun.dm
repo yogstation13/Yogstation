@@ -1,13 +1,13 @@
 /obj/item/gun/ballistic/automatic/railgun
 	name = "railgun"
 	desc = "A weapon that uses the Lorentz force to propel an armature carrying a projectile to incredible velocities."
-	icon = 'modular_skyrat/icons/obj/vg_items.dmi'
+	icon = 'icons/obj/vg_items.dmi'
 	icon_state = "railgun"
-	righthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_righthand.dmi'
-	lefthand_file = 'modular_skyrat/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	item_state = "arg"
 	force = 10
-	fire_sound = 'modular_skyrat/sound/weapons/rodgun_fire.ogg'
+	fire_sound = 'sound/weapons/rodgun_fire.ogg'
 	can_suppress = FALSE
 	burst_size = 1
 	actions_types = null
@@ -22,7 +22,7 @@
 	casing_ejector = FALSE
 	var/obj/item/stock_parts/cell/cell
 	var/obj/item/stock_parts/cell/cell_type = /obj/item/stock_parts/cell
-	var/insert_sound = 'modular_skyrat/sound/weapons/bulletinsert.ogg'
+	var/insert_sound = 'sound/weapons/bulletinsert.ogg'
 
 /obj/item/gun/ballistic/automatic/railgun/update_icon()
 	icon_state = "railgun"
