@@ -519,6 +519,7 @@
 #include "code\datums\looping_sounds\weather.dm"
 #include "code\datums\martial\boxing.dm"
 #include "code\datums\martial\cqc.dm"
+#include "code\datums\martial\karate.dm"
 #include "code\datums\martial\knifeboxing.dm"
 #include "code\datums\martial\krav_maga.dm"
 #include "code\datums\martial\mushpunch.dm"
