@@ -806,5 +806,12 @@
 	time = 20
 	category = CAT_PRIMAL
 
-
+/datum/crafting_recipe/hazardarmor
+	name = "hazard vest armor"
+	result =  /obj/item/clothing/suit/armor/hazard
+	reqs = list(/obj/item/stack/packageWrap = 5,
+				/obj/item/stack/sheet/plasteel = 2,
+				/obj/item/clothing/suit/hazardvest = 1)
+	time = 60
+	category = CAT_CLOTHING
 	
