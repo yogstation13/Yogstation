@@ -599,14 +599,22 @@
 	name = "captain's hardsuit helmet"
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
-	desc = "A tactical MK.II SWAT helmet boasting better protection and a horrible fashion sense."
+	desc = "A tactical MK.II SWAT helmet boasting better protection, fashion sense, and an integrated night vision system; t."
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 35, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	heat_protection = HEAD											//Uncomment to enable firesuit protection
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/space/hardsuit/swat/captain
 	name = "captain's SWAT suit"
-	desc = "A MK.II SWAT suit with streamlined joints and armor made out of superior materials, insulated against intense heat. The most advanced tactical armor available. Usually reserved for heavy hitter corporate security, this one has a regal finish in Nanotrasen company colors. Better not let the assistants get a hold of it."
+	desc = "A MK.II SWAT suit with streamlined joints, armor made from cutting-edge materials, and one hell of a finish."
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 35, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 	//Clown
 /obj/item/clothing/head/helmet/space/hardsuit/clown
