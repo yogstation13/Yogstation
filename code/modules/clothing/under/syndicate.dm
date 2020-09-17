@@ -56,3 +56,29 @@
 	can_adjust = FALSE
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	resistance_flags = NONE
+
+/obj/item/clothing/under/syndicate/crew
+	name = "syndicate uniform"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 40)
+	has_sensor = HAS_SENSORS
+
+/obj/item/clothing/under/syndicate/crew/security
+	name = "syndicate security uniform"
+	desc = "With a suit lined with this many pockets, you are ready to secure."
+	icon_state = "syndicate_combat"
+	item_color = "syndicate_combat"
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 40)
+	strip_delay = 50
+	alt_covers_chest = TRUE
+	sensor_mode = SENSOR_COORDS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/syndicate/crew/command
+	name = "syndicate command uniform"
+	desc = "With a suit lined with this many pockets, you are ready to command."
+	icon_state = "syndicate_combat"
+	item_color = "syndicate_combat"
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 40)
+	alt_covers_chest = TRUE
+	sensor_mode = SENSOR_COORDS
+	can_adjust = FALSE
