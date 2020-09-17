@@ -39,7 +39,7 @@
 	return randname
 
 /// ALL FOURS
-/datum/species/lizard/spec_rest(mob/living/carbon/H, is_resting)
+/datum/species/lizard/proc/spec_rest(mob/living/carbon/H, is_resting)
 	var/obj/item/bodypart/l_arm/l_arm
 	var/obj/item/bodypart/r_arm/r_arm
 	if(!is_resting)
