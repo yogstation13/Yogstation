@@ -56,7 +56,8 @@
 	//handle DNA and other attributes
 	dna.transfer_identity(O)
 	O.updateappearance(icon_update=0)
-	O.roundstart_quirks = roundstart_quirks
+	for(var/datum/quirk/Q in roundstart_quirks)
+		Q.transfer_mob(mob/living/to_mob)
 
 	if(tr_flags & TR_KEEPSE)
 		O.dna.mutation_index = dna.mutation_index
@@ -223,7 +224,8 @@
 
 	dna.transfer_identity(O)
 	O.updateappearance(mutcolor_update=1)
-	O.roundstart_quirks = roundstart_quirks
+	for(var/datum/quirk/Q in roundstart_quirks)
+		Q.transfer_mob(mob/living/to_mob)
 
 	if(findtext(O.dna.real_name, "monkey", 1, 7)) //7 == length("monkey") + 1
 		O.real_name = random_unique_name(O.gender)
