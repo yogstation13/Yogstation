@@ -2,12 +2,6 @@
 "a" = (
 /turf/template_noop,
 /area/space)
-"b" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/security/execution/transfer)
 "c" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -23,14 +17,16 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"e" = (
+"g" = (
+/obj/machinery/flasher{
+	id = "executionflash";
+	pixel_y = 25
+	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 5
+	dir = 1
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/obj/structure/chair,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "h" = (
 /obj/structure/table,
@@ -67,6 +63,17 @@
 	},
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/security/execution/transfer)
+"j" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/execution/transfer)
+"k" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/execution/transfer)
 "l" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -76,16 +83,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"n" = (
-/obj/machinery/flasher{
-	id = "executionflash";
-	pixel_y = 25
-	},
+"m" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 10
 	},
-/obj/structure/chair,
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "o" = (
 /obj/structure/chair{
@@ -259,14 +261,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"H" = (
+"G" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 9
+	dir = 5
 	},
 /obj/machinery/light/small{
-	dir = 8
+	dir = 4
 	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "I" = (
 /obj/structure/table,
@@ -323,8 +325,13 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "O" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "Q" = (
 /obj/structure/cable{
@@ -392,13 +399,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"X" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/security/execution/transfer)
 "Y" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
@@ -440,8 +440,8 @@ K
 M
 "}
 (4,1,1) = {"
-H
-b
+O
+m
 y
 v
 C
@@ -451,8 +451,8 @@ q
 T
 "}
 (5,1,1) = {"
-n
-O
+g
+j
 i
 E
 D
@@ -462,8 +462,8 @@ q
 h
 "}
 (6,1,1) = {"
-e
-X
+G
+k
 y
 o
 B

@@ -215,6 +215,7 @@
 	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_host_unarmed_melee)
 
 /datum/component/riding/human/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
+	unequip_buckle_inhands(parent)
 	var/mob/living/carbon/human/AM = parent
 	AM.remove_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING)
 	. = ..()
@@ -248,8 +249,8 @@
 		AM.layer = MOB_LAYER
 
 /datum/component/riding/human/get_offsets(pass_index)
-	var/mob/living/carbon/human/AM = parent
-	if(AM.buckle_lying)
+	var/mob/living/carbon/human/H = parent
+	if(H.buckle_lying)
 		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(0, 6), TEXT_WEST = list(0, 6))
 	else
 		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4))

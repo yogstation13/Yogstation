@@ -12,6 +12,7 @@
 		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
 		"https://www.youtube.com/watch?v=a90kqxX3jPg",						// Monster860 - Orion Trail
+		"https://www.youtube.com/watch?v=zKxwED8-Hws",						// Monster860 - Journey to Cygni
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
 		"https://www.youtube.com/watch?v=3W7mwRpUbqQ", 						// Stellardrone - Comet Haley
@@ -33,7 +34,8 @@
 		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords
 		"https://www.youtube.com/watch?v=xhlH91k-86E",						// J.G. Thirlwell - In a Spaceage Mood
 		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
-		"https://www.youtube.com/watch?v=ZhhQrFfzFM4")						// Carpenter Brut - Escape from Midwich Valley
+		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
+		"https://www.youtube.com/watch?v=dLrdSC9MVb4")						// Tally Hall - Turn the Lights Off
 
 	selected_lobby_music = pick(songs)
 

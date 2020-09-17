@@ -473,10 +473,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"bh" = (
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "bi" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel{
@@ -488,16 +484,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
-"bk" = (
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -999,6 +985,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"cK" = (
+/obj/effect/spawner/structure/window,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "cQ" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/ameritard,
@@ -1081,6 +1072,15 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"lT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
 "mc" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -1097,6 +1097,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"sL" = (
+/obj/effect/turf_decal/ameritard,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "vO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -1110,6 +1115,11 @@
 "xx" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
+/area/crew_quarters/bar)
+"yv" = (
+/obj/effect/landmark/blobstart,
+/obj/item/reagent_containers/food/snacks/burger/plain,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "Aw" = (
 /obj/structure/table,
@@ -1148,6 +1158,14 @@
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"JN" = (
+/mob/living/carbon/monkey{
+	name = "Pun Pun"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/bar)
 "Ns" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
@@ -1185,7 +1203,7 @@ ab
 ab
 ab
 ab
-mc
+cK
 ab
 mc
 ab
@@ -1232,7 +1250,7 @@ aB
 aO
 aO
 bS
-az
+sL
 az
 ca
 HO
@@ -1393,7 +1411,7 @@ ag
 bf
 aU
 bx
-cv
+JN
 cv
 cv
 bY
@@ -1438,7 +1456,7 @@ ai
 bK
 bP
 ab
-bh
+yv
 aj
 bg
 bD
@@ -1502,7 +1520,7 @@ aj
 aj
 aL
 aY
-bk
+lT
 aj
 br
 bG
