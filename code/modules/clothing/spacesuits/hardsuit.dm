@@ -599,7 +599,7 @@
 	name = "captain's hardsuit helmet"
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
-	desc = "A tactical MK.II SWAT helmet boasting better protection, fashion sense, and an integrated night vision system; t."
+	desc = "A tactical MK.II SWAT helmet boasting better protection, fashion sense, and an integrated night vision system which appears nonfunctional."
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 35, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	heat_protection = HEAD											//Uncomment to enable firesuit protection
