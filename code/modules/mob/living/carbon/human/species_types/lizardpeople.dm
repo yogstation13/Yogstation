@@ -38,6 +38,19 @@
 
 	return randname
 
+/// ALL FOURS
+/datum/species/lizard/spec_rest(mob/living/carbon/H, is_resting)
+	var/obj/item/bodypart/l_arm/l_arm
+	var/obj/item/bodypart/r_arm/r_arm
+	if(!is_resting)
+		l_arm.disabled = TRUE
+		r_arm.disabled = TRUE
+		speedmod += 0.1
+	if(is_resting)
+		l_arm.disabled = FALSE
+		r_arm.disabled = FALSE
+		speedmod -= 0.1
+
 /*
  Lizard subspecies: ASHWALKERS
 */

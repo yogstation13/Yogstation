@@ -1915,3 +1915,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			to_chat(H, "<span class='notice'>You beat your wings and begin to hover gently above the ground...</span>")
 			H.set_resting(FALSE, TRUE)
+
+////////////////
+//Resting Proc//
+////////////////
+
+/datum/species/proc/spec_rest()
+	return

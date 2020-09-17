@@ -451,9 +451,11 @@
 
 	if(!resting)
 		set_resting(TRUE, FALSE)
+		spec_rest(src, TRUE)
 	else
 		if(do_after(src, 10, target = src))
 			set_resting(FALSE, FALSE)
+			spec_rest(src, FALSE)
 		else
 			to_chat(src, "<span class='notice'>You fail to get up.</span>")
 
