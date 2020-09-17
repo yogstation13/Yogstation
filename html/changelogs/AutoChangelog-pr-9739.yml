@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "heretics now have their pockets checked for their book when they sacrifice someone and need to get a charge"
