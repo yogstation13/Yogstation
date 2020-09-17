@@ -46,7 +46,7 @@
 		l_arm.disabled = TRUE
 		r_arm.disabled = TRUE
 		speedmod += 0.1
-	if(is_resting)
+	else
 		l_arm.disabled = FALSE
 		r_arm.disabled = FALSE
 		speedmod -= 0.1
