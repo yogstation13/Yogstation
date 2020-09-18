@@ -152,14 +152,6 @@ SUBSYSTEM_DEF(ticker)
 			//Everyone who wants to be an observer is now spawned
 			create_observers()
 			fire()
-
-			//TEMP ADMIN LOADING FIX
-
-			refresh_admin_files() //yogs - DB support
-			load_admins()
-			SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-			message_admins("[key_name_admin(usr)] manually reloaded admins")
-
 		if(GAME_STATE_PREGAME)
 				//lobby stats for statpanels
 			if(isnull(timeLeft))
