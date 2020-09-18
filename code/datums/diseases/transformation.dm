@@ -286,6 +286,23 @@
 	stage5	= list("<span class='danger'>You have become a morph.</span>")
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
+	
+/datum/disease/transformation/ghost
+	name = "Spectral Curse"
+	cure_text = /datum/reagent/water/holywater
+	cures = list(/datum/reagent/water/holywater)
+	agent = "Spectral Curse"
+	desc = "A 'gift' from the spectral realm"
+	stage_prob = 20
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = 0
+	stage1	= list("Your stomach rumbles.")
+	stage2	= list("Your body feels tired")
+	stage3	= list("<span class='danger'>Your skin starts to look transparent</span>", "<span class='danger'>Your limbs begin to lose their shape.</span>")
+	stage4	= list("<span class='danger'>your organs seems to suddenly disappear.</span>")
+	stage5	= list("<span class='danger'>You have become a ghost.</span>")
+	new_form = /mob/living/simple_animal/hostile/retaliate/ghost
+	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
 
 /datum/disease/transformation/gondola
 	name = "Gondola Transformation"

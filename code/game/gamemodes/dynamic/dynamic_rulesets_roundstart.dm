@@ -140,6 +140,46 @@
 
 //////////////////////////////////////////////
 //                                          //
+//              ELDRITCH CULT               //
+//                                          //
+//////////////////////////////////////////////
+
+/*/datum/dynamic_ruleset/roundstart/heretics
+	name = "Heretics"
+	antag_flag = ROLE_HERETIC
+	antag_datum = /datum/antagonist/heretic
+	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 1
+	weight = 3
+	cost = 20
+	requirements = list(50,45,45,40,35,20,20,15,10,10)
+
+
+/datum/dynamic_ruleset/roundstart/heretics/pre_execute()
+	. = ..()
+	var/num_ecult = antag_cap[indice_pop] * (scaled_times + 1)
+
+	for (var/i = 1 to num_ecult)
+		var/mob/picked_candidate = pick_n_take(candidates)
+		assigned += picked_candidate.mind
+		picked_candidate.mind.restricted_roles = restricted_roles
+		picked_candidate.mind.special_role = ROLE_HERETIC
+		GLOB.pre_setup_antags += picked_candidate.mind
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/heretics/execute()
+
+	for(var/c in assigned)
+		var/datum/mind/cultie = c
+		var/datum/antagonist/heretic/new_antag = new antag_datum()
+		cultie.add_antag_datum(new_antag)
+		GLOB.pre_setup_antags -= cultie
+
+	return TRUE */
+
+//////////////////////////////////////////////
+//                                          //
 //               WIZARDS                    //
 //                                          //
 //////////////////////////////////////////////
@@ -466,15 +506,6 @@
 	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
-	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
-	if(errorList.len)
-		message_admins("Reebe failed to load!")
-		log_game("Reebe failed to load!")
-		return FALSE
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
-
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready
 	if(number_players > 30)
@@ -702,8 +733,7 @@
 	required_candidates = 0
 	weight = 1
 	cost = 75
-	requirements = list(100,100,100,100,100,100,100,100,100,100)
-	high_population_requirement = 100
+	requirements = list(100,100,100,100,100,100,100,100,99,98)
 	var/meteordelay = 2000
 	var/nometeors = 0
 	var/rampupdelta = 5
@@ -758,7 +788,7 @@
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Shadowling")
 	return TRUE
-	
+
 /datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
 	return FALSE
 
@@ -784,7 +814,7 @@
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
-	
+
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute()
 	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
 	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
@@ -820,6 +850,17 @@
 	weight = 1
 	cost = 70
 	requirements = list(100,95,90,80,75,75,70,60,60,55)
+	var/max_mages = 0
+	var/making_mage = 0
+	var/mages_made = 1
+	var/time_checked = 0
+	var/bullshit_mode = 0
+	var/time_check = 1500
+	var/spawn_delay_min = 450
+	var/spawn_delay_max = 700
+	var/list/datum/mind/wizards = list()
+	var/list/datum/mind/apprentices = list()
+	var/finished = 0
 
 /datum/dynamic_ruleset/roundstart/wizard/raging/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
@@ -845,7 +886,118 @@
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
+/datum/game_mode/wizard/raginmages/post_setup()
+	..()
+	var/playercount = 0
+	if(!max_mages && !bullshit_mode)
+		for(var/mob/living/player in GLOB.mob_list)
+			if(player.client && player.stat != DEAD)
+				playercount += 1
+		max_mages = round(playercount / 8)
+		if(max_mages > 20)
+			max_mages = 20
+		if(max_mages < 1)
+			max_mages = 1
+	if(bullshit_mode)
+		max_mages = INFINITY
+
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/check_finished()
+
+	var/wizards_alive = 0
+	for(var/datum/mind/wizard in wizards)
+		if(!istype(wizard.current,/mob/living/carbon))
+			continue
+		if(istype(wizard.current,/mob/living/brain))
+			continue
+		if(wizard.current.stat==DEAD)
+			continue
+		if(wizard.current.stat==UNCONSCIOUS)
+			if(wizard.current.health < 0)
+				to_chat(wizard.current, "<font size='4'>The Space Wizard Federation is upset with your performance and have terminated your employment.</font>")
+				wizard.current.death()
+			continue
+		wizards_alive++
+	if(!time_checked)
+		time_checked = world.time
+
+	if (wizards_alive || bullshit_mode)
+		if(world.time > time_checked + time_check && (mages_made < max_mages))
+			time_checked = world.time
+			make_more_mages()
+	else
+		if(mages_made >= max_mages)
+			finished = TRUE // A flag inherited by /game_mode/wizard that marks that wizards have lost
+		else
+			make_more_mages()
+	return ..()
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/proc/make_more_mages()
+
+	if(making_mage)
+		return 0
+	if(mages_made >= max_mages)
+		return 0
+	making_mage = 1
+	mages_made++
+	var/list/mob/dead/observer/candidates = list()
+	var/mob/dead/observer/theghost = null
+	spawn(rand(spawn_delay_min, spawn_delay_max))
+		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
+		for(var/mob/dead/observer/G in GLOB.player_list)
+			if(G.client && !G.client.holder && !G.client.is_afk() && (ROLE_WIZARD in G.client.prefs.be_special))
+				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
+					candidates += G
+		if(!candidates.len)
+			message_admins("No applicable ghosts for the next ragin' mage, asking ghosts instead.")
+			var/time_passed = world.time
+			for(var/mob/dead/observer/G in GLOB.player_list)
+				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
+					spawn(0)
+						switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
+							if("Yes")
+								if((world.time-time_passed)>300)//If more than 30 game seconds passed.
+									continue
+								candidates += G
+							if("No")
+								continue
+
+			sleep(300)
+		if(!candidates.len)
+			message_admins("This is awkward, sleeping until another mage check...")
+			making_mage = 0
+			mages_made--
+			return
+		else
+			shuffle_inplace(candidates)
+			for(var/mob/i in candidates)
+				if(!i || !i.client)
+					continue //Dont bother removing them from the list since we only grab one wizard
+
+				theghost = i
+				break
+
+		if(theghost)
+			var/mob/living/carbon/human/new_character= makeBody(theghost)
+			new_character.mind.make_Wizard()
+			making_mage = 0
+			return 1
+
+/datum/dynamic_ruleset/roundstart/wizard/raging/proc/makeBody(mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
+	if(!G_found || !G_found.key)
+		return
+
+	//First we spawn a dude.
+	var/mob/living/carbon/human/new_character = new //The mob being spawned.
+	SSjob.SendToLateJoin(new_character)
+
+	G_found.client.prefs.copy_to(new_character)
+	new_character.dna.update_dna_identity()
+	new_character.key = G_found.key
+
+	return new_character
+
 //////////////////////////////////////////////
 //                                          //
 //              BULLSHIT MAGES				//
@@ -864,7 +1016,7 @@
 	minimum_players = 40
 	requirements = list(100,100,100,100,95,95,90,80,85,75)
 	var/mage_cap = 999
-	var/bullshit_mode = 1
+	bullshit_mode = 1
 
 /datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
@@ -894,7 +1046,7 @@
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //                DARKSPAWN                 //

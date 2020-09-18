@@ -6,7 +6,7 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LUNGS
 	gender = PLURAL
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
@@ -441,7 +441,7 @@
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 10
 	safe_co2_max = 20
-	safe_toxins_max = 20 //Higher resistance to most harmful gasses 
+	safe_toxins_max = 20 //Higher resistance to most harmful gasses
 	SA_para_min = 3
 	SA_sleep_min = 6
 	BZ_trip_balls_min = 2

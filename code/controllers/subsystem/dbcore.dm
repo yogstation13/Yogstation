@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(dbcore)
 	)
 	query_round_initialize.Execute(async = FALSE)
 	GLOB.round_id = "[query_round_initialize.last_insert_id]"
-	var/datum/DBQuery/query_fix_connections = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET 'left' = NOW() WHERE 'left' IS NULL AND round_id = :id", list("id" = text2num(GLOB.round_id) - 1))
+	var/datum/DBQuery/query_fix_connections = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = NOW() WHERE `left` IS NULL AND round_id = :id", list("id" = text2num(GLOB.round_id) - 1))
 	query_fix_connections.Execute()
 	qdel(query_fix_connections)
 	qdel(query_round_initialize)

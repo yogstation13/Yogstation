@@ -426,9 +426,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	check_ip_intel()
 	validate_key_in_db()
 
-	if (prefs.auto_fit_viewport)
-		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
-
 	send_resources()
 
 	generate_clickcatcher()
@@ -477,7 +474,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		var/datum/verbs/menu/menuitem = GLOB.menulist[thing]
 		if (menuitem)
 			menuitem.Load_checked(src)
-
+	view_size = new(src, getScreenSize(prefs.widescreenpref))
+	view_size.resetFormat()
+	view_size.setZoomMode()
+	fit_viewport()
 	Master.UpdateTickRate()
 
 //////////////
@@ -485,8 +485,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //////////////
 
 /client/Del()
-	if(credits)
-		QDEL_LIST(credits)
+	//if(credits)
+		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)
@@ -772,7 +772,17 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/note_randomizer_user()
 	add_system_note("CID-Error", "Detected as using a cid randomizer.")
 
-/client/proc/add_system_note(system_ckey, message)
+
+/**
+  * Makes the server note a player
+  *
+  * Automatically checks that we haven't noted them with the same system_ckey in the last day, and that their last note is not from that ckey either
+  * Arguments:
+  ** system_ckey The ckey of the server giving the note
+  ** message The actual message
+  ** avoid_duplicate Should we NEVER add a note with the same message?
+  */
+/client/proc/add_system_note(system_ckey, message, avoid_duplicate = FALSE)
 	//check to see if we noted them in the last day.
 	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery(
 		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
@@ -798,6 +808,19 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			qdel(query_get_notes)
 			return
 	qdel(query_get_notes)
+	if(avoid_duplicate)
+		query_get_notes = SSdbcore.NewQuery(
+			"SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = :targetckey AND deleted = 0 AND text = :message AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC",
+			list("targetckey" = ckey, "message" = message)
+		)
+		if(!query_get_notes.Execute())
+			qdel(query_get_notes)
+			return
+		if(query_get_notes.NextRow())
+			if (query_get_notes.item[1] == system_ckey)
+				qdel(query_get_notes)
+				return
+
 	//create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
 	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0) //yogs -
 
@@ -937,24 +960,16 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		if ("key")
 			return FALSE
 		if("view")
-			change_view(var_value)
+			view_size.setDefault(var_value)
 			return TRUE
 	. = ..()
 
 /client/proc/rescale_view(change, min, max)
-	var/viewscale = getviewsize(view)
-	var/x = viewscale[1]
-	var/y = viewscale[2]
-	x = clamp(x+change, min, max)
-	y = clamp(y+change, min,max)
-	change_view("[x]x[y]")
+	view_size.setTo(clamp(change, min, max), clamp(change, min, max))
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
 		CRASH("change_view called without argument.")
-
-	if(prefs && !prefs.widescreenpref && new_size == CONFIG_GET(string/default_view))
-		new_size = CONFIG_GET(string/default_view_square)
 
 	view = new_size
 	apply_clickcatcher()

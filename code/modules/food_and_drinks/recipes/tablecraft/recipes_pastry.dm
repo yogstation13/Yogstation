@@ -100,7 +100,7 @@ datum/crafting_recipe/food/donut/meat
 /datum/crafting_recipe/food/rofflewaffles
 	name = "Roffle Waffles"
 	reqs = list(
-		/datum/reagent/mushroomhallucinogen = 5,
+		/datum/reagent/drug/mushroomhallucinogen = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/rofflewaffles
@@ -359,4 +359,14 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/jaffacake
+	name = "Jaffa Cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
+		/datum/reagent/consumable/orangejuice = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/jaffacake
 	subcategory = CAT_PASTRY

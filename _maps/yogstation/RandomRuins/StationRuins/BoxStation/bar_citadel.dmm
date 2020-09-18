@@ -62,7 +62,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -71,14 +70,12 @@
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/burger/plain,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 6
 	},
 /turf/open/floor/wood,
@@ -178,7 +175,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -208,6 +204,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"aW" = (
+/obj/structure/table,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bf" = (
 /obj/structure/table/wood,
 /obj/item/instrument/guitar{
@@ -268,12 +276,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"cy" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "cK" = (
 /obj/effect/landmark/start/bartender,
 /obj/effect/turf_decal/tile/bar,
@@ -282,19 +284,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"dd" = (
-/obj/structure/table/reinforced,
+"dl" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
-/obj/item/book/manual/wiki/barman_recipes,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/item/reagent_containers/glass/rag,
-/turf/open/floor/plasteel,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "dP" = (
 /obj/structure/chair/sofa/left,
@@ -325,13 +319,15 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"fh" = (
+"fm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "ft" = (
@@ -404,6 +400,17 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"jy" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/flour{
+	pixel_x = 10
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "kg" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -445,17 +452,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"mt" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "nv" = (
 /obj/structure/chair/sofa{
 	dir = 1
@@ -611,16 +607,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"sf" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Kitchen";
-	departmentType = 2;
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "sr" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -808,13 +794,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"BK" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/chair/sofa/right{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "BR" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -960,12 +939,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Hb" = (
-/obj/structure/chair/comfy/black{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "He" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -1224,6 +1197,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Qa" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "QW" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/beach_ball/holoball,
@@ -1257,6 +1236,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Sq" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = -11;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Sz" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
@@ -1279,14 +1270,6 @@
 	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"Tb" = (
-/obj/structure/chair/sofa,
-/obj/structure/window{
-	dir = 1
-	},
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Tn" = (
 /obj/structure/table/reinforced,
@@ -1316,6 +1299,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"TU" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ue" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -1360,6 +1350,15 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"WZ" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "Xf" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
@@ -1426,6 +1425,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"YC" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Zr" = (
 /obj/structure/piano{
 	icon_state = "piano"
@@ -1476,7 +1482,7 @@ wZ
 bf
 zU
 Fi
-BK
+Qa
 OC
 "}
 (3,1,1) = {"
@@ -1490,7 +1496,7 @@ VE
 zJ
 wZ
 Zr
-Tb
+To
 HN
 nv
 oj
@@ -1505,7 +1511,7 @@ hD
 Dr
 sZ
 wZ
-Hb
+YC
 dP
 bk
 ad
@@ -1650,8 +1656,8 @@ kk
 Pe
 cK
 Pe
-fh
-sC
+fm
+TU
 xa
 OC
 "}
@@ -1682,9 +1688,9 @@ ac
 Pe
 IO
 Pe
-dd
+WZ
 wZ
-wZ
+dl
 OC
 "}
 (16,1,1) = {"
@@ -1761,7 +1767,7 @@ XH
 Tu
 KF
 bq
-mt
+Sq
 pd
 Lq
 GT
@@ -1776,7 +1782,7 @@ nP
 tx
 XU
 Bv
-cy
+jy
 eh
 Lq
 oz
@@ -1826,7 +1832,7 @@ Iq
 Lq
 Lq
 ao
-sf
+aW
 Be
 tx
 uY

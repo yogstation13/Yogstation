@@ -396,6 +396,9 @@ Difficulty: Hard
 	if(health > 0 || stat == DEAD)
 		return
 	else
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 		stat = DEAD
 		blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
 		visible_message("<span class='hierophant'>\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\"</span>")
@@ -535,6 +538,7 @@ Difficulty: Hard
 			return TRUE
 	if(mover == caster)
 		return TRUE
+	return FALSE
 
 /obj/effect/temp_visual/hierophant/chaser //a hierophant's chaser. follows target around, moving and producing a blast every speed deciseconds.
 	duration = 98

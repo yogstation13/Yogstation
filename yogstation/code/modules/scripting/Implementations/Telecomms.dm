@@ -13,6 +13,7 @@
 #define DRACONIC 64
 #define BEACHTONGUE 128
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
+GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/language/machine,/datum/language/draconic))// language datums that players are allowed to translate to in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
@@ -211,8 +212,11 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	signal.virt.verb_ask		= script_signal.get_clean_property("ask")
 	signal.virt.verb_yell		= script_signal.get_clean_property("yell")
 	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
-	var/newlang = script_signal.get_clean_property("language")
-	signal.language = LangBit2Datum(newlang) || oldlang
+	var/newlang = LangBit2Datum(script_signal.get_clean_property("language"))
+	if(newlang != oldlang)// makes sure that we only clean out unallowed languages when a translation is taking place otherwise we run an unnecessary proc to filter newlang on foreign untranslated languages.
+		if(!LAZYFIND(GLOB.allowed_translations, oldlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
+			newlang = oldlang
+	signal.language = newlang || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!

@@ -490,3 +490,5 @@
 /datum/config_entry/flag/protect_AI_from_traitor
 
 /datum/config_entry/flag/everyone_is_donator
+
+/datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API

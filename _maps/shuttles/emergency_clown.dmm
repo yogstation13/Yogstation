@@ -121,6 +121,13 @@
 	},
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
+"aw" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/item/toy/snappop/phoenix,
+/turf/open/floor/bluespace,
+/area/shuttle/escape)
 "ay" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
@@ -214,14 +221,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/bluespace,
-/area/shuttle/escape)
-"aK" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/obj/item/toy/snappop/phoenix,
 /turf/open/floor/bluespace,
 /area/shuttle/escape)
 "aL" = (
@@ -318,10 +317,6 @@
 	pixel_x = 27
 	},
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/bananium,
-/area/shuttle/escape)
-"aX" = (
-/obj/machinery/stasis,
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "aY" = (
@@ -492,6 +487,12 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
+"WL" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/escape)
 "XS" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -567,7 +568,7 @@ au
 az
 au
 ab
-aK
+aw
 Bq
 ak
 ak
@@ -743,9 +744,9 @@ aM
 he
 aL
 ac
-aX
+WL
 bb
-aX
+WL
 ab
 ab
 "}

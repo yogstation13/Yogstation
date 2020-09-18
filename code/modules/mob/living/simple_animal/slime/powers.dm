@@ -62,6 +62,9 @@
 	if(ismegafauna(M))
 		return FALSE
 
+	if(!src.key && HAS_TRAIT(M, TRAIT_SLIME_EMPATHY)) //So that an AI slime won't target a mob with slime empathy
+		return FALSE
+
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(S.damage_coeff[TOX] <= 0 && S.damage_coeff[CLONE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
@@ -102,6 +105,7 @@
 			return FALSE
 		to_chat(src, "<span class='warning'><i>Another slime is already feeding on this subject...</i></span>")
 		return FALSE
+
 	return TRUE
 
 /mob/living/simple_animal/slime/proc/Feedon(mob/living/M)
