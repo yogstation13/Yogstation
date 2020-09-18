@@ -140,8 +140,6 @@ GLOBAL_PROTECT(exp_to_update)
 	if(!SSdbcore.Connect())
 		return -1
 	for(var/client/L in GLOB.clients)
-		if(L.is_afk())
-			continue
 		L.update_exp_list(mins,ann)
 
 /datum/controller/subsystem/blackbox/proc/update_exp_db()
@@ -216,7 +214,7 @@ GLOBAL_PROTECT(exp_to_update)
 		if(announce_changes)
 			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
 
-	if(isliving(mob))
+	if(isliving(mob) && !is_afk())
 		if(mob.stat != DEAD)
 			var/rolefound = FALSE
 			play_records[EXP_TYPE_LIVING] += minutes
@@ -247,11 +245,11 @@ GLOBAL_PROTECT(exp_to_update)
 			play_records[EXP_TYPE_GHOST] += minutes
 			if(announce_changes)
 				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
-	else if(isobserver(mob))
+	else if(isobserver(mob) && !is_afk())
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)
 			to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
-	else if(minutes)	//Let "refresh" checks go through
+	else if(minutes && !is_afk())	//Let "refresh" checks go through
 		return
 
 	for(var/jtype in play_records)
