@@ -435,7 +435,8 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/escape/onesurvivor/check_completion()
 	var/has_survivor = FALSE	//is there a surviving member of the team?
 	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
+	for(var/O in owners)
+		var/datum/mind/M = O
 		if(!considered_escaped(M, needs_living = FALSE)) //NO MAN LEFT BEHIND
 			return FALSE
 		if(considered_alive(M))
