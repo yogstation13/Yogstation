@@ -139,9 +139,9 @@
 
 /obj/item/robot_suit/attackby(obj/item/W, mob/user, params)
 
-	if(istype(W, /obj/item/mmi/posibrain/soul_vessel/agent))
-		var/obj/item/mmi/posibrain/soul_vessel/agent/buscheck = W
-		if(buscheck.agent) //if for some stupid reason team badmin wants to let people add one of these to a borg shell
+	if(istype(W, /obj/item/mmi/posibrain/soul_vessel))
+		var/obj/item/mmi/posibrain/soul_vessel/buscheck = W
+		if(buscheck.agent) 
 			to_chat(user, "<span class='warning'>[W] hums fitfully, but doesn't mesh with the frame.</span>")
 			return
 	if(istype(W, /obj/item/stack/sheet/metal))
