@@ -1074,6 +1074,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/allowed_types = list(
 		/datum/objective/assassinate,
 		/datum/objective/maroon,
+		/datum/objective/debrain,
 		/datum/objective/soul_extraction,
 		/datum/objective/assist,
 		/datum/objective/protect,
