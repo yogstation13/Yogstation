@@ -41,6 +41,7 @@
 		var/obj/item/implanter/I = W
 		if(istype(I, /obj/item/implanter/cult))
 			to_chat(user, "<span class='warning'>You can't see anything to extract from [I]!</span>")
+			return
 		if(I.imp)
 			if(imp || I.imp.imp_in)
 				return
