@@ -9,7 +9,7 @@
 	name = "traitor+cultagents"
 	config_tag = "traitorcult"
 	restricted_jobs = list("Chaplain", "Captain", "AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security")
 	required_players = 20
 
 	announce_span = "danger"
