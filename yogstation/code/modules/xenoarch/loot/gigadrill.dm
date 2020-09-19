@@ -29,7 +29,7 @@
 /obj/vehicle/ridden/gigadrill/Initialize()
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-	D.vehicle_move_delay = 1
+	D.vehicle_move_delay = 4
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 7), TEXT_SOUTH = list(0, 18), TEXT_EAST = list(-18, 9), TEXT_WEST = list( 18, 9)))
 	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
