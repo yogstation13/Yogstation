@@ -46,17 +46,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/carpet/exoticpurple,
 /area/ruin/powered/golem_ship)
-"hy" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 4
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8
-	},
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/powered/golem_ship)
 "hB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/glass,
@@ -134,6 +123,9 @@
 "lu" = (
 /turf/template_noop,
 /area/space)
+"lK" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered/golem_ship)
 "mL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -171,6 +163,15 @@
 "pc" = (
 /obj/machinery/mineral/ore_redemption,
 /turf/open/floor/plating,
+/area/ruin/powered/golem_ship)
+"po" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/golem_ship)
 "pq" = (
 /obj/structure/table/reinforced,
@@ -416,6 +417,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
+"FC" = (
+/obj/structure/shuttle/engine/huge{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered/golem_ship)
 "FL" = (
 /obj/machinery/light{
 	dir = 4
@@ -496,14 +503,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod,
-/area/ruin/powered/golem_ship)
-"Jq" = (
-/obj/structure/shuttle/engine/huge{
-	dir = 4
-	},
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
 /area/ruin/powered/golem_ship)
 "Kp" = (
 /obj/structure/table/optable,
@@ -738,11 +737,6 @@
 /obj/item/flashlight/lantern,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/ruin/powered/golem_ship)
-"Wa" = (
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
 /area/ruin/powered/golem_ship)
 "Wd" = (
 /obj/structure/table/reinforced,
@@ -1222,9 +1216,9 @@ Ht
 (21,1,1) = {"
 Ht
 Ht
-hy
-hy
-hy
+po
+po
+po
 Ht
 Pz
 Ht
@@ -1234,18 +1228,18 @@ RO
 Ht
 Bg
 Ht
-hy
-hy
-hy
+po
+po
+po
 Ht
 Ht
 "}
 (22,1,1) = {"
 lu
 Ht
-Wa
-Wa
-Jq
+lK
+lK
+FC
 Ht
 lu
 lu
@@ -1255,18 +1249,18 @@ lu
 lu
 lu
 Ht
-Wa
-Wa
-Jq
+lK
+lK
+FC
 Ht
 lu
 "}
 (23,1,1) = {"
 lu
 lu
-Wa
-Wa
-Wa
+lK
+lK
+lK
 lu
 lu
 lu
@@ -1276,9 +1270,9 @@ lu
 lu
 lu
 lu
-Wa
-Wa
-Wa
+lK
+lK
+lK
 lu
 lu
 "}
