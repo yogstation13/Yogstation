@@ -1629,9 +1629,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "acx" = (
 /obj/structure/cable/white{
@@ -1644,9 +1642,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "acy" = (
 /obj/structure/cable/white{
@@ -1665,9 +1661,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "acz" = (
 /obj/structure/table,
@@ -1704,9 +1698,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "acB" = (
 /obj/structure/cable/white{
@@ -1855,9 +1847,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "acL" = (
 /obj/machinery/status_display/evac,
@@ -1898,9 +1888,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "acP" = (
 /obj/structure/cable/white{
@@ -2199,9 +2187,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "adi" = (
 /obj/structure/cable/white{
@@ -5610,9 +5596,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "ahN" = (
 /obj/effect/turf_decal/bot,
@@ -5914,9 +5898,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "aif" = (
 /obj/machinery/conveyor{
@@ -6343,9 +6325,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aiE" = (
 /obj/structure/cable/white{
@@ -8836,9 +8816,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "alN" = (
 /obj/effect/turf_decal/tile/red{
@@ -8866,9 +8844,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "alP" = (
 /obj/structure/cable/white{
@@ -8907,9 +8883,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "alR" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -8924,9 +8898,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "alS" = (
 /obj/machinery/vending/cola/random,
@@ -9177,9 +9149,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "amh" = (
 /obj/structure/cable/white{
@@ -10276,9 +10246,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "anG" = (
 /obj/structure/sign/directions/engineering{
@@ -10337,9 +10305,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "anJ" = (
 /obj/machinery/door/airlock{
@@ -10369,9 +10335,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "anL" = (
 /obj/machinery/door/window/northleft{
@@ -10419,9 +10383,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "anP" = (
 /obj/machinery/teleport/station,
@@ -10512,9 +10474,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "anU" = (
 /obj/structure/closet/crate/rcd{
@@ -10575,9 +10535,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "anY" = (
 /turf/closed/wall/rust,
@@ -19216,9 +19174,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aPy" = (
 /obj/structure/table,
@@ -21053,9 +21009,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "aWv" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -24199,9 +24153,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "blC" = (
 /obj/machinery/mass_driver{
@@ -25344,9 +25296,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "bZq" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
@@ -26919,9 +26869,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ecS" = (
 /obj/structure/cable/white{
@@ -28121,9 +28069,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "fGq" = (
 /obj/structure/cable/white{
@@ -28969,9 +28915,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "gAo" = (
 /obj/effect/turf_decal/stripes/line{
@@ -29071,9 +29015,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "gHf" = (
 /obj/machinery/light,
@@ -29503,9 +29445,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "hdh" = (
 /obj/effect/decal/cleanable/dirt,
@@ -29904,9 +29844,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "hyT" = (
 /obj/structure/cable/white{
@@ -31268,9 +31206,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "iUq" = (
 /obj/machinery/status_display/evac,
@@ -31477,9 +31413,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "jhn" = (
 /obj/structure/table/wood,
@@ -32729,9 +32663,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kFw" = (
 /obj/effect/turf_decal/stripes/line{
@@ -33746,9 +33678,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "lRJ" = (
 /obj/structure/table/wood,
@@ -33969,9 +33899,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "mae" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -34590,7 +34518,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1e+006
+	heat_capacity =	1e+006
 	},
 /area/hallway/primary/central)
 "mQe" = (
@@ -34603,9 +34531,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "mQm" = (
 /obj/structure/cable/white{
@@ -35733,9 +35659,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "nXJ" = (
 /obj/structure/disposalpipe/trunk{
@@ -36232,9 +36156,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "oDF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -37234,9 +37156,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "pNf" = (
 /obj/structure/sign/warning/securearea{
@@ -38416,9 +38336,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "qZX" = (
 /obj/structure/cable/white{
@@ -38875,9 +38793,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "rBK" = (
 /obj/structure/cable/white{
@@ -39013,9 +38929,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "rHV" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -39253,9 +39167,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "rVY" = (
 /obj/machinery/portable_atmospherics/scrubber,
@@ -40956,9 +40868,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "sMq" = (
 /turf/closed/wall/r_wall/rust,
@@ -41683,9 +41593,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "sYc" = (
 /obj/structure/cable/white{
@@ -42120,9 +42028,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "tDv" = (
 /obj/structure/cable/white{
@@ -43248,9 +43154,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "uJD" = (
 /obj/structure/cable/white{
@@ -43552,9 +43456,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "uYd" = (
 /obj/structure/table/reinforced,
@@ -43644,9 +43546,7 @@
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "vgs" = (
 /obj/structure/cable/white{
@@ -44249,9 +44149,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "vRR" = (
 /obj/structure/disposalpipe/segment{
@@ -44384,9 +44282,7 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "wdt" = (
 /obj/structure/cable/white{
@@ -45081,9 +44977,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "wOJ" = (
 /obj/structure/extinguisher_cabinet{
@@ -45274,9 +45168,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "wXv" = (
 /obj/structure/table/wood,
@@ -45695,9 +45587,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "xAt" = (
 /obj/structure/cable/white{
