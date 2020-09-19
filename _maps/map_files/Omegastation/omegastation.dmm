@@ -32433,16 +32433,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"kDs" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "kDD" = (
 /obj/machinery/light,
 /obj/machinery/newscaster{
@@ -34309,7 +34299,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity =	1e+006
+	heat_capacity = 1e+006
 	},
 /area/hallway/primary/central)
 "mQe" = (
@@ -85520,7 +85510,7 @@ aMx
 aMx
 aMx
 aMx
-kDs
+bkj
 aMx
 aaa
 aaa
