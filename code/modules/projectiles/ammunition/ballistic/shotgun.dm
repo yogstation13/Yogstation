@@ -144,3 +144,4 @@
 	icon_state = "breacher"
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(MAT_METAL=4000)
+	caliber = "breaching"
