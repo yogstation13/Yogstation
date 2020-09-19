@@ -255,7 +255,7 @@
 		new /datum/data/mining_equipment("Grey Slime Extract",			/obj/item/slime_extract/grey,									1000, VENDING_MISC),
 		new /datum/data/mining_equipment("Science Goggles",       		/obj/item/clothing/glasses/science,								250, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Toolbelt",					/obj/item/storage/belt/utility,	    							350, VENDING_EQUIPMENT),
-		new /datum/data/mining_equipment("Random Poster",				/obj/item/poster/random_official,								100, VENDING_MISC),
+		new /datum/data/mining_equipment("Random Poster",				/obj/item/poster/random_official,								200, VENDING_MISC),
 		new /datum/data/mining_equipment("Royal Cape of the Liberator", /obj/item/bedsheet/rd/royal_cape, 								500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("The Liberator's Legacy",  	/obj/item/storage/box/rndboards,								2000, VENDING_TOOL)
 		)
