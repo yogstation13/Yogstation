@@ -104,14 +104,10 @@
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "jX" = (
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 4;
-	pixel_y = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/effect/decal/cleanable/glass,
+/obj/item/storage/pill_bottle/charcoal,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "kD" = (
@@ -298,13 +294,9 @@
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "zO" = (
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 4;
-	pixel_y = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
+/obj/item/storage/pill_bottle/bica,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "zV" = (
@@ -354,12 +346,8 @@
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "Ci" = (
-/obj/item/storage/firstaid/brute,
-/obj/item/storage/firstaid/brute{
-	pixel_x = 4;
-	pixel_y = 1
-	},
 /obj/structure/rack,
+/obj/item/storage/pill_bottle/kelo,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
 "CE" = (
@@ -522,7 +510,12 @@
 /area/ruin/powered/golem_ship)
 "Lh" = (
 /obj/structure/rack,
-/obj/item/seeds/tower,
+/obj/item/vending_refill/hydroseeds{
+	name = "MegaSeed resupply canister"
+	},
+/obj/item/vending_refill/hydronutrients{
+	name = "NutriMax resupply canister"
+	},
 /obj/item/storage/bag/plants/portaseeder,
 /obj/item/shovel/spade,
 /obj/item/cultivator,
