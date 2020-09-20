@@ -34298,9 +34298,7 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "mQe" = (
 /obj/machinery/light{
