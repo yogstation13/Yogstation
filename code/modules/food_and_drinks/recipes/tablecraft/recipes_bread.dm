@@ -114,3 +114,13 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/bread/xenomeat
 	subcategory = CAT_BREAD
+
+/datum/crafting_recipe/food/mbread
+	name = "MBread"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/breadslice/xenomeat
+		/obj/item/reagent_containers/food/snacks/breadslice/spidermeat
+		/obj/item/reagent_containers/food/snacks/breadslice/meat
+	)
+	result = /obj/item/reagent_containers/food/snacks/mbread
+	subcategory = CAT_BREAD

@@ -1844,3 +1844,14 @@
 	color = "#020202"
 	taste_description = "bananas"
 	can_synth = TRUE
+
+/datum/reagent/mentor_juice
+	name = "Mentor Juice"
+	description = "It tastes confusing."
+	color = "#1ABC9C"
+	taste_description = "honks"
+	can_synth = FALSE
+
+/datum/reagent/mentor_juice/on_mob_life(mob/living/carbon/M)
+	if(prob(5))
+		playsound(M.loc, 'yogstation/sound/misc/bikehorn_alert.ogg', 50, 1)

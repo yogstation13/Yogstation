@@ -224,6 +224,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("cinnamon" = 1, "toast" = 1)
 
+/obj/item/reagent_containers/food/snacks/mbread
+	name = "mbread"
+	desc = "How suc blod?"
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "mbread"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 2, /datum/reagent/mentor_juice = 20)
+	tastes = list("confusion" = 1, "curious" = 1)
+
 //DEEP FRYER
 /obj/item/reagent_containers/food/snacks/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
