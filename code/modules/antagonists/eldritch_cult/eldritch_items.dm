@@ -142,7 +142,7 @@
 
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
 	..()
-	if(ishuman(user) && user.mind && slot == SLOT_NECK && IS_HERETIC(user) )
+	if(ishuman(user) && user.mind && slot == SLOT_NECK && (IS_HERETIC(user) || IS_HERETIC_MONSTER(user)) )
 		ADD_TRAIT(user, trait, CLOTHING_TRAIT)
 		user.update_sight()
 
