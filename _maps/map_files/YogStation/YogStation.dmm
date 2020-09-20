@@ -44608,6 +44608,14 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"hpP" = (
+/obj/machinery/light/small,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/shovel/spade,
+/obj/item/wrench,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "hqB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -60887,15 +60895,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"uRs" = (
-/obj/machinery/light/small,
-/obj/structure/closet/crate/hydroponics,
-/obj/item/shovel/spade,
-/obj/item/wrench,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/wirecutters,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "uRv" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -106485,7 +106484,7 @@ cVb
 aLb
 aIp
 aKH
-uRs
+hpP
 aIp
 aRJ
 aRJ
