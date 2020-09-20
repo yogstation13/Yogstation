@@ -928,7 +928,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		var/mob/dead/observer/G = affecting.ghostize(1)
 		var/datum/action/innate/cult/comm/spirit/CM = new
 		var/datum/action/innate/cult/ghostmark/GM = new
-		var/datum/team/cult/cult = cultist.get_team()
+		var/datum/team/cult/cult = user.get_team()
 		G.name = "Dark Spirit of [G.name]"
 		G.color = "red"
 		if(cult.cult_ascendent)
