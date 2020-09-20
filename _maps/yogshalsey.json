@@ -1,0 +1,11 @@
+{
+    "map_name": "YogsHalsey",
+    "map_path": "map_files/yogshalsey",
+    "map_file": "yogshalsey.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_meta",
+	    "emergency": "emergency_box"
+    }
+}

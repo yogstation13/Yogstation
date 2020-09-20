@@ -42,6 +42,11 @@ map eclipsestation
 	minplayers 60
 endmap
 
+map yogshalsey
+	voteweight 1.1
+	votable
+endmap
+
 map runtimestation
 endmap
 
