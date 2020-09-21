@@ -74,7 +74,7 @@
 		var/light_dab_speed = rand(3,7)
 		H.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
 			B.dabbed += 1
 			addtimer(CALLBACK(B, /obj/item/organ/brain.proc/undab), 40)
