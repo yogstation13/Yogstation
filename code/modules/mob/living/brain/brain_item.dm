@@ -20,6 +20,8 @@
 	var/decoy_override = FALSE	//if it's a fake brain with no brainmob assigned. Feedback messages will be faked as if it does have a brainmob. See changelings & dullahans.
 	//two variables necessary for calculating whether we get a brain trauma or not
 	var/damage_delta = 0
+	var/dabbed = FALSE
+	var/dab_timer_id
 
 	var/list/datum/brain_trauma/traumas = list()
 
@@ -214,7 +216,7 @@
 			gain_trauma_type(BRAIN_TRAUMA_MILD)
 	if(damage > BRAIN_DAMAGE_SEVERE)
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_SEVERE)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1%
-			if(prob(20))
+			if(!dabbed && prob(20))
 				gain_trauma_type(BRAIN_TRAUMA_SPECIAL)
 			else
 				gain_trauma_type(BRAIN_TRAUMA_SEVERE)
@@ -346,3 +348,7 @@
 	var/list/traumas = get_traumas_type(resilience = resilience)
 	for(var/X in traumas)
 		qdel(X)
+///remove dab special trauma prevention
+/obj/item/organ/brain/proc/undab()
+	dabbed = FALSE
+	qdel(dab_timer_id)
