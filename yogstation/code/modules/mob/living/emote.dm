@@ -77,4 +77,5 @@
 		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
 			B.dabbed = TRUE
+			addtimer(CALLBACK(B, /obj/item/organ/brain.proc/undab), 40)
 		SSachievements.unlock_achievement(/datum/achievement/dab,H.client)
