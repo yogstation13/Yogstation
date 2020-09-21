@@ -76,6 +76,6 @@
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
-			B.dabbed = TRUE
+			B.dabbed += 1
 			addtimer(CALLBACK(B, /obj/item/organ/brain.proc/undab), 40)
 		SSachievements.unlock_achievement(/datum/achievement/dab,H.client)
