@@ -632,4 +632,4 @@
 	name = /datum/reagent/consumable/liquidelectricity
 	id = /datum/reagent/consumable/liquidelectricity
 	results = list(/datum/reagent/consumable/liquidelectricity = 3)
-	require_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 1)
+	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 1)
