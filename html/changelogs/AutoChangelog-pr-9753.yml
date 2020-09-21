@@ -1,0 +1,6 @@
+author: "MrHorizons"
+delete-after: true 
+changes: 
+  - rscadd: "Added the \"Build Your Own Shuttle, Jr.\", a smaller alternative to the full-sized Build Your Own Shuttle for a correspondingly lower price."
+  - rscadd: "Added emergency shuttle console to the Build Your Own Shuttles."
+  - spellcheck: "Capitalized the \"build your own shuttle kit\" and removed \"kit\" from name."
