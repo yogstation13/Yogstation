@@ -20,8 +20,7 @@
 	var/decoy_override = FALSE	//if it's a fake brain with no brainmob assigned. Feedback messages will be faked as if it does have a brainmob. See changelings & dullahans.
 	//two variables necessary for calculating whether we get a brain trauma or not
 	var/damage_delta = 0
-	var/dabbed = FALSE
-	var/dab_timer_id
+	var/dabbed = 0
 
 	var/list/datum/brain_trauma/traumas = list()
 
@@ -350,5 +349,4 @@
 		qdel(X)
 ///remove dab special trauma prevention
 /obj/item/organ/brain/proc/undab()
-	dabbed = FALSE
-	qdel(dab_timer_id)
+	dabbed -= 1
