@@ -843,7 +843,7 @@
 /datum/dynamic_ruleset/roundstart/wizard/ragin
 	name = "Ragin' Mages"
 	antag_flag = ROLE_RAGINMAGES
-	antag_datum = /datum/antagonist/wizard/raginmages/
+	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
@@ -887,7 +887,7 @@
 /datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit
 	name = "Bullshit Mages"
 	antag_flag = ROLE_BULLSHITMAGES
-	antag_datum = /datum/antagonist/wizard/raginmages/bullshit/
+	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 4
