@@ -52545,6 +52545,13 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"nPI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "nPW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -117829,7 +117836,7 @@ bDh
 bEs
 bGd
 bHv
-bIW
+nPI
 bKe
 bLm
 bEs

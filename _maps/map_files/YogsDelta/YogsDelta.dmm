@@ -83438,10 +83438,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"cxo" = (
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
 "cxp" = (
 /obj/machinery/status_display/ai{
 	pixel_y = 32
@@ -127071,6 +127067,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"pBk" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/sci_bombardment,
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
 "pKo" = (
 /turf/closed/wall,
 /area/aisat)
@@ -157288,7 +157289,7 @@ dtk
 dFD
 dHc
 cBX
-cxo
+pBk
 dEn
 dLN
 gSi
