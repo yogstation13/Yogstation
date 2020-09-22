@@ -88,9 +88,9 @@
 						  	"<span class='userdanger'>[A] slams you into the ground!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
-		D.apply_damage(10, STAMINA)
-		D.Paralyze(15)
-		D.Knockdown(60)
+		D.apply_damage(15, STAMINA)
+		D.Paralyze(20)
+		D.Knockdown(80)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
 
