@@ -631,5 +631,5 @@
 /datum/chemical_reaction/liquidelectricity
 	name = /datum/reagent/consumable/liquidelectricity
 	id = /datum/reagent/consumable/liquidelectricity
-	results = list(/datum/reagent/consumable/liquidelectricity = 3)
-	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 1)
+	results = list(/datum/reagent/consumable/liquidelectricity = 2)
+	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/blood = 2)
