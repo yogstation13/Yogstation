@@ -14,3 +14,15 @@
 	var/obj/machinery/ore_silo/O = GLOB.ore_silo_default
 	var/datum/component/material_container/materials = O.GetComponent(/datum/component/material_container)
 	return materials.can_use_amount(500*MINERAL_MATERIAL_AMOUNT, MAT_URANIUM)
+		
+// Setup a tesla in cargo
+/datum/department_goal/car/tesla
+	name = "Create a tesla"
+	desc = "Create a tesla engine in the cargo bay"
+	reward = "50000"
+
+/datum/department_goal/car/tesla/check_complete()
+	for(var/obj/singularity/energy_ball/e in GLOB.singularities)
+		if(get_area(e) == /area/quartermaster/storage)
+			return TRUE
+	return FALSE

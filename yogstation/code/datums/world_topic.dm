@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>")
+	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>", confidential=TRUE)
 
 /datum/world_topic/ooc
 	keyword = "ooc"
