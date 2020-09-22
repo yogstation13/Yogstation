@@ -35239,6 +35239,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bSX" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/rack,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "bSY" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/plasteel/white,
@@ -95920,7 +95928,7 @@ aie
 aiN
 ajc
 ajH
-akp
+bSX
 akU
 alz
 aml
@@ -96434,7 +96442,7 @@ aHp
 aIF
 ajc
 ajH
-akp
+bSX
 akQ
 alA
 amm
