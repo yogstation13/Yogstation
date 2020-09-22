@@ -98,7 +98,7 @@
   * CQC kick combo attack
   *
   * attack that deals 10 stamina and pushes the target away if they are standing
-  * or 35 stamina damage if they aren't
+  * or 35 stamina damage with a ~8 second mute if they aren't
   */
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -120,6 +120,7 @@
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		D.Paralyze(5)
 		D.apply_damage(35, STAMINA)
+		D.silent += 4
 	return TRUE
 
 /**
