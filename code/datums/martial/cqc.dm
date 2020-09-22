@@ -78,7 +78,7 @@
 /**
   * CQC slam combo attack
   *
-  * Attack that causes a short paralyze and knockdown plus 10 stamina admage
+  * Basic counter that causes 15 stamina damage with a 2 second paralyze and 8 second knockdown
   */
 /datum/martial_art/cqc/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
