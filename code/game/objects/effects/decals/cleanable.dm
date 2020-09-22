@@ -39,11 +39,17 @@
 			if(W.reagents.total_volume >= W.reagents.maximum_volume)
 				to_chat(user, "<span class='notice'>[W] is full!</span>")
 				return
-			to_chat(user, "<span class='notice'>You scoop up [src] into [W]!</span>")
-			reagents.trans_to(W, reagents.total_volume, transfered_by = user)
-			if(!reagents.total_volume) //scooped up all of it
-				qdel(src)
-				return
+			to_chat(user, "<span class='notice'>You start scooping up [src] into [W]...</span>")
+			var/scoop_time
+			scoop_time = min((W.reagents.maximum_volume - W.reagents.total_volume), src.reagents.total_volume) //1 second per 10 units scooped
+			if(do_mob(user, user, scoop_time))
+				if(src)
+					to_chat(user, "<span class='notice'>You scoop up [src] into [W]!</span>")
+					reagents.trans_to(W, reagents.total_volume, transfered_by = user)
+					if(!reagents.total_volume) //scooped up all of it
+						qdel(src)
+						return
+
 	if(W.is_hot()) //todo: make heating a reagent holder proc
 		if(istype(W, /obj/item/clothing/mask/cigarette))
 			return

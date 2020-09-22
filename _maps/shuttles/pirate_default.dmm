@@ -242,6 +242,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
+"as" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/pirate)
+"at" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/pirate)
 "au" = (
 /obj/machinery/door/airlock/hatch{
 	id_tag = "piratebridgebolt";
@@ -325,6 +348,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
+"aA" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/pirate)
 "aB" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -360,6 +396,13 @@
 /area/shuttle/pirate)
 "aD" = (
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/shuttle/pirate)
+"aE" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "aF" = (
@@ -463,6 +506,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
+"aP" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/pirate)
 "aQ" = (
 /obj/machinery/porta_turret/syndicate/energy{
 	dir = 1;
@@ -483,6 +536,16 @@
 "aS" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/shuttle/pirate)
+"aT" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "piratebridge"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "aU" = (
@@ -999,14 +1062,6 @@
 /obj/item/wrench,
 /turf/open/floor/plating/airless,
 /area/shuttle/pirate)
-"ey" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/turf/open/floor/plating,
-/area/shuttle/pirate)
 "ez" = (
 /obj/structure/window/reinforced,
 /obj/structure/frame/machine,
@@ -1046,15 +1101,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
-/area/shuttle/pirate)
-"jv" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
 /area/shuttle/pirate)
 "km" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
@@ -1149,18 +1195,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
-"yv" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/pirate)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock{
@@ -1173,33 +1207,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/shuttle/pirate)
-"DZ" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/pirate)
 "Gk" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/suit_storage_unit/pirate,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/pirate)
-"IC" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "JT" = (
@@ -1279,17 +1290,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
-"Xk" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "piratebridge"
-	},
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/pirate)
 
 (1,1,1) = {"
 af
@@ -1352,7 +1352,7 @@ af
 af
 af
 af
-jv
+at
 ay
 Oe
 OL
@@ -1385,8 +1385,8 @@ aR
 af
 af
 af
-ey
-IC
+as
+aP
 aj
 aj
 aj
@@ -1402,8 +1402,8 @@ aJ
 (7,1,1) = {"
 af
 af
-ey
-DZ
+as
+aE
 aC
 aW
 aj
@@ -1420,7 +1420,7 @@ aj
 (8,1,1) = {"
 af
 af
-jv
+at
 ab
 ae
 bf
@@ -1438,7 +1438,7 @@ aH
 (9,1,1) = {"
 af
 af
-jv
+at
 ac
 ag
 am
@@ -1456,7 +1456,7 @@ aK
 (10,1,1) = {"
 af
 af
-jv
+at
 ad
 ah
 an
@@ -1474,8 +1474,8 @@ er
 (11,1,1) = {"
 af
 af
-ey
-yv
+aA
+aE
 al
 aB
 aj
@@ -1493,8 +1493,8 @@ aj
 af
 af
 af
-ey
-Xk
+aA
+aT
 aj
 aj
 aj
@@ -1532,7 +1532,7 @@ af
 af
 af
 af
-jv
+at
 eE
 bC
 bJ

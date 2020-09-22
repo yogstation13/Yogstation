@@ -403,3 +403,41 @@
 	name = "saline canister"
 	volume = 5000
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
+
+/obj/item/reagent_containers/glass/mixbowl //chef's bowl
+	name = "mixing bowl"
+	desc = "A large bowl for mixing ingredients."
+	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon_state = "mixbowl"
+	item_state = "mixbowl"
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = NONE
+	possible_transfer_amounts = list(10, 25, 50, 100)
+	volume = 100
+	materials = list(MAT_METAL=1000)
+
+/obj/item/reagent_containers/glass/mixbowl/on_reagent_change(changetype)
+	..()
+	update_icon()
+
+/obj/item/reagent_containers/glass/mixbowl/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
+
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9)
+				filling.icon_state = "[icon_state]0"
+			if(10 to 24)
+				filling.icon_state = "[icon_state]10"
+			if(25 to 49)
+				filling.icon_state = "[icon_state]25"
+			if(50 to 74)
+				filling.icon_state = "[icon_state]50"
+			if(75 to INFINITY)
+				filling.icon_state = "[icon_state]75"
+
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling)

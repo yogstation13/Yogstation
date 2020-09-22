@@ -236,7 +236,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.heal_bodypart_damage(1)
 		. = 1
 	return ..() || .
-	
+
 /datum/reagent/consumable/ethanol/bilk/soy
 	name = "Soy Bilk"
 	description = "This appears to be beer mixed with soy milk. Disgusting."
@@ -373,10 +373,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/consumable/ethanol/hooch/on_mob_life(mob/living/carbon/M)
-	if(M.mind && M.mind.assigned_role == "Assistant")
+	if(M.mind?.assigned_role == "Assistant")
 		M.heal_bodypart_damage(1,1)
 		. = 1
-	return ..() || .
+	M.radiation = max(M.radiation-2, 0)
+	return ..()  || . 
 
 /datum/reagent/consumable/ethanol/ale
 	name = "Ale"
@@ -446,7 +447,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A classic mix of rum, cola, and lime. A favorite of revolutionaries everywhere!"
 
 /datum/reagent/consumable/ethanol/cuba_libre/on_mob_life(mob/living/carbon/M)
-	if(M.mind && M.mind.has_antag_datum(/datum/antagonist/rev)) //Cuba Libre, the traditional drink of revolutions! Heals revolutionaries.
+	if(M.mind?.has_antag_datum(/datum/antagonist/rev))  //Cuba Libre, the traditional drink of revolutions! Heals revolutionaries.
 		M.adjustBruteLoss(-1, 0)
 		M.adjustFireLoss(-1, 0)
 		M.adjustToxLoss(-1, 0)
@@ -703,7 +704,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/moonshine
 	name = "Moonshine"
 	description = "You've really hit rock bottom now... your liver packed its bags and left last night."
-	color = "#664300" // rgb: 102, 67, 0
+	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha) (like water)
 	boozepwr = 95
 	taste_description = "bitterness"
 	glass_icon_state = "glass_clear"
@@ -1429,7 +1430,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "glass_brown"
 	glass_name = "Creme de Cacao"
 	glass_desc = "A million hazing lawsuits and alcohol poisonings have started with this humble ingredient."
-	
+
 /datum/reagent/consumable/ethanol/creme_de_coconut
 	name = "Creme de Coconut"
 	description = "A coconut liqueur for smooth, creamy, tropical drinks."
@@ -1942,7 +1943,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/wizz_fizz/on_mob_life(mob/living/carbon/M)
 	//A healing drink similar to Quadruple Sec, Ling Stings, and Screwdrivers for the Wizznerds; the check is consistent with the changeling sting
-	if(M?.mind?.has_antag_datum(/datum/antagonist/wizard))
+	if(M.mind?.has_antag_datum(/datum/antagonist/wizard))
 		M.heal_bodypart_damage(1,1,1)
 		M.adjustOxyLoss(-1,0)
 		M.adjustToxLoss(-1,0)
@@ -2178,3 +2179,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.adjustToxLoss(1, 0)
 		. = 1
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+
+/datum/reagent/consumable/ethanol/beer/maltliquor
+	name = "Malt Liquor"
+	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is stronger than usual, super cheap, and super terrible."
+	boozepwr = 35
+	taste_description = "sweet corn beer and the hood life"
+	glass_name = "glass of malt liquor"
+	glass_desc = "A freezing pint of malt liquor."

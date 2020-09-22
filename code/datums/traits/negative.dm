@@ -77,7 +77,7 @@
 	value = -1
 	gain_text = "<span class='danger'>You start feeling depressed.</span>"
 	lose_text = "<span class='notice'>You no longer feel depressed.</span>" //if only it were that easy!
-	medical_record_text = "Patient has a severe mood disorder, causing them to experience acute episodes of depression."
+	medical_record_text = "Patient has a mild mood disorder, causing them to experience episodes of depression."
 	mood_quirk = TRUE
 
 /datum/quirk/family_heirloom

@@ -1,4 +1,5 @@
 GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
+GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
@@ -12,8 +13,18 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
 
 /datum/objective/New(var/text)
+	GLOB.objectives += src
 	if(text)
 		explanation_text = text
+
+/datum/objective/Destroy(force, ...)
+	GLOB.objectives -= src
+	if(owner)
+		for(var/datum/antagonist/A in owner.antag_datums)
+			A.objectives -= src
+	if(team)
+		team.objectives -= src
+	. = ..()
 
 /datum/objective/proc/get_owners() // Combine owner and team into a single list.
 	. = (team && team.members) ? team.members.Copy() : list()

@@ -86,3 +86,10 @@
 	visible_message("[src] fuses into a diamond! Someone wasn't so naughty after all...")
 	new /obj/item/stack/ore/diamond(loc)
 	qdel(src)
+
+/obj/item/trash/floursack
+	name = "torn flour sack"
+	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon_state = "floursad"
+	desc = "Perhaps it shouldn't have been filled with water."
+	

@@ -159,8 +159,8 @@
 /obj/item/clothing/under/roman,
 /obj/item/clothing/head/helmet/roman,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -359,11 +359,6 @@
 /obj/item/toy/figure/captain,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"aQ" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/ruin/powered)
 "aR" = (
 /obj/machinery/light{
 	dir = 1
@@ -402,8 +397,8 @@
 /obj/structure/table/wood,
 /obj/item/toy/nuke,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -466,8 +461,8 @@
 	},
 /obj/item/toy/figure/cmo,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -549,11 +544,6 @@
 /obj/item/toy/figure/ninja,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"bh" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/ruin/powered)
 "bi" = (
 /obj/structure/table/wood,
 /obj/item/toy/spinningtoy,
@@ -604,14 +594,6 @@
 	},
 /turf/closed/wall/mineral/wood,
 /area/ruin/powered)
-"bn" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/ruin/powered)
 "bo" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/stuffedmonkey{
@@ -641,12 +623,6 @@
 	},
 /obj/item/clothing/mask/cowmask,
 /obj/item/clothing/mask/fakemoustache,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bs" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/ruin/powered)
 "bt" = (
@@ -697,11 +673,6 @@
 /obj/structure/table/wood,
 /obj/item/banhammer,
 /turf/open/floor/wood,
-/area/ruin/powered)
-"bz" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
 /area/ruin/powered)
 "bA" = (
 /turf/open/floor/light,
@@ -793,8 +764,8 @@
 /area/ruin/powered)
 "bM" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -815,6 +786,28 @@
 /obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
+/area/ruin/powered)
+"pE" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"yW" = (
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"Pj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood/lavaland{
+	broken = 1
+	},
+/area/ruin/powered)
+"Zw" = (
+/turf/open/floor/wood/lavaland{
+	broken = 1
+	},
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -1098,14 +1091,14 @@ ao
 ao
 aF
 aa
-aQ
-aX
-aX
-aX
-bn
-aX
-bs
-bz
+Zw
+yW
+yW
+yW
+Pj
+yW
+pE
+Zw
 aa
 aX
 bN
@@ -1120,13 +1113,13 @@ aA
 aG
 aa
 aR
-aX
+yW
 aS
-bh
-aX
-aX
+Zw
+yW
+yW
 aS
-aX
+yW
 aa
 bJ
 bO

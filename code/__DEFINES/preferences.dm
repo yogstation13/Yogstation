@@ -49,6 +49,16 @@
 #define PARALLAX_DELAY_MED     1
 #define PARALLAX_DELAY_LOW     2
 
+#define PIXEL_SCALING_AUTO 0
+#define PIXEL_SCALING_1X 1
+#define PIXEL_SCALING_1_2X 1.5
+#define PIXEL_SCALING_2X 2
+#define PIXEL_SCALING_3X 3
+
+#define SCALING_METHOD_NORMAL "normal"
+#define SCALING_METHOD_DISTORT "distort"
+#define SCALING_METHOD_BLUR "blur"
+
 #define SEC_DEPT_NONE "None"
 #define SEC_DEPT_RANDOM "Random"
 #define SEC_DEPT_ENGINEERING "Engineering"

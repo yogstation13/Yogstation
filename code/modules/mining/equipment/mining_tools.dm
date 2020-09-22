@@ -84,11 +84,11 @@
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
-	toolspeed = 0.1 //the epitome of powertools. extremely fast mining, laughs at puny walls
-	w_class = WEIGHT_CLASS_HUGE //the epitome of power(gamer)tools is CHUNCKY
+	toolspeed = 0.1 //the epitome of powertools
+	w_class = WEIGHT_CLASS_HUGE //the epitome of powertools is CHUNCKY
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
-	desc = "Cracks rocks with sonic blasts, and doubles as a demolition power tool for smashing walls."
+	desc = "Cracks rocks with sonic blasts."
 
 /obj/item/shovel
 	name = "shovel"

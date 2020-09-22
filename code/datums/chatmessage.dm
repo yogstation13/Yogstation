@@ -69,7 +69,7 @@
 	// Register client who owns this message
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_ownedby_deleting)
-	
+
 	// Clip message
 	var/maxlen = owned_by.prefs.max_chat_length
 	if (length_char(text) > maxlen)
@@ -157,7 +157,7 @@
 //Deletes the message when the owners client gets deleted.
 /datum/chatmessage/proc/on_ownedby_deleting()
 	qdel(src)
-	
+
 /**
   * Creates a message overlay at a defined location for a given speaker
   *
@@ -178,7 +178,9 @@
 		var/atom/movable/virtualspeaker/v = speaker
 		speaker = v.source
 		spans |= "virtual-speaker"
-
+	//Ignore NTSL snowflake virtual speaker which doesn't work
+	if(!speaker)
+		return
 	// Ignore virtual speaker (most often radio messages) from ourself
 	if (originalSpeaker != src && speaker == src)
 		return

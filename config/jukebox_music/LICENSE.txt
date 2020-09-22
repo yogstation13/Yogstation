@@ -43,6 +43,8 @@ Eurobeat2.ogg was created by Ken Blast on February 24th, 2019.
 
 Eurobeat3.ogg was created by Turbo on April 22nd, 2020.
 
+FridayNight.ogg was created by Hidenori Shonji on 2015.
+
 HEYYEYAAEYAAAEYAEYAA.ogg was created by droppedframe on May 8th, 2005.
 
 MasterofPuppets.ogg was created by Necrommancer on August 23rd, 2009.
@@ -52,3 +54,7 @@ PartyParty.ogg was created by Andrew W.K. on July 17th, 2007.
 Putin.ogg was created by Piano Fantasia on March 19th, 2012.
 
 Sandstorm.ogg was created by Darude on October 26th, 1999.
+
+Doom.ogg was created by Bobby Prince on December 10th, 1993.
+
+DoomFear.ogg was created by Mick Gordon on April 18, 2020.

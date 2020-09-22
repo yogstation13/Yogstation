@@ -163,11 +163,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["ambientocclusion"]	>> ambientocclusion
 	S["auto_fit_viewport"]	>> auto_fit_viewport
 	S["widescreenpref"]	    >> widescreenpref
+	S["pixel_size"]	    	>> pixel_size
+	S["scaling_method"]	    >> scaling_method
 	S["menuoptions"]		>> menuoptions
 	S["enable_tips"]		>> enable_tips
 	S["tip_delay"]			>> tip_delay
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
+	S["show_credits"] 		>> show_credits
 
 	// yogs start - Donor features
 	S["donor_pda"]			>> donor_pda
@@ -175,7 +178,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["donor_item"]			>> donor_item
 	S["purrbation"]			>> purrbation
 	S["yogtoggles"]			>> yogtoggles
-	
+
 	S["accent"]				>> accent // Accents, too!
 	// yogs end
 
@@ -203,6 +206,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	ambientocclusion	= sanitize_integer(ambientocclusion, 0, 1, initial(ambientocclusion))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, 0, 1, initial(auto_fit_viewport))
 	widescreenpref  = sanitize_integer(widescreenpref, 0, 1, initial(widescreenpref))
+	pixel_size		= sanitize_integer(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, initial(pixel_size))
+	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_orbit 	= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_accs		= sanitize_inlist(ghost_accs, GLOB.ghost_accs_options, GHOST_ACCS_DEFAULT_OPTION)
@@ -211,6 +216,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special		= SANITIZE_LIST(be_special)
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+	show_credits	= sanitize_integer(show_credits, 0, 1, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
@@ -218,7 +224,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
 	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
-	
+
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
 	// yogs end
 
@@ -267,11 +273,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	WRITE_FILE(S["widescreenpref"], widescreenpref)
+	WRITE_FILE(S["pixel_size"], pixel_size)
+	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["enable_tips"], enable_tips)
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["show_credits"], show_credits)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -279,7 +288,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
 	WRITE_FILE(S["purrbation"], purrbation)
-	
+
 	WRITE_FILE(S["accent"], accent) // Accents, too!
 	// yogs end
 

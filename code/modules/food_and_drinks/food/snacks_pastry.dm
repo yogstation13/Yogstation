@@ -376,6 +376,16 @@
 	tastes = list("pastry" = 1, "sweetness" = 1)
 	foodtype = GRAIN
 
+/obj/item/reagent_containers/food/snacks/jaffacake
+	name = "jaffacake"
+	desc = "A moreish jaffacke. Is it a cake or is it a biscuit? Who knows."
+	icon_state = "jaffacake"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/coco = 1)
+	filling_color = "#D9833E"
+	tastes = list("orange" = 1, "cake" = 1)
+	foodtype = GRAIN | SUGAR | FRUIT
+
 #define PANCAKE_MAX_STACK 10
 
 /obj/item/reagent_containers/food/snacks/pancakes

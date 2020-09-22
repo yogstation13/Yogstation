@@ -10,8 +10,10 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "c" = (
-/obj/structure/grille,
-/obj/structure/window/shuttle,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "d" = (
@@ -36,6 +38,13 @@
 "g" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"h" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "i" = (
 /obj/machinery/light{
 	dir = 8;
@@ -58,6 +67,11 @@
 	icon_state = "bulb"
 	},
 /turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"l" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "m" = (
 /obj/machinery/door/airlock/titanium{
@@ -115,7 +129,7 @@ c
 f
 g
 j
-c
+l
 d
 d
 d
@@ -123,7 +137,7 @@ c
 f
 g
 j
-c
+l
 "}
 (4,1,1) = {"
 b
@@ -158,7 +172,7 @@ b
 (6,1,1) = {"
 d
 b
-c
+h
 b
 d
 d
@@ -166,7 +180,7 @@ d
 d
 d
 b
-c
+h
 b
 d
 "}

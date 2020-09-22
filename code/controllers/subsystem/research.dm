@@ -12,6 +12,8 @@ SUBSYSTEM_DEF(research)
 	var/datum/techweb/admin/admin_tech
 	var/datum/techweb_node/error_node/error_node	//These two are what you get if a node/design is deleted and somehow still stored in a console.
 	var/datum/design/error_design/error_design
+	var/techweb_pixel_size = 800
+	var/techweb_legacy = FALSE
 
 	//ERROR LOGGING
 	var/list/invalid_design_ids = list()		//associative id = number of times

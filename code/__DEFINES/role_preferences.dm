@@ -17,6 +17,7 @@
 #define ROLE_ALIEN				"Xenomorph"
 #define ROLE_PAI				"pAI"
 #define ROLE_CULTIST			"Cultist"
+#define ROLE_HERETIC			"Heretic"
 #define ROLE_BLOB				"Blob"
 #define ROLE_NINJA				"Space Ninja"
 #define ROLE_MONKEY				"Monkey"
@@ -36,9 +37,9 @@
 #define ROLE_DEATHSQUAD			"Deathsquad"
 #define ROLE_LAVALAND			"Lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
+#define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
-#define ROLE_BATTLEROYALE		"Battle Royale Contestant" //Yogs - Battle Royale Mode
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" //Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
@@ -71,10 +72,12 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
 	ROLE_GANG = /datum/game_mode/gang, // yogs
+	ROLE_HERETIC = /datum/game_mode/heretics,
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_DARKSPAWN = /datum/game_mode/darkspawn,
 	ROLE_SENTIENCE,
+	ROLE_FUGITIVE,
 	ROLE_ZOMBIE
 ))
 

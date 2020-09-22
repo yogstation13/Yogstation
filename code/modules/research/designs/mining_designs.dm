@@ -131,3 +131,13 @@
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
 	category = list("Mining Designs", "Cyborg Upgrade Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/miner_body_camera
+	name = "Miner Bodycamera"
+	desc = "A camera worn around the neck, that can be viewed from a miner camera console."
+	id = "minercam"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000, MAT_GOLD = 500)
+	build_path = /obj/item/clothing/neck/bodycam/miner
+	category = list("Mining Designs","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO

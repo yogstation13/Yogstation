@@ -706,20 +706,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"cg" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/button/door{
-	dir = 8;
-	id = "engsm";
-	name = "Radiation Shutters Control";
-	pixel_x = -24;
-	pixel_y = 0;
-	req_access_txt = "10"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ch" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -838,6 +824,21 @@
 	network = list("ss13","engine")
 	},
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"rX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "engsm";
+	name = "Radiation Shutters Control";
+	pixel_x = -24;
+	pixel_y = 0;
+	req_access_txt = "10"
+	},
+/mob/living/simple_animal/opossum/poppy,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "sv" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -1458,7 +1459,7 @@ aa
 ad
 ah
 ax
-cg
+rX
 bA
 ar
 bf

@@ -340,3 +340,16 @@
 	suffix = "gameroom.dmm"
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
+
+/datum/map_template/ruin/space/gaming
+	id = "puby"
+	suffix = "pubby_monastery.dmm"
+	name = "Pubby Monastery"
+	description = "A beautiful monastery that used to have a station attached to it"
+
+/datum/map_template/ruin/space/harambe
+	id = "bigape"
+	suffix = "bigape.dmm"
+	name = "Big Ape"
+	description = "A gorilla? Out here? But why."
+	

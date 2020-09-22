@@ -452,7 +452,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun. \
 			This deadly weapon has a massive 50-round magazine of devastating 7.12x82mm ammunition."
 	item = /obj/item/gun/ballistic/automatic/l6_saw
-	cost = 18
+	cost = 20
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1152,7 +1152,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Bluespace Projectile Weapon Disrupter"
 	desc = "Hidden in an ordinary-looking playing card, this device will teleport an opponent's gun to your hand when they fire at you. Just make sure to hold this in your hand!"
 	item = /obj/item/syndicateReverseCard
-	cost = 6
+	cost = 1
 
 /datum/uplink_item/stealthy_tools/chameleon
 	name = "Chameleon Kit"
@@ -1421,6 +1421,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
 
+/datum/uplink_item/device_tools/supermatter_delaminator
+	name = "Antinoblium Shard"
+	desc = "A special variant of supermatter crystal reverse engineered by syndicate scientists using samples retrieved by agents. \
+			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing an energy cascade. \
+			Ensures a storm of EMP waves that blacks out the entire station and eventually the full delamination of the crystal. \
+			Comes with a secure radiation shielded containment box, special tweezers and usage instructions."
+	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
+	cost = 10
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
+
 /datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
 	desc = "When screwed to wiring attached to a power grid and activated, this large device lights up and places excessive \
@@ -1650,7 +1660,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/race_restricted/angelcoolboy
 	name = "Angel Potion"
 	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
-	cost = 7
+	cost = 5
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	restricted_species = list("human")
 
@@ -1705,6 +1715,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
 	cost = 8
 
+/datum/uplink_item/role_restricted/cat_grenade
+	name = "Feral Cat Delivery Grenade"
+	desc = "The feral cat delivery grenade contains 5 dehydrated feral cats in a similar manner to dehydrated monkeys, which, upon detonation, will be rehydrated by a small reservoir of water contained within the grenade. These cats will then attack anything in sight."
+	item = /obj/item/grenade/spawnergrenade/feral_cats
+	cost = 4
+	restricted_roles = list("Psychiatrist")///why? Becuase its funny that a person in charge of your mental wellbeing has a cat granade..<---(he cant spell)
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
 	desc = "A highly specialized weapon, the Blast Cannon is actually relatively simple. It contains an attachment for a tank transfer valve mounted to an angled pipe specially constructed \
@@ -1911,6 +1927,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	cant_discount = TRUE
 	illegal_tech = FALSE
+	
+/datum/uplink_item/badass/syndiefedora
+	name = "Syndicate Fedora"
+	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style!"
+	item = /obj/item/clothing/head/det_hat/evil
+	cost = 3
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
