@@ -125,14 +125,14 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(NewMessage)
+			if(NewMessage && !isnotpretty(NewMessage))
 				arrival = NewMessage
 				log_game("The arrivals announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadText")
 			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(NewMessage)
+			if(NewMessage && !isnotpretty(NewMessage))
 				newhead = NewMessage
 				log_game("The head announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadToggle")

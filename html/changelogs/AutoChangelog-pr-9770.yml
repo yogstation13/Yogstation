@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Wallet, when holding silver and golden IDs, will no longer go invisible"

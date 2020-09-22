@@ -5,7 +5,7 @@
 	var/next_hand = 0
 
 /datum/guardian_ability/major/hand/RangedAttack(atom/target)
-	if(world.time < next_hand || guardian.Adjacent(target) || !isturf(guardian.loc) || !guardian.is_deployed())
+	if(world.time < next_hand || guardian.Adjacent(target) || !isturf(guardian.loc) || !guardian.is_deployed() || !can_see(guardian, target))
 		return ..()
 	playsound(guardian, 'yogstation/sound/effects/zahando.ogg', 100, TRUE) // dubstep fart lol
 	next_hand = world.time + ((10 / master_stats.potential) * 10)

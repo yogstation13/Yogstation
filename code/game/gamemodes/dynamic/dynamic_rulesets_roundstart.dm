@@ -140,6 +140,46 @@
 
 //////////////////////////////////////////////
 //                                          //
+//              ELDRITCH CULT               //
+//                                          //
+//////////////////////////////////////////////
+
+/*/datum/dynamic_ruleset/roundstart/heretics
+	name = "Heretics"
+	antag_flag = ROLE_HERETIC
+	antag_datum = /datum/antagonist/heretic
+	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 1
+	weight = 3
+	cost = 20
+	requirements = list(50,45,45,40,35,20,20,15,10,10)
+
+
+/datum/dynamic_ruleset/roundstart/heretics/pre_execute()
+	. = ..()
+	var/num_ecult = antag_cap[indice_pop] * (scaled_times + 1)
+
+	for (var/i = 1 to num_ecult)
+		var/mob/picked_candidate = pick_n_take(candidates)
+		assigned += picked_candidate.mind
+		picked_candidate.mind.restricted_roles = restricted_roles
+		picked_candidate.mind.special_role = ROLE_HERETIC
+		GLOB.pre_setup_antags += picked_candidate.mind
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/heretics/execute()
+
+	for(var/c in assigned)
+		var/datum/mind/cultie = c
+		var/datum/antagonist/heretic/new_antag = new antag_datum()
+		cultie.add_antag_datum(new_antag)
+		GLOB.pre_setup_antags -= cultie
+
+	return TRUE */
+
+//////////////////////////////////////////////
+//                                          //
 //               WIZARDS                    //
 //                                          //
 //////////////////////////////////////////////
@@ -748,7 +788,7 @@
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Shadowling")
 	return TRUE
-	
+
 /datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
 	return FALSE
 
@@ -774,7 +814,7 @@
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
-	
+
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute()
 	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
 	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
@@ -846,7 +886,7 @@
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
 /datum/game_mode/wizard/raginmages/post_setup()
 	..()
 	var/playercount = 0
@@ -861,10 +901,10 @@
 			max_mages = 1
 	if(bullshit_mode)
 		max_mages = INFINITY
-		
-	
+
+
 /datum/dynamic_ruleset/roundstart/wizard/raging/check_finished()
-	
+
 	var/wizards_alive = 0
 	for(var/datum/mind/wizard in wizards)
 		if(!istype(wizard.current,/mob/living/carbon))
@@ -881,7 +921,7 @@
 		wizards_alive++
 	if(!time_checked)
 		time_checked = world.time
-	
+
 	if (wizards_alive || bullshit_mode)
 		if(world.time > time_checked + time_check && (mages_made < max_mages))
 			time_checked = world.time
@@ -894,7 +934,7 @@
 	return ..()
 
 /datum/dynamic_ruleset/roundstart/wizard/raging/proc/make_more_mages()
-	
+
 	if(making_mage)
 		return 0
 	if(mages_made >= max_mages)
@@ -932,7 +972,7 @@
 		else
 			shuffle_inplace(candidates)
 			for(var/mob/i in candidates)
-				if(!i || !i.client) 
+				if(!i || !i.client)
 					continue //Dont bother removing them from the list since we only grab one wizard
 
 				theghost = i
@@ -957,7 +997,7 @@
 	new_character.key = G_found.key
 
 	return new_character
-	
+
 //////////////////////////////////////////////
 //                                          //
 //              BULLSHIT MAGES				//
@@ -1006,7 +1046,7 @@
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //                DARKSPAWN                 //
