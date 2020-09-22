@@ -19,3 +19,11 @@
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return ..()
+
+/datum/species/skeleton/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+
+	if(H.reagents.has_reagent(/datum/reagent/consumable/cream))
+		M.heal_bodypart_damage(1.5,0, 0)
+		. = 1
+
