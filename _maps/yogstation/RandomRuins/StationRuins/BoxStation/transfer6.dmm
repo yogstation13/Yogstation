@@ -17,6 +17,16 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"g" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/execution/transfer)
 "h" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
@@ -44,14 +54,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"m" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "executioncrush"
+"k" = (
+/obj/machinery/light/small{
+	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 9
+	dir = 10
 	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "n" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -61,15 +71,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/security/execution/transfer)
-"o" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "executioncrush"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/security/execution/transfer)
 "q" = (
 /turf/open/floor/plasteel/dark,
@@ -118,15 +119,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
-"t" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/security/execution/transfer)
 "v" = (
 /obj/structure/chair{
 	dir = 1
@@ -148,9 +140,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"x" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+"w" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "executioncrush"
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "y" = (
 /obj/machinery/door/poddoor/preopen{
@@ -230,7 +227,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "H" = (
 /obj/structure/table/glass,
@@ -279,6 +277,10 @@
 	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/security/execution/transfer)
+"K" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "M" = (
 /turf/closed/wall,
@@ -385,15 +387,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
-"X" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/small{
+"W" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "executioncrush"
+	},
+/obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/turf/open/floor/plasteel/showroomfloor,
 /area/security/execution/transfer)
 "Y" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -448,8 +449,8 @@ j
 M
 "}
 (4,1,1) = {"
-m
-t
+w
+k
 y
 v
 C
@@ -460,7 +461,7 @@ T
 "}
 (5,1,1) = {"
 G
-x
+K
 J
 E
 D
@@ -470,8 +471,8 @@ q
 h
 "}
 (6,1,1) = {"
-o
-X
+W
+g
 y
 U
 B

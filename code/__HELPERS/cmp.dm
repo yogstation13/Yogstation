@@ -105,3 +105,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_reagents_asc(datum/reagent/a, datum/reagent/b)
     return sorttext(initial(b.name),initial(a.name))
+
+/proc/cmp_mob_realname_dsc(mob/A,mob/B)
+	return sorttext(A.real_name,B.real_name)

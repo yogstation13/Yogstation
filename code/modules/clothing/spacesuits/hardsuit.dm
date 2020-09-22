@@ -1036,7 +1036,7 @@
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
-	
+
 /obj/item/clothing/suit/space/hardsuit/shielded/swat/honk
 	name = "honk squad spacesuit"
 	desc = "A hilarious hardsuit favored by HONK squad troopers for use in special pranks."
@@ -1088,3 +1088,26 @@
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	item_color = "advancedpa1"
+
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/debug // reused code so I dont have to make new procs
+	name = "debug hardsuit helmet"
+	desc = "A debug hardsuit helmet. It is in EVA mode."
+	alt_desc = "A debug hardsuit helmet. It is in combat mode."
+	icon_state = "hardsuit0-syndielite"
+	item_color = "syndielite"
+	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/suit/space/hardsuit/syndi/debug
+	name = "debug hardsuit"
+	desc = "A debug hardsuit. It is in travel mode."
+	alt_desc = "A debug hardsuit. It is in combat mode."
+	icon_state = "hardsuit0-syndielite"
+	item_color = "syndielite"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/debug
+	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | ACID_PROOF
