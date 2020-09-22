@@ -1,7 +1,7 @@
 /datum/game_mode/wizard/raginmages
 	name = "ragin' mages"
 	config_tag = "raginmages"
-	antag_datum = /datum/antagonist/wizard/
+	var/antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_RAGINMAGES
 	required_players = 40
 	announce_span = "userdanger"
@@ -132,7 +132,7 @@
 /datum/game_mode/wizard/raginmages/bullshit
 	name = "very ragin' bullshit mages"
 	config_tag = "veryraginbullshitmages"
-	antag_datum = /datum/antagonist/wizard/
+	var/antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_BULLSHITMAGES
 	required_players = 40
 	bullshit_mode = 1
