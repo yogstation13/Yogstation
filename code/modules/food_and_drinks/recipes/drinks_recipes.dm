@@ -819,5 +819,5 @@
  /datum/chemical_reaction/catnip_tea
 	name = "Catnip Tea"
 	id = "catnip_tea"
-	results = list("catnip_tea" = 3)
+	results = list(/datum/reagent/consumable/catnip_tea = 3)
 	required_reagents = list((/datum/reagent/consumable/tea = 5, /datum/reagent/pax/catnip = 2)
