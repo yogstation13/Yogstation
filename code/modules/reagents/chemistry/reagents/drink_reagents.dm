@@ -899,3 +899,16 @@
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
+
+/datum/reagent/consumable/catnip_tea
+	name = "Catnip Tea"
+	description = "A sleepy and tasty catnip tea!"
+	color = "#101000" // rgb: 16, 16, 0
+	nutriment_factor = 0
+	taste_description = "sugar and catnip"
+	glass_icon_state = "teaglass"
+	glass_name = "glass of catnip tea"
+	glass_desc = "A purrfect drink for a cat."
+
+/datum/reagent/consumable/catnip_tea/on_mob_life(mob/living/carbon/M)
+	M.adjustStaminaLoss(min(50 - M.getStaminaLoss(), 3))
