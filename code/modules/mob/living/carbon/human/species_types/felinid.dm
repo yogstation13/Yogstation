@@ -106,7 +106,7 @@
 
 /datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(istype(chem,/datum/reagent/pax/catnip))
-		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[type]_high")
+	// giving it drug properties didnt work do i need to define them being high aswell in here?
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return 1
 
