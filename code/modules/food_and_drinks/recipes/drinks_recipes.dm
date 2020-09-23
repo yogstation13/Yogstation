@@ -820,4 +820,4 @@
 	name = "Catnip Tea"
 	id = "catnip_tea"
 	results = list("catnip_tea" = 3)
-	required_reagents = list((/datum/reagent/consumable/tea = 5, /datum/reagent/consumable/catnip_tea = 2)
+	required_reagents = list((/datum/reagent/consumable/tea = 5, /datum/reagent/pax/catnip = 2)
