@@ -103,3 +103,13 @@
 
 	if(!silent)
 		to_chat(H, "You are no longer a cat.")
+
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(istype(chem,/datum/reagent/pax/catnip))
+		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[type]_high")
+		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+		return 1
+
+
+
+
