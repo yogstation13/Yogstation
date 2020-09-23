@@ -92,3 +92,21 @@
 	desc = "Increases robustness by 37 percent!"
 	icon_state = "coffee_robusta"
 	grind_results = list(/datum/reagent/toxin/coffeepowder = 0, /datum/reagent/medicine/morphine = 0)
+
+/obj/item/seeds/tea/catnip
+	name = "pack of catnip seeds"
+	icon_state = "seed-catnip"
+	desc = "Long stocks with flowering tips that has a chemical to make feline attracted to it."
+	species = "catnip"
+	plantname = "Catnip Plant"
+	growthstages = 3
+	product = /obj/item/reagent_containers/food/snacks/grown/tea/catnip
+	reagents_add = list(/datum/reagent/pax/catnip, /datum/reagent/consumable/nutriment/vitamin = 0.06, /datum/reagent/toxin/teapowder = 0.3)
+	rarity = 50
+
+/obj/item/reagent_containers/food/snacks/grown/tea/catnip
+	seed = /obj/item/seeds/tea/catnip
+	name = "Catnip buds"
+	icon_state = "catnip_leaves"
+	filling_color = "#4582B4"
+	grind_results = list(/datum/reagent/pax/catnip = 2, /datum/reagent/water = 1)
