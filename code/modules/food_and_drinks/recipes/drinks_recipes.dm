@@ -816,3 +816,8 @@
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
  
+ /datum/chemical_reaction/catnip_tea
+	name = "Catnip Tea"
+	id = "catnip_tea"
+	results = list("catnip_tea" = 3)
+	required_reagents = list((/datum/reagent/consumable/tea = 5, /datum/reagent/consumable/catnip_tea = 2)
