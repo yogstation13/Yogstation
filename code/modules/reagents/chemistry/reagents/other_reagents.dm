@@ -1847,7 +1847,6 @@
 
 /datum/reagent/pax/catnip
 	name = "catnip"
-	id = "catnip"
 	taste_description = "grass"
 	description = "A colorless liquid that makes felines happy."
 	metabolization_rate = 1.75 * REAGENTS_METABOLISM
