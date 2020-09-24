@@ -88,6 +88,12 @@
 	taste_description = "gross iron"
 	shot_glass_icon_state = "shotglassred"
 
+/datum/reagent/polysmorphblood
+	name = "Polysmorph blood"
+	color = "#96BB00"
+	description = "The blood of a polysmorph"
+	taste_description = "acidic"
+
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
