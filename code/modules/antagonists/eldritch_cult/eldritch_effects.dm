@@ -142,7 +142,7 @@
 /datum/reality_smash_tracker/proc/_Generate()
 	var/targ_len = length(targets)
 	var/smash_len = length(smashes)
-	var/number = targ_len * 6 - smash_len
+	var/number = max(targ_len * (5-(targ_len-1)) - smash_len,2)
 
 	for(var/i in 0 to number)
 
