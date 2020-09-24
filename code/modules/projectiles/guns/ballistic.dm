@@ -89,8 +89,80 @@
 	var/can_be_sawn_off  = FALSE
 	var/reload_say = null
 
+	// stores all types of feedback. Name of feedback + the amount of frames in the animation (must be more than 0) . Add to this list as more feedback is added. 
+	var/list/feedback_types = list(
+		"fire" = 0,
+		"slide_open" = 0,
+		"slide_close" = 0,
+		"mag_out" = 0,
+		"mag_in" = 0
+	)
+	var/feedback_original_icon = null // stores original slide position icon for feedback system
+	var/feedback_firing_icon = null // stores icon of gun while firing
+	var/feedback_original_icon_base = null // original base icon without the slide
+	var/feedback_fire_slide = FALSE // does the gun slide move back when firing?
+	var/feedback_has_recoil = TRUE
+	var/feedback_recoil_amount = 1 // angle of recoil .decimal numbers are okay for less recoil as long as its more than 0
+	var/feedback_recoil_hold = 0 // the amount the recoil holds before going back. best to set this to 1/4th of the fire time.
+	var/feedback_recoil_speed = 2 // the time from recoil to recovery. full time = *4
+	var/feedback_recoil_reverse = FALSE // TRUE for clockwise , FALSE for anti-clockwise
+	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
+
+/obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
+	if(feedback_types[type])
+		feedback_commence(type, feedback_types[type])
+
+/obj/item/gun/ballistic/proc/feedback_commence(type,frames)
+	if(type && frames)
+		cut_overlays()
+		if (suppressed)
+			add_overlay("[icon_state]_suppressor")
+		if(type == "fire")
+			if(!chambered)
+				return
+			if (magazine)
+				if (special_mags)
+					add_overlay("[icon_state]_mag_[initial(magazine.icon_state)]")
+					if (!magazine.ammo_count())
+						add_overlay("[icon_state]_mag_empty")
+				else
+					add_overlay("[icon_state]_mag")
+					var/capacity_number = 0
+					switch(get_ammo() / magazine.max_ammo)
+						if(0.2 to 0.39)
+							capacity_number = 20
+						if(0.4 to 0.59)
+							capacity_number = 40
+						if(0.6 to 0.79)
+							capacity_number = 60
+						if(0.8 to 0.99)
+							capacity_number = 80
+						if(1.0)
+							capacity_number = 100
+					if (capacity_number)
+						add_overlay("[icon_state]_mag_[capacity_number]")
+			feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
+			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
+			sleep(frames)
+			update_icon()
+			return
+		if (bolt_type == BOLT_TYPE_LOCKING)
+			if(type != "slide*")
+				add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+			if(type == "slide_close") // cause the gun to move clockwise if slide is closed
+				DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
+		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
+		sleep(frames)
+		update_icon()
+
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
+	feedback_original_icon_base = icon_state
+	if (bolt_type == BOLT_TYPE_LOCKING)
+		feedback_original_icon = "[icon_state]_bolt"
+		feedback_firing_icon = "[feedback_original_icon]_locked"
+	else if(!feedback_firing_icon)
+		feedback_firing_icon = feedback_original_icon_base
 	if (!spawnwithmagazine)
 		bolt_locked = TRUE
 		update_icon()
@@ -179,8 +251,10 @@
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
 		playsound(src, lock_back_sound, lock_back_sound_volume, lock_back_sound_vary)
+		feedback("slide_open")
 	else
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
+		feedback("slide_close")
 	update_icon()
 
 ///Drops the bolt from a locked position
@@ -188,8 +262,9 @@
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	if (user)
 		to_chat(user, "<span class='notice'>You drop the [bolt_wording] of \the [src].</span>")
-	chamber_round()
 	bolt_locked = FALSE
+	feedback("slide_close")
+	chamber_round()
 	update_icon()
 
 ///Handles all the logic needed for magazine insertion
@@ -204,6 +279,7 @@
 		if (display_message)
 			to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+		feedback("mag_in")
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			chamber_round(TRUE)
 		update_icon()
@@ -216,16 +292,23 @@
 /obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
-	if (magazine.ammo_count())
-		playsound(src, load_sound, load_sound_volume, load_sound_vary)
-	else
-		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+	if(!tac_load)
+		if (magazine.ammo_count())
+			playsound(src, load_sound, load_sound_volume, load_sound_vary)
+		else
+			playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+		feedback("mag_out")
 	magazine.forceMove(drop_location())
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
+			playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+			feedback("mag_out")
+			playsound(src, load_sound, load_sound_volume, load_sound_vary)
+			feedback("mag_in")
 		else
+			feedback("mag_out")
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
 			magazine = null
 	else
@@ -333,12 +416,17 @@
 			alarmed = TRUE
 			update_icon()
 		if (bolt_type == BOLT_TYPE_LOCKING)
+			if(!bolt_locked)
+				feedback("slide_open")
 			bolt_locked = TRUE
 			update_icon()
 
 /obj/item/gun/ballistic/afterattack()
 	prefire_empty_checks()
+	var/fired = chambered ? TRUE : FALSE
 	. = ..() //The gun actually firing
+	if(fired)
+		feedback("fire")
 	postfire_empty_checks()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
