@@ -278,8 +278,8 @@
 	real_name = "Master of Decay"
 	maxHealth = 400
 	health = 400
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 30
+	melee_damage_upper = 50
 
 /mob/living/simple_animal/hostile/eldritch/armsy/prime/Initialize(mapload,spawn_more = TRUE,len = 9)
 	. = ..()
@@ -334,7 +334,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	sight = SEE_TURFS
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash,/obj/effect/proc_holder/spell/pointed/cleave/long,/obj/effect/proc_holder/spell/aoe_turf/fire_cascade)
+	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash,/obj/effect/proc_holder/spell/pointed/cleave,/obj/effect/proc_holder/spell/targeted/fire_sworn)
 
 /mob/living/simple_animal/hostile/eldritch/stalker
 	name = "Flesh Stalker"
