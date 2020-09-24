@@ -97,6 +97,9 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
+"iK" = (
+/turf/template_noop,
+/area/template_noop)
 "iU" = (
 /obj/effect/spawner/structure/window/hollow/survival_pod/directional{
 	dir = 6
@@ -116,9 +119,6 @@
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
-"lu" = (
-/turf/template_noop,
-/area/space)
 "lK" = (
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/golem_ship)
@@ -787,49 +787,49 @@
 /area/ruin/powered/golem_ship)
 
 (1,1,1) = {"
-lu
+iK
 Ht
 Ht
 Ht
 Ht
 Ht
-lu
-lu
-lu
-lu
-lu
-lu
-lu
+iK
+iK
+iK
+iK
+iK
+iK
+iK
 Ht
 Ht
 Ht
 Ht
 Ht
-lu
+iK
 "}
 (2,1,1) = {"
-lu
+iK
 Ht
 UY
 YP
 Ff
 Ht
-lu
-lu
-lu
-lu
-lu
-lu
-lu
+iK
+iK
+iK
+iK
+iK
+iK
+iK
 Ht
 uc
 Kp
 zV
 Ht
-lu
+iK
 "}
 (3,1,1) = {"
-lu
+iK
 si
 Ph
 xc
@@ -847,10 +847,10 @@ MV
 Hp
 AY
 si
-lu
+iK
 "}
 (4,1,1) = {"
-lu
+iK
 si
 GD
 xc
@@ -868,10 +868,10 @@ YL
 Hp
 UB
 si
-lu
+iK
 "}
 (5,1,1) = {"
-lu
+iK
 si
 MR
 MV
@@ -889,10 +889,10 @@ Dw
 da
 tx
 si
-lu
+iK
 "}
 (6,1,1) = {"
-lu
+iK
 CE
 Ht
 kD
@@ -910,10 +910,10 @@ Ht
 PN
 Ht
 CE
-lu
+iK
 "}
 (7,1,1) = {"
-lu
+iK
 si
 FM
 da
@@ -931,10 +931,10 @@ zO
 YP
 da
 si
-lu
+iK
 "}
 (8,1,1) = {"
-lu
+iK
 si
 hD
 xc
@@ -952,10 +952,10 @@ Ci
 hB
 da
 si
-lu
+iK
 "}
 (9,1,1) = {"
-lu
+iK
 si
 hD
 xc
@@ -973,10 +973,10 @@ jX
 Hp
 YP
 si
-lu
+iK
 "}
 (10,1,1) = {"
-lu
+iK
 Ht
 hV
 YP
@@ -994,10 +994,10 @@ pO
 YP
 AH
 Ht
-lu
+iK
 "}
 (11,1,1) = {"
-lu
+iK
 Ht
 Ht
 yu
@@ -1015,10 +1015,10 @@ Ht
 yu
 Ht
 Ht
-lu
+iK
 "}
 (12,1,1) = {"
-lu
+iK
 SR
 PC
 mY
@@ -1036,10 +1036,10 @@ oz
 rh
 Oj
 uw
-lu
+iK
 "}
 (13,1,1) = {"
-lu
+iK
 mL
 Ud
 Hp
@@ -1057,10 +1057,10 @@ xz
 xc
 Hv
 Ku
-lu
+iK
 "}
 (14,1,1) = {"
-lu
+iK
 Ht
 Ht
 yu
@@ -1078,7 +1078,7 @@ Ht
 yu
 Ht
 Ht
-lu
+iK
 "}
 (15,1,1) = {"
 Ht
@@ -1228,65 +1228,65 @@ Ht
 Ht
 "}
 (22,1,1) = {"
-lu
+iK
 Ht
 lK
 lK
 FC
 Ht
-lu
-lu
-lu
-lu
-lu
-lu
-lu
+iK
+iK
+iK
+iK
+iK
+iK
+iK
 Ht
 lK
 lK
 FC
 Ht
-lu
+iK
 "}
 (23,1,1) = {"
-lu
-lu
+iK
+iK
 lK
 lK
 lK
-lu
-lu
-lu
-lu
-lu
-lu
-lu
-lu
-lu
+iK
+iK
+iK
+iK
+iK
+iK
+iK
+iK
+iK
 lK
 lK
 lK
-lu
-lu
+iK
+iK
 "}
 (24,1,1) = {"
-lu
-lu
+iK
+iK
 sm
 sm
 sm
-lu
-lu
-lu
-lu
-lu
-lu
-lu
-lu
-lu
+iK
+iK
+iK
+iK
+iK
+iK
+iK
+iK
+iK
 sm
 sm
 sm
-lu
-lu
+iK
+iK
 "}
