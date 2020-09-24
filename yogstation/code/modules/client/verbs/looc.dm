@@ -57,7 +57,7 @@
 	var/list/clients_to_hear = list()
 	var/turf/looc_source = get_turf(mob.get_looc_source())
 	var/list/stuff_that_hears = list()
-	for(var/mob/M in get_hear(7, looc_source))
+	for(var/mob/M in get_hear(9, looc_source))
 		stuff_that_hears += M
 
 	for(var/mob/M in stuff_that_hears)
