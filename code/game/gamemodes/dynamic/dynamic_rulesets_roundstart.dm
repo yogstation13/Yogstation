@@ -849,7 +849,7 @@
 	required_candidates = 1
 	weight = 1
 	cost = 60
-	requirements = list(100,100,100,100,100,100,100,99,98,97)
+	requirements = list(100,100,100,100,90,90,85,85,85,80)
 	roundstart_wizards = list()
 	var/bullshit_mode = 0
 
