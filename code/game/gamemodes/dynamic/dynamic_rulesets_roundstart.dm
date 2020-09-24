@@ -105,7 +105,7 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
 	weight = 1
-	cost = 15
+	cost = 10
 	requirements = list(80,70,60,50,40,20,20,10,10,10)
 	high_population_requirement = 10
 	var/team_mode_probability = 30
@@ -769,7 +769,7 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 1
-	cost = 35
+	cost = 30
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
@@ -803,14 +803,13 @@
 
 /datum/dynamic_ruleset/roundstart/vampire
 	name = "Vampire"
-	persistent = TRUE
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 1
-	cost = 25
+	cost = 10
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
@@ -840,163 +839,44 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/wizard/raging
+// Dynamic is a wonderful thing that adds wizards to every round and then adds even more wizards during the round.
+/datum/dynamic_ruleset/roundstart/wizard/ragin
 	name = "Ragin' Mages"
-	antag_flag = ROLE_WIZARD
-	antag_datum = /datum/antagonist/wizard
+	antag_flag = ROLE_RAGINMAGES
+	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
-	required_candidates = 4
+	required_candidates = 1
 	weight = 1
-	cost = 70
-	requirements = list(100,95,90,80,75,75,70,60,60,55)
-	var/max_mages = 0
-	var/making_mage = 0
-	var/mages_made = 1
-	var/time_checked = 0
+	cost = 60
+	requirements = list(100,100,100,100,90,90,85,85,85,80)
+	roundstart_wizards = list()
 	var/bullshit_mode = 0
-	var/time_check = 1500
-	var/spawn_delay_min = 450
-	var/spawn_delay_max = 700
-	var/list/datum/mind/wizards = list()
-	var/list/datum/mind/apprentices = list()
-	var/finished = 0
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/acceptable(population=0, threat=0)
+/datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		return FALSE
 	return ..()
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/pre_execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/pre_execute()
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
-		M.mind.assigned_role = ROLE_WIZARD
-		M.mind.special_role = ROLE_WIZARD
+		M.mind.assigned_role = ROLE_RAGINMAGES
+		M.mind.special_role = ROLE_RAGINMAGES
 
 	return TRUE
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/execute()
 	for(var/datum/mind/M in assigned)
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-
-/datum/game_mode/wizard/raginmages/post_setup()
-	..()
-	var/playercount = 0
-	if(!max_mages && !bullshit_mode)
-		for(var/mob/living/player in GLOB.mob_list)
-			if(player.client && player.stat != DEAD)
-				playercount += 1
-		max_mages = round(playercount / 8)
-		if(max_mages > 20)
-			max_mages = 20
-		if(max_mages < 1)
-			max_mages = 1
-	if(bullshit_mode)
-		max_mages = INFINITY
-
-
-/datum/dynamic_ruleset/roundstart/wizard/raging/check_finished()
-
-	var/wizards_alive = 0
-	for(var/datum/mind/wizard in wizards)
-		if(!istype(wizard.current,/mob/living/carbon))
-			continue
-		if(istype(wizard.current,/mob/living/brain))
-			continue
-		if(wizard.current.stat==DEAD)
-			continue
-		if(wizard.current.stat==UNCONSCIOUS)
-			if(wizard.current.health < 0)
-				to_chat(wizard.current, "<font size='4'>The Space Wizard Federation is upset with your performance and have terminated your employment.</font>")
-				wizard.current.death()
-			continue
-		wizards_alive++
-	if(!time_checked)
-		time_checked = world.time
-
-	if (wizards_alive || bullshit_mode)
-		if(world.time > time_checked + time_check && (mages_made < max_mages))
-			time_checked = world.time
-			make_more_mages()
-	else
-		if(mages_made >= max_mages)
-			finished = TRUE // A flag inherited by /game_mode/wizard that marks that wizards have lost
-		else
-			make_more_mages()
-	return ..()
-
-/datum/dynamic_ruleset/roundstart/wizard/raging/proc/make_more_mages()
-
-	if(making_mage)
-		return 0
-	if(mages_made >= max_mages)
-		return 0
-	making_mage = 1
-	mages_made++
-	var/list/mob/dead/observer/candidates = list()
-	var/mob/dead/observer/theghost = null
-	spawn(rand(spawn_delay_min, spawn_delay_max))
-		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
-		for(var/mob/dead/observer/G in GLOB.player_list)
-			if(G.client && !G.client.holder && !G.client.is_afk() && (ROLE_WIZARD in G.client.prefs.be_special))
-				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
-					candidates += G
-		if(!candidates.len)
-			message_admins("No applicable ghosts for the next ragin' mage, asking ghosts instead.")
-			var/time_passed = world.time
-			for(var/mob/dead/observer/G in GLOB.player_list)
-				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
-					spawn(0)
-						switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
-							if("Yes")
-								if((world.time-time_passed)>300)//If more than 30 game seconds passed.
-									continue
-								candidates += G
-							if("No")
-								continue
-
-			sleep(300)
-		if(!candidates.len)
-			message_admins("This is awkward, sleeping until another mage check...")
-			making_mage = 0
-			mages_made--
-			return
-		else
-			shuffle_inplace(candidates)
-			for(var/mob/i in candidates)
-				if(!i || !i.client)
-					continue //Dont bother removing them from the list since we only grab one wizard
-
-				theghost = i
-				break
-
-		if(theghost)
-			var/mob/living/carbon/human/new_character= makeBody(theghost)
-			new_character.mind.make_Wizard()
-			making_mage = 0
-			return 1
-
-/datum/dynamic_ruleset/roundstart/wizard/raging/proc/makeBody(mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
-	if(!G_found || !G_found.key)
-		return
-
-	//First we spawn a dude.
-	var/mob/living/carbon/human/new_character = new //The mob being spawned.
-	SSjob.SendToLateJoin(new_character)
-
-	G_found.client.prefs.copy_to(new_character)
-	new_character.dna.update_dna_identity()
-	new_character.key = G_found.key
-
-	return new_character
 
 //////////////////////////////////////////////
 //                                          //
@@ -1004,28 +884,28 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit
 	name = "Bullshit Mages"
-	antag_flag = ROLE_WIZARD
-	antag_datum = /datum/antagonist/wizard
+	antag_flag = ROLE_BULLSHITMAGES
+	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 4
 	weight = 1
 	cost = 80
 	minimum_players = 40
-	requirements = list(100,100,100,100,95,95,90,80,85,75)
+	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	var/mage_cap = 999
 	bullshit_mode = 1
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/acceptable(population=0, threat=0)
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		return FALSE
 	return ..()
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/pre_execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
 	var/indice_pop = min(45,round(mode.roundstart_pop_ready/2)+1)
 	var/mages = mage_cap[indice_pop]
 	for(var/mages_number = 1 to mages)
@@ -1035,13 +915,13 @@
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
-		M.mind.assigned_role = ROLE_WIZARD
-		M.mind.special_role = ROLE_WIZARD
+		M.mind.assigned_role = ROLE_RAGINMAGES
+		M.mind.special_role = ROLE_RAGINMAGES
 		log_admin("Shit is about to get wild. -Bullshit Wizards")
 
 	return TRUE
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/execute()
 	for(var/datum/mind/M in assigned)
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
