@@ -13,7 +13,7 @@
 	required_players = 20
 
 	announce_span = "danger"
-	announce_text = "There are Syndicate and Cultist agents aboard the station!\n\
+	announce_text = "There are Syndicate and Cult Agents aboard the station!\n\
 	<span class='danger'>Traitors</span>: Accomplish your objectives.\n\
 	<span class='danger'>Cult Agents</span>: Accomplish your objectives.\n\
 	<span class='notice'>Crew</span>: Do not let the traitors or cult agents succeed!"
