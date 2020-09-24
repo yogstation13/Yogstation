@@ -16,7 +16,7 @@
 	announce_text = "There are Syndicate and Cultist agents aboard the station!\n\
 	<span class='danger'>Traitors</span>: Accomplish your objectives.\n\
 	<span class='danger'>Cult Agents</span>: Accomplish your objectives.\n\
-	<span class='notice'>Crew</span>: Do not let the traitors or cultist agents succeed!"
+	<span class='notice'>Crew</span>: Do not let the traitors or cult agents succeed!"
 	
 	var/list/datum/mind/coggers_to_cog = list()
 	var/list/datum/mind/bloods_to_blood = list()
