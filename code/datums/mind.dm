@@ -90,7 +90,7 @@
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		if(isliving(new_character)
-			mob/living/L = new_character
+			var/mob/living/L = new_character
 			for(var/datum/quirk/Q in current.roundstart_quirks)
 				L.add_quirk(Q.type)
 				current.remove_quirk(Q.type)
