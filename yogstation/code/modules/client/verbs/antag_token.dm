@@ -1,18 +1,14 @@
 //2.5 minutes, gotta prevent DDoSing using SQL
-#define AntagTokenCooldown 1500
+#define ANTAG_TOKEN_COOLDOWN 1500
 
 //List of all people using antag tokens this round
 GLOBAL_LIST_EMPTY(antag_token_users)
 
 /client/verb/antag_token_check()
 	set name = "Check/Use Antag Token"
-	set category = "OOC"
+	set category = "Admin"
 	set desc = "Check if you have an antag token, and if you do, use it."
 	var/client/C = usr.client
-
-	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, "<span class='userdanger'>You must use this in the lobby!</span>")
-		return
 
 	if(world.time < C.last_antag_token_check)
 		to_chat(usr, "<span class='userdanger'>You cannot use this verb yet! Please wait.</span>")
@@ -24,9 +20,12 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 		qdel(query_antag_token_existing)
 		return
 
-	C.last_antag_token_check = world.time + AntagTokenCooldown
+	C.last_antag_token_check = world.time + ANTAG_TOKEN_COOLDOWN
 
 	if(query_antag_token_existing.NextRow())
+		if(SSticker.current_state > GAME_STATE_PREGAME)
+			to_chat(usr, "<span class='userdanger'>You have an antag token. You can use this button in the pre-game lobby to use it!</span>")
+			return
 		if(alert("You have an antag token! Do you want to use it? YOU CAN GET ANTAG'S THAT YOU HAVE DISABLED IN YOUR PREFERENCES",, "Yes", "No") != "Yes")
 			qdel(query_antag_token_existing)
 			return
@@ -90,3 +89,5 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 	else
 		message_admins("Failed to use antag token for player '[ckey]'! Please do this manually!")
 	qdel(query_antag_token)
+
+#undef ANTAG_TOKEN_COOLDOWN

@@ -2,10 +2,6 @@
 	set category = "Mentor"
 	set name = "Mentorhelp"
 
-	if(is_mentor())
-		to_chat(src, "<span class='notice'>Mentors cannot mentorhelp, use msay instead!</span>", confidential=TRUE)
-		return
-
 	//clean the input msg
 	if(!msg)	return
 

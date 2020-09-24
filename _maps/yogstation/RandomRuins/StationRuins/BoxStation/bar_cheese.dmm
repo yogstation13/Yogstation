@@ -30,12 +30,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"af" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ag" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -166,32 +160,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"av" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aw" = (
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/cable_coil,
-/obj/item/flashlight/lamp,
-/obj/item/flashlight/lamp/green,
-/obj/structure/closet/secure_closet/bartender,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"ax" = (
-/obj/machinery/food_cart,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "ay" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -288,20 +256,6 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aL" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aM" = (
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
@@ -321,13 +275,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aO" = (
-/obj/machinery/icecream_vat,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "aP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
@@ -380,13 +327,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/crew_quarters/bar)
 "aX" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
@@ -415,11 +355,6 @@
 /area/crew_quarters/bar)
 "ba" = (
 /obj/structure/fermenting_barrel,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"bb" = (
-/obj/structure/table/wood,
-/obj/machinery/reagentgrinder,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bc" = (
@@ -498,36 +433,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bp" = (
-/obj/structure/sign/warning/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bq" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "br" = (
 /mob/living/carbon/monkey/punpun,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"bs" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/item/radio/intercom{
-	pixel_y = 25
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bt" = (
@@ -599,13 +510,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bD" = (
-/obj/machinery/vending/boozeomat,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "bE" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -664,22 +568,6 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"bL" = (
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bM" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/crew_quarters/bar)
-"bN" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bO" = (
@@ -804,14 +692,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ce" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"cf" = (
-/obj/machinery/deepfryer,
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#706891"
-	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "ci" = (
@@ -943,17 +823,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"cA" = (
-/obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = -4
-	},
-/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = 4
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "cB" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -1035,6 +904,30 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"dI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/warning/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = 28;
+	pixel_y = -4
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"hk" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "jQ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/enzyme{
@@ -1042,6 +935,26 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"kC" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"oC" = (
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/cable_coil,
+/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp/green,
+/obj/structure/closet/secure_closet/bartender,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "rk" = (
 /obj/structure/table,
 /obj/machinery/firealarm{
@@ -1053,6 +966,75 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"rA" = (
+/obj/effect/landmark/blobstart,
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"rW" = (
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#706891"
+	},
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"tG" = (
+/obj/machinery/food_cart,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"ul" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"we" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"BJ" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Ew" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/machinery/reagentgrinder,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Fb" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/icecream_vat,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"Ra" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"RF" = (
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ux" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table,
@@ -1062,6 +1044,27 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"UZ" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ZP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1195,7 +1198,7 @@ ag
 ag
 aB
 aI
-aW
+ZP
 bj
 bC
 am
@@ -1248,7 +1251,7 @@ bk
 aB
 au
 aE
-bk
+Ra
 aY
 aB
 aX
@@ -1261,7 +1264,7 @@ aK
 ag
 ag
 ag
-bp
+ul
 cD
 cK
 bX
@@ -1274,7 +1277,7 @@ cC
 (14,1,1) = {"
 ah
 at
-aL
+Ew
 ba
 ag
 aV
@@ -1288,9 +1291,9 @@ cz
 ag
 "}
 (15,1,1) = {"
-af
+oC
 au
-aB
+hk
 aB
 bl
 aB
@@ -1305,14 +1308,14 @@ ag
 "}
 (16,1,1) = {"
 ag
-av
-aM
+UZ
 aM
 ag
-aB
-aB
-bM
-cA
+ag
+ag
+dI
+kC
+RF
 cd
 aB
 cr
@@ -1321,13 +1324,13 @@ ag
 "}
 (17,1,1) = {"
 ak
-aw
+BJ
 aN
-bb
 ag
-bs
-bD
-bN
+rA
+al
+al
+al
 al
 al
 cl
@@ -1342,10 +1345,10 @@ al
 al
 al
 al
-al
-al
-al
-cf
+rW
+ce
+we
+we
 ce
 cs
 al
@@ -1353,12 +1356,12 @@ aa
 "}
 (19,1,1) = {"
 al
-ax
-aO
 bc
+Fb
+bq
 bq
 al
-bL
+bE
 ce
 bP
 jQ
@@ -1390,7 +1393,7 @@ aQ
 bf
 bt
 al
-bE
+tG
 bQ
 ce
 ce
