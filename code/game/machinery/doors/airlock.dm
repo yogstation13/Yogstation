@@ -116,7 +116,8 @@
 	. = ..()
 	bolt_log = list() //yogs
 	shocking_log = list() //yogs
-	wires = new /datum/wires/airlock(src)
+	wires = set_wires()
+
 	if(frequency)
 		set_frequency(frequency)
 
@@ -1762,6 +1763,17 @@
 		H.adjust_fire_stacks(20)
 		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
 		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
+
+
+/**
+  *	Generates the airlock's wire layout based on the current area the airlock resides in.
+  *
+  * Returns a new /datum/wires/ with the appropriate wire layout based on the airlock_wires
+  * of the area the airlock is in.
+  */
+/obj/machinery/door/airlock/proc/set_wires()
+	var/area/source_area = get_area(src)
+	return new source_area.airlock_wires(src)
 
 #undef AIRLOCK_CLOSED
 #undef AIRLOCK_CLOSING
