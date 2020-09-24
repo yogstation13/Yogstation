@@ -637,6 +637,25 @@
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
 
+/**
+  * Given a list of minds, returns TRUE if they completed all their objectives, FALSE otherwise
+  *
+  * Arguments:
+  * * antags - list of minds that we're checking 
+  * * antagonist_datum - The type we're checking for, is optional
+  */
+/datum/game_mode/proc/didAntagsWin(list/antags, datum/antagonist/antagonist_datum)
+	for(var/m in antags)
+		var/datum/mind/mind = m
+		for(var/a in mind.antag_datums)
+			var/datum/antagonist/antagonist = a
+			if(antagonist_datum && !istype(antagonist, antagonist_datum))
+				continue
+			for(var/o in antagonist.objectives)
+				var/datum/objective/objective = o
+				if(!objective.check_completion())
+					return FALSE
+	return TRUE
 
 /datum/game_mode/proc/AdminPanelEntry()
 	return
