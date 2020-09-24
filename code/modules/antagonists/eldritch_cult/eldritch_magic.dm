@@ -400,7 +400,7 @@
 			new /obj/effect/hotspot(T)
 			T.hotspot_expose(700,50,1)
 			for(var/mob/living/livies in T.contents - centre)
-				livies.adjustFireLoss(10)
+				livies.adjustFireLoss(5)
 		_range++
 		sleep(3)
 
@@ -449,7 +449,7 @@
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents - current_user)
-			L.adjustFireLoss(5)
+			L.adjustFireLoss(2.5)
 
 
 /obj/effect/proc_holder/spell/targeted/worm_contract
@@ -468,6 +468,7 @@
 	. = ..()
 	if(!istype(user,/mob/living/simple_animal/hostile/eldritch/armsy))
 		to_chat(user, "<span class='userdanger'>You try to contract your muscles but nothing happens...</span>")
+		return
 	var/mob/living/simple_animal/hostile/eldritch/armsy/armsy = user
 	armsy.contract_next_chain_into_single_tile()
 
@@ -642,7 +643,7 @@
 
 /obj/effect/proc_holder/spell/cone/staggered/entropic_plume/do_mob_cone_effect(mob/living/victim, level)
 	. = ..()
-	if(victim.anti_magic_check() || IS_HERETIC(victim) || victim.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
+	if(victim.anti_magic_check() || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
 		return
 	victim.apply_status_effect(STATUS_EFFECT_AMOK)
 	victim.apply_status_effect(STATUS_EFFECT_CLOUDSTRUCK, (level*10))

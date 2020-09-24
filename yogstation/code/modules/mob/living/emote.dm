@@ -24,12 +24,6 @@
 	message = "strikes a menacing pose!"
 	restraint_check = TRUE
 
-/datum/emote/living/tpose
-	key = "tpose"
-	key_third_person = "tposes"
-	message = "strikes a T-pose!"
-	restraint_check = TRUE
-
 /datum/emote/living/vpose
 	key = "vpose"
 	key_third_person = "vposes"

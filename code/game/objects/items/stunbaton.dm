@@ -1,3 +1,4 @@
+#define STUNBATON_DISCHARGE_INTERVAL 13 //amount of active processes it takes for the stun baton to start discharging
 /obj/item/melee/baton
 	name = "stun baton"
 	desc = "A stun baton for incapacitating people with."
@@ -18,6 +19,7 @@
 	var/hitcost = 1000
 	var/throw_hit_chance = 35
 	var/preload_cell_type //if not empty the baton starts with this type of cell
+	var/cell_last_used = 0
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -54,6 +56,7 @@
 			status = 0
 			update_icon()
 			playsound(loc, "sparks", 75, 1, -1)
+			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
 
 
 /obj/item/melee/baton/update_icon()
@@ -63,6 +66,13 @@
 		icon_state = "[initial(icon_state)]_nocell"
 	else
 		icon_state = "[initial(icon_state)]"
+
+/obj/item/melee/baton/process()
+	if(status)
+		++cell_last_used // Will discharge in 13 processes if it is not turned off
+		if(cell_last_used >= STUNBATON_DISCHARGE_INTERVAL)
+			deductcharge(500)
+			cell_last_used = 6 // Will discharge again in 7 processes if it is not turned off
 
 /obj/item/melee/baton/examine(mob/user)
 	. = ..()
@@ -94,6 +104,7 @@
 			to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
 			status = 0
 			update_icon()
+			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
 	else
 		return ..()
 
@@ -102,6 +113,11 @@
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 75, 1, -1)
+		cell_last_used = 0
+		if(status)
+			START_PROCESSING(SSobj, src)
+		else
+			STOP_PROCESSING(SSobj, src)
 	else
 		status = 0
 		if(!cell)
