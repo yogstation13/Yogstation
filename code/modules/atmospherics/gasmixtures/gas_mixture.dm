@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Compares sample to self to see if within acceptable ranges that group processing may be enabled
 	//Returns: a string indicating what check failed, or "" if check passes
 
-/datum/gas_mixture/proc/react(turf/open/dump_location)
+/datum/gas_mixture/proc/react(datum/holder)
 	//Performs various reactions such as combustion or fusion (LOL)
 	//Returns: 1 if any reaction took place; 0 otherwise
 
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 			path = gas_id2path(path) //a lot of these strings can't have embedded expressions (especially for mappers), so support for IDs needs to stick around
 		set_moles(path, text2num(gas[id]))
 	return 1
-	
+/*
 /datum/gas_mixture/react(datum/holder)
 	. = NO_REACTION
 	var/list/reactions = list()
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 			. |= reaction.react(src, holder)
 			if (. & STOP_REACTIONS)
 				break
-
+*/
 //Takes the amount of the gas you want to PP as an argument
 //So I don't have to do some hacky switches/defines/magic strings
 //eg:
