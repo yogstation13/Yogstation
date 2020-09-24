@@ -89,7 +89,7 @@
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
-		if(isliving(new_character)
+		if(isliving(new_character))
 			var/mob/living/L = new_character
 			for(var/datum/quirk/Q in current.roundstart_quirks)
 				L.add_quirk(Q.type)
