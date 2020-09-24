@@ -44,7 +44,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/breaching
 	name = "tactical breaching shotgun"
-	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points."
+	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points. Only accepts breaching slugs."
 	icon_state = "breachingshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/breaching
 	w_class = WEIGHT_CLASS_NORMAL //compact so it fits in backpacks
