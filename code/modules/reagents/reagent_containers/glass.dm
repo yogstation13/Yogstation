@@ -463,6 +463,14 @@
 		spilled = TRUE
 		amount_per_transfer_from_this = 0
 		possible_transfer_amounts = list(0)
+		reagents.clear_reagents()
+		to_chat(user, "<span class = 'warning'>The urn spills!</span>")
+
+/obj/item/reagent_containers/glass/urn/is_refillable()
+	if(spilled || locked)
+		return FALSE
+	else
+		return reagents && (reagents.flags & REFILLABLE)
 
 /obj/item/reagent_containers/glass/urn/attack_self(mob/user)
 	src.add_fingerprint(user)
