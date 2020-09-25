@@ -1,0 +1,106 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"f" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"g" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+"h" = (
+/obj/structure/table,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/neck/stethoscope,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"i" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"v" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"z" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/punching_bag,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/frame/computer{
+	anchored = 1;
+	dir = 2;
+	icon_state = "0"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/grille/broken,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"W" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/crowbar/red,
+/obj/item/restraints/handcuffs,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+
+(1,1,1) = {"
+F
+f
+f
+"}
+(2,1,1) = {"
+W
+U
+c
+"}
+(3,1,1) = {"
+c
+g
+c
+"}
+(4,1,1) = {"
+F
+c
+i
+"}
+(5,1,1) = {"
+v
+h
+z
+"}
