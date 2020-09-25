@@ -73,7 +73,7 @@
 		message_admins("[key_name_admin(src)] has decided not to SM to Faction.")
 		return
 	log_admin("SubtleMessage Faction: [key_name_admin(src)] -> Faction [chosen] : [msg]")
-	message_admins("SubtleMessage: [key_name_admin(src)] -> Faction [chosen] : [msg]")
+	message_admins("SubtleMessage Faction: [key_name_admin(src)] -> Faction [chosen] : [msg]")
 	var/text // The real HTML-and-text we will send to the SM'd.
 	if(chosen == "Clock Cultist")
 		text = "<span class='large_brass'>You hear a booming voice in your head... </span><span class='heavy_brass'>[msg]</span>"
