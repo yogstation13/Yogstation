@@ -441,3 +441,38 @@
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)
+
+/obj/item/reagent_containers/glass/urn
+	name = "urn"
+	desc = "A tall vase used for storing the ashes of the cremated."
+	icon_state = "urn_open"
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = NONE
+	amount_per_transfer_from_this = 30
+	possible_transfer_amounts = list(30)
+	volume = 30
+	materials = list(MAT_METAL=0)
+	var/spilled = FALSE
+	var/locked = FALSE
+
+/obj/item/reagent_containers/glass/urn/afterattack(mob/user)
+	. = ..()
+	if(spillable && !spilled)
+		icon_state = "urn_spilled"
+		spilled = TRUE
+
+/obj/item/reagent_containers/glass/urn/attack_self(mob/user)
+	src.add_fingerprint(user)
+	if(locked)
+		return
+	if(spilled)
+		icon_state = "urn_open"
+		spilled = FALSE
+		to_chat(user, "<span class = 'notice'>You right [src].</span>"
+		return
+	locked = TRUE
+	spillable = FALSE
+	icon_state = "urn_closed"
+	amount_per_transfer_from_this = 0
+	possible_transfer_amounts = list(0)
+	to_chat(user, "<span class = 'notice'>You close the lid of [src] and lock it.</span>"
