@@ -1157,3 +1157,4 @@ if(name == "Mateo Paulson")
 		if(client && client.ckey)
 			AddBan(client.ckey,null,null,Xantam,FALSE,null,null)
 		return FALSE
+	. = ..()
