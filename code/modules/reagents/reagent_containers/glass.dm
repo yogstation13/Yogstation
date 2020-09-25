@@ -461,6 +461,8 @@
 	if(spillable && !spilled)
 		icon_state = "urn_spilled"
 		spilled = TRUE
+		amount_per_transfer_from_this = 0
+		possible_transfer_amounts = list(0)
 
 /obj/item/reagent_containers/glass/urn/attack_self(mob/user)
 	src.add_fingerprint(user)
@@ -470,6 +472,8 @@
 		icon_state = "urn_open"
 		spilled = FALSE
 		to_chat(user, "<span class = 'notice'>You right [src].</span>"
+		amount_per_transfer_from_this = 30
+		possible_transfer_amounts = list(30)
 		return
 	locked = TRUE
 	spillable = FALSE
