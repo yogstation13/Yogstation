@@ -471,7 +471,7 @@
 	if(spilled)
 		icon_state = "urn_open"
 		spilled = FALSE
-		to_chat(user, "<span class = 'notice'>You right [src].</span>"
+		to_chat(user, "<span class = 'notice'>You right [src].</span>")
 		amount_per_transfer_from_this = 30
 		possible_transfer_amounts = list(30)
 		return
@@ -480,4 +480,4 @@
 	icon_state = "urn_closed"
 	amount_per_transfer_from_this = 0
 	possible_transfer_amounts = list(0)
-	to_chat(user, "<span class = 'notice'>You close the lid of [src] and lock it.</span>"
+	to_chat(user, "<span class = 'notice'>You close the lid of [src] and lock it.</span>")
