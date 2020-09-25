@@ -1,9 +1,9 @@
 /datum/map_template/ruin/station
-	prefix = "_maps/yogstation/RandomRuins/StationRuins/"
+	prefix = "_maps/RandomRuins/StationRuins/"
 	cost = 0
 
 /datum/map_template/ruin/station/box
-	prefix = "_maps/yogstation/RandomRuins/StationRuins/BoxStation/"
+	prefix = "_maps/RandomRuins/StationRuins/BoxStation"
 
 /datum/map_template/ruin/station/box/maint/surgery
 	id = "maint_surgery"
@@ -261,7 +261,7 @@
 	name = "Transfer 9"
 
 /datum/map_template/ruin/station/eclipse
-    prefix = "_maps/yogstation/RandomRuins/StationRuins/EclipseStation/"
+    prefix = "_maps/RandomRuins/StationRuins/EclipseStation"
 
 /datum/map_template/ruin/station/eclipse/bar
 	id = "ebar_eclipse"
