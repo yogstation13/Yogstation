@@ -1,6 +1,0 @@
-author: "  Xoxeyos"
-delete-after: true 
-changes: 
-  - rscadd: "ROLE_RAGINMAGES and ROLE_BULLSHITMAGES"
-  - tweak: "Antag threat costs, and raginmages.dm has been relocated to /code/ instead of yogstation/code/"
-  - bugfix: "Just tries to make Ragin and Bullshit wizards behave appropriately."
