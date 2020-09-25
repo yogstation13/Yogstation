@@ -100,12 +100,6 @@
 "iK" = (
 /turf/template_noop,
 /area/template_noop)
-"iU" = (
-/obj/effect/spawner/structure/window/hollow/survival_pod/directional{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/golem_ship)
 "jX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -195,14 +189,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
+"qQ" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/plating,
+/area/ruin/powered/golem_ship)
 "rh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/pod,
-/area/ruin/powered/golem_ship)
-"si" = (
-/obj/effect/spawner/structure/window/hollow/survival_pod/middle,
-/turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "sm" = (
 /turf/template_noop,
@@ -264,12 +259,6 @@
 "xc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod,
-/area/ruin/powered/golem_ship)
-"xl" = (
-/obj/effect/spawner/structure/window/hollow/survival_pod/middle{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "xz" = (
 /obj/machinery/light/small{
@@ -502,12 +491,6 @@
 	},
 /turf/template_noop,
 /area/ruin/powered/golem_ship)
-"KW" = (
-/obj/effect/spawner/structure/window/hollow/survival_pod/directional{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/golem_ship)
 "Lh" = (
 /obj/structure/rack,
 /obj/item/vending_refill/hydroseeds{
@@ -695,12 +678,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/golem_ship)
-"UU" = (
-/obj/effect/spawner/structure/window/hollow/survival_pod/directional{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/golem_ship)
 "UY" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/research_and_development{
@@ -757,12 +734,6 @@
 	dir = 4
 	},
 /turf/template_noop,
-/area/ruin/powered/golem_ship)
-"Xr" = (
-/obj/effect/spawner/structure/window/hollow/survival_pod/directional{
-	dir = 5
-	},
-/turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "XR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -830,49 +801,49 @@ iK
 "}
 (3,1,1) = {"
 iK
-si
+qQ
 Ph
 xc
 YP
 Ht
 Xc
-UU
-xl
-xl
-xl
-KW
+qQ
+qQ
+qQ
+qQ
+qQ
 CI
 Ht
 MV
 Hp
 AY
-si
+qQ
 iK
 "}
 (4,1,1) = {"
 iK
-si
+qQ
 GD
 xc
 YP
 Ht
 Ht
-iU
+qQ
 LX
 HQ
 bT
-Xr
+qQ
 Ht
 Ht
 YL
 Hp
 UB
-si
+qQ
 iK
 "}
 (5,1,1) = {"
 iK
-si
+qQ
 MR
 MV
 Ff
@@ -888,7 +859,7 @@ Ht
 Dw
 da
 tx
-si
+qQ
 iK
 "}
 (6,1,1) = {"
@@ -914,7 +885,7 @@ iK
 "}
 (7,1,1) = {"
 iK
-si
+qQ
 FM
 da
 hD
@@ -930,12 +901,12 @@ Ht
 zO
 YP
 da
-si
+qQ
 iK
 "}
 (8,1,1) = {"
 iK
-si
+qQ
 hD
 xc
 hD
@@ -951,12 +922,12 @@ Ht
 Ci
 hB
 da
-si
+qQ
 iK
 "}
 (9,1,1) = {"
 iK
-si
+qQ
 hD
 xc
 hD
@@ -972,7 +943,7 @@ Ht
 jX
 Hp
 YP
-si
+qQ
 iK
 "}
 (10,1,1) = {"
