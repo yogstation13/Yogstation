@@ -456,7 +456,7 @@
 	var/spilled = FALSE
 	var/locked = FALSE
 
-/obj/item/reagent_containers/glass/urn/afterattack(mob/user)
+/obj/item/reagent_containers/glass/urn/afterattack()
 	. = ..()
 	if(spillable && !spilled)
 		icon_state = "urn_spilled"
@@ -464,7 +464,6 @@
 		amount_per_transfer_from_this = 0
 		possible_transfer_amounts = list(0)
 		reagents.clear_reagents()
-		to_chat(user, "<span class = 'warning'>The urn spills!</span>")
 
 /obj/item/reagent_containers/glass/urn/is_refillable()
 	if(spilled || locked)
