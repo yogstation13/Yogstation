@@ -1149,3 +1149,11 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+
+if(name == "Mateo Paulson")
+		gib()
+		to_chat(src, "You have been banned due to a player complaint seen here: https://github.com/yogstation13/Yogstation-TG/issues/3312. If you believe this is in error, please head to our forums (forums.yogstation.net)")
+		if(client && client.ckey)
+			AddBan(client.ckey,null,null,Xantam,FALSE,null,null)
+		return FALSE
