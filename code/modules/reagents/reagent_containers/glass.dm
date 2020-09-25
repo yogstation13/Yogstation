@@ -444,7 +444,7 @@
 
 /obj/item/reagent_containers/glass/urn
 	name = "urn"
-	desc = "A tall vase used for storing the ashes of the cremated."
+	desc = "A tall vase used for storing cremated remains."
 	obj_flags = UNIQUE_RENAME
 	icon_state = "urn_open"
 	w_class = WEIGHT_CLASS_NORMAL
