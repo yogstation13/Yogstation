@@ -82,14 +82,8 @@
 	template_names = list("Engine SM", "Engine Singulo And Tesla")
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
-/obj/effect/landmark/stationroom/box/foreportmaint1
-	template_names = list("Maintenance Surgery")
-
 /obj/effect/landmark/stationroom/box/xenobridge
 	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
-
-/obj/effect/landmark/stationroom/box/aftmaint
-	template_names = list("Roleplaying Room", "Detective Room")
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range")
@@ -108,6 +102,3 @@
 
 /obj/effect/landmark/stationroom/eclipse/bar
 	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
-
-/obj/effect/landmark/stationroom/box/foremaint
-	template_names = list ("Foremaint Chem Lockers", "Foremaint Drone Hole")

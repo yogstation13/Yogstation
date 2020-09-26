@@ -1,14 +1,9 @@
 /datum/map_template/ruin/station
-	prefix = "_maps/yogstation/RandomRuins/StationRuins/"
+	prefix = "_maps/RandomRuins/StationRuins/"
 	cost = 0
 
 /datum/map_template/ruin/station/box
-	prefix = "_maps/yogstation/RandomRuins/StationRuins/BoxStation/"
-
-/datum/map_template/ruin/station/box/maint/surgery
-	id = "maint_surgery"
-	suffix = "maint_surgery.dmm"
-	name = "Maintenance Surgery"
+	prefix = "_maps/RandomRuins/StationRuins/BoxStation/"
 
 /datum/map_template/ruin/station/box/bar
 	id = "bar_box"
@@ -89,16 +84,6 @@
 	id = "maint_xenobridge_lattice"
 	suffix = "xenobridge_space.dmm"
 	name = "Xenobiology Lattice"
-
-/datum/map_template/ruin/station/box/maint/aftmaint/rpg
-	id = "maint_rpg"
-	suffix = "maint_rpg.dmm"
-	name = "Roleplaying Room"
-
-/datum/map_template/ruin/station/box/maint/aftmaint/detective
-	id = "maint_detective"
-	suffix = "maint_detective.dmm"
-	name = "Detective Room"
 
 /datum/map_template/ruin/station/box/testingsite/bunker
 	id = "testing_site_1"
@@ -261,7 +246,7 @@
 	name = "Transfer 9"
 
 /datum/map_template/ruin/station/eclipse
-    prefix = "_maps/yogstation/RandomRuins/StationRuins/EclipseStation/"
+    prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
 
 /datum/map_template/ruin/station/eclipse/bar
 	id = "ebar_eclipse"
@@ -292,13 +277,4 @@
 	id = "ebar_casino"
 	suffix = "ebar_casino.dmm"
 	name = "Eclipse Bar Casino"
-
-/datum/map_template/ruin/station/box/foremaint/chem
-	id = "foremaint1"
-	suffix = "foremaint-chem.dmm"
-	name = "Foremaint Chem Lockers"
-
-/datum/map_template/ruin/station/box/foremaint/drone
-	id = "foremaint2"
-	suffix = "foremaint-drone.dmm"
-	name = "Foremaint Drone Hole"
+	
