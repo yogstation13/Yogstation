@@ -547,6 +547,11 @@
 	suffix = "3x5_ripleywreck.dmm"
 	name = "Maint ripleywreck"
 
+/datum/map_template/ruin/station/maint/threexfive/boxmaintfreezers
+	id= "boxmaintfreezers"
+	suffix = "3x5_boxmaintfreezers.dmm"
+	name = "Maint boxmaintfreezers"
+
 /datum/map_template/ruin/station/maint/fivexthree
 	prefix = "_maps/RandomRuins/StationRuins/maint/5x3/"
 

@@ -109,7 +109,7 @@
 	"Maint medicloset", "Maint metaclutter2", "Maint metaclutter4", "Maint metagamergear", "Maint owloffice", "Maint plasma", "Maint pubbyartism", "Maint pubbyclutter1", "Maint pubbyclutter2", "Maint pubbyclutter3", "Maint radspill", "Maint shrine", "Maint tanning", "Maint tranquility", "Maint wash")
 	
 /obj/effect/landmark/stationroom/maint/threexfive
-	template_names = list("Maint boxclutter7", "Maint boxkitchen", "Maint canisterroom", "Maint hank", "Maint junkcloset", "Maint kilomobden", "Maint laststand", "Maint monky", "Maint pubbyclutter5", "Maint pubbyclutter6", "Maint pubbyrobotics", "Maint ripleywreck")
+	template_names = list("Maint boxclutter7", "Maint boxkitchen", "Maint canisterroom", "Maint hank", "Maint junkcloset", "Maint kilomobden", "Maint laststand", "Maint monky", "Maint pubbyclutter5", "Maint pubbyclutter6", "Maint pubbyrobotics", "Maint ripleywreck", "Maint boxmaintfreezers")
 
 /obj/effect/landmark/stationroom/maint/fivexthree
 	template_names = list("Maint boxclutter1", "Maint cloner", "Maint deltaclutter2", "Maint deltaclutter3", "Maint incompletefloor", "Maint kiloclutter1", "Maint metaclutter1", "Maint metaclutter3", "Maint minibreakroom", "Maint nastytrap", "Maint pills", "Maint pubbybedroom", "Maint pubbyclutter4", "Maint pubbyclutter7", "Maint pubbykitchen", "Maint storeroom", "Maint yogsmaintdet", "Maint yogsmaintrpg")
