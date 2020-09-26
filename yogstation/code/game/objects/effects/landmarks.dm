@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(!template_names.len)
 			stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) (type: [type]) has run out of ruins, unique will be ignored"))
 			template_names = current_templates
-	return safepick(template_names)
+	return pickweight(template_names)
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock")
