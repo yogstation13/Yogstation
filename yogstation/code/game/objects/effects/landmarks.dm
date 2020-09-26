@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(chosen_station_templates)
+
 /obj/effect/landmark/start/yogs
 	icon = 'yogstation/icons/mob/landmarks.dmi'
 
@@ -54,6 +56,7 @@
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
 		return FALSE
+	GLOB.chosen_station_templates += template_name
 	var/datum/map_template/template = SSmapping.station_room_templates[template_name]
 	if(!template)
 		return FALSE
