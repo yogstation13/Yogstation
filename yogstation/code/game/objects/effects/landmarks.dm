@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(chosen_station_templates)
+
 /obj/effect/landmark/start/yogs
 	icon = 'yogstation/icons/mob/landmarks.dmi'
 
@@ -27,6 +29,8 @@
 
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
+	/// Whether or not we can choose templates that have already been chosen
+	var/unique = FALSE
 	layer = BULLET_HOLE_LAYER
 
 /obj/effect/landmark/stationroom/New()
@@ -52,6 +56,7 @@
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
 		return FALSE
+	GLOB.chosen_station_templates += template_name
 	var/datum/map_template/template = SSmapping.station_room_templates[template_name]
 	if(!template)
 		return FALSE
@@ -66,7 +71,14 @@
 // Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays,
 // Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git
 /obj/effect/landmark/stationroom/proc/choose()
-	return safepick(template_names)
+	if(unique)
+		var/list/current_templates = template_names
+		for(var/i in GLOB.chosen_station_templates)
+			template_names -= chosen_station_templates
+		if(!template_names.len)
+			stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) (type: [type]) has run out of ruins, unique will be ignored"))
+			template_names = current_templates
+	return pickweight(template_names)
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock")
