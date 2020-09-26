@@ -28,6 +28,12 @@
 /obj/item/reagent_containers/glass/bottle/mutagen,
 /turf/open/floor/plating,
 /area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/template_noop)
 "y" = (
 /obj/item/reagent_containers/glass/bottle/synaptizine,
 /obj/structure/table/glass,
@@ -61,7 +67,7 @@ i
 (2,1,1) = {"
 G
 e
-e
+v
 "}
 (3,1,1) = {"
 c
