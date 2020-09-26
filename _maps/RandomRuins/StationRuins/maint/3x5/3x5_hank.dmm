@@ -9,15 +9,6 @@
 "g" = (
 /turf/open/floor/carpet/orange,
 /area/template_noop)
-"h" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/mob/living/simple_animal/cluwne{
-	name = "Hank"
-	},
-/turf/open/floor/carpet/orange,
-/area/template_noop)
 "i" = (
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
@@ -40,6 +31,12 @@
 "D" = (
 /obj/structure/closet/crate/wooden/toy,
 /turf/open/floor/plasteel/vaporwave,
+/area/template_noop)
+"G" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
 /area/template_noop)
 "M" = (
 /obj/machinery/light/small,
@@ -66,7 +63,7 @@ m
 m
 M
 f
-h
+G
 "}
 (3,1,1) = {"
 B

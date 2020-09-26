@@ -54,13 +54,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"h" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/carpet/red,
-/area/template_noop)
 "i" = (
 /turf/open/floor/wood,
 /area/template_noop)
@@ -85,17 +78,6 @@
 /obj/structure/chair/office{
 	dir = 1
 	},
-/turf/open/floor/carpet/red,
-/area/template_noop)
-"m" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigpack_uplift{
-	pixel_x = 6
-	},
-/obj/item/storage/fancy/cigarettes/cigpack_carp{
-	pixel_x = -3
-	},
-/obj/item/lighter,
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "n" = (
@@ -142,6 +124,20 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"B" = (
+/obj/structure/table/wood,
+/obj/item/lighter,
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"D" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+/turf/open/floor/carpet/red,
+/area/template_noop)
 "E" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/frame/computer{
@@ -175,8 +171,8 @@ q
 "}
 (3,1,1) = {"
 c
-h
-m
+D
+B
 r
 "}
 (4,1,1) = {"

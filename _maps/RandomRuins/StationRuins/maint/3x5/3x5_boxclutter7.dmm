@@ -22,12 +22,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/item/stack/sheet/mineral/copper,
-/turf/open/floor/plating,
-/area/template_noop)
 "g" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -54,6 +48,11 @@
 /obj/item/trash/plate,
 /turf/open/floor/plating,
 /area/template_noop)
+"H" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -72,7 +71,7 @@ b
 (3,1,1) = {"
 u
 d
-f
+H
 h
 j
 "}
