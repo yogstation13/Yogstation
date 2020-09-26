@@ -8,14 +8,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"e" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/clothing/gloves/color/yellow,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/mob/living/simple_animal/hostile/abomination/altform1,
-/turf/open/floor/plating,
-/area/template_noop)
 "h" = (
 /obj/item/caution{
 	desc = "CAUTION! BIOHAZARD QUARANTINE!";
@@ -149,6 +141,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
+"V" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/gloves/color/yellow,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/mob/living/simple_animal/pet/dog/corgi/puppy{
+	desc = "It's a corgi puppy! It's covered in blood...";
+	name = "suspicious puppy"
+	},
+/turf/open/floor/plating,
+/area/template_noop)
 "W" = (
 /obj/structure/barricade/sandbags,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -179,7 +182,7 @@ i
 (3,1,1) = {"
 a
 t
-e
+V
 t
 n
 "}
