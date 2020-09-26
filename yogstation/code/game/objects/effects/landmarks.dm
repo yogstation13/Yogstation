@@ -27,6 +27,8 @@
 
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
+	/// Whether or not we can choose templates that have already been chosen
+	var/unique = FALSE
 	layer = BULLET_HOLE_LAYER
 
 /obj/effect/landmark/stationroom/New()
@@ -66,6 +68,13 @@
 // Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays,
 // Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git
 /obj/effect/landmark/stationroom/proc/choose()
+	if(unique)
+		var/list/current_templates = template_names
+		for(var/i in GLOB.chosen_station_templates)
+			template_names -= chosen_station_templates
+		if(!template_names.len)
+			stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) (type: [type]) has run out of ruins, unique will be ignored"))
+			template_names = current_templates
 	return safepick(template_names)
 
 /obj/effect/landmark/stationroom/box/bar
