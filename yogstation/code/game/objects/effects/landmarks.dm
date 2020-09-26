@@ -74,9 +74,9 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	if(unique)
 		var/list/current_templates = template_names
 		for(var/i in GLOB.chosen_station_templates)
-			template_names -= chosen_station_templates
+			template_names -= i
 		if(!template_names.len)
-			stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) (type: [type]) has run out of ruins, unique will be ignored"))
+			stack_trace("Station room spawner (type: [type]) has run out of ruins, unique will be ignored")
 			template_names = current_templates
 	return pickweight(template_names)
 
