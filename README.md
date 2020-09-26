@@ -94,7 +94,7 @@ https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-Yogstation currently comes equipped with four maps.
+Yogstation currently comes equipped with the following maps.
 
 * [BoxStation (default)](https://wiki.yogstation.net/wiki/Maps#Boxstation_.28YogBox.29)
 * [MetaStation](https://wiki.yogstation.net/wiki/Maps#MetaStation_.28YogsMeta.29)
