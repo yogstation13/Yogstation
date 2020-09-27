@@ -13,16 +13,17 @@
 	coldmod = 0.75
 	heatmod = 2
 	acidmod = 0.90
+	fixed_mut_color = "3E3C57"
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES, AGENDER)
+	species_traits = list(NOEYESPRITES, AGENDER, MUTCOLORS)
 	inherent_traits = list(TRAIT_THERMAL_VISION)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth")
+	mutant_bodyparts = list("tail_polysmorph", "plasma_vessels", "dome", "dorsal_tubes", "teeth", "legs")
 	default_features = list("tail_polysmorph" = "Polys", "plasma_vessels" = "None", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None")
 	mutanttongue = /obj/item/organ/tongue/polysmorph
 	mutanttail = /obj/item/organ/tail/polysmorph
