@@ -54,4 +54,5 @@
 		var/obj/item/clothing/neck/skillcape/A = GLOB.skillcapes[S]
 		var/type = A.type
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
+		H.equip_to_appropriate_slot(B)
 	
