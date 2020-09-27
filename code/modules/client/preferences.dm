@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(unlock_content)
 				max_save_slots = 8
 			// yogs start - Donor features
-			else if(is_donator(C) || (C.ckey in get_donators()) || C.ckey in GLOB.mentor_datums)
+			else if(is_donator(C) || (C.ckey in get_donators()) || C.is_mentor())
 				max_save_slots = DONOR_CHARACTER_SLOTS
 			// yogs end
 	var/loaded_preferences_successfully = load_preferences()
