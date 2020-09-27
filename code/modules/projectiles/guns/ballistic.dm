@@ -423,9 +423,8 @@
 
 /obj/item/gun/ballistic/afterattack()
 	prefire_empty_checks()
-	var/fired = chambered ? TRUE : FALSE
 	. = ..() //The gun actually firing
-	if(fired)
+	if(can_shoot() && recent_shoot + 5 > world.time)
 		feedback("fire")
 	postfire_empty_checks()
 
