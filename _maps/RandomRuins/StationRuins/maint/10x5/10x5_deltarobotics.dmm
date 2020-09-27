@@ -26,11 +26,9 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "e" = (
-/obj/structure/table/reinforced,
-/obj/item/mmi,
-/obj/item/assembly/prox_sensor,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/template_noop)
 "f" = (
 /turf/open/floor/plating,
@@ -44,6 +42,10 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
 "i" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/glass,
@@ -51,6 +53,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
+/area/template_noop)
+"k" = (
+/obj/structure/table/reinforced,
+/obj/item/mmi,
+/obj/item/assembly/prox_sensor,
+/turf/open/floor/plating,
 /area/template_noop)
 "l" = (
 /obj/effect/turf_decal/stripes/line{
@@ -132,20 +140,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"w" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
 "x" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -179,10 +173,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
-/area/template_noop)
-"D" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mech_bay_recharge_floor,
 /area/template_noop)
 "E" = (
 /obj/effect/turf_decal/stripes/line,
@@ -254,6 +244,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/template_noop)
+"Q" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plating,
+/area/template_noop)
 "T" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/decal/cleanable/dirt,
@@ -309,18 +303,18 @@ J
 d
 m
 t
-D
+e
 K
 "}
 (5,1,1) = {"
-e
+h
 m
 u
-E
-d
+f
+Q
 "}
 (6,1,1) = {"
-f
+k
 f
 v
 C
@@ -329,7 +323,7 @@ L
 (7,1,1) = {"
 g
 n
-w
+h
 F
 M
 "}

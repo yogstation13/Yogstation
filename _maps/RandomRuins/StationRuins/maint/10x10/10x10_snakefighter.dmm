@@ -149,16 +149,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/template_noop)
-"D" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/research/glass{
-	name = "Research Pit";
-	req_access_txt = "12"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "E" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -218,13 +208,6 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating,
 /area/template_noop)
-"O" = (
-/obj/machinery/door/airlock/research/glass{
-	name = "Research Pit";
-	req_access_txt = "12"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "P" = (
 /obj/structure/sign/warning{
 	pixel_y = -32
@@ -247,6 +230,31 @@
 	},
 /obj/machinery/shieldwallgen/xenobiologyaccess,
 /obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/research/glass{
+	name = "Research Pit";
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"U" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Research Pit";
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "V" = (
@@ -329,11 +337,11 @@ e
 n
 r
 e
-D
+T
 f
 Y
 f
-O
+U
 f
 "}
 (6,1,1) = {"
@@ -341,11 +349,11 @@ e
 n
 r
 e
-D
+T
 f
 K
 f
-O
+U
 f
 "}
 (7,1,1) = {"

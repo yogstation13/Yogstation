@@ -14,11 +14,6 @@
 /obj/item/pen,
 /turf/open/floor/plating,
 /area/template_noop)
-"ac" = (
-/obj/structure/bookcase,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/wood,
-/area/template_noop)
 "ad" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
@@ -26,30 +21,11 @@
 "ae" = (
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
-"af" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/template_noop)
 "ag" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
-	},
-/area/template_noop)
-"ah" = (
-/obj/machinery/photocopier,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/template_noop)
-"ai" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/wood{
-	icon_state = "wood-broken2"
 	},
 /area/template_noop)
 "aj" = (
@@ -75,27 +51,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"al" = (
-/obj/structure/bookcase,
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/bookcase/random/nonfiction,
-/turf/open/floor/wood,
-/area/template_noop)
 "am" = (
 /obj/structure/chair/office,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/grimy,
-/area/template_noop)
-"an" = (
-/obj/structure/chair/office,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"ao" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
 "ap" = (
@@ -170,10 +128,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
-"aC" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/template_noop)
 "aD" = (
 /turf/closed/wall,
 /area/template_noop)
@@ -192,10 +146,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
-/area/template_noop)
-"aH" = (
-/obj/structure/bookcase/random/adult,
-/turf/open/floor/plasteel/dark,
 /area/template_noop)
 "aI" = (
 /mob/living/simple_animal/cockroach,
@@ -317,6 +267,23 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
+"fM" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/wood,
+/area/template_noop)
+"gI" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/template_noop)
+"iS" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/wood,
+/area/template_noop)
 "nV" = (
 /obj/structure/table/wood,
 /obj/item/toy/turn_tracker,
@@ -328,11 +295,42 @@
 /obj/item/toy/crayon/spraycan,
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
+"yo" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/grimy,
+/area/template_noop)
 "GX" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /obj/item/clothing/under/rank/curator,
 /turf/open/floor/wood,
+/area/template_noop)
+"Ob" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plating,
+/area/template_noop)
+"QX" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/wood,
+/area/template_noop)
+"Tc" = (
+/obj/structure/chair/office,
+/turf/open/floor/plating,
+/area/template_noop)
+"Ur" = (
+/obj/structure/bookcase{
+	name = "Forbidden Knowledge"
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"YV" = (
+/obj/machinery/photocopier,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -360,10 +358,10 @@ aI
 aT
 "}
 (3,1,1) = {"
-ac
-al
-al
-ac
+ad
+QX
+QX
+ad
 ae
 aZ
 aF
@@ -372,13 +370,13 @@ aM
 GX
 "}
 (4,1,1) = {"
+iS
+fM
 ad
 ad
-ac
-ac
 ae
 ae
-ad
+iS
 ad
 aN
 aV
@@ -408,12 +406,12 @@ qY
 aB
 "}
 (7,1,1) = {"
-af
+aE
 ae
 aq
 av
 az
-aC
+Ob
 ap
 aI
 aO
@@ -432,8 +430,8 @@ aP
 aD
 "}
 (9,1,1) = {"
-ah
-an
+YV
+Tc
 as
 nV
 aA
@@ -444,13 +442,13 @@ aQ
 aX
 "}
 (10,1,1) = {"
-ai
-ao
+gI
+yo
 at
 ay
 aB
 aD
-aH
+Ur
 aK
 aR
 aY

@@ -2,17 +2,8 @@
 "a" = (
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"b" = (
-/obj/structure/chair/comfy/brown,
-/turf/open/floor/wood,
-/area/template_noop)
 "c" = (
 /turf/open/floor/plasteel/stairs/old,
-/area/template_noop)
-"d" = (
-/obj/structure/chair/comfy/brown,
-/obj/structure/chair/comfy/brown,
-/turf/open/floor/wood,
 /area/template_noop)
 "e" = (
 /turf/open/floor/wood,
@@ -33,6 +24,14 @@
 	},
 /turf/open/floor/wood,
 /area/template_noop)
+"k" = (
+/obj/structure/chair/comfy/brown,
+/obj/structure/chair/comfy/brown,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 "l" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
 /turf/open/floor/carpet/red,
@@ -41,15 +40,13 @@
 /obj/item/trash/candy,
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"n" = (
-/obj/structure/chair/comfy/brown,
-/obj/item/reagent_containers/food/snacks/popcorn,
-/turf/open/floor/wood,
-/area/template_noop)
 "o" = (
 /obj/structure/chair/comfy/brown,
 /obj/item/reagent_containers/food/snacks/popcorn,
 /obj/item/reagent_containers/food/drinks/soda_cans/shamblers,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/template_noop)
 "p" = (
@@ -64,18 +61,16 @@
 /obj/item/trash/cheesie,
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"s" = (
-/obj/structure/chair/comfy/brown,
-/obj/item/trash/popcorn,
-/turf/open/floor/wood,
-/area/template_noop)
-"t" = (
-/obj/structure/chair/comfy/brown,
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
-/turf/open/floor/wood,
-/area/template_noop)
 "v" = (
 /obj/item/trash/popcorn,
+/turf/open/floor/wood,
+/area/template_noop)
+"z" = (
+/obj/structure/chair/comfy/brown,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/template_noop)
 "B" = (
@@ -93,12 +88,35 @@
 /obj/structure/cloth_curtain,
 /turf/open/floor/wood,
 /area/template_noop)
+"S" = (
+/obj/structure/chair/comfy/brown,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"T" = (
+/obj/structure/chair/comfy/brown,
+/obj/item/trash/popcorn,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"Y" = (
+/obj/structure/chair/comfy/brown,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 
 (1,1,1) = {"
 a
-b
+S
 p
-b
+S
 D
 a
 f
@@ -108,9 +126,9 @@ e
 "}
 (2,1,1) = {"
 a
-b
+S
 q
-b
+S
 a
 a
 f
@@ -132,9 +150,9 @@ e
 "}
 (4,1,1) = {"
 l
-n
+z
 m
-n
+z
 a
 v
 e
@@ -144,9 +162,9 @@ e
 "}
 (5,1,1) = {"
 m
-b
+S
 a
-b
+S
 a
 e
 e
@@ -156,9 +174,9 @@ e
 "}
 (6,1,1) = {"
 a
-b
+S
 r
-b
+S
 a
 e
 e
@@ -168,9 +186,9 @@ e
 "}
 (7,1,1) = {"
 a
-b
+S
 a
-s
+T
 a
 e
 e
@@ -194,7 +212,7 @@ e
 a
 o
 a
-b
+S
 a
 a
 f
@@ -204,9 +222,9 @@ e
 "}
 (10,1,1) = {"
 a
-d
+k
 a
-t
+Y
 a
 a
 f

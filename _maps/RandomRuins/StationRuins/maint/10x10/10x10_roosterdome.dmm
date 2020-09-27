@@ -8,18 +8,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"c" = (
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty,
-/obj/machinery/light/small{
+"d" = (
+/obj/machinery/door/window/eastright{
+	base_state = "left";
+	dir = 8;
+	icon_state = "left";
+	name = "Coop"
+	},
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"d" = (
-/obj/structure/table,
-/obj/item/storage/box/lights/mixed,
-/turf/open/floor/plasteel/dark,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/template_noop)
 "e" = (
 /obj/machinery/vending/cigarette,
@@ -54,19 +56,9 @@
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "j" = (
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	dir = 8;
-	icon_state = "left";
-	name = "Arena"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/engine,
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/plasteel/dark,
 /area/template_noop)
 "k" = (
 /obj/structure/window/reinforced{
@@ -179,11 +171,11 @@
 	},
 /turf/open/floor/engine,
 /area/template_noop)
-"t" = (
+"u" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
 	icon_state = "left";
-	name = "Arena"
+	name = "Coop"
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -313,6 +305,15 @@
 	},
 /turf/open/floor/engine,
 /area/template_noop)
+"M" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 "N" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -404,10 +405,10 @@
 /area/template_noop)
 
 (1,1,1) = {"
-a
+b
 h
 k
-t
+u
 a
 a
 H
@@ -416,7 +417,7 @@ W
 R
 "}
 (2,1,1) = {"
-b
+j
 a
 l
 a
@@ -428,7 +429,7 @@ a
 S
 "}
 (3,1,1) = {"
-c
+M
 a
 m
 m
@@ -440,7 +441,7 @@ a
 T
 "}
 (4,1,1) = {"
-d
+a
 a
 n
 P
@@ -512,8 +513,8 @@ a
 X
 "}
 (10,1,1) = {"
-a
-j
+b
+d
 Y
 z
 a

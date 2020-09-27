@@ -22,24 +22,40 @@
 "f" = (
 /turf/open/floor/plasteel/stairs/right,
 /area/template_noop)
+"g" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/template_noop)
 "h" = (
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/template_noop)
 "i" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 24
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
 	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/wood,
 /area/template_noop)
 "j" = (
 /turf/open/floor/wood,
 /area/template_noop)
-"l" = (
-/obj/structure/table,
+"k" = (
+/obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
+/area/template_noop)
+"l" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/carpet,
 /area/template_noop)
 "m" = (
 /obj/structure/table,
@@ -93,17 +109,17 @@
 	},
 /area/template_noop)
 "u" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plating,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
 /area/template_noop)
 "v" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 24
 	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/carpet,
+/turf/open/floor/wood,
 /area/template_noop)
 "w" = (
 /obj/structure/table/wood/poker,
@@ -117,28 +133,32 @@
 /turf/open/floor/carpet,
 /area/template_noop)
 "y" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"z" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Pete's Speakeasy"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/template_noop)
+"A" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
 	pixel_x = 4;
 	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/turf/open/floor/plating,
-/area/template_noop)
-"z" = (
-/obj/structure/table,
-/obj/item/stack/spacecash/c20,
-/obj/item/storage/box/fancy/cigarettes/cigars,
-/turf/open/floor/plating,
-/area/template_noop)
-"A" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/bottle/gin{
-	pixel_y = 8
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/template_noop)
 "B" = (
@@ -154,13 +174,10 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "E" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
+/obj/structure/table,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/clothing/under/maid,
+/turf/open/floor/plating,
 /area/template_noop)
 "F" = (
 /turf/open/floor/wood{
@@ -168,8 +185,12 @@
 	},
 /area/template_noop)
 "G" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/wood,
+/obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/template_noop)
 "H" = (
 /turf/open/floor/plasteel/stairs/medium,
@@ -181,10 +202,13 @@
 /turf/open/floor/plasteel/stairs/right,
 /area/template_noop)
 "J" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Pete's Speakeasy";
-	req_access_txt = "0"
+/obj/structure/table,
+/obj/item/stack/spacecash/c20,
+/obj/item/storage/box/fancy/cigarettes/cigars,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/template_noop)
 "K" = (
@@ -200,6 +224,20 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/template_noop)
+"M" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/gin{
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/template_noop)
 "N" = (
 /obj/structure/chair{
@@ -288,12 +326,10 @@
 /area/template_noop)
 "Z" = (
 /obj/structure/table,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/item/clothing/under/maid,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -302,9 +338,9 @@ a
 e
 j
 o
-v
+l
 o
-E
+g
 e
 L
 Q
@@ -339,7 +375,7 @@ X
 c
 c
 c
-j
+i
 j
 c
 c
@@ -350,7 +386,7 @@ d
 c
 W
 r
-l
+Z
 j
 F
 c
@@ -362,10 +398,10 @@ d
 h
 K
 r
-y
+A
 j
 j
-J
+z
 d
 d
 "}
@@ -374,9 +410,9 @@ d
 c
 m
 s
-z
+J
 j
-j
+u
 c
 c
 c
@@ -386,10 +422,10 @@ d
 c
 n
 t
-A
+M
 j
+v
 G
-u
 d
 U
 "}
@@ -397,9 +433,9 @@ U
 d
 c
 c
-u
+k
 c
-u
+k
 c
 c
 d
@@ -407,13 +443,13 @@ d
 "}
 (10,1,1) = {"
 d
-i
+y
 d
 d
 d
 D
 c
-Z
+E
 P
 V
 "}

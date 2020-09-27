@@ -27,35 +27,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"e" = (
-/obj/structure/table,
-/obj/item/seeds/poppy/lily{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/seeds/poppy/geranium,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/corn,
-/obj/item/reagent_containers/food/snacks/grown/apple,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"f" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/tea,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"g" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "h" = (
 /obj/structure/table,
 /obj/item/stack/packageWrap,
@@ -126,18 +97,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"r" = (
-/obj/structure/table,
-/obj/item/plant_analyzer,
-/obj/item/hatchet,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"s" = (
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "t" = (
 /obj/structure/table,
 /obj/item/crowbar,
@@ -154,6 +113,13 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
+"B" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/hatchet,
+/obj/item/plant_analyzer,
+/turf/open/floor/plasteel,
+/area/template_noop)
 "K" = (
 /obj/structure/table,
 /obj/item/shovel/spade,
@@ -166,6 +132,35 @@
 /obj/item/reagent_containers/syringe,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"S" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"T" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/grown/apple,
+/obj/item/reagent_containers/food/snacks/grown/apple,
+/obj/item/reagent_containers/food/snacks/grown/corn,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/seeds/poppy/geranium,
+/obj/item/seeds/poppy/lily{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Z" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/tea,
 /turf/open/floor/plasteel,
 /area/template_noop)
 
@@ -198,25 +193,25 @@ k
 q
 "}
 (5,1,1) = {"
-e
+j
 j
 k
 k
-r
+j
 "}
 (6,1,1) = {"
-f
+Z
 k
 k
 k
-s
+B
 "}
 (7,1,1) = {"
-g
+T
 k
 k
 k
-s
+S
 "}
 (8,1,1) = {"
 h

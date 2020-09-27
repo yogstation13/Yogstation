@@ -2,15 +2,6 @@
 "a" = (
 /turf/closed/wall,
 /area/template_noop)
-"b" = (
-/obj/effect/decal/cleanable/shreds,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/wirecutters{
-	pixel_x = 6;
-	pixel_y = -3
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "d" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
@@ -43,7 +34,14 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "i" = (
-/obj/item/cigbutt,
+/obj/structure/table/wood,
+/obj/item/stack/cable_coil,
+/obj/item/reagent_containers/glass/bottle/killer/pestkiller,
+/obj/item/reagent_containers/syringe,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -5;
+	pixel_y = -2
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "k" = (
@@ -82,6 +80,11 @@
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
 /area/template_noop)
+"r" = (
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
 "s" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
@@ -95,9 +98,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"v" = (
-/obj/structure/curtain,
-/obj/effect/decal/cleanable/glass,
+"u" = (
+/obj/item/cigbutt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/item/wirecutters{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
 "x" = (
@@ -134,13 +145,6 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/cigbutt,
-/turf/open/floor/plating,
-/area/template_noop)
-"H" = (
-/obj/item/bedsheet/random,
-/obj/item/pizzabox{
-	open = 1
-	},
 /turf/open/floor/plating,
 /area/template_noop)
 "I" = (
@@ -183,6 +187,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
+"Q" = (
+/obj/structure/curtain,
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
 "R" = (
 /obj/item/wrench/medical,
 /obj/item/trash/waffles,
@@ -190,6 +205,14 @@
 /area/template_noop)
 "S" = (
 /obj/effect/decal/cleanable/blood/innards,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/item/pizzabox{
+	open = 1
+	},
+/obj/item/bedsheet/random,
+/obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plating,
 /area/template_noop)
 "W" = (
@@ -202,14 +225,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "Y" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -5;
-	pixel_y = -2
-	},
-/obj/item/reagent_containers/syringe,
-/obj/item/reagent_containers/glass/bottle/killer/pestkiller,
-/obj/item/stack/cable_coil,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
 "Z" = (
@@ -220,16 +236,16 @@
 (1,1,1) = {"
 M
 d
-b
-Y
-a
+r
+w
+i
 "}
 (2,1,1) = {"
 g
 q
-i
-H
-a
+u
+Y
+T
 "}
 (3,1,1) = {"
 N
@@ -239,7 +255,7 @@ a
 a
 "}
 (4,1,1) = {"
-v
+Q
 a
 a
 l

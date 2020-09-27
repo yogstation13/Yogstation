@@ -3,10 +3,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
-"d" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plating,
-/area/template_noop)
 "f" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating,
@@ -47,12 +43,6 @@
 /obj/item/reagent_containers/spray/spraytan,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
-"m" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/template_noop)
 "n" = (
 /obj/structure/closet/crate/freezer{
 	name = "refreshment cooler"
@@ -75,6 +65,10 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist,
 /obj/item/storage/pill_bottle/happy,
 /turf/open/floor/carpet,
+/area/template_noop)
+"o" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 "p" = (
 /obj/structure/table/wood,
@@ -107,15 +101,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/vaporwave,
 /area/template_noop)
-"w" = (
-/obj/structure/window/spawner/west,
-/obj/structure/table/wood,
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-18";
-	pixel_y = 10
-	},
-/turf/open/floor/carpet,
-/area/template_noop)
 "x" = (
 /turf/open/floor/plasteel/vaporwave,
 /area/template_noop)
@@ -126,6 +111,31 @@
 "z" = (
 /obj/structure/chair/sofa/right,
 /obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/carpet,
+/area/template_noop)
+"B" = (
+/obj/structure/window/spawner/west,
+/obj/structure/table/wood,
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-18";
+	pixel_y = 10
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/template_noop)
+"E" = (
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/template_noop)
 "F" = (
@@ -144,15 +154,23 @@
 /obj/item/reagent_containers/spray/pepper/empty,
 /turf/open/floor/plasteel/vaporwave,
 /area/template_noop)
-"L" = (
-/obj/machinery/door/window/westleft,
-/turf/open/floor/carpet,
+"J" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/vaporwave,
 /area/template_noop)
-"M" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/blood/bubblegum,
-/obj/item/retractor,
-/turf/open/floor/plasteel/cafeteria,
+"K" = (
+/obj/structure/window/spawner/west,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
 /area/template_noop)
 "P" = (
 /obj/item/hemostat,
@@ -182,11 +200,6 @@
 /obj/effect/decal/cleanable/food/tomato_smudge,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
-"R" = (
-/obj/structure/window/spawner/west,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/carpet,
-/area/template_noop)
 "S" = (
 /obj/structure/chair/sofa/left,
 /turf/open/floor/carpet,
@@ -203,18 +216,34 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/vaporwave,
 /area/template_noop)
+"Y" = (
+/obj/structure/table,
+/obj/item/retractor,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/cafeteria,
+/area/template_noop)
+"Z" = (
+/obj/structure/mineral_door/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 H
 k
 W
-x
+X
 x
 "}
 (2,1,1) = {"
 l
 c
-h
+o
 X
 s
 "}
@@ -228,30 +257,30 @@ p
 (4,1,1) = {"
 i
 q
-M
+Y
 x
 s
 "}
 (5,1,1) = {"
 V
-x
+X
 x
 X
 X
 "}
 (6,1,1) = {"
 u
-m
-x
+J
+X
 x
 x
 "}
 (7,1,1) = {"
-d
+Z
 j
-R
-L
-w
+K
+E
+B
 "}
 (8,1,1) = {"
 f
@@ -264,8 +293,8 @@ t
 g
 j
 S
-t
-t
+y
+y
 "}
 (10,1,1) = {"
 P
