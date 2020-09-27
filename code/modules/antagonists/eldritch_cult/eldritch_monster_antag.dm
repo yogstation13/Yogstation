@@ -33,6 +33,7 @@
 	master_obj.owner = src
 	master_obj.explanation_text = "Assist your master in any way you can!"
 	objectives += master_obj
+	master_obj.completed = TRUE
 	owner.announce_objectives()
 	to_chat(owner, "<span class='boldannounce'>Your master is [master.owner.current.real_name]</span>")
 	return
