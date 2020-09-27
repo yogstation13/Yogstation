@@ -49,18 +49,18 @@
 	special = TRUE
 	capetype = "max"
 
-/obj/item/clothing/neck/skillcape/centcomm
+/obj/item/clothing/neck/skillcape/centcom
 	name = "cape of the lieutenant"
-	desc = "It's a cape with the standard centcomm colors, the owner must be an important official."
-	icon_state = "centcomm-skillcape"
-	item_state = "centcomm-skillcape"
+	desc = "It's a cape with the standard centcom colors, the owner must be an important official."
+	icon_state = "centcom-skillcape"
+	item_state = "centcom-skillcape"
 	special = TRUE
 
-/obj/item/clothing/neck/skillcape/trimmed/centcomm
+/obj/item/clothing/neck/skillcape/trimmed/centcom
 	name = "cape of a grand admiral"
 	desc = "It is a very fine cape, colored in the centcomm scheme. The owner must be a very important official."
-	icon_state = "centcomm-trimmed"
-	item_state = "centcomm-trimmed"
+	icon_state = "centcom-trimmed"
+	item_state = "centcom-trimmed"
 	special = TRUE
 
 /obj/item/clothing/neck/skillcape/antag

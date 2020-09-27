@@ -42,3 +42,16 @@
 			if(PDA)
 				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-rainbow"
+
+/datum/job/proc/give_cape(mob/living/H, mob/M)
+	var/client/C = M.client
+	if(!C)
+		C = H.client
+		if(!C)
+			return
+	var/S = C.prefs.skillcape
+	if(S != 1)
+		var/obj/item/clothing/neck/skillcape/A = GLOB.skillcapes[S]
+		var/type = A.type
+		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
+	
