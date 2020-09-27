@@ -14,6 +14,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/secrets,
 	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
 	/client/proc/reload_admins,
+	/client/proc/reload_mentors,
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
@@ -250,6 +251,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/callproc_datum,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
+	/client/proc/reload_mentors,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
@@ -258,6 +260,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/proc/possess,
 	/proc/release,
 	/client/proc/reload_admins,
+	/client/proc/reload_mentors,
 	/client/proc/panicbunker,
 	/client/proc/admin_change_sec_level,
 	/client/proc/toggle_nuke,
