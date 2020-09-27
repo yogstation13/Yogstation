@@ -76,7 +76,15 @@
 				new /turf/closed/wall/mineral/wood/nonmetal(get_turf(src))
 				qdel(src)
 				return
-	return ..()
+	else if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
+		user.visible_message("[user.name] starts prying [src.name] apart.", \
+							"<span class='notice'>You start prying the barricade apart</span>")
+		if(I.use_tool(src, user, 190, volume=50))
+			to_chat(user, "<span class='notice'>You disassemble the barricade.</span>")
+			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
+			qdel(src)
+	else
+		return ..()
 
 
 /obj/structure/barricade/wooden/crude
@@ -108,7 +116,6 @@
 	climbable = TRUE
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/barricade/sandbags, /turf/closed/wall, /turf/closed/wall/r_wall, /obj/structure/falsewall, /obj/structure/falsewall/reinforced, /turf/closed/wall/rust, /turf/closed/wall/r_wall/rust, /obj/structure/barricade/security)
-
 
 /obj/structure/barricade/security
 	name = "security barrier"

@@ -13,7 +13,6 @@ The three stages of the king goat:
  Stage 3: The king goat will completely heal, grow slightly bigger and start glowing. It has the exact same attacks as stage 2 but is more aggressive overall.
 
 The loot:
-The meteor gun: It has three shots before needing to be recharged, can insta-crit almost anybody and destroys almost anything you fire it at.
 The king goat pelt: Gained by butchering the King Goat's corpse. When worn on your head grants complete bomb immunity. Has slightly better gun and laser protection than the drake helm at the cost of slightly reduced melee protection. Makes goats friendly towards you as long as you are wearing it.
 
 Difficulty: Insanely Hard
@@ -320,7 +319,6 @@ Difficulty: Insanely Hard
 	if(phase3)
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
-		new /obj/item/gun/energy/meteorgun(loc)
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()

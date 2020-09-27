@@ -232,13 +232,13 @@
 				playsound(computer, "terminal_type", 50, FALSE)
 				return TRUE
 		if("PRG_grantall")
-			if(!computer || !authenticated)
+			if(!computer || !authenticated || minor)
 				return
 			id_card.access |= (is_centcom ? get_all_centcom_access() : get_all_accesses())
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
 		if("PRG_denyall")
-			if(!computer || !authenticated)
+			if(!computer || !authenticated || minor)
 				return
 			id_card.access.Cut()
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
@@ -247,7 +247,7 @@
 			if(!computer || !authenticated)
 				return
 			var/region = text2num(params["region"])
-			if(isnull(region))
+			if(isnull(region) || !(region in region_access))
 				return
 			id_card.access |= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -256,7 +256,7 @@
 			if(!computer || !authenticated)
 				return
 			var/region = text2num(params["region"])
-			if(isnull(region))
+			if(isnull(region) || !(region in region_access))
 				return
 			id_card.access -= get_region_accesses(region)
 			playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)

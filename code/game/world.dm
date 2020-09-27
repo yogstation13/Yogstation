@@ -56,8 +56,6 @@ GLOBAL_VAR(restart_counter)
 
 
 	load_yogs_stuff() // yogs - Donators
-	refresh_admin_files() //yogs - DB support
-	load_admins()
 
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))

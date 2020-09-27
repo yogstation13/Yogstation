@@ -69,12 +69,12 @@
 
 /obj/item/melee/cutlass
 	name = "cutlass"
-	desc = "A true pirates weapon, seems kinda dull though"
+	desc = "A true pirates weapon, seems somewhat dull though"
 	icon_state = "metalcutlass"
 	item_state = "metalcutlass"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 10
+	force = 16
 	throwforce = 5
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("slashed", "cut")

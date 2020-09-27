@@ -9552,6 +9552,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
+"uL" = (
+/obj/structure/table/wood,
+/obj/item/retractor,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/storage/box/survival,
+/turf/open/floor/engine/cult,
+/area/wizard_station)
 "uN" = (
 /obj/machinery/portable_atmospherics/canister/pluoxium,
 /turf/open/floor/bluespace,
@@ -11365,14 +11374,6 @@
 /obj/structure/table/wood,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/ointment,
-/turf/open/floor/engine/cult,
-/area/wizard_station)
-"yE" = (
-/obj/structure/table/wood,
-/obj/item/retractor,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "yF" = (
@@ -29489,7 +29490,7 @@ wb
 qE
 qE
 qE
-yE
+uL
 qZ
 qZ
 qZ
