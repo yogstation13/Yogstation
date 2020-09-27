@@ -58,7 +58,7 @@
 
 /obj/item/clothing/neck/skillcape/trimmed/centcom
 	name = "cape of a grand admiral"
-	desc = "It is a very fine cape, colored in the centcomm scheme. The owner must be a very important official."
+	desc = "It is a very fine cape, colored in the centcom scheme. The owner must be a very important official."
 	icon_state = "centcom-trimmed"
 	item_state = "centcom-trimmed"
 	special = TRUE
