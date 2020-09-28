@@ -1,4 +1,0 @@
-author: "  Hopek"
-delete-after: true 
-changes: 
-  - bugfix: "Gun firing animation is no longer triggered if the weapon did not actually fire. This was triggered by hitting things with it or using it on other items."
