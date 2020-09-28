@@ -318,6 +318,7 @@
 /datum/map_template/ruin/space/goat_transport
 	id = "goatresearch"
 	suffix = "goatresearch.dmm"
+	unpickable = TRUE
 	name= "Exotic Goat Transport Vessel"
 	description = "A ship transporting goats attacked by goats. How ironic..."
 
