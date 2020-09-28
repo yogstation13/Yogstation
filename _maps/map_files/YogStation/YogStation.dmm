@@ -26946,13 +26946,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bvb" = (
-/obj/structure/girder,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "bvc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -32609,10 +32602,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"bOK" = (
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "bOL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -34194,11 +34183,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"ccV" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "ccW" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/cobweb,
@@ -34697,13 +34681,6 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
-"cgy" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/chair/stool,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "cgz" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -38649,18 +38626,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"dOy" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "dOD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -39480,6 +39445,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"eAW" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "eAX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -40119,15 +40097,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"eXW" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "eXY" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -43343,9 +43312,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/space/nearstation)
-"hOX" = (
-/turf/open/space/basic,
-/area/maintenance/starboard)
 "hPk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -45934,14 +45900,18 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"jRG" = (
-/obj/effect/mapping_helpers/airlock/abandoned,
+"jRK" = (
+/obj/structure/girder,
+/obj/structure/barricade/wooden,
 /obj/machinery/door/firedoor/border_only{
-	dir = 1
+	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
 /area/maintenance/starboard/aft)
 "jRV" = (
 /obj/machinery/light,
@@ -48296,6 +48266,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"lNU" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/aft)
 "lOC" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -50206,15 +50181,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"nsN" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "ntA" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/xenobiology";
@@ -52830,6 +52796,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"pto" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/maintenance/starboard/aft)
 "ptH" = (
 /turf/closed/wall,
 /area/escapepodbay)
@@ -54480,6 +54455,13 @@
 "qHe" = (
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"qHY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/girder/displaced,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "qIm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -55058,17 +55040,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"reE" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "reN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -57416,12 +57387,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"thd" = (
-/obj/structure/girder/displaced,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/starboard/aft)
 "thv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/cable{
@@ -59217,6 +59182,17 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/exit)
+"uFd" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "uGQ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
@@ -59912,6 +59888,19 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"vmd" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "vme" = (
 /obj/machinery/status_display/ai{
 	pixel_x = -32
@@ -60605,6 +60594,17 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"vQq" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "vRI" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -61222,11 +61222,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port/fore)
-"wuF" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "wuM" = (
 /obj/machinery/meter,
 /obj/machinery/button/door{
@@ -61895,6 +61890,12 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"wZs" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/aft)
 "xaA" = (
 /obj/machinery/light{
 	dir = 1
@@ -85745,7 +85746,7 @@ bCq
 bCq
 bCq
 bHE
-dOy
+lmY
 gZD
 gZD
 gZD
@@ -86519,7 +86520,7 @@ bCq
 bCq
 bCq
 bCq
-fgT
+eAW
 bCq
 bCq
 bCq
@@ -87799,7 +87800,7 @@ bPr
 gZD
 gZD
 gZD
-eXW
+uFd
 gZD
 gZD
 gZD
@@ -88006,7 +88007,7 @@ vmJ
 aqR
 arP
 arP
-arP
+vQq
 arP
 arP
 arP
@@ -88310,7 +88311,7 @@ bxy
 aaf
 aaf
 bCq
-reE
+vmd
 bCq
 bCq
 bCq
@@ -89594,7 +89595,7 @@ bCq
 bCq
 bPr
 bPr
-bOK
+bHE
 bPr
 bPr
 bPr
@@ -115038,9 +115039,9 @@ bMB
 bNA
 cOe
 cOe
-cOe
+lNU
 cNW
-bvb
+qHY
 cNW
 cNW
 cdR
@@ -115812,7 +115813,7 @@ cNW
 cNW
 cNW
 cNW
-thd
+jRK
 cNW
 cNW
 cNW
@@ -116066,14 +116067,14 @@ bEs
 iKq
 iKq
 cCG
-jRG
+cNW
+ckS
+cae
 cOe
 cOe
-cOe
-cOe
-cOe
-cOe
-nsN
+cae
+cmo
+cNW
 iKq
 iKq
 cCG
@@ -116082,10 +116083,10 @@ ccW
 hLb
 wfU
 cNW
-cgy
-ccV
+iKq
+iKq
+cCG
 cNW
-aaa
 aaa
 aaf
 aaf
@@ -116326,23 +116327,23 @@ iKq
 cNW
 cNW
 cNW
+bPp
 cNW
-cNW
-cNW
-cNW
-cNW
+cae
+cOe
+pto
 iKq
 iKq
 iKq
 xor
 cOe
-cOe
+wZs
 wfU
 lzu
-cBL
-ckS
+iKq
+iKq
+iKq
 cNW
-aaf
 aaa
 aaa
 aaa
@@ -116562,7 +116563,7 @@ aaa
 aaa
 aaa
 aaa
-hOX
+gXs
 bky
 rYO
 rYO
@@ -116581,25 +116582,25 @@ iKq
 iKq
 iKq
 cNW
-aaa
-aaa
-aaf
-aaa
-aaf
 gXs
+gXs
+aoV
+atS
+atS
+atS
 cNW
 iKq
 iKq
 iKq
 cNW
-wuF
+chH
 cOe
 tPY
 cNW
-cOe
-chH
+iKq
+iKq
+iKq
 cNW
-aaf
 aaf
 aaa
 aaf
@@ -116819,7 +116820,7 @@ aaa
 aaa
 aaa
 aaa
-hOX
+gXs
 bPo
 rYO
 rYO
@@ -116839,9 +116840,9 @@ bPp
 bPp
 cNW
 aaa
-aaa
+gXs
 aaf
-aaa
+gXs
 aaf
 gXs
 cNW
@@ -116856,7 +116857,7 @@ cNW
 cNW
 cNW
 cNW
-aaf
+cNW
 aaf
 aaa
 aaa
@@ -117076,7 +117077,7 @@ aaa
 aaa
 aaa
 aaa
-hOX
+gXs
 bPo
 rYO
 rYO
@@ -117097,7 +117098,7 @@ aaa
 aaf
 aaa
 aaa
-aaf
+aoV
 aaa
 aaa
 pEf
@@ -117333,7 +117334,7 @@ aaa
 aaa
 aaa
 aaa
-hOX
+gXs
 bky
 bky
 bky
@@ -117354,7 +117355,7 @@ aaa
 aaf
 aaa
 aaa
-aaf
+aoV
 aaa
 aaa
 aag
@@ -117614,7 +117615,7 @@ aaa
 aaa
 aaa
 aaa
-aaf
+pEf
 aaf
 aaa
 aaa
@@ -117871,7 +117872,7 @@ aaa
 aaa
 aaa
 aaa
-aaf
+pEf
 aaa
 aaa
 aaa
@@ -118128,7 +118129,7 @@ aaa
 aaa
 aaa
 aaa
-aaf
+pEf
 aaa
 aaa
 aaa

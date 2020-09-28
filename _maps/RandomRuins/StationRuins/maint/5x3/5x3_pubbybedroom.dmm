@@ -12,11 +12,6 @@
 "c" = (
 /turf/open/floor/plating,
 /area/template_noop)
-"e" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plating,
-/area/template_noop)
 "f" = (
 /obj/item/storage/box/mousetraps,
 /turf/open/floor/plating,
@@ -34,10 +29,18 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plating,
 /area/template_noop)
+"w" = (
+/obj/item/flashlight/lamp,
+/turf/open/floor/plating,
+/area/template_noop)
 "T" = (
 /obj/structure/bed,
 /obj/item/bedsheet/dorms,
 /obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/template_noop)
+"Z" = (
+/obj/structure/table,
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -49,7 +52,7 @@ u
 (2,1,1) = {"
 b
 g
-c
+Z
 "}
 (3,1,1) = {"
 c
@@ -62,7 +65,7 @@ c
 c
 "}
 (5,1,1) = {"
-e
 h
+w
 T
 "}

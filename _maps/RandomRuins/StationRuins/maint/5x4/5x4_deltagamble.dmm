@@ -50,16 +50,14 @@
 	icon_state = "wood-broken2"
 	},
 /area/template_noop)
-"n" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/cockroach,
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
-/area/template_noop)
 "q" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"t" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/sunglasses/big,
 /turf/open/floor/carpet/green,
 /area/template_noop)
 "G" = (
@@ -73,16 +71,17 @@
 	icon_state = "wood-broken4"
 	},
 /area/template_noop)
-"L" = (
-/obj/structure/table/wood,
-/obj/item/clothing/glasses/sunglasses/cheap,
-/turf/open/floor/carpet/green,
-/area/template_noop)
-"U" = (
+"H" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/wood{
-	icon_state = "wood-broken2"
+	icon_state = "wood-broken5"
 	},
+/area/template_noop)
+"U" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/wood,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -92,7 +91,7 @@ h
 l
 "}
 (2,1,1) = {"
-L
+t
 g
 q
 m
@@ -100,18 +99,18 @@ m
 (3,1,1) = {"
 c
 c
-c
+U
 c
 "}
 (4,1,1) = {"
 d
 c
 j
-n
+H
 "}
 (5,1,1) = {"
 e
 c
-U
+m
 G
 "}

@@ -4,10 +4,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
 "c" = (
 /obj/structure/chair{
 	dir = 1
@@ -35,24 +31,33 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
+"r" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/template_noop)
+"P" = (
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
-e
+d
 e
 "}
 (2,1,1) = {"
-b
+r
 d
-d
+P
 "}
 (3,1,1) = {"
-c
+d
 d
 d
 "}
 (4,1,1) = {"
-d
+c
 d
 g
 "}

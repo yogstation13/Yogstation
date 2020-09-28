@@ -43,57 +43,21 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"g" = (
-/obj/structure/table/wood,
-/obj/item/folder/white{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/folder/red,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/carpet/red,
-/area/template_noop)
 "i" = (
 /turf/open/floor/wood,
 /area/template_noop)
-"j" = (
+"m" = (
 /obj/structure/table/wood,
-/obj/item/clothing/gloves/color/black,
-/obj/item/storage/box/evidence,
-/obj/item/taperecorder,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"l" = (
-/obj/structure/chair/office{
-	dir = 1
-	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+/obj/item/storage/box/fancy/cigarettes,
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "n" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/template_noop)
-"o" = (
-/obj/structure/rack,
-/obj/item/storage/briefcase{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/secure/briefcase,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
 /area/template_noop)
 "q" = (
 /obj/effect/decal/cleanable/dirt,
@@ -124,21 +88,24 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"B" = (
+"x" = (
 /obj/structure/table/wood,
-/obj/item/lighter,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/folder/red,
+/obj/item/folder/white{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "D" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/cigarettes,
-/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
+/obj/structure/chair/office{
+	dir = 1
+	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"E" = (
+"M" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/frame/computer{
 	dir = 4
@@ -147,33 +114,58 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/small,
+/obj/item/circuitboard/computer/secure_data,
 /turf/open/floor/carpet/red,
 /area/template_noop)
-"N" = (
-/obj/item/circuitboard/computer/secure_data,
-/obj/structure/frame/computer{
+"T" = (
+/obj/item/clothing/gloves/color/black,
+/obj/item/storage/box/evidence,
+/obj/item/taperecorder,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table_frame/wood,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"X" = (
+/obj/item/storage/briefcase{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/secure/briefcase,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/rack_parts,
+/turf/open/floor/plating,
+/area/template_noop)
+"Y" = (
+/obj/item/lighter,
 /turf/open/floor/carpet/red,
 /area/template_noop)
 
 (1,1,1) = {"
 a
+r
 f
-N
-E
+M
 "}
 (2,1,1) = {"
 b
-g
-l
 q
+x
+D
 "}
 (3,1,1) = {"
 c
-D
-B
-r
+q
+m
+Y
 "}
 (4,1,1) = {"
 d
@@ -183,7 +175,7 @@ s
 "}
 (5,1,1) = {"
 e
-j
-o
+T
+X
 t
 "}

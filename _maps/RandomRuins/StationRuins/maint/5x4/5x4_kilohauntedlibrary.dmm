@@ -34,13 +34,12 @@
 	icon_state = "wood-broken"
 	},
 /area/template_noop)
-"f" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+"e" = (
+/obj/structure/bookcase/random/fiction,
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -27
 	},
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/retaliate/ghost,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "g" = (
@@ -85,23 +84,19 @@
 	icon_state = "wood-broken7"
 	},
 /area/template_noop)
-"k" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/libraryconsole/bookmanagement{
-	pixel_y = 5
+"l" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
 	},
+/area/template_noop)
+"m" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb,
+/obj/item/ectoplasm,
 /turf/open/floor/plasteel/dark,
-/area/template_noop)
-"l" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
 /area/template_noop)
 "n" = (
 /turf/open/floor/wood{
@@ -121,11 +116,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"r" = (
-/obj/structure/bookcase/random/reference,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "s" = (
@@ -160,13 +150,16 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"K" = (
-/obj/structure/bookcase/random/fiction,
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -27
+"I" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/libraryconsole/bookmanagement{
+	pixel_y = 5
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "Q" = (
@@ -185,12 +178,16 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
 /area/template_noop)
+"T" = (
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 
 (1,1,1) = {"
 a
-f
-k
-K
+m
+I
+e
 "}
 (2,1,1) = {"
 b
@@ -208,7 +205,7 @@ q
 t
 i
 S
-r
+T
 "}
 (5,1,1) = {"
 s

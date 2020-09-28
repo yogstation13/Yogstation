@@ -18,12 +18,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
-/obj/item/mmi,
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
 "g" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/poncho,
@@ -62,6 +56,12 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"I" = (
+/obj/item/mmi,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/rack_parts,
+/turf/open/floor/plating,
+/area/template_noop)
 "V" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/fyellow,
@@ -98,6 +98,6 @@ c
 "}
 (5,1,1) = {"
 e
-f
+I
 i
 "}

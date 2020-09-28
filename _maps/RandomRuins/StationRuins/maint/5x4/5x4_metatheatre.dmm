@@ -4,19 +4,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/structure/closet/crate{
-	icon_state = "crateopen"
-	},
-/obj/effect/spawner/lootdrop/maintenance/three,
-/turf/open/floor/plating,
-/area/template_noop)
-"c" = (
-/obj/structure/closet,
-/obj/item/clothing/shoes/jackboots,
-/obj/effect/spawner/lootdrop/maintenance/two,
-/turf/open/floor/plating,
-/area/template_noop)
 "d" = (
 /obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/plating,
@@ -28,19 +15,6 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
-/obj/item/lipstick/black,
-/obj/item/lipstick/jade{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/lipstick/purple{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/template_noop)
 "g" = (
 /obj/structure/chair{
 	dir = 8
@@ -50,21 +24,10 @@
 "h" = (
 /turf/open/floor/plating,
 /area/template_noop)
-"i" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/costume,
-/obj/effect/spawner/lootdrop/costume,
-/turf/open/floor/plating,
-/area/template_noop)
 "j" = (
 /obj/structure/table,
 /obj/item/clothing/mask/cigarette/pipe,
 /turf/open/floor/plating,
-/area/template_noop)
-"k" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
 /area/template_noop)
 "l" = (
 /obj/item/cigbutt,
@@ -90,21 +53,55 @@
 /obj/item/toy/plush/beeplushie,
 /turf/open/floor/plating,
 /area/template_noop)
+"w" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/item/clothing/shoes/jackboots,
+/turf/open/floor/plating,
+/area/template_noop)
+"E" = (
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/item/rack_parts,
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/costume,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"Z" = (
+/obj/item/lipstick/black,
+/obj/item/lipstick/jade{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/lipstick/purple{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/structure/table_frame,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
-f
+Z
 j
 m
 "}
 (2,1,1) = {"
-b
+w
 g
-k
+I
 o
 "}
 (3,1,1) = {"
-c
+h
 h
 h
 h
@@ -118,6 +115,6 @@ p
 (5,1,1) = {"
 e
 h
-i
+E
 q
 "}

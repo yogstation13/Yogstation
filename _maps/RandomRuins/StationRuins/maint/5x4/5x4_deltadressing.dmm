@@ -75,11 +75,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"j" = (
-/obj/structure/dresser,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cafeteria,
-/area/template_noop)
 "k" = (
 /obj/structure/table_frame/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -121,6 +116,10 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
+"A" = (
+/obj/structure/dresser,
+/turf/open/floor/plating,
+/area/template_noop)
 "G" = (
 /obj/structure/table/wood,
 /obj/item/lipstick/random{
@@ -135,6 +134,10 @@
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
 	},
+/turf/open/floor/plasteel/cafeteria,
+/area/template_noop)
+"R" = (
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 
@@ -157,14 +160,14 @@ f
 f
 "}
 (4,1,1) = {"
-d
+e
 g
 d
 p
 "}
 (5,1,1) = {"
-e
+A
 d
-j
+R
 G
 "}

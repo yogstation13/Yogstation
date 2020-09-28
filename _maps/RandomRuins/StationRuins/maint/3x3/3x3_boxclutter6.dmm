@@ -3,11 +3,6 @@
 /obj/structure/closet/wardrobe/grey,
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/two,
-/turf/open/floor/plating,
-/area/template_noop)
 "c" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -21,11 +16,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/template_noop)
 "g" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -35,19 +25,32 @@
 /obj/effect/spawner/lootdrop/maintenance/eight,
 /turf/open/floor/plating,
 /area/template_noop)
+"i" = (
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/item/rack_parts,
+/turf/open/floor/plating,
+/area/template_noop)
+"n" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
 d
-d
+u
 "}
 (2,1,1) = {"
-b
+i
 e
 g
 "}
 (3,1,1) = {"
 c
-f
+n
 h
 "}

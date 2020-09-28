@@ -64,7 +64,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/green,
 /area/template_noop)
-"q" = (
+"s" = (
+/obj/item/stack/tile/carpet/green,
+/obj/item/stack/tile/carpet/green,
+/obj/item/stack/tile/carpet/green,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"A" = (
+/obj/item/toy/cards/deck,
+/obj/structure/table_frame,
 /turf/open/floor/carpet/green,
 /area/template_noop)
 "C" = (
@@ -94,11 +102,6 @@
 /obj/item/stack/spacecash/c100{
 	pixel_y = 17
 	},
-/turf/open/floor/carpet/green,
-/area/template_noop)
-"T" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck,
 /turf/open/floor/carpet/green,
 /area/template_noop)
 "U" = (
@@ -138,6 +141,6 @@ p
 (5,1,1) = {"
 H
 i
-T
-q
+A
+s
 "}

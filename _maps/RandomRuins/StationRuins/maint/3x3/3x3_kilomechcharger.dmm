@@ -7,56 +7,24 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/template_noop)
-"c" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/template_noop)
 "d" = (
 /turf/open/floor/mech_bay_recharge_floor,
 /area/template_noop)
-"e" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/template_noop)
-"f" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/template_noop)
-"h" = (
+"g" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"i" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
+"p" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
@@ -70,6 +38,27 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weldingtool,
+/turf/open/floor/plating,
+/area/template_noop)
+"Q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -77,12 +66,12 @@ d
 G
 "}
 (2,1,1) = {"
-b
-e
-h
+H
+Q
+g
 "}
 (3,1,1) = {"
-c
-f
-i
+O
+p
+F
 "}

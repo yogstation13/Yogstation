@@ -20,8 +20,8 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/template_noop)
-"P" = (
-/obj/structure/rack,
+"N" = (
+/obj/item/rack_parts,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/template_noop)
@@ -32,7 +32,7 @@ d
 e
 "}
 (2,1,1) = {"
-P
+N
 d
 f
 "}

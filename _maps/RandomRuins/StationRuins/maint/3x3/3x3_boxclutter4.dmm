@@ -5,11 +5,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
 "c" = (
 /turf/open/floor/plating,
 /area/template_noop)
@@ -21,19 +16,27 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/template_noop)
+"h" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
-d
+c
 c
 "}
 (2,1,1) = {"
-b
-c
+h
+o
 c
 "}
 (3,1,1) = {"
-c
+d
 c
 e
 "}

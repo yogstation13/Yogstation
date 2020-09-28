@@ -42,19 +42,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"f" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/syringe,
-/obj/item/reagent_containers/dropper,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "h" = (
 /turf/open/floor/plating,
 /area/template_noop)
@@ -75,6 +62,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/template_noop)
+"Z" = (
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/dropper,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table_frame,
+/turf/open/floor/plasteel,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -88,6 +88,6 @@ h
 "}
 (3,1,1) = {"
 c
-f
+Z
 i
 "}

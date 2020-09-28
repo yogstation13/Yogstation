@@ -1,40 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/lights/mixed{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/storage/belt/janitor,
-/obj/item/storage/bag/trash,
-/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
-"c" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/delivery,
-/obj/item/reagent_containers/glass/bucket,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/mirror{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "d" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
@@ -42,30 +6,10 @@
 	},
 /area/template_noop)
 "f" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/bot,
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/template_noop)
-"g" = (
 /obj/structure/janitorialcart,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/lusty_xenomorph{
@@ -79,38 +23,83 @@
 	icon_state = "platingdmg1"
 	},
 /area/template_noop)
-"P" = (
-/obj/structure/closet{
-	name = "maid locker"
-	},
+"s" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"C" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/closet{
+	name = "maid locker"
+	},
+/obj/item/clothing/shoes/laceup,
 /obj/item/clothing/gloves/color/white,
 /obj/item/clothing/accessory/maidapron{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/clothing/shoes/laceup,
 /obj/item/clothing/under/maid,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
+"J" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"S" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/lights/mixed{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/storage/belt/janitor,
+/obj/item/storage/bag/trash,
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 
 (1,1,1) = {"
-a
+S
 d
-f
+J
 "}
 (2,1,1) = {"
-P
+s
 n
 d
 "}
 (3,1,1) = {"
-c
+C
 d
-g
+f
 "}

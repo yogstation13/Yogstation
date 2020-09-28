@@ -7,12 +7,6 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/plating,
 /area/template_noop)
-"c" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/apron,
-/obj/item/clothing/mask/surgical,
-/turf/open/floor/plating,
-/area/template_noop)
 "d" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
@@ -40,22 +34,14 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/template_noop)
-"h" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/structure/rack,
-/obj/item/storage/firstaid/regular,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
-/obj/item/clothing/glasses/hud/health,
-/turf/open/floor/plating,
-/area/template_noop)
 "i" = (
 /obj/machinery/iv_drip,
 /obj/item/roller,
 /turf/open/floor/plating,
 /area/template_noop)
 "j" = (
+/obj/item/reagent_containers/blood/random,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -65,24 +51,12 @@
 	icon_state = "platingdmg3"
 	},
 /area/template_noop)
-"l" = (
-/obj/structure/rack,
-/obj/item/tank/internals/anesthetic,
-/obj/item/clothing/mask/gas,
-/turf/open/floor/plating,
-/area/template_noop)
 "m" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin{
 	pixel_x = 2
 	},
 /obj/item/clothing/mask/muzzle,
-/turf/open/floor/plating,
-/area/template_noop)
-"n" = (
-/obj/structure/table,
-/obj/item/restraints/handcuffs/cable/white,
-/obj/item/gun/syringe,
 /turf/open/floor/plating,
 /area/template_noop)
 "p" = (
@@ -95,9 +69,29 @@
 /obj/machinery/chem_heater,
 /turf/open/floor/plating,
 /area/template_noop)
-"t" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/blood/random,
+"v" = (
+/obj/structure/table,
+/obj/item/restraints/handcuffs/cable/white,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/item/clothing/suit/apron,
+/obj/item/clothing/mask/surgical,
+/turf/open/floor/plating,
+/area/template_noop)
+"B" = (
+/obj/item/storage/firstaid/regular,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/ointment,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/rack_parts,
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/gas,
+/turf/open/floor/plating,
+/area/template_noop)
+"L" = (
+/obj/item/rack_parts,
 /turf/open/floor/plating,
 /area/template_noop)
 "O" = (
@@ -132,13 +126,13 @@ m
 P
 f
 j
-n
+v
 "}
 (3,1,1) = {"
-c
+w
+L
 f
 f
-t
 "}
 (4,1,1) = {"
 d
@@ -148,7 +142,7 @@ p
 "}
 (5,1,1) = {"
 O
-h
-l
+B
+f
 q
 "}

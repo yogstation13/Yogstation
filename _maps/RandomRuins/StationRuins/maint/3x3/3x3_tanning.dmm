@@ -42,12 +42,13 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"V" = (
+"U" = (
 /obj/structure/bed/abductor{
 	desc = "A bed to get a tan on.";
 	name = "tanning bed"
 	},
 /obj/item/clothing/glasses/sunglasses,
+/obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -58,7 +59,7 @@ e
 "}
 (2,1,1) = {"
 b
-V
+U
 b
 "}
 (3,1,1) = {"

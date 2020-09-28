@@ -48,7 +48,10 @@
 /obj/item/trash/plate,
 /turf/open/floor/plating,
 /area/template_noop)
-"H" = (
+"N" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -70,8 +73,8 @@ b
 "}
 (3,1,1) = {"
 u
-d
-H
+N
+b
 h
 j
 "}

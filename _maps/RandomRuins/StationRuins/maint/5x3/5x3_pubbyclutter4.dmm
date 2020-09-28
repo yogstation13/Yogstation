@@ -11,11 +11,6 @@
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating,
 /area/template_noop)
-"d" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/template_noop)
 "e" = (
 /obj/structure/closet,
 /obj/item/restraints/handcuffs/cable,
@@ -34,14 +29,7 @@
 /obj/structure/bonfire,
 /turf/open/floor/plating,
 /area/template_noop)
-"i" = (
-/obj/structure/closet,
-/obj/item/cigbutt/cigarbutt,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
 "j" = (
-/obj/structure/grille/broken,
 /obj/structure/piano,
 /turf/open/floor/plating,
 /area/template_noop)
@@ -51,9 +39,24 @@
 /obj/item/stack/spacecash/c10,
 /turf/open/floor/plating,
 /area/template_noop)
+"x" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/template_noop)
 "G" = (
 /obj/item/reagent_containers/food/snacks/beans,
 /turf/open/floor/plating,
+/area/template_noop)
+"K" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/plating,
+/area/template_noop)
+"V" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
 /area/template_noop)
 
 (1,1,1) = {"
@@ -62,9 +65,9 @@ f
 j
 "}
 (2,1,1) = {"
-b
+K
 g
-b
+x
 "}
 (3,1,1) = {"
 c
@@ -72,12 +75,12 @@ h
 b
 "}
 (4,1,1) = {"
-d
+V
 g
 G
 "}
 (5,1,1) = {"
 e
-i
+b
 l
 "}

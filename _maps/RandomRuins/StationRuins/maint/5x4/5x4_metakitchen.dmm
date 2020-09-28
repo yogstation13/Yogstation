@@ -11,16 +11,6 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/template_noop)
-"c" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "d" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -33,14 +23,6 @@
 /obj/structure/closet/crate/bin,
 /obj/item/kitchen/knife,
 /turf/open/floor/plating,
-/area/template_noop)
-"f" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/obj/item/reagent_containers/glass/beaker,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
 /area/template_noop)
 "g" = (
 /turf/open/floor/plating{
@@ -77,6 +59,10 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
+"n" = (
+/obj/item/stack/sheet/metal/ten,
+/turf/open/floor/plating,
+/area/template_noop)
 "o" = (
 /obj/structure/rack,
 /obj/item/stack/rods{
@@ -93,26 +79,45 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"K" = (
+"y" = (
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/glass/beaker,
+/obj/structure/table_frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"B" = (
 /obj/structure/kitchenspike_frame,
 /obj/effect/decal/cleanable/blood/old,
+/obj/item/bodypart/l_arm/monkey,
+/turf/open/floor/plating,
+/area/template_noop)
+"T" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
 a
-f
+y
 k
 m
 "}
 (2,1,1) = {"
 b
 g
-i
-K
+n
+B
 "}
 (3,1,1) = {"
-c
+T
 h
 i
 i

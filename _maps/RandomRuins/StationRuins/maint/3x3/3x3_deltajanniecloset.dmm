@@ -18,24 +18,6 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/template_noop)
-"d" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/gloves/color/orange,
-/obj/item/storage/box/mousetraps{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/lights/mixed,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
 "e" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral,
@@ -66,7 +48,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"i" = (
+"O" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"Q" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -75,12 +67,20 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/structure/table,
+/obj/item/clothing/gloves/color/orange,
+/obj/item/storage/box/mousetraps{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/lights/mixed,
+/obj/item/grenade/chem_grenade/cleaner,
 /turf/open/floor/plasteel,
 /area/template_noop)
 
 (1,1,1) = {"
 a
-d
+O
 g
 "}
 (2,1,1) = {"
@@ -91,5 +91,5 @@ h
 (3,1,1) = {"
 c
 f
-i
+Q
 "}

@@ -30,9 +30,9 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
-"M" = (
-/obj/structure/table,
+"A" = (
 /obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+/obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/template_noop)
 "N" = (
@@ -47,7 +47,7 @@ d
 f
 "}
 (2,1,1) = {"
-M
+A
 e
 e
 "}

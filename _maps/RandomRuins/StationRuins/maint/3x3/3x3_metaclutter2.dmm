@@ -7,12 +7,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/template_noop)
-"b" = (
-/obj/structure/rack,
-/obj/item/extinguisher,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
 "c" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
@@ -46,6 +40,12 @@
 /obj/item/stock_parts/matter_bin,
 /turf/open/floor/plating,
 /area/template_noop)
+"C" = (
+/obj/item/extinguisher,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/rack_parts,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -53,7 +53,7 @@ d
 g
 "}
 (2,1,1) = {"
-b
+C
 e
 h
 "}

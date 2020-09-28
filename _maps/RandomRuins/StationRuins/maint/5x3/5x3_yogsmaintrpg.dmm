@@ -9,11 +9,12 @@
 	icon_state = "wood-broken5"
 	},
 /area/maintenance/aft)
-"r" = (
-/obj/machinery/light/small{
-	dir = 1
+"o" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
 	},
-/turf/open/floor/wood,
 /area/maintenance/aft)
 "y" = (
 /obj/structure/closet/crate/necropolis,
@@ -29,11 +30,13 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/wood,
 /area/maintenance/aft)
-"B" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
+"E" = (
+/obj/item/paper_bin,
+/obj/item/pen/blue,
+/obj/item/pen/red,
+/obj/item/pen,
+/obj/structure/table_frame/wood,
+/turf/open/floor/wood,
 /area/maintenance/aft)
 "M" = (
 /turf/open/floor/wood,
@@ -42,14 +45,6 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
-/area/maintenance/aft)
-"Q" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen/blue,
-/obj/item/pen/red,
-/obj/item/pen,
-/turf/open/floor/wood,
 /area/maintenance/aft)
 "Y" = (
 /obj/structure/table/wood,
@@ -71,14 +66,14 @@ M
 Y
 "}
 (2,1,1) = {"
-r
+M
 d
-B
+o
 "}
 (3,1,1) = {"
 M
 M
-Q
+E
 "}
 (4,1,1) = {"
 z

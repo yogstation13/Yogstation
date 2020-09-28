@@ -3,14 +3,6 @@
 /obj/structure/easel,
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/obj/structure/closet/l3closet/scientist,
-/obj/item/book/manual/wiki/chemistry,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "c" = (
 /obj/structure/closet,
 /obj/item/canvas/twentythreeXnineteen,
@@ -46,10 +38,25 @@
 "x" = (
 /turf/open/floor/plating,
 /area/template_noop)
-"Q" = (
-/obj/structure/table,
+"C" = (
+/obj/structure/chair/stool,
+/obj/structure/table_frame,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
 /obj/item/assembly/igniter,
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/table_frame,
+/turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/structure/closet/l3closet/scientist{
+	opened = 1
+	},
+/obj/item/book/manual/wiki/chemistry,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -59,12 +66,12 @@ x
 f
 "}
 (2,1,1) = {"
-b
+G
 e
-Q
+F
 "}
 (3,1,1) = {"
 c
-e
+C
 m
 "}

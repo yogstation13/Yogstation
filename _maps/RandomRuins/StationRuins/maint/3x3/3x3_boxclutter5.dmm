@@ -25,6 +25,13 @@
 /obj/structure/closet/cardboard,
 /turf/open/floor/plating,
 /area/template_noop)
+"i" = (
+/obj/structure/closet{
+	opened = 1
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -38,6 +45,6 @@ b
 "}
 (3,1,1) = {"
 c
-c
+i
 f
 "}

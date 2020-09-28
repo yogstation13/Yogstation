@@ -61,30 +61,6 @@
 /obj/item/clothing/neck/tie/detective,
 /turf/open/floor/carpet/green,
 /area/template_noop)
-"j" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/carpet/green,
-/area/template_noop)
-"l" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/item/book/manual/wiki/detective{
-	pixel_y = 4
-	},
-/obj/item/camera,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "m" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -120,6 +96,21 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/carpet/green,
 /area/template_noop)
+"A" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/book/manual/wiki/detective{
+	pixel_y = 4
+	},
+/obj/item/camera,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table_frame/wood,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 "C" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -134,6 +125,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
+"P" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/carpet/green,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -147,12 +150,12 @@ b
 b
 f
 i
-l
+A
 "}
 (3,1,1) = {"
 q
 r
 y
-j
+P
 m
 "}

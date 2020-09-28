@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/suit/armor/vest,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
 "c" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
@@ -21,14 +28,6 @@
 	icon_state = "panelscorched"
 	},
 /area/template_noop)
-"h" = (
-/obj/structure/table,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/suit/armor/vest,
-/obj/item/clothing/neck/stethoscope,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "i" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
@@ -36,10 +35,7 @@
 	icon_state = "platingdmg3"
 	},
 /area/template_noop)
-"v" = (
-/obj/structure/table,
-/obj/machinery/recharger,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+"j" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -60,6 +56,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
+"Q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
 "U" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/grille/broken,
@@ -78,6 +81,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
+"Y" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/shoes/jackboots,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 
 (1,1,1) = {"
 F
@@ -92,15 +103,15 @@ c
 (3,1,1) = {"
 c
 g
-c
+Q
 "}
 (4,1,1) = {"
 F
-c
+b
 i
 "}
 (5,1,1) = {"
-v
-h
+Y
+j
 z
 "}

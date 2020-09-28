@@ -3,19 +3,11 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/template_noop)
-"b" = (
-/turf/open/floor/plating,
-/area/template_noop)
 "c" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/template_noop)
-"d" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/template_noop)
 "e" = (
@@ -32,25 +24,43 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
-"N" = (
-/obj/structure/table,
+"j" = (
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/structure/table_frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"E" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
 /obj/item/storage/box/matches,
 /obj/item/storage/box/fancy/cigarettes,
-/turf/open/floor/plating,
+/obj/structure/table_frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/template_noop)
+"M" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
 /area/template_noop)
 
 (1,1,1) = {"
 a
-d
+j
 f
 "}
 (2,1,1) = {"
-b
+M
 e
-N
+F
 "}
 (3,1,1) = {"
 c
-b
+E
 h
 "}

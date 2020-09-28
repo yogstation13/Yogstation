@@ -177,10 +177,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"t" = (
-/obj/machinery/suit_storage_unit/open,
-/turf/open/floor/plating,
-/area/template_noop)
 "G" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/suit_storage_unit/open,
@@ -195,7 +191,7 @@ G
 "}
 (2,1,1) = {"
 b
-t
+g
 j
 m
 "}

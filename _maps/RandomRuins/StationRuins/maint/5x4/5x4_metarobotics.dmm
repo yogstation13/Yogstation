@@ -79,19 +79,21 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"E" = (
-/obj/structure/closet,
-/obj/item/extinguisher/mini,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/item/stack/sheet/metal/fifty,
-/turf/open/floor/plating,
-/area/template_noop)
 "P" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/circuit,
 /area/template_noop)
 "T" = (
 /obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/template_noop)
+"X" = (
+/obj/structure/closet{
+	opened = 1
+	},
+/obj/item/extinguisher/mini,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -111,17 +113,17 @@ k
 c
 T
 c
-l
+c
 "}
 (4,1,1) = {"
-c
+l
 c
 c
 C
 "}
 (5,1,1) = {"
 e
-E
+X
 i
 n
 "}

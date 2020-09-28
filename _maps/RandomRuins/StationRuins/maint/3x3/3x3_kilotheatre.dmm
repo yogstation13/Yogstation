@@ -11,19 +11,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"b" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/glasses/eyepatch{
-	pixel_y = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "c" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -40,12 +27,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/template_noop)
-"e" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
 /area/template_noop)
 "g" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -74,6 +55,27 @@
 	icon_state = "wood-broken7"
 	},
 /area/template_noop)
+"m" = (
+/obj/structure/chair/stool/bar,
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/template_noop)
+"n" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/glasses/eyepatch{
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table_frame/wood,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -81,8 +83,8 @@ d
 g
 "}
 (2,1,1) = {"
-b
-e
+n
+m
 h
 "}
 (3,1,1) = {"

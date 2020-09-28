@@ -1,33 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/structure/table/reinforced,
-/obj/item/folder,
-/obj/item/book/manual/wiki/engineering_hacking,
-/obj/item/tape/random,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
-"c" = (
-/obj/item/soap/deluxe,
-/obj/item/storage/secure/safe{
-	pixel_x = 6;
-	pixel_y = 28
-	},
-/obj/item/kitchen/rollingpin,
-/obj/structure/closet/crate,
-/obj/item/clothing/suit/xenos,
-/obj/item/clothing/suit/monkeysuit,
-/obj/item/clothing/head/xenos,
-/obj/item/clothing/mask/gas/monkeymask,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
-"e" = (
-/obj/item/vending_refill/cola,
-/turf/open/floor/plating,
-/area/template_noop)
-"f" = (
-/obj/structure/rack,
+"m" = (
 /obj/item/clothing/neck/tie/red{
 	pixel_x = -5;
 	pixel_y = 3
@@ -42,19 +14,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
-"g" = (
-/obj/structure/table/reinforced,
-/obj/structure/light_construct/small{
-	dir = 8
-	},
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/poster/random_official,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/template_noop)
 "n" = (
 /obj/structure/light_construct/small{
 	dir = 4
@@ -66,24 +25,52 @@
 /obj/item/grenade/smokebomb,
 /turf/open/floor/plating,
 /area/template_noop)
-"x" = (
-/obj/item/stack/sheet/cardboard,
+"p" = (
+/obj/structure/table/reinforced,
 /obj/structure/light_construct/small{
-	dir = 1
+	dir = 8
 	},
-/obj/structure/closet/crate,
-/obj/item/coin/silver,
-/obj/item/storage/box/lights/mixed,
-/obj/item/watertank,
-/obj/item/storage/box/donkpockets,
-/obj/item/poster/random_contraband,
-/obj/item/poster/random_contraband,
-/obj/item/poster/random_contraband,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/poster/random_official,
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/item/coin/silver,
 /turf/open/floor/plating,
 /area/template_noop)
-"U" = (
-/obj/structure/table,
+"q" = (
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/mop,
+/obj/item/bikehorn/rubberducky,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/item/rack_parts,
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/item/soap/deluxe,
+/obj/item/storage/secure/safe{
+	pixel_x = 6;
+	pixel_y = 28
+	},
+/obj/item/kitchen/rollingpin,
+/obj/structure/closet/crate,
+/obj/item/clothing/suit/xenos,
+/obj/item/clothing/suit/monkeysuit,
+/obj/item/clothing/head/xenos,
+/obj/item/clothing/mask/gas/monkeymask,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plating,
+/area/template_noop)
+"y" = (
+/obj/item/vending_refill/cola,
+/obj/item/stack/sheet/plasteel,
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+"M" = (
 /obj/item/stack/medical/ointment{
 	pixel_x = 3;
 	pixel_y = -2
@@ -94,29 +81,41 @@
 	},
 /obj/item/reagent_containers/syringe/epinephrine,
 /obj/item/restraints/handcuffs/cable/pink,
+/obj/structure/closet/crate,
+/obj/item/storage/box/donkpockets,
+/obj/item/watertank,
+/obj/structure/light_construct/small{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/template_noop)
-"W" = (
-/obj/structure/rack,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/mop,
-/obj/item/bikehorn/rubberducky,
-/obj/effect/spawner/lootdrop/maintenance/two,
+"N" = (
+/obj/item/stack/sheet/cardboard,
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+"Y" = (
+/obj/item/folder,
+/obj/item/book/manual/wiki/engineering_hacking,
+/obj/item/tape/random,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/table_frame,
+/obj/item/stack/sheet/plasteel,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
-U
-W
-g
+M
+q
+p
 "}
 (2,1,1) = {"
-x
-e
-b
+N
+y
+Y
 "}
 (3,1,1) = {"
-c
-f
+w
+m
 n
 "}

@@ -12,13 +12,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"c" = (
-/obj/structure/closet,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/item/kitchen/knife,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "e" = (
 /obj/structure/closet,
 /obj/effect/decal/cleanable/blood/old,
@@ -31,6 +24,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/template_noop)
+"v" = (
+/obj/structure/closet{
+	opened = 1
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/kitchen/knife,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/template_noop)
 "N" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit/old,
@@ -39,7 +41,7 @@
 
 (1,1,1) = {"
 a
-c
+v
 e
 "}
 (2,1,1) = {"

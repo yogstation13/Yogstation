@@ -8,20 +8,6 @@
 /obj/item/stack/spacecash/c200,
 /turf/open/floor/plating,
 /area/template_noop)
-"c" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plating,
-/area/template_noop)
-"d" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plating,
-/area/template_noop)
-"e" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/template_noop)
 "f" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -31,25 +17,42 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "g" = (
-/obj/structure/table,
 /obj/item/folder/white,
 /obj/item/folder/white,
+/obj/structure/table_frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/template_noop)
+"t" = (
+/obj/item/flashlight/lamp,
+/obj/structure/table_frame,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"A" = (
+/obj/structure/chair/stool,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/template_noop)
+"K" = (
 /obj/item/pen,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
 a
-c
+t
 f
 "}
 (2,1,1) = {"
 a
-d
+A
 g
 "}
 (3,1,1) = {"
 b
-e
+K
 a
 "}
