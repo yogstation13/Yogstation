@@ -6,6 +6,7 @@
 #define SSAIR_HIGHPRESSURE 6
 #define SSAIR_HOTSPOTS 7
 #define SSAIR_SUPERCONDUCTIVITY 8
+#define SSAIR_RESCAN 9
 
 SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
@@ -23,6 +24,7 @@ SUBSYSTEM_DEF(air)
 	var/cost_pipenets = 0
 	var/cost_atmos_machinery = 0
 	var/cost_equalize = 0
+	var/cost_rescan = 0
 
 	var/list/hotspots = list()
 	var/list/networks = list()
@@ -54,7 +56,8 @@ SUBSYSTEM_DEF(air)
 	msg += "HS:[round(cost_hotspots,1)]|"
 	msg += "SC:[round(cost_superconductivity,1)]|"
 	msg += "PN:[round(cost_pipenets,1)]|"
-	msg += "AM:[round(cost_atmos_machinery,1)]"
+	msg += "AM:[round(cost_atmos_machinery,1)]|"
+	msg += "RS:[round(cost_rescan,1)]"
 	msg += "} "
 	var/active_turfs_len = get_amt_active_turfs()
 	msg += "AT:[active_turfs_len]|"
@@ -153,6 +156,14 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
+		currentpart = SSAIR_RESCAN
+
+	if(currentpart == SSAIR_RESCAN)
+		timer = TICK_USAGE_REAL
+		rescan_active_turfs(resumed)
+		cost_rescan = MC_AVERAGE(cost_rescan, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		currentpart = SSAIR_PIPENETS
+
 	currentpart = SSAIR_PIPENETS
 
 
@@ -227,7 +238,8 @@ SUBSYSTEM_DEF(air)
 			return
 
 /datum/controller/subsystem/air/proc/process_turf_equalize(resumed = 0)
-	return process_turf_equalize_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag)
+	if(process_turf_equalize_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
+		MC_TICK_CHECK
 	/*
 	//cache for sanic speed
 	var/fire_count = times_fired
@@ -247,7 +259,8 @@ SUBSYSTEM_DEF(air)
 	*/
 
 /datum/controller/subsystem/air/proc/process_active_turfs(resumed = 0)
-	return process_active_turfs_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag)
+	if(process_active_turfs_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
+		MC_TICK_CHECK
 	/*
 	//cache for sanic speed
 	var/fire_count = times_fired
@@ -265,7 +278,8 @@ SUBSYSTEM_DEF(air)
 	*/
 
 /datum/controller/subsystem/air/proc/process_excited_groups(resumed = 0)
-	return process_excited_groups_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag)
+	if(process_excited_groups_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
+		MC_TICK_CHECK
 	/*
 	if (!resumed)
 		src.currentrun = excited_groups.Copy()
@@ -295,6 +309,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/proc/remove_from_active_extools()
 /datum/controller/subsystem/air/proc/get_active_turfs()
 /datum/controller/subsystem/air/proc/clear_active_turfs()
+/datum/controller/subsystem/air/proc/rescan_active_turfs()
 
 /datum/controller/subsystem/air/proc/remove_from_active(turf/open/T)
 	remove_from_active_extools(T)
