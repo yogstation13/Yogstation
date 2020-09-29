@@ -9,7 +9,7 @@ hasbegun = False
 oldline = ""
 newline = ""
 iswrong = 0
-line = 0
+line = 1
 
 for newline in f:
     line = line + 1
