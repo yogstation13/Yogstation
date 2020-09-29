@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_CHANGELING = /datum/game_mode/changeling,
 	ROLE_WIZARD = /datum/game_mode/wizard,
 	ROLE_RAGINMAGES = /datum/game_mode/wizard,
-	ROLE_ROLE_BULLSHITMAGES = /datum/game_mode/wizard,
+	ROLE_BULLSHITMAGES = /datum/game_mode/wizard,
 	ROLE_MALF,
 	ROLE_REV = /datum/game_mode/revolution,
 	ROLE_ALIEN,
