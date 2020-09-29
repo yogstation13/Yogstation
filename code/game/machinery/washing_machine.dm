@@ -161,7 +161,7 @@
 				item_state = initial(G.item_state)
 				icon_state = initial(G.icon_state)
 				item_color = wash_color
-				name = initial(G.name)
+				name = "washed gloves"
 				desc = "The colors are a bit dodgy."
 				break
 
