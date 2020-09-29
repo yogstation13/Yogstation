@@ -28,7 +28,7 @@ for newline in f:
                     length = len(oldsplit)-1 if len(oldsplit) < len(newsplit) else len(newsplit)-1
                     for x in range(length):
                         if(oldsplit[x] > newsplit[x]):
-                            print("::error file=" + sys.argv[2] + "line=" + line + "::This line is out of alphabetical order")
+                            print("::error file=" + sys.argv[1] + "line=" + line + "::This line is out of alphabetical order")
                             iswrong += 1
                             break
                     oldline = newline
