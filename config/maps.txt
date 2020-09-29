@@ -33,9 +33,9 @@ map yogsdelta
 	votable
 endmap
 
-map icebox
-	minplayers 25
-endmap
+#map icebox
+#	minplayers 25
+#endmap
 
 map eclipsestation
 	votable
