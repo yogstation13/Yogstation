@@ -14249,7 +14249,7 @@
 /area/centcom/control)
 "Eh" = (
 /obj/structure/closet/cardboard,
-/obj/item/banhammer,
+/obj/item/bikehorn,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/wizard_station)
