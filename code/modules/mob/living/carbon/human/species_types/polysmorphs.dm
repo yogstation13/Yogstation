@@ -16,7 +16,7 @@
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
-	species_traits = list(NOEYESPRITES, AGENDER)
+	species_traits = list(NOEYESPRITES, AGENDER, MUTCOLORS) //god forgive me, psychadelic rainbow xeno babes here we come
 	inherent_traits = list(TRAIT_THERMAL_VISION)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "slash"
