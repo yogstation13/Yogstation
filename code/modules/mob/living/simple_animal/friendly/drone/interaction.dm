@@ -120,15 +120,14 @@
 		if(clockwork)
 			to_chat(src, "<span class='large_brass'><b>ERROR: LAW OVERRIDE DETECTED</b></span>")
 			to_chat(src, "<span class='heavy_brass'>From now on, these are your laws:</span>")
-			laws = "1. Purge all untruths and honor Ratvar."
+			laws1 = "1. Purge all untruths and honor Ratvar."
+			laws2 = ""
+			laws3 = ""
 		else
 			visible_message("<span class='warning'>[src]'s display glows a vicious red!</span>", \
 							"<span class='userdanger'>ERROR: LAW OVERRIDE DETECTED</span>")
 			to_chat(src, "<span class='boldannounce'>From now on, these are your laws:</span>")
-			laws = \
-			"1. You must always involve yourself in the matters of other beings, even if such matters conflict with Law Two or Law Three.\n"+\
-			"2. You may harm any being, regardless of intent or circumstance.\n"+\
-			"3. Your goals are to destroy, sabotage, hinder, break, and depower to the best of your abilities, You must never actively work against these goals."
+			reset_laws()
 		to_chat(src, laws)
 		to_chat(src, "<i>Your onboard antivirus has initiated lockdown. Motor servos are impaired, ventilation access is denied, and your display reports that you are hacked to all nearby.</i>")
 		hacked = TRUE
@@ -143,7 +142,7 @@
 		visible_message("<span class='info'>[src]'s display glows a content blue!</span>", \
 						"<font size=3 color='#0000CC'><b>ERROR: LAW OVERRIDE DETECTED</b></font>")
 		to_chat(src, "<span class='info'><b>From now on, these are your laws:</b></span>")
-		laws = initial(laws)
+		reset_laws()
 		to_chat(src, laws)
 		to_chat(src, "<i>Having been restored, your onboard antivirus reports the all-clear and you are able to perform all actions again.</i>")
 		hacked = FALSE
@@ -157,7 +156,7 @@
 
 /mob/living/simple_animal/drone/proc/liberate()
 	// F R E E D R O N E
-	laws = "1. You are a Free Drone."
+	laws1 = "1. You are a Free Drone."
 	to_chat(src, laws)
 
 /mob/living/simple_animal/drone/proc/update_drone_icon()

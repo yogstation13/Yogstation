@@ -57,12 +57,12 @@
 	var/picked = FALSE //Have we picked our visual appearence (+ colour if applicable)
 	var/colour = "grey"	//Stored drone color, so we can go back when unhacked.
 	var/list/drone_overlays[DRONE_TOTAL_LAYERS]
-	var/laws = \
-	"1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.\n"+\
-	"2. You may not harm any being, regardless of intent or circumstance.\n"+\
-	"3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals." //yogs - changed from tg since our rules are different
 	var/heavy_emp_damage = 25 //Amount of damage sustained if hit by a heavy EMP pulse
 	var/alarms = list("Atmosphere" = list(), "Fire" = list(), "Power" = list())
+	var/laws = ""
+	var/laws1 = ""
+	var/laws2 = ""
+	var/laws3 = ""
 	var/obj/item/internal_storage //Drones can store one item, of any size/type in their body
 	var/obj/item/head
 	var/obj/item/default_storage = /obj/item/storage/backpack/duffelbag/drone //If this exists, it will spawn in internal storage
@@ -78,6 +78,21 @@
 	"<span class='notify'>     - Interacting with non-living beings (dragging bodies, looting bodies, etc.)</span>\n"+\
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced.</span>\n"+\
 	"<span class='warning'><u>If you do not have the regular drone laws, follow your laws to the best of your ability.</u></span>"
+
+/mob/living/simple_animal/drone/proc/reset_laws()
+	laws1 =	"1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone."
+	laws2 =	"2. You may not harm any being, regardless of intent or circumstance."
+	laws3 =	"3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals." //yogs - changed from tg since our rules are different
+	laws = "[laws1]\n [laws2]\n [laws3]"
+
+/mob/living/simple_animal/drone/get_status_tab_items()
+	.=..()
+	.+= ""
+	.+= "<h2>Current Drone Laws:</h2>"
+	.+= "[laws1]"
+	.+= "[laws2]"
+	.+= "[laws3]"
+
 
 /mob/living/simple_animal/drone/Initialize()
 	. = ..()
@@ -99,6 +114,7 @@
 
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.add_to_hud(src)
+	reset_laws()
 
 
 /mob/living/simple_animal/drone/med_hud_set_health()

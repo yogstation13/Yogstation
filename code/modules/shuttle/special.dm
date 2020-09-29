@@ -137,9 +137,9 @@
 	name = "Bardrone"
 	desc = "A barkeeping drone, an indestructible robot built to tend bars."
 	hacked = TRUE
-	laws = "1. Serve drinks.\n\
-		2. Talk to patrons.\n\
-		3. Don't get messed up in their affairs."
+	laws1 = "1. Serve drinks."
+	laws2 = "2. Talk to patrons."
+	laws3 = "3. Don't get messed up in their affairs."
 	status_flags = GODMODE // Please don't punch the barkeeper
 	unique_name = FALSE // disables the (123) number suffix
 	initial_language_holder = /datum/language_holder/universal

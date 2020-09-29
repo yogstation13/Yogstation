@@ -126,7 +126,9 @@
 	initial_language_holder = /datum/language_holder/clockmob
 	light_color = "#E42742"
 	heavy_emp_damage = 0
-	laws = "0. Purge all untruths and honor Ratvar."
+	laws1 = "0. Purge all untruths and honor Ratvar."
+	laws2 = ""
+	laws3 = ""
 	default_storage = /obj/item/storage/toolbox/brass/prefilled
 	hacked = TRUE
 	visualAppearence = CLOCKDRONE
