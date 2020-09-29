@@ -84,7 +84,7 @@
 	. = ..()
 	. += ""
 	. += "<h2>Current Drone Laws:</h2>"
-	. += "[replacetext(laws, "\n", "<br>")]"
+	. += replacetext(laws, "\n", "<br>")
 
 /mob/living/simple_animal/drone/Initialize()
 	. = ..()
