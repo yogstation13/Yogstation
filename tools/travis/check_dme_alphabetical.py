@@ -9,8 +9,10 @@ hasbegun = False
 oldline = ""
 newline = ""
 iswrong = 0
+line = 0
 
 for newline in f:
+    line = line + 1
     newline = newline.lower()
     if hasbegun:
         if "// end_include" in newline:
@@ -26,7 +28,7 @@ for newline in f:
                     length = len(oldsplit)-1 if len(oldsplit) < len(newsplit) else len(newsplit)-1
                     for x in range(length):
                         if(oldsplit[x] > newsplit[x]):
-                            print("'" + newline.strip() + "' has been placed after '" + oldline.strip() + "' in the .DME")
+                            print("::error file=" + sys.argv[2] + "line=69::This line is out of alphabetical order":)
                             iswrong += 1
                             break
                     oldline = newline
