@@ -110,6 +110,13 @@
 	if(updating_health)
 		update_health_hud()
 
+mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user, params)
+	. = ..()
+	if(istype(W, /obj/item/nullrod))
+		visible_message("<span class='warning'>[src] recoils from the blow!</span>", \
+						"<span class='cult'>As \the [W] hits you, you feel holy power blast through your form, tearing it apart!</span>")
+		adjustBruteLoss(45)
+
 /////////////////Juggernaut///////////////
 /mob/living/simple_animal/hostile/construct/armored
 	name = "Juggernaut"

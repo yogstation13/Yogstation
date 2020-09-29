@@ -11,6 +11,8 @@
 #define ROLE_OPERATIVE			"Operative"
 #define ROLE_CHANGELING			"Changeling"
 #define ROLE_WIZARD				"Wizard"
+#define ROLE_RAGINMAGES			"Ragin' Mages"
+#define ROLE_BULLSHITMAGES	"Bullshit Mages"
 #define ROLE_MALF				"Malf AI"
 #define ROLE_REV				"Revolutionary"
 #define ROLE_REV_HEAD			"Head Revolutionary"
@@ -55,6 +57,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_OPERATIVE = /datum/game_mode/nuclear,
 	ROLE_CHANGELING = /datum/game_mode/changeling,
 	ROLE_WIZARD = /datum/game_mode/wizard,
+	ROLE_RAGINMAGES = /datum/game_mode/wizard,
+	ROLE_ROLE_BULLSHITMAGES = /datum/game_mode/wizard,
 	ROLE_MALF,
 	ROLE_REV = /datum/game_mode/revolution,
 	ROLE_ALIEN,

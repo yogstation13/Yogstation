@@ -14,9 +14,6 @@
 		if(AM.anchored)
 			continue
 		AM.forceMove(hand_turf)
-		if(isliving(AM))
-			var/mob/living/L = AM
-			L.Knockdown(10)
 	guardian.face_atom(hand_turf)
 	return ..()
 

@@ -69,6 +69,7 @@
 	var/zoom_amt = 3 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
 	var/zoom_out_amt = 0
 	var/datum/action/toggle_scope_zoom/azoom
+	var/recent_shoot = null //time of the last shot with the gun. Used to track if firing happened for feedback out of all things
 
 /obj/item/gun/Initialize()
 	. = ..()
@@ -303,7 +304,7 @@
 /obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(user)
 		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, user, target, params, zone_override)
-
+	
 	add_fingerprint(user)
 
 	if(semicd)
@@ -349,6 +350,7 @@
 	if(user)
 		user.update_inv_hands()
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+	recent_shoot = world.time
 	return TRUE
 
 /obj/item/gun/update_icon()

@@ -1906,3 +1906,76 @@
 /datum/sprite_accessory/moth_wings/snow
 	name = "Snow"
 	icon_state = "snow"
+
+/datum/sprite_accessory/tails/polysmorph/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/tails/polysmorph/polys
+	name = "Polys"
+	icon_state = "polys"
+	color_src = null
+
+/datum/sprite_accessory/plasma_vessels
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/plasma_vessels/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/plasma_vessels/small
+	name = "Small"
+	icon_state = "small"
+
+/datum/sprite_accessory/plasma_vessels/medium
+	name = "Medium"
+	icon_state = "medium"
+
+/datum/sprite_accessory/plasma_vessels/large
+	name = "Large"
+	icon_state = "large"
+
+/datum/sprite_accessory/teeth
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/teeth/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/teeth/short
+	name = "Short"
+	icon_state = "short"
+
+/datum/sprite_accessory/teeth/long
+	name = "Long"
+	icon_state = "long"
+
+/datum/sprite_accessory/dome
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/dome/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/dome/queen
+	name = "Queen"
+	icon_state = "queen"
+
+/datum/sprite_accessory/dome/praetorian
+	name = "Praetorian"
+	icon_state = "praetorian"
+
+/datum/sprite_accessory/dorsal_tubes
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+	color_src = null
+
+/datum/sprite_accessory/dorsal_tubes/none
+	name = "No"
+	icon_state = "none"
+
+/datum/sprite_accessory/dorsal_tubes/dtyes
+	name = "Yes"
+	icon_state = "dtyes"

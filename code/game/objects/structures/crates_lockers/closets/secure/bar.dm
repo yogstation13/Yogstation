@@ -4,6 +4,7 @@
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
+	door_anim_time = 0 // no animation
 
 /obj/structure/closet/secure_closet/bar/PopulateContents()
 	..()

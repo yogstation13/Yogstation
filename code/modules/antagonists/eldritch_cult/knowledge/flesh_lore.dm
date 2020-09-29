@@ -166,9 +166,9 @@
 /datum/eldritch_knowledge/summon/raw_prophet
 	name = "Raw Ritual"
 	gain_text = "I saw the mirror-sheen in their dead eyes. It could be put to use."
-	desc = "You can now summon a Raw Prophet by transmuting eyes, a left arm, right arm and a pool of blood. Raw prophets have a massive sight range, X-ray, and can sustain a telepathic network, but are very fragile and weak."
+	desc = "You can now summon a Raw Prophet by transmuting eyes, a left arm and a right arm. Raw prophets have a massive sight range, X-ray, and can sustain a telepathic network, but are very fragile and weak."
 	cost = 1
-	required_atoms = list(/obj/item/organ/eyes,/obj/item/bodypart/l_arm,/obj/item/bodypart/r_arm,/obj/effect/decal/cleanable/blood)
+	required_atoms = list(/obj/item/organ/eyes,/obj/item/bodypart/l_arm,/obj/item/bodypart/r_arm)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	next_knowledge = list(/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/spell/blood_siphon,/datum/eldritch_knowledge/curse/paralysis)
 	route = PATH_FLESH
@@ -176,9 +176,9 @@
 /datum/eldritch_knowledge/summon/stalker
 	name = "Lonely Ritual"
 	gain_text = " The Uncanny Man walks lonely in the Valley, I called for his aid."
-	desc = "You can now summon a Stalker by transmuting a knife, a flower, a pen and a piece of paper. Stalkers can shapeshift into harmeless animals and have access to an EMP."
+	desc = "You can now summon a Stalker by transmuting a knife, a candle, a pen and a piece of paper. Stalkers can shapeshift into harmeless animals and have access to an EMP."
 	cost = 1
-	required_atoms = list(/obj/item/kitchen/knife,/obj/item/reagent_containers/food/snacks/grown/poppy,/obj/item/pen,/obj/item/paper)
+	required_atoms = list(/obj/item/kitchen/knife,/obj/item/candle,/obj/item/pen,/obj/item/paper)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/stalker
 	next_knowledge = list(/datum/eldritch_knowledge/summon/ashy,/datum/eldritch_knowledge/summon/rusty,/datum/eldritch_knowledge/final/flesh_final)
 	route = PATH_FLESH
@@ -195,9 +195,9 @@
 /datum/eldritch_knowledge/summon/rusty
 	name = "Rusted Ritual"
 	gain_text = "I combined the principle of Hunger with a desire of Corruption. The Rusted Hills call my name."
-	desc = "You can now summon a Rust Walker transmutating vomit pool, a head and a book. Rust Walkers are capable of spreading rust and have a decent but short ranged projectile attack."
+	desc = "You can now summon a Rust Walker transmutating vomit pool and a book. Rust Walkers are capable of spreading rust and have a decent but short ranged projectile attack."
 	cost = 1
-	required_atoms = list(/obj/effect/decal/cleanable/vomit,/obj/item/bodypart/head,/obj/item/book)
+	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/rust_spirit
 	next_knowledge = list(/datum/eldritch_knowledge/summon/stalker,/datum/eldritch_knowledge/spell/entropic_plume)
 
@@ -212,13 +212,13 @@
 /datum/eldritch_knowledge/final/flesh_final
 	name = "Priest's Final Hymn"
 	gain_text = "Men of the world; Hear me! For the time of the Lord of Arms has come!"
-	desc = "Bring 3 bodies onto a transmutation rune to either ascend as the King of the Night or summon a Terror of the Night."
+	desc = "Bring 3 bodies onto a transmutation rune to either ascend as the King of the Night or summon a Terror of the Night and triple your ghoul maximum."
 	required_atoms = list(/mob/living/carbon/human)
 	cost = 3
 	route = PATH_FLESH
 
 /datum/eldritch_knowledge/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or just summon a Terror of the Night?","...","Yes","No")
+	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or empower yourself and summon a Terror of the Night?","...","Yes","No")
 	user.SetImmobilized(10 HOURS) // no way someone will stand 10 hours in a spot, just so he can move while the alert is still showing.
 	switch(alert_)
 		if("No")
@@ -230,6 +230,14 @@
 				to_chat(user,"<span class='warning'>No ghost could be found...</span>")
 				qdel(summoned)
 				return FALSE
+			var/mob/living/carbon/human/H = user
+			H.physiology.brute_mod *= 0.5
+			H.physiology.burn_mod *= 0.5
+			var/datum/antagonist/heretic/heretic = user.mind.has_antag_datum(/datum/antagonist/heretic)
+			var/datum/eldritch_knowledge/flesh_grasp/ghoul1 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_grasp)
+			ghoul1.ghoul_amt *= 3
+			var/datum/eldritch_knowledge/flesh_ghoul/ghoul2 = heretic.get_knowledge(/datum/eldritch_knowledge/flesh_ghoul)
+			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for Vassal of Arms has ascended! The Terror of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
