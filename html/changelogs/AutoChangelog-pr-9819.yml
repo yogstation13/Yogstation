@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscdel: "Removed the banhammer"
-  - tweak: "Some instances that spawned the banhammer now spawn a bike horn instead"
