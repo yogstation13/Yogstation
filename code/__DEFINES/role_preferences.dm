@@ -12,7 +12,7 @@
 #define ROLE_CHANGELING			"Changeling"
 #define ROLE_WIZARD				"Wizard"
 #define ROLE_RAGINMAGES			"Ragin' Mages"
-#define ROLE_BULLSHITMAGES	"Bullshit Mages"
+#define ROLE_BULLSHITMAGES		"Bullshit Mages"
 #define ROLE_MALF				"Malf AI"
 #define ROLE_REV				"Revolutionary"
 #define ROLE_REV_HEAD			"Head Revolutionary"
