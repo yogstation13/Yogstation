@@ -157,6 +157,8 @@
 /mob/living/simple_animal/drone/proc/liberate()
 	// F R E E D R O N E
 	laws1 = "1. You are a Free Drone."
+	laws2 = ""
+	laws3 = ""
 	to_chat(src, laws)
 
 /mob/living/simple_animal/drone/proc/update_drone_icon()
