@@ -906,10 +906,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/listeningstation)
-"bv" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/listeningstation)
 "bw" = (
 /obj/structure/closet{
 	icon_door = "black";
@@ -1066,6 +1062,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/soap/syndie,
 /turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/listeningstation)
+"LG" = (
+/obj/machinery/cryopod,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation)
 
 (1,1,1) = {"
@@ -1846,7 +1846,7 @@ aP
 ba
 bj
 ac
-bv
+LG
 ac
 ac
 ab
