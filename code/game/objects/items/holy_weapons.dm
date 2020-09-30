@@ -417,6 +417,7 @@
 	item_state = "swordblue"
 	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
 	slot_flags = ITEM_SLOT_BELT
+	damtype = BURN
 
 /obj/item/nullrod/claymore/saber/red
 	name = "dark energy sword"
