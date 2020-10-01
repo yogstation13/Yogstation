@@ -129,12 +129,12 @@
 /turf/open/floor/mineral/plastitanium/red/brig
 	name = "brig floor"
 
-/turf/open/floor/mineral/plastitanium/red/brig/fakepit
-	name = "chasm"
-	desc = "Watch your step."
+/turf/open/floor/mineral/plastitanium/red/brig/ballpit
+	name = "deep ball pit"
+	desc = "A fun-looking ball pit for very naughy criminals."
 	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/mineral/plastitanium/red/brig/fakepit)
-	icon = 'icons/turf/floors/Chasms.dmi'
+	canSmoothWith = list(/turf/open/floor/mineral/plastitanium/red/brig/ballpit)
+	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
 	tiled_dirt = FALSE
 

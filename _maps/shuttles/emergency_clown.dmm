@@ -112,10 +112,6 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"au" = (
-/obj/structure/chair/bananium,
-/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
-/area/shuttle/escape)
 "av" = (
 /obj/machinery/light{
 	dir = 1
@@ -145,7 +141,7 @@
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "az" = (
-/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
+/turf/open/floor/mineral/plastitanium/red/brig/ballpit,
 /area/shuttle/escape)
 "aA" = (
 /obj/machinery/door/airlock/bananium/glass{
@@ -429,10 +425,9 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "jn" = (
-/obj/structure/chair/bananium{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/mineral/plastitanium/red/brig/ballpit,
 /area/shuttle/escape)
 "kl" = (
 /obj/item/toy/snappop/phoenix,
@@ -483,7 +478,7 @@
 	brightness = 3;
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
+/turf/open/floor/mineral/plastitanium/red/brig/ballpit,
 /area/shuttle/escape)
 "Bq" = (
 /obj/item/toy/snappop/phoenix,
@@ -590,7 +585,7 @@ ab
 ab
 ab
 ab
-au
+jn
 tr
 az
 ab
@@ -614,7 +609,7 @@ ad
 ai
 an
 ab
-au
+jn
 az
 jn
 ab
@@ -638,7 +633,7 @@ ae
 aj
 ao
 ab
-au
+jn
 az
 jn
 ab

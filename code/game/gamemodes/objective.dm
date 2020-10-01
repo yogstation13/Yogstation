@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return FALSE
 	var/turf/location = get_turf(M.current)
-	if(!location || istype(location, /turf/open/floor/plasteel/shuttle/red) || istype(location, /turf/open/floor/mineral/plastitanium/red/brig) || istype(location, /turf/open/floor/mineral/plastitanium/red/brig/fakepit)) // Fails if they are in the shuttle brig
+	if(!location || istype(location, /turf/open/floor/plasteel/shuttle/red) || istype(location, /turf/open/floor/mineral/plastitanium/red/brig)) // Fails if they are in the shuttle brig
 		return FALSE
 	return location.onCentCom() || location.onSyndieBase()
 
@@ -1082,7 +1082,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/datum/data/record/record
 
 /**
-  * Search through all the security records, and find ours. 
+  * Search through all the security records, and find ours.
   */
 /datum/objective/minor/secrecords/finalize()
 	for(var/datum/data/record/s in GLOB.data_core.security)
@@ -1174,7 +1174,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(!A)
 		return FALSE
 	target = A.target
-	explanation_text = "Escape with a photo of the dead body of [target.name]."	
+	explanation_text = "Escape with a photo of the dead body of [target.name]."
 	return TRUE
 
 /**
@@ -1190,7 +1190,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /**
   * # Mindshielding
-  * 
+  *
   * get mindshielded
   */
 /datum/objective/minor/mindshield
@@ -1219,11 +1219,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/datum/mind/heads = SSjob.get_living_heads()
 	if(!heads.len || (owner in heads))
 		return FALSE
-	
+
 	target = pick(heads)
 	name = "Photograph [target.name]."
 	explanation_text = "Extract with a photograph [target.name], the [target.assigned_role]."
-	return TRUE 
+	return TRUE
 
 /**
   * return true if we escape with a picture of the head of staff
