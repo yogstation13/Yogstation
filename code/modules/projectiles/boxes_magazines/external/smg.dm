@@ -28,7 +28,7 @@
 	icon_state = "46x30mmtI-[round(ammo_count(),4)]"
 
 /obj/item/ammo_box/magazine/wt550m9/wtr
-	name = "\improper WT-550 magazine(Rubber Rounds 4.6x30mm)
+	name = "\improper WT-550 magazine(Rubber Rounds 4.6x30mm)"
 	icon_state = "46x30mmtR-20"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/rubber
 
