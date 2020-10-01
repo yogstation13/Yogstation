@@ -335,7 +335,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/mag_oldsmg/rubber_mag
-	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)
+	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
 	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_rubber"
 	materials = list(MAT_METAL = 6000)
