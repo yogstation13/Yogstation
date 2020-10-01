@@ -141,7 +141,10 @@
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "az" = (
-/turf/open/floor/mineral/plastitanium/red/brig/ballpit,
+/obj/structure/chair/americandiner/black{
+	name = "The time-out chair"
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aA" = (
 /obj/machinery/door/airlock/bananium/glass{
@@ -425,9 +428,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "jn" = (
-/obj/structure/bed,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/mineral/plastitanium/red/brig/ballpit,
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "kl" = (
 /obj/item/toy/snappop/phoenix,
@@ -478,7 +479,7 @@
 	brightness = 3;
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red/brig/ballpit,
+/turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "Bq" = (
 /obj/item/toy/snappop/phoenix,
@@ -514,7 +515,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/bluespace,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "Jj" = (
 /obj/structure/window/reinforced{
@@ -587,7 +588,7 @@ ab
 ab
 jn
 tr
-az
+jn
 ab
 aJ
 dp
@@ -634,7 +635,7 @@ aj
 ao
 ab
 jn
-az
+jn
 jn
 ab
 ak
