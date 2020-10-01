@@ -680,10 +680,10 @@
 	name = "WT-550 Auto Rifle Rubber Bullet Ammo Crate"
 	desc = "Contains four 20-round less than lethal magazines for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
-	contains = list(/obj/item/ammo_box/magazine/wt550m9/rubber,
-					/obj/item/ammo_box/magazine/wt550m9/rubber,
-					/obj/item/ammo_box/magazine/wt550m9/rubber,
-					/obj/item/ammo_box/magazine/wt550m9/rubber)
+	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
+					/obj/item/ammo_box/magazine/wt550m9/wtr,
+					/obj/item/ammo_box/magazine/wt550m9/wtr,
+					/obj/item/ammo_box/magazine/wt550m9/wtr)
 
 /datum/supply_pack/security/armory/wt550ammo_single
 	name = "WT-550 Auto Rifle Ammo Single-Pack"
