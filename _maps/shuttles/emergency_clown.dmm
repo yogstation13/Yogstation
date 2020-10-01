@@ -428,7 +428,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "jn" = (
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
 /area/shuttle/escape)
 "kl" = (
 /obj/item/toy/snappop/phoenix,
@@ -479,7 +479,7 @@
 	brightness = 3;
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
 /area/shuttle/escape)
 "Bq" = (
 /obj/item/toy/snappop/phoenix,
