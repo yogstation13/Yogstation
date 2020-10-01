@@ -108,19 +108,19 @@ SUBSYSTEM_DEF(air)
 		timer = TICK_USAGE_REAL
 		process_turf_equalize(resumed)
 		cost_equalize = MC_AVERAGE(cost_equalize, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
 		resumed = 0
 		currentpart = SSAIR_ACTIVETURFS
+		if(state != SS_RUNNING)
+			return
 
 	if(currentpart == SSAIR_ACTIVETURFS)
 		timer = TICK_USAGE_REAL
 		process_active_turfs(resumed)
 		cost_turfs = MC_AVERAGE(cost_turfs, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-		if(state != SS_RUNNING)
-			return
 		resumed = 0
 		currentpart = SSAIR_EXCITEDGROUPS
+		if(state != SS_RUNNING)
+			return
 
 	if(currentpart == SSAIR_EXCITEDGROUPS)
 		timer = TICK_USAGE_REAL
@@ -239,7 +239,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_turf_equalize(resumed = 0)
 	if(process_turf_equalize_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
-		MC_TICK_CHECK
+		pause()
 	/*
 	//cache for sanic speed
 	var/fire_count = times_fired
@@ -260,7 +260,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_active_turfs(resumed = 0)
 	if(process_active_turfs_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
-		MC_TICK_CHECK
+		pause()
 	/*
 	//cache for sanic speed
 	var/fire_count = times_fired
@@ -278,8 +278,8 @@ SUBSYSTEM_DEF(air)
 	*/
 
 /datum/controller/subsystem/air/proc/process_excited_groups(resumed = 0)
-	if(process_excited_groups_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
-		MC_TICK_CHECK
+	return process_excited_groups_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag)
+		pause()
 	/*
 	if (!resumed)
 		src.currentrun = excited_groups.Copy()
