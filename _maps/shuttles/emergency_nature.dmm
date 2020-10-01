@@ -249,19 +249,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"ht" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 9
-	},
-/obj/structure/chair/comfy/shuttle,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
 "hA" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 6
@@ -981,6 +968,18 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"ES" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
 "ET" = (
 /obj/effect/turf_decal/trimline/green/filled/end{
 	dir = 8
@@ -1692,7 +1691,7 @@ Ps
 nD
 XK
 ay
-XK
+Xm
 nD
 Rk
 bf
@@ -1710,7 +1709,7 @@ gx
 (6,1,1) = {"
 VU
 Yu
-ht
+ES
 jZ
 WL
 vP
@@ -1724,7 +1723,7 @@ Vv
 Ti
 Fo
 PP
-Xm
+LO
 ZL
 LO
 yI
@@ -1851,7 +1850,7 @@ HV
 LG
 SS
 yI
-Xm
+XK
 Vv
 Fp
 qD
