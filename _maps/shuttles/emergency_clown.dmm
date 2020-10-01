@@ -142,7 +142,8 @@
 /area/shuttle/escape)
 "az" = (
 /obj/structure/chair/americandiner/black{
-	name = "The time-out chair"
+	desc = "If you're sitting here, you should be contemplating your life choices.";
+	name = "the time-out chair"
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -681,7 +682,7 @@ tc
 ag
 ak
 hx
-ab
+jn
 av
 ak
 aC
