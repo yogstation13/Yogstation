@@ -20,7 +20,7 @@
 	damage = 10
 	fire_stacks = 1
 
-/obj/item/projectile/bullet/c36x30mm_rubber
+/obj/item/projectile/bullet/c46x30mm_rubber
 	name = "4.6x30mm rubber bullet"
 	damage = 5
 	stamina = 20 //slightly more effective than the detective's revolver when fired in bursts
