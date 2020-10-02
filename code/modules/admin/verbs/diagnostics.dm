@@ -9,7 +9,7 @@
 	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
 	for(var/id in env.get_gases())
 		var/moles = env.get_moles(id)
-		if (moles >= 0.00001)
+		if (abs(moles) >= 0.00001)
 			lines += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [moles] mol"
 	to_chat(usr, lines.Join("\n"))
 
