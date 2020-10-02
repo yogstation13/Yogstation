@@ -1611,21 +1611,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pda_color = pickedPDAColor
 				if("skillcape")
 					var/list/selectablecapes = list()
-					for(var/obj/item/clothing/neck/skillcape/A in GLOB.skillcapes)
+					for(var/datum/skillcape/A in GLOB.skillcapes)
 						if(user.client.prefs.exp[A.job] >= A.hours)
 							if(!A.special)
 								selectablecapes += A	
 						if(A.special) //check for special capes
 							switch(A.capetype)
-								if("admin")
-									if(check_rights_for(user.client, R_ADMIN))
-										selectablecapes += A
-								if("mentor")
-									if(user.client.is_mentor())
-										selectablecapes += A
-								if("admint")
-									if(check_rights_for(user.client, R_PERMISSIONS))
-										selectablecapes += A
 								if("max")
 									if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
 										selectablecapes += A

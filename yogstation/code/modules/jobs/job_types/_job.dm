@@ -51,8 +51,8 @@
 			return
 	var/S = C.prefs.skillcape
 	if(S != 1)
-		var/obj/item/clothing/neck/skillcape/A = GLOB.skillcapes[S]
-		var/type = A.type
+		var/datum/skillcape/A = GLOB.skillcapes[S]
+		var/type = A.path
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
 		H.equip_to_appropriate_slot(B)
 	

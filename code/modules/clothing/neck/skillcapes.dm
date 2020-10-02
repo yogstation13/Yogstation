@@ -1,6 +1,14 @@
+/datum/skillcape
+	var/name
+	var/hours 
+	var/job 
+	var/special
+	var/capetype 
+	var/path 
+
 /obj/item/clothing/neck/skillcape
-	name = "cape of skill"
-	desc = "It marks proof of worthiness."
+	name = "cape of invisible skill"
+	desc = "It looks... empty."
 	icon = 'icons/obj/clothing/skillcapes.dmi'
 	icon_state = "ghost-skillcape"
 	item_state = "ghost-skillcape"
@@ -27,7 +35,7 @@
 
 /obj/item/clothing/neck/skillcape/trimmed/admin
 	name = "cape of the supreme judge"
-	desc = "It is the most luxurious cape you have ever seen, it has a golden trim. The bearer might be a supreme being."
+	desc = "It is the most luxurious cape you have ever seen, it has a golden trim."
 	icon_state = "admin-trimmed"
 	item_state = "admin-trimmed"
 	special = TRUE
@@ -146,6 +154,7 @@
 	icon_state = "rd-trimmed"
 	item_state = "rd-trimmed"
 	job = /datum/job/rd
+	hours = -1
 
 /obj/item/clothing/neck/skillcape/cmo
 	name = "cape of the chief medical officer"

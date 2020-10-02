@@ -56,7 +56,15 @@
 	//Skillcapes
 	for(var/path in typecacheof(/obj/item/clothing/neck/skillcape))
 		var/obj/item/clothing/neck/skillcape/A = new path()
-		GLOB.skillcapes += A
+		var/datum/skillcape/B = new /datum/skillcape()
+		B.name = A.name
+		B.hours = A.hours
+		B.job = A.job
+		B.special = A.special
+		B.capetype = A.capetype
+		B.path = path
+		GLOB.skillcapes += B
+		qdel(A)
 
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
