@@ -361,7 +361,8 @@
 	air.adjust_moles(/datum/gas/nitrous_oxide, -reaction_efficency)
 	air.adjust_moles(/datum/gas/plasma, -2*reaction_efficency)
 
-	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((reaction_efficency**2)*BZ_RESEARCH_SCALE),BZ_RESEARCH_MAX_AMOUNT)
+	//hotfix: uncomment when monstermos is fixed
+	//SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((reaction_efficency**2)*BZ_RESEARCH_SCALE),BZ_RESEARCH_MAX_AMOUNT)
 
 	if(energy_released > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -392,7 +393,8 @@
 	air.adjust_moles(/datum/gas/stimulum, heat_scale/10)
 	air.adjust_moles(/datum/gas/plasma, -heat_scale)
 	air.adjust_moles(/datum/gas/nitryl, -heat_scale)
-	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, STIMULUM_RESEARCH_AMOUNT*max(stim_energy_change,0))
+	//hotfix: uncomment when monstermos is fixed
+	//SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, STIMULUM_RESEARCH_AMOUNT*max(stim_energy_change,0))
 	if(stim_energy_change)
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
@@ -417,7 +419,8 @@
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
 	air.adjust_moles(/datum/gas/nitrogen, -20*nob_formed)
 	air.adjust_moles(/datum/gas/hypernoblium, nob_formed)
-	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, nob_formed*NOBLIUM_RESEARCH_AMOUNT)
+	//hotfix: Uncomment when Monstermos is fixed
+	//SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, nob_formed*NOBLIUM_RESEARCH_AMOUNT)
 	var/new_heat_capacity = air.heat_capacity()
 	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 		air.set_temperature(max(((air.return_temperature()*old_heat_capacity - energy_taken)/new_heat_capacity),TCMB))
