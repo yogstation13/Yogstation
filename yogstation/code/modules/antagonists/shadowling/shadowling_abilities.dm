@@ -271,7 +271,7 @@
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time...</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
 						to_chat(target, "<span class='boldannounce'>You feel your mental protection faltering!</span>")
-						if(!do_mob(user, target, 1500)) //Two and a half minutes to discourage this because its BS.
+						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
 							to_chat(user, "<span class='warning'>The enthralling has been interrupted - your target's mind returns to its previous state.</span>")
 							to_chat(target, "<span class='userdanger'>You wrest yourself away from [user]'s hands and compose yourself!</span>")
 							enthralling = FALSE
