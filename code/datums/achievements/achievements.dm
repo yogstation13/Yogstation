@@ -156,12 +156,6 @@
 	desc = "Trigger a keycard authentication device event, by yourself."
 	id = 23
 
-/datum/achievement/dab
-	name = "Brain Damage"
-	desc = "Dab."
-	id = 24
-	hidden = TRUE
-
 // The achievements that are basically just "greentext as this sort of antag"
 
 /datum/achievement/greentext
