@@ -669,7 +669,7 @@
 		else
 			SSticker.admin_delay_notice = null
 		SSticker.delay_end = !SSticker.delay_end
-		var/reason = SSticker.delay_end ? "for reason: [SSticker.admin_delay_notice]" : "."//laziness
+		var/reason = SSticker.delay_end ? "for reason: [SSticker.admin_delay_notice]" : ""
 		var/msg = "[SSticker.delay_end ? "delayed" : "undelayed"] the round end [reason]"
 		log_admin("[key_name(usr)] [msg]")
 		message_admins("[key_name_admin(usr)] [msg]")
