@@ -1,0 +1,5 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - rscadd: "Added a proper brig to snappop, added a door, added flashers and a fake chasm brig tile"
+  - rscdel: "Removed the real chasm and the greentext book from the snappop shuttle"
