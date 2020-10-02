@@ -661,9 +661,7 @@
 				log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	else if(SSticker.current_state == GAME_STATE_PLAYING)
-		to_chat(usr, "Round is still running, no need to delay.")
-	else if(SSticker.current_state > GAME_STATE_PLAYING)
+	else if(SSticker.current_state >= GAME_STATE_PLAYING)
 		if(!SSticker.delay_end)
 			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
 			if(isnull(SSticker.admin_delay_notice))
