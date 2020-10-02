@@ -660,7 +660,6 @@
 				message_admins("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 				log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 	else
 		if(!SSticker.delay_end)
 			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
@@ -676,8 +675,6 @@
 		if(SSticker.ready_for_reboot && !SSticker.delay_end) //we undelayed after standard reboot would occur
 			if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
 				SSticker.Reboot(delay = 100, force = TRUE)
-	else
-		return alert("Game is in an unexpected state!")
 
 /datum/admins/proc/unprison(mob/M in GLOB.mob_list)
 	set category = "Admin"
