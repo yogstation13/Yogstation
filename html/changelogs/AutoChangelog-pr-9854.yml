@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "new ammo for the WT rifle: rubbershot rounds for less than lethal bullets, which deal 20 stamina damage per hit but have no armor penetration"
+  - tweak: "4.6x30mm bullets have 20 AP up from 0, and their AP variants have 50 AP up from 40"
