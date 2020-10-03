@@ -362,6 +362,8 @@
 				continue
 			else if(locate(/obj/effect/blessing, T2))
 				continue
+			else if(locate(/obj/structure/destructible/clockwork/anchor, T2))
+				continue
 			var/area/AR = get_area(T2)
 			if(!AR.clockwork_warp_allowed || !istype(AR, /area/maintenance))
 				continue
@@ -387,6 +389,8 @@
 					else if(T2.flags_1 & NOJAUNT_1)
 						continue
 					else if(locate(/obj/effect/blessing, T2))
+						continue
+					else if(locate(/obj/structure/destructible/clockwork/anchor, T2))
 						continue
 					if(!AR.clockwork_warp_allowed)
 						continue
