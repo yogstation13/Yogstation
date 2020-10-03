@@ -776,7 +776,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-			if(bodypart == "tail_lizard" || bodypart == "tail_human"|| bodypart == "tail_polysmorph")
+			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_polysmorph")
 				bodypart = "tail"
 			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human")
 				bodypart = "waggingtail"
