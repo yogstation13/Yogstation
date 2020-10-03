@@ -208,7 +208,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Name:</b> "
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
-			if(!(AGENDER in pref_species.species_traits))
+			if(!((AGENDER in pref_species.species_traits) || (MGENDER in pref_species.species_traits) || (FGENDER in pref_species.species_traits)))
 				var/dispGender
 				if(gender == MALE)
 					dispGender = "Male"
@@ -217,6 +217,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dispGender = "Other"
 				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
+			else if(FGENDER in pref_species.species_traits)
+				gender = FEMALE
+			else if(AGENDER in pref_species.species_traits)
+				gender = PLURAL
+			else
+				gender = MALE
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
