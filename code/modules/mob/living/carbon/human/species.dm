@@ -275,6 +275,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		tail = new mutanttail()
 		if(iscatperson(C))
 			tail.tail_type = C.dna.features["tail_human"]
+		if(ispolysmorph(C))
+			tail.tail_type = C.dna.features["tail_polysmorph"]
 		if(islizard(C))
 			var/obj/item/organ/tail/lizard/T = tail
 			T.tail_type = C.dna.features["tail_lizard"]
@@ -643,6 +645,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else if ("tail_human" in mutant_bodyparts)
 			bodyparts_to_add -= "waggingtail_human"
 
+	if("tail_polysmorph" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
+			bodyparts_to_add -= "tail_polysmorph"
+
 	if("spines" in mutant_bodyparts)
 		if(!H.dna.features["spines"] || H.dna.features["spines"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "spines"
@@ -678,6 +684,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			bodyparts_to_add -= "wings_open"
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
+
+	if("teeth" in mutant_bodyparts)
+		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "teeth"
+
+	if("dome" in mutant_bodyparts)
+		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
+			bodyparts_to_add -= "dome"
 
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
@@ -720,6 +734,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.animated_tails_list_lizard[H.dna.features["tail_lizard"]]
 				if("tail_human")
 					S = GLOB.tails_list_human[H.dna.features["tail_human"]]
+				if("tail_polysmorph")
+					S = GLOB.tails_list_polysmorph[H.dna.features["tail_polysmorph"]]
 				if("waggingtail_human")
 					S = GLOB.animated_tails_list_human[H.dna.features["tail_human"]]
 				if("spines")
@@ -746,13 +762,21 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
+				if("plasma_vessels")
+					S = GLOB.plasma_vessels_list[H.dna.features["plasma_vessels"]]
+				if("teeth")
+					S = GLOB.teeth_list[H.dna.features["teeth"]]
+				if("dome")
+					S = GLOB.dome_list[H.dna.features["dome"]]
+				if("dorsal_tubes")
+					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 			if(!S || S.icon_state == "none")
 				continue
 
 			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
-			if(bodypart == "tail_lizard" || bodypart == "tail_human")
+			if(bodypart == "tail_lizard" || bodypart == "tail_human"|| bodypart == "tail_polysmorph")
 				bodypart = "tail"
 			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human")
 				bodypart = "waggingtail"
