@@ -1,1 +1,2 @@
 Stargazers have been removed. Integration cogs are now the primary way of creating power.
+When warping to the station, you will be warped to a random tile in maint, with an anchor created in that location. You will need to abscond next to the anchor to go back to Reebe.

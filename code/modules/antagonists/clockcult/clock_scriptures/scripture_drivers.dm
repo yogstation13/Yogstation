@@ -171,7 +171,7 @@
 /datum/clockwork_scripture/abscond
 	descname = "Return to Reebe"
 	name = "Abscond"
-	desc = "Yanks you through space, returning you to home base."
+	desc = "Yanks you through space, returning you to home base. Requires you to be next to your anchor."
 	invocations = list("As we bid farewell, and return to the stars...", "...we shall find our way home.")
 	whispered = TRUE
 	channel_time = 50
@@ -185,12 +185,21 @@
 	important = TRUE
 	quickbind = TRUE
 	quickbind_desc = "Returns you to Reebe."
+	var/obj/structure/destructible/clockwork/anchor/anchor
 	var/client_color
 
 /datum/clockwork_scripture/abscond/check_special_requirements()
 	if(is_reebe(invoker.z))
 		to_chat(invoker, "<span class='danger'>You're already at Reebe.</span>")
-		return
+		return FALSE
+	var/obj/structure/destructible/clockwork/anchor/anchor
+	for(var/obj/structure/destructible/clockwork/anchor/a in orange(1, invoker))
+		if(a.owner == invoker.mind)
+			anchor = a
+			break
+	if(!anchor)
+		to_chat(invoker, "<span class='danger'>You need to be next to your anchor.</span>") // remind me to give them a pointer to it at this point.
+		return FALSE
 	return TRUE
 
 /datum/clockwork_scripture/abscond/recital()
@@ -212,6 +221,9 @@
 		adjust_clockwork_power(-special_power_cost)
 		invoker.pulling.forceMove(T)
 	invoker.forceMove(T)
+	for(var/obj/structure/destructible/clockwork/anchor/a in GLOB.all_clockwork_objects)
+		if(a.owner == invoker.mind)
+			a.disable()
 	if(invoker.client)
 		animate(invoker.client, color = client_color, time = 25)
 

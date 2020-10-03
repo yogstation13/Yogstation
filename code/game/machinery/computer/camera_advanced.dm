@@ -320,7 +320,7 @@
 
 /datum/action/innate/servant_warp
 	name = "Warp"
-	desc = "Warps to the tile you're viewing. You can use the Abscond scripture to return. Clicking this button again cancels the warp."
+	desc = "Warps to a random maintenance tile on the station. You can use the Abscond scripture to return. Clicking this button again cancels the warp."
 	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "warp_down"
 	background_icon_state = "bg_clock"
@@ -337,32 +337,81 @@
 		cancel = TRUE
 		return
 	var/mob/living/carbon/human/user = owner
-	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
 	var/obj/machinery/computer/camera_advanced/ratvar/R  = target
-	var/turf/T = get_turf(remote_eye)
-	if(!is_reebe(user.z) || !is_station_level(T.z))
-		return
-	if(isclosedturf(T))
-		to_chat(user, "<span class='sevtug_small'>You can't teleport into a wall.</span>")
-		return
-	else if(isspaceturf(T))
-		to_chat(user, "<span class='sevtug_small'>[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]</span>")
-		return
-	else if(T.flags_1 & NOJAUNT_1)
-		to_chat(user, "<span class='sevtug_small'>This tile is blessed by strange energies and deflects the warp.</span>")
-		return
-	else if(locate(/obj/effect/blessing, T))
-		to_chat(user, "<span class='sevtug_small'>This tile is blessed by holy water and deflects the warp.</span>")
-		return
-	var/area/AR = get_area(T)
-	if(!AR.clockwork_warp_allowed)
-		to_chat(user, "<span class='sevtug_small'>[AR.clockwork_warp_fail]</span>")
-		return
-	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
-		return
+	var/list/possiblestarts = GLOB.xeno_spawn + GLOB.blobstart + GLOB.generic_event_spawns
+	var/list/secondratestarts = list()
+	var/turf/T
+	for(var/obj/o in GLOB.all_clockwork_objects)
+		if(istype(o, /obj/structure/destructible/clockwork/anchor))
+			var/obj/structure/destructible/clockwork/anchor/a = o
+			if(a.owner == user.mind)
+				if(alert(user, "Would you like to use your old anchor, or receive a new one?", "Anchor", "Yes", "No") == "Yes")
+					T = get_turf(a)
+					break
+				else
+					a.disable()
+	if(!T)
+		for(var/turf/T2 in shuffle(possiblestarts))
+			if(!is_reebe(user.z) || !is_station_level(T2.z))
+				continue
+			if(isclosedturf(T2))
+				continue
+			else if(isspaceturf(T2))
+				continue
+			else if(T2.flags_1 & NOJAUNT_1)
+				continue
+			else if(locate(/obj/effect/blessing, T2))
+				continue
+			var/area/AR = get_area(T2)
+			if(!AR.clockwork_warp_allowed || !istype(AR, /area/maintenance))
+				continue
+			for(var/mob/living/c in view(7, T2))
+				if(!is_servant_of_ratvar(c))
+					secondratestarts += src
+					break
+			if(secondratestarts[src])
+				continue
+			T = T2
+			break
+		if(!T && secondratestarts.len)
+			T = pick(secondratestarts)
+		else if(!T)
+			for(var/area/maintenance/AR in shuffle(GLOB.the_station_areas))
+				for(var/turf/T2 in AR)
+					if(!is_reebe(user.z) || !is_station_level(T2.z))
+						continue
+					if(isclosedturf(T2))
+						continue
+					else if(isspaceturf(T2))
+						continue
+					else if(T2.flags_1 & NOJAUNT_1)
+						continue
+					else if(locate(/obj/effect/blessing, T2))
+						continue
+					if(!AR.clockwork_warp_allowed)
+						continue
+					for(var/mob/living/c in view(7, T2))
+						if(!is_servant_of_ratvar(c))
+							secondratestarts += src
+							break
+					if(secondratestarts[src])
+						continue
+					T = T2
+					break
+				if(T)
+					break
+			if(!T)
+				T = pick(secondratestarts)
+		if(!T)
+			//How did you mangage this?
+			to_chat(user, "<span class='danger'>No available locations.</span>")
+			return
+	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
+	remote_eye.setLoc(T)
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
 	warping = new(T)
+	var/area/AR = get_area(T)
 	user.visible_message("<span class='warning'>[user]'s [target.name] flares!</span>", "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
 	button_icon_state = "warp_cancel"
 	owner.update_action_buttons()
@@ -378,6 +427,8 @@
 	T.visible_message("<span class='warning'>[user] warps in!</span>")
 	playsound(user, 'sound/magic/magic_missile.ogg', 50, TRUE)
 	playsound(T, 'sound/magic/magic_missile.ogg', 50, TRUE)
+	var/obj/structure/destructible/clockwork/anchor/a = new(T)
+	a.owner = user.mind
 	user.forceMove(get_turf(T))
 	user.setDir(SOUTH)
 	flash_color(user, flash_color = "#AF0AAF", flash_time = 5)

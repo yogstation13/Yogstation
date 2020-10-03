@@ -164,6 +164,11 @@
 	owner.special_role = null
 	if(iscyborg(owner.current))
 		to_chat(owner.current, "<span class='warning'>Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking.</span>")
+	for(var/obj/o in GLOB.all_clockwork_objects)
+		if(istype(o, /obj/structure/destructible/clockwork/anchor))
+			var/obj/structure/destructible/clockwork/anchor/a = o
+			if(a.owner == owner)
+				a.disable()
 	. = ..()
 
 

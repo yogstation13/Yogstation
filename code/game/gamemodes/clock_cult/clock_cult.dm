@@ -325,7 +325,7 @@ Credit where due:
 	<li><b>Ark Chamber:</b> Houses the Ark in the very center.</li>\
 	<li><b>Listening Station:</b> (Bottom Left Corner of Circle) Contains intercoms, a telecomms relay, and a list of frequencies.</li>\
 	<li><b>Observation Room:</b> (Bottom Right Corner of Circle) Contains six camera observers. These can be used to watch the station through its cameras, as well as to teleport down \
-	to most areas. To do this, use the Warp action while hovering over the tile you want to warp to.</li>\
+	to maintenance. To do this, use the Warp action while using the console, and you will be transported to the station.</li>\
 	<li><b>Infirmary:</b> (Uper Right Corner of Circle) Contains sleepers and basic medical supplies for superficial wounds. The sleepers can consume Vitality to heal any occupants. \
 	This room is generally more useful during the preparation phase; when defending the Ark, scripture is more useful.</li>\
 	<li><b>Summoning Room:</b> (Uper Left Corner of Circle) Holds two scarabs as well as extra clockwork slabs. Also houses the eminence spire to pick an eminence as well has the herald's beacon which alows the clock cult to declare war.</li>\

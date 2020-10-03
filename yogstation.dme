@@ -1376,6 +1376,7 @@
 #include "code\modules\antagonists\clockcult\clock_structures\ocular_warden.dm"
 #include "code\modules\antagonists\clockcult\clock_structures\ratvar_the_clockwork_justicar.dm"
 #include "code\modules\antagonists\clockcult\clock_structures\taunting_trail.dm"
+#include "code\modules\antagonists\clockcult\clock_structures\teleport_anchors.dm"
 #include "code\modules\antagonists\clockcult\clock_structures\wall_gear.dm"
 #include "code\modules\antagonists\clockcult\clock_structures\trap_triggers\lever.dm"
 #include "code\modules\antagonists\clockcult\clock_structures\trap_triggers\pressure_sensor.dm"
