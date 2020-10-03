@@ -54,18 +54,9 @@
 
 	GLOB.emote_list = init_emote_list()
 	//Skillcapes
-	for(var/path in typecacheof(/obj/item/clothing/neck/skillcape))
-		var/obj/item/clothing/neck/skillcape/A = new path()
-		var/datum/skillcape/B = new /datum/skillcape()
-		B.name = A.name
-		B.hours = A.hours
-		B.job = A.job
-		B.special = A.special
-		B.capetype = A.capetype
-		B.path = path
-		GLOB.skillcapes += B
-		qdel(A)
-
+	for(var/path in subtypesof(/datum/skillcape))
+		var/datum/material/A = new path()
+		GLOB.skillcapes += A
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 
