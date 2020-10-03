@@ -44,7 +44,7 @@ Difficulty: Hard
 	icon_state = "hierophant"
 	icon_living = "hierophant"
 	friendly = "stares down"
-	icon = 'icons/mob/lavaland/hierophant_new.dmi'
+	icon = 'icons/mob/lavaland/hierophant.dmi'
 	faction = list("boss") //asteroid mobs? get that shit out of my beautiful square house
 	speak_emote = list("preaches")
 	armour_penetration = 50
