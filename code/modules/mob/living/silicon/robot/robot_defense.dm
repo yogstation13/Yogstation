@@ -1,3 +1,10 @@
+/mob/living/silicon/robot/attack_robot(mob/user) // allowing for clicking people off like a chair
+	. = ..()
+	if(user == src && buckled_mobs.len && user.a_intent == INTENT_HELP)
+		for(var/i in buckled_mobs)
+			var/mob/buckmob = i
+			unbuckle_mob(buckmob)
+
 /mob/living/silicon/robot/attackby(obj/item/I, mob/living/user)
 	if(I.slot_flags & ITEM_SLOT_HEAD && hat_offset != INFINITY && user.a_intent == INTENT_HELP && !is_type_in_typecache(I, blacklisted_hats))
 		to_chat(user, "<span class='notice'>You begin to place [I] on [src]'s head...</span>")

@@ -81,11 +81,14 @@
 #define ANTAG_HUD_FUGITIVE		26
 #define ANTAG_HUD_CAPITALIST	27
 #define ANTAG_HUD_COMMUNIST		28
+#define ANTAG_HUD_HERETIC		29
+#define ANTAG_HUD_MINDSLAVE		30
 
 // Notification action types
 #define NOTIFY_JUMP "jump"
 #define NOTIFY_ATTACK "attack"
 #define NOTIFY_ORBIT "orbit"
+#define NOTIFY_ATTACKORBIT "attackorbit"
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20

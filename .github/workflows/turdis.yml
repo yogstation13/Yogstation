@@ -30,8 +30,6 @@ jobs:
       
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v1.3.2
-        with:
-          default: true
 
       - name: Install Dependencies
         run: |
@@ -41,6 +39,7 @@ jobs:
 
       - name: Misc Checks
         run: |
+          python tools/travis/check_dme_alphabetical.py yogstation.dme
           tools/travis/check_filedirs.sh yogstation.dme
           tools/travis/check_changelogs.sh
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
@@ -48,7 +47,16 @@ jobs:
           tools/travis/check_grep.sh
 
       - name: Run Linter
-        run: ~/dreamchecker
+        id: linter
+        run: |
+          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+          
+      - name: Annotate Linter
+        uses: yogstation13/DreamAnnotate@v1
+        if: always()
+        with: 
+          outputFile: output-annotations.txt
+        
   compile:
     name: Compile All Maps
     runs-on: ubuntu-18.04

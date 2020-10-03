@@ -308,18 +308,20 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/explode()
 	for(var/mob in GLOB.alive_mob_list)
-		var/mob/living/L = mob
-		if(istype(L) && L.z == z)
-			if(ishuman(mob))
-				//Hilariously enough, running into a closet should make you get hit the hardest.
-				var/mob/living/carbon/human/H = mob
-				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
-			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
-			L.rad_act(rads)
+		var/mob/living/M = mob
+		var/turf/T2 = get_turf_global(M)
+		if(istype(M) && T2 && T2.z == z)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) )
+			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(M, src) + 1) )
+			M.rad_act(rads)
 
 	var/turf/T = get_turf(src)
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
+	for(var/_M in GLOB.player_list)
+		var/mob/M = _M
+		var/turf/T2 = get_turf(M)
+		if(T2.z == z)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
 			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
@@ -340,13 +342,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 				message_admins("[src] has exploded in empty space.")
 				investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
-				explosion(get_turf(T), explosion_power * 0.5, explosion_power+2, explosion_power+4, explosion_power+6, 1, 1)
+				explosion(T, explosion_power * 0.5, explosion_power+2, explosion_power+4, explosion_power+6, 1, 1)
 			else
 				message_admins("[src] has exploded")
-				explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.5) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.5) + 2, explosion_power * max(gasmix_power_ratio, 0.5) + 4 , explosion_power * max(gasmix_power_ratio, 0.5) + 6, 1, 1)
+				explosion(T, explosion_power * max(gasmix_power_ratio, 0.5) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.5) + 2, explosion_power * max(gasmix_power_ratio, 0.5) + 4 , explosion_power * max(gasmix_power_ratio, 0.5) + 6, 1, 1)
 		else
 			message_admins("[src] has exploded")
-			explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
+			explosion(T, explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
 			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
 		if(power > POWER_PENALTY_THRESHOLD)
 			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
@@ -646,6 +648,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
 			has_been_powered = TRUE
+			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSYogs.department_goals
+			if(goal)
+				goal.complete()
+
 	else if(takes_damage)
 		damage += Proj.damage * config_bullet_energy
 	return BULLET_ACT_HIT

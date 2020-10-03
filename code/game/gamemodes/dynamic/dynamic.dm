@@ -15,7 +15,7 @@ GLOBAL_VAR_INIT(dynamic_latejoin_delay_min, (5 MINUTES))
 GLOBAL_VAR_INIT(dynamic_latejoin_delay_max, (25 MINUTES))
 
 GLOBAL_VAR_INIT(dynamic_midround_delay_min, (15 MINUTES))
-GLOBAL_VAR_INIT(dynamic_midround_delay_max, (35 MINUTES))
+GLOBAL_VAR_INIT(dynamic_midround_delay_max, (60 MINUTES))
 
 // Are HIGHLANDER_RULESETs allowed to stack?
 GLOBAL_VAR_INIT(dynamic_no_stacking, FALSE)
@@ -45,6 +45,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	name = "dynamic mode"
 	config_tag = "dynamic"
 	report_type = "dynamic"
+	title_icon = "ss13"
 
 	announce_span = "danger"
 	announce_text = "Dynamic mode!" // This needs to be changed maybe

@@ -23,6 +23,7 @@ export const PortableGenerator = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="Power switch">
               <Button
+                color={data.active ? 'green' : 'default'}
                 icon={data.active ? 'power-off' : 'times'}
                 onClick={() => act('toggle_power')}
                 disabled={!data.ready_to_boot}>

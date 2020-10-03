@@ -234,13 +234,6 @@
 /obj/structure/piano,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"aC" = (
-/obj/structure/chair/stool/bar{
-	color = "purple"
-	},
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "aD" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8;
@@ -633,10 +626,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
-"bq" = (
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "br" = (
 /obj/structure/kitchenspike,
 /obj/effect/turf_decal/tile/purple,
@@ -659,16 +648,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
-"bt" = (
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8;
-	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -736,25 +715,6 @@
 	color = "purple"
 	},
 /turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/bar)
-"bA" = (
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/item/toy/crayon/purple,
-/obj/item/toy/crayon/purple,
-/obj/item/toy/crayon/purple,
-/obj/item/toy/crayon/purple,
-/obj/item/toy/crayon/purple,
-/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bB" = (
 /obj/machinery/disposal/bin,
@@ -837,21 +797,6 @@
 	},
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/bar)
-"bK" = (
-/obj/item/toy/cards/deck,
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bL" = (
 /obj/structure/chair/stool/bar{
@@ -1185,24 +1130,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"cv" = (
-/obj/item/clothing/head/that{
-	throwforce = 1;
-	throwing = 1
-	},
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "cx" = (
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/mineral/titanium/purple,
@@ -1294,17 +1221,6 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"dh" = (
-/obj/structure/table/reinforced{
-	color = "purple"
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/item/gun/ballistic/revolver/russian,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "di" = (
@@ -1440,6 +1356,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"kV" = (
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/toy/crayon/purple,
+/obj/item/toy/crayon/purple,
+/obj/item/toy/crayon/purple,
+/obj/item/toy/crayon/purple,
+/obj/item/toy/crayon/purple,
+/obj/item/toy/cards/deck,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "rs" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/mixbowl{
@@ -1449,6 +1385,14 @@
 /area/crew_quarters/kitchen)
 "vE" = (
 /obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"xW" = (
+/obj/structure/chair/stool/bar{
+	color = "purple"
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "BD" = (
@@ -1473,6 +1417,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"Eq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8;
+	icon_state = "vent_map_on-1"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
 "ER" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -1503,6 +1456,55 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"IV" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"Px" = (
+/obj/effect/landmark/blobstart,
+/obj/item/toy/crayon/purple,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"SV" = (
+/obj/structure/chair/comfy/brown{
+	buildstackamount = 0;
+	color = "purple";
+	dir = 1
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/bar)
+"Tj" = (
+/obj/structure/table/reinforced{
+	color = "purple"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/item/clothing/head/that{
+	throwforce = 1;
+	throwing = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"UJ" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1539,14 +1541,14 @@ ab
 (3,1,1) = {"
 ab
 ab
-aC
+xW
 aT
 aT
 aT
 aT
 aT
 aT
-aT
+UJ
 aT
 di
 du
@@ -1593,7 +1595,7 @@ bh
 bx
 bh
 ca
-bh
+SV
 bx
 bh
 df
@@ -1670,13 +1672,13 @@ at
 cd
 cf
 aW
-bA
-bK
+kV
 cJ
-cv
+Tj
 cJ
 cY
-dh
+cY
+IV
 bF
 ab
 "}
@@ -1765,7 +1767,7 @@ aj
 aJ
 as
 ab
-bq
+Px
 ak
 bP
 cN
@@ -1829,7 +1831,7 @@ ak
 ak
 aP
 be
-bt
+Eq
 ak
 bT
 co

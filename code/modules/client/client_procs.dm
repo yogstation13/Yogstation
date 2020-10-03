@@ -252,6 +252,16 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		if(isnull(address) || (address in localhost_addresses))
 			var/datum/admin_rank/localhost_rank = new("!localhost!", R_EVERYTHING, R_DBRANKS, R_EVERYTHING) //+EVERYTHING -DBRANKS *EVERYTHING
 			new /datum/admins(localhost_rank, ckey, 1, 1)
+
+	// yogs start - mentor stuff
+	if(ckey in GLOB.mentor_datums)
+		var/datum/mentors/mentor = GLOB.mentor_datums[ckey]
+		src.mentor_datum = mentor
+		src.add_mentor_verbs()
+		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
+			GLOB.mentors += src
+	// yogs end
+
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
 	if(prefs)
@@ -310,16 +320,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
-	// yogs start - mentor stuff
-	if(ckey in GLOB.mentor_datums)
-		var/datum/mentors/mentor = GLOB.mentor_datums[ckey]
-		src.mentor_datum = mentor
-		src.add_mentor_verbs()
-		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
-			GLOB.mentors += src
-	// yogs end
-
-
 	. = ..()	//calls mob.Login()
 
 	if (byond_version >= 512)
@@ -485,8 +485,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //////////////
 
 /client/Del()
-	if(credits)
-		QDEL_LIST(credits)
+	//if(credits)
+		//QDEL_LIST(credits)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		adminGreet(1)

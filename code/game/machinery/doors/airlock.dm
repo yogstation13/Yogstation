@@ -116,7 +116,8 @@
 	. = ..()
 	bolt_log = list() //yogs
 	shocking_log = list() //yogs
-	wires = new /datum/wires/airlock(src)
+	wires = set_wires()
+
 	if(frequency)
 		set_frequency(frequency)
 
@@ -386,6 +387,15 @@
 	A.name = name
 	qdel(src)
 
+/obj/machinery/door/airlock/honk_act()
+	var/obj/machinery/door/airlock/bananium/B
+	if(glass)
+		B = new/obj/machinery/door/airlock/bananium/glass(get_turf(src))
+	else
+		B = new/obj/machinery/door/airlock/bananium(get_turf(src))
+	B.name = name
+	qdel(src)
+
 /obj/machinery/door/airlock/Destroy()
 	QDEL_NULL(wires)
 	if(charge)
@@ -548,6 +558,7 @@
 		return FALSE
 
 /obj/machinery/door/airlock/update_icon(state=0, override=0)
+	cut_overlays()
 	if(operating && !override)
 		return
 	switch(state)
@@ -585,7 +596,6 @@
 		base.add_overlay(get_airlock_overlay(notetype, note_overlay_file))
 
 /obj/machinery/door/airlock/proc/set_airlock_overlays(state)
-
 	for(var/obj/effect/overlay/airlock_part/part in part_overlays)
 		set_side_overlays(part, state == AIRLOCK_CLOSING || state == AIRLOCK_OPENING)
 		if(part.aperture_angle)
@@ -626,9 +636,8 @@
 					part.pixel_y = 0
 					animate(part, pixel_x = 0, pixel_y = 0, time = part.move_start_time)
 					animate(pixel_x = part.open_px, pixel_y = part.open_py, time = part.move_end_time - part.move_start_time)
-	
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	SSvis_overlays.add_vis_overlay(src, overlays_file, "frame", FLOAT_LAYER, FLOAT_PLANE, dir)
 
 	switch(state)
@@ -673,7 +682,7 @@
 			if(obj_integrity < (0.75 * max_integrity))
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_open", FLOAT_LAYER, FLOAT_PLANE, dir)
 
-		if(AIRLOCK_OPENING)	
+		if(AIRLOCK_OPENING)
 			if(lights && hasPower())
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
 	check_unres()
@@ -1753,6 +1762,17 @@
 		H.adjust_fire_stacks(20)
 		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
 		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
+
+
+/**
+  *	Generates the airlock's wire layout based on the current area the airlock resides in.
+  *
+  * Returns a new /datum/wires/ with the appropriate wire layout based on the airlock_wires
+  * of the area the airlock is in.
+  */
+/obj/machinery/door/airlock/proc/set_wires()
+	var/area/source_area = get_area(src)
+	return new source_area.airlock_wires(src)
 
 #undef AIRLOCK_CLOSED
 #undef AIRLOCK_CLOSING

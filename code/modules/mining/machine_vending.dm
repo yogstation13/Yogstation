@@ -246,14 +246,18 @@
 /obj/machinery/mineral/equipment_vendor/golem/Initialize()
 	desc += "\nIt seems a few selections have been added."
 	prize_list += list(
-		new /datum/data/mining_equipment("The Liberator's Legacy",  	/obj/item/storage/box/rndboards,								2000, VENDING_TOOL),
-		new /datum/data/mining_equipment("Modification Kit",    		/obj/item/borg/upgrade/modkit/trigger_guard,					1700, VENDING_UPGRADE),
-		new /datum/data/mining_equipment("Extra Id",       				/obj/item/card/id/mining, 				                   		250, VENDING_MISC),
+		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/bica,									600, VENDING_MEDS),
+		new /datum/data/mining_equipment("Burn Pill Bottle",			/obj/item/storage/pill_bottle/kelo,									600, VENDING_MEDS),
+		new /datum/data/mining_equipment("Toxin Pill Bottle",			/obj/item/storage/pill_bottle/charcoal,								600, VENDING_MEDS),
+		new /datum/data/mining_equipment("KA Trigger Guard Kit",    		/obj/item/borg/upgrade/modkit/trigger_guard,					1700, VENDING_UPGRADE),
+		new /datum/data/mining_equipment("Extra ID",       				/obj/item/card/id/mining, 				                   		250, VENDING_MISC),
 		new /datum/data/mining_equipment("Monkey Cube",					/obj/item/reagent_containers/food/snacks/monkeycube,        	300, VENDING_MISC),
 		new /datum/data/mining_equipment("Grey Slime Extract",			/obj/item/slime_extract/grey,									1000, VENDING_MISC),
 		new /datum/data/mining_equipment("Science Goggles",       		/obj/item/clothing/glasses/science,								250, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Toolbelt",					/obj/item/storage/belt/utility,	    							350, VENDING_EQUIPMENT),
-		new /datum/data/mining_equipment("Royal Cape of the Liberator", /obj/item/bedsheet/rd/royal_cape, 								500, VENDING_EQUIPMENT)
+		new /datum/data/mining_equipment("Random Poster",				/obj/item/poster/random_official,								200, VENDING_MISC),
+		new /datum/data/mining_equipment("Royal Cape of the Liberator", /obj/item/bedsheet/rd/royal_cape, 								500, VENDING_EQUIPMENT),
+		new /datum/data/mining_equipment("The Liberator's Legacy",  	/obj/item/storage/box/rndboards,								2000, VENDING_TOOL)
 		)
 	return ..()
 
@@ -261,7 +265,7 @@
 
 /obj/machinery/mineral/equipment_vendor/free_miner
 	name = "free miner ship equipment vendor"
-	desc = "a vendor sold by nanotrasen to profit off small mining contractors."
+	desc = "A vendor sold by NanoTrasen to profit off small mining contractors."
 	prize_list = list(
 		new /datum/data/mining_equipment("Kinetic Accelerator", 		/obj/item/gun/energy/kinetic_accelerator,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",          			/obj/item/resonator,											800, VENDING_WEAPON),
@@ -300,7 +304,8 @@
 		new /datum/data/mining_equipment("Toxin First-Aid Kit",			/obj/item/storage/firstaid/toxin,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Stimpack Bundle",				/obj/item/storage/box/medipens/utility,							200, VENDING_MEDS),
 		new /datum/data/mining_equipment("Point Transfer Card", 		/obj/item/card/mining_point_card,								500, VENDING_MISC),
-		new /datum/data/mining_equipment("Space Cash",    				/obj/item/stack/spacecash/c1000,								2000, VENDING_MISC)
+		new /datum/data/mining_equipment("Space Cash",    				/obj/item/stack/spacecash/c1000,								2000, VENDING_MISC),
+		new /datum/data/mining_equipment("R&D Starter Kit",  			/obj/item/storage/box/rndboards/miner,							2500, VENDING_TOOL)
 		)
 
 /obj/machinery/mineral/equipment_vendor/free_miner/New()

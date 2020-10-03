@@ -778,10 +778,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
-"eA" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/engineering)
 "eB" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5583,10 +5579,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"zF" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/chemistry)
 "Ay" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/syndichem{
@@ -5683,10 +5675,6 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
-"DO" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/virology)
 "Ec" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -6103,10 +6091,10 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
-"LM" = (
+"LH" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/testlab)
+/area/ruin/unpowered/syndicate_lava_base/main)
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -6184,10 +6172,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/photocopier,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/unpowered/syndicate_lava_base/cargo)
-"MT" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
 "Nn" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
@@ -6286,10 +6270,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/bar)
-"Pg" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/telecomms)
 "Pk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/medical/glass{
@@ -6648,10 +6628,6 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/chemistry)
-"Wr" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
 "XT" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -7087,7 +7063,7 @@ eh
 eh
 eh
 eh
-DO
+LH
 ab
 ab
 ab
@@ -7310,7 +7286,7 @@ nm
 nK
 ok
 mn
-Pg
+LH
 ab
 ab
 ab
@@ -7531,7 +7507,7 @@ ac
 ab
 ac
 ac
-LM
+LH
 ae
 ae
 ae
@@ -8227,7 +8203,7 @@ ab
 ab
 ab
 ab
-zF
+LH
 as
 as
 dI
@@ -8359,7 +8335,7 @@ lI
 nA
 oc
 kQ
-Wr
+LH
 ac
 ab
 ab
@@ -8730,7 +8706,7 @@ ab
 ab
 ab
 ab
-MT
+LH
 dy
 uT
 fe
@@ -8789,7 +8765,7 @@ gf
 dy
 Fe
 Yh
-MT
+LH
 ab
 ab
 ab
@@ -8797,7 +8773,7 @@ ab
 ab
 ab
 ab
-eA
+LH
 ju
 kC
 Cb
@@ -8858,7 +8834,7 @@ ju
 ju
 ju
 ju
-eA
+LH
 ab
 ab
 ab

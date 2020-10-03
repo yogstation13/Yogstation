@@ -399,7 +399,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				else
 					to_chat(user, "<span class='notice'>There's nothing to restock!</span>")
 			return
-	if(compartmentLoadAccessCheck(user))
+	if(user.a_intent != INTENT_HARM && compartmentLoadAccessCheck(user))
 		if(canLoadItem(I))
 			loadingAttempt(I,user)
 			updateUsrDialog() //can't put this on the proc above because we spam it below
@@ -507,7 +507,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 			name = R.name,
 			price = R.custom_premium_price || extra_price,
 			max_amount = R.max_amount,
-			ref = REF(R)
+			ref = REF(R),
+			extended = TRUE
 		)
 		.["coin_records"] += list(data)
 	.["hidden_records"] = list()

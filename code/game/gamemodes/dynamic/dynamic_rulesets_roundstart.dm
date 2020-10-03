@@ -105,7 +105,7 @@
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
 	weight = 1
-	cost = 15
+	cost = 10
 	requirements = list(80,70,60,50,40,20,20,10,10,10)
 	high_population_requirement = 10
 	var/team_mode_probability = 30
@@ -137,6 +137,46 @@
 		new_antag.team_mode = team_mode
 		changeling.add_antag_datum(new_antag)
 	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//              ELDRITCH CULT               //
+//                                          //
+//////////////////////////////////////////////
+
+/*/datum/dynamic_ruleset/roundstart/heretics
+	name = "Heretics"
+	antag_flag = ROLE_HERETIC
+	antag_datum = /datum/antagonist/heretic
+	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 1
+	weight = 3
+	cost = 20
+	requirements = list(50,45,45,40,35,20,20,15,10,10)
+
+
+/datum/dynamic_ruleset/roundstart/heretics/pre_execute()
+	. = ..()
+	var/num_ecult = antag_cap[indice_pop] * (scaled_times + 1)
+
+	for (var/i = 1 to num_ecult)
+		var/mob/picked_candidate = pick_n_take(candidates)
+		assigned += picked_candidate.mind
+		picked_candidate.mind.restricted_roles = restricted_roles
+		picked_candidate.mind.special_role = ROLE_HERETIC
+		GLOB.pre_setup_antags += picked_candidate.mind
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/heretics/execute()
+
+	for(var/c in assigned)
+		var/datum/mind/cultie = c
+		var/datum/antagonist/heretic/new_antag = new antag_datum()
+		cultie.add_antag_datum(new_antag)
+		GLOB.pre_setup_antags -= cultie
+
+	return TRUE */
 
 //////////////////////////////////////////////
 //                                          //
@@ -466,15 +506,6 @@
 	var/ark_time
 
 /datum/dynamic_ruleset/roundstart/clockcult/pre_execute()
-	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
-	if(errorList.len)
-		message_admins("Reebe failed to load!")
-		log_game("Reebe failed to load!")
-		return FALSE
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
-
 	var/starter_servants = 4
 	var/number_players = mode.roundstart_pop_ready
 	if(number_players > 30)
@@ -702,8 +733,7 @@
 	required_candidates = 0
 	weight = 1
 	cost = 75
-	requirements = list(100,100,100,100,100,100,100,100,100,100)
-	high_population_requirement = 100
+	requirements = list(100,100,100,100,100,100,100,100,99,98)
 	var/meteordelay = 2000
 	var/nometeors = 0
 	var/rampupdelta = 5
@@ -739,7 +769,7 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 1
-	cost = 35
+	cost = 30
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGHLANDER_RULESET
 	minimum_players = 30
@@ -758,7 +788,7 @@
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Shadowling")
 	return TRUE
-	
+
 /datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
 	return FALSE
 
@@ -773,18 +803,17 @@
 
 /datum/dynamic_ruleset/roundstart/vampire
 	name = "Vampire"
-	persistent = TRUE
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
 	weight = 1
-	cost = 25
+	cost = 10
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	minimum_players = 30
 	var/autovamp_cooldown = 450 // 15 minutes (ticks once per 2 sec)
-	
+
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute()
 	var/traitor_scaling_coeff = 10 - max(0,round(mode.threat_level/10)-5) // Above 50 threat level, coeff goes down by 1 for every 10 levels
 	var/num_traitors = min(round(mode.candidates.len / traitor_scaling_coeff) + 1, candidates.len)
@@ -810,70 +839,73 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/wizard/raging
+// Dynamic is a wonderful thing that adds wizards to every round and then adds even more wizards during the round.
+/datum/dynamic_ruleset/roundstart/wizard/ragin
 	name = "Ragin' Mages"
-	antag_flag = ROLE_WIZARD
-	antag_datum = /datum/antagonist/wizard
+	antag_flag = ROLE_RAGINMAGES
+	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
-	required_candidates = 4
+	required_candidates = 1
 	weight = 1
-	cost = 70
-	requirements = list(100,95,90,80,75,75,70,60,60,55)
+	cost = 60
+	requirements = list(100,100,100,100,90,90,85,85,85,80)
+	roundstart_wizards = list()
+	var/bullshit_mode = 0
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/acceptable(population=0, threat=0)
+/datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		return FALSE
 	return ..()
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/pre_execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/pre_execute()
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
-		M.mind.assigned_role = ROLE_WIZARD
-		M.mind.special_role = ROLE_WIZARD
+		M.mind.assigned_role = ROLE_RAGINMAGES
+		M.mind.special_role = ROLE_RAGINMAGES
 
 	return TRUE
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/execute()
 	for(var/datum/mind/M in assigned)
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //              BULLSHIT MAGES				//
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit
 	name = "Bullshit Mages"
-	antag_flag = ROLE_WIZARD
-	antag_datum = /datum/antagonist/wizard
+	antag_flag = ROLE_BULLSHITMAGES
+	antag_datum = /datum/antagonist/wizard/
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 4
 	weight = 1
 	cost = 80
 	minimum_players = 40
-	requirements = list(100,100,100,100,95,95,90,80,85,75)
+	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	var/mage_cap = 999
-	var/bullshit_mode = 1
+	bullshit_mode = 1
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/acceptable(population=0, threat=0)
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		return FALSE
 	return ..()
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/pre_execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/pre_execute()
 	var/indice_pop = min(45,round(mode.roundstart_pop_ready/2)+1)
 	var/mages = mage_cap[indice_pop]
 	for(var/mages_number = 1 to mages)
@@ -883,18 +915,18 @@
 	var/mob/M = pick_n_take(candidates)
 	if (M)
 		assigned += M.mind
-		M.mind.assigned_role = ROLE_WIZARD
-		M.mind.special_role = ROLE_WIZARD
+		M.mind.assigned_role = ROLE_RAGINMAGES
+		M.mind.special_role = ROLE_RAGINMAGES
 		log_admin("Shit is about to get wild. -Bullshit Wizards")
 
 	return TRUE
 
-/datum/dynamic_ruleset/roundstart/wizard/raging/bullshit/execute()
+/datum/dynamic_ruleset/roundstart/wizard/ragin/bullshit/execute()
 	for(var/datum/mind/M in assigned)
 		M.current.forceMove(pick(GLOB.wizardstart))
 		M.add_antag_datum(new antag_datum())
 	return TRUE
-	
+
 //////////////////////////////////////////////
 //                                          //
 //                DARKSPAWN                 //

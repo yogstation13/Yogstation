@@ -108,7 +108,7 @@
 	var/datum/chatOutput/chatOutput
 
  	///lazy list of all credit object bound to this client
-	var/list/credits
+	//var/list/credits
 
  	///these persist between logins/logouts during the same round.
 	var/datum/player_details/player_details
