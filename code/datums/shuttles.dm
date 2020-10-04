@@ -430,10 +430,6 @@
 	suffix = "frigate"
 	name = "NT Frigate"
 
-/datum/map_template/shuttle/whiteship/pod
-	suffix = "whiteship_pod"
-	name = "Salvage Pod"
-
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"
 	name = "supply shuttle (Box)"
