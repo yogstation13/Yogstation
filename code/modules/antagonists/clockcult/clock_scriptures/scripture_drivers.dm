@@ -171,7 +171,7 @@
 /datum/clockwork_scripture/abscond
 	descname = "Return to Reebe"
 	name = "Abscond"
-	desc = "Yanks you through space, returning you to home base. Requires you to be next to your anchor."
+	desc = "Yanks you through space, returning you to home base. Requires you to be next to your anchor if there are 8 servants or more."
 	invocations = list("As we bid farewell, and return to the stars...", "...we shall find our way home.")
 	whispered = TRUE
 	channel_time = 50
@@ -197,7 +197,7 @@
 		if(a.owner == invoker.mind)
 			anchor = a
 			break
-	if(!anchor)
+	if(!anchor && !GLOB.clockcult_free_absconds[invoker.mind])
 		to_chat(invoker, "<span class='danger'>You need to be next to your anchor.</span>") // remind me to give them a pointer to it at this point.
 		return FALSE
 	return TRUE
@@ -219,7 +219,11 @@
 	do_sparks(5, TRUE, T)
 	if(take_pulling)
 		adjust_clockwork_power(-special_power_cost)
+		if(istype(invoker.pulling, /mob/living))
+			var/mob/living/l = invoker.pulling
+			GLOB.clockcult_free_absconds -= l.mind
 		invoker.pulling.forceMove(T)
+	GLOB.clockcult_free_absconds -= invoker.mind
 	invoker.forceMove(T)
 	for(var/obj/structure/destructible/clockwork/anchor/a in GLOB.all_clockwork_objects)
 		if(a.owner == invoker.mind)

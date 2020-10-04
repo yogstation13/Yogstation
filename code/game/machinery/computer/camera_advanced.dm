@@ -340,6 +340,7 @@
 	var/obj/machinery/computer/camera_advanced/ratvar/R  = target
 	var/list/possiblestarts = GLOB.xeno_spawn + GLOB.blobstart + GLOB.generic_event_spawns
 	var/list/secondratestarts = list()
+	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
 	var/turf/T
 	for(var/obj/o in GLOB.all_clockwork_objects)
 		if(istype(o, /obj/structure/destructible/clockwork/anchor))
@@ -350,6 +351,30 @@
 					break
 				else
 					a.disable()
+	if(SSticker.mode.servants_of_ratvar <= 8) // If there's less than 8 ratvarians we let them TP in for freee
+		T = get_turf(remote_eye)
+		if(!is_reebe(user.z) || !is_station_level(T.z))
+			return
+		if(isclosedturf(T))
+			to_chat(user, "<span class='sevtug_small'>You can't teleport into a wall.</span>")
+			return
+		else if(isspaceturf(T))
+			to_chat(user, "<span class='sevtug_small'>[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]</span>")
+			return
+		else if(T.flags_1 & NOJAUNT_1)
+			to_chat(user, "<span class='sevtug_small'>This tile is blessed by strange energies and deflects the warp.</span>")
+			return
+		else if(locate(/obj/effect/blessing, T))
+			to_chat(user, "<span class='sevtug_small'>This tile is blessed by holy water and deflects the warp.</span>")
+			return
+		var/area/AR = get_area(T)
+		if(!AR.clockwork_warp_allowed)
+			to_chat(user, "<span class='sevtug_small'>[AR.clockwork_warp_fail]</span>")
+			return
+		if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
+			return
+		GLOB.clockcult_free_absconds += user.mind
+		
 	if(!T)
 		for(var/turf/T2 in shuffle(possiblestarts))
 			if(!is_reebe(user.z) || !is_station_level(T2.z))
@@ -410,7 +435,6 @@
 			//How did you mangage this?
 			to_chat(user, "<span class='danger'>No available locations.</span>")
 			return
-	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
 	remote_eye.setLoc(T)
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
