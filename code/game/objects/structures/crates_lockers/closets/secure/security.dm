@@ -111,6 +111,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/radio/security(src)
 	new /obj/item/clipboard/yog/paperwork/security(src)
+	new /obj/item/clothing/neck/bodycam(src)
 
 /obj/structure/closet/secure_closet/security/sec
 
