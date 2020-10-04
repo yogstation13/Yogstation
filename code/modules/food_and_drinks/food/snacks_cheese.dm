@@ -250,7 +250,7 @@
 	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan
-	name = "unmature parmesan cheese wheel"
+	name = "unmatured parmesan cheese wheel"
 	desc = "A big wheel of unmature parmesan cheese."
 	icon_state = "preparmesan_wheel"
 	w_class = WEIGHT_CLASS_NORMAL

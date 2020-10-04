@@ -2477,8 +2477,8 @@
 /area/icemoon/underground/explored)
 "yr" = (
 /obj/machinery/computer/shuttle/labor/one_way{
-	icon_state = "computer";
-	dir = 4
+	dir = 4;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
@@ -2770,8 +2770,8 @@
 /area/mine/living_quarters)
 "Lp" = (
 /obj/machinery/computer/prisoner{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
@@ -2858,8 +2858,8 @@
 /area/mine/laborcamp)
 "QQ" = (
 /obj/machinery/computer/secure_data{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
@@ -3023,8 +3023,8 @@
 /area/mine/production)
 "XS" = (
 /obj/machinery/computer/security/labor{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)

@@ -517,28 +517,6 @@
 		SSticker.force_ending = 1
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "End Round") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/delay_end_round()
-	set category = "Server"
-	set name = "Delay Round-End"
-	set desc = "Delays the round end when round end timer has already been started"
-
-	if(!check_rights(R_ADMIN)) //YOGS - R_SERVER -> R_ADMIN
-		return
-	if(!SSticker.delay_end)
-		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
-		if(isnull(SSticker.admin_delay_notice))
-			return
-	else
-		SSticker.admin_delay_notice = null
-	SSticker.delay_end = !SSticker.delay_end
-	var/reason = SSticker.delay_end ? "for reason: [SSticker.admin_delay_notice]" : "."//laziness
-	var/msg = "[SSticker.delay_end ? "delayed" : "undelayed"] the round end [reason]"
-	log_admin("[key_name(usr)] [msg]")
-	message_admins("[key_name_admin(usr)] [msg]")
-	if(SSticker.ready_for_reboot && !SSticker.delay_end) //we undelayed after standard reboot would occur
-		SSticker.standard_reboot()
-
-
 /datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
@@ -661,23 +639,42 @@
 
 /datum/admins/proc/delay()
 	set category = "Server"
-	set desc="Delay the game start"
-	set name="Delay pre-game"
+	set desc="Delay the game"
+	set name="Delay Start/End"
 
-	var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.","Set Delay",round(SSticker.GetTimeLeft()/10)) as num|null
-	if(SSticker.current_state > GAME_STATE_PREGAME)
-		return alert("Too late... The game has already started!")
-	if(newtime)
-		newtime = newtime*10
-		SSticker.SetTimeLeft(newtime)
-		if(newtime < 0)
-			to_chat(world, "<b>The game start has been delayed.</b>")
-			log_admin("[key_name(usr)] delayed the round start.")
+	if(!check_rights(R_ADMIN)) //YOGS - R_SERVER -> R_ADMIN
+		return
+
+	if(SSticker.current_state < GAME_STATE_PLAYING)
+		var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.","Set Delay",round(SSticker.GetTimeLeft()/10)) as num|null
+		if(newtime)
+			newtime = newtime*10
+			SSticker.SetTimeLeft(newtime)
+			if(newtime < 0)
+				to_chat(world, "<b>The game start has been delayed.</b>")
+				log_admin("[key_name(usr)] delayed the round start.")
+				message_admins("[key_name(usr)] delayed the round start.")
+			else
+				to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>")
+				SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+				message_admins("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+				log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+			SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	else
+		if(!SSticker.delay_end)
+			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+			if(isnull(SSticker.admin_delay_notice))
+				return
 		else
-			to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>")
-			SEND_SOUND(world, sound('sound/ai/attention.ogg'))
-			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			SSticker.admin_delay_notice = null
+		SSticker.delay_end = !SSticker.delay_end
+		var/reason = SSticker.delay_end ? "for reason: [SSticker.admin_delay_notice]" : ""
+		var/msg = "[SSticker.delay_end ? "delayed" : "undelayed"] the round end [reason]"
+		log_admin("[key_name(usr)] [msg]")
+		message_admins("[key_name_admin(usr)] [msg]")
+		if(SSticker.ready_for_reboot && !SSticker.delay_end) //we undelayed after standard reboot would occur
+			if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+				SSticker.Reboot(delay = 100, force = TRUE)
 
 /datum/admins/proc/unprison(mob/M in GLOB.mob_list)
 	set category = "Admin"

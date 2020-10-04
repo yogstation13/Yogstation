@@ -117,6 +117,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN || !operable || stat & NOPOWER)
 		operating = FALSE
+		update_icon()
 		return FALSE
 	return TRUE
 
@@ -286,6 +287,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	for(var/obj/machinery/conveyor/C in GLOB.conveyors_by_id[id])
 		C.operating = position
 		C.update_move_direction()
+		C.update_icon()
 		CHECK_TICK
 
 // attack with hand, switch position

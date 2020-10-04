@@ -330,7 +330,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(resolved)
 		AddInteraction("Ticket #[id] marked as resolved by [usr.ckey].")
-		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as resolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]. The Adminhelp verb will be returned to you shortly.</span>", confidential=TRUE)
+		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as resolved by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)].</span>", confidential=TRUE)
 		addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 	else // AHELP_ACTIVE
 		AddInteraction("Ticket #[id] marked as unresolved by [usr.ckey].")
