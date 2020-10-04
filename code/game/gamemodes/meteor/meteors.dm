@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(meteors_threatening, list(/obj/effect/meteor/medium=4, /obj/eff
 						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3, /obj/effect/meteor/guardian=1)) //for threatening meteor event
 
 GLOBAL_LIST_INIT(meteors_catastrophic, list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, \
-						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/tunguska = 1, /obj/effect/meteor/guardian=2)) //for catastrophic meteor event
+						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/guardian=2, /obj/effect/meteor/tunguska = 1)) //for catastrophic meteor event
 
 GLOBAL_LIST_INIT(meteors_meaty_normal, list(/obj/effect/meteor/meaty=5, /obj/effect/meteor/meaty/xeno=1)) //for meaty ore event
 
