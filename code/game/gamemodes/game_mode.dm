@@ -581,7 +581,7 @@
 
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
-		log_admin([msg.Join())
+		log_admin(msg.Join())
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/game_mode/proc/age_check(client/C)
 	if(get_remaining_days(C) == 0)
