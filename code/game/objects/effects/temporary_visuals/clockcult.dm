@@ -249,9 +249,10 @@
 	light_power = 0.7
 	duration = 55
 
-/obj/effect/temp_visual/ratvar/warp_marker/Initialize(mapload, mob/living/servant)
+/obj/effect/temp_visual/ratvar/warp_marker/Initialize(mapload, mob/living/servant, _duration = 50)
+	duration = _duration + 5
 	. = ..()
-	animate(src, alpha = 255, time = 50)
+	animate(src, alpha = 255, time = _duration)
 
 //Used by the Eminence to coordinate the cult
 /obj/effect/temp_visual/ratvar/command_point

@@ -12,7 +12,7 @@
 /// The total value of all structures built by the clockwork cult
 GLOBAL_VAR_INIT(clockwork_construction_value, 0)
 ///How many joules of power are globally available to the clockwork cult
-GLOBAL_VAR_INIT(clockwork_power, 0) 
+GLOBAL_VAR_INIT(clockwork_power, 0)
 /// How much Vitality is stored, total
 GLOBAL_VAR_INIT(clockwork_vitality, 0)
 
@@ -28,6 +28,8 @@ GLOBAL_VAR_INIT(ratvar_awakens, 0)
 /// The Ark on the Reebe z-level
 GLOBAL_VAR_INIT(ark_of_the_clockwork_justiciar, FALSE)
 
+/// Once the cult converts 20% of the station's population, their basic teleport gains a heavy penalty on non-clockwork tiles
+GLOBAL_VAR_INIT(clockwork_hardmode_active, FALSE)
 /// if a gateway to the celestial derelict has ever been successfully activated
 GLOBAL_VAR_INIT(clockwork_gateway_activated, FALSE)
 /// If script scripture is available, through converting at least one crewmember
@@ -132,3 +134,6 @@ GLOBAL_LIST_EMPTY(all_scripture)
 
 /// This much time has to pass between instances of the Ark taking damage before it will "scream" again
 #define ARK_SCREAM_COOLDOWN 600
+
+/// The percent of servant over living players before they enter hardmode and have a warp penalty on non-clockwork tiles
+#define SERVANT_HARDMODE_PERCENT 0.2

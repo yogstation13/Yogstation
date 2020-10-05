@@ -234,3 +234,17 @@
 		parts += printplayerlist(members - eminence)
 
 	return "<div class='panel clockborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/clockcult/proc/check_size()
+	if(GLOB.clockwork_hardmode_active)
+		return
+	var/alive = 0
+	var/servants = length(GLOB.all_clockwork_mobs)
+	for(var/I in GLOB.player_list)
+		var/mob/M = I
+		if(M.stat != DEAD)
+			++alive
+	var/ratio = servants/alive
+	if(ratio >= SERVANT_HARDMODE_PERCENT)
+		GLOB.clockwork_hardmode_active = TRUE
+		hierophant_message("<span class='large_brass bold'>As the cult increases in size, the Ark's connection to the material plane weakens. Warping with camera consoles will take substantially more time unless the destination is a clockwork tile!</span>")
