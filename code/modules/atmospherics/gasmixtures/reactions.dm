@@ -362,7 +362,7 @@
 	air.adjust_moles(/datum/gas/plasma, -2*reaction_efficency)
 
 	//clamps by a minimum amount in the event of an underflow.
-	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp((reaction_efficency**2)*BZ_RESEARCH_SCALE,0.01,BZ_RESEARCH_MAX_AMOUNT))
+	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp((reaction_efficency**2)*BZ_RESEARCH_AMOUNT,0.01,BZ_RESEARCH_MAX_AMOUNT))
 
 	if(energy_released > 0)
 		var/new_heat_capacity = air.heat_capacity()
@@ -393,8 +393,7 @@
 	air.adjust_moles(/datum/gas/stimulum, heat_scale/10)
 	air.adjust_moles(/datum/gas/plasma, -heat_scale)
 	air.adjust_moles(/datum/gas/nitryl, -heat_scale)
-	//hotfix: uncomment when monstermos is fixed
-	//SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, STIMULUM_RESEARCH_AMOUNT*max(stim_energy_change,0))
+	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(STIMULUM_RESEARCH_AMOUNT*heat_scale/10,0.01, STIMULUM_RESEARCH_MAX_AMOUNT))
 	if(stim_energy_change)
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
@@ -419,8 +418,7 @@
 	air.adjust_moles(/datum/gas/tritium, -10*nob_formed)
 	air.adjust_moles(/datum/gas/nitrogen, -20*nob_formed)
 	air.adjust_moles(/datum/gas/hypernoblium, nob_formed)
-	//hotfix: Uncomment when Monstermos is fixed
-	//SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, nob_formed*NOBLIUM_RESEARCH_AMOUNT)
+	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(nob_formed*NOBLIUM_RESEARCH_AMOUNT, 0.01, NOBLIUM_RESEARCH_MAX_AMOUNT))
 	var/new_heat_capacity = air.heat_capacity()
 	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 		air.set_temperature(max(((air.return_temperature()*old_heat_capacity - energy_taken)/new_heat_capacity),TCMB))
@@ -450,7 +448,7 @@
 
 	//Possibly burning a bit of organic matter through maillard reaction, so a *tiny* bit more heat would be understandable
 	air.set_temperature(air.return_temperature() + cleaned_air * 0.002)
-	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, cleaned_air*MIASMA_RESEARCH_AMOUNT)//Turns out the burning of miasma is kinda interesting to scientists
+	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, clamp(cleaned_air*MIASMA_RESEARCH_AMOUNT,0.01, MIASMA_RESEARCH_MAX_AMOUNT))//Turns out the burning of miasma is kinda interesting to scientists
 	return REACTING
   
 /datum/gas_reaction/stim_ball
