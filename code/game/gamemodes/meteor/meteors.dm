@@ -405,7 +405,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 //Long ago in a distant fairy land, there was a man known far and wide...
 /obj/effect/meteor/meaty/meatball_man
 	name = "meatball man"
-	icon = 'icons/effects/512x512.dmi'
+	icon = 'icons/effects/128x128.dmi'
 	icon_state = "meatball_man"
 	pixel_x = -240
 	pixel_y = -240
@@ -418,9 +418,9 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	meteorsound = 'sound/effects/blobattack.ogg'
 	threat = 200
 	move_delay = 40 // Meatball Man never rushes, for all will become Meat in time.
-	var/meaty_range = 14
-	var/eaty_range = 7
-	var/meat_spreadiness = 20
+	var/meaty_range = 6
+	var/eaty_range = 3
+	var/meat_spreadiness = 12
 	var/he_is_close = FALSE
 
 /obj/effect/meteor/meaty/meatball_man/Move()
