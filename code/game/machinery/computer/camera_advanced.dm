@@ -367,7 +367,7 @@
 	owner.update_action_buttons()
 	var/warp_time = 50
 	if(!istype(T, /turf/open/floor/clockwork) && GLOB.clockwork_hardmode_active)
-		to_chat(user, "<span class='sevtug_small'>The [target.name]'s inner machinery protests vehemently as it attempts to  warp you to a non-brass tile, this will take time...</span>")
+		to_chat(user, "<span class='sevtug_small'>The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...</span>")
 		warp_time = 300
 	warping = new(T, user, warp_time)
 	if(!do_after(user, warp_time, target = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
