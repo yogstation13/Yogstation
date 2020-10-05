@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		var/thing_to_spawn = pick(meteordrop)
 		new thing_to_spawn(get_turf(src))
 
-/obj/effect/meteor/proc/chase_target(atom/chasing, delay = move_delay)
+/obj/effect/meteor/proc/chase_target(atom/chasing, delay = 1)
 	set waitfor = FALSE
 	if(chasing)
 		walk_towards(src, chasing, delay)
