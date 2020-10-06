@@ -1932,10 +1932,6 @@
 	name = "Medium"
 	icon_state = "medium"
 
-/datum/sprite_accessory/plasma_vessels/large
-	name = "Large"
-	icon_state = "large"
-
 /datum/sprite_accessory/teeth
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = null

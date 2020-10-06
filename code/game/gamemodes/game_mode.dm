@@ -59,7 +59,7 @@
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
 	to_chat(world, "<b>[announce_text]</b>")
-	
+
 /datum/game_mode/proc/admin_panel()
 	return
 
@@ -581,7 +581,7 @@
 
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
-
+		log_admin(msg.Join())
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/game_mode/proc/age_check(client/C)
 	if(get_remaining_days(C) == 0)
@@ -641,7 +641,7 @@
   * Given a list of minds, returns TRUE if they completed all their objectives, FALSE otherwise
   *
   * Arguments:
-  * * antags - list of minds that we're checking 
+  * * antags - list of minds that we're checking
   * * antagonist_datum - The type we're checking for, is optional
   */
 /datum/game_mode/proc/didAntagsWin(list/antags, datum/antagonist/antagonist_datum)
@@ -750,4 +750,4 @@
 	round_credits += "<br>"
 	round_credits += "<br>"
 
-	return round_credits 
+	return round_credits

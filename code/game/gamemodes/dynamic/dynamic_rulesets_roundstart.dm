@@ -848,7 +848,7 @@
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
 	weight = 1
-	cost = 60
+	cost = 101
 	requirements = list(100,100,100,100,90,90,85,85,85,80)
 	roundstart_wizards = list()
 	var/bullshit_mode = 0
@@ -892,7 +892,7 @@
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 4
 	weight = 1
-	cost = 80
+	cost = 101
 	minimum_players = 40
 	requirements = list(100,100,100,100,100,100,100,100,100,100)
 	var/mage_cap = 999
