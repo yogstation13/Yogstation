@@ -407,8 +407,8 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	name = "meatball man"
 	icon = 'icons/effects/128x128.dmi'
 	icon_state = "meatball_man"
-	pixel_x = -240
-	pixel_y = -240
+	pixel_x = -48
+	pixel_y = -48
 	desc = "Oh, what a feat! He's one with the meat!"
 	hits = INFINITY // You cannot stop the Meatball Man.
 	lifetime = 0 // Meatball Man is eternal.
