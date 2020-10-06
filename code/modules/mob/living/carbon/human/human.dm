@@ -846,7 +846,7 @@
 			piggyback(target)
 			return
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		else if(user != target && can_be_firemanned(target))
+		else if(user != target && user.a_intent == INTENT_GRAB && can_be_firemanned(target))
 			fireman_carry(target)
 			return
 	. = ..()
@@ -1119,6 +1119,9 @@
 
 /mob/living/carbon/human/species/pod
 	race = /datum/species/pod
+
+/mob/living/carbon/human/species/polysmorph
+	race = /datum/species/polysmorph
 
 /mob/living/carbon/human/species/shadow
 	race = /datum/species/shadow

@@ -145,7 +145,7 @@
 
 /obj/item/reagent_containers/pill/salicyclic
 	name = "salicylic acid pill"
-	desc = "Used to dull pain."
+	desc = "Used to stimulate bruise healing."
 	icon_state = "pill9"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 24)
 	rename_with_volume = TRUE
@@ -242,3 +242,14 @@
 	if(prob(20))
 		desc = pick(descs)
 
+/obj/item/reagent_containers/pill/bica
+	name = "bicaridine pill"
+	desc = "Used to stimulate burn healing."
+	icon_state = "pill10"
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 14)
+
+/obj/item/reagent_containers/pill/kelo
+	name = "kelotane pill"
+	desc = "Used to heal burns."
+	icon_state = "pill12"
+	list_reagents = list(/datum/reagent/medicine/kelotane = 14)

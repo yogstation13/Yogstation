@@ -47,6 +47,7 @@
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(O))
 			if(guardian.namedatum)
 				H.color = guardian.namedatum.colour
+			guardian.changeNext_move(CLICK_CD_MELEE)
 			return TRUE
 
 /datum/guardian_ability/major/healing/limited
