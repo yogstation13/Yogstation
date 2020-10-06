@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a><BR>"
 
 			var/mutant_colors
-			if((MUTCOLORS in pref_species.species_traits && ((NOCOLORCHANGE in pref_species.species_traits) == FALSE)) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
+			if((((MUTCOLORS in pref_species.species_traits) && !(NOCOLORCHANGE in pref_species.species_traits))) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
 
 				if(!use_skintones)
 					dat += APPEARANCE_CATEGORY_COLUMN
