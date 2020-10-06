@@ -72,6 +72,10 @@
 	// now generate name
 	var/soundfile = "sound/instruments/[cached_legacy_dir]/[ascii2text(note+64)][acc][oct].[cached_legacy_ext]"
 	soundfile = file(soundfile)
+	// make sure the note exists
+	if(!fexists(soundfile))
+		return
+	// and play
 	var/turf/source = get_turf(parent)
 	if((world.time - MUSICIAN_HEARCHECK_MINDELAY) > last_hearcheck)
 		do_hearcheck()
