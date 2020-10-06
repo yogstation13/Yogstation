@@ -26,6 +26,8 @@ SUBSYSTEM_DEF(air)
 	var/cost_equalize = 0
 	var/cost_rescan = 0
 
+	var/rescan_scheduled = FALSE
+
 	var/list/hotspots = list()
 	var/list/networks = list()
 	var/list/obj/machinery/atmos_machinery = list()
@@ -156,11 +158,12 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-		currentpart = SSAIR_RESCAN
+		currentpart = rescan_scheduled ? SSAIR_RESCAN : SSAIR_PIPENETS
 
 	if(currentpart == SSAIR_RESCAN)
 		timer = TICK_USAGE_REAL
 		rescan_active_turfs(resumed)
+		rescan_scheduled = FALSE
 		cost_rescan = MC_AVERAGE(cost_rescan, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 		currentpart = SSAIR_PIPENETS
 

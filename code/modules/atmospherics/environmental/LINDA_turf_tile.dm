@@ -321,6 +321,8 @@
 	return TRUE
 
 /turf/open/consider_superconductivity(starting)
+	if(planetary_atmos) // no infinite lavaland trying to radiate to spess thanks
+		return FALSE
 	if(air.return_temperature() < (starting?MINIMUM_TEMPERATURE_START_SUPERCONDUCTION:MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION))
 		return FALSE
 	if(air.heat_capacity() < M_CELL_WITH_RATIO) // Was: MOLES_CELLSTANDARD*0.1*0.05 Since there are no variables here we can make this a constant.
