@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(air)
 	msg += "HS:[round(cost_hotspots,1)]|"
 	msg += "SC:[round(cost_superconductivity,1)]|"
 	msg += "PN:[round(cost_pipenets,1)]|"
-	msg += "AM:[round(cost_atmos_machinery,1)}]"
+	msg += "AM:[round(cost_atmos_machinery,1)]"
 	msg += "} "
 	var/active_turfs_len = get_amt_active_turfs()
 	msg += "AT:[active_turfs_len]|"
