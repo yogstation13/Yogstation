@@ -848,7 +848,7 @@
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
 	weight = 1
-	cost = 101
+	cost = 100
 	requirements = list(100,100,100,100,90,90,85,85,85,80)
 	roundstart_wizards = list()
 	var/bullshit_mode = 0
