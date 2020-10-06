@@ -65,8 +65,9 @@
 /datum/game_mode/wizard/set_round_result()
 	..()
 	var/didEscape = TRUE
+	var/datum/objective/O
 	for(var/datum/mind/wizard in wizards)
-		if(considered_escaped(wizard))
+		if(O.considered_escaped(wizard))
 			didEscape = FALSE
 	if(didEscape)
 		SSticker.mode_result = "win - wizard escaped the station"
