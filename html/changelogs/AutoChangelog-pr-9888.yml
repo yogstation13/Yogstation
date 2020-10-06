@@ -1,0 +1,4 @@
+author: "AutisticFroggy"
+delete-after: true 
+changes: 
+  - rscadd: "readds atmos research point generation that was hotfixed out due to an exploit"
