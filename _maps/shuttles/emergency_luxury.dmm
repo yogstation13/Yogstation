@@ -568,6 +568,10 @@
 	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"Kp" = (
+/obj/item/reagent_containers/food/snacks/salad/validsalad{
+	pixel_y = 3
+},
 "ci" = (
 /obj/structure/musician/piano{
 	icon_state = "piano"
