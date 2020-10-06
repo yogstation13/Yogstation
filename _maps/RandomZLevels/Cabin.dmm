@@ -710,7 +710,7 @@
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "cz" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "cA" = (
