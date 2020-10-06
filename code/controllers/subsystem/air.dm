@@ -6,7 +6,6 @@
 #define SSAIR_HIGHPRESSURE 6
 #define SSAIR_HOTSPOTS 7
 #define SSAIR_SUPERCONDUCTIVITY 8
-#define SSAIR_RESCAN 9
 
 SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
@@ -24,9 +23,6 @@ SUBSYSTEM_DEF(air)
 	var/cost_pipenets = 0
 	var/cost_atmos_machinery = 0
 	var/cost_equalize = 0
-	var/cost_rescan = 0
-
-	var/rescan_scheduled = FALSE
 
 	var/list/hotspots = list()
 	var/list/networks = list()
@@ -158,13 +154,6 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-		currentpart = rescan_scheduled ? SSAIR_RESCAN : SSAIR_PIPENETS
-
-	if(currentpart == SSAIR_RESCAN)
-		timer = TICK_USAGE_REAL
-		rescan_active_turfs(resumed)
-		rescan_scheduled = FALSE
-		cost_rescan = MC_AVERAGE(cost_rescan, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 		currentpart = SSAIR_PIPENETS
 
 	currentpart = SSAIR_PIPENETS
