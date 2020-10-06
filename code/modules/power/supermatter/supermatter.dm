@@ -82,6 +82,8 @@
 #define SUPERMATTER_COUNTDOWN_TIME 30 SECONDS
 #define SUPERMATTER_ACCENT_SOUND_MIN_COOLDOWN 2 SECONDS ///to prevent accent sounds from layering
 
+#define MAX_SPACE_EXPOSURE_DAMAGE 2
+
 GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal
@@ -441,7 +443,26 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(combined_gas < MOLE_PENALTY_THRESHOLD)
 				damage = max(damage + (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
 
-			//capping damage
+			//Check for holes in the SM inner chamber
+			for(var/t in RANGE_TURFS(1, loc))
+				if(!isspaceturf(t))
+					continue
+				var/turf/turf_to_check = t
+				if(LAZYLEN(turf_to_check.atmos_adjacent_turfs))
+					var/integrity = get_integrity()
+					if(integrity < 10)
+						damage += clamp((power * 0.0005) * DAMAGE_INCREASE_MULTIPLIER, 0, MAX_SPACE_EXPOSURE_DAMAGE)
+					else if(integrity < 25)
+						damage += clamp((power * 0.0009) * DAMAGE_INCREASE_MULTIPLIER, 0, MAX_SPACE_EXPOSURE_DAMAGE)
+					else if(integrity < 45)
+						damage += clamp((power * 0.005) * DAMAGE_INCREASE_MULTIPLIER, 0, MAX_SPACE_EXPOSURE_DAMAGE)
+					else if(integrity < 75)
+						damage += clamp((power * 0.002) * DAMAGE_INCREASE_MULTIPLIER, 0, MAX_SPACE_EXPOSURE_DAMAGE)
+					break
+			//caps damage rate
+
+			//Takes the lower number between archived damage + (1.8) and damage
+			//This means we can only deal 1.8 damage per function call
 			damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
 
 
