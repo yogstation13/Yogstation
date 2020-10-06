@@ -162,7 +162,7 @@
 				icon_state = initial(G.icon_state)
 				item_color = wash_color
 				name = "washed gloves"
-				desc = "The colors are a bit dodgy." // removed break here, it should use the last item in the list for its color. See black gloves.
+				desc = "The colors are a bit dodgy." 
 
 /obj/item/clothing/shoes/sneakers/machine_wash(obj/machinery/washing_machine/WM)
 	if(chained)
