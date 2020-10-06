@@ -116,6 +116,8 @@
 /// Used if we want the mutant colour to be only used by mutant bodyparts. Don't combine this with MUTCOLORS, or it will be useless.
 #define MUTCOLORS_PARTSONLY	8
 #define NOZOMBIE		9
+/// If we want a race to have a standard color (for now this is only polysmorphs)
+#define NOCOLORCHANGE   20
 /// Uses weird leg sprites. Optional for Lizards, required for ashwalkers. Don't give it to other races unless you make sprites for this (see human_parts_greyscale.dmi)
 #define DIGITIGRADE		10
 #define NO_UNDERWEAR	11
@@ -126,7 +128,10 @@
 #define NOFLASH			16
 /// Use this if you want to change the race's color without the player being able to pick their own color. AKA special color shifting
 #define DYNCOLORS		17
+/// Forced genders
 #define AGENDER			18
+#define FGENDER         21
+#define MGENDER	        22
 /// Do not draw eyes or eyeless overlay
 #define NOEYESPRITES	19
 

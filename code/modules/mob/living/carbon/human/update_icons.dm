@@ -591,7 +591,10 @@ generate/load female uniform sprites matching all previously decided variables
 		else
 			. += "-robotic"
 		if(BP.use_digitigrade)
-			. += "-digitigrade[BP.use_digitigrade]"
+			if("[dna.species]" == "polysmorph")
+				. += "-pdigitigrade[BP.use_digitigrade]"
+			else
+				. += "-digitigrade[BP.use_digitigrade]"
 		if(BP.dmg_overlay_type)
 			. += "-[BP.dmg_overlay_type]"
 

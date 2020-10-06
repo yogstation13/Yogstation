@@ -441,3 +441,53 @@
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)
+
+/obj/item/reagent_containers/glass/urn
+	name = "urn"
+	desc = "A tall vase used for storing cremated remains."
+	obj_flags = UNIQUE_RENAME // Rename it to whoever you cremated
+	icon_state = "urn_open"
+	w_class = WEIGHT_CLASS_NORMAL // This is important! Don't just keep it in your box or something!
+	resistance_flags = NONE // Shatters easily
+	amount_per_transfer_from_this = 30 // Not very good at accurate reagent transfer and shouldn't be used for such
+	possible_transfer_amounts = list(30)
+	volume = 30
+	materials = list(MAT_METAL=0) // No free mats for you, chap
+	var/spilled = FALSE // Is it currently spilled?
+	var/locked = FALSE // Is it currently locked shut?
+
+/// Calls on most non-table clicks, spills it
+/obj/item/reagent_containers/glass/urn/afterattack()
+	. = ..()
+	if(spillable && !spilled)
+		icon_state = "urn_spilled"
+		spilled = TRUE
+		amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's spilled
+		possible_transfer_amounts = list(0)
+		reagents.clear_reagents()
+
+/// Will not accept any reagents when spilled or locked
+/obj/item/reagent_containers/glass/urn/is_refillable()
+	if(spilled || locked)
+		return FALSE
+	else
+		return reagents && (reagents.flags & REFILLABLE)
+
+/// Using in hand will either upright a spilled urn or lock an open one
+/obj/item/reagent_containers/glass/urn/attack_self(mob/user)
+	src.add_fingerprint(user)
+	if(locked) // If it's locked, we don't do anything with it
+		return
+	if(spilled) // If it's spilled over, we right it
+		icon_state = "urn_open"
+		spilled = FALSE
+		to_chat(user, "<span class = 'notice'>You right [src].</span>")
+		amount_per_transfer_from_this = 30
+		possible_transfer_amounts = list(30)
+		return
+	locked = TRUE // If it's not locked or spilled, start locking it
+	spillable = FALSE // Can't spill a closed container
+	icon_state = "urn_closed"
+	amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's closed
+	possible_transfer_amounts = list(0)
+	to_chat(user, "<span class = 'notice'>You close the lid of [src] and lock it.</span>")
