@@ -488,7 +488,10 @@
 	var/turf/target = get_step_multiz(src, dir)
 	if(!target)
 		if(feedback)
-			to_chat(src, "<span class='warning'>There's nothing in that direction!</span>")
+			if(dir == DOWN)
+				to_chat(src, "<span class='warning'>There's nothing below you!</span>")
+			else if(dir == UP)
+				to_chat(src, "<span class='warning'>There's nothing above you!</span>")
 		return FALSE
 	if(!canZMove(dir, target))
 		if(feedback)
