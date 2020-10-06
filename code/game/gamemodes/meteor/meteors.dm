@@ -432,6 +432,19 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		T.ex_act(hitpwr)
 		for(var/atom/thing in T)
 			if(isturf(loc) && thing != src)
+				if(istype(thing, /obj/machinery/processor)
+					continue
+				if(ishuman(thing))
+					var/mob/living/carbon/human/H = thing
+					var/obj/machinery/processor/P = H.pulling
+					if(H.job in list("Cook") && P)
+						H.visible_message("[H] slam dunks [src] into [P] and turns it on!</span>", "<span class='notice'>You slam dunk [src] into [P] and quickly activate it!</span>")
+						SEND_SOUND(world,sound('sound/machines/blender.ogg', volume = 60) //VRRRRRRRRRRRRRRR
+						for(var/i = 1 to 100)
+							new /obj/item/reagent_containers/food/snacks/meatball(P.loc)
+						playsound(src.loc, 'sound/effects/splat.ogg', 50, 1, pressure_affected = FALSE)
+						H.say("That's one spicy meatball!")
+						qdel(src)
 				thing.ex_act(hitpwr)
 	for(var/i = 1, i <= meat_spreadiness, i++)
 		var/chosen_x = src.x + rand(-1, 1)*(eaty_range + rand(0, (meaty_range - eaty_range)))
