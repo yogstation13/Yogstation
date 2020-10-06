@@ -490,7 +490,7 @@
 		if(feedback)
 			if(dir == DOWN)
 				to_chat(src, "<span class='warning'>There's nothing below you!</span>")
-			else(dir == UP)
+			else
 				to_chat(src, "<span class='warning'>There's nothing above you!</span>")
 		return FALSE
 	if(!canZMove(dir, target))
