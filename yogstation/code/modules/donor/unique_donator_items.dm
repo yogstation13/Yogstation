@@ -1,12 +1,12 @@
 /**
-
-This file contains any "special" / unique donator items which are ckey locked. 
-
-To create a new unique donator item, create a new datum/donator_item
-
-@version 1.0
-@author Kmc2000
-
+*
+*This file contains any "special" / unique donator items which are ckey locked. 
+*
+*To create a new unique donator item, create a new datum/donator_item
+*
+*@version 1.0
+*@author Kmc2000
+*
 */
 
 GLOBAL_LIST_INIT(donor_pdas, list("Normal", "Transparent", "Pip Boy", "Rainbow"))
@@ -62,7 +62,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.alw
 	data["items_info"] = items_info
 	return data
 
-//Constructor for the donator item controller. Ensures that the donor items list is populated.
+///Constructor for the donator item controller. Ensures that the donor items list is populated.
 
 /datum/donator_gear_resources/New()
 	. = ..()
@@ -76,11 +76,11 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.alw
 
 /datum/donator_gear
 	var/name = "Base type donator item"
-	var/ckey = null //A valid ckey belonging to a player with donator status.
-	var/unlock_path = null //A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
-	var/slot = null //Is this a hat? For categorisation in the UI.
+	var/ckey = null ///A valid ckey belonging to a player with donator status.
+	var/unlock_path = null ///A valid type path pointing to the item(s) that this unlocks. If handed a list, it'll give them anything in the list.
+	var/slot = null ///Is this a hat? For categorisation in the UI.
 
-//Method to set the desired client's "fancy item" to their custom item.
+///Method to set the desired client's "fancy item" to their custom item.
 /datum/donator_gear/proc/equip(var/client/C)
 	if(!C || !C.prefs)
 		return FALSE
@@ -106,7 +106,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 */
 
 
-//Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
+///Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
 
 /datum/donator_gear/fatal_eyes
 	name = "Green Cosmic Bedsheet (FatalEyes)"
@@ -119,7 +119,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	item_state = "sheetcosmos_green"
 	item_color = "cosmos_green"
 
-//Generic donator hats
+///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
 	unlock_path = /obj/item/clothing/head/yogs/beanie

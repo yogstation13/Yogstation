@@ -755,6 +755,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(donor_hat)
 					qdel(temp_hat)
 				dat += "<b>Fancy Item:</b> "
+				///Whatever item the donator has chosen to apply.
 				var/typeitem = donor_item
 				var/temp_item = donor_item ? (new typeitem()) : "None selected"
 				dat += "<a href='?_src_=prefs;preference=donor;task=item'>Pick</a> [temp_item]<BR>"
