@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Applies parentheses to fix mutant colors not appearing for any race"
