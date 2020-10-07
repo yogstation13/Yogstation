@@ -137,7 +137,7 @@
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
 		if(mind.martial_art && prob(mind.martial_art.block_chance) && mind.martial_art.can_use(src) && in_throw_mode && !incapacitated(FALSE, TRUE))
-			return TRUE
+			return mind.martial_art //need to use this where blocks are handled to handle counters since check_block doesn't reference the attacker
 	return FALSE
 
 /mob/living/carbon/human/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
