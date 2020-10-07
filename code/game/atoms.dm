@@ -156,6 +156,12 @@
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
+	world.log << " -------------------"
+	world.log << "Variables for [src]:"
+	for(var/i in vars)
+		world.log << i
+	world.log << " -------------------"
+
 	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
