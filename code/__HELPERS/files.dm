@@ -8,7 +8,7 @@
 		log_admin_private("BROWSEFILES: Admin proc call blocked")
 		message_admins("BROWSEFILES: Admin proc call blocked")
 		return null
-	
+
 	var/path = root
 
 	for(var/i=0, i<max_iterations, i++)
@@ -16,7 +16,7 @@
 		if(path != root)
 			choices.Insert(1,"/")
 
-		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in choices
+		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in sortList(choices)
 		switch(choice)
 			if(null)
 				return
