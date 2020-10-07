@@ -741,6 +741,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
+				///This is the typepath of the donor's hat that they may choose to spawn with. 
 				var/typehat = donor_hat
 				var/temp_hat = donor_hat ? (new typehat()) : "None selected"
 				dat += "<a href='?_src_=prefs;preference=donor;task=hat'>Pick</a> [temp_hat]<BR>"
