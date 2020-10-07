@@ -161,6 +161,7 @@
 				item_state = initial(G.item_state)
 				icon_state = initial(G.icon_state)
 				item_color = wash_color
+				name = initial(G.name)
 				desc = "The colors are a bit dodgy." 
 
 /obj/item/clothing/shoes/sneakers/machine_wash(obj/machinery/washing_machine/WM)
