@@ -750,4 +750,4 @@
 	round_credits += "<br>"
 	round_credits += "<br>"
 
-	return round_credits er
+	return round_credits
