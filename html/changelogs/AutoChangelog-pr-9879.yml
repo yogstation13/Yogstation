@@ -1,0 +1,4 @@
+author: "yorii"
+delete-after: true 
+changes: 
+  - bugfix: "fixed botany rounding error that caused grass and other plants to misbehave"
