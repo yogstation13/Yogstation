@@ -83,6 +83,12 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
+"kz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
 "kQ" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/plating,
@@ -1013,7 +1019,7 @@ tp
 tp
 Gk
 yq
-xh
+kz
 ya
 Gk
 QX
