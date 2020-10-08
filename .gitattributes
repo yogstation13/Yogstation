@@ -7,6 +7,7 @@
 ## Enforce text mode and LF line breaks for TGUI
 tgui/**/*.js text eol=lf
 tgui/**/*.css text eol=lf
+tgui/**/*.html text eol=lf
 tgui/**/*.json text eol=lf
 #this breaks if its in crlf
 code/__DEFINES/rust_g.dm eol=lf
