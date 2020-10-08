@@ -1,21 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ad" = (
-/obj/structure/closet/secure_closet/chemical{
-	req_access = list(0)
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
-"bY" = (
-/obj/machinery/light/small,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/ruin/space/has_grav/powered)
 "cl" = (
 /turf/template_noop,
 /area/space)
-"do" = (
-/obj/machinery/vending/boozeomat/all_access,
+"cK" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"dj" = (
+/obj/structure/chair/comfy/lime{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"dD" = (
+/obj/structure/table/reinforced,
+/obj/structure/bedsheetbin,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "eg" = (
@@ -26,6 +25,15 @@
 "eQ" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"fk" = (
+/obj/machinery/shower,
+/obj/structure/curtain,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/southright,
+/turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "fm" = (
 /obj/structure/table,
@@ -44,6 +52,18 @@
 /obj/structure/fireplace,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
+"gA" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"ha" = (
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/structure/table/reinforced,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "hD" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
@@ -56,14 +76,38 @@
 	icon_state = "wood-broken6"
 	},
 /area/ruin/space/has_grav/powered)
-"iV" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/table/reinforced,
-/obj/item/clothing/neck/stethoscope,
+"iP" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"ja" = (
+/obj/structure/closet/secure_closet/freezer/meat/open,
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"jA" = (
+/obj/machinery/door/airlock/medical{
+	name = "Medical"
+	},
 /turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"kl" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "kr" = (
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"kM" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Storage"
+	},
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "lK" = (
 /obj/structure/table/wood,
@@ -81,41 +125,48 @@
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
+"nX" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 25;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
 "oc" = (
 /obj/structure/sign/poster/official/bless_this_spess{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"pf" = (
-/obj/machinery/shower,
-/obj/structure/curtain,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
-"sn" = (
-/obj/machinery/door/morgue,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"tg" = (
-/obj/structure/table/reinforced,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
+"ot" = (
+/obj/machinery/door/airlock/silver,
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"ra" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"sD" = (
+/obj/structure/closet/secure_closet/chemical{
+	req_access = list(0)
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "tp" = (
 /turf/closed/mineral/random/labormineral,
 /area/ruin/space/has_grav/powered)
-"uj" = (
-/obj/machinery/stasis{
-	dir = 4
+"tU" = (
+/obj/machinery/door/morgue{
+	name = "Study"
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"vH" = (
+"uu" = (
 /obj/machinery/light{
 	dir = 4
 	},
@@ -124,22 +175,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
+"vS" = (
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
 "xh" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
-"xw" = (
-/obj/machinery/light,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/ruin/space/has_grav/powered)
-"zC" = (
-/obj/structure/chair/sofa/left{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"zZ" = (
+"xv" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/cardhand{
 	pixel_x = 2;
@@ -148,6 +190,28 @@
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
 	pixel_x = -4;
 	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"xw" = (
+/obj/machinery/light,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/space/has_grav/powered)
+"yU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/gps{
+	gpstag = "Cozy Signal"
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"zC" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
@@ -175,15 +239,32 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
-"DI" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
+"DC" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/loading_area{
 	dir = 1
 	},
-/obj/item/gps{
-	gpstag = "Cozy Signal"
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"DK" = (
+/obj/machinery/light/small,
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/clothing/under/yogs/fancysuit,
+/obj/item/clothing/shoes/laceup,
+/obj/item/clothing/head/yogs/formalhat,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
 	},
-/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Ei" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/ruins{
+	info = "Welcome, weary traveler. Welcome to my place to rest! Here you can relax and stay a while. Take whatever you want, I do not need anything in return. I am just here to help in the ways that I can. Yours truly, Warner Sarsaparilla, just a normal traveler like you.";
+	name = "Welcome Note";
+	text = ""
+	},
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "El" = (
 /obj/structure/chair/sofa/corner{
@@ -218,15 +299,37 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
+"Iy" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/loading_area,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
 "Ko" = (
 /obj/effect/spawner/structure/window/reinforced/tinted/shutter,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"KD" = (
-/obj/structure/closet/secure_closet/freezer/meat/open,
+"Mo" = (
+/obj/structure/table,
+/obj/item/clothing/suit/space/nasavoid,
+/obj/item/clothing/head/helmet/space/nasavoid,
+/obj/item/clothing/mask/breath,
+/obj/item/tank/internals/oxygen/red,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"Oa" = (
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
+"Oc" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"Od" = (
+/obj/structure/toilet,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
-"LK" = (
+"Oj" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
@@ -234,21 +337,6 @@
 	pixel_y = 11
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"Ny" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered)
-"Oa" = (
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/powered)
-"Oe" = (
-/obj/structure/table,
-/obj/item/clothing/suit/space/nasavoid,
-/obj/item/clothing/head/helmet/space/nasavoid,
-/obj/item/clothing/mask/breath,
-/obj/item/tank/internals/oxygen/red,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "Po" = (
 /obj/structure/chair/sofa{
@@ -262,9 +350,13 @@
 "Qa" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/powered)
-"Qe" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/wood,
+"Qb" = (
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	desc = "Used to grind things up into raw materials and liquids.";
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "QX" = (
 /obj/structure/table/reinforced,
@@ -272,6 +364,13 @@
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid,
 /turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"RB" = (
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "SV" = (
 /obj/machinery/sleeper{
@@ -282,41 +381,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
-"Tz" = (
-/obj/structure/chair/comfy/lime{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"TN" = (
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
 "TQ" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"Uq" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"Uu" = (
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
 "Vt" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
+"WF" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "WH" = (
 /obj/structure/cloth_curtain,
@@ -331,14 +409,6 @@
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
-"Yr" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
-"Yt" = (
-/obj/machinery/door/airlock/medical,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "YC" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty,
@@ -348,10 +418,11 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"ZA" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/plating,
+"ZG" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Bedroom"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
@@ -657,7 +728,7 @@ Qa
 Vt
 Oa
 Oa
-sn
+tU
 kr
 zC
 Po
@@ -715,7 +786,7 @@ tp
 Qa
 fm
 Cn
-Cn
+cK
 Cn
 Gk
 fw
@@ -726,9 +797,9 @@ fZ
 kr
 kr
 kr
-ZA
-Cn
-ZA
+DC
+WF
+Iy
 cl
 cl
 cl
@@ -745,11 +816,11 @@ cl
 tp
 tp
 Gk
-Oe
+Mo
 Cn
 Cn
 Cn
-Ny
+kM
 Oa
 Oa
 Yl
@@ -783,11 +854,11 @@ Qa
 Gk
 Qa
 Gk
-Yt
+jA
 Gk
 Qa
-DI
-Uq
+yU
+Ei
 kr
 xw
 Gk
@@ -813,15 +884,15 @@ tp
 tp
 tp
 Qa
-ad
+sD
 GF
 GF
 Gk
-Yr
-xh
-xh
+ra
+vS
+vS
 kr
-Tz
+dj
 Ko
 cl
 cl
@@ -840,20 +911,20 @@ cl
 cl
 tp
 tp
-tp
-tp
-tp
-tp
 Gk
-uj
+Qa
+Qa
+Gk
+Gk
+gA
 GF
 GF
 Qa
-TN
-xh
-xh
+Qb
+vS
+vS
 kr
-zZ
+xv
 Ko
 cl
 cl
@@ -872,20 +943,20 @@ cl
 cl
 tp
 tp
-tp
-tp
-tp
-tp
+Qa
+fk
+xh
+dD
 Gk
 SV
 GF
 HZ
 Gk
-tg
-xh
-xh
+kl
+vS
+vS
 kr
-LK
+Oj
 Ko
 cl
 cl
@@ -904,20 +975,20 @@ cl
 cl
 tp
 tp
-tp
-tp
-tp
-tp
-Qa
-pf
+Gk
+Od
+xh
+xh
+ot
+GF
 GF
 GF
 Gk
-KD
-Uu
-do
+ja
+RB
+Oc
 iv
-vH
+uu
 Ko
 cl
 cl
@@ -936,19 +1007,19 @@ cl
 cl
 tp
 tp
-tp
-tp
-tp
-tp
+Gk
+nX
+xh
+iP
 Gk
 QX
-iV
+ha
 GN
 Qa
 Gk
 Gk
 Qa
-Qe
+ZG
 Qa
 Gk
 cl
@@ -968,10 +1039,10 @@ cl
 cl
 cl
 cl
-tp
-tp
-tp
-tp
+Gk
+Gk
+Qa
+Gk
 Gk
 Qa
 Qa
@@ -1012,7 +1083,7 @@ Qa
 lK
 in
 WH
-bY
+DK
 Gk
 Gk
 cl
