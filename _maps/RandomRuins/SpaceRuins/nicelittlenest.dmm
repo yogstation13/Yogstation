@@ -1,4 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/closet/secure_closet/chemical{
+	req_access = list(0)
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "bY" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood{
@@ -38,12 +44,6 @@
 /obj/structure/fireplace,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"gn" = (
-/obj/structure/fluff/empty_sleeper{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "hD" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
@@ -56,14 +56,13 @@
 	icon_state = "wood-broken6"
 	},
 /area/ruin/space/has_grav/powered)
-"kr" = (
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"kN" = (
+"iV" = (
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"kr" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "lK" = (
@@ -81,12 +80,6 @@
 "lY" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/powered)
-"ny" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "oc" = (
 /obj/structure/sign/poster/official/bless_this_spess{
@@ -116,10 +109,20 @@
 "tp" = (
 /turf/closed/mineral/random/labormineral,
 /area/ruin/space/has_grav/powered)
-"uu" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/structure/table/reinforced,
+"uj" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"vH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/chair/comfy/teal{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "xh" = (
 /turf/open/floor/plasteel/freezer,
@@ -133,6 +136,18 @@
 "zC" = (
 /obj/structure/chair/sofa/left{
 	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"zZ" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/clothing/mask/cigarette/cigar/cohiba{
+	pixel_x = -4;
+	pixel_y = 7
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
@@ -159,6 +174,16 @@
 	pixel_y = -4
 	},
 /turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"DI" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/gps{
+	gpstag = "Cozy Signal"
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "El" = (
 /obj/structure/chair/sofa/corner{
@@ -200,6 +225,15 @@
 "KD" = (
 /obj/structure/closet/secure_closet/freezer/meat/open,
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"LK" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -4;
+	pixel_y = 11
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "Ny" = (
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -247,6 +281,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"Tz" = (
+/obj/structure/chair/comfy/lime{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "TN" = (
 /obj/structure/table/reinforced,
@@ -746,7 +786,7 @@ Gk
 Yt
 Gk
 Qa
-kN
+DI
 Uq
 kr
 xw
@@ -773,7 +813,7 @@ tp
 tp
 tp
 Qa
-gn
+ad
 GF
 GF
 Gk
@@ -781,7 +821,7 @@ Yr
 xh
 xh
 kr
-kr
+Tz
 Ko
 cl
 cl
@@ -805,7 +845,7 @@ tp
 tp
 tp
 Gk
-gn
+uj
 GF
 GF
 Qa
@@ -813,7 +853,7 @@ TN
 xh
 xh
 kr
-kr
+zZ
 Ko
 cl
 cl
@@ -845,7 +885,7 @@ tg
 xh
 xh
 kr
-kr
+LK
 Ko
 cl
 cl
@@ -877,7 +917,7 @@ KD
 Uu
 do
 iv
-ny
+vH
 Ko
 cl
 cl
@@ -902,7 +942,7 @@ tp
 tp
 Gk
 QX
-uu
+iV
 GN
 Qa
 Gk
