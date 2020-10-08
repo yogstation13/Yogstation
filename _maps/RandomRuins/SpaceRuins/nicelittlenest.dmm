@@ -1,19 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"bs" = (
-/obj/machinery/door/morgue{
-	name = "Study"
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
 "cl" = (
 /turf/template_noop,
 /area/space)
-"da" = (
-/obj/machinery/door/airlock/medical{
-	name = "Medical"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "eg" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
@@ -53,6 +41,16 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"hZ" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Storage"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
 "in" = (
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
@@ -83,15 +81,20 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
-"kz" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
 "kQ" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"lu" = (
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/obj/structure/curtain,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/southright,
+/turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "lK" = (
 /obj/structure/table/wood,
@@ -109,6 +112,14 @@
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
+"ma" = (
+/obj/machinery/door/airlock/silver,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
 "mq" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/loading_area{
@@ -117,6 +128,11 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"no" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff,
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "nN" = (
 /obj/machinery/light{
@@ -140,11 +156,17 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
-"qg" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Bedroom"
+"rq" = (
+/obj/machinery/door/airlock/medical{
+	name = "Medical"
 	},
-/turf/open/floor/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "sq" = (
 /obj/structure/chair/comfy/lime{
@@ -155,14 +177,21 @@
 "tp" = (
 /turf/closed/mineral/random/labormineral,
 /area/ruin/space/has_grav/powered)
-"tE" = (
-/obj/machinery/shower,
-/obj/structure/curtain,
-/obj/structure/window/reinforced{
-	dir = 4
+"uv" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/machinery/door/window/southright,
-/turf/open/floor/plasteel/freezer,
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"uZ" = (
+/obj/item/bedsheet/yellow,
+/obj/item/reagent_containers/food/snacks/mint{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/obj/structure/bed,
+/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
 "xh" = (
 /turf/open/floor/plasteel/freezer,
@@ -213,6 +242,16 @@
 /obj/structure/toilet,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
+"Bl" = (
+/obj/machinery/door/morgue{
+	name = "Study"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
 "Bn" = (
 /obj/structure/chair/sofa/left{
 	dir = 1
@@ -227,30 +266,12 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
-"BU" = (
-/obj/structure/table/reinforced,
-/obj/item/paper/fluff/ruins{
-	info = "Welcome, weary traveler. Welcome to my place to rest! Here you can relax and stay a while. Take whatever you want, I do not need anything in return. I am just here to help in the ways that I can. Yours truly, Warner Sarsaparilla, just a normal traveler like you.";
-	name = "Welcome Note";
-	text = ""
-	},
-/turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
 "BY" = (
 /obj/structure/closet/secure_closet/freezer/meat/open,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "Cn" = (
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered)
-"Cr" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/yellow,
-/obj/item/reagent_containers/food/snacks/mint{
-	pixel_x = 9;
-	pixel_y = -4
-	},
-/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
 "DH" = (
 /obj/structure/table/reinforced,
@@ -267,16 +288,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"Ex" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/gps{
-	gpstag = "Cozy Signal"
-	},
-/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "EC" = (
 /turf/open/floor/wood{
@@ -301,12 +312,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"FN" = (
-/obj/structure/closet/secure_closet/chemical{
-	req_access = list(0)
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "Ge" = (
 /obj/machinery/light/small,
 /obj/structure/reagent_dispensers/watertank,
@@ -316,10 +321,6 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/powered)
 "GF" = (
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
-"GN" = (
-/obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "HZ" = (
@@ -346,9 +347,17 @@
 "MJ" = (
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
-"NS" = (
-/obj/machinery/door/airlock/silver,
-/turf/open/floor/plasteel/freezer,
+"Na" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Bedroom"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "Oa" = (
 /turf/open/floor/plasteel/grimy,
@@ -380,20 +389,17 @@
 /obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
-"SV" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "Tf" = (
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/structure/table/reinforced,
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"Tg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "TQ" = (
 /obj/structure/mopbucket,
@@ -415,11 +421,14 @@
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
-"Xm" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Storage"
+"Xj" = (
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/structure/closet/secure_closet/chemical{
+	req_access = list(0)
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "Yl" = (
 /obj/structure/bookcase/random/nonfiction,
@@ -732,13 +741,13 @@ tp
 Gk
 YC
 Cn
-hD
+Cn
 TQ
 Qa
 Vt
 Oa
 Oa
-bs
+Bl
 kr
 zC
 Po
@@ -769,7 +778,7 @@ Ge
 Gk
 WU
 Aq
-lY
+fw
 Qa
 oc
 EC
@@ -797,9 +806,9 @@ Qa
 fm
 Cn
 kQ
-Cn
+hD
 Gk
-fw
+lY
 Oa
 Yl
 Gk
@@ -830,7 +839,7 @@ jp
 Cn
 Cn
 Cn
-Xm
+hZ
 Oa
 Oa
 Yl
@@ -864,11 +873,11 @@ Qa
 Gk
 Qa
 Gk
-da
+rq
 Gk
 Qa
-Ex
-BU
+uv
+no
 kr
 xw
 Gk
@@ -894,7 +903,7 @@ tp
 tp
 tp
 Qa
-FN
+FF
 GF
 GF
 Gk
@@ -926,7 +935,7 @@ Qa
 Qa
 Gk
 Gk
-FF
+GF
 GF
 GF
 Qa
@@ -954,11 +963,11 @@ cl
 tp
 tp
 Qa
-tE
+lu
 xh
 iB
 Gk
-SV
+Xj
 GF
 HZ
 Gk
@@ -989,7 +998,7 @@ Gk
 Bk
 xh
 xh
-NS
+ma
 GF
 GF
 GF
@@ -1019,17 +1028,17 @@ tp
 tp
 Gk
 yq
-kz
+Tg
 ya
 Gk
 QX
 Tf
-GN
+GF
 Qa
 Gk
 Gk
 Qa
-qg
+Na
 Qa
 Gk
 cl
@@ -1058,7 +1067,7 @@ Qa
 Qa
 Gk
 Gk
-Cr
+uZ
 in
 WH
 kr
