@@ -1,0 +1,6 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "Added new bamboo things"
+  - imageadd: "replace bamboo and punji sprites"
+  - spellcheck: "fixed a few typos"
