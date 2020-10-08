@@ -13,20 +13,20 @@
 	if(findtext(streak,JUMPING_KNEE_COMBO))
 		streak = ""
 		jumpingKnee(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,KARATE_CHOP_COMBO))
 		streak = ""
 		karateChop(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,FLOOR_KICK_COMBO))
 		streak = ""
 		floorKick(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,CALF_KICK_COMBO))
 		streak = ""
 		calfKick(A,D)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Floor Stomp - brute and stamina damage if target isn't standing
 /datum/martial_art/karate/proc/floorKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -41,7 +41,7 @@
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.apply_damage(20, A.dna.species.attack_type, BODY_ZONE_HEAD, def_check)
 		D.apply_damage(10, STAMINA, BODY_ZONE_HEAD, def_check)
-		return 1
+		return TRUE
 	return basic_hit(A,D)
 
 //Calf Kick - paralyse one leg with stamina damage
@@ -56,7 +56,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.apply_damage(50, STAMINA, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), def_check)
-		return 1
+		return TRUE
 	return basic_hit(A,D)
 
 //Jumping Knee - brief knockdown and decent stamina damage
@@ -73,7 +73,7 @@
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.apply_damage(30, STAMINA, BODY_ZONE_CHEST, def_check)
 		D.Knockdown(10)
-		return 1
+		return TRUE
 	return basic_hit(A,D)
 
 // Karate Chop - short confusion and blurred eyes
@@ -89,25 +89,25 @@
 		D.blur_eyes(10)
 		D.confused += 2
 		D.Jitter(20)
-		return 1
+		return TRUE
 	return basic_hit(A,D)
 
 /datum/martial_art/karate/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	return ..()
 
 /datum/martial_art/karate/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	return ..()
 
 /datum/martial_art/karate/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	return ..()
 
 /mob/living/carbon/human/proc/karate_help()
