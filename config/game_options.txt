@@ -479,6 +479,7 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES uranium
 #ROUNDSTART_RACES abductor
 #ROUNDSTART_RACES synth
+#ROUNDSTART_RACES polysmorph
 
 ## Races that are straight upgrades. If these are on expect powergamers to always pick them
 #ROUNDSTART_RACES skeleton

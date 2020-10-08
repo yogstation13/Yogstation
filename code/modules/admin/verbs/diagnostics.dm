@@ -9,7 +9,7 @@
 	var/list/lines = list("<span class='adminnotice'>[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]</span>")
 	for(var/id in env.get_gases())
 		var/moles = env.get_moles(id)
-		if (moles >= 0.00001)
+		if (abs(moles) >= 0.00001)
 			lines += "[GLOB.meta_gas_info[id][META_GAS_NAME]]: [moles] mol"
 	to_chat(usr, lines.Join("\n"))
 
@@ -96,3 +96,18 @@
 	load_admins()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	message_admins("[key_name_admin(usr)] manually reloaded admins")
+
+/client/proc/reload_mentors()
+	set name = "Reload Mentors"
+	set category = "Admin"
+
+	if(!src.holder)
+		return
+
+	var/confirm = alert(src, "Are you sure you want to reload all mentors?", "Confirm", "Yes", "No")
+	if(confirm !="Yes")
+		return
+
+	load_mentors()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Mentors") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	message_admins("[key_name_admin(usr)] manually reloaded mentors")

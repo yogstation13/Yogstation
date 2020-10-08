@@ -10,6 +10,10 @@
 	fire_sound_volume = 80
 	vary_fire_sound = FALSE
 	rack_sound = "sound/weapons/smgrack.ogg"
+	feedback_fire_slide = TRUE
+	feedback_types = list(
+		"fire" = 2
+	)
 
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper Nanotrasen Saber SMG"
@@ -85,8 +89,7 @@
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	can_suppress = FALSE
-	burst_size = 0
-	actions_types = list()
+	burst_size = 2
 	can_bayonet = TRUE
 	knife_x_offset = 25
 	knife_y_offset = 12

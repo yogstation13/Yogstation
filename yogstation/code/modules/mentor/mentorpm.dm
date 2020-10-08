@@ -50,9 +50,13 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
+		if(mentor_datum)
+			to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<span class='purple'>[key_name_mentor(src)] has started answering [key_name(C)]'s mentorhelp.</span>", confidential=TRUE)
 		msg = input(src,"Message:", "Private message") as text|null
 
 		if(!msg)
+			if(mentor_datum)
+				to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, "<span class='purple'>[key_name_mentor(src)] has decided not to answer [key_name(C)]'s mentorhelp.</span>", confidential=TRUE)
 			return
 
 		// Neither party is a mentor, they shouldn't be PMing!
