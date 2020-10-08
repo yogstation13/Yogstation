@@ -9,6 +9,9 @@ for newline in f:
     if " eol=" in newline:
         fileregex = newline.split(" ")[0]
         eol = newline.split("=")[1]
+        # Fun fact: gitattributes needs forward slashes
+        # Another fun fact: glob needs backslashes
+        # :)
         regexlist[fileregex.replace("/", "\\")] = { "eol" : eol, "files" : {} }
 
 f.close()
