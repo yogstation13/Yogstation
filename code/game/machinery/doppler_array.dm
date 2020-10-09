@@ -132,14 +132,14 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		point_gain = TOXINS_RESEARCH_MAX
 	else
 		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
-	
+
 
 	/*****The Point Capper*****/
 	if(point_gain > linked_techweb.largest_bomb_value)
 		var/old_tech_largest_bomb_value = linked_techweb.largest_bomb_value //held so we can pull old before we do math
 		linked_techweb.largest_bomb_value = point_gain
 		point_gain -= old_tech_largest_bomb_value
-		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SCI)
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			D.adjust_money(point_gain)
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
