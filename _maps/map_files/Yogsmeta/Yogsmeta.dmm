@@ -56729,14 +56729,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"bWI" = (
-/obj/structure/flora/ausbushes/fernybush,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/sunnybush,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/grass,
-/area/hallway/secondary/exit/departure_lounge)
 "bWJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -77573,14 +77565,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"cNN" = (
-/obj/structure/flora/ausbushes/fernybush,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/palebush,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/grass,
-/area/hallway/secondary/exit/departure_lounge)
 "cNP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -83955,6 +83939,13 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"qbI" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/floor/grass,
+/area/hallway/secondary/exit/departure_lounge)
 "qbK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister,
@@ -84476,6 +84467,13 @@
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
+"uCo" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/grass,
+/area/hallway/secondary/exit/departure_lounge)
 "uGB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -111318,9 +111316,9 @@ cLm
 cwd
 cMf
 cMU
-cNN
+qbI
 cOs
-bWI
+uCo
 cMU
 bWM
 fHn
