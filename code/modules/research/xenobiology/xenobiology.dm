@@ -935,7 +935,7 @@
 		return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		if(!(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits))
+		if(C.dna && !(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits)))
 			if(C.gender == MALE)
 				C.gender = FEMALE
 				C.visible_message("<span class='boldnotice'>[C] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
