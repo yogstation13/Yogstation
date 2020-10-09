@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Dead simple mobs now dont slow down"
