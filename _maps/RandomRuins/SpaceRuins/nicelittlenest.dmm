@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bQ" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
 "eg" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
@@ -337,9 +341,8 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
-"Ko" = (
-/obj/effect/spawner/structure/window/reinforced/tinted/shutter,
-/turf/open/floor/plating,
+"Jw" = (
+/turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/powered)
 "MJ" = (
 /turf/open/floor/plasteel/checker,
@@ -546,14 +549,14 @@ nE
 nE
 nE
 nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
 nE
 nE
 nE
@@ -577,18 +580,18 @@ nE
 nE
 nE
 nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
 nE
 nE
 nE
@@ -609,19 +612,19 @@ nE
 nE
 nE
 nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
 nE
 nE
 nE
@@ -640,23 +643,23 @@ nE
 nE
 nE
 nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
 nE
 nE
 nE
@@ -672,23 +675,23 @@ nE
 nE
 nE
 nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
-nE
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
+tp
 nE
 nE
 nE
@@ -703,9 +706,9 @@ nE
 (9,1,1) = {"
 nE
 nE
-nE
-nE
-nE
+tp
+tp
+tp
 Gk
 Gk
 Qa
@@ -721,7 +724,7 @@ Gk
 Qa
 Gk
 Gk
-nE
+tp
 nE
 nE
 nE
@@ -735,8 +738,8 @@ nE
 (10,1,1) = {"
 nE
 nE
-nE
-nE
+tp
+tp
 tp
 Gk
 YC
@@ -753,8 +756,8 @@ zC
 Po
 El
 Gk
-nE
-nE
+tp
+Jw
 nE
 nE
 nE
@@ -767,8 +770,8 @@ nE
 (11,1,1) = {"
 nE
 nE
-nE
-nE
+tp
+tp
 tp
 Gk
 eg
@@ -787,7 +790,7 @@ Bn
 Gk
 Gk
 Gk
-nE
+Jw
 nE
 nE
 nE
@@ -799,8 +802,8 @@ nE
 (12,1,1) = {"
 nE
 nE
-nE
-nE
+tp
+tp
 tp
 Qa
 fm
@@ -819,8 +822,8 @@ kr
 mq
 Sv
 yZ
-nE
-nE
+Jw
+Jw
 nE
 nE
 nE
@@ -831,7 +834,7 @@ nE
 (13,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 Gk
@@ -851,7 +854,7 @@ kr
 Gk
 Gk
 Gk
-nE
+Jw
 nE
 nE
 nE
@@ -863,7 +866,7 @@ nE
 (14,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 Gk
@@ -881,8 +884,8 @@ OW
 kr
 xw
 Gk
-nE
-nE
+Jw
+Jw
 nE
 nE
 nE
@@ -895,7 +898,7 @@ nE
 (15,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 tp
@@ -912,8 +915,8 @@ MJ
 MJ
 kr
 sq
-Ko
-nE
+bQ
+Jw
 nE
 nE
 nE
@@ -927,7 +930,7 @@ nE
 (16,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 Gk
@@ -944,7 +947,7 @@ MJ
 MJ
 kr
 FM
-Ko
+bQ
 nE
 nE
 nE
@@ -959,7 +962,7 @@ nE
 (17,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 Qa
@@ -976,7 +979,7 @@ MJ
 MJ
 kr
 ex
-Ko
+bQ
 nE
 nE
 nE
@@ -991,7 +994,7 @@ nE
 (18,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 Gk
@@ -1008,7 +1011,7 @@ od
 SI
 iv
 nN
-Ko
+bQ
 nE
 nE
 nE
@@ -1023,7 +1026,7 @@ nE
 (19,1,1) = {"
 nE
 nE
-nE
+tp
 tp
 tp
 Gk
@@ -1056,8 +1059,8 @@ nE
 nE
 nE
 nE
-nE
-nE
+tp
+tp
 Gk
 Gk
 Qa
@@ -1089,8 +1092,8 @@ nE
 nE
 nE
 nE
-nE
-nE
+tp
+tp
 tp
 tp
 tp
@@ -1105,7 +1108,7 @@ WH
 Iq
 Gk
 Gk
-nE
+Jw
 nE
 nE
 nE
@@ -1123,7 +1126,7 @@ nE
 nE
 nE
 nE
-nE
+tp
 tp
 tp
 tp
@@ -1136,8 +1139,8 @@ Qa
 Gk
 Gk
 Gk
-nE
-nE
+Jw
+Jw
 nE
 nE
 nE
@@ -1157,8 +1160,6 @@ nE
 nE
 nE
 nE
-nE
-nE
 tp
 tp
 tp
@@ -1167,8 +1168,10 @@ tp
 tp
 tp
 tp
-nE
-nE
+tp
+tp
+Jw
+Jw
 nE
 nE
 nE
