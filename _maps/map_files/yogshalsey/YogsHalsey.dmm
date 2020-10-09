@@ -24,21 +24,6 @@
 "an" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
-"ao" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
-"aq" = (
-/obj/effect/landmark/start/depsec/medical,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
-"as" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 10
-	},
-/obj/structure/filingcabinet,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "at" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/blue,
@@ -270,6 +255,13 @@
 	},
 /turf/open/floor/wood,
 /area/space)
+"bU" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
 "bX" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 8
@@ -279,6 +271,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"bZ" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/space)
 "ce" = (
 /obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -514,18 +510,20 @@
 /area/bridge)
 "dx" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 5
+	dir = 9
 	},
-/obj/structure/closet/secure_closet/security/med,
-/obj/item/screwdriver{
-	pixel_y = 10
+/obj/machinery/computer/secure_data{
+	dir = 4
 	},
-/obj/item/radio/off,
-/obj/item/radio/intercom{
-	pixel_x = 1;
-	pixel_y = 21
+/obj/machinery/computer/security/telescreen/cmo{
+	dir = 4;
+	pixel_x = -30
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/light_switch{
+	pixel_x = -22;
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/dark,
 /area/security/checkpoint/medical)
 "dz" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue,
@@ -701,6 +699,10 @@
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/wood,
 /area/medical/psych)
+"eH" = (
+/obj/structure/chair,
+/turf/open/floor/plasteel/dark,
+/area/space)
 "eM" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/beakers{
@@ -763,6 +765,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"fa" = (
+/obj/machinery/photocopier,
+/turf/open/floor/wood,
+/area/space)
 "fc" = (
 /obj/structure/table,
 /obj/item/paper/fluff/holodeck/disclaimer,
@@ -875,23 +881,6 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel,
 /area/space)
-"fJ" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Security Office";
-	req_access_txt = "63"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "fO" = (
 /obj/machinery/door/airlock/medical{
 	name = "Break Room";
@@ -983,6 +972,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"gv" = (
+/obj/machinery/door/morgue{
+	name = "Confession Booth (Chaplain)";
+	req_access_txt = "22"
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "gw" = (
 /obj/structure/table/glass,
 /obj/item/book/manual/wiki/chemistry{
@@ -1025,6 +1021,12 @@
 /obj/effect/landmark/start/geneticist,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"gE" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "gF" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -1068,6 +1070,10 @@
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"gR" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel,
+/area/space)
 "gU" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Diner"
@@ -1364,6 +1370,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ii" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Chapel"
+	},
+/turf/open/floor/plasteel/sepia,
+/area/space)
 "ij" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1521,6 +1533,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"iY" = (
+/obj/effect/landmark/start/depsec/medical,
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "ja" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 4
@@ -1669,6 +1685,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jF" = (
+/obj/machinery/door/airlock{
+	name = "Crematorium";
+	req_access_txt = "27"
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "jG" = (
 /obj/structure/reagent_dispensers/watertank/high,
 /obj/item/reagent_containers/glass/bucket,
@@ -1859,6 +1882,10 @@
 	},
 /turf/open/floor/plating,
 /area/medical/chemistry)
+"kQ" = (
+/obj/machinery/vending/games,
+/turf/open/floor/wood,
+/area/space)
 "kT" = (
 /obj/machinery/door/airlock{
 	name = "Custodial Closet";
@@ -1954,6 +1981,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"ll" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/turf/open/floor/plating,
+/area/space)
 "lm" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -2085,6 +2119,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"lK" = (
+/turf/open/floor/plasteel/sepia,
+/area/space)
 "lL" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -2327,21 +2364,15 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
 /area/space)
-"nk" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 32
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "nm" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/plasteel,
+/area/space)
+"nt" = (
+/obj/structure/bodycontainer/morgue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/space)
 "nu" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
@@ -2461,6 +2492,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"om" = (
+/turf/open/floor/engine/cult,
+/area/space)
 "on" = (
 /obj/machinery/power/apc{
 	areastring = "/area/janitor";
@@ -2511,6 +2545,10 @@
 	name = "Art Storage"
 	},
 /turf/open/floor/plasteel,
+/area/space)
+"oA" = (
+/obj/structure/displaycase/trophy,
+/turf/open/floor/wood,
 /area/space)
 "oB" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -2701,6 +2739,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"pz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/obj/item/pen,
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = 17;
+	pixel_y = 1
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/checkpoint/medical";
+	dir = 1;
+	name = "Medbay Security APC";
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "pA" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -2721,6 +2781,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"pG" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Security Office";
+	req_access_txt = "63"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "pJ" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -2728,6 +2805,12 @@
 "pK" = (
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"pL" = (
+/obj/structure/bodycontainer/crematorium{
+	id = "crematoriumChapel"
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "pO" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -2849,6 +2932,10 @@
 /area/space)
 "qx" = (
 /turf/closed/wall,
+/area/space)
+"qz" = (
+/obj/machinery/libraryscanner,
+/turf/open/floor/wood,
 /area/space)
 "qD" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -3131,19 +3218,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"sh" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/machinery/button/door{
-	desc = "A remote control switch for the medbay foyer.";
-	id = "MedbayFoyer";
-	name = "Medbay Doors Control";
-	normaldoorcontrol = 1;
-	pixel_x = 25;
-	pixel_y = -24;
-	req_access_txt = "5"
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "sj" = (
 /mob/living/simple_animal/bot/honkbot,
 /turf/open/floor/carpet/blue,
@@ -3421,6 +3495,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"tz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "tG" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 30
@@ -3457,6 +3544,13 @@
 /obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
+"ub" = (
+/obj/machinery/door/window/eastleft{
+	name = "Coffin Storage";
+	req_access_txt = "22"
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "uf" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel,
@@ -3470,6 +3564,18 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"uh" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 32
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "um" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
 	dir = 4
@@ -3513,6 +3619,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"ut" = (
+/obj/machinery/mass_driver{
+	id = "chapelgun";
+	name = "Holy Driver"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
 "uv" = (
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
@@ -3606,18 +3722,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"uP" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod One"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "uW" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/cloth_curtain{
@@ -3776,10 +3880,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/space)
-"vU" = (
-/obj/structure/sign/warning/docking,
-/turf/closed/wall,
-/area/hallway/secondary/entry)
 "vX" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -3838,6 +3938,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"wl" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plasteel/dark,
+/area/space)
 "wm" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -3956,6 +4060,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"wL" = (
+/obj/machinery/door/airlock/external{
+	name = "Atmospherics External Airlock";
+	req_access_txt = "24"
+	},
+/turf/open/floor/plating,
+/area/space)
 "wM" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3965,21 +4076,15 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"wP" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "wW" = (
 /turf/open/floor/wood,
+/area/space)
+"wY" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_one_access_txt = "10;61"
+	},
+/turf/open/floor/plating,
 /area/space)
 "xa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -4298,6 +4403,10 @@
 /obj/structure/grille,
 /turf/closed/wall,
 /area/space)
+"yW" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/space/basic,
+/area/space)
 "za" = (
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel,
@@ -4406,6 +4515,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"zA" = (
+/obj/structure/grille,
+/turf/closed/wall/r_wall,
+/area/space)
+"zB" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "zD" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/medical/virology";
@@ -4418,19 +4544,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"zG" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "zI" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
@@ -4479,6 +4592,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
+"zT" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	pixel_y = -24;
+	req_access_txt = "5"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "zV" = (
 /obj/structure/table/wood/fancy,
 /turf/open/floor/carpet,
@@ -4502,22 +4628,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "Aa" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 9
+/obj/structure/chair{
+	dir = 1
 	},
-/obj/machinery/computer/secure_data{
-	dir = 4
-	},
-/obj/machinery/computer/security/telescreen/cmo{
-	dir = 4;
-	pixel_x = -30
-	},
-/obj/machinery/light_switch{
-	pixel_x = -22;
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
+/turf/open/floor/plasteel/dark,
+/area/space)
 "Ae" = (
 /obj/effect/landmark/start/virologist,
 /turf/open/floor/plasteel/white,
@@ -4581,6 +4696,13 @@
 /obj/structure/grille,
 /turf/closed/wall,
 /area/medical/medbay/central)
+"AF" = (
+/obj/machinery/door/poddoor{
+	id = "chapelgun";
+	name = "Chapel Launcher Door"
+	},
+/turf/open/floor/plating,
+/area/space)
 "AG" = (
 /turf/open/floor/engine,
 /area/space)
@@ -4935,9 +5057,21 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"Dl" = (
-/turf/closed/wall,
-/area/hallway/secondary/entry)
+"Di" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/obj/structure/closet/secure_closet/security/med,
+/obj/item/screwdriver{
+	pixel_y = 10
+	},
+/obj/item/radio/off,
+/obj/item/radio/intercom{
+	pixel_x = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "Dr" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -5057,6 +5191,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"Eh" = (
+/obj/structure/sign/warning/docking,
+/turf/closed/wall,
+/area/space)
 "Ei" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -5771,6 +5909,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/space)
+"HW" = (
+/obj/machinery/door/window/westleft{
+	name = "Library Desk Door";
+	req_access_txt = "37"
+	},
+/turf/open/floor/wood,
+/area/space)
 "Ia" = (
 /obj/effect/turf_decal/trimline/green/filled/corner{
 	dir = 8
@@ -6133,6 +6278,12 @@
 	dir = 5
 	},
 /area/crew_quarters/bar/atrium)
+"JH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
 "JI" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -6326,9 +6477,39 @@
 	},
 /turf/open/floor/carpet,
 /area/space)
+"KH" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod One"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
 "KJ" = (
 /obj/machinery/rnd/destructive_analyzer,
 /turf/open/floor/plasteel/white,
+/area/space)
+"KN" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
+"KQ" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Chapel Office";
+	req_access_txt = "22"
+	},
+/turf/open/floor/plasteel/sepia,
 /area/space)
 "KS" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -6375,6 +6556,11 @@
 "Li" = (
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"Lj" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/libraryconsole,
+/turf/open/floor/wood,
+/area/space)
 "Lk" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 8
@@ -6777,12 +6963,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"No" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "Nq" = (
 /obj/machinery/computer/med_data{
 	dir = 1
@@ -6913,19 +7093,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/space)
-"NW" = (
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 1
-	},
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/newscaster{
-	pixel_x = -32;
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "NY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -7475,6 +7642,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"QX" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "QY" = (
 /obj/machinery/computer/security/mining{
 	dir = 8
@@ -7546,6 +7720,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
+"Rm" = (
+/turf/open/floor/engine/vacuum,
+/area/space)
 "Rs" = (
 /turf/open/floor/circuit,
 /area/space)
@@ -7587,6 +7764,19 @@
 "RJ" = (
 /turf/open/floor/carpet,
 /area/medical/psych)
+"RK" = (
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 1
+	},
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "RP" = (
 /obj/machinery/advanced_airlock_controller{
 	pixel_y = 24
@@ -7659,28 +7849,6 @@
 /obj/machinery/suit_storage_unit/engine,
 /turf/open/floor/plasteel,
 /area/space)
-"Sr" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 9
-	},
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/obj/item/pen,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = 17;
-	pixel_y = 1
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/security/checkpoint/medical";
-	dir = 1;
-	name = "Medbay Security APC";
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "St" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -7717,6 +7885,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"SH" = (
+/obj/machinery/bookbinder,
+/turf/open/floor/wood,
+/area/space)
 "SL" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -7786,6 +7958,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"Tn" = (
+/obj/machinery/door/morgue{
+	name = "Confession Booth"
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "Ts" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
@@ -8050,17 +8228,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"UQ" = (
-/obj/machinery/camera{
-	c_tag = "Arrivals Escape Pod 1";
-	dir = 8
-	},
-/obj/machinery/light/small,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "US" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -8198,6 +8365,10 @@
 /obj/effect/landmark/start/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"VG" = (
+/obj/structure/closet/crate/coffin,
+/turf/open/floor/plasteel/dark,
+/area/space)
 "VH" = (
 /turf/closed/wall,
 /area/maintenance/central/secondary)
@@ -8318,6 +8489,13 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
+/area/space)
+"Wo" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/space)
 "Wp" = (
 /obj/structure/table/reinforced,
@@ -8458,10 +8636,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"WP" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "WQ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -8559,6 +8733,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"Xn" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/plasteel/dark,
+/area/security/checkpoint/medical)
 "Xp" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 6
@@ -32199,11 +32377,11 @@ Kx
 Kx
 Kx
 Kx
-vU
-No
-No
-UQ
-Dl
+Eh
+JH
+JH
+bU
+qx
 Kx
 Kx
 Kx
@@ -32214,11 +32392,11 @@ Kx
 Kx
 Kx
 Kx
-vU
-No
-No
-UQ
-Dl
+Eh
+JH
+JH
+bU
+qx
 Kx
 Kx
 Kx
@@ -32457,11 +32635,11 @@ Kx
 Kx
 Kx
 Kx
-Dl
-WP
-uP
-WP
-Dl
+qx
+qs
+KH
+qs
+qx
 Kx
 Kx
 Kx
@@ -32472,11 +32650,11 @@ Kx
 Kx
 Kx
 Kx
-Dl
-WP
-uP
-WP
-Dl
+qx
+qs
+KH
+qs
+qx
 Kx
 Kx
 Kx
@@ -36378,10 +36556,10 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -36636,10 +36814,10 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+Nh
+Nh
+Nh
+qx
 Kx
 Kx
 Kx
@@ -36894,10 +37072,10 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+Nh
+Nh
+Nh
+qx
 Kx
 Kx
 Kx
@@ -37152,10 +37330,10 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+Nh
+Nh
+Nh
+qx
 Kx
 Kx
 Kx
@@ -37187,15 +37365,15 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+ii
+ii
+GK
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -37410,10 +37588,10 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+Nh
+Nh
+Nh
+qx
 Kx
 Kx
 Kx
@@ -37445,15 +37623,15 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+qx
+eH
+wl
+Aa
+qx
 Kx
 Kx
 Kx
@@ -37670,8 +37848,8 @@ qx
 qx
 qx
 qx
-Kx
-Kx
+qx
+qx
 Kx
 Kx
 Kx
@@ -37703,20 +37881,20 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+qx
+Tn
+qx
+gv
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -37961,20 +38139,20 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+qx
 Kx
 Kx
 Kx
@@ -38219,20 +38397,20 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+qx
 Kx
 Kx
 Kx
@@ -38477,25 +38655,25 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -38735,25 +38913,25 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+ii
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+Nh
+Nh
+Nh
+Nh
+ut
+bZ
+AF
 Kx
 Kx
 Kx
@@ -38993,25 +39171,25 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+lK
+Nh
+Nh
+Nh
+Nh
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -39251,23 +39429,23 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+lK
+qx
+fv
+fv
+KQ
+fv
+qx
+qx
+Nh
+Nh
+Nh
+qx
 Kx
 Kx
 Kx
@@ -39509,23 +39687,23 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+qx
+qx
+lK
+lK
+lK
+lK
+lK
+qx
+Nh
+Nh
+Nh
+qx
 Kx
 Kx
 Kx
@@ -39767,23 +39945,23 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+fv
+lK
+lK
+lK
+lK
+lK
+lK
+qx
+ub
+gE
+gE
+qx
 Kx
 Kx
 Kx
@@ -40025,23 +40203,23 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+fv
+lK
+lK
+lK
+lK
+lK
+lK
+qx
+VG
+VG
+VG
+qx
 Kx
 Kx
 Kx
@@ -40283,23 +40461,23 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+lK
+lK
+lK
+lK
+fv
+lK
+lK
+lK
+lK
+lK
+lK
+qx
+VG
+VG
+VG
+qx
 Kx
 Kx
 Kx
@@ -40541,23 +40719,23 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+ii
+ii
+qx
+qx
+qx
+qx
+qx
+jF
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -40799,19 +40977,19 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+oA
+wW
+wW
+fa
+SH
+Lj
+qx
+Nh
+Nh
+Nh
+nt
+qx
 Kx
 Kx
 Kx
@@ -41057,19 +41235,19 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+wW
+wW
+wW
+wW
+wW
+wW
+qx
+Nh
+Nh
+Nh
+nt
+qx
 Kx
 Kx
 Kx
@@ -41315,19 +41493,19 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+oA
+wW
+wW
+wW
+wW
+wW
+qx
+pL
+Nh
+Nh
+nt
+qx
 Kx
 Kx
 Kx
@@ -41573,19 +41751,19 @@ ax
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+wW
+wW
+wW
+db
+db
+HW
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -41831,18 +42009,18 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+wW
+wW
+wW
+db
+wW
+wW
+qx
+om
+om
+om
+qx
 Kx
 Kx
 Kx
@@ -42089,18 +42267,18 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+wW
+wW
+wW
+wW
+db
+wW
+wW
+om
+om
+om
+om
+qx
 Kx
 Kx
 Kx
@@ -42347,18 +42525,18 @@ qx
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+wW
+wW
+wW
+db
+qz
+db
+qx
+om
+om
+om
+qx
 Kx
 Kx
 Kx
@@ -42605,18 +42783,18 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+wW
+wW
+wW
+db
+db
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -42863,18 +43041,18 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+oA
+wW
+wW
+wW
+wW
+qx
+wW
+wW
+wW
+kQ
+qx
 Kx
 Kx
 Kx
@@ -43121,18 +43299,18 @@ sT
 sT
 sT
 sT
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+GK
+wW
+wW
+wW
+wW
+wW
+qx
+wW
+wW
+wW
+wW
+qx
 Kx
 Kx
 Kx
@@ -43378,19 +43556,19 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+oA
+wW
+wW
+wW
+wW
+wW
+wW
+db
+db
+wW
+qx
 Kx
 Kx
 Kx
@@ -43637,18 +43815,18 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+wW
+wW
+wW
+wW
+qx
+wW
+db
+db
+wW
+qx
 Kx
 Kx
 Kx
@@ -43896,17 +44074,17 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+wW
+wW
+qx
+wW
+wW
+wW
+wW
+qx
 Kx
 Kx
 Kx
@@ -44156,15 +44334,15 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+wW
+wW
+qx
+wW
+wW
+wW
+wW
+qx
 Kx
 Kx
 Kx
@@ -44414,15 +44592,15 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -50257,21 +50435,21 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 Kx
 Kx
 Kx
@@ -50515,6 +50693,21 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zQ
 Kx
 Kx
 Kx
@@ -50527,26 +50720,11 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
+qx
 sT
 sT
 sT
@@ -50773,6 +50951,21 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+Kx
+Kx
+Kx
+zA
+Kx
+Kx
+Kx
+zA
+Kx
+Kx
+Kx
+zA
+zQ
 Kx
 Kx
 Kx
@@ -50785,26 +50978,11 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+sT
+sT
+sT
+qx
 sT
 sT
 sT
@@ -51031,6 +51209,21 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+Kx
+Kx
+Kx
+zA
+Kx
+Kx
+Kx
+zA
+Kx
+Kx
+Kx
+zA
+zQ
 Kx
 Kx
 Kx
@@ -51043,22 +51236,7 @@ Kx
 Kx
 Kx
 Kx
-Kx
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
+qx
 sT
 sT
 sT
@@ -51289,6 +51467,21 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+Kx
+Kx
+Kx
+zA
+Kx
+Kx
+Kx
+zA
+Kx
+Kx
+Kx
+zA
+zQ
 Kx
 Kx
 Kx
@@ -51301,22 +51494,7 @@ Kx
 Kx
 Kx
 Kx
-Kx
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
+qx
 sT
 sT
 sT
@@ -51547,6 +51725,21 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+zA
+yW
+zA
+zA
+zA
+yW
+zA
+zA
+zA
+yW
+zA
+zA
+zQ
 Kx
 Kx
 Kx
@@ -51559,22 +51752,7 @@ Kx
 Kx
 Kx
 Kx
-Kx
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
+qx
 sT
 sT
 sT
@@ -51595,8 +51773,8 @@ Kx
 Kx
 nV
 nV
-Aa
-as
+dx
+QX
 VO
 bR
 me
@@ -51798,41 +51976,41 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 Kx
 Kx
 Kx
+zQ
 Kx
 Kx
 Kx
+zQ
 Kx
 Kx
 Kx
+zQ
+zQ
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
+qx
 sT
 sT
 sT
@@ -51852,9 +52030,9 @@ Kx
 Kx
 Kx
 nV
-Sr
-NW
-sh
+pz
+RK
+zT
 VO
 MP
 bm
@@ -52056,33 +52234,29 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-sT
-sT
-sT
-sT
-sT
-sT
-sT
+zQ
+zA
+zA
+zA
+zA
+zA
+zQ
+qx
+zQ
+qs
+qs
+qs
+qx
+qs
+qs
+qs
+qx
+qs
+qs
+qs
+qx
+qx
+qx
 sT
 sT
 sT
@@ -52094,6 +52268,10 @@ qx
 qx
 qx
 qx
+qx
+sT
+sT
+sT
 qx
 sT
 sT
@@ -52110,9 +52288,9 @@ Kx
 Kx
 Kx
 nV
-wP
-aq
-ao
+zB
+iY
+Xn
 RE
 RE
 Uu
@@ -52314,26 +52492,14 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+Rm
+Rm
+Rm
+zA
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qs
 sT
 sT
 sT
@@ -52352,6 +52518,18 @@ qx
 sT
 sT
 sT
+sT
+sT
+sT
+sT
+qx
+sT
+sT
+sT
+qx
+qx
+sT
+qx
 qx
 sT
 sT
@@ -52368,10 +52546,10 @@ Kx
 Kx
 Kx
 nV
-dx
-nk
-zG
-fJ
+Di
+uh
+tz
+pG
 bM
 nK
 ZJ
@@ -52572,26 +52750,14 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+Rm
+Rm
+Rm
+yW
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qs
 sT
 sT
 sT
@@ -52607,6 +52773,18 @@ sT
 sT
 sT
 qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
 sT
 sT
 sT
@@ -52830,26 +53008,22 @@ Kx
 Kx
 Kx
 Kx
+zQ
+zA
+Rm
+Rm
+Rm
+zA
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qs
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
 sT
 sT
 sT
@@ -52868,15 +53042,19 @@ qx
 sT
 sT
 sT
+sT
+sT
+sT
+sT
 qx
 sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -53088,26 +53266,22 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+zQ
+zA
+zA
+zA
+zA
+zA
+zQ
+qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
 sT
 sT
 sT
@@ -53123,18 +53297,22 @@ sT
 sT
 sT
 qx
-qx
-qx
-qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
 qx
 qx
 sT
 qx
 qx
-Kx
-Kx
-Kx
-Kx
+sT
+sT
+sT
+qx
 Kx
 Kx
 Kx
@@ -53346,26 +53524,22 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
 sT
 sT
 sT
@@ -53381,18 +53555,22 @@ sT
 sT
 sT
 qx
+qx
 sT
-sT
-sT
-sT
+qx
+qx
+qx
+qx
+qx
+qx
 sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+sT
+sT
+sT
+qx
 Kx
 Kx
 Kx
@@ -53608,22 +53786,10 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+wL
+Pe
+Pe
+wL
 sT
 sT
 sT
@@ -53647,10 +53813,22 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+gR
+sT
+gR
+qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+qx
+sT
+sT
+sT
+qx
 Kx
 Kx
 Kx
@@ -53866,22 +54044,10 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+zQ
+zQ
+zQ
+zQ
 sT
 sT
 sT
@@ -53905,10 +54071,22 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+sT
+sT
+sT
+qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+qx
 Kx
 Kx
 Kx
@@ -54127,19 +54305,7 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qs
 sT
 sT
 sT
@@ -54163,10 +54329,22 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
+sT
+sT
+sT
+qx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -54385,19 +54563,7 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qs
 sT
 sT
 sT
@@ -54418,6 +54584,18 @@ sT
 sT
 sT
 sT
+sT
+sT
+qx
+sT
+sT
+sT
+qx
+sT
+sT
+sT
+qx
+qx
 qx
 qx
 qx
@@ -54643,40 +54821,40 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qs
+qs
+qs
+qx
+qs
+qs
+qs
+zQ
+qs
+qs
+qs
+zQ
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 sT
 qx
 qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
+sT
+sT
 sT
 qx
 Kx
@@ -54901,6 +55079,7 @@ Kx
 Kx
 Kx
 Kx
+zQ
 Kx
 Kx
 Kx
@@ -54914,8 +55093,7 @@ Kx
 Kx
 Kx
 Kx
-sT
-qx
+zQ
 sT
 sT
 sT
@@ -54929,15 +55107,15 @@ So
 vg
 vg
 qx
+Nh
 sT
-sT
-sT
+Nh
 qx
 sT
 sT
 sT
 qx
-Kx
+qx
 Kx
 Kx
 Kx
@@ -55159,29 +55337,21 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-sT
-qx
-sT
-sT
-sT
-sT
-qx
-sT
-sT
-sT
+zQ
+zA
+zA
+yW
+zA
+zA
+zA
+yW
+zA
+zA
+zA
+yW
+zA
+zA
+zQ
 sT
 sT
 sT
@@ -55190,12 +55360,20 @@ qx
 sT
 sT
 sT
+sT
+sT
+sT
+sT
+qx
+Nh
+sT
+Nh
 qx
 sT
 sT
 sT
+sT
 qx
-Kx
 Kx
 Kx
 Kx
@@ -55417,21 +55595,21 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-NH
-NH
-ZZ
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-sT
-qx
+zQ
+zA
+Rm
+Rm
+Rm
+zA
+Rm
+Rm
+Rm
+zA
+Rm
+Rm
+Rm
+zA
+zQ
 sT
 sT
 sT
@@ -55445,15 +55623,15 @@ sT
 ni
 uf
 qx
+Nh
 sT
-sT
-sT
+Nh
 qx
 sT
 sT
 sT
+sT
 qx
-Kx
 Kx
 Kx
 Kx
@@ -55675,21 +55853,21 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-ha
-Kx
-ha
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-sT
-qx
+zQ
+zA
+Rm
+Rm
+Rm
+zA
+Rm
+Rm
+Rm
+zA
+Rm
+Rm
+Rm
+zA
+zQ
 sT
 sT
 sT
@@ -55704,14 +55882,14 @@ Pe
 qx
 qx
 qx
-qx
+sT
 qx
 qx
 sT
 sT
 sT
+sT
 qx
-Kx
 Kx
 Kx
 Kx
@@ -55933,24 +56111,24 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Nv
-DP
-ha
-Kx
-Kx
-Kx
-Kx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
+zQ
+zA
+Rm
+Rm
+Rm
+zA
+Rm
+Rm
+Rm
+zA
+Rm
+Rm
+Rm
+zA
+zQ
+sT
+sT
+sT
 qx
 sT
 sT
@@ -56191,22 +56369,22 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-cq
-ha
-Kx
-Kx
-Kx
-Kx
-qx
+zQ
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+zQ
 sT
-sT
-sT
-sT
-sT
-qx
 sT
 sT
 qx
@@ -56449,24 +56627,24 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-IV
-cq
-ZZ
-Kx
-Kx
-Kx
-Kx
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 qx
-sT
-sT
-sT
-sT
-sT
 qx
-sT
-sT
+qx
 qx
 sT
 sT
@@ -56709,9 +56887,9 @@ Kx
 Kx
 Kx
 Kx
-ha
-DP
-ha
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -56720,7 +56898,7 @@ qx
 sT
 sT
 sT
-MT
+sT
 sT
 qx
 sT
@@ -57236,7 +57414,7 @@ qx
 sT
 sT
 sT
-sT
+MT
 sT
 qx
 sT
@@ -57491,16 +57669,12 @@ Kx
 Kx
 Kx
 qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
-qx
 sT
+sT
+sT
+sT
+sT
+qx
 sT
 sT
 qx
@@ -57511,6 +57685,10 @@ qx
 sT
 sT
 sT
+qx
+sT
+sT
+sT
 sT
 sT
 qx
@@ -57518,12 +57696,12 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -57748,17 +57926,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-qx
-Nh
-Nh
-Nh
-Nh
-Nh
 qx
 sT
+sT
+sT
+sT
+sT
+qx
 sT
 sT
 qx
@@ -57769,6 +57943,10 @@ qx
 sT
 sT
 sT
+qx
+sT
+sT
+sT
 sT
 sT
 qx
@@ -57776,12 +57954,12 @@ sT
 sT
 sT
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+Pe
+Pe
+qx
+Pe
+Pe
+qx
 Kx
 Kx
 Kx
@@ -58006,40 +58184,40 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
 qx
-Nh
-Us
-Nh
-Us
-Nh
 qx
-sT
-sT
-sT
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 qx
 sT
 sT
 sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
-sT
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+wY
+Pe
+Pe
+wY
+Pe
+Pe
+ll
 Kx
 Kx
 Kx
@@ -58292,13 +58470,13 @@ qx
 sT
 qx
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+Pe
+Pe
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -58548,12 +58726,12 @@ sT
 qx
 sT
 sT
+sT
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
+Pe
+Pe
+qs
+bZ
 Kx
 Kx
 Kx
@@ -58806,13 +58984,13 @@ sT
 qx
 sT
 sT
+sT
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+Pe
+Pe
+wY
+bZ
+KN
 Kx
 Kx
 Kx
@@ -59042,11 +59220,11 @@ Kx
 Kx
 Kx
 qx
-qx
-qx
-qx
-qx
-qx
+Nh
+Us
+Nh
+Us
+Nh
 qx
 BE
 sT
@@ -59068,8 +59246,8 @@ qx
 qx
 qx
 qx
-Kx
-Kx
+qx
+Wo
 Kx
 Kx
 Kx
@@ -59299,12 +59477,12 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+Nh
+Nh
+Nh
+Nh
+Nh
 qx
 qx
 qx
@@ -59326,11 +59504,11 @@ ck
 ck
 ck
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
+qx
 Kx
 Kx
 Kx
@@ -59544,6 +59722,9 @@ Kx
 Kx
 Kx
 Kx
+NH
+NH
+ZZ
 Kx
 Kx
 Kx
@@ -59554,16 +59735,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 Kx
 qx
 ck
@@ -59802,9 +59980,9 @@ Kx
 Kx
 Kx
 Kx
+ha
 Kx
-Kx
-Kx
+ha
 Kx
 Kx
 Kx
@@ -60060,9 +60238,9 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
+Nv
+DP
+ha
 Kx
 Kx
 Kx
@@ -60319,8 +60497,8 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
+cq
+ha
 Kx
 Kx
 Kx
@@ -60576,9 +60754,9 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
+IV
+cq
+ZZ
 Kx
 Kx
 Kx
@@ -60834,9 +61012,9 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
+ha
+DP
+ha
 Kx
 Kx
 Kx
