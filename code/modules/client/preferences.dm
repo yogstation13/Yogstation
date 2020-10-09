@@ -1628,7 +1628,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					for(var/A in GLOB.skillcapes)
 						if(A == pickedskillcape)
 							break
-						count = count+1
+						count++
 					if(pickedskillcape)
 						skillcape = count //im saving it as an int
 
