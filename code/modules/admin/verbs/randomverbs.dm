@@ -1233,7 +1233,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /mob/living/carbon/proc/adminpie(mob/user)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,user))))
 	p.throw_at(user, 10, 0.5, usr)
-	sleep 5
+	sleep(5)
 	var/mob/living/carbon/human/T = user
 	if(!T.IsParalyzed())
 		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/pie = new (get_turf(pick(oview(1,user))))
