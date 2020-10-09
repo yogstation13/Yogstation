@@ -1,9 +1,18 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bw" = (
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"bA" = (
+/obj/item/cultivator/rake,
+/obj/item/shovel/spade,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
 "bQ" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"bS" = (
+"cp" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -12,24 +21,29 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
-"cn" = (
-/mob/living/simple_animal/bot/medbot{
-	name = "Patcher-Upper"
-	},
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
+"cV" = (
+/obj/structure/sink/puddle,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"dc" = (
+/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"dm" = (
+/obj/item/seeds/wheat,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "eg" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"ek" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "ex" = (
 /obj/structure/table/wood/poker,
@@ -43,6 +57,14 @@
 "eQ" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"fc" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"fe" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "fm" = (
 /obj/structure/table,
@@ -61,15 +83,16 @@
 /obj/structure/fireplace,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
+"gr" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/item/storage/bag/plants/portaseeder,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
 "gN" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
-"hD" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "in" = (
 /turf/open/floor/carpet,
@@ -101,6 +124,14 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
+"kJ" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/structure/sign/poster/contraband/space_cube{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
 "kQ" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/plating,
@@ -130,16 +161,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"mS" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "nE" = (
 /turf/template_noop,
 /area/template_noop)
@@ -165,6 +186,20 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
+"oB" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"oJ" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
 "oV" = (
 /obj/machinery/shower{
 	pixel_y = 20
@@ -176,11 +211,58 @@
 /obj/machinery/door/window/southright,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
+"pk" = (
+/obj/structure/statue/diamond/captain{
+	desc = "It says on the back, 'A gift from your cousin. I hope you are doing well, John.' This looks very expensive.";
+	name = "statue of John Lamario"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"pP" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/machinery/light,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"qX" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"so" = (
+/mob/living/simple_animal/bot/medbot{
+	name = "Patcher-Upper"
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "sq" = (
 /obj/structure/chair/comfy/lime{
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"tk" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "tp" = (
 /turf/closed/mineral/random/labormineral,
@@ -198,13 +280,6 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
-"yo" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "yq" = (
 /obj/structure/sink{
 	dir = 4;
@@ -215,21 +290,6 @@
 	pixel_y = -2
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
-"yB" = (
-/obj/machinery/door/airlock/medical{
-	name = "Medical"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "yJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -264,6 +324,14 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
+"AB" = (
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"Bc" = (
+/obj/structure/flora/rock/pile,
+/obj/machinery/light,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
 "Bk" = (
 /obj/structure/toilet,
 /turf/open/floor/plasteel/freezer,
@@ -273,6 +341,21 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Br" = (
+/obj/machinery/door/airlock/medical{
+	name = "Medical"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "BL" = (
 /obj/structure/table/reinforced,
@@ -289,16 +372,6 @@
 "Cn" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"CZ" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "DH" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
@@ -306,6 +379,30 @@
 	},
 /obj/machinery/light{
 	dir = 1
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
+"DN" = (
+/obj/item/bedsheet/yellow,
+/obj/item/reagent_containers/food/snacks/mint{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/obj/structure/bed,
+/obj/structure/sign/poster/contraband/shamblers_juice{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"DP" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
+"Eb" = (
+/obj/structure/table/reinforced,
+/obj/item/paper{
+	info = "I sure hope that my cousin John is doing well! I am going to go see him on his new goat research vessel! I sure hope my pod can make the trip. When he gets back home, I am sure he will love the statue I made him!";
+	name = "Diary"
 	},
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
@@ -320,20 +417,9 @@
 	icon_state = "wood-broken4"
 	},
 /area/ruin/space/has_grav/powered)
-"EY" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/chemical{
-	req_access = list(0)
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
+"FF" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "FM" = (
 /obj/structure/table/wood/poker,
@@ -346,6 +432,10 @@
 	pixel_y = 7
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"FZ" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "Ge" = (
 /obj/machinery/light/small,
@@ -368,6 +458,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"Ig" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
 "Iq" = (
 /obj/machinery/light/small,
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -378,36 +475,25 @@
 	icon_state = "wood-broken4"
 	},
 /area/ruin/space/has_grav/powered)
-"Jw" = (
-/turf/open/floor/plating/asteroid/airless,
-/area/ruin/space/has_grav/powered)
-"Kr" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
+"Iy" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/structure/sign/departments/restroom{
-	pixel_y = 32
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
-"MF" = (
-/obj/item/bedsheet/yellow,
-/obj/item/reagent_containers/food/snacks/mint{
-	pixel_x = 9;
-	pixel_y = -4
-	},
-/obj/structure/bed,
-/obj/structure/sign/poster/contraband/shamblers_juice{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet,
+"Jw" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav/powered)
+"Jx" = (
+/obj/item/seeds/potato,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"Kz" = (
+/mob/living/simple_animal/cow,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "MJ" = (
 /turf/open/floor/plasteel/checker,
@@ -432,23 +518,6 @@
 "Oa" = (
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
-"OW" = (
-/obj/structure/table/reinforced,
-/obj/item/paper/fluff,
-/turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
-"Pa" = (
-/obj/machinery/stasis{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "Po" = (
 /obj/structure/chair/sofa{
 	dir = 4
@@ -461,15 +530,6 @@
 "Qa" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/powered)
-"QD" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "RO" = (
 /obj/machinery/door/airlock/silver,
 /obj/machinery/door/firedoor/border_only,
@@ -477,6 +537,16 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"Sq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "Sv" = (
 /obj/effect/turf_decal/delivery,
@@ -492,28 +562,45 @@
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
-"Tt" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "TQ" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"Vq" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/obj/structure/sign/poster/contraband/space_cube{
+"Uk" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"UQ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"Vu" = (
+/obj/machinery/hydroponics/soil,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"VY" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/sign/departments/restroom{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "WH" = (
 /obj/structure/cloth_curtain,
@@ -523,6 +610,21 @@
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
+"XU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/chemical{
+	req_access = list(0)
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "Yl" = (
 /obj/structure/bookcase/random/nonfiction,
@@ -672,16 +774,16 @@ nE
 nE
 nE
 tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+Gk
+Qa
+Gk
+Qa
+Qa
+Gk
+Gk
+Qa
+Gk
+Qa
 tp
 nE
 nE
@@ -704,16 +806,16 @@ nE
 nE
 nE
 tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+Gk
+Vu
+Jx
+ek
+gr
+bw
+Ig
+FF
+pP
+Qa
 tp
 tp
 nE
@@ -736,16 +838,16 @@ nE
 nE
 tp
 tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+Qa
+FZ
+oJ
+dm
+Uk
+AB
+AB
+AB
+FF
+Gk
 tp
 tp
 tp
@@ -768,16 +870,16 @@ nE
 nE
 tp
 tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+Qa
+Vu
+FZ
+bA
+cV
+Jx
+fc
+Kz
+Bc
+Gk
 tp
 tp
 tp
@@ -807,7 +909,7 @@ Qa
 Gk
 Gk
 Qa
-Gk
+DP
 Qa
 Gk
 Qa
@@ -838,7 +940,7 @@ Cn
 Cn
 TQ
 Qa
-Vq
+kJ
 Oa
 Oa
 Nx
@@ -900,7 +1002,7 @@ Qa
 fm
 Cn
 kQ
-hD
+fe
 Gk
 lY
 Oa
@@ -938,10 +1040,10 @@ Oa
 Oa
 Yl
 Gk
+pk
 kr
 kr
-kr
-kr
+dc
 Gk
 Gk
 Gk
@@ -967,11 +1069,11 @@ Qa
 Gk
 Qa
 Gk
-yB
+Br
 Gk
 Qa
 NH
-OW
+Eb
 kr
 xw
 Gk
@@ -997,9 +1099,9 @@ tp
 tp
 tp
 Qa
-Pa
-QD
-CZ
+tk
+Iy
+oB
 Gk
 ky
 MJ
@@ -1029,9 +1131,9 @@ Qa
 Qa
 Gk
 Gk
-bS
+cp
 GF
-yo
+UQ
 Qa
 BL
 MJ
@@ -1061,9 +1163,9 @@ oV
 xh
 iB
 Gk
-EY
+XU
 GF
-cn
+so
 Gk
 DH
 MJ
@@ -1093,9 +1195,9 @@ Bk
 xh
 xh
 RO
-Tt
+qX
 GF
-yo
+UQ
 Gk
 BY
 od
@@ -1125,9 +1227,9 @@ yq
 gN
 ya
 Gk
-Kr
+VY
 Tf
-mS
+Sq
 Qa
 Gk
 Gk
@@ -1161,7 +1263,7 @@ Qa
 Qa
 Gk
 Gk
-MF
+DN
 in
 WH
 kr
