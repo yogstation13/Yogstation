@@ -1616,10 +1616,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							if(!A.special)
 								selectablecapes += A	
 						if(A.special) //check for special capes
-							switch(A.capetype)
-								if("max")
-									if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
-										selectablecapes += A
+							if(A.capetype == "max")
+								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
+									selectablecapes += A
 
 					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference", skillcape) as null|anything in selectablecapes
 					if(!selectablecapes.len)
