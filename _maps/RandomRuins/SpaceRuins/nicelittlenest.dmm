@@ -3,6 +3,29 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"bS" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"cn" = (
+/mob/living/simple_animal/bot/medbot{
+	name = "Patcher-Upper"
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "eg" = (
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
@@ -47,15 +70,6 @@
 "hD" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered)
-"hZ" = (
-/obj/item/bedsheet/yellow,
-/obj/item/reagent_containers/food/snacks/mint{
-	pixel_x = 9;
-	pixel_y = -4
-	},
-/obj/structure/bed,
-/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
 "in" = (
 /turf/open/floor/carpet,
@@ -116,6 +130,16 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"mS" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "nE" = (
 /turf/template_noop,
 /area/template_noop)
@@ -161,15 +185,6 @@
 "tp" = (
 /turf/closed/mineral/random/labormineral,
 /area/ruin/space/has_grav/powered)
-"vI" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/chemical{
-	req_access = list(0)
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "xh" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
@@ -183,6 +198,13 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
+"yo" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "yq" = (
 /obj/structure/sink{
 	dir = 4;
@@ -193,6 +215,21 @@
 	pixel_y = -2
 	},
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"yB" = (
+/obj/machinery/door/airlock/medical{
+	name = "Medical"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "yJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -252,6 +289,16 @@
 "Cn" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"CZ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "DH" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
@@ -273,8 +320,17 @@
 	icon_state = "wood-broken4"
 	},
 /area/ruin/space/has_grav/powered)
-"FF" = (
-/obj/machinery/stasis{
+"EY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/chemical{
+	req_access = list(0)
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -312,13 +368,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"HZ" = (
-/mob/living/simple_animal/bot/medbot{
-	name = "Patcher-Upper"
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "Iq" = (
 /obj/machinery/light/small,
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -329,20 +378,36 @@
 	icon_state = "wood-broken4"
 	},
 /area/ruin/space/has_grav/powered)
-"Je" = (
-/obj/machinery/door/airlock/medical{
-	name = "Medical"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
+"Jw" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/space/has_grav/powered)
+"Kr" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid,
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/sign/departments/restroom{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
-"Jw" = (
-/turf/open/floor/plating/asteroid/airless,
+"MF" = (
+/obj/item/bedsheet/yellow,
+/obj/item/reagent_containers/food/snacks/mint{
+	pixel_x = 9;
+	pixel_y = -4
+	},
+/obj/structure/bed,
+/obj/structure/sign/poster/contraband/shamblers_juice{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
 "MJ" = (
 /turf/open/floor/plasteel/checker,
@@ -372,6 +437,18 @@
 /obj/item/paper/fluff,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
+"Pa" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "Po" = (
 /obj/structure/chair/sofa{
 	dir = 4
@@ -384,11 +461,13 @@
 "Qa" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/powered)
-"QX" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid,
+"QD" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "RO" = (
@@ -413,15 +492,27 @@
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
+"Tt" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "TQ" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"Vt" = (
+"Vq" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
+/obj/structure/sign/poster/contraband/space_cube{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
 "WH" = (
@@ -747,7 +838,7 @@ Cn
 Cn
 TQ
 Qa
-Vt
+Vq
 Oa
 Oa
 Nx
@@ -876,7 +967,7 @@ Qa
 Gk
 Qa
 Gk
-Je
+yB
 Gk
 Qa
 NH
@@ -906,9 +997,9 @@ tp
 tp
 tp
 Qa
-FF
-GF
-GF
+Pa
+QD
+CZ
 Gk
 ky
 MJ
@@ -938,9 +1029,9 @@ Qa
 Qa
 Gk
 Gk
+bS
 GF
-GF
-GF
+yo
 Qa
 BL
 MJ
@@ -970,9 +1061,9 @@ oV
 xh
 iB
 Gk
-vI
+EY
 GF
-HZ
+cn
 Gk
 DH
 MJ
@@ -1002,9 +1093,9 @@ Bk
 xh
 xh
 RO
+Tt
 GF
-GF
-GF
+yo
 Gk
 BY
 od
@@ -1034,9 +1125,9 @@ yq
 gN
 ya
 Gk
-QX
+Kr
 Tf
-GF
+mS
 Qa
 Gk
 Gk
@@ -1070,7 +1161,7 @@ Qa
 Qa
 Gk
 Gk
-hZ
+MF
 in
 WH
 kr
