@@ -171,6 +171,13 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"kG" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	use_power = 0
+	},
+/turf/closed/wall/mineral/diamond,
+/area/shuttle/escape/luxury)
 "lp" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -207,9 +214,6 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
-"mt" = (
-/turf/closed/indestructible/riveted/uranium,
-/area/shuttle/escape/luxury)
 "mT" = (
 /obj/item/reagent_containers/food/snacks/grilledcheese{
 	pixel_y = 11
@@ -220,15 +224,6 @@
 "mW" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
-/area/shuttle/escape/luxury)
-"oo" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "ohnopoors"
-	},
-/turf/closed/indestructible/opsglass{
-	desc = "A durable looking window made of an alloy of of plasma and titanium.";
-	name = "plastitanium window"
-	},
 /area/shuttle/escape/luxury)
 "or" = (
 /obj/structure/shuttle/engine/heater,
@@ -373,6 +368,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
+"vC" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "ohnopoors"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/shuttle/escape/luxury)
 "vR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass{
@@ -440,13 +442,6 @@
 /turf/open/floor/mineral/gold{
 	dir = 4
 	},
-/area/shuttle/escape/luxury)
-"zM" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	use_power = 0
-	},
-/turf/closed/indestructible/riveted/uranium,
 /area/shuttle/escape/luxury)
 "zQ" = (
 /turf/open/floor/mineral/gold{
@@ -656,6 +651,9 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
+"Qq" = (
+/turf/closed/wall/mineral/diamond,
+/area/shuttle/escape/luxury)
 "Qv" = (
 /obj/item/reagent_containers/food/snacks/chawanmushi{
 	pixel_y = 2
@@ -832,38 +830,38 @@
 /area/shuttle/escape/luxury)
 
 (1,1,1) = {"
-mt
-mt
-mt
+Qq
+Qq
+Qq
 pP
-mt
+Qq
 cv
-mt
-mt
-mt
-mt
-mt
+Qq
+Qq
+Qq
+Qq
+Qq
 ww
-mt
+Qq
 Or
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
 Tg
 "}
 (2,1,1) = {"
-mt
+Qq
 TJ
 Tb
 Tb
-mt
+Qq
 zQ
 zQ
 XJ
@@ -871,7 +869,7 @@ BB
 aI
 zA
 zQ
-mt
+Qq
 Iz
 aB
 FK
@@ -882,15 +880,15 @@ to
 Zx
 to
 aB
-mt
-mt
+Qq
+Qq
 "}
 (3,1,1) = {"
-mt
+Qq
 Pk
 Tb
 CF
-mt
+Qq
 zQ
 zQ
 RR
@@ -910,14 +908,14 @@ Iz
 Em
 dl
 vx
-mt
+Qq
 "}
 (4,1,1) = {"
-mt
+Qq
 TJ
 Tb
 CF
-mt
+Qq
 Ek
 zQ
 dD
@@ -925,7 +923,7 @@ Uj
 pk
 zQ
 zQ
-mt
+Qq
 gU
 dl
 aB
@@ -937,14 +935,14 @@ QE
 aB
 dl
 zt
-mt
+Qq
 "}
 (5,1,1) = {"
-mt
-mt
+Qq
+Qq
 Nz
-mt
-mt
+Qq
+Qq
 eL
 eL
 eL
@@ -952,22 +950,22 @@ eL
 eL
 eL
 eL
-mt
-oo
-oo
-oo
-oo
-oo
-oo
-oo
-oo
-oo
-mt
-mt
-mt
+Qq
+vC
+vC
+vC
+vC
+vC
+vC
+vC
+vC
+vC
+Qq
+Qq
+Qq
 "}
 (6,1,1) = {"
-mt
+Qq
 Ek
 zQ
 Xt
@@ -989,12 +987,12 @@ zQ
 zQ
 zQ
 zQ
-mt
+Qq
 or
 mW
 "}
 (7,1,1) = {"
-mt
+Qq
 RU
 wa
 Xt
@@ -1016,12 +1014,12 @@ wh
 wh
 RR
 fA
-mt
+Qq
 or
 mW
 "}
 (8,1,1) = {"
-mt
+Qq
 ei
 wa
 Xt
@@ -1043,12 +1041,12 @@ mc
 OM
 DX
 rw
-mt
+Qq
 or
 mW
 "}
 (9,1,1) = {"
-mt
+Qq
 fT
 wa
 Xt
@@ -1070,12 +1068,12 @@ KQ
 EA
 DX
 zQ
-mt
+Qq
 or
 mW
 "}
 (10,1,1) = {"
-mt
+Qq
 vh
 wa
 Xt
@@ -1097,12 +1095,12 @@ lp
 lp
 Wi
 eL
-mt
-mt
-mt
+Qq
+Qq
+Qq
 "}
 (11,1,1) = {"
-mt
+Qq
 Ek
 zQ
 Xt
@@ -1126,13 +1124,13 @@ zQ
 zQ
 oP
 VY
-mt
+Qq
 "}
 (12,1,1) = {"
-mt
-mt
+Qq
+Qq
 fR
-mt
+Qq
 zQ
 Xt
 rl
@@ -1153,13 +1151,13 @@ zQ
 zQ
 zQ
 NE
-mt
+Qq
 "}
 (13,1,1) = {"
-mt
+Qq
 ZZ
 sG
-mt
+Qq
 zQ
 Hx
 vg
@@ -1179,33 +1177,33 @@ RK
 zQ
 zQ
 pv
-zM
-mt
+kG
+Qq
 "}
 (14,1,1) = {"
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
-mt
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
+Qq
 aT
 "}
