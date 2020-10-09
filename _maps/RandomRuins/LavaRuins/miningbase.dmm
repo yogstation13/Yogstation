@@ -231,14 +231,6 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"aO" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"aQ" = (
-/obj/machinery/atmospherics/components/unary/tank/oxygen,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "aS" = (
 /obj/item/beacon,
 /obj/effect/turf_decal/tile/purple{
@@ -278,12 +270,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
-"bb" = (
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "bd" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -319,12 +305,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"bl" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/turf/closed/wall,
-/area/mine/living_quarters)
 "bp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -459,11 +439,6 @@
 	name = "Nitrogen Gas Filter";
 	on = 1
 	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
-"bZ" = (
-/obj/machinery/atmospherics/pipe/simple,
-/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "ca" = (
@@ -1347,6 +1322,16 @@
 	},
 /turf/open/floor/plating,
 /area/mine/eva)
+"fW" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "gh" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -1868,6 +1853,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"sf" = (
+/obj/machinery/atmospherics/pipe/manifold{
+	dir = 8
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "sJ" = (
 /obj/machinery/conveyor{
 	dir = 10;
@@ -2008,10 +2000,6 @@
 /obj/structure/ore_box,
 /turf/open/floor/plasteel,
 /area/mine/production)
-"yM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/mine/living_quarters)
 "yW" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -2090,6 +2078,10 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"Bi" = (
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "Bn" = (
 /obj/machinery/door/firedoor/border_only{
@@ -2321,6 +2313,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"Ef" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Eo" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -2596,13 +2592,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"Kc" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	on = 1;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/mine/living_quarters)
 "KB" = (
 /obj/machinery/airalarm/tcomms{
 	pixel_y = 24
@@ -2812,6 +2801,17 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"Ro" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1;
+	volume_rate = 200
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/living_quarters)
 "Ru" = (
 /obj/structure/sign/warning/docking,
@@ -3033,15 +3033,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"WW" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "Xc" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/purple{
@@ -3157,6 +3148,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"ZS" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/closed/wall,
+/area/mine/living_quarters)
+"ZT" = (
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 
 (1,1,1) = {"
 ab
@@ -3647,7 +3649,7 @@ ac
 ac
 ac
 ak
-Kc
+Ro
 bF
 Ew
 ht
@@ -3676,7 +3678,7 @@ ab
 ab
 ac
 ac
-ac
+bQ
 bQ
 bQ
 ba
@@ -3708,10 +3710,10 @@ ab
 ab
 ac
 ac
-ac
 bQ
-aO
-bb
+ZT
+Ef
+sf
 bX
 bV
 dp
@@ -3740,10 +3742,10 @@ ab
 ab
 ac
 ac
-ac
 bQ
 bQ
-WW
+bQ
+fW
 cb
 HH
 eG
@@ -3772,10 +3774,10 @@ ab
 ac
 ac
 ac
-ac
 bQ
-aQ
-bb
+Bi
+Ef
+sf
 eU
 dt
 eH
@@ -3804,10 +3806,10 @@ ab
 ac
 ac
 ac
-ak
 bQ
 bQ
-bl
+bQ
+ZS
 cs
 eF
 eQ
@@ -3836,10 +3838,10 @@ ab
 ab
 ac
 ac
-ak
-ak
-yM
-bZ
+ac
+ac
+ac
+ba
 rk
 mI
 kT
@@ -3869,8 +3871,8 @@ ab
 ac
 ac
 ac
-ak
-ak
+ac
+ac
 bQ
 bQ
 bQ
