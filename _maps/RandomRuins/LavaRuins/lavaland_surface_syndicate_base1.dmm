@@ -2115,6 +2115,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
+"hC" = (
+/obj/machinery/computer/turbine_computer{
+	dir = 1;
+	id = "syndie_lavaland_incineratorturbine"
+	},
+/obj/machinery/button/door/incinerator_vent_syndicatelava_aux{
+	pixel_x = -6;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered/syndicate_lava_base/engineering)
 "hE" = (
 /mob/living/carbon/monkey{
 	faction = list("neutral","Syndicate")
@@ -4404,24 +4418,6 @@
 	dir = 4
 	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
-"nc" = (
-/obj/machinery/computer/turbine_computer{
-	dir = 1;
-	id = "syndie_lavaland_incineratorturbine"
-	},
-/obj/machinery/button/door/incinerator_vent_syndicatelava_main{
-	pixel_x = 6;
-	pixel_y = -24
-	},
-/obj/machinery/button/door/incinerator_vent_syndicatelava_aux{
-	pixel_x = -6;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/engineering)
 "nd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5191,10 +5187,6 @@
 	dir = 2;
 	luminosity = 2
 	},
-/turf/open/floor/engine/vacuum,
-/area/ruin/unpowered/syndicate_lava_base/engineering)
-"oH" = (
-/obj/machinery/door/poddoor/incinerator_syndicatelava_main,
 /turf/open/floor/engine/vacuum,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "oI" = (
@@ -8531,7 +8523,7 @@ lp
 lL
 mg
 mF
-nc
+hC
 ju
 od
 ju
@@ -8539,7 +8531,7 @@ oz
 ju
 ju
 nf
-ab
+ju
 ab
 ab
 ab
@@ -8588,8 +8580,8 @@ Mo
 oA
 oE
 oG
-oH
-ab
+oz
+ju
 ab
 ab
 ab
@@ -8639,7 +8631,7 @@ oB
 ju
 ju
 nf
-ab
+ju
 ab
 ab
 ab
