@@ -54,7 +54,7 @@
 		if(can_catch_item())
 			if(istype(AM, /obj/item))
 				var/obj/item/I = AM
-				if(I.uncatchable == 1)
+				if(I.uncatchable == FALSE)
 					return 0
 				if(isturf(I.loc))
 					I.attack_hand(src)
