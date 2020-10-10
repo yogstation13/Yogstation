@@ -24,37 +24,36 @@
 
 /datum/orbit_menu/ui_data(mob/user)
 	var/list/data = list()
-
 	var/list/alive = list()
 	var/list/antagonists = list()
 	var/list/dead = list()
 	var/list/ghosts = list()
 	var/list/misc = list()
 	var/list/npcs = list()
-
 	var/list/pois = getpois(skip_mindless = 1)
 	for (var/name in pois)
 		var/list/serialized = list()
 		serialized["name"] = name
-
 		var/poi = pois[name]
-
+		serialized["ref"] = REF(poi)
 		var/mob/M = poi
 		if (istype(M))
 			if (isobserver(M))
+				var/number_of_orbiters = length(M.get_all_orbiters())
+				if (number_of_orbiters)
+					serialized["orbiters"] = number_of_orbiters
 				ghosts += list(serialized)
 			else if (M.stat == DEAD)
 				dead += list(serialized)
 			else if (M.mind == null)
 				npcs += list(serialized)
 			else
-				var/number_of_orbiters = M.orbiters?.orbiters?.len
+				var/number_of_orbiters = length(M.get_all_orbiters())
 				if (number_of_orbiters)
 					serialized["orbiters"] = number_of_orbiters
 
 				var/datum/mind/mind = M.mind
 				var/was_antagonist = FALSE
-
 				for (var/_A in mind.antag_datums)
 					var/datum/antagonist/A = _A
 					if (A.show_to_ghosts)
@@ -62,17 +61,14 @@
 						serialized["antag"] = A.name
 						antagonists += list(serialized)
 						break
-
 				if (!was_antagonist)
 					alive += list(serialized)
 		else
 			misc += list(serialized)
-
 	data["alive"] = alive
 	data["antagonists"] = antagonists
 	data["dead"] = dead
 	data["ghosts"] = ghosts
 	data["misc"] = misc
 	data["npcs"] = npcs
-
 	return data
