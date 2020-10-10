@@ -9,7 +9,7 @@
 		return
 
 	if(C.prefs.purrbation)
-		purrbation_toggle(H)
+		prrbation_toggle(H)
 
 	if(C.prefs.donor_hat)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
