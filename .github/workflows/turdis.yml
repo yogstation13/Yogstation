@@ -50,12 +50,14 @@ jobs:
         id: linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-        uses: pCYSl5EDgo/cat@master
+      - uses: pCYSl5EDgo/cat@master
+        id: text_output
         with:
           path: output-annotations.txt
-        run: echo $TEXT
+          
+      - run: echo $TEXT
         env:
-          TEXT: ${{ steps.linter.outputs.text }}
+          TEXT: ${{ steps.text_output.outputs.text }}
 
       - name: Annotate Linter
         uses: yogstation13/DreamAnnotate@v1
