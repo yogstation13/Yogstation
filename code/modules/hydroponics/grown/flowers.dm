@@ -232,7 +232,7 @@
 	icon_grow = "bee_balm-grow"
 	icon_dead = "bee_balm-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/bee_balm/honey) //Lower odds of becoming honey
-	reagents_add = list("spaceacillin" = 0.1, "sterilizine" = 0.05)
+	reagents_add = list(/datum/reagent/medicine/spaceacillin = 0.1, /datum/reagent/space_cleaner/sterilizine = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/bee_balm
 	seed = /obj/item/seeds/bee_balm
@@ -260,7 +260,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	icon_grow = "bee_balmalt-grow"
 	icon_dead = "bee_balmalt-dead"
-	reagents_add = list("honey" = 0.1, "lye" = 0.3) //To make wax
+	reagents_add = list(/datum/reagent/consumable/honey = 0.1, /datum/reagent/lye = 0.3) //To make wax
 	rarity = 30
 
 /obj/item/reagent_containers/food/snacks/grown/bee_balm/honey
@@ -271,4 +271,4 @@
 	filling_color = "#FF6347"
 	bitesize_mod = 8
 	tastes = list("wax" = 1)
-	foodtype = SUGAR 
+	foodtype = SUGAR
