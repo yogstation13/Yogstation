@@ -54,8 +54,8 @@ jobs:
         id: text_output
         with:
           path: output-annotations.txt
-          
-      - run: echo $TEXT
+
+      - run: echo $TEXT2
         env:
           TEXT: ${{ steps.text_output.outputs.text }}
 
