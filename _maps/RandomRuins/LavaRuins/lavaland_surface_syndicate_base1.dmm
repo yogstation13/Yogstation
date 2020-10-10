@@ -5151,10 +5151,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
-"oC" = (
-/obj/machinery/door/poddoor/incinerator_syndicatelava_aux,
-/turf/open/floor/engine/vacuum,
-/area/ruin/unpowered/syndicate_lava_base/engineering)
 "oD" = (
 /obj/structure/sign/warning/xeno_mining{
 	pixel_x = -32
@@ -8677,7 +8673,7 @@ RV
 tW
 RE
 ju
-oC
+ju
 nf
 ab
 ab
