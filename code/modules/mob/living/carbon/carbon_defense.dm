@@ -55,13 +55,13 @@
 			if(istype(AM, /obj/item))
 				var/obj/item/I = AM
 				if(I.uncatchable == FALSE)
-					return 0
+					return FALSE
 				if(isturf(I.loc))
 					I.attack_hand(src)
 					if(get_active_held_item() == I) //if our attack_hand() picks up the item...
 						visible_message("<span class='warning'>[src] catches [I]!</span>") //catch that sucker!
 						throw_mode_off()
-						return 1
+						return TRUE
 	..()
 
 
