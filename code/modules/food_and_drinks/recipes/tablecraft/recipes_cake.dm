@@ -124,3 +124,49 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/cake/slimecake
 	subcategory = CAT_CAKE
+
+/datum/crafting_recipe/food/holycake
+	name = "Angel food cake"
+	reqs = list(
+		/datum/reagent/water/holywater = 15,
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/holy_cake
+	subcategory = CAT_CAKE
+
+/datum/crafting_recipe/food/poundcake
+	name = "Pound cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 4
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/pound_cake
+	subcategory = CAT_CAKE
+
+/datum/crafting_recipe/food/hardwarecake
+	name = "Hardware cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1,
+		/obj/item/circuitboard = 2,
+		/datum/reagent/toxin/acid = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/hardware_cake
+	subcategory = CAT_CAKE
+
+/datum/crafting_recipe/food/bscccake
+	name = "blackberry and strawberry chocolate cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 2,
+		/obj/item/reagent_containers/food/snacks/grown/berries = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/bscc
+	subcategory = CAT_CAKE
+
+/datum/crafting_recipe/food/bscvcake
+	name = "blackberry and strawberry vanilla cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1,
+		/obj/item/reagent_containers/food/snacks/grown/berries = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/bsvc
+	subcategory = CAT_CAKE
