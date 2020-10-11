@@ -21,7 +21,7 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/template_noop)
-"x" = (
+"G" = (
 /obj/structure/table,
 /obj/item/candle{
 	pixel_x = -5
@@ -30,7 +30,7 @@
 	pixel_x = 5
 	},
 /obj/effect/turf_decal/arrows,
-/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted,
+/obj/item/fakeartefact,
 /turf/open/floor/plating,
 /area/template_noop)
 
@@ -47,5 +47,5 @@ b
 (3,1,1) = {"
 c
 d
-x
+G
 "}
