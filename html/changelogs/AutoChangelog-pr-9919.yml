@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Thick skin can no longer be abused to get (effectively) 0 brute and burn mods"
