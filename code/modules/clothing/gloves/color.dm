@@ -17,6 +17,7 @@
 	permeability_coefficient = 0.05
 	item_color = "yellow"
 	resistance_flags = NONE
+	var/damaged = FALSE
 
 /obj/item/clothing/gloves/color/fyellow/Initialize()
 	. = ..()
