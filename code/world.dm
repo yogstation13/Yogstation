@@ -8,7 +8,7 @@
   *
   * The byond world object stores some basic byond level config, and has a few hub specific procs for managing hub visiblity
   *
-  * The world /New() is the root of where a round itself begins
+  * The world /New() is the root of where a round itself beginstest
   */
 /world
 	mob = /mob/dead/new_player
