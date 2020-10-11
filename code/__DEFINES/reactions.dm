@@ -20,10 +20,6 @@
 #define MINIMUM_TRIT_OXYBURN_ENERGY 		2000000	//This is calculated to help prevent singlecap bombs(Overpowered tritium/oxygen single tank bombs)
 #define SUPER_SATURATION_THRESHOLD			96
 #define STIMULUM_HEAT_SCALE					100000
-#define STIMULUM_FIRST_RISE					0.65
-#define STIMULUM_FIRST_DROP					0.065
-#define STIMULUM_SECOND_RISE				0.0009
-#define STIMULUM_ABSOLUTE_DROP				0.00000335
 #define REACTION_OPPRESSION_THRESHOLD		5
 #define NOBLIUM_FORMATION_ENERGY			2e9 	//1 Mole of Noblium takes the planck energy to condense.
 #define STIM_BALL_MAX_REACT_RATE			36		//up to 36 moles of each reactant consumed per reaction, somewhere around twice that of plasma
@@ -32,10 +28,13 @@
 #define STIM_BALL_PLASMA_COEFFICIENT		0.2		//fraction of plasma consumed during stim ball reaction	
 //Research point amounts
 #define NOBLIUM_RESEARCH_AMOUNT				1000
-#define BZ_RESEARCH_SCALE					4
-#define BZ_RESEARCH_MAX_AMOUNT				400
+#define NOBLIUM_RESEARCH_MAX_AMOUNT			10000*NOBLIUM_RESEARCH_AMOUNT
+#define BZ_RESEARCH_AMOUNT					4
+#define BZ_RESEARCH_MAX_AMOUNT				10000*BZ_RESEARCH_AMOUNT
 #define MIASMA_RESEARCH_AMOUNT				40
+#define MIASMA_RESEARCH_MAX_AMOUNT			10000*MIASMA_RESEARCH_AMOUNT
 #define STIMULUM_RESEARCH_AMOUNT			50
+#define STIMULUM_RESEARCH_MAX_AMOUNT		10000*STIMULUM_RESEARCH_AMOUNT
 //Plasma fusion properties
 #define FUSION_ENERGY_THRESHOLD				3e9 	//Amount of energy it takes to start a fusion reaction
 #define FUSION_MOLE_THRESHOLD				250 	//Mole count required (tritium/plasma) to start a fusion reaction

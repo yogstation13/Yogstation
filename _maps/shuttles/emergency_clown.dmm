@@ -112,12 +112,14 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"au" = (
-/turf/open/chasm,
-/area/shuttle/escape)
 "av" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/flasher{
+	id = "cockpit_flasher";
+	pixel_x = 6;
+	pixel_y = 24
 	},
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
@@ -139,14 +141,16 @@
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "az" = (
-/obj/item/greentext/quiet{
-	anchored = 1
+/obj/structure/chair/americandiner/black{
+	desc = "If you're sitting here, you should be contemplating your life choices.";
+	name = "the time-out chair"
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aA" = (
 /obj/machinery/door/airlock/bananium/glass{
-	name = "Emergency Shuttle Greentext"
+	name = "Emergency Shuttle Brig";
+	req_access_txt = "2"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -407,12 +411,25 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
+"hx" = (
+/obj/item/toy/snappop/phoenix,
+/obj/machinery/light,
+/obj/machinery/button/flasher{
+	id = "cockpit_flasher";
+	pixel_x = 6;
+	pixel_y = -24
+	},
+/turf/open/floor/bluespace,
+/area/shuttle/escape)
 "ib" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"jn" = (
+/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
 /area/shuttle/escape)
 "kl" = (
 /obj/item/toy/snappop/phoenix,
@@ -448,6 +465,23 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"tr" = (
+/obj/machinery/flasher{
+	id = "shuttle_flasher";
+	pixel_x = -24;
+	pixel_y = 6
+	},
+/obj/machinery/button/flasher{
+	id = "shuttle_flasher";
+	pixel_x = -24;
+	pixel_y = -6
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red/brig/fakepit,
+/area/shuttle/escape)
 "Bq" = (
 /obj/item/toy/snappop/phoenix,
 /obj/machinery/door/firedoor/border_only{
@@ -466,6 +500,19 @@
 /area/shuttle/escape)
 "Gc" = (
 /obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"IP" = (
+/obj/machinery/door/airlock/bananium/glass{
+	name = "Emergency Shuttle Brig";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -518,7 +565,7 @@ aa
 ab
 ab
 ab
-ab
+IP
 ab
 aI
 ab
@@ -540,9 +587,9 @@ ab
 ab
 ab
 ab
-au
-au
-au
+jn
+tr
+jn
 ab
 aJ
 dp
@@ -564,9 +611,9 @@ ad
 ai
 an
 ab
-au
+jn
 az
-au
+jn
 ab
 aw
 Bq
@@ -588,9 +635,9 @@ ae
 aj
 ao
 ab
-au
-au
-au
+jn
+jn
+jn
 ab
 ak
 XS
@@ -634,7 +681,7 @@ bg
 tc
 ag
 ak
-aq
+hx
 ab
 av
 ak

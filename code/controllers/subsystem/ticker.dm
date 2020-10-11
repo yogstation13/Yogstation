@@ -673,7 +673,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/disappointed.ogg',
 		'sound/roundend/scrunglartiy.ogg',
 		'sound/roundend/windowsxp.ogg',
-		'sound/roundend/heresy_announced_cut.ogg'\
+		'sound/roundend/spacemanthing.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
