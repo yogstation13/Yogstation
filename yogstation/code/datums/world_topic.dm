@@ -50,6 +50,9 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
+	message_admins(final_composed)
+	log_admin(final_composed)
+
 
 /datum/world_topic/reboot
 	keyword = "reboot"
