@@ -39411,9 +39411,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"eAv" = (
-/turf/closed/wall/r_wall,
-/area/template_noop)
 "eAz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -41796,9 +41793,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"gxG" = (
-/turf/closed/wall,
-/area/template_noop)
 "gxK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -44900,11 +44894,6 @@
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"jeS" = (
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/template_noop)
 "jfz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -46121,15 +46110,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"jYu" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/floor/plating,
-/area/template_noop)
 "jYG" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/door/firedoor/border_only{
@@ -48284,6 +48264,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"lOS" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
 "lPO" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -51244,12 +51230,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"ogH" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/template_noop)
 "ogO" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -52796,15 +52776,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"pto" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/maintenance/starboard/aft)
 "ptH" = (
 /turf/closed/wall,
 /area/escapepodbay)
@@ -53373,6 +53344,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"pLC" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "pLS" = (
 /obj/structure/rack,
 /obj/item/restraints/handcuffs/cable/zipties,
@@ -53788,9 +53770,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"qdw" = (
-/turf/open/floor/plating,
-/area/template_noop)
 "qdK" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -54276,10 +54255,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/sleeper)
-"qwu" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/template_noop)
 "qwE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -56243,6 +56218,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"sia" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/aft)
 "siG" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -56878,13 +56857,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"sJG" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/template_noop)
 "sKm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -56976,17 +56948,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"sPA" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/floor/plating,
-/area/template_noop)
 "sQT" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -57739,10 +57700,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"tvc" = (
-/obj/effect/landmark/stationroom/maint/threexthree,
-/turf/template_noop,
-/area/template_noop)
 "twv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -60186,11 +60143,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"vyv" = (
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/template_noop)
 "vyT" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -60486,6 +60438,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"vKX" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "vLx" = (
 /obj/machinery/recharge_station,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -101157,11 +101118,11 @@ fOq
 oAD
 jdO
 btU
-eAv
-eAv
-eAv
-eAv
-eAv
+tQD
+tQD
+tQD
+tQD
+tQD
 aZZ
 aSJ
 buY
@@ -101414,11 +101375,11 @@ mzH
 gBy
 jhe
 btU
-gxG
-qQV
-qQV
-tvc
-eAv
+bzs
+ldW
+ldW
+sia
+tQD
 bae
 aSJ
 aSJ
@@ -101671,11 +101632,11 @@ ngi
 jaF
 jdO
 btU
-jYu
-qQV
-qQV
-qQV
-eAv
+fjd
+ldW
+ldW
+ldW
+tQD
 bag
 aSJ
 bvv
@@ -101928,11 +101889,11 @@ jdO
 jdO
 jdO
 btU
-gxG
-qQV
-qQV
-qQV
-eAv
+bzs
+ldW
+ldW
+ldW
+tQD
 bah
 aSJ
 bvv
@@ -102185,11 +102146,11 @@ dcw
 jBv
 uUO
 btU
-gxG
-gxG
-sPA
-gxG
-eAv
+bzs
+bzs
+pLC
+bzs
+tQD
 bai
 aSJ
 bvv
@@ -102442,11 +102403,11 @@ tdV
 jhQ
 uUO
 btU
-qwu
-sJG
-jeS
-ogH
-eAv
+bHX
+jsp
+cJt
+lOS
+tQD
 bai
 bgu
 bvw
@@ -102699,11 +102660,11 @@ mzH
 oIp
 uUO
 btY
-vyv
-sJG
-qdw
-vyv
-eAv
+hwl
+jsp
+bAw
+hwl
+tQD
 avy
 avy
 avy
@@ -116331,7 +116292,7 @@ bPp
 cNW
 cae
 cOe
-pto
+vKX
 iKq
 iKq
 iKq
@@ -116585,9 +116546,9 @@ cNW
 gXs
 gXs
 aoV
-atS
-atS
-atS
+cNW
+cNW
+cNW
 cNW
 iKq
 iKq
