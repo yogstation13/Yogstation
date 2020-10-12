@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(corporations)
 
 /datum/corporation/syndicate/donkco
 	name = "Donk Co."
-	paymodifier = 1.5
+	paymodifier = 2
 	instantiate = TRUE
 
 /datum/corporation/syndicate/waffleco
@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(corporations)
 // Shouldn't really pay anyone, 
 /datum/corporation/self
 	name = "Sentience-Enabled Life Forms"
-	paymodifier = 1.5
+	paymodifier = 1
 
 /datum/corporation/mi13
 	name = "MI13"
