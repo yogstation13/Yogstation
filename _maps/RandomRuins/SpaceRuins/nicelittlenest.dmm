@@ -1,6 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"bw" = (
+"an" = (
+/turf/closed/mineral/random,
+/area/ruin/unpowered/no_grav)
+"aO" = (
 /mob/living/simple_animal/chicken,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "bA" = (
@@ -8,18 +14,34 @@
 /obj/item/shovel/spade,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
+"bE" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/sign/departments/restroom{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "bQ" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"cp" = (
-/obj/effect/turf_decal/tile/blue{
+"cl" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
+/obj/item/storage/box/matches{
+	pixel_x = -7;
+	pixel_y = 11
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "cV" = (
 /obj/structure/sink/puddle,
@@ -39,11 +61,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "ek" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/machinery/light{
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/powered)
 "ex" = (
 /obj/structure/table/wood/poker,
@@ -79,6 +103,9 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
+"fY" = (
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
 "fZ" = (
 /obj/structure/fireplace,
 /turf/open/floor/wood,
@@ -94,8 +121,40 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
+"hh" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
 "in" = (
 /turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"iu" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = 32
+	},
+/obj/machinery/door/airlock/medical{
+	name = "Medical"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "iv" = (
 /turf/open/floor/wood{
@@ -106,6 +165,18 @@
 /obj/structure/table/reinforced,
 /obj/structure/bedsheetbin,
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered)
+"iM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "jp" = (
 /obj/structure/table,
@@ -161,6 +232,14 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"mt" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"no" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
 "nE" = (
 /turf/template_noop,
 /area/template_noop)
@@ -185,16 +264,6 @@
 	pixel_x = 11
 	},
 /turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
-"oB" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "oJ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -222,6 +291,18 @@
 /obj/structure/flora/ausbushes/brflowers,
 /obj/machinery/light,
 /turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"qm" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "qX" = (
 /obj/effect/turf_decal/tile/blue{
@@ -252,20 +333,11 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"tk" = (
-/obj/machinery/stasis{
+"tE" = (
+/obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
-"tp" = (
-/turf/closed/mineral/random/labormineral,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
 "xh" = (
 /turf/open/floor/plasteel/freezer,
@@ -280,16 +352,11 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
-"yq" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
+"ym" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Garden"
 	},
-/obj/structure/mirror{
-	pixel_x = 25;
-	pixel_y = -2
-	},
-/turf/open/floor/plasteel/freezer,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
 "yJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -327,10 +394,24 @@
 "AB" = (
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
-"Bc" = (
-/obj/structure/flora/rock/pile,
-/obj/machinery/light,
-/turf/open/floor/grass,
+"AE" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/rust,
+/area/ruin/space/has_grav/powered)
+"AN" = (
+/obj/machinery/door/airlock/silver{
+	name = "Bathroom"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "Bk" = (
 /obj/structure/toilet,
@@ -341,21 +422,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered)
-"Br" = (
-/obj/machinery/door/airlock/medical{
-	name = "Medical"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "BL" = (
 /obj/structure/table/reinforced,
@@ -393,10 +459,6 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered)
-"DP" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
 "Eb" = (
 /obj/structure/table/reinforced,
@@ -458,13 +520,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"Ig" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/powered)
 "Iq" = (
 /obj/machinery/light/small,
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -474,18 +529,6 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/ruin/space/has_grav/powered)
-"Iy" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
-"Jw" = (
-/turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/powered)
 "Jx" = (
 /obj/item/seeds/potato,
@@ -508,13 +551,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"NH" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
 "Oa" = (
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
@@ -529,14 +565,6 @@
 /area/ruin/space/has_grav/powered)
 "Qa" = (
 /turf/closed/wall/r_wall/rust,
-/area/ruin/space/has_grav/powered)
-"RO" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "Sq" = (
 /obj/effect/turf_decal/tile/blue{
@@ -586,22 +614,6 @@
 	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
-"VY" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/structure/sign/departments/restroom{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "WH" = (
 /obj/structure/cloth_curtain,
 /turf/open/floor/carpet,
@@ -610,21 +622,6 @@
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/powered)
-"XU" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/chemical{
-	req_access = list(0)
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "Yl" = (
 /obj/structure/bookcase/random/nonfiction,
@@ -742,14 +739,14 @@ nE
 nE
 nE
 nE
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
+an
+an
+an
 nE
 nE
 nE
@@ -773,7 +770,7 @@ nE
 nE
 nE
 nE
-tp
+an
 Gk
 Qa
 Gk
@@ -784,7 +781,7 @@ Gk
 Qa
 Gk
 Qa
-tp
+an
 nE
 nE
 nE
@@ -805,19 +802,19 @@ nE
 nE
 nE
 nE
-tp
+an
 Gk
-Vu
+FZ
 Jx
-ek
+no
 gr
-bw
-Ig
+aO
+Uk
 FF
 pP
 Qa
-tp
-tp
+an
+an
 nE
 nE
 nE
@@ -836,8 +833,8 @@ nE
 nE
 nE
 nE
-tp
-tp
+an
+an
 Qa
 FZ
 oJ
@@ -848,11 +845,11 @@ AB
 AB
 FF
 Gk
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
 nE
 nE
 nE
@@ -868,8 +865,8 @@ nE
 nE
 nE
 nE
-tp
-tp
+an
+an
 Qa
 Vu
 FZ
@@ -878,13 +875,13 @@ cV
 Jx
 fc
 Kz
-Bc
+mt
 Gk
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
 nE
 nE
 nE
@@ -899,9 +896,9 @@ nE
 (9,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 Gk
 Qa
@@ -909,7 +906,7 @@ Qa
 Gk
 Gk
 Qa
-DP
+ym
 Qa
 Gk
 Qa
@@ -917,7 +914,7 @@ Gk
 Qa
 Gk
 Gk
-tp
+an
 nE
 nE
 nE
@@ -931,9 +928,9 @@ nE
 (10,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 YC
 Cn
@@ -949,8 +946,8 @@ zC
 Po
 El
 Gk
-tp
-Jw
+an
+fY
 nE
 nE
 nE
@@ -963,9 +960,9 @@ nE
 (11,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 eg
 Cn
@@ -974,7 +971,7 @@ Ge
 Gk
 WU
 Aq
-fw
+Oa
 Qa
 oc
 EC
@@ -983,7 +980,7 @@ Bn
 Gk
 Gk
 Gk
-Jw
+fY
 nE
 nE
 nE
@@ -995,9 +992,9 @@ nE
 (12,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Qa
 fm
 Cn
@@ -1006,7 +1003,7 @@ fe
 Gk
 lY
 Oa
-Yl
+fw
 Gk
 fZ
 kr
@@ -1015,8 +1012,8 @@ kr
 mq
 Sv
 yZ
-Jw
-Jw
+fY
+fY
 nE
 nE
 nE
@@ -1027,9 +1024,9 @@ nE
 (13,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 jp
 Cn
@@ -1047,7 +1044,7 @@ dc
 Gk
 Gk
 Gk
-Jw
+fY
 nE
 nE
 nE
@@ -1059,26 +1056,26 @@ nE
 (14,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 Qa
 Qa
 Qa
 Gk
 Qa
-Gk
-Br
+tE
+Oa
 Gk
 Qa
-NH
+cl
 Eb
 kr
 xw
 Gk
-Jw
-Jw
+fY
+fY
 nE
 nE
 nE
@@ -1091,17 +1088,17 @@ nE
 (15,1,1) = {"
 nE
 nE
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
+an
+an
 Qa
-tk
-Iy
-oB
+AE
+ek
+iu
 Gk
 ky
 MJ
@@ -1109,7 +1106,7 @@ MJ
 kr
 sq
 bQ
-Jw
+fY
 nE
 nE
 nE
@@ -1123,15 +1120,15 @@ nE
 (16,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 Qa
 Qa
 Gk
 Gk
-cp
+qm
 GF
 UQ
 Qa
@@ -1155,15 +1152,15 @@ nE
 (17,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Qa
 oV
 xh
 iB
 Gk
-XU
+iM
 GF
 so
 Gk
@@ -1187,14 +1184,14 @@ nE
 (18,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
 Bk
 xh
 xh
-RO
+AN
 qX
 GF
 UQ
@@ -1219,15 +1216,15 @@ nE
 (19,1,1) = {"
 nE
 nE
-tp
-tp
-tp
+an
+an
+an
 Gk
-yq
+hh
 gN
 ya
 Gk
-VY
+bE
 Tf
 Sq
 Qa
@@ -1252,8 +1249,8 @@ nE
 nE
 nE
 nE
-tp
-tp
+an
+an
 Gk
 Gk
 Qa
@@ -1285,15 +1282,15 @@ nE
 nE
 nE
 nE
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
+an
+an
+an
+an
 Qa
 lK
 in
@@ -1301,7 +1298,7 @@ WH
 Iq
 Gk
 Gk
-Jw
+fY
 nE
 nE
 nE
@@ -1319,21 +1316,21 @@ nE
 nE
 nE
 nE
-tp
-tp
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
+an
+an
 Qa
 Gk
 Qa
 Gk
 Gk
 Gk
-Jw
-Jw
+fY
+fY
 nE
 nE
 nE
@@ -1353,18 +1350,18 @@ nE
 nE
 nE
 nE
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-tp
-Jw
-Jw
+an
+an
+an
+an
+an
+an
+an
+an
+an
+an
+fY
+fY
 nE
 nE
 nE
@@ -1387,12 +1384,12 @@ nE
 nE
 nE
 nE
-tp
-tp
-tp
-tp
-tp
-tp
+an
+an
+an
+an
+an
+an
 nE
 nE
 nE
