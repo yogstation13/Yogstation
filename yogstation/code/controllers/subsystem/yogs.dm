@@ -135,6 +135,9 @@ SUBSYSTEM_DEF(Yogs)
 				P.info += "</ul>"
 				P.update_icon()
 
+	
+	for(var/path in subtypesof(/datum/corporation))
+		new path
 
 	return ..()
 
