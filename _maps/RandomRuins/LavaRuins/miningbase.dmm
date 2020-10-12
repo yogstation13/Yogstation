@@ -1322,14 +1322,10 @@
 	},
 /turf/open/floor/plating,
 /area/mine/eva)
-"fW" = (
+"ge" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 10
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "gh" = (
@@ -1470,6 +1466,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"jz" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "jQ" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -1810,18 +1815,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"rk" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 4
-	},
-/obj/machinery/mineral/mint{
-	input_dir = 4
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "rD" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -1831,6 +1824,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"rP" = (
+/obj/machinery/atmospherics/components/unary/tank/oxygen,
+/turf/open/floor/plating,
 /area/mine/living_quarters)
 "rU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -1853,13 +1850,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"sf" = (
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 8
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "sJ" = (
 /obj/machinery/conveyor{
 	dir = 10;
@@ -2079,8 +2069,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"Bi" = (
-/obj/machinery/atmospherics/miner/oxygen,
+"Bm" = (
+/obj/machinery/mineral/mint{
+	input_dir = 4
+	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "Bn" = (
@@ -2313,10 +2305,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
-"Ef" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "Eo" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -2644,6 +2632,12 @@
 /obj/machinery/mineral/processing_unit_console,
 /turf/closed/wall,
 /area/mine/living_quarters)
+"MR" = (
+/obj/machinery/atmospherics/pipe/manifold{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Nl" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -2896,6 +2890,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"TO" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Ub" = (
 /obj/machinery/door/airlock/mining{
 	name = "Mining Station Storage";
@@ -3057,6 +3060,10 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"XC" = (
+/obj/machinery/atmospherics/components/unary/tank/nitrogen,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "Ya" = (
 /obj/machinery/camera{
 	c_tag = "Crew Area Hallway West";
@@ -3148,17 +3155,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"ZS" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/closed/wall,
-/area/mine/living_quarters)
-"ZT" = (
-/obj/machinery/atmospherics/miner/nitrogen,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 
 (1,1,1) = {"
 ab
@@ -3678,7 +3674,7 @@ ab
 ab
 ac
 ac
-bQ
+ac
 bQ
 bQ
 ba
@@ -3710,10 +3706,10 @@ ab
 ab
 ac
 ac
+ac
 bQ
-ZT
-Ef
-sf
+XC
+MR
 bX
 bV
 dp
@@ -3742,10 +3738,10 @@ ab
 ab
 ac
 ac
+ac
 bQ
 bQ
-bQ
-fW
+jz
 cb
 HH
 eG
@@ -3774,10 +3770,10 @@ ab
 ac
 ac
 ac
+ac
 bQ
-Bi
-Ef
-sf
+rP
+MR
 eU
 dt
 eH
@@ -3806,10 +3802,10 @@ ab
 ac
 ac
 ac
+ac
 bQ
 bQ
-bQ
-ZS
+ge
 cs
 eF
 eQ
@@ -3840,9 +3836,9 @@ ac
 ac
 ac
 ac
-ac
-ba
-rk
+bQ
+Bm
+TO
 mI
 kT
 cr
@@ -3872,8 +3868,8 @@ ac
 ac
 ac
 ac
-ac
 bQ
+ba
 bQ
 bQ
 bQ
