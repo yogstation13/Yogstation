@@ -204,7 +204,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	else
 		return
 
-	if(cookie != "none")
+	/*if(cookie != "none")
 		var/list/connData = json_decode(cookie)
 		if (connData && islist(connData) && connData.len > 0 && connData["connData"])
 			connectionHistory = connData["connData"] //lol fuck
@@ -225,7 +225,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 				owner.add_system_note("Cookie Detection", "Has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])", TRUE)
 
 	cookieSent = TRUE
-
+*/
 /// Called by js client every 60 seconds
 /datum/chatOutput/proc/ping()
 	return "pong"
