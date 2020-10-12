@@ -52,3 +52,7 @@ GLOBAL_LIST_EMPTY(corporations)
 /datum/corporation/self
 	name = "Sentience-Enabled Life Forms"
 	paymodifier = 1.5
+
+/datum/corporation/mi13
+	name = "MI13"
+	paymodifier = 3
