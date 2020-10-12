@@ -505,12 +505,13 @@
 	if(gloves)
 		var/obj/item/clothing/G = gloves
 		if(istype(G, /obj/item/clothing/gloves/color/fyellow))
-			if(G.damaged == TRUE)
+			var/obj/item/clothing/gloves/color/fyellow/greytide = G
+			if(greytide.damaged == TRUE)
 				qdel(G)
 				new/obj/effect/decal/cleanable/ash(src)
 				to_chat(src, "<span class='notice'>Your gloves absorb the shock and disintegrate!</span>")
 			else
-				G.damaged == TRUE
+				greytide.damaged == TRUE
 				to_chat(src, "<span class='notice'>Your gloves absorb the shock!</span>")
 
 	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
