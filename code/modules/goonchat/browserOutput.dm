@@ -201,6 +201,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 /datum/chatOutput/proc/analyzeClientData(cookie = "")
 	if(!cookie)
 		return
+	else
+		return
 
 	if(cookie != "none")
 		var/list/connData = json_decode(cookie)

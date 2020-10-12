@@ -315,7 +315,7 @@
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
 						/obj/item/phylactery,
-						/obj/item/banhammer)
+						/obj/item/bikehorn)
 
 /obj/item/fakeartefact/Initialize()
 	. = ..()

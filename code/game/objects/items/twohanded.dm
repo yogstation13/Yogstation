@@ -870,3 +870,25 @@
 		var/mob/lad = thing
 		lad.regenerate_icons()
 		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
+
+/obj/item/twohanded/bamboospear
+	icon_state = "bamboo_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "bamboo spear"
+	desc = "A haphazardly-constructed bamboo stick with a sharpened tip, ready to poke holes into unsuspecting people."
+	force = 10
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_unwielded = 10
+	force_wielded = 18
+	throwforce = 22
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 2)
+	armour_penetration = 10
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
+	sharpness = IS_SHARP
+
+/obj/item/twohanded/bamboospear/update_icon()
+	icon_state = "bamboo_spear[wielded]"

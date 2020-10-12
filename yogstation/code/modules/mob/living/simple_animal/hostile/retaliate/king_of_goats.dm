@@ -249,7 +249,7 @@ Difficulty: Insanely Hard
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
 	for(var/mob/M in rangers)
-		if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
+		if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
 			continue
 		M.stop_sound_channel(CHANNEL_JUKEBOX)
 		rangers[M] = world.time + current_song_length
@@ -276,7 +276,7 @@ Difficulty: Insanely Hard
 		var/sound/song_played = sound(current_song)
 
 		for(var/mob/M in range(10, src))
-			if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
+			if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
 				continue
 			if(!(M in rangers) || world.time > rangers[M])
 				M.stop_sound_channel(CHANNEL_JUKEBOX)
