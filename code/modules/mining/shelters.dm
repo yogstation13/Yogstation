@@ -17,7 +17,7 @@
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
 		var/area/A = get_area(T)
-		if(is_type_in_typecache(A, banned_areas) || T.z == 1)
+		if(is_type_in_typecache(A, banned_areas))
 			return SHELTER_DEPLOY_BAD_AREA
 		var/banned = is_type_in_typecache(T, blacklisted_turfs)
 		var/permitted = is_type_in_typecache(T, whitelisted_turfs)
