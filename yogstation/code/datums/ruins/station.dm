@@ -394,10 +394,10 @@
 	suffix = "3x3_kilolustymaid.dmm"
 	name = "Maint kilolustymaid"
 
-/datum/map_template/ruin/station/maint/threexthree/kilomechrecharger
-	id= "kilomechrecharger"
-	suffix = "3x3_kilomechrecharger.dmm"
-	name = "Maint kilomechrecharger"
+/datum/map_template/ruin/station/maint/threexthree/kilomechcharger
+	id= "kilomechcharger"
+	suffix = "3x3_kilomechcharger.dmm"
+	name = "Maint kilomechcharger"
 
 /datum/map_template/ruin/station/maint/threexthree/kilotheatre
 	id= "kilotheatre"
