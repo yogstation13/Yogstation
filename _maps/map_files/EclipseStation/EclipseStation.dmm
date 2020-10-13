@@ -87474,6 +87474,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"rHk" = (
+/obj/effect/landmark/start/artist,
+/turf/open/floor/plasteel,
+/area/storage/art)
 "rHt" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -117830,7 +117834,7 @@ ayE
 acn
 aEI
 aAB
-aAB
+rHk
 hTd
 bfz
 dzK

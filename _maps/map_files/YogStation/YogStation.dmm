@@ -45746,6 +45746,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ioi" = (
+/obj/effect/landmark/start/artist,
+/turf/open/floor/plasteel,
+/area/storage/art)
 "iok" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -86992,7 +86996,7 @@ aLE
 aOl
 aPH
 aRa
-aRa
+ioi
 aTG
 aPG
 aTq

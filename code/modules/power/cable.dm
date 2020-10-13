@@ -800,6 +800,8 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	item_color = null
 	color = "#ffffff"
 
+/obj/item/stack/cable_coil/random/thirty
+	amount = 30
 
 /obj/item/stack/cable_coil/random/five
 	amount = 5

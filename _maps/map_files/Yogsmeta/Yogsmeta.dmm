@@ -28047,6 +28047,7 @@
 	dir = 1;
 	icon_state = "vent_map_on-1"
 	},
+/obj/effect/landmark/start/artist,
 /turf/open/floor/plasteel,
 /area/storage/art)
 "baJ" = (

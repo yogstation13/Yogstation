@@ -61250,6 +61250,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"pzT" = (
+/obj/effect/landmark/start/artist,
+/turf/open/floor/plasteel,
+/area/storage/art)
 "pBI" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
@@ -86430,7 +86434,7 @@ aLE
 aOl
 aPH
 aRa
-aRa
+pzT
 aTG
 aPG
 aTq

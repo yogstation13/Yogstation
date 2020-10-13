@@ -85,6 +85,13 @@
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 
+/obj/item/clothing/under/rank/artist
+	name = "post-modern suit"
+	desc = "Only the most modern of folk have the right to wear this suit."
+	icon_state = "artist"
+	item_state = "artist"
+	item_color = "artist"
+
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
 	desc = "<i>'Special delivery!'</i>"
