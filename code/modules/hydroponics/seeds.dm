@@ -27,6 +27,7 @@
 	var/rarity = 0					// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
 	var/list/mutatelist = list()	// The type of plants that this plant can mutate into.
 	var/list/genes = list()			// Plant genes are stored here, see plant_genes.dm for more info.
+	var/list/forbiddengenes = list()
 	var/list/reagents_add = list()
 	// A list of reagents to add to product.
 	// Format: "reagent_id" = potency multiplier
@@ -90,6 +91,11 @@
 		S.genes += G.Copy()
 	S.reagents_add = reagents_add.Copy() // Faster than grabbing the list from genes.
 	return S
+
+obj/item/seeds/proc/is_gene_forbidden(typepath)
+	return (typepath in forbiddengenes)
+	
+
 
 /obj/item/seeds/proc/get_gene(typepath)
 	return (locate(typepath) in genes)
@@ -423,7 +429,7 @@
 	for(var/i in 1 to amount_random_traits)
 		var/random_trait = pick((subtypesof(/datum/plant_gene/trait)-typesof(/datum/plant_gene/trait/plant_type)))
 		var/datum/plant_gene/trait/T = new random_trait
-		if(T.can_add(src))
+		if(T.can_add(src) && !is_gene_forbidden(random_trait))
 			genes += T
 		else
 			qdel(T)
