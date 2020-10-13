@@ -899,3 +899,20 @@
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
+
+/datum/reagent/consumable/coconutmilk
+	name = "Coconut Milk"
+	id = "coconutmilk"
+	description = "A transparent white liquid extracted from coconuts. Rich in taste."
+	color = "#DFDFDF" // rgb: 223, 223, 223
+	taste_description = "sweet milk"
+	quality = DRINK_GOOD
+	glass_icon_state = "glass_white"
+	glass_name = "glass of coconut milk"
+	glass_desc = "White and nutritious goodness!"
+
+/datum/reagent/consumable/coconutmilk/on_mob_life(mob/living/carbon/M)
+	if(M.getBruteLoss() && prob(20))
+		M.heal_bodypart_damage(2,0, 0)
+		. = 1
+	..()
