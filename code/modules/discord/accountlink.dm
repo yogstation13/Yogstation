@@ -31,12 +31,12 @@
 	set name = "Link Forum Account"
 	set desc = "Link your Forum account to your BYOND account."
 
-	if(!CONFIG_GET(string/webhook_key))
+	if(!CONFIG_GET(string/xenforo_key))
 		to_chat(src, "<span class='warning'>Error: Please contact your system administrator</span>")
 		return
 
 	var/datum/http_request/req = new()
-	req.prepare(RUSTG_HTTP_METHOD_POST, "https://forums.yogstation.net/api/linking/byond/[ckey]", "", list("XF-Api-Key" = CONFIG_GET(string/webhook_key)))
+	req.prepare(RUSTG_HTTP_METHOD_POST, "[CONFIG_GET(string/apiurl)]/linking/byond/[ckey]", "", list("XF-Api-Key" = CONFIG_GET(string/xenforo_key)))
 	req.begin_async()
 	addtimer(CALLBACK(src, /client/proc/givelinkforum), 15 MINUTES, TIMER_STOPPABLE)
 	verbs -= /client/verb/linkforum
