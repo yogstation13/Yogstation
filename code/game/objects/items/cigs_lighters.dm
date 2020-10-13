@@ -927,3 +927,205 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(reagents && reagents.total_volume)
 		hand_reagents()
+
+///////////////
+/////BONGS/////
+///////////////
+
+/obj/item/bong
+	name = "bong"
+	desc = "A water bong used for smoking dried plants."
+	icon = 'icons/obj/bongs.dmi'
+	icon_state = null
+	item_state = null
+	w_class = WEIGHT_CLASS_NORMAL
+	light_color = "#FFCC66"
+	var/icon_off = "bong"
+	var/icon_on = "bong_lit"
+	var/chem_volume = 100
+	var/last_used_time //for cooldown
+	var/firecharges = 0 //used for counting how many hits can be taken before the flame goes out
+	var/list/list_reagents = list() //For the base reagents bongs could get
+
+
+/obj/item/bong/Initialize()
+	. = ..()
+	create_reagents(chem_volume, NO_REACT) // so it doesn't react until you light it
+	reagents.add_reagent_list(list_reagents)
+	icon_state = icon_off
+
+/obj/item/bong/attackby(obj/item/O, mob/user, params)
+	. = ..()
+	//If we're using a dried plant..
+	if(istype(O,/obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/DP = O
+		if (DP.dry)
+			//Nothing if our bong is full
+			if (reagents.holder_full())
+				user.show_message("<span class='notice'>The bowl is full!</span>", MSG_VISUAL)
+				return
+
+			//Transfer reagents and remove the plant
+			user.show_message("<span class='notice'>You stuff the [DP] into the [src]'s bowl.</span>", MSG_VISUAL)
+			DP.reagents.trans_to(src, 100)
+			qdel(DP)
+			return
+		else
+			user.show_message("<span class='warning'>[DP] must be dried first!</span>", MSG_VISUAL)
+			return
+
+	if (O.get_temperature() <= 500)
+		return
+	if (reagents && reagents.total_volume) //if there's stuff in the bong
+		var/lighting_text = O.ignition_effect(src, user)
+		if(lighting_text)
+			//Logic regarding igniting it on
+			if (firecharges == 0)
+				user.show_message("<span class='notice'>You light the [src] with the [O]!</span>", MSG_VISUAL)
+				bongturnon()
+			else
+				user.show_message("<span class='notice'>You rekindle [src]'s flame with the [O]!</span>", MSG_VISUAL)
+
+			firecharges = 1
+			return
+	else
+		user.show_message("<span warning='notice'>There's nothing to light up in the bowl.</span>", MSG_VISUAL)
+		return
+
+/obj/item/bong/CtrlShiftClick(mob/user) //empty reagents on alt click
+	..()
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+
+	if (reagents && reagents.total_volume)
+		user.show_message("<span class='notice'>You empty the [src].</span>", MSG_VISUAL)
+		reagents.clear_reagents()
+		if(firecharges)
+			firecharges = 0
+			bongturnoff()
+	else
+		user.show_message("<span class='notice'>The [src] is already empty.</span>", MSG_VISUAL)
+
+/obj/item/bong/AltClick(mob/user)
+	..()
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+
+	if(firecharges)
+		firecharges = 0
+		bongturnoff()
+		user.show_message("<span class='notice'>You quench the flame.</span>", MSG_VISUAL)
+		return TRUE
+
+/obj/item/bong/examine(mob/user)
+	. = ..()
+	if(!reagents.total_volume)
+		. += "<span class='notice'>The bowl is empty.</span>"
+	else if (reagents.total_volume > 80)
+		. += "<span class='notice'>The bowl is filled to the brim.</span>"
+	else if (reagents.total_volume > 40)
+		. += "<span class='notice'>The bowl has plenty weed in it.</span>"
+	else
+		. += "<span class='notice'>The bowl has some weed in it.</span>"
+
+	. += "<span class='notice'>Ctrl+Shift-click to empty.</span>"
+	. += "<span class='notice'>Alt-click to extinguish.</span>"
+
+/obj/item/bong/ignition_effect(atom/A, mob/user)
+	if(firecharges)
+		. = "<span class='notice'>[user] lights [A] off of the [src].</span>"
+	else
+		. = ""
+
+/obj/item/bong/attack(mob/living/carbon/M, mob/living/carbon/user, obj/target)
+	//if it's lit up, some stuff in the bowl and the user is a target, and we're not on cooldown
+
+	if (M != user)
+		return ..()
+
+	if(user.is_mouth_covered(head_only = 1))
+		to_chat(user, "<span class='warning'>Remove your headgear first.</span>")
+		return ..()
+
+	if(user.is_mouth_covered(mask_only = 1))
+		to_chat(user, "<span class='warning'>Remove your mask first.</span>")
+		return ..()
+
+	if (!reagents.total_volume)
+		to_chat(user, "<span class='warning'>There's nothing in the bowl.</span>")
+		return ..()
+
+	if (!firecharges)
+		to_chat(user, "<span class='warning'>You have to light it up first.</span>")
+		return ..()
+
+	if (last_used_time + 30 >= world.time)
+		return ..()
+	var/hit_strength
+	var/noise
+	var/hittext = ""
+	//if the intent is help then you take a small hit, else a big one
+	if (user.a_intent == INTENT_HARM)
+		hit_strength = 2
+		noise = 100
+		hittext = "big hit"
+	else
+		hit_strength = 1
+		noise = 70
+		hittext = "hit"
+	//bubbling sound
+	playsound(user.loc,'sound/effects/bonghit.ogg', noise, 1)
+
+	last_used_time = world.time
+
+	//message
+	user.visible_message("<span class='notice'>[user] begins to take a [hittext] from the [src]!</span>", \
+								"<span class='notice'>You begin to take a [hittext] from [src].</span>")
+
+	//we take a hit here, after an uninterrupted delay
+	if(!do_after(user, 25, target = user))
+		return
+	if (!(reagents && reagents.total_volume))
+		return
+
+	var/fraction = 12 * hit_strength
+
+	var/datum/effect_system/smoke_spread/chem/smoke_machine/s = new
+	s.set_up(reagents, hit_strength, 18, user.loc)
+	s.start()
+
+	reagents.reaction(user, INGEST, fraction)
+	if(!reagents.trans_to(user, fraction))
+		reagents.remove_any(fraction)
+
+	if (hit_strength == 2 && prob(15))
+		user.emote("cough")
+		user.adjustOxyLoss(15)
+
+	user.visible_message("<span class='notice'>[user] takes a [hittext] from the [src]!</span>", \
+							"<span class='notice'>You take a [hittext] from [src].</span>")
+
+	firecharges = firecharges - 1
+	if (!firecharges)
+		bongturnoff()
+	if (!reagents.total_volume)
+		firecharges = 0
+		bongturnoff()
+
+
+
+/obj/item/bong/proc/bongturnon()
+	icon_state = icon_on
+	set_light(3, 0.8)
+
+/obj/item/bong/proc/bongturnoff()
+	icon_state = icon_off
+	set_light(0, 0.0)
+
+
+
+/obj/item/bong/coconut
+	name = "coconut bong"
+	icon_off = "coconut_bong"
+	icon_on = "coconut_bong_lit"
+	desc = "A water bong used for smoking dried plants. This one's made out of a coconut and some bamboo."
