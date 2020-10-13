@@ -21,10 +21,12 @@
 /datum/outfit/job/artist
 	name = "Artist"
 	jobtype = /datum/job/artist
-
+	
+	head = /obj/item/clothing/head/frenchberet
 	belt = /obj/item/pda/artist
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/artist
+	gloves = /obj/item/clothing/gloves/fingerless
 	neck = /obj/item/clothing/neck/artist
 	l_pocket = /obj/item/laser_pointer
 	backpack_contents = list(
