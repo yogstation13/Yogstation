@@ -97,3 +97,4 @@
 	foodtype = VEGETABLES
 	tastes = list ("numbing tranquility" = 2, "warmth" = 1)
 	wine_power = 100
+	wine_flavor = "mind-numbing peace and warmth"
