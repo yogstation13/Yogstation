@@ -38378,7 +38378,7 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "dFz" = (
 /obj/machinery/disposal/bin,
@@ -41851,7 +41851,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "gDG" = (
 /obj/structure/cable{
@@ -43245,7 +43245,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "hPk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -47588,7 +47588,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "lmH" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
