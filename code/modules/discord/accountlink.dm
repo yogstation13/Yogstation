@@ -49,4 +49,4 @@
 
 /client/proc/givelinkforum()
 	verbs += /client/verb/linkforum
-	to_chat(src, "<span class='notice'>Your forum verification link has expired, and the verb has been returned to you.</span>")
+	to_chat(src, "<span class='notice'>Your forum verification link has expired, and the verb has been returned to you. You can ignore this if you have already linked your accounts.</span>")
