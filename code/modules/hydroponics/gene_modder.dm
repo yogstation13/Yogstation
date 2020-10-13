@@ -241,7 +241,7 @@
 				dat += "</table>"
 			else
 				dat += "No trait-related genes detected in sample.<br>"
-			if(can_insert && istype(disk.gene, /datum/plant_gene/trait))
+			if(can_insert && istype(disk.gene, /datum/plant_gene/trait) && !seed.is_gene_forbidden(disk.gene.type))
 				dat += "<a href='?src=[REF(src)];op=insert'>Insert: [disk.gene.get_name()]</a>"
 			dat += "</div>"
 	else
