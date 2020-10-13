@@ -11,8 +11,8 @@
 
 	outfit = /datum/outfit/job/artist
 
-	access = list(ACCESS_LIBRARY)
-	minimal_access = list(ACCESS_LIBRARY)
+	access = list()
+	minimal_access = list()
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 
