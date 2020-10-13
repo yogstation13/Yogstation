@@ -47,7 +47,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	icon_grow = "laughpeas-grow"
 	icon_dead = "laughpeas-dead"
-	genes = list (/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/purple)
+	genes = list (/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list (/obj/item/seeds/peas/laugh/peace)
 	reagents_add = list (/datum/reagent/consumable/laughter = 0.05, /datum/reagent/consumable/sugar = 0.05, /datum/reagent/consumable/nutriment = 0.07)
 	rarity = 25 //It actually might make Central Command Officials loosen up a smidge, eh?
@@ -82,7 +82,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	icon_grow = "worldpeas-grow"
 	icon_dead = "worldpeas-dead"
-	genes = list (/datum/plant_gene/trait/glow/blue)
+	genes = list (/datum/plant_gene/trait/glow/red)
 	reagents_add = list (/datum/reagent/pax = 0.1, /datum/reagent/drug/happiness = 0.1, /datum/reagent/consumable/nutriment = 0.15)
 	rarity = 50 // This absolutely will make even the most hardened Syndicate Operators relax, and lay down their arms.
 
