@@ -806,5 +806,11 @@
 	time = 20
 	category = CAT_PRIMAL
 
-
+/datum/crafting_recipe/coconut_bong
+	name = "Coconut Bong"
+	result = /obj/item/bong/coconut
+	reqs = list(/obj/item/stack/sheet/mineral/bamboo = 2,
+				/obj/item/reagent_containers/food/snacks/grown/coconut = 1)
+	time = 70
+	category = CAT_MISC
 	
