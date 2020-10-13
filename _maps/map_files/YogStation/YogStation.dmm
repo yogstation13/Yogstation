@@ -25356,33 +25356,6 @@
 "bqH" = (
 /turf/closed/wall/r_wall,
 /area/teleporter)
-"bqI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"bqJ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "bqK" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Teleporter Maintenance";
@@ -25414,6 +25387,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bqM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -27683,14 +27659,14 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bxd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bxe" = (
@@ -29457,12 +29433,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"bCd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "bCe" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -29536,17 +29506,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
-"bCn" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "bCo" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -33970,6 +33929,9 @@
 /turf/open/floor/plating,
 /area/security/checkpoint/engineering)
 "caB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -33979,9 +33941,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "caC" = (
@@ -55268,14 +55227,14 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "roZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "rqq" = (
@@ -62490,14 +62449,14 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "xCV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "xDh" = (
@@ -89311,8 +89270,8 @@ byM
 bBY
 bBf
 bwe
-bqI
-bCe
+bqD
+bHE
 bCq
 gZD
 gZD
@@ -89568,8 +89527,8 @@ bwe
 bwe
 bwe
 bwe
-bqJ
-bCd
+bqD
+bHE
 bCq
 bCq
 bCq
@@ -89826,7 +89785,7 @@ bfo
 bBh
 bCr
 bqM
-bCn
+bGq
 bGq
 bGq
 mjb
