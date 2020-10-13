@@ -226,7 +226,7 @@
 
 /obj/effect/proc_holder/spell/pointed/hypno/proc/sleeptarget(mob/living/carbon/human/T, mob/user) // in the future, make it check for a range so that the target can get away? or make it check for a garlic necklace.
 	if(T && user)
-		if(get_dist(user, T) <= 7) // 7 range
+		if(get_dist(user, T) <= 3) // 7 range
 			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
 			T.SetSleeping(300)
 			to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
