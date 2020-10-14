@@ -21308,21 +21308,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"aPk" = (
-/obj/structure/table,
-/obj/item/folder/yellow,
-/obj/item/pen{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/pen/red,
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "aPl" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -84937,6 +84922,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"tVL" = (
+/obj/structure/table,
+/obj/item/folder/yellow,
+/obj/item/pen{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/pen/red,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Quartermaster's Desk";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "tXK" = (
 /obj/machinery/air_sensor/atmos/toxins_mixing_tank,
 /turf/open/floor/engine/vacuum,
@@ -107115,7 +107116,7 @@ dne
 aBe
 dne
 aNR
-aPk
+tVL
 aQt
 aRN
 aSX
