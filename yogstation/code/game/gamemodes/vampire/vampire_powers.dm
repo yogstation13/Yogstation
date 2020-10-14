@@ -131,8 +131,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!isliving(target))
-		return FALSE
 	if(!ishuman(target))
 		to_chat(user, "<span class='warning'>Gaze will not work on this being.</span>")
 		return FALSE
@@ -161,7 +159,12 @@
 				to_chat(user,"<span class='warning'>[T]'s mask is covering their eyes!</span>")
 				to_chat(target,"<span class='warning'>[user]'s paralyzing gaze is blocked by your [M]!</span>")
 				return
-
+		var/obj/item/clothing/head/H = T.head
+		if(H)
+			if(H.flash_protect)
+				to_chat(user, "<span class='vampirewarning'>[T]'s helmet is covering their eyes!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [H]!</span>")
+				return
 		to_chat(target,"<span class='warning'>You are paralyzed with fear!</span>")
 		to_chat(user,"<span class='notice'>You paralyze [T].</span>")
 		T.Stun(50)
@@ -189,8 +192,6 @@
 /obj/effect/proc_holder/spell/pointed/hypno/can_target(atom/target, mob/user, silent)
 	if(!..())
 		return
-	if(!isliving(target))
-		return FALSE
 	if(!ishuman(target))
 		to_chat(user, "<span class='warning'>Hypnotize will not work on this being.</span>")
 		return FALSE
@@ -219,20 +220,21 @@
 				to_chat(user, "<span class='vampirewarning'>[T]'s mask is covering their eyes!</span>")
 				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [M]!</span>")
 				return
+		var/obj/item/clothing/head/H = T.head
+		if(H)
+			if(H.flash_protect)
+				to_chat(user, "<span class='vampirewarning'>[T]'s helmet is covering their eyes!</span>")
+				to_chat(target, "<span class='warning'>[user]'s paralyzing gaze is blocked by [H]!</span>")
+				return
 	to_chat(target, "<span class='boldwarning'>Your knees suddenly feel heavy. Your body begins to sink to the floor.</span>")
 	to_chat(user, "<span class='notice'>[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range.</span>")
-	addtimer(CALLBACK(src, .proc/sleeptarget, target, user), 40, TIMER_UNIQUE) // 4 seconds...
-
-
-/obj/effect/proc_holder/spell/pointed/hypno/proc/sleeptarget(mob/living/carbon/human/T, mob/user) // in the future, make it check for a range so that the target can get away? or make it check for a garlic necklace.
-	if(T && user)
+	if(do_mob(user, target, 40, TRUE) // 4 seconds...
 		if(get_dist(user, T) <= 3) // 7 range
-			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
-			T.SetSleeping(300)
-			to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
-		else
+				flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
+				T.SetSleeping(300)
+				to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
+			else
 			to_chat(T, "<span class='notice'>You feel a whole lot better now.</span>")
-
 
 /obj/effect/proc_holder/spell/self/shapeshift
 	name = "Shapeshift (50)"
