@@ -53,7 +53,10 @@
 		GLOB.materials_list[D.id] = D
 
 	GLOB.emote_list = init_emote_list()
-
+	//Skillcapes
+	for(var/path in subtypesof(/datum/skillcape))
+		var/datum/skillcape/A = new path()
+		GLOB.skillcapes += A
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 
