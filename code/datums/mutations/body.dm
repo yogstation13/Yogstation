@@ -234,16 +234,14 @@
 /datum/mutation/human/thickskin/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
 	if(owner.physiology)
-		brutemodbefore = owner.physiology.brute_mod
-		burnmodbefore = owner.physiology.burn_mod
 		owner.physiology.brute_mod *= 0.8
 		owner.physiology.burn_mod *= 0.9
 
 /datum/mutation/human/thickskin/on_losing(mob/living/carbon/human/owner)
 	. = ..()
 	if(owner.physiology)
-		owner.physiology.brute_mod = brutemodbefore
-		owner.physiology.burn_mod = burnmodbefore
+		owner.physiology.brute_mod /= 0.8
+		owner.physiology.burn_mod /= 0.9
 
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong

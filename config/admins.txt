@@ -15,8 +15,9 @@ Xantam	=	Host
  
 TehLadyK	=	Council Member
 Yogurtshrimp69	=	Council Member
-oakboscage	=	Council Member
-zxmongoose	=	Council Member
+Mordrehel	=	Council Member
+Lyis	=	Council Member
+
  
 alexkar598	=	Head Coder
 jamied12	=	Head Coder

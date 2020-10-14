@@ -1287,21 +1287,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, "<span class='notice'>You do not breathe, so you cannot perform CPR.</span>")
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s grab attempt!</span>")
-		return 0
+	var/datum/martial_art/M = target.check_block()
+	if(M)
+		M.handle_counter(target, user)
+		return FALSE
 	if(attacker_style && attacker_style.grab_act(user,target))
-		return 1
+		return TRUE
 	else
 		target.grabbedby(user)
-		return 1
+		return TRUE
 
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+	if(!attacker_style?.nonlethal && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
 		return FALSE
-	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>")
+	var/datum/martial_art/M = target.check_block()
+	if(M)
+		M.handle_counter(target, user)
 		return FALSE
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
@@ -1507,10 +1509,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
 		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
-			return 0
-	if(H.check_block())
-		H.visible_message("<span class='warning'>[H] blocks [I]!</span>")
-		return 0
+			return FALSE
+	var/datum/martial_art/M = H.check_block()
+	if(M)
+		M.handle_counter(H, user)
+		return FALSE
 
 	var/hit_area
 	if(!affecting) //Something went wrong. Maybe the limb is missing?
@@ -1529,7 +1532,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.send_item_attack_message(I, user, hit_area)
 
 	if(!I.force)
-		return 0 //item force is zero
+		return FALSE //item force is zero
 
 	//dismemberment
 	var/probability = I.get_dismemberment_chance(affecting)
