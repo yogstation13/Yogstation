@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - bugfix: "Mining Base No longer sucks atmos wise"
