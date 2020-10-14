@@ -43,3 +43,4 @@
 	strip_delay = 80
 	equip_delay_other = 80
 	resistance_flags = NONE
+	item_flags = MEDRESIST

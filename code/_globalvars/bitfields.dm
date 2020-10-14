@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ABSTRACT" = ABSTRACT,
 		"IN_STORAGE" = IN_STORAGE,
 		"UNCATCHABLE" = UNCATCHABLE,
+		"MEDRESIST" = MEDRESIST,
 		),
 	"admin_flags" = list(
 		"BUILDMODE" = R_BUILDMODE,
