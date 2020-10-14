@@ -34162,14 +34162,14 @@
 /turf/open/space,
 /area/solar/port/aft)
 "cda" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cdb" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cdh" = (
@@ -40830,13 +40830,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/lawoffice)
-"fLI" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "fLN" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -59580,8 +59573,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "vbv" = (
@@ -85437,8 +85428,8 @@ gZD
 gZD
 bCq
 uYM
-bCq
-bHE
+cda
+bQa
 cdW
 ceW
 bCq
@@ -85694,13 +85685,13 @@ gZD
 gZD
 pOY
 bHE
-pOY
+xLY
 bHE
-fLI
+bUs
 ceY
 bCq
 hmG
-bUs
+cdb
 bHE
 bLu
 bCq
@@ -85950,9 +85941,9 @@ gZD
 gZD
 joK
 bCq
+cAA
 bHE
-bCq
-cda
+bHE
 cgF
 bCq
 bCq
@@ -86208,8 +86199,8 @@ gZD
 gZD
 bCq
 ivM
-bCq
-cdb
+eUx
+bHE
 cpY
 vbh
 cqy
