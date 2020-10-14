@@ -510,10 +510,11 @@
 				qdel(G)
 				new/obj/effect/decal/cleanable/ash(src)
 				to_chat(src, "<span class='notice'>Your gloves absorb the shock and disintegrate!</span>")
+				return
 			else
 				greytide.damaged = TRUE
 				to_chat(src, "<span class='notice'>Your gloves absorb the shock!</span>")
-
+				return
 	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
 	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
 	if(.)
