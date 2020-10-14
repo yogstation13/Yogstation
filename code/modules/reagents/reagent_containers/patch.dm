@@ -13,8 +13,9 @@
 
 /obj/item/reagent_containers/pill/patch/attack(mob/living/L, mob/user)
 	if(ishuman(L))
-		if(L.wear_suit?.items_flags & MEDRESIST)
-			to_chat(L, "<span class='warning'>[src] cannot be applied through a hardsuit!</span>")
+		var/mob/living/carbon/human/H = L
+		if(H.wear_suit?.item_flags & MEDRESIST)
+			to_chat(H, "<span class='warning'>[src] cannot be applied through a hardsuit!</span>")
 			return
 		var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
 		if(!affecting)
