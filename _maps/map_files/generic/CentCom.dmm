@@ -96,9 +96,6 @@
 "aq" = (
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/offline)
-"ar" = (
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "as" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -181,10 +178,6 @@
 /obj/effect/holodeck_effect/mobspawner,
 /turf/open/floor/holofloor/plating,
 /area/holodeck/rec_center/wildlife)
-"aC" = (
-/obj/effect/holodeck_effect/sparks,
-/turf/open/floor/holofloor/plating/burnmix,
-/area/holodeck/rec_center/burn)
 "aD" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -6912,7 +6905,7 @@
 	},
 /area/centcom/holding)
 "pz" = (
-/turf/open/floor/holofloor/plating,
+/turf/open/lava,
 /area/holodeck/rec_center/burn)
 "pB" = (
 /obj/machinery/firealarm,
@@ -85859,14 +85852,14 @@ aa
 (245,1,1) = {"
 ac
 pz
-aC
-pz
-ar
 pz
 pz
-ar
 pz
-aC
+pz
+pz
+pz
+pz
+pz
 pz
 bj
 by
@@ -86116,14 +86109,14 @@ aa
 (246,1,1) = {"
 ac
 pz
-ar
-pz
-aC
 pz
 pz
-aC
 pz
-ar
+pz
+pz
+pz
+pz
+pz
 pz
 bj
 by
@@ -86373,14 +86366,14 @@ aa
 (247,1,1) = {"
 ac
 pz
-aC
-pz
-ar
 pz
 pz
-ar
 pz
-aC
+pz
+pz
+pz
+pz
+pz
 pz
 bj
 by
