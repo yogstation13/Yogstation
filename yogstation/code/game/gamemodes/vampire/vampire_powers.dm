@@ -204,10 +204,10 @@
 
 /obj/effect/proc_holder/spell/pointed/hypno/cast(list/targets, mob/user)
 	var/mob/living/target = targets[1]
+	var/mob/living/carbon/human/T = target
 	user.visible_message("<span class='warning'>[user]'s eyes flash red.</span>",\
 					"<span class='warning'>[user]'s eyes flash red.</span>")
-	if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/T = target
+	if(T)
 		var/obj/item/clothing/glasses/G = T.glasses
 		if(G)
 			if(G.flash_protect)
