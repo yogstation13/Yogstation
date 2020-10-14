@@ -230,10 +230,10 @@
 	to_chat(user, "<span class='notice'>[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range.</span>")
 	if(do_mob(user, target, 40, TRUE)) // 4 seconds...
 		if(get_dist(user, T) <= 3) // 7 range
-				flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
-				T.SetSleeping(300)
-				to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
-			else
+			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
+			T.SetSleeping(300)
+			to_chat(user, "<span class='warning'>[T] has fallen asleep!</span>")
+		else
 			to_chat(T, "<span class='notice'>You feel a whole lot better now.</span>")
 
 /obj/effect/proc_holder/spell/self/shapeshift
