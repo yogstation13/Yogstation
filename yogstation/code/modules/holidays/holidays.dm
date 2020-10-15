@@ -33,7 +33,7 @@
 		)
 
 /datum/holiday/oakday
-	name = "Oak's Birthday"
+	name = "Oak Day"
 	begin_day = 14
 	begin_month = OCTOBER
 	drone_hat = /obj/item/clothing/head/hardhat/cakehat
