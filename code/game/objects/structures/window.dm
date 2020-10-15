@@ -508,6 +508,7 @@
 
 /obj/structure/window/plasma/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma/reinforced
 	name = "reinforced plasma window"
@@ -594,6 +595,7 @@
 
 /obj/structure/window/plasma/reinforced/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -618,6 +620,7 @@
 
 /obj/structure/window/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma/fulltile
 	icon = 'icons/obj/smooth_structures/plasma_window.dmi'
@@ -632,6 +635,7 @@
 
 /obj/structure/window/plasma/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/rplasma_window.dmi'
@@ -646,6 +650,7 @@
 
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
@@ -662,6 +667,7 @@
 
 /obj/structure/window/reinforced/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'icons/obj/smooth_structures/tinted_window.dmi'
@@ -717,6 +723,7 @@
 
 /obj/structure/window/shuttle/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plastitanium
 	name = "plastitanium window"
@@ -741,6 +748,7 @@
 
 /obj/structure/window/plastitanium/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/clockwork
 	name = "brass window"
@@ -793,6 +801,7 @@
 
 /obj/structure/window/reinforced/clockwork/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/clockwork/fulltile
 	icon_state = "clockwork_window"
@@ -818,6 +827,7 @@
 
 /obj/structure/window/reinforced/clockwork/fulltile/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/paperframe
 	name = "paper frame"
