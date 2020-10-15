@@ -95,9 +95,10 @@
 								if("No")
 									continue
 
-			sleep(300)
+			sleep(310) // Slightly longer so as to ensure late-senders still get counted in
 		if(!candidates.len)
 			message_admins("This is awkward, sleeping until another mage check...")
+			notify_ghosts("There was an attempt to spawn in another ragin' mage, but none of you qualified!")
 			making_mage = 0
 			mages_made--
 			return
