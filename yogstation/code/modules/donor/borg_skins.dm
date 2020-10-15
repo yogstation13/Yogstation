@@ -22,11 +22,11 @@ GLOBAL_DATUM_INIT(DonorBorgHolder, /datum/borg_skin_holder, new)
 		skins += instance
 
 /datum/borg_skin_holder/proc/AddSkin(var/datum/borg_skin/B)
-	if(!B in skins)
+	if(!(B in skins))
 		skins += B
 		log_game("Successfully added the [B.name] donor borg skin to the datumbase!")
 
 /datum/borg_skin/New()
 	if(GLOB.DonorBorgHolder)
-		if(!src in GLOB.DonorBorgHolder.skins)
+		if(!(src in GLOB.DonorBorgHolder.skins))
 			GLOB.DonorBorgHolder.AddSkin(src) //On new, add the skin to the borg skin database

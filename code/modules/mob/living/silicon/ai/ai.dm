@@ -25,8 +25,8 @@
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	see_in_dark = 8
 	hud_type = /datum/hud/ai
-	med_hud = DATA_HUD_MEDICAL_BASIC
-	sec_hud = DATA_HUD_SECURITY_BASIC
+	med_hud = DATA_HUD_MEDICAL_ADVANCED
+	sec_hud = DATA_HUD_SECURITY_ADVANCED
 	d_hud = DATA_HUD_DIAGNOSTIC_ADVANCED
 	mob_size = MOB_SIZE_LARGE
 	var/battery = 200 //emergency power if the AI's APC is off
@@ -97,6 +97,8 @@
 	var/list/cam_hotkeys = new/list(9)
 	var/cam_prev
 
+	var/datum/robot_control/robot_control
+
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
 	if(!target_ai) //If there is no player/brain inside.
@@ -165,7 +167,9 @@
 	GLOB.shuttle_caller_list += src
 
 	builtInCamera = new (src)
+	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
+	builtInCamera.built_in = src
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -240,28 +244,27 @@
 	display_icon_override = ai_core_icon
 	set_core_display_icon(ai_core_icon)
 
-/mob/living/silicon/ai/Stat()
-	..()
-	if(statpanel("Status"))
-		if(!stat)
-			stat(null, text("System integrity: [(health+100)/2]%"))
-			if(isturf(loc)) //only show if we're "in" a core
-				stat(null, text("Backup Power: [battery/2]%"))
-			stat(null, text("Connected cyborgs: [connected_robots.len]"))
-			for(var/mob/living/silicon/robot/R in connected_robots)
-				var/robot_status = "Nominal"
-				if(R.shell)
-					robot_status = "AI SHELL"
-				else if(R.stat || !R.client)
-					robot_status = "OFFLINE"
-				else if(!R.cell || R.cell.charge <= 0)
-					robot_status = "DEPOWERED"
-				//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
-				stat(null, text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
-				Module: [R.designation] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]"))
-			stat(null, text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]")) //Count of total AI shells
-		else
-			stat(null, text("Systems nonfunctional"))
+/mob/living/silicon/ai/get_status_tab_items()
+	. = ..()
+	if(!stat)
+		. += text("System integrity: [(health+100)/2]%")
+		if(isturf(loc)) //only show if we're "in" a core
+			. += text("Backup Power: [battery/2]%")
+		. += text("Connected cyborgs: [connected_robots.len]")
+		for(var/mob/living/silicon/robot/R in connected_robots)
+			var/robot_status = "Nominal"
+			if(R.shell)
+				robot_status = "AI SHELL"
+			else if(R.stat || !R.client)
+				robot_status = "OFFLINE"
+			else if(!R.cell || R.cell.charge <= 0)
+				robot_status = "DEPOWERED"
+			//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
+			. += text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
+			Module: [R.designation] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]")
+		. += text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]") //Count of total AI shells
+	else
+		. += text("Systems nonfunctional")
 
 /mob/living/silicon/ai/proc/ai_alerts()
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
@@ -421,24 +424,6 @@
 		else
 			to_chat(src, "Target is not on or near any active cameras on the station.")
 		return
-	if(href_list["callbot"]) //Command a bot to move to a selected location.
-		if(call_bot_cooldown > world.time)
-			to_chat(src, "<span class='danger'>Error: Your last call bot command is still processing, please wait for the bot to finish calculating a route.</span>")
-			return
-		Bot = locate(href_list["callbot"]) in GLOB.alive_mob_list
-		if(!Bot || Bot.remote_disabled || control_disabled)
-			return //True if there is no bot found, the bot is manually emagged, or the AI is carded with wireless off.
-		waypoint_mode = 1
-		to_chat(src, "<span class='notice'>Set your waypoint by clicking on a valid location free of obstructions.</span>")
-		return
-	if(href_list["interface"]) //Remotely connect to a bot!
-		Bot = locate(href_list["interface"]) in GLOB.alive_mob_list
-		if(!Bot || Bot.remote_disabled || control_disabled)
-			return
-		Bot.attack_ai(src)
-	if(href_list["botrefresh"]) //Refreshes the bot control panel.
-		botcall()
-		return
 
 	if (href_list["ai_take_control"]) //Mech domination
 		var/obj/mecha/M = locate(href_list["ai_take_control"]) in GLOB.mechas_list
@@ -485,33 +470,10 @@
 	set category = "AI Commands"
 	set name = "Access Robot Control"
 	set desc = "Wirelessly control various automatic robots."
-	if(incapacitated())
-		return
 
-	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless control is disabled.</span>")
-		return
-	var/turf/ai_current_turf = get_turf(src)
-	var/ai_Zlevel = ai_current_turf.z
-	var/d
-	d += "<A HREF=?src=[REF(src)];botrefresh=1>Query network status</A><br>"
-	d += "<table width='100%'><tr><td width='40%'><h3>Name</h3></td><td width='30%'><h3>Status</h3></td><td width='30%'><h3>Location</h3></td><td width='10%'><h3>Control</h3></td></tr>"
-
-	for (Bot in GLOB.alive_mob_list)
-		if(Bot.z == ai_Zlevel && !Bot.remote_disabled) //Only non-emagged bots on the same Z-level are detected!
-			var/bot_mode = Bot.get_mode()
-			d += "<tr><td width='30%'>[Bot.hacked ? "<span class='bad'>(!)</span>" : ""] [Bot.name]</A> ([Bot.model])</td>"
-			//If the bot is on, it will display the bot's current mode status. If the bot is not mode, it will just report "Idle". "Inactive if it is not on at all.
-			d += "<td width='30%'>[bot_mode]</td>"
-			d += "<td width='30%'>[get_area_name(Bot, TRUE)]</td>"
-			d += "<td width='10%'><A HREF=?src=[REF(src)];interface=[REF(Bot)]>Interface</A></td>"
-			d += "<td width='10%'><A HREF=?src=[REF(src)];callbot=[REF(Bot)]>Call</A></td>"
-			d += "</tr>"
-			d = format_text(d)
-
-	var/datum/browser/popup = new(src, "botcall", "Remote Robot Control", 700, 400)
-	popup.set_content(d)
-	popup.open()
+	if(!robot_control)
+		robot_control = new(src)
+	robot_control.ui_interact(src)
 
 /mob/living/silicon/ai/proc/set_waypoint(atom/A)
 	var/turf/turf_check = get_turf(A)
@@ -641,7 +603,7 @@
 	set category = "Malfunction"
 	set name = "Choose Module"
 
-	malf_picker.use(src)
+	malf_picker.ui_interact(src)
 
 /mob/living/silicon/ai/proc/ai_statuschange()
 	set category = "AI Commands"
@@ -861,11 +823,11 @@
 	return get_dist(src, A) <= max(viewscale[1]*0.5,viewscale[2]*0.5)
 
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
-	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
+	var/treated_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
-	var/jobpart
+	var/jobpart = "Unknown"
 
 	if (iscarbon(speaker))
 		var/mob/living/carbon/S = speaker
@@ -874,7 +836,10 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
+	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[treated_message]</span></span></i>"
+
+	if (client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 
 	show_message(rendered, 2)
 
@@ -908,7 +873,7 @@
 	if(istype(A, /obj/machinery/camera))
 		current = A
 	if(client)
-		if(ismovableatom(A))
+		if(ismovable(A))
 			if(A != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE

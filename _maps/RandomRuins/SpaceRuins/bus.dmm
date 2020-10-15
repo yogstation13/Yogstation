@@ -325,7 +325,7 @@
 /area/ruin/unpowered/no_grav)
 "ba" = (
 /obj/structure/fluff/bus/passable,
-/obj/item/banhammer,
+/obj/item/bikehorn,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},

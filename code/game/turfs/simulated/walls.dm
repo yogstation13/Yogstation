@@ -70,7 +70,8 @@
 			var/obj/structure/sign/poster/P = O
 			P.roll_and_drop(src)
 
-	ScrapeAway()
+	var/turf/new_floor = ScrapeAway()
+	new_floor.air_update_turf()
 
 /turf/closed/wall/proc/break_wall()
 	new sheet_type(src, sheet_amount)
@@ -249,6 +250,9 @@
 	if(.)
 		ChangeTurf(/turf/closed/wall/clockwork)
 
+/turf/closed/wall/honk_act()
+	ChangeTurf(/turf/closed/wall/mineral/bananium)
+
 /turf/closed/wall/get_dumping_location(obj/item/storage/source, mob/user)
 	return null
 
@@ -295,5 +299,10 @@
 		dent_decals = list(decal)
 
 	add_overlay(dent_decals)
+
+/turf/closed/wall/rust_heretic_act()
+	if(prob(70))
+		new /obj/effect/glowing_rune(src)
+	ChangeTurf(/turf/closed/wall/rust)
 
 #undef MAX_DENT_DECALS

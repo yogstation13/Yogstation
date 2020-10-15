@@ -11,7 +11,6 @@
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.shadows += owner
 	owner.special_role = "Shadowling"
-	message_admins("[key_name_admin(owner.current)] was made into a shadowling!")
 	log_game("[key_name(owner.current)] was made into a shadowling!")
 	var/mob/living/carbon/human/S = owner.current
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hatch(null))
@@ -95,8 +94,8 @@
 /datum/objective/ascend/update_explanation_text()
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with [SSticker.mode.required_thralls] or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	if(statpanel("Status") && (dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
+	if((dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
 		var/datum/species/shadow/ling/SL = dna.species
-		stat("Shadowy Shield Charges", SL.shadow_charges)
+		. += "Shadowy Shield Charges: [SL.shadow_charges]"

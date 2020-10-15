@@ -14,7 +14,7 @@
 	brutemod = EGG_MAXBRUTEMOD // not the toughest egg in the dozen (handled by the #defines above)
 	heatmod = 1.1 // weak to being boiled
 	default_features = list()
-	changesource_flags = MIRROR_BADMIN // keeping it to just being an adminbus race for now
+	changesource_flags = MIRROR_BADMIN | SLIME_EXTRACT | MIRROR_PRIDE | MIRROR_MAGIC
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -24,7 +24,7 @@
 	disliked_food = GROSS | DAIRY | EGG
 	liked_food = MEAT // Eggpeople are carnivores.
 	screamsound = 'yogstation/sound/voice/eggperson/egg_scream.ogg' // (Hopefully) the sound of an egg cracking
-	species_language_holder = /datum/language/egg
+	species_language_holder = /datum/language_holder/egg
 
 /datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
 	if(damagetype == BRUTE) // Dynamic brute resist based on burn damage. The more fried the egg, the harder the shell!!

@@ -1,5 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - rscadd: "Cycling airlock controllers! Build them using metal and the appropriate electronics."
-  - tweak: "All external airlocks on boxstation are now the cycling kind. In addition, the firelocks under these airlocks have been removed."

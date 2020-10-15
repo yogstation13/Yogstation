@@ -75,19 +75,19 @@ require only minor tweaks.
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_ASHSTORM = TRUE, \
     ZTRAIT_LAVA_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
     ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_ICEMOON list(\
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_ICE_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
     ZTRAIT_UP = -1, \
     ZTRAIT_DOWN = 1, \
     ZTRAIT_BASETURF = /turf/open/floor/plating/asteroid/snow/icemoon)
 #define ZTRAITS_ICEMOON_UNDERGROUND list(\
     ZTRAIT_MINING = TRUE, \
     ZTRAIT_ICE_RUINS_UNDERGROUND = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
+    ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
     ZTRAIT_UP = -1, \
     ZTRAIT_BASETURF = /turf/open/lava/plasma/ice_moon)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.60)
@@ -119,3 +119,5 @@ require only minor tweaks.
 #define PLACE_SPACE_RUIN "space"
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_LAVA_RUIN "lavaland"
+#define PLACE_ICE_RUIN "icesurface"
+#define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"

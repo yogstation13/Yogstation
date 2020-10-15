@@ -27,7 +27,7 @@
 
 		dat += "</ul>"
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse("<HEAD><meta charset='UTF-8'><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	onclose(user, "pipedispenser")
 	return
 
@@ -55,9 +55,9 @@
 			new /obj/item/pipe_meter(loc)
 			wait = world.time + 15
 	if(href_list["layer_up"])
-		piping_layer = CLAMP(++piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
+		piping_layer = clamp(++piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
 	if(href_list["layer_down"])
-		piping_layer = CLAMP(--piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
+		piping_layer = clamp(--piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
 	return
 
 /obj/machinery/pipedispenser/attackby(obj/item/W, mob/user, params)
@@ -131,7 +131,7 @@
 
 		dat += "</ul>"
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse("<HEAD><meta charset='UTF-8'><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	return
 
 
@@ -180,9 +180,10 @@
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_STATION]'>Through Tube Station</A><BR>
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_TERMINUS]'>Terminus Tube Station</A><BR>
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_POD]'>Transit Tube Pod</A><BR>
+<A href='?src=[REF(src)];tube=[TRANSIT_TUBE_CARGO_POD]'>Transit Tube Cargo Pod</A><BR>
 "}
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse("<HEAD><meta charset='UTF-8'><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	return
 
 
@@ -214,6 +215,8 @@
 					C = new /obj/structure/c_transit_tube/station/reverse(loc)
 				if(TRANSIT_TUBE_POD)
 					C = new /obj/structure/c_transit_tube_pod(loc)
+				if(TRANSIT_TUBE_CARGO_POD)
+					C = new /obj/structure/c_transit_tube_pod/cargo(loc)
 			if(C)
 				C.add_fingerprint(usr)
 			wait = world.time + 15

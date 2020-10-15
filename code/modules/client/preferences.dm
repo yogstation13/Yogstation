@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
+	var/show_credits = TRUE
 
 	var/uses_glasses_colour = 0
 
@@ -64,13 +65,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain")
+	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "plasma_vessels" = "None", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_RANDOM
+	var/prefered_engineering_department = ENG_DEPT_RANDOM
 
 	//Quirk list
 	var/list/all_quirks = list()
@@ -93,15 +95,27 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/parallax
 
 	var/ambientocclusion = TRUE
-	var/auto_fit_viewport = FALSE
+	///Should we automatically fit the viewport?
+	var/auto_fit_viewport = TRUE
+	///Should we be in the widescreen mode set by the config?
 	var/widescreenpref = TRUE
+	///What size should pixels be displayed as? 0 is strech to fit
+	var/pixel_size = 0
+	///What scaling method should we use?
+	var/scaling_method = "normal"
 
 	var/uplink_spawn_loc = UPLINK_PDA
+
+	var/skillcape = 1
 
 	var/list/exp = list()
 	var/list/menuoptions
 
 	var/action_buttons_screen_locs = list()
+
+	var/chat_on_map = TRUE
+	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
+	var/see_chat_non_mob = TRUE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -139,11 +153,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)
 		return
-	
+
 	if(!SSjob || (SSjob.occupations.len <= 0))
 		to_chat(user, "<span class='notice'>The job SSticker is not yet finished creating jobs, please try again later</span>")
 		return
-	
+
 	update_preview_icon()
 	var/list/dat = list("<center>")
 
@@ -196,7 +210,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Name:</b> "
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
-			if(!(AGENDER in pref_species.species_traits))
+			if(FGENDER in pref_species.species_traits) //check for forced genders first like a smart person
+				gender = FEMALE
+			else if(AGENDER in pref_species.species_traits)
+				gender = PLURAL
+			else if(MGENDER in pref_species.species_traits)
+				gender = MALE
+			else
 				var/dispGender
 				if(gender == MALE)
 					dispGender = "Male"
@@ -205,6 +225,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dispGender = "Other"
 				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
+
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
@@ -222,7 +243,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Custom Job Preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
 			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR>"
-			
+			dat += "<a href='?_src_=prefs;preference=eng_dept;task=input'><b>Preferred Engineering Department:</b> [prefered_engineering_department]</a><BR>"
+
+
 			dat += "<b>Language:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=accent;task=input'><b>Accent:</b> [accent ? accent : "None"]</a><BR></td>"
 
@@ -252,7 +275,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a><BR>"
 
 			var/mutant_colors
-			if((MUTCOLORS in pref_species.species_traits) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
+			if((((MUTCOLORS in pref_species.species_traits) && !(NOCOLORCHANGE in pref_species.species_traits))) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
 
 				if(!use_skintones)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -411,6 +434,58 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("plasma_vessels" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Plasma Vessels</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=plasma_vessels;task=input'>[features["plasma_vessels"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("teeth" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Teeth</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=teeth;task=input'>[features["teeth"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("dome" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Dome</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=dome;task=input'>[features["dome"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("dorsal_tubes" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Dorsal Tubes</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=dorsal_tubes;task=input'>[features["dorsal_tubes"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
 			if("tail_human" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -464,12 +539,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
 			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
+			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
+			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
+
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
+			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape != 1) ? "[GLOB.skillcapes[skillcape]]" : "none"] </a><br>"
 			dat += "<br>"
 			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
 			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
@@ -526,6 +606,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
 				dat += "<b>Widescreen:</b> <a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
+
+			button_name = pixel_size
+			dat += "<b>Pixel Scaling:</b> <a href='?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a><br>"
+
+			switch(scaling_method)
+				if(SCALING_METHOD_NORMAL)
+					button_name = "Nearest Neighbor"
+				if(SCALING_METHOD_DISTORT)
+					button_name = "Point Sampling"
+				if(SCALING_METHOD_BLUR)
+					button_name = "Bilinear"
+			dat += "<b>Scaling Method:</b> <a href='?_src_=prefs;preference=scaling_method'>[button_name]</a><br>"
 
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
@@ -722,7 +814,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
 				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
 				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
-
+				BUTTON_KEY("Offer item", ACTION_GIVE)
 				BUTTON_KEY("Resist", ACTION_RESIST)
 				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
 				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
@@ -1344,12 +1436,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_etherealcolor)
 						features["ethcolor"] = GLOB.color_list_ethereal[new_etherealcolor]
 
-
 				if("tail_lizard")
 					var/new_tail
 					new_tail = input(user, "Choose your character's tail:", "Character Preference") as null|anything in GLOB.tails_list_lizard
 					if(new_tail)
 						features["tail_lizard"] = new_tail
+
+				if("tail_polysmorph")
+					var/new_tail
+					new_tail = input(user, "Choose your character's tail:", "Character Preference") as null|anything in GLOB.tails_list_polysmorph
+					if(new_tail)
+						features["tail_polysmorph"] = new_tail
 
 				if("tail_human")
 					var/new_tail
@@ -1411,6 +1508,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_moth_wings)
 						features["moth_wings"] = new_moth_wings
 
+				if("plasma_vessels")
+					var/new_plasma_vessels
+					new_plasma_vessels = input(user, "Choose your character's plasma vessels:", "Character Preference") as null|anything in GLOB.plasma_vessels_list
+					if(new_plasma_vessels)
+						features["plasma_vessels"] = new_plasma_vessels
+
+				if("teeth")
+					var/new_teeth
+					new_teeth = input(user, "Choose your character's teeth:", "Character Preference") as null|anything in GLOB.teeth_list
+					if(new_teeth)
+						features["teeth"] = new_teeth
+
+				if("dome")
+					var/new_dome
+					new_dome = input(user, "Choose your character's dome:", "Character Preference") as null|anything in GLOB.dome_list
+					if(new_dome)
+						features["dome"] = new_dome
+
+				if("dorsal_tubes")
+					var/new_dorsal_tubes
+					new_dorsal_tubes = input(user, "Choose if your character has dorsal tubes:", "Character Preference") as null|anything in GLOB.dorsal_tubes_list
+					if(new_dorsal_tubes)
+						features["dorsal_tubes"] = new_dorsal_tubes
+
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones
 					if(new_s_tone)
@@ -1445,6 +1566,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/department = input(user, "Choose your preferred security department:", "Security Departments") as null|anything in GLOB.security_depts_prefs
 					if(department)
 						prefered_security_department = department
+
+				if("eng_dept")
+					var/department = input(user, "Choose your preferred engineering department:", "Engineering Departments") as null|anything in GLOB.engineering_depts_prefs
+					if(department)
+						prefered_engineering_department = department
+
 				if("accent")
 					var/aksent = input(user,"Choose your accent:","Available Accents") as null|anything in (assoc_list_strip_value(strings("accents.json", "accent_file_names", directory = "strings/accents")) + "None")
 					if(aksent)
@@ -1489,6 +1616,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+				if("skillcape")
+					var/list/selectablecapes = list()
+					for(var/datum/skillcape/A in GLOB.skillcapes)
+						if(user.client.prefs.exp[A.job] >= A.hours)
+							if(!A.special)
+								selectablecapes += A	
+						if(A.special) //check for special capes
+							if(A.capetype == "max")
+								if(selectablecapes.len >= 72) //72 is the amount of job skillcapes, including trimmed.
+									selectablecapes += A
+					if(!selectablecapes.len)
+						to_chat(user, "You have no availiable skillcapes!")
+						return
+					var/pickedskillcape = input(user, "Choose your Skillcape.", "Character Preference", skillcape) as null|anything in selectablecapes
+					var/count = 1
+					for(var/A in GLOB.skillcapes)
+						if(A == pickedskillcape)
+							break
+						count++
+					if(pickedskillcape)
+						skillcape = count //im saving it as an int
+
+				if ("max_chat_length")
+					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+					if (!isnull(desiredlength))
+						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 			// yogs start - Custom keybindings
 			if(href_list["keybinding"])
 				update_keybindings(user, href_list["keybinding"], href_list["dir"])
@@ -1516,6 +1669,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						bindings.unbind_movement() // yogs - Rebindable keys
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+				if("chat_on_map")
+					chat_on_map = !chat_on_map
+				if("see_chat_non_mob")
+					see_chat_non_mob = !see_chat_non_mob
+
 				if("action_buttons")
 					buttons_locked = !buttons_locked
 				if("tgui_fancy")
@@ -1622,7 +1780,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("widescreenpref")
 					widescreenpref = !widescreenpref
-					user.client.change_view(CONFIG_GET(string/default_view))
+					user.client.view_size.setDefault(getScreenSize(widescreenpref))
+
+				if("pixel_size")
+					switch(pixel_size)
+						if(PIXEL_SCALING_AUTO)
+							pixel_size = PIXEL_SCALING_1X
+						if(PIXEL_SCALING_1X)
+							pixel_size = PIXEL_SCALING_1_2X
+						if(PIXEL_SCALING_1_2X)
+							pixel_size = PIXEL_SCALING_2X
+						if(PIXEL_SCALING_2X)
+							pixel_size = PIXEL_SCALING_3X
+						if(PIXEL_SCALING_3X)
+							pixel_size = PIXEL_SCALING_AUTO
+					user.client.view_size.apply() //Let's winset() it so it actually works
+
+				if("scaling_method")
+					switch(scaling_method)
+						if(SCALING_METHOD_NORMAL)
+							scaling_method = SCALING_METHOD_DISTORT
+						if(SCALING_METHOD_DISTORT)
+							scaling_method = SCALING_METHOD_BLUR
+						if(SCALING_METHOD_BLUR)
+							scaling_method = SCALING_METHOD_NORMAL
+					user.client.view_size.setZoomMode()
+
 
 				if("save")
 					save_preferences()
@@ -1706,6 +1889,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if("tail_lizard" in pref_species.default_features)
 		character.dna.species.mutant_bodyparts |= "tail_lizard"
+
+	if("tail_polysmorph" in pref_species.default_features)
+		character.dna.species.mutant_bodyparts |= "tail_polysmorph"
 
 	if(icon_updates)
 		character.update_body()

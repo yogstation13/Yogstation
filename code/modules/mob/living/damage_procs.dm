@@ -28,12 +28,12 @@
 			adjustStaminaLoss(damage * hit_percent)
 	return 1
 
-/mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE) //like apply damage except it always uses the damage procs
+/mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, required_status) //like apply damage except it always uses the damage procs
 	switch(damagetype)
 		if(BRUTE)
-			return adjustBruteLoss(damage)
+			return adjustBruteLoss(damage, TRUE, FALSE, required_status)
 		if(BURN)
-			return adjustFireLoss(damage)
+			return adjustFireLoss(damage, TRUE, FALSE, required_status)
 		if(TOX)
 			return adjustToxLoss(damage)
 		if(OXY)
@@ -152,7 +152,7 @@
 /mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	bruteloss = CLAMP((bruteloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	bruteloss = clamp((bruteloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -163,7 +163,7 @@
 /mob/living/proc/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	oxyloss = CLAMP((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	oxyloss = clamp((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -182,7 +182,7 @@
 /mob/living/proc/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	toxloss = CLAMP((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	toxloss = clamp((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -201,7 +201,7 @@
 /mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	fireloss = CLAMP((fireloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	fireloss = clamp((fireloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -212,7 +212,7 @@
 /mob/living/proc/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	cloneloss = CLAMP((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	cloneloss = clamp((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -280,12 +280,12 @@
 		update_stamina()
 
 //heal up to amount damage, in a given order
-/mob/living/proc/heal_ordered_damage(amount, list/damage_types)
+/mob/living/proc/heal_ordered_damage(amount, list/damage_types, required_status)
 	. = amount //we'll return the amount of damage healed
 	for(var/i in damage_types)
 		var/amount_to_heal = min(amount, get_damage_amount(i)) //heal only up to the amount of damage we have
 		if(amount_to_heal)
-			apply_damage_type(-amount_to_heal, i)
+			apply_damage_type(-amount_to_heal, i, required_status)
 			amount -= amount_to_heal //remove what we healed from our current amount
 		if(!amount)
 			break

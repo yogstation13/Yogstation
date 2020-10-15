@@ -1,13 +1,14 @@
 //Speech verbs.
+
+///Say verb
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
 
-	var/oldmsg = message //yogs start - pretty filter
-	message = pretty_filter(message)
-	if(oldmsg != message)
+	//yogs start - pretty filter
+	if(isnotpretty(message))
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
-		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
+		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 		return
 	if(isliving(src))
 		message = minor_filter(to_utf8(message)) //yogs end - pretty filter
@@ -18,16 +19,15 @@
 	if(message)
 		say(message)
 
-
+///Whisper verb
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"
 
-	var/oldmsg = message //yogs start - pretty filter
-	message = pretty_filter(message)
-	if(oldmsg != message)
+	//yogs start - pretty filter
+	if(isnotpretty(message))
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
-		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
+		message_admins("[key_name(usr)] just tripped a pretty filter: '[message]'.")
 		return
 	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
 
@@ -36,9 +36,11 @@
 		return
 	whisper(message)
 
+///whisper a message
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
 
+///The me emote verb
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
@@ -47,10 +49,11 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	message = copytext(sanitize(to_utf8(message)), 1, MAX_MESSAGE_LEN) // yogs - libvg support
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	usr.emote("me",1,message,TRUE)
 
+///Speak as a dead person (ghost etc)
 /mob/proc/say_dead(var/message)
 	var/name = real_name
 	var/alt_name = ""
@@ -99,23 +102,34 @@
 	log_talk(message, LOG_SAY, tag="DEAD")
 	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = key)
 
+///Check if this message is an emote
 /mob/proc/check_emote(message, forced)
-	if(copytext(message, 1, 2) == "*")
-		emote(copytext(message, 2), intentional = !forced)
-		return 1
+	if(message[1] == "*")
+		emote(copytext(message, length(message[1]) + 1), intentional = !forced)
+		return TRUE
 
+///Check if the mob has a hivemind channel
 /mob/proc/hivecheck()
 	return 0
 
+///Check if the mob has a ling hivemind
 /mob/proc/lingcheck()
 	return LINGHIVE_NONE
 
+/**
+  * Get the mode of a message
+  *
+  * Result can be
+  * * MODE_WHISPER (Quiet speech)
+  * * MODE_HEADSET (Common radio channel)
+  * * A department radio (lots of values here)
+  */
 /mob/proc/get_message_mode(message)
-	var/key = copytext(message, 1, 2)
+	var/key = message[1]
 	if(key == "#")
 		return MODE_WHISPER
 	else if(key == ";")
 		return MODE_HEADSET
-	else if(length(message) > 2 && (key in GLOB.department_radio_prefixes))
-		var/key_symbol = lowertext(copytext(message, 2, 3))
+	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
+		var/key_symbol = lowertext(message[length(key) + 1])
 		return GLOB.department_radio_keys[key_symbol]

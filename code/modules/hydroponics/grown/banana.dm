@@ -92,7 +92,7 @@
 // Bluespace Banana
 /obj/item/seeds/banana/bluespace
 	name = "pack of bluespace banana seeds"
-	desc = "They're seeds that grow into bluespace banana trees. When grown, keep away from bluespace clown."
+	desc = "Mutated bananas capable of using inter-dimensional fatigue to create a temporary overlap between the current dimension and bluespace, spontaneously teleporting entities."
 	icon_state = "seed-banana-blue"
 	species = "bluespacebanana"
 	icon_grow = "banana-grow"

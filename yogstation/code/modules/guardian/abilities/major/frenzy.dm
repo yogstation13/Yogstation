@@ -38,11 +38,10 @@
 		L.throw_at(get_edge_target_turf(L, get_dir(guardian, L)), 20, 4, guardian, TRUE)
 		next_rush = world.time + 3 SECONDS
 
-/datum/guardian_ability/major/frenzy/Stat()
+/datum/guardian_ability/major/frenzy/StatusTab()
 	. = ..()
-	if(statpanel("Status"))
-		if(next_rush > world.time)
-			stat(null, "Frenzy Charge Cooldown Remaining: [DisplayTimeText(next_rush - world.time)]")
+	if(next_rush > world.time)
+		. += "Frenzy Charge Cooldown Remaining: [DisplayTimeText(next_rush - world.time)]"
 
 /obj/effect/proc_holder/spell/targeted/guardian/frenzy
 	name = "Teleport Behind"

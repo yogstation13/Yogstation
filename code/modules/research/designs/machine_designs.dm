@@ -547,6 +547,14 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/board/ticket_machine
+	name = "Machine Design (Ticket Machine)"
+	desc = "The circuit board for a dish drive."
+	id = "ticket_machine"
+	build_path = /obj/item/circuitboard/machine/ticketmachine
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/board/stacking_unit_console
 	name = "Machine Design (Stacking Machine Console)"
 	desc = "The circuit board for a Stacking Machine Console."

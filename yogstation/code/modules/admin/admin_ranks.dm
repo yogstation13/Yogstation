@@ -1,5 +1,7 @@
 // Kn0ss0s: This proc allows your to use a database for admin ranks, whilst immediately providing a functioning actual fallback in the case of failure
 /proc/refresh_admin_files()
+	return //this is a stupid system
+	/*
 	// Generate the Admins and Admins Ranks config files
 	if(SSdbcore.IsConnected())
 		var/datum/DBQuery/query_ranks = SSdbcore.NewQuery("SELECT `name`, `byond`, `rank_group` FROM `web_groups` ORDER BY `web_groups`.`rank_group` ASC, `web_groups`.`name` DESC")
@@ -21,7 +23,7 @@
 
 		qdel(query_ranks)
 
-		var/datum/DBQuery/query_admin = SSdbcore.NewQuery("SELECT `web_admins`.`username` AS admin, `web_groups`.`name` AS rank, `web_groups`.`rank_group` AS rank_group FROM `web_admins`, `web_groups` WHERE `web_admins`.`rank` = `web_groups`.`rankid` ORDER BY `web_groups`.`rank_group` ASC, rank DESC")
+		var/datum/DBQuery/query_admin = SSdbcore.NewQuery("SELECT `web_admins`.`username` AS admin, `web_groups`.`name` AS adminrank, `web_groups`.`rank_group` AS rank_group FROM `web_admins`, `web_groups` WHERE `web_admins`.`rank` = `web_groups`.`rankid` ORDER BY `web_groups`.`rank_group` ASC, adminrank DESC")
 		if(query_admin.Execute())
 			fdel("config/admins.txt")
 			var/adminsFile = file("config/admins.txt")
@@ -31,11 +33,12 @@
 			// Write out each admin to the admins file
 			while(query_admin.NextRow())
 				var/name = query_admin.item[1]
-				var/rank = query_admin.item[2]
+				var/adminrank = query_admin.item[2]
 				var/rank_group = text2num(query_admin.item[3])
 				if(lastGroup != rank_group)
 					lastGroup = rank_group
 					WRITE_FILE(adminsFile, " ")
-				WRITE_FILE(adminsFile, "[name]\t=\t[rank]")
+				WRITE_FILE(adminsFile, "[name]\t=\t[adminrank]")
 
 		qdel(query_admin)
+*/

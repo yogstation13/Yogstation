@@ -35,6 +35,8 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/primary_component
 	var/important = FALSE //important scripture will be italicized in the slab's interface
 	var/sort_priority = 1 //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
+	var/chant_slowdown = 0 //slowdown added while chanting
+	var/no_mobility = TRUE //if false user can move while chanting
 
 //messages for offstation scripture recital, courtesy ratvar's generals(and neovgre)
 	var/static/list/neovgre_penalty = list("Go to the station.", "Useless.", "Don't waste time.", "Pathetic.", "Wasteful.")
@@ -153,13 +155,17 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	to_chat(invoker, "<span class='brass'>You [channel_time <= 0 ? "recite" : "begin reciting"] a piece of scripture entitled \"[name]\".</span>")
 	if(!channel_time)
 		return TRUE
+	if(chant_slowdown)
+		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
 	chant()
-	if(!do_after(invoker, channel_time, target = invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements)))
+	if(!do_after(invoker, channel_time, target = invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
 		slab.busy = null
+		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 		chanting = FALSE
 		scripture_fail()
 		chanting = FALSE
 		return
+	invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 	chanting = FALSE
 	return TRUE
 

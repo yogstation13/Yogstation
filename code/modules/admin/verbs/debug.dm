@@ -763,9 +763,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/robust_dress_shop()
 	var/list/outfits = list() //Yogs -- a hashtable. key is a result from user input, value is an outfit path
-	var/list/options = list("Naked","Custom","As Job...")//Yogs
+	var/list/options = list("Naked","Custom","As Job...","As CentCom Rank...")//Yogs
 	var/list/choices = list()//Yogs -- The actual list of options available to the user
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job, /datum/outfit/centcom)
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
 		if(initial(O.can_be_admin_equipped))
@@ -801,6 +801,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			custom_names[D.name] = D
 		var/selected_name = input("Select outfit", "Robust quick dress shop") as null|anything in custom_names
 		dresscode = custom_names[selected_name]
+		if(isnull(dresscode))
+			return
+
+	if (dresscode == "As CentCom Rank...")
+		var/list/job_paths = subtypesof(/datum/outfit/centcom)
+		var/list/job_outfits = list()
+		var/list/job_choices = list()
+		for(var/path in job_paths)
+			var/datum/outfit/O = path
+			if(initial(O.can_be_admin_equipped))
+				job_outfits[initial(O.name)] = path
+				job_choices += initial(O.name)
+		job_choices = sortList(job_choices,/proc/cmp_text_asc)
+		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in job_choices
+		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
 
@@ -851,8 +866,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(Rad.anchored)
 			if(!Rad.loaded_tank)
 				var/obj/item/tank/internals/plasma/Plasma = new/obj/item/tank/internals/plasma(Rad)
-				Plasma.air_contents.assert_gas(/datum/gas/plasma)
-				Plasma.air_contents.gases[/datum/gas/plasma][MOLES] = 70
+				Plasma.air_contents.set_moles(/datum/gas/plasma, 70)
 				Rad.drainratio = 0
 				Rad.loaded_tank = Plasma
 				Plasma.forceMove(Rad)
@@ -890,7 +904,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Display del() Log"
 	set desc = "Display del's log of everything that's passed through it."
 
-	var/list/dellog = list("<B>List of things that have gone through qdel this round</B><BR><BR><ol>")
+	var/list/dellog = list("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>List of things that have gone through qdel this round</B><BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
 		var/datum/qdel_item/I = SSgarbage.items[path]
@@ -910,7 +924,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			dellog += "<li>No hint: [I.no_hint]</li>"
 		dellog += "</ul></li>"
 
-	dellog += "</ol>"
+	dellog += "</ol></BODY></HTML>"
 
 	usr << browse(dellog.Join(), "window=dellog")
 
@@ -926,7 +940,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
-	usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 
 /client/proc/debug_huds(i as num)
 	set category = "Debug"
@@ -1061,7 +1075,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Start Line Profiling"
 	set desc = "Starts tracking line by line profiling for code lines that support it"
 
-	PROFILE_START
+	LINE_PROFILE_START
 
 	message_admins("<span class='adminnotice'>[key_name_admin(src)] started line by line profiling.</span>")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Line Profiling")
@@ -1072,7 +1086,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Stops Line Profiling"
 	set desc = "Stops tracking line by line profiling for code lines that support it"
 
-	PROFILE_STOP
+	LINE_PROFILE_STOP
 
 	message_admins("<span class='adminnotice'>[key_name_admin(src)] stopped line by line profiling.</span>")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stop Line Profiling")

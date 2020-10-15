@@ -13,7 +13,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,29)
+	var/loot = rand(1,26)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -49,38 +49,32 @@
 		if(15)
 			new /obj/item/nullrod/armblade(src)
 		if(16)
-			new /obj/item/guardiancreator/random(src)
-		if(17)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(18)
+		if(17)
 			new /obj/item/warp_cube/red(src)
+		if(18)
+			new /obj/item/organ/heart/gland/heals(src)
 		if(19)
-			new /obj/item/wisp_lantern(src)
-		if(20)
 			new /obj/item/immortality_talisman(src)
-		if(21)
-			new /obj/item/gun/magic/hook(src)
-		if(22)
+		if(20)
 			new /obj/item/voodoo(src)
-		if(23)
-			new /obj/item/grenade/clusterbuster/inferno(src)
-		if(24)
+		if(21)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
-		if(25)
-			new /obj/item/book/granter/spell/summonitem(src)
-		if(26)
+		if(22)
 			new /obj/item/book_of_babel(src)
-		if(27)
+		if(23)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(28)
+		if(24)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(29)
+		if(25)
 			new /obj/item/rune_scimmy(src)
+		if(26)
+			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -224,6 +218,10 @@
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
+	var/list/hasholos = user.hasparasites()
+	if(hasholos.len)
+		to_chat(user, "<span class='warning'>The pendant refuses to work with a guardian spirit...</span>")
+		return
 	to_chat(user, "<span class='warning'>You feel your life being drained by the pendant...</span>")
 	if(do_after(user, 40, target = user))
 		to_chat(user, "<span class='notice'>Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die.</span>")
@@ -422,7 +420,7 @@
 	armour_penetration = 100
 	damage_type = BRUTE
 	hitsound = 'sound/effects/splat.ogg'
-	paralyze = 30
+	knockdown = 30
 	var/chain
 
 /obj/item/projectile/hook/fire(setAngle)
@@ -433,7 +431,7 @@
 
 /obj/item/projectile/hook/on_hit(atom/target)
 	. = ..()
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/A = target
 		if(A.anchored)
 			return
@@ -811,6 +809,7 @@
 /obj/item/melee/ghost_sword/Destroy()
 	for(var/mob/dead/observer/G in spirits)
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 	spirits.Cut()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list -= src
@@ -853,10 +852,12 @@
 	for(var/i in spirits - current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = GLOB.observer_default_invisibility
+		G.mouse_opacity = initial(G.mouse_opacity)
 
 	for(var/i in current_spirits)
 		var/mob/dead/observer/G = i
 		G.invisibility = 0
+		G.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	spirits = current_spirits
 	return length(spirits)
@@ -865,13 +866,13 @@
 	force = 0
 	var/ghost_counter = ghost_check()
 
-	force = CLAMP((ghost_counter * 4), 0, 75)
+	force = clamp((ghost_counter * 4), 0, 75)
 	user.visible_message("<span class='danger'>[user] strikes with the force of [ghost_counter] vengeful spirits!</span>")
 	..()
 
 /obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/ghost_counter = ghost_check()
-	final_block_chance += CLAMP((ghost_counter * 5), 0, 75)
+	final_block_chance += clamp((ghost_counter * 5), 0, 75)
 	owner.visible_message("<span class='danger'>[owner] is protected by a ring of [ghost_counter] ghosts!</span>")
 	return ..()
 
@@ -1117,6 +1118,7 @@
 	attack_verb = list("clubbed", "beat", "pummeled")
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	actions_types = list(/datum/action/item_action/vortex_recall, /datum/action/item_action/toggle_unfriendly_fire)
+	var/z_level_check = TRUE //Whether or not it checks for mining z level
 	var/cooldown_time = 20 //how long the cooldown between non-melee ranged attacks is
 	var/chaser_cooldown = 81 //how long the cooldown between firing chasers at mobs is
 	var/chaser_timer = 0 //what our current chaser cooldown is
@@ -1150,6 +1152,9 @@
 	. = ..()
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
+		return
+	if(!is_mining_level(T.z) && z_level_check)
+		to_chat(user, "<span class='warning'>The club fizzles weakly, it seem its power doesn't reach this area.</span>" )
 		return
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
@@ -1368,6 +1373,27 @@
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage
 
+/obj/item/hierophant_antenna
+	name = "hierophant's antenna"
+	icon = 'icons/obj/lavaland/artefacts.dmi' 
+	icon_state = "hierophant_antenna"
+	item_state = "hierophant_antenna"
+	desc = "Extends the range of the herald's power."
+
+/obj/item/hierophant_club/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/hierophant_antenna))
+		if(z_level_check)
+			z_level_check = FALSE
+			desc += " It has an ominous antenna attached."
+			qdel(I)
+		else
+			to_chat(user, "<span class='warning'>The herald's power already reaches this club!</span>")
+		return TRUE
+	else
+		return ..()
+
+/obj/item/hierophant_club/station
+	z_level_check = FALSE
 
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle

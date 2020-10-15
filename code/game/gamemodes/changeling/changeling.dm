@@ -23,10 +23,15 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	<span class='green'>Changelings</span>: Accomplish the objectives assigned to you.\n\
 	<span class='notice'>Crew</span>: Root out and eliminate the changeling menace."
 
+	title_icon = "changeling"
 	var/const/changeling_amount = 4 //hard limit on changelings if scaling is turned off
 	var/list/changelings = list()
 
 /datum/game_mode/changeling/pre_setup()
+
+	if(num_players() <= lowpop_amount)
+		if(!prob((2*1.14**num_players())-2)) //exponential equation, chance of restriction goes up as pop goes down.
+			protected_jobs += GLOB.command_positions
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
@@ -96,6 +101,9 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			of the Thing being sent to a station in this sector is highly likely. It may be in the guise of any crew member. Trust nobody - suspect everybody. Do not announce this to the crew, \
 			as paranoia may spread and inhibit workplace efficiency."
 
+/proc/is_changeling(mob/M) //Usefull check changeling
+	return M?.mind?.has_antag_datum(/datum/antagonist/changeling)
+
 /proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
 	var/datum/dna/chosen_dna = chosen_prof.dna
 	user.real_name = chosen_prof.name
@@ -138,3 +146,20 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			user.equip_to_slot_or_del(C, GLOB.slot2slot[slot])
 
 	user.regenerate_icons()
+
+/datum/game_mode/changeling/generate_credit_text()
+	var/list/round_credits = list()
+	var/len_before_addition
+
+	round_credits += "<center><h1>The Slippery Changelings:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/M in changelings)
+		var/datum/antagonist/changeling/cling = M.has_antag_datum(/datum/antagonist/changeling)
+		if(cling)
+			round_credits += "<center><h2>[cling.changelingID] in the body of [M.name]</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>Uh oh, we lost track of the shape shifters!</h2>", "<center><h2>Nobody move!</h2>")
+	round_credits += "<br>"
+
+	round_credits += ..()
+	return round_credits 

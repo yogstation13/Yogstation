@@ -1,63 +1,168 @@
+///Subtype for any kind of ballistic gun
+///This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy
 /obj/item/gun/ballistic
 	desc = "Now comes in flavors like GUN. Uses 10mm ammo, for some reason."
 	name = "projectile gun"
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_NORMAL
 
-	//sound info vars
+	///sound when inserting magazine
 	var/load_sound = "gun_insert_full_magazine"
+	///sound when inserting an empty magazine
 	var/load_empty_sound = "gun_insert_empty_magazine"
+	///volume of loading sound
 	var/load_sound_volume = 40
+	///whether loading sound should vary
 	var/load_sound_vary = TRUE
+	///sound of racking
 	var/rack_sound = "gun_slide_lock"
+	///volume of racking
 	var/rack_sound_volume = 60
+	///whether racking sound should vary
 	var/rack_sound_vary = TRUE
+	///sound of when the bolt is locked back manually
 	var/lock_back_sound = "sound/weapons/pistollock.ogg"
+	///volume of lock back
 	var/lock_back_sound_volume = 60
+	///whether lock back varies
 	var/lock_back_sound_vary = TRUE
+	///Sound of ejecting a magazine
 	var/eject_sound = "gun_remove_empty_magazine"
+	///sound of ejecting an empty magazine
 	var/eject_empty_sound = "gun_remove_full_magazine"
+	///volume of ejecting a magazine
 	var/eject_sound_volume = 40
+	///whether eject sound should vary
 	var/eject_sound_vary = TRUE
+	///sound of dropping the bolt or releasing a slide
 	var/bolt_drop_sound = 'sound/weapons/gun_chamber_round.ogg'
+	///volume of bolt drop/slide release
 	var/bolt_drop_sound_volume = 60
+	///empty alarm sound (if enabled)
 	var/empty_alarm_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	///empty alarm volume sound
 	var/empty_alarm_volume = 70
+	///whether empty alarm sound varies
 	var/empty_alarm_vary = TRUE
 
+	///Whether the gun will spawn loaded with a magazine
 	var/spawnwithmagazine = TRUE
+	///Compatible magazines with the gun
 	var/mag_type = /obj/item/ammo_box/magazine/m10mm //Removes the need for max_ammo and caliber info
-	var/mag_display = FALSE //Whether the sprite has a visible magazine or not
-	var/mag_display_ammo = FALSE //Whether the sprite has a visible ammo display or not
-	var/empty_indicator = FALSE //Whether the sprite has an indicator for being empty or not.
-	var/empty_alarm = FALSE //Whether the gun alarms when empty or not.
-	var/special_mags = FALSE //Whether the gun supports multiple special mag types
+	///Whether the sprite has a visible magazine or not
+	var/mag_display = FALSE
+	///Whether the sprite has a visible ammo display or not
+	var/mag_display_ammo = FALSE
+	///Whether the sprite has a visible indicator for being empty or not.
+	var/empty_indicator = FALSE
+	///Whether the gun alarms when empty or not.
+	var/empty_alarm = FALSE
+	///Whether the gun supports multiple special mag types
+	var/special_mags = FALSE
+	///Whether the gun is currently alarmed to prevent it from spamming sounds
 	var/alarmed = FALSE
-	//Four bolt types:
-	//BOLT_TYPE_STANDARD: Gun has a bolt, it stays closed while not cycling. The gun must be racked to have a bullet chambered when a mag is inserted.
-	//Example: c20, shotguns, m90
-	//BOLT_TYPE_OPEN: Gun has a bolt, it is open when ready to fire. The gun can never have a chambered bullet with no magazine, but the bolt stays ready when a mag is removed.
-	//Example: Some SMGs, the L6
-	//BOLT_TYPE_NO_BOLT: Gun has no moving bolt mechanism, it cannot be racked. Also dumps the entire contents when emptied instead of a magazine.
-	//Example: Break action shotguns, revolvers
-	//BOLT_TYPE_LOCKING: Gun has a bolt, it locks back when empty. It can be released to chamber a round if a magazine is in.
-	//Example: Pistols with a slide lock, some SMGs
+	///The bolt type of the gun, affects quite a bit of functionality, see combat.dm defines for bolt types: BOLT_TYPE_STANDARD; BOLT_TYPE_LOCKING; BOLT_TYPE_OPEN; BOLT_TYPE_NO_BOLT
 	var/bolt_type = BOLT_TYPE_STANDARD
-	var/bolt_locked = FALSE //Used for locking bolt and open bolt guns. Set a bit differently for the two but prevents firing when true for both.
-	var/bolt_wording = "bolt" //bolt, slide, etc.
-	var/semi_auto = TRUE //Whether the gun has to be racked each shot or not.
+ 	///Used for locking bolt and open bolt guns. Set a bit differently for the two but prevents firing when true for both.
+	var/bolt_locked = FALSE
+	///Whether the gun has to be racked each shot or not.
+	var/semi_auto = TRUE
+	///Actual magazine currently contained within the gun
 	var/obj/item/ammo_box/magazine/magazine
-	var/casing_ejector = TRUE //whether the gun ejects the chambered casing
-	var/internal_magazine = FALSE //Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
+	///whether the gun ejects the chambered casing
+	var/casing_ejector = TRUE
+	///Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
+	var/internal_magazine = FALSE
+	///Phrasing of the bolt in examine and notification messages; ex: bolt, slide, etc.
+	var/bolt_wording = "bolt"
+	///Phrasing of the magazine in examine and notification messages; ex: magazine, box, etx
 	var/magazine_wording = "magazine"
+	///Phrasing of the cartridge in examine and notification messages; ex: bullet, shell, dart, etc.
 	var/cartridge_wording = "bullet"
+	///length between individual racks
 	var/rack_delay = 5
+	///time of the most recent rack, used for cooldown purposes
 	var/recent_rack = 0
+	///Whether the gun can be tacloaded by slapping a fresh magazine directly on it
 	var/tac_reloads = TRUE //Snowflake mechanic no more.
+	///Whether the gun can be sawn off by sawing tools
 	var/can_be_sawn_off  = FALSE
+	var/reload_say = null
+
+	// stores all types of feedback. Name of feedback + the amount of frames in the animation (must be more than 0) . Add to this list as more feedback is added. 
+	var/list/feedback_types = list(
+		"fire" = 0,
+		"slide_open" = 0,
+		"slide_close" = 0,
+		"mag_out" = 0,
+		"mag_in" = 0
+	)
+	var/feedback_original_icon = null // stores original slide position icon for feedback system
+	var/feedback_firing_icon = null // stores icon of gun while firing
+	var/feedback_original_icon_base = null // original base icon without the slide
+	var/feedback_fire_slide = FALSE // does the gun slide move back when firing?
+	var/feedback_has_recoil = TRUE
+	var/feedback_recoil_amount = 1 // angle of recoil .decimal numbers are okay for less recoil as long as its more than 0
+	var/feedback_recoil_hold = 0 // the amount the recoil holds before going back. best to set this to 1/4th of the fire time.
+	var/feedback_recoil_speed = 2 // the time from recoil to recovery. full time = *4
+	var/feedback_recoil_reverse = FALSE // TRUE for clockwise , FALSE for anti-clockwise
+	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
+
+/obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
+	if(feedback_types[type])
+		feedback_commence(type, feedback_types[type])
+
+/obj/item/gun/ballistic/proc/feedback_commence(type,frames)
+	if(type && frames)
+		cut_overlays()
+		if (suppressed)
+			add_overlay("[icon_state]_suppressor")
+		if(type == "fire")
+			if(!chambered)
+				return
+			if (magazine)
+				if (special_mags)
+					add_overlay("[icon_state]_mag_[initial(magazine.icon_state)]")
+					if (!magazine.ammo_count())
+						add_overlay("[icon_state]_mag_empty")
+				else
+					add_overlay("[icon_state]_mag")
+					var/capacity_number = 0
+					switch(get_ammo() / magazine.max_ammo)
+						if(0.2 to 0.39)
+							capacity_number = 20
+						if(0.4 to 0.59)
+							capacity_number = 40
+						if(0.6 to 0.79)
+							capacity_number = 60
+						if(0.8 to 0.99)
+							capacity_number = 80
+						if(1.0)
+							capacity_number = 100
+					if (capacity_number)
+						add_overlay("[icon_state]_mag_[capacity_number]")
+			feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
+			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
+			sleep(frames)
+			update_icon()
+			return
+		if (bolt_type == BOLT_TYPE_LOCKING)
+			if(type != "slide*")
+				add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+			if(type == "slide_close") // cause the gun to move clockwise if slide is closed
+				DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
+		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
+		sleep(frames)
+		update_icon()
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
+	feedback_original_icon_base = icon_state
+	if (bolt_type == BOLT_TYPE_LOCKING)
+		feedback_original_icon = "[icon_state]_bolt"
+		feedback_firing_icon = "[feedback_original_icon]_locked"
+	else if(!feedback_firing_icon)
+		feedback_firing_icon = feedback_original_icon_base
 	if (!spawnwithmagazine)
 		bolt_locked = TRUE
 		update_icon()
@@ -121,6 +226,7 @@
 	if (chamber_next_round && (magazine?.max_ammo > 1))
 		chamber_round()
 
+///Used to chamber a new round and eject the old one
 /obj/item/gun/ballistic/proc/chamber_round(keep_bullet = FALSE)
 	if (chambered || !magazine)
 		return
@@ -129,6 +235,7 @@
 		if (bolt_type != BOLT_TYPE_OPEN)
 			chambered.forceMove(src)
 
+///updates a bunch of racking related stuff and also handles the sound effects and the like
 /obj/item/gun/ballistic/proc/rack(mob/user = null)
 	if (bolt_type == BOLT_TYPE_NO_BOLT) //If there's no bolt, nothing to rack
 		return
@@ -144,27 +251,35 @@
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
 		bolt_locked = TRUE
 		playsound(src, lock_back_sound, lock_back_sound_volume, lock_back_sound_vary)
+		feedback("slide_open")
 	else
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
+		feedback("slide_close")
 	update_icon()
 
+///Drops the bolt from a locked position
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
 	if (user)
 		to_chat(user, "<span class='notice'>You drop the [bolt_wording] of \the [src].</span>")
-	chamber_round()
 	bolt_locked = FALSE
+	feedback("slide_close")
+	chamber_round()
 	update_icon()
 
+///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
 	if(!istype(AM, mag_type))
 		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
 		return FALSE
 	if(user.transferItemToLoc(AM, src))
+		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
+			user.say(reload_say, forced = "reloading")
 		magazine = AM
 		if (display_message)
 			to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+		feedback("mag_in")
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			chamber_round(TRUE)
 		update_icon()
@@ -173,19 +288,27 @@
 		to_chat(user, "<span class='warning'>You cannot seem to get \the [src] out of your hands!</span>")
 		return FALSE
 
+///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
 /obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
-	if (magazine.ammo_count())
-		playsound(src, load_sound, load_sound_volume, load_sound_vary)
-	else
-		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+	if(!tac_load)
+		if (magazine.ammo_count())
+			playsound(src, load_sound, load_sound_volume, load_sound_vary)
+		else
+			playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+		feedback("mag_out")
 	magazine.forceMove(drop_location())
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
+			playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
+			feedback("mag_out")
+			playsound(src, load_sound, load_sound_volume, load_sound_vary)
+			feedback("mag_in")
 		else
+			feedback("mag_out")
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
 			magazine = null
 	else
@@ -218,10 +341,13 @@
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
 				chambered = null
+			var/can_reload_say = !get_ammo(FALSE, FALSE)
 			var/num_loaded = magazine.attackby(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, "<span class='notice'>You load [num_loaded] [cartridge_wording]\s into \the [src].</span>")
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)
+				if(can_reload_say)
+					user.say(reload_say, forced = "reloading")
 				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
 					chamber_round()
 				A.update_icon()
@@ -252,8 +378,8 @@
 		bonus_spread += SAWN_OFF_ACC_PENALTY
 	. = ..()
 
+///Installs a new suppressor, assumes that the suppressor is already in the contents of src
 /obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
-	// this proc assumes that the suppressor is already inside src
 	suppressed = S
 	w_class += S.w_class //so pistols do not fit in pockets when suppressed
 	update_icon()
@@ -274,6 +400,7 @@
 			update_icon()
 			return
 
+///Prefire empty checks for the bolt drop
 /obj/item/gun/ballistic/proc/prefire_empty_checks()
 	if (!chambered && !get_ammo())
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
@@ -281,7 +408,7 @@
 			playsound(src, bolt_drop_sound, bolt_drop_sound_volume)
 			update_icon()
 
-
+///postfire empty checks for bolt locking and sound alarms
 /obj/item/gun/ballistic/proc/postfire_empty_checks()
 	if (!chambered && !get_ammo())
 		if (!alarmed && empty_alarm)
@@ -289,12 +416,16 @@
 			alarmed = TRUE
 			update_icon()
 		if (bolt_type == BOLT_TYPE_LOCKING)
+			if(!bolt_locked)
+				feedback("slide_open")
 			bolt_locked = TRUE
 			update_icon()
 
 /obj/item/gun/ballistic/afterattack()
 	prefire_empty_checks()
 	. = ..() //The gun actually firing
+	if(can_shoot() && recent_shoot + 5 > world.time)
+		feedback("fire")
 	postfire_empty_checks()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -344,14 +475,27 @@
 	if (suppressed)
 		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
-/obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
+/obj/item/gun/ballistic/verb/set_reload()
+	set name = "Set Reload Speech"
+	set category = "Object"
+	set desc = "Activate to set what is said with the gun when tactically reloading."
+	if(usr.incapacitated())
+		return
+	var/input = stripped_input(usr,"What do you want to say when reloading with [src]? Cancel to disable reload speech.", ,reload_say, MAX_NAME_LEN)
+	input = replacetext(input, "*", "")
+	if(input)
+		reload_say = input
+		log_game("[usr] has set the reload speech on [src] to [reload_say]")
+
+/obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE, countempties = TRUE)
 	var/boolets = 0 //mature var names for mature people
 	if (chambered && countchambered)
 		boolets++
 	if (magazine)
-		boolets += magazine.ammo_count()
+		boolets += magazine.ammo_count(countempties)
 	return boolets
 
+///gets a list of every bullet in the gun
 /obj/item/gun/ballistic/proc/get_ammo_list(countchambered = TRUE, drop_all = FALSE)
 	var/list/rounds = list()
 	if(chambered && countchambered)
@@ -397,6 +541,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	/obj/item/nullrod/chainsaw,
 	/obj/item/mounted_chainsaw)))
 
+///Handles all the logic of sawing off guns,
 /obj/item/gun/ballistic/proc/sawoff(mob/user, obj/item/saw)
 	if(!saw.is_sharp() || !is_type_in_typecache(saw, GLOB.gun_saw_types)) //needs to be sharp. Otherwise turned off eswords can cut this.
 		return
@@ -429,7 +574,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		update_icon()
 		return TRUE
 
-// Sawing guns related proc
+///used for sawing guns, causes the gun to fire without the input of the user
 /obj/item/gun/ballistic/proc/blow_up(mob/user)
 	. = FALSE
 	for(var/obj/item/ammo_casing/AC in magazine.stored_ammo)

@@ -134,7 +134,7 @@
 			if(!istype(o, /obj/item/tank))
 				continue
 			var/obj/item/tank/T = o
-			found_amount += T.air_contents.gases[/datum/gas/plasma] ? T.air_contents.gases[/datum/gas/plasma][MOLES] : 0
+			found_amount += T.air_contents.get_moles(/datum/gas/plasma)
 
 	return found_amount >= target_amount
 
@@ -176,6 +176,12 @@
 	if(E.Uses > 0)
 		return 1
 	return 0
+
+/datum/objective_item/steal/blackbox
+	name = "the telecommunications blackbox."
+	targetitem = /obj/item/blackbox
+	difficulty = 10
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red

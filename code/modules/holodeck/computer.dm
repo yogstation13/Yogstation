@@ -81,7 +81,7 @@
 /obj/machinery/computer/holodeck/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "holodeck", name, 400, 500, master_ui, state)
+		ui = new(user, src, ui_key, "Holodeck", name, 400, 500, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/holodeck/ui_data(mob/user)
@@ -119,6 +119,9 @@
 
 			var/area/A = locate(program_to_load) in GLOB.sortedAreas
 			if(A)
+				if(istype(A, /area/holodeck/rec_center/burn))
+					message_admins("[key_name(usr)] has used the [A.name].") //ADMIN LOG: Ckey/(Ic Name) has used the Holodeck - Atmospheric Burn Test.
+					log_admin("[key_name(usr)] has used the [A.name].")
 				load_program(A)
 		if("safety")
 			if(!issilicon(usr) && !IsAdminGhost(usr))

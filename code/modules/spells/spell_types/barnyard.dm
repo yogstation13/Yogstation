@@ -13,7 +13,7 @@
 	cooldown_min = 30
 	selection_type = "range"
 	var/static/list/compatible_mobs_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/carbon/monkey))
-
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "barn"
 
 /obj/effect/proc_holder/spell/targeted/barnyardcurse/cast(list/targets, mob/user = usr)

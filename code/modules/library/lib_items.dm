@@ -202,7 +202,7 @@
 	if(!user.can_read(src))
 		return
 	if(dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+		user << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]</BODY></HTML>")
 		user.visible_message("[user] opens a book titled \"[title]\" and begins reading intently.")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "book_nerd", /datum/mood_event/book_nerd)
 		onclose(user, "book")

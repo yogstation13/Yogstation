@@ -9,6 +9,7 @@
 	designation = "Default" //used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
 	hud_type = /datum/hud/robot
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -85,7 +86,7 @@
 	/obj/item/clothing/head/helmet/space/santahat,
 	/obj/item/clothing/head/welding,
 	/obj/item/clothing/head/mob_holder, //I am so very upset that this breaks things
-	/obj/item/clothing/head/helmet/space/eva,
+	/obj/item/clothing/head/helmet/space,
 	)
 
 	can_buckle = TRUE
@@ -128,6 +129,7 @@
 		builtInCamera.c_tag = real_name
 		builtInCamera.network = list("ss13")
 		builtInCamera.internal_light = FALSE
+		builtInCamera.built_in = src
 		if(wires.is_cut(WIRE_CAMERA))
 			builtInCamera.status = 0
 	module = new /obj/item/robot_module(src)
@@ -304,19 +306,19 @@
 	if(thruster_button)
 		thruster_button.icon_state = "ionpulse[ionpulse_on]"
 
-/mob/living/silicon/robot/Stat()
-	..()
-	if(statpanel("Status"))
-		if(cell)
-			stat("Charge Left:", "[cell.charge]/[cell.maxcharge]")
-		else
-			stat(null, text("No Cell Inserted!"))
+/mob/living/silicon/robot/get_status_tab_items()
+	. = ..()
+	. += ""
+	if(cell)
+		. += "Charge Left: [cell.charge]/[cell.maxcharge]"
+	else
+		. += text("No Cell Inserted!")
 
-		if(module)
-			for(var/datum/robot_energy_storage/st in module.storages)
-				stat("[st.name]:", "[st.energy]/[st.max_energy]")
-		if(connected_ai)
-			stat("Master AI:", connected_ai.name)
+	if(module)
+		for(var/datum/robot_energy_storage/st in module.storages)
+			. += "[st.name]: [st.energy]/[st.max_energy]"
+	if(connected_ai)
+		. += "Master AI: [connected_ai.name]"
 
 /mob/living/silicon/robot/restrained(ignore_grab)
 	. = 0
@@ -388,7 +390,7 @@
 				return
 			if(health > 0)
 				return //safety check to prevent spam clciking and queing
-		
+
 		adjustBruteLoss(-30)
 		updatehealth()
 		add_fingerprint(user)
@@ -506,6 +508,7 @@
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+				to_chat(src, "<span class='notice'>[usr] [locked ? "locks" : "unlocks"] your cover.</span>")
 				update_icons()
 				if(emagged)
 					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")
@@ -1165,7 +1168,7 @@
 		M.visible_message("<span class='warning'>[M] really can't seem to mount [src]...</span>")
 		return
 	var/datum/component/riding/riding_datum = LoadComponent(/datum/component/riding/cyborg)
-	if(buckled_mobs)
+	if(has_buckled_mobs())
 		if(buckled_mobs.len >= max_buckled_mobs)
 			return
 		if(M in buckled_mobs)
@@ -1174,14 +1177,12 @@
 		return
 	if(incapacitated())
 		return
-	if(M.incapacitated())
-		return
 	if(module)
 		if(!module.allow_riding)
 			M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
 			return
-	if(iscarbon(M) && (!riding_datum.equip_buckle_inhands(M, 1)))
-		if (M.get_num_arms() <= 0)
+	if(iscarbon(M) && !M.incapacitated() && !riding_datum.equip_buckle_inhands(M, 1))
+		if(M.get_num_arms() <= 0)
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!</span>")
 		else
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_their()] hands are full!</span>")
@@ -1196,6 +1197,13 @@
 			riding_datum.restore_position(user)
 	. = ..(user)
 
+/mob/living/silicon/robot/resist() // for unbuckling people
+	. = ..()
+	if(!buckled_mobs.len)
+		return
+	for(var/i in buckled_mobs)
+		var/mob/unbuckle_me_now = i
+		unbuckle_mob(unbuckle_me_now, FALSE)
 /mob/living/silicon/robot/proc/TryConnectToAI()
 	connected_ai = select_active_ai_with_fewest_borgs()
 	if(connected_ai)

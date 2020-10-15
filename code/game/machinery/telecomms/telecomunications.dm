@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/turf/T = get_turf(src) //yogs
 	var/speedloss = 0
 	var/datum/gas_mixture/env = T.return_air()
-	var/temperature = env.temperature
+	var/temperature = env.return_temperature()
 	if(temperature <= 150)				// 150K optimal operating parameters
 		net_efective = 100
 	else
@@ -170,8 +170,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			traffic = 0
 		else
 			traffic -= deltaT
-		if(generates_heat)
-			env.temperature += deltaT * heatoutput / env.heat_capacity()   //yogs end
+		if(generates_heat && env.heat_capacity())
+			env.set_temperature(env.return_temperature() + deltaT * heatoutput / env.heat_capacity())   //yogs end
 
 
 /obj/machinery/telecomms/emp_act(severity)
@@ -188,5 +188,5 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/emag_act()
 	obj_flags |= EMAGGED
-	visible_message("<span class='notice'>Sparks fly out of the[src]!</span>")
+	visible_message("<span class='notice'>Sparks fly out of the [src]!</span>")
 	traffic += 50

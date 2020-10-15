@@ -138,6 +138,7 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
+				CONFIG_SET(flag/allow_vote_map, FALSE)
 	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
@@ -191,6 +192,10 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[map]
 					if(!VM.votable)
 						continue
+					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
+						continue
+					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
+						continue
 					choices.Add(VM.map_name)
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
@@ -221,6 +226,8 @@ SUBSYSTEM_DEF(vote)
 			C.player_details.player_actions += V
 			V.Grant(C.mob)
 			generated_actions += V
+			if(C.prefs.toggles & SOUND_ANNOUNCEMENTS)
+				SEND_SOUND(C, sound('sound/misc/bloop.ogg'))
 		return 1
 	return 0
 
@@ -296,7 +303,7 @@ SUBSYSTEM_DEF(vote)
 	if(usr.client.holder)
 		if(check_rights_for(usr.client, R_ADMIN))
 			trialmin = 1
-	
+
 	switch(href_list["vote"])
 		if("close")
 			voting -= usr.client

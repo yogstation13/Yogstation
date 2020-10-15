@@ -1,3 +1,4 @@
+GLOBAL_VAR_INIT(clones, 0)
 //Cloning revival method.
 //The pod handles the actual cloning while the computer manages the clone profiles
 
@@ -40,6 +41,7 @@
 	var/datum/bank_account/current_insurance
 	fair_market_price = 5 // He nodded, because he knew I was right. Then he swiped his credit card to pay me for arresting him.
 	payment_department = ACCOUNT_MED
+
 /obj/machinery/clonepod/Initialize()
 	. = ..()
 
@@ -88,6 +90,7 @@
 	name = "cloning data disk"
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
 	var/list/fields = list()
+	var/list/genetic_makeup_buffer = list()
 	var/list/mutations = list()
 	var/max_mutations = 6
 	var/read_only = FALSE //Well,it's still a floppy disk
@@ -137,7 +140,7 @@
 	return examine(user)
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
+/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
 	if(panel_open)
 		return NONE
 	if(mess || attempting)
@@ -173,7 +176,7 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 
-	H.hardset_dna(ui, mutation_index, H.real_name, null, mrace, features)
+	H.hardset_dna(ui, mutation_index, makeup, H.real_name, null, mrace, features)
 
 	if(!HAS_TRAIT(H, TRAIT_RADIMMUNE))//dont apply mutations if the species is Mutation proof.
 		if(efficiency > 2)
@@ -185,7 +188,14 @@
 			var/mob/M = H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
-
+	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)
+		if((FGENDER in H.dna.species.species_traits) && (H.gender != FEMALE))
+			H.gender = FEMALE
+		if((MGENDER in H.dna.species.species_traits) && (H.gender != MALE))
+			H.gender = MALE
+		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
+			H.gender = PLURAL
+	
 	H.silent = 20 //Prevents an extreme edge case where clones could speak if they said something at exactly the right moment.
 	occupant = H
 
@@ -421,6 +431,7 @@
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		to_chat(occupant, "<span class='notice'>You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>.</span>") //yogs
 		mob_occupant.flash_act()
+		GLOB.clones++
 
 	occupant.forceMove(T)
 	icon_state = "pod_0"

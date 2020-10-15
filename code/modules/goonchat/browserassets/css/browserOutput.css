@@ -278,6 +278,7 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
+.dronesay 				{color: #ffbf00; background-color: #000000; display: block;}
 .radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
 .commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #c68cfa;}
@@ -404,7 +405,7 @@ em						{font-style: normal;	font-weight: bold;}
 .assimilator			{color: #059223;	font-size: 16px ; font-weight: bold;}
 .alertsyndie			{color: #FF0000;	font-size: 24px ; font-weight: bold;}
 
-.spider					{color: #8800ff;}
+.spider					{color: #8800ff; font-weight: bold; font-size: 24px;}
 
 .interface				{color: #750e75;}
 

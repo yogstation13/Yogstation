@@ -205,8 +205,8 @@
 		return target
 	var/x_o = (target.x - starting.x)
 	var/y_o = (target.y - starting.y)
-	var/new_x = CLAMP((starting.x + (x_o * range_multiplier)), 0, world.maxx)
-	var/new_y = CLAMP((starting.y + (y_o * range_multiplier)), 0, world.maxy)
+	var/new_x = clamp((starting.x + (x_o * range_multiplier)), 0, world.maxx)
+	var/new_y = clamp((starting.y + (y_o * range_multiplier)), 0, world.maxy)
 	var/turf/newtarget = locate(new_x, new_y, starting.z)
 	return newtarget
 
@@ -285,6 +285,11 @@
 	selfcharge = TRUE
 	charge_type = /obj/item/reagent_containers/food/snacks/pie/cream
 	maxWeightClass = 60	//20 pies.
+
+/obj/item/pneumatic_cannon/pie/selfcharge/compact
+	name = "honkinator-4 compact pie cannon"
+	desc = "A compact, self-loading pie cannon for tactical pranking action."
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/pneumatic_cannon/pie/selfcharge/cyborg
 	name = "low velocity pie cannon"

@@ -6,7 +6,7 @@
 	var/capacity
 
 /datum/ductnet/proc/add_duct(obj/machinery/duct/D)
-	if(!D || D in ducts)
+	if(!D || (D in ducts))
 		return
 	ducts += D
 	D.duct = src

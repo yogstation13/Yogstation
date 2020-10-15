@@ -3,7 +3,7 @@
 	name = "nuclear particle"
 	icon_state = "nuclear_particle"
 	pass_flags = PASSTABLE | PASSGRILLE
-	damage = 3 
+	damage = 3
 	damage_type = BURN
 	speed = 0.4
 	hitsound = 'sound/weapons/emitter2.ogg'

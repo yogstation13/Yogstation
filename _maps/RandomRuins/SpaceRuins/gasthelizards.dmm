@@ -95,18 +95,24 @@
 /turf/open/floor/plasteel/airless/dark,
 /area/ruin/space/has_grav/gasthelizard)
 "m" = (
-/obj/structure/closet/crate/freezer,
+/obj/structure/closet/crate/freezer{
+	name = "subject 3"
+	},
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
 /obj/item/stack/sheet/animalhide/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
 /turf/open/floor/plasteel/airless/dark,
 /area/ruin/space/has_grav/gasthelizard)
-"n" = (
-/obj/structure/closet/crate/freezer,
+"o" = (
+/obj/structure/closet/crate/freezer{
+	name = "subject 2"
+	},
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
@@ -116,18 +122,7 @@
 	dir = 1
 	},
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/turf/open/floor/plasteel/airless/dark,
-/area/ruin/space/has_grav/gasthelizard)
-"o" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/clothing/under/rank/prisoner,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/stack/sheet/animalhide/lizard,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
 /turf/open/floor/plasteel/airless/dark,
 /area/ruin/space/has_grav/gasthelizard)
@@ -362,6 +357,19 @@
 /area/ruin/space/has_grav/gasthelizard)
 "W" = (
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/gasthelizard)
+"X" = (
+/obj/structure/closet/crate/freezer{
+	name = "subject 1"
+	},
+/obj/item/stack/sheet/animalhide/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/turf/open/floor/plasteel/airless/dark,
 /area/ruin/space/has_grav/gasthelizard)
 "Z" = (
 /obj/machinery/door/airlock/external,
@@ -600,7 +608,7 @@ a
 b
 b
 c
-m
+X
 r
 x
 C
@@ -616,7 +624,7 @@ a
 b
 b
 c
-n
+o
 r
 r
 r
@@ -632,7 +640,7 @@ a
 a
 b
 c
-o
+m
 r
 y
 D

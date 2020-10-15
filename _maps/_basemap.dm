@@ -10,9 +10,8 @@
 		#include "map_files\debug\runtimestation.dmm"
 		#include "map_files\YogStation\Yogstation.dmm"
 		#include "map_files\YogsMeta\YogsMeta.dmm"
-		#include "map_files\YogsPubby\YogsPubby.dmm"
 		#include "map_files\YogsDelta\YogsDelta.dmm"
-		#include "map_files\MinskyStation\MinskyStation.dmm"
+		#include "map_files\EclipseStation\EclipseStation.dmm"
 		#include "map_files\IceBox\IceBox.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"

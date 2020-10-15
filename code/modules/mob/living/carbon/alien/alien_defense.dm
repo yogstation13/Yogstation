@@ -106,6 +106,8 @@ In all, this is a lot like the monkey code. /N
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
 	..()
+	if(QDELETED(src))
+		return
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
 			gib()
@@ -121,7 +123,7 @@ In all, this is a lot like the monkey code. /N
 				Unconscious(20)
 			adjustEarDamage(15,60)
 
-/mob/living/carbon/alien/soundbang_act(intensity = 1, stun_pwr = 20, damage_pwr = 5, deafen_pwr = 15)
+/mob/living/carbon/alien/soundbang_act(intensity = 1, conf_pwr = 20, damage_pwr = 5, deafen_pwr = 15)
 	return 0
 
 /mob/living/carbon/alien/acid_act(acidpwr, acid_volume)

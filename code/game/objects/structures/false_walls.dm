@@ -41,13 +41,19 @@
 	new /obj/structure/falsewall/brass(loc)
 	qdel(src)
 
+/obj/structure/falsewall/honk_act()
+	new /obj/structure/falsewall/bananium(loc)
+	qdel(src)
+
 /obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
 	. = ..()
 	if(.)
 		return
+	toggle(user)
 
+/obj/structure/falsewall/proc/toggle(mob/user)
 	opening = TRUE
 	update_icon()
 	if(!density)
@@ -91,6 +97,11 @@
 /obj/structure/falsewall/attackby(obj/item/W, mob/user, params)
 	if(opening)
 		to_chat(user, "<span class='warning'>You must wait until the door has stopped moving!</span>")
+		return
+
+	if(W.tool_behaviour == TOOL_CROWBAR)
+		to_chat(user, "<span class='warning'>You pry open the false wall!</span>")
+		toggle(user)
 		return
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
@@ -261,6 +272,8 @@
 	walltype = /turf/closed/wall/mineral/bananium
 	canSmoothWith = list(/obj/structure/falsewall/bananium, /turf/closed/wall/mineral/bananium)
 
+/obj/structure/falsewall/bananium/honk_act()
+	return FALSE
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"

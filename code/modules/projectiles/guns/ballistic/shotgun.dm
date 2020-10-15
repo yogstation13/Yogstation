@@ -36,6 +36,7 @@
 	name = "riot shotgun"
 	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
 	icon_state = "riotshotgun"
+	fire_delay = 7
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
 	can_be_sawn_off  = TRUE
@@ -44,7 +45,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/breaching
 	name = "tactical breaching shotgun"
-	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points."
+	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points. Only accepts breaching slugs."
 	icon_state = "breachingshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/breaching
 	w_class = WEIGHT_CLASS_NORMAL //compact so it fits in backpacks
@@ -53,13 +54,14 @@
 
 // Automatic Shotguns//
 
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user as mob|obj)
+/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user)
 	..()
-	src.rack()
+	rack()
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
 	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	fire_delay = 5
 	icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
@@ -194,6 +196,9 @@
 	..()
 	if(istype(A, /obj/item/stack/cable_coil) && !sawn_off)
 		var/obj/item/stack/cable_coil/C = A
+		if(slung)
+			to_chat(user, "<span class='notice'>The shotgun already has a sling.</span>")
+			return
 		if(C.use(10))
 			slot_flags = ITEM_SLOT_BACK
 			to_chat(user, "<span class='notice'>You tie the lengths of cable to the shotgun, making a sling.</span>")
@@ -205,7 +210,8 @@
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon()
 	..()
 	if(slung)
-		add_overlay("improvised_sling")
+		icon_state = "ishotgunsling"
+	
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawoff(mob/user)
 	. = ..()

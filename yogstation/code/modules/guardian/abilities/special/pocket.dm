@@ -80,9 +80,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	var/corrected_max = manifested_at_x
 	var/corrected_may = manifested_at_y
 	if(!pos_already_set) // don't subtract 4 if the pos is set, because we will have already subtracted by 4.
-		manifested_at_x = CLAMP(guardian.x - 4, 1, world.maxx)
+		manifested_at_x = clamp(guardian.x - 4, 1, world.maxx)
 		corrected_max = manifested_at_x
-		manifested_at_y = CLAMP(guardian.y - 4, 1, world.maxy)
+		manifested_at_y = clamp(guardian.y - 4, 1, world.maxy)
 		corrected_may = manifested_at_y
 		manifested_at_z = get_final_z(guardian)
 	for(var/mx = 0 to 8)
@@ -362,8 +362,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(T)
-		PDS.manifested_at_x = CLAMP(T.x, 1, world.maxx)
-		PDS.manifested_at_y = CLAMP(T.y, 1, world.maxy)
+		PDS.manifested_at_x = clamp(T.x, 1, world.maxx)
+		PDS.manifested_at_y = clamp(T.y, 1, world.maxy)
 		PDS.manifested_at_z = T.z
 		if(pocket_z)
 			if(PDS.manifesting || LAZYLEN(PDS.manifestations))

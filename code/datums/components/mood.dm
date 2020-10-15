@@ -89,8 +89,8 @@
 		mood += event.mood_change
 		if(!event.hidden)
 			shown_mood += event.mood_change
-		mood *= mood_modifier
-		shown_mood *= mood_modifier
+	mood *= mood_modifier
+	shown_mood *= mood_modifier
 
 	switch(mood)
 		if(-INFINITY to MOOD_LEVEL_SAD4)
@@ -170,6 +170,9 @@
 
 /datum/component/mood/process() //Called on SSmood process
 	var/mob/living/owner = parent
+	if(!owner)
+		qdel(src)
+		return
 
 	switch(mood_level)
 		if(1)
@@ -193,7 +196,7 @@
 
 	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
 		if(prob(0.05))
-			add_event(null, "depression", /datum/mood_event/depression)
+			add_event(null, "depression", /datum/mood_event/depression_mild)
 			clear_event(null, "jolly")
 	if(HAS_TRAIT(owner, TRAIT_JOLLY))
 		if(prob(0.05))
@@ -205,7 +208,7 @@
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)
 	var/mob/living/owner = parent
 
-	amount = CLAMP(amount, minimum, maximum)
+	amount = clamp(amount, minimum, maximum)
 	if(amount == sanity)
 		return
 	// If we're out of the acceptable minimum-maximum range move back towards it in steps of 0.5

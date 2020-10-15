@@ -83,8 +83,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	GLOB.spacepods_list += src
 	START_PROCESSING(SSfastprocess, src)
 	cabin_air = new
-	cabin_air.temperature = T20C
-	cabin_air.volume = 200
+	cabin_air.set_temperature(T20C)
+	cabin_air.set_volume(200)
 	/*cabin_air.assert_gas(/datum/gas/oxygen)
 	cabin_air.assert_gas(/datum/gas/nitrogen)
 	cabin_air.gases[/datum/gas/oxygen][MOLES] = ONE_ATMOSPHERE*O2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		item_map[avoid_assoc_duplicate_keys(I.name, used_key_list)] = I
 	var/selection = input(user, "Remove which equipment?", null, null) as null|anything in item_map
 	var/obj/O = item_map[selection]
-	if(O && istype(O) && O in contents)
+	if(O && istype(O) && (O in contents))
 		// alrightey now to figure out what it is
 		if(O == cell)
 			cell = null
@@ -264,9 +264,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	return cabin_air.remove(amount)
 
 /obj/spacepod/proc/slowprocess()
-	if(cabin_air && cabin_air.volume > 0)
-		var/delta = cabin_air.temperature - T20C
-		cabin_air.temperature -= max(-10, min(10, round(delta/4,0.1)))
+	if(cabin_air && cabin_air.return_volume() > 0)
+		var/delta = cabin_air.return_temperature() - T20C
+		cabin_air.set_temperature(cabin_air.return_temperature() - max(-10, min(10, round(delta/4,0.1))))
 	if(internal_tank && cabin_air)
 		var/datum/gas_mixture/tank_air = internal_tank.return_air()
 
@@ -293,15 +293,15 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 				else //just delete the cabin gas, we're in space or some shit
 					qdel(removed)
 
-/mob/Stat()
+/mob/get_status_tab_items()
 	. = ..()
-	if(isspacepod(loc) && statpanel("Status"))
+	if(isspacepod(loc))
 		var/obj/spacepod/S = loc
-		stat(null)
-		stat(null, "Spacepod Charge: [S.cell ? "[round(S.cell.charge,0.1)]/[S.cell.maxcharge] KJ" : "NONE"]")
-		stat(null, "Spacepod Integrity: [round(S.obj_integrity,0.1)]/[S.max_integrity]")
-		stat(null, "Spacepod Velocity: [round(sqrt(S.velocity_x*S.velocity_x+S.velocity_y*S.velocity_y), 0.1)] m/s")
-		stat(null)
+		. += ""
+		. += "Spacepod Charge: [S.cell ? "[round(S.cell.charge,0.1)]/[S.cell.maxcharge] KJ" : "NONE"]"
+		. += "Spacepod Integrity: [round(S.obj_integrity,0.1)]/[S.max_integrity]"
+		. += "Spacepod Velocity: [round(sqrt(S.velocity_x*S.velocity_x+S.velocity_y*S.velocity_y), 0.1)] m/s"
+		. += ""
 
 /obj/spacepod/ex_act(severity)
 	switch(severity)
@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		add_overlay(I)
 
 /obj/spacepod/MouseDrop_T(atom/movable/A, mob/living/user)
-	if(user == pilot || user in passengers || construction_state != SPACEPOD_ARMOR_WELDED)
+	if(user == pilot || (user in passengers) || construction_state != SPACEPOD_ARMOR_WELDED)
 		return
 
 	if(istype(A, /obj/machinery/portable_atmospherics/canister))

@@ -67,35 +67,23 @@
 /datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
 	if(prob(5) && iscarbon(M))
 		M.Jitter(10)
-		var/obj/item/I = M.get_active_held_item()
-		if(I && M.dropItemToGround(I))
-			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
 	..()
 
 /datum/reagent/drug/nicotine/addiction_act_stage2(mob/living/M)
 	if(prob(20) && iscarbon(M))
 		M.Jitter(10)
-		var/obj/item/I = M.get_active_held_item()
-		if(I && M.dropItemToGround(I))
-			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
 	..()
 	. = 1
 
 /datum/reagent/drug/nicotine/addiction_act_stage3(mob/living/M)
 	if(prob(20) && iscarbon(M))
 		M.Jitter(10)
-		var/obj/item/I = M.get_active_held_item()
-		if(I && M.dropItemToGround(I))
-			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
 	..()
 	. = 1
 
 /datum/reagent/drug/nicotine/addiction_act_stage4(mob/living/M)
 	if(prob(40) && iscarbon(M))
 		M.Jitter(10)
-		var/obj/item/I = M.get_active_held_item()
-		if(I && M.dropItemToGround(I))
-			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
 	..()
 	. = 1
 
@@ -199,7 +187,7 @@
 
 /datum/reagent/drug/methamphetamine
 	name = "Methamphetamine"
-	description = "Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
+	description = "Neutralizes mannitol. Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
 	overdose_threshold = 20
@@ -208,7 +196,7 @@
 
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
 	..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1.6, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/reagent/drug/methamphetamine/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
@@ -232,7 +220,7 @@
 	. = 1
 
 /datum/reagent/drug/methamphetamine/overdose_process(mob/living/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i in 1 to 4)
 			step(M, pick(GLOB.cardinals))
 	if(prob(20))
@@ -259,7 +247,7 @@
 	..()
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage3(mob/living/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 4, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(15)
@@ -269,7 +257,7 @@
 	..()
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage4(mob/living/carbon/human/M)
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(20)
@@ -313,7 +301,7 @@
 	M.adjustStaminaLoss(-5, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 4)
 	M.hallucination += 5
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		step(M, pick(GLOB.cardinals))
 		step(M, pick(GLOB.cardinals))
 	..()
@@ -321,7 +309,7 @@
 
 /datum/reagent/drug/bath_salts/overdose_process(mob/living/M)
 	M.hallucination += 5
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i in 1 to 8)
 			step(M, pick(GLOB.cardinals))
 	if(prob(20))
@@ -332,7 +320,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage1(mob/living/M)
 	M.hallucination += 10
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(5)
@@ -343,7 +331,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage2(mob/living/M)
 	M.hallucination += 20
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(10)
@@ -355,7 +343,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage3(mob/living/M)
 	M.hallucination += 30
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 12, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(15)
@@ -367,7 +355,7 @@
 
 /datum/reagent/drug/bath_salts/addiction_act_stage4(mob/living/carbon/human/M)
 	M.hallucination += 30
-	if((M.mobility_flags & MOBILITY_MOVE) && !ismovableatom(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 16, i++)
 			step(M, pick(GLOB.cardinals))
 	M.Jitter(50)
@@ -472,3 +460,45 @@
 		M.emote(pick("twitch","laugh","frown"))
 	..()
 	. = 1
+/datum/reagent/drug/pumpup
+	name = "Pump-Up"
+	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
+	reagent_state = LIQUID
+	color = "#e38e44"
+	metabolization_rate = 2 * REAGENTS_METABOLISM
+	overdose_threshold = 30
+
+/datum/reagent/drug/pumpup/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+
+/datum/reagent/drug/pumpup/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	..()
+
+/datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)
+	M.Jitter(5)
+
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[pick("Go! Go! GO!", "You feel ready...", "You feel invincible...")]</span>")
+	if(prob(15))
+		M.losebreath++
+		M.adjustToxLoss(2, 0)
+	..()
+	. = 1
+
+/datum/reagent/drug/pumpup/overdose_start(mob/living/M)
+	to_chat(M, "<span class='userdanger'>You can't stop shaking, your heart beats faster and faster...</span>")
+
+/datum/reagent/drug/pumpup/overdose_process(mob/living/M)
+	M.Jitter(5)
+	if(prob(5))
+		M.drop_all_held_items()
+	if(prob(15))
+		M.emote(pick("twitch","drool"))
+	if(prob(20))
+		M.losebreath++
+		M.adjustStaminaLoss(4, 0)
+	if(prob(15))
+		M.adjustToxLoss(2, 0)
+	..()

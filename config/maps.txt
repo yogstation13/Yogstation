@@ -11,47 +11,22 @@ Format:
 	voteweight [number] (How much to count each player vote as, defaults to 1, setting to 0.5 counts each vote as half a vote, 2 as double, etc, Setting to 0 disables the map but allows players to still pick it)
 	disabled (disables the map)
 	votable (is this map votable)
-endmap
 
 map yogstation
-	default
-	voteweight 1.5
+	voteweight 0.9
 	votable
 endmap
-
-map minskystation
-	voteweight 0.5
-endmap
-
-#map boxstation
-	#default
-	#voteweight 1.5
-#endmap
 
 map omegastation
 	maxplayers 35
+	votable
 endmap
-
-
-#map metastation
-	#minplayers 25
-#endmap
 
 map yogsmeta
 	minplayers 25
+	voteweight 1.3
 	votable
 endmap
-
-#map pubbystation
-#endmap
-
-map yogspubby
-	votable
-endmap
-
-#map deltastation
-	#minplayers 50
-#endmap
 
 map yogsdelta
 	minplayers 50
@@ -60,11 +35,25 @@ endmap
 
 map icebox
 	minplayers 25
-	votable
+endmap
+
+map eclipsestation
+	minplayers 60
 endmap
 
 map runtimestation
 endmap
 
+map monsterstation
+endmap
+
+map redoubt
+endmap
+
 map multiz_debug
 endmap
+
+
+
+
+

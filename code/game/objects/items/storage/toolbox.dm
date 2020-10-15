@@ -46,13 +46,17 @@
 	new /obj/item/crowbar/red(src)
 	new /obj/item/weldingtool/mini(src)
 	new /obj/item/extinguisher/mini(src)
-	switch(rand(1,3))
+	switch(rand(1,5))
 		if(1)
 			new /obj/item/flashlight(src)
 		if(2)
 			new /obj/item/flashlight/glowstick(src)
 		if(3)
 			new /obj/item/flashlight/flare(src)
+		if(4)
+			new /obj/item/flashlight/flare(src)
+		if(5)
+			new /obj/item/flashlight/flare/signal(src)
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/toolbox/emergency/old
@@ -133,8 +137,8 @@
 	new /obj/item/crowbar(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
-	if(prob(5))
-		new /obj/item/clothing/gloves/color/yellow(src)
+	if(prob(50))
+		new /obj/item/clothing/gloves/color/fyellow(src)
 	else
 		new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 
@@ -144,6 +148,7 @@
 	item_state = "toolbox_syndi"
 	force = 15
 	throwforce = 18
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
 	. = ..()

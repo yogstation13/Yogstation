@@ -215,8 +215,10 @@
 		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
 		for(var/mind in SSticker.mode.servants_of_ratvar)
 			var/datum/mind/M = mind
-			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
-		SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
+			if(M.current?.client)
+				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
+		if(eminence.current?.client)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
 	else
 		parts += "<span class='redtext big'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"
 	parts += " "

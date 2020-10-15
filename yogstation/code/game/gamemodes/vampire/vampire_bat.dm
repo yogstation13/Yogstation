@@ -18,7 +18,7 @@
 	melee_damage_upper = 7
 	attacktext = "bites"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSCOMPUTER
 	faction = list("hostile", "vampire")
 	attack_sound = 'sound/weapons/bite.ogg'
 	obj_damage = 0

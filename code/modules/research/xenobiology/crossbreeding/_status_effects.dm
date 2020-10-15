@@ -858,7 +858,7 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/oil
 	id = "stabilizedoil"
 	colour = "oil"
-	examine_text = "<span class='warning'>SUBJECTPRONOUN smells of sulfer and oil!</span>"
+	examine_text = "<span class='warning'>SUBJECTPRONOUN smells of sulfur and oil!</span>"
 
 /datum/status_effect/stabilized/oil/tick()
 	if(owner.stat == DEAD)

@@ -73,6 +73,37 @@
 /obj/structure/sign/departments/medbay/alt
 	icon_state = "bluecross2"
 
+
+/obj/structure/sign/departments/minsky/command
+	name = "Command Deck"
+	desc = "A sign labeling the station's command deck. The good idea fairy lives around here."
+	icon_state = "minskycommand"
+
+/obj/structure/sign/departments/minsky/command/evac
+	name = "Evacuation Area"
+	desc = "A sign labeling the station's evacuation area. No guarantees."
+	icon_state = "minskyevac"
+
+/obj/structure/sign/departments/minsky/command/space
+	name = "Leads to Space"
+	desc = "A sign labeling an exterior access. Authorized personnel only."
+	icon_state = "minskyspace"
+
+/obj/structure/sign/departments/minsky/command/hop
+	name = "Head of Personnel's Office"
+	desc = "A sign labeling the Head of Personnel's Office. Bribe for All Access here."
+	icon_state = "minskyhop"
+
+/obj/structure/sign/departments/minsky/command/bridge
+	name = "Bridge Deck"
+	desc = "A sign labeling the station's bridge."
+	icon_state = "minskybridge"
+
+/obj/structure/sign/departments/minsky/command/charge
+	name = "Charging Module"
+	desc = "A sign labeling a borge charging module. May not be fit for human habitation"
+	icon_state = "minskycharge"
+
 /obj/structure/sign/departments/minsky/research/research
 	name = "Research Department"
 	desc = "A sign labeling where the research and development of new technologies takes place. It's not an experiment if you know what's going on."

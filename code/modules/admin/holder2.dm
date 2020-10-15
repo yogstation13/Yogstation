@@ -28,6 +28,8 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
+	var/legacy_mc = FALSE
+
 /datum/admins/New(datum/admin_rank/R, ckey, force_active = FALSE, protected)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
@@ -40,11 +42,9 @@ GLOBAL_PROTECT(href_token)
 	if(!ckey)
 		QDEL_IN(src, 0)
 		CRASH("Admin datum created without a ckey")
-		return
 	if(!istype(R))
 		QDEL_IN(src, 0)
 		CRASH("Admin datum created without a rank")
-		return
 	target = ckey
 	name = "[ckey]'s admin datum ([R])"
 	rank = R

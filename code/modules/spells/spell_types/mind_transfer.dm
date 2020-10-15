@@ -12,6 +12,7 @@
 	var/unconscious_amount_caster = 400 //how much the caster is stunned for after the spell
 	var/unconscious_amount_victim = 400 //how much the victim is stunned for after the spell
 
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "mindswap"
 
 /*
@@ -40,7 +41,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 			to_chat(user, "<span class='warning'>[t_He] [t_is] too far away!</span>")
 		return
 
-	if(ismegafauna(target))
+	if(ismegafauna(target) || (target.status_flags & GODMODE))
 		if(!silent)
 			to_chat(user, "<span class='warning'>This creature is too powerful to control!</span>")
 		return
@@ -61,7 +62,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 		return
 
 	var/datum/mind/TM = target.mind
-	if((target.anti_magic_check(TRUE, FALSE) || TM.has_antag_datum(/datum/antagonist/wizard) || TM.has_antag_datum(/datum/antagonist/cult) || TM.has_antag_datum(/datum/antagonist/clockcult) || TM.has_antag_datum(/datum/antagonist/changeling) || TM.has_antag_datum(/datum/antagonist/rev) || TM.has_antag_datum(/datum/antagonist/darkspawn)) || cmptext(copytext(target.key,1,2),"@"))
+	if((target.anti_magic_check(TRUE, FALSE) || TM.has_antag_datum(/datum/antagonist/wizard) || TM.has_antag_datum(/datum/antagonist/cult) || TM.has_antag_datum(/datum/antagonist/clockcult) || TM.has_antag_datum(/datum/antagonist/changeling) || TM.has_antag_datum(/datum/antagonist/rev) || TM.has_antag_datum(/datum/antagonist/darkspawn)) || target.key[1] == "@")
 		if(!silent)
 			to_chat(user, "<span class='warning'>[target.p_their(TRUE)] mind is resisting your spell!</span>")
 		return

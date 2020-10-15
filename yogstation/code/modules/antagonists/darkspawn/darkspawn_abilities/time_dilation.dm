@@ -9,7 +9,7 @@
 	lucidity_price = 3
 
 /datum/action/innate/darkspawn/time_dilation/IsAvailable()
-	if(..())
+	if(..() && !istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
 		var/mob/living/L = owner
 		return !L.has_status_effect(STATUS_EFFECT_TIME_DILATION)
 

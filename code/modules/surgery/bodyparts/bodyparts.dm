@@ -183,7 +183,7 @@
 	burn_dam += burn
 
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
-	stamina_dam += round(CLAMP(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
+	stamina_dam += round(clamp(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
 
 
 	if(owner && updating_health)
@@ -289,6 +289,8 @@
 			original_owner = source
 	else 
 		C = owner
+		if(original_owner == "limb grower")
+			original_owner = owner
 		if(original_owner && owner != original_owner) //Foreign limb
 			no_update = TRUE
 		else
@@ -400,7 +402,10 @@
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else if(use_digitigrade)
-				limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+				if("[species_id]" == "polysmorph")
+					limb.icon_state = "pdigitigrade_[use_digitigrade]_[body_zone]"
+				else
+					limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		else

@@ -53,7 +53,6 @@
 		return
 	usr.set_machine(src)
 
-
 	if(!href_list["operation"])
 		return
 	var/obj/item/circuitboard/computer/communications/CM = circuit
@@ -174,7 +173,7 @@
 							SSshuttle.existing_shuttle = SSshuttle.emergency
 							SSshuttle.action_load(S)
 							D.adjust_money(-S.credit_cost)
-							minor_announce("[usr.real_name] has purchased [S.name] for [S.credit_cost] credits." , "Shuttle Purchase")
+							minor_announce("[usr.real_name] has purchased [S.name] for [S.credit_cost] credits.[S.extra_desc ? " [S.extra_desc]" : ""]" , "Shuttle Purchase")
 							message_admins("[ADMIN_LOOKUPFLW(usr)] purchased [S.name].")
 							SSblackbox.record_feedback("text", "shuttle_purchase", 1, "[S.name]")
 						else
@@ -264,6 +263,7 @@
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", stat_msg1, stat_msg2)
+					message_admins("[ADMIN_LOOKUPFLW(usr)] set the status lines to: [stat_msg1] - [stat_msg2].")
 				if("alert")
 					post_status("alert", href_list["alert"])
 				else
@@ -437,7 +437,7 @@
 	var/dat = ""
 	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 		var/timeleft = SSshuttle.emergency.timeLeft()
-		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_leading(num2text(timeleft % 60), 2, "0")]"
 
 
 	var/datum/browser/popup = new(user, "communications", "Communications Console", 400, 500)
@@ -703,7 +703,7 @@
 	if(!SScommunications.can_announce(user, is_silicon))
 		to_chat(user, "Intercomms recharging. Please stand by.")
 		return
-	var/input = stripped_input(user, "Please choose a message to announce to the station crew.", "What?")
+	var/input = stripped_multiline_input(user, "Please choose a message to announce to the station crew.", "What?")
 	if(!input || !user.canUseTopic(src, !issilicon(usr)))
 		return
 	SScommunications.make_announcement(user, is_silicon, input)

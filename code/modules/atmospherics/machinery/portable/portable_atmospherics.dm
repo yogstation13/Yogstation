@@ -18,9 +18,8 @@
 	..()
 	SSair.atmos_machinery += src
 
-	air_contents = new
-	air_contents.volume = volume
-	air_contents.temperature = T20C
+	air_contents = new(volume)
+	air_contents.set_temperature(T20C)
 
 	return 1
 
@@ -100,7 +99,7 @@
 	. = ..()
 	if(holding)
 		. += "<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>"+\
-			"<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>"
+			"<span class='notice'> Click [src] with another gas tank to hot swap [holding].</span>"
 
 /obj/machinery/portable_atmospherics/proc/replace_tank(mob/living/user, close_valve, obj/item/tank/new_tank)
 	if(holding)

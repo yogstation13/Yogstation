@@ -403,3 +403,91 @@
 	name = "saline canister"
 	volume = 5000
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
+
+/obj/item/reagent_containers/glass/mixbowl //chef's bowl
+	name = "mixing bowl"
+	desc = "A large bowl for mixing ingredients."
+	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon_state = "mixbowl"
+	item_state = "mixbowl"
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = NONE
+	possible_transfer_amounts = list(10, 25, 50, 100)
+	volume = 100
+	materials = list(MAT_METAL=1000)
+
+/obj/item/reagent_containers/glass/mixbowl/on_reagent_change(changetype)
+	..()
+	update_icon()
+
+/obj/item/reagent_containers/glass/mixbowl/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
+
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9)
+				filling.icon_state = "[icon_state]0"
+			if(10 to 24)
+				filling.icon_state = "[icon_state]10"
+			if(25 to 49)
+				filling.icon_state = "[icon_state]25"
+			if(50 to 74)
+				filling.icon_state = "[icon_state]50"
+			if(75 to INFINITY)
+				filling.icon_state = "[icon_state]75"
+
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling)
+
+/obj/item/reagent_containers/glass/urn
+	name = "urn"
+	desc = "A tall vase used for storing cremated remains."
+	obj_flags = UNIQUE_RENAME // Rename it to whoever you cremated
+	icon_state = "urn_open"
+	w_class = WEIGHT_CLASS_NORMAL // This is important! Don't just keep it in your box or something!
+	resistance_flags = NONE // Shatters easily
+	amount_per_transfer_from_this = 30 // Not very good at accurate reagent transfer and shouldn't be used for such
+	possible_transfer_amounts = list(30)
+	volume = 30
+	materials = list(MAT_METAL=0) // No free mats for you, chap
+	var/spilled = FALSE // Is it currently spilled?
+	var/locked = FALSE // Is it currently locked shut?
+
+/// Calls on most non-table clicks, spills it
+/obj/item/reagent_containers/glass/urn/afterattack()
+	. = ..()
+	if(spillable && !spilled)
+		icon_state = "urn_spilled"
+		spilled = TRUE
+		amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's spilled
+		possible_transfer_amounts = list(0)
+		reagents.clear_reagents()
+
+/// Will not accept any reagents when spilled or locked
+/obj/item/reagent_containers/glass/urn/is_refillable()
+	if(spilled || locked)
+		return FALSE
+	else
+		return reagents && (reagents.flags & REFILLABLE)
+
+/// Using in hand will either upright a spilled urn or lock an open one
+/obj/item/reagent_containers/glass/urn/attack_self(mob/user)
+	src.add_fingerprint(user)
+	if(locked) // If it's locked, we don't do anything with it
+		return
+	if(spilled) // If it's spilled over, we right it
+		icon_state = "urn_open"
+		spilled = FALSE
+		to_chat(user, "<span class = 'notice'>You right [src].</span>")
+		amount_per_transfer_from_this = 30
+		possible_transfer_amounts = list(30)
+		return
+	locked = TRUE // If it's not locked or spilled, start locking it
+	spillable = FALSE // Can't spill a closed container
+	icon_state = "urn_closed"
+	amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's closed
+	possible_transfer_amounts = list(0)
+	to_chat(user, "<span class = 'notice'>You close the lid of [src] and lock it.</span>")

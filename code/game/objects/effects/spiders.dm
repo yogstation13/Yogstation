@@ -35,7 +35,8 @@
 		icon_state = "stickyweb2"
 	. = ..()
 
-/obj/structure/spider/stickyweb/CanPass(atom/movable/mover, turf/target)
+/obj/structure/spider/stickyweb/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/poison/giant_spider))
 		return TRUE
 	else if(isliving(mover))
@@ -46,7 +47,6 @@
 			return FALSE
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
-	return TRUE
 
 /obj/structure/spider/eggcluster
 	name = "egg cluster"
@@ -195,7 +195,7 @@
 			S.directive = directive
 			if(player_spiders)
 				S.playable_spider = TRUE
-				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACK, ignore_key = POLL_IGNORE_SPIDER)
+				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACKORBIT, ignore_key = POLL_IGNORE_SPIDER)
 			qdel(src)
 
 

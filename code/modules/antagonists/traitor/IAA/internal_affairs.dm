@@ -97,7 +97,7 @@
 				var/mob/current = objective.target.current
 				if(current&&current.stat!=DEAD)
 					scan_target = current
-				break
+					break
 
 /datum/status_effect/agent_pinpointer/tick()
 	if(!owner)

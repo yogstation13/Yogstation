@@ -1,8 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/mineral/random/more_caves{
-	initial_gas_mix = "o2=14;n2=23;TEMP=180"
-	},
+/turf/closed/mineral/random/more_caves/icemoon,
 /area/icemoon/surface/outdoors/unexplored)
 "b" = (
 /turf/closed/mineral/random/snow/no_caves,

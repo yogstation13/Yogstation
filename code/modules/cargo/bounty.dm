@@ -19,11 +19,14 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	return !claimed
 
 // Called when the claim button is clicked. Override to provide fancy rewards.
-/datum/bounty/proc/claim()
+/datum/bounty/proc/claim(mob/user)
 	if(can_claim())
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			D.adjust_money(reward)
+			D.bounties_claimed += 1
+			if(D.bounties_claimed == 10)
+				SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
 		claimed = TRUE
 
 // If an item sent in the cargo shuttle can satisfy the bounty.

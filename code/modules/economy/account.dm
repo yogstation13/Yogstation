@@ -9,6 +9,8 @@
 	var/account_id
 	var/being_dumped = FALSE //pink levels are rising
 	var/withdrawDelay = 0
+	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
+	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
 
 /datum/bank_account/New(newname, job)
 	if(add_to_accounts)
@@ -30,6 +32,14 @@
 	account_balance += amt
 	if(account_balance < 0)
 		account_balance = 0
+	else if(account_balance > 1000000 && !is_bourgeois) // if we are now a millionaire, give the achievement
+		//So we currently only know what is *supposed* to be the real_name of the client's mob. If we can find them, we can get them this achievement. 
+		for(var/x in GLOB.player_list)
+			var/mob/M = x
+			if(M.real_name == account_holder)
+				SSachievements.unlock_achievement(/datum/achievement/cargo/bourgeois, M.client)
+				is_bourgeois = TRUE
+				//break would result in the possibility of this being given to changeling who has duplicated the millionaire, and not to the actual millionaire.
 
 /datum/bank_account/proc/has_money(amt)
 	return account_balance >= amt

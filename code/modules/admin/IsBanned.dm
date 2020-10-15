@@ -118,6 +118,12 @@ Yogs End*/
 				[expires] If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums."} //yogs
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				key_cache[key] = 0
+				if(address == i["ip"])
+					SSblackbox.record_feedback("amount", "login_blocked_ips", 1)
+					SSblackbox.record_feedback("tally", "login_blocked_ips_by_ckey", 1, key)
+				if(computer_id == i["computerid"])
+					SSblackbox.record_feedback("amount", "login_blocked_cids", 1)
+					SSblackbox.record_feedback("tally", "login_blocked_cids_by_ckey", 1, key)
 				return list("reason"="Banned","desc"="[desc]")
 
 	var/list/ban = ..()	//default pager ban stuff
@@ -208,9 +214,18 @@ Yogs End*/
 		if (ban["fromdb"])
 			if(SSdbcore.Connect())
 				INVOKE_ASYNC(SSdbcore, /datum/controller/subsystem/dbcore/proc.QuerySelect, list(
-					SSdbcore.NewQuery("INSERT INTO [format_table_name("stickyban_matched_ckey")] (matched_ckey, stickyban) VALUES ('[sanitizeSQL(ckey)]', '[sanitizeSQL(bannedckey)]') ON DUPLICATE KEY UPDATE last_matched = now()"),
-					SSdbcore.NewQuery("INSERT INTO [format_table_name("stickyban_matched_ip")] (matched_ip, stickyban) VALUES ( INET_ATON('[sanitizeSQL(address)]'), '[sanitizeSQL(bannedckey)]') ON DUPLICATE KEY UPDATE last_matched = now()"),
-					SSdbcore.NewQuery("INSERT INTO [format_table_name("stickyban_matched_cid")] (matched_cid, stickyban) VALUES ('[sanitizeSQL(computer_id)]', '[sanitizeSQL(bannedckey)]') ON DUPLICATE KEY UPDATE last_matched = now()")
+					SSdbcore.NewQuery(
+						"INSERT INTO [format_table_name("stickyban_matched_ckey")] (matched_ckey, stickyban) VALUES (:ckey, :bannedckey) ON DUPLICATE KEY UPDATE last_matched = now()",
+						list("ckey" = ckey, "bannedckey" = bannedckey)
+					),
+					SSdbcore.NewQuery(
+						"INSERT INTO [format_table_name("stickyban_matched_ip")] (matched_ip, stickyban) VALUES (INET_ATON(:address), :bannedckey) ON DUPLICATE KEY UPDATE last_matched = now()",
+						list("address" = address, "bannedckey" = bannedckey)
+					),
+					SSdbcore.NewQuery(
+						"INSERT INTO [format_table_name("stickyban_matched_cid")] (matched_cid, stickyban) VALUES (:computer_id, :bannedckey) ON DUPLICATE KEY UPDATE last_matched = now()",
+						list("computer_id" = computer_id, "bannedckey" = bannedckey)
+					)
 				), FALSE, TRUE)
 
 

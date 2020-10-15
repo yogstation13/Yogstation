@@ -43,7 +43,7 @@
 		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
 		used = TRUE
 		sleep(50)
-		var/turf/deploy_location = get_turf(src)
+		var/turf/deploy_location = get_turf_global(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)
 			if(SHELTER_DEPLOY_BAD_AREA)
@@ -102,6 +102,7 @@
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_pod
+	anim_parts = "topbolts=0,6,0,3;bottombolts=0,-6,3,-6;top=0,4,0,2;bottom=0,-4,0,2;rightbolts=14,0,1.5,5;left=-15,0,1.5,5;right=14,0,1.5,5"
 
 /obj/machinery/door/airlock/survival_pod/glass
 	opacity = FALSE
@@ -314,7 +315,7 @@
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
 						/obj/item/phylactery,
-						/obj/item/banhammer)
+						/obj/item/bikehorn)
 
 /obj/item/fakeartefact/Initialize()
 	. = ..()

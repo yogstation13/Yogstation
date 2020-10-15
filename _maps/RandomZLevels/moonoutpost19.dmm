@@ -1882,10 +1882,10 @@
 /area/awaymission/moonoutpost19/syndicate)
 "dy" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/space/syndicate/orange,
+/obj/item/clothing/suit/space/syndicate/black/engie,
 /obj/item/clothing/mask/gas,
 /obj/item/pickaxe/drill,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
+/obj/item/clothing/head/helmet/space/syndicate/black/engie,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -2058,9 +2058,9 @@
 /obj/structure/bed/nest,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/tank/internals/oxygen,
-/obj/item/clothing/suit/space/syndicate/orange,
+/obj/item/clothing/suit/space/syndicate/black/engie,
 /obj/item/clothing/mask/gas,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
+/obj/item/clothing/head/helmet/space/syndicate/black/engie,
 /obj/item/clothing/mask/facehugger/impregnated,
 /turf/open/floor/plating/asteroid{
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";

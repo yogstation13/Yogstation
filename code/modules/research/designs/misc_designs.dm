@@ -266,6 +266,26 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/body_camera
+	name = "Bodycamera"
+	desc = "A camera worn around the neck, meant to keep you safe."
+	id = "bodycam"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 1000, MAT_GOLD = 500)
+	build_path = /obj/item/clothing/neck/bodycam/
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/ticket_remote
+	name = "Ticket Machine Remote"
+	desc = "A remote for operating a ticket machine (sold seperately)"
+	id = "ticket_remote"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/ticket_machine_remote
+	category = list ("Electronics")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////
 /////////////////////////////////////////
@@ -344,7 +364,6 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-
 /datum/design/holosignsec
 	name = "Security Holobarrier Projector"
 	desc = "A holographic projector that creates holographic security barriers."
@@ -420,6 +439,16 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 5000, MAT_GLASS = 1000, MAT_GOLD = 2500, MAT_SILVER = 2000)
 	build_path = /obj/item/detective_scanner
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/detective_scanner_advanced
+	name = "Advanced Forensic Scanner"
+	desc = "Processes data much quicker at the cost of not being able to scan far remotely. Gives more detailed reports. Scan from 2 tiles away to avoid leaving prints on the scene of the crime!"
+	id = "detective_scanner_advanced"
+	build_type = PROTOLATHE
+	materials = list(MAT_TITANIUM = 5000, MAT_GLASS = 1000, MAT_GOLD = 2500, MAT_SILVER = 3000) // made of titanium instead of metal + extra silver
+	build_path = /obj/item/detective_scanner/advanced
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

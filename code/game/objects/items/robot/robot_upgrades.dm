@@ -321,7 +321,7 @@
 /obj/item/borg/upgrade/selfrepair/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/borg/upgrade/selfrepair/U = locate() in R.module.modules
+		var/obj/item/borg/upgrade/selfrepair/U = locate() in R
 		if(U)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a self-repair module.</span>")
 			return FALSE
@@ -619,6 +619,33 @@
 	if (.)
 		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
 			R.module.remove_module(RPED, TRUE)
+
+/obj/item/borg/upgrade/plasmacutter
+	name = "mining cyborg plasma cutter"
+	desc = "A plasma cutter module for the mining cyborg."
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "adv_plasmacutter"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/miner
+
+/obj/item/borg/upgrade/plasmacutter/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+
+		var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC = locate() in R.module.modules
+		if(PC)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a plasma cutter module.</span>")
+			return FALSE
+
+		PC = new(R.module)
+		R.module.basic_modules += PC
+		R.module.add_module(PC, FALSE, TRUE)
+
+/obj/item/borg/upgrade/plasmacutter/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
+			R.module.remove_module(PC, TRUE)
 
 /obj/item/borg/upgrade/pinpointer
 	name = "medical cyborg crew pinpointer"

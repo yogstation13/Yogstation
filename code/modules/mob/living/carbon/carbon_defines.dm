@@ -15,6 +15,9 @@
 
 	var/disgust = 0
 
+	/// Timer id of any transformation
+	var/transformation_timer
+
 //inventory slots
 	var/obj/item/back = null
 	var/obj/item/clothing/mask/wear_mask = null

@@ -180,7 +180,6 @@ SUBSYSTEM_DEF(shuttle)
 			resolve this problem by loading an emergency shuttle template \
 			manually, and then calling register() on the mobile docking port. \
 			Good luck.")
-			return
 		emergency = backup_shuttle
 	var/srd = CONFIG_GET(number/shuttle_refuel_delay)
 	if(world.time - SSticker.round_start_time < srd)
@@ -217,7 +216,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
 	var/security_num = seclevel2num(get_security_level())
 	switch(security_num)
-		if(SEC_LEVEL_RED,SEC_LEVEL_DELTA)
+		if(SEC_LEVEL_RED,SEC_LEVEL_GAMMA,SEC_LEVEL_EPSILON,SEC_LEVEL_DELTA)
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 1) //There is a serious threat we gotta move no time to give them five minutes.
 		else
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 0)
@@ -741,7 +740,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "shuttle_manipulator", name, 800, 600, master_ui, state)
+		ui = new(user, src, ui_key, "ShuttleManipulator", name, 800, 600, master_ui, state)
 		ui.open()
 
 /proc/shuttlemode2str(mode)

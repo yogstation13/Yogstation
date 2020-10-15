@@ -36,7 +36,7 @@
 		if(!user.is_literate())
 			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
 			return
-		var/str = copytext(sanitize(input(user,"Label text?","Set label","")),1,MAX_NAME_LEN)
+		var/str = stripped_input(user, "Label text?", "Set label", "", MAX_NAME_LEN)
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(!str || !length(str))
@@ -57,7 +57,7 @@
 		return ..()
 
 /obj/structure/bigDelivery/relay_container_resist(mob/living/user, obj/O)
-	if(ismovableatom(loc))
+	if(ismovable(loc))
 		var/atom/movable/AM = loc //can't unwrap the wrapped container if it's inside something.
 		AM.relay_container_resist(user, O)
 		return
@@ -123,7 +123,7 @@
 		if(!user.is_literate())
 			to_chat(user, "<span class='notice'>You scribble illegibly on the side of [src]!</span>")
 			return
-		var/str = copytext(sanitize(input(user,"Label text?","Set label","")),1,MAX_NAME_LEN)
+		var/str = stripped_input(user, "Label text?", "Set label", "", MAX_NAME_LEN)
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(!str || !length(str))
@@ -170,7 +170,7 @@
 	return BRUTELOSS
 
 /obj/item/destTagger/proc/openwindow(mob/user)
-	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
+	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
 	for (var/i = 1, i <= GLOB.TAGGERLOCATIONS.len, i++)
@@ -180,7 +180,7 @@
 			dat += "</tr><tr>"
 
 	dat += "</tr></table><br>Current Selection: [currTag ? GLOB.TAGGERLOCATIONS[currTag] : "None"]</tt>"
-
+	dat += "</BODY></HTML>"
 	user << browse(dat, "window=destTagScreen;size=450x350")
 	onclose(user, "destTagScreen")
 

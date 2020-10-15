@@ -1,15 +1,6 @@
 //traits with no real impact that can be taken freely
 //MAKE SURE THESE DO NOT MAJORLY IMPACT GAMEPLAY. those should be positive or negative traits.
 
-/datum/quirk/no_taste
-	name = "Ageusia"
-	desc = "You can't taste anything! Toxic food will still poison you."
-	value = 0
-	mob_trait = TRAIT_AGEUSIA
-	gain_text = "<span class='notice'>You can't taste anything!</span>"
-	lose_text = "<span class='notice'>You can taste again!</span>"
-	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
-
 /datum/quirk/vegetarian
 	name = "Vegetarian"
 	desc = "You find the idea of eating meat morally and physically repulsive."
@@ -110,3 +101,19 @@
 /datum/quirk/monochromatic/remove()
 	if(quirk_holder)
 		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/random_accent
+	name = "Randomized Accent"
+	desc = "You have developed a random accent."
+	value = 0
+	mob_trait = TRAIT_RANDOM_ACCENT
+	gain_text = "<span class='danger'>You have developed an accent.</span>"
+	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
+	medical_record_text = "Patient is difficult to understand."
+
+/datum/quirk/random_accent/post_add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(!H.mind.accent_name)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents_name2file))// Right now this pick just picks a straight random one from all implemented.
+

@@ -1,0 +1,47 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/closet/secure_closet/medical1,
+/turf/open/floor/plating,
+/area/template_noop)
+"d" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/template_noop)
+"f" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/template_noop)
+"j" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/closet/secure_closet/chemical/heisenberg,
+/turf/open/floor/plating,
+/area/template_noop)
+"k" = (
+/obj/structure/chair/stool,
+/obj/item/cigbutt,
+/turf/open/floor/plating,
+/area/template_noop)
+"H" = (
+/obj/effect/decal/cleanable/vomit/old,
+/obj/structure/closet/secure_closet/chemical,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+j
+d
+e
+"}
+(2,1,1) = {"
+f
+H
+f
+"}
+(3,1,1) = {"
+c
+d
+k
+"}

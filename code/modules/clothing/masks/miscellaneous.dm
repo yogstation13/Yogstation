@@ -239,17 +239,17 @@
 /obj/item/clothing/mask/bandana/attack_self(mob/user)
 	adjustmask(user)
 
-/obj/item/clothing/mask/bandana/AltClick(mob/user)
+/obj/item/clothing/mask/bandana/AltClick(mob/user,bypass = FALSE)
 	. = ..()
-	if(iscarbon(user))
+	if(iscarbon(user) && !bypass)
 		var/mob/living/carbon/C = user
 		if((C.get_item_by_slot(SLOT_HEAD == src)) || (C.get_item_by_slot(SLOT_WEAR_MASK) == src))
 			to_chat(user, "<span class='warning'>You can't tie [src] while wearing it!</span>")
 			return
-	if(slot_flags & ITEM_SLOT_HEAD)
+	if(slot_flags & ITEM_SLOT_HEAD && !bypass)
 		to_chat(user, "<span class='warning'>You must undo [src] before you can tie it into a neckerchief!</span>")
 	else
-		if(user.is_holding(src))
+		if(user.is_holding(src) || bypass)
 			var/obj/item/clothing/neck/neckerchief/nk = new(src)
 			nk.name = "[name] neckerchief"
 			nk.desc = "[desc] It's tied up like a neckerchief."
@@ -297,6 +297,10 @@
 	name = "durathread bandana"
 	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
 	icon_state = "banddurathread"
+
+/obj/item/clothing/mask/bandana/durathread/tied/Initialize()
+	. = ..()
+	AltClick(bypass = TRUE)
 
 /obj/item/clothing/mask/mummy
 	name = "mummy mask"
