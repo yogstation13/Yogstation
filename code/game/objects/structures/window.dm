@@ -51,7 +51,7 @@
 	if(direct)
 		setDir(direct)
 	if(reinf && anchored)
-		state = WINDOW_SCREWED_TO_FRAME
+		state = RWINDOW_SECURE
 
 	ini_dir = dir
 	air_update_turf(1)
