@@ -12,7 +12,7 @@
 	var/making_mage = 0
 	var/mages_made = 1
 	var/time_checked = 0
-	var/bullshit_mode = 0 // requested by hornygranny
+	var/bullshit_mode = FALSE // requested by hornygranny
 	var/time_check = 1500
 	var/spawn_delay_min = 500
 	var/spawn_delay_max = 700
@@ -135,7 +135,7 @@
 	antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_BULLSHITMAGES
 	required_players = 40
-	bullshit_mode = 1
+	bullshit_mode = TRUE
 	time_check = 250
 	spawn_delay_min = 50
 	spawn_delay_max = 150
