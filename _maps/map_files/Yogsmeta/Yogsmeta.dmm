@@ -46344,9 +46344,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "bIr" = (
-/obj/machinery/computer/cloning{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -46356,6 +46353,9 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/machinery/computer/cloning/roundstart{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -46530,6 +46530,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/table/glass,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "bIM" = (
@@ -51108,6 +51110,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/humangrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bSb" = (

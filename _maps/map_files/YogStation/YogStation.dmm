@@ -32129,7 +32129,6 @@
 	dir = 4
 	},
 /obj/machinery/airalarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -37308,9 +37307,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ddA" = (
-/obj/effect/turf_decal/trimline/purple/filled/corner,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 10
+	},
+/obj/machinery/humangrinder,
 /turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
+/area/medical/genetics)
 "ddD" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -37596,7 +37598,6 @@
 	req_access_txt = "16"
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -37609,7 +37610,6 @@
 	pixel_y = 21
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -37711,7 +37711,7 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -37800,9 +37800,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dzD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/storage/tech)
 "dzR" = (
@@ -38213,26 +38211,16 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "dOS" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/structure/cable{
+	icon_state = "1-4"
 	},
-/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/trimline/purple/filled/corner,
+/obj/effect/turf_decal/trimline/purple/filled/corner{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
-	},
-/obj/machinery/door/airlock/research/glass{
-	name = "Genetics Research";
-	req_access_txt = "5; 9; 68"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -38404,11 +38392,12 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "dVR" = (
-/obj/machinery/computer/cloning{
+/obj/machinery/clonepod,
+/obj/machinery/shower{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -40696,9 +40685,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/machinery/vending/autodrobe{
-	req_access_txt = "0"
-	},
+/obj/machinery/vending/autodrobe,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -42771,6 +42758,9 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/geneticist,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "hJN" = (
@@ -43155,9 +43145,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/storage/tech)
 "hZV" = (
@@ -43468,7 +43456,6 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
 	c_tag = "MiniSat Exterior - Aft";
-	dir = 2;
 	network = list("minisat","ss13")
 	},
 /turf/open/space/basic,
@@ -43741,14 +43728,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "ixQ" = (
-/obj/machinery/clonepod,
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/medical/genetics/cloning)
 "izu" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -43791,12 +43772,7 @@
 	name = "Cloning Lab APC";
 	pixel_x = 24
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
+/obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "iBq" = (
@@ -45072,11 +45048,8 @@
 	},
 /obj/machinery/turretid{
 	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
-	enabled = 1;
-	icon_state = "control_standby";
 	name = "Antechamber Turret Control";
 	pixel_x = 32;
-	pixel_y = 0;
 	req_access_txt = "19"
 	},
 /obj/effect/turf_decal/tile/darkblue{
@@ -45300,15 +45273,15 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "jGj" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /obj/machinery/power/apc{
 	areastring = "/area/medical/genetics";
 	name = "Genetics APC";
 	pixel_y = -24
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "jGO" = (
@@ -45818,9 +45791,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
@@ -45866,7 +45837,6 @@
 	req_access_txt = "16"
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -45879,7 +45849,6 @@
 	pixel_y = -27
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -46299,7 +46268,6 @@
 	},
 /obj/effect/landmark/start/ai,
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	listening = 0;
 	name = "Custom Channel";
@@ -46313,7 +46281,6 @@
 	pixel_y = -27
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	freerange = 1;
 	frequency = 1447;
 	name = "Private Channel";
@@ -46685,9 +46652,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/storage/tech)
 "kMZ" = (
@@ -47950,13 +47915,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/corner,
-/obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 8
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "lNU" = (
@@ -48906,6 +48864,15 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
+/obj/machinery/power/apc{
+	areastring = "/area/medical/genetics/cloning";
+	dir = 4;
+	name = "Cloning Lab APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "mGO" = (
@@ -49714,7 +49681,6 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/storage/satellite";
-	dir = 2;
 	name = "MiniSat Maint APC";
 	pixel_y = -24
 	},
@@ -51196,9 +51162,13 @@
 /turf/template_noop,
 /area/maintenance/fore)
 "omX" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/genetics/cloning)
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 6
+	},
+/obj/machinery/reagentgrinder,
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "omY" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -51641,9 +51611,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_y = -32
 	},
@@ -51939,9 +51907,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westleft{
-	base_state = "left";
 	dir = 1;
-	icon_state = "left";
 	layer = 3.1;
 	name = "Cyborg Upload Console Window";
 	req_access_txt = "16"
@@ -53299,10 +53265,14 @@
 /area/quartermaster/storage)
 "pSS" = (
 /obj/machinery/light,
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/medical_cloning{
+	pixel_y = 6
+	},
+/obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "pSY" = (
@@ -53487,11 +53457,9 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "qbJ" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 1
+	dir = 6
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -54700,18 +54668,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"qXs" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/rxglasses{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/bodybags,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "qXB" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -54955,7 +54911,7 @@
 /obj/machinery/dna_scannernew,
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 10
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -55017,9 +54973,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "rlV" = (
-/obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
+	dir = 4
+	},
+/obj/machinery/computer/cloning/roundstart{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -55038,6 +54996,12 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/corner{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -55652,9 +55616,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
@@ -56057,6 +56019,9 @@
 	dir = 1;
 	network = list("ss13","medbay")
 	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "sjd" = (
@@ -56189,9 +56154,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_y = -32
 	},
@@ -56717,9 +56680,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -58118,9 +58079,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel{
-	name = "floor"
-	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "tSz" = (
 /turf/open/floor/plasteel,
@@ -58298,7 +58257,7 @@
 	},
 /obj/machinery/vending/wardrobe/gene_wardrobe,
 /obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -60280,16 +60239,13 @@
 /area/hallway/primary/aft)
 "vKx" = (
 /obj/structure/table/glass,
-/obj/item/book/manual/wiki/medical_cloning{
-	pixel_y = 6
+/obj/item/storage/box/rxglasses{
+	pixel_x = 3;
+	pixel_y = 3
 	},
-/obj/item/pen,
+/obj/item/storage/box/bodybags,
 /obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = 6
+	dir = 9
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
@@ -62418,7 +62374,6 @@
 "xHn" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers{
-	pixel_x = 0;
 	pixel_y = 2
 	},
 /obj/item/storage/box/syringes{
@@ -63272,21 +63227,32 @@
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "ykZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 1
 	},
+/obj/machinery/door/airlock/research/glass{
+	name = "Genetics Research";
+	req_access_txt = "5; 9; 68"
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 1
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/trimline/purple/filled/corner{
+/obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
+/area/medical/genetics)
 "yly" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -105358,7 +105324,7 @@ bon
 bpE
 bon
 bpE
-kYK
+bon
 fQz
 ruc
 pqq
@@ -105615,8 +105581,8 @@ xlF
 eEo
 dsG
 rkx
+ddA
 kYK
-qXs
 vKx
 oMM
 wXJ
@@ -106128,11 +106094,11 @@ bsL
 nUj
 vEs
 aCH
+bsL
 jGj
 kYK
-qbJ
 hJy
-ddA
+wXJ
 iAO
 mGA
 kYK
@@ -106390,7 +106356,7 @@ omX
 ixQ
 dVR
 rlV
-kYK
+qbJ
 kYK
 kYK
 cJt
@@ -106648,7 +106614,7 @@ tQD
 tQD
 tQD
 tQD
-bAw
+tQD
 bAw
 bAw
 emi

@@ -20,6 +20,9 @@
 	var/include_se = FALSE //mutations
 	var/include_ui = FALSE //appearance
 	var/include_ue = FALSE //blood type, UE, and name
+	//costs of cloning
+	var/biomatter = 0 //If we do not have at least 100 biomatter you can't clone the body. (125 if you upgraded the pod)
+	var/clone_cost = 100
 
 	var/loading = FALSE // Nice loading text
 	var/autoprocess = FALSE
@@ -83,6 +86,7 @@
 
 		var/result = grow_clone_from_record(pod, R)
 		if(result & CLONING_SUCCESS)
+			biomatter -= clone_cost
 			temp = "[R.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 			log_cloning("Cloning of [key_name(R.fields["mindref"])] automatically started via autoprocess - [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 		if(result & CLONING_DELETE_RECORD)
@@ -160,7 +164,11 @@
 			P.buffer = src
 			to_chat(user, "<font color = #666633>-% Successfully stored [REF(P.buffer)] [P.buffer.name] in buffer %-</font color>")
 		return
-	else
+	else if(istype(W, /obj/item/reagent_containers/food/))
+		var/obj/item/reagent_containers/food/F = W
+		biomatter += F.volume //we compost the food and it's volume is fueling biomatter
+		to_chat(user, "<span class='notice'>You put biomatter in the console.</span>")
+		qdel(W)
 		return ..()
 
 /obj/machinery/computer/cloning/ui_interact(mob/user)
@@ -171,6 +179,19 @@
 	var/dat = ""
 	dat += "<a href='byond://?src=[REF(src)];refresh=1'>Refresh</a>"
 
+	if(pods)
+		for(var/P in pods)
+			var/obj/machinery/clonepod/pod = P
+			if(pod.efficiency >= 1) //1-2 efficiency should set it back to 100, since if efficiency falls under 3 it won't change back to 100.
+				clone_cost = 100
+				if(pod.efficiency >= 3)
+					clone_cost = 100+5*pod.efficiency-5 //110-125
+					if(pod.efficiency >= 6)
+						clone_cost = 100+10*pod.efficiency-30 //130-150
+						if(pod.efficiency >= 9) //normally it doesn't go further than 8 but a bus might :)
+							clone_cost = 100+10*pod.efficiency
+	else
+		clone_cost = 100
 	if(scanner && HasEfficientPod() && scanner.scan_level >= AUTOCLONING_MINIMAL_LEVEL)
 		if(!autoprocess)
 			dat += "<a href='byond://?src=[REF(src)];task=autoprocess'>Autoprocess</a>"
@@ -179,6 +200,8 @@
 	else
 		dat += "<span class='linkOff'>Autoprocess</span>"
 	dat += "<h3>Cloning Pod Status</h3>"
+	dat += "<h4>Biomatter : [biomatter]</h4>"
+	dat += "<h4>Cost of Cloning : [clone_cost]</h4>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	switch(menu)
 		if(1)
@@ -464,7 +487,6 @@
 	else if (href_list["refresh"])
 		updateUsrDialog()
 		playsound(src, "terminal_type", 25, 0)
-
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		var/empty = href_list["empty"]
@@ -488,9 +510,14 @@
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+			else if(biomatter < clone_cost)
+				temp = "<font class='bad'>Not enough biomatter to create the body, current amount of biomatter is [biomatter]!</font>"
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+				success = FALSE
 			else
 				var/result = grow_clone_from_record(pod, C, empty)
 				if(result & CLONING_SUCCESS)
+					biomatter -= clone_cost
 					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 					if(active_record == C)
@@ -625,3 +652,6 @@
 	records += R
 	log_cloning("[M ? key_name(M) : "Autoprocess"] added the [body_only ? "body-only " : ""]record of [key_name(mob_occupant)] to [src] at [AREACOORD(src)].")
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50)
+
+/obj/machinery/computer/cloning/roundstart
+	biomatter = 350 //:)))))))))))))))))))))))))

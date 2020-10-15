@@ -572,3 +572,12 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("dolphin meat" = 1, "regret" = 1)
+/obj/item/reagent_containers/food/snacks/biomatter
+	name = "Biomatter"
+	desc = "Pure biology matter, is it tasty?"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "biomatter"
+	volume = 25
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/bad_food = 15, /datum/reagent/consumable/sugar = 5)
+	tastes = list("pure biology" = 6, "pure matter" = 6)
+	foodtype = JUNKFOOD | SUGAR | FRUIT | PINEAPPLE | VEGETABLES | DAIRY | GRAIN | BREAKFAST | FRIED | MEAT | ALCOHOL | GROSS | EGG

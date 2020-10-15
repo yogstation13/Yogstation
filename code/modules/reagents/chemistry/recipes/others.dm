@@ -111,6 +111,18 @@
 		new /obj/item/reagent_containers/food/snacks/meat/slab/meatproduct(location)
 	return
 
+/datum/chemical_reaction/biomatter_creation
+	name = "Biomatter Creator"
+	id = "biomatter_creation"
+	required_reagents = list(/datum/reagent/blood = 10, /datum/reagent/consumable/nutriment = 5)
+	mob_react = FALSE
+
+/datum/chemical_reaction/biomatter_creation/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/biomatter(location)
+	return
+
 /datum/chemical_reaction/carbondioxide
 	name = "Direct Carbon Oxidation"
 	id = "burningcarbon"
