@@ -360,7 +360,7 @@
 	if(HasSymptom(S))
 		return
 
-	if(symptoms.len < (VIRUS_SYMPTOM_LIMIT - 1) + rand(-1, 1))
+	if(symptoms.len >= VIRUS_SYMPTOM_LIMIT)
 		symptoms += S
 	else
 		RemoveSymptom(pick(symptoms))
