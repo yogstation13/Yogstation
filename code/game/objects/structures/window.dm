@@ -15,7 +15,7 @@
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
 	rad_flags = RAD_PROTECT_CONTENTS
 	var/ini_dir = null
-	var/state = WINDOW_OUT_OF_FRAME
+	var/state = WINDOW_SCREWED_TO_FRAME
 	var/reinf = FALSE
 	var/heat_resistance = 800
 	var/decon_speed = 30
@@ -372,6 +372,7 @@
 
 /obj/structure/window/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -473,6 +474,7 @@
 
 /obj/structure/window/reinforced/unanchored
 	anchored = FALSE
+	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/plasma
 	name = "plasma window"
