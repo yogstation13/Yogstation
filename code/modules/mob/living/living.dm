@@ -10,6 +10,8 @@
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	initialize_footstep()
+	if(startDead)
+		death(FALSE)
 
 /mob/living/proc/initialize_footstep()
 	AddComponent(/datum/component/footstep)
