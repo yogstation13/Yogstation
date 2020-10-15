@@ -37,16 +37,16 @@
 	result = /obj/item/reagent_containers/food/snacks/pizza/donkpocket
 	subcategory = CAT_PIZZA
 
-/datum/crafting_recipe/food/pineapplepizza
+/datum/crafting_recipe/food/nopizza
 	name = "Hawaiian Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pizzabread = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2,
-		/obj/item/reagent_containers/food/snacks/pineappleslice = 3,
+		/obj/item/reagent_containers/food/snacks/noslice = 3,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/pizza/pineapple
+	result = /obj/item/reagent_containers/food/snacks/pizza/no
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/margheritapizza

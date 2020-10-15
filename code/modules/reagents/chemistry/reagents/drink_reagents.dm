@@ -822,12 +822,12 @@
 	taste_description = "parsnip"
 	glass_name = "glass of parsnip juice"
 
-/datum/reagent/consumable/pineapplejuice
-	name = "Pineapple Juice"
+/datum/reagent/consumable/nojuice
+	name = "no Juice"
 	description = "Tart, tropical, and hotly debated."
 	color = "#F7D435"
-	taste_description = "pineapple"
-	glass_name = "glass of pineapple juice"
+	taste_description = "no"
+	glass_name = "glass of no juice"
 	glass_desc = "Tart, tropical, and hotly debated."
 
 /datum/reagent/consumable/peachjuice //Intended to be extremely rare due to being the limiting ingredients in the blazaam drink

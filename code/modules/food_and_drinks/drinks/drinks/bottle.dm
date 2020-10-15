@@ -414,17 +414,17 @@
 	foodtype = FRUIT
 	age_restricted = FALSE
 
-/obj/item/reagent_containers/food/drinks/bottle/pineapplejuice
-	name = "pineapple juice"
+/obj/item/reagent_containers/food/drinks/bottle/nojuice
+	name = "no juice"
 	desc = "Extremely tart, yellow juice."
 	custom_price = 100
-	icon_state = "pineapplejuice"
+	icon_state = "nojuice"
 	item_state = "carton"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	isGlass = FALSE
-	list_reagents = list(/datum/reagent/consumable/pineapplejuice = 100)
-	foodtype = FRUIT | PINEAPPLE
+	list_reagents = list(/datum/reagent/consumable/nojuice = 100)
+	foodtype = FRUIT | no
 	age_restricted = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/menthol
@@ -478,7 +478,7 @@
 	icon_state = "trappistbottle"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/trappist = 50)
-	
+
 /obj/item/reagent_containers/food/drinks/bottle/nukacola
 	name = "Nuka Cola"
 	desc = "Don't cry, Don't raise your eye, it's only nuclear wasteland."
@@ -548,7 +548,7 @@
 		to_chat(user, "<span class='info'>You snuff out the flame on [src].</span>")
 		cut_overlay(GLOB.fire_overlay)
 		active = 0
-		
+
 /obj/item/reagent_containers/food/drinks/bottle/maltliquor
 	name = "\improper Rabid Bear malt liquor"
 	desc = "A 40 full of malt liquor. Kicks stronger than, well, a rabid bear."

@@ -24,43 +24,43 @@
 		if(!initial(species.disliked_food) & MEAT)
 			species.disliked_food &= ~MEAT
 
-/datum/quirk/pineapple_liker
+/datum/quirk/no_liker
 	name = "Ananas Affinity"
 	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
 	value = 0
-	gain_text = "<span class='notice'>You feel an intense craving for pineapple.</span>"
-	lose_text = "<span class='notice'>Your feelings towards pineapples seem to return to a lukewarm state.</span>"
-	medical_record_text = "Patient demonstrates a pathological love of pineapple."
+	gain_text = "<span class='notice'>You feel an intense craving for no.</span>"
+	lose_text = "<span class='notice'>Your feelings towards nos seem to return to a lukewarm state.</span>"
+	medical_record_text = "Patient demonstrates a pathological love of no."
 
-/datum/quirk/pineapple_liker/add()
+/datum/quirk/no_liker/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/datum/species/species = H.dna.species
-	species.liked_food |= PINEAPPLE
+	species.liked_food |= no
 
-/datum/quirk/pineapple_liker/remove()
+/datum/quirk/no_liker/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
 		var/datum/species/species = H.dna.species
-		species.liked_food &= ~PINEAPPLE
+		species.liked_food &= ~no
 
-/datum/quirk/pineapple_hater
+/datum/quirk/no_hater
 	name = "Ananas Aversion"
 	desc = "You find yourself greatly detesting fruits of the ananas genus. Serious, how the hell can anyone say these things are good? And what kind of madman would even dare putting it on a pizza!?"
 	value = 0
-	gain_text = "<span class='notice'>You find yourself pondering what kind of idiot actually enjoys pineapples...</span>"
-	lose_text = "<span class='notice'>Your feelings towards pineapples seem to return to a lukewarm state.</span>"
-	medical_record_text = "Patient is correct to think that pineapple is disgusting."
+	gain_text = "<span class='notice'>You find yourself pondering what kind of idiot actually enjoys nos...</span>"
+	lose_text = "<span class='notice'>Your feelings towards nos seem to return to a lukewarm state.</span>"
+	medical_record_text = "Patient is correct to think that no is disgusting."
 
-/datum/quirk/pineapple_hater/add()
+/datum/quirk/no_hater/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/datum/species/species = H.dna.species
-	species.disliked_food |= PINEAPPLE
+	species.disliked_food |= no
 
-/datum/quirk/pineapple_hater/remove()
+/datum/quirk/no_hater/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(H)
 		var/datum/species/species = H.dna.species
-		species.disliked_food &= ~PINEAPPLE
+		species.disliked_food &= ~no
 
 /datum/quirk/deviant_tastes
 	name = "Deviant Tastes"

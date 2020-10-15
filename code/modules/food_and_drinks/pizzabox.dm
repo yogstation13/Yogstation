@@ -294,9 +294,9 @@
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/meat(src)
 	boxtag = "Meatlover's Supreme"
 
-/obj/item/pizzabox/pineapple/Initialize()
+/obj/item/pizzabox/no/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/no(src)
 	boxtag = "Honolulu Chew"
 
 //An anomalous pizza box that, when opened, produces the opener's favorite kind of pizza.
@@ -309,7 +309,7 @@
 		/obj/item/reagent_containers/food/snacks/pizza/margherita = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/sassysage = 0.8,
 		/obj/item/reagent_containers/food/snacks/pizza/vegetable = 0.8,
-   		/obj/item/reagent_containers/food/snacks/pizza/pineapple = 0.5,
+   		/obj/item/reagent_containers/food/snacks/pizza/no = 0.5,
 		/obj/item/reagent_containers/food/snacks/pizza/donkpocket = 0.3,
 		/obj/item/reagent_containers/food/snacks/pizza/dank = 0.1) //pizzas here are weighted by chance to be someone's favorite
 	var/static/list/pizza_preferences
@@ -333,12 +333,12 @@
 /obj/item/pizzabox/infinite/proc/attune_pizza(mob/living/carbon/human/noms) //tonight on "proc names I never thought I'd type"
 	if(!pizza_preferences[noms.ckey])
 		pizza_preferences[noms.ckey] = pickweight(pizza_types)
-		if(noms.has_quirk(/datum/quirk/pineapple_liker))
-			pizza_preferences[noms.ckey] = /obj/item/reagent_containers/food/snacks/pizza/pineapple
-		else if(noms.has_quirk(/datum/quirk/pineapple_hater))
-			var/list/pineapple_pizza_liker = pizza_types.Copy()
-			pineapple_pizza_liker -= /obj/item/reagent_containers/food/snacks/pizza/pineapple
-			pizza_preferences[noms.ckey] = pickweight(pineapple_pizza_liker)
+		if(noms.has_quirk(/datum/quirk/no_liker))
+			pizza_preferences[noms.ckey] = /obj/item/reagent_containers/food/snacks/pizza/no
+		else if(noms.has_quirk(/datum/quirk/no_hater))
+			var/list/no_pizza_liker = pizza_types.Copy()
+			no_pizza_liker -= /obj/item/reagent_containers/food/snacks/pizza/no
+			pizza_preferences[noms.ckey] = pickweight(no_pizza_liker)
 		else if(noms.mind && noms.mind.assigned_role == "Botanist")
 			pizza_preferences[noms.ckey] = /obj/item/reagent_containers/food/snacks/pizza/dank
 

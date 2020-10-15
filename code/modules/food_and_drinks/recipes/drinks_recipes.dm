@@ -18,13 +18,13 @@
 	id = /datum/reagent/consumable/ethanol/bilk
 	results = list(/datum/reagent/consumable/ethanol/bilk = 2)
 	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/ethanol/beer = 1)
-	
+
 /datum/chemical_reaction/soy_bilk
 	name = "Soy Bilk"
 	id = /datum/reagent/consumable/ethanol/bilk/soy
 	results = list(/datum/reagent/consumable/ethanol/bilk/soy = 2)
 	required_reagents = list(/datum/reagent/consumable/soymilk = 1, /datum/reagent/consumable/ethanol/beer = 1)
-	
+
 /datum/chemical_reaction/icetea
 	name = "Iced Tea"
 	id = /datum/reagent/consumable/icetea
@@ -49,7 +49,7 @@
 	results = list(/datum/reagent/consumable/ethanol/moonshine = 10)
 	required_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 5)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-	
+
 /datum/chemical_reaction/gravedigger
 	name = "Grave-Digger"
 	id = /datum/reagent/consumable/graveyard
@@ -275,7 +275,7 @@
 	name = "Bahama Mama"
 	id = /datum/reagent/consumable/ethanol/bahama_mama
 	results = list(/datum/reagent/consumable/ethanol/bahama_mama = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 1, /datum/reagent/consumable/ethanol/kahlua = 1, /datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/pineapplejuice = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 1, /datum/reagent/consumable/ethanol/kahlua = 1, /datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/nojuice = 1)
 
 /datum/chemical_reaction/singulo
 	name = "Singulo"
@@ -326,13 +326,13 @@
 	name = "Painkiller"
 	id = /datum/reagent/consumable/ethanol/painkiller
 	results = list(/datum/reagent/consumable/ethanol/painkiller = 10)
-	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 5, /datum/reagent/consumable/pineapplejuice = 4, /datum/reagent/consumable/orangejuice = 1)
-	
+	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 5, /datum/reagent/consumable/nojuice = 4, /datum/reagent/consumable/orangejuice = 1)
+
 /datum/chemical_reaction/pina_colada
 	name = "Pina Colada"
 	id = /datum/reagent/consumable/ethanol/pina_colada
 	results = list(/datum/reagent/consumable/ethanol/pina_colada = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 1, /datum/reagent/consumable/pineapplejuice = 3, /datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/limejuice = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/creme_de_coconut = 1, /datum/reagent/consumable/nojuice = 3, /datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/limejuice = 1)
 
 /datum/chemical_reaction/red_mead
 	name = "Red Mead"
@@ -815,4 +815,3 @@
 	id = /datum/reagent/consumable/ethanol/flaming_moe
 	results = list(/datum/reagent/consumable/ethanol/flaming_moe = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/tequila = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/medicine/synaptizine = 1)
- 

@@ -58,15 +58,15 @@
 	result = /obj/item/reagent_containers/food/snacks/snowcones
 	subcategory = CAT_ICE
 
-/datum/crafting_recipe/food/pineapple_sc
-	name = "Pineapple snowcone"
+/datum/crafting_recipe/food/no_sc
+	name = "no snowcone"
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/water = 5,
 		/datum/reagent/consumable/ice = 15,
-		/obj/item/reagent_containers/food/snacks/pineappleslice = 2
+		/obj/item/reagent_containers/food/snacks/noslice = 2
 	)
-	result = /obj/item/reagent_containers/food/snacks/snowcones/pineapple
+	result = /obj/item/reagent_containers/food/snacks/snowcones/no
 	subcategory = CAT_ICE
 
 /datum/crafting_recipe/food/lime_sc

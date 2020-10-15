@@ -143,22 +143,22 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
-/obj/item/reagent_containers/food/snacks/pizza/pineapple
+/obj/item/reagent_containers/food/snacks/pizza/no
 	name = "\improper Hawaiian pizza"
 	desc = "The pizza equivalent of Einstein's riddle."
-	icon_state = "pineapplepizza"
-	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/pineapple
+	icon_state = "nopizza"
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/no
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
-	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "no" = 2, "ham" = 2)
+	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | no
 
-/obj/item/reagent_containers/food/snacks/pizzaslice/pineapple
+/obj/item/reagent_containers/food/snacks/pizzaslice/no
 	name = "\improper Hawaiian pizza slice"
 	desc = "A slice of delicious controversy."
-	icon_state = "pineapplepizzaslice"
+	icon_state = "nopizzaslice"
 	filling_color = "#FF4500"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
-	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "no" = 2, "ham" = 2)
+	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | no
 
 /obj/item/reagent_containers/food/snacks/pizza/arnold
 	name = "\improper Arnold pizza"
@@ -180,9 +180,9 @@
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, TRUE, -1)
 
 /obj/item/reagent_containers/food/snacks/proc/i_kill_you(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/pineappleslice))
-		to_chat(user, "<font color='red' size='7'>If you want something crazy like pineapple, I kill you.</font>")
-		user.gib() //if you want something crazy like pineapple, i kill you
+	if(istype(I, /obj/item/reagent_containers/food/snacks/noslice))
+		to_chat(user, "<font color='red' size='7'>If you want something crazy like no, I kill you.</font>")
+		user.gib() //if you want something crazy like no, i kill you
 
 /obj/item/reagent_containers/food/snacks/pizza/arnold/attack(mob/living/M, mob/living/user)
 	. = ..()

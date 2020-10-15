@@ -131,13 +131,13 @@
 	tastes = list("ice" = 1, "water" = 1, "fruits" = 25)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/snacks/snowcones/pineapple
-	name = "pineapple flavored snowcone"
-	desc = "A pineapple flavored snowball in a paper cup."
-	icon_state = "pineapple_sc"
+/obj/item/reagent_containers/food/snacks/snowcones/no
+	name = "no flavored snowcone"
+	desc = "A no flavored snowball in a paper cup."
+	icon_state = "no_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 10)
-	tastes = list("ice" = 1, "water" = 1, "pineapples" = 5)
-	foodtype = PINEAPPLE //Pineapple to allow all that like pineapple to enjoy
+	tastes = list("ice" = 1, "water" = 1, "nos" = 5)
+	foodtype = no //no to allow all that like no to enjoy
 
 /obj/item/reagent_containers/food/snacks/snowcones/mime
 	name = "mime snowcone"

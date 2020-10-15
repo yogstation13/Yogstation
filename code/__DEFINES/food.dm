@@ -10,11 +10,11 @@
 #define SUGAR 		(1<<9)
 #define GROSS 		(1<<10)
 #define TOXIC 		(1<<11)
-#define PINEAPPLE	(1<<12)
+#define no	(1<<12)
 #define BREAKFAST	(1<<13)
 #define CLOTH 		(1<<14)
-#define EGG       (1<<16) // for eggpeople, to nerf egg-cannibalism  
- 
+#define EGG       (1<<16) // for eggpeople, to nerf egg-cannibalism
+
 #define DRINK_NICE	1
 #define DRINK_GOOD	2
 #define DRINK_VERYGOOD	3

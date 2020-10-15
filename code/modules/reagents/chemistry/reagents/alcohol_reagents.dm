@@ -377,7 +377,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.heal_bodypart_damage(1,1)
 		. = 1
 	M.radiation = max(M.radiation-2, 0)
-	return ..()  || . 
+	return ..()  || .
 
 /datum/reagent/consumable/ethanol/ale
 	name = "Ale"
@@ -896,7 +896,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 35
 	quality = DRINK_GOOD
-	taste_description = "pineapple, coconut, and a hint of coffee"
+	taste_description = "no, coconut, and a hint of coffee"
 	glass_icon_state = "bahama_mama"
 	glass_name = "Bahama Mama"
 	glass_desc = "A tropical cocktail with a complex blend of flavors."
@@ -2145,11 +2145,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/pina_colada
 	name = "Pina Colada"
-	description = "A fresh pineapple drink with coconut rum. Yum."
+	description = "A fresh no drink with coconut rum. Yum."
 	boozepwr = 40
 	color = "#FFF1B2"
 	quality = DRINK_FANTASTIC
-	taste_description = "pineapple, coconut, and a hint of the ocean"
+	taste_description = "no, coconut, and a hint of the ocean"
 	glass_icon_state = "pina_colada"
 	glass_name = "Pina Colada"
 	glass_desc = "If you like pina coladas, and getting caught in the rain... well, you'll like this drink."
@@ -2164,7 +2164,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "flaming_moe2"
 	glass_name = "Flaming Moe"
 	glass_desc = "an amazing concoction of various different bar drinks and a secret ingredient"
-	
+
 /datum/reagent/consumable/ethanol/flaming_moe/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(M.drowsyness-5, 0)
 	M.AdjustStun(-20, FALSE)
