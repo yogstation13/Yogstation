@@ -34,8 +34,8 @@
 
 /datum/holiday/oakday
 	name = "Oak's Birthday"
-	begin_day = 5
-	begin_month = JULY
+	begin_day = 14
+	begin_month = OCTOBER
 	drone_hat = /obj/item/clothing/head/hardhat/cakehat
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=lM2Lr3NqUcg", // Maamme (Finnish Anthem)
