@@ -51,7 +51,7 @@
 	return pick("Gondola","Finnish","Council","Oakreich","Perkele")
 	
 /datum/holiday/oakday/greet()
-	return "</h4><span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <u><font color='#00ff00'>Xantam</font></u>/(Xantam) has created a permanent server ban for Oakboscage. Reason: Community Banned</span><h4>" // Honk if Oak is dead
+	return "</h4><span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <font color='#0000ff'><u>Xantam</u></font>/(Xantam) has created a permanent server ban for Oakboscage. Reason: Community Banned</span><h4>" // Honk if Oak is dead
 
 /datum/holiday/yogsday
 	name = "Yogstation Day"
