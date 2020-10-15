@@ -137,11 +137,11 @@
 	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
-/obj/machinery/humangrinder/Topic(href, href_list)
+/obj/machinery/humangrinder/Topic(href, href_list[])
 	var/mob/living/O = occupant
 	if(..())
 		return
-	if("grind")
+	if(href_list["grind"])
 		if(occupant)
 			if(O.stat == DEAD)
 				grinding()
@@ -151,7 +151,7 @@
 		else
 			to_chat("<span class='warning'>There is no dead body!</span>")
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-	if("biomatter")
+	if(href_list["biomatter"])
 		biomattering()
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 
