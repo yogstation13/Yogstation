@@ -559,7 +559,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "CQC Manual"
 	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
 	item = /obj/item/book/granter/martial/cqc
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	cost = 13
 	surplus = 0
 
@@ -589,7 +588,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat, \
 			deflecting all ranged weapon fire, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
-	cost = 17
+	cost = 14
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
@@ -1966,4 +1965,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Strong flavor, dense smoke, infused with omnizine."
 	item = /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate
 	cost = 2
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/antagcape
+	name = "Red Syndicate Cape"
+	desc = "A cape to show off your small-time thuggery."
+	item = /obj/item/clothing/neck/skillcape/antag
+	cost = 10
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/antagcapetrimmed
+	name = "Bloody Shiny Syndicate Cape"
+	desc = "A cape to show off your grand villainous deeds."
+	item = /obj/item/clothing/neck/skillcape/trimmed/antag
+	cost = 20
 	illegal_tech = FALSE

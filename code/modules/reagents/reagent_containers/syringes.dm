@@ -286,6 +286,11 @@
 	volume = 10
 	proj_piercing = 1
 
+/obj/item/reagent_containers/syringe/crude
+	name = "crude syringe"
+	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
+	volume = 5
+
 /obj/item/reagent_containers/syringe/spider_extract
 	name = "spider extract syringe"
 	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."

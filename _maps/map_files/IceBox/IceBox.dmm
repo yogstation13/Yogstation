@@ -58655,13 +58655,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"gJL" = (
-/obj/structure/ladder,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "gLr" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 6
@@ -59817,6 +59810,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"kHR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/ladder,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "kIh" = (
 /obj/machinery/telecomms/server/presets/service,
 /obj/effect/turf_decal/tile/neutral{
@@ -86718,7 +86718,7 @@ aJn
 aae
 aae
 bGi
-gJL
+kHR
 lSk
 rlD
 bGi

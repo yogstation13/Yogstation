@@ -121,6 +121,9 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		if(prob(10) && !isspaceturf(T))//randomly takes a 'hit' from ramming
 			get_hit()
 
+/obj/effect/meteor/Process_Spacemove(movement_dir = 0)
+	return TRUE
+
 /obj/effect/meteor/Destroy()
 	if (timerid)
 		deltimer(timerid)
@@ -407,8 +410,8 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	name = "meatball man"
 	icon = 'icons/effects/128x128.dmi'
 	icon_state = "meatball_man"
-	pixel_x = -240
-	pixel_y = -240
+	pixel_x = -48
+	pixel_y = -48
 	desc = "Oh, what a feat! He's one with the meat!"
 	hits = INFINITY // You cannot stop the Meatball Man.
 	lifetime = 0 // Meatball Man is eternal.
@@ -429,10 +432,22 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		var/turf/T = tile
 		if(!T || !isturf(loc))
 			continue
-		T.ex_act(hitpwr)
 		for(var/atom/thing in T)
-			if(isturf(loc) && thing != src)
-				thing.ex_act(hitpwr)
+			if(ishuman(thing))
+				var/mob/living/carbon/human/H = thing
+				var/obj/machinery/processor/P
+				if(H.pulling)
+					P = H.pulling
+				if((H.job in list("Cook")) && P)
+					H.visible_message("<span class='userwarning'>[H] slam dunks [src] into [P] and turns it on!</span>", "<span class='userwarning'>You slam dunk [src] into [P] and quickly activate it!</span>")
+					SEND_SOUND(world,sound('sound/machines/blender.ogg', volume = 60)) //VRRRRRRRRRRRRRRR
+					for(var/i = 1 to 100)
+						new /obj/item/reagent_containers/food/snacks/meatball(P.loc)
+					playsound(src.loc, 'sound/effects/splat.ogg', 50, 1, pressure_affected = FALSE)
+					H.say("That's one spicy meatball!")
+					qdel(src)
+					return
+		T.ex_act(hitpwr)
 	for(var/i = 1, i <= meat_spreadiness, i++)
 		var/chosen_x = src.x + rand(-1, 1)*(eaty_range + rand(0, (meaty_range - eaty_range)))
 		var/chosen_y = src.y + rand(-1, 1)*(eaty_range + rand(0, (meaty_range - eaty_range)))

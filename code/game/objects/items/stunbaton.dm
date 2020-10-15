@@ -152,7 +152,9 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
-		if(check_martial_counter(L, user))
+		var/datum/martial_art/A = L.check_block()
+		if(A)
+			A.handle_counter(L, user)
 			return
 
 	if(user.a_intent != INTENT_HARM)
