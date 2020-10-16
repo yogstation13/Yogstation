@@ -54,7 +54,7 @@
     path = "/obj/item/clothing/neck/skillcape/chiefengineer"
 
 /datum/skillcape/trimmed/chiefengineer
-    name = "cape of the grand constructor."
+    name = "cape of the grand constructor"
     job = "Chief Engineer"
     path = "/obj/item/clothing/neck/skillcape/trimmed/chiefengineer"
 
