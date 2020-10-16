@@ -54,5 +54,5 @@
 		var/datum/skillcape/A = GLOB.skillcapes[S]
 		var/type = A.path
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
-		H.equip_to_appropriate_slot(B)
-	
+		if(!H.equip_to_appropriate_slot(B))
+			H.put_in_hands(B)
