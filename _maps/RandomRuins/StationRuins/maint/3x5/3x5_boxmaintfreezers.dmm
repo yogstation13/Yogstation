@@ -1,0 +1,78 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"g" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"m" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/template_noop)
+"s" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"v" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"z" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/obj/machinery/pipedispenser,
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"V" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+z
+V
+m
+V
+g
+"}
+(2,1,1) = {"
+I
+I
+s
+I
+I
+"}
+(3,1,1) = {"
+f
+v
+s
+F
+f
+"}
