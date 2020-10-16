@@ -416,7 +416,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 						to_chat(usr, "<span class='error'>No log exists for this job.</span>")
 						updateUsrDialog()
 						return
-					if(modify.registered_age < jobdatum.minimal_character_age && !(alert("This individual is too young to hold that Job, per Nanotrasen guidelines. Continue anyway?","Target Too Young","Yes","No") == "Yes"))
+					if(!isnull(modify.registered_age) && modify.registered_age < jobdatum.minimal_character_age)
+						to_chat(usr, "<span class='error'>This individual is too young to hold that Job, per Nanotrasen guidelines. Job assignment aborted.</span>")
 						updateUsrDialog()
 						return
 					if(modify.registered_account)
