@@ -1619,7 +1619,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("skillcape")
 					var/list/selectablecapes = list()
 					for(var/datum/skillcape/A in GLOB.skillcapes)
-						if(user.client.prefs.exp[A.job] >= A.hours)
+						if(user.client.prefs.exp[A.job] >= A.minutes)
 							if(!A.special)
 								selectablecapes += A	
 						if(A.special) //check for special capes
