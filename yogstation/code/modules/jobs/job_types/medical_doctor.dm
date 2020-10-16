@@ -1,2 +1,2 @@
 /datum/job/doctor
-	minimum_character_age = 24
+	minimal_character_age = 24

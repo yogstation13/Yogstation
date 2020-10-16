@@ -1,2 +1,2 @@
 /datum/job/scientist
-	minimum_character_age = 18
+	minimal_character_age = 18
