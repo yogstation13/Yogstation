@@ -1103,7 +1103,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "primarystorage"
 
 /area/storage/art
-	name = "Art Supply Storage"
+	name = "Artist's Coven"
 	icon_state = "storage"
 
 /area/storage/tcom

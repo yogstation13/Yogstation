@@ -12631,13 +12631,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aAB" = (
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aAC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aAD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -12646,14 +12646,17 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aAE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
 	},
 /obj/structure/table,
-/turf/open/floor/plasteel,
+/obj/item/statuebust{
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aAF" = (
 /obj/structure/flora/ausbushes/sunnybush,
@@ -13054,7 +13057,7 @@
 /area/hallway/primary/port)
 "aBD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aBE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -13322,7 +13325,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aCr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13330,7 +13333,7 @@
 	},
 /obj/structure/table,
 /obj/item/paper_bin/construction,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aCs" = (
 /obj/machinery/camera{
@@ -14125,7 +14128,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/art";
 	dir = 1;
-	name = "Art Storage";
+	name = "Artist's Coven";
 	pixel_y = 24
 	},
 /turf/open/floor/plating,
@@ -14495,7 +14498,7 @@
 /area/hydroponics/garden)
 "aEI" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Art Storage"
+	name = "Artist's Coven"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -15740,7 +15743,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/fruit_bowl{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aHL" = (
 /obj/structure/flora/junglebush/b,
@@ -17680,7 +17686,10 @@
 	name = "Common Channel";
 	pixel_x = 30
 	},
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/contraband/sun_kist{
+	pixel_y = -31
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "aMa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -24956,11 +24965,14 @@
 /obj/structure/table,
 /obj/item/hand_labeler,
 /obj/machinery/camera{
-	c_tag = "Art Storage";
+	c_tag = "Artist's Coven";
 	dir = 1;
 	network = list("ss13")
 	},
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/anniversary_vintage_reprint{
+	pixel_y = -31
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "baC" = (
 /obj/machinery/vending/medical{
@@ -30505,7 +30517,7 @@
 /area/hallway/primary/aft)
 "blv" = (
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "blw" = (
 /obj/machinery/light{
@@ -83855,7 +83867,7 @@
 "hye" = (
 /obj/structure/table,
 /obj/item/storage/crayons,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "hyg" = (
 /obj/effect/turf_decal/delivery,
@@ -84019,7 +84031,7 @@
 /area/hallway/primary/fore)
 "hTd" = (
 /obj/structure/easel,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "hTZ" = (
 /obj/machinery/door/firedoor/border_only{
@@ -87022,7 +87034,10 @@
 "qyI" = (
 /obj/structure/table,
 /obj/item/camera,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/marvin{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "qAo" = (
 /obj/effect/turf_decal/tile/red,
@@ -87476,7 +87491,7 @@
 /area/hallway/primary/port)
 "rHk" = (
 /obj/effect/landmark/start/artist,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "rHt" = (
 /obj/structure/disposalpipe/segment,
@@ -87661,7 +87676,10 @@
 /obj/structure/table,
 /obj/item/camera_film,
 /obj/item/camera_film,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_x = 33
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "sjK" = (
 /obj/effect/turf_decal/tile/red{
@@ -89694,7 +89712,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "yiV" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{

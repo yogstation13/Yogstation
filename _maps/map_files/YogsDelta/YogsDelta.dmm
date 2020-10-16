@@ -126094,7 +126094,7 @@
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "exE" = (
 /obj/machinery/air_sensor/atmos/toxins_mixing_tank,
@@ -126295,12 +126295,12 @@
 /area/crew_quarters/locker)
 "gzW" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Art Storage"
+	name = "Artist's Coven"
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "gCK" = (
 /turf/closed/wall,
@@ -126506,7 +126506,10 @@
 "iNs" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
-/turf/open/floor/plasteel,
+/obj/item/statuebust{
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "iQh" = (
 /obj/structure/bodycontainer/morgue{
@@ -126715,7 +126718,7 @@
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "kUg" = (
 /obj/machinery/door/airlock/public/glass{
@@ -126951,7 +126954,7 @@
 "nHc" = (
 /obj/structure/table,
 /obj/item/camera_film,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "nOg" = (
 /obj/structure/lattice,
@@ -126967,7 +126970,7 @@
 /obj/structure/easel,
 /obj/item/canvas/twentythreeXtwentythree,
 /obj/item/canvas/twentythreeXtwentythree,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "nWW" = (
 /obj/machinery/status_display/evac{
@@ -127278,7 +127281,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "qUc" = (
 /obj/effect/turf_decal/stripes/line{
@@ -127437,7 +127440,10 @@
 /obj/structure/table,
 /obj/item/paper_bin/construction,
 /obj/item/airlock_painter,
-/turf/open/floor/plasteel,
+/obj/structure/sign/poster/official/marvin{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "svv" = (
 /obj/machinery/door/poddoor/incinerator_toxmix,
@@ -127467,7 +127473,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "sJw" = (
 /obj/structure/cable{
@@ -127488,7 +127494,7 @@
 "tvq" = (
 /obj/structure/table,
 /obj/item/camera,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "tCh" = (
 /turf/closed/wall,
