@@ -98,8 +98,8 @@ h1.alert, h2.alert		{color: #000000;}
 .holoparasite			{color: #35333a;}
 .surrender				{
 	color: #1235d1;
-	font-weight: bold; 
-	font-size: 3; 
+	font-weight: bold;
+	font-size: 3;
 	animation: surrender 1s ease-in-out infinite alternate;
 	transform-origin: 0 0;
 	display: inline-block;
