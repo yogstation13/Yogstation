@@ -5090,6 +5090,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"us" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/disposal";
+	dir = 2;
+	name = "Disposal APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
+/area/space)
 "uu" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
@@ -6543,18 +6558,6 @@
 /obj/effect/landmark/start/virologist,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"Af" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/disposal";
-	dir = 2;
-	name = "Disposal APC";
-	pixel_y = -24
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/space)
 "Ag" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen";
@@ -7294,6 +7297,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
+"Dg" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Security Escape Airlock";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plating,
+/area/space)
 "Dh" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
@@ -7412,6 +7425,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"DE" = (
+/obj/machinery/button/massdriver{
+	id = "trash";
+	pixel_x = 6;
+	pixel_y = -24
+	},
+/obj/machinery/button/door{
+	id = "Disposal Exit";
+	name = "Disposal Vent Control";
+	pixel_x = -6;
+	pixel_y = -25;
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/space)
 "DG" = (
 /obj/structure/chair{
 	dir = 1
@@ -8942,21 +8970,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"Ja" = (
-/obj/machinery/button/door{
-	id = "Disposal Exit";
-	name = "Disposal Vent Control";
-	pixel_x = -6;
-	pixel_y = -25;
-	req_access_txt = "12"
-	},
-/obj/machinery/button/massdriver{
-	id = "trash";
-	pixel_x = 6;
-	pixel_y = -24
-	},
-/turf/open/floor/plating,
-/area/space)
 "Jc" = (
 /obj/structure/table/glass,
 /obj/item/wrench/medical{
@@ -12394,6 +12407,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
+"We" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	name = "Security Escape Airlock";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plating,
+/area/space)
 "Wf" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -13438,12 +13461,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"ZE" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/space)
 "ZF" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/effect/turf_decal/trimline/brown/filled/corner{
@@ -34586,13 +34603,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 TU
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -34844,13 +34861,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 pF
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -35102,13 +35119,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 AW
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -35354,12 +35371,6 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 GB
 GB
 GB
@@ -35487,14 +35498,14 @@ Kx
 Kx
 Kx
 Kx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 "}
 (86,1,1) = {"
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 Kx
 Kx
 Kx
@@ -35745,6 +35756,12 @@ Kx
 Kx
 Kx
 Kx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 "}
 (87,1,1) = {"
 Kx
@@ -35870,12 +35887,6 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 Av
 Av
 Av
@@ -35889,6 +35900,12 @@ Av
 Av
 Av
 Av
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -36134,13 +36151,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 NK
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -36386,12 +36403,6 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 GB
 GB
 GB
@@ -36405,6 +36416,12 @@ GB
 GB
 GB
 GB
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -36644,12 +36661,6 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 zd
 BW
 ZS
@@ -36663,6 +36674,12 @@ YQ
 YQ
 YQ
 fb
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -36902,12 +36919,6 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 Av
 Av
 Av
@@ -36921,6 +36932,12 @@ Av
 Av
 Av
 Av
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -37166,13 +37183,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 hk
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -37424,13 +37441,13 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 pF
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -37681,15 +37698,15 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 qs
 td
 qs
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -37939,15 +37956,15 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 qx
 td
 qx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -38196,17 +38213,17 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 qx
 qx
 td
 qx
 qx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -38454,21 +38471,21 @@ Kx
 Kx
 Kx
 Kx
-Kx
-Kx
-Kx
-Kx
-Kx
-Kx
 qx
 FM
 td
 MH
 qx
-qx
-qx
-qx
-qx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
+Kx
 Kx
 Kx
 Kx
@@ -38487,7 +38504,7 @@ yk
 qx
 AY
 qx
-AY
+Dg
 qx
 Kx
 Kx
@@ -38688,14 +38705,8 @@ Bb
 IR
 qQ
 Hl
-Pe
-Ja
+DE
 qx
-Kx
-Kx
-Kx
-Kx
-Kx
 Kx
 Kx
 Kx
@@ -38723,9 +38734,15 @@ Vo
 rF
 Pe
 qx
-Pe
-Pe
-Pe
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+qx
 qx
 qx
 qx
@@ -38947,7 +38964,6 @@ IR
 MY
 jn
 Pe
-Pe
 qs
 Kx
 Kx
@@ -38972,12 +38988,13 @@ Kx
 Kx
 Kx
 qx
-qx
-qx
-qx
-qx
-qx
 eI
+Pe
+Pe
+qx
+Pe
+Pe
+Pe
 Pe
 Pe
 qx
@@ -39204,9 +39221,9 @@ gx
 Np
 OF
 jn
-Pe
 qs
 qs
+Kx
 Kx
 Kx
 Kx
@@ -39228,16 +39245,16 @@ Kx
 Kx
 Kx
 Kx
-Kx
+qx
+qx
+Pe
+qx
 qx
 Pe
 Pe
 Pe
 Pe
-qx
-qx
 Pe
-qx
 qx
 Pe
 Pe
@@ -39462,8 +39479,8 @@ mc
 NT
 ON
 jn
-Pe
 qs
+Kx
 Kx
 Kx
 Kx
@@ -39490,9 +39507,9 @@ qx
 qx
 Pe
 Pe
-Pe
-Pe
 qx
+Pe
+Pe
 Pe
 Pe
 Pe
@@ -39519,7 +39536,7 @@ qs
 qx
 lr
 qx
-lr
+We
 qx
 qx
 qx
@@ -39719,9 +39736,9 @@ qx
 yz
 cb
 mc
-ZE
-Af
+us
 qx
+Kx
 Kx
 Kx
 Kx
@@ -39748,12 +39765,12 @@ qx
 Pe
 Pe
 Pe
-Pe
-Pe
+qx
+qx
 qx
 Pe
-Pe
-Pe
+qx
+qx
 qx
 qx
 Pe
@@ -39979,7 +39996,7 @@ rz
 qx
 qx
 qx
-qx
+Kx
 Kx
 Kx
 Kx
@@ -40006,9 +40023,9 @@ qx
 Pe
 Pe
 Pe
-Pe
-Pe
 qx
+Pe
+Pe
 Pe
 Pe
 Pe
@@ -40262,11 +40279,11 @@ Ks
 Ks
 qx
 qx
-qx
 Pe
 qx
 qx
-qx
+Pe
+Pe
 Pe
 Pe
 Pe
