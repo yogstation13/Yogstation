@@ -137,8 +137,8 @@
 	new /obj/item/crowbar(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
-	if(prob(50))
-		new /obj/item/clothing/gloves/color/fyellow(src)
+	if(prob(10))
+		new /obj/item/clothing/gloves/color/yellow(src)
 	else
 		new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 
