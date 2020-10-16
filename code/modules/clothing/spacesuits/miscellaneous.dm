@@ -96,6 +96,14 @@ Contains:
 	slowdown = 0
 	allowed = list(/obj/item) //for stuffing exta special presents
 
+/obj/item/clothing/suit/santa //version with no space protection
+	name = "Santa's suit"
+	desc = "Festive!"
+	icon_state = "santa"
+	item_state = "santa"
+	slowdown = 0
+	allowed = list(/obj/item) //for stuffing exta special presents
+
 
 	//Space pirate outfit
 /obj/item/clothing/head/helmet/space/pirate
