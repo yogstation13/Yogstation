@@ -550,9 +550,12 @@
 		var/total_brute	= 0
 		var/tplus = world.time - H.timeofdeath	//length of time spent dead
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
-		if(do_after(user, 15, target = H)) // Yogs - CLEAR!
-			user.say("Clear!")
-		if(do_after(user, 5, target = H)) //Counting the "Clear", revive time is 5sec total
+		if(do_after(user, 15, target = H))
+			if(HAS_TRAIT(user.mind, TRAIT_DOCTOR))
+				user.say("Clear!")
+			else
+				return
+		if(do_after(user, 5, target = H)) //Counting the delay for "Clear", revive time is 5sec total
 			for(var/obj/item/carried_item in H.contents)
 				if(istype(carried_item, /obj/item/clothing/suit/space))
 					if((!combat && !req_defib) || (req_defib && !defib.combat))

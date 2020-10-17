@@ -16,6 +16,7 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
+	mind_traits = list(TRAIT_DOCTOR)
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
