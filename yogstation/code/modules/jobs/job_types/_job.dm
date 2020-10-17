@@ -58,3 +58,22 @@
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
 		if(!H.equip_to_appropriate_slot(B))
 			H.put_in_hands(B)
+
+/datum/job/proc/give_map_flare(mob/living/H, mob/M)
+	var/client/C = M.client
+	if(!C)
+		C = H.client
+		if(!C)
+			return
+	var/SM = C.prefs.map
+	var/F = C.prefs.flare
+	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+
+	if(SM == 1)
+		var/obj/item/map/station/map = new get_turf(H)
+		if(BP)
+			map.forceMove(BP)
+	if(F == 1)
+		var/obj/item/flashlight/flare/emergency/flare = new get_turf(H)
+		if(BP)
+			flare.forceMove(BP)
