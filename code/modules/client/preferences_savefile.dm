@@ -114,6 +114,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		all_quirks -= "Physically Obstructive"
 		all_quirks -= "Neat"
 		all_quirks -= "NEET"
+	if(current_version < 24) //The new donator hats system obsolesces the old one entirely, we need to update.
+		donor_hat = null
+		donor_item = null
 
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
@@ -228,9 +231,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
-	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
-	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
-	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
+	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
+	donor_hat       = sanitize(donor_hat)
+	donor_item      = sanitize(donor_item)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
