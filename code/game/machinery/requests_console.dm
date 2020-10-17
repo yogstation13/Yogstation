@@ -258,6 +258,8 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			screen = REQ_SCREEN_MAIN
 
 	if(href_list["sendAnnouncement"])
+		if(!(announceAuth || IsAdminGhost(usr)))
+			return
 		if(!announcementConsole)
 			return
 		if(isliving(usr))
