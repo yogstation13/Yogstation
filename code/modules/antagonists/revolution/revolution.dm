@@ -250,6 +250,16 @@
 		S.Insert(H, special = FALSE, drop_if_replaced = FALSE)
 		to_chat(H, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
 
+/datum/antagonist/rev/head/on_gain()
+	. = ..()
+	company = /datum/corporation/bolsynpowell
+	owner.add_employee(company)
+	to_chat(owner.current, "<span class='notice'>Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck.")
+
+/datum/antagonist/rev/head/on_removal()
+	.=..()
+	owner.remove_employee(company)
+
 /datum/team/revolution
 	name = "Revolution"
 	var/max_headrevs = 3
