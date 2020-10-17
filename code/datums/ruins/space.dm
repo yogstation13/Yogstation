@@ -353,4 +353,10 @@
 	suffix = "bigape.dmm"
 	name = "Big Ape"
 	description = "A gorilla? Out here? But why."
-	
+
+/datum/map_template/ruin/space/clown_wizard_den
+	id = "clown_wizard_den"
+	suffix = "clown_wizard_den.dmm"
+	name = "Clown Wizard Den"
+	description = "A vile den of evil, with a master class clown wizard inhabitating it."
+

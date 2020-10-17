@@ -1,0 +1,1287 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ak" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"aK" = (
+/obj/structure/urinal{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"bE" = (
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"ce" = (
+/obj/structure/table/wood/fancy,
+/obj/item/storage/photo_album,
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"ct" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/retaliate/clown/honkling,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"dQ" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/target/clown,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"dY" = (
+/obj/structure/punching_bag,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"eJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"fs" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"fC" = (
+/obj/vehicle/ridden/scooter/skateboard{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"io" = (
+/obj/structure/table/wood,
+/obj/item/dice/d20,
+/obj/item/dice,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"ir" = (
+/mob/living/simple_animal/bot/honkbot,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"jo" = (
+/obj/effect/decal/remains/xeno,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"jI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"kB" = (
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"kL" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/storage/box/hug,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"lv" = (
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"lA" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/clothing/under/rank/clown,
+/obj/item/clothing/shoes/clown_shoes,
+/obj/item/staff,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"nq" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"nX" = (
+/obj/structure/closet/secure_closet/freezer/cream_pie,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"of" = (
+/obj/structure/table/wood,
+/obj/item/melee/transforming/energy/sword/bananium{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"oC" = (
+/obj/structure/statue/bananium/clown,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"pr" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"pC" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"rO" = (
+/obj/structure/dresser,
+/obj/item/storage/backpack/clown,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"sO" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"ut" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"uV" = (
+/obj/structure/table/wood/fancy,
+/obj/item/storage/pill_bottle/dice{
+	icon_state = "magicdicebag"
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"vp" = (
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"vs" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"vJ" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"ww" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"wy" = (
+/obj/structure/table/wood,
+/obj/item/gun/magic/wand{
+	desc = "Used in emergencies to reignite magma engines.";
+	max_charges = 0;
+	name = "wand of emergency engine ignition"
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"wK" = (
+/obj/structure/closet/cardboard,
+/obj/item/bikehorn,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"xx" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"yi" = (
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"yD" = (
+/turf/closed/wall/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"AL" = (
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"Bw" = (
+/obj/structure/bed,
+/obj/item/bedsheet/clown,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"BZ" = (
+/obj/effect/decal/remains/xeno/larva,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"CB" = (
+/obj/machinery/door/airlock/bananium,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"CF" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"CQ" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/yogs/armor/hardsuit_clown,
+/obj/item/clothing/head/yogs/hardsuit_helm_clown,
+/obj/item/staff,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"Dy" = (
+/obj/structure/table/wood/fancy,
+/obj/item/camera/spooky,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"DQ" = (
+/obj/item/reagent_containers/food/snacks/meat/slab/xeno,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"ES" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"Fp" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"FO" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"Gf" = (
+/obj/structure/destructible/cult/forge{
+	desc = "An engine used in powering the wizard's ship";
+	name = "magma engine"
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"HY" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Jw" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"Jy" = (
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"JQ" = (
+/obj/effect/spawner/structure/window/reinforced{
+	color = "#FFFF00"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"Kb" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/suit/yogs/armor/hardsuit_clown,
+/obj/item/clothing/head/yogs/hardsuit_helm_clown,
+/obj/item/staff,
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"Kp" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/coin/bananium,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"KF" = (
+/obj/item/reagent_containers/food/snacks/meat/slab/corgi,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"KG" = (
+/obj/item/soap/homemade,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"KN" = (
+/obj/structure/table/wood/fancy,
+/obj/item/toy/figure/clown,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Lv" = (
+/obj/structure/table/wood,
+/obj/item/storage/bag/tray,
+/obj/item/reagent_containers/food/snacks/burger/clown,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"LF" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"Mh" = (
+/obj/structure/table/wood,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"MR" = (
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"Oy" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered)
+"PC" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Qx" = (
+/obj/structure/shuttle/engine/heater{
+	resistance_flags = 3
+	},
+/obj/structure/window/reinforced{
+	color = "#FFFF00";
+	dir = 1
+	},
+/turf/open/lava/airless,
+/area/ruin/space/has_grav/powered)
+"Qz" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"QN" = (
+/obj/structure/table/wood,
+/obj/item/bikehorn/golden{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"Rb" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"RJ" = (
+/obj/structure/destructible/cult/talisman{
+	desc = "An altar dedicated to the Wizards' Federation"
+	},
+/obj/item/nullrod/clown,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"SM" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"TN" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Uo" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"Uv" = (
+/obj/structure/barricade/wooden,
+/obj/machinery/door/airlock/bananium,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"UG" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/figure/clown,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Ve" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered)
+"Vy" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/clothing/suit/space/hardsuit/clown,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered)
+"VR" = (
+/obj/structure/table/wood/fancy,
+/obj/item/skub{
+	pixel_y = 16
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"Wo" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"WA" = (
+/obj/structure/window/reinforced{
+	color = "#FFFF00";
+	dir = 1
+	},
+/turf/open/lava,
+/area/ruin/space/has_grav/powered)
+"WJ" = (
+/obj/machinery/computer/arcade/orion_trail,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
+"Xm" = (
+/obj/item/clothing/shoes/clown_shoes,
+/obj/item/clothing/suit/chaplainsuit/clownpriest,
+/obj/item/clothing/head/clownmitre,
+/obj/item/staff,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"XM" = (
+/turf/open/space/basic,
+/area/space)
+"XO" = (
+/obj/machinery/vending/magivend,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"XT" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"Ys" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+"YL" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/powered)
+"YM" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mineral/bananium,
+/area/ruin/space/has_grav/powered)
+
+(1,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(2,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+JQ
+JQ
+JQ
+yD
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(3,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+yD
+yD
+XT
+Ys
+nX
+Ys
+Uo
+yD
+JQ
+JQ
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(4,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+WJ
+Jy
+CB
+bE
+bE
+bE
+bE
+bE
+CB
+bE
+bE
+yD
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(5,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+HY
+PC
+Jy
+yD
+bE
+bE
+bE
+bE
+bE
+yD
+bE
+bE
+bE
+yD
+yD
+yD
+yD
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(6,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+Jy
+Jy
+Jy
+Jy
+yD
+XT
+Ys
+bE
+Ys
+Uo
+yD
+bE
+bE
+bE
+yD
+Vy
+Qz
+wK
+yD
+yD
+JQ
+yD
+XM
+XM
+XM
+XM
+"}
+(7,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+yD
+Fp
+Rb
+Jy
+Jy
+fs
+yD
+yD
+JQ
+JQ
+JQ
+yD
+yD
+sO
+bE
+bE
+CB
+Qz
+Qz
+SM
+Uv
+bE
+bE
+yD
+XM
+XM
+XM
+XM
+"}
+(8,1,1) = {"
+XM
+XM
+yD
+yD
+yD
+yD
+HY
+Jy
+Jy
+Jy
+KN
+yD
+of
+bE
+bE
+bE
+ir
+yD
+bE
+bE
+bE
+yD
+dQ
+Kp
+fC
+yD
+yD
+Uv
+yD
+yD
+yD
+XM
+XM
+"}
+(9,1,1) = {"
+XM
+yD
+yD
+jI
+oC
+yD
+yD
+yD
+CB
+yD
+yD
+yD
+kL
+bE
+bE
+bE
+LF
+yD
+bE
+bE
+bE
+yD
+yD
+yD
+yD
+yD
+bE
+bE
+Gf
+WA
+yD
+XM
+XM
+"}
+(10,1,1) = {"
+XM
+JQ
+bE
+bE
+bE
+JQ
+bE
+bE
+bE
+vJ
+XO
+yD
+bE
+bE
+bE
+bE
+bE
+JQ
+bE
+bE
+bE
+yD
+io
+vs
+rO
+yD
+Mh
+bE
+bE
+WA
+Qx
+YL
+XM
+"}
+(11,1,1) = {"
+XM
+JQ
+pr
+bE
+bE
+CB
+bE
+bE
+bE
+bE
+bE
+CB
+bE
+bE
+RJ
+kB
+bE
+CB
+bE
+bE
+bE
+CB
+yi
+Bw
+yi
+JQ
+wy
+bE
+bE
+WA
+Qx
+YL
+XM
+"}
+(12,1,1) = {"
+XM
+JQ
+bE
+bE
+bE
+JQ
+bE
+bE
+bE
+Wo
+YM
+yD
+bE
+bE
+bE
+bE
+bE
+JQ
+bE
+bE
+bE
+yD
+dY
+Ve
+Lv
+yD
+Mh
+bE
+bE
+WA
+Qx
+YL
+XM
+"}
+(13,1,1) = {"
+XM
+yD
+yD
+eJ
+oC
+yD
+yD
+yD
+CB
+yD
+yD
+yD
+Kb
+bE
+bE
+bE
+LF
+yD
+bE
+bE
+bE
+yD
+yD
+yD
+yD
+yD
+QN
+bE
+Gf
+WA
+yD
+XM
+XM
+"}
+(14,1,1) = {"
+XM
+XM
+yD
+yD
+yD
+yD
+yi
+CF
+yi
+Dy
+uV
+yD
+CQ
+lA
+Xm
+bE
+bE
+yD
+bE
+bE
+bE
+yD
+aK
+KG
+pC
+yD
+yD
+JQ
+yD
+yD
+yD
+XM
+XM
+"}
+(15,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+yD
+nq
+UG
+xx
+yi
+ce
+yD
+yD
+JQ
+JQ
+JQ
+yD
+yD
+sO
+bE
+bE
+CB
+ww
+ww
+ES
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(16,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+ut
+yi
+CF
+yi
+JQ
+MR
+Jw
+ct
+FO
+Jw
+JQ
+bE
+bE
+bE
+yD
+vp
+ak
+VR
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(17,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+nq
+TN
+xx
+JQ
+Oy
+AL
+Oy
+lv
+Oy
+JQ
+bE
+bE
+bE
+yD
+yD
+yD
+yD
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(18,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+ut
+yi
+JQ
+BZ
+KF
+Jw
+AL
+Jw
+JQ
+bE
+bE
+yD
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(19,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+yD
+yD
+Jw
+AL
+Oy
+jo
+DQ
+yD
+JQ
+JQ
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(20,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+yD
+yD
+yD
+yD
+yD
+yD
+yD
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
+(21,1,1) = {"
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+XM
+"}
