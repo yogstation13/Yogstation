@@ -350,7 +350,7 @@
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
 "lG" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/machinery/light{
 	dir = 8
 	},
