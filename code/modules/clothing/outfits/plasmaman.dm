@@ -116,7 +116,7 @@
 	backpack = /obj/item/storage/backpack/blueshield
 	belt = /obj/item/pda/security
 	satchel = /obj/item/storage/backpack/satchel_blueshield
-	dufflebag = /obj/item/storage/backpack/duffel/blueshield
+	duffelbag = /obj/item/storage/backpack/duffel/blueshield
 
 /datum/outfit/job/plasmaman/detective
 	name = "Plasmaman Detective"

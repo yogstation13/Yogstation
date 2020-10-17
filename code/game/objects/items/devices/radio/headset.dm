@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "The headset of the Blueshield."
 	icon_state = "com_headset"
 	item_state = "headset"
-	ks2type = /obj/item/encryptionkey/heads/blueshield
+	keyslot = new /obj/item/encryptionkey/heads/blueshield
 
 /obj/item/radio/headset/heads/blueshield/alt
 	name = "\proper blueshield's bowman headset"
