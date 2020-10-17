@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	25
+#define SAVEFILE_VERSION_MAX	26
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -114,7 +114,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		all_quirks -= "Physically Obstructive"
 		all_quirks -= "Neat"
 		all_quirks -= "NEET"
-	if(current_version < 24) //The new donator hats system obsolesces the old one entirely, we need to update.
+	if(current_version < 26) //The new donator hats system obsolesces the old one entirely, we need to update.
 		donor_hat = null
 		donor_item = null
 
