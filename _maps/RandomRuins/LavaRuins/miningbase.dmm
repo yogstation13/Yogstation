@@ -441,17 +441,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
-"ca" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Mining Station Port Wing APC";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "cb" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
@@ -1516,6 +1505,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/production)
+"kj" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Mining Station Port Wing APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/mob/living/simple_animal/turtle,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "kM" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Mining Station Communications";
@@ -3683,7 +3684,7 @@ bQ
 bQ
 bQ
 bQ
-ca
+kj
 dm
 bL
 ub
