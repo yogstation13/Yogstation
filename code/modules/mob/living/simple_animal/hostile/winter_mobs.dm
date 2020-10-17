@@ -9,12 +9,8 @@
 	icon_state = "placeholder"
 	icon_living = "placeholder"
 	icon_dead = "placeholder"
-
-
-
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
-
 	melee_damage_lower = 3
 	melee_damage_upper = 7
 
@@ -28,7 +24,6 @@
 	icon_dead = "snowman-dead"
 	gold_core_spawnable = HOSTILE_SPAWN
 	loot = list(/obj/structure/statue/snow/snowman)
-
 
 /mob/living/simple_animal/hostile/winter/snowman/ranged
 	maxHealth = 50
