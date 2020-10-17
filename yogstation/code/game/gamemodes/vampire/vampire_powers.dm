@@ -49,8 +49,9 @@
 
 /obj/effect/proc_holder/spell/can_target(mob/living/target)
 	. = ..()
-	if(!istype(target) || (vamp_req && is_vampire(target)))
+	if(vamp_req && is_vampire(target))
 		return FALSE
+
 /datum/vampire_passive
 	var/gain_desc
 
