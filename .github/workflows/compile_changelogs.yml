@@ -4,6 +4,8 @@ on:
   schedule:
   - cron: "0 0 * * *"
   - cron: "0 12 * * *"
+  - cron: "55 13 * * *"
+  - cron: "55 12 * * *"
 
 jobs:
   compile:
