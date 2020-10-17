@@ -39,7 +39,7 @@
 
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit?.item_flags & MEDRESIST)
-		to_chat(H, "<span class='warning'>[src] cannot be applied through a hardsuit!</span>")
+		to_chat(H, "<span class='warning'>[src] cannot be applied through [H.wear_suit]!</span>")
 		return
 
 	if(M == user)
