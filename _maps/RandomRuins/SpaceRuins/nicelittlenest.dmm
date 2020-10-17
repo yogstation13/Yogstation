@@ -32,17 +32,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
-"cl" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/storage/box/matches{
-	pixel_x = -7;
-	pixel_y = 11
-	},
-/turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
 "cV" = (
 /obj/structure/sink/puddle,
 /turf/open/floor/grass,
@@ -59,15 +48,6 @@
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered)
-"ek" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/powered)
 "ex" = (
 /obj/structure/table/wood/poker,
@@ -134,28 +114,6 @@
 "in" = (
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
-"iu" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_y = 32
-	},
-/obj/machinery/door/airlock/medical{
-	name = "Medical"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "iv" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
@@ -177,15 +135,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
-"jp" = (
-/obj/structure/table,
-/obj/item/clothing/suit/space/nasavoid,
-/obj/item/clothing/head/helmet/space/nasavoid,
-/obj/item/clothing/mask/breath,
-/obj/item/tank/internals/oxygen/red,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
 "kr" = (
 /turf/open/floor/wood,
@@ -292,21 +241,18 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
-"qm" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/stasis{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "qX" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"rw" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -333,11 +279,58 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
-"tE" = (
+"tl" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
+"tp" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Garden"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/powered)
+"tU" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"uf" = (
+/obj/structure/table,
+/obj/item/clothing/suit/space/nasavoid,
+/obj/item/clothing/head/helmet/space/nasavoid,
+/obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/mask/breath,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"vp" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -7;
+	pixel_y = 11
+	},
+/obj/structure/window/spawner/west,
+/turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "xh" = (
 /turf/open/floor/plasteel/freezer,
@@ -351,12 +344,6 @@
 "ya" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/powered)
-"ym" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Garden"
-	},
-/turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered)
 "yJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -379,6 +366,15 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"zo" = (
+/obj/structure/table/reinforced,
+/obj/item/paper{
+	info = "I hope that my cousin John is doing well! I am going to go see him on his new goat research vessel! I'm pretty confident my pod can make the trip. When he gets back home, I bet he will love the statue I made him!";
+	name = "Diary"
+	},
+/obj/structure/window/spawner/west,
+/turf/open/floor/plasteel/checker,
+/area/ruin/space/has_grav/powered)
 "zC" = (
 /obj/structure/chair/sofa/left{
 	dir = 4
@@ -393,15 +389,6 @@
 /area/ruin/space/has_grav/powered)
 "AB" = (
 /turf/open/floor/grass,
-/area/ruin/space/has_grav/powered)
-"AE" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/powered)
 "AN" = (
 /obj/machinery/door/airlock/silver{
@@ -460,14 +447,6 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered)
-"Eb" = (
-/obj/structure/table/reinforced,
-/obj/item/paper{
-	info = "I sure hope that my cousin John is doing well! I am going to go see him on his new goat research vessel! I sure hope my pod can make the trip. When he gets back home, I am sure he will love the statue I made him!";
-	name = "Diary"
-	},
-/turf/open/floor/plasteel/checker,
-/area/ruin/space/has_grav/powered)
 "El" = (
 /obj/structure/chair/sofa/corner{
 	dir = 4
@@ -520,6 +499,18 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"Hj" = (
+/obj/machinery/door/airlock/medical{
+	name = "Medical"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
 "Iq" = (
 /obj/machinery/light/small,
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -566,16 +557,6 @@
 "Qa" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/powered)
-"Sq" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/powered)
 "Sv" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
@@ -588,6 +569,21 @@
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/structure/table/reinforced,
 /obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered)
+"Tu" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "TQ" = (
@@ -635,6 +631,16 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
+"YS" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
@@ -841,7 +847,7 @@ oJ
 dm
 Uk
 AB
-AB
+Kz
 AB
 FF
 Gk
@@ -874,7 +880,7 @@ bA
 cV
 Jx
 fc
-Kz
+AB
 mt
 Gk
 an
@@ -906,7 +912,7 @@ Qa
 Gk
 Gk
 Qa
-ym
+tp
 Qa
 Gk
 Qa
@@ -931,9 +937,9 @@ nE
 an
 an
 an
+an
 Gk
 YC
-Cn
 Cn
 TQ
 Qa
@@ -963,9 +969,9 @@ nE
 an
 an
 an
+an
 Gk
 eg
-Cn
 Cn
 Ge
 Gk
@@ -995,9 +1001,9 @@ nE
 an
 an
 an
+an
 Qa
 fm
-Cn
 kQ
 fe
 Gk
@@ -1027,9 +1033,9 @@ nE
 an
 an
 an
+an
 Gk
-jp
-Cn
+uf
 Cn
 Cn
 GT
@@ -1059,18 +1065,18 @@ nE
 an
 an
 an
-Gk
+an
 Qa
 Qa
 Qa
 Gk
 Qa
-tE
+tl
 Oa
 Gk
 Qa
-cl
-Eb
+vp
+zo
 kr
 xw
 Gk
@@ -1096,9 +1102,9 @@ an
 an
 an
 Qa
-AE
-ek
-iu
+Qa
+Qa
+Hj
 Gk
 ky
 MJ
@@ -1128,9 +1134,9 @@ Qa
 Qa
 Gk
 Gk
-qm
-GF
-UQ
+Tu
+rw
+YS
 Qa
 BL
 MJ
@@ -1226,7 +1232,7 @@ ya
 Gk
 bE
 Tf
-Sq
+tU
 Qa
 Gk
 Gk
