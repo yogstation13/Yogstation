@@ -999,7 +999,7 @@
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
