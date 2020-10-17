@@ -155,7 +155,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "au" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "av" = (

@@ -17,10 +17,6 @@
 	required = "/datum/mutation/human/strong; /datum/mutation/human/radioactive"
 	result = HULK
 
-/datum/generecipe/x_ray
-	required = "/datum/mutation/human/thermal; /datum/mutation/human/radioactive"
-	result = /datum/mutation/human/thermal/x_ray
-
 /datum/generecipe/mindread
 	required = "/datum/mutation/human/antenna; /datum/mutation/human/paranoia"
 	result = MINDREAD
@@ -28,7 +24,7 @@
 /datum/generecipe/shock
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/radioactive"
 	result = SHOCKTOUCH
-	
+
 /datum/generecipe/antiglow
 	required = "/datum/mutation/human/glow; /datum/mutation/human/void"
 	result = ANTIGLOWY

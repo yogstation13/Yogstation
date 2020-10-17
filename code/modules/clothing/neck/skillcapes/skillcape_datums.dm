@@ -1,6 +1,6 @@
 /datum/skillcape
     var/name = ""
-    var/hours = 300
+    var/minutes = 18000
     var/job
     var/special = FALSE //If its TRUE it wont have a related job, it's for the switch statement in preferences.dm
     var/capetype = "" // goes along with special, for the switch statement.
@@ -8,7 +8,7 @@
 
 /datum/skillcape/trimmed
     name = "trimmed cape of skill"
-    hours = 500
+    minutes = 30000
     path = /obj/item/clothing/neck/skillcape/trimmed
 
 
@@ -54,7 +54,7 @@
     path = "/obj/item/clothing/neck/skillcape/chiefengineer"
 
 /datum/skillcape/trimmed/chiefengineer
-    name = "cape of the grand constructor."
+    name = "cape of the grand constructor"
     job = "Chief Engineer"
     path = "/obj/item/clothing/neck/skillcape/trimmed/chiefengineer"
 

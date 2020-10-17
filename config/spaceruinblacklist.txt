@@ -49,4 +49,5 @@ _maps/RandomRuins/SpaceRuins/abandonedzoo.dmm
 #_maps/RandomRuins/SpaceRuins/gameroom.dmm
 _maps/RandomRuins/SpaceRuins/pubby_monastery.dmm
 #_maps/RandomRuins/SpaceRuins/bigape.dmm
+#_maps/RandomRuins/SpaceRuins/nicelittlenest.dmm
 #_maps/RandomRuins/SpaceRuins/clown_wizard_den.dmm

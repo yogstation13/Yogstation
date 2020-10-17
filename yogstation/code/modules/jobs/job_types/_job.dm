@@ -14,16 +14,18 @@
 	if(C.prefs.donor_hat)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
 		if(BP)
-			var/type = donor_start_items[C.prefs.donor_hat]
-			var/obj/hat = new type()
-			hat.forceMove(BP)
+			var/type = C.prefs.donor_hat
+			if(type)
+				var/obj/hat = new type()
+				hat.forceMove(BP)
 
 	if(C.prefs.donor_item)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
 		if(BP)
-			var/type = donor_start_tools[C.prefs.donor_item]
-			var/obj/item = new type()
-			H.put_in_hands(item)
+			var/type = C.prefs.donor_item
+			if(type)
+				var/obj/item = new type()
+				H.put_in_hands(item)
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent
@@ -54,5 +56,5 @@
 		var/datum/skillcape/A = GLOB.skillcapes[S]
 		var/type = A.path
 		var/obj/item/clothing/neck/skillcape/B = new type(get_turf(H))
-		H.equip_to_appropriate_slot(B)
-	
+		if(!H.equip_to_appropriate_slot(B))
+			H.put_in_hands(B)

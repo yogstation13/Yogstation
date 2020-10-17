@@ -1433,7 +1433,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Zr" = (
-/obj/structure/piano{
+/obj/structure/musician/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/wood,

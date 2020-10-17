@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	24
+#define SAVEFILE_VERSION_MAX	26
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -42,6 +42,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
+	// Fixes savefile corruption caused by https://github.com/yogstation13/Yogstation/pull/9767
+	if(current_version < 25) // This is the only thing that makes V25 different.
+		if(LAZYFIND(be_special,"Ragin")) 
+			be_special -= "Ragin"
+			be_special += "Ragin Mages"
+	//
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -108,6 +114,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		all_quirks -= "Physically Obstructive"
 		all_quirks -= "Neat"
 		all_quirks -= "NEET"
+	if(current_version < 26) //The new donator hats system obsolesces the old one entirely, we need to update.
+		donor_hat = null
+		donor_item = null
 
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
@@ -222,9 +231,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// yogs start - Donor features & yogtoggles
 	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
-	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
-	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
-	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
+	donor_pda		= sanitize_integer(donor_pda, 1, GLOB.donor_pdas.len, 1)
+	donor_hat       = sanitize(donor_hat)
+	donor_item      = sanitize(donor_item)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.

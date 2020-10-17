@@ -354,9 +354,14 @@
 	name = "Big Ape"
 	description = "A gorilla? Out here? But why."
 
+/datum/map_template/ruin/space/cozy_apartment
+	id = "nicelittlenest"
+	suffix = "nicelittlenest.dmm"
+	name = "Cozy Home"
+	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
+	
 /datum/map_template/ruin/space/clown_wizard_den
 	id = "clown_wizard_den"
 	suffix = "clown_wizard_den.dmm"
 	name = "Clown Wizard Den"
 	description = "A vile den of evil, with a master class clown wizard inhabitating it."
-
