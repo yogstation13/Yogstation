@@ -42,6 +42,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
+	// Fixes savefile corruption caused by https://github.com/yogstation13/Yogstation/pull/9767
+	if(current_version < 25) // This is the only thing that makes V25 different.
+		if(LAZYFIND(be_special,"Ragin")) 
+			be_special -= "Ragin"
+			be_special += "Ragin Mages"
+	//
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -173,6 +179,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["tip_delay"]			>> tip_delay
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
+	S["skillcape"]          >> skillcape
 	S["show_credits"] 		>> show_credits
 
 	// yogs start - Donor features
@@ -219,6 +226,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special		= SANITIZE_LIST(be_special)
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+	skillcape       = sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	show_credits	= sanitize_integer(show_credits, 0, 1, initial(show_credits))
 
 	// yogs start - Donor features & yogtoggles
@@ -283,6 +291,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["skillcape"], skillcape)
 	WRITE_FILE(S["show_credits"], show_credits)
 
 	// yogs start - Donor features & Yogstoggle

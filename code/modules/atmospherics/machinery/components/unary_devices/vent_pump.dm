@@ -127,7 +127,7 @@
 	var/environment_pressure = environment.return_pressure()
 	var/environment_moles = environment.total_moles()
 	var/last_moles_real_added = environment_moles - last_moles
-	if(last_moles_added > 0 && environment_moles == 0 && space_detection)
+	if((last_moles_added > 0 && environment_moles == 0 && space_detection) || (is_mining_level(z) && ISINRANGE(environment_moles, 36, 38)))
 		// looks like we have a S P A C E problem.
 		last_moles_added = 0
 		on = FALSE
@@ -171,7 +171,7 @@
 				moles_delta = min(moles_delta, (environment_pressure - external_pressure_bound) * environment.return_volume() / (environment.return_temperature() * R_IDEAL_GAS_EQUATION))
 			if(pressure_checks&INT_BOUND)
 				moles_delta = min(moles_delta, (internal_pressure_bound - air_contents.return_pressure()) * our_multiplier)
-		
+
 			if(moles_delta > 0)
 				var/datum/gas_mixture/removed = loc.remove_air(moles_delta)
 				if (isnull(removed)) // in space

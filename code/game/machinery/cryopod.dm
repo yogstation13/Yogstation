@@ -360,6 +360,10 @@ GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
 		to_chat(user, "<span class='notice'>Dead people can not be put into cryo.</span>")
 		return
 
+	if(findtext(target.ckey, "@") || !target.mind)
+		to_chat(user, "<span class='notice'>This person cannot be put in cryogenic storage!</span>")
+		return
+
 	if(target.client && user != target)
 		if(iscyborg(target))
 			to_chat(user, "<span class='danger'>You can't put [target] into [src]. They're online.</span>")

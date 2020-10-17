@@ -933,14 +933,26 @@
 	if(L.gender != MALE && L.gender != FEMALE)
 		to_chat(user, "<span class='warning'>The potion can only be used on gendered things!</span>")
 		return
-
-	if(L.gender == MALE)
-		L.gender = FEMALE
-		L.visible_message("<span class='boldnotice'>[L] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.dna && !(MGENDER in C.dna.species.species_traits) && !(FGENDER in C.dna.species.species_traits) && !(AGENDER in C.dna.species.species_traits))
+			if(C.gender == MALE)
+				C.gender = FEMALE
+				C.visible_message("<span class='boldnotice'>[C] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+			else
+				C.gender = MALE
+				C.visible_message("<span class='boldnotice'>[C] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
+			C.regenerate_icons()
+		else
+			C.visible_message("<span class='boldnotice'>[C]'s physiology fails to change!</span>", "<span class='boldwarning'>The potion fails to meaningfully effect you!</span>")
 	else
-		L.gender = MALE
-		L.visible_message("<span class='boldnotice'>[L] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
-	L.regenerate_icons()
+		if(L.gender == MALE)
+			L.gender = FEMALE
+			L.visible_message("<span class='boldnotice'>[L] suddenly looks more feminine!</span>", "<span class='boldwarning'>You suddenly feel more feminine!</span>")
+		else
+			L.gender = MALE
+			L.visible_message("<span class='boldnotice'>[L] suddenly looks more masculine!</span>", "<span class='boldwarning'>You suddenly feel more masculine!</span>")
+		L.regenerate_icons()
 	qdel(src)
 
 /obj/item/slimepotion/slime/renaming
