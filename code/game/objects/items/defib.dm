@@ -551,7 +551,7 @@
 		var/tplus = world.time - H.timeofdeath	//length of time spent dead
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
 		if(do_after(user, 15, target = H))
-			if(HAS_TRAIT(user.mind, TRAIT_DOCTOR))
+			if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
 				user.say("Clear!")
 			else
 				return
