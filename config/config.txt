@@ -95,12 +95,6 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
-## log telecomms messages
-LOG_TELECOMMS
-
-## log ntsl compilations
-LOG_NTSL
-
 ## log prayers
 LOG_PRAYER
 
