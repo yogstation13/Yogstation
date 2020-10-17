@@ -49,7 +49,7 @@
 
 /obj/effect/proc_holder/spell/can_target(mob/living/target)
 	. = ..()
-	if(!istype(target) || (vamp_req && is_vampire(target)))
+	if((vamp_req && is_vampire(target))
 		return FALSE
 /datum/vampire_passive
 	var/gain_desc
@@ -131,6 +131,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!target)
+		return FALSE
 	if(!ishuman(target))
 		to_chat(user, "<span class='warning'>Gaze will not work on this being.</span>")
 		return FALSE
@@ -191,7 +193,9 @@
 
 /obj/effect/proc_holder/spell/pointed/hypno/can_target(atom/target, mob/user, silent)
 	if(!..())
-		return
+		return FALSE
+	if(!target)
+		return FALSE
 	if(!ishuman(target))
 		to_chat(user, "<span class='warning'>Hypnotize will not work on this being.</span>")
 		return FALSE
