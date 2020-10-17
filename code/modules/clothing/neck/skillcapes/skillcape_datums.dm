@@ -91,7 +91,7 @@
 /datum/skillcape/security
     name = "cape of the security officer"
     job = "Security Officer"
-    path = /obj/item/neck/skillcape/security
+    path = /obj/item/clothing/neck/skillcape/security
 
 /datum/skillcape/trimmed/security
     name = "cape of the grand security officer"
