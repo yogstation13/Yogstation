@@ -35,6 +35,12 @@
 	icon_state = "armor"
 	item_state = "armor"
 	slowdown = 1
+	
+/obj/item/clothing/suit/armor/vest/blueshield
+	name = "blueshield security armor"
+	desc = "An armored vest with the badge of a Blueshield Lieutenant."
+	icon_state = "blueshield"
+	item_state = "blueshield"
 
 /obj/item/clothing/suit/armor/vest/blueshirt
 	name = "large armor vest"

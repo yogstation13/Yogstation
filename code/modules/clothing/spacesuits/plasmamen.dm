@@ -94,6 +94,12 @@
 	icon_state = "curator_envirohelm"
 	item_state = "curator_envirohelm"
 
+/obj/item/clothing/head/helmet/space/plasmaman/blueshield
+	name = "blueshield envirosuit helmet"
+	desc = "A plasmaman envirohelm designed for the blueshield."
+	icon_state = "bs_envirohelm"
+	item_state = "bs_envirohelm"
+
 /obj/item/clothing/head/helmet/space/plasmaman/mime
 	name = "mime envirosuit helmet"
 	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."

@@ -99,6 +99,24 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
 	belt = /obj/item/pda/security
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
+	
+/datum/outfit/job/plasmaman/blueshield
+	name = "Plasmaman Blueshield officer"
+	
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
+	uniform = /obj/item/clothing/under/plasmaman/blueshield
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
+	suit = /obj/item/clothing/suit/armor/vest/blueshield
+	gloves = /obj/item/clothing/gloves/combat
+	shoes = /obj/item/clothing/shoes/jackboots
+	ears = /obj/item/radio/headset/heads/blueshield/alt
+	backpack_contents = list(/obj/item/gun/energy/e_gun = 1)
+	implants = list(/obj/item/implant/mindshield)
+	backpack = /obj/item/storage/backpack/blueshield
+	belt = /obj/item/pda/security
+	satchel = /obj/item/storage/backpack/satchel_blueshield
+	dufflebag = /obj/item/storage/backpack/duffel/blueshield
 
 /datum/outfit/job/plasmaman/detective
 	name = "Plasmaman Detective"

@@ -288,3 +288,25 @@
 	..()
 	for(var/i in 1 to 3)
 		new /obj/item/storage/box/lethalshot(src)
+		
+/obj/structure/closet/secure_closet/blueshield
+	name = "\proper blueshield's locker"
+	req_access = list(ACCESS_BLUESHIELD)
+	icon_state = "cap"
+	
+/obj/structure/closet/secure_closet/blueshield/PopulateContents()
+	..()
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/storage/belt/security/full(src)
+	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/melee/classic_baton/telescopic(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/head/beret/sec/navyofficer(src)
+	new /obj/item/clothing/suit/armor/vest/blueshield(src)
+	new /obj/item/clothing/suit/storage/blueshield(src)
+	new /obj/item/clothing/under/rank/blueshield(src)
+	new /obj/item/gun/energy/disabler(src)

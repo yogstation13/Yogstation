@@ -85,6 +85,7 @@
 #define ACCESS_TCOM_ADMIN 70
 #define ACCESS_FREEMINER 71
 #define ACCESS_FREEMINER_CAPTAIN 72
+#define ACCESS_BLUESHIELD 73
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.

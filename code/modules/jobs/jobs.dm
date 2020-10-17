@@ -4,7 +4,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Head of Security",
 	"Chief Engineer",
 	"Research Director",
-	"Chief Medical Officer"))
+	"Chief Medical Officer",
+	"Blueshield"))
 
 
 GLOBAL_LIST_INIT(engineering_positions, list(
@@ -110,6 +111,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /proc/get_full_job_name(job)
 	var/static/regex/cap_expand = new("cap(?!tain)")
 	var/static/regex/cmo_expand = new("cmo")
+	var/static/regex/bs_expand = new("blueshield")
 	var/static/regex/hos_expand = new("hos")
 	var/static/regex/hop_expand = new("hop")
 	var/static/regex/rd_expand = new("rd")
@@ -133,6 +135,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = lowertext(job)
 	job = cap_expand.Replace(job, "captain")
 	job = cmo_expand.Replace(job, "chief medical officer")
+	job = bs_expand.Replace(job, "blueshield")
 	job = hos_expand.Replace(job, "head of security")
 	job = hop_expand.Replace(job, "head of personnel")
 	job = rd_expand.Replace(job, "research director")

@@ -182,6 +182,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
+/obj/item/radio/headset/heads/blueshield
+	name = "blueshield's headset"
+	desc = "The headset of the Blueshield."
+	icon_state = "com_headset"
+	item_state = "headset"
+	ks2type = /obj/item/encryptionkey/heads/blueshield
+
+/obj/item/radio/headset/heads/blueshield/alt
+	name = "\proper blueshield's bowman headset"
+	desc = "The headset of the Blueshield."
+	icon_state = "com_headset_alt"
+	item_state = "com_headset_alt"
+
 /obj/item/radio/headset/heads/rd
 	name = "\proper the research director's headset"
 	desc = "Headset of the fellow who keeps society marching towards technological singularity."
