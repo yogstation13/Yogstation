@@ -1,4 +1,0 @@
-author: "FLME"
-delete-after: true 
-changes: 
-  - rscadd: "announcementConsole = 1 instead of 0 on all the quartermaster request consoles"

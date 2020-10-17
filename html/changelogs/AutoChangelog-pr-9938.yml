@@ -1,5 +1,0 @@
-author: " MrDoomBringer, Redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "The orbit menu now has an Auto-Observe button! No more sifting through the lame observe menu to snoop in people's backpacks! Also, you can refresh the orbit menu now."
-  - rscadd: "The orbit menu now shows the total number of ghosts orbiting something"
