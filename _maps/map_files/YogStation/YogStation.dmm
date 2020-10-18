@@ -33044,18 +33044,6 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/fore)
-"bTS" = (
-/obj/machinery/power/apc{
-	areastring = "/area/blueshield";
-	dir = 1;
-	name = "Blueshield Office APC";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "bUs" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -38735,9 +38723,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"etd" = (
-/turf/closed/wall,
-/area/blueshield)
 "euJ" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only,
@@ -44185,6 +44170,9 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
+"iTi" = (
+/turf/closed/wall/r_wall,
+/area/blueshield)
 "iTF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -48883,10 +48871,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"mJR" = (
-/obj/structure/sign/nanotrasen,
-/turf/closed/wall,
-/area/blueshield)
 "mJS" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -54942,13 +54926,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
-"rjn" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "rjA" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -55064,6 +55041,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"roU" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/fore)
 "roZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -55675,6 +55655,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/storage/tools)
+"rRw" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "rTC" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -58381,6 +58368,18 @@
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/port)
+"ucR" = (
+/obj/machinery/power/apc{
+	areastring = "/area/blueshield";
+	dir = 1;
+	name = "Blueshield Office APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "ucZ" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -60449,6 +60448,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"vQg" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/r_wall,
+/area/blueshield)
 "vQq" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
@@ -92512,8 +92515,8 @@ apZ
 atg
 apd
 avt
-aqR
-etd
+roU
+iTi
 pgR
 nzz
 qxf
@@ -92770,7 +92773,7 @@ ivq
 apd
 avt
 aqR
-etd
+iTi
 fZc
 mMq
 edQ
@@ -93027,14 +93030,14 @@ aoG
 apd
 avt
 aqR
-etd
-bTS
+iTi
+ucR
 mhM
 cUA
 hAB
 vpV
 epQ
-etd
+iTi
 bOS
 bOS
 aJq
@@ -93284,11 +93287,11 @@ aui
 apd
 avt
 aqR
-etd
+iTi
 nmQ
 mzO
 qvD
-rjn
+rRw
 dgG
 mhM
 qSq
@@ -93541,14 +93544,14 @@ apd
 apd
 avv
 bNR
-etd
-etd
+iTi
+iTi
 uZk
 uZk
-etd
-etd
-etd
-mJR
+iTi
+iTi
+iTi
+vQg
 aJo
 aJq
 aLZ
