@@ -13715,14 +13715,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"aBs" = (
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/eva)
 "aBt" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -57410,6 +57402,14 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
+"dsm" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "dus" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern,
@@ -57448,23 +57448,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dEN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/window{
-	dir = 8;
-	name = "Blueshield Desk";
-	req_access_txt = "73"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "dEY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
@@ -58244,6 +58227,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"gat" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/blueshield)
 "gaW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -58919,6 +58910,29 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"ioZ" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/eva)
 "iqx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -60765,6 +60779,28 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"oix" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	name = "Blueshield Desk";
+	req_access_txt = "73"
+	},
+/obj/machinery/button/door{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters";
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "oiE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -61057,10 +61093,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"pcU" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/blueshield)
 "pdk" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
@@ -61625,6 +61657,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"rjm" = (
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/eva)
 "rjx" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -62957,10 +63001,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
-"ulS" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/blueshield)
 "upE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -64133,25 +64173,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
-"xYG" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/eva)
 "xYL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -93170,8 +93191,8 @@ apd
 axv
 ayL
 ayS
-xYG
-aBs
+ioZ
+rjm
 nfE
 aDI
 ayL
@@ -93433,7 +93454,7 @@ oQx
 hzS
 oGA
 hiS
-ulS
+gat
 aae
 bOS
 aLY
@@ -93684,13 +93705,13 @@ apd
 axv
 anc
 eqw
-dEN
+oix
 nRr
 mTY
 wSP
 egA
 ycm
-ulS
+gat
 aae
 bOS
 aJq
@@ -94456,8 +94477,8 @@ axF
 apP
 eqw
 eqw
-pcU
-pcU
+dsm
+dsm
 xxZ
 eqw
 eqw

@@ -10429,14 +10429,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
-"aBs" = (
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/eva)
 "aBt" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -36937,6 +36929,14 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"cXC" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "cYj" = (
 /obj/machinery/light{
 	dir = 1
@@ -38878,6 +38878,14 @@
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
+"eCg" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/blueshield)
 "eCn" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -39473,6 +39481,29 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"eXD" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/eva)
 "eXN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -40634,23 +40665,6 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
-"fZc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/window{
-	dir = 8;
-	name = "Blueshield Desk";
-	req_access_txt = "73"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "fZs" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -49879,6 +49893,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"nuk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	name = "Blueshield Desk";
+	req_access_txt = "73"
+	},
+/obj/machinery/button/door{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters";
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "nuq" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -51423,25 +51459,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
-"ovr" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/eva)
 "ovB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -59449,10 +59466,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"uZk" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/blueshield)
 "uZl" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -60218,6 +60231,18 @@
 /obj/machinery/power/tracker,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/fore)
+"vGh" = (
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/storage/eva)
 "vGx" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
@@ -61648,10 +61673,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"wOp" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/blueshield)
 "wPB" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -92276,8 +92297,8 @@ apd
 avt
 ayL
 ayS
-ovr
-aBs
+eXD
+vGh
 jXR
 aDI
 ayL
@@ -92539,7 +92560,7 @@ qxf
 tFW
 wlu
 oml
-wOp
+eCg
 aaa
 bOS
 aLY
@@ -92790,13 +92811,13 @@ apd
 avt
 aqR
 iTi
-fZc
+nuk
 mMq
 edQ
 aRj
 vpV
 mhM
-wOp
+eCg
 aaa
 bOS
 aJq
@@ -93562,8 +93583,8 @@ avv
 bNR
 iTi
 iTi
-uZk
-uZk
+cXC
+cXC
 iTi
 iTi
 iTi

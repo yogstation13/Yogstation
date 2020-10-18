@@ -126633,19 +126633,6 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
 /area/security/execution/transfer)
-"mXK" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "hopblast";
-	name = "HoP Blast door"
-	},
-/obj/structure/cable/white,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/blueshield)
 "ncP" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/engine,
@@ -127092,19 +127079,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"qzi" = (
-/obj/structure/cable/white{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4;
-	icon_state = "scrub_map_on-3"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/carpet/royalblue,
-/area/blueshield)
 "qUc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -127156,6 +127130,24 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"raY" = (
+/obj/structure/cable/white{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4;
+	icon_state = "scrub_map_on-3"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/button/door{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters";
+	pixel_y = 24
+	},
+/turf/open/floor/carpet/royalblue,
+/area/blueshield)
 "reX" = (
 /obj/structure/table/wood,
 /obj/item/instrument/eguitar,
@@ -127270,6 +127262,19 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"skH" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/white,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "svv" = (
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -163984,10 +163989,10 @@ cge
 ofY
 tNa
 iQV
-qzi
+raY
 mpA
 jRa
-mXK
+skH
 cqT
 bLg
 cvo

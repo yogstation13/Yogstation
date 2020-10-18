@@ -82074,19 +82074,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"dzr" = (
-/obj/machinery/camera{
-	c_tag = "EVA South";
-	dir = 8;
-	network = list("ss13","command")
-	},
-/obj/machinery/door/window{
-	dir = 1;
-	name = "Blueshield Desk";
-	req_access_txt = "73"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "dzK" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/costume,
@@ -82427,6 +82414,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic/a)
+"eDj" = (
+/obj/machinery/camera{
+	c_tag = "EVA South";
+	dir = 8;
+	network = list("ss13","command")
+	},
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Blueshield Desk";
+	req_access_txt = "73"
+	},
+/obj/machinery/button/door{
+	id = "blueshieldshutters";
+	name = "Blueshield Office Shutters";
+	pixel_x = 24;
+	pixel_y = 0
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "eJX" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -85422,6 +85428,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"mCS" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshieldshutters";
+	name = "blueshieldshutters"
+	},
+/turf/open/floor/plating,
+/area/blueshield)
 "mDd" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -87767,11 +87782,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"sZz" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/blueshield)
 "sZG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -123719,8 +123729,8 @@ jwo
 epj
 ahK
 kpW
-sZz
-sZz
+mCS
+mCS
 lQq
 kpW
 aTU
@@ -125004,7 +125014,7 @@ aMg
 aMg
 aTt
 hDL
-dzr
+eDj
 soH
 nfg
 kpW
