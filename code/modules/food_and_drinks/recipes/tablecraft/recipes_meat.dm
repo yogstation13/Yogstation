@@ -212,4 +212,4 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfry
-	subcategory = CAT_SEAFOOD
+	subcategory = CAT_MEAT
