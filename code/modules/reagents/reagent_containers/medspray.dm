@@ -37,6 +37,11 @@
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return
 
+	var/mob/living/carbon/human/H = user
+	if(H.wear_suit?.item_flags & MEDRESIST)
+		to_chat(H, "<span class='warning'>[src] cannot be applied through [H.wear_suit]!</span>")
+		return
+
 	if(M == user)
 		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src] on [user.p_them()]self.</span>")
 		if(self_delay)

@@ -25,8 +25,7 @@
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/vampire_help = 0,
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
-		/obj/effect/proc_holder/spell/pointed/gaze = 0,
-		/obj/effect/proc_holder/spell/pointed/hypno = 0,
+		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 75,
 		/obj/effect/proc_holder/spell/self/shapeshift = 75,
 		/obj/effect/proc_holder/spell/self/cloak = 100,
