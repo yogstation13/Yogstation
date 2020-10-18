@@ -28,8 +28,8 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/heads/blueshield/alt
 	belt = /obj/item/pda/security
-	backpack_contents = list(/obj/item/gun/energy/gun/e_gun = 1)
+	backpack_contents = list(/obj/item/gun/energy/e_gun = 1)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel_blueshield
-	dufflebag = /obj/item/storage/backpack/duffel/blueshield
+	duffelbag = /obj/item/storage/backpack/duffel/blueshield
