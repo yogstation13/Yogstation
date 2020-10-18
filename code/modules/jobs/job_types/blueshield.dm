@@ -1,6 +1,7 @@
 /datum/job/blueshield
 	title = "Blueshield"
 	flag = BLUESHIELD
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list("Captain")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -8,6 +9,11 @@
 	spawn_positions = 1
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
+	req_admin_notify = 1
+	space_law_notify = 1
+	exp_requirements = 300
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/blueshield
 
@@ -16,6 +22,11 @@
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
 	display_order = JOB_DISPLAY_ORDER_BLUESHIELD
+	
+	changed_maps = list("OmegaStation")
+	
+/datum/job/blueshield/proc/OmegaStationChanges()
+	return TRUE
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
