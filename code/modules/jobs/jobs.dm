@@ -1,6 +1,5 @@
 GLOBAL_LIST_INIT(command_positions, list(
 	"Captain",
-	"Blueshield",
 	"Head of Personnel",
 	"Head of Security",
 	"Chief Engineer",
@@ -63,6 +62,7 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
+	"Blueshield",
 	"Detective",
 	"Security Officer"))
 

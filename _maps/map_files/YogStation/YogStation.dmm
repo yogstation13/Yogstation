@@ -15874,6 +15874,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/bridge)
+"aQd" = (
+/obj/machinery/power/apc{
+	areastring = "/area/blueshield";
+	dir = 1;
+	name = "Blueshield Office APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "aQi" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -37947,12 +37959,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"dIM" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/closed/wall,
-/area/blueshield)
 "dIW" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -39819,18 +39825,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
-"fhZ" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/blueshield";
-	dir = 1;
-	name = "Blueshield Office APC";
-	pixel_y = 24
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "fip" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -93026,8 +93020,8 @@ aoG
 apd
 avt
 aqR
-dIM
-fhZ
+etd
+aQd
 mhM
 cUA
 hAB
