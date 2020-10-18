@@ -361,9 +361,8 @@
 		return
 
 	if(symptoms.len >= VIRUS_SYMPTOM_LIMIT)
-		symptoms += S
-	else
 		RemoveSymptom(pick(symptoms))
+	symptoms += S
 		symptoms += S
 
 // Simply removes the symptom.
