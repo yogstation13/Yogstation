@@ -808,4 +808,3 @@
 	color = "#803280"
 	taste_mult = 2
 	taste_description = "fizzy sweetness"
-	value = REAGENT_VALUE_COMMON
