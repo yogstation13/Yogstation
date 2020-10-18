@@ -7,7 +7,7 @@
 /datum/martial_art/the_sleeping_carp
 	name = "The Sleeping Carp"
 	id = MARTIALART_SLEEPINGCARP
-	deflection_chance = 100
+	deflection_chance = 0 //no block unless throwmode is on
 	reroute_deflection = TRUE
 	no_guns = TRUE
 	allow_temp_override = FALSE

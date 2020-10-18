@@ -6911,6 +6911,9 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"pz" = (
+/turf/open/floor/holofloor/plating,
+/area/holodeck/rec_center/burn)
 "pB" = (
 /obj/machinery/firealarm,
 /turf/closed/indestructible/riveted,
@@ -14637,7 +14640,7 @@
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
 "Fb" = (
-/obj/structure/piano,
+/obj/structure/musician/piano,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -85598,16 +85601,16 @@ aa
 "}
 (244,1,1) = {"
 ac
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
+pz
+pz
+pz
+pz
+pz
+pz
+pz
+pz
+pz
+pz
 bj
 bx
 bN
@@ -85855,16 +85858,16 @@ aa
 "}
 (245,1,1) = {"
 ac
-ar
+pz
 aC
+pz
 ar
+pz
+pz
 ar
-ar
-ar
-ar
-ar
+pz
 aC
-ar
+pz
 bj
 by
 bN
@@ -86112,16 +86115,16 @@ aa
 "}
 (246,1,1) = {"
 ac
+pz
 ar
-ar
-ar
+pz
 aC
-ar
-ar
+pz
+pz
 aC
+pz
 ar
-ar
-ar
+pz
 bj
 by
 bN
@@ -86369,16 +86372,16 @@ aa
 "}
 (247,1,1) = {"
 ac
-ar
+pz
 aC
+pz
 ar
+pz
+pz
 ar
-ar
-ar
-ar
-ar
+pz
 aC
-ar
+pz
 bj
 by
 bN
@@ -86626,16 +86629,16 @@ aa
 "}
 (248,1,1) = {"
 ac
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
-ar
+pz
+pz
+pz
+pz
+pz
+pz
+pz
+pz
+pz
+pz
 bj
 bz
 bN
