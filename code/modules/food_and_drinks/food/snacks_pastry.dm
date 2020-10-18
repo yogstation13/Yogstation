@@ -95,6 +95,15 @@
 	extra_reagent = /datum/reagent/consumable/cherryjelly
 	foodtype = JUNKFOOD | GRAIN | FRIED | FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/donut/jelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	is_decorated = TRUE
+	filling_color = "#803280"
+	
 /obj/item/reagent_containers/food/snacks/donut/meat
 	name = "meat donut"
 	desc = "Tastes as gross as it looks."
