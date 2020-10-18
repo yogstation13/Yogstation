@@ -64,7 +64,7 @@ datum/crafting_recipe/food/donut/meat
 	name = "Sweet Pea Donut"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
-		/obj/item/reagent_containers/food/snacks/donut/plain = 1
+		/obj/item/reagent_containers/food/snacks/donut = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/laugh
 	subcategory = CAT_PASTRY
@@ -73,7 +73,7 @@ datum/crafting_recipe/food/donut/meat
 	name = "Sweet Pea Jelly Donut"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
-		/obj/item/reagent_containers/food/snacks/donut/jelly/plain = 1
+		/obj/item/reagent_containers/food/snacks/donut/jelly = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/laugh
 	subcategory = CAT_PASTRY
@@ -82,7 +82,7 @@ datum/crafting_recipe/food/donut/meat
 	name = "Sweet Pea Jelly Donut"
 	reqs = list(
 		/datum/reagent/consumable/laughsyrup = 3,
-		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/plain = 1
+		/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
 	subcategory = CAT_PASTRY
