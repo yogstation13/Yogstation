@@ -14,7 +14,7 @@
 	recommended_enemies = 3
 	enemy_minimum_age = 15
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Blueshield")
 	title_icon = "ss13"
 
 /datum/game_mode/darkspawn/announce()

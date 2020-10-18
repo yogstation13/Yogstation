@@ -21,7 +21,7 @@
 	antag_flag = ROLE_VAMPIRE
 	false_report_weight = 1
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel")
+	protected_jobs = list("Head of Security", "Captain", "Security Officer", "Chaplain", "Detective", "Warden", "Head of Personnel", "Blueshield")
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 3
