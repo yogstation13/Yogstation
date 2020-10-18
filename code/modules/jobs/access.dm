@@ -256,7 +256,7 @@
 		if(ACCESS_ARMORY)
 			return "Armory"
 		if(ACCESS_BLUESHIELD)
-			return "Blueshield"
+			return "Blueshield Office"
 		if(ACCESS_CONSTRUCTION)
 			return "Construction"
 		if(ACCESS_KITCHEN)
