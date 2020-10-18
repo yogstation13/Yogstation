@@ -15874,18 +15874,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/bridge)
-"aQd" = (
-/obj/machinery/power/apc{
-	areastring = "/area/blueshield";
-	dir = 1;
-	name = "Blueshield Office APC";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood,
-/area/blueshield)
 "aQi" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -33056,6 +33044,18 @@
 /obj/effect/spawner/structure/solars/solar_96,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/fore)
+"bTS" = (
+/obj/machinery/power/apc{
+	areastring = "/area/blueshield";
+	dir = 1;
+	name = "Blueshield Office APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "bUs" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -54942,6 +54942,13 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
+"rjn" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/wood,
+/area/blueshield)
 "rjA" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -93021,7 +93028,7 @@ apd
 avt
 aqR
 etd
-aQd
+bTS
 mhM
 cUA
 hAB
@@ -93281,7 +93288,7 @@ etd
 nmQ
 mzO
 qvD
-mhM
+rjn
 dgG
 mhM
 qSq
