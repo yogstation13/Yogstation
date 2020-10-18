@@ -155,11 +155,13 @@
 	var/mob/living/M = mob_override || owner.current
 	update_wiz_icons_added(M, wiz_team ? TRUE : FALSE) //Don't bother showing the icon if you're solo wizard
 	M.faction |= ROLE_WIZARD
+	ADD_TRAIT(M, TRAIT_TECHNOPHOBE, MAGIC_TRAIT)
 
 /datum/antagonist/wizard/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_wiz_icons_removed(M)
 	M.faction -= ROLE_WIZARD
+	REMOVE_TRAIT(M, TRAIT_TECHNOPHOBE, MAGIC_TRAIT)
 
 
 /datum/antagonist/wizard/get_admin_commands()

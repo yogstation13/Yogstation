@@ -254,7 +254,7 @@ Class Procs:
 	else
 		if(interaction_flags_machine & INTERACT_MACHINE_REQUIRES_SILICON)
 			return FALSE
-		if(is_species(user, /datum/species/lizard/ashwalker))
+		if(HAS_TRAIT(user, TRAIT_TECHNOPHOBE))
 			return FALSE
 		if(!Adjacent(user))
 			var/mob/living/carbon/H = user
