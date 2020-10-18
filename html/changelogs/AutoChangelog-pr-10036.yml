@@ -1,0 +1,6 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - rscdel: "Removed the code that made empowered thralls lose their guise ability."
+  - tweak: "slightly buffed empowered thrall healing speed in darkness."
+  - spellcheck: "made the text given to empowered thralls no longer say their guise ability was upgraded."
