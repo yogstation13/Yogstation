@@ -113,6 +113,15 @@
 	tastes = list("meat" = 1)
 	foodtype = JUNKFOOD | MEAT | GROSS | FRIED | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh
+	name = "sweet pea jelly donut"
+	desc = "Goes great with a glass of Bastion Burbon!"
+	icon_state = "jelly_laugh"
+	bonus_reagents = list(/datum/reagent/consumable/laughter = 3)
+	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
+	is_decorated = TRUE
+	filling_color = "#803280"
+
 
 ////////////////////////////////////////////MUFFINS////////////////////////////////////////////
 
