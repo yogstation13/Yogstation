@@ -118,9 +118,9 @@
 /obj/item/clothing/under/rank/blueshield
 	name = "blueshield jumpsuit"
 	desc = "A short-sleeved black uniform, paired with grey digital-camo cargo pants. Standard issue to Blueshields."
-	icon_state = "blueshield"
+	icon_state = "blueshieldsuit"
 	item_state = "bl_suit"
-	item_color = "blueshield"
+	item_color = "blueshieldsuit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
 
 /obj/item/clothing/under/rank/vice
