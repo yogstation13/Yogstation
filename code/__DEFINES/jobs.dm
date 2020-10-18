@@ -92,5 +92,5 @@
 #define JOB_DISPLAY_ORDER_WARDEN 35
 #define JOB_DISPLAY_ORDER_DETECTIVE 36
 #define JOB_DISPLAY_ORDER_SECURITY_OFFICER 37
-#define JOB_DISPLAY_ORDER_AI 39
-#define JOB_DISPLAY_ORDER_CYBORG 40 //yogs end - this list was changed to include the yogs jobs
+#define JOB_DISPLAY_ORDER_AI 38
+#define JOB_DISPLAY_ORDER_CYBORG 39 //yogs end - this list was changed to include the yogs jobs
