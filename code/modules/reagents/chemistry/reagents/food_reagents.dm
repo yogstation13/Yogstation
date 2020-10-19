@@ -291,32 +291,35 @@
 		if ( eyes_covered && mouth_covered )
 			return
 		else if ( mouth_covered )	// Reduced effects if partially protected
-			if(prob(5))
+			if(prob(30))
 				victim.emote("scream")
-			victim.blur_eyes(3)
-			victim.blind_eyes(2)
-			victim.confused = max(M.confused, 3)
-			victim.damageoverlaytemp = 60
-			victim.Paralyze(60)
+			victim.blur_eyes(10)
+			victim.blind_eyes(6)
+			victim.confused = max(M.confused, 8)
+			victim.damageoverlaytemp = 75
+			victim.Paralyze(75)
+			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
-			victim.blur_eyes(3)
+			victim.blur_eyes(4)
+			victim.confused = max(M.confused, 4)
 			victim.damageoverlaytemp = 30
 			return
 		else // Oh dear :D
-			if(prob(5))
+			if(prob(50))
 				victim.emote("scream")
-			victim.blur_eyes(5)
-			victim.blind_eyes(3)
-			victim.confused = max(M.confused, 6)
-			victim.damageoverlaytemp = 75
+			victim.blur_eyes(10)
+			victim.blind_eyes(6)
+			victim.confused = max(M.confused, 10)
+			victim.damageoverlaytemp = 100
 			victim.Paralyze(100)
+			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
 /datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
-	if(prob(10))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
 	if(prob(15))
+		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","splutters!")]</span>")
+	if(prob(20))
 		M.emote("cough")
 
 	M.adjustStaminaLoss(3)
@@ -745,7 +748,7 @@
 	taste_mult = 2
 	taste_description = "bitter sweetness"
 	reagent_state = SOLID
-	
+
 /datum/reagent/consumable/mesophilicculture
 	name = "mesophilic culture"
 	description = "A mixture of mesophilic bacteria used to make most cheese."
@@ -769,7 +772,7 @@
 	description = "A special bacterium used to make blue cheese."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "bitterness"
-	
+
 /datum/reagent/consumable/parmesan_delight
 	name = "Parmesan Delight"
 	description = "The time spent cultivating parmesan has produced this magical liquid."
@@ -800,4 +803,4 @@
 	color = "#75553a"
 	taste_mult = 1.5
 	taste_description = "gravy"
-	
+
