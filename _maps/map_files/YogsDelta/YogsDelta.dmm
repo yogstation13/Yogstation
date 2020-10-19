@@ -38771,7 +38771,6 @@
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
 	},
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -38784,14 +38783,13 @@
 /obj/structure/cable/white{
 	icon_state = "1-8"
 	},
-/obj/effect/turf_decal/stripes/box,
-/obj/machinery/rnd/production/techfab/department/security,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/main)
 "biM" = (
@@ -39630,20 +39628,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"bjP" = (
-/obj/effect/turf_decal/loading_area,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "bjQ" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -41994,11 +41978,10 @@
 /turf/closed/wall/r_wall,
 /area/security/execution/transfer)
 "bnH" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/machinery/rnd/production/techfab/department/security,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "bnI" = (
@@ -65202,7 +65185,9 @@
 /area/crew_quarters/dorms)
 "bVl" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /obj/machinery/newscaster/security_unit{
 	pixel_x = -32
 	},
@@ -65211,6 +65196,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
@@ -181108,7 +181096,7 @@ aFm
 aaa
 bnc
 biL
-bjP
+bkw
 bkw
 aKk
 bbD

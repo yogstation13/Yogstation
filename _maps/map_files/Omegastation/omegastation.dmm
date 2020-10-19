@@ -6366,16 +6366,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/brig)
-"aiV" = (
-/obj/machinery/rnd/production/techfab/department/security,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "aiW" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/maintenance/port/central";
@@ -28280,22 +28270,13 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "glM" = (
-/obj/item/storage/box/teargas{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/rnd/production/techfab/department/security,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "gni" = (
@@ -31154,6 +31135,15 @@
 /obj/item/camera,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
+"jhz" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "jik" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -44451,7 +44441,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral,
-/mob/living/simple_animal/parrot/Poly,
 /obj/machinery/camera{
 	c_tag = "Chief Engineer's Office";
 	dir = 2
@@ -44459,6 +44448,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "vHJ" = (
@@ -45470,6 +45460,15 @@
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
+	},
+/obj/item/storage/box/teargas{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -81145,8 +81144,8 @@ aCB
 agF
 aFm
 agF
-aiV
 ajV
+jhz
 akW
 alN
 amK
