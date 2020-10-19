@@ -1,0 +1,9 @@
+"a" = (/turf/open/floor/fakespace,/area/template_noop)
+"H" = (/obj/structure/lattice/catwalk,/obj/machinery/field/generator,/turf/open/floor/fakespace,/area/template_noop)
+"Z" = (/obj/item/toy/spinningtoy,/turf/open/floor/fakespace,/area/template_noop)
+
+(1,1,1) = {"
+Haa
+aZa
+aaa
+"}

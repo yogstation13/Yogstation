@@ -1,0 +1,12 @@
+"a" = (/obj/item/candle/infinite{anchored = 1},/turf/open/floor/plating,/area/template_noop)
+"I" = (/obj/structure/window/plasma/reinforced/fulltile,/turf/open/floor/plating,/area/template_noop)
+"J" = (/obj/machinery/door/airlock/vault{req_access_txt = "53"},/turf/open/floor/plating,/area/template_noop)
+"Y" = (/obj/effect/spawner/lootdrop/crate_spawner,/turf/open/floor/mineral/gold,/area/template_noop)
+
+(1,1,1) = {"
+aaaaaaaaaa
+aIIIIIJIIa
+aIYYYYYYIa
+aIIIIIJIIa
+aaaaaaaaaa
+"}

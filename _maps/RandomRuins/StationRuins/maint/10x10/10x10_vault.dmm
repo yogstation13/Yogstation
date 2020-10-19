@@ -1,0 +1,25 @@
+"a" = (/turf/open/floor/plating,/area/template_noop)
+"b" = (/turf/closed/wall/r_wall,/area/template_noop)
+"c" = (/obj/structure/lattice,/turf/open/space/basic,/area/template_noop)
+"e" = (/obj/item/stack/sheet/mineral/gold/fifty,/turf/open/floor/mineral/gold,/area/template_noop)
+"n" = (/obj/effect/spawner/structure/window/reinforced/shutter,/turf/open/space/basic,/area/template_noop)
+"t" = (/obj/structure/sign/warning/securearea,/turf/closed/wall/r_wall,/area/template_noop)
+"x" = (/obj/effect/spawner/lootdrop/maintenance/three,/turf/open/floor/plating,/area/template_noop)
+"E" = (/turf/open/space/basic,/area/template_noop)
+"I" = (/obj/item/reagent_containers/food/drinks/flask/gold,/turf/open/floor/mineral/gold,/area/template_noop)
+"M" = (/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/plating,/area/template_noop)
+"P" = (/obj/structure/statue/gold/ce,/turf/open/floor/mineral/gold,/area/template_noop)
+"R" = (/obj/item/pod_parts/armor/gold,/turf/open/floor/mineral/gold,/area/template_noop)
+
+(1,1,1) = {"
+xaaaaaaaaM
+annnnnnnna
+anccEEccna
+anctbbtcna
+anEbRIbEna
+anEbePbEna
+anctbbtcna
+anccEEccna
+annnnnnnna
+aaaaaaaaMa
+"}
