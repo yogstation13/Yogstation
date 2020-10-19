@@ -717,12 +717,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abG" = (
-/obj/structure/table,
-/obj/item/toy/cards/deck,
-/obj/item/toy/cards/deck,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "abH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -84358,6 +84352,13 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"tIs" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/obj/item/toy/cards/deck,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tKc" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue{
@@ -108418,7 +108419,7 @@ aaH
 aaQ
 aba
 abF
-abG
+tIs
 acb
 acu
 aaR

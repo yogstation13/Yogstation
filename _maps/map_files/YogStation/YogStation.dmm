@@ -40110,12 +40110,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"fqe" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "fqv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -46343,6 +46337,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"kxF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "kxR" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -56473,16 +56473,6 @@
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"sAW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "sAY" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -60450,6 +60440,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"vRN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "vSo" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -90119,8 +90120,8 @@ csA
 aat
 aat
 aat
-fqe
-sAW
+kxF
+vRN
 aat
 aat
 aat
