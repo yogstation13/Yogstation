@@ -1,0 +1,31 @@
+"a" = (/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel/dark,/area/template_noop)
+"b" = (/obj/structure/chair{dir = 4},/turf/open/floor/plasteel/dark,/area/template_noop)
+"c" = (/obj/machinery/camera{c_tag = "Lasertag"; dir = 5; network = list("tag")},/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/dark,/area/template_noop)
+"g" = (/obj/structure/mineral_door/iron,/turf/open/floor/plasteel/dark,/area/template_noop)
+"h" = (/obj/machinery/computer/security/telescreen{desc = "Used for watching the game!"; dir = 8; layer = 4; name = "Lasertag Monitor"; network = list("tag"); pixel_x = 30},/obj/structure/chair{dir = 4},/turf/open/floor/plasteel/dark,/area/template_noop)
+"i" = (/turf/open/floor/plasteel/dark,/area/template_noop)
+"o" = (/obj/effect/spawner/structure/window/reinforced/tinted,/turf/open/floor/plasteel/dark,/area/template_noop)
+"r" = (/obj/structure/closet/lasertag/blue,/turf/open/floor/plasteel/dark,/area/template_noop)
+"t" = (/turf/open/floor/plating,/area/template_noop)
+"w" = (/obj/effect/turf_decal/tile/blue{dir = 1},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/dark,/area/template_noop)
+"B" = (/obj/machinery/recharger,/turf/open/floor/plasteel/dark,/area/template_noop)
+"C" = (/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/dark,/area/template_noop)
+"D" = (/obj/structure/closet/lasertag/red,/turf/open/floor/plasteel/dark,/area/template_noop)
+"G" = (/obj/effect/turf_decal/tile/blue{dir = 1},/obj/effect/turf_decal/tile/blue{dir = 8},/obj/structure/camera_assembly{dir = 4},/turf/open/floor/plasteel/dark,/area/template_noop)
+"I" = (/obj/structure/chair{dir = 4},/turf/open/floor/plating,/area/template_noop)
+"P" = (/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/dark,/area/template_noop)
+"Q" = (/turf/closed/wall/mineral/iron,/area/template_noop)
+"W" = (/obj/machinery/door/airlock,/turf/open/floor/plasteel/dark,/area/template_noop)
+
+(1,1,1) = {"
+DDDQaiiiii
+iBiWaiiiti
+QQQQaiiiii
+iiigPiiiii
+iIhociiiii
+CbhoGitiii
+Ciigwiiiii
+QQQQwiiiii
+iBiWwiiiti
+rrrQwtiiii
+"}
